@@ -4,6 +4,16 @@
 
 # Module `parser`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Parser`](#parser) | struct |  |
+| [`PendingArg`](#pendingarg) | struct |  |
+| [`ParseState`](#parsestate) | enum |  |
+| [`ParseResult`](#parseresult) | enum | Recoverable Parsing results. |
+| [`Identifier`](#identifier) | enum |  |
+
 ## Structs
 
 ### `Parser<'cmd>`
@@ -16,6 +26,8 @@ struct Parser<'cmd> {
     flag_subcmd_skip: usize,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:23-31`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/parser.rs#L23-L31)*
 
 #### Fields
 
@@ -30,45 +42,7 @@ struct Parser<'cmd> {
 
 #### Implementations
 
-- `fn get_matches_with(self: &mut Self, matcher: &mut ArgMatcher, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn parse(self: &mut Self, matcher: &mut ArgMatcher, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn match_arg_error(self: &Self, arg_os: &clap_lex::ParsedArg<'_>, valid_arg_found: bool, trailing_values: bool, matcher: &ArgMatcher) -> ClapError` — [`ArgMatcher`](../arg_matcher/index.md), [`Error`](../../error/index.md)
-
-- `fn possible_subcommand(self: &Self, arg: Result<&str, &OsStr>, valid_arg_found: bool) -> Option<&str>`
-
-- `fn possible_long_flag_subcommand(self: &Self, arg: &str) -> Option<&str>`
-
-- `fn parse_help_subcommand(self: &Self, cmds: impl Iterator<Item = &'cmd OsStr>) -> ClapResult<std::convert::Infallible>` — [`Result`](../../error/index.md)
-
-- `fn is_new_arg(self: &Self, next: &clap_lex::ParsedArg<'_>, current_positional: &Arg) -> bool` — [`Arg`](../../index.md)
-
-- `fn parse_subcommand(self: &mut Self, sc_name: &str, matcher: &mut ArgMatcher, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor, keep_state: bool) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn parse_long_arg(self: &mut Self, matcher: &mut ArgMatcher, long_arg: Result<&str, &OsStr>, long_value: Option<&OsStr>, parse_state: &ParseState, pos_counter: usize, valid_arg_found: &mut bool) -> ClapResult<ParseResult>` — [`ArgMatcher`](../arg_matcher/index.md), [`ParseState`](#parsestate), [`Result`](../../error/index.md), [`ParseResult`](#parseresult)
-
-- `fn parse_short_arg(self: &mut Self, matcher: &mut ArgMatcher, short_arg: clap_lex::ShortFlags<'_>, parse_state: &ParseState, pos_counter: usize, valid_arg_found: &mut bool) -> ClapResult<ParseResult>` — [`ArgMatcher`](../arg_matcher/index.md), [`ParseState`](#parsestate), [`Result`](../../error/index.md), [`ParseResult`](#parseresult)
-
-- `fn parse_opt_value(self: &Self, ident: Identifier, attached_value: Option<&OsStr>, arg: &Arg, matcher: &mut ArgMatcher, has_eq: bool) -> ClapResult<ParseResult>` — [`Identifier`](#identifier), [`Arg`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md), [`ParseResult`](#parseresult)
-
-- `fn check_terminator(self: &Self, arg: &Arg, val: &OsStr) -> Option<ParseResult>` — [`Arg`](../../index.md), [`ParseResult`](#parseresult)
-
-- `fn push_arg_values(self: &Self, arg: &Arg, raw_vals: Vec<OsString>, source: ValueSource, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`Arg`](../../index.md), [`ValueSource`](../index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn resolve_pending(self: &Self, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn react(self: &Self, ident: Option<Identifier>, source: ValueSource, arg: &Arg, raw_vals: Vec<OsString>, trailing_idx: Option<usize>, matcher: &mut ArgMatcher) -> ClapResult<ParseResult>` — [`Identifier`](#identifier), [`ValueSource`](../index.md), [`Arg`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md), [`ParseResult`](#parseresult)
-
-- `fn verify_num_args(self: &Self, arg: &Arg, raw_vals: &[OsString]) -> ClapResult<()>` — [`Arg`](../../index.md), [`Result`](../../error/index.md)
-
-- `fn remove_overrides(self: &Self, arg: &Arg, matcher: &mut ArgMatcher)` — [`Arg`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md)
-
-- `fn add_defaults(self: &Self, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn add_default_value(self: &Self, arg: &Arg, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`Arg`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn start_custom_arg(self: &Self, matcher: &mut ArgMatcher, arg: &Arg, source: ValueSource)` — [`ArgMatcher`](../arg_matcher/index.md), [`Arg`](../../index.md), [`ValueSource`](../index.md)
+- <span id="parser-new"></span>`fn new(cmd: &'cmd mut Command) -> Self` — [`Command`](../../builder/command/index.md)
 
 ### `PendingArg`
 
@@ -81,21 +55,23 @@ struct PendingArg {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1666-1671`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/parser.rs#L1666-L1671)*
+
 #### Trait Implementations
 
 ##### `impl Clone for PendingArg`
 
-- `fn clone(self: &Self) -> PendingArg` — [`PendingArg`](#pendingarg)
+- <span id="pendingarg-clone"></span>`fn clone(&self) -> PendingArg` — [`PendingArg`](#pendingarg)
 
 ##### `impl Debug for PendingArg`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pendingarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for PendingArg`
 
 ##### `impl PartialEq for PendingArg`
 
-- `fn eq(self: &Self, other: &PendingArg) -> bool` — [`PendingArg`](#pendingarg)
+- <span id="pendingarg-eq"></span>`fn eq(&self, other: &PendingArg) -> bool` — [`PendingArg`](#pendingarg)
 
 ##### `impl StructuralPartialEq for PendingArg`
 
@@ -111,17 +87,19 @@ enum ParseState {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1629-1633`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/parser.rs#L1629-L1633)*
+
 #### Trait Implementations
 
 ##### `impl Debug for ParseState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parsestate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ParseState`
 
 ##### `impl PartialEq for ParseState`
 
-- `fn eq(self: &Self, other: &ParseState) -> bool` — [`ParseState`](#parsestate)
+- <span id="parsestate-eq"></span>`fn eq(&self, other: &ParseState) -> bool` — [`ParseState`](#parsestate)
 
 ##### `impl StructuralPartialEq for ParseState`
 
@@ -148,6 +126,8 @@ enum ParseResult {
     NoArg,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1638-1663`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/parser.rs#L1638-L1663)*
 
 Recoverable Parsing results.
 
@@ -182,15 +162,15 @@ Recoverable Parsing results.
 
 ##### `impl Clone for ParseResult`
 
-- `fn clone(self: &Self) -> ParseResult` — [`ParseResult`](#parseresult)
+- <span id="parseresult-clone"></span>`fn clone(&self) -> ParseResult` — [`ParseResult`](#parseresult)
 
 ##### `impl Debug for ParseResult`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parseresult-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for ParseResult`
 
-- `fn eq(self: &Self, other: &ParseResult) -> bool` — [`ParseResult`](#parseresult)
+- <span id="parseresult-eq"></span>`fn eq(&self, other: &ParseResult) -> bool` — [`ParseResult`](#parseresult)
 
 ##### `impl StructuralPartialEq for ParseResult`
 
@@ -204,23 +184,25 @@ enum Identifier {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1674-1678`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/parser.rs#L1674-L1678)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Identifier`
 
-- `fn clone(self: &Self) -> Identifier` — [`Identifier`](#identifier)
+- <span id="identifier-clone"></span>`fn clone(&self) -> Identifier` — [`Identifier`](#identifier)
 
 ##### `impl Copy for Identifier`
 
 ##### `impl Debug for Identifier`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="identifier-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Identifier`
 
 ##### `impl PartialEq for Identifier`
 
-- `fn eq(self: &Self, other: &Identifier) -> bool` — [`Identifier`](#identifier)
+- <span id="identifier-eq"></span>`fn eq(&self, other: &Identifier) -> bool` — [`Identifier`](#identifier)
 
 ##### `impl StructuralPartialEq for Identifier`
 

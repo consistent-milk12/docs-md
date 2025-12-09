@@ -10,6 +10,12 @@ The unsafe `close` for raw file descriptors.
 
 Operating on raw file descriptors is unsafe.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`close`](#close) | fn | `close(raw_fd)`—Closes a `RawFd` directly. |
+
 ## Functions
 
 ### `close`
@@ -17,6 +23,8 @@ Operating on raw file descriptors is unsafe.
 ```rust
 unsafe fn close(raw_fd: backend::fd::RawFd)
 ```
+
+*Defined in [`rustix-1.1.2/src/io/close.rs:54-56`](../../../../.source_1765210505/rustix-1.1.2/src/io/close.rs#L54-L56)*
 
 `close(raw_fd)`—Closes a `RawFd` directly.
 

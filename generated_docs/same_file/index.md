@@ -63,9 +63,17 @@ See `examples/is_stderr.rs` for a runnable example and compare the output of:
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unix`](#unix) | mod |  |
+| [`Handle`](#handle) | struct | A handle to a file that can be tested for equality with other handles. |
+| [`is_same_file`](#is_same_file) | fn | Returns true if the two file paths may correspond to the same file. |
+
 ## Modules
 
-- [`unix`](unix/index.md) - 
+- [`unix`](unix/index.md)
 
 ## Structs
 
@@ -74,6 +82,8 @@ See `examples/is_stderr.rs` for a runnable example and compare the output of:
 ```rust
 struct Handle(imp::Handle);
 ```
+
+*Defined in [`same-file-1.0.6/src/lib.rs:109`](../../.source_1765210505/same-file-1.0.6/src/lib.rs#L109)*
 
 A handle to a file that can be tested for equality with other handles.
 
@@ -93,47 +103,47 @@ implementation details.
 
 #### Implementations
 
-- `fn from_path<P: AsRef<Path>>(p: P) -> io::Result<Handle>` — [`Handle`](#handle)
+- <span id="handle-from-path"></span>`fn from_path<P: AsRef<Path>>(p: P) -> io::Result<Handle>` — [`Handle`](#handle)
 
-- `fn from_file(file: File) -> io::Result<Handle>` — [`Handle`](#handle)
+- <span id="handle-from-file"></span>`fn from_file(file: File) -> io::Result<Handle>` — [`Handle`](#handle)
 
-- `fn stdin() -> io::Result<Handle>` — [`Handle`](#handle)
+- <span id="handle-stdin"></span>`fn stdin() -> io::Result<Handle>` — [`Handle`](#handle)
 
-- `fn stdout() -> io::Result<Handle>` — [`Handle`](#handle)
+- <span id="handle-stdout"></span>`fn stdout() -> io::Result<Handle>` — [`Handle`](#handle)
 
-- `fn stderr() -> io::Result<Handle>` — [`Handle`](#handle)
+- <span id="handle-stderr"></span>`fn stderr() -> io::Result<Handle>` — [`Handle`](#handle)
 
-- `fn as_file(self: &Self) -> &File`
+- <span id="handle-as-file"></span>`fn as_file(&self) -> &File`
 
-- `fn as_file_mut(self: &mut Self) -> &mut File`
+- <span id="handle-as-file-mut"></span>`fn as_file_mut(&mut self) -> &mut File`
 
-- `fn dev(self: &Self) -> u64`
+- <span id="handle-dev"></span>`fn dev(&self) -> u64`
 
-- `fn ino(self: &Self) -> u64`
+- <span id="handle-ino"></span>`fn ino(&self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl AsRawFd for crate::Handle`
 
-- `fn as_raw_fd(self: &Self) -> RawFd`
+- <span id="cratehandle-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
 
 ##### `impl Debug for Handle`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="handle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Handle`
 
 ##### `impl Hash for Handle`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="handle-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl IntoRawFd for crate::Handle`
 
-- `fn into_raw_fd(self: Self) -> RawFd`
+- <span id="cratehandle-into-raw-fd"></span>`fn into_raw_fd(self) -> RawFd`
 
 ##### `impl PartialEq for Handle`
 
-- `fn eq(self: &Self, other: &Handle) -> bool` — [`Handle`](#handle)
+- <span id="handle-eq"></span>`fn eq(&self, other: &Handle) -> bool` — [`Handle`](#handle)
 
 ##### `impl StructuralPartialEq for Handle`
 
@@ -147,6 +157,8 @@ where
     P: AsRef<std::path::Path>,
     Q: AsRef<std::path::Path>
 ```
+
+*Defined in [`same-file-1.0.6/src/lib.rs:370-376`](../../.source_1765210505/same-file-1.0.6/src/lib.rs#L370-L376)*
 
 Returns true if the two file paths may correspond to the same file.
 

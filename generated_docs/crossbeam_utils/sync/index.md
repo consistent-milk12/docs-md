@@ -6,16 +6,46 @@
 
 Thread synchronization primitives.
 
-* [`Parker`](#parker), a thread parking primitive.
-* [`ShardedLock`](#shardedlock), a sharded reader-writer lock with fast concurrent reads.
-* [`WaitGroup`](#waitgroup), for synchronizing the beginning or end of some computation.
+* [`Parker`](parker/index.md), a thread parking primitive.
+* [`ShardedLock`](sharded_lock/index.md), a sharded reader-writer lock with fast concurrent reads.
+* [`WaitGroup`](wait_group/index.md), for synchronizing the beginning or end of some computation.
+
+## Contents
+
+- [Modules](#modules)
+  - [`once_lock`](#once_lock)
+  - [`parker`](#parker)
+  - [`sharded_lock`](#sharded_lock)
+  - [`wait_group`](#wait_group)
+- [Structs](#structs)
+  - [`Parker`](#parker)
+  - [`Unparker`](#unparker)
+  - [`ShardedLock`](#shardedlock)
+  - [`ShardedLockReadGuard`](#shardedlockreadguard)
+  - [`ShardedLockWriteGuard`](#shardedlockwriteguard)
+  - [`WaitGroup`](#waitgroup)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`once_lock`](#once_lock) | mod |  |
+| [`parker`](#parker) | mod |  |
+| [`sharded_lock`](#sharded_lock) | mod |  |
+| [`wait_group`](#wait_group) | mod |  |
+| [`Parker`](#parker) | struct |  |
+| [`Unparker`](#unparker) | struct |  |
+| [`ShardedLock`](#shardedlock) | struct |  |
+| [`ShardedLockReadGuard`](#shardedlockreadguard) | struct |  |
+| [`ShardedLockWriteGuard`](#shardedlockwriteguard) | struct |  |
+| [`WaitGroup`](#waitgroup) | struct |  |
 
 ## Modules
 
-- [`once_lock`](once_lock/index.md) - 
-- [`parker`](parker/index.md) - 
-- [`sharded_lock`](sharded_lock/index.md) - 
-- [`wait_group`](wait_group/index.md) - 
+- [`once_lock`](once_lock/index.md)
+- [`parker`](parker/index.md)
+- [`sharded_lock`](sharded_lock/index.md)
+- [`wait_group`](wait_group/index.md)
 
 ## Structs
 
@@ -27,6 +57,8 @@ struct Parker {
     _marker: std::marker::PhantomData<*const ()>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
 
 A thread parking primitive.
 
@@ -76,29 +108,29 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- `fn new() -> Parker` — [`Parker`](#parker)
+- <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](parker/index.md)
 
-- `fn park(self: &Self)`
+- <span id="parker-park"></span>`fn park(&self)`
 
-- `fn park_timeout(self: &Self, timeout: Duration)`
+- <span id="parker-park-timeout"></span>`fn park_timeout(&self, timeout: Duration)`
 
-- `fn park_deadline(self: &Self, deadline: Instant)`
+- <span id="parker-park-deadline"></span>`fn park_deadline(&self, deadline: Instant)`
 
-- `fn unparker(self: &Self) -> &Unparker` — [`Unparker`](#unparker)
+- <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](parker/index.md)
 
-- `fn into_raw(this: Parker) -> *const ()` — [`Parker`](#parker)
+- <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](parker/index.md)
 
-- `unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](#parker)
+- <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](parker/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for Parker`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Parker`
 
-- `fn default() -> Self`
+- <span id="parker-default"></span>`fn default() -> Self`
 
 ##### `impl Send for Parker`
 
@@ -110,25 +142,27 @@ struct Unparker {
 }
 ```
 
-Unparks a thread parked by the associated [`Parker`](#parker).
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
+
+Unparks a thread parked by the associated [`Parker`](parker/index.md).
 
 #### Implementations
 
-- `fn unpark(self: &Self)`
+- <span id="unparker-unpark"></span>`fn unpark(&self)`
 
-- `fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](#unparker)
+- <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](parker/index.md)
 
-- `unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](#unparker)
+- <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](parker/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Unparker`
 
-- `fn clone(self: &Self) -> Unparker` — [`Unparker`](#unparker)
+- <span id="unparker-clone"></span>`fn clone(&self) -> Unparker` — [`Unparker`](parker/index.md)
 
 ##### `impl Debug for Unparker`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unparker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Send for Unparker`
 
@@ -142,6 +176,8 @@ struct ShardedLock<T: ?Sized> {
     value: std::cell::UnsafeCell<T>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:78-84`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L78-L84)*
 
 A sharded reader-writer lock.
 
@@ -201,27 +237,19 @@ let lock = ShardedLock::new(5);
 
 #### Implementations
 
-- `fn is_poisoned(self: &Self) -> bool`
+- <span id="shardedlock-new"></span>`fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md)
 
-- `fn get_mut(self: &mut Self) -> LockResult<&mut T>`
-
-- `fn try_read(self: &Self) -> TryLockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](#shardedlockreadguard)
-
-- `fn read(self: &Self) -> LockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](#shardedlockreadguard)
-
-- `fn try_write(self: &Self) -> TryLockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](#shardedlockwriteguard)
-
-- `fn write(self: &Self) -> LockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](#shardedlockwriteguard)
+- <span id="shardedlock-into-inner"></span>`fn into_inner(self) -> LockResult<T>`
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for ShardedLock<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlock-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Default> Default for ShardedLock<T>`
 
-- `fn default() -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
+- <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md)
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
 
@@ -241,33 +269,35 @@ struct ShardedLockReadGuard<'a, T: ?Sized> {
 }
 ```
 
-A guard used to release the shared read access of a [`ShardedLock`](#shardedlock) when dropped.
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:486-490`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L486-L490)*
+
+A guard used to release the shared read access of a [`ShardedLock`](sharded_lock/index.md) when dropped.
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug> Debug for ShardedLockReadGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Deref for ShardedLockReadGuard<'_, T>`
 
-- `type Target = T`
+- <span id="shardedlockreadguard-type-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="shardedlockreadguard-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ShardedLockReadGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<P, T> Receiver for ShardedLockReadGuard<'a, T>`
 
-- `type Target = T`
+- <span id="shardedlockreadguard-type-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockReadGuard<'_, T>`
 
 ##### `impl<T> ToString for ShardedLockReadGuard<'a, T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="shardedlockreadguard-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ShardedLockWriteGuard<'a, T: ?Sized>`
 
@@ -278,41 +308,43 @@ struct ShardedLockWriteGuard<'a, T: ?Sized> {
 }
 ```
 
-A guard used to release the exclusive write access of a [`ShardedLock`](#shardedlock) when dropped.
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:518-521`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L518-L521)*
+
+A guard used to release the exclusive write access of a [`ShardedLock`](sharded_lock/index.md) when dropped.
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug> Debug for ShardedLockWriteGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockwriteguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Deref for ShardedLockWriteGuard<'_, T>`
 
-- `type Target = T`
+- <span id="shardedlockwriteguard-type-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="shardedlockwriteguard-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T: ?Sized> DerefMut for ShardedLockWriteGuard<'_, T>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="shardedlockwriteguard-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ShardedLockWriteGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockwriteguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Drop for ShardedLockWriteGuard<'_, T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="shardedlockwriteguard-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<P, T> Receiver for ShardedLockWriteGuard<'a, T>`
 
-- `type Target = T`
+- <span id="shardedlockwriteguard-type-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockWriteGuard<'_, T>`
 
 ##### `impl<T> ToString for ShardedLockWriteGuard<'a, T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="shardedlockwriteguard-to-string"></span>`fn to_string(&self) -> String`
 
 ### `WaitGroup`
 
@@ -321,6 +353,8 @@ struct WaitGroup {
     inner: std::sync::Arc<Inner>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
 
 Enables threads to synchronize the beginning or end of some computation.
 
@@ -366,25 +400,25 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="waitgroup-new"></span>`fn new() -> Self`
 
-- `fn wait(self: Self)`
+- <span id="waitgroup-wait"></span>`fn wait(self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for WaitGroup`
 
-- `fn clone(self: &Self) -> WaitGroup` — [`WaitGroup`](#waitgroup)
+- <span id="waitgroup-clone"></span>`fn clone(&self) -> WaitGroup` — [`WaitGroup`](wait_group/index.md)
 
 ##### `impl Debug for WaitGroup`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="waitgroup-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for WaitGroup`
 
-- `fn default() -> Self`
+- <span id="waitgroup-default"></span>`fn default() -> Self`
 
 ##### `impl Drop for WaitGroup`
 
-- `fn drop(self: &mut Self)`
+- <span id="waitgroup-drop"></span>`fn drop(&mut self)`
 

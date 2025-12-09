@@ -4,6 +4,14 @@
 
 # Module `snake`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AsSnakeCase`](#assnakecase) | struct | This wrapper performs a snake case conversion in [`fmt::Display`]. |
+| [`ToSnakeCase`](#tosnakecase) | trait | This trait defines a snake case conversion. |
+| [`ToSnekCase`](#tosnekcase) | trait | Oh heck, `SnekCase` is an alias for [`ToSnakeCase`]. |
+
 ## Structs
 
 ### `AsSnakeCase<T: AsRef<str>>`
@@ -12,7 +20,9 @@
 struct AsSnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../../miette_derive/index.md).
+*Defined in [`heck-0.5.0/src/snake.rs:55`](../../../.source_1765210505/heck-0.5.0/src/snake.rs#L55)*
+
+This wrapper performs a snake case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -27,11 +37,11 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 
 ##### `impl<T: AsRef<str>> Display for AsSnakeCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="assnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsSnakeCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="assnakecase-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 
@@ -40,6 +50,8 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 ```rust
 trait ToSnakeCase: ToOwned { ... }
 ```
+
+*Defined in [`heck-0.5.0/src/snake.rs:21-24`](../../../.source_1765210505/heck-0.5.0/src/snake.rs#L21-L24)*
 
 This trait defines a snake case conversion.
 
@@ -56,9 +68,13 @@ assert_eq!(sentence.to_snake_case(), "we_carry_a_new_world_here_in_our_hearts");
 
 #### Required Methods
 
-- `fn to_snake_case(self: &Self) -> <Self as >::Owned`
+- `fn to_snake_case(&self) -> <Self as >::Owned`
 
   Convert this type to snake case.
+
+#### Implementors
+
+- `str`
 
 ### `ToSnekCase`
 
@@ -66,12 +82,18 @@ assert_eq!(sentence.to_snake_case(), "we_carry_a_new_world_here_in_our_hearts");
 trait ToSnekCase: ToOwned { ... }
 ```
 
-Oh heck, `SnekCase` is an alias for [`ToSnakeCase`](../index.md). See ToSnakeCase for
+*Defined in [`heck-0.5.0/src/snake.rs:28-31`](../../../.source_1765210505/heck-0.5.0/src/snake.rs#L28-L31)*
+
+Oh heck, `SnekCase` is an alias for [`ToSnakeCase`](#tosnakecase). See ToSnakeCase for
 more documentation.
 
 #### Required Methods
 
-- `fn to_snek_case(self: &Self) -> <Self as >::Owned`
+- `fn to_snek_case(&self) -> <Self as >::Owned`
 
   Convert this type to snek case.
+
+#### Implementors
+
+- `T`
 

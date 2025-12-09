@@ -4,6 +4,33 @@
 
 # Module `strategy`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Pre`](#pre)
+  - [`Core`](#core)
+  - [`ReverseAnchored`](#reverseanchored)
+  - [`ReverseSuffix`](#reversesuffix)
+  - [`ReverseInner`](#reverseinner)
+- [Traits](#traits)
+  - [`Strategy`](#strategy)
+- [Functions](#functions)
+  - [`new`](#new)
+  - [`copy_match_to_slots`](#copy_match_to_slots)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Pre`](#pre) | struct |  |
+| [`Core`](#core) | struct |  |
+| [`ReverseAnchored`](#reverseanchored) | struct |  |
+| [`ReverseSuffix`](#reversesuffix) | struct |  |
+| [`ReverseInner`](#reverseinner) | struct |  |
+| [`Strategy`](#strategy) | trait | A trait that represents a single meta strategy. |
+| [`new`](#new) | fn |  |
+| [`copy_match_to_slots`](#copy_match_to_slots) | fn | Copies the offsets in the given match to the corresponding positions in `slots`. |
+
 ## Structs
 
 ### `Pre<P>`
@@ -15,41 +42,43 @@ struct Pre<P> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:189-192`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/strategy.rs#L189-L192)*
+
 #### Implementations
 
-- `fn new(pre: P) -> Arc<dyn Strategy>` — [`Strategy`](#strategy)
+- <span id="pre-new"></span>`fn new(pre: P) -> Arc<dyn Strategy>` — [`Strategy`](#strategy)
 
 #### Trait Implementations
 
-##### `impl<P: $crate::clone::Clone> Clone for Pre<P>`
+##### `impl<P: clone::Clone> Clone for Pre<P>`
 
-- `fn clone(self: &Self) -> Pre<P>` — [`Pre`](#pre)
+- <span id="pre-clone"></span>`fn clone(&self) -> Pre<P>` — [`Pre`](#pre)
 
-##### `impl<P: $crate::fmt::Debug> Debug for Pre<P>`
+##### `impl<P: fmt::Debug> Debug for Pre<P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pre-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<P: PrefilterI> Strategy for Pre<P>`
 
-- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
+- <span id="pre-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
 
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](../index.md)
+- <span id="pre-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md)
 
-- `fn reset_cache(self: &Self, _cache: &mut Cache)` — [`Cache`](../index.md)
+- <span id="pre-reset-cache"></span>`fn reset_cache(&self, _cache: &mut Cache)` — [`Cache`](../regex/index.md)
 
-- `fn is_accelerated(self: &Self) -> bool`
+- <span id="pre-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="pre-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn search(self: &Self, _cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="pre-search"></span>`fn search(&self, _cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
 
-- `fn search_half(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="pre-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
 
-- `fn is_match(self: &Self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../index.md), [`Input`](../../index.md)
+- <span id="pre-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
 
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="pre-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="pre-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
 
 ### `Core`
 
@@ -67,49 +96,51 @@ struct Core {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:443-453`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/strategy.rs#L443-L453)*
+
 #### Implementations
 
-- `fn new(info: RegexInfo, pre: Option<Prefilter>, hirs: &[&Hir]) -> Result<Core, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`Core`](#core), [`BuildError`](../index.md)
+- <span id="core-new"></span>`fn new(info: RegexInfo, pre: Option<Prefilter>, hirs: &[&Hir]) -> Result<Core, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`Core`](#core), [`BuildError`](../error/index.md)
 
-- `fn try_search_mayfail(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Result<Option<Match>, RetryFailError>>` — [`Cache`](../index.md), [`Input`](../../index.md), [`Match`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="core-try-search-mayfail"></span>`fn try_search_mayfail(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Result<Option<Match>, RetryFailError>>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn search_nofail(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="core-search-nofail"></span>`fn search_nofail(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
 
-- `fn search_half_nofail(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="core-search-half-nofail"></span>`fn search_half_nofail(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
 
-- `fn search_slots_nofail(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="core-search-slots-nofail"></span>`fn search_slots_nofail(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
-- `fn is_match_nofail(self: &Self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../index.md), [`Input`](../../index.md)
+- <span id="core-is-match-nofail"></span>`fn is_match_nofail(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
 
-- `fn is_capture_search_needed(self: &Self, slots_len: usize) -> bool`
+- <span id="core-is-capture-search-needed"></span>`fn is_capture_search_needed(&self, slots_len: usize) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for Core`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="core-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Strategy for Core`
 
-- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
+- <span id="core-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
 
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](../index.md)
+- <span id="core-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md)
 
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](../index.md)
+- <span id="core-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md)
 
-- `fn is_accelerated(self: &Self) -> bool`
+- <span id="core-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="core-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="core-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
 
-- `fn search_half(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="core-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
 
-- `fn is_match(self: &Self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../index.md), [`Input`](../../index.md)
+- <span id="core-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
 
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="core-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="core-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
 
 ### `ReverseAnchored`
 
@@ -119,39 +150,41 @@ struct ReverseAnchored {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:904-906`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/strategy.rs#L904-L906)*
+
 #### Implementations
 
-- `fn new(core: Core) -> Result<ReverseAnchored, Core>` — [`Core`](#core), [`ReverseAnchored`](#reverseanchored)
+- <span id="reverseanchored-new"></span>`fn new(core: Core) -> Result<ReverseAnchored, Core>` — [`Core`](#core), [`ReverseAnchored`](#reverseanchored)
 
-- `fn try_search_half_anchored_rev(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="reverseanchored-try-search-half-anchored-rev"></span>`fn try_search_half_anchored_rev(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for ReverseAnchored`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reverseanchored-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Strategy for ReverseAnchored`
 
-- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
+- <span id="reverseanchored-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
 
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](../index.md)
+- <span id="reverseanchored-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md)
 
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](../index.md)
+- <span id="reverseanchored-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md)
 
-- `fn is_accelerated(self: &Self) -> bool`
+- <span id="reverseanchored-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="reverseanchored-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="reverseanchored-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
 
-- `fn search_half(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="reverseanchored-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
 
-- `fn is_match(self: &Self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../index.md), [`Input`](../../index.md)
+- <span id="reverseanchored-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
 
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="reverseanchored-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="reverseanchored-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
 
 ### `ReverseSuffix`
 
@@ -162,43 +195,45 @@ struct ReverseSuffix {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1116-1119`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/strategy.rs#L1116-L1119)*
+
 #### Implementations
 
-- `fn new(core: Core, hirs: &[&Hir]) -> Result<ReverseSuffix, Core>` — [`Core`](#core), [`ReverseSuffix`](#reversesuffix)
+- <span id="reversesuffix-new"></span>`fn new(core: Core, hirs: &[&Hir]) -> Result<ReverseSuffix, Core>` — [`Core`](#core), [`ReverseSuffix`](#reversesuffix)
 
-- `fn try_search_half_start(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="reversesuffix-try-search-half-start"></span>`fn try_search_half_start(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
 
-- `fn try_search_half_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="reversesuffix-try-search-half-fwd"></span>`fn try_search_half_fwd(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn try_search_half_rev_limited(self: &Self, cache: &mut Cache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="reversesuffix-try-search-half-rev-limited"></span>`fn try_search_half_rev_limited(&self, cache: &mut Cache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for ReverseSuffix`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reversesuffix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Strategy for ReverseSuffix`
 
-- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
+- <span id="reversesuffix-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
 
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](../index.md)
+- <span id="reversesuffix-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md)
 
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](../index.md)
+- <span id="reversesuffix-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md)
 
-- `fn is_accelerated(self: &Self) -> bool`
+- <span id="reversesuffix-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="reversesuffix-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="reversesuffix-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
 
-- `fn search_half(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="reversesuffix-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
 
-- `fn is_match(self: &Self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../index.md), [`Input`](../../index.md)
+- <span id="reversesuffix-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
 
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="reversesuffix-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="reversesuffix-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
 
 ### `ReverseInner`
 
@@ -212,43 +247,45 @@ struct ReverseInner {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1494-1500`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/strategy.rs#L1494-L1500)*
+
 #### Implementations
 
-- `fn new(core: Core, hirs: &[&Hir]) -> Result<ReverseInner, Core>` — [`Core`](#core), [`ReverseInner`](#reverseinner)
+- <span id="reverseinner-new"></span>`fn new(core: Core, hirs: &[&Hir]) -> Result<ReverseInner, Core>` — [`Core`](#core), [`ReverseInner`](#reverseinner)
 
-- `fn try_search_full(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, RetryError>` — [`Cache`](../index.md), [`Input`](../../index.md), [`Match`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="reverseinner-try-search-full"></span>`fn try_search_full(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, RetryError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md), [`RetryError`](../error/index.md)
 
-- `fn try_search_half_fwd_stopat(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Result<HalfMatch, usize>, RetryFailError>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="reverseinner-try-search-half-fwd-stopat"></span>`fn try_search_half_fwd_stopat(&self, cache: &mut Cache, input: &Input<'_>) -> Result<Result<HalfMatch, usize>, RetryFailError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn try_search_half_rev_limited(self: &Self, cache: &mut Cache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="reverseinner-try-search-half-rev-limited"></span>`fn try_search_half_rev_limited(&self, cache: &mut Cache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for ReverseInner`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reverseinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Strategy for ReverseInner`
 
-- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
+- <span id="reverseinner-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
 
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](../index.md)
+- <span id="reverseinner-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](../regex/index.md)
 
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](../index.md)
+- <span id="reverseinner-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](../regex/index.md)
 
-- `fn is_accelerated(self: &Self) -> bool`
+- <span id="reverseinner-is-accelerated"></span>`fn is_accelerated(&self) -> bool`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="reverseinner-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="reverseinner-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`Match`](../../index.md)
 
-- `fn search_half(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="reverseinner-search-half"></span>`fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
 
-- `fn is_match(self: &Self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../index.md), [`Input`](../../index.md)
+- <span id="reverseinner-is-match"></span>`fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool` — [`Cache`](../regex/index.md), [`Input`](../../index.md)
 
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="reverseinner-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="reverseinner-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../regex/index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
 
 ## Traits
 
@@ -257,6 +294,8 @@ struct ReverseInner {
 ```rust
 trait Strategy: Debug + Send + Sync + RefUnwindSafe + UnwindSafe + 'static { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:40-76`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/strategy.rs#L40-L76)*
 
 A trait that represents a single meta strategy. Its main utility is in
 providing a way to do dynamic dispatch over a few choices.
@@ -275,25 +314,33 @@ is, a benchmark to test the overall latency of a search call.
 
 #### Required Methods
 
-- `fn group_info(self: &Self) -> &GroupInfo`
+- `fn group_info(&self) -> &GroupInfo`
 
-- `fn create_cache(self: &Self) -> Cache`
+- `fn create_cache(&self) -> Cache`
 
-- `fn reset_cache(self: &Self, cache: &mut Cache)`
+- `fn reset_cache(&self, cache: &mut Cache)`
 
-- `fn is_accelerated(self: &Self) -> bool`
+- `fn is_accelerated(&self) -> bool`
 
-- `fn memory_usage(self: &Self) -> usize`
+- `fn memory_usage(&self) -> usize`
 
-- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>`
+- `fn search(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>`
 
-- `fn search_half(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>`
+- `fn search_half(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>`
 
-- `fn is_match(self: &Self, cache: &mut Cache, input: &Input<'_>) -> bool`
+- `fn is_match(&self, cache: &mut Cache, input: &Input<'_>) -> bool`
 
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+- `fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
 
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
+- `fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
+
+#### Implementors
+
+- [`Core`](#core)
+- [`Pre`](#pre)
+- [`ReverseAnchored`](#reverseanchored)
+- [`ReverseInner`](#reverseinner)
+- [`ReverseSuffix`](#reversesuffix)
 
 ## Functions
 
@@ -303,11 +350,15 @@ is, a benchmark to test the overall latency of a search call.
 fn new(info: &crate::meta::regex::RegexInfo, hirs: &[&regex_syntax::hir::Hir]) -> Result<alloc::sync::Arc<dyn Strategy>, crate::meta::error::BuildError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:78-186`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/strategy.rs#L78-L186)*
+
 ### `copy_match_to_slots`
 
 ```rust
 fn copy_match_to_slots(m: crate::util::search::Match, slots: &mut [Option<crate::util::primitives::NonMaxUsize>])
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/strategy.rs:1896-1905`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/strategy.rs#L1896-L1905)*
 
 Copies the offsets in the given match to the corresponding positions in
 `slots`.

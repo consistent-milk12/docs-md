@@ -12,6 +12,13 @@ these traits on the item type, the compiler can see a more direct constraint to 
 They have to be `pub` since they're seen in the public `impl ParallelIterator` constraints, but
 we put them in a private modules so they're not actually reachable in our public API.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RangeInteger`](#rangeinteger) | trait | Implementation details of `ParallelIterator for Iter<Self>` |
+| [`IndexedRangeInteger`](#indexedrangeinteger) | trait | Implementation details of `IndexedParallelIterator for Iter<Self>` |
+
 ## Traits
 
 ### `RangeInteger`
@@ -19,6 +26,8 @@ we put them in a private modules so they're not actually reachable in our public
 ```rust
 trait RangeInteger: Sized + Send { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/range.rs:89-97`](../../../../.source_1765210505/rayon-1.11.0/src/range.rs#L89-L97)*
 
 Implementation details of `ParallelIterator for Iter<Self>`
 
@@ -28,11 +37,28 @@ Implementation details of `ParallelIterator for Iter<Self>`
 
 - `fn opt_len(iter: &Iter<Self>) -> Option<usize>`
 
+#### Implementors
+
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
 ### `IndexedRangeInteger`
 
 ```rust
 trait IndexedRangeInteger: RangeInteger { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/range.rs:100-112`](../../../../.source_1765210505/rayon-1.11.0/src/range.rs#L100-L112)*
 
 Implementation details of `IndexedParallelIterator for Iter<Self>`
 
@@ -43,4 +69,15 @@ Implementation details of `IndexedParallelIterator for Iter<Self>`
 - `fn len(iter: &Iter<Self>) -> usize`
 
 - `fn with_producer<CB>(iter: Iter<Self>, callback: CB) -> <CB as >::Output`
+
+#### Implementors
+
+- `i16`
+- `i32`
+- `i8`
+- `isize`
+- `u16`
+- `u32`
+- `u8`
+- `usize`
 

@@ -9,6 +9,15 @@ Support for reading short import files.
 These are used by some Windows linkers as a more compact way to describe
 dynamically imported symbols.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ImportFile`](#importfile) | struct | A Windows short form description of a symbol to import. |
+| [`ImportObjectData`](#importobjectdata) | struct | The data following [`pe::ImportObjectHeader`]. |
+| [`ImportName`](#importname) | enum | The name or ordinal to import from a DLL. |
+| [`ImportType`](#importtype) | enum | The kind of import symbol. |
+
 ## Structs
 
 ### `ImportFile<'data>`
@@ -23,6 +32,8 @@ struct ImportFile<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/import.rs:20-26`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L20-L26)*
+
 A Windows short form description of a symbol to import.
 
 Used in Windows import libraries to provide a mapping from
@@ -33,29 +44,29 @@ to [`crate::FileKind::CoffImport`](../../../index.md).
 
 #### Implementations
 
-- `fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="importfile-parse"></span>`fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../../index.md)
 
-- `fn architecture(self: &Self) -> Architecture` — [`Architecture`](../../../index.md)
+- <span id="importfile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md)
 
-- `fn sub_architecture(self: &Self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md)
+- <span id="importfile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md)
 
-- `fn symbol(self: &Self) -> &'data [u8]`
+- <span id="importfile-symbol"></span>`fn symbol(&self) -> &'data [u8]`
 
-- `fn dll(self: &Self) -> &'data [u8]`
+- <span id="importfile-dll"></span>`fn dll(&self) -> &'data [u8]`
 
-- `fn import(self: &Self) -> ImportName<'data>` — [`ImportName`](../index.md)
+- <span id="importfile-import"></span>`fn import(&self) -> ImportName<'data>` — [`ImportName`](../index.md)
 
-- `fn import_type(self: &Self) -> ImportType` — [`ImportType`](../index.md)
+- <span id="importfile-import-type"></span>`fn import_type(&self) -> ImportType` — [`ImportType`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportFile<'data>`
+##### `impl Clone for ImportFile<'data>`
 
-- `fn clone(self: &Self) -> ImportFile<'data>` — [`ImportFile`](../index.md)
+- <span id="importfile-clone"></span>`fn clone(&self) -> ImportFile<'data>` — [`ImportFile`](../index.md)
 
-##### `impl<'data> Debug for ImportFile<'data>`
+##### `impl Debug for ImportFile<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="importfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ImportObjectData<'data>`
 
@@ -67,25 +78,27 @@ struct ImportObjectData<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/import.rs:200-204`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L200-L204)*
+
 The data following [`pe::ImportObjectHeader`](../../../pe/index.md).
 
 #### Implementations
 
-- `fn symbol(self: &Self) -> &'data [u8]`
+- <span id="importobjectdata-symbol"></span>`fn symbol(&self) -> &'data [u8]`
 
-- `fn dll(self: &Self) -> &'data [u8]`
+- <span id="importobjectdata-dll"></span>`fn dll(&self) -> &'data [u8]`
 
-- `fn export(self: &Self) -> Option<&'data [u8]>`
+- <span id="importobjectdata-export"></span>`fn export(&self) -> Option<&'data [u8]>`
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportObjectData<'data>`
+##### `impl Clone for ImportObjectData<'data>`
 
-- `fn clone(self: &Self) -> ImportObjectData<'data>` — [`ImportObjectData`](../index.md)
+- <span id="importobjectdata-clone"></span>`fn clone(&self) -> ImportObjectData<'data>` — [`ImportObjectData`](../index.md)
 
-##### `impl<'data> Debug for ImportObjectData<'data>`
+##### `impl Debug for ImportObjectData<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="importobjectdata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -97,6 +110,8 @@ enum ImportName<'data> {
     Name(&'data [u8]),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/import.rs:114-119`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L114-L119)*
 
 The name or ordinal to import from a DLL.
 
@@ -112,23 +127,23 @@ The name or ordinal to import from a DLL.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportName<'data>`
+##### `impl Clone for ImportName<'data>`
 
-- `fn clone(self: &Self) -> ImportName<'data>` — [`ImportName`](../index.md)
+- <span id="importname-clone"></span>`fn clone(&self) -> ImportName<'data>` — [`ImportName`](../index.md)
 
-##### `impl<'data> Copy for ImportName<'data>`
+##### `impl Copy for ImportName<'data>`
 
-##### `impl<'data> Debug for ImportName<'data>`
+##### `impl Debug for ImportName<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="importname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for ImportName<'data>`
+##### `impl Eq for ImportName<'data>`
 
-##### `impl<'data> PartialEq for ImportName<'data>`
+##### `impl PartialEq for ImportName<'data>`
 
-- `fn eq(self: &Self, other: &ImportName<'data>) -> bool` — [`ImportName`](../index.md)
+- <span id="importname-eq"></span>`fn eq(&self, other: &ImportName<'data>) -> bool` — [`ImportName`](../index.md)
 
-##### `impl<'data> StructuralPartialEq for ImportName<'data>`
+##### `impl StructuralPartialEq for ImportName<'data>`
 
 ### `ImportType`
 
@@ -139,6 +154,8 @@ enum ImportType {
     Const,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/import.rs:123-130`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L123-L130)*
 
 The kind of import symbol.
 
@@ -160,23 +177,23 @@ The kind of import symbol.
 
 ##### `impl Clone for ImportType`
 
-- `fn clone(self: &Self) -> ImportType` — [`ImportType`](../index.md)
+- <span id="importtype-clone"></span>`fn clone(&self) -> ImportType` — [`ImportType`](../index.md)
 
 ##### `impl Copy for ImportType`
 
 ##### `impl Debug for ImportType`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="importtype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ImportType`
 
 ##### `impl Hash for ImportType`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="importtype-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ImportType`
 
-- `fn eq(self: &Self, other: &ImportType) -> bool` — [`ImportType`](../index.md)
+- <span id="importtype-eq"></span>`fn eq(&self, other: &ImportType) -> bool` — [`ImportType`](../index.md)
 
 ##### `impl StructuralPartialEq for ImportType`
 

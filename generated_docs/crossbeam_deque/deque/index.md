@@ -4,6 +4,57 @@
 
 # Module `deque`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Buffer`](#buffer)
+  - [`Inner`](#inner)
+  - [`Worker`](#worker)
+  - [`Stealer`](#stealer)
+  - [`Slot`](#slot)
+  - [`Block`](#block)
+  - [`Position`](#position)
+  - [`Injector`](#injector)
+- [Enums](#enums)
+  - [`Flavor`](#flavor)
+  - [`Steal`](#steal)
+- [Constants](#constants)
+  - [`MIN_CAP`](#min_cap)
+  - [`MAX_BATCH`](#max_batch)
+  - [`FLUSH_THRESHOLD_BYTES`](#flush_threshold_bytes)
+  - [`WRITE`](#write)
+  - [`READ`](#read)
+  - [`DESTROY`](#destroy)
+  - [`LAP`](#lap)
+  - [`BLOCK_CAP`](#block_cap)
+  - [`SHIFT`](#shift)
+  - [`HAS_NEXT`](#has_next)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Buffer`](#buffer) | struct | A buffer that holds tasks in a worker queue. |
+| [`Inner`](#inner) | struct | Internal queue data shared between the worker and stealers. |
+| [`Worker`](#worker) | struct | A worker queue. |
+| [`Stealer`](#stealer) | struct | A stealer handle of a worker queue. |
+| [`Slot`](#slot) | struct | A slot in a block. |
+| [`Block`](#block) | struct | A block in a linked list. |
+| [`Position`](#position) | struct | A position in a queue. |
+| [`Injector`](#injector) | struct | An injector queue. |
+| [`Flavor`](#flavor) | enum | Worker queue flavor: FIFO or LIFO. |
+| [`Steal`](#steal) | enum | Possible outcomes of a steal operation. |
+| [`MIN_CAP`](#min_cap) | const |  |
+| [`MAX_BATCH`](#max_batch) | const |  |
+| [`FLUSH_THRESHOLD_BYTES`](#flush_threshold_bytes) | const |  |
+| [`WRITE`](#write) | const |  |
+| [`READ`](#read) | const |  |
+| [`DESTROY`](#destroy) | const |  |
+| [`LAP`](#lap) | const |  |
+| [`BLOCK_CAP`](#block_cap) | const |  |
+| [`SHIFT`](#shift) | const |  |
+| [`HAS_NEXT`](#has_next) | const |  |
+
 ## Structs
 
 ### `Buffer<T>`
@@ -14,6 +65,8 @@ struct Buffer<T> {
     cap: usize,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:27-33`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L27-L33)*
 
 A buffer that holds tasks in a worker queue.
 
@@ -32,37 +85,37 @@ This is just a pointer to the buffer and its length - dropping an instance of th
 
 #### Implementations
 
-- `fn alloc(cap: usize) -> Buffer<T>` — [`Buffer`](#buffer)
+- <span id="buffer-alloc"></span>`fn alloc(cap: usize) -> Buffer<T>` — [`Buffer`](#buffer)
 
-- `unsafe fn dealloc(self: Self)`
+- <span id="buffer-dealloc"></span>`unsafe fn dealloc(self)`
 
-- `unsafe fn at(self: &Self, index: isize) -> *mut T`
+- <span id="buffer-at"></span>`unsafe fn at(&self, index: isize) -> *mut T`
 
-- `unsafe fn write(self: &Self, index: isize, task: MaybeUninit<T>)`
+- <span id="buffer-write"></span>`unsafe fn write(&self, index: isize, task: MaybeUninit<T>)`
 
-- `unsafe fn read(self: &Self, index: isize) -> MaybeUninit<T>`
+- <span id="buffer-read"></span>`unsafe fn read(&self, index: isize) -> MaybeUninit<T>`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Buffer<T>`
 
-- `fn clone(self: &Self) -> Buffer<T>` — [`Buffer`](#buffer)
+- <span id="buffer-clone"></span>`fn clone(&self) -> Buffer<T>` — [`Buffer`](#buffer)
 
 ##### `impl<T> Copy for Buffer<T>`
 
 ##### `impl<T> Pointable for Buffer<T>`
 
-- `const ALIGN: usize`
+- <span id="buffer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="buffer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="buffer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="buffer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="buffer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="buffer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> Send for Buffer<T>`
 
@@ -75,6 +128,8 @@ struct Inner<T> {
     buffer: crossbeam_utils::CachePadded<crossbeam_epoch::Atomic<Buffer<T>>>,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:110-119`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L110-L119)*
 
 Internal queue data shared between the worker and stealers.
 
@@ -107,21 +162,21 @@ The implementation is based on the following work:
 
 ##### `impl<T> Drop for Inner<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="inner-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for Inner<T>`
 
-- `const ALIGN: usize`
+- <span id="inner-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="inner-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="inner-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="inner-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="inner-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="inner-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Worker<T>`
 
@@ -133,6 +188,8 @@ struct Worker<T> {
     _marker: std::marker::PhantomData<*mut ()>,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:193-205`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L193-L205)*
 
 A worker queue.
 
@@ -195,43 +252,43 @@ assert_eq!(w.pop(), Some(2));
 
 #### Implementations
 
-- `fn new_fifo() -> Worker<T>` — [`Worker`](../index.md)
+- <span id="worker-new-fifo"></span>`fn new_fifo() -> Worker<T>` — [`Worker`](#worker)
 
-- `fn new_lifo() -> Worker<T>` — [`Worker`](../index.md)
+- <span id="worker-new-lifo"></span>`fn new_lifo() -> Worker<T>` — [`Worker`](#worker)
 
-- `fn stealer(self: &Self) -> Stealer<T>` — [`Stealer`](../index.md)
+- <span id="worker-stealer"></span>`fn stealer(&self) -> Stealer<T>` — [`Stealer`](#stealer)
 
-- `unsafe fn resize(self: &Self, new_cap: usize)`
+- <span id="worker-resize"></span>`unsafe fn resize(&self, new_cap: usize)`
 
-- `fn reserve(self: &Self, reserve_cap: usize)`
+- <span id="worker-reserve"></span>`fn reserve(&self, reserve_cap: usize)`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="worker-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="worker-len"></span>`fn len(&self) -> usize`
 
-- `fn push(self: &Self, task: T)`
+- <span id="worker-push"></span>`fn push(&self, task: T)`
 
-- `fn pop(self: &Self) -> Option<T>`
+- <span id="worker-pop"></span>`fn pop(&self) -> Option<T>`
 
 #### Trait Implementations
 
 ##### `impl<T> Debug for Worker<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="worker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for Worker<T>`
 
-- `const ALIGN: usize`
+- <span id="worker-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="worker-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="worker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="worker-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="worker-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="worker-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for Worker<T>`
 
@@ -243,6 +300,8 @@ struct Stealer<T> {
     flavor: Flavor,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:566-572`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L566-L572)*
 
 A stealer handle of a worker queue.
 
@@ -277,43 +336,43 @@ assert_eq!(s.steal(), Steal::Empty);
 
 #### Implementations
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="stealer-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="stealer-len"></span>`fn len(&self) -> usize`
 
-- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](../index.md)
+- <span id="stealer-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](#steal)
 
-- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](../index.md), [`Steal`](../index.md)
+- <span id="stealer-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](../index.md), [`Steal`](../index.md)
+- <span id="stealer-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](../index.md), [`Steal`](../index.md)
+- <span id="stealer-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](../index.md), [`Steal`](../index.md)
+- <span id="stealer-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Stealer<T>`
 
-- `fn clone(self: &Self) -> Stealer<T>` — [`Stealer`](../index.md)
+- <span id="stealer-clone"></span>`fn clone(&self) -> Stealer<T>` — [`Stealer`](#stealer)
 
 ##### `impl<T> Debug for Stealer<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stealer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for Stealer<T>`
 
-- `const ALIGN: usize`
+- <span id="stealer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="stealer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="stealer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="stealer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="stealer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="stealer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for Stealer<T>`
 
@@ -327,6 +386,8 @@ struct Slot<T> {
     state: std::sync::atomic::AtomicUsize,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1198-1204`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1198-L1204)*
 
 A slot in a block.
 
@@ -342,23 +403,23 @@ A slot in a block.
 
 #### Implementations
 
-- `fn wait_write(self: &Self)`
+- <span id="slot-wait-write"></span>`fn wait_write(&self)`
 
 #### Trait Implementations
 
 ##### `impl<T> Pointable for Slot<T>`
 
-- `const ALIGN: usize`
+- <span id="slot-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="slot-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="slot-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="slot-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="slot-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="slot-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Block<T>`
 
@@ -368,6 +429,8 @@ struct Block<T> {
     slots: [Slot<T>; 63],
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1219-1225`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1219-L1225)*
 
 A block in a linked list.
 
@@ -385,29 +448,29 @@ Each block in the list can hold up to `BLOCK_CAP` values.
 
 #### Implementations
 
-- `const LAYOUT: Layout`
+- <span id="block-const-layout"></span>`const LAYOUT: Layout`
 
-- `fn new() -> Box<Self>`
+- <span id="block-new"></span>`fn new() -> Box<Self>`
 
-- `fn wait_next(self: &Self) -> *mut Block<T>` — [`Block`](#block)
+- <span id="block-wait-next"></span>`fn wait_next(&self) -> *mut Block<T>` — [`Block`](#block)
 
-- `unsafe fn destroy(this: *mut Block<T>, count: usize)` — [`Block`](#block)
+- <span id="block-destroy"></span>`unsafe fn destroy(this: *mut Block<T>, count: usize)` — [`Block`](#block)
 
 #### Trait Implementations
 
 ##### `impl<T> Pointable for Block<T>`
 
-- `const ALIGN: usize`
+- <span id="block-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="block-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="block-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="block-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="block-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="block-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Position<T>`
 
@@ -417,6 +480,8 @@ struct Position<T> {
     block: std::sync::atomic::AtomicPtr<Block<T>>,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1289-1295`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1289-L1295)*
 
 A position in a queue.
 
@@ -434,17 +499,17 @@ A position in a queue.
 
 ##### `impl<T> Pointable for Position<T>`
 
-- `const ALIGN: usize`
+- <span id="position-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="position-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="position-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="position-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="position-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="position-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Injector<T>`
 
@@ -455,6 +520,8 @@ struct Injector<T> {
     _marker: std::marker::PhantomData<T>,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1315-1324`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1315-L1324)*
 
 An injector queue.
 
@@ -491,51 +558,51 @@ assert_eq!(q.steal(), Steal::Empty);
 
 #### Implementations
 
-- `fn new() -> Injector<T>` — [`Injector`](../index.md)
+- <span id="injector-new"></span>`fn new() -> Injector<T>` — [`Injector`](#injector)
 
-- `fn push(self: &Self, task: T)`
+- <span id="injector-push"></span>`fn push(&self, task: T)`
 
-- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](../index.md)
+- <span id="injector-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](#steal)
 
-- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](../index.md), [`Steal`](../index.md)
+- <span id="injector-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](../index.md), [`Steal`](../index.md)
+- <span id="injector-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](../index.md), [`Steal`](../index.md)
+- <span id="injector-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](../index.md), [`Steal`](../index.md)
+- <span id="injector-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="injector-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="injector-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<T> Debug for Injector<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="injector-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for Injector<T>`
 
-- `fn default() -> Self`
+- <span id="injector-default"></span>`fn default() -> Self`
 
 ##### `impl<T> Drop for Injector<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="injector-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for Injector<T>`
 
-- `const ALIGN: usize`
+- <span id="injector-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="injector-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="injector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="injector-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="injector-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="injector-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for Injector<T>`
 
@@ -551,6 +618,8 @@ enum Flavor {
     Lifo,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:145-151`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L145-L151)*
 
 Worker queue flavor: FIFO or LIFO.
 
@@ -568,33 +637,33 @@ Worker queue flavor: FIFO or LIFO.
 
 ##### `impl Clone for Flavor`
 
-- `fn clone(self: &Self) -> Flavor` — [`Flavor`](#flavor)
+- <span id="flavor-clone"></span>`fn clone(&self) -> Flavor` — [`Flavor`](#flavor)
 
 ##### `impl Copy for Flavor`
 
 ##### `impl Debug for Flavor`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flavor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Flavor`
 
 ##### `impl PartialEq for Flavor`
 
-- `fn eq(self: &Self, other: &Flavor) -> bool` — [`Flavor`](#flavor)
+- <span id="flavor-eq"></span>`fn eq(&self, other: &Flavor) -> bool` — [`Flavor`](#flavor)
 
-##### `impl<T> Pointable for Flavor`
+##### `impl Pointable for Flavor`
 
-- `const ALIGN: usize`
+- <span id="flavor-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="flavor-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flavor-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flavor-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flavor-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="flavor-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for Flavor`
 
@@ -607,6 +676,8 @@ enum Steal<T> {
     Retry,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:2055-2064`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L2055-L2064)*
 
 Possible outcomes of a steal operation.
 
@@ -643,113 +714,123 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 #### Implementations
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="steal-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn is_success(self: &Self) -> bool`
+- <span id="steal-is-success"></span>`fn is_success(&self) -> bool`
 
-- `fn is_retry(self: &Self) -> bool`
+- <span id="steal-is-retry"></span>`fn is_retry(&self) -> bool`
 
-- `fn success(self: Self) -> Option<T>`
+- <span id="steal-success"></span>`fn success(self) -> Option<T>`
 
-- `fn or_else<F>(self: Self, f: F) -> Steal<T>` — [`Steal`](../index.md)
+- <span id="steal-or-else"></span>`fn or_else<F>(self, f: F) -> Steal<T>` — [`Steal`](#steal)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for Steal<T>`
+##### `impl<T: clone::Clone> Clone for Steal<T>`
 
-- `fn clone(self: &Self) -> Steal<T>` — [`Steal`](../index.md)
+- <span id="steal-clone"></span>`fn clone(&self) -> Steal<T>` — [`Steal`](#steal)
 
-##### `impl<T: $crate::marker::Copy> Copy for Steal<T>`
+##### `impl<T: marker::Copy> Copy for Steal<T>`
 
 ##### `impl<T> Debug for Steal<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="steal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for Steal<T>`
+##### `impl<T: cmp::Eq> Eq for Steal<T>`
 
 ##### `impl<T> FromIterator for Steal<T>`
 
-- `fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](../index.md)
+- <span id="steal-from-iter"></span>`fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](#steal)
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for Steal<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for Steal<T>`
 
-- `fn eq(self: &Self, other: &Steal<T>) -> bool` — [`Steal`](../index.md)
+- <span id="steal-eq"></span>`fn eq(&self, other: &Steal<T>) -> bool` — [`Steal`](#steal)
 
 ##### `impl<T> Pointable for Steal<T>`
 
-- `const ALIGN: usize`
+- <span id="steal-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="steal-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="steal-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="steal-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="steal-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="steal-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> StructuralPartialEq for Steal<T>`
 
 ## Constants
 
 ### `MIN_CAP`
-
 ```rust
 const MIN_CAP: usize = 64usize;
 ```
 
-### `MAX_BATCH`
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:16`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L16)*
 
+### `MAX_BATCH`
 ```rust
 const MAX_BATCH: usize = 32usize;
 ```
 
-### `FLUSH_THRESHOLD_BYTES`
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:18`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L18)*
 
+### `FLUSH_THRESHOLD_BYTES`
 ```rust
 const FLUSH_THRESHOLD_BYTES: usize = 1_024usize;
 ```
 
-### `WRITE`
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:21`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L21)*
 
+### `WRITE`
 ```rust
 const WRITE: usize = 1usize;
 ```
 
-### `READ`
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1184`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1184)*
 
+### `READ`
 ```rust
 const READ: usize = 2usize;
 ```
 
-### `DESTROY`
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1185`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1185)*
 
+### `DESTROY`
 ```rust
 const DESTROY: usize = 4usize;
 ```
 
-### `LAP`
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1186`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1186)*
 
+### `LAP`
 ```rust
 const LAP: usize = 64usize;
 ```
 
-### `BLOCK_CAP`
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1189`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1189)*
 
+### `BLOCK_CAP`
 ```rust
 const BLOCK_CAP: usize = 63usize;
 ```
 
-### `SHIFT`
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1191`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1191)*
 
+### `SHIFT`
 ```rust
 const SHIFT: usize = 1usize;
 ```
 
-### `HAS_NEXT`
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1193`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1193)*
 
+### `HAS_NEXT`
 ```rust
 const HAS_NEXT: usize = 1usize;
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1195`](../../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1195)*
 

@@ -6,7 +6,7 @@ turning “3000 metres” into “3 kilometres”, or “8705 bytes” into “8
 
 # Usage
 
-The function `NumberPrefix::decimal`
+The function [`NumberPrefix::decimal`](#numberprefix-decimal)
 returns either a pair of the resulting number and its prefix, or a
 notice that the number was too small to have any prefix applied to it. For
 example:
@@ -66,7 +66,7 @@ prefixes — they often need to be special-cased.
 This library also allows you to use the *binary prefixes*, which use the
 number 1024 (2<sup>10</sup>) as the multiplier, rather than the more common 1000
 (10<sup>3</sup>). This uses the
-`NumberPrefix::binary` function.
+[`NumberPrefix::binary`](#numberprefix-binary) function.
 For example:
 
 ```rust
@@ -149,9 +149,18 @@ assert_eq!(
 );
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parse`](#parse) | mod |  |
+| [`Prefix`](#prefix) | enum | A numeric prefix, either binary or decimal. |
+| [`NumberPrefix`](#numberprefix) | enum | The result of trying to apply a prefix to a floating-point value. |
+| [`Amounts`](#amounts) | trait | Traits for floating-point values for both the possible multipliers. |
+
 ## Modules
 
-- [`parse`](parse/index.md) - 
+- [`parse`](parse/index.md)
 
 ## Enums
 
@@ -177,6 +186,8 @@ enum Prefix {
     Yobi,
 }
 ```
+
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:171-235`](../../.source_1765210505/unit-prefix-0.5.2/src/lib.rs#L171-L235)*
 
 A numeric prefix, either binary or decimal.
 
@@ -264,41 +275,41 @@ A numeric prefix, either binary or decimal.
 
 #### Implementations
 
-- `fn upper(self: Self) -> &'static str`
+- <span id="prefix-upper"></span>`fn upper(self) -> &'static str`
 
-- `fn caps(self: Self) -> &'static str`
+- <span id="prefix-caps"></span>`fn caps(self) -> &'static str`
 
-- `fn lower(self: Self) -> &'static str`
+- <span id="prefix-lower"></span>`fn lower(self) -> &'static str`
 
-- `fn symbol(self: Self) -> &'static str`
+- <span id="prefix-symbol"></span>`fn symbol(self) -> &'static str`
 
 #### Trait Implementations
 
 ##### `impl Clone for Prefix`
 
-- `fn clone(self: &Self) -> Prefix` — [`Prefix`](#prefix)
+- <span id="prefix-clone"></span>`fn clone(&self) -> Prefix` — [`Prefix`](#prefix)
 
 ##### `impl Copy for Prefix`
 
 ##### `impl Debug for Prefix`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="prefix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Prefix`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="prefix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Prefix`
 
 ##### `impl PartialEq for Prefix`
 
-- `fn eq(self: &Self, other: &Prefix) -> bool` — [`Prefix`](#prefix)
+- <span id="prefix-eq"></span>`fn eq(&self, other: &Prefix) -> bool` — [`Prefix`](#prefix)
 
 ##### `impl StructuralPartialEq for Prefix`
 
-##### `impl<T> ToString for Prefix`
+##### `impl ToString for Prefix`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="prefix-to-string"></span>`fn to_string(&self) -> String`
 
 ### `NumberPrefix<F>`
 
@@ -308,6 +319,8 @@ enum NumberPrefix<F> {
     Prefixed(Prefix, F),
 }
 ```
+
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:240-249`](../../.source_1765210505/unit-prefix-0.5.2/src/lib.rs#L240-L249)*
 
 The result of trying to apply a prefix to a floating-point value.
 
@@ -326,33 +339,33 @@ The result of trying to apply a prefix to a floating-point value.
 
 #### Implementations
 
-- `fn decimal(amount: F) -> Self`
+- <span id="numberprefix-decimal"></span>`fn decimal(amount: F) -> Self`
 
-- `fn binary(amount: F) -> Self`
+- <span id="numberprefix-binary"></span>`fn binary(amount: F) -> Self`
 
-- `fn format_number(amount: F, kilo: F, prefixes: [Prefix; 8]) -> Self` — [`Prefix`](#prefix)
+- <span id="numberprefix-format-number"></span>`fn format_number(amount: F, kilo: F, prefixes: [Prefix; 8]) -> Self` — [`Prefix`](#prefix)
 
 #### Trait Implementations
 
-##### `impl<F: $crate::clone::Clone> Clone for NumberPrefix<F>`
+##### `impl<F: clone::Clone> Clone for NumberPrefix<F>`
 
-- `fn clone(self: &Self) -> NumberPrefix<F>` — [`NumberPrefix`](#numberprefix)
+- <span id="numberprefix-clone"></span>`fn clone(&self) -> NumberPrefix<F>` — [`NumberPrefix`](#numberprefix)
 
-##### `impl<F: $crate::fmt::Debug> Debug for NumberPrefix<F>`
+##### `impl<F: fmt::Debug> Debug for NumberPrefix<F>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="numberprefix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<F: $crate::cmp::Eq> Eq for NumberPrefix<F>`
+##### `impl<F: cmp::Eq> Eq for NumberPrefix<F>`
 
 ##### `impl<T: str::FromStr> FromStr for super::NumberPrefix<T>`
 
-- `type Err = NumberPrefixParseError`
+- <span id="supernumberprefix-type-err"></span>`type Err = NumberPrefixParseError`
 
-- `fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+- <span id="supernumberprefix-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 
-##### `impl<F: $crate::cmp::PartialEq> PartialEq for NumberPrefix<F>`
+##### `impl<F: cmp::PartialEq> PartialEq for NumberPrefix<F>`
 
-- `fn eq(self: &Self, other: &NumberPrefix<F>) -> bool` — [`NumberPrefix`](#numberprefix)
+- <span id="numberprefix-eq"></span>`fn eq(&self, other: &NumberPrefix<F>) -> bool` — [`NumberPrefix`](#numberprefix)
 
 ##### `impl<F> StructuralPartialEq for NumberPrefix<F>`
 
@@ -364,17 +377,26 @@ The result of trying to apply a prefix to a floating-point value.
 trait Amounts: Copy + Sized + PartialOrd + Div<Output = Self> + Neg<Output = Self> { ... }
 ```
 
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:467-477`](../../.source_1765210505/unit-prefix-0.5.2/src/lib.rs#L467-L477)*
+
 Traits for floating-point values for both the possible multipliers. They
 need to be Copy, have defined 1000 and 1024s, and implement a bunch of
 operators.
 
-#### Required Methods
+#### Associated Constants
 
 - `const NUM_1000: Self`
 
 - `const NUM_1024: Self`
 
-- `fn is_negative(self: Self) -> bool`
+#### Required Methods
+
+- `fn is_negative(self) -> bool`
 
   Whether this number is negative.
+
+#### Implementors
+
+- `f32`
+- `f64`
 

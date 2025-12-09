@@ -4,6 +4,13 @@
 
 # Module `seq_lock`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SeqLock`](#seqlock) | struct | A simple stamped lock. |
+| [`SeqLockWriteGuard`](#seqlockwriteguard) | struct | An RAII guard that releases the lock and increments the stamp when dropped. |
+
 ## Structs
 
 ### `SeqLock`
@@ -13,6 +20,8 @@ struct SeqLock {
     state: core::sync::atomic::AtomicUsize,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/seq_lock.rs:7-13`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/seq_lock.rs#L7-L13)*
 
 A simple stamped lock.
 
@@ -27,13 +36,13 @@ A simple stamped lock.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="seqlock-new"></span>`const fn new() -> Self`
 
-- `fn optimistic_read(self: &Self) -> Option<usize>`
+- <span id="seqlock-optimistic-read"></span>`fn optimistic_read(&self) -> Option<usize>`
 
-- `fn validate_read(self: &Self, stamp: usize) -> bool`
+- <span id="seqlock-validate-read"></span>`fn validate_read(&self, stamp: usize) -> bool`
 
-- `fn write(self: &'static Self) -> SeqLockWriteGuard` — [`SeqLockWriteGuard`](#seqlockwriteguard)
+- <span id="seqlock-write"></span>`fn write(self: &'static Self) -> SeqLockWriteGuard` — [`SeqLockWriteGuard`](#seqlockwriteguard)
 
 ### `SeqLockWriteGuard`
 
@@ -43,6 +52,8 @@ struct SeqLockWriteGuard {
     state: usize,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/seq_lock.rs:67-73`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/seq_lock.rs#L67-L73)*
 
 An RAII guard that releases the lock and increments the stamp when dropped.
 
@@ -58,11 +69,11 @@ An RAII guard that releases the lock and increments the stamp when dropped.
 
 #### Implementations
 
-- `fn abort(self: Self)`
+- <span id="seqlockwriteguard-abort"></span>`fn abort(self)`
 
 #### Trait Implementations
 
 ##### `impl Drop for SeqLockWriteGuard`
 
-- `fn drop(self: &mut Self)`
+- <span id="seqlockwriteguard-drop"></span>`fn drop(&mut self)`
 

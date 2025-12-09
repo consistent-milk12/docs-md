@@ -9,6 +9,43 @@ low-level details -- users of parallel iterators should not need to
 interact with them directly.  See [the `plumbing` README][r] for a general overview.
 
 
+## Contents
+
+- [Structs](#structs)
+  - [`Splitter`](#splitter)
+  - [`LengthSplitter`](#lengthsplitter)
+- [Traits](#traits)
+  - [`ProducerCallback`](#producercallback)
+  - [`Producer`](#producer)
+  - [`Consumer`](#consumer)
+  - [`Folder`](#folder)
+  - [`Reducer`](#reducer)
+  - [`UnindexedConsumer`](#unindexedconsumer)
+  - [`UnindexedProducer`](#unindexedproducer)
+- [Functions](#functions)
+  - [`bridge`](#bridge)
+  - [`bridge_producer_consumer`](#bridge_producer_consumer)
+  - [`bridge_unindexed`](#bridge_unindexed)
+  - [`bridge_unindexed_producer_consumer`](#bridge_unindexed_producer_consumer)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Splitter`](#splitter) | struct | A splitter controls the policy for splitting into smaller work items. |
+| [`LengthSplitter`](#lengthsplitter) | struct | The length splitter is built on thief-splitting, but additionally takes into account the remaining length of the iterator. |
+| [`ProducerCallback`](#producercallback) | trait | The `ProducerCallback` trait is a kind of generic closure, [analogous to `FnOnce`][FnOnce]. |
+| [`Producer`](#producer) | trait | A `Producer` is effectively a "splittable `IntoIterator`". |
+| [`Consumer`](#consumer) | trait | A consumer is effectively a [generalized "fold" operation][fold], and in fact each consumer will eventually be converted into a [`Folder`]. |
+| [`Folder`](#folder) | trait | The `Folder` trait encapsulates [the standard fold operation][fold]. |
+| [`Reducer`](#reducer) | trait | The reducer is the final step of a `Consumer` -- after a consumer has been split into two parts, and each of those parts has been fully processed, we are left with two results. |
+| [`UnindexedConsumer`](#unindexedconsumer) | trait | A stateless consumer can be freely copied. |
+| [`UnindexedProducer`](#unindexedproducer) | trait | A variant on `Producer` which does not know its exact length or cannot represent it in a `usize`. |
+| [`bridge`](#bridge) | fn | This helper function is used to "connect" a parallel iterator to a consumer. |
+| [`bridge_producer_consumer`](#bridge_producer_consumer) | fn | This helper function is used to "connect" a producer and a consumer. |
+| [`bridge_unindexed`](#bridge_unindexed) | fn | A variant of [`bridge_producer_consumer()`] where the producer is an unindexed producer. |
+| [`bridge_unindexed_producer_consumer`](#bridge_unindexed_producer_consumer) | fn |  |
+
 ## Structs
 
 ### `Splitter`
@@ -18,6 +55,8 @@ struct Splitter {
     splits: usize,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:251-256`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L251-L256)*
 
 A splitter controls the policy for splitting into smaller work items.
 
@@ -35,33 +74,33 @@ job is actually stolen into a different thread.
 
 #### Implementations
 
-- `fn new() -> Splitter` — [`Splitter`](#splitter)
+- <span id="splitter-new"></span>`fn new() -> Splitter` — [`Splitter`](#splitter)
 
-- `fn try_split(self: &mut Self, stolen: bool) -> bool`
+- <span id="splitter-try-split"></span>`fn try_split(&mut self, stolen: bool) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Splitter`
 
-- `fn clone(self: &Self) -> Splitter` — [`Splitter`](#splitter)
+- <span id="splitter-clone"></span>`fn clone(&self) -> Splitter` — [`Splitter`](#splitter)
 
 ##### `impl Copy for Splitter`
 
-##### `impl<T> IntoEither for Splitter`
+##### `impl IntoEither for Splitter`
 
-##### `impl<T> Pointable for Splitter`
+##### `impl Pointable for Splitter`
 
-- `const ALIGN: usize`
+- <span id="splitter-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitter-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitter-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `LengthSplitter`
 
@@ -71,6 +110,8 @@ struct LengthSplitter {
     min: usize,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:289-295`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L289-L295)*
 
 The length splitter is built on thief-splitting, but additionally takes
 into account the remaining length of the iterator.
@@ -84,33 +125,33 @@ into account the remaining length of the iterator.
 
 #### Implementations
 
-- `fn new(min: usize, max: usize, len: usize) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
+- <span id="lengthsplitter-new"></span>`fn new(min: usize, max: usize, len: usize) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
 
-- `fn try_split(self: &mut Self, len: usize, stolen: bool) -> bool`
+- <span id="lengthsplitter-try-split"></span>`fn try_split(&mut self, len: usize, stolen: bool) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for LengthSplitter`
 
-- `fn clone(self: &Self) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
+- <span id="lengthsplitter-clone"></span>`fn clone(&self) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
 
 ##### `impl Copy for LengthSplitter`
 
-##### `impl<T> IntoEither for LengthSplitter`
+##### `impl IntoEither for LengthSplitter`
 
-##### `impl<T> Pointable for LengthSplitter`
+##### `impl Pointable for LengthSplitter`
 
-- `const ALIGN: usize`
+- <span id="lengthsplitter-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="lengthsplitter-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="lengthsplitter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="lengthsplitter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="lengthsplitter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="lengthsplitter-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Traits
 
@@ -120,25 +161,35 @@ into account the remaining length of the iterator.
 trait ProducerCallback<T> { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:17-30`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L17-L30)*
+
 The `ProducerCallback` trait is a kind of generic closure,
 [analogous to `FnOnce`][FnOnce]. See [the corresponding section in
 the plumbing README][r] for more details.
 
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
 
-- `fn callback<P>(self: Self, producer: P) -> <Self as >::Output`
+#### Required Methods
+
+- `fn callback<P>(self, producer: P) -> <Self as >::Output`
 
   Invokes the callback with the given producer as argument. The
+
+#### Implementors
+
+- [`BlocksCallback`](../blocks/index.md)
 
 ### `Producer`
 
 ```rust
 trait Producer: Send + Sized { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:56-109`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L56-L109)*
 
 A `Producer` is effectively a "splittable `IntoIterator`". That
 is, a producer is a value which can be converted into an iterator
@@ -164,37 +215,80 @@ IntoIterator here until that issue is fixed.
 
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Item`
 
 - `type IntoIter: 3`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+#### Required Methods
+
+- `fn into_iter(self) -> <Self as >::IntoIter`
 
   Convert `self` into an iterator; at this point, no more parallel splits
 
-- `fn min_len(self: &Self) -> usize`
-
-  The minimum number of items that we will process
-
-- `fn max_len(self: &Self) -> usize`
-
-  The maximum number of items that we will process
-
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- `fn split_at(self, index: usize) -> (Self, Self)`
 
   Split into two producers; one produces items `0..index`, the
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+#### Provided Methods
+
+- `fn min_len(&self) -> usize`
+
+  The minimum number of items that we will process
+
+- `fn max_len(&self) -> usize`
+
+  The maximum number of items that we will process
+
+- `fn fold_with<F>(self, folder: F) -> F`
 
   Iterate the producer, feeding each element to `folder`, and
+
+#### Implementors
+
+- [`ChainProducer`](../chain/index.md)
+- [`ChunkProducer`](../chunks/index.md)
+- [`ChunksExactMutProducer`](../../slice/chunks/index.md)
+- [`ChunksExactProducer`](../../slice/chunks/index.md)
+- [`ChunksMutProducer`](../../slice/chunks/index.md)
+- [`ChunksProducer`](../../slice/chunks/index.md)
+- [`ClonedProducer`](../cloned/index.md)
+- [`CopiedProducer`](../copied/index.md)
+- [`DrainProducer`](../../vec/index.md)
+- [`EmptyProducer`](../empty/index.md)
+- [`EnumerateProducer`](../enumerate/index.md)
+- [`InspectProducer`](../inspect/index.md)
+- [`InterleaveProducer`](../interleave/index.md)
+- [`IntersperseProducer`](../intersperse/index.md)
+- [`IterMutProducer`](../../slice/index.md)
+- [`IterProducer`](../../range/index.md)
+- [`IterProducer`](../../slice/index.md)
+- [`MapInitProducer`](../map_with/index.md)
+- [`MapProducer`](../map/index.md)
+- [`MapWithProducer`](../map_with/index.md)
+- [`MaxLenProducer`](../len/index.md)
+- [`MinLenProducer`](../len/index.md)
+- [`OptionProducer`](../../option/index.md)
+- [`PanicFuseProducer`](../panic_fuse/index.md)
+- [`RChunksExactMutProducer`](../../slice/rchunks/index.md)
+- [`RChunksExactProducer`](../../slice/rchunks/index.md)
+- [`RChunksMutProducer`](../../slice/rchunks/index.md)
+- [`RChunksProducer`](../../slice/rchunks/index.md)
+- [`RepeatNProducer`](../repeat/index.md)
+- [`RevProducer`](../rev/index.md)
+- [`StepByProducer`](../step_by/index.md)
+- [`UpdateProducer`](../update/index.md)
+- [`WindowsProducer`](../../slice/index.md)
+- [`ZipProducer`](../zip/index.md)
 
 ### `Consumer<Item>`
 
 ```rust
 trait Consumer<Item>: Send + Sized { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:123-146`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L123-L146)*
 
 A consumer is effectively a [generalized "fold" operation][`fold`](../fold/index.md),
 and in fact each consumer will eventually be converted into a
@@ -208,7 +302,7 @@ README][r] for further details.
 
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Folder: 1`
 
@@ -216,17 +310,61 @@ README][r] for further details.
 
 - `type Result: 1`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self, <Self as >::Reducer)`
+#### Required Methods
+
+- `fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)`
 
   Divide the consumer into two consumers, one processing items
 
-- `fn into_folder(self: Self) -> <Self as >::Folder`
+- `fn into_folder(self) -> <Self as >::Folder`
 
   Convert the consumer into a folder that can consume items
 
-- `fn full(self: &Self) -> bool`
+- `fn full(&self) -> bool`
 
   Hint whether this `Consumer` would like to stop processing
+
+#### Implementors
+
+- [`ClonedConsumer`](../cloned/index.md)
+- [`CollectConsumer`](../collect/consumer/index.md)
+- [`CopiedConsumer`](../copied/index.md)
+- [`FilterConsumer`](../filter/index.md)
+- [`FilterMapConsumer`](../filter_map/index.md)
+- [`FindConsumer`](../find/index.md)
+- [`FindConsumer`](../find_first_last/index.md)
+- [`FlatMapConsumer`](../flat_map/index.md)
+- [`FlatMapIterConsumer`](../flat_map_iter/index.md)
+- [`FlattenConsumer`](../flatten/index.md)
+- [`FlattenIterConsumer`](../flatten_iter/index.md)
+- [`FoldConsumer`](../fold/index.md)
+- [`FoldWithConsumer`](../fold/index.md)
+- [`ForEachConsumer`](../for_each/index.md)
+- [`InspectConsumer`](../inspect/index.md)
+- [`IntersperseConsumer`](../intersperse/index.md)
+- [`ListConsumer`](../extend/index.md)
+- [`ListStringConsumer`](../extend/index.md)
+- [`ListVecConsumer`](../extend/index.md)
+- [`MapConsumer`](../map/index.md)
+- [`MapInitConsumer`](../map_with/index.md)
+- [`MapWithConsumer`](../map_with/index.md)
+- [`NoopConsumer`](../noop/index.md)
+- [`PanicFuseConsumer`](../panic_fuse/index.md)
+- [`PositionsConsumer`](../positions/index.md)
+- [`ProductConsumer`](../product/index.md)
+- [`ReduceConsumer`](../reduce/index.md)
+- [`SkipAnyConsumer`](../skip_any/index.md)
+- [`SkipAnyWhileConsumer`](../skip_any_while/index.md)
+- [`SumConsumer`](../sum/index.md)
+- [`TakeAnyConsumer`](../take_any/index.md)
+- [`TakeAnyWhileConsumer`](../take_any_while/index.md)
+- [`TryFoldConsumer`](../try_fold/index.md)
+- [`TryFoldWithConsumer`](../try_fold/index.md)
+- [`TryReduceConsumer`](../try_reduce/index.md)
+- [`TryReduceWithConsumer`](../try_reduce_with/index.md)
+- [`UnzipConsumer`](../unzip/index.md)
+- [`UpdateConsumer`](../update/index.md)
+- [`WhileSomeConsumer`](../while_some/index.md)
 
 ### `Folder<Item>`
 
@@ -234,37 +372,84 @@ README][r] for further details.
 trait Folder<Item>: Sized { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:154-188`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L154-L188)*
+
 The `Folder` trait encapsulates [the standard fold
 operation][`fold`](../fold/index.md).  It can be fed many items using the `consume`
 method. At the end, once all items have been consumed, it can then
 be converted (using `complete`) into a final value.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Result`
 
-- `fn consume(self: Self, item: Item) -> Self`
+#### Required Methods
+
+- `fn consume(self, item: Item) -> Self`
 
   Consume next item and return new sequential state.
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
-
-  Consume items from the iterator until full, and return new sequential state.
-
-- `fn complete(self: Self) -> <Self as >::Result`
+- `fn complete(self) -> <Self as >::Result`
 
   Finish consuming items, produce final result.
 
-- `fn full(self: &Self) -> bool`
+- `fn full(&self) -> bool`
 
   Hint whether this `Folder` would like to stop processing
+
+#### Provided Methods
+
+- `fn consume_iter<I>(self, iter: I) -> Self`
+
+  Consume items from the iterator until full, and return new sequential state.
+
+#### Implementors
+
+- [`ClonedFolder`](../cloned/index.md)
+- [`CollectResult`](../collect/consumer/index.md)
+- [`CopiedFolder`](../copied/index.md)
+- [`FilterFolder`](../filter/index.md)
+- [`FilterMapFolder`](../filter_map/index.md)
+- [`FindFolder`](../find/index.md)
+- [`FindFolder`](../find_first_last/index.md)
+- [`FlatMapFolder`](../flat_map/index.md)
+- [`FlatMapIterFolder`](../flat_map_iter/index.md)
+- [`FlattenFolder`](../flatten/index.md)
+- [`FlattenIterFolder`](../flatten_iter/index.md)
+- [`FoldFolder`](../fold/index.md)
+- [`ForEachConsumer`](../for_each/index.md)
+- [`InspectFolder`](../inspect/index.md)
+- [`IntersperseFolder`](../intersperse/index.md)
+- [`ListFolder`](../extend/index.md)
+- [`ListStringFolder`](../extend/index.md)
+- [`ListVecFolder`](../extend/index.md)
+- [`MapFolder`](../map/index.md)
+- [`MapWithFolder`](../map_with/index.md)
+- [`NoopConsumer`](../noop/index.md)
+- [`PanicFuseFolder`](../panic_fuse/index.md)
+- [`PositionsFolder`](../positions/index.md)
+- [`ProductFolder`](../product/index.md)
+- [`ReduceFolder`](../reduce/index.md)
+- [`SkipAnyFolder`](../skip_any/index.md)
+- [`SkipAnyWhileFolder`](../skip_any_while/index.md)
+- [`SumFolder`](../sum/index.md)
+- [`TakeAnyFolder`](../take_any/index.md)
+- [`TakeAnyWhileFolder`](../take_any_while/index.md)
+- [`TryFoldFolder`](../try_fold/index.md)
+- [`TryReduceFolder`](../try_reduce/index.md)
+- [`TryReduceWithFolder`](../try_reduce_with/index.md)
+- [`UnzipFolder`](../unzip/index.md)
+- [`UpdateFolder`](../update/index.md)
+- [`WhileSomeFolder`](../while_some/index.md)
 
 ### `Reducer<Result>`
 
 ```rust
 trait Reducer<Result> { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:197-201`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L197-L201)*
 
 The reducer is the final step of a `Consumer` -- after a consumer
 has been split into two parts, and each of those parts has been
@@ -275,15 +460,32 @@ README][r] for further details.
 
 #### Required Methods
 
-- `fn reduce(self: Self, left: Result, right: Result) -> Result`
+- `fn reduce(self, left: Result, right: Result) -> Result`
 
   Reduce two final results into one; this is executed after a
+
+#### Implementors
+
+- [`CollectReducer`](../collect/consumer/index.md)
+- [`FindReducer`](../find/index.md)
+- [`FindReducer`](../find_first_last/index.md)
+- [`ListReducer`](../extend/index.md)
+- [`NoopReducer`](../noop/index.md)
+- [`PanicFuseReducer`](../panic_fuse/index.md)
+- [`ProductConsumer`](../product/index.md)
+- [`ReduceConsumer`](../reduce/index.md)
+- [`SumConsumer`](../sum/index.md)
+- [`TryReduceConsumer`](../try_reduce/index.md)
+- [`TryReduceWithConsumer`](../try_reduce_with/index.md)
+- [`UnzipReducer`](../unzip/index.md)
 
 ### `UnindexedConsumer<I>`
 
 ```rust
 trait UnindexedConsumer<I>: Consumer<I> { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:208-221`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L208-L221)*
 
 A stateless consumer can be freely copied. These consumers can be
 used like regular consumers, but they also support a
@@ -293,19 +495,62 @@ produces an unindexed consumer).
 
 #### Required Methods
 
-- `fn split_off_left(self: &Self) -> Self`
+- `fn split_off_left(&self) -> Self`
 
   Splits off a "left" consumer and returns it. The `self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer`
+- `fn to_reducer(&self) -> <Self as >::Reducer`
 
   Creates a reducer that can be used to combine the results from
+
+#### Implementors
+
+- [`ClonedConsumer`](../cloned/index.md)
+- [`CollectConsumer`](../collect/consumer/index.md)
+- [`CopiedConsumer`](../copied/index.md)
+- [`FilterConsumer`](../filter/index.md)
+- [`FilterMapConsumer`](../filter_map/index.md)
+- [`FindConsumer`](../find/index.md)
+- [`FindConsumer`](../find_first_last/index.md)
+- [`FlatMapConsumer`](../flat_map/index.md)
+- [`FlatMapIterConsumer`](../flat_map_iter/index.md)
+- [`FlattenConsumer`](../flatten/index.md)
+- [`FlattenIterConsumer`](../flatten_iter/index.md)
+- [`FoldConsumer`](../fold/index.md)
+- [`FoldWithConsumer`](../fold/index.md)
+- [`ForEachConsumer`](../for_each/index.md)
+- [`InspectConsumer`](../inspect/index.md)
+- [`IntersperseConsumer`](../intersperse/index.md)
+- [`ListConsumer`](../extend/index.md)
+- [`ListStringConsumer`](../extend/index.md)
+- [`ListVecConsumer`](../extend/index.md)
+- [`MapConsumer`](../map/index.md)
+- [`MapInitConsumer`](../map_with/index.md)
+- [`MapWithConsumer`](../map_with/index.md)
+- [`NoopConsumer`](../noop/index.md)
+- [`PanicFuseConsumer`](../panic_fuse/index.md)
+- [`ProductConsumer`](../product/index.md)
+- [`ReduceConsumer`](../reduce/index.md)
+- [`SkipAnyConsumer`](../skip_any/index.md)
+- [`SkipAnyWhileConsumer`](../skip_any_while/index.md)
+- [`SumConsumer`](../sum/index.md)
+- [`TakeAnyConsumer`](../take_any/index.md)
+- [`TakeAnyWhileConsumer`](../take_any_while/index.md)
+- [`TryFoldConsumer`](../try_fold/index.md)
+- [`TryFoldWithConsumer`](../try_fold/index.md)
+- [`TryReduceConsumer`](../try_reduce/index.md)
+- [`TryReduceWithConsumer`](../try_reduce_with/index.md)
+- [`UnzipConsumer`](../unzip/index.md)
+- [`UpdateConsumer`](../update/index.md)
+- [`WhileSomeConsumer`](../while_some/index.md)
 
 ### `UnindexedProducer`
 
 ```rust
 trait UnindexedProducer: Send + Sized { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:231-243`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L231-L243)*
 
 A variant on `Producer` which does not know its exact length or
 cannot represent it in a `usize`. These producers act like
@@ -316,17 +561,37 @@ particular point. Instead, you just ask them to split 'somewhere'.
 does not because to do so would require producers to carry their
 own length with them.)
 
-#### Required Methods
+#### Associated Types
 
 - `type Item`
 
-- `fn split(self: Self) -> (Self, Option<Self>)`
+#### Required Methods
+
+- `fn split(self) -> (Self, Option<Self>)`
 
   Split midway into a new producer if possible, otherwise return `None`.
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- `fn fold_with<F>(self, folder: F) -> F`
 
   Iterate the producer, feeding each element to `folder`, and
+
+#### Implementors
+
+- [`BytesProducer`](../../str/index.md)
+- [`CharIndicesProducer`](../../str/index.md)
+- [`CharsProducer`](../../str/index.md)
+- [`ChunkByProducer`](../../slice/chunk_by/index.md)
+- [`EncodeUtf16Producer`](../../str/index.md)
+- [`IterProducer`](../../range/index.md)
+- [`MatchIndicesProducer`](../../str/index.md)
+- [`MatchesProducer`](../../str/index.md)
+- [`RepeatProducer`](../repeat/index.md)
+- [`SplitProducer`](../../split_producer/index.md)
+- [`SplitProducer`](../splitter/index.md)
+- [`SplitTerminatorProducer`](../../str/index.md)
+- [`WalkTreePostfixProducer`](../walk_tree/index.md)
+- [`WalkTreePrefixProducer`](../walk_tree/index.md)
+- `&IterParallelProducer<'_, Iter>`
 
 ## Functions
 
@@ -338,6 +603,8 @@ where
     I: IndexedParallelIterator,
     C: Consumer<<I as >::Item>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:346-371`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L346-L371)*
 
 This helper function is used to "connect" a parallel iterator to a
 consumer. It will convert the `par_iter` into a producer P and
@@ -358,6 +625,8 @@ where
     P: Producer,
     C: Consumer<<P as >::Item>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:385-435`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L385-L435)*
 
 This helper function is used to "connect" a producer and a
 consumer. You may prefer to call [`bridge()`](#bridge), which wraps this
@@ -380,6 +649,8 @@ where
     C: UnindexedConsumer<<P as >::Item>
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:438-445`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L438-L445)*
+
 A variant of [`bridge_producer_consumer()`](#bridge-producer-consumer) where the producer is an unindexed producer.
 
 ### `bridge_unindexed_producer_consumer`
@@ -390,4 +661,6 @@ where
     P: UnindexedProducer,
     C: UnindexedConsumer<<P as >::Item>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:447-476`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L447-L476)*
 

@@ -17,9 +17,80 @@ and any function or closure `F: Fn(char) -> bool + Sync + Send`.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`private`](#private)
+- [Structs](#structs)
+  - [`Chars`](#chars)
+  - [`CharsProducer`](#charsproducer)
+  - [`CharIndices`](#charindices)
+  - [`CharIndicesProducer`](#charindicesproducer)
+  - [`Bytes`](#bytes)
+  - [`BytesProducer`](#bytesproducer)
+  - [`EncodeUtf16`](#encodeutf16)
+  - [`EncodeUtf16Producer`](#encodeutf16producer)
+  - [`Split`](#split)
+  - [`SplitInclusive`](#splitinclusive)
+  - [`SplitTerminator`](#splitterminator)
+  - [`SplitTerminatorProducer`](#splitterminatorproducer)
+  - [`Lines`](#lines)
+  - [`SplitWhitespace`](#splitwhitespace)
+  - [`SplitAsciiWhitespace`](#splitasciiwhitespace)
+  - [`Matches`](#matches)
+  - [`MatchesProducer`](#matchesproducer)
+  - [`MatchIndices`](#matchindices)
+  - [`MatchIndicesProducer`](#matchindicesproducer)
+- [Traits](#traits)
+  - [`ParallelString`](#parallelstring)
+- [Functions](#functions)
+  - [`is_char_boundary`](#is_char_boundary)
+  - [`find_char_midpoint`](#find_char_midpoint)
+  - [`split`](#split)
+  - [`offset`](#offset)
+  - [`no_carriage_return`](#no_carriage_return)
+  - [`not_empty`](#not_empty)
+  - [`is_ascii_whitespace`](#is_ascii_whitespace)
+- [Macros](#macros)
+  - [`impl_pattern!`](#impl_pattern)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod | We hide the `Pattern` trait in a private module, as its API is not meant for general consumption. |
+| [`Chars`](#chars) | struct | Parallel iterator over the characters of a string |
+| [`CharsProducer`](#charsproducer) | struct |  |
+| [`CharIndices`](#charindices) | struct | Parallel iterator over the characters of a string, with their positions |
+| [`CharIndicesProducer`](#charindicesproducer) | struct |  |
+| [`Bytes`](#bytes) | struct | Parallel iterator over the bytes of a string |
+| [`BytesProducer`](#bytesproducer) | struct |  |
+| [`EncodeUtf16`](#encodeutf16) | struct | Parallel iterator over a string encoded as UTF-16 |
+| [`EncodeUtf16Producer`](#encodeutf16producer) | struct |  |
+| [`Split`](#split) | struct | Parallel iterator over substrings separated by a pattern |
+| [`SplitInclusive`](#splitinclusive) | struct | Parallel iterator over substrings separated by a pattern |
+| [`SplitTerminator`](#splitterminator) | struct | Parallel iterator over substrings separated by a terminator pattern |
+| [`SplitTerminatorProducer`](#splitterminatorproducer) | struct |  |
+| [`Lines`](#lines) | struct | Parallel iterator over lines in a string |
+| [`SplitWhitespace`](#splitwhitespace) | struct | Parallel iterator over substrings separated by whitespace |
+| [`SplitAsciiWhitespace`](#splitasciiwhitespace) | struct | Parallel iterator over substrings separated by ASCII whitespace |
+| [`Matches`](#matches) | struct | Parallel iterator over substrings that match a pattern |
+| [`MatchesProducer`](#matchesproducer) | struct |  |
+| [`MatchIndices`](#matchindices) | struct | Parallel iterator over substrings that match a pattern, with their positions |
+| [`MatchIndicesProducer`](#matchindicesproducer) | struct |  |
+| [`ParallelString`](#parallelstring) | trait | Parallel extensions for strings. |
+| [`is_char_boundary`](#is_char_boundary) | fn | Test if a byte is the start of a UTF-8 character. |
+| [`find_char_midpoint`](#find_char_midpoint) | fn | Find the index of a character boundary near the midpoint. |
+| [`split`](#split) | fn | Try to split a string near the midpoint. |
+| [`offset`](#offset) | fn |  |
+| [`no_carriage_return`](#no_carriage_return) | fn |  |
+| [`not_empty`](#not_empty) | fn |  |
+| [`is_ascii_whitespace`](#is_ascii_whitespace) | fn |  |
+| [`impl_pattern!`](#impl_pattern) | macro |  |
+
 ## Modules
 
-- [`private`](private/index.md) - We hide the `Pattern` trait in a private module, as its API is not meant
+- [`private`](private/index.md) — We hide the `Pattern` trait in a private module, as its API is not meant
 
 ## Structs
 
@@ -31,47 +102,49 @@ struct Chars<'ch> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:467-469`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L467-L469)*
+
 Parallel iterator over the characters of a string
 
 #### Trait Implementations
 
-##### `impl<'ch> Clone for Chars<'ch>`
+##### `impl Clone for Chars<'ch>`
 
-- `fn clone(self: &Self) -> Chars<'ch>` — [`Chars`](#chars)
+- <span id="chars-clone"></span>`fn clone(&self) -> Chars<'ch>` — [`Chars`](#chars)
 
-##### `impl<'ch> Debug for Chars<'ch>`
+##### `impl Debug for Chars<'ch>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="chars-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Chars<'ch>`
+##### `impl IntoEither for Chars<'ch>`
 
-##### `impl<T> IntoParallelIterator for Chars<'ch>`
+##### `impl IntoParallelIterator for Chars<'ch>`
 
-- `type Iter = T`
+- <span id="chars-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="chars-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="chars-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'ch> ParallelIterator for Chars<'ch>`
+##### `impl ParallelIterator for Chars<'ch>`
 
-- `type Item = char`
+- <span id="chars-type-item"></span>`type Item = char`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chars-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl<T> Pointable for Chars<'ch>`
+##### `impl Pointable for Chars<'ch>`
 
-- `const ALIGN: usize`
+- <span id="chars-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chars-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chars-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chars-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chars-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chars-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `CharsProducer<'ch>`
 
@@ -81,31 +154,33 @@ struct CharsProducer<'ch> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:471-473`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L471-L473)*
+
 #### Trait Implementations
 
-##### `impl<T> IntoEither for CharsProducer<'ch>`
+##### `impl IntoEither for CharsProducer<'ch>`
 
-##### `impl<T> Pointable for CharsProducer<'ch>`
+##### `impl Pointable for CharsProducer<'ch>`
 
-- `const ALIGN: usize`
+- <span id="charsproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="charsproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="charsproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="charsproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="charsproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="charsproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'ch> UnindexedProducer for CharsProducer<'ch>`
+##### `impl UnindexedProducer for CharsProducer<'ch>`
 
-- `type Item = char`
+- <span id="charsproducer-type-item"></span>`type Item = char`
 
-- `fn split(self: Self) -> (Self, Option<Self>)`
+- <span id="charsproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="charsproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `CharIndices<'ch>`
 
@@ -115,47 +190,49 @@ struct CharIndices<'ch> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:511-513`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L511-L513)*
+
 Parallel iterator over the characters of a string, with their positions
 
 #### Trait Implementations
 
-##### `impl<'ch> Clone for CharIndices<'ch>`
+##### `impl Clone for CharIndices<'ch>`
 
-- `fn clone(self: &Self) -> CharIndices<'ch>` — [`CharIndices`](#charindices)
+- <span id="charindices-clone"></span>`fn clone(&self) -> CharIndices<'ch>` — [`CharIndices`](#charindices)
 
-##### `impl<'ch> Debug for CharIndices<'ch>`
+##### `impl Debug for CharIndices<'ch>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="charindices-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for CharIndices<'ch>`
+##### `impl IntoEither for CharIndices<'ch>`
 
-##### `impl<T> IntoParallelIterator for CharIndices<'ch>`
+##### `impl IntoParallelIterator for CharIndices<'ch>`
 
-- `type Iter = T`
+- <span id="charindices-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="charindices-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="charindices-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'ch> ParallelIterator for CharIndices<'ch>`
+##### `impl ParallelIterator for CharIndices<'ch>`
 
-- `type Item = (usize, char)`
+- <span id="charindices-type-item"></span>`type Item = (usize, char)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="charindices-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl<T> Pointable for CharIndices<'ch>`
+##### `impl Pointable for CharIndices<'ch>`
 
-- `const ALIGN: usize`
+- <span id="charindices-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="charindices-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="charindices-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="charindices-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="charindices-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="charindices-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `CharIndicesProducer<'ch>`
 
@@ -166,31 +243,33 @@ struct CharIndicesProducer<'ch> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:515-518`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L515-L518)*
+
 #### Trait Implementations
 
-##### `impl<T> IntoEither for CharIndicesProducer<'ch>`
+##### `impl IntoEither for CharIndicesProducer<'ch>`
 
-##### `impl<T> Pointable for CharIndicesProducer<'ch>`
+##### `impl Pointable for CharIndicesProducer<'ch>`
 
-- `const ALIGN: usize`
+- <span id="charindicesproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="charindicesproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="charindicesproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="charindicesproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="charindicesproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="charindicesproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'ch> UnindexedProducer for CharIndicesProducer<'ch>`
+##### `impl UnindexedProducer for CharIndicesProducer<'ch>`
 
-- `type Item = (usize, char)`
+- <span id="charindicesproducer-type-item"></span>`type Item = (usize, char)`
 
-- `fn split(self: Self) -> (Self, Option<Self>)`
+- <span id="charindicesproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="charindicesproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `Bytes<'ch>`
 
@@ -200,47 +279,49 @@ struct Bytes<'ch> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:567-569`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L567-L569)*
+
 Parallel iterator over the bytes of a string
 
 #### Trait Implementations
 
-##### `impl<'ch> Clone for Bytes<'ch>`
+##### `impl Clone for Bytes<'ch>`
 
-- `fn clone(self: &Self) -> Bytes<'ch>` — [`Bytes`](#bytes)
+- <span id="bytes-clone"></span>`fn clone(&self) -> Bytes<'ch>` — [`Bytes`](#bytes)
 
-##### `impl<'ch> Debug for Bytes<'ch>`
+##### `impl Debug for Bytes<'ch>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Bytes<'ch>`
+##### `impl IntoEither for Bytes<'ch>`
 
-##### `impl<T> IntoParallelIterator for Bytes<'ch>`
+##### `impl IntoParallelIterator for Bytes<'ch>`
 
-- `type Iter = T`
+- <span id="bytes-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="bytes-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="bytes-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'ch> ParallelIterator for Bytes<'ch>`
+##### `impl ParallelIterator for Bytes<'ch>`
 
-- `type Item = u8`
+- <span id="bytes-type-item"></span>`type Item = u8`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="bytes-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl<T> Pointable for Bytes<'ch>`
+##### `impl Pointable for Bytes<'ch>`
 
-- `const ALIGN: usize`
+- <span id="bytes-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="bytes-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="bytes-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="bytes-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="bytes-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="bytes-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `BytesProducer<'ch>`
 
@@ -250,31 +331,33 @@ struct BytesProducer<'ch> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:571-573`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L571-L573)*
+
 #### Trait Implementations
 
-##### `impl<T> IntoEither for BytesProducer<'ch>`
+##### `impl IntoEither for BytesProducer<'ch>`
 
-##### `impl<T> Pointable for BytesProducer<'ch>`
+##### `impl Pointable for BytesProducer<'ch>`
 
-- `const ALIGN: usize`
+- <span id="bytesproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="bytesproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="bytesproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="bytesproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="bytesproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="bytesproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'ch> UnindexedProducer for BytesProducer<'ch>`
+##### `impl UnindexedProducer for BytesProducer<'ch>`
 
-- `type Item = u8`
+- <span id="bytesproducer-type-item"></span>`type Item = u8`
 
-- `fn split(self: Self) -> (Self, Option<Self>)`
+- <span id="bytesproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="bytesproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `EncodeUtf16<'ch>`
 
@@ -284,47 +367,49 @@ struct EncodeUtf16<'ch> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:611-613`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L611-L613)*
+
 Parallel iterator over a string encoded as UTF-16
 
 #### Trait Implementations
 
-##### `impl<'ch> Clone for EncodeUtf16<'ch>`
+##### `impl Clone for EncodeUtf16<'ch>`
 
-- `fn clone(self: &Self) -> EncodeUtf16<'ch>` — [`EncodeUtf16`](#encodeutf16)
+- <span id="encodeutf16-clone"></span>`fn clone(&self) -> EncodeUtf16<'ch>` — [`EncodeUtf16`](#encodeutf16)
 
-##### `impl<'ch> Debug for EncodeUtf16<'ch>`
+##### `impl Debug for EncodeUtf16<'ch>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="encodeutf16-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for EncodeUtf16<'ch>`
+##### `impl IntoEither for EncodeUtf16<'ch>`
 
-##### `impl<T> IntoParallelIterator for EncodeUtf16<'ch>`
+##### `impl IntoParallelIterator for EncodeUtf16<'ch>`
 
-- `type Iter = T`
+- <span id="encodeutf16-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="encodeutf16-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="encodeutf16-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'ch> ParallelIterator for EncodeUtf16<'ch>`
+##### `impl ParallelIterator for EncodeUtf16<'ch>`
 
-- `type Item = u16`
+- <span id="encodeutf16-type-item"></span>`type Item = u16`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="encodeutf16-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl<T> Pointable for EncodeUtf16<'ch>`
+##### `impl Pointable for EncodeUtf16<'ch>`
 
-- `const ALIGN: usize`
+- <span id="encodeutf16-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="encodeutf16-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="encodeutf16-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="encodeutf16-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="encodeutf16-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="encodeutf16-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `EncodeUtf16Producer<'ch>`
 
@@ -334,31 +419,33 @@ struct EncodeUtf16Producer<'ch> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:615-617`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L615-L617)*
+
 #### Trait Implementations
 
-##### `impl<T> IntoEither for EncodeUtf16Producer<'ch>`
+##### `impl IntoEither for EncodeUtf16Producer<'ch>`
 
-##### `impl<T> Pointable for EncodeUtf16Producer<'ch>`
+##### `impl Pointable for EncodeUtf16Producer<'ch>`
 
-- `const ALIGN: usize`
+- <span id="encodeutf16producer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="encodeutf16producer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="encodeutf16producer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="encodeutf16producer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="encodeutf16producer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="encodeutf16producer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'ch> UnindexedProducer for EncodeUtf16Producer<'ch>`
+##### `impl UnindexedProducer for EncodeUtf16Producer<'ch>`
 
-- `type Item = u16`
+- <span id="encodeutf16producer-type-item"></span>`type Item = u16`
 
-- `fn split(self: Self) -> (Self, Option<Self>)`
+- <span id="encodeutf16producer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="encodeutf16producer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `Split<'ch, P: Pattern>`
 
@@ -369,51 +456,53 @@ struct Split<'ch, P: Pattern> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:655-658`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L655-L658)*
+
 Parallel iterator over substrings separated by a pattern
 
 #### Implementations
 
-- `fn new(chars: &'ch str, separator: P) -> Self`
+- <span id="split-new"></span>`fn new(chars: &'ch str, separator: P) -> Self`
 
 #### Trait Implementations
 
-##### `impl<'ch, P: $crate::clone::Clone + Pattern> Clone for Split<'ch, P>`
+##### `impl<'ch, P: clone::Clone + Pattern> Clone for Split<'ch, P>`
 
-- `fn clone(self: &Self) -> Split<'ch, P>` — [`Split`](#split)
+- <span id="split-clone"></span>`fn clone(&self) -> Split<'ch, P>` — [`Split`](#split)
 
-##### `impl<'ch, P: $crate::fmt::Debug + Pattern> Debug for Split<'ch, P>`
+##### `impl<'ch, P: fmt::Debug + Pattern> Debug for Split<'ch, P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for Split<'ch, P>`
 
 ##### `impl<T> IntoParallelIterator for Split<'ch, P>`
 
-- `type Iter = T`
+- <span id="split-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="split-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'ch, P: Pattern> ParallelIterator for Split<'ch, P>`
 
-- `type Item = &'ch str`
+- <span id="split-type-item"></span>`type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for Split<'ch, P>`
 
-- `const ALIGN: usize`
+- <span id="split-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="split-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="split-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="split-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="split-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SplitInclusive<'ch, P: Pattern>`
 
@@ -424,51 +513,53 @@ struct SplitInclusive<'ch, P: Pattern> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:727-730`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L727-L730)*
+
 Parallel iterator over substrings separated by a pattern
 
 #### Implementations
 
-- `fn new(chars: &'ch str, separator: P) -> Self`
+- <span id="splitinclusive-new"></span>`fn new(chars: &'ch str, separator: P) -> Self`
 
 #### Trait Implementations
 
-##### `impl<'ch, P: $crate::clone::Clone + Pattern> Clone for SplitInclusive<'ch, P>`
+##### `impl<'ch, P: clone::Clone + Pattern> Clone for SplitInclusive<'ch, P>`
 
-- `fn clone(self: &Self) -> SplitInclusive<'ch, P>` — [`SplitInclusive`](#splitinclusive)
+- <span id="splitinclusive-clone"></span>`fn clone(&self) -> SplitInclusive<'ch, P>` — [`SplitInclusive`](#splitinclusive)
 
-##### `impl<'ch, P: $crate::fmt::Debug + Pattern> Debug for SplitInclusive<'ch, P>`
+##### `impl<'ch, P: fmt::Debug + Pattern> Debug for SplitInclusive<'ch, P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="splitinclusive-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for SplitInclusive<'ch, P>`
 
 ##### `impl<T> IntoParallelIterator for SplitInclusive<'ch, P>`
 
-- `type Iter = T`
+- <span id="splitinclusive-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="splitinclusive-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="splitinclusive-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'ch, P: Pattern> ParallelIterator for SplitInclusive<'ch, P>`
 
-- `type Item = &'ch str`
+- <span id="splitinclusive-type-item"></span>`type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitinclusive-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for SplitInclusive<'ch, P>`
 
-- `const ALIGN: usize`
+- <span id="splitinclusive-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitinclusive-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitinclusive-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitinclusive-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitinclusive-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitinclusive-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SplitTerminator<'ch, P: Pattern>`
 
@@ -479,51 +570,53 @@ struct SplitTerminator<'ch, P: Pattern> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:754-757`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L754-L757)*
+
 Parallel iterator over substrings separated by a terminator pattern
 
 #### Implementations
 
-- `fn new(chars: &'ch str, terminator: P) -> Self`
+- <span id="splitterminator-new"></span>`fn new(chars: &'ch str, terminator: P) -> Self`
 
 #### Trait Implementations
 
-##### `impl<'ch, P: $crate::clone::Clone + Pattern> Clone for SplitTerminator<'ch, P>`
+##### `impl<'ch, P: clone::Clone + Pattern> Clone for SplitTerminator<'ch, P>`
 
-- `fn clone(self: &Self) -> SplitTerminator<'ch, P>` — [`SplitTerminator`](#splitterminator)
+- <span id="splitterminator-clone"></span>`fn clone(&self) -> SplitTerminator<'ch, P>` — [`SplitTerminator`](#splitterminator)
 
-##### `impl<'ch, P: $crate::fmt::Debug + Pattern> Debug for SplitTerminator<'ch, P>`
+##### `impl<'ch, P: fmt::Debug + Pattern> Debug for SplitTerminator<'ch, P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="splitterminator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for SplitTerminator<'ch, P>`
 
 ##### `impl<T> IntoParallelIterator for SplitTerminator<'ch, P>`
 
-- `type Iter = T`
+- <span id="splitterminator-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="splitterminator-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="splitterminator-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'ch, P: Pattern> ParallelIterator for SplitTerminator<'ch, P>`
 
-- `type Item = &'ch str`
+- <span id="splitterminator-type-item"></span>`type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitterminator-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for SplitTerminator<'ch, P>`
 
-- `const ALIGN: usize`
+- <span id="splitterminator-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitterminator-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitterminator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitterminator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitterminator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitterminator-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SplitTerminatorProducer<'ch, 'sep, P: Pattern>`
 
@@ -534,9 +627,11 @@ struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:759-762`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L759-L762)*
+
 #### Implementations
 
-- `fn new(chars: &'ch str, terminator: &'sep P) -> Self`
+- <span id="splitterminatorproducer-new"></span>`fn new(chars: &'ch str, terminator: &'sep P) -> Self`
 
 #### Trait Implementations
 
@@ -544,25 +639,25 @@ struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
 
 ##### `impl<T> Pointable for SplitTerminatorProducer<'ch, 'sep, P>`
 
-- `const ALIGN: usize`
+- <span id="splitterminatorproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitterminatorproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitterminatorproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitterminatorproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitterminatorproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitterminatorproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'ch, 'sep, P: Pattern + 'sep> UnindexedProducer for SplitTerminatorProducer<'ch, 'sep, P>`
 
-- `type Item = &'ch str`
+- <span id="splitterminatorproducer-type-item"></span>`type Item = &'ch str`
 
-- `fn split(self: Self) -> (Self, Option<Self>)`
+- <span id="splitterminatorproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="splitterminatorproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `Lines<'ch>`
 
@@ -570,47 +665,49 @@ struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
 struct Lines<'ch>(&'ch str);
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:820`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L820)*
+
 Parallel iterator over lines in a string
 
 #### Trait Implementations
 
-##### `impl<'ch> Clone for Lines<'ch>`
+##### `impl Clone for Lines<'ch>`
 
-- `fn clone(self: &Self) -> Lines<'ch>` — [`Lines`](#lines)
+- <span id="lines-clone"></span>`fn clone(&self) -> Lines<'ch>` — [`Lines`](#lines)
 
-##### `impl<'ch> Debug for Lines<'ch>`
+##### `impl Debug for Lines<'ch>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lines-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for Lines<'ch>`
+##### `impl IntoEither for Lines<'ch>`
 
-##### `impl<T> IntoParallelIterator for Lines<'ch>`
+##### `impl IntoParallelIterator for Lines<'ch>`
 
-- `type Iter = T`
+- <span id="lines-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="lines-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="lines-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'ch> ParallelIterator for Lines<'ch>`
+##### `impl ParallelIterator for Lines<'ch>`
 
-- `type Item = &'ch str`
+- <span id="lines-type-item"></span>`type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="lines-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl<T> Pointable for Lines<'ch>`
+##### `impl Pointable for Lines<'ch>`
 
-- `const ALIGN: usize`
+- <span id="lines-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="lines-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="lines-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="lines-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="lines-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="lines-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SplitWhitespace<'ch>`
 
@@ -618,47 +715,49 @@ Parallel iterator over lines in a string
 struct SplitWhitespace<'ch>(&'ch str);
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:845`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L845)*
+
 Parallel iterator over substrings separated by whitespace
 
 #### Trait Implementations
 
-##### `impl<'ch> Clone for SplitWhitespace<'ch>`
+##### `impl Clone for SplitWhitespace<'ch>`
 
-- `fn clone(self: &Self) -> SplitWhitespace<'ch>` — [`SplitWhitespace`](#splitwhitespace)
+- <span id="splitwhitespace-clone"></span>`fn clone(&self) -> SplitWhitespace<'ch>` — [`SplitWhitespace`](#splitwhitespace)
 
-##### `impl<'ch> Debug for SplitWhitespace<'ch>`
+##### `impl Debug for SplitWhitespace<'ch>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="splitwhitespace-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for SplitWhitespace<'ch>`
+##### `impl IntoEither for SplitWhitespace<'ch>`
 
-##### `impl<T> IntoParallelIterator for SplitWhitespace<'ch>`
+##### `impl IntoParallelIterator for SplitWhitespace<'ch>`
 
-- `type Iter = T`
+- <span id="splitwhitespace-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="splitwhitespace-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="splitwhitespace-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'ch> ParallelIterator for SplitWhitespace<'ch>`
+##### `impl ParallelIterator for SplitWhitespace<'ch>`
 
-- `type Item = &'ch str`
+- <span id="splitwhitespace-type-item"></span>`type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitwhitespace-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl<T> Pointable for SplitWhitespace<'ch>`
+##### `impl Pointable for SplitWhitespace<'ch>`
 
-- `const ALIGN: usize`
+- <span id="splitwhitespace-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitwhitespace-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitwhitespace-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitwhitespace-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitwhitespace-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitwhitespace-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SplitAsciiWhitespace<'ch>`
 
@@ -666,47 +765,49 @@ Parallel iterator over substrings separated by whitespace
 struct SplitAsciiWhitespace<'ch>(&'ch str);
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:870`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L870)*
+
 Parallel iterator over substrings separated by ASCII whitespace
 
 #### Trait Implementations
 
-##### `impl<'ch> Clone for SplitAsciiWhitespace<'ch>`
+##### `impl Clone for SplitAsciiWhitespace<'ch>`
 
-- `fn clone(self: &Self) -> SplitAsciiWhitespace<'ch>` — [`SplitAsciiWhitespace`](#splitasciiwhitespace)
+- <span id="splitasciiwhitespace-clone"></span>`fn clone(&self) -> SplitAsciiWhitespace<'ch>` — [`SplitAsciiWhitespace`](#splitasciiwhitespace)
 
-##### `impl<'ch> Debug for SplitAsciiWhitespace<'ch>`
+##### `impl Debug for SplitAsciiWhitespace<'ch>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="splitasciiwhitespace-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for SplitAsciiWhitespace<'ch>`
+##### `impl IntoEither for SplitAsciiWhitespace<'ch>`
 
-##### `impl<T> IntoParallelIterator for SplitAsciiWhitespace<'ch>`
+##### `impl IntoParallelIterator for SplitAsciiWhitespace<'ch>`
 
-- `type Iter = T`
+- <span id="splitasciiwhitespace-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="splitasciiwhitespace-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="splitasciiwhitespace-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'ch> ParallelIterator for SplitAsciiWhitespace<'ch>`
+##### `impl ParallelIterator for SplitAsciiWhitespace<'ch>`
 
-- `type Item = &'ch str`
+- <span id="splitasciiwhitespace-type-item"></span>`type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitasciiwhitespace-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl<T> Pointable for SplitAsciiWhitespace<'ch>`
+##### `impl Pointable for SplitAsciiWhitespace<'ch>`
 
-- `const ALIGN: usize`
+- <span id="splitasciiwhitespace-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitasciiwhitespace-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitasciiwhitespace-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitasciiwhitespace-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitasciiwhitespace-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitasciiwhitespace-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Matches<'ch, P: Pattern>`
 
@@ -717,47 +818,49 @@ struct Matches<'ch, P: Pattern> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:895-898`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L895-L898)*
+
 Parallel iterator over substrings that match a pattern
 
 #### Trait Implementations
 
-##### `impl<'ch, P: $crate::clone::Clone + Pattern> Clone for Matches<'ch, P>`
+##### `impl<'ch, P: clone::Clone + Pattern> Clone for Matches<'ch, P>`
 
-- `fn clone(self: &Self) -> Matches<'ch, P>` — [`Matches`](#matches)
+- <span id="matches-clone"></span>`fn clone(&self) -> Matches<'ch, P>` — [`Matches`](#matches)
 
-##### `impl<'ch, P: $crate::fmt::Debug + Pattern> Debug for Matches<'ch, P>`
+##### `impl<'ch, P: fmt::Debug + Pattern> Debug for Matches<'ch, P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for Matches<'ch, P>`
 
 ##### `impl<T> IntoParallelIterator for Matches<'ch, P>`
 
-- `type Iter = T`
+- <span id="matches-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="matches-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="matches-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'ch, P: Pattern> ParallelIterator for Matches<'ch, P>`
 
-- `type Item = &'ch str`
+- <span id="matches-type-item"></span>`type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="matches-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for Matches<'ch, P>`
 
-- `const ALIGN: usize`
+- <span id="matches-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="matches-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="matches-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="matches-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="matches-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="matches-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `MatchesProducer<'ch, 'pat, P: Pattern>`
 
@@ -768,31 +871,33 @@ struct MatchesProducer<'ch, 'pat, P: Pattern> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:900-903`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L900-L903)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for MatchesProducer<'ch, 'pat, P>`
 
 ##### `impl<T> Pointable for MatchesProducer<'ch, 'pat, P>`
 
-- `const ALIGN: usize`
+- <span id="matchesproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="matchesproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="matchesproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="matchesproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="matchesproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="matchesproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'ch, 'pat, P: Pattern> UnindexedProducer for MatchesProducer<'ch, 'pat, P>`
 
-- `type Item = &'ch str`
+- <span id="matchesproducer-type-item"></span>`type Item = &'ch str`
 
-- `fn split(self: Self) -> (Self, Option<Self>)`
+- <span id="matchesproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="matchesproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `MatchIndices<'ch, P: Pattern>`
 
@@ -803,47 +908,49 @@ struct MatchIndices<'ch, P: Pattern> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:951-954`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L951-L954)*
+
 Parallel iterator over substrings that match a pattern, with their positions
 
 #### Trait Implementations
 
-##### `impl<'ch, P: $crate::clone::Clone + Pattern> Clone for MatchIndices<'ch, P>`
+##### `impl<'ch, P: clone::Clone + Pattern> Clone for MatchIndices<'ch, P>`
 
-- `fn clone(self: &Self) -> MatchIndices<'ch, P>` — [`MatchIndices`](#matchindices)
+- <span id="matchindices-clone"></span>`fn clone(&self) -> MatchIndices<'ch, P>` — [`MatchIndices`](#matchindices)
 
-##### `impl<'ch, P: $crate::fmt::Debug + Pattern> Debug for MatchIndices<'ch, P>`
+##### `impl<'ch, P: fmt::Debug + Pattern> Debug for MatchIndices<'ch, P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matchindices-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for MatchIndices<'ch, P>`
 
 ##### `impl<T> IntoParallelIterator for MatchIndices<'ch, P>`
 
-- `type Iter = T`
+- <span id="matchindices-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="matchindices-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="matchindices-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'ch, P: Pattern> ParallelIterator for MatchIndices<'ch, P>`
 
-- `type Item = (usize, &'ch str)`
+- <span id="matchindices-type-item"></span>`type Item = (usize, &'ch str)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="matchindices-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for MatchIndices<'ch, P>`
 
-- `const ALIGN: usize`
+- <span id="matchindices-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="matchindices-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="matchindices-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="matchindices-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="matchindices-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="matchindices-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `MatchIndicesProducer<'ch, 'pat, P: Pattern>`
 
@@ -855,31 +962,33 @@ struct MatchIndicesProducer<'ch, 'pat, P: Pattern> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:956-960`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L956-L960)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for MatchIndicesProducer<'ch, 'pat, P>`
 
 ##### `impl<T> Pointable for MatchIndicesProducer<'ch, 'pat, P>`
 
-- `const ALIGN: usize`
+- <span id="matchindicesproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="matchindicesproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="matchindicesproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="matchindicesproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="matchindicesproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="matchindicesproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'ch, 'pat, P: Pattern> UnindexedProducer for MatchIndicesProducer<'ch, 'pat, P>`
 
-- `type Item = (usize, &'ch str)`
+- <span id="matchindicesproducer-type-item"></span>`type Item = (usize, &'ch str)`
 
-- `fn split(self: Self) -> (Self, Option<Self>)`
+- <span id="matchindicesproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="matchindicesproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ## Traits
 
@@ -889,61 +998,69 @@ struct MatchIndicesProducer<'ch, 'pat, P: Pattern> {
 trait ParallelString { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:58-342`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L58-L342)*
+
 Parallel extensions for strings.
 
 #### Required Methods
 
-- `fn as_parallel_string(self: &Self) -> &str`
+- `fn as_parallel_string(&self) -> &str`
 
   Returns a plain string slice, which is used to implement the rest of
 
-- `fn par_chars(self: &Self) -> Chars<'_>`
+#### Provided Methods
+
+- `fn par_chars(&self) -> Chars<'_>`
 
   Returns a parallel iterator over the characters of a string.
 
-- `fn par_char_indices(self: &Self) -> CharIndices<'_>`
+- `fn par_char_indices(&self) -> CharIndices<'_>`
 
   Returns a parallel iterator over the characters of a string, with their positions.
 
-- `fn par_bytes(self: &Self) -> Bytes<'_>`
+- `fn par_bytes(&self) -> Bytes<'_>`
 
   Returns a parallel iterator over the bytes of a string.
 
-- `fn par_encode_utf16(self: &Self) -> EncodeUtf16<'_>`
+- `fn par_encode_utf16(&self) -> EncodeUtf16<'_>`
 
   Returns a parallel iterator over a string encoded as UTF-16.
 
-- `fn par_split<P: Pattern>(self: &Self, separator: P) -> Split<'_, P>`
+- `fn par_split<P: Pattern>(&self, separator: P) -> Split<'_, P>`
 
   Returns a parallel iterator over substrings separated by a
 
-- `fn par_split_inclusive<P: Pattern>(self: &Self, separator: P) -> SplitInclusive<'_, P>`
+- `fn par_split_inclusive<P: Pattern>(&self, separator: P) -> SplitInclusive<'_, P>`
 
   Returns a parallel iterator over substrings separated by a
 
-- `fn par_split_terminator<P: Pattern>(self: &Self, terminator: P) -> SplitTerminator<'_, P>`
+- `fn par_split_terminator<P: Pattern>(&self, terminator: P) -> SplitTerminator<'_, P>`
 
   Returns a parallel iterator over substrings terminated by a
 
-- `fn par_lines(self: &Self) -> Lines<'_>`
+- `fn par_lines(&self) -> Lines<'_>`
 
   Returns a parallel iterator over the lines of a string, ending with an
 
-- `fn par_split_whitespace(self: &Self) -> SplitWhitespace<'_>`
+- `fn par_split_whitespace(&self) -> SplitWhitespace<'_>`
 
   Returns a parallel iterator over the sub-slices of a string that are
 
-- `fn par_split_ascii_whitespace(self: &Self) -> SplitAsciiWhitespace<'_>`
+- `fn par_split_ascii_whitespace(&self) -> SplitAsciiWhitespace<'_>`
 
   Returns a parallel iterator over the sub-slices of a string that are
 
-- `fn par_matches<P: Pattern>(self: &Self, pattern: P) -> Matches<'_, P>`
+- `fn par_matches<P: Pattern>(&self, pattern: P) -> Matches<'_, P>`
 
   Returns a parallel iterator over substrings that match a
 
-- `fn par_match_indices<P: Pattern>(self: &Self, pattern: P) -> MatchIndices<'_, P>`
+- `fn par_match_indices<P: Pattern>(&self, pattern: P) -> MatchIndices<'_, P>`
 
   Returns a parallel iterator over substrings that match a given character
+
+#### Implementors
+
+- `str`
 
 ## Functions
 
@@ -952,6 +1069,8 @@ Parallel extensions for strings.
 ```rust
 fn is_char_boundary(b: u8) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/str.rs:22-25`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L22-L25)*
 
 Test if a byte is the start of a UTF-8 character.
 (extracted from `str::is_char_boundary`)
@@ -962,6 +1081,8 @@ Test if a byte is the start of a UTF-8 character.
 fn find_char_midpoint(chars: &str) -> usize
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:29-44`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L29-L44)*
+
 Find the index of a character boundary near the midpoint.
 
 ### `split`
@@ -969,6 +1090,8 @@ Find the index of a character boundary near the midpoint.
 ```rust
 fn split(chars: &str) -> Option<(&str, &str)>
 ```
+
+*Defined in [`rayon-1.11.0/src/str.rs:48-55`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L48-L55)*
 
 Try to split a string near the midpoint.
 
@@ -978,11 +1101,15 @@ Try to split a string near the midpoint.
 fn offset<T>(base: usize) -> impl Fn((usize, T)) -> (usize, T)
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:386-388`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L386-L388)*
+
 ### `no_carriage_return`
 
 ```rust
 fn no_carriage_return(line: &str) -> &str
 ```
+
+*Defined in [`rayon-1.11.0/src/str.rs:823-825`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L823-L825)*
 
 ### `not_empty`
 
@@ -990,13 +1117,19 @@ fn no_carriage_return(line: &str) -> &str
 fn not_empty(s: &&str) -> bool
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:848-850`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L848-L850)*
+
 ### `is_ascii_whitespace`
 
 ```rust
 fn is_ascii_whitespace(c: char) -> bool
 ```
 
+*Defined in [`rayon-1.11.0/src/str.rs:873-875`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L873-L875)*
+
 ## Macros
 
 ### `impl_pattern!`
+
+*Defined in [`rayon-1.11.0/src/str.rs:390-441`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L390-L441)*
 

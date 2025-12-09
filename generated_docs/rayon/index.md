@@ -15,8 +15,8 @@ There are two ways to use Rayon:
   typically the most efficient.
   - [Parallel iterators] make it easy to convert a sequential iterator to
     execute in parallel.
-    - The [`ParallelIterator`](prelude/index.md) trait defines general methods for all parallel iterators.
-    - The [`IndexedParallelIterator`](prelude/index.md) trait adds methods for iterators that support random
+    - The [`ParallelIterator`](iter/index.md) trait defines general methods for all parallel iterators.
+    - The [`IndexedParallelIterator`](iter/index.md) trait adds methods for iterators that support random
       access.
   - The `par_sort` method sorts `&mut [T]` slices (or vectors) in parallel.
   - `par_extend` can be used to efficiently grow collections with items produced
@@ -73,26 +73,95 @@ See the [`rayon_core`](../rayon_core/index.md) documentation for more informatio
 See [the Rayon FAQ][faq].
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`delegate`](#delegate)
+  - [`private`](#private)
+  - [`split_producer`](#split_producer)
+  - [`array`](#array)
+  - [`collections`](#collections)
+  - [`iter`](#iter)
+  - [`option`](#option)
+  - [`prelude`](#prelude)
+  - [`range`](#range)
+  - [`range_inclusive`](#range_inclusive)
+  - [`result`](#result)
+  - [`slice`](#slice)
+  - [`str`](#str)
+  - [`string`](#string)
+  - [`vec`](#vec)
+  - [`math`](#math)
+  - [`par_either`](#par_either)
+  - [`compile_fail`](#compile_fail)
+- [Structs](#structs)
+  - [`SendPtr`](#sendptr)
+- [Functions](#functions)
+  - [`FnContext`](#fncontext)
+  - [`ThreadBuilder`](#threadbuilder)
+  - [`ThreadPool`](#threadpool)
+  - [`ThreadPoolBuildError`](#threadpoolbuilderror)
+  - [`ThreadPoolBuilder`](#threadpoolbuilder)
+  - [`broadcast`](#broadcast)
+  - [`in_place_scope_fifo`](#in_place_scope_fifo)
+  - [`scope_fifo`](#scope_fifo)
+  - [`spawn`](#spawn)
+  - [`Yield`](#yield)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`delegate`](#delegate) | mod | Macros for delegating newtype iterators to inner types. |
+| [`private`](#private) | mod | The public parts of this private module are used to create traits that cannot be implemented outside of our own crate. |
+| [`split_producer`](#split_producer) | mod | Common splitter for strings and slices |
+| [`array`](#array) | mod | Parallel iterator types for [arrays] (`[T; N]`) |
+| [`collections`](#collections) | mod | Parallel iterator types for [standard collections] |
+| [`iter`](#iter) | mod | Traits for writing parallel programs using an iterator-style interface |
+| [`option`](#option) | mod | Parallel iterator types for [options] |
+| [`prelude`](#prelude) | mod | The rayon prelude imports the various `ParallelIterator` traits. |
+| [`range`](#range) | mod | Parallel iterator types for [ranges], the type for values created by `a..b` expressions |
+| [`range_inclusive`](#range_inclusive) | mod | Parallel iterator types for [inclusive ranges], the type for values created by `a..=b` expressions |
+| [`result`](#result) | mod | Parallel iterator types for [results] |
+| [`slice`](#slice) | mod | Parallel iterator types for [slices] |
+| [`str`](#str) | mod | Parallel iterator types for [strings] |
+| [`string`](#string) | mod | This module contains the parallel iterator types for owned strings (`String`). |
+| [`vec`](#vec) | mod | Parallel iterator types for [vectors] (`Vec<T>`) |
+| [`math`](#math) | mod |  |
+| [`par_either`](#par_either) | mod |  |
+| [`compile_fail`](#compile_fail) | mod |  |
+| [`SendPtr`](#sendptr) | struct | We need to transmit raw pointers across threads. |
+| [`FnContext`](#fncontext) | fn |  |
+| [`ThreadBuilder`](#threadbuilder) | fn |  |
+| [`ThreadPool`](#threadpool) | fn |  |
+| [`ThreadPoolBuildError`](#threadpoolbuilderror) | fn |  |
+| [`ThreadPoolBuilder`](#threadpoolbuilder) | fn |  |
+| [`broadcast`](#broadcast) | fn |  |
+| [`in_place_scope_fifo`](#in_place_scope_fifo) | fn |  |
+| [`scope_fifo`](#scope_fifo) | fn |  |
+| [`spawn`](#spawn) | fn |  |
+| [`Yield`](#yield) | fn |  |
+
 ## Modules
 
-- [`delegate`](delegate/index.md) - Macros for delegating newtype iterators to inner types.
-- [`private`](private/index.md) - The public parts of this private module are used to create traits
-- [`split_producer`](split_producer/index.md) - Common splitter for strings and slices
-- [`array`](array/index.md) - Parallel iterator types for [arrays] (`[T; N]`)
-- [`collections`](collections/index.md) - Parallel iterator types for [standard collections]
-- [`iter`](iter/index.md) - Traits for writing parallel programs using an iterator-style interface
-- [`option`](option/index.md) - Parallel iterator types for [options]
-- [`prelude`](prelude/index.md) - The rayon prelude imports the various `ParallelIterator` traits.
-- [`range`](range/index.md) - Parallel iterator types for [ranges],
-- [`range_inclusive`](range_inclusive/index.md) - Parallel iterator types for [inclusive ranges],
-- [`result`](result/index.md) - Parallel iterator types for [results]
-- [`slice`](slice/index.md) - Parallel iterator types for [slices]
-- [`str`](str/index.md) - Parallel iterator types for [strings]
-- [`string`](string/index.md) - This module contains the parallel iterator types for owned strings
-- [`vec`](vec/index.md) - Parallel iterator types for [vectors] (`Vec<T>`)
-- [`math`](math/index.md) - 
-- [`par_either`](par_either/index.md) - 
-- [`compile_fail`](compile_fail/index.md) - 
+- [`delegate`](delegate/index.md) — Macros for delegating newtype iterators to inner types.
+- [`private`](private/index.md) — The public parts of this private module are used to create traits
+- [`split_producer`](split_producer/index.md) — Common splitter for strings and slices
+- [`array`](array/index.md) — Parallel iterator types for [arrays] (`[T; N]`)
+- [`collections`](collections/index.md) — Parallel iterator types for [standard collections]
+- [`iter`](iter/index.md) — Traits for writing parallel programs using an iterator-style interface
+- [`option`](option/index.md) — Parallel iterator types for [options]
+- [`prelude`](prelude/index.md) — The rayon prelude imports the various `ParallelIterator` traits.
+- [`range`](range/index.md) — Parallel iterator types for [ranges],
+- [`range_inclusive`](range_inclusive/index.md) — Parallel iterator types for [inclusive ranges],
+- [`result`](result/index.md) — Parallel iterator types for [results]
+- [`slice`](slice/index.md) — Parallel iterator types for [slices]
+- [`str`](str/index.md) — Parallel iterator types for [strings]
+- [`string`](string/index.md) — This module contains the parallel iterator types for owned strings
+- [`vec`](vec/index.md) — Parallel iterator types for [vectors] (`Vec<T>`)
+- [`math`](math/index.md)
+- [`par_either`](par_either/index.md)
+- [`compile_fail`](compile_fail/index.md)
 
 ## Structs
 
@@ -101,6 +170,8 @@ See [the Rayon FAQ][faq].
 ```rust
 struct SendPtr<T>(*mut T);
 ```
+
+*Defined in [`rayon-1.11.0/src/lib.rs:133`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L133)*
 
 We need to transmit raw pointers across threads. It is possible to do this
 without any unsafe code by converting pointers to usize or to AtomicPtr<T>
@@ -113,13 +184,13 @@ not unsound on its own, although it does partly lift the unconditional
 
 #### Implementations
 
-- `fn get(self: Self) -> *mut T`
+- <span id="sendptr-get"></span>`fn get(self) -> *mut T`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for SendPtr<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="sendptr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Copy for SendPtr<T>`
 
@@ -127,21 +198,41 @@ not unsound on its own, although it does partly lift the unconditional
 
 ##### `impl<T> Pointable for SendPtr<T>`
 
-- `const ALIGN: usize`
+- <span id="sendptr-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="sendptr-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sendptr-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sendptr-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sendptr-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="sendptr-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for SendPtr<T>`
 
 ##### `impl<T: Send> Sync for SendPtr<T>`
 
 ## Functions
+
+*Defined in [`rayon-1.11.0/src/lib.rs:112`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L112)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:113`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L113)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:114`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L114)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:115`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L115)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:116`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L116)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:117`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L117)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:120`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L120)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:120`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L120)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:122`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L122)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:123`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L123)*
 

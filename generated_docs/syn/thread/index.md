@@ -4,6 +4,12 @@
 
 # Module `thread`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ThreadBound`](#threadbound) | struct | ThreadBound is a Sync-maker and Send-maker that allows accessing a value of type T only from the original thread on which the ThreadBound was constructed. |
+
 ## Structs
 
 ### `ThreadBound<T>`
@@ -15,27 +21,29 @@ struct ThreadBound<T> {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/thread.rs:7-10`](../../../.source_1765210505/syn-2.0.111/src/thread.rs#L7-L10)*
+
 ThreadBound is a Sync-maker and Send-maker that allows accessing a value
 of type T only from the original thread on which the ThreadBound was
 constructed.
 
 #### Implementations
 
-- `fn new(value: T) -> Self`
+- <span id="threadbound-new"></span>`fn new(value: T) -> Self`
 
-- `fn get(self: &Self) -> Option<&T>`
+- <span id="threadbound-get"></span>`fn get(&self) -> Option<&T>`
 
 #### Trait Implementations
 
 ##### `impl<T: Copy> Clone for ThreadBound<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="threadbound-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: Copy> Copy for ThreadBound<T>`
 
 ##### `impl<T: Debug> Debug for ThreadBound<T>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadbound-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Copy> Send for ThreadBound<T>`
 

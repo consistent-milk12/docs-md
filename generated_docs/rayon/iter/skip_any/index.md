@@ -4,6 +4,15 @@
 
 # Module `skip_any`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SkipAny`](#skipany) | struct | `SkipAny` is an iterator that skips over `n` elements from anywhere in `I`. |
+| [`SkipAnyConsumer`](#skipanyconsumer) | struct |  |
+| [`SkipAnyFolder`](#skipanyfolder) | struct |  |
+| [`checked_decrement`](#checked_decrement) | fn |  |
+
 ## Structs
 
 ### `SkipAny<I>`
@@ -15,53 +24,55 @@ struct SkipAny<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/skip_any.rs:11-14`](../../../../.source_1765210505/rayon-1.11.0/src/iter/skip_any.rs#L11-L14)*
+
 `SkipAny` is an iterator that skips over `n` elements from anywhere in `I`.
-This struct is created by the `skip_any()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `skip_any()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
 
-- `fn new(base: I, count: usize) -> Self`
+- <span id="skipany-new"></span>`fn new(base: I, count: usize) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for SkipAny<I>`
+##### `impl<I: clone::Clone> Clone for SkipAny<I>`
 
-- `fn clone(self: &Self) -> SkipAny<I>` — [`SkipAny`](../index.md)
+- <span id="skipany-clone"></span>`fn clone(&self) -> SkipAny<I>` — [`SkipAny`](#skipany)
 
-##### `impl<I: $crate::fmt::Debug> Debug for SkipAny<I>`
+##### `impl<I: fmt::Debug> Debug for SkipAny<I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="skipany-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for SkipAny<I>`
 
 ##### `impl<T> IntoParallelIterator for SkipAny<I>`
 
-- `type Iter = T`
+- <span id="skipany-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="skipany-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="skipany-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for SkipAny<I>`
 
-- `type Item = <I as ParallelIterator>::Item`
+- <span id="skipany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="skipany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for SkipAny<I>`
 
-- `const ALIGN: usize`
+- <span id="skipany-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="skipany-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="skipany-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="skipany-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="skipany-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="skipany-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SkipAnyConsumer<'f, C>`
 
@@ -72,43 +83,45 @@ struct SkipAnyConsumer<'f, C> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/skip_any.rs:44-47`](../../../../.source_1765210505/rayon-1.11.0/src/iter/skip_any.rs#L44-L47)*
+
 #### Trait Implementations
 
 ##### `impl<'f, T, C> Consumer for SkipAnyConsumer<'f, C>`
 
-- `type Folder = SkipAnyFolder<'f, <C as Consumer>::Folder>`
+- <span id="skipanyconsumer-type-folder"></span>`type Folder = SkipAnyFolder<'f, <C as Consumer>::Folder>`
 
-- `type Reducer = <C as Consumer>::Reducer`
+- <span id="skipanyconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- `type Result = <C as Consumer>::Result`
+- <span id="skipanyconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanyconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanyconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="skipanyconsumer-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for SkipAnyConsumer<'f, C>`
 
 ##### `impl<T> Pointable for SkipAnyConsumer<'f, C>`
 
-- `const ALIGN: usize`
+- <span id="skipanyconsumer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="skipanyconsumer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="skipanyconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="skipanyconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="skipanyconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="skipanyconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'f, T, C> UnindexedConsumer for SkipAnyConsumer<'f, C>`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="skipanyconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanyconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `SkipAnyFolder<'f, C>`
 
@@ -119,35 +132,37 @@ struct SkipAnyFolder<'f, C> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/skip_any.rs:99-102`](../../../../.source_1765210505/rayon-1.11.0/src/iter/skip_any.rs#L99-L102)*
+
 #### Trait Implementations
 
 ##### `impl<'f, T, C> Folder for SkipAnyFolder<'f, C>`
 
-- `type Result = <C as Folder>::Result`
+- <span id="skipanyfolder-type-result"></span>`type Result = <C as Folder>::Result`
 
-- `fn consume(self: Self, item: T) -> Self`
+- <span id="skipanyfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
+- <span id="skipanyfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- `fn complete(self: Self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="skipanyfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="skipanyfolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for SkipAnyFolder<'f, C>`
 
 ##### `impl<T> Pointable for SkipAnyFolder<'f, C>`
 
-- `const ALIGN: usize`
+- <span id="skipanyfolder-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="skipanyfolder-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="skipanyfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="skipanyfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="skipanyfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="skipanyfolder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 
@@ -156,4 +171,6 @@ struct SkipAnyFolder<'f, C> {
 ```rust
 fn checked_decrement(u: &std::sync::atomic::AtomicUsize) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/skip_any.rs:104-107`](../../../../.source_1765210505/rayon-1.11.0/src/iter/skip_any.rs#L104-L107)*
 

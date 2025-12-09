@@ -4,10 +4,18 @@
 
 # Module `file`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`File`](#file) | struct | A complete file of Rust source code. |
+
 ## Modules
 
-- [`parsing`](parsing/index.md) - 
-- [`printing`](printing/index.md) - 
+- [`parsing`](parsing/index.md)
+- [`printing`](printing/index.md)
 
 ## Structs
 
@@ -20,6 +28,8 @@ struct File {
     pub items: Vec<crate::item::Item>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/file.rs:4-84`](../../../.source_1765210505/syn-2.0.111/src/file.rs#L4-L84)*
 
 A complete file of Rust source code.
 
@@ -97,33 +107,33 @@ File {
 
 ##### `impl Clone for crate::File`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefile-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::File`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefile-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::File`
 
 ##### `impl Hash for crate::File`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefile-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::file::File`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratefilefile-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::File`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefile-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for File`
+##### `impl Sealed for File`
 
-##### `impl<T> Spanned for File`
+##### `impl Spanned for File`
 
-- `fn span(self: &Self) -> Span`
+- <span id="file-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::file::File`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratefilefile-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 

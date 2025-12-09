@@ -4,6 +4,32 @@
 
 # Module `compiler`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Config`](#config)
+  - [`Compiler`](#compiler)
+  - [`ThompsonRef`](#thompsonref)
+  - [`Utf8Compiler`](#utf8compiler)
+  - [`Utf8State`](#utf8state)
+  - [`Utf8Node`](#utf8node)
+  - [`Utf8LastTransition`](#utf8lasttransition)
+- [Enums](#enums)
+  - [`WhichCaptures`](#whichcaptures)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Config`](#config) | struct | The configuration used for a Thompson NFA compiler. |
+| [`Compiler`](#compiler) | struct | A builder for compiling an NFA from a regex's high-level intermediate representation (HIR). |
+| [`ThompsonRef`](#thompsonref) | struct | A value that represents the result of compiling a sub-expression of a regex's HIR. |
+| [`Utf8Compiler`](#utf8compiler) | struct | A UTF-8 compiler based on Daciuk's algorithm for compiling minimal DFAs from a lexicographically sorted sequence of strings in linear time. |
+| [`Utf8State`](#utf8state) | struct |  |
+| [`Utf8Node`](#utf8node) | struct |  |
+| [`Utf8LastTransition`](#utf8lasttransition) | struct |  |
+| [`WhichCaptures`](#whichcaptures) | enum | A configuration indicating which kinds of [`State::Capture`](crate::nfa::thompson::State::Capture) states to include. |
+
 ## Structs
 
 ### `Config`
@@ -19,57 +45,59 @@ struct Config {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:28-37`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L28-L37)*
+
 The configuration used for a Thompson NFA compiler.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](../index.md)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- `fn utf8(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
+- <span id="config-utf8"></span>`fn utf8(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn reverse(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
+- <span id="config-reverse"></span>`fn reverse(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn nfa_size_limit(self: Self, bytes: Option<usize>) -> Config` — [`Config`](../index.md)
+- <span id="config-nfa-size-limit"></span>`fn nfa_size_limit(self, bytes: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn shrink(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
+- <span id="config-shrink"></span>`fn shrink(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn captures(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
+- <span id="config-captures"></span>`fn captures(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../index.md), [`Config`](../index.md)
+- <span id="config-which-captures"></span>`fn which_captures(self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](#whichcaptures), [`Config`](#config)
 
-- `fn look_matcher(self: Self, m: LookMatcher) -> Config` — [`LookMatcher`](../../../util/look/index.md), [`Config`](../index.md)
+- <span id="config-look-matcher"></span>`fn look_matcher(self, m: LookMatcher) -> Config` — [`LookMatcher`](../../../util/look/index.md), [`Config`](#config)
 
-- `fn get_utf8(self: &Self) -> bool`
+- <span id="config-get-utf8"></span>`fn get_utf8(&self) -> bool`
 
-- `fn get_reverse(self: &Self) -> bool`
+- <span id="config-get-reverse"></span>`fn get_reverse(&self) -> bool`
 
-- `fn get_nfa_size_limit(self: &Self) -> Option<usize>`
+- <span id="config-get-nfa-size-limit"></span>`fn get_nfa_size_limit(&self) -> Option<usize>`
 
-- `fn get_shrink(self: &Self) -> bool`
+- <span id="config-get-shrink"></span>`fn get_shrink(&self) -> bool`
 
-- `fn get_captures(self: &Self) -> bool`
+- <span id="config-get-captures"></span>`fn get_captures(&self) -> bool`
 
-- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../index.md)
+- <span id="config-get-which-captures"></span>`fn get_which_captures(&self) -> WhichCaptures` — [`WhichCaptures`](#whichcaptures)
 
-- `fn get_look_matcher(self: &Self) -> LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
+- <span id="config-get-look-matcher"></span>`fn get_look_matcher(&self) -> LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
 
-- `fn get_unanchored_prefix(self: &Self) -> bool`
+- <span id="config-get-unanchored-prefix"></span>`fn get_unanchored_prefix(&self) -> bool`
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../index.md)
+- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](../index.md)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
 ##### `impl Debug for Config`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](../index.md)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
 
 ### `Compiler`
 
@@ -83,6 +111,8 @@ struct Compiler {
     utf8_suffix: core::cell::RefCell<crate::nfa::thompson::map::Utf8SuffixMap>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:718-736`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L718-L736)*
 
 A builder for compiling an NFA from a regex's high-level intermediate
 representation (HIR).
@@ -188,29 +218,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Compiler` — [`Compiler`](../index.md)
+- <span id="compiler-new"></span>`fn new() -> Compiler` — [`Compiler`](#compiler)
 
-- `fn build(self: &Self, pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
+- <span id="compiler-build"></span>`fn build(&self, pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md), [`BuildError`](../error/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
+- <span id="compiler-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md), [`BuildError`](../error/index.md)
 
-- `fn build_from_hir(self: &Self, expr: &Hir) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
+- <span id="compiler-build-from-hir"></span>`fn build_from_hir(&self, expr: &Hir) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md), [`BuildError`](../error/index.md)
 
-- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
+- <span id="compiler-build-many-from-hir"></span>`fn build_many_from_hir<H: Borrow<Hir>>(&self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md), [`BuildError`](../error/index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Compiler` — [`Config`](../index.md), [`Compiler`](../index.md)
+- <span id="compiler-configure"></span>`fn configure(&mut self, config: Config) -> &mut Compiler` — [`Config`](#config), [`Compiler`](#compiler)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Compiler` — [`Config`](../../../util/syntax/index.md), [`Compiler`](../index.md)
+- <span id="compiler-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Compiler` — [`Config`](../../../util/syntax/index.md), [`Compiler`](#compiler)
 
 #### Trait Implementations
 
 ##### `impl Clone for Compiler`
 
-- `fn clone(self: &Self) -> Compiler` — [`Compiler`](../index.md)
+- <span id="compiler-clone"></span>`fn clone(&self) -> Compiler` — [`Compiler`](#compiler)
 
 ##### `impl Debug for Compiler`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="compiler-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ThompsonRef`
 
@@ -221,6 +251,8 @@ struct ThompsonRef {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1722-1725`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1722-L1725)*
+
 A value that represents the result of compiling a sub-expression of a
 regex's HIR. Specifically, this represents a sub-graph of the NFA that
 has an initial state at `start` and a final state at `end`.
@@ -229,13 +261,13 @@ has an initial state at `start` and a final state at `end`.
 
 ##### `impl Clone for ThompsonRef`
 
-- `fn clone(self: &Self) -> ThompsonRef` — [`ThompsonRef`](#thompsonref)
+- <span id="thompsonref-clone"></span>`fn clone(&self) -> ThompsonRef` — [`ThompsonRef`](#thompsonref)
 
 ##### `impl Copy for ThompsonRef`
 
 ##### `impl Debug for ThompsonRef`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="thompsonref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Utf8Compiler<'a>`
 
@@ -246,6 +278,8 @@ struct Utf8Compiler<'a> {
     target: crate::util::primitives::StateID,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1748-1752`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1748-L1752)*
 
 A UTF-8 compiler based on Daciuk's algorithm for compiling minimal DFAs
 from a lexicographically sorted sequence of strings in linear time.
@@ -270,31 +304,31 @@ There is also another implementation of this in the `fst` crate.
 
 #### Implementations
 
-- `fn new(builder: &'a mut Builder, state: &'a mut Utf8State) -> Result<Utf8Compiler<'a>, BuildError>` — [`Builder`](../index.md), [`Utf8State`](#utf8state), [`Utf8Compiler`](#utf8compiler), [`BuildError`](../index.md)
+- <span id="utf8compiler-new"></span>`fn new(builder: &'a mut Builder, state: &'a mut Utf8State) -> Result<Utf8Compiler<'a>, BuildError>` — [`Builder`](../builder/index.md), [`Utf8State`](#utf8state), [`Utf8Compiler`](#utf8compiler), [`BuildError`](../error/index.md)
 
-- `fn finish(self: &mut Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](#thompsonref), [`BuildError`](../index.md)
+- <span id="utf8compiler-finish"></span>`fn finish(&mut self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](#thompsonref), [`BuildError`](../error/index.md)
 
-- `fn add(self: &mut Self, ranges: &[Utf8Range]) -> Result<(), BuildError>` — [`BuildError`](../index.md)
+- <span id="utf8compiler-add"></span>`fn add(&mut self, ranges: &[Utf8Range]) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
 
-- `fn compile_from(self: &mut Self, from: usize) -> Result<(), BuildError>` — [`BuildError`](../index.md)
+- <span id="utf8compiler-compile-from"></span>`fn compile_from(&mut self, from: usize) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
 
-- `fn compile(self: &mut Self, node: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="utf8compiler-compile"></span>`fn compile(&mut self, node: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn add_suffix(self: &mut Self, ranges: &[Utf8Range])`
+- <span id="utf8compiler-add-suffix"></span>`fn add_suffix(&mut self, ranges: &[Utf8Range])`
 
-- `fn add_empty(self: &mut Self)`
+- <span id="utf8compiler-add-empty"></span>`fn add_empty(&mut self)`
 
-- `fn pop_freeze(self: &mut Self, next: StateID) -> Vec<Transition>` — [`StateID`](../../../util/primitives/index.md), [`Transition`](../index.md)
+- <span id="utf8compiler-pop-freeze"></span>`fn pop_freeze(&mut self, next: StateID) -> Vec<Transition>` — [`StateID`](../../../util/primitives/index.md), [`Transition`](../nfa/index.md)
 
-- `fn pop_root(self: &mut Self) -> Vec<Transition>` — [`Transition`](../index.md)
+- <span id="utf8compiler-pop-root"></span>`fn pop_root(&mut self) -> Vec<Transition>` — [`Transition`](../nfa/index.md)
 
-- `fn top_last_freeze(self: &mut Self, next: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- <span id="utf8compiler-top-last-freeze"></span>`fn top_last_freeze(&mut self, next: StateID)` — [`StateID`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Utf8Compiler<'a>`
+##### `impl Debug for Utf8Compiler<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8compiler-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Utf8State`
 
@@ -305,21 +339,23 @@ struct Utf8State {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1755-1758`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1755-L1758)*
+
 #### Implementations
 
-- `fn new() -> Utf8State` — [`Utf8State`](#utf8state)
+- <span id="utf8state-new"></span>`fn new() -> Utf8State` — [`Utf8State`](#utf8state)
 
-- `fn clear(self: &mut Self)`
+- <span id="utf8state-clear"></span>`fn clear(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Utf8State`
 
-- `fn clone(self: &Self) -> Utf8State` — [`Utf8State`](#utf8state)
+- <span id="utf8state-clone"></span>`fn clone(&self) -> Utf8State` — [`Utf8State`](#utf8state)
 
 ##### `impl Debug for Utf8State`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Utf8Node`
 
@@ -330,19 +366,21 @@ struct Utf8Node {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1761-1764`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1761-L1764)*
+
 #### Implementations
 
-- `fn set_last_transition(self: &mut Self, next: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- <span id="utf8node-set-last-transition"></span>`fn set_last_transition(&mut self, next: StateID)` — [`StateID`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Utf8Node`
 
-- `fn clone(self: &Self) -> Utf8Node` — [`Utf8Node`](#utf8node)
+- <span id="utf8node-clone"></span>`fn clone(&self) -> Utf8Node` — [`Utf8Node`](#utf8node)
 
 ##### `impl Debug for Utf8Node`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8node-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Utf8LastTransition`
 
@@ -353,15 +391,17 @@ struct Utf8LastTransition {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:1767-1770`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L1767-L1770)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Utf8LastTransition`
 
-- `fn clone(self: &Self) -> Utf8LastTransition` — [`Utf8LastTransition`](#utf8lasttransition)
+- <span id="utf8lasttransition-clone"></span>`fn clone(&self) -> Utf8LastTransition` — [`Utf8LastTransition`](#utf8lasttransition)
 
 ##### `impl Debug for Utf8LastTransition`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8lasttransition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -374,6 +414,8 @@ enum WhichCaptures {
     None,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:547-589`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L547-L589)*
 
 A configuration indicating which kinds of
 [`State::Capture`](crate::nfa::thompson::State::Capture) states to include.
@@ -434,23 +476,23 @@ The default configuration is [`WhichCaptures::All`](../../../index.md).
 
 #### Implementations
 
-- `fn is_none(self: &Self) -> bool`
+- <span id="whichcaptures-is-none"></span>`fn is_none(&self) -> bool`
 
-- `fn is_any(self: &Self) -> bool`
+- <span id="whichcaptures-is-any"></span>`fn is_any(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for WhichCaptures`
 
-- `fn clone(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../index.md)
+- <span id="whichcaptures-clone"></span>`fn clone(&self) -> WhichCaptures` — [`WhichCaptures`](#whichcaptures)
 
 ##### `impl Copy for WhichCaptures`
 
 ##### `impl Debug for WhichCaptures`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="whichcaptures-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for WhichCaptures`
 
-- `fn default() -> WhichCaptures` — [`WhichCaptures`](../index.md)
+- <span id="whichcaptures-default"></span>`fn default() -> WhichCaptures` — [`WhichCaptures`](#whichcaptures)
 

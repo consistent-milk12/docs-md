@@ -4,6 +4,13 @@
 
 # Module `parse_running_mmaps`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MapsEntry`](#mapsentry) | struct |  |
+| [`parse_maps`](#parse_maps) | fn |  |
+
 ## Structs
 
 ### `MapsEntry`
@@ -18,6 +25,8 @@ struct MapsEntry {
     pathname: super::mystd::ffi::OsString,
 }
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/parse_running_mmaps_unix.rs:13-56`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/parse_running_mmaps_unix.rs#L13-L56)*
 
 #### Fields
 
@@ -77,27 +86,27 @@ struct MapsEntry {
 
 #### Implementations
 
-- `fn pathname(self: &Self) -> &OsString`
+- <span id="mapsentry-pathname"></span>`fn pathname(&self) -> &OsString`
 
-- `fn ip_matches(self: &Self, ip: usize) -> bool`
+- <span id="mapsentry-ip-matches"></span>`fn ip_matches(&self, ip: usize) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for MapsEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mapsentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MapsEntry`
 
 ##### `impl FromStr for MapsEntry`
 
-- `type Err = &'static str`
+- <span id="mapsentry-type-err"></span>`type Err = &'static str`
 
-- `fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+- <span id="mapsentry-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl PartialEq for MapsEntry`
 
-- `fn eq(self: &Self, other: &MapsEntry) -> bool` — [`MapsEntry`](#mapsentry)
+- <span id="mapsentry-eq"></span>`fn eq(&self, other: &MapsEntry) -> bool` — [`MapsEntry`](#mapsentry)
 
 ##### `impl StructuralPartialEq for MapsEntry`
 
@@ -108,4 +117,6 @@ struct MapsEntry {
 ```rust
 fn parse_maps() -> Result<alloc::vec::Vec<MapsEntry>, &'static str>
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/parse_running_mmaps_unix.rs:58-71`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/parse_running_mmaps_unix.rs#L58-L71)*
 

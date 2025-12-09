@@ -91,14 +91,27 @@ for Serde by the community.
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`lib`](#lib) | mod | A facade around all the types we need from the `std`, `core`, and `alloc` crates. |
+| [`integer128`](#integer128) | mod |  |
+| [`crate_root!`](#crate_root) | macro |  |
+| [`tri!`](#tri) | macro |  |
+
 ## Modules
 
-- [`lib`](lib/index.md) - A facade around all the types we need from the `std`, `core`, and `alloc`
-- [`integer128`](integer128/index.md) - 
+- [`lib`](lib/index.md) — A facade around all the types we need from the `std`, `core`, and `alloc`
+- [`integer128`](integer128/index.md)
 
 ## Macros
 
 ### `crate_root!`
 
+*Defined in [`serde-1.0.228/src/lib.rs:188-262`](../../.source_1765210505/serde-1.0.228/src/lib.rs#L188-L262)*
+
 ### `tri!`
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
 

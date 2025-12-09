@@ -4,6 +4,15 @@
 
 # Module `addr`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugAddr`](#debugaddr) | struct | The raw contents of the `.debug_addr` section. |
+| [`AddrHeaderIter`](#addrheaderiter) | struct | An iterator over the headers of a `.debug_addr` section. |
+| [`AddrHeader`](#addrheader) | struct | A header for a set of entries in the `.debug_addr` section. |
+| [`AddrEntryIter`](#addrentryiter) | struct | An iterator over the addresses from a `.debug_addr` section. |
+
 ## Structs
 
 ### `DebugAddr<R>`
@@ -14,35 +23,37 @@ struct DebugAddr<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/addr.rs:6-8`](../../../../.source_1765210505/gimli-0.32.3/src/read/addr.rs#L6-L8)*
+
 The raw contents of the `.debug_addr` section.
 
 #### Implementations
 
-- `fn get_address(self: &Self, address_size: u8, base: DebugAddrBase<<R as >::Offset>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`DebugAddrIndex`](../../index.md), [`Result`](../../index.md)
+- <span id="debugaddr-get-address"></span>`fn get_address(&self, address_size: u8, base: DebugAddrBase<<R as >::Offset>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`DebugAddrIndex`](../../index.md), [`Result`](../../index.md)
 
-- `fn headers(self: &Self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md)
+- <span id="debugaddr-headers"></span>`fn headers(&self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugAddr<R>`
+##### `impl<R: clone::Clone> Clone for DebugAddr<R>`
 
-- `fn clone(self: &Self) -> DebugAddr<R>` — [`DebugAddr`](../index.md)
+- <span id="debugaddr-clone"></span>`fn clone(&self) -> DebugAddr<R>` — [`DebugAddr`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugAddr<R>`
+##### `impl<R: marker::Copy> Copy for DebugAddr<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugAddr<R>`
+##### `impl<R: fmt::Debug> Debug for DebugAddr<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugaddr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugAddr<R>`
+##### `impl<R: default::Default> Default for DebugAddr<R>`
 
-- `fn default() -> DebugAddr<R>` — [`DebugAddr`](../index.md)
+- <span id="debugaddr-default"></span>`fn default() -> DebugAddr<R>` — [`DebugAddr`](../index.md)
 
 ##### `impl<R> Section for DebugAddr<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugaddr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugaddr-reader"></span>`fn reader(&self) -> &R`
 
 ### `AddrHeaderIter<R: Reader>`
 
@@ -53,21 +64,23 @@ struct AddrHeaderIter<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/addr.rs:82-85`](../../../../.source_1765210505/gimli-0.32.3/src/read/addr.rs#L82-L85)*
+
 An iterator over the headers of a `.debug_addr` section.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<AddrHeader<R>>>` — [`Result`](../../index.md), [`AddrHeader`](../index.md)
+- <span id="addrheaderiter-next"></span>`fn next(&mut self) -> Result<Option<AddrHeader<R>>>` — [`Result`](../../index.md), [`AddrHeader`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for AddrHeaderIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for AddrHeaderIter<R>`
 
-- `fn clone(self: &Self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md)
+- <span id="addrheaderiter-clone"></span>`fn clone(&self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for AddrHeaderIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for AddrHeaderIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="addrheaderiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AddrHeader<R, Offset>`
 
@@ -83,37 +96,39 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/addr.rs:122-131`](../../../../.source_1765210505/gimli-0.32.3/src/read/addr.rs#L122-L131)*
+
 A header for a set of entries in the `.debug_addr` section.
 
 These entries all belong to a single unit.
 
 #### Implementations
 
-- `fn parse(input: &mut R, offset: DebugAddrOffset<Offset>) -> Result<Self>` — [`DebugAddrOffset`](../../index.md), [`Result`](../../index.md)
+- <span id="addrheader-parse"></span>`fn parse(input: &mut R, offset: DebugAddrOffset<Offset>) -> Result<Self>` — [`DebugAddrOffset`](../../index.md), [`Result`](../../index.md)
 
-- `fn offset(self: &Self) -> DebugAddrOffset<Offset>` — [`DebugAddrOffset`](../../index.md)
+- <span id="addrheader-offset"></span>`fn offset(&self) -> DebugAddrOffset<Offset>` — [`DebugAddrOffset`](../../index.md)
 
-- `fn length(self: &Self) -> Offset`
+- <span id="addrheader-length"></span>`fn length(&self) -> Offset`
 
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../../index.md)
+- <span id="addrheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md)
 
-- `fn entries(self: &Self) -> AddrEntryIter<R>` — [`AddrEntryIter`](../index.md)
+- <span id="addrheader-entries"></span>`fn entries(&self) -> AddrEntryIter<R>` — [`AddrEntryIter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for AddrHeader<R, Offset>`
 
-- `fn clone(self: &Self) -> AddrHeader<R, Offset>` — [`AddrHeader`](../index.md)
+- <span id="addrheader-clone"></span>`fn clone(&self) -> AddrHeader<R, Offset>` — [`AddrHeader`](../index.md)
 
 ##### `impl<R, Offset> Debug for AddrHeader<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="addrheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for AddrHeader<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for AddrHeader<R, Offset>`
 
-- `fn eq(self: &Self, other: &AddrHeader<R, Offset>) -> bool` — [`AddrHeader`](../index.md)
+- <span id="addrheader-eq"></span>`fn eq(&self, other: &AddrHeader<R, Offset>) -> bool` — [`AddrHeader`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for AddrHeader<R, Offset>`
 
@@ -126,6 +141,8 @@ struct AddrEntryIter<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/addr.rs:217-220`](../../../../.source_1765210505/gimli-0.32.3/src/read/addr.rs#L217-L220)*
+
 An iterator over the addresses from a `.debug_addr` section.
 
 Can be [used with
@@ -133,15 +150,15 @@ Can be [used with
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<u64>>` — [`Result`](../../index.md)
+- <span id="addrentryiter-next"></span>`fn next(&mut self) -> Result<Option<u64>>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for AddrEntryIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for AddrEntryIter<R>`
 
-- `fn clone(self: &Self) -> AddrEntryIter<R>` — [`AddrEntryIter`](../index.md)
+- <span id="addrentryiter-clone"></span>`fn clone(&self) -> AddrEntryIter<R>` — [`AddrEntryIter`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for AddrEntryIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for AddrEntryIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="addrentryiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

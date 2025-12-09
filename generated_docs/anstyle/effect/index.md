@@ -4,6 +4,17 @@
 
 # Module `effect`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Effects`](#effects) | struct | A set of text effects |
+| [`Metadata`](#metadata) | struct |  |
+| [`EffectsDisplay`](#effectsdisplay) | struct |  |
+| [`EffectIter`](#effectiter) | struct | Enumerate each enabled value in [`Effects`] |
+| [`EffectIndexIter`](#effectindexiter) | struct |  |
+| [`METADATA`](#metadata) | const |  |
+
 ## Structs
 
 ### `Effects`
@@ -11,6 +22,8 @@
 ```rust
 struct Effects(u16);
 ```
+
+*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L9)*
 
 A set of text effects
 
@@ -22,109 +35,109 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 #### Implementations
 
-- `const PLAIN: Self`
+- <span id="effects-const-plain"></span>`const PLAIN: Self`
 
-- `const BOLD: Self`
+- <span id="effects-const-bold"></span>`const BOLD: Self`
 
-- `const DIMMED: Self`
+- <span id="effects-const-dimmed"></span>`const DIMMED: Self`
 
-- `const ITALIC: Self`
+- <span id="effects-const-italic"></span>`const ITALIC: Self`
 
-- `const UNDERLINE: Self`
+- <span id="effects-const-underline"></span>`const UNDERLINE: Self`
 
-- `const DOUBLE_UNDERLINE: Self`
+- <span id="effects-const-double-underline"></span>`const DOUBLE_UNDERLINE: Self`
 
-- `const CURLY_UNDERLINE: Self`
+- <span id="effects-const-curly-underline"></span>`const CURLY_UNDERLINE: Self`
 
-- `const DOTTED_UNDERLINE: Self`
+- <span id="effects-const-dotted-underline"></span>`const DOTTED_UNDERLINE: Self`
 
-- `const DASHED_UNDERLINE: Self`
+- <span id="effects-const-dashed-underline"></span>`const DASHED_UNDERLINE: Self`
 
-- `const BLINK: Self`
+- <span id="effects-const-blink"></span>`const BLINK: Self`
 
-- `const INVERT: Self`
+- <span id="effects-const-invert"></span>`const INVERT: Self`
 
-- `const HIDDEN: Self`
+- <span id="effects-const-hidden"></span>`const HIDDEN: Self`
 
-- `const STRIKETHROUGH: Self`
+- <span id="effects-const-strikethrough"></span>`const STRIKETHROUGH: Self`
 
-- `const fn new() -> Self`
+- <span id="effects-new"></span>`const fn new() -> Self`
 
-- `const fn is_plain(self: Self) -> bool`
+- <span id="effects-is-plain"></span>`const fn is_plain(self) -> bool`
 
-- `const fn contains(self: Self, other: Effects) -> bool` — [`Effects`](../index.md)
+- <span id="effects-contains"></span>`const fn contains(self, other: Effects) -> bool` — [`Effects`](../index.md)
 
-- `const fn insert(self: Self, other: Effects) -> Self` — [`Effects`](../index.md)
+- <span id="effects-insert"></span>`const fn insert(self, other: Effects) -> Self` — [`Effects`](../index.md)
 
-- `const fn remove(self: Self, other: Effects) -> Self` — [`Effects`](../index.md)
+- <span id="effects-remove"></span>`const fn remove(self, other: Effects) -> Self` — [`Effects`](../index.md)
 
-- `const fn clear(self: Self) -> Self`
+- <span id="effects-clear"></span>`const fn clear(self) -> Self`
 
-- `const fn set(self: Self, other: Self, enable: bool) -> Self`
+- <span id="effects-set"></span>`const fn set(self, other: Self, enable: bool) -> Self`
 
-- `fn iter(self: Self) -> EffectIter` — [`EffectIter`](../index.md)
+- <span id="effects-iter"></span>`fn iter(self) -> EffectIter` — [`EffectIter`](../index.md)
 
-- `fn index_iter(self: Self) -> EffectIndexIter` — [`EffectIndexIter`](#effectindexiter)
+- <span id="effects-index-iter"></span>`fn index_iter(self) -> EffectIndexIter` — [`EffectIndexIter`](#effectindexiter)
 
-- `fn render(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="effects-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
-- `fn write_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="effects-write-to"></span>`fn write_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl BitOr for Effects`
 
-- `type Output = Effects`
+- <span id="effects-type-output"></span>`type Output = Effects`
 
-- `fn bitor(self: Self, rhs: Self) -> Self`
+- <span id="effects-bitor"></span>`fn bitor(self, rhs: Self) -> Self`
 
 ##### `impl BitOrAssign for Effects`
 
-- `fn bitor_assign(self: &mut Self, other: Self)`
+- <span id="effects-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
 
 ##### `impl Clone for Effects`
 
-- `fn clone(self: &Self) -> Effects` — [`Effects`](../index.md)
+- <span id="effects-clone"></span>`fn clone(&self) -> Effects` — [`Effects`](../index.md)
 
 ##### `impl Copy for Effects`
 
 ##### `impl Debug for Effects`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="effects-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for Effects`
 
-- `fn default() -> Effects` — [`Effects`](../index.md)
+- <span id="effects-default"></span>`fn default() -> Effects` — [`Effects`](../index.md)
 
 ##### `impl Eq for Effects`
 
 ##### `impl Hash for Effects`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="effects-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Effects`
 
-- `fn cmp(self: &Self, other: &Effects) -> $crate::cmp::Ordering` — [`Effects`](../index.md)
+- <span id="effects-cmp"></span>`fn cmp(&self, other: &Effects) -> cmp::Ordering` — [`Effects`](../index.md)
 
 ##### `impl PartialEq for Effects`
 
-- `fn eq(self: &Self, other: &Effects) -> bool` — [`Effects`](../index.md)
+- <span id="effects-eq"></span>`fn eq(&self, other: &Effects) -> bool` — [`Effects`](../index.md)
 
 ##### `impl PartialOrd for Effects`
 
-- `fn partial_cmp(self: &Self, other: &Effects) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Effects`](../index.md)
+- <span id="effects-partial-cmp"></span>`fn partial_cmp(&self, other: &Effects) -> option::Option<cmp::Ordering>` — [`Effects`](../index.md)
 
 ##### `impl StructuralPartialEq for Effects`
 
 ##### `impl Sub for Effects`
 
-- `type Output = Effects`
+- <span id="effects-type-output"></span>`type Output = Effects`
 
-- `fn sub(self: Self, other: Self) -> Self`
+- <span id="effects-sub"></span>`fn sub(self, other: Self) -> Self`
 
 ##### `impl SubAssign for Effects`
 
-- `fn sub_assign(self: &mut Self, other: Self)`
+- <span id="effects-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
 ### `Metadata`
 
@@ -135,35 +148,39 @@ struct Metadata {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L263-L266)*
+
 ### `EffectsDisplay`
 
 ```rust
 struct EffectsDisplay(Effects);
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L320)*
+
 #### Trait Implementations
 
 ##### `impl Clone for EffectsDisplay`
 
-- `fn clone(self: &Self) -> EffectsDisplay` — [`EffectsDisplay`](#effectsdisplay)
+- <span id="effectsdisplay-clone"></span>`fn clone(&self) -> EffectsDisplay` — [`EffectsDisplay`](#effectsdisplay)
 
 ##### `impl Copy for EffectsDisplay`
 
 ##### `impl Debug for EffectsDisplay`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="effectsdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for EffectsDisplay`
 
-- `fn default() -> EffectsDisplay` — [`EffectsDisplay`](#effectsdisplay)
+- <span id="effectsdisplay-default"></span>`fn default() -> EffectsDisplay` — [`EffectsDisplay`](#effectsdisplay)
 
 ##### `impl Display for EffectsDisplay`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="effectsdisplay-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for EffectsDisplay`
+##### `impl ToString for EffectsDisplay`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="effectsdisplay-to-string"></span>`fn to_string(&self) -> String`
 
 ### `EffectIter`
 
@@ -174,37 +191,39 @@ struct EffectIter {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L334-L337)*
+
 Enumerate each enabled value in [`Effects`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for EffectIter`
 
-- `fn clone(self: &Self) -> EffectIter` — [`EffectIter`](../index.md)
+- <span id="effectiter-clone"></span>`fn clone(&self) -> EffectIter` — [`EffectIter`](../index.md)
 
 ##### `impl Debug for EffectIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="effectiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for EffectIter`
 
-##### `impl<I> IntoIterator for EffectIter`
+##### `impl IntoIterator for EffectIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="effectiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="effectiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="effectiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIter`
 
-- `type Item = Effects`
+- <span id="effectiter-type-item"></span>`type Item = Effects`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="effectiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl PartialEq for EffectIter`
 
-- `fn eq(self: &Self, other: &EffectIter) -> bool` — [`EffectIter`](../index.md)
+- <span id="effectiter-eq"></span>`fn eq(&self, other: &EffectIter) -> bool` — [`EffectIter`](../index.md)
 
 ##### `impl StructuralPartialEq for EffectIter`
 
@@ -217,43 +236,46 @@ struct EffectIndexIter {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L358-L361)*
+
 #### Trait Implementations
 
 ##### `impl Clone for EffectIndexIter`
 
-- `fn clone(self: &Self) -> EffectIndexIter` — [`EffectIndexIter`](#effectindexiter)
+- <span id="effectindexiter-clone"></span>`fn clone(&self) -> EffectIndexIter` — [`EffectIndexIter`](#effectindexiter)
 
 ##### `impl Debug for EffectIndexIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="effectindexiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for EffectIndexIter`
 
-##### `impl<I> IntoIterator for EffectIndexIter`
+##### `impl IntoIterator for EffectIndexIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="effectindexiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="effectindexiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="effectindexiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIndexIter`
 
-- `type Item = usize`
+- <span id="effectindexiter-type-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="effectindexiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl PartialEq for EffectIndexIter`
 
-- `fn eq(self: &Self, other: &EffectIndexIter) -> bool` — [`EffectIndexIter`](#effectindexiter)
+- <span id="effectindexiter-eq"></span>`fn eq(&self, other: &EffectIndexIter) -> bool` — [`EffectIndexIter`](#effectindexiter)
 
 ##### `impl StructuralPartialEq for EffectIndexIter`
 
 ## Constants
 
 ### `METADATA`
-
 ```rust
 const METADATA: [Metadata; 12];
 ```
+
+*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L268-L317)*
 

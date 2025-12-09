@@ -6,10 +6,21 @@
 
 ANSI escape code parsing state machine
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`definitions`](#definitions) | mod |  |
+| [`table`](#table) | mod |  |
+| [`Action`](#action) | enum |  |
+| [`State`](#state) | enum |  |
+| [`state_change`](#state_change) | fn | Transition to next [`State`] |
+| [`state_change_`](#state_change_) | fn |  |
+
 ## Modules
 
-- [`definitions`](definitions/index.md) - 
-- [`table`](table/index.md) - 
+- [`definitions`](definitions/index.md)
+- [`table`](table/index.md)
 
 ## Enums
 
@@ -36,27 +47,29 @@ enum Action {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:59-77`](../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L59-L77)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Action`
 
-- `fn clone(self: &Self) -> Action` — [`Action`](#action)
+- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](definitions/index.md)
 
 ##### `impl Copy for Action`
 
 ##### `impl Debug for Action`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="action-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Action`
 
-- `fn default() -> Action` — [`Action`](#action)
+- <span id="action-default"></span>`fn default() -> Action` — [`Action`](definitions/index.md)
 
 ##### `impl Eq for Action`
 
 ##### `impl PartialEq for Action`
 
-- `fn eq(self: &Self, other: &Action) -> bool` — [`Action`](#action)
+- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](definitions/index.md)
 
 ##### `impl StructuralPartialEq for Action`
 
@@ -83,27 +96,29 @@ enum State {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:8-26`](../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L8-L26)*
+
 #### Trait Implementations
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](#state)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](definitions/index.md)
 
 ##### `impl Copy for State`
 
 ##### `impl Debug for State`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for State`
 
-- `fn default() -> State` — [`State`](#state)
+- <span id="state-default"></span>`fn default() -> State` — [`State`](definitions/index.md)
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](definitions/index.md)
 
 ##### `impl StructuralPartialEq for State`
 
@@ -115,7 +130,9 @@ enum State {
 const fn state_change(state: State, byte: u8) -> (State, Action)
 ```
 
-Transition to next [`State`](#state)
+*Defined in [`anstyle-parse-0.2.7/src/state/mod.rs:25-35`](../../../.source_1765210505/anstyle-parse-0.2.7/src/state/mod.rs#L25-L35)*
+
+Transition to next [`State`](definitions/index.md)
 
 Note: This does not directly support UTF-8.
 - If the data is validated as UTF-8 (e.g. `str`) or single-byte C1 control codes are
@@ -131,4 +148,6 @@ Note: When [`State::Anywhere`](../index.md) is returned, revert back to the prio
 ```rust
 const fn state_change_(state: State, byte: u8) -> u8
 ```
+
+*Defined in [`anstyle-parse-0.2.7/src/state/mod.rs:38-43`](../../../.source_1765210505/anstyle-parse-0.2.7/src/state/mod.rs#L38-L43)*
 

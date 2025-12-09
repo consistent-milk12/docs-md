@@ -12,8 +12,15 @@ necessary items from `std`. For `no_std` builds, the file
 `src/polyfill/no_std` is used instead, which doesn't depend on the standard
 library.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`io`](#io) | mod |  |
+| [`os`](#os) | mod |  |
+
 ## Modules
 
-- [`io`](io/index.md) - 
-- [`os`](os/index.md) - 
+- [`io`](io/index.md)
+- [`os`](os/index.md)
 

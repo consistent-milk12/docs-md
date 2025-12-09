@@ -13,6 +13,13 @@ if all currently pinned participants have been pinned in the current epoch.
 If an object became garbage in some epoch, then we can be sure that after two advancements no
 participant will hold a reference to it. That is the crux of safe memory reclamation.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Epoch`](#epoch) | struct | An epoch that can be marked as pinned or unpinned. |
+| [`AtomicEpoch`](#atomicepoch) | struct | An atomic value that holds an `Epoch`. |
+
 ## Structs
 
 ### `Epoch`
@@ -22,6 +29,8 @@ struct Epoch {
     data: usize,
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:17-20`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/epoch.rs#L17-L20)*
 
 An epoch that can be marked as pinned or unpinned.
 
@@ -36,53 +45,53 @@ and a flag that represents whether it is pinned or unpinned.
 
 #### Implementations
 
-- `fn starting() -> Self`
+- <span id="epoch-starting"></span>`fn starting() -> Self`
 
-- `fn wrapping_sub(self: Self, rhs: Self) -> isize`
+- <span id="epoch-wrapping-sub"></span>`fn wrapping_sub(self, rhs: Self) -> isize`
 
-- `fn is_pinned(self: Self) -> bool`
+- <span id="epoch-is-pinned"></span>`fn is_pinned(self) -> bool`
 
-- `fn pinned(self: Self) -> Epoch` — [`Epoch`](#epoch)
+- <span id="epoch-pinned"></span>`fn pinned(self) -> Epoch` — [`Epoch`](#epoch)
 
-- `fn unpinned(self: Self) -> Epoch` — [`Epoch`](#epoch)
+- <span id="epoch-unpinned"></span>`fn unpinned(self) -> Epoch` — [`Epoch`](#epoch)
 
-- `fn successor(self: Self) -> Epoch` — [`Epoch`](#epoch)
+- <span id="epoch-successor"></span>`fn successor(self) -> Epoch` — [`Epoch`](#epoch)
 
 #### Trait Implementations
 
 ##### `impl Clone for Epoch`
 
-- `fn clone(self: &Self) -> Epoch` — [`Epoch`](#epoch)
+- <span id="epoch-clone"></span>`fn clone(&self) -> Epoch` — [`Epoch`](#epoch)
 
 ##### `impl Copy for Epoch`
 
 ##### `impl Debug for Epoch`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="epoch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Epoch`
 
-- `fn default() -> Epoch` — [`Epoch`](#epoch)
+- <span id="epoch-default"></span>`fn default() -> Epoch` — [`Epoch`](#epoch)
 
 ##### `impl Eq for Epoch`
 
 ##### `impl PartialEq for Epoch`
 
-- `fn eq(self: &Self, other: &Epoch) -> bool` — [`Epoch`](#epoch)
+- <span id="epoch-eq"></span>`fn eq(&self, other: &Epoch) -> bool` — [`Epoch`](#epoch)
 
-##### `impl<T> Pointable for Epoch`
+##### `impl Pointable for Epoch`
 
-- `const ALIGN: usize`
+- <span id="epoch-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="epoch-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="epoch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="epoch-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="epoch-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="epoch-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for Epoch`
 
@@ -93,6 +102,8 @@ struct AtomicEpoch {
     data: core::sync::atomic::AtomicUsize,
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:75-79`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/epoch.rs#L75-L79)*
 
 An atomic value that holds an `Epoch`.
 
@@ -105,35 +116,35 @@ An atomic value that holds an `Epoch`.
 
 #### Implementations
 
-- `fn new(epoch: Epoch) -> Self` — [`Epoch`](#epoch)
+- <span id="atomicepoch-new"></span>`fn new(epoch: Epoch) -> Self` — [`Epoch`](#epoch)
 
-- `fn load(self: &Self, ord: Ordering) -> Epoch` — [`Epoch`](#epoch)
+- <span id="atomicepoch-load"></span>`fn load(&self, ord: Ordering) -> Epoch` — [`Epoch`](#epoch)
 
-- `fn store(self: &Self, epoch: Epoch, ord: Ordering)` — [`Epoch`](#epoch)
+- <span id="atomicepoch-store"></span>`fn store(&self, epoch: Epoch, ord: Ordering)` — [`Epoch`](#epoch)
 
-- `fn compare_exchange(self: &Self, current: Epoch, new: Epoch, success: Ordering, failure: Ordering) -> Result<Epoch, Epoch>` — [`Epoch`](#epoch)
+- <span id="atomicepoch-compare-exchange"></span>`fn compare_exchange(&self, current: Epoch, new: Epoch, success: Ordering, failure: Ordering) -> Result<Epoch, Epoch>` — [`Epoch`](#epoch)
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicEpoch`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="atomicepoch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicEpoch`
 
-- `fn default() -> AtomicEpoch` — [`AtomicEpoch`](#atomicepoch)
+- <span id="atomicepoch-default"></span>`fn default() -> AtomicEpoch` — [`AtomicEpoch`](#atomicepoch)
 
-##### `impl<T> Pointable for AtomicEpoch`
+##### `impl Pointable for AtomicEpoch`
 
-- `const ALIGN: usize`
+- <span id="atomicepoch-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="atomicepoch-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="atomicepoch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="atomicepoch-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="atomicepoch-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="atomicepoch-drop"></span>`unsafe fn drop(ptr: usize)`
 

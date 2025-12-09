@@ -6,6 +6,55 @@
 
 Types for compile-time and run-time endianness.
 
+## Contents
+
+- [Structs](#structs)
+  - [`LittleEndian`](#littleendian)
+  - [`BigEndian`](#bigendian)
+  - [`U16Bytes`](#u16bytes)
+  - [`U32Bytes`](#u32bytes)
+  - [`U64Bytes`](#u64bytes)
+  - [`I16Bytes`](#i16bytes)
+  - [`I32Bytes`](#i32bytes)
+  - [`I64Bytes`](#i64bytes)
+- [Enums](#enums)
+  - [`Endianness`](#endianness)
+- [Traits](#traits)
+  - [`Endian`](#endian)
+- [Type Aliases](#type-aliases)
+  - [`NativeEndian`](#nativeendian)
+  - [`U16`](#u16)
+  - [`U32`](#u32)
+  - [`U64`](#u64)
+  - [`I16`](#i16)
+  - [`I32`](#i32)
+  - [`I64`](#i64)
+- [Macros](#macros)
+  - [`unsafe_impl_endian_pod!`](#unsafe_impl_endian_pod)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`LittleEndian`](#littleendian) | struct | Compile-time little endian byte order. |
+| [`BigEndian`](#bigendian) | struct | Compile-time big endian byte order. |
+| [`U16Bytes`](#u16bytes) | struct | An unaligned `u16` value with an externally specified endianness of type `E`. |
+| [`U32Bytes`](#u32bytes) | struct | An unaligned `u32` value with an externally specified endianness of type `E`. |
+| [`U64Bytes`](#u64bytes) | struct | An unaligned `u64` value with an externally specified endianness of type `E`. |
+| [`I16Bytes`](#i16bytes) | struct | An unaligned `i16` value with an externally specified endianness of type `E`. |
+| [`I32Bytes`](#i32bytes) | struct | An unaligned `i32` value with an externally specified endianness of type `E`. |
+| [`I64Bytes`](#i64bytes) | struct | An unaligned `i64` value with an externally specified endianness of type `E`. |
+| [`Endianness`](#endianness) | enum | An endianness that is selectable at run-time. |
+| [`Endian`](#endian) | trait | A trait for using an endianness specification. |
+| [`NativeEndian`](#nativeendian) | type | The native endianness for the target platform. |
+| [`U16`](#u16) | type | A `u16` value with an externally specified endianness of type `E`. |
+| [`U32`](#u32) | type | A `u32` value with an externally specified endianness of type `E`. |
+| [`U64`](#u64) | type | A `u64` value with an externally specified endianness of type `E`. |
+| [`I16`](#i16) | type | An `i16` value with an externally specified endianness of type `E`. |
+| [`I32`](#i32) | type | An `i32` value with an externally specified endianness of type `E`. |
+| [`I64`](#i64) | type | An `i64` value with an externally specified endianness of type `E`. |
+| [`unsafe_impl_endian_pod!`](#unsafe_impl_endian_pod) | macro |  |
+
 ## Structs
 
 ### `LittleEndian`
@@ -14,39 +63,41 @@ Types for compile-time and run-time endianness.
 struct LittleEndian;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:317`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L317)*
+
 Compile-time little endian byte order.
 
 #### Trait Implementations
 
 ##### `impl Clone for LittleEndian`
 
-- `fn clone(self: &Self) -> LittleEndian` — [`LittleEndian`](../index.md)
+- <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](../index.md)
 
 ##### `impl Copy for LittleEndian`
 
 ##### `impl Debug for LittleEndian`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="littleendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LittleEndian`
 
-- `fn default() -> LittleEndian` — [`LittleEndian`](../index.md)
+- <span id="littleendian-default"></span>`fn default() -> LittleEndian` — [`LittleEndian`](../index.md)
 
 ##### `impl Endian for LittleEndian`
 
-- `fn from_big_endian(big_endian: bool) -> Option<Self>`
+- <span id="littleendian-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="littleendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for LittleEndian`
 
 ##### `impl Hash for LittleEndian`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="littleendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for LittleEndian`
 
-- `fn eq(self: &Self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md)
+- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md)
 
 ##### `impl StructuralPartialEq for LittleEndian`
 
@@ -56,39 +107,41 @@ Compile-time little endian byte order.
 struct BigEndian;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:344`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L344)*
+
 Compile-time big endian byte order.
 
 #### Trait Implementations
 
 ##### `impl Clone for BigEndian`
 
-- `fn clone(self: &Self) -> BigEndian` — [`BigEndian`](../index.md)
+- <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](../index.md)
 
 ##### `impl Copy for BigEndian`
 
 ##### `impl Debug for BigEndian`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bigendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BigEndian`
 
-- `fn default() -> BigEndian` — [`BigEndian`](../index.md)
+- <span id="bigendian-default"></span>`fn default() -> BigEndian` — [`BigEndian`](../index.md)
 
 ##### `impl Endian for BigEndian`
 
-- `fn from_big_endian(big_endian: bool) -> Option<Self>`
+- <span id="bigendian-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="bigendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for BigEndian`
 
 ##### `impl Hash for BigEndian`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="bigendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for BigEndian`
 
-- `fn eq(self: &Self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md)
+- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md)
 
 ##### `impl StructuralPartialEq for BigEndian`
 
@@ -98,51 +151,53 @@ Compile-time big endian byte order.
 struct U16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:620`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L620)*
+
 An unaligned `u16` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 2]) -> Self`
+- <span id="u16bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 2]) -> Self`
 
-- `fn new(e: E, n: u16) -> Self`
+- <span id="u16bytes-new"></span>`fn new(e: E, n: u16) -> Self`
 
-- `fn get(self: Self, e: E) -> u16`
+- <span id="u16bytes-get"></span>`fn get(self, e: E) -> u16`
 
-- `fn set(self: &mut Self, e: E, n: u16)`
+- <span id="u16bytes-set"></span>`fn set(&mut self, e: E, n: u16)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for U16Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for U16Bytes<E>`
 
-- `fn clone(self: &Self) -> U16Bytes<E>` — [`U16Bytes`](../index.md)
+- <span id="u16bytes-clone"></span>`fn clone(&self) -> U16Bytes<E>` — [`U16Bytes`](../index.md)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for U16Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for U16Bytes<E>`
 
 ##### `impl<E: Endian> Debug for U16Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u16bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for U16Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for U16Bytes<E>`
 
-- `fn default() -> U16Bytes<E>` — [`U16Bytes`](../index.md)
+- <span id="u16bytes-default"></span>`fn default() -> U16Bytes<E>` — [`U16Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for U16Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for U16Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for U16Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for U16Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="u16bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for U16Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for U16Bytes<E>`
 
-- `fn cmp(self: &Self, other: &U16Bytes<E>) -> $crate::cmp::Ordering` — [`U16Bytes`](../index.md)
+- <span id="u16bytes-cmp"></span>`fn cmp(&self, other: &U16Bytes<E>) -> cmp::Ordering` — [`U16Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for U16Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for U16Bytes<E>`
 
-- `fn eq(self: &Self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](../index.md)
+- <span id="u16bytes-eq"></span>`fn eq(&self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for U16Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U16Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &U16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U16Bytes`](../index.md)
+- <span id="u16bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U16Bytes<E>) -> option::Option<cmp::Ordering>` — [`U16Bytes`](../index.md)
 
 ##### `impl<E: Endian> Pod for U16Bytes<E>`
 
@@ -154,51 +209,53 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 struct U32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:647`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L647)*
+
 An unaligned `u32` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 4]) -> Self`
+- <span id="u32bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 4]) -> Self`
 
-- `fn new(e: E, n: u32) -> Self`
+- <span id="u32bytes-new"></span>`fn new(e: E, n: u32) -> Self`
 
-- `fn get(self: Self, e: E) -> u32`
+- <span id="u32bytes-get"></span>`fn get(self, e: E) -> u32`
 
-- `fn set(self: &mut Self, e: E, n: u32)`
+- <span id="u32bytes-set"></span>`fn set(&mut self, e: E, n: u32)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for U32Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for U32Bytes<E>`
 
-- `fn clone(self: &Self) -> U32Bytes<E>` — [`U32Bytes`](../index.md)
+- <span id="u32bytes-clone"></span>`fn clone(&self) -> U32Bytes<E>` — [`U32Bytes`](../index.md)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for U32Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for U32Bytes<E>`
 
 ##### `impl<E: Endian> Debug for U32Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u32bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for U32Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for U32Bytes<E>`
 
-- `fn default() -> U32Bytes<E>` — [`U32Bytes`](../index.md)
+- <span id="u32bytes-default"></span>`fn default() -> U32Bytes<E>` — [`U32Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for U32Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for U32Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for U32Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for U32Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="u32bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for U32Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for U32Bytes<E>`
 
-- `fn cmp(self: &Self, other: &U32Bytes<E>) -> $crate::cmp::Ordering` — [`U32Bytes`](../index.md)
+- <span id="u32bytes-cmp"></span>`fn cmp(&self, other: &U32Bytes<E>) -> cmp::Ordering` — [`U32Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for U32Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for U32Bytes<E>`
 
-- `fn eq(self: &Self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](../index.md)
+- <span id="u32bytes-eq"></span>`fn eq(&self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for U32Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U32Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &U32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U32Bytes`](../index.md)
+- <span id="u32bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U32Bytes<E>) -> option::Option<cmp::Ordering>` — [`U32Bytes`](../index.md)
 
 ##### `impl<E: Endian> Pod for U32Bytes<E>`
 
@@ -210,51 +267,53 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 struct U64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:674`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L674)*
+
 An unaligned `u64` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 8]) -> Self`
+- <span id="u64bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 8]) -> Self`
 
-- `fn new(e: E, n: u64) -> Self`
+- <span id="u64bytes-new"></span>`fn new(e: E, n: u64) -> Self`
 
-- `fn get(self: Self, e: E) -> u64`
+- <span id="u64bytes-get"></span>`fn get(self, e: E) -> u64`
 
-- `fn set(self: &mut Self, e: E, n: u64)`
+- <span id="u64bytes-set"></span>`fn set(&mut self, e: E, n: u64)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for U64Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for U64Bytes<E>`
 
-- `fn clone(self: &Self) -> U64Bytes<E>` — [`U64Bytes`](../index.md)
+- <span id="u64bytes-clone"></span>`fn clone(&self) -> U64Bytes<E>` — [`U64Bytes`](../index.md)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for U64Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for U64Bytes<E>`
 
 ##### `impl<E: Endian> Debug for U64Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u64bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for U64Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for U64Bytes<E>`
 
-- `fn default() -> U64Bytes<E>` — [`U64Bytes`](../index.md)
+- <span id="u64bytes-default"></span>`fn default() -> U64Bytes<E>` — [`U64Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for U64Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for U64Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for U64Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for U64Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="u64bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for U64Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for U64Bytes<E>`
 
-- `fn cmp(self: &Self, other: &U64Bytes<E>) -> $crate::cmp::Ordering` — [`U64Bytes`](../index.md)
+- <span id="u64bytes-cmp"></span>`fn cmp(&self, other: &U64Bytes<E>) -> cmp::Ordering` — [`U64Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for U64Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for U64Bytes<E>`
 
-- `fn eq(self: &Self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](../index.md)
+- <span id="u64bytes-eq"></span>`fn eq(&self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for U64Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U64Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &U64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U64Bytes`](../index.md)
+- <span id="u64bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U64Bytes<E>) -> option::Option<cmp::Ordering>` — [`U64Bytes`](../index.md)
 
 ##### `impl<E: Endian> Pod for U64Bytes<E>`
 
@@ -266,51 +325,53 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 struct I16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:701`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L701)*
+
 An unaligned `i16` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 2]) -> Self`
+- <span id="i16bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 2]) -> Self`
 
-- `fn new(e: E, n: i16) -> Self`
+- <span id="i16bytes-new"></span>`fn new(e: E, n: i16) -> Self`
 
-- `fn get(self: Self, e: E) -> i16`
+- <span id="i16bytes-get"></span>`fn get(self, e: E) -> i16`
 
-- `fn set(self: &mut Self, e: E, n: i16)`
+- <span id="i16bytes-set"></span>`fn set(&mut self, e: E, n: i16)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for I16Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for I16Bytes<E>`
 
-- `fn clone(self: &Self) -> I16Bytes<E>` — [`I16Bytes`](../index.md)
+- <span id="i16bytes-clone"></span>`fn clone(&self) -> I16Bytes<E>` — [`I16Bytes`](../index.md)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for I16Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for I16Bytes<E>`
 
 ##### `impl<E: Endian> Debug for I16Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i16bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for I16Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for I16Bytes<E>`
 
-- `fn default() -> I16Bytes<E>` — [`I16Bytes`](../index.md)
+- <span id="i16bytes-default"></span>`fn default() -> I16Bytes<E>` — [`I16Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for I16Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for I16Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for I16Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for I16Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="i16bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for I16Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for I16Bytes<E>`
 
-- `fn cmp(self: &Self, other: &I16Bytes<E>) -> $crate::cmp::Ordering` — [`I16Bytes`](../index.md)
+- <span id="i16bytes-cmp"></span>`fn cmp(&self, other: &I16Bytes<E>) -> cmp::Ordering` — [`I16Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for I16Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for I16Bytes<E>`
 
-- `fn eq(self: &Self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](../index.md)
+- <span id="i16bytes-eq"></span>`fn eq(&self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for I16Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I16Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &I16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I16Bytes`](../index.md)
+- <span id="i16bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I16Bytes<E>) -> option::Option<cmp::Ordering>` — [`I16Bytes`](../index.md)
 
 ##### `impl<E: Endian> Pod for I16Bytes<E>`
 
@@ -322,51 +383,53 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 struct I32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:728`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L728)*
+
 An unaligned `i32` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 4]) -> Self`
+- <span id="i32bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 4]) -> Self`
 
-- `fn new(e: E, n: i32) -> Self`
+- <span id="i32bytes-new"></span>`fn new(e: E, n: i32) -> Self`
 
-- `fn get(self: Self, e: E) -> i32`
+- <span id="i32bytes-get"></span>`fn get(self, e: E) -> i32`
 
-- `fn set(self: &mut Self, e: E, n: i32)`
+- <span id="i32bytes-set"></span>`fn set(&mut self, e: E, n: i32)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for I32Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for I32Bytes<E>`
 
-- `fn clone(self: &Self) -> I32Bytes<E>` — [`I32Bytes`](../index.md)
+- <span id="i32bytes-clone"></span>`fn clone(&self) -> I32Bytes<E>` — [`I32Bytes`](../index.md)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for I32Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for I32Bytes<E>`
 
 ##### `impl<E: Endian> Debug for I32Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i32bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for I32Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for I32Bytes<E>`
 
-- `fn default() -> I32Bytes<E>` — [`I32Bytes`](../index.md)
+- <span id="i32bytes-default"></span>`fn default() -> I32Bytes<E>` — [`I32Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for I32Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for I32Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for I32Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for I32Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="i32bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for I32Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for I32Bytes<E>`
 
-- `fn cmp(self: &Self, other: &I32Bytes<E>) -> $crate::cmp::Ordering` — [`I32Bytes`](../index.md)
+- <span id="i32bytes-cmp"></span>`fn cmp(&self, other: &I32Bytes<E>) -> cmp::Ordering` — [`I32Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for I32Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for I32Bytes<E>`
 
-- `fn eq(self: &Self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](../index.md)
+- <span id="i32bytes-eq"></span>`fn eq(&self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for I32Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I32Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &I32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I32Bytes`](../index.md)
+- <span id="i32bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I32Bytes<E>) -> option::Option<cmp::Ordering>` — [`I32Bytes`](../index.md)
 
 ##### `impl<E: Endian> Pod for I32Bytes<E>`
 
@@ -378,51 +441,53 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 struct I64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:755`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L755)*
+
 An unaligned `i64` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 8]) -> Self`
+- <span id="i64bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 8]) -> Self`
 
-- `fn new(e: E, n: i64) -> Self`
+- <span id="i64bytes-new"></span>`fn new(e: E, n: i64) -> Self`
 
-- `fn get(self: Self, e: E) -> i64`
+- <span id="i64bytes-get"></span>`fn get(self, e: E) -> i64`
 
-- `fn set(self: &mut Self, e: E, n: i64)`
+- <span id="i64bytes-set"></span>`fn set(&mut self, e: E, n: i64)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for I64Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for I64Bytes<E>`
 
-- `fn clone(self: &Self) -> I64Bytes<E>` — [`I64Bytes`](../index.md)
+- <span id="i64bytes-clone"></span>`fn clone(&self) -> I64Bytes<E>` — [`I64Bytes`](../index.md)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for I64Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for I64Bytes<E>`
 
 ##### `impl<E: Endian> Debug for I64Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i64bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for I64Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for I64Bytes<E>`
 
-- `fn default() -> I64Bytes<E>` — [`I64Bytes`](../index.md)
+- <span id="i64bytes-default"></span>`fn default() -> I64Bytes<E>` — [`I64Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for I64Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for I64Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for I64Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for I64Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="i64bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for I64Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for I64Bytes<E>`
 
-- `fn cmp(self: &Self, other: &I64Bytes<E>) -> $crate::cmp::Ordering` — [`I64Bytes`](../index.md)
+- <span id="i64bytes-cmp"></span>`fn cmp(&self, other: &I64Bytes<E>) -> cmp::Ordering` — [`I64Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for I64Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for I64Bytes<E>`
 
-- `fn eq(self: &Self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](../index.md)
+- <span id="i64bytes-eq"></span>`fn eq(&self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](../index.md)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for I64Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I64Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &I64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I64Bytes`](../index.md)
+- <span id="i64bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I64Bytes<E>) -> option::Option<cmp::Ordering>` — [`I64Bytes`](../index.md)
 
 ##### `impl<E: Endian> Pod for I64Bytes<E>`
 
@@ -438,6 +503,8 @@ enum Endianness {
     Big,
 }
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:278-283`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L278-L283)*
 
 An endianness that is selectable at run-time.
 
@@ -455,33 +522,33 @@ An endianness that is selectable at run-time.
 
 ##### `impl Clone for Endianness`
 
-- `fn clone(self: &Self) -> Endianness` — [`Endianness`](../index.md)
+- <span id="endianness-clone"></span>`fn clone(&self) -> Endianness` — [`Endianness`](../index.md)
 
 ##### `impl Copy for Endianness`
 
 ##### `impl Debug for Endianness`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="endianness-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Endianness`
 
-- `fn default() -> Endianness` — [`Endianness`](../index.md)
+- <span id="endianness-default"></span>`fn default() -> Endianness` — [`Endianness`](../index.md)
 
 ##### `impl Endian for Endianness`
 
-- `fn from_big_endian(big_endian: bool) -> Option<Self>`
+- <span id="endianness-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="endianness-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for Endianness`
 
 ##### `impl Hash for Endianness`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="endianness-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Endianness`
 
-- `fn eq(self: &Self, other: &Endianness) -> bool` — [`Endianness`](../index.md)
+- <span id="endianness-eq"></span>`fn eq(&self, other: &Endianness) -> bool` — [`Endianness`](../index.md)
 
 ##### `impl StructuralPartialEq for Endianness`
 
@@ -492,6 +559,8 @@ An endianness that is selectable at run-time.
 ```rust
 trait Endian: Debug + Default + Clone + Copy + PartialEq + Eq + 'static { ... }
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:13-274`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L13-L274)*
 
 A trait for using an endianness specification.
 
@@ -506,113 +575,121 @@ This trait does not require that the endianness is known at compile time.
 
   Construct a specification for the endianness of some values.
 
+- `fn is_big_endian(self) -> bool`
+
+  Return true for big endian byte order.
+
+#### Provided Methods
+
 - `fn from_little_endian(little_endian: bool) -> Option<Self>`
 
   Construct a specification for the endianness of some values.
 
-- `fn is_big_endian(self: Self) -> bool`
-
-  Return true for big endian byte order.
-
-- `fn is_little_endian(self: Self) -> bool`
+- `fn is_little_endian(self) -> bool`
 
   Return true for little endian byte order.
 
-- `fn read_u16(self: Self, n: u16) -> u16`
+- `fn read_u16(self, n: u16) -> u16`
 
   Converts an unsigned 16 bit integer to native endian.
 
-- `fn read_u32(self: Self, n: u32) -> u32`
+- `fn read_u32(self, n: u32) -> u32`
 
   Converts an unsigned 32 bit integer to native endian.
 
-- `fn read_u64(self: Self, n: u64) -> u64`
+- `fn read_u64(self, n: u64) -> u64`
 
   Converts an unsigned 64 bit integer to native endian.
 
-- `fn read_i16(self: Self, n: i16) -> i16`
+- `fn read_i16(self, n: i16) -> i16`
 
   Converts a signed 16 bit integer to native endian.
 
-- `fn read_i32(self: Self, n: i32) -> i32`
+- `fn read_i32(self, n: i32) -> i32`
 
   Converts a signed 32 bit integer to native endian.
 
-- `fn read_i64(self: Self, n: i64) -> i64`
+- `fn read_i64(self, n: i64) -> i64`
 
   Converts a signed 64 bit integer to native endian.
 
-- `fn read_u16_bytes(self: Self, n: [u8; 2]) -> u16`
+- `fn read_u16_bytes(self, n: [u8; 2]) -> u16`
 
   Converts an unaligned unsigned 16 bit integer to native endian.
 
-- `fn read_u32_bytes(self: Self, n: [u8; 4]) -> u32`
+- `fn read_u32_bytes(self, n: [u8; 4]) -> u32`
 
   Converts an unaligned unsigned 32 bit integer to native endian.
 
-- `fn read_u64_bytes(self: Self, n: [u8; 8]) -> u64`
+- `fn read_u64_bytes(self, n: [u8; 8]) -> u64`
 
   Converts an unaligned unsigned 64 bit integer to native endian.
 
-- `fn read_i16_bytes(self: Self, n: [u8; 2]) -> i16`
+- `fn read_i16_bytes(self, n: [u8; 2]) -> i16`
 
   Converts an unaligned signed 16 bit integer to native endian.
 
-- `fn read_i32_bytes(self: Self, n: [u8; 4]) -> i32`
+- `fn read_i32_bytes(self, n: [u8; 4]) -> i32`
 
   Converts an unaligned signed 32 bit integer to native endian.
 
-- `fn read_i64_bytes(self: Self, n: [u8; 8]) -> i64`
+- `fn read_i64_bytes(self, n: [u8; 8]) -> i64`
 
   Converts an unaligned signed 64 bit integer to native endian.
 
-- `fn write_u16(self: Self, n: u16) -> u16`
+- `fn write_u16(self, n: u16) -> u16`
 
   Converts an unsigned 16 bit integer from native endian.
 
-- `fn write_u32(self: Self, n: u32) -> u32`
+- `fn write_u32(self, n: u32) -> u32`
 
   Converts an unsigned 32 bit integer from native endian.
 
-- `fn write_u64(self: Self, n: u64) -> u64`
+- `fn write_u64(self, n: u64) -> u64`
 
   Converts an unsigned 64 bit integer from native endian.
 
-- `fn write_i16(self: Self, n: i16) -> i16`
+- `fn write_i16(self, n: i16) -> i16`
 
   Converts a signed 16 bit integer from native endian.
 
-- `fn write_i32(self: Self, n: i32) -> i32`
+- `fn write_i32(self, n: i32) -> i32`
 
   Converts a signed 32 bit integer from native endian.
 
-- `fn write_i64(self: Self, n: i64) -> i64`
+- `fn write_i64(self, n: i64) -> i64`
 
   Converts a signed 64 bit integer from native endian.
 
-- `fn write_u16_bytes(self: Self, n: u16) -> [u8; 2]`
+- `fn write_u16_bytes(self, n: u16) -> [u8; 2]`
 
   Converts an unaligned unsigned 16 bit integer from native endian.
 
-- `fn write_u32_bytes(self: Self, n: u32) -> [u8; 4]`
+- `fn write_u32_bytes(self, n: u32) -> [u8; 4]`
 
   Converts an unaligned unsigned 32 bit integer from native endian.
 
-- `fn write_u64_bytes(self: Self, n: u64) -> [u8; 8]`
+- `fn write_u64_bytes(self, n: u64) -> [u8; 8]`
 
   Converts an unaligned unsigned 64 bit integer from native endian.
 
-- `fn write_i16_bytes(self: Self, n: i16) -> [u8; 2]`
+- `fn write_i16_bytes(self, n: i16) -> [u8; 2]`
 
   Converts an unaligned signed 16 bit integer from native endian.
 
-- `fn write_i32_bytes(self: Self, n: i32) -> [u8; 4]`
+- `fn write_i32_bytes(self, n: i32) -> [u8; 4]`
 
   Converts an unaligned signed 32 bit integer from native endian.
 
-- `fn write_i64_bytes(self: Self, n: i64) -> [u8; 8]`
+- `fn write_i64_bytes(self, n: i64) -> [u8; 8]`
 
   Converts an unaligned signed 64 bit integer from native endian.
+
+#### Implementors
+
+- [`BigEndian`](../index.md)
+- [`Endianness`](../index.md)
+- [`LittleEndian`](../index.md)
 
 ## Type Aliases
 
@@ -622,6 +699,8 @@ This trait does not require that the endianness is known at compile time.
 type NativeEndian = LittleEndian;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:371`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L371)*
+
 The native endianness for the target platform.
 
 ### `U16<E>`
@@ -629,6 +708,8 @@ The native endianness for the target platform.
 ```rust
 type U16<E> = U16Bytes<E>;
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:595`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L595)*
 
 A `u16` value with an externally specified endianness of type `E`.
 
@@ -638,6 +719,8 @@ A `u16` value with an externally specified endianness of type `E`.
 type U32<E> = U32Bytes<E>;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:599`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L599)*
+
 A `u32` value with an externally specified endianness of type `E`.
 
 ### `U64<E>`
@@ -645,6 +728,8 @@ A `u32` value with an externally specified endianness of type `E`.
 ```rust
 type U64<E> = U64Bytes<E>;
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:603`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L603)*
 
 A `u64` value with an externally specified endianness of type `E`.
 
@@ -654,6 +739,8 @@ A `u64` value with an externally specified endianness of type `E`.
 type I16<E> = I16Bytes<E>;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:607`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L607)*
+
 An `i16` value with an externally specified endianness of type `E`.
 
 ### `I32<E>`
@@ -661,6 +748,8 @@ An `i16` value with an externally specified endianness of type `E`.
 ```rust
 type I32<E> = I32Bytes<E>;
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:611`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L611)*
 
 An `i32` value with an externally specified endianness of type `E`.
 
@@ -670,9 +759,13 @@ An `i32` value with an externally specified endianness of type `E`.
 type I64<E> = I64Bytes<E>;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:615`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L615)*
+
 An `i64` value with an externally specified endianness of type `E`.
 
 ## Macros
 
 ### `unsafe_impl_endian_pod!`
+
+*Defined in [`object-0.37.3/src/endian.rs:387-393`](../../../.source_1765210505/object-0.37.3/src/endian.rs#L387-L393)*
 

@@ -4,6 +4,16 @@
 
 # Module `seq_lock`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SeqLock`](#seqlock) | struct | A simple stamped lock. |
+| [`SeqLockWriteGuard`](#seqlockwriteguard) | struct | An RAII guard that releases the lock and increments the stamp when dropped. |
+| [`Stamp`](#stamp) | type |  |
+| [`AtomicChunk`](#atomicchunk) | type |  |
+| [`Chunk`](#chunk) | type |  |
+
 ## Structs
 
 ### `SeqLock`
@@ -13,6 +23,8 @@ struct SeqLock {
     state: core::sync::atomic::AtomicUsize,
 }
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:27-33`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L27-L33)*
 
 A simple stamped lock.
 
@@ -27,13 +39,13 @@ A simple stamped lock.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="seqlock-new"></span>`const fn new() -> Self`
 
-- `fn optimistic_read(self: &Self) -> Option<usize>`
+- <span id="seqlock-optimistic-read"></span>`fn optimistic_read(&self) -> Option<usize>`
 
-- `fn validate_read(self: &Self, stamp: usize) -> bool`
+- <span id="seqlock-validate-read"></span>`fn validate_read(&self, stamp: usize) -> bool`
 
-- `fn write(self: &Self) -> SeqLockWriteGuard<'_>` — [`SeqLockWriteGuard`](#seqlockwriteguard)
+- <span id="seqlock-write"></span>`fn write(&self) -> SeqLockWriteGuard<'_>` — [`SeqLockWriteGuard`](#seqlockwriteguard)
 
 ### `SeqLockWriteGuard<'a>`
 
@@ -43,6 +55,8 @@ struct SeqLockWriteGuard<'a> {
     state: usize,
 }
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:82-88`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L82-L88)*
 
 An RAII guard that releases the lock and increments the stamp when dropped.
 
@@ -58,13 +72,13 @@ An RAII guard that releases the lock and increments the stamp when dropped.
 
 #### Implementations
 
-- `fn abort(self: Self)`
+- <span id="seqlockwriteguard-abort"></span>`fn abort(self)`
 
 #### Trait Implementations
 
 ##### `impl Drop for SeqLockWriteGuard<'_>`
 
-- `fn drop(self: &mut Self)`
+- <span id="seqlockwriteguard-drop"></span>`fn drop(&mut self)`
 
 ## Type Aliases
 
@@ -74,15 +88,21 @@ An RAII guard that releases the lock and increments the stamp when dropped.
 type Stamp = usize;
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:18`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L18)*
+
 ### `AtomicChunk`
 
 ```rust
 type AtomicChunk = core::sync::atomic::AtomicUsize;
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:23`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L23)*
+
 ### `Chunk`
 
 ```rust
 type Chunk = usize;
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs:24`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/seq_lock.rs#L24)*
 

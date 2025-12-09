@@ -4,6 +4,43 @@
 
 # Module `extend`
 
+## Contents
+
+- [Structs](#structs)
+  - [`ListVecConsumer`](#listvecconsumer)
+  - [`ListVecFolder`](#listvecfolder)
+  - [`ListConsumer`](#listconsumer)
+  - [`ListFolder`](#listfolder)
+  - [`ListReducer`](#listreducer)
+  - [`ListStringConsumer`](#liststringconsumer)
+  - [`ListStringFolder`](#liststringfolder)
+- [Functions](#functions)
+  - [`len`](#len)
+  - [`string_len`](#string_len)
+  - [`osstring_len`](#osstring_len)
+  - [`fast_collect`](#fast_collect)
+- [Macros](#macros)
+  - [`extend!`](#extend)
+  - [`extend_reserved!`](#extend_reserved)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ListVecConsumer`](#listvecconsumer) | struct |  |
+| [`ListVecFolder`](#listvecfolder) | struct |  |
+| [`ListConsumer`](#listconsumer) | struct |  |
+| [`ListFolder`](#listfolder) | struct |  |
+| [`ListReducer`](#listreducer) | struct |  |
+| [`ListStringConsumer`](#liststringconsumer) | struct |  |
+| [`ListStringFolder`](#liststringfolder) | struct |  |
+| [`len`](#len) | fn | Computes the total length of a `fast_collect` result. |
+| [`string_len`](#string_len) | fn | Computes the total string length of a `fast_collect` result. |
+| [`osstring_len`](#osstring_len) | fn | Computes the total OS-string length of a `fast_collect` result. |
+| [`fast_collect`](#fast_collect) | fn |  |
+| [`extend!`](#extend) | macro | Performs a generic `par_extend` by collecting to a `LinkedList<Vec<_>>` in parallel, then extending the collection sequentially. |
+| [`extend_reserved!`](#extend_reserved) | macro |  |
+
 ## Structs
 
 ### `ListVecConsumer`
@@ -12,43 +49,45 @@
 struct ListVecConsumer;
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:84`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L84)*
+
 #### Trait Implementations
 
-##### `impl<T: Send> Consumer for ListVecConsumer`
+##### `impl Consumer for ListVecConsumer`
 
-- `type Folder = ListVecFolder<T>`
+- <span id="listvecconsumer-type-folder"></span>`type Folder = ListVecFolder<T>`
 
-- `type Reducer = ListReducer`
+- <span id="listvecconsumer-type-reducer"></span>`type Reducer = ListReducer`
 
-- `type Result = LinkedList<Vec<T>>`
+- <span id="listvecconsumer-type-result"></span>`type Result = LinkedList<Vec<T>>`
 
-- `fn split_at(self: Self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="listvecconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="listvecconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="listvecconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for ListVecConsumer`
+##### `impl IntoEither for ListVecConsumer`
 
-##### `impl<T> Pointable for ListVecConsumer`
+##### `impl Pointable for ListVecConsumer`
 
-- `const ALIGN: usize`
+- <span id="listvecconsumer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="listvecconsumer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="listvecconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="listvecconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="listvecconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="listvecconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T: Send> UnindexedConsumer for ListVecConsumer`
+##### `impl UnindexedConsumer for ListVecConsumer`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="listvecconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="listvecconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `ListVecFolder<T>`
 
@@ -58,35 +97,37 @@ struct ListVecFolder<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:86-88`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L86-L88)*
+
 #### Trait Implementations
 
 ##### `impl<T> Folder for ListVecFolder<T>`
 
-- `type Result = LinkedList<Vec<T>>`
+- <span id="listvecfolder-type-result"></span>`type Result = LinkedList<Vec<T>>`
 
-- `fn consume(self: Self, item: T) -> Self`
+- <span id="listvecfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
+- <span id="listvecfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- `fn complete(self: Self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="listvecfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="listvecfolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for ListVecFolder<T>`
 
 ##### `impl<T> Pointable for ListVecFolder<T>`
 
-- `const ALIGN: usize`
+- <span id="listvecfolder-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="listvecfolder-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="listvecfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="listvecfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="listvecfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="listvecfolder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ListConsumer`
 
@@ -94,43 +135,45 @@ struct ListVecFolder<T> {
 struct ListConsumer;
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:313`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L313)*
+
 #### Trait Implementations
 
-##### `impl<T: Send> Consumer for ListConsumer`
+##### `impl Consumer for ListConsumer`
 
-- `type Folder = ListFolder<T>`
+- <span id="listconsumer-type-folder"></span>`type Folder = ListFolder<T>`
 
-- `type Reducer = ListReducer`
+- <span id="listconsumer-type-reducer"></span>`type Reducer = ListReducer`
 
-- `type Result = LinkedList<T>`
+- <span id="listconsumer-type-result"></span>`type Result = LinkedList<T>`
 
-- `fn split_at(self: Self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="listconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="listconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="listconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for ListConsumer`
+##### `impl IntoEither for ListConsumer`
 
-##### `impl<T> Pointable for ListConsumer`
+##### `impl Pointable for ListConsumer`
 
-- `const ALIGN: usize`
+- <span id="listconsumer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="listconsumer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="listconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="listconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="listconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="listconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T: Send> UnindexedConsumer for ListConsumer`
+##### `impl UnindexedConsumer for ListConsumer`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="listconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="listconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `ListFolder<T>`
 
@@ -140,35 +183,37 @@ struct ListFolder<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:315-317`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L315-L317)*
+
 #### Trait Implementations
 
 ##### `impl<T> Folder for ListFolder<T>`
 
-- `type Result = LinkedList<T>`
+- <span id="listfolder-type-result"></span>`type Result = LinkedList<T>`
 
-- `fn consume(self: Self, item: T) -> Self`
+- <span id="listfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
+- <span id="listfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- `fn complete(self: Self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="listfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="listfolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for ListFolder<T>`
 
 ##### `impl<T> Pointable for ListFolder<T>`
 
-- `const ALIGN: usize`
+- <span id="listfolder-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="listfolder-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="listfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="listfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="listfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="listfolder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ListReducer`
 
@@ -176,27 +221,29 @@ struct ListFolder<T> {
 struct ListReducer;
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:319`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L319)*
+
 #### Trait Implementations
 
-##### `impl<T> IntoEither for ListReducer`
+##### `impl IntoEither for ListReducer`
 
-##### `impl<T> Pointable for ListReducer`
+##### `impl Pointable for ListReducer`
 
-- `const ALIGN: usize`
+- <span id="listreducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="listreducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="listreducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="listreducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="listreducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="listreducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> Reducer for ListReducer`
+##### `impl Reducer for ListReducer`
 
-- `fn reduce(self: Self, left: LinkedList<T>, right: LinkedList<T>) -> LinkedList<T>`
+- <span id="listreducer-reduce"></span>`fn reduce(self, left: LinkedList<T>, right: LinkedList<T>) -> LinkedList<T>`
 
 ### `ListStringConsumer`
 
@@ -204,43 +251,45 @@ struct ListReducer;
 struct ListStringConsumer;
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:437`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L437)*
+
 #### Trait Implementations
 
 ##### `impl Consumer for ListStringConsumer`
 
-- `type Folder = ListStringFolder`
+- <span id="liststringconsumer-type-folder"></span>`type Folder = ListStringFolder`
 
-- `type Reducer = ListReducer`
+- <span id="liststringconsumer-type-reducer"></span>`type Reducer = ListReducer`
 
-- `type Result = LinkedList<String>`
+- <span id="liststringconsumer-type-result"></span>`type Result = LinkedList<String>`
 
-- `fn split_at(self: Self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="liststringconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="liststringconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="liststringconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for ListStringConsumer`
+##### `impl IntoEither for ListStringConsumer`
 
-##### `impl<T> Pointable for ListStringConsumer`
+##### `impl Pointable for ListStringConsumer`
 
-- `const ALIGN: usize`
+- <span id="liststringconsumer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="liststringconsumer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="liststringconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="liststringconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="liststringconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="liststringconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl UnindexedConsumer for ListStringConsumer`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="liststringconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="liststringconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `ListStringFolder`
 
@@ -250,35 +299,37 @@ struct ListStringFolder {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:439-441`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L439-L441)*
+
 #### Trait Implementations
 
 ##### `impl Folder for ListStringFolder`
 
-- `type Result = LinkedList<String>`
+- <span id="liststringfolder-type-result"></span>`type Result = LinkedList<String>`
 
-- `fn consume(self: Self, item: char) -> Self`
+- <span id="liststringfolder-consume"></span>`fn consume(self, item: char) -> Self`
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
+- <span id="liststringfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- `fn complete(self: Self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="liststringfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="liststringfolder-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for ListStringFolder`
+##### `impl IntoEither for ListStringFolder`
 
-##### `impl<T> Pointable for ListStringFolder`
+##### `impl Pointable for ListStringFolder`
 
-- `const ALIGN: usize`
+- <span id="liststringfolder-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="liststringfolder-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="liststringfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="liststringfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="liststringfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="liststringfolder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 
@@ -288,6 +339,8 @@ struct ListStringFolder {
 fn len<T>(vecs: &either::Either<Vec<T>, std::collections::LinkedList<Vec<T>>>) -> usize
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:42-47`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L42-L47)*
+
 Computes the total length of a `fast_collect` result.
 
 ### `string_len`
@@ -296,6 +349,8 @@ Computes the total length of a `fast_collect` result.
 fn string_len<T: AsRef<str>>(vecs: &either::Either<Vec<T>, std::collections::LinkedList<Vec<T>>>) -> usize
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:50-56`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L50-L56)*
+
 Computes the total string length of a `fast_collect` result.
 
 ### `osstring_len`
@@ -303,6 +358,8 @@ Computes the total string length of a `fast_collect` result.
 ```rust
 fn osstring_len<T: AsRef<std::ffi::OsStr>>(vecs: &either::Either<Vec<T>, std::collections::LinkedList<Vec<T>>>) -> usize
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:59-65`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L59-L65)*
 
 Computes the total OS-string length of a `fast_collect` result.
 
@@ -315,12 +372,18 @@ where
     T: Send
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:67-82`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L67-L82)*
+
 ## Macros
 
 ### `extend!`
+
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:15-29`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L15-L29)*
 
 Performs a generic `par_extend` by collecting to a `LinkedList<Vec<_>>` in
 parallel, then extending the collection sequentially.
 
 ### `extend_reserved!`
+
+*Defined in [`rayon-1.11.0/src/iter/extend.rs:30-39`](../../../../.source_1765210505/rayon-1.11.0/src/iter/extend.rs#L30-L39)*
 

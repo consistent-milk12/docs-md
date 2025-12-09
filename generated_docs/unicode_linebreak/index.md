@@ -19,6 +19,59 @@ assert!(linebreaks(text).eq([
 ```
 
 
+## Contents
+
+- [Enums](#enums)
+  - [`BreakClass`](#breakclass)
+  - [`BreakOpportunity`](#breakopportunity)
+- [Functions](#functions)
+  - [`is_safe_pair`](#is_safe_pair)
+  - [`break_property`](#break_property)
+  - [`linebreaks`](#linebreaks)
+  - [`split_at_safe`](#split_at_safe)
+- [Constants](#constants)
+  - [`UNICODE_VERSION`](#unicode_version)
+  - [`BMP_LIMIT`](#bmp_limit)
+  - [`SHIFT_3`](#shift_3)
+  - [`SHIFT_2`](#shift_2)
+  - [`SHIFT_1`](#shift_1)
+  - [`BMP_SHIFT`](#bmp_shift)
+  - [`INDEX_2_BLOCK_LENGTH`](#index_2_block_length)
+  - [`INDEX_3_BLOCK_LENGTH`](#index_3_block_length)
+  - [`SMALL_DATA_BLOCK_LENGTH`](#small_data_block_length)
+  - [`BMP_DATA_BLOCK_LENGTH`](#bmp_data_block_length)
+  - [`ALLOWED_BREAK_BIT`](#allowed_break_bit)
+  - [`MANDATORY_BREAK_BIT`](#mandatory_break_bit)
+  - [`eot`](#eot)
+  - [`sot`](#sot)
+  - [`BREAK_PROP_TRIE_HIGH_START`](#break_prop_trie_high_start)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BreakClass`](#breakclass) | enum | Unicode line breaking class. |
+| [`BreakOpportunity`](#breakopportunity) | enum | Break opportunity type. |
+| [`is_safe_pair`](#is_safe_pair) | fn |  |
+| [`break_property`](#break_property) | fn | Returns the line break property of the specified code point. |
+| [`linebreaks`](#linebreaks) | fn | Returns an iterator over line break opportunities in the specified string. |
+| [`split_at_safe`](#split_at_safe) | fn | Divides the string at the last index where further breaks do not depend on prior context. |
+| [`UNICODE_VERSION`](#unicode_version) | const | The [Unicode version](https://www.unicode.org/versions/) conformed to. |
+| [`BMP_LIMIT`](#bmp_limit) | const | Ceiling for code points in the Basic Multilingual Place (BMP). |
+| [`SHIFT_3`](#shift_3) | const | Shift size for getting index-3 table offset. |
+| [`SHIFT_2`](#shift_2) | const | Shift size for getting index-2 table offset. |
+| [`SHIFT_1`](#shift_1) | const | Shift size for getting index-1 table offset. |
+| [`BMP_SHIFT`](#bmp_shift) | const | Shift size for getting BMP block start. |
+| [`INDEX_2_BLOCK_LENGTH`](#index_2_block_length) | const |  |
+| [`INDEX_3_BLOCK_LENGTH`](#index_3_block_length) | const |  |
+| [`SMALL_DATA_BLOCK_LENGTH`](#small_data_block_length) | const |  |
+| [`BMP_DATA_BLOCK_LENGTH`](#bmp_data_block_length) | const |  |
+| [`ALLOWED_BREAK_BIT`](#allowed_break_bit) | const |  |
+| [`MANDATORY_BREAK_BIT`](#mandatory_break_bit) | const |  |
+| [`eot`](#eot) | const |  |
+| [`sot`](#sot) | const |  |
+| [`BREAK_PROP_TRIE_HIGH_START`](#break_prop_trie_high_start) | const |  |
+
 ## Enums
 
 ### `BreakClass`
@@ -70,6 +123,8 @@ enum BreakClass {
     Unknown,
 }
 ```
+
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:4-96`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L4-L96)*
 
 Unicode line breaking class.
 
@@ -251,23 +306,23 @@ Unicode line breaking class.
 
 ##### `impl Clone for BreakClass`
 
-- `fn clone(self: &Self) -> BreakClass` — [`BreakClass`](#breakclass)
+- <span id="breakclass-clone"></span>`fn clone(&self) -> BreakClass` — [`BreakClass`](#breakclass)
 
 ##### `impl Copy for BreakClass`
 
 ##### `impl Debug for BreakClass`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="breakclass-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for BreakClass`
 
 ##### `impl Hash for BreakClass`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="breakclass-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for BreakClass`
 
-- `fn eq(self: &Self, other: &BreakClass) -> bool` — [`BreakClass`](#breakclass)
+- <span id="breakclass-eq"></span>`fn eq(&self, other: &BreakClass) -> bool` — [`BreakClass`](#breakclass)
 
 ##### `impl StructuralPartialEq for BreakClass`
 
@@ -279,6 +334,8 @@ enum BreakOpportunity {
     Allowed,
 }
 ```
+
+*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:67-72`](../../.source_1765210505/unicode-linebreak-0.1.5/src/lib.rs#L67-L72)*
 
 Break opportunity type.
 
@@ -296,19 +353,19 @@ Break opportunity type.
 
 ##### `impl Clone for BreakOpportunity`
 
-- `fn clone(self: &Self) -> BreakOpportunity` — [`BreakOpportunity`](#breakopportunity)
+- <span id="breakopportunity-clone"></span>`fn clone(&self) -> BreakOpportunity` — [`BreakOpportunity`](#breakopportunity)
 
 ##### `impl Copy for BreakOpportunity`
 
 ##### `impl Debug for BreakOpportunity`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="breakopportunity-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for BreakOpportunity`
 
 ##### `impl PartialEq for BreakOpportunity`
 
-- `fn eq(self: &Self, other: &BreakOpportunity) -> bool` — [`BreakOpportunity`](#breakopportunity)
+- <span id="breakopportunity-eq"></span>`fn eq(&self, other: &BreakOpportunity) -> bool` — [`BreakOpportunity`](#breakopportunity)
 
 ##### `impl StructuralPartialEq for BreakOpportunity`
 
@@ -320,11 +377,15 @@ Break opportunity type.
 fn is_safe_pair(a: BreakClass, b: BreakClass) -> bool
 ```
 
+*Defined in [`unicode-linebreak-0.1.5/src/tables.rs:8-10`](../../.source_1765210505/unicode-linebreak-0.1.5/src/tables.rs#L8-L10)*
+
 ### `break_property`
 
 ```rust
 fn break_property(codepoint: u32) -> BreakClass
 ```
+
+*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:41-63`](../../.source_1765210505/unicode-linebreak-0.1.5/src/lib.rs#L41-L63)*
 
 Returns the line break property of the specified code point.
 
@@ -340,6 +401,8 @@ assert_eq!(break_property(0x2CF3), BreakClass::Alphabetic);
 ```rust
 fn linebreaks(s: &str) -> impl Iterator<Item = (usize, BreakOpportunity)> + Clone + '_
 ```
+
+*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:89-114`](../../.source_1765210505/unicode-linebreak-0.1.5/src/lib.rs#L89-L114)*
 
 Returns an iterator over line break opportunities in the specified string.
 
@@ -362,6 +425,8 @@ assert!(linebreaks("Hello world!").eq(vec![(6, Allowed), (12, Mandatory)]));
 ```rust
 fn split_at_safe(s: &str) -> (&str, &str)
 ```
+
+*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:136-147`](../../.source_1765210505/unicode-linebreak-0.1.5/src/lib.rs#L136-L147)*
 
 Divides the string at the last index where further breaks do not depend on prior context.
 
@@ -387,104 +452,119 @@ assert!(linebreaks(safe).eq(linebreaks(s).filter_map(|(i, x)| i.checked_sub(n).m
 ## Constants
 
 ### `UNICODE_VERSION`
-
 ```rust
 const UNICODE_VERSION: (u8, u8, u8);
 ```
 
+*Defined in [`unicode-linebreak-0.1.5/src/lib.rs:27`](../../.source_1765210505/unicode-linebreak-0.1.5/src/lib.rs#L27)*
+
 The [Unicode version](https://www.unicode.org/versions/) conformed to.
 
 ### `BMP_LIMIT`
-
 ```rust
 const BMP_LIMIT: u32 = 65_536u32;
 ```
 
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:112`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L112)*
+
 Ceiling for code points in the Basic Multilingual Place (BMP).
 
 ### `SHIFT_3`
-
 ```rust
 const SHIFT_3: u32 = 4u32;
 ```
 
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:115`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L115)*
+
 Shift size for getting index-3 table offset.
 
 ### `SHIFT_2`
-
 ```rust
 const SHIFT_2: u32 = 9u32;
 ```
 
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:117`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L117)*
+
 Shift size for getting index-2 table offset.
 
 ### `SHIFT_1`
-
 ```rust
 const SHIFT_1: u32 = 14u32;
 ```
 
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:119`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L119)*
+
 Shift size for getting index-1 table offset.
 
 ### `BMP_SHIFT`
-
 ```rust
 const BMP_SHIFT: u32 = 6u32;
 ```
 
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:121`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L121)*
+
 Shift size for getting BMP block start.
 
 ### `INDEX_2_BLOCK_LENGTH`
-
 ```rust
 const INDEX_2_BLOCK_LENGTH: u32 = 32u32;
 ```
 
-### `INDEX_3_BLOCK_LENGTH`
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:123`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L123)*
 
+### `INDEX_3_BLOCK_LENGTH`
 ```rust
 const INDEX_3_BLOCK_LENGTH: u32 = 32u32;
 ```
 
-### `SMALL_DATA_BLOCK_LENGTH`
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:124`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L124)*
 
+### `SMALL_DATA_BLOCK_LENGTH`
 ```rust
 const SMALL_DATA_BLOCK_LENGTH: u32 = 16u32;
 ```
 
-### `BMP_DATA_BLOCK_LENGTH`
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:125`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L125)*
 
+### `BMP_DATA_BLOCK_LENGTH`
 ```rust
 const BMP_DATA_BLOCK_LENGTH: u32 = 64u32;
 ```
 
-### `ALLOWED_BREAK_BIT`
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:126`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L126)*
 
+### `ALLOWED_BREAK_BIT`
 ```rust
 const ALLOWED_BREAK_BIT: u8 = 128u8;
 ```
 
-### `MANDATORY_BREAK_BIT`
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:128`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L128)*
 
+### `MANDATORY_BREAK_BIT`
 ```rust
 const MANDATORY_BREAK_BIT: u8 = 64u8;
 ```
 
-### `eot`
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:129`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L129)*
 
+### `eot`
 ```rust
 const eot: u8 = 43u8;
 ```
 
-### `sot`
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:132`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L132)*
 
+### `sot`
 ```rust
 const sot: u8 = 44u8;
 ```
 
-### `BREAK_PROP_TRIE_HIGH_START`
+*Defined in [`unicode-linebreak-0.1.5/src/shared.rs:134`](../../.source_1765210505/unicode-linebreak-0.1.5/src/shared.rs#L134)*
 
+### `BREAK_PROP_TRIE_HIGH_START`
 ```rust
 const BREAK_PROP_TRIE_HIGH_START: u32 = 918_016u32;
 ```
+
+*Defined in [`unicode-linebreak-0.1.5/src/tables.rs:1`](../../.source_1765210505/unicode-linebreak-0.1.5/src/tables.rs#L1)*
 

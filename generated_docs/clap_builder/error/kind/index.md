@@ -4,6 +4,12 @@
 
 # Module `kind`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ErrorKind`](#errorkind) | enum | Command line argument parser kind of error |
+
 ## Enums
 
 ### `ErrorKind`
@@ -29,6 +35,8 @@ enum ErrorKind {
     Format,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/error/kind.rs:4-330`](../../../../.source_1765210505/clap_builder-4.5.53/src/error/kind.rs#L4-L330)*
 
 Command line argument parser kind of error
 
@@ -70,7 +78,7 @@ Command line argument parser kind of error
 
 - **`InvalidSubcommand`**
 
-  Occurs when the user provides an unrecognized [`Subcommand`](../../index.md) which meets the threshold for
+  Occurs when the user provides an unrecognized [`Subcommand`](../../derive/index.md) which meets the threshold for
   being similar enough to an existing subcommand.
   If it doesn't meet the threshold, or the 'suggestions' feature is disabled,
   the more general [`UnknownArgument`](../../index.md) error is returned.
@@ -318,7 +326,7 @@ Command line argument parser kind of error
 
 - **`DisplayHelpOnMissingArgumentOrSubcommand`**
 
-  Occurs when either an argument or a [`Subcommand`](../../index.md) is required, as defined by
+  Occurs when either an argument or a [`Subcommand`](../../derive/index.md) is required, as defined by
   `Command::arg_required_else_help` , but the user did not provide
   one.
   
@@ -372,37 +380,37 @@ Command line argument parser kind of error
 
 #### Implementations
 
-- `fn as_str(self: Self) -> Option<&'static str>`
+- <span id="errorkind-as-str"></span>`fn as_str(self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for ErrorKind`
 
-- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](../index.md)
+- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](#errorkind)
 
 ##### `impl Copy for ErrorKind`
 
 ##### `impl Debug for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for ErrorKind`
 
 ##### `impl Hash for ErrorKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="errorkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ErrorKind`
 
-- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](../index.md)
+- <span id="errorkind-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
 
 ##### `impl StructuralPartialEq for ErrorKind`
 
-##### `impl<T> ToString for ErrorKind`
+##### `impl ToString for ErrorKind`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errorkind-to-string"></span>`fn to_string(&self) -> String`
 

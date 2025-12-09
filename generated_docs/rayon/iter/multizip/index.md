@@ -4,6 +4,16 @@
 
 # Module `multizip`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MultiZip`](#multizip) | struct | `MultiZip` is an iterator that zips up a tuple of parallel iterators to produce tuples of their items. |
+| [`reduce!`](#reduce) | macro |  |
+| [`nest!`](#nest) | macro |  |
+| [`flatten!`](#flatten) | macro |  |
+| [`multizip_impls!`](#multizip_impls) | macro |  |
+
 ## Structs
 
 ### `MultiZip<T>`
@@ -13,6 +23,8 @@ struct MultiZip<T> {
     tuple: T,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:79-81`](../../../../.source_1765210505/rayon-1.11.0/src/iter/multizip.rs#L79-L81)*
 
 `MultiZip` is an iterator that zips up a tuple of parallel iterators to
 produce tuples of their items.
@@ -91,61 +103,69 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for MultiZip<T>`
+##### `impl<T: clone::Clone> Clone for MultiZip<T>`
 
-- `fn clone(self: &Self) -> MultiZip<T>` — [`MultiZip`](../index.md)
+- <span id="multizip-clone"></span>`fn clone(&self) -> MultiZip<T>` — [`MultiZip`](#multizip)
 
-##### `impl<T: $crate::fmt::Debug> Debug for MultiZip<T>`
+##### `impl<T: fmt::Debug> Debug for MultiZip<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="multizip-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<A, B, C, D, E, F, G> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F, G)>`
+##### `impl<A> IndexedParallelIterator for MultiZip<(A)>`
 
-- `fn drive<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="multizip-drive"></span>`fn drive<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="multizip-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="multizip-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for MultiZip<T>`
 
 ##### `impl<T> IntoParallelIterator for MultiZip<T>`
 
-- `type Iter = T`
+- <span id="multizip-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="multizip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="multizip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<A, B, C, D, E> ParallelIterator for MultiZip<(A, B, C, D, E)>`
+##### `impl<A> ParallelIterator for MultiZip<(A)>`
 
-- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item, <E as ParallelIterator>::Item)`
+- <span id="multizip-type-item"></span>`type Item = (<A as ParallelIterator>::Item)`
 
-- `fn drive_unindexed<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="multizip-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="multizip-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for MultiZip<T>`
 
-- `const ALIGN: usize`
+- <span id="multizip-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="multizip-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="multizip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="multizip-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="multizip-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="multizip-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Macros
 
 ### `reduce!`
 
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:93-106`](../../../../.source_1765210505/rayon-1.11.0/src/iter/multizip.rs#L93-L106)*
+
 ### `nest!`
+
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:108-117`](../../../../.source_1765210505/rayon-1.11.0/src/iter/multizip.rs#L108-L117)*
 
 ### `flatten!`
 
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:119-127`](../../../../.source_1765210505/rayon-1.11.0/src/iter/multizip.rs#L119-L127)*
+
 ### `multizip_impls!`
+
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:129-230`](../../../../.source_1765210505/rayon-1.11.0/src/iter/multizip.rs#L129-L230)*
 

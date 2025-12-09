@@ -4,10 +4,19 @@
 
 # Module `op`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`BinOp`](#binop) | enum | A binary operator: `+`, `+=`, `&`. |
+| [`UnOp`](#unop) | enum | A unary operator: `*`, `!`, `-`. |
+
 ## Modules
 
-- [`parsing`](parsing/index.md) - 
-- [`printing`](printing/index.md) - 
+- [`parsing`](parsing/index.md)
+- [`printing`](printing/index.md)
 
 ## Enums
 
@@ -15,36 +24,38 @@
 
 ```rust
 enum BinOp {
-    Add($crate::token::Plus),
-    Sub($crate::token::Minus),
-    Mul($crate::token::Star),
-    Div($crate::token::Slash),
-    Rem($crate::token::Percent),
-    And($crate::token::AndAnd),
-    Or($crate::token::OrOr),
-    BitXor($crate::token::Caret),
-    BitAnd($crate::token::And),
-    BitOr($crate::token::Or),
-    Shl($crate::token::Shl),
-    Shr($crate::token::Shr),
-    Eq($crate::token::EqEq),
-    Lt($crate::token::Lt),
-    Le($crate::token::Le),
-    Ne($crate::token::Ne),
-    Ge($crate::token::Ge),
-    Gt($crate::token::Gt),
-    AddAssign($crate::token::PlusEq),
-    SubAssign($crate::token::MinusEq),
-    MulAssign($crate::token::StarEq),
-    DivAssign($crate::token::SlashEq),
-    RemAssign($crate::token::PercentEq),
-    BitXorAssign($crate::token::CaretEq),
-    BitAndAssign($crate::token::AndEq),
-    BitOrAssign($crate::token::OrEq),
-    ShlAssign($crate::token::ShlEq),
-    ShrAssign($crate::token::ShrEq),
+    Add(token::Plus),
+    Sub(token::Minus),
+    Mul(token::Star),
+    Div(token::Slash),
+    Rem(token::Percent),
+    And(token::AndAnd),
+    Or(token::OrOr),
+    BitXor(token::Caret),
+    BitAnd(token::And),
+    BitOr(token::Or),
+    Shl(token::Shl),
+    Shr(token::Shr),
+    Eq(token::EqEq),
+    Lt(token::Lt),
+    Le(token::Le),
+    Ne(token::Ne),
+    Ge(token::Ge),
+    Gt(token::Gt),
+    AddAssign(token::PlusEq),
+    SubAssign(token::MinusEq),
+    MulAssign(token::StarEq),
+    DivAssign(token::SlashEq),
+    RemAssign(token::PercentEq),
+    BitXorAssign(token::CaretEq),
+    BitAndAssign(token::AndEq),
+    BitOrAssign(token::OrEq),
+    ShlAssign(token::ShlEq),
+    ShrAssign(token::ShrEq),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../../.source_1765210505/syn-2.0.111/src/op.rs#L1-L63)*
 
 A binary operator: `+`, `+=`, `&`.
 
@@ -166,47 +177,49 @@ A binary operator: `+`, `+=`, `&`.
 
 ##### `impl Clone for crate::BinOp`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratebinop-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for crate::BinOp`
 
 ##### `impl Debug for crate::BinOp`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratebinop-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::BinOp`
 
 ##### `impl Hash for crate::BinOp`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratebinop-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::op::BinOp`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateopbinop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::BinOp`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratebinop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for BinOp`
+##### `impl Sealed for BinOp`
 
-##### `impl<T> Spanned for BinOp`
+##### `impl Spanned for BinOp`
 
-- `fn span(self: &Self) -> Span`
+- <span id="binop-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::op::BinOp`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateopbinop-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `UnOp`
 
 ```rust
 enum UnOp {
-    Deref($crate::token::Star),
-    Not($crate::token::Not),
-    Neg($crate::token::Minus),
+    Deref(token::Star),
+    Not(token::Not),
+    Neg(token::Minus),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../../.source_1765210505/syn-2.0.111/src/op.rs#L65-L77)*
 
 A unary operator: `*`, `!`, `-`.
 
@@ -228,35 +241,35 @@ A unary operator: `*`, `!`, `-`.
 
 ##### `impl Clone for crate::UnOp`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateunop-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for crate::UnOp`
 
 ##### `impl Debug for crate::UnOp`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateunop-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UnOp`
 
 ##### `impl Hash for crate::UnOp`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateunop-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::op::UnOp`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateopunop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::UnOp`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateunop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for UnOp`
+##### `impl Sealed for UnOp`
 
-##### `impl<T> Spanned for UnOp`
+##### `impl Spanned for UnOp`
 
-- `fn span(self: &Self) -> Span`
+- <span id="unop-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::op::UnOp`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateopunop-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 

@@ -4,6 +4,14 @@
 
 # Module `hasher`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DefaultHashBuilder`](#defaulthashbuilder) | struct | Default hash builder for the `S` type parameter of [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet). |
+| [`DefaultHasher`](#defaulthasher) | struct | Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet). |
+| [`forward_writes!`](#forward_writes) | macro |  |
+
 ## Structs
 
 ### `DefaultHashBuilder`
@@ -13,6 +21,8 @@ struct DefaultHashBuilder {
     inner: foldhash::fast::RandomState,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
 
 Default hash builder for the `S` type parameter of
 [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
@@ -25,21 +35,21 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl BuildHasher for DefaultHashBuilder`
 
-- `type Hasher = DefaultHasher`
+- <span id="defaulthashbuilder-type-hasher"></span>`type Hasher = DefaultHasher`
 
-- `fn build_hasher(self: &Self) -> <Self as >::Hasher`
+- <span id="defaulthashbuilder-build-hasher"></span>`fn build_hasher(&self) -> <Self as >::Hasher`
 
 ##### `impl Clone for DefaultHashBuilder`
 
-- `fn clone(self: &Self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](../index.md)
+- <span id="defaulthashbuilder-clone"></span>`fn clone(&self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
 
 ##### `impl Debug for DefaultHashBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="defaulthashbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DefaultHashBuilder`
 
-- `fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](../index.md)
+- <span id="defaulthashbuilder-default"></span>`fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
 
 ### `DefaultHasher`
 
@@ -49,45 +59,49 @@ struct DefaultHasher {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
+
 Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
 #### Trait Implementations
 
 ##### `impl Clone for DefaultHasher`
 
-- `fn clone(self: &Self) -> DefaultHasher` — [`DefaultHasher`](../index.md)
+- <span id="defaulthasher-clone"></span>`fn clone(&self) -> DefaultHasher` — [`DefaultHasher`](#defaulthasher)
 
 ##### `impl Hasher for DefaultHasher`
 
-- `fn write(self: &mut Self, arg: &[u8])`
+- <span id="defaulthasher-write"></span>`fn write(&mut self, arg: &[u8])`
 
-- `fn write_u8(self: &mut Self, arg: u8)`
+- <span id="defaulthasher-write-u8"></span>`fn write_u8(&mut self, arg: u8)`
 
-- `fn write_u16(self: &mut Self, arg: u16)`
+- <span id="defaulthasher-write-u16"></span>`fn write_u16(&mut self, arg: u16)`
 
-- `fn write_u32(self: &mut Self, arg: u32)`
+- <span id="defaulthasher-write-u32"></span>`fn write_u32(&mut self, arg: u32)`
 
-- `fn write_u64(self: &mut Self, arg: u64)`
+- <span id="defaulthasher-write-u64"></span>`fn write_u64(&mut self, arg: u64)`
 
-- `fn write_u128(self: &mut Self, arg: u128)`
+- <span id="defaulthasher-write-u128"></span>`fn write_u128(&mut self, arg: u128)`
 
-- `fn write_usize(self: &mut Self, arg: usize)`
+- <span id="defaulthasher-write-usize"></span>`fn write_usize(&mut self, arg: usize)`
 
-- `fn write_i8(self: &mut Self, arg: i8)`
+- <span id="defaulthasher-write-i8"></span>`fn write_i8(&mut self, arg: i8)`
 
-- `fn write_i16(self: &mut Self, arg: i16)`
+- <span id="defaulthasher-write-i16"></span>`fn write_i16(&mut self, arg: i16)`
 
-- `fn write_i32(self: &mut Self, arg: i32)`
+- <span id="defaulthasher-write-i32"></span>`fn write_i32(&mut self, arg: i32)`
 
-- `fn write_i64(self: &mut Self, arg: i64)`
+- <span id="defaulthasher-write-i64"></span>`fn write_i64(&mut self, arg: i64)`
 
-- `fn write_i128(self: &mut Self, arg: i128)`
+- <span id="defaulthasher-write-i128"></span>`fn write_i128(&mut self, arg: i128)`
 
-- `fn write_isize(self: &mut Self, arg: isize)`
+- <span id="defaulthasher-write-isize"></span>`fn write_isize(&mut self, arg: isize)`
 
-- `fn finish(self: &Self) -> u64`
+- <span id="defaulthasher-finish"></span>`fn finish(&self) -> u64`
 
 ## Macros
 
 ### `forward_writes!`
+
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:39-46`](../../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L39-L46)*
 

@@ -25,14 +25,22 @@
 use std::path::PathBuf;
 use std::process::Command;
 
-use Internals::generator::Generator;
+#[cfg(feature = "source-parsing")]
+use std::path::Path;
+#[cfg(feature = "source-parsing")]
+use Internals::CollectSourcesArgs;
+#[cfg(feature = "source-parsing")]
+use Internals::source::find_source_dir;
+use Internals::generator::{Generator, RenderConfig, SourceConfig};
 use Internals::multi_crate::{MultiCrateGenerator, MultiCrateParser};
 use Internals::parser::Parser as InternalParser;
 use Internals::{Cargo, Command as CliCommand, DocsArgs, GenerateArgs};
-use clap::Parser;
 use cargo_docs_md as Internals;
 #[cfg(feature = "trace")]
 use cargo_docs_md::logger::Logger;
+#[cfg(feature = "source-parsing")]
+use cargo_docs_md::source::{CollectOptions, SourceCollector};
+use clap::Parser;
 use miette::{IntoDiagnostic, Result, miette};
 
 /// Entry point for the docs-md CLI tool.
@@ -67,6 +75,8 @@ fn main() -> Result<()> {
     if let Some(command) = cli.command {
         return match command {
             CliCommand::Docs(args) => run_docs_command(args),
+            #[cfg(feature = "source-parsing")]
+            CliCommand::CollectSources(args) => run_collect_sources(args),
         };
     }
 
@@ -164,7 +174,21 @@ fn run_generate(args: &GenerateArgs) -> Result<()> {
         );
 
         // Generate documentation for all crates
-        let generator = MultiCrateGenerator::new(&crates, args);
+        // Auto-detect .source_* directory for source location links
+        #[cfg(feature = "source-parsing")]
+        let source_dir = find_source_dir(Path::new("."));
+        #[cfg(not(feature = "source-parsing"))]
+        let source_dir: Option<PathBuf> = None;
+
+        let config = RenderConfig {
+            include_source: SourceConfig {
+                source_locations: true,
+                source_dir,
+                ..SourceConfig::default()
+            },
+            ..RenderConfig::default()
+        };
+        let generator = MultiCrateGenerator::new(&crates, args, config);
         generator.generate()?;
 
         // Success message
@@ -249,4 +273,53 @@ fn detect_crate_name() -> Option<String> {
     }
 
     None
+}
+
+/// Run the `collect-sources` subcommand.
+#[cfg(feature = "source-parsing")]
+fn run_collect_sources(args: CollectSourcesArgs) -> Result<()> {
+    eprintln!("Collecting dependency sources...");
+
+    // Create collector
+    let collector = match &args.manifest_path {
+        Some(path) => SourceCollector::from_manifest(Some(path)).into_diagnostic()?,
+        None => SourceCollector::new().into_diagnostic()?,
+    };
+
+    // Build options
+    let options = CollectOptions {
+        include_dev: args.include_dev,
+        output: args.output,
+        dry_run: args.dry_run,
+    };
+
+    // Run collection
+    let result = collector.collect(&options).into_diagnostic()?;
+
+    // Report results
+    if args.dry_run {
+        println!(
+            "Dry run - would collect {} crates to:",
+            result.crates_collected
+        );
+        println!("  {}", result.output_dir.display());
+    } else {
+        println!(
+            "Collected {} crates to '{}'",
+            result.crates_collected,
+            result.output_dir.display()
+        );
+    }
+
+    if !result.skipped.is_empty() {
+        eprintln!(
+            "\nSkipped {} crates (not found in registry):",
+            result.skipped.len()
+        );
+        for name in &result.skipped {
+            eprintln!("  - {name}");
+        }
+    }
+
+    Ok(())
 }

@@ -4,6 +4,12 @@
 
 # Module `styled_str`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`StyledStr`](#styledstr) | struct | Terminal-styling container |
+
 ## Structs
 
 ### `StyledStr`
@@ -11,6 +17,8 @@
 ```rust
 struct StyledStr(String);
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
 
 Terminal-styling container
 
@@ -35,81 +43,81 @@ let cmd = clap::Command::new("mybin")
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="styledstr-new"></span>`const fn new() -> Self`
 
-- `fn ansi(self: &Self) -> impl std::fmt::Display + '_`
+- <span id="styledstr-ansi"></span>`fn ansi(&self) -> impl std::fmt::Display + '_`
 
-- `fn push_string(self: &mut Self, msg: String)`
+- <span id="styledstr-push-string"></span>`fn push_string(&mut self, msg: String)`
 
-- `fn push_str(self: &mut Self, msg: &str)`
+- <span id="styledstr-push-str"></span>`fn push_str(&mut self, msg: &str)`
 
-- `fn trim_start_lines(self: &mut Self)`
+- <span id="styledstr-trim-start-lines"></span>`fn trim_start_lines(&mut self)`
 
-- `fn trim_end(self: &mut Self)`
+- <span id="styledstr-trim-end"></span>`fn trim_end(&mut self)`
 
-- `fn replace_newline_var(self: &mut Self)`
+- <span id="styledstr-replace-newline-var"></span>`fn replace_newline_var(&mut self)`
 
-- `fn indent(self: &mut Self, initial: &str, trailing: &str)`
+- <span id="styledstr-indent"></span>`fn indent(&mut self, initial: &str, trailing: &str)`
 
-- `fn wrap(self: &mut Self, _hard_width: usize)`
+- <span id="styledstr-wrap"></span>`fn wrap(&mut self, _hard_width: usize)`
 
-- `fn display_width(self: &Self) -> usize`
+- <span id="styledstr-display-width"></span>`fn display_width(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="styledstr-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn as_styled_str(self: &Self) -> &str`
+- <span id="styledstr-as-styled-str"></span>`fn as_styled_str(&self) -> &str`
 
-- `fn iter_text(self: &Self) -> impl Iterator<Item = &str>`
+- <span id="styledstr-iter-text"></span>`fn iter_text(&self) -> impl Iterator<Item = &str>`
 
-- `fn push_styled(self: &mut Self, other: &Self)`
+- <span id="styledstr-push-styled"></span>`fn push_styled(&mut self, other: &Self)`
 
-- `fn write_to(self: &Self, buffer: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="styledstr-write-to"></span>`fn write_to(&self, buffer: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl Clone for StyledStr`
 
-- `fn clone(self: &Self) -> StyledStr` — [`StyledStr`](../index.md)
+- <span id="styledstr-clone"></span>`fn clone(&self) -> StyledStr` — [`StyledStr`](#styledstr)
 
 ##### `impl Debug for StyledStr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="styledstr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StyledStr`
 
-- `fn default() -> StyledStr` — [`StyledStr`](../index.md)
+- <span id="styledstr-default"></span>`fn default() -> StyledStr` — [`StyledStr`](#styledstr)
 
 ##### `impl Display for StyledStr`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="styledstr-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for StyledStr`
 
-##### `impl<I> IntoResettable for StyledStr`
+##### `impl IntoResettable for StyledStr`
 
-- `fn into_resettable(self: Self) -> Resettable<StyledStr>` — [`Resettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="styledstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<StyledStr>` — [`Resettable`](../resettable/index.md), [`StyledStr`](#styledstr)
 
 ##### `impl Ord for StyledStr`
 
-- `fn cmp(self: &Self, other: &StyledStr) -> $crate::cmp::Ordering` — [`StyledStr`](../index.md)
+- <span id="styledstr-cmp"></span>`fn cmp(&self, other: &StyledStr) -> cmp::Ordering` — [`StyledStr`](#styledstr)
 
 ##### `impl PartialEq for StyledStr`
 
-- `fn eq(self: &Self, other: &StyledStr) -> bool` — [`StyledStr`](../index.md)
+- <span id="styledstr-eq"></span>`fn eq(&self, other: &StyledStr) -> bool` — [`StyledStr`](#styledstr)
 
 ##### `impl PartialOrd for StyledStr`
 
-- `fn partial_cmp(self: &Self, other: &StyledStr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`StyledStr`](../index.md)
+- <span id="styledstr-partial-cmp"></span>`fn partial_cmp(&self, other: &StyledStr) -> option::Option<cmp::Ordering>` — [`StyledStr`](#styledstr)
 
 ##### `impl StructuralPartialEq for StyledStr`
 
-##### `impl<T> ToString for StyledStr`
+##### `impl ToString for StyledStr`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="styledstr-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl Write for StyledStr`
 
-- `fn write_str(self: &mut Self, s: &str) -> Result<(), std::fmt::Error>`
+- <span id="styledstr-write-str"></span>`fn write_str(&mut self, s: &str) -> Result<(), std::fmt::Error>`
 
-- `fn write_char(self: &mut Self, c: char) -> Result<(), std::fmt::Error>`
+- <span id="styledstr-write-char"></span>`fn write_char(&mut self, c: char) -> Result<(), std::fmt::Error>`
 

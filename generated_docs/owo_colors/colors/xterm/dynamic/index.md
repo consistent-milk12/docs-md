@@ -4,6 +4,12 @@
 
 # Module `dynamic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`XtermColors`](#xtermcolors) | enum | Available Xterm colors for use with [`OwoColorize::color`](OwoColorize::color) or [`OwoColorize::on_color`](OwoColorize::on_color) |
+
 ## Enums
 
 ### `XtermColors`
@@ -269,6 +275,8 @@ enum XtermColors {
 }
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 Available Xterm colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
 
@@ -276,31 +284,31 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for XtermColors`
 
-- `fn clone(self: &Self) -> XtermColors` — [`XtermColors`](../../../index.md)
+- <span id="xtermcolors-clone"></span>`fn clone(&self) -> XtermColors` — [`XtermColors`](#xtermcolors)
 
 ##### `impl Copy for XtermColors`
 
 ##### `impl Debug for XtermColors`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xtermcolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for XtermColors`
 
-- `fn fmt_ansi_fg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_ansi_bg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_raw_ansi_fg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_raw_ansi_bg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xtermcolors-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for XtermColors`
 
-##### `impl<D> OwoColorize for XtermColors`
+##### `impl OwoColorize for XtermColors`
 
 ##### `impl PartialEq for XtermColors`
 
-- `fn eq(self: &Self, other: &XtermColors) -> bool` — [`XtermColors`](../../../index.md)
+- <span id="xtermcolors-eq"></span>`fn eq(&self, other: &XtermColors) -> bool` — [`XtermColors`](#xtermcolors)
 
 ##### `impl StructuralPartialEq for XtermColors`
 

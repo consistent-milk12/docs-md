@@ -6,6 +6,40 @@
 
 This module provides a regular expression parser.
 
+## Contents
+
+- [Structs](#structs)
+  - [`ParserBuilder`](#parserbuilder)
+  - [`Parser`](#parser)
+  - [`ParserI`](#parseri)
+  - [`NestLimiter`](#nestlimiter)
+- [Enums](#enums)
+  - [`Primitive`](#primitive)
+  - [`GroupState`](#groupstate)
+  - [`ClassState`](#classstate)
+- [Functions](#functions)
+  - [`is_hex`](#is_hex)
+  - [`is_capture_char`](#is_capture_char)
+  - [`specialize_err`](#specialize_err)
+- [Type Aliases](#type-aliases)
+  - [`Result`](#result)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ParserBuilder`](#parserbuilder) | struct | A builder for a regular expression parser. |
+| [`Parser`](#parser) | struct | A regular expression parser. |
+| [`ParserI`](#parseri) | struct | ParserI is the internal parser implementation. |
+| [`NestLimiter`](#nestlimiter) | struct | A type that traverses a fully parsed Ast and checks whether its depth exceeds the specified nesting limit. |
+| [`Primitive`](#primitive) | enum | A primitive is an expression with no sub-expressions. |
+| [`GroupState`](#groupstate) | enum | GroupState represents a single stack frame while parsing nested groups and alternations. |
+| [`ClassState`](#classstate) | enum | ClassState represents a single stack frame while parsing character classes. |
+| [`is_hex`](#is_hex) | fn | Returns true if the given character is a hexadecimal digit. |
+| [`is_capture_char`](#is_capture_char) | fn | Returns true if the given character is a valid in a capture group name. |
+| [`specialize_err`](#specialize_err) | fn | When the result is an error, transforms the ast::ErrorKind from the source Result into another one. |
+| [`Result`](#result) | type |  |
+
 ## Structs
 
 ### `ParserBuilder`
@@ -19,37 +53,39 @@ struct ParserBuilder {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:123-128`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L123-L128)*
+
 A builder for a regular expression parser.
 
 This builder permits modifying configuration options for the parser.
 
 #### Implementations
 
-- `fn new() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-new"></span>`fn new() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn build(self: &Self) -> Parser` — [`Parser`](#parser)
+- <span id="parserbuilder-build"></span>`fn build(&self) -> Parser` — [`Parser`](#parser)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn empty_min_range(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-empty-min-range"></span>`fn empty_min_range(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for ParserBuilder`
 
-- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-clone"></span>`fn clone(&self) -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ##### `impl Debug for ParserBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parserbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ParserBuilder`
 
-- `fn default() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-default"></span>`fn default() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ### `Parser`
 
@@ -69,6 +105,8 @@ struct Parser {
     scratch: core::cell::RefCell<alloc::string::String>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:249-283`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L249-L283)*
 
 A regular expression parser.
 
@@ -139,23 +177,23 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuild
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](#parser)
+- <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
-- `fn parse(self: &mut Self, pattern: &str) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn parse_with_comments(self: &mut Self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md), [`Error`](../index.md)
+- <span id="parser-parse-with-comments"></span>`fn parse_with_comments(&mut self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md), [`Error`](../index.md)
 
-- `fn reset(self: &Self)`
+- <span id="parser-reset"></span>`fn reset(&self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Parser`
 
-- `fn clone(self: &Self) -> Parser` — [`Parser`](#parser)
+- <span id="parser-clone"></span>`fn clone(&self) -> Parser` — [`Parser`](#parser)
 
 ##### `impl Debug for Parser`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ParserI<'s, P>`
 
@@ -165,6 +203,8 @@ struct ParserI<'s, P> {
     pattern: &'s str,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:295-300`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L295-L300)*
 
 ParserI is the internal parser implementation.
 
@@ -188,81 +228,81 @@ work against the internal interface of the parser.
 
 #### Implementations
 
-- `fn new(parser: P, pattern: &'s str) -> ParserI<'s, P>` — [`ParserI`](#parseri)
+- <span id="parseri-new"></span>`fn new(parser: P, pattern: &'s str) -> ParserI<'s, P>` — [`ParserI`](#parseri)
 
-- `fn parser(self: &Self) -> &Parser` — [`Parser`](#parser)
+- <span id="parseri-parser"></span>`fn parser(&self) -> &Parser` — [`Parser`](#parser)
 
-- `fn pattern(self: &Self) -> &str`
+- <span id="parseri-pattern"></span>`fn pattern(&self) -> &str`
 
-- `fn error(self: &Self, span: Span, kind: ast::ErrorKind) -> ast::Error` — [`Span`](../index.md), [`ErrorKind`](../index.md), [`Error`](../index.md)
+- <span id="parseri-error"></span>`fn error(&self, span: Span, kind: ast::ErrorKind) -> ast::Error` — [`Span`](../index.md), [`ErrorKind`](../index.md), [`Error`](../index.md)
 
-- `fn offset(self: &Self) -> usize`
+- <span id="parseri-offset"></span>`fn offset(&self) -> usize`
 
-- `fn line(self: &Self) -> usize`
+- <span id="parseri-line"></span>`fn line(&self) -> usize`
 
-- `fn column(self: &Self) -> usize`
+- <span id="parseri-column"></span>`fn column(&self) -> usize`
 
-- `fn next_capture_index(self: &Self, span: Span) -> core::result::Result<u32, ast::Error>` — [`Span`](../index.md), [`Error`](../index.md)
+- <span id="parseri-next-capture-index"></span>`fn next_capture_index(&self, span: Span) -> core::result::Result<u32, ast::Error>` — [`Span`](../index.md), [`Error`](../index.md)
 
-- `fn add_capture_name(self: &Self, cap: &ast::CaptureName) -> core::result::Result<(), ast::Error>` — [`CaptureName`](../index.md), [`Error`](../index.md)
+- <span id="parseri-add-capture-name"></span>`fn add_capture_name(&self, cap: &ast::CaptureName) -> core::result::Result<(), ast::Error>` — [`CaptureName`](../index.md), [`Error`](../index.md)
 
-- `fn ignore_whitespace(self: &Self) -> bool`
+- <span id="parseri-ignore-whitespace"></span>`fn ignore_whitespace(&self) -> bool`
 
-- `fn char(self: &Self) -> char`
+- <span id="parseri-char"></span>`fn char(&self) -> char`
 
-- `fn char_at(self: &Self, i: usize) -> char`
+- <span id="parseri-char-at"></span>`fn char_at(&self, i: usize) -> char`
 
-- `fn bump(self: &Self) -> bool`
+- <span id="parseri-bump"></span>`fn bump(&self) -> bool`
 
-- `fn bump_if(self: &Self, prefix: &str) -> bool`
+- <span id="parseri-bump-if"></span>`fn bump_if(&self, prefix: &str) -> bool`
 
-- `fn is_lookaround_prefix(self: &Self) -> bool`
+- <span id="parseri-is-lookaround-prefix"></span>`fn is_lookaround_prefix(&self) -> bool`
 
-- `fn bump_and_bump_space(self: &Self) -> bool`
+- <span id="parseri-bump-and-bump-space"></span>`fn bump_and_bump_space(&self) -> bool`
 
-- `fn bump_space(self: &Self)`
+- <span id="parseri-bump-space"></span>`fn bump_space(&self)`
 
-- `fn peek(self: &Self) -> Option<char>`
+- <span id="parseri-peek"></span>`fn peek(&self) -> Option<char>`
 
-- `fn peek_space(self: &Self) -> Option<char>`
+- <span id="parseri-peek-space"></span>`fn peek_space(&self) -> Option<char>`
 
-- `fn is_eof(self: &Self) -> bool`
+- <span id="parseri-is-eof"></span>`fn is_eof(&self) -> bool`
 
-- `fn pos(self: &Self) -> Position` — [`Position`](../index.md)
+- <span id="parseri-pos"></span>`fn pos(&self) -> Position` — [`Position`](../index.md)
 
-- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
+- <span id="parseri-span"></span>`fn span(&self) -> Span` — [`Span`](../index.md)
 
-- `fn span_char(self: &Self) -> Span` — [`Span`](../index.md)
+- <span id="parseri-span-char"></span>`fn span_char(&self) -> Span` — [`Span`](../index.md)
 
-- `fn push_alternate(self: &Self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+- <span id="parseri-push-alternate"></span>`fn push_alternate(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
 
-- `fn push_or_add_alternation(self: &Self, concat: ast::Concat)` — [`Concat`](../index.md)
+- <span id="parseri-push-or-add-alternation"></span>`fn push_or_add_alternation(&self, concat: ast::Concat)` — [`Concat`](../index.md)
 
-- `fn push_group(self: &Self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+- <span id="parseri-push-group"></span>`fn push_group(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
 
-- `fn pop_group(self: &Self, group_concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+- <span id="parseri-pop-group"></span>`fn pop_group(&self, group_concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
 
-- `fn pop_group_end(self: &Self, concat: ast::Concat) -> core::result::Result<Ast, ast::Error>` — [`Concat`](../index.md), [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="parseri-pop-group-end"></span>`fn pop_group_end(&self, concat: ast::Concat) -> core::result::Result<Ast, ast::Error>` — [`Concat`](../index.md), [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn push_class_open(self: &Self, parent_union: ast::ClassSetUnion) -> core::result::Result<ast::ClassSetUnion, ast::Error>` — [`ClassSetUnion`](../index.md), [`Error`](../index.md)
+- <span id="parseri-push-class-open"></span>`fn push_class_open(&self, parent_union: ast::ClassSetUnion) -> core::result::Result<ast::ClassSetUnion, ast::Error>` — [`ClassSetUnion`](../index.md), [`Error`](../index.md)
 
-- `fn pop_class(self: &Self, nested_union: ast::ClassSetUnion) -> core::result::Result<Either<ast::ClassSetUnion, ast::ClassBracketed>, ast::Error>` — [`ClassSetUnion`](../index.md), [`Either`](../../either/index.md), [`ClassBracketed`](../index.md), [`Error`](../index.md)
+- <span id="parseri-pop-class"></span>`fn pop_class(&self, nested_union: ast::ClassSetUnion) -> core::result::Result<Either<ast::ClassSetUnion, ast::ClassBracketed>, ast::Error>` — [`ClassSetUnion`](../index.md), [`Either`](../../either/index.md), [`ClassBracketed`](../index.md), [`Error`](../index.md)
 
-- `fn unclosed_class_error(self: &Self) -> ast::Error` — [`Error`](../index.md)
+- <span id="parseri-unclosed-class-error"></span>`fn unclosed_class_error(&self) -> ast::Error` — [`Error`](../index.md)
 
-- `fn push_class_op(self: &Self, next_kind: ast::ClassSetBinaryOpKind, next_union: ast::ClassSetUnion) -> ast::ClassSetUnion` — [`ClassSetBinaryOpKind`](../index.md), [`ClassSetUnion`](../index.md)
+- <span id="parseri-push-class-op"></span>`fn push_class_op(&self, next_kind: ast::ClassSetBinaryOpKind, next_union: ast::ClassSetUnion) -> ast::ClassSetUnion` — [`ClassSetBinaryOpKind`](../index.md), [`ClassSetUnion`](../index.md)
 
-- `fn pop_class_op(self: &Self, rhs: ast::ClassSet) -> ast::ClassSet` — [`ClassSet`](../index.md)
+- <span id="parseri-pop-class-op"></span>`fn pop_class_op(&self, rhs: ast::ClassSet) -> ast::ClassSet` — [`ClassSet`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'s, P: $crate::clone::Clone> Clone for ParserI<'s, P>`
+##### `impl<'s, P: clone::Clone> Clone for ParserI<'s, P>`
 
-- `fn clone(self: &Self) -> ParserI<'s, P>` — [`ParserI`](#parseri)
+- <span id="parseri-clone"></span>`fn clone(&self) -> ParserI<'s, P>` — [`ParserI`](#parseri)
 
-##### `impl<'s, P: $crate::fmt::Debug> Debug for ParserI<'s, P>`
+##### `impl<'s, P: fmt::Debug> Debug for ParserI<'s, P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parseri-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `NestLimiter<'p, 's, P>`
 
@@ -272,6 +312,8 @@ struct NestLimiter<'p, 's, P> {
     depth: u32,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:2266-2271`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L2266-L2271)*
 
 A type that traverses a fully parsed Ast and checks whether its depth
 exceeds the specified nesting limit. If it does, then an error is returned.
@@ -288,39 +330,39 @@ exceeds the specified nesting limit. If it does, then an error is returned.
 
 #### Implementations
 
-- `fn new(p: &'p ParserI<'s, P>) -> NestLimiter<'p, 's, P>` — [`ParserI`](#parseri), [`NestLimiter`](#nestlimiter)
+- <span id="nestlimiter-new"></span>`fn new(p: &'p ParserI<'s, P>) -> NestLimiter<'p, 's, P>` — [`ParserI`](#parseri), [`NestLimiter`](#nestlimiter)
 
-- `fn check(self: Self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-check"></span>`fn check(self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn increment_depth(self: &mut Self, span: &Span) -> core::result::Result<(), ast::Error>` — [`Span`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-increment-depth"></span>`fn increment_depth(&mut self, span: &Span) -> core::result::Result<(), ast::Error>` — [`Span`](../index.md), [`Error`](../index.md)
 
-- `fn decrement_depth(self: &mut Self)`
+- <span id="nestlimiter-decrement-depth"></span>`fn decrement_depth(&mut self)`
 
 #### Trait Implementations
 
-##### `impl<'p, 's, P: $crate::fmt::Debug> Debug for NestLimiter<'p, 's, P>`
+##### `impl<'p, 's, P: fmt::Debug> Debug for NestLimiter<'p, 's, P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nestlimiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'p, 's, P: Borrow<Parser>> Visitor for NestLimiter<'p, 's, P>`
 
-- `type Output = ()`
+- <span id="nestlimiter-type-output"></span>`type Output = ()`
 
-- `type Err = Error`
+- <span id="nestlimiter-type-err"></span>`type Err = Error`
 
-- `fn finish(self: Self) -> core::result::Result<(), ast::Error>` — [`Error`](../index.md)
+- <span id="nestlimiter-finish"></span>`fn finish(self) -> core::result::Result<(), ast::Error>` — [`Error`](../index.md)
 
-- `fn visit_pre(self: &mut Self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-pre"></span>`fn visit_pre(&mut self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn visit_post(self: &mut Self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-post"></span>`fn visit_post(&mut self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_item_pre(self: &mut Self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_item_post(self: &mut Self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_binary_op_pre(self: &mut Self, ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-binary-op-pre"></span>`fn visit_class_set_binary_op_pre(&mut self, ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_binary_op_post(self: &mut Self, _ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-binary-op-post"></span>`fn visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md), [`Error`](../index.md)
 
 ## Enums
 
@@ -336,6 +378,8 @@ enum Primitive {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:33-39`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L33-L39)*
+
 A primitive is an expression with no sub-expressions. This includes
 literals, assertions and non-set character classes. This representation
 is used as intermediate state in the parser.
@@ -345,29 +389,29 @@ within a set character class.
 
 #### Implementations
 
-- `fn span(self: &Self) -> &Span` — [`Span`](../index.md)
+- <span id="primitive-span"></span>`fn span(&self) -> &Span` — [`Span`](../index.md)
 
-- `fn into_ast(self: Self) -> Ast` — [`Ast`](../index.md)
+- <span id="primitive-into-ast"></span>`fn into_ast(self) -> Ast` — [`Ast`](../index.md)
 
-- `fn into_class_set_item<P: Borrow<Parser>>(self: Self, p: &ParserI<'_, P>) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ParserI`](#parseri), [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="primitive-into-class-set-item"></span>`fn into_class_set_item<P: Borrow<Parser>>(self, p: &ParserI<'_, P>) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ParserI`](#parseri), [`ClassSetItem`](../index.md), [`Error`](../index.md)
 
-- `fn into_class_literal<P: Borrow<Parser>>(self: Self, p: &ParserI<'_, P>) -> core::result::Result<ast::Literal, ast::Error>` — [`ParserI`](#parseri), [`Literal`](../index.md), [`Error`](../index.md)
+- <span id="primitive-into-class-literal"></span>`fn into_class_literal<P: Borrow<Parser>>(self, p: &ParserI<'_, P>) -> core::result::Result<ast::Literal, ast::Error>` — [`ParserI`](#parseri), [`Literal`](../index.md), [`Error`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Primitive`
 
-- `fn clone(self: &Self) -> Primitive` — [`Primitive`](#primitive)
+- <span id="primitive-clone"></span>`fn clone(&self) -> Primitive` — [`Primitive`](#primitive)
 
 ##### `impl Debug for Primitive`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="primitive-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Primitive`
 
 ##### `impl PartialEq for Primitive`
 
-- `fn eq(self: &Self, other: &Primitive) -> bool` — [`Primitive`](#primitive)
+- <span id="primitive-eq"></span>`fn eq(&self, other: &Primitive) -> bool` — [`Primitive`](#primitive)
 
 ##### `impl StructuralPartialEq for Primitive`
 
@@ -383,6 +427,8 @@ enum GroupState {
     Alternation(ast::Alternation),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:306-321`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L306-L321)*
 
 GroupState represents a single stack frame while parsing nested groups
 and alternations. Each frame records the state up to an opening parenthesis
@@ -405,11 +451,11 @@ or a alternating bracket `|`.
 
 ##### `impl Clone for GroupState`
 
-- `fn clone(self: &Self) -> GroupState` — [`GroupState`](#groupstate)
+- <span id="groupstate-clone"></span>`fn clone(&self) -> GroupState` — [`GroupState`](#groupstate)
 
 ##### `impl Debug for GroupState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="groupstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ClassState`
 
@@ -425,6 +471,8 @@ enum ClassState {
     },
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:330-348`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L330-L348)*
 
 ClassState represents a single stack frame while parsing character classes.
 Each frame records the state up to an intersection, difference, symmetric
@@ -448,11 +496,11 @@ a character class. In all other cases, it is empty.
 
 ##### `impl Clone for ClassState`
 
-- `fn clone(self: &Self) -> ClassState` — [`ClassState`](#classstate)
+- <span id="classstate-clone"></span>`fn clone(&self) -> ClassState` — [`ClassState`](#classstate)
 
 ##### `impl Debug for ClassState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 
@@ -462,6 +510,8 @@ a character class. In all other cases, it is empty.
 fn is_hex(c: char) -> bool
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:103-105`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L103-L105)*
+
 Returns true if the given character is a hexadecimal digit.
 
 ### `is_capture_char`
@@ -469,6 +519,8 @@ Returns true if the given character is a hexadecimal digit.
 ```rust
 fn is_capture_char(c: char, first: bool) -> bool
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:111-117`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L111-L117)*
 
 Returns true if the given character is a valid in a capture group name.
 
@@ -481,6 +533,8 @@ group name (which must be alphabetic or underscore).
 fn specialize_err<T>(result: core::result::Result<T, ast::Error>, from: ast::ErrorKind, to: ast::ErrorKind) -> core::result::Result<T, ast::Error>
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:2420-2434`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L2420-L2434)*
+
 When the result is an error, transforms the ast::ErrorKind from the source
 Result into another one. This function is used to return clearer error
 messages when possible.
@@ -492,4 +546,6 @@ messages when possible.
 ```rust
 type Result<T> = core::result::Result<T, ast::Error>;
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/parse.rs:24`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/parse.rs#L24)*
 

@@ -4,11 +4,106 @@
 
 # Module `impls`
 
+## Contents
+
+- [Modules](#modules)
+  - [`range`](#range)
+  - [`range_from`](#range_from)
+  - [`range_to`](#range_to)
+- [Structs](#structs)
+  - [`UnitVisitor`](#unitvisitor)
+  - [`BoolVisitor`](#boolvisitor)
+  - [`CharVisitor`](#charvisitor)
+  - [`StringVisitor`](#stringvisitor)
+  - [`StringInPlaceVisitor`](#stringinplacevisitor)
+  - [`StrVisitor`](#strvisitor)
+  - [`BytesVisitor`](#bytesvisitor)
+  - [`CStringVisitor`](#cstringvisitor)
+  - [`OptionVisitor`](#optionvisitor)
+  - [`PhantomDataVisitor`](#phantomdatavisitor)
+  - [`ArrayVisitor`](#arrayvisitor)
+  - [`ArrayInPlaceVisitor`](#arrayinplacevisitor)
+  - [`PathVisitor`](#pathvisitor)
+  - [`PathBufVisitor`](#pathbufvisitor)
+  - [`OsStringVisitor`](#osstringvisitor)
+  - [`FromStrVisitor`](#fromstrvisitor)
+- [Enums](#enums)
+  - [`OsStringKind`](#osstringkind)
+- [Functions](#functions)
+  - [`nop_reserve`](#nop_reserve)
+- [Macros](#macros)
+  - [`impl_deserialize_num!`](#impl_deserialize_num)
+  - [`num_self!`](#num_self)
+  - [`num_as_self!`](#num_as_self)
+  - [`num_as_copysign_self!`](#num_as_copysign_self)
+  - [`int_to_int!`](#int_to_int)
+  - [`int_to_uint!`](#int_to_uint)
+  - [`uint_to_self!`](#uint_to_self)
+  - [`num_128!`](#num_128)
+  - [`forwarded_impl!`](#forwarded_impl)
+  - [`seq_impl!`](#seq_impl)
+  - [`array_impls!`](#array_impls)
+  - [`tuple_impls!`](#tuple_impls)
+  - [`tuple_impl_body!`](#tuple_impl_body)
+  - [`map_impl!`](#map_impl)
+  - [`parse_ip_impl!`](#parse_ip_impl)
+  - [`variant_identifier!`](#variant_identifier)
+  - [`deserialize_enum!`](#deserialize_enum)
+  - [`parse_socket_impl!`](#parse_socket_impl)
+  - [`box_forwarded_impl!`](#box_forwarded_impl)
+  - [`atomic_impl!`](#atomic_impl)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`range`](#range) | mod |  |
+| [`range_from`](#range_from) | mod |  |
+| [`range_to`](#range_to) | mod |  |
+| [`UnitVisitor`](#unitvisitor) | struct |  |
+| [`BoolVisitor`](#boolvisitor) | struct |  |
+| [`CharVisitor`](#charvisitor) | struct |  |
+| [`StringVisitor`](#stringvisitor) | struct |  |
+| [`StringInPlaceVisitor`](#stringinplacevisitor) | struct |  |
+| [`StrVisitor`](#strvisitor) | struct |  |
+| [`BytesVisitor`](#bytesvisitor) | struct |  |
+| [`CStringVisitor`](#cstringvisitor) | struct |  |
+| [`OptionVisitor`](#optionvisitor) | struct |  |
+| [`PhantomDataVisitor`](#phantomdatavisitor) | struct |  |
+| [`ArrayVisitor`](#arrayvisitor) | struct |  |
+| [`ArrayInPlaceVisitor`](#arrayinplacevisitor) | struct |  |
+| [`PathVisitor`](#pathvisitor) | struct |  |
+| [`PathBufVisitor`](#pathbufvisitor) | struct |  |
+| [`OsStringVisitor`](#osstringvisitor) | struct |  |
+| [`FromStrVisitor`](#fromstrvisitor) | struct |  |
+| [`OsStringKind`](#osstringkind) | enum |  |
+| [`nop_reserve`](#nop_reserve) | fn |  |
+| [`impl_deserialize_num!`](#impl_deserialize_num) | macro |  |
+| [`num_self!`](#num_self) | macro |  |
+| [`num_as_self!`](#num_as_self) | macro |  |
+| [`num_as_copysign_self!`](#num_as_copysign_self) | macro |  |
+| [`int_to_int!`](#int_to_int) | macro |  |
+| [`int_to_uint!`](#int_to_uint) | macro |  |
+| [`uint_to_self!`](#uint_to_self) | macro |  |
+| [`num_128!`](#num_128) | macro |  |
+| [`forwarded_impl!`](#forwarded_impl) | macro |  |
+| [`seq_impl!`](#seq_impl) | macro |  |
+| [`array_impls!`](#array_impls) | macro |  |
+| [`tuple_impls!`](#tuple_impls) | macro |  |
+| [`tuple_impl_body!`](#tuple_impl_body) | macro |  |
+| [`map_impl!`](#map_impl) | macro |  |
+| [`parse_ip_impl!`](#parse_ip_impl) | macro |  |
+| [`variant_identifier!`](#variant_identifier) | macro |  |
+| [`deserialize_enum!`](#deserialize_enum) | macro |  |
+| [`parse_socket_impl!`](#parse_socket_impl) | macro |  |
+| [`box_forwarded_impl!`](#box_forwarded_impl) | macro |  |
+| [`atomic_impl!`](#atomic_impl) | macro |  |
+
 ## Modules
 
-- [`range`](range/index.md) - 
-- [`range_from`](range_from/index.md) - 
-- [`range_to`](range_to/index.md) - 
+- [`range`](range/index.md)
+- [`range_from`](range_from/index.md)
+- [`range_to`](range_to/index.md)
 
 ## Structs
 
@@ -18,19 +113,21 @@
 struct UnitVisitor;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:14`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L14)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for UnitVisitor`
+##### `impl Expected for UnitVisitor`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unitvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Visitor for UnitVisitor`
+##### `impl Visitor for UnitVisitor`
 
-- `type Value = ()`
+- <span id="unitvisitor-type-value"></span>`type Value = ()`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unitvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="unitvisitor-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
 ### `BoolVisitor`
 
@@ -38,19 +135,21 @@ struct UnitVisitor;
 struct BoolVisitor;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:53`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L53)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for BoolVisitor`
+##### `impl Expected for BoolVisitor`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="boolvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Visitor for BoolVisitor`
+##### `impl Visitor for BoolVisitor`
 
-- `type Value = bool`
+- <span id="boolvisitor-type-value"></span>`type Value = bool`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="boolvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_bool<E>(self: Self, v: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="boolvisitor-visit-bool"></span>`fn visit_bool<E>(self, v: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
 ### `CharVisitor`
 
@@ -58,21 +157,23 @@ struct BoolVisitor;
 struct CharVisitor;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:537`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L537)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for CharVisitor`
+##### `impl Expected for CharVisitor`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="charvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Visitor for CharVisitor`
+##### `impl Visitor for CharVisitor`
 
-- `type Value = char`
+- <span id="charvisitor-type-value"></span>`type Value = char`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="charvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_char<E>(self: Self, v: char) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="charvisitor-visit-char"></span>`fn visit_char<E>(self, v: char) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="charvisitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
 ### `StringVisitor`
 
@@ -80,25 +181,27 @@ struct CharVisitor;
 struct StringVisitor;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:580`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L580)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for StringVisitor`
+##### `impl Expected for StringVisitor`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stringvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Visitor for StringVisitor`
+##### `impl Visitor for StringVisitor`
 
-- `type Value = String`
+- <span id="stringvisitor-type-value"></span>`type Value = String`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stringvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="stringvisitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
+- <span id="stringvisitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
 
-- `fn visit_bytes<E>(self: Self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="stringvisitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
+- <span id="stringvisitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
 
 ### `StringInPlaceVisitor<'a>`
 
@@ -106,25 +209,27 @@ struct StringVisitor;
 struct StringInPlaceVisitor<'a>(&'a mut String);
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:582`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L582)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for StringInPlaceVisitor<'a>`
+##### `impl Expected for StringInPlaceVisitor<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stringinplacevisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'de> Visitor for StringInPlaceVisitor<'a>`
+##### `impl Visitor for StringInPlaceVisitor<'a>`
 
-- `type Value = ()`
+- <span id="stringinplacevisitor-type-value"></span>`type Value = ()`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stringinplacevisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="stringinplacevisitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
+- <span id="stringinplacevisitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
 
-- `fn visit_bytes<E>(self: Self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="stringinplacevisitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
+- <span id="stringinplacevisitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
 
 ### `StrVisitor`
 
@@ -132,21 +237,23 @@ struct StringInPlaceVisitor<'a>(&'a mut String);
 struct StrVisitor;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:706`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L706)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for StrVisitor`
+##### `impl Expected for StrVisitor`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Visitor for StrVisitor`
+##### `impl Visitor for StrVisitor`
 
-- `type Value = &'a str`
+- <span id="strvisitor-type-value"></span>`type Value = &'a str`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="strvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_borrowed_str<E>(self: Self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="strvisitor-visit-borrowed-str"></span>`fn visit_borrowed_str<E>(self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_borrowed_bytes<E>(self: Self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="strvisitor-visit-borrowed-bytes"></span>`fn visit_borrowed_bytes<E>(self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
 ### `BytesVisitor`
 
@@ -154,21 +261,23 @@ struct StrVisitor;
 struct BytesVisitor;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:741`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L741)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for BytesVisitor`
+##### `impl Expected for BytesVisitor`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytesvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Visitor for BytesVisitor`
+##### `impl Visitor for BytesVisitor`
 
-- `type Value = &'a [u8]`
+- <span id="bytesvisitor-type-value"></span>`type Value = &'a [u8]`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytesvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_borrowed_bytes<E>(self: Self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="bytesvisitor-visit-borrowed-bytes"></span>`fn visit_borrowed_bytes<E>(self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_borrowed_str<E>(self: Self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="bytesvisitor-visit-borrowed-str"></span>`fn visit_borrowed_str<E>(self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
 ### `CStringVisitor`
 
@@ -176,27 +285,29 @@ struct BytesVisitor;
 struct CStringVisitor;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:777`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L777)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for CStringVisitor`
+##### `impl Expected for CStringVisitor`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cstringvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Visitor for CStringVisitor`
+##### `impl Visitor for CStringVisitor`
 
-- `type Value = CString`
+- <span id="cstringvisitor-type-value"></span>`type Value = CString`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cstringvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
+- <span id="cstringvisitor-visit-seq"></span>`fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
 
-- `fn visit_bytes<E>(self: Self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="cstringvisitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
+- <span id="cstringvisitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
 
-- `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="cstringvisitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
+- <span id="cstringvisitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
 
 ### `OptionVisitor<T>`
 
@@ -206,23 +317,25 @@ struct OptionVisitor<T> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:870-872`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L870-L872)*
+
 #### Trait Implementations
 
 ##### `impl<'de, T> Expected for OptionVisitor<T>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="optionvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de, T> Visitor for OptionVisitor<T>`
 
-- `type Value = Option<T>`
+- <span id="optionvisitor-type-value"></span>`type Value = Option<T>`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="optionvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="optionvisitor-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_none<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="optionvisitor-visit-none"></span>`fn visit_none<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_some<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../index.md)
+- <span id="optionvisitor-visit-some"></span>`fn visit_some<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../index.md)
 
 ### `PhantomDataVisitor<T: ?Sized>`
 
@@ -232,19 +345,21 @@ struct PhantomDataVisitor<T: ?Sized> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:938-940`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L938-L940)*
+
 #### Trait Implementations
 
 ##### `impl<'de, T> Expected for PhantomDataVisitor<T>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="phantomdatavisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de, T> Visitor for PhantomDataVisitor<T>`
 
-- `type Value = PhantomData<T>`
+- <span id="phantomdatavisitor-type-value"></span>`type Value = PhantomData<T>`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="phantomdatavisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="phantomdatavisitor-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
 ### `ArrayVisitor<A>`
 
@@ -254,23 +369,25 @@ struct ArrayVisitor<A> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1228-1230`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1228-L1230)*
+
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="arrayvisitor-new"></span>`fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl<'de, T> Expected for ArrayVisitor<A>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, T> Visitor for ArrayVisitor<[T; 8]>`
+##### `impl<'de, T> Visitor for ArrayVisitor<[T; 0]>`
 
-- `type Value = [T; 8]`
+- <span id="arrayvisitor-type-value"></span>`type Value = [T; 0]`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
+- <span id="arrayvisitor-visit-seq"></span>`fn visit_seq<A>(self, _: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
 
 ### `ArrayInPlaceVisitor<'a, A: 'a>`
 
@@ -278,19 +395,21 @@ struct ArrayVisitor<A> {
 struct ArrayInPlaceVisitor<'a, A: 'a>(&'a mut A);
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1231`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1231)*
+
 #### Trait Implementations
 
 ##### `impl<'de, T> Expected for ArrayInPlaceVisitor<'a, A>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayinplacevisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'de, T> Visitor for ArrayInPlaceVisitor<'a, [T; 14]>`
+##### `impl<'a, 'de, T> Visitor for ArrayInPlaceVisitor<'a, [T; 1]>`
 
-- `type Value = ()`
+- <span id="arrayinplacevisitor-type-value"></span>`type Value = ()`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayinplacevisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
+- <span id="arrayinplacevisitor-visit-seq"></span>`fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
 
 ### `PathVisitor`
 
@@ -298,21 +417,23 @@ struct ArrayInPlaceVisitor<'a, A: 'a>(&'a mut A);
 struct PathVisitor;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1785`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1785)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for PathVisitor`
+##### `impl Expected for PathVisitor`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pathvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Visitor for PathVisitor`
+##### `impl Visitor for PathVisitor`
 
-- `type Value = &'a Path`
+- <span id="pathvisitor-type-value"></span>`type Value = &'a Path`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pathvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_borrowed_str<E>(self: Self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="pathvisitor-visit-borrowed-str"></span>`fn visit_borrowed_str<E>(self, v: &'a str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_borrowed_bytes<E>(self: Self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="pathvisitor-visit-borrowed-bytes"></span>`fn visit_borrowed_bytes<E>(self, v: &'a [u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
 ### `PathBufVisitor`
 
@@ -320,25 +441,27 @@ struct PathVisitor;
 struct PathBufVisitor;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1824`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1824)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for PathBufVisitor`
+##### `impl Expected for PathBufVisitor`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pathbufvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Visitor for PathBufVisitor`
+##### `impl Visitor for PathBufVisitor`
 
-- `type Value = PathBuf`
+- <span id="pathbufvisitor-type-value"></span>`type Value = PathBuf`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pathbufvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="pathbufvisitor-visit-str"></span>`fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
+- <span id="pathbufvisitor-visit-string"></span>`fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
 
-- `fn visit_bytes<E>(self: Self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="pathbufvisitor-visit-bytes"></span>`fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
+- <span id="pathbufvisitor-visit-byte-buf"></span>`fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
 
 ### `OsStringVisitor`
 
@@ -346,19 +469,21 @@ struct PathBufVisitor;
 struct OsStringVisitor;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1898`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1898)*
+
 #### Trait Implementations
 
-##### `impl<'de, T> Expected for OsStringVisitor`
+##### `impl Expected for OsStringVisitor`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="osstringvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Visitor for OsStringVisitor`
+##### `impl Visitor for OsStringVisitor`
 
-- `type Value = OsString`
+- <span id="osstringvisitor-type-value"></span>`type Value = OsString`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="osstringvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
+- <span id="osstringvisitor-visit-enum"></span>`fn visit_enum<A>(self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
 
 ### `FromStrVisitor<T>`
 
@@ -369,23 +494,25 @@ struct FromStrVisitor<T> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:3140-3143`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L3140-L3143)*
+
 #### Implementations
 
-- `fn new(expecting: &'static str) -> Self`
+- <span id="fromstrvisitor-new"></span>`fn new(expecting: &'static str) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<'de, T> Expected for FromStrVisitor<T>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fromstrvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de, T> Visitor for FromStrVisitor<T>`
 
-- `type Value = T`
+- <span id="fromstrvisitor-type-value"></span>`type Value = T`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fromstrvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_str<E>(self: Self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="fromstrvisitor-visit-str"></span>`fn visit_str<E>(self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
 ## Enums
 
@@ -398,13 +525,15 @@ enum OsStringKind {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1891-1895`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1891-L1895)*
+
 #### Trait Implementations
 
-##### `impl<'de> Deserialize for OsStringKind`
+##### `impl Deserialize for OsStringKind`
 
-- `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../../index.md)
+- <span id="osstringkind-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../index.md)
 
-##### `impl<T> DeserializeOwned for OsStringKind`
+##### `impl DeserializeOwned for OsStringKind`
 
 ## Functions
 
@@ -414,45 +543,87 @@ enum OsStringKind {
 fn nop_reserve<T>(_seq: T, _n: usize)
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1074`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1074)*
+
 ## Macros
 
 ### `impl_deserialize_num!`
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:81-152`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L81-L152)*
+
 ### `num_self!`
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:154-186`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L154-L186)*
 
 ### `num_as_self!`
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:188-220`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L188-L220)*
+
 ### `num_as_copysign_self!`
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:222-242`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L222-L242)*
 
 ### `int_to_int!`
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:244-284`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L244-L284)*
+
 ### `int_to_uint!`
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:286-334`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L286-L334)*
 
 ### `uint_to_self!`
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:336-374`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L336-L374)*
+
 ### `num_128!`
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:466-517`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L466-L517)*
 
 ### `forwarded_impl!`
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:841-856`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L841-L856)*
+
 ### `seq_impl!`
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:978-1070`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L978-L1070)*
 
 ### `array_impls!`
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1267-1343`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1267-L1343)*
+
 ### `tuple_impls!`
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1382-1394`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1382-L1394)*
 
 ### `tuple_impl_body!`
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1396-1467`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1396-L1467)*
+
 ### `map_impl!`
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1501-1555`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1501-L1555)*
 
 ### `parse_ip_impl!`
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1576-1591`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1576-L1591)*
+
 ### `variant_identifier!`
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1594-1666`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1594-L1666)*
 
 ### `deserialize_enum!`
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1669-1703`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1669-L1703)*
+
 ### `parse_socket_impl!`
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:1731-1749`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L1731-L1749)*
 
 ### `box_forwarded_impl!`
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:2042-2061`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L2042-L2061)*
+
 ### `atomic_impl!`
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:3103-3118`](../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L3103-L3118)*
 

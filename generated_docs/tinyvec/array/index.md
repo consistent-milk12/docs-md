@@ -4,9 +4,16 @@
 
 # Module `array`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`const_generic_impl`](#const_generic_impl) | mod |  |
+| [`Array`](#array) | trait | A trait for types that are an array. |
+
 ## Modules
 
-- [`const_generic_impl`](const_generic_impl/index.md) - 
+- [`const_generic_impl`](const_generic_impl/index.md)
 
 ## Traits
 
@@ -15,6 +22,8 @@
 ```rust
 trait Array { ... }
 ```
+
+*Defined in [`tinyvec-1.10.0/src/array.rs:18-41`](../../../.source_1765210505/tinyvec-1.10.0/src/array.rs#L18-L41)*
 
 A trait for types that are an array.
 
@@ -34,21 +43,29 @@ already implemented for all array lengths.
 Just a reminder: this trait is 100% safe, which means that `unsafe` code
 **must not** rely on an instance of this trait being correct.
 
-#### Required Methods
+#### Associated Types
 
 - `type Item: 1`
 
+#### Associated Constants
+
 - `const CAPACITY: usize`
 
-- `fn as_slice(self: &Self) -> &[<Self as >::Item]`
+#### Required Methods
+
+- `fn as_slice(&self) -> &[<Self as >::Item]`
 
   Gives a shared slice over the whole thing.
 
-- `fn as_slice_mut(self: &mut Self) -> &mut [<Self as >::Item]`
+- `fn as_slice_mut(&mut self) -> &mut [<Self as >::Item]`
 
   Gives a unique slice over the whole thing.
 
 - `fn default() -> Self`
 
   Create a default-initialized instance of ourself, similar to the
+
+#### Implementors
+
+- `[T; N]`
 

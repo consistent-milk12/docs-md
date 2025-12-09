@@ -4,6 +4,13 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Error`](#error) | struct | An error produced by recursively walking a directory. |
+| [`ErrorInner`](#errorinner) | enum |  |
+
 ## Structs
 
 ### `Error`
@@ -14,6 +21,8 @@ struct Error {
     inner: ErrorInner,
 }
 ```
+
+*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../../.source_1765210505/walkdir-2.5.0/src/error.rs#L28-L31)*
 
 An error produced by recursively walking a directory.
 
@@ -36,45 +45,45 @@ accessing the underlying error data in a structured form.
 
 #### Implementations
 
-- `fn path(self: &Self) -> Option<&Path>`
+- <span id="error-path"></span>`fn path(&self) -> Option<&Path>`
 
-- `fn loop_ancestor(self: &Self) -> Option<&Path>`
+- <span id="error-loop-ancestor"></span>`fn loop_ancestor(&self) -> Option<&Path>`
 
-- `fn depth(self: &Self) -> usize`
+- <span id="error-depth"></span>`fn depth(&self) -> usize`
 
-- `fn io_error(self: &Self) -> Option<&io::Error>`
+- <span id="error-io-error"></span>`fn io_error(&self) -> Option<&io::Error>`
 
-- `fn into_io_error(self: Self) -> Option<io::Error>`
+- <span id="error-into-io-error"></span>`fn into_io_error(self) -> Option<io::Error>`
 
-- `fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
+- <span id="error-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
 
-- `fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](../index.md)
+- <span id="error-from-entry"></span>`fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](../dent/index.md)
 
-- `fn from_io(depth: usize, err: io::Error) -> Self`
+- <span id="error-from-io"></span>`fn from_io(depth: usize, err: io::Error) -> Self`
 
-- `fn from_loop(depth: usize, ancestor: &Path, child: &Path) -> Self`
+- <span id="error-from-loop"></span>`fn from_loop(depth: usize, ancestor: &Path, child: &Path) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
-- `fn description(self: &Self) -> &str`
+- <span id="error-description"></span>`fn description(&self) -> &str`
 
-- `fn cause(self: &Self) -> Option<&dyn error::Error>`
+- <span id="error-cause"></span>`fn cause(&self) -> Option<&dyn error::Error>`
 
-- `fn source(self: &Self) -> Option<&dyn error::Error>`
+- <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -93,9 +102,11 @@ enum ErrorInner {
 }
 ```
 
+*Defined in [`walkdir-2.5.0/src/error.rs:34-37`](../../../.source_1765210505/walkdir-2.5.0/src/error.rs#L34-L37)*
+
 #### Trait Implementations
 
 ##### `impl Debug for ErrorInner`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="errorinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

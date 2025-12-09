@@ -6,6 +6,13 @@
 
 Iterate over error `.diagnostic_source()` chains.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DiagnosticChain`](#diagnosticchain) | struct | Iterator of a chain of cause errors. |
+| [`ErrorKind`](#errorkind) | enum |  |
+
 ## Structs
 
 ### `DiagnosticChain<'a>`
@@ -16,45 +23,47 @@ struct DiagnosticChain<'a> {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:10-12`](../../../.source_1765210505/miette-7.6.0/src/diagnostic_chain.rs#L10-L12)*
+
 Iterator of a chain of cause errors.
 
 #### Implementations
 
-- `fn from_diagnostic(head: &'a dyn Diagnostic) -> Self` — [`Diagnostic`](../index.md)
+- <span id="diagnosticchain-from-diagnostic"></span>`fn from_diagnostic(head: &'a dyn Diagnostic) -> Self` — [`Diagnostic`](../index.md)
 
-- `fn from_stderror(head: &'a dyn std::error::Error) -> Self`
+- <span id="diagnosticchain-from-stderror"></span>`fn from_stderror(head: &'a dyn std::error::Error) -> Self`
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for DiagnosticChain<'a>`
+##### `impl Clone for DiagnosticChain<'a>`
 
-- `fn clone(self: &Self) -> DiagnosticChain<'a>` — [`DiagnosticChain`](#diagnosticchain)
+- <span id="diagnosticchain-clone"></span>`fn clone(&self) -> DiagnosticChain<'a>` — [`DiagnosticChain`](#diagnosticchain)
 
-##### `impl<'a> Default for DiagnosticChain<'a>`
+##### `impl Default for DiagnosticChain<'a>`
 
-- `fn default() -> DiagnosticChain<'a>` — [`DiagnosticChain`](#diagnosticchain)
+- <span id="diagnosticchain-default"></span>`fn default() -> DiagnosticChain<'a>` — [`DiagnosticChain`](#diagnosticchain)
 
 ##### `impl ExactSizeIterator for DiagnosticChain<'_>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="diagnosticchain-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for DiagnosticChain<'a>`
+##### `impl IntoIterator for DiagnosticChain<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="diagnosticchain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="diagnosticchain-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="diagnosticchain-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for DiagnosticChain<'a>`
+##### `impl Iterator for DiagnosticChain<'a>`
 
-- `type Item = ErrorKind<'a>`
+- <span id="diagnosticchain-type-item"></span>`type Item = ErrorKind<'a>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="diagnosticchain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="diagnosticchain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<D> OwoColorize for DiagnosticChain<'a>`
+##### `impl OwoColorize for DiagnosticChain<'a>`
 
 ## Enums
 
@@ -67,27 +76,29 @@ enum ErrorKind<'a> {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:60-63`](../../../.source_1765210505/miette-7.6.0/src/diagnostic_chain.rs#L60-L63)*
+
 #### Implementations
 
-- `fn get_nested(self: &Self) -> Option<ErrorKind<'a>>` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-get-nested"></span>`fn get_nested(&self) -> Option<ErrorKind<'a>>` — [`ErrorKind`](#errorkind)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for ErrorKind<'a>`
+##### `impl Clone for ErrorKind<'a>`
 
-- `fn clone(self: &Self) -> ErrorKind<'a>` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind<'a>` — [`ErrorKind`](#errorkind)
 
 ##### `impl Debug for ErrorKind<'_>`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Display for ErrorKind<'_>`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-##### `impl<D> OwoColorize for ErrorKind<'a>`
+##### `impl OwoColorize for ErrorKind<'a>`
 
-##### `impl<T> ToString for ErrorKind<'a>`
+##### `impl ToString for ErrorKind<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errorkind-to-string"></span>`fn to_string(&self) -> String`
 

@@ -11,6 +11,13 @@ difference is that it (by default) uses a background distribution of byte
 frequencies to heuristically select the pair of bytes to search for.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Finder`](#finder) | struct | A generic architecture dependent "packed pair" finder. |
+| [`matched`](#matched) | fn | Accepts a chunk-relative offset and returns a haystack relative offset. |
+
 ## Structs
 
 ### `Finder<V>`
@@ -23,6 +30,8 @@ struct Finder<V> {
     min_haystack_len: usize,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/generic/packedpair.rs:35-40`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/packedpair.rs#L35-L40)*
 
 A generic architecture dependent "packed pair" finder.
 
@@ -44,31 +53,31 @@ to inline calls into routines marked with
 
 #### Implementations
 
-- `unsafe fn new(needle: &[u8], pair: Pair) -> Finder<V>` — [`Pair`](../../all/packedpair/index.md), [`Finder`](#finder)
+- <span id="finder-new"></span>`unsafe fn new(needle: &[u8], pair: Pair) -> Finder<V>` — [`Pair`](../../all/packedpair/index.md), [`Finder`](#finder)
 
-- `unsafe fn find(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
+- <span id="finder-find"></span>`unsafe fn find(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
-- `unsafe fn find_prefilter(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="finder-find-prefilter"></span>`unsafe fn find_prefilter(&self, haystack: &[u8]) -> Option<usize>`
 
-- `unsafe fn find_in_chunk(self: &Self, needle: &[u8], cur: *const u8, end: *const u8, mask: <V as >::Mask) -> Option<usize>` — [`Vector`](../../../vector/index.md)
+- <span id="finder-find-in-chunk"></span>`unsafe fn find_in_chunk(&self, needle: &[u8], cur: *const u8, end: *const u8, mask: <V as >::Mask) -> Option<usize>` — [`Vector`](../../../vector/index.md)
 
-- `unsafe fn find_prefilter_in_chunk(self: &Self, cur: *const u8) -> Option<usize>`
+- <span id="finder-find-prefilter-in-chunk"></span>`unsafe fn find_prefilter_in_chunk(&self, cur: *const u8) -> Option<usize>`
 
-- `fn pair(self: &Self) -> &Pair` — [`Pair`](../../all/packedpair/index.md)
+- <span id="finder-pair"></span>`fn pair(&self) -> &Pair` — [`Pair`](../../all/packedpair/index.md)
 
-- `fn min_haystack_len(self: &Self) -> usize`
+- <span id="finder-min-haystack-len"></span>`fn min_haystack_len(&self) -> usize`
 
 #### Trait Implementations
 
-##### `impl<V: $crate::clone::Clone> Clone for Finder<V>`
+##### `impl<V: clone::Clone> Clone for Finder<V>`
 
-- `fn clone(self: &Self) -> Finder<V>` — [`Finder`](#finder)
+- <span id="finder-clone"></span>`fn clone(&self) -> Finder<V>` — [`Finder`](#finder)
 
-##### `impl<V: $crate::marker::Copy> Copy for Finder<V>`
+##### `impl<V: marker::Copy> Copy for Finder<V>`
 
-##### `impl<V: $crate::fmt::Debug> Debug for Finder<V>`
+##### `impl<V: fmt::Debug> Debug for Finder<V>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 
@@ -77,6 +86,8 @@ to inline calls into routines marked with
 ```rust
 unsafe fn matched(start: *const u8, cur: *const u8, chunki: usize) -> usize
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/generic/packedpair.rs:312-314`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/packedpair.rs#L312-L314)*
 
 Accepts a chunk-relative offset and returns a haystack relative offset.
 

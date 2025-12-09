@@ -4,6 +4,12 @@
 
 # Module `color`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ColorChoice`](#colorchoice) | enum | Represents the color preferences for program output |
+
 ## Enums
 
 ### `ColorChoice`
@@ -15,6 +21,8 @@ enum ColorChoice {
     Never,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/util/color.rs:6-58`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/color.rs#L6-L58)*
 
 Represents the color preferences for program output
 
@@ -76,49 +84,49 @@ Represents the color preferences for program output
 
 #### Implementations
 
-- `fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](../../builder/index.md)
+- <span id="colorchoice-possible-values"></span>`fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](../../builder/possible_value/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ColorChoice`
 
-- `fn clone(self: &Self) -> ColorChoice` — [`ColorChoice`](../../index.md)
+- <span id="colorchoice-clone"></span>`fn clone(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 ##### `impl Copy for ColorChoice`
 
 ##### `impl Debug for ColorChoice`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="colorchoice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ColorChoice`
 
-- `fn default() -> ColorChoice` — [`ColorChoice`](../../index.md)
+- <span id="colorchoice-default"></span>`fn default() -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 ##### `impl Display for ColorChoice`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="colorchoice-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for ColorChoice`
 
 ##### `impl FromStr for ColorChoice`
 
-- `type Err = String`
+- <span id="colorchoice-type-err"></span>`type Err = String`
 
-- `fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+- <span id="colorchoice-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl PartialEq for ColorChoice`
 
-- `fn eq(self: &Self, other: &ColorChoice) -> bool` — [`ColorChoice`](../../index.md)
+- <span id="colorchoice-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
 
 ##### `impl StructuralPartialEq for ColorChoice`
 
-##### `impl<T> ToString for ColorChoice`
+##### `impl ToString for ColorChoice`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="colorchoice-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ValueEnum for ColorChoice`
 
-- `fn value_variants<'a>() -> &'a [Self]`
+- <span id="colorchoice-value-variants"></span>`fn value_variants<'a>() -> &'a [Self]`
 
-- `fn to_possible_value(self: &Self) -> Option<PossibleValue>` — [`PossibleValue`](../../builder/index.md)
+- <span id="colorchoice-to-possible-value"></span>`fn to_possible_value(&self) -> Option<PossibleValue>` — [`PossibleValue`](../../builder/possible_value/index.md)
 

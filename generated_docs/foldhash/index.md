@@ -88,9 +88,9 @@ let hash = random_state.hash_one("hello world");
 
 Foldhash relies on a single 8-byte per-hasher seed which should be ideally
 be different from each instance to instance, and also a larger
-[`SharedSeed`](#sharedseed) which may be shared by many different instances.
+[`SharedSeed`](seed/index.md) which may be shared by many different instances.
 
-To reduce overhead, this [`SharedSeed`](#sharedseed) is typically initialized once and
+To reduce overhead, this [`SharedSeed`](seed/index.md) is typically initialized once and
 stored. To prevent each hashmap unnecessarily containing a reference to this
 value there are three kinds of [`BuildHasher`](core::hash::BuildHasher)s
 foldhash provides (both for [`fast`](fast/index.md) and [`quality`](quality/index.md)):
@@ -101,7 +101,7 @@ foldhash provides (both for [`fast`](fast/index.md) and [`quality`](quality/inde
    per-hasher seed and implicitly stores a reference to `SharedSeed::global_fixed`.
 3. [`SeedableRandomState`](fast::SeedableRandomState), which works like
    [`RandomState`](fast::RandomState) by default but can be seeded in any manner.
-   This state must include an explicit reference to a [`SharedSeed`](#sharedseed), and thus
+   This state must include an explicit reference to a [`SharedSeed`](seed/index.md), and thus
    this struct is 16 bytes as opposed to just 8 bytes for the previous two.
 
 ## Features
@@ -113,11 +113,67 @@ slightly using the nightly-only Rust feature
 - `std`, this enabled-by-default feature offers convenient aliases for `std`
 containers, but can be turned off for `#![no_std]` crates.
 
+## Contents
+
+- [Modules](#modules)
+  - [`fast`](#fast)
+  - [`quality`](#quality)
+  - [`seed`](#seed)
+- [Structs](#structs)
+  - [`SharedSeed`](#sharedseed)
+- [Functions](#functions)
+  - [`folded_multiply`](#folded_multiply)
+  - [`rotate_right`](#rotate_right)
+  - [`cold_path`](#cold_path)
+  - [`hash_bytes_short`](#hash_bytes_short)
+  - [`load`](#load)
+  - [`hash_bytes_long`](#hash_bytes_long)
+- [Constants](#constants)
+  - [`ARBITRARY0`](#arbitrary0)
+  - [`ARBITRARY1`](#arbitrary1)
+  - [`ARBITRARY2`](#arbitrary2)
+  - [`ARBITRARY3`](#arbitrary3)
+  - [`ARBITRARY4`](#arbitrary4)
+  - [`ARBITRARY5`](#arbitrary5)
+  - [`ARBITRARY6`](#arbitrary6)
+  - [`ARBITRARY7`](#arbitrary7)
+  - [`ARBITRARY8`](#arbitrary8)
+  - [`ARBITRARY9`](#arbitrary9)
+  - [`ARBITRARY10`](#arbitrary10)
+  - [`ARBITRARY11`](#arbitrary11)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`fast`](#fast) | mod | The foldhash implementation optimized for speed. |
+| [`quality`](#quality) | mod | The foldhash implementation optimized for quality. |
+| [`seed`](#seed) | mod |  |
+| [`SharedSeed`](#sharedseed) | struct |  |
+| [`folded_multiply`](#folded_multiply) | fn |  |
+| [`rotate_right`](#rotate_right) | fn |  |
+| [`cold_path`](#cold_path) | fn |  |
+| [`hash_bytes_short`](#hash_bytes_short) | fn | Hashes strings <= 16 bytes, has unspecified behavior when bytes.len() > 16. |
+| [`load`](#load) | fn | Load 8 bytes into a u64 word at the given offset. |
+| [`hash_bytes_long`](#hash_bytes_long) | fn | Hashes strings > 16 bytes. |
+| [`ARBITRARY0`](#arbitrary0) | const |  |
+| [`ARBITRARY1`](#arbitrary1) | const |  |
+| [`ARBITRARY2`](#arbitrary2) | const |  |
+| [`ARBITRARY3`](#arbitrary3) | const |  |
+| [`ARBITRARY4`](#arbitrary4) | const |  |
+| [`ARBITRARY5`](#arbitrary5) | const |  |
+| [`ARBITRARY6`](#arbitrary6) | const |  |
+| [`ARBITRARY7`](#arbitrary7) | const |  |
+| [`ARBITRARY8`](#arbitrary8) | const |  |
+| [`ARBITRARY9`](#arbitrary9) | const |  |
+| [`ARBITRARY10`](#arbitrary10) | const |  |
+| [`ARBITRARY11`](#arbitrary11) | const |  |
+
 ## Modules
 
-- [`fast`](fast/index.md) - The foldhash implementation optimized for speed.
-- [`quality`](quality/index.md) - The foldhash implementation optimized for quality.
-- [`seed`](seed/index.md) - 
+- [`fast`](fast/index.md) — The foldhash implementation optimized for speed.
+- [`quality`](quality/index.md) — The foldhash implementation optimized for quality.
+- [`seed`](seed/index.md)
 
 ## Structs
 
@@ -129,6 +185,8 @@ struct SharedSeed {
 }
 ```
 
+*Defined in [`foldhash-0.2.0/src/seed.rs:78-80`](../../.source_1765210505/foldhash-0.2.0/src/seed.rs#L78-L80)*
+
 A random seed intended to be shared by many different foldhash instances.
 
 This seed is consumed by [`FoldHasher::with_seed`](crate::fast::FoldHasher::with_seed),
@@ -136,21 +194,21 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 
 #### Implementations
 
-- `fn global_random() -> &'static SharedSeed` — [`SharedSeed`](#sharedseed)
+- <span id="sharedseed-global-random"></span>`fn global_random() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md)
 
-- `const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](#sharedseed)
+- <span id="sharedseed-global-fixed"></span>`const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md)
 
-- `const fn from_u64(seed: u64) -> Self`
+- <span id="sharedseed-from-u64"></span>`const fn from_u64(seed: u64) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for SharedSeed`
 
-- `fn clone(self: &Self) -> SharedSeed` — [`SharedSeed`](#sharedseed)
+- <span id="sharedseed-clone"></span>`fn clone(&self) -> SharedSeed` — [`SharedSeed`](seed/index.md)
 
 ##### `impl Debug for SharedSeed`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sharedseed-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 
@@ -160,11 +218,15 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 const fn folded_multiply(x: u64, y: u64) -> u64
 ```
 
+*Defined in [`foldhash-0.2.0/src/lib.rs:143-206`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L143-L206)*
+
 ### `rotate_right`
 
 ```rust
 const fn rotate_right(x: u64, r: u32) -> u64
 ```
+
+*Defined in [`foldhash-0.2.0/src/lib.rs:209-233`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L209-L233)*
 
 ### `cold_path`
 
@@ -172,11 +234,15 @@ const fn rotate_right(x: u64, r: u32) -> u64
 fn cold_path()
 ```
 
+*Defined in [`foldhash-0.2.0/src/lib.rs:236`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L236)*
+
 ### `hash_bytes_short`
 
 ```rust
 fn hash_bytes_short(bytes: &[u8], accumulator: u64, seeds: &[u64; 6]) -> u64
 ```
+
+*Defined in [`foldhash-0.2.0/src/lib.rs:240-259`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L240-L259)*
 
 Hashes strings <= 16 bytes, has unspecified behavior when bytes.len() > 16.
 
@@ -185,6 +251,8 @@ Hashes strings <= 16 bytes, has unspecified behavior when bytes.len() > 16.
 ```rust
 unsafe fn load(bytes: &[u8], offset: usize) -> u64
 ```
+
+*Defined in [`foldhash-0.2.0/src/lib.rs:266-271`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L266-L271)*
 
 Load 8 bytes into a u64 word at the given offset.
 
@@ -197,6 +265,8 @@ You must ensure that offset + 8 <= bytes.len().
 unsafe fn hash_bytes_long(v: &[u8], accumulator: u64, seeds: &[u64; 6]) -> u64
 ```
 
+*Defined in [`foldhash-0.2.0/src/lib.rs:279-350`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L279-L350)*
+
 Hashes strings > 16 bytes.
 
 # Safety
@@ -205,74 +275,86 @@ v.len() must be > 16 bytes.
 ## Constants
 
 ### `ARBITRARY0`
-
 ```rust
 const ARBITRARY0: u64 = 2_611_923_443_488_327_891u64;
 ```
 
-### `ARBITRARY1`
+*Defined in [`foldhash-0.2.0/src/lib.rs:129`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L129)*
 
+### `ARBITRARY1`
 ```rust
 const ARBITRARY1: u64 = 1_376_283_091_369_227_076u64;
 ```
 
-### `ARBITRARY2`
+*Defined in [`foldhash-0.2.0/src/lib.rs:130`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L130)*
 
+### `ARBITRARY2`
 ```rust
 const ARBITRARY2: u64 = 11_820_040_416_388_919_760u64;
 ```
 
-### `ARBITRARY3`
+*Defined in [`foldhash-0.2.0/src/lib.rs:131`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L131)*
 
+### `ARBITRARY3`
 ```rust
 const ARBITRARY3: u64 = 589_684_135_938_649_225u64;
 ```
 
-### `ARBITRARY4`
+*Defined in [`foldhash-0.2.0/src/lib.rs:132`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L132)*
 
+### `ARBITRARY4`
 ```rust
 const ARBITRARY4: u64 = 4_983_270_260_364_809_079u64;
 ```
 
-### `ARBITRARY5`
+*Defined in [`foldhash-0.2.0/src/lib.rs:133`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L133)*
 
+### `ARBITRARY5`
 ```rust
 const ARBITRARY5: u64 = 13_714_699_805_381_954_668u64;
 ```
 
-### `ARBITRARY6`
+*Defined in [`foldhash-0.2.0/src/lib.rs:134`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L134)*
 
+### `ARBITRARY6`
 ```rust
 const ARBITRARY6: u64 = 13_883_517_620_612_518_109u64;
 ```
 
-### `ARBITRARY7`
+*Defined in [`foldhash-0.2.0/src/lib.rs:135`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L135)*
 
+### `ARBITRARY7`
 ```rust
 const ARBITRARY7: u64 = 4_577_018_097_722_394_903u64;
 ```
 
-### `ARBITRARY8`
+*Defined in [`foldhash-0.2.0/src/lib.rs:136`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L136)*
 
+### `ARBITRARY8`
 ```rust
 const ARBITRARY8: u64 = 10_526_836_309_316_205_339u64;
 ```
 
-### `ARBITRARY9`
+*Defined in [`foldhash-0.2.0/src/lib.rs:137`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L137)*
 
+### `ARBITRARY9`
 ```rust
 const ARBITRARY9: u64 = 15_073_842_237_943_035_308u64;
 ```
 
-### `ARBITRARY10`
+*Defined in [`foldhash-0.2.0/src/lib.rs:138`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L138)*
 
+### `ARBITRARY10`
 ```rust
 const ARBITRARY10: u64 = 3_458_046_377_305_235_383u64;
 ```
 
-### `ARBITRARY11`
+*Defined in [`foldhash-0.2.0/src/lib.rs:139`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L139)*
 
+### `ARBITRARY11`
 ```rust
 const ARBITRARY11: u64 = 13_322_122_606_961_655_446u64;
 ```
+
+*Defined in [`foldhash-0.2.0/src/lib.rs:140`](../../.source_1765210505/foldhash-0.2.0/src/lib.rs#L140)*
 

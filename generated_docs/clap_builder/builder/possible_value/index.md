@@ -4,6 +4,12 @@
 
 # Module `possible_value`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PossibleValue`](#possiblevalue) | struct | A possible value of an argument. |
+
 ## Structs
 
 ### `PossibleValue`
@@ -16,6 +22,8 @@ struct PossibleValue {
     hide: bool,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
 
 A possible value of an argument.
 
@@ -52,39 +60,35 @@ let cfg = Arg::new("config")
 
 #### Implementations
 
-- `fn get_name(self: &Self) -> &str`
+- <span id="possiblevalue-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](../str/index.md)
 
-- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
+- <span id="possiblevalue-help"></span>`fn help(self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../resettable/index.md), [`StyledStr`](../styled_str/index.md)
 
-- `fn is_hide_set(self: &Self) -> bool`
+- <span id="possiblevalue-hide"></span>`fn hide(self, yes: bool) -> Self`
 
-- `fn should_show_help(self: &Self) -> bool`
+- <span id="possiblevalue-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Str`](../str/index.md)
 
-- `fn get_visible_quoted_name(self: &Self) -> Option<std::borrow::Cow<'_, str>>`
-
-- `fn get_name_and_aliases(self: &Self) -> impl Iterator<Item = &str> + '_`
-
-- `fn matches(self: &Self, value: &str, ignore_case: bool) -> bool`
+- <span id="possiblevalue-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](../str/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for PossibleValue`
 
-- `fn clone(self: &Self) -> PossibleValue` — [`PossibleValue`](../index.md)
+- <span id="possiblevalue-clone"></span>`fn clone(&self) -> PossibleValue` — [`PossibleValue`](#possiblevalue)
 
 ##### `impl Debug for PossibleValue`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="possiblevalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PossibleValue`
 
-- `fn default() -> PossibleValue` — [`PossibleValue`](../index.md)
+- <span id="possiblevalue-default"></span>`fn default() -> PossibleValue` — [`PossibleValue`](#possiblevalue)
 
 ##### `impl Eq for PossibleValue`
 
 ##### `impl PartialEq for PossibleValue`
 
-- `fn eq(self: &Self, other: &PossibleValue) -> bool` — [`PossibleValue`](../index.md)
+- <span id="possiblevalue-eq"></span>`fn eq(&self, other: &PossibleValue) -> bool` — [`PossibleValue`](#possiblevalue)
 
 ##### `impl StructuralPartialEq for PossibleValue`
 

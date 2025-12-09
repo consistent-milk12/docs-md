@@ -6,6 +6,13 @@
 
 This module contains `Impossible` serializer and its implementations.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Impossible`](#impossible) | struct | Helper type for implementing a `Serializer` that does not support serializing one of the compound types. |
+| [`Void`](#void) | enum |  |
+
 ## Structs
 
 ### `Impossible<Ok, Error>`
@@ -18,11 +25,13 @@ struct Impossible<Ok, Error> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:60-64`](../../../../.source_1765210505/serde_core-1.0.228/src/ser/impossible.rs#L60-L64)*
+
 Helper type for implementing a `Serializer` that does not support
 serializing one of the compound types.
 
 This type cannot be instantiated, but implements every one of the traits
-corresponding to the [`Serializer`](../../index.md) compound types: [`SerializeSeq`](../index.md),
+corresponding to the [`Serializer`](../index.md) compound types: [`SerializeSeq`](../index.md),
 [`SerializeTuple`](../index.md), [`SerializeTupleStruct`](../index.md), [`SerializeTupleVariant`](../index.md),
 [`SerializeMap`](../index.md), [`SerializeStruct`](../index.md), and [`SerializeStructVariant`](../index.md).
 
@@ -72,75 +81,75 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeMap for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
-- `fn serialize_key<T>(self: &mut Self, key: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-key"></span>`fn serialize_key<T>(&mut self, key: &T) -> Result<(), Error>`
 
-- `fn serialize_value<T>(self: &mut Self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-value"></span>`fn serialize_value<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeSeq for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
-- `fn serialize_element<T>(self: &mut Self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeStruct for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, key: &'static str, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeStructVariant for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, key: &'static str, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeTuple for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
-- `fn serialize_element<T>(self: &mut Self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeTupleStruct for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeTupleVariant for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ## Enums
 
@@ -150,4 +159,6 @@ impl Serializer for MySerializer {
 enum Void {
 }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:66`](../../../../.source_1765210505/serde_core-1.0.228/src/ser/impossible.rs#L66)*
 

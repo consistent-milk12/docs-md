@@ -4,9 +4,18 @@
 
 # Module `remapper`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`onepass`](#onepass) | mod |  |
+| [`Remapper`](#remapper) | struct | Remapper is an abstraction the manages the remapping of state IDs in a finite state machine. |
+| [`IndexMapper`](#indexmapper) | struct | A simple type for mapping between state indices and state IDs. |
+| [`Remappable`](#remappable) | trait | Remappable is a tightly coupled abstraction that facilitates remapping state identifiers in DFAs. |
+
 ## Modules
 
-- [`onepass`](onepass/index.md) - 
+- [`onepass`](onepass/index.md)
 
 ## Structs
 
@@ -18,6 +27,8 @@ struct Remapper {
     idxmap: IndexMapper,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:68-85`](../../../../.source_1765210505/regex-automata-0.4.13/src/dfa/remapper.rs#L68-L85)*
 
 Remapper is an abstraction the manages the remapping of state IDs in a
 finite state machine. This is useful when one wants to shuffle states into
@@ -54,17 +65,17 @@ will almost certainly result in a corrupt machine.
 
 #### Implementations
 
-- `fn new(r: &impl Remappable) -> Remapper` — [`Remappable`](#remappable), [`Remapper`](#remapper)
+- <span id="remapper-new"></span>`fn new(r: &impl Remappable) -> Remapper` — [`Remappable`](#remappable), [`Remapper`](#remapper)
 
-- `fn swap(self: &mut Self, r: &mut impl Remappable, id1: StateID, id2: StateID)` — [`Remappable`](#remappable), [`StateID`](../../util/primitives/index.md)
+- <span id="remapper-swap"></span>`fn swap(&mut self, r: &mut impl Remappable, id1: StateID, id2: StateID)` — [`Remappable`](#remappable), [`StateID`](../../util/primitives/index.md)
 
-- `fn remap(self: Self, r: &mut impl Remappable)` — [`Remappable`](#remappable)
+- <span id="remapper-remap"></span>`fn remap(self, r: &mut impl Remappable)` — [`Remappable`](#remappable)
 
 #### Trait Implementations
 
 ##### `impl Debug for Remapper`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="remapper-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `IndexMapper`
 
@@ -73,6 +84,8 @@ struct IndexMapper {
     stride2: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:169-174`](../../../../.source_1765210505/regex-automata-0.4.13/src/dfa/remapper.rs#L169-L174)*
 
 A simple type for mapping between state indices and state IDs.
 
@@ -100,15 +113,15 @@ indices.
 
 #### Implementations
 
-- `fn to_index(self: &Self, id: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
+- <span id="indexmapper-to-index"></span>`fn to_index(&self, id: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
 
-- `fn to_state_id(self: &Self, index: usize) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- <span id="indexmapper-to-state-id"></span>`fn to_state_id(&self, index: usize) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for IndexMapper`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="indexmapper-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -117,6 +130,8 @@ indices.
 ```rust
 trait Remappable: core::fmt::Debug { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:28-55`](../../../../.source_1765210505/regex-automata-0.4.13/src/dfa/remapper.rs#L28-L55)*
 
 Remappable is a tightly coupled abstraction that facilitates remapping
 state identifiers in DFAs.
@@ -144,19 +159,23 @@ DFAs are partitioned.
 
 #### Required Methods
 
-- `fn state_len(self: &Self) -> usize`
+- `fn state_len(&self) -> usize`
 
   Return the total number of states.
 
-- `fn stride2(self: &Self) -> usize`
+- `fn stride2(&self) -> usize`
 
   Return the power-of-2 exponent that yields the stride. The pertinent
 
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)`
+- `fn swap_states(&mut self, id1: StateID, id2: StateID)`
 
   Swap the states pointed to by the given IDs. The underlying finite
 
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)`
+- `fn remap(&mut self, map: impl Fn(StateID) -> StateID)`
 
   This must remap every single state ID in the underlying value according
+
+#### Implementors
+
+- [`DFA`](../onepass/index.md)
 

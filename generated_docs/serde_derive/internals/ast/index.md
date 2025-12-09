@@ -6,6 +6,33 @@
 
 A Serde ast, parsed from the Syn ast and ready to generate Rust code.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Container`](#container)
+  - [`Variant`](#variant)
+  - [`Field`](#field)
+- [Enums](#enums)
+  - [`Data`](#data)
+  - [`Style`](#style)
+- [Functions](#functions)
+  - [`enum_from_ast`](#enum_from_ast)
+  - [`struct_from_ast`](#struct_from_ast)
+  - [`fields_from_ast`](#fields_from_ast)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Container`](#container) | struct | A source data structure annotated with `#[derive(Serialize)]` and/or `#[derive(Deserialize)]`, parsed into an internal representation. |
+| [`Variant`](#variant) | struct | A variant of an enum. |
+| [`Field`](#field) | struct | A field of a struct. |
+| [`Data`](#data) | enum | The fields of a struct or enum. |
+| [`Style`](#style) | enum |  |
+| [`enum_from_ast`](#enum_from_ast) | fn |  |
+| [`struct_from_ast`](#struct_from_ast) | fn |  |
+| [`fields_from_ast`](#fields_from_ast) | fn |  |
+
 ## Structs
 
 ### `Container<'a>`
@@ -19,6 +46,8 @@ struct Container<'a> {
     pub original: &'a syn::DeriveInput,
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:10-21`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/ast.rs#L10-L21)*
 
 A source data structure annotated with `#[derive(Serialize)]` and/or `#[derive(Deserialize)]`,
 parsed into an internal representation.
@@ -47,7 +76,7 @@ parsed into an internal representation.
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, item: &'a syn::DeriveInput, derive: Derive, private: &Ident) -> Option<Container<'a>>` — [`Ctxt`](../index.md), [`Derive`](../index.md), [`Container`](#container)
+- <span id="container-from-ast"></span>`fn from_ast(cx: &Ctxt, item: &'a syn::DeriveInput, derive: Derive, private: &Ident) -> Option<Container<'a>>` — [`Ctxt`](../ctxt/index.md), [`Derive`](../index.md), [`Container`](#container)
 
 ### `Variant<'a>`
 
@@ -60,6 +89,8 @@ struct Variant<'a> {
     pub original: &'a syn::Variant,
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:32-38`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/ast.rs#L32-L38)*
 
 A variant of an enum.
 
@@ -74,6 +105,8 @@ struct Field<'a> {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:41-46`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/ast.rs#L41-L46)*
+
 A field of a struct.
 
 ## Enums
@@ -87,15 +120,17 @@ enum Data<'a> {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:26-29`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/ast.rs#L26-L29)*
+
 The fields of a struct or enum.
 
 Analogous to `syn::Data`.
 
 #### Implementations
 
-- `fn all_fields(self: &'a Self) -> Box<dyn Iterator<Item = &'a Field<'a>>>` — [`Field`](#field)
+- <span id="data-all-fields"></span>`fn all_fields(self: &'a Self) -> Box<dyn Iterator<Item = &'a Field<'a>>>` — [`Field`](#field)
 
-- `fn has_getter(self: &Self) -> bool`
+- <span id="data-has-getter"></span>`fn has_getter(&self) -> bool`
 
 ### `Style`
 
@@ -107,6 +142,8 @@ enum Style {
     Unit,
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:49-58`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/ast.rs#L49-L58)*
 
 #### Variants
 
@@ -130,7 +167,7 @@ enum Style {
 
 ##### `impl Clone for Style`
 
-- `fn clone(self: &Self) -> Style` — [`Style`](#style)
+- <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](#style)
 
 ##### `impl Copy for Style`
 
@@ -139,8 +176,10 @@ enum Style {
 ### `enum_from_ast`
 
 ```rust
-fn enum_from_ast<'a>(cx: &crate::internals::Ctxt, variants: &'a syn::punctuated::Punctuated<syn::Variant, $crate::token::Comma>, container_default: &attr::Default, private: &proc_macro2::Ident) -> Vec<Variant<'a>>
+fn enum_from_ast<'a>(cx: &crate::internals::Ctxt, variants: &'a syn::punctuated::Punctuated<syn::Variant, token::Comma>, container_default: &attr::Default, private: &proc_macro2::Ident) -> Vec<Variant<'a>>
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:133-172`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/ast.rs#L133-L172)*
 
 ### `struct_from_ast`
 
@@ -148,9 +187,13 @@ fn enum_from_ast<'a>(cx: &crate::internals::Ctxt, variants: &'a syn::punctuated:
 fn struct_from_ast<'a>(cx: &crate::internals::Ctxt, fields: &'a syn::Fields, attrs: Option<&attr::Variant>, container_default: &attr::Default, private: &proc_macro2::Ident) -> (Style, Vec<Field<'a>>)
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:174-196`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/ast.rs#L174-L196)*
+
 ### `fields_from_ast`
 
 ```rust
-fn fields_from_ast<'a>(cx: &crate::internals::Ctxt, fields: &'a syn::punctuated::Punctuated<syn::Field, $crate::token::Comma>, attrs: Option<&attr::Variant>, container_default: &attr::Default, private: &proc_macro2::Ident) -> Vec<Field<'a>>
+fn fields_from_ast<'a>(cx: &crate::internals::Ctxt, fields: &'a syn::punctuated::Punctuated<syn::Field, token::Comma>, attrs: Option<&attr::Variant>, container_default: &attr::Default, private: &proc_macro2::Ident) -> Vec<Field<'a>>
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/ast.rs:198-218`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/ast.rs#L198-L218)*
 

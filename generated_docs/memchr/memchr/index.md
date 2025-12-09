@@ -4,6 +4,60 @@
 
 # Module `memchr`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Memchr`](#memchr)
+  - [`Memchr2`](#memchr2)
+  - [`Memchr3`](#memchr3)
+- [Functions](#functions)
+  - [`memchr`](#memchr)
+  - [`memrchr`](#memrchr)
+  - [`memchr2`](#memchr2)
+  - [`memrchr2`](#memrchr2)
+  - [`memchr3`](#memchr3)
+  - [`memrchr3`](#memrchr3)
+  - [`memchr_iter`](#memchr_iter)
+  - [`memrchr_iter`](#memrchr_iter)
+  - [`memchr2_iter`](#memchr2_iter)
+  - [`memrchr2_iter`](#memrchr2_iter)
+  - [`memchr3_iter`](#memchr3_iter)
+  - [`memrchr3_iter`](#memrchr3_iter)
+  - [`memchr_raw`](#memchr_raw)
+  - [`memrchr_raw`](#memrchr_raw)
+  - [`memchr2_raw`](#memchr2_raw)
+  - [`memrchr2_raw`](#memrchr2_raw)
+  - [`memchr3_raw`](#memchr3_raw)
+  - [`memrchr3_raw`](#memrchr3_raw)
+  - [`count_raw`](#count_raw)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Memchr`](#memchr) | struct | An iterator over all occurrences of a single byte in a haystack. |
+| [`Memchr2`](#memchr2) | struct | An iterator over all occurrences of two possible bytes in a haystack. |
+| [`Memchr3`](#memchr3) | struct | An iterator over all occurrences of three possible bytes in a haystack. |
+| [`memchr`](#memchr) | fn | Search for the first occurrence of a byte in a slice. |
+| [`memrchr`](#memrchr) | fn | Search for the last occurrence of a byte in a slice. |
+| [`memchr2`](#memchr2) | fn | Search for the first occurrence of two possible bytes in a haystack. |
+| [`memrchr2`](#memrchr2) | fn | Search for the last occurrence of two possible bytes in a haystack. |
+| [`memchr3`](#memchr3) | fn | Search for the first occurrence of three possible bytes in a haystack. |
+| [`memrchr3`](#memrchr3) | fn | Search for the last occurrence of three possible bytes in a haystack. |
+| [`memchr_iter`](#memchr_iter) | fn | Returns an iterator over all occurrences of the needle in a haystack. |
+| [`memrchr_iter`](#memrchr_iter) | fn | Returns an iterator over all occurrences of the needle in a haystack, in reverse. |
+| [`memchr2_iter`](#memchr2_iter) | fn | Returns an iterator over all occurrences of the needles in a haystack. |
+| [`memrchr2_iter`](#memrchr2_iter) | fn | Returns an iterator over all occurrences of the needles in a haystack, in reverse. |
+| [`memchr3_iter`](#memchr3_iter) | fn | Returns an iterator over all occurrences of the needles in a haystack. |
+| [`memrchr3_iter`](#memrchr3_iter) | fn | Returns an iterator over all occurrences of the needles in a haystack, in reverse. |
+| [`memchr_raw`](#memchr_raw) | fn | memchr, but using raw pointers to represent the haystack. |
+| [`memrchr_raw`](#memrchr_raw) | fn | memrchr, but using raw pointers to represent the haystack. |
+| [`memchr2_raw`](#memchr2_raw) | fn | memchr2, but using raw pointers to represent the haystack. |
+| [`memrchr2_raw`](#memrchr2_raw) | fn | memrchr2, but using raw pointers to represent the haystack. |
+| [`memchr3_raw`](#memchr3_raw) | fn | memchr3, but using raw pointers to represent the haystack. |
+| [`memrchr3_raw`](#memrchr3_raw) | fn | memrchr3, but using raw pointers to represent the haystack. |
+| [`count_raw`](#count_raw) | fn | Count all matching bytes, but using raw pointers to represent the haystack. |
+
 ## Structs
 
 ### `Memchr<'h>`
@@ -15,12 +69,14 @@ struct Memchr<'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:288-291`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L288-L291)*
+
 An iterator over all occurrences of a single byte in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr_iter`](../index.md) or `[memrchr_iter`]
+This iterator is created by the [`memchr_iter`](#memchr-iter) or `[memrchr_iter`]
 functions. It can also be created with the `Memchr::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -28,41 +84,41 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](../index.md)
+- <span id="memchr-new"></span>`fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](#memchr)
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Memchr<'h>`
+##### `impl Clone for Memchr<'h>`
 
-- `fn clone(self: &Self) -> Memchr<'h>` — [`Memchr`](../index.md)
+- <span id="memchr-clone"></span>`fn clone(&self) -> Memchr<'h>` — [`Memchr`](#memchr)
 
-##### `impl<'h> Debug for Memchr<'h>`
+##### `impl Debug for Memchr<'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="memchr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'h> DoubleEndedIterator for Memchr<'h>`
+##### `impl DoubleEndedIterator for Memchr<'h>`
 
-- `fn next_back(self: &mut Self) -> Option<usize>`
+- <span id="memchr-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<'h> FusedIterator for Memchr<'h>`
+##### `impl FusedIterator for Memchr<'h>`
 
-##### `impl<I> IntoIterator for Memchr<'h>`
+##### `impl IntoIterator for Memchr<'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="memchr-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="memchr-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="memchr-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h> Iterator for Memchr<'h>`
+##### `impl Iterator for Memchr<'h>`
 
-- `type Item = usize`
+- <span id="memchr-type-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="memchr-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn count(self: Self) -> usize`
+- <span id="memchr-count"></span>`fn count(self) -> usize`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="memchr-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `Memchr2<'h>`
 
@@ -74,12 +130,14 @@ struct Memchr2<'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:364-368`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L364-L368)*
+
 An iterator over all occurrences of two possible bytes in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](../index.md) or `[memrchr2_iter`]
+This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
 functions. It can also be created with the `Memchr2::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -87,39 +145,39 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](../index.md)
+- <span id="memchr2-new"></span>`fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](#memchr2)
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Memchr2<'h>`
+##### `impl Clone for Memchr2<'h>`
 
-- `fn clone(self: &Self) -> Memchr2<'h>` — [`Memchr2`](../index.md)
+- <span id="memchr2-clone"></span>`fn clone(&self) -> Memchr2<'h>` — [`Memchr2`](#memchr2)
 
-##### `impl<'h> Debug for Memchr2<'h>`
+##### `impl Debug for Memchr2<'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="memchr2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'h> DoubleEndedIterator for Memchr2<'h>`
+##### `impl DoubleEndedIterator for Memchr2<'h>`
 
-- `fn next_back(self: &mut Self) -> Option<usize>`
+- <span id="memchr2-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<'h> FusedIterator for Memchr2<'h>`
+##### `impl FusedIterator for Memchr2<'h>`
 
-##### `impl<I> IntoIterator for Memchr2<'h>`
+##### `impl IntoIterator for Memchr2<'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="memchr2-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="memchr2-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="memchr2-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h> Iterator for Memchr2<'h>`
+##### `impl Iterator for Memchr2<'h>`
 
-- `type Item = usize`
+- <span id="memchr2-type-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="memchr2-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="memchr2-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `Memchr3<'h>`
 
@@ -132,12 +190,14 @@ struct Memchr3<'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:432-437`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L432-L437)*
+
 An iterator over all occurrences of three possible bytes in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](../index.md) or `[memrchr2_iter`]
+This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
 functions. It can also be created with the `Memchr3::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -145,39 +205,39 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](../index.md)
+- <span id="memchr3-new"></span>`fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](#memchr3)
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Memchr3<'h>`
+##### `impl Clone for Memchr3<'h>`
 
-- `fn clone(self: &Self) -> Memchr3<'h>` — [`Memchr3`](../index.md)
+- <span id="memchr3-clone"></span>`fn clone(&self) -> Memchr3<'h>` — [`Memchr3`](#memchr3)
 
-##### `impl<'h> Debug for Memchr3<'h>`
+##### `impl Debug for Memchr3<'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="memchr3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'h> DoubleEndedIterator for Memchr3<'h>`
+##### `impl DoubleEndedIterator for Memchr3<'h>`
 
-- `fn next_back(self: &mut Self) -> Option<usize>`
+- <span id="memchr3-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<'h> FusedIterator for Memchr3<'h>`
+##### `impl FusedIterator for Memchr3<'h>`
 
-##### `impl<I> IntoIterator for Memchr3<'h>`
+##### `impl IntoIterator for Memchr3<'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="memchr3-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="memchr3-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="memchr3-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h> Iterator for Memchr3<'h>`
+##### `impl Iterator for Memchr3<'h>`
 
-- `type Item = usize`
+- <span id="memchr3-type-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="memchr3-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="memchr3-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ## Functions
 
@@ -186,6 +246,8 @@ searched.
 ```rust
 fn memchr(needle: u8, haystack: &[u8]) -> Option<usize>
 ```
+
+*Defined in [`memchr-2.7.6/src/memchr.rs:27-35`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L27-L35)*
 
 Search for the first occurrence of a byte in a slice.
 
@@ -215,6 +277,8 @@ assert_eq!(memchr(b'k', haystack), Some(8));
 fn memrchr(needle: u8, haystack: &[u8]) -> Option<usize>
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:59-67`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L59-L67)*
+
 Search for the last occurrence of a byte in a slice.
 
 This returns the index corresponding to the last occurrence of `needle` in
@@ -242,6 +306,8 @@ assert_eq!(memrchr(b'o', haystack), Some(17));
 ```rust
 fn memchr2(needle1: u8, needle2: u8, haystack: &[u8]) -> Option<usize>
 ```
+
+*Defined in [`memchr-2.7.6/src/memchr.rs:92-100`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L92-L100)*
 
 Search for the first occurrence of two possible bytes in a haystack.
 
@@ -272,6 +338,8 @@ assert_eq!(memchr2(b'k', b'q', haystack), Some(4));
 fn memrchr2(needle1: u8, needle2: u8, haystack: &[u8]) -> Option<usize>
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:125-133`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L125-L133)*
+
 Search for the last occurrence of two possible bytes in a haystack.
 
 This returns the index corresponding to the last occurrence of one of the
@@ -300,6 +368,8 @@ assert_eq!(memrchr2(b'k', b'o', haystack), Some(17));
 ```rust
 fn memchr3(needle1: u8, needle2: u8, needle3: u8, haystack: &[u8]) -> Option<usize>
 ```
+
+*Defined in [`memchr-2.7.6/src/memchr.rs:158-171`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L158-L171)*
 
 Search for the first occurrence of three possible bytes in a haystack.
 
@@ -330,6 +400,8 @@ assert_eq!(memchr3(b'k', b'q', b'u', haystack), Some(4));
 fn memrchr3(needle1: u8, needle2: u8, needle3: u8, haystack: &[u8]) -> Option<usize>
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:196-209`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L196-L209)*
+
 Search for the last occurrence of three possible bytes in a haystack.
 
 This returns the index corresponding to the last occurrence of one of the
@@ -359,6 +431,8 @@ assert_eq!(memrchr3(b'k', b'o', b'n', haystack), Some(17));
 fn memchr_iter<'h>(needle: u8, haystack: &'h [u8]) -> Memchr<'h>
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:216-218`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L216-L218)*
+
 Returns an iterator over all occurrences of the needle in a haystack.
 
 The iterator returned implements `DoubleEndedIterator`. This means it
@@ -370,6 +444,8 @@ can also be used to find occurrences in reverse order.
 fn memrchr_iter(needle: u8, haystack: &[u8]) -> core::iter::Rev<Memchr<'_>>
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:223-225`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L223-L225)*
+
 Returns an iterator over all occurrences of the needle in a haystack, in
 reverse.
 
@@ -378,6 +454,8 @@ reverse.
 ```rust
 fn memchr2_iter<'h>(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>
 ```
+
+*Defined in [`memchr-2.7.6/src/memchr.rs:232-238`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L232-L238)*
 
 Returns an iterator over all occurrences of the needles in a haystack.
 
@@ -390,6 +468,8 @@ can also be used to find occurrences in reverse order.
 fn memrchr2_iter(needle1: u8, needle2: u8, haystack: &[u8]) -> core::iter::Rev<Memchr2<'_>>
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:243-249`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L243-L249)*
+
 Returns an iterator over all occurrences of the needles in a haystack, in
 reverse.
 
@@ -398,6 +478,8 @@ reverse.
 ```rust
 fn memchr3_iter<'h>(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>
 ```
+
+*Defined in [`memchr-2.7.6/src/memchr.rs:256-263`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L256-L263)*
 
 Returns an iterator over all occurrences of the needles in a haystack.
 
@@ -410,6 +492,8 @@ can also be used to find occurrences in reverse order.
 fn memrchr3_iter(needle1: u8, needle2: u8, needle3: u8, haystack: &[u8]) -> core::iter::Rev<Memchr3<'_>>
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:268-275`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L268-L275)*
+
 Returns an iterator over all occurrences of the needles in a haystack, in
 reverse.
 
@@ -418,6 +502,8 @@ reverse.
 ```rust
 unsafe fn memchr_raw(needle: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
+
+*Defined in [`memchr-2.7.6/src/memchr.rs:504-533`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L504-L533)*
 
 memchr, but using raw pointers to represent the haystack.
 
@@ -431,6 +517,8 @@ Pointers must be valid. See `One::find_raw`.
 unsafe fn memrchr_raw(needle: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:541-566`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L541-L566)*
+
 memrchr, but using raw pointers to represent the haystack.
 
 # Safety
@@ -442,6 +530,8 @@ Pointers must be valid. See `One::rfind_raw`.
 ```rust
 unsafe fn memchr2_raw(needle1: u8, needle2: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
+
+*Defined in [`memchr-2.7.6/src/memchr.rs:574-601`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L574-L601)*
 
 memchr2, but using raw pointers to represent the haystack.
 
@@ -455,6 +545,8 @@ Pointers must be valid. See `Two::find_raw`.
 unsafe fn memrchr2_raw(needle1: u8, needle2: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:609-638`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L609-L638)*
+
 memrchr2, but using raw pointers to represent the haystack.
 
 # Safety
@@ -466,6 +558,8 @@ Pointers must be valid. See `Two::rfind_raw`.
 ```rust
 unsafe fn memchr3_raw(needle1: u8, needle2: u8, needle3: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
+
+*Defined in [`memchr-2.7.6/src/memchr.rs:646-680`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L646-L680)*
 
 memchr3, but using raw pointers to represent the haystack.
 
@@ -479,6 +573,8 @@ Pointers must be valid. See `Three::find_raw`.
 unsafe fn memrchr3_raw(needle1: u8, needle2: u8, needle3: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:688-722`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L688-L722)*
+
 memrchr3, but using raw pointers to represent the haystack.
 
 # Safety
@@ -490,6 +586,8 @@ Pointers must be valid. See `Three::rfind_raw`.
 ```rust
 unsafe fn count_raw(needle: u8, start: *const u8, end: *const u8) -> usize
 ```
+
+*Defined in [`memchr-2.7.6/src/memchr.rs:730-751`](../../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L730-L751)*
 
 Count all matching bytes, but using raw pointers to represent the haystack.
 

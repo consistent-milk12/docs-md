@@ -4,6 +4,12 @@
 
 # Module `global`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Global`](#global) | struct | The global memory allocator. |
+
 ## Structs
 
 ### `Global`
@@ -11,6 +17,8 @@
 ```rust
 struct Global;
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
 
 The global memory allocator.
 
@@ -23,37 +31,37 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 #### Implementations
 
-- `fn alloc_impl(self: &Self, layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
+- <span id="global-alloc-impl"></span>`fn alloc_impl(&self, layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
 
-- `unsafe fn grow_impl(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
+- <span id="global-grow-impl"></span>`unsafe fn grow_impl(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Allocator for Global`
 
-- `fn allocate(self: &Self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
+- <span id="global-allocate"></span>`fn allocate(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
 
-- `fn allocate_zeroed(self: &Self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
+- <span id="global-allocate-zeroed"></span>`fn allocate_zeroed(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
 
-- `unsafe fn deallocate(self: &Self, ptr: NonNull<u8>, layout: Layout)` — [`Layout`](../index.md)
+- <span id="global-deallocate"></span>`unsafe fn deallocate(&self, ptr: NonNull<u8>, layout: Layout)` — [`Layout`](../index.md)
 
-- `unsafe fn grow(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
+- <span id="global-grow"></span>`unsafe fn grow(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
 
-- `unsafe fn grow_zeroed(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
+- <span id="global-grow-zeroed"></span>`unsafe fn grow_zeroed(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
 
-- `unsafe fn shrink(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
+- <span id="global-shrink"></span>`unsafe fn shrink(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](../index.md), [`AllocError`](../index.md)
 
 ##### `impl Clone for Global`
 
-- `fn clone(self: &Self) -> Global` — [`Global`](../index.md)
+- <span id="global-clone"></span>`fn clone(&self) -> Global` — [`Global`](#global)
 
 ##### `impl Copy for Global`
 
 ##### `impl Debug for Global`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="global-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Global`
 
-- `fn default() -> Global` — [`Global`](../index.md)
+- <span id="global-default"></span>`fn default() -> Global` — [`Global`](#global)
 

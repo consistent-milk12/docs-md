@@ -4,6 +4,12 @@
 
 # Module `fold_chunks`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FoldChunks`](#foldchunks) | struct | `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a function over them, producing a single value for each group. |
+
 ## Structs
 
 ### `FoldChunks<I, ID, F>`
@@ -17,63 +23,65 @@ struct FoldChunks<I, ID, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../../.source_1765210505/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
+
 `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
 
-This struct is created by the `fold_chunks()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `fold_chunks()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
 
-- `fn new(base: I, chunk_size: usize, identity: ID, fold_op: F) -> Self`
+- <span id="foldchunks-new"></span>`fn new(base: I, chunk_size: usize, identity: ID, fold_op: F) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FoldChunks<I, ID, F>`
+##### `impl<I: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for FoldChunks<I, ID, F>`
 
-- `fn clone(self: &Self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](../index.md)
+- <span id="foldchunks-clone"></span>`fn clone(&self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](#foldchunks)
 
 ##### `impl<I: Debug, ID, F> Debug for FoldChunks<I, ID, F>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="foldchunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I, ID, U, F> IndexedParallelIterator for FoldChunks<I, ID, F>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="foldchunks-len"></span>`fn len(&self) -> usize`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="foldchunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="foldchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for FoldChunks<I, ID, F>`
 
 ##### `impl<T> IntoParallelIterator for FoldChunks<I, ID, F>`
 
-- `type Iter = T`
+- <span id="foldchunks-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="foldchunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="foldchunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, ID, U, F> ParallelIterator for FoldChunks<I, ID, F>`
 
-- `type Item = U`
+- <span id="foldchunks-type-item"></span>`type Item = U`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="foldchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="foldchunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for FoldChunks<I, ID, F>`
 
-- `const ALIGN: usize`
+- <span id="foldchunks-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="foldchunks-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="foldchunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="foldchunks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="foldchunks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="foldchunks-drop"></span>`unsafe fn drop(ptr: usize)`
 

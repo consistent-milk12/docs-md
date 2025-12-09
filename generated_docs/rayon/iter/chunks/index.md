@@ -4,6 +4,14 @@
 
 # Module `chunks`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Chunks`](#chunks) | struct | `Chunks` is an iterator that groups elements of an underlying iterator. |
+| [`ChunkProducer`](#chunkproducer) | struct |  |
+| [`ChunkSeq`](#chunkseq) | struct |  |
+
 ## Structs
 
 ### `Chunks<I>`
@@ -15,64 +23,66 @@ struct Chunks<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chunks.rs:11-14`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chunks.rs#L11-L14)*
+
 `Chunks` is an iterator that groups elements of an underlying iterator.
 
-This struct is created by the `chunks()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `chunks()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
 
-- `fn new(i: I, size: usize) -> Self`
+- <span id="chunks-new"></span>`fn new(i: I, size: usize) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for Chunks<I>`
+##### `impl<I: clone::Clone> Clone for Chunks<I>`
 
-- `fn clone(self: &Self) -> Chunks<I>` — [`Chunks`](../index.md)
+- <span id="chunks-clone"></span>`fn clone(&self) -> Chunks<I>` — [`Chunks`](#chunks)
 
-##### `impl<I: $crate::fmt::Debug> Debug for Chunks<I>`
+##### `impl<I: fmt::Debug> Debug for Chunks<I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="chunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IndexedParallelIterator for Chunks<I>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="chunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="chunks-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for Chunks<I>`
 
 ##### `impl<T> IntoParallelIterator for Chunks<I>`
 
-- `type Iter = T`
+- <span id="chunks-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="chunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="chunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Chunks<I>`
 
-- `type Item = Vec<<I as ParallelIterator>::Item>`
+- <span id="chunks-type-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="chunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Chunks<I>`
 
-- `const ALIGN: usize`
+- <span id="chunks-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chunks-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chunks-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ChunkProducer<P, F>`
 
@@ -85,9 +95,11 @@ struct ChunkProducer<P, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chunks.rs:90-95`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chunks.rs#L90-L95)*
+
 #### Implementations
 
-- `fn new(chunk_size: usize, len: usize, base: P, map: F) -> Self`
+- <span id="chunkproducer-new"></span>`fn new(chunk_size: usize, len: usize, base: P, map: F) -> Self`
 
 #### Trait Implementations
 
@@ -95,31 +107,31 @@ struct ChunkProducer<P, F> {
 
 ##### `impl<T> Pointable for ChunkProducer<P, F>`
 
-- `const ALIGN: usize`
+- <span id="chunkproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chunkproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunkproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunkproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunkproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chunkproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<P, F, T> Producer for ChunkProducer<P, F>`
 
-- `type Item = T`
+- <span id="chunkproducer-type-item"></span>`type Item = T`
 
-- `type IntoIter = Map<ChunkSeq<P>, F>`
+- <span id="chunkproducer-type-intoiter"></span>`type IntoIter = Map<ChunkSeq<P>, F>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="chunkproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="chunkproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
-- `fn min_len(self: &Self) -> usize`
+- <span id="chunkproducer-min-len"></span>`fn min_len(&self) -> usize`
 
-- `fn max_len(self: &Self) -> usize`
+- <span id="chunkproducer-max-len"></span>`fn max_len(&self) -> usize`
 
 ### `ChunkSeq<P>`
 
@@ -131,45 +143,47 @@ struct ChunkSeq<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chunks.rs:153-157`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chunks.rs#L153-L157)*
+
 #### Trait Implementations
 
 ##### `impl<P> DoubleEndedIterator for ChunkSeq<P>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="chunkseq-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<P> ExactSizeIterator for ChunkSeq<P>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="chunkseq-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<T> IntoEither for ChunkSeq<P>`
 
 ##### `impl<I> IntoIterator for ChunkSeq<P>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="chunkseq-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="chunkseq-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="chunkseq-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<P> Iterator for ChunkSeq<P>`
 
-- `type Item = <P as Producer>::IntoIter`
+- <span id="chunkseq-type-item"></span>`type Item = <P as Producer>::IntoIter`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="chunkseq-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="chunkseq-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T> Pointable for ChunkSeq<P>`
 
-- `const ALIGN: usize`
+- <span id="chunkseq-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chunkseq-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunkseq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunkseq-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunkseq-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chunkseq-drop"></span>`unsafe fn drop(ptr: usize)`
 

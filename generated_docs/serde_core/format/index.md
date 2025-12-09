@@ -4,6 +4,12 @@
 
 # Module `format`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Buf`](#buf) | struct |  |
+
 ## Structs
 
 ### `Buf<'a>`
@@ -15,15 +21,17 @@ struct Buf<'a> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/format.rs:4-7`](../../../.source_1765210505/serde_core-1.0.228/src/format.rs#L4-L7)*
+
 #### Implementations
 
-- `fn new(bytes: &'a mut [u8]) -> Self`
+- <span id="buf-new"></span>`fn new(bytes: &'a mut [u8]) -> Self`
 
-- `fn as_str(self: &Self) -> &str`
+- <span id="buf-as-str"></span>`fn as_str(&self) -> &str`
 
 #### Trait Implementations
 
-##### `impl<'a> Write for Buf<'a>`
+##### `impl Write for Buf<'a>`
 
-- `fn write_str(self: &mut Self, s: &str) -> fmt::Result`
+- <span id="buf-write-str"></span>`fn write_str(&mut self, s: &str) -> fmt::Result`
 

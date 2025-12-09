@@ -11,6 +11,1140 @@ some traits useful for those.
 
 This module is based heavily on header files from MacOSX11.1.sdk.
 
+## Contents
+
+- [Structs](#structs)
+  - [`DyldCacheHeader`](#dyldcacheheader)
+  - [`DyldCacheMappingInfo`](#dyldcachemappinginfo)
+  - [`DyldCacheMappingAndSlideInfo`](#dyldcachemappingandslideinfo)
+  - [`DyldCacheImageInfo`](#dyldcacheimageinfo)
+  - [`DyldCacheSlideInfo2`](#dyldcacheslideinfo2)
+  - [`DyldCacheSlideInfo3`](#dyldcacheslideinfo3)
+  - [`DyldCacheSlidePointer3`](#dyldcacheslidepointer3)
+  - [`DyldCacheSlideInfo5`](#dyldcacheslideinfo5)
+  - [`DyldCacheSlidePointer5`](#dyldcacheslidepointer5)
+  - [`DyldSubCacheEntryV1`](#dyldsubcacheentryv1)
+  - [`DyldSubCacheEntryV2`](#dyldsubcacheentryv2)
+  - [`FatHeader`](#fatheader)
+  - [`FatArch32`](#fatarch32)
+  - [`FatArch64`](#fatarch64)
+  - [`MachHeader32`](#machheader32)
+  - [`MachHeader64`](#machheader64)
+  - [`LoadCommand`](#loadcommand)
+  - [`LcStr`](#lcstr)
+  - [`SegmentCommand32`](#segmentcommand32)
+  - [`SegmentCommand64`](#segmentcommand64)
+  - [`Section32`](#section32)
+  - [`Section64`](#section64)
+  - [`Fvmlib`](#fvmlib)
+  - [`FvmlibCommand`](#fvmlibcommand)
+  - [`Dylib`](#dylib)
+  - [`DylibCommand`](#dylibcommand)
+  - [`SubFrameworkCommand`](#subframeworkcommand)
+  - [`SubClientCommand`](#subclientcommand)
+  - [`SubUmbrellaCommand`](#subumbrellacommand)
+  - [`SubLibraryCommand`](#sublibrarycommand)
+  - [`PreboundDylibCommand`](#prebounddylibcommand)
+  - [`DylinkerCommand`](#dylinkercommand)
+  - [`ThreadCommand`](#threadcommand)
+  - [`RoutinesCommand32`](#routinescommand32)
+  - [`RoutinesCommand64`](#routinescommand64)
+  - [`SymtabCommand`](#symtabcommand)
+  - [`DysymtabCommand`](#dysymtabcommand)
+  - [`DylibTableOfContents`](#dylibtableofcontents)
+  - [`DylibModule32`](#dylibmodule32)
+  - [`DylibModule64`](#dylibmodule64)
+  - [`DylibReference`](#dylibreference)
+  - [`TwolevelHintsCommand`](#twolevelhintscommand)
+  - [`TwolevelHint`](#twolevelhint)
+  - [`PrebindCksumCommand`](#prebindcksumcommand)
+  - [`UuidCommand`](#uuidcommand)
+  - [`RpathCommand`](#rpathcommand)
+  - [`LinkeditDataCommand`](#linkeditdatacommand)
+  - [`FilesetEntryCommand`](#filesetentrycommand)
+  - [`EncryptionInfoCommand32`](#encryptioninfocommand32)
+  - [`EncryptionInfoCommand64`](#encryptioninfocommand64)
+  - [`VersionMinCommand`](#versionmincommand)
+  - [`BuildVersionCommand`](#buildversioncommand)
+  - [`BuildToolVersion`](#buildtoolversion)
+  - [`DyldInfoCommand`](#dyldinfocommand)
+  - [`LinkerOptionCommand`](#linkeroptioncommand)
+  - [`SymsegCommand`](#symsegcommand)
+  - [`IdentCommand`](#identcommand)
+  - [`FvmfileCommand`](#fvmfilecommand)
+  - [`EntryPointCommand`](#entrypointcommand)
+  - [`SourceVersionCommand`](#sourceversioncommand)
+  - [`DataInCodeEntry`](#dataincodeentry)
+  - [`NoteCommand`](#notecommand)
+  - [`Nlist32`](#nlist32)
+  - [`Nlist64`](#nlist64)
+  - [`Relocation`](#relocation)
+  - [`RelocationInfo`](#relocationinfo)
+  - [`ScatteredRelocationInfo`](#scatteredrelocationinfo)
+- [Enums](#enums)
+  - [`PtrauthKey`](#ptrauthkey)
+- [Functions](#functions)
+  - [`cpu_subtype_intel`](#cpu_subtype_intel)
+  - [`cpu_subtype_intel_family`](#cpu_subtype_intel_family)
+  - [`cpu_subtype_intel_model`](#cpu_subtype_intel_model)
+- [Constants](#constants)
+  - [`CPU_ARCH_MASK`](#cpu_arch_mask)
+  - [`CPU_ARCH_ABI64`](#cpu_arch_abi64)
+  - [`CPU_ARCH_ABI64_32`](#cpu_arch_abi64_32)
+  - [`CPU_TYPE_ANY`](#cpu_type_any)
+  - [`CPU_TYPE_VAX`](#cpu_type_vax)
+  - [`CPU_TYPE_MC680X0`](#cpu_type_mc680x0)
+  - [`CPU_TYPE_X86`](#cpu_type_x86)
+  - [`CPU_TYPE_X86_64`](#cpu_type_x86_64)
+  - [`CPU_TYPE_MIPS`](#cpu_type_mips)
+  - [`CPU_TYPE_MC98000`](#cpu_type_mc98000)
+  - [`CPU_TYPE_HPPA`](#cpu_type_hppa)
+  - [`CPU_TYPE_ARM`](#cpu_type_arm)
+  - [`CPU_TYPE_ARM64`](#cpu_type_arm64)
+  - [`CPU_TYPE_ARM64_32`](#cpu_type_arm64_32)
+  - [`CPU_TYPE_MC88000`](#cpu_type_mc88000)
+  - [`CPU_TYPE_SPARC`](#cpu_type_sparc)
+  - [`CPU_TYPE_I860`](#cpu_type_i860)
+  - [`CPU_TYPE_ALPHA`](#cpu_type_alpha)
+  - [`CPU_TYPE_POWERPC`](#cpu_type_powerpc)
+  - [`CPU_TYPE_POWERPC64`](#cpu_type_powerpc64)
+  - [`CPU_SUBTYPE_MASK`](#cpu_subtype_mask)
+  - [`CPU_SUBTYPE_LIB64`](#cpu_subtype_lib64)
+  - [`CPU_SUBTYPE_PTRAUTH_ABI`](#cpu_subtype_ptrauth_abi)
+  - [`CPU_SUBTYPE_ANY`](#cpu_subtype_any)
+  - [`CPU_SUBTYPE_MULTIPLE`](#cpu_subtype_multiple)
+  - [`CPU_SUBTYPE_LITTLE_ENDIAN`](#cpu_subtype_little_endian)
+  - [`CPU_SUBTYPE_BIG_ENDIAN`](#cpu_subtype_big_endian)
+  - [`CPU_SUBTYPE_VAX_ALL`](#cpu_subtype_vax_all)
+  - [`CPU_SUBTYPE_VAX780`](#cpu_subtype_vax780)
+  - [`CPU_SUBTYPE_VAX785`](#cpu_subtype_vax785)
+  - [`CPU_SUBTYPE_VAX750`](#cpu_subtype_vax750)
+  - [`CPU_SUBTYPE_VAX730`](#cpu_subtype_vax730)
+  - [`CPU_SUBTYPE_UVAXI`](#cpu_subtype_uvaxi)
+  - [`CPU_SUBTYPE_UVAXII`](#cpu_subtype_uvaxii)
+  - [`CPU_SUBTYPE_VAX8200`](#cpu_subtype_vax8200)
+  - [`CPU_SUBTYPE_VAX8500`](#cpu_subtype_vax8500)
+  - [`CPU_SUBTYPE_VAX8600`](#cpu_subtype_vax8600)
+  - [`CPU_SUBTYPE_VAX8650`](#cpu_subtype_vax8650)
+  - [`CPU_SUBTYPE_VAX8800`](#cpu_subtype_vax8800)
+  - [`CPU_SUBTYPE_UVAXIII`](#cpu_subtype_uvaxiii)
+  - [`CPU_SUBTYPE_MC680X0_ALL`](#cpu_subtype_mc680x0_all)
+  - [`CPU_SUBTYPE_MC68030`](#cpu_subtype_mc68030)
+  - [`CPU_SUBTYPE_MC68040`](#cpu_subtype_mc68040)
+  - [`CPU_SUBTYPE_MC68030_ONLY`](#cpu_subtype_mc68030_only)
+  - [`CPU_SUBTYPE_I386_ALL`](#cpu_subtype_i386_all)
+  - [`CPU_SUBTYPE_386`](#cpu_subtype_386)
+  - [`CPU_SUBTYPE_486`](#cpu_subtype_486)
+  - [`CPU_SUBTYPE_486SX`](#cpu_subtype_486sx)
+  - [`CPU_SUBTYPE_586`](#cpu_subtype_586)
+  - [`CPU_SUBTYPE_PENT`](#cpu_subtype_pent)
+  - [`CPU_SUBTYPE_PENTPRO`](#cpu_subtype_pentpro)
+  - [`CPU_SUBTYPE_PENTII_M3`](#cpu_subtype_pentii_m3)
+  - [`CPU_SUBTYPE_PENTII_M5`](#cpu_subtype_pentii_m5)
+  - [`CPU_SUBTYPE_CELERON`](#cpu_subtype_celeron)
+  - [`CPU_SUBTYPE_CELERON_MOBILE`](#cpu_subtype_celeron_mobile)
+  - [`CPU_SUBTYPE_PENTIUM_3`](#cpu_subtype_pentium_3)
+  - [`CPU_SUBTYPE_PENTIUM_3_M`](#cpu_subtype_pentium_3_m)
+  - [`CPU_SUBTYPE_PENTIUM_3_XEON`](#cpu_subtype_pentium_3_xeon)
+  - [`CPU_SUBTYPE_PENTIUM_M`](#cpu_subtype_pentium_m)
+  - [`CPU_SUBTYPE_PENTIUM_4`](#cpu_subtype_pentium_4)
+  - [`CPU_SUBTYPE_PENTIUM_4_M`](#cpu_subtype_pentium_4_m)
+  - [`CPU_SUBTYPE_ITANIUM`](#cpu_subtype_itanium)
+  - [`CPU_SUBTYPE_ITANIUM_2`](#cpu_subtype_itanium_2)
+  - [`CPU_SUBTYPE_XEON`](#cpu_subtype_xeon)
+  - [`CPU_SUBTYPE_XEON_MP`](#cpu_subtype_xeon_mp)
+  - [`CPU_SUBTYPE_INTEL_FAMILY_MAX`](#cpu_subtype_intel_family_max)
+  - [`CPU_SUBTYPE_INTEL_MODEL_ALL`](#cpu_subtype_intel_model_all)
+  - [`CPU_SUBTYPE_X86_ALL`](#cpu_subtype_x86_all)
+  - [`CPU_SUBTYPE_X86_64_ALL`](#cpu_subtype_x86_64_all)
+  - [`CPU_SUBTYPE_X86_ARCH1`](#cpu_subtype_x86_arch1)
+  - [`CPU_SUBTYPE_X86_64_H`](#cpu_subtype_x86_64_h)
+  - [`CPU_SUBTYPE_MIPS_ALL`](#cpu_subtype_mips_all)
+  - [`CPU_SUBTYPE_MIPS_R2300`](#cpu_subtype_mips_r2300)
+  - [`CPU_SUBTYPE_MIPS_R2600`](#cpu_subtype_mips_r2600)
+  - [`CPU_SUBTYPE_MIPS_R2800`](#cpu_subtype_mips_r2800)
+  - [`CPU_SUBTYPE_MIPS_R2000A`](#cpu_subtype_mips_r2000a)
+  - [`CPU_SUBTYPE_MIPS_R2000`](#cpu_subtype_mips_r2000)
+  - [`CPU_SUBTYPE_MIPS_R3000A`](#cpu_subtype_mips_r3000a)
+  - [`CPU_SUBTYPE_MIPS_R3000`](#cpu_subtype_mips_r3000)
+  - [`CPU_SUBTYPE_MC98000_ALL`](#cpu_subtype_mc98000_all)
+  - [`CPU_SUBTYPE_MC98601`](#cpu_subtype_mc98601)
+  - [`CPU_SUBTYPE_HPPA_ALL`](#cpu_subtype_hppa_all)
+  - [`CPU_SUBTYPE_HPPA_7100LC`](#cpu_subtype_hppa_7100lc)
+  - [`CPU_SUBTYPE_MC88000_ALL`](#cpu_subtype_mc88000_all)
+  - [`CPU_SUBTYPE_MC88100`](#cpu_subtype_mc88100)
+  - [`CPU_SUBTYPE_MC88110`](#cpu_subtype_mc88110)
+  - [`CPU_SUBTYPE_SPARC_ALL`](#cpu_subtype_sparc_all)
+  - [`CPU_SUBTYPE_I860_ALL`](#cpu_subtype_i860_all)
+  - [`CPU_SUBTYPE_I860_860`](#cpu_subtype_i860_860)
+  - [`CPU_SUBTYPE_POWERPC_ALL`](#cpu_subtype_powerpc_all)
+  - [`CPU_SUBTYPE_POWERPC_601`](#cpu_subtype_powerpc_601)
+  - [`CPU_SUBTYPE_POWERPC_602`](#cpu_subtype_powerpc_602)
+  - [`CPU_SUBTYPE_POWERPC_603`](#cpu_subtype_powerpc_603)
+  - [`CPU_SUBTYPE_POWERPC_603E`](#cpu_subtype_powerpc_603e)
+  - [`CPU_SUBTYPE_POWERPC_603EV`](#cpu_subtype_powerpc_603ev)
+  - [`CPU_SUBTYPE_POWERPC_604`](#cpu_subtype_powerpc_604)
+  - [`CPU_SUBTYPE_POWERPC_604E`](#cpu_subtype_powerpc_604e)
+  - [`CPU_SUBTYPE_POWERPC_620`](#cpu_subtype_powerpc_620)
+  - [`CPU_SUBTYPE_POWERPC_750`](#cpu_subtype_powerpc_750)
+  - [`CPU_SUBTYPE_POWERPC_7400`](#cpu_subtype_powerpc_7400)
+  - [`CPU_SUBTYPE_POWERPC_7450`](#cpu_subtype_powerpc_7450)
+  - [`CPU_SUBTYPE_POWERPC_970`](#cpu_subtype_powerpc_970)
+  - [`CPU_SUBTYPE_ARM_ALL`](#cpu_subtype_arm_all)
+  - [`CPU_SUBTYPE_ARM_V4T`](#cpu_subtype_arm_v4t)
+  - [`CPU_SUBTYPE_ARM_V6`](#cpu_subtype_arm_v6)
+  - [`CPU_SUBTYPE_ARM_V5TEJ`](#cpu_subtype_arm_v5tej)
+  - [`CPU_SUBTYPE_ARM_XSCALE`](#cpu_subtype_arm_xscale)
+  - [`CPU_SUBTYPE_ARM_V7`](#cpu_subtype_arm_v7)
+  - [`CPU_SUBTYPE_ARM_V7F`](#cpu_subtype_arm_v7f)
+  - [`CPU_SUBTYPE_ARM_V7S`](#cpu_subtype_arm_v7s)
+  - [`CPU_SUBTYPE_ARM_V7K`](#cpu_subtype_arm_v7k)
+  - [`CPU_SUBTYPE_ARM_V8`](#cpu_subtype_arm_v8)
+  - [`CPU_SUBTYPE_ARM_V6M`](#cpu_subtype_arm_v6m)
+  - [`CPU_SUBTYPE_ARM_V7M`](#cpu_subtype_arm_v7m)
+  - [`CPU_SUBTYPE_ARM_V7EM`](#cpu_subtype_arm_v7em)
+  - [`CPU_SUBTYPE_ARM_V8M`](#cpu_subtype_arm_v8m)
+  - [`CPU_SUBTYPE_ARM64_ALL`](#cpu_subtype_arm64_all)
+  - [`CPU_SUBTYPE_ARM64_V8`](#cpu_subtype_arm64_v8)
+  - [`CPU_SUBTYPE_ARM64E`](#cpu_subtype_arm64e)
+  - [`CPU_SUBTYPE_ARM64_32_ALL`](#cpu_subtype_arm64_32_all)
+  - [`CPU_SUBTYPE_ARM64_32_V8`](#cpu_subtype_arm64_32_v8)
+  - [`VM_PROT_READ`](#vm_prot_read)
+  - [`VM_PROT_WRITE`](#vm_prot_write)
+  - [`VM_PROT_EXECUTE`](#vm_prot_execute)
+  - [`DYLD_CACHE_MAPPING_AUTH_DATA`](#dyld_cache_mapping_auth_data)
+  - [`DYLD_CACHE_MAPPING_DIRTY_DATA`](#dyld_cache_mapping_dirty_data)
+  - [`DYLD_CACHE_MAPPING_CONST_DATA`](#dyld_cache_mapping_const_data)
+  - [`DYLD_CACHE_MAPPING_TEXT_STUBS`](#dyld_cache_mapping_text_stubs)
+  - [`DYLD_CACHE_DYNAMIC_CONFIG_DATA`](#dyld_cache_dynamic_config_data)
+  - [`DYLD_CACHE_SLIDE_PAGE_ATTRS`](#dyld_cache_slide_page_attrs)
+  - [`DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA`](#dyld_cache_slide_page_attr_extra)
+  - [`DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_page_attr_no_rebase)
+  - [`DYLD_CACHE_SLIDE_PAGE_ATTR_END`](#dyld_cache_slide_page_attr_end)
+  - [`DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_v3_page_attr_no_rebase)
+  - [`DYLD_CACHE_SLIDE_V5_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_v5_page_attr_no_rebase)
+  - [`FAT_MAGIC`](#fat_magic)
+  - [`FAT_CIGAM`](#fat_cigam)
+  - [`FAT_MAGIC_64`](#fat_magic_64)
+  - [`FAT_CIGAM_64`](#fat_cigam_64)
+  - [`MH_MAGIC`](#mh_magic)
+  - [`MH_CIGAM`](#mh_cigam)
+  - [`MH_MAGIC_64`](#mh_magic_64)
+  - [`MH_CIGAM_64`](#mh_cigam_64)
+  - [`MH_OBJECT`](#mh_object)
+  - [`MH_EXECUTE`](#mh_execute)
+  - [`MH_FVMLIB`](#mh_fvmlib)
+  - [`MH_CORE`](#mh_core)
+  - [`MH_PRELOAD`](#mh_preload)
+  - [`MH_DYLIB`](#mh_dylib)
+  - [`MH_DYLINKER`](#mh_dylinker)
+  - [`MH_BUNDLE`](#mh_bundle)
+  - [`MH_DYLIB_STUB`](#mh_dylib_stub)
+  - [`MH_DSYM`](#mh_dsym)
+  - [`MH_KEXT_BUNDLE`](#mh_kext_bundle)
+  - [`MH_FILESET`](#mh_fileset)
+  - [`MH_NOUNDEFS`](#mh_noundefs)
+  - [`MH_INCRLINK`](#mh_incrlink)
+  - [`MH_DYLDLINK`](#mh_dyldlink)
+  - [`MH_BINDATLOAD`](#mh_bindatload)
+  - [`MH_PREBOUND`](#mh_prebound)
+  - [`MH_SPLIT_SEGS`](#mh_split_segs)
+  - [`MH_LAZY_INIT`](#mh_lazy_init)
+  - [`MH_TWOLEVEL`](#mh_twolevel)
+  - [`MH_FORCE_FLAT`](#mh_force_flat)
+  - [`MH_NOMULTIDEFS`](#mh_nomultidefs)
+  - [`MH_NOFIXPREBINDING`](#mh_nofixprebinding)
+  - [`MH_PREBINDABLE`](#mh_prebindable)
+  - [`MH_ALLMODSBOUND`](#mh_allmodsbound)
+  - [`MH_SUBSECTIONS_VIA_SYMBOLS`](#mh_subsections_via_symbols)
+  - [`MH_CANONICAL`](#mh_canonical)
+  - [`MH_WEAK_DEFINES`](#mh_weak_defines)
+  - [`MH_BINDS_TO_WEAK`](#mh_binds_to_weak)
+  - [`MH_ALLOW_STACK_EXECUTION`](#mh_allow_stack_execution)
+  - [`MH_ROOT_SAFE`](#mh_root_safe)
+  - [`MH_SETUID_SAFE`](#mh_setuid_safe)
+  - [`MH_NO_REEXPORTED_DYLIBS`](#mh_no_reexported_dylibs)
+  - [`MH_PIE`](#mh_pie)
+  - [`MH_DEAD_STRIPPABLE_DYLIB`](#mh_dead_strippable_dylib)
+  - [`MH_HAS_TLV_DESCRIPTORS`](#mh_has_tlv_descriptors)
+  - [`MH_NO_HEAP_EXECUTION`](#mh_no_heap_execution)
+  - [`MH_APP_EXTENSION_SAFE`](#mh_app_extension_safe)
+  - [`MH_NLIST_OUTOFSYNC_WITH_DYLDINFO`](#mh_nlist_outofsync_with_dyldinfo)
+  - [`MH_SIM_SUPPORT`](#mh_sim_support)
+  - [`MH_DYLIB_IN_CACHE`](#mh_dylib_in_cache)
+  - [`LC_REQ_DYLD`](#lc_req_dyld)
+  - [`LC_SEGMENT`](#lc_segment)
+  - [`LC_SYMTAB`](#lc_symtab)
+  - [`LC_SYMSEG`](#lc_symseg)
+  - [`LC_THREAD`](#lc_thread)
+  - [`LC_UNIXTHREAD`](#lc_unixthread)
+  - [`LC_LOADFVMLIB`](#lc_loadfvmlib)
+  - [`LC_IDFVMLIB`](#lc_idfvmlib)
+  - [`LC_IDENT`](#lc_ident)
+  - [`LC_FVMFILE`](#lc_fvmfile)
+  - [`LC_PREPAGE`](#lc_prepage)
+  - [`LC_DYSYMTAB`](#lc_dysymtab)
+  - [`LC_LOAD_DYLIB`](#lc_load_dylib)
+  - [`LC_ID_DYLIB`](#lc_id_dylib)
+  - [`LC_LOAD_DYLINKER`](#lc_load_dylinker)
+  - [`LC_ID_DYLINKER`](#lc_id_dylinker)
+  - [`LC_PREBOUND_DYLIB`](#lc_prebound_dylib)
+  - [`LC_ROUTINES`](#lc_routines)
+  - [`LC_SUB_FRAMEWORK`](#lc_sub_framework)
+  - [`LC_SUB_UMBRELLA`](#lc_sub_umbrella)
+  - [`LC_SUB_CLIENT`](#lc_sub_client)
+  - [`LC_SUB_LIBRARY`](#lc_sub_library)
+  - [`LC_TWOLEVEL_HINTS`](#lc_twolevel_hints)
+  - [`LC_PREBIND_CKSUM`](#lc_prebind_cksum)
+  - [`LC_LOAD_WEAK_DYLIB`](#lc_load_weak_dylib)
+  - [`LC_SEGMENT_64`](#lc_segment_64)
+  - [`LC_ROUTINES_64`](#lc_routines_64)
+  - [`LC_UUID`](#lc_uuid)
+  - [`LC_RPATH`](#lc_rpath)
+  - [`LC_CODE_SIGNATURE`](#lc_code_signature)
+  - [`LC_SEGMENT_SPLIT_INFO`](#lc_segment_split_info)
+  - [`LC_REEXPORT_DYLIB`](#lc_reexport_dylib)
+  - [`LC_LAZY_LOAD_DYLIB`](#lc_lazy_load_dylib)
+  - [`LC_ENCRYPTION_INFO`](#lc_encryption_info)
+  - [`LC_DYLD_INFO`](#lc_dyld_info)
+  - [`LC_DYLD_INFO_ONLY`](#lc_dyld_info_only)
+  - [`LC_LOAD_UPWARD_DYLIB`](#lc_load_upward_dylib)
+  - [`LC_VERSION_MIN_MACOSX`](#lc_version_min_macosx)
+  - [`LC_VERSION_MIN_IPHONEOS`](#lc_version_min_iphoneos)
+  - [`LC_FUNCTION_STARTS`](#lc_function_starts)
+  - [`LC_DYLD_ENVIRONMENT`](#lc_dyld_environment)
+  - [`LC_MAIN`](#lc_main)
+  - [`LC_DATA_IN_CODE`](#lc_data_in_code)
+  - [`LC_SOURCE_VERSION`](#lc_source_version)
+  - [`LC_DYLIB_CODE_SIGN_DRS`](#lc_dylib_code_sign_drs)
+  - [`LC_ENCRYPTION_INFO_64`](#lc_encryption_info_64)
+  - [`LC_LINKER_OPTION`](#lc_linker_option)
+  - [`LC_LINKER_OPTIMIZATION_HINT`](#lc_linker_optimization_hint)
+  - [`LC_VERSION_MIN_TVOS`](#lc_version_min_tvos)
+  - [`LC_VERSION_MIN_WATCHOS`](#lc_version_min_watchos)
+  - [`LC_NOTE`](#lc_note)
+  - [`LC_BUILD_VERSION`](#lc_build_version)
+  - [`LC_DYLD_EXPORTS_TRIE`](#lc_dyld_exports_trie)
+  - [`LC_DYLD_CHAINED_FIXUPS`](#lc_dyld_chained_fixups)
+  - [`LC_FILESET_ENTRY`](#lc_fileset_entry)
+  - [`SG_HIGHVM`](#sg_highvm)
+  - [`SG_FVMLIB`](#sg_fvmlib)
+  - [`SG_NORELOC`](#sg_noreloc)
+  - [`SG_PROTECTED_VERSION_1`](#sg_protected_version_1)
+  - [`SG_READ_ONLY`](#sg_read_only)
+  - [`SECTION_TYPE`](#section_type)
+  - [`SECTION_ATTRIBUTES`](#section_attributes)
+  - [`S_REGULAR`](#s_regular)
+  - [`S_ZEROFILL`](#s_zerofill)
+  - [`S_CSTRING_LITERALS`](#s_cstring_literals)
+  - [`S_4BYTE_LITERALS`](#s_4byte_literals)
+  - [`S_8BYTE_LITERALS`](#s_8byte_literals)
+  - [`S_LITERAL_POINTERS`](#s_literal_pointers)
+  - [`S_NON_LAZY_SYMBOL_POINTERS`](#s_non_lazy_symbol_pointers)
+  - [`S_LAZY_SYMBOL_POINTERS`](#s_lazy_symbol_pointers)
+  - [`S_SYMBOL_STUBS`](#s_symbol_stubs)
+  - [`S_MOD_INIT_FUNC_POINTERS`](#s_mod_init_func_pointers)
+  - [`S_MOD_TERM_FUNC_POINTERS`](#s_mod_term_func_pointers)
+  - [`S_COALESCED`](#s_coalesced)
+  - [`S_GB_ZEROFILL`](#s_gb_zerofill)
+  - [`S_INTERPOSING`](#s_interposing)
+  - [`S_16BYTE_LITERALS`](#s_16byte_literals)
+  - [`S_DTRACE_DOF`](#s_dtrace_dof)
+  - [`S_LAZY_DYLIB_SYMBOL_POINTERS`](#s_lazy_dylib_symbol_pointers)
+  - [`S_THREAD_LOCAL_REGULAR`](#s_thread_local_regular)
+  - [`S_THREAD_LOCAL_ZEROFILL`](#s_thread_local_zerofill)
+  - [`S_THREAD_LOCAL_VARIABLES`](#s_thread_local_variables)
+  - [`S_THREAD_LOCAL_VARIABLE_POINTERS`](#s_thread_local_variable_pointers)
+  - [`S_THREAD_LOCAL_INIT_FUNCTION_POINTERS`](#s_thread_local_init_function_pointers)
+  - [`S_INIT_FUNC_OFFSETS`](#s_init_func_offsets)
+  - [`SECTION_ATTRIBUTES_USR`](#section_attributes_usr)
+  - [`S_ATTR_PURE_INSTRUCTIONS`](#s_attr_pure_instructions)
+  - [`S_ATTR_NO_TOC`](#s_attr_no_toc)
+  - [`S_ATTR_STRIP_STATIC_SYMS`](#s_attr_strip_static_syms)
+  - [`S_ATTR_NO_DEAD_STRIP`](#s_attr_no_dead_strip)
+  - [`S_ATTR_LIVE_SUPPORT`](#s_attr_live_support)
+  - [`S_ATTR_SELF_MODIFYING_CODE`](#s_attr_self_modifying_code)
+  - [`S_ATTR_DEBUG`](#s_attr_debug)
+  - [`SECTION_ATTRIBUTES_SYS`](#section_attributes_sys)
+  - [`S_ATTR_SOME_INSTRUCTIONS`](#s_attr_some_instructions)
+  - [`S_ATTR_EXT_RELOC`](#s_attr_ext_reloc)
+  - [`S_ATTR_LOC_RELOC`](#s_attr_loc_reloc)
+  - [`SEG_PAGEZERO`](#seg_pagezero)
+  - [`SEG_TEXT`](#seg_text)
+  - [`SECT_TEXT`](#sect_text)
+  - [`SECT_FVMLIB_INIT0`](#sect_fvmlib_init0)
+  - [`SECT_FVMLIB_INIT1`](#sect_fvmlib_init1)
+  - [`SEG_DATA`](#seg_data)
+  - [`SECT_DATA`](#sect_data)
+  - [`SECT_BSS`](#sect_bss)
+  - [`SECT_COMMON`](#sect_common)
+  - [`SEG_OBJC`](#seg_objc)
+  - [`SECT_OBJC_SYMBOLS`](#sect_objc_symbols)
+  - [`SECT_OBJC_MODULES`](#sect_objc_modules)
+  - [`SECT_OBJC_STRINGS`](#sect_objc_strings)
+  - [`SECT_OBJC_REFS`](#sect_objc_refs)
+  - [`SEG_ICON`](#seg_icon)
+  - [`SECT_ICON_HEADER`](#sect_icon_header)
+  - [`SECT_ICON_TIFF`](#sect_icon_tiff)
+  - [`SEG_LINKEDIT`](#seg_linkedit)
+  - [`SEG_LINKINFO`](#seg_linkinfo)
+  - [`SEG_UNIXSTACK`](#seg_unixstack)
+  - [`SEG_IMPORT`](#seg_import)
+  - [`INDIRECT_SYMBOL_LOCAL`](#indirect_symbol_local)
+  - [`INDIRECT_SYMBOL_ABS`](#indirect_symbol_abs)
+  - [`PLATFORM_MACOS`](#platform_macos)
+  - [`PLATFORM_IOS`](#platform_ios)
+  - [`PLATFORM_TVOS`](#platform_tvos)
+  - [`PLATFORM_WATCHOS`](#platform_watchos)
+  - [`PLATFORM_BRIDGEOS`](#platform_bridgeos)
+  - [`PLATFORM_MACCATALYST`](#platform_maccatalyst)
+  - [`PLATFORM_IOSSIMULATOR`](#platform_iossimulator)
+  - [`PLATFORM_TVOSSIMULATOR`](#platform_tvossimulator)
+  - [`PLATFORM_WATCHOSSIMULATOR`](#platform_watchossimulator)
+  - [`PLATFORM_DRIVERKIT`](#platform_driverkit)
+  - [`PLATFORM_XROS`](#platform_xros)
+  - [`PLATFORM_XROSSIMULATOR`](#platform_xrossimulator)
+  - [`TOOL_CLANG`](#tool_clang)
+  - [`TOOL_SWIFT`](#tool_swift)
+  - [`TOOL_LD`](#tool_ld)
+  - [`REBASE_TYPE_POINTER`](#rebase_type_pointer)
+  - [`REBASE_TYPE_TEXT_ABSOLUTE32`](#rebase_type_text_absolute32)
+  - [`REBASE_TYPE_TEXT_PCREL32`](#rebase_type_text_pcrel32)
+  - [`REBASE_OPCODE_MASK`](#rebase_opcode_mask)
+  - [`REBASE_IMMEDIATE_MASK`](#rebase_immediate_mask)
+  - [`REBASE_OPCODE_DONE`](#rebase_opcode_done)
+  - [`REBASE_OPCODE_SET_TYPE_IMM`](#rebase_opcode_set_type_imm)
+  - [`REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#rebase_opcode_set_segment_and_offset_uleb)
+  - [`REBASE_OPCODE_ADD_ADDR_ULEB`](#rebase_opcode_add_addr_uleb)
+  - [`REBASE_OPCODE_ADD_ADDR_IMM_SCALED`](#rebase_opcode_add_addr_imm_scaled)
+  - [`REBASE_OPCODE_DO_REBASE_IMM_TIMES`](#rebase_opcode_do_rebase_imm_times)
+  - [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES`](#rebase_opcode_do_rebase_uleb_times)
+  - [`REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB`](#rebase_opcode_do_rebase_add_addr_uleb)
+  - [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB`](#rebase_opcode_do_rebase_uleb_times_skipping_uleb)
+  - [`BIND_TYPE_POINTER`](#bind_type_pointer)
+  - [`BIND_TYPE_TEXT_ABSOLUTE32`](#bind_type_text_absolute32)
+  - [`BIND_TYPE_TEXT_PCREL32`](#bind_type_text_pcrel32)
+  - [`BIND_SPECIAL_DYLIB_SELF`](#bind_special_dylib_self)
+  - [`BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE`](#bind_special_dylib_main_executable)
+  - [`BIND_SPECIAL_DYLIB_FLAT_LOOKUP`](#bind_special_dylib_flat_lookup)
+  - [`BIND_SPECIAL_DYLIB_WEAK_LOOKUP`](#bind_special_dylib_weak_lookup)
+  - [`BIND_SYMBOL_FLAGS_WEAK_IMPORT`](#bind_symbol_flags_weak_import)
+  - [`BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION`](#bind_symbol_flags_non_weak_definition)
+  - [`BIND_OPCODE_MASK`](#bind_opcode_mask)
+  - [`BIND_IMMEDIATE_MASK`](#bind_immediate_mask)
+  - [`BIND_OPCODE_DONE`](#bind_opcode_done)
+  - [`BIND_OPCODE_SET_DYLIB_ORDINAL_IMM`](#bind_opcode_set_dylib_ordinal_imm)
+  - [`BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB`](#bind_opcode_set_dylib_ordinal_uleb)
+  - [`BIND_OPCODE_SET_DYLIB_SPECIAL_IMM`](#bind_opcode_set_dylib_special_imm)
+  - [`BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM`](#bind_opcode_set_symbol_trailing_flags_imm)
+  - [`BIND_OPCODE_SET_TYPE_IMM`](#bind_opcode_set_type_imm)
+  - [`BIND_OPCODE_SET_ADDEND_SLEB`](#bind_opcode_set_addend_sleb)
+  - [`BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#bind_opcode_set_segment_and_offset_uleb)
+  - [`BIND_OPCODE_ADD_ADDR_ULEB`](#bind_opcode_add_addr_uleb)
+  - [`BIND_OPCODE_DO_BIND`](#bind_opcode_do_bind)
+  - [`BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB`](#bind_opcode_do_bind_add_addr_uleb)
+  - [`BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED`](#bind_opcode_do_bind_add_addr_imm_scaled)
+  - [`BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB`](#bind_opcode_do_bind_uleb_times_skipping_uleb)
+  - [`BIND_OPCODE_THREADED`](#bind_opcode_threaded)
+  - [`BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB`](#bind_subopcode_threaded_set_bind_ordinal_table_size_uleb)
+  - [`BIND_SUBOPCODE_THREADED_APPLY`](#bind_subopcode_threaded_apply)
+  - [`EXPORT_SYMBOL_FLAGS_KIND_MASK`](#export_symbol_flags_kind_mask)
+  - [`EXPORT_SYMBOL_FLAGS_KIND_REGULAR`](#export_symbol_flags_kind_regular)
+  - [`EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL`](#export_symbol_flags_kind_thread_local)
+  - [`EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE`](#export_symbol_flags_kind_absolute)
+  - [`EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION`](#export_symbol_flags_weak_definition)
+  - [`EXPORT_SYMBOL_FLAGS_REEXPORT`](#export_symbol_flags_reexport)
+  - [`EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`](#export_symbol_flags_stub_and_resolver)
+  - [`DICE_KIND_DATA`](#dice_kind_data)
+  - [`DICE_KIND_JUMP_TABLE8`](#dice_kind_jump_table8)
+  - [`DICE_KIND_JUMP_TABLE16`](#dice_kind_jump_table16)
+  - [`DICE_KIND_JUMP_TABLE32`](#dice_kind_jump_table32)
+  - [`DICE_KIND_ABS_JUMP_TABLE32`](#dice_kind_abs_jump_table32)
+  - [`N_STAB`](#n_stab)
+  - [`N_PEXT`](#n_pext)
+  - [`N_TYPE`](#n_type)
+  - [`N_EXT`](#n_ext)
+  - [`N_UNDF`](#n_undf)
+  - [`N_ABS`](#n_abs)
+  - [`N_SECT`](#n_sect)
+  - [`N_PBUD`](#n_pbud)
+  - [`N_INDR`](#n_indr)
+  - [`NO_SECT`](#no_sect)
+  - [`MAX_SECT`](#max_sect)
+  - [`REFERENCE_TYPE`](#reference_type)
+  - [`REFERENCE_FLAG_UNDEFINED_NON_LAZY`](#reference_flag_undefined_non_lazy)
+  - [`REFERENCE_FLAG_UNDEFINED_LAZY`](#reference_flag_undefined_lazy)
+  - [`REFERENCE_FLAG_DEFINED`](#reference_flag_defined)
+  - [`REFERENCE_FLAG_PRIVATE_DEFINED`](#reference_flag_private_defined)
+  - [`REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY`](#reference_flag_private_undefined_non_lazy)
+  - [`REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY`](#reference_flag_private_undefined_lazy)
+  - [`REFERENCED_DYNAMICALLY`](#referenced_dynamically)
+  - [`SELF_LIBRARY_ORDINAL`](#self_library_ordinal)
+  - [`MAX_LIBRARY_ORDINAL`](#max_library_ordinal)
+  - [`DYNAMIC_LOOKUP_ORDINAL`](#dynamic_lookup_ordinal)
+  - [`EXECUTABLE_ORDINAL`](#executable_ordinal)
+  - [`N_NO_DEAD_STRIP`](#n_no_dead_strip)
+  - [`N_DESC_DISCARDED`](#n_desc_discarded)
+  - [`N_WEAK_REF`](#n_weak_ref)
+  - [`N_WEAK_DEF`](#n_weak_def)
+  - [`N_REF_TO_WEAK`](#n_ref_to_weak)
+  - [`N_ARM_THUMB_DEF`](#n_arm_thumb_def)
+  - [`N_SYMBOL_RESOLVER`](#n_symbol_resolver)
+  - [`N_ALT_ENTRY`](#n_alt_entry)
+  - [`N_GSYM`](#n_gsym)
+  - [`N_FNAME`](#n_fname)
+  - [`N_FUN`](#n_fun)
+  - [`N_STSYM`](#n_stsym)
+  - [`N_LCSYM`](#n_lcsym)
+  - [`N_BNSYM`](#n_bnsym)
+  - [`N_AST`](#n_ast)
+  - [`N_OPT`](#n_opt)
+  - [`N_RSYM`](#n_rsym)
+  - [`N_SLINE`](#n_sline)
+  - [`N_ENSYM`](#n_ensym)
+  - [`N_SSYM`](#n_ssym)
+  - [`N_SO`](#n_so)
+  - [`N_OSO`](#n_oso)
+  - [`N_LSYM`](#n_lsym)
+  - [`N_BINCL`](#n_bincl)
+  - [`N_SOL`](#n_sol)
+  - [`N_PARAMS`](#n_params)
+  - [`N_VERSION`](#n_version)
+  - [`N_OLEVEL`](#n_olevel)
+  - [`N_PSYM`](#n_psym)
+  - [`N_EINCL`](#n_eincl)
+  - [`N_ENTRY`](#n_entry)
+  - [`N_LBRAC`](#n_lbrac)
+  - [`N_EXCL`](#n_excl)
+  - [`N_RBRAC`](#n_rbrac)
+  - [`N_BCOMM`](#n_bcomm)
+  - [`N_ECOMM`](#n_ecomm)
+  - [`N_ECOML`](#n_ecoml)
+  - [`N_LENG`](#n_leng)
+  - [`N_PC`](#n_pc)
+  - [`R_ABS`](#r_abs)
+  - [`R_SCATTERED`](#r_scattered)
+  - [`GENERIC_RELOC_VANILLA`](#generic_reloc_vanilla)
+  - [`GENERIC_RELOC_PAIR`](#generic_reloc_pair)
+  - [`GENERIC_RELOC_SECTDIFF`](#generic_reloc_sectdiff)
+  - [`GENERIC_RELOC_PB_LA_PTR`](#generic_reloc_pb_la_ptr)
+  - [`GENERIC_RELOC_LOCAL_SECTDIFF`](#generic_reloc_local_sectdiff)
+  - [`GENERIC_RELOC_TLV`](#generic_reloc_tlv)
+  - [`ARM_RELOC_VANILLA`](#arm_reloc_vanilla)
+  - [`ARM_RELOC_PAIR`](#arm_reloc_pair)
+  - [`ARM_RELOC_SECTDIFF`](#arm_reloc_sectdiff)
+  - [`ARM_RELOC_LOCAL_SECTDIFF`](#arm_reloc_local_sectdiff)
+  - [`ARM_RELOC_PB_LA_PTR`](#arm_reloc_pb_la_ptr)
+  - [`ARM_RELOC_BR24`](#arm_reloc_br24)
+  - [`ARM_THUMB_RELOC_BR22`](#arm_thumb_reloc_br22)
+  - [`ARM_THUMB_32BIT_BRANCH`](#arm_thumb_32bit_branch)
+  - [`ARM_RELOC_HALF`](#arm_reloc_half)
+  - [`ARM_RELOC_HALF_SECTDIFF`](#arm_reloc_half_sectdiff)
+  - [`ARM64_RELOC_UNSIGNED`](#arm64_reloc_unsigned)
+  - [`ARM64_RELOC_SUBTRACTOR`](#arm64_reloc_subtractor)
+  - [`ARM64_RELOC_BRANCH26`](#arm64_reloc_branch26)
+  - [`ARM64_RELOC_PAGE21`](#arm64_reloc_page21)
+  - [`ARM64_RELOC_PAGEOFF12`](#arm64_reloc_pageoff12)
+  - [`ARM64_RELOC_GOT_LOAD_PAGE21`](#arm64_reloc_got_load_page21)
+  - [`ARM64_RELOC_GOT_LOAD_PAGEOFF12`](#arm64_reloc_got_load_pageoff12)
+  - [`ARM64_RELOC_POINTER_TO_GOT`](#arm64_reloc_pointer_to_got)
+  - [`ARM64_RELOC_TLVP_LOAD_PAGE21`](#arm64_reloc_tlvp_load_page21)
+  - [`ARM64_RELOC_TLVP_LOAD_PAGEOFF12`](#arm64_reloc_tlvp_load_pageoff12)
+  - [`ARM64_RELOC_ADDEND`](#arm64_reloc_addend)
+  - [`ARM64_RELOC_AUTHENTICATED_POINTER`](#arm64_reloc_authenticated_pointer)
+  - [`PPC_RELOC_VANILLA`](#ppc_reloc_vanilla)
+  - [`PPC_RELOC_PAIR`](#ppc_reloc_pair)
+  - [`PPC_RELOC_BR14`](#ppc_reloc_br14)
+  - [`PPC_RELOC_BR24`](#ppc_reloc_br24)
+  - [`PPC_RELOC_HI16`](#ppc_reloc_hi16)
+  - [`PPC_RELOC_LO16`](#ppc_reloc_lo16)
+  - [`PPC_RELOC_HA16`](#ppc_reloc_ha16)
+  - [`PPC_RELOC_LO14`](#ppc_reloc_lo14)
+  - [`PPC_RELOC_SECTDIFF`](#ppc_reloc_sectdiff)
+  - [`PPC_RELOC_PB_LA_PTR`](#ppc_reloc_pb_la_ptr)
+  - [`PPC_RELOC_HI16_SECTDIFF`](#ppc_reloc_hi16_sectdiff)
+  - [`PPC_RELOC_LO16_SECTDIFF`](#ppc_reloc_lo16_sectdiff)
+  - [`PPC_RELOC_HA16_SECTDIFF`](#ppc_reloc_ha16_sectdiff)
+  - [`PPC_RELOC_JBSR`](#ppc_reloc_jbsr)
+  - [`PPC_RELOC_LO14_SECTDIFF`](#ppc_reloc_lo14_sectdiff)
+  - [`PPC_RELOC_LOCAL_SECTDIFF`](#ppc_reloc_local_sectdiff)
+  - [`X86_64_RELOC_UNSIGNED`](#x86_64_reloc_unsigned)
+  - [`X86_64_RELOC_SIGNED`](#x86_64_reloc_signed)
+  - [`X86_64_RELOC_BRANCH`](#x86_64_reloc_branch)
+  - [`X86_64_RELOC_GOT_LOAD`](#x86_64_reloc_got_load)
+  - [`X86_64_RELOC_GOT`](#x86_64_reloc_got)
+  - [`X86_64_RELOC_SUBTRACTOR`](#x86_64_reloc_subtractor)
+  - [`X86_64_RELOC_SIGNED_1`](#x86_64_reloc_signed_1)
+  - [`X86_64_RELOC_SIGNED_2`](#x86_64_reloc_signed_2)
+  - [`X86_64_RELOC_SIGNED_4`](#x86_64_reloc_signed_4)
+  - [`X86_64_RELOC_TLV`](#x86_64_reloc_tlv)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DyldCacheHeader`](#dyldcacheheader) | struct | The dyld cache header. |
+| [`DyldCacheMappingInfo`](#dyldcachemappinginfo) | struct | Corresponds to struct dyld_cache_mapping_info from dyld_cache_format.h. |
+| [`DyldCacheMappingAndSlideInfo`](#dyldcachemappingandslideinfo) | struct | Corresponds to struct dyld_cache_mapping_and_slide_info from dyld_cache_format.h. |
+| [`DyldCacheImageInfo`](#dyldcacheimageinfo) | struct | Corresponds to struct dyld_cache_image_info from dyld_cache_format.h. |
+| [`DyldCacheSlideInfo2`](#dyldcacheslideinfo2) | struct | Corresponds to struct dyld_cache_slide_info2 from dyld_cache_format.h. |
+| [`DyldCacheSlideInfo3`](#dyldcacheslideinfo3) | struct | Corresponds to struct dyld_cache_slide_info3 from dyld_cache_format.h. |
+| [`DyldCacheSlidePointer3`](#dyldcacheslidepointer3) | struct | Corresponds to union dyld_cache_slide_pointer3 from dyld_cache_format.h. |
+| [`DyldCacheSlideInfo5`](#dyldcacheslideinfo5) | struct | Corresponds to struct dyld_cache_slide_info5 from dyld_cache_format.h. |
+| [`DyldCacheSlidePointer5`](#dyldcacheslidepointer5) | struct | Corresponds to struct dyld_cache_slide_pointer5 from dyld_cache_format.h. |
+| [`DyldSubCacheEntryV1`](#dyldsubcacheentryv1) | struct | Added in dyld-940, which shipped with macOS 12 / iOS 15. |
+| [`DyldSubCacheEntryV2`](#dyldsubcacheentryv2) | struct | Added in dyld-1042.1, which shipped with macOS 13 / iOS 16. |
+| [`FatHeader`](#fatheader) | struct |  |
+| [`FatArch32`](#fatarch32) | struct |  |
+| [`FatArch64`](#fatarch64) | struct |  |
+| [`MachHeader32`](#machheader32) | struct | The 32-bit mach header. |
+| [`MachHeader64`](#machheader64) | struct | The 64-bit mach header. |
+| [`LoadCommand`](#loadcommand) | struct | Common fields at the start of every load command. |
+| [`LcStr`](#lcstr) | struct | A variable length string in a load command. |
+| [`SegmentCommand32`](#segmentcommand32) | struct | 32-bit segment load command. |
+| [`SegmentCommand64`](#segmentcommand64) | struct | 64-bit segment load command. |
+| [`Section32`](#section32) | struct | 32-bit section. |
+| [`Section64`](#section64) | struct | 64-bit section. |
+| [`Fvmlib`](#fvmlib) | struct |  |
+| [`FvmlibCommand`](#fvmlibcommand) | struct |  |
+| [`Dylib`](#dylib) | struct |  |
+| [`DylibCommand`](#dylibcommand) | struct |  |
+| [`SubFrameworkCommand`](#subframeworkcommand) | struct |  |
+| [`SubClientCommand`](#subclientcommand) | struct |  |
+| [`SubUmbrellaCommand`](#subumbrellacommand) | struct |  |
+| [`SubLibraryCommand`](#sublibrarycommand) | struct |  |
+| [`PreboundDylibCommand`](#prebounddylibcommand) | struct |  |
+| [`DylinkerCommand`](#dylinkercommand) | struct |  |
+| [`ThreadCommand`](#threadcommand) | struct |  |
+| [`RoutinesCommand32`](#routinescommand32) | struct |  |
+| [`RoutinesCommand64`](#routinescommand64) | struct |  |
+| [`SymtabCommand`](#symtabcommand) | struct |  |
+| [`DysymtabCommand`](#dysymtabcommand) | struct |  |
+| [`DylibTableOfContents`](#dylibtableofcontents) | struct |  |
+| [`DylibModule32`](#dylibmodule32) | struct |  |
+| [`DylibModule64`](#dylibmodule64) | struct |  |
+| [`DylibReference`](#dylibreference) | struct |  |
+| [`TwolevelHintsCommand`](#twolevelhintscommand) | struct |  |
+| [`TwolevelHint`](#twolevelhint) | struct |  |
+| [`PrebindCksumCommand`](#prebindcksumcommand) | struct |  |
+| [`UuidCommand`](#uuidcommand) | struct |  |
+| [`RpathCommand`](#rpathcommand) | struct |  |
+| [`LinkeditDataCommand`](#linkeditdatacommand) | struct |  |
+| [`FilesetEntryCommand`](#filesetentrycommand) | struct |  |
+| [`EncryptionInfoCommand32`](#encryptioninfocommand32) | struct |  |
+| [`EncryptionInfoCommand64`](#encryptioninfocommand64) | struct |  |
+| [`VersionMinCommand`](#versionmincommand) | struct |  |
+| [`BuildVersionCommand`](#buildversioncommand) | struct |  |
+| [`BuildToolVersion`](#buildtoolversion) | struct |  |
+| [`DyldInfoCommand`](#dyldinfocommand) | struct |  |
+| [`LinkerOptionCommand`](#linkeroptioncommand) | struct |  |
+| [`SymsegCommand`](#symsegcommand) | struct |  |
+| [`IdentCommand`](#identcommand) | struct |  |
+| [`FvmfileCommand`](#fvmfilecommand) | struct |  |
+| [`EntryPointCommand`](#entrypointcommand) | struct |  |
+| [`SourceVersionCommand`](#sourceversioncommand) | struct |  |
+| [`DataInCodeEntry`](#dataincodeentry) | struct |  |
+| [`NoteCommand`](#notecommand) | struct |  |
+| [`Nlist32`](#nlist32) | struct |  |
+| [`Nlist64`](#nlist64) | struct |  |
+| [`Relocation`](#relocation) | struct | A relocation entry. |
+| [`RelocationInfo`](#relocationinfo) | struct |  |
+| [`ScatteredRelocationInfo`](#scatteredrelocationinfo) | struct |  |
+| [`PtrauthKey`](#ptrauthkey) | enum | The key used to sign a pointer for authentication. |
+| [`cpu_subtype_intel`](#cpu_subtype_intel) | fn |  |
+| [`cpu_subtype_intel_family`](#cpu_subtype_intel_family) | fn |  |
+| [`cpu_subtype_intel_model`](#cpu_subtype_intel_model) | fn |  |
+| [`CPU_ARCH_MASK`](#cpu_arch_mask) | const | mask for architecture bits |
+| [`CPU_ARCH_ABI64`](#cpu_arch_abi64) | const | 64 bit ABI |
+| [`CPU_ARCH_ABI64_32`](#cpu_arch_abi64_32) | const | ABI for 64-bit hardware with 32-bit types; LP32 |
+| [`CPU_TYPE_ANY`](#cpu_type_any) | const |  |
+| [`CPU_TYPE_VAX`](#cpu_type_vax) | const |  |
+| [`CPU_TYPE_MC680X0`](#cpu_type_mc680x0) | const |  |
+| [`CPU_TYPE_X86`](#cpu_type_x86) | const |  |
+| [`CPU_TYPE_X86_64`](#cpu_type_x86_64) | const |  |
+| [`CPU_TYPE_MIPS`](#cpu_type_mips) | const |  |
+| [`CPU_TYPE_MC98000`](#cpu_type_mc98000) | const |  |
+| [`CPU_TYPE_HPPA`](#cpu_type_hppa) | const |  |
+| [`CPU_TYPE_ARM`](#cpu_type_arm) | const |  |
+| [`CPU_TYPE_ARM64`](#cpu_type_arm64) | const |  |
+| [`CPU_TYPE_ARM64_32`](#cpu_type_arm64_32) | const |  |
+| [`CPU_TYPE_MC88000`](#cpu_type_mc88000) | const |  |
+| [`CPU_TYPE_SPARC`](#cpu_type_sparc) | const |  |
+| [`CPU_TYPE_I860`](#cpu_type_i860) | const |  |
+| [`CPU_TYPE_ALPHA`](#cpu_type_alpha) | const |  |
+| [`CPU_TYPE_POWERPC`](#cpu_type_powerpc) | const |  |
+| [`CPU_TYPE_POWERPC64`](#cpu_type_powerpc64) | const |  |
+| [`CPU_SUBTYPE_MASK`](#cpu_subtype_mask) | const | mask for feature flags |
+| [`CPU_SUBTYPE_LIB64`](#cpu_subtype_lib64) | const | 64 bit libraries |
+| [`CPU_SUBTYPE_PTRAUTH_ABI`](#cpu_subtype_ptrauth_abi) | const | pointer authentication with versioned ABI |
+| [`CPU_SUBTYPE_ANY`](#cpu_subtype_any) | const | When selecting a slice, ANY will pick the slice with the best grading for the selected cpu_type_t, unlike the "ALL" subtypes, which are the slices that can run on any hardware for that cpu type. |
+| [`CPU_SUBTYPE_MULTIPLE`](#cpu_subtype_multiple) | const |  |
+| [`CPU_SUBTYPE_LITTLE_ENDIAN`](#cpu_subtype_little_endian) | const |  |
+| [`CPU_SUBTYPE_BIG_ENDIAN`](#cpu_subtype_big_endian) | const |  |
+| [`CPU_SUBTYPE_VAX_ALL`](#cpu_subtype_vax_all) | const |  |
+| [`CPU_SUBTYPE_VAX780`](#cpu_subtype_vax780) | const |  |
+| [`CPU_SUBTYPE_VAX785`](#cpu_subtype_vax785) | const |  |
+| [`CPU_SUBTYPE_VAX750`](#cpu_subtype_vax750) | const |  |
+| [`CPU_SUBTYPE_VAX730`](#cpu_subtype_vax730) | const |  |
+| [`CPU_SUBTYPE_UVAXI`](#cpu_subtype_uvaxi) | const |  |
+| [`CPU_SUBTYPE_UVAXII`](#cpu_subtype_uvaxii) | const |  |
+| [`CPU_SUBTYPE_VAX8200`](#cpu_subtype_vax8200) | const |  |
+| [`CPU_SUBTYPE_VAX8500`](#cpu_subtype_vax8500) | const |  |
+| [`CPU_SUBTYPE_VAX8600`](#cpu_subtype_vax8600) | const |  |
+| [`CPU_SUBTYPE_VAX8650`](#cpu_subtype_vax8650) | const |  |
+| [`CPU_SUBTYPE_VAX8800`](#cpu_subtype_vax8800) | const |  |
+| [`CPU_SUBTYPE_UVAXIII`](#cpu_subtype_uvaxiii) | const |  |
+| [`CPU_SUBTYPE_MC680X0_ALL`](#cpu_subtype_mc680x0_all) | const |  |
+| [`CPU_SUBTYPE_MC68030`](#cpu_subtype_mc68030) | const |  |
+| [`CPU_SUBTYPE_MC68040`](#cpu_subtype_mc68040) | const |  |
+| [`CPU_SUBTYPE_MC68030_ONLY`](#cpu_subtype_mc68030_only) | const |  |
+| [`CPU_SUBTYPE_I386_ALL`](#cpu_subtype_i386_all) | const |  |
+| [`CPU_SUBTYPE_386`](#cpu_subtype_386) | const |  |
+| [`CPU_SUBTYPE_486`](#cpu_subtype_486) | const |  |
+| [`CPU_SUBTYPE_486SX`](#cpu_subtype_486sx) | const |  |
+| [`CPU_SUBTYPE_586`](#cpu_subtype_586) | const |  |
+| [`CPU_SUBTYPE_PENT`](#cpu_subtype_pent) | const |  |
+| [`CPU_SUBTYPE_PENTPRO`](#cpu_subtype_pentpro) | const |  |
+| [`CPU_SUBTYPE_PENTII_M3`](#cpu_subtype_pentii_m3) | const |  |
+| [`CPU_SUBTYPE_PENTII_M5`](#cpu_subtype_pentii_m5) | const |  |
+| [`CPU_SUBTYPE_CELERON`](#cpu_subtype_celeron) | const |  |
+| [`CPU_SUBTYPE_CELERON_MOBILE`](#cpu_subtype_celeron_mobile) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_3`](#cpu_subtype_pentium_3) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_3_M`](#cpu_subtype_pentium_3_m) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_3_XEON`](#cpu_subtype_pentium_3_xeon) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_M`](#cpu_subtype_pentium_m) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_4`](#cpu_subtype_pentium_4) | const |  |
+| [`CPU_SUBTYPE_PENTIUM_4_M`](#cpu_subtype_pentium_4_m) | const |  |
+| [`CPU_SUBTYPE_ITANIUM`](#cpu_subtype_itanium) | const |  |
+| [`CPU_SUBTYPE_ITANIUM_2`](#cpu_subtype_itanium_2) | const |  |
+| [`CPU_SUBTYPE_XEON`](#cpu_subtype_xeon) | const |  |
+| [`CPU_SUBTYPE_XEON_MP`](#cpu_subtype_xeon_mp) | const |  |
+| [`CPU_SUBTYPE_INTEL_FAMILY_MAX`](#cpu_subtype_intel_family_max) | const |  |
+| [`CPU_SUBTYPE_INTEL_MODEL_ALL`](#cpu_subtype_intel_model_all) | const |  |
+| [`CPU_SUBTYPE_X86_ALL`](#cpu_subtype_x86_all) | const |  |
+| [`CPU_SUBTYPE_X86_64_ALL`](#cpu_subtype_x86_64_all) | const |  |
+| [`CPU_SUBTYPE_X86_ARCH1`](#cpu_subtype_x86_arch1) | const |  |
+| [`CPU_SUBTYPE_X86_64_H`](#cpu_subtype_x86_64_h) | const | Haswell feature subset |
+| [`CPU_SUBTYPE_MIPS_ALL`](#cpu_subtype_mips_all) | const |  |
+| [`CPU_SUBTYPE_MIPS_R2300`](#cpu_subtype_mips_r2300) | const |  |
+| [`CPU_SUBTYPE_MIPS_R2600`](#cpu_subtype_mips_r2600) | const |  |
+| [`CPU_SUBTYPE_MIPS_R2800`](#cpu_subtype_mips_r2800) | const |  |
+| [`CPU_SUBTYPE_MIPS_R2000A`](#cpu_subtype_mips_r2000a) | const | pmax |
+| [`CPU_SUBTYPE_MIPS_R2000`](#cpu_subtype_mips_r2000) | const |  |
+| [`CPU_SUBTYPE_MIPS_R3000A`](#cpu_subtype_mips_r3000a) | const | 3max |
+| [`CPU_SUBTYPE_MIPS_R3000`](#cpu_subtype_mips_r3000) | const |  |
+| [`CPU_SUBTYPE_MC98000_ALL`](#cpu_subtype_mc98000_all) | const |  |
+| [`CPU_SUBTYPE_MC98601`](#cpu_subtype_mc98601) | const |  |
+| [`CPU_SUBTYPE_HPPA_ALL`](#cpu_subtype_hppa_all) | const |  |
+| [`CPU_SUBTYPE_HPPA_7100LC`](#cpu_subtype_hppa_7100lc) | const |  |
+| [`CPU_SUBTYPE_MC88000_ALL`](#cpu_subtype_mc88000_all) | const |  |
+| [`CPU_SUBTYPE_MC88100`](#cpu_subtype_mc88100) | const |  |
+| [`CPU_SUBTYPE_MC88110`](#cpu_subtype_mc88110) | const |  |
+| [`CPU_SUBTYPE_SPARC_ALL`](#cpu_subtype_sparc_all) | const |  |
+| [`CPU_SUBTYPE_I860_ALL`](#cpu_subtype_i860_all) | const |  |
+| [`CPU_SUBTYPE_I860_860`](#cpu_subtype_i860_860) | const |  |
+| [`CPU_SUBTYPE_POWERPC_ALL`](#cpu_subtype_powerpc_all) | const |  |
+| [`CPU_SUBTYPE_POWERPC_601`](#cpu_subtype_powerpc_601) | const |  |
+| [`CPU_SUBTYPE_POWERPC_602`](#cpu_subtype_powerpc_602) | const |  |
+| [`CPU_SUBTYPE_POWERPC_603`](#cpu_subtype_powerpc_603) | const |  |
+| [`CPU_SUBTYPE_POWERPC_603E`](#cpu_subtype_powerpc_603e) | const |  |
+| [`CPU_SUBTYPE_POWERPC_603EV`](#cpu_subtype_powerpc_603ev) | const |  |
+| [`CPU_SUBTYPE_POWERPC_604`](#cpu_subtype_powerpc_604) | const |  |
+| [`CPU_SUBTYPE_POWERPC_604E`](#cpu_subtype_powerpc_604e) | const |  |
+| [`CPU_SUBTYPE_POWERPC_620`](#cpu_subtype_powerpc_620) | const |  |
+| [`CPU_SUBTYPE_POWERPC_750`](#cpu_subtype_powerpc_750) | const |  |
+| [`CPU_SUBTYPE_POWERPC_7400`](#cpu_subtype_powerpc_7400) | const |  |
+| [`CPU_SUBTYPE_POWERPC_7450`](#cpu_subtype_powerpc_7450) | const |  |
+| [`CPU_SUBTYPE_POWERPC_970`](#cpu_subtype_powerpc_970) | const |  |
+| [`CPU_SUBTYPE_ARM_ALL`](#cpu_subtype_arm_all) | const |  |
+| [`CPU_SUBTYPE_ARM_V4T`](#cpu_subtype_arm_v4t) | const |  |
+| [`CPU_SUBTYPE_ARM_V6`](#cpu_subtype_arm_v6) | const |  |
+| [`CPU_SUBTYPE_ARM_V5TEJ`](#cpu_subtype_arm_v5tej) | const |  |
+| [`CPU_SUBTYPE_ARM_XSCALE`](#cpu_subtype_arm_xscale) | const |  |
+| [`CPU_SUBTYPE_ARM_V7`](#cpu_subtype_arm_v7) | const | ARMv7-A and ARMv7-R |
+| [`CPU_SUBTYPE_ARM_V7F`](#cpu_subtype_arm_v7f) | const | Cortex A9 |
+| [`CPU_SUBTYPE_ARM_V7S`](#cpu_subtype_arm_v7s) | const | Swift |
+| [`CPU_SUBTYPE_ARM_V7K`](#cpu_subtype_arm_v7k) | const |  |
+| [`CPU_SUBTYPE_ARM_V8`](#cpu_subtype_arm_v8) | const |  |
+| [`CPU_SUBTYPE_ARM_V6M`](#cpu_subtype_arm_v6m) | const | Not meant to be run under xnu |
+| [`CPU_SUBTYPE_ARM_V7M`](#cpu_subtype_arm_v7m) | const | Not meant to be run under xnu |
+| [`CPU_SUBTYPE_ARM_V7EM`](#cpu_subtype_arm_v7em) | const | Not meant to be run under xnu |
+| [`CPU_SUBTYPE_ARM_V8M`](#cpu_subtype_arm_v8m) | const | Not meant to be run under xnu |
+| [`CPU_SUBTYPE_ARM64_ALL`](#cpu_subtype_arm64_all) | const |  |
+| [`CPU_SUBTYPE_ARM64_V8`](#cpu_subtype_arm64_v8) | const |  |
+| [`CPU_SUBTYPE_ARM64E`](#cpu_subtype_arm64e) | const |  |
+| [`CPU_SUBTYPE_ARM64_32_ALL`](#cpu_subtype_arm64_32_all) | const |  |
+| [`CPU_SUBTYPE_ARM64_32_V8`](#cpu_subtype_arm64_32_v8) | const |  |
+| [`VM_PROT_READ`](#vm_prot_read) | const | read permission |
+| [`VM_PROT_WRITE`](#vm_prot_write) | const | write permission |
+| [`VM_PROT_EXECUTE`](#vm_prot_execute) | const | execute permission |
+| [`DYLD_CACHE_MAPPING_AUTH_DATA`](#dyld_cache_mapping_auth_data) | const |  |
+| [`DYLD_CACHE_MAPPING_DIRTY_DATA`](#dyld_cache_mapping_dirty_data) | const |  |
+| [`DYLD_CACHE_MAPPING_CONST_DATA`](#dyld_cache_mapping_const_data) | const |  |
+| [`DYLD_CACHE_MAPPING_TEXT_STUBS`](#dyld_cache_mapping_text_stubs) | const |  |
+| [`DYLD_CACHE_DYNAMIC_CONFIG_DATA`](#dyld_cache_dynamic_config_data) | const |  |
+| [`DYLD_CACHE_SLIDE_PAGE_ATTRS`](#dyld_cache_slide_page_attrs) | const |  |
+| [`DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA`](#dyld_cache_slide_page_attr_extra) | const |  |
+| [`DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_page_attr_no_rebase) | const |  |
+| [`DYLD_CACHE_SLIDE_PAGE_ATTR_END`](#dyld_cache_slide_page_attr_end) | const |  |
+| [`DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_v3_page_attr_no_rebase) | const | Page has no rebasing. |
+| [`DYLD_CACHE_SLIDE_V5_PAGE_ATTR_NO_REBASE`](#dyld_cache_slide_v5_page_attr_no_rebase) | const | Page has no rebasing. |
+| [`FAT_MAGIC`](#fat_magic) | const |  |
+| [`FAT_CIGAM`](#fat_cigam) | const | NXSwapLong(FAT_MAGIC) |
+| [`FAT_MAGIC_64`](#fat_magic_64) | const |  |
+| [`FAT_CIGAM_64`](#fat_cigam_64) | const | NXSwapLong(FAT_MAGIC_64) |
+| [`MH_MAGIC`](#mh_magic) | const | the mach magic number |
+| [`MH_CIGAM`](#mh_cigam) | const | NXSwapInt(MH_MAGIC) |
+| [`MH_MAGIC_64`](#mh_magic_64) | const | the 64-bit mach magic number |
+| [`MH_CIGAM_64`](#mh_cigam_64) | const | NXSwapInt(MH_MAGIC_64) |
+| [`MH_OBJECT`](#mh_object) | const | relocatable object file |
+| [`MH_EXECUTE`](#mh_execute) | const | demand paged executable file |
+| [`MH_FVMLIB`](#mh_fvmlib) | const | fixed VM shared library file |
+| [`MH_CORE`](#mh_core) | const | core file |
+| [`MH_PRELOAD`](#mh_preload) | const | preloaded executable file |
+| [`MH_DYLIB`](#mh_dylib) | const | dynamically bound shared library |
+| [`MH_DYLINKER`](#mh_dylinker) | const | dynamic link editor |
+| [`MH_BUNDLE`](#mh_bundle) | const | dynamically bound bundle file |
+| [`MH_DYLIB_STUB`](#mh_dylib_stub) | const | shared library stub for static linking only, no section contents |
+| [`MH_DSYM`](#mh_dsym) | const | companion file with only debug sections |
+| [`MH_KEXT_BUNDLE`](#mh_kext_bundle) | const | x86_64 kexts |
+| [`MH_FILESET`](#mh_fileset) | const | set of mach-o's |
+| [`MH_NOUNDEFS`](#mh_noundefs) | const | the object file has no undefined references |
+| [`MH_INCRLINK`](#mh_incrlink) | const | the object file is the output of an incremental link against a base file and can't be link edited again |
+| [`MH_DYLDLINK`](#mh_dyldlink) | const | the object file is input for the dynamic linker and can't be statically link edited again |
+| [`MH_BINDATLOAD`](#mh_bindatload) | const | the object file's undefined references are bound by the dynamic linker when loaded. |
+| [`MH_PREBOUND`](#mh_prebound) | const | the file has its dynamic undefined references prebound. |
+| [`MH_SPLIT_SEGS`](#mh_split_segs) | const | the file has its read-only and read-write segments split |
+| [`MH_LAZY_INIT`](#mh_lazy_init) | const | the shared library init routine is to be run lazily via catching memory faults to its writeable segments (obsolete) |
+| [`MH_TWOLEVEL`](#mh_twolevel) | const | the image is using two-level name space bindings |
+| [`MH_FORCE_FLAT`](#mh_force_flat) | const | the executable is forcing all images to use flat name space bindings |
+| [`MH_NOMULTIDEFS`](#mh_nomultidefs) | const | this umbrella guarantees no multiple definitions of symbols in its sub-images so the two-level namespace hints can always be used. |
+| [`MH_NOFIXPREBINDING`](#mh_nofixprebinding) | const | do not have dyld notify the prebinding agent about this executable |
+| [`MH_PREBINDABLE`](#mh_prebindable) | const | the binary is not prebound but can have its prebinding redone. |
+| [`MH_ALLMODSBOUND`](#mh_allmodsbound) | const | indicates that this binary binds to all two-level namespace modules of its dependent libraries. |
+| [`MH_SUBSECTIONS_VIA_SYMBOLS`](#mh_subsections_via_symbols) | const | safe to divide up the sections into sub-sections via symbols for dead code stripping |
+| [`MH_CANONICAL`](#mh_canonical) | const | the binary has been canonicalized via the unprebind operation |
+| [`MH_WEAK_DEFINES`](#mh_weak_defines) | const | the final linked image contains external weak symbols |
+| [`MH_BINDS_TO_WEAK`](#mh_binds_to_weak) | const | the final linked image uses weak symbols |
+| [`MH_ALLOW_STACK_EXECUTION`](#mh_allow_stack_execution) | const | When this bit is set, all stacks in the task will be given stack execution privilege. |
+| [`MH_ROOT_SAFE`](#mh_root_safe) | const | When this bit is set, the binary declares it is safe for use in processes with uid zero |
+| [`MH_SETUID_SAFE`](#mh_setuid_safe) | const | When this bit is set, the binary declares it is safe for use in processes when issetugid() is true |
+| [`MH_NO_REEXPORTED_DYLIBS`](#mh_no_reexported_dylibs) | const | When this bit is set on a dylib, the static linker does not need to examine dependent dylibs to see if any are re-exported |
+| [`MH_PIE`](#mh_pie) | const | When this bit is set, the OS will load the main executable at a random address. |
+| [`MH_DEAD_STRIPPABLE_DYLIB`](#mh_dead_strippable_dylib) | const | Only for use on dylibs. |
+| [`MH_HAS_TLV_DESCRIPTORS`](#mh_has_tlv_descriptors) | const | Contains a section of type S_THREAD_LOCAL_VARIABLES |
+| [`MH_NO_HEAP_EXECUTION`](#mh_no_heap_execution) | const | When this bit is set, the OS will run the main executable with a non-executable heap even on platforms (e.g. i386) that don't require it. |
+| [`MH_APP_EXTENSION_SAFE`](#mh_app_extension_safe) | const | The code was linked for use in an application extension. |
+| [`MH_NLIST_OUTOFSYNC_WITH_DYLDINFO`](#mh_nlist_outofsync_with_dyldinfo) | const | The external symbols listed in the nlist symbol table do not include all the symbols listed in the dyld info. |
+| [`MH_SIM_SUPPORT`](#mh_sim_support) | const | Allow LC_MIN_VERSION_MACOS and LC_BUILD_VERSION load commands with the platforms macOS, iOSMac, iOSSimulator, tvOSSimulator and watchOSSimulator. |
+| [`MH_DYLIB_IN_CACHE`](#mh_dylib_in_cache) | const | Only for use on dylibs. |
+| [`LC_REQ_DYLD`](#lc_req_dyld) | const |  |
+| [`LC_SEGMENT`](#lc_segment) | const | segment of this file to be mapped |
+| [`LC_SYMTAB`](#lc_symtab) | const | link-edit stab symbol table info |
+| [`LC_SYMSEG`](#lc_symseg) | const | link-edit gdb symbol table info (obsolete) |
+| [`LC_THREAD`](#lc_thread) | const | thread |
+| [`LC_UNIXTHREAD`](#lc_unixthread) | const | unix thread (includes a stack) |
+| [`LC_LOADFVMLIB`](#lc_loadfvmlib) | const | load a specified fixed VM shared library |
+| [`LC_IDFVMLIB`](#lc_idfvmlib) | const | fixed VM shared library identification |
+| [`LC_IDENT`](#lc_ident) | const | object identification info (obsolete) |
+| [`LC_FVMFILE`](#lc_fvmfile) | const | fixed VM file inclusion (internal use) |
+| [`LC_PREPAGE`](#lc_prepage) | const | prepage command (internal use) |
+| [`LC_DYSYMTAB`](#lc_dysymtab) | const | dynamic link-edit symbol table info |
+| [`LC_LOAD_DYLIB`](#lc_load_dylib) | const | load a dynamically linked shared library |
+| [`LC_ID_DYLIB`](#lc_id_dylib) | const | dynamically linked shared lib ident |
+| [`LC_LOAD_DYLINKER`](#lc_load_dylinker) | const | load a dynamic linker |
+| [`LC_ID_DYLINKER`](#lc_id_dylinker) | const | dynamic linker identification |
+| [`LC_PREBOUND_DYLIB`](#lc_prebound_dylib) | const | modules prebound for a dynamically linked shared library |
+| [`LC_ROUTINES`](#lc_routines) | const | image routines |
+| [`LC_SUB_FRAMEWORK`](#lc_sub_framework) | const | sub framework |
+| [`LC_SUB_UMBRELLA`](#lc_sub_umbrella) | const | sub umbrella |
+| [`LC_SUB_CLIENT`](#lc_sub_client) | const | sub client |
+| [`LC_SUB_LIBRARY`](#lc_sub_library) | const | sub library |
+| [`LC_TWOLEVEL_HINTS`](#lc_twolevel_hints) | const | two-level namespace lookup hints |
+| [`LC_PREBIND_CKSUM`](#lc_prebind_cksum) | const | prebind checksum |
+| [`LC_LOAD_WEAK_DYLIB`](#lc_load_weak_dylib) | const | load a dynamically linked shared library that is allowed to be missing (all symbols are weak imported). |
+| [`LC_SEGMENT_64`](#lc_segment_64) | const | 64-bit segment of this file to be mapped |
+| [`LC_ROUTINES_64`](#lc_routines_64) | const | 64-bit image routines |
+| [`LC_UUID`](#lc_uuid) | const | the uuid |
+| [`LC_RPATH`](#lc_rpath) | const | runpath additions |
+| [`LC_CODE_SIGNATURE`](#lc_code_signature) | const | local of code signature |
+| [`LC_SEGMENT_SPLIT_INFO`](#lc_segment_split_info) | const | local of info to split segments |
+| [`LC_REEXPORT_DYLIB`](#lc_reexport_dylib) | const | load and re-export dylib |
+| [`LC_LAZY_LOAD_DYLIB`](#lc_lazy_load_dylib) | const | delay load of dylib until first use |
+| [`LC_ENCRYPTION_INFO`](#lc_encryption_info) | const | encrypted segment information |
+| [`LC_DYLD_INFO`](#lc_dyld_info) | const | compressed dyld information |
+| [`LC_DYLD_INFO_ONLY`](#lc_dyld_info_only) | const | compressed dyld information only |
+| [`LC_LOAD_UPWARD_DYLIB`](#lc_load_upward_dylib) | const | load upward dylib |
+| [`LC_VERSION_MIN_MACOSX`](#lc_version_min_macosx) | const | build for MacOSX min OS version |
+| [`LC_VERSION_MIN_IPHONEOS`](#lc_version_min_iphoneos) | const | build for iPhoneOS min OS version |
+| [`LC_FUNCTION_STARTS`](#lc_function_starts) | const | compressed table of function start addresses |
+| [`LC_DYLD_ENVIRONMENT`](#lc_dyld_environment) | const | string for dyld to treat like environment variable |
+| [`LC_MAIN`](#lc_main) | const | replacement for LC_UNIXTHREAD |
+| [`LC_DATA_IN_CODE`](#lc_data_in_code) | const | table of non-instructions in __text |
+| [`LC_SOURCE_VERSION`](#lc_source_version) | const | source version used to build binary |
+| [`LC_DYLIB_CODE_SIGN_DRS`](#lc_dylib_code_sign_drs) | const | Code signing DRs copied from linked dylibs |
+| [`LC_ENCRYPTION_INFO_64`](#lc_encryption_info_64) | const | 64-bit encrypted segment information |
+| [`LC_LINKER_OPTION`](#lc_linker_option) | const | linker options in MH_OBJECT files |
+| [`LC_LINKER_OPTIMIZATION_HINT`](#lc_linker_optimization_hint) | const | optimization hints in MH_OBJECT files |
+| [`LC_VERSION_MIN_TVOS`](#lc_version_min_tvos) | const | build for AppleTV min OS version |
+| [`LC_VERSION_MIN_WATCHOS`](#lc_version_min_watchos) | const | build for Watch min OS version |
+| [`LC_NOTE`](#lc_note) | const | arbitrary data included within a Mach-O file |
+| [`LC_BUILD_VERSION`](#lc_build_version) | const | build for platform min OS version |
+| [`LC_DYLD_EXPORTS_TRIE`](#lc_dyld_exports_trie) | const | used with `LinkeditDataCommand`, payload is trie |
+| [`LC_DYLD_CHAINED_FIXUPS`](#lc_dyld_chained_fixups) | const | used with `LinkeditDataCommand` |
+| [`LC_FILESET_ENTRY`](#lc_fileset_entry) | const | used with `FilesetEntryCommand` |
+| [`SG_HIGHVM`](#sg_highvm) | const | the file contents for this segment is for the high part of the VM space, the low part is zero filled (for stacks in core files) |
+| [`SG_FVMLIB`](#sg_fvmlib) | const | this segment is the VM that is allocated by a fixed VM library, for overlap checking in the link editor |
+| [`SG_NORELOC`](#sg_noreloc) | const | this segment has nothing that was relocated in it and nothing relocated to it, that is it maybe safely replaced without relocation |
+| [`SG_PROTECTED_VERSION_1`](#sg_protected_version_1) | const | This segment is protected. |
+| [`SG_READ_ONLY`](#sg_read_only) | const | This segment is made read-only after fixups |
+| [`SECTION_TYPE`](#section_type) | const | 256 section types |
+| [`SECTION_ATTRIBUTES`](#section_attributes) | const | 24 section attributes |
+| [`S_REGULAR`](#s_regular) | const | regular section |
+| [`S_ZEROFILL`](#s_zerofill) | const | zero fill on demand section |
+| [`S_CSTRING_LITERALS`](#s_cstring_literals) | const | section with only literal C strings |
+| [`S_4BYTE_LITERALS`](#s_4byte_literals) | const | section with only 4 byte literals |
+| [`S_8BYTE_LITERALS`](#s_8byte_literals) | const | section with only 8 byte literals |
+| [`S_LITERAL_POINTERS`](#s_literal_pointers) | const | section with only pointers to literals |
+| [`S_NON_LAZY_SYMBOL_POINTERS`](#s_non_lazy_symbol_pointers) | const | section with only non-lazy symbol pointers |
+| [`S_LAZY_SYMBOL_POINTERS`](#s_lazy_symbol_pointers) | const | section with only lazy symbol pointers |
+| [`S_SYMBOL_STUBS`](#s_symbol_stubs) | const | section with only symbol stubs, byte size of stub in the reserved2 field |
+| [`S_MOD_INIT_FUNC_POINTERS`](#s_mod_init_func_pointers) | const | section with only function pointers for initialization |
+| [`S_MOD_TERM_FUNC_POINTERS`](#s_mod_term_func_pointers) | const | section with only function pointers for termination |
+| [`S_COALESCED`](#s_coalesced) | const | section contains symbols that are to be coalesced |
+| [`S_GB_ZEROFILL`](#s_gb_zerofill) | const | zero fill on demand section (that can be larger than 4 gigabytes) |
+| [`S_INTERPOSING`](#s_interposing) | const | section with only pairs of function pointers for interposing |
+| [`S_16BYTE_LITERALS`](#s_16byte_literals) | const | section with only 16 byte literals |
+| [`S_DTRACE_DOF`](#s_dtrace_dof) | const | section contains DTrace Object Format |
+| [`S_LAZY_DYLIB_SYMBOL_POINTERS`](#s_lazy_dylib_symbol_pointers) | const | section with only lazy symbol pointers to lazy loaded dylibs |
+| [`S_THREAD_LOCAL_REGULAR`](#s_thread_local_regular) | const | template of initial values for TLVs |
+| [`S_THREAD_LOCAL_ZEROFILL`](#s_thread_local_zerofill) | const | template of initial values for TLVs |
+| [`S_THREAD_LOCAL_VARIABLES`](#s_thread_local_variables) | const | TLV descriptors |
+| [`S_THREAD_LOCAL_VARIABLE_POINTERS`](#s_thread_local_variable_pointers) | const | pointers to TLV descriptors |
+| [`S_THREAD_LOCAL_INIT_FUNCTION_POINTERS`](#s_thread_local_init_function_pointers) | const | functions to call to initialize TLV values |
+| [`S_INIT_FUNC_OFFSETS`](#s_init_func_offsets) | const | 32-bit offsets to initializers |
+| [`SECTION_ATTRIBUTES_USR`](#section_attributes_usr) | const | User setable attributes |
+| [`S_ATTR_PURE_INSTRUCTIONS`](#s_attr_pure_instructions) | const | section contains only true machine instructions |
+| [`S_ATTR_NO_TOC`](#s_attr_no_toc) | const | section contains coalesced symbols that are not to be in a ranlib table of contents |
+| [`S_ATTR_STRIP_STATIC_SYMS`](#s_attr_strip_static_syms) | const | ok to strip static symbols in this section in files with the MH_DYLDLINK flag |
+| [`S_ATTR_NO_DEAD_STRIP`](#s_attr_no_dead_strip) | const | no dead stripping |
+| [`S_ATTR_LIVE_SUPPORT`](#s_attr_live_support) | const | blocks are live if they reference live blocks |
+| [`S_ATTR_SELF_MODIFYING_CODE`](#s_attr_self_modifying_code) | const | Used with i386 code stubs written on by dyld |
+| [`S_ATTR_DEBUG`](#s_attr_debug) | const | a debug section |
+| [`SECTION_ATTRIBUTES_SYS`](#section_attributes_sys) | const | system setable attributes |
+| [`S_ATTR_SOME_INSTRUCTIONS`](#s_attr_some_instructions) | const | section contains some machine instructions |
+| [`S_ATTR_EXT_RELOC`](#s_attr_ext_reloc) | const | section has external relocation entries |
+| [`S_ATTR_LOC_RELOC`](#s_attr_loc_reloc) | const | section has local relocation entries |
+| [`SEG_PAGEZERO`](#seg_pagezero) | const | the pagezero segment which has no protections and catches NULL references for MH_EXECUTE files |
+| [`SEG_TEXT`](#seg_text) | const | the tradition UNIX text segment |
+| [`SECT_TEXT`](#sect_text) | const | the real text part of the text section no headers, and no padding |
+| [`SECT_FVMLIB_INIT0`](#sect_fvmlib_init0) | const | the fvmlib initialization section |
+| [`SECT_FVMLIB_INIT1`](#sect_fvmlib_init1) | const | the section following the fvmlib initialization section |
+| [`SEG_DATA`](#seg_data) | const | the tradition UNIX data segment |
+| [`SECT_DATA`](#sect_data) | const | the real initialized data section no padding, no bss overlap |
+| [`SECT_BSS`](#sect_bss) | const | the real uninitialized data section no padding |
+| [`SECT_COMMON`](#sect_common) | const | the section common symbols are allocated in by the link editor |
+| [`SEG_OBJC`](#seg_objc) | const | objective-C runtime segment |
+| [`SECT_OBJC_SYMBOLS`](#sect_objc_symbols) | const | symbol table |
+| [`SECT_OBJC_MODULES`](#sect_objc_modules) | const | module information |
+| [`SECT_OBJC_STRINGS`](#sect_objc_strings) | const | string table |
+| [`SECT_OBJC_REFS`](#sect_objc_refs) | const | string table |
+| [`SEG_ICON`](#seg_icon) | const | the icon segment |
+| [`SECT_ICON_HEADER`](#sect_icon_header) | const | the icon headers |
+| [`SECT_ICON_TIFF`](#sect_icon_tiff) | const | the icons in tiff format |
+| [`SEG_LINKEDIT`](#seg_linkedit) | const | the segment containing all structs created and maintained by the link editor. |
+| [`SEG_LINKINFO`](#seg_linkinfo) | const | the segment overlapping with linkedit containing linking information |
+| [`SEG_UNIXSTACK`](#seg_unixstack) | const | the unix stack segment |
+| [`SEG_IMPORT`](#seg_import) | const | the segment for the self (dyld) modifying code stubs that has read, write and execute permissions |
+| [`INDIRECT_SYMBOL_LOCAL`](#indirect_symbol_local) | const |  |
+| [`INDIRECT_SYMBOL_ABS`](#indirect_symbol_abs) | const |  |
+| [`PLATFORM_MACOS`](#platform_macos) | const |  |
+| [`PLATFORM_IOS`](#platform_ios) | const |  |
+| [`PLATFORM_TVOS`](#platform_tvos) | const |  |
+| [`PLATFORM_WATCHOS`](#platform_watchos) | const |  |
+| [`PLATFORM_BRIDGEOS`](#platform_bridgeos) | const |  |
+| [`PLATFORM_MACCATALYST`](#platform_maccatalyst) | const |  |
+| [`PLATFORM_IOSSIMULATOR`](#platform_iossimulator) | const |  |
+| [`PLATFORM_TVOSSIMULATOR`](#platform_tvossimulator) | const |  |
+| [`PLATFORM_WATCHOSSIMULATOR`](#platform_watchossimulator) | const |  |
+| [`PLATFORM_DRIVERKIT`](#platform_driverkit) | const |  |
+| [`PLATFORM_XROS`](#platform_xros) | const |  |
+| [`PLATFORM_XROSSIMULATOR`](#platform_xrossimulator) | const |  |
+| [`TOOL_CLANG`](#tool_clang) | const |  |
+| [`TOOL_SWIFT`](#tool_swift) | const |  |
+| [`TOOL_LD`](#tool_ld) | const |  |
+| [`REBASE_TYPE_POINTER`](#rebase_type_pointer) | const |  |
+| [`REBASE_TYPE_TEXT_ABSOLUTE32`](#rebase_type_text_absolute32) | const |  |
+| [`REBASE_TYPE_TEXT_PCREL32`](#rebase_type_text_pcrel32) | const |  |
+| [`REBASE_OPCODE_MASK`](#rebase_opcode_mask) | const |  |
+| [`REBASE_IMMEDIATE_MASK`](#rebase_immediate_mask) | const |  |
+| [`REBASE_OPCODE_DONE`](#rebase_opcode_done) | const |  |
+| [`REBASE_OPCODE_SET_TYPE_IMM`](#rebase_opcode_set_type_imm) | const |  |
+| [`REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#rebase_opcode_set_segment_and_offset_uleb) | const |  |
+| [`REBASE_OPCODE_ADD_ADDR_ULEB`](#rebase_opcode_add_addr_uleb) | const |  |
+| [`REBASE_OPCODE_ADD_ADDR_IMM_SCALED`](#rebase_opcode_add_addr_imm_scaled) | const |  |
+| [`REBASE_OPCODE_DO_REBASE_IMM_TIMES`](#rebase_opcode_do_rebase_imm_times) | const |  |
+| [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES`](#rebase_opcode_do_rebase_uleb_times) | const |  |
+| [`REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB`](#rebase_opcode_do_rebase_add_addr_uleb) | const |  |
+| [`REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB`](#rebase_opcode_do_rebase_uleb_times_skipping_uleb) | const |  |
+| [`BIND_TYPE_POINTER`](#bind_type_pointer) | const |  |
+| [`BIND_TYPE_TEXT_ABSOLUTE32`](#bind_type_text_absolute32) | const |  |
+| [`BIND_TYPE_TEXT_PCREL32`](#bind_type_text_pcrel32) | const |  |
+| [`BIND_SPECIAL_DYLIB_SELF`](#bind_special_dylib_self) | const |  |
+| [`BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE`](#bind_special_dylib_main_executable) | const |  |
+| [`BIND_SPECIAL_DYLIB_FLAT_LOOKUP`](#bind_special_dylib_flat_lookup) | const |  |
+| [`BIND_SPECIAL_DYLIB_WEAK_LOOKUP`](#bind_special_dylib_weak_lookup) | const |  |
+| [`BIND_SYMBOL_FLAGS_WEAK_IMPORT`](#bind_symbol_flags_weak_import) | const |  |
+| [`BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION`](#bind_symbol_flags_non_weak_definition) | const |  |
+| [`BIND_OPCODE_MASK`](#bind_opcode_mask) | const |  |
+| [`BIND_IMMEDIATE_MASK`](#bind_immediate_mask) | const |  |
+| [`BIND_OPCODE_DONE`](#bind_opcode_done) | const |  |
+| [`BIND_OPCODE_SET_DYLIB_ORDINAL_IMM`](#bind_opcode_set_dylib_ordinal_imm) | const |  |
+| [`BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB`](#bind_opcode_set_dylib_ordinal_uleb) | const |  |
+| [`BIND_OPCODE_SET_DYLIB_SPECIAL_IMM`](#bind_opcode_set_dylib_special_imm) | const |  |
+| [`BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM`](#bind_opcode_set_symbol_trailing_flags_imm) | const |  |
+| [`BIND_OPCODE_SET_TYPE_IMM`](#bind_opcode_set_type_imm) | const |  |
+| [`BIND_OPCODE_SET_ADDEND_SLEB`](#bind_opcode_set_addend_sleb) | const |  |
+| [`BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`](#bind_opcode_set_segment_and_offset_uleb) | const |  |
+| [`BIND_OPCODE_ADD_ADDR_ULEB`](#bind_opcode_add_addr_uleb) | const |  |
+| [`BIND_OPCODE_DO_BIND`](#bind_opcode_do_bind) | const |  |
+| [`BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB`](#bind_opcode_do_bind_add_addr_uleb) | const |  |
+| [`BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED`](#bind_opcode_do_bind_add_addr_imm_scaled) | const |  |
+| [`BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB`](#bind_opcode_do_bind_uleb_times_skipping_uleb) | const |  |
+| [`BIND_OPCODE_THREADED`](#bind_opcode_threaded) | const |  |
+| [`BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB`](#bind_subopcode_threaded_set_bind_ordinal_table_size_uleb) | const |  |
+| [`BIND_SUBOPCODE_THREADED_APPLY`](#bind_subopcode_threaded_apply) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_KIND_MASK`](#export_symbol_flags_kind_mask) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_KIND_REGULAR`](#export_symbol_flags_kind_regular) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL`](#export_symbol_flags_kind_thread_local) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE`](#export_symbol_flags_kind_absolute) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION`](#export_symbol_flags_weak_definition) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_REEXPORT`](#export_symbol_flags_reexport) | const |  |
+| [`EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`](#export_symbol_flags_stub_and_resolver) | const |  |
+| [`DICE_KIND_DATA`](#dice_kind_data) | const |  |
+| [`DICE_KIND_JUMP_TABLE8`](#dice_kind_jump_table8) | const |  |
+| [`DICE_KIND_JUMP_TABLE16`](#dice_kind_jump_table16) | const |  |
+| [`DICE_KIND_JUMP_TABLE32`](#dice_kind_jump_table32) | const |  |
+| [`DICE_KIND_ABS_JUMP_TABLE32`](#dice_kind_abs_jump_table32) | const |  |
+| [`N_STAB`](#n_stab) | const | if any of these bits set, a symbolic debugging entry |
+| [`N_PEXT`](#n_pext) | const | private external symbol bit |
+| [`N_TYPE`](#n_type) | const | mask for the type bits |
+| [`N_EXT`](#n_ext) | const | external symbol bit, set for external symbols |
+| [`N_UNDF`](#n_undf) | const | undefined, n_sect == NO_SECT |
+| [`N_ABS`](#n_abs) | const | absolute, n_sect == NO_SECT |
+| [`N_SECT`](#n_sect) | const | defined in section number n_sect |
+| [`N_PBUD`](#n_pbud) | const | prebound undefined (defined in a dylib) |
+| [`N_INDR`](#n_indr) | const | indirect |
+| [`NO_SECT`](#no_sect) | const | symbol is not in any section |
+| [`MAX_SECT`](#max_sect) | const | 1 thru 255 inclusive |
+| [`REFERENCE_TYPE`](#reference_type) | const |  |
+| [`REFERENCE_FLAG_UNDEFINED_NON_LAZY`](#reference_flag_undefined_non_lazy) | const |  |
+| [`REFERENCE_FLAG_UNDEFINED_LAZY`](#reference_flag_undefined_lazy) | const |  |
+| [`REFERENCE_FLAG_DEFINED`](#reference_flag_defined) | const |  |
+| [`REFERENCE_FLAG_PRIVATE_DEFINED`](#reference_flag_private_defined) | const |  |
+| [`REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY`](#reference_flag_private_undefined_non_lazy) | const |  |
+| [`REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY`](#reference_flag_private_undefined_lazy) | const |  |
+| [`REFERENCED_DYNAMICALLY`](#referenced_dynamically) | const |  |
+| [`SELF_LIBRARY_ORDINAL`](#self_library_ordinal) | const |  |
+| [`MAX_LIBRARY_ORDINAL`](#max_library_ordinal) | const |  |
+| [`DYNAMIC_LOOKUP_ORDINAL`](#dynamic_lookup_ordinal) | const |  |
+| [`EXECUTABLE_ORDINAL`](#executable_ordinal) | const |  |
+| [`N_NO_DEAD_STRIP`](#n_no_dead_strip) | const | symbol is not to be dead stripped |
+| [`N_DESC_DISCARDED`](#n_desc_discarded) | const | symbol is discarded |
+| [`N_WEAK_REF`](#n_weak_ref) | const | symbol is weak referenced |
+| [`N_WEAK_DEF`](#n_weak_def) | const | coalesced symbol is a weak definition |
+| [`N_REF_TO_WEAK`](#n_ref_to_weak) | const | reference to a weak symbol |
+| [`N_ARM_THUMB_DEF`](#n_arm_thumb_def) | const | symbol is a Thumb function (ARM) |
+| [`N_SYMBOL_RESOLVER`](#n_symbol_resolver) | const |  |
+| [`N_ALT_ENTRY`](#n_alt_entry) | const |  |
+| [`N_GSYM`](#n_gsym) | const | global symbol: name,,NO_SECT,type,0 |
+| [`N_FNAME`](#n_fname) | const | procedure name (f77 kludge): name,,NO_SECT,0,0 |
+| [`N_FUN`](#n_fun) | const | procedure: name,,n_sect,linenumber,address |
+| [`N_STSYM`](#n_stsym) | const | static symbol: name,,n_sect,type,address |
+| [`N_LCSYM`](#n_lcsym) | const | .lcomm symbol: name,,n_sect,type,address |
+| [`N_BNSYM`](#n_bnsym) | const | begin nsect sym: 0,,n_sect,0,address |
+| [`N_AST`](#n_ast) | const | AST file path: name,,NO_SECT,0,0 |
+| [`N_OPT`](#n_opt) | const | emitted with gcc2_compiled and in gcc source |
+| [`N_RSYM`](#n_rsym) | const | register sym: name,,NO_SECT,type,register |
+| [`N_SLINE`](#n_sline) | const | src line: 0,,n_sect,linenumber,address |
+| [`N_ENSYM`](#n_ensym) | const | end nsect sym: 0,,n_sect,0,address |
+| [`N_SSYM`](#n_ssym) | const | structure elt: name,,NO_SECT,type,struct_offset |
+| [`N_SO`](#n_so) | const | source file name: name,,n_sect,0,address |
+| [`N_OSO`](#n_oso) | const | object file name: name,,0,0,st_mtime |
+| [`N_LSYM`](#n_lsym) | const | local sym: name,,NO_SECT,type,offset |
+| [`N_BINCL`](#n_bincl) | const | include file beginning: name,,NO_SECT,0,sum |
+| [`N_SOL`](#n_sol) | const | #included file name: name,,n_sect,0,address |
+| [`N_PARAMS`](#n_params) | const | compiler parameters: name,,NO_SECT,0,0 |
+| [`N_VERSION`](#n_version) | const | compiler version: name,,NO_SECT,0,0 |
+| [`N_OLEVEL`](#n_olevel) | const | compiler -O level: name,,NO_SECT,0,0 |
+| [`N_PSYM`](#n_psym) | const | parameter: name,,NO_SECT,type,offset |
+| [`N_EINCL`](#n_eincl) | const | include file end: name,,NO_SECT,0,0 |
+| [`N_ENTRY`](#n_entry) | const | alternate entry: name,,n_sect,linenumber,address |
+| [`N_LBRAC`](#n_lbrac) | const | left bracket: 0,,NO_SECT,nesting level,address |
+| [`N_EXCL`](#n_excl) | const | deleted include file: name,,NO_SECT,0,sum |
+| [`N_RBRAC`](#n_rbrac) | const | right bracket: 0,,NO_SECT,nesting level,address |
+| [`N_BCOMM`](#n_bcomm) | const | begin common: name,,NO_SECT,0,0 |
+| [`N_ECOMM`](#n_ecomm) | const | end common: name,,n_sect,0,0 |
+| [`N_ECOML`](#n_ecoml) | const | end common (local name): 0,,n_sect,0,address |
+| [`N_LENG`](#n_leng) | const | second stab entry with length information |
+| [`N_PC`](#n_pc) | const | global pascal symbol: name,,NO_SECT,subtype,line |
+| [`R_ABS`](#r_abs) | const | absolute relocation type for Mach-O files |
+| [`R_SCATTERED`](#r_scattered) | const | Bit set in `Relocation::r_word0` for scattered relocations. |
+| [`GENERIC_RELOC_VANILLA`](#generic_reloc_vanilla) | const | generic relocation as described above |
+| [`GENERIC_RELOC_PAIR`](#generic_reloc_pair) | const | Only follows a GENERIC_RELOC_SECTDIFF |
+| [`GENERIC_RELOC_SECTDIFF`](#generic_reloc_sectdiff) | const |  |
+| [`GENERIC_RELOC_PB_LA_PTR`](#generic_reloc_pb_la_ptr) | const | prebound lazy pointer |
+| [`GENERIC_RELOC_LOCAL_SECTDIFF`](#generic_reloc_local_sectdiff) | const |  |
+| [`GENERIC_RELOC_TLV`](#generic_reloc_tlv) | const | thread local variables |
+| [`ARM_RELOC_VANILLA`](#arm_reloc_vanilla) | const | generic relocation as described above |
+| [`ARM_RELOC_PAIR`](#arm_reloc_pair) | const | the second relocation entry of a pair |
+| [`ARM_RELOC_SECTDIFF`](#arm_reloc_sectdiff) | const | a PAIR follows with subtract symbol value |
+| [`ARM_RELOC_LOCAL_SECTDIFF`](#arm_reloc_local_sectdiff) | const | like ARM_RELOC_SECTDIFF, but the symbol referenced was local. |
+| [`ARM_RELOC_PB_LA_PTR`](#arm_reloc_pb_la_ptr) | const | prebound lazy pointer |
+| [`ARM_RELOC_BR24`](#arm_reloc_br24) | const | 24 bit branch displacement (to a word address) |
+| [`ARM_THUMB_RELOC_BR22`](#arm_thumb_reloc_br22) | const | 22 bit branch displacement (to a half-word address) |
+| [`ARM_THUMB_32BIT_BRANCH`](#arm_thumb_32bit_branch) | const | obsolete - a thumb 32-bit branch instruction possibly needing page-spanning branch workaround |
+| [`ARM_RELOC_HALF`](#arm_reloc_half) | const |  |
+| [`ARM_RELOC_HALF_SECTDIFF`](#arm_reloc_half_sectdiff) | const |  |
+| [`ARM64_RELOC_UNSIGNED`](#arm64_reloc_unsigned) | const | for pointers |
+| [`ARM64_RELOC_SUBTRACTOR`](#arm64_reloc_subtractor) | const | must be followed by a ARM64_RELOC_UNSIGNED |
+| [`ARM64_RELOC_BRANCH26`](#arm64_reloc_branch26) | const | a B/BL instruction with 26-bit displacement |
+| [`ARM64_RELOC_PAGE21`](#arm64_reloc_page21) | const | pc-rel distance to page of target |
+| [`ARM64_RELOC_PAGEOFF12`](#arm64_reloc_pageoff12) | const | offset within page, scaled by r_length |
+| [`ARM64_RELOC_GOT_LOAD_PAGE21`](#arm64_reloc_got_load_page21) | const | pc-rel distance to page of GOT slot |
+| [`ARM64_RELOC_GOT_LOAD_PAGEOFF12`](#arm64_reloc_got_load_pageoff12) | const | offset within page of GOT slot, scaled by r_length |
+| [`ARM64_RELOC_POINTER_TO_GOT`](#arm64_reloc_pointer_to_got) | const | for pointers to GOT slots |
+| [`ARM64_RELOC_TLVP_LOAD_PAGE21`](#arm64_reloc_tlvp_load_page21) | const | pc-rel distance to page of TLVP slot |
+| [`ARM64_RELOC_TLVP_LOAD_PAGEOFF12`](#arm64_reloc_tlvp_load_pageoff12) | const | offset within page of TLVP slot, scaled by r_length |
+| [`ARM64_RELOC_ADDEND`](#arm64_reloc_addend) | const | must be followed by PAGE21 or PAGEOFF12 |
+| [`ARM64_RELOC_AUTHENTICATED_POINTER`](#arm64_reloc_authenticated_pointer) | const |  |
+| [`PPC_RELOC_VANILLA`](#ppc_reloc_vanilla) | const | generic relocation as described above |
+| [`PPC_RELOC_PAIR`](#ppc_reloc_pair) | const | the second relocation entry of a pair |
+| [`PPC_RELOC_BR14`](#ppc_reloc_br14) | const | 14 bit branch displacement (to a word address) |
+| [`PPC_RELOC_BR24`](#ppc_reloc_br24) | const | 24 bit branch displacement (to a word address) |
+| [`PPC_RELOC_HI16`](#ppc_reloc_hi16) | const | a PAIR follows with the low half |
+| [`PPC_RELOC_LO16`](#ppc_reloc_lo16) | const | a PAIR follows with the high half |
+| [`PPC_RELOC_HA16`](#ppc_reloc_ha16) | const | Same as the RELOC_HI16 except the low 16 bits and the high 16 bits are added together with the low 16 bits sign extended first. |
+| [`PPC_RELOC_LO14`](#ppc_reloc_lo14) | const | Same as the LO16 except that the low 2 bits are not stored in the instruction and are always zero. |
+| [`PPC_RELOC_SECTDIFF`](#ppc_reloc_sectdiff) | const | a PAIR follows with subtract symbol value |
+| [`PPC_RELOC_PB_LA_PTR`](#ppc_reloc_pb_la_ptr) | const | prebound lazy pointer |
+| [`PPC_RELOC_HI16_SECTDIFF`](#ppc_reloc_hi16_sectdiff) | const | section difference forms of above. |
+| [`PPC_RELOC_LO16_SECTDIFF`](#ppc_reloc_lo16_sectdiff) | const | follows these with subtract symbol value |
+| [`PPC_RELOC_HA16_SECTDIFF`](#ppc_reloc_ha16_sectdiff) | const |  |
+| [`PPC_RELOC_JBSR`](#ppc_reloc_jbsr) | const |  |
+| [`PPC_RELOC_LO14_SECTDIFF`](#ppc_reloc_lo14_sectdiff) | const |  |
+| [`PPC_RELOC_LOCAL_SECTDIFF`](#ppc_reloc_local_sectdiff) | const | like PPC_RELOC_SECTDIFF, but the symbol referenced was local. |
+| [`X86_64_RELOC_UNSIGNED`](#x86_64_reloc_unsigned) | const | for absolute addresses |
+| [`X86_64_RELOC_SIGNED`](#x86_64_reloc_signed) | const | for signed 32-bit displacement |
+| [`X86_64_RELOC_BRANCH`](#x86_64_reloc_branch) | const | a CALL/JMP instruction with 32-bit displacement |
+| [`X86_64_RELOC_GOT_LOAD`](#x86_64_reloc_got_load) | const | a MOVQ load of a GOT entry |
+| [`X86_64_RELOC_GOT`](#x86_64_reloc_got) | const | other GOT references |
+| [`X86_64_RELOC_SUBTRACTOR`](#x86_64_reloc_subtractor) | const | must be followed by a X86_64_RELOC_UNSIGNED |
+| [`X86_64_RELOC_SIGNED_1`](#x86_64_reloc_signed_1) | const | for signed 32-bit displacement with a -1 addend |
+| [`X86_64_RELOC_SIGNED_2`](#x86_64_reloc_signed_2) | const | for signed 32-bit displacement with a -2 addend |
+| [`X86_64_RELOC_SIGNED_4`](#x86_64_reloc_signed_4) | const | for signed 32-bit displacement with a -4 addend |
+| [`X86_64_RELOC_TLV`](#x86_64_reloc_tlv) | const | for thread local variables |
+
 ## Structs
 
 ### `DyldCacheHeader<E: Endian>`
@@ -89,6 +1223,8 @@ struct DyldCacheHeader<E: Endian> {
     pub dynamic_data_max_size: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:314-454`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L314-L454)*
 
 The dyld cache header.
 Corresponds to struct dyld_cache_header from dyld_cache_format.h.
@@ -373,29 +1509,29 @@ right after the theader.
 
 #### Implementations
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<&'data Self>` — [`Result`](../index.md)
+- <span id="machodyldcacheheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<&'data Self>` — [`Result`](../index.md)
 
-- `fn parse_magic(self: &Self) -> Result<(Architecture, E)>` — [`Result`](../index.md), [`Architecture`](../index.md)
+- <span id="machodyldcacheheader-parse-magic"></span>`fn parse_magic(&self) -> Result<(Architecture, E)>` — [`Result`](../index.md), [`Architecture`](../index.md)
 
-- `fn mappings<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<DyldCacheMappingSlice<'data, E>>` — [`Result`](../index.md), [`DyldCacheMappingSlice`](../read/macho/index.md)
+- <span id="machodyldcacheheader-mappings"></span>`fn mappings<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<DyldCacheMappingSlice<'data, E>>` — [`Result`](../index.md), [`DyldCacheMappingSlice`](../read/macho/index.md)
 
-- `fn subcaches<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<Option<DyldSubCacheSlice<'data, E>>>` — [`Result`](../index.md), [`DyldSubCacheSlice`](../read/macho/index.md)
+- <span id="machodyldcacheheader-subcaches"></span>`fn subcaches<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<Option<DyldSubCacheSlice<'data, E>>>` — [`Result`](../index.md), [`DyldSubCacheSlice`](../read/macho/index.md)
 
-- `fn symbols_subcache_uuid(self: &Self, endian: E) -> Option<[u8; 16]>`
+- <span id="machodyldcacheheader-symbols-subcache-uuid"></span>`fn symbols_subcache_uuid(&self, endian: E) -> Option<[u8; 16]>`
 
-- `fn images<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<&'data [macho::DyldCacheImageInfo<E>]>` — [`Result`](../index.md), [`DyldCacheImageInfo`](#dyldcacheimageinfo)
+- <span id="machodyldcacheheader-images"></span>`fn images<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<&'data [macho::DyldCacheImageInfo<E>]>` — [`Result`](../index.md), [`DyldCacheImageInfo`](#dyldcacheimageinfo)
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheHeader<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheHeader<E>`
 
-- `fn clone(self: &Self) -> DyldCacheHeader<E>` — [`DyldCacheHeader`](#dyldcacheheader)
+- <span id="dyldcacheheader-clone"></span>`fn clone(&self) -> DyldCacheHeader<E>` — [`DyldCacheHeader`](#dyldcacheheader)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheHeader<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheHeader<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheHeader<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheHeader<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldcacheheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DyldCacheHeader<E>`
 
@@ -411,19 +1547,21 @@ struct DyldCacheMappingInfo<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:459-465`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L459-L465)*
+
 Corresponds to struct dyld_cache_mapping_info from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheMappingInfo<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheMappingInfo<E>`
 
-- `fn clone(self: &Self) -> DyldCacheMappingInfo<E>` — [`DyldCacheMappingInfo`](#dyldcachemappinginfo)
+- <span id="dyldcachemappinginfo-clone"></span>`fn clone(&self) -> DyldCacheMappingInfo<E>` — [`DyldCacheMappingInfo`](#dyldcachemappinginfo)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheMappingInfo<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheMappingInfo<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheMappingInfo<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheMappingInfo<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldcachemappinginfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DyldCacheMappingInfo<E>`
 
@@ -442,23 +1580,25 @@ struct DyldCacheMappingAndSlideInfo<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:477-486`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L477-L486)*
+
 Corresponds to struct dyld_cache_mapping_and_slide_info from dyld_cache_format.h.
 
 #### Implementations
 
-- `fn slide<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<DyldCacheSlideInfo<'data, E>>` — [`Result`](../index.md), [`DyldCacheSlideInfo`](../read/macho/index.md)
+- <span id="machodyldcachemappingandslideinfo-slide"></span>`fn slide<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<DyldCacheSlideInfo<'data, E>>` — [`Result`](../index.md), [`DyldCacheSlideInfo`](../read/macho/index.md)
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheMappingAndSlideInfo<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheMappingAndSlideInfo<E>`
 
-- `fn clone(self: &Self) -> DyldCacheMappingAndSlideInfo<E>` — [`DyldCacheMappingAndSlideInfo`](#dyldcachemappingandslideinfo)
+- <span id="dyldcachemappingandslideinfo-clone"></span>`fn clone(&self) -> DyldCacheMappingAndSlideInfo<E>` — [`DyldCacheMappingAndSlideInfo`](#dyldcachemappingandslideinfo)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheMappingAndSlideInfo<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheMappingAndSlideInfo<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheMappingAndSlideInfo<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheMappingAndSlideInfo<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldcachemappingandslideinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DyldCacheMappingAndSlideInfo<E>`
 
@@ -474,23 +1614,25 @@ struct DyldCacheImageInfo<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:491-497`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L491-L497)*
+
 Corresponds to struct dyld_cache_image_info from dyld_cache_format.h.
 
 #### Implementations
 
-- `fn path<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<&'data [u8]>` — [`Result`](../index.md)
+- <span id="machodyldcacheimageinfo-path"></span>`fn path<'data, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<&'data [u8]>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheImageInfo<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheImageInfo<E>`
 
-- `fn clone(self: &Self) -> DyldCacheImageInfo<E>` — [`DyldCacheImageInfo`](#dyldcacheimageinfo)
+- <span id="dyldcacheimageinfo-clone"></span>`fn clone(&self) -> DyldCacheImageInfo<E>` — [`DyldCacheImageInfo`](#dyldcacheimageinfo)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheImageInfo<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheImageInfo<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheImageInfo<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheImageInfo<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldcacheimageinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DyldCacheImageInfo<E>`
 
@@ -509,19 +1651,21 @@ struct DyldCacheSlideInfo2<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:502-511`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L502-L511)*
+
 Corresponds to struct dyld_cache_slide_info2 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheSlideInfo2<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheSlideInfo2<E>`
 
-- `fn clone(self: &Self) -> DyldCacheSlideInfo2<E>` — [`DyldCacheSlideInfo2`](#dyldcacheslideinfo2)
+- <span id="dyldcacheslideinfo2-clone"></span>`fn clone(&self) -> DyldCacheSlideInfo2<E>` — [`DyldCacheSlideInfo2`](#dyldcacheslideinfo2)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheSlideInfo2<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheSlideInfo2<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheSlideInfo2<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo2<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldcacheslideinfo2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DyldCacheSlideInfo2<E>`
 
@@ -537,19 +1681,21 @@ struct DyldCacheSlideInfo3<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:524-530`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L524-L530)*
+
 Corresponds to struct dyld_cache_slide_info3 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheSlideInfo3<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheSlideInfo3<E>`
 
-- `fn clone(self: &Self) -> DyldCacheSlideInfo3<E>` — [`DyldCacheSlideInfo3`](#dyldcacheslideinfo3)
+- <span id="dyldcacheslideinfo3-clone"></span>`fn clone(&self) -> DyldCacheSlideInfo3<E>` — [`DyldCacheSlideInfo3`](#dyldcacheslideinfo3)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheSlideInfo3<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheSlideInfo3<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheSlideInfo3<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo3<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldcacheslideinfo3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DyldCacheSlideInfo3<E>`
 
@@ -559,37 +1705,39 @@ Corresponds to struct dyld_cache_slide_info3 from dyld_cache_format.h.
 struct DyldCacheSlidePointer3(u64);
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:537`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L537)*
+
 Corresponds to union dyld_cache_slide_pointer3 from dyld_cache_format.h.
 
 #### Implementations
 
-- `fn is_auth(self: &Self) -> bool`
+- <span id="dyldcacheslidepointer3-is-auth"></span>`fn is_auth(&self) -> bool`
 
-- `fn target(self: &Self) -> u64`
+- <span id="dyldcacheslidepointer3-target"></span>`fn target(&self) -> u64`
 
-- `fn high8(self: &Self) -> u64`
+- <span id="dyldcacheslidepointer3-high8"></span>`fn high8(&self) -> u64`
 
-- `fn runtime_offset(self: &Self) -> u64`
+- <span id="dyldcacheslidepointer3-runtime-offset"></span>`fn runtime_offset(&self) -> u64`
 
-- `fn diversity(self: &Self) -> u16`
+- <span id="dyldcacheslidepointer3-diversity"></span>`fn diversity(&self) -> u16`
 
-- `fn addr_div(self: &Self) -> bool`
+- <span id="dyldcacheslidepointer3-addr-div"></span>`fn addr_div(&self) -> bool`
 
-- `fn key(self: &Self) -> u8`
+- <span id="dyldcacheslidepointer3-key"></span>`fn key(&self) -> u8`
 
-- `fn next(self: &Self) -> u64`
+- <span id="dyldcacheslidepointer3-next"></span>`fn next(&self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl Clone for DyldCacheSlidePointer3`
 
-- `fn clone(self: &Self) -> DyldCacheSlidePointer3` — [`DyldCacheSlidePointer3`](#dyldcacheslidepointer3)
+- <span id="dyldcacheslidepointer3-clone"></span>`fn clone(&self) -> DyldCacheSlidePointer3` — [`DyldCacheSlidePointer3`](#dyldcacheslidepointer3)
 
 ##### `impl Copy for DyldCacheSlidePointer3`
 
 ##### `impl Debug for DyldCacheSlidePointer3`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldcacheslidepointer3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DyldCacheSlideInfo5<E: Endian>`
 
@@ -603,19 +1751,21 @@ struct DyldCacheSlideInfo5<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:598-604`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L598-L604)*
+
 Corresponds to struct dyld_cache_slide_info5 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheSlideInfo5<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldCacheSlideInfo5<E>`
 
-- `fn clone(self: &Self) -> DyldCacheSlideInfo5<E>` — [`DyldCacheSlideInfo5`](#dyldcacheslideinfo5)
+- <span id="dyldcacheslideinfo5-clone"></span>`fn clone(&self) -> DyldCacheSlideInfo5<E>` — [`DyldCacheSlideInfo5`](#dyldcacheslideinfo5)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheSlideInfo5<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldCacheSlideInfo5<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheSlideInfo5<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldCacheSlideInfo5<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldcacheslideinfo5-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DyldCacheSlideInfo5<E>`
 
@@ -625,35 +1775,37 @@ Corresponds to struct dyld_cache_slide_info5 from dyld_cache_format.h.
 struct DyldCacheSlidePointer5(u64);
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:611`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L611)*
+
 Corresponds to struct dyld_cache_slide_pointer5 from dyld_cache_format.h.
 
 #### Implementations
 
-- `fn is_auth(self: &Self) -> bool`
+- <span id="dyldcacheslidepointer5-is-auth"></span>`fn is_auth(&self) -> bool`
 
-- `fn runtime_offset(self: &Self) -> u64`
+- <span id="dyldcacheslidepointer5-runtime-offset"></span>`fn runtime_offset(&self) -> u64`
 
-- `fn high8(self: &Self) -> u64`
+- <span id="dyldcacheslidepointer5-high8"></span>`fn high8(&self) -> u64`
 
-- `fn diversity(self: &Self) -> u16`
+- <span id="dyldcacheslidepointer5-diversity"></span>`fn diversity(&self) -> u16`
 
-- `fn addr_div(self: &Self) -> bool`
+- <span id="dyldcacheslidepointer5-addr-div"></span>`fn addr_div(&self) -> bool`
 
-- `fn key_is_data(self: &Self) -> bool`
+- <span id="dyldcacheslidepointer5-key-is-data"></span>`fn key_is_data(&self) -> bool`
 
-- `fn next(self: &Self) -> u64`
+- <span id="dyldcacheslidepointer5-next"></span>`fn next(&self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl Clone for DyldCacheSlidePointer5`
 
-- `fn clone(self: &Self) -> DyldCacheSlidePointer5` — [`DyldCacheSlidePointer5`](#dyldcacheslidepointer5)
+- <span id="dyldcacheslidepointer5-clone"></span>`fn clone(&self) -> DyldCacheSlidePointer5` — [`DyldCacheSlidePointer5`](#dyldcacheslidepointer5)
 
 ##### `impl Copy for DyldCacheSlidePointer5`
 
 ##### `impl Debug for DyldCacheSlidePointer5`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldcacheslidepointer5-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DyldSubCacheEntryV1<E: Endian>`
 
@@ -663,6 +1815,8 @@ struct DyldSubCacheEntryV1<E: Endian> {
     pub cache_vm_offset: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:665-670`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L665-L670)*
 
 Added in dyld-940, which shipped with macOS 12 / iOS 15.
 Originally called `dyld_subcache_entry`, renamed to `dyld_subcache_entry_v1`
@@ -680,15 +1834,15 @@ in dyld-1042.1.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldSubCacheEntryV1<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldSubCacheEntryV1<E>`
 
-- `fn clone(self: &Self) -> DyldSubCacheEntryV1<E>` — [`DyldSubCacheEntryV1`](#dyldsubcacheentryv1)
+- <span id="dyldsubcacheentryv1-clone"></span>`fn clone(&self) -> DyldSubCacheEntryV1<E>` — [`DyldSubCacheEntryV1`](#dyldsubcacheentryv1)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldSubCacheEntryV1<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldSubCacheEntryV1<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldSubCacheEntryV1<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldSubCacheEntryV1<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldsubcacheentryv1-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DyldSubCacheEntryV1<E>`
 
@@ -701,6 +1855,8 @@ struct DyldSubCacheEntryV2<E: Endian> {
     pub file_suffix: [u8; 32],
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:676-683`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L676-L683)*
 
 Added in dyld-1042.1, which shipped with macOS 13 / iOS 16.
 Called `dyld_subcache_entry` as of dyld-1042.1.
@@ -721,15 +1877,15 @@ Called `dyld_subcache_entry` as of dyld-1042.1.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldSubCacheEntryV2<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldSubCacheEntryV2<E>`
 
-- `fn clone(self: &Self) -> DyldSubCacheEntryV2<E>` — [`DyldSubCacheEntryV2`](#dyldsubcacheentryv2)
+- <span id="dyldsubcacheentryv2-clone"></span>`fn clone(&self) -> DyldSubCacheEntryV2<E>` — [`DyldSubCacheEntryV2`](#dyldsubcacheentryv2)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldSubCacheEntryV2<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldSubCacheEntryV2<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldSubCacheEntryV2<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldSubCacheEntryV2<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldsubcacheentryv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DyldSubCacheEntryV2<E>`
 
@@ -741,6 +1897,8 @@ struct FatHeader {
     pub nfat_arch: crate::endian::U32<crate::endian::BigEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:708-713`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L708-L713)*
 
 #### Fields
 
@@ -756,13 +1914,13 @@ struct FatHeader {
 
 ##### `impl Clone for FatHeader`
 
-- `fn clone(self: &Self) -> FatHeader` — [`FatHeader`](#fatheader)
+- <span id="fatheader-clone"></span>`fn clone(&self) -> FatHeader` — [`FatHeader`](#fatheader)
 
 ##### `impl Copy for FatHeader`
 
 ##### `impl Debug for FatHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fatheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for FatHeader`
 
@@ -777,6 +1935,8 @@ struct FatArch32 {
     pub align: crate::endian::U32<crate::endian::BigEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:717-728`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L717-L728)*
 
 #### Fields
 
@@ -804,29 +1964,29 @@ struct FatArch32 {
 
 ##### `impl Clone for FatArch32`
 
-- `fn clone(self: &Self) -> FatArch32` — [`FatArch32`](#fatarch32)
+- <span id="fatarch32-clone"></span>`fn clone(&self) -> FatArch32` — [`FatArch32`](#fatarch32)
 
 ##### `impl Copy for FatArch32`
 
 ##### `impl Debug for FatArch32`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fatarch32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FatArch for FatArch32`
 
-- `type Word = u32`
+- <span id="fatarch32-type-word"></span>`type Word = u32`
 
-- `const MAGIC: u32`
+- <span id="fatarch32-const-magic"></span>`const MAGIC: u32`
 
-- `fn cputype(self: &Self) -> u32`
+- <span id="fatarch32-cputype"></span>`fn cputype(&self) -> u32`
 
-- `fn cpusubtype(self: &Self) -> u32`
+- <span id="fatarch32-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
 
-- `fn offset(self: &Self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
+- <span id="fatarch32-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
 
-- `fn size(self: &Self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
+- <span id="fatarch32-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
 
-- `fn align(self: &Self) -> u32`
+- <span id="fatarch32-align"></span>`fn align(&self) -> u32`
 
 ##### `impl Pod for FatArch32`
 
@@ -842,6 +2002,8 @@ struct FatArch64 {
     pub reserved: crate::endian::U32<crate::endian::BigEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:743-756`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L743-L756)*
 
 #### Fields
 
@@ -873,29 +2035,29 @@ struct FatArch64 {
 
 ##### `impl Clone for FatArch64`
 
-- `fn clone(self: &Self) -> FatArch64` — [`FatArch64`](#fatarch64)
+- <span id="fatarch64-clone"></span>`fn clone(&self) -> FatArch64` — [`FatArch64`](#fatarch64)
 
 ##### `impl Copy for FatArch64`
 
 ##### `impl Debug for FatArch64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fatarch64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FatArch for FatArch64`
 
-- `type Word = u64`
+- <span id="fatarch64-type-word"></span>`type Word = u64`
 
-- `const MAGIC: u32`
+- <span id="fatarch64-const-magic"></span>`const MAGIC: u32`
 
-- `fn cputype(self: &Self) -> u32`
+- <span id="fatarch64-cputype"></span>`fn cputype(&self) -> u32`
 
-- `fn cpusubtype(self: &Self) -> u32`
+- <span id="fatarch64-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
 
-- `fn offset(self: &Self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
+- <span id="fatarch64-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
 
-- `fn size(self: &Self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
+- <span id="fatarch64-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
 
-- `fn align(self: &Self) -> u32`
+- <span id="fatarch64-align"></span>`fn align(&self) -> u32`
 
 ##### `impl Pod for FatArch64`
 
@@ -912,6 +2074,8 @@ struct MachHeader32<E: Endian> {
     pub flags: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:765-780`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L765-L780)*
 
 The 32-bit mach header.
 
@@ -949,47 +2113,47 @@ Appears at the very beginning of the object file for 32-bit architectures.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for MachHeader32<E>`
+##### `impl<E: clone::Clone + Endian> Clone for MachHeader32<E>`
 
-- `fn clone(self: &Self) -> MachHeader32<E>` — [`MachHeader32`](#machheader32)
+- <span id="machheader32-clone"></span>`fn clone(&self) -> MachHeader32<E>` — [`MachHeader32`](#machheader32)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for MachHeader32<E>`
+##### `impl<E: marker::Copy + Endian> Copy for MachHeader32<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for MachHeader32<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for MachHeader32<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="machheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Endian: endian::Endian> MachHeader for macho::MachHeader32<Endian>`
 
-- `type Word = u32`
+- <span id="machomachheader32-type-word"></span>`type Word = u32`
 
-- `type Endian = Endian`
+- <span id="machomachheader32-type-endian"></span>`type Endian = Endian`
 
-- `type Segment = SegmentCommand32<Endian>`
+- <span id="machomachheader32-type-segment"></span>`type Segment = SegmentCommand32<Endian>`
 
-- `type Section = Section32<Endian>`
+- <span id="machomachheader32-type-section"></span>`type Section = Section32<Endian>`
 
-- `type Nlist = Nlist32<Endian>`
+- <span id="machomachheader32-type-nlist"></span>`type Nlist = Nlist32<Endian>`
 
-- `fn is_type_64(self: &Self) -> bool`
+- <span id="machomachheader32-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- `fn is_big_endian(self: &Self) -> bool`
+- <span id="machomachheader32-is-big-endian"></span>`fn is_big_endian(&self) -> bool`
 
-- `fn is_little_endian(self: &Self) -> bool`
+- <span id="machomachheader32-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- `fn magic(self: &Self) -> u32`
+- <span id="machomachheader32-magic"></span>`fn magic(&self) -> u32`
 
-- `fn cputype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-cputype"></span>`fn cputype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn cpusubtype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-cpusubtype"></span>`fn cpusubtype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn filetype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-filetype"></span>`fn filetype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn ncmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-ncmds"></span>`fn ncmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn sizeofcmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-sizeofcmds"></span>`fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
 ##### `impl<E: Endian> Pod for MachHeader32<E>`
 
@@ -1007,6 +2171,8 @@ struct MachHeader64<E: Endian> {
     pub reserved: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:793-810`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L793-L810)*
 
 The 64-bit mach header.
 
@@ -1048,47 +2214,47 @@ Appears at the very beginning of object files for 64-bit architectures.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for MachHeader64<E>`
+##### `impl<E: clone::Clone + Endian> Clone for MachHeader64<E>`
 
-- `fn clone(self: &Self) -> MachHeader64<E>` — [`MachHeader64`](#machheader64)
+- <span id="machheader64-clone"></span>`fn clone(&self) -> MachHeader64<E>` — [`MachHeader64`](#machheader64)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for MachHeader64<E>`
+##### `impl<E: marker::Copy + Endian> Copy for MachHeader64<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for MachHeader64<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for MachHeader64<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="machheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Endian: endian::Endian> MachHeader for macho::MachHeader64<Endian>`
 
-- `type Word = u64`
+- <span id="machomachheader64-type-word"></span>`type Word = u64`
 
-- `type Endian = Endian`
+- <span id="machomachheader64-type-endian"></span>`type Endian = Endian`
 
-- `type Segment = SegmentCommand64<Endian>`
+- <span id="machomachheader64-type-segment"></span>`type Segment = SegmentCommand64<Endian>`
 
-- `type Section = Section64<Endian>`
+- <span id="machomachheader64-type-section"></span>`type Section = Section64<Endian>`
 
-- `type Nlist = Nlist64<Endian>`
+- <span id="machomachheader64-type-nlist"></span>`type Nlist = Nlist64<Endian>`
 
-- `fn is_type_64(self: &Self) -> bool`
+- <span id="machomachheader64-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- `fn is_big_endian(self: &Self) -> bool`
+- <span id="machomachheader64-is-big-endian"></span>`fn is_big_endian(&self) -> bool`
 
-- `fn is_little_endian(self: &Self) -> bool`
+- <span id="machomachheader64-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- `fn magic(self: &Self) -> u32`
+- <span id="machomachheader64-magic"></span>`fn magic(&self) -> u32`
 
-- `fn cputype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-cputype"></span>`fn cputype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn cpusubtype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-cpusubtype"></span>`fn cpusubtype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn filetype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-filetype"></span>`fn filetype(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn ncmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-ncmds"></span>`fn ncmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn sizeofcmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-sizeofcmds"></span>`fn sizeofcmds(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
+- <span id="machomachheader64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
 ##### `impl<E: Endian> Pod for MachHeader64<E>`
 
@@ -1100,6 +2266,8 @@ struct LoadCommand<E: Endian> {
     pub cmdsize: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:947-954`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L947-L954)*
 
 Common fields at the start of every load command.
 
@@ -1133,15 +2301,15 @@ padding zeroed like objects will compare byte for byte.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for LoadCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for LoadCommand<E>`
 
-- `fn clone(self: &Self) -> LoadCommand<E>` — [`LoadCommand`](#loadcommand)
+- <span id="loadcommand-clone"></span>`fn clone(&self) -> LoadCommand<E>` — [`LoadCommand`](#loadcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for LoadCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for LoadCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for LoadCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for LoadCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="loadcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for LoadCommand<E>`
 
@@ -1152,6 +2320,8 @@ struct LcStr<E: Endian> {
     pub offset: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1087-1090`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1087-L1090)*
 
 A variable length string in a load command.
 
@@ -1169,15 +2339,15 @@ of 4 bytes must be zero.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for LcStr<E>`
+##### `impl<E: clone::Clone + Endian> Clone for LcStr<E>`
 
-- `fn clone(self: &Self) -> LcStr<E>` — [`LcStr`](#lcstr)
+- <span id="lcstr-clone"></span>`fn clone(&self) -> LcStr<E>` — [`LcStr`](#lcstr)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for LcStr<E>`
+##### `impl<E: marker::Copy + Endian> Copy for LcStr<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for LcStr<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for LcStr<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lcstr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for LcStr<E>`
 
@@ -1198,6 +2368,8 @@ struct SegmentCommand32<E: Endian> {
     pub flags: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1106-1129`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1106-L1129)*
 
 32-bit segment load command.
 
@@ -1260,49 +2432,49 @@ reflected in `cmdsize`.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for SegmentCommand32<E>`
+##### `impl<E: clone::Clone + Endian> Clone for SegmentCommand32<E>`
 
-- `fn clone(self: &Self) -> SegmentCommand32<E>` — [`SegmentCommand32`](#segmentcommand32)
+- <span id="segmentcommand32-clone"></span>`fn clone(&self) -> SegmentCommand32<E>` — [`SegmentCommand32`](#segmentcommand32)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for SegmentCommand32<E>`
+##### `impl<E: marker::Copy + Endian> Copy for SegmentCommand32<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for SegmentCommand32<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for SegmentCommand32<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="segmentcommand32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for SegmentCommand32<E>`
 
 ##### `impl<Endian: endian::Endian> Segment for macho::SegmentCommand32<Endian>`
 
-- `type Word = u32`
+- <span id="machosegmentcommand32-type-word"></span>`type Word = u32`
 
-- `type Endian = Endian`
+- <span id="machosegmentcommand32-type-endian"></span>`type Endian = Endian`
 
-- `type Section = Section32<<SegmentCommand32<Endian> as Segment>::Endian>`
+- <span id="machosegmentcommand32-type-section"></span>`type Section = Section32<<SegmentCommand32<Endian> as Segment>::Endian>`
 
-- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md), [`Segment`](../read/macho/index.md), [`Result`](../index.md)
+- <span id="machosegmentcommand32-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md), [`Segment`](../read/macho/index.md), [`Result`](../index.md)
 
-- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-cmd"></span>`fn cmd(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-cmdsize"></span>`fn cmdsize(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn segname(self: &Self) -> &[u8; 16]`
+- <span id="machosegmentcommand32-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-vmaddr"></span>`fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-vmsize"></span>`fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-fileoff"></span>`fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-filesize"></span>`fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-maxprot"></span>`fn maxprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-initprot"></span>`fn initprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-nsects"></span>`fn nsects(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
 ### `SegmentCommand64<E: Endian>`
 
@@ -1321,6 +2493,8 @@ struct SegmentCommand64<E: Endian> {
     pub flags: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1139-1162`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1139-L1162)*
 
 64-bit segment load command.
 
@@ -1377,49 +2551,49 @@ command and their size is reflected in `cmdsize`.
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for SegmentCommand64<E>`
+##### `impl<E: clone::Clone + Endian> Clone for SegmentCommand64<E>`
 
-- `fn clone(self: &Self) -> SegmentCommand64<E>` — [`SegmentCommand64`](#segmentcommand64)
+- <span id="segmentcommand64-clone"></span>`fn clone(&self) -> SegmentCommand64<E>` — [`SegmentCommand64`](#segmentcommand64)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for SegmentCommand64<E>`
+##### `impl<E: marker::Copy + Endian> Copy for SegmentCommand64<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for SegmentCommand64<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for SegmentCommand64<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="segmentcommand64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for SegmentCommand64<E>`
 
 ##### `impl<Endian: endian::Endian> Segment for macho::SegmentCommand64<Endian>`
 
-- `type Word = u64`
+- <span id="machosegmentcommand64-type-word"></span>`type Word = u64`
 
-- `type Endian = Endian`
+- <span id="machosegmentcommand64-type-endian"></span>`type Endian = Endian`
 
-- `type Section = Section64<<SegmentCommand64<Endian> as Segment>::Endian>`
+- <span id="machosegmentcommand64-type-section"></span>`type Section = Section64<<SegmentCommand64<Endian> as Segment>::Endian>`
 
-- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md), [`Segment`](../read/macho/index.md), [`Result`](../index.md)
+- <span id="machosegmentcommand64-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md), [`Segment`](../read/macho/index.md), [`Result`](../index.md)
 
-- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-cmd"></span>`fn cmd(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-cmdsize"></span>`fn cmdsize(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn segname(self: &Self) -> &[u8; 16]`
+- <span id="machosegmentcommand64-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-vmaddr"></span>`fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-vmsize"></span>`fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-fileoff"></span>`fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-filesize"></span>`fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-maxprot"></span>`fn maxprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-initprot"></span>`fn initprot(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-nsects"></span>`fn nsects(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
+- <span id="machosegmentcommand64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
 ### `Section32<E: Endian>`
 
@@ -1438,6 +2612,8 @@ struct Section32<E: Endian> {
     pub reserved2: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1206-1229`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1206-L1229)*
 
 32-bit section.
 
@@ -1489,41 +2665,41 @@ struct Section32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for Section32<E>`
+##### `impl<E: clone::Clone + Endian> Clone for Section32<E>`
 
-- `fn clone(self: &Self) -> Section32<E>` — [`Section32`](#section32)
+- <span id="section32-clone"></span>`fn clone(&self) -> Section32<E>` — [`Section32`](#section32)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for Section32<E>`
+##### `impl<E: marker::Copy + Endian> Copy for Section32<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for Section32<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for Section32<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="section32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for Section32<E>`
 
 ##### `impl<Endian: endian::Endian> Section for macho::Section32<Endian>`
 
-- `type Word = u32`
+- <span id="machosection32-type-word"></span>`type Word = u32`
 
-- `type Endian = Endian`
+- <span id="machosection32-type-endian"></span>`type Endian = Endian`
 
-- `fn sectname(self: &Self) -> &[u8; 16]`
+- <span id="machosection32-sectname"></span>`fn sectname(&self) -> &[u8; 16]`
 
-- `fn segname(self: &Self) -> &[u8; 16]`
+- <span id="machosection32-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-addr"></span>`fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
 
-- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-size"></span>`fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
 
-- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-offset"></span>`fn offset(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn align(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-align"></span>`fn align(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-reloff"></span>`fn reloff(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-nreloc"></span>`fn nreloc(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection32-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
 ### `Section64<E: Endian>`
 
@@ -1543,6 +2719,8 @@ struct Section64<E: Endian> {
     pub reserved3: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1234-1259`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1234-L1259)*
 
 64-bit section.
 
@@ -1598,41 +2776,41 @@ struct Section64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for Section64<E>`
+##### `impl<E: clone::Clone + Endian> Clone for Section64<E>`
 
-- `fn clone(self: &Self) -> Section64<E>` — [`Section64`](#section64)
+- <span id="section64-clone"></span>`fn clone(&self) -> Section64<E>` — [`Section64`](#section64)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for Section64<E>`
+##### `impl<E: marker::Copy + Endian> Copy for Section64<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for Section64<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for Section64<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="section64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for Section64<E>`
 
 ##### `impl<Endian: endian::Endian> Section for macho::Section64<Endian>`
 
-- `type Word = u64`
+- <span id="machosection64-type-word"></span>`type Word = u64`
 
-- `type Endian = Endian`
+- <span id="machosection64-type-endian"></span>`type Endian = Endian`
 
-- `fn sectname(self: &Self) -> &[u8; 16]`
+- <span id="machosection64-sectname"></span>`fn sectname(&self) -> &[u8; 16]`
 
-- `fn segname(self: &Self) -> &[u8; 16]`
+- <span id="machosection64-segname"></span>`fn segname(&self) -> &[u8; 16]`
 
-- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-addr"></span>`fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
 
-- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-size"></span>`fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
 
-- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-offset"></span>`fn offset(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn align(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-align"></span>`fn align(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-reloff"></span>`fn reloff(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-nreloc"></span>`fn nreloc(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
+- <span id="machosection64-flags"></span>`fn flags(&self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
 ### `Fvmlib<E: Endian>`
 
@@ -1643,6 +2821,8 @@ struct Fvmlib<E: Endian> {
     pub header_addr: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1448-1455`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1448-L1455)*
 
 #### Fields
 
@@ -1660,15 +2840,15 @@ struct Fvmlib<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for Fvmlib<E>`
+##### `impl<E: clone::Clone + Endian> Clone for Fvmlib<E>`
 
-- `fn clone(self: &Self) -> Fvmlib<E>` — [`Fvmlib`](#fvmlib)
+- <span id="fvmlib-clone"></span>`fn clone(&self) -> Fvmlib<E>` — [`Fvmlib`](#fvmlib)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for Fvmlib<E>`
+##### `impl<E: marker::Copy + Endian> Copy for Fvmlib<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for Fvmlib<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for Fvmlib<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fvmlib-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for Fvmlib<E>`
 
@@ -1681,6 +2861,8 @@ struct FvmlibCommand<E: Endian> {
     pub fvmlib: Fvmlib<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1466-1473`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1466-L1473)*
 
 #### Fields
 
@@ -1698,15 +2880,15 @@ struct FvmlibCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for FvmlibCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for FvmlibCommand<E>`
 
-- `fn clone(self: &Self) -> FvmlibCommand<E>` — [`FvmlibCommand`](#fvmlibcommand)
+- <span id="fvmlibcommand-clone"></span>`fn clone(&self) -> FvmlibCommand<E>` — [`FvmlibCommand`](#fvmlibcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for FvmlibCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for FvmlibCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for FvmlibCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for FvmlibCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fvmlibcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for FvmlibCommand<E>`
 
@@ -1720,6 +2902,8 @@ struct Dylib<E: Endian> {
     pub compatibility_version: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1486-1495`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1486-L1495)*
 
 #### Fields
 
@@ -1741,15 +2925,15 @@ struct Dylib<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for Dylib<E>`
+##### `impl<E: clone::Clone + Endian> Clone for Dylib<E>`
 
-- `fn clone(self: &Self) -> Dylib<E>` — [`Dylib`](#dylib)
+- <span id="dylib-clone"></span>`fn clone(&self) -> Dylib<E>` — [`Dylib`](#dylib)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for Dylib<E>`
+##### `impl<E: marker::Copy + Endian> Copy for Dylib<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for Dylib<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for Dylib<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dylib-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for Dylib<E>`
 
@@ -1762,6 +2946,8 @@ struct DylibCommand<E: Endian> {
     pub dylib: Dylib<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1506-1513`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1506-L1513)*
 
 #### Fields
 
@@ -1779,15 +2965,15 @@ struct DylibCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DylibCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DylibCommand<E>`
 
-- `fn clone(self: &Self) -> DylibCommand<E>` — [`DylibCommand`](#dylibcommand)
+- <span id="dylibcommand-clone"></span>`fn clone(&self) -> DylibCommand<E>` — [`DylibCommand`](#dylibcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DylibCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DylibCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylibCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DylibCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dylibcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DylibCommand<E>`
 
@@ -1800,6 +2986,8 @@ struct SubFrameworkCommand<E: Endian> {
     pub umbrella: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1527-1534`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1527-L1534)*
 
 #### Fields
 
@@ -1817,15 +3005,15 @@ struct SubFrameworkCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for SubFrameworkCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for SubFrameworkCommand<E>`
 
-- `fn clone(self: &Self) -> SubFrameworkCommand<E>` — [`SubFrameworkCommand`](#subframeworkcommand)
+- <span id="subframeworkcommand-clone"></span>`fn clone(&self) -> SubFrameworkCommand<E>` — [`SubFrameworkCommand`](#subframeworkcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for SubFrameworkCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for SubFrameworkCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for SubFrameworkCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for SubFrameworkCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="subframeworkcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for SubFrameworkCommand<E>`
 
@@ -1838,6 +3026,8 @@ struct SubClientCommand<E: Endian> {
     pub client: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1547-1554`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1547-L1554)*
 
 #### Fields
 
@@ -1855,15 +3045,15 @@ struct SubClientCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for SubClientCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for SubClientCommand<E>`
 
-- `fn clone(self: &Self) -> SubClientCommand<E>` — [`SubClientCommand`](#subclientcommand)
+- <span id="subclientcommand-clone"></span>`fn clone(&self) -> SubClientCommand<E>` — [`SubClientCommand`](#subclientcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for SubClientCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for SubClientCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for SubClientCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for SubClientCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="subclientcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for SubClientCommand<E>`
 
@@ -1876,6 +3066,8 @@ struct SubUmbrellaCommand<E: Endian> {
     pub sub_umbrella: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1571-1578`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1571-L1578)*
 
 #### Fields
 
@@ -1893,15 +3085,15 @@ struct SubUmbrellaCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for SubUmbrellaCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for SubUmbrellaCommand<E>`
 
-- `fn clone(self: &Self) -> SubUmbrellaCommand<E>` — [`SubUmbrellaCommand`](#subumbrellacommand)
+- <span id="subumbrellacommand-clone"></span>`fn clone(&self) -> SubUmbrellaCommand<E>` — [`SubUmbrellaCommand`](#subumbrellacommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for SubUmbrellaCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for SubUmbrellaCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for SubUmbrellaCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for SubUmbrellaCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="subumbrellacommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for SubUmbrellaCommand<E>`
 
@@ -1914,6 +3106,8 @@ struct SubLibraryCommand<E: Endian> {
     pub sub_library: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1597-1604`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1597-L1604)*
 
 #### Fields
 
@@ -1931,15 +3125,15 @@ struct SubLibraryCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for SubLibraryCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for SubLibraryCommand<E>`
 
-- `fn clone(self: &Self) -> SubLibraryCommand<E>` — [`SubLibraryCommand`](#sublibrarycommand)
+- <span id="sublibrarycommand-clone"></span>`fn clone(&self) -> SubLibraryCommand<E>` — [`SubLibraryCommand`](#sublibrarycommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for SubLibraryCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for SubLibraryCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for SubLibraryCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for SubLibraryCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sublibrarycommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for SubLibraryCommand<E>`
 
@@ -1954,6 +3148,8 @@ struct PreboundDylibCommand<E: Endian> {
     pub linked_modules: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1617-1628`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1617-L1628)*
 
 #### Fields
 
@@ -1979,15 +3175,15 @@ struct PreboundDylibCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for PreboundDylibCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for PreboundDylibCommand<E>`
 
-- `fn clone(self: &Self) -> PreboundDylibCommand<E>` — [`PreboundDylibCommand`](#prebounddylibcommand)
+- <span id="prebounddylibcommand-clone"></span>`fn clone(&self) -> PreboundDylibCommand<E>` — [`PreboundDylibCommand`](#prebounddylibcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for PreboundDylibCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for PreboundDylibCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for PreboundDylibCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for PreboundDylibCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="prebounddylibcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for PreboundDylibCommand<E>`
 
@@ -2000,6 +3196,8 @@ struct DylinkerCommand<E: Endian> {
     pub name: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1640-1647`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1640-L1647)*
 
 #### Fields
 
@@ -2017,15 +3215,15 @@ struct DylinkerCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DylinkerCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DylinkerCommand<E>`
 
-- `fn clone(self: &Self) -> DylinkerCommand<E>` — [`DylinkerCommand`](#dylinkercommand)
+- <span id="dylinkercommand-clone"></span>`fn clone(&self) -> DylinkerCommand<E>` — [`DylinkerCommand`](#dylinkercommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DylinkerCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DylinkerCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylinkerCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DylinkerCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dylinkercommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DylinkerCommand<E>`
 
@@ -2037,6 +3235,8 @@ struct ThreadCommand<E: Endian> {
     pub cmdsize: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1672-1681`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1672-L1681)*
 
 #### Fields
 
@@ -2050,15 +3250,15 @@ struct ThreadCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for ThreadCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for ThreadCommand<E>`
 
-- `fn clone(self: &Self) -> ThreadCommand<E>` — [`ThreadCommand`](#threadcommand)
+- <span id="threadcommand-clone"></span>`fn clone(&self) -> ThreadCommand<E>` — [`ThreadCommand`](#threadcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for ThreadCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for ThreadCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for ThreadCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for ThreadCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="threadcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for ThreadCommand<E>`
 
@@ -2078,6 +3278,8 @@ struct RoutinesCommand32<E: Endian> {
     pub reserved6: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1693-1709`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1693-L1709)*
 
 #### Fields
 
@@ -2099,15 +3301,15 @@ struct RoutinesCommand32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for RoutinesCommand32<E>`
+##### `impl<E: clone::Clone + Endian> Clone for RoutinesCommand32<E>`
 
-- `fn clone(self: &Self) -> RoutinesCommand32<E>` — [`RoutinesCommand32`](#routinescommand32)
+- <span id="routinescommand32-clone"></span>`fn clone(&self) -> RoutinesCommand32<E>` — [`RoutinesCommand32`](#routinescommand32)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for RoutinesCommand32<E>`
+##### `impl<E: marker::Copy + Endian> Copy for RoutinesCommand32<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for RoutinesCommand32<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for RoutinesCommand32<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="routinescommand32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for RoutinesCommand32<E>`
 
@@ -2127,6 +3329,8 @@ struct RoutinesCommand64<E: Endian> {
     pub reserved6: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1716-1732`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1716-L1732)*
 
 #### Fields
 
@@ -2148,15 +3352,15 @@ struct RoutinesCommand64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for RoutinesCommand64<E>`
+##### `impl<E: clone::Clone + Endian> Clone for RoutinesCommand64<E>`
 
-- `fn clone(self: &Self) -> RoutinesCommand64<E>` — [`RoutinesCommand64`](#routinescommand64)
+- <span id="routinescommand64-clone"></span>`fn clone(&self) -> RoutinesCommand64<E>` — [`RoutinesCommand64`](#routinescommand64)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for RoutinesCommand64<E>`
+##### `impl<E: marker::Copy + Endian> Copy for RoutinesCommand64<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for RoutinesCommand64<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for RoutinesCommand64<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="routinescommand64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for RoutinesCommand64<E>`
 
@@ -2172,6 +3376,8 @@ struct SymtabCommand<E: Endian> {
     pub strsize: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1741-1754`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1741-L1754)*
 
 #### Fields
 
@@ -2201,19 +3407,19 @@ struct SymtabCommand<E: Endian> {
 
 #### Implementations
 
-- `fn symbols<'data, Mach: MachHeader<Endian = E>, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<SymbolTable<'data, Mach, R>>` — [`Result`](../index.md), [`SymbolTable`](../read/macho/index.md)
+- <span id="machosymtabcommand-symbols"></span>`fn symbols<'data, Mach: MachHeader<Endian = E>, R: ReadRef<'data>>(&self, endian: E, data: R) -> Result<SymbolTable<'data, Mach, R>>` — [`Result`](../index.md), [`SymbolTable`](../read/macho/index.md)
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for SymtabCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for SymtabCommand<E>`
 
-- `fn clone(self: &Self) -> SymtabCommand<E>` — [`SymtabCommand`](#symtabcommand)
+- <span id="symtabcommand-clone"></span>`fn clone(&self) -> SymtabCommand<E>` — [`SymtabCommand`](#symtabcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for SymtabCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for SymtabCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for SymtabCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for SymtabCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symtabcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for SymtabCommand<E>`
 
@@ -2243,6 +3449,8 @@ struct DysymtabCommand<E: Endian> {
     pub nlocrel: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1798-1931`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1798-L1931)*
 
 #### Fields
 
@@ -2328,15 +3536,15 @@ struct DysymtabCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DysymtabCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DysymtabCommand<E>`
 
-- `fn clone(self: &Self) -> DysymtabCommand<E>` — [`DysymtabCommand`](#dysymtabcommand)
+- <span id="dysymtabcommand-clone"></span>`fn clone(&self) -> DysymtabCommand<E>` — [`DysymtabCommand`](#dysymtabcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DysymtabCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DysymtabCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DysymtabCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DysymtabCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dysymtabcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DysymtabCommand<E>`
 
@@ -2348,6 +3556,8 @@ struct DylibTableOfContents<E: Endian> {
     pub module_index: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1946-1951`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1946-L1951)*
 
 #### Fields
 
@@ -2361,15 +3571,15 @@ struct DylibTableOfContents<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DylibTableOfContents<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DylibTableOfContents<E>`
 
-- `fn clone(self: &Self) -> DylibTableOfContents<E>` — [`DylibTableOfContents`](#dylibtableofcontents)
+- <span id="dylibtableofcontents-clone"></span>`fn clone(&self) -> DylibTableOfContents<E>` — [`DylibTableOfContents`](#dylibtableofcontents)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DylibTableOfContents<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DylibTableOfContents<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylibTableOfContents<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DylibTableOfContents<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dylibtableofcontents-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DylibTableOfContents<E>`
 
@@ -2392,6 +3602,8 @@ struct DylibModule32<E: Endian> {
     pub objc_module_info_size: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1956-1987`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1956-L1987)*
 
 #### Fields
 
@@ -2449,15 +3661,15 @@ struct DylibModule32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DylibModule32<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DylibModule32<E>`
 
-- `fn clone(self: &Self) -> DylibModule32<E>` — [`DylibModule32`](#dylibmodule32)
+- <span id="dylibmodule32-clone"></span>`fn clone(&self) -> DylibModule32<E>` — [`DylibModule32`](#dylibmodule32)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DylibModule32<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DylibModule32<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylibModule32<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DylibModule32<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dylibmodule32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DylibModule32<E>`
 
@@ -2480,6 +3692,8 @@ struct DylibModule64<E: Endian> {
     pub objc_module_info_addr: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1992-2023`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1992-L2023)*
 
 #### Fields
 
@@ -2537,15 +3751,15 @@ struct DylibModule64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DylibModule64<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DylibModule64<E>`
 
-- `fn clone(self: &Self) -> DylibModule64<E>` — [`DylibModule64`](#dylibmodule64)
+- <span id="dylibmodule64-clone"></span>`fn clone(&self) -> DylibModule64<E>` — [`DylibModule64`](#dylibmodule64)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DylibModule64<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DylibModule64<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylibModule64<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DylibModule64<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dylibmodule64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DylibModule64<E>`
 
@@ -2557,17 +3771,19 @@ struct DylibReference<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2035-2041`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2035-L2041)*
+
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DylibReference<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DylibReference<E>`
 
-- `fn clone(self: &Self) -> DylibReference<E>` — [`DylibReference`](#dylibreference)
+- <span id="dylibreference-clone"></span>`fn clone(&self) -> DylibReference<E>` — [`DylibReference`](#dylibreference)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DylibReference<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DylibReference<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylibReference<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DylibReference<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dylibreference-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DylibReference<E>`
 
@@ -2581,6 +3797,8 @@ struct TwolevelHintsCommand<E: Endian> {
     pub nhints: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2049-2058`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2049-L2058)*
 
 #### Fields
 
@@ -2602,15 +3820,15 @@ struct TwolevelHintsCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for TwolevelHintsCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for TwolevelHintsCommand<E>`
 
-- `fn clone(self: &Self) -> TwolevelHintsCommand<E>` — [`TwolevelHintsCommand`](#twolevelhintscommand)
+- <span id="twolevelhintscommand-clone"></span>`fn clone(&self) -> TwolevelHintsCommand<E>` — [`TwolevelHintsCommand`](#twolevelhintscommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for TwolevelHintsCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for TwolevelHintsCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for TwolevelHintsCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for TwolevelHintsCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="twolevelhintscommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for TwolevelHintsCommand<E>`
 
@@ -2622,17 +3840,19 @@ struct TwolevelHint<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2078-2085`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2078-L2085)*
+
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for TwolevelHint<E>`
+##### `impl<E: clone::Clone + Endian> Clone for TwolevelHint<E>`
 
-- `fn clone(self: &Self) -> TwolevelHint<E>` — [`TwolevelHint`](#twolevelhint)
+- <span id="twolevelhint-clone"></span>`fn clone(&self) -> TwolevelHint<E>` — [`TwolevelHint`](#twolevelhint)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for TwolevelHint<E>`
+##### `impl<E: marker::Copy + Endian> Copy for TwolevelHint<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for TwolevelHint<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for TwolevelHint<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="twolevelhint-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for TwolevelHint<E>`
 
@@ -2645,6 +3865,8 @@ struct PrebindCksumCommand<E: Endian> {
     pub cksum: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2099-2106`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2099-L2106)*
 
 #### Fields
 
@@ -2662,15 +3884,15 @@ struct PrebindCksumCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for PrebindCksumCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for PrebindCksumCommand<E>`
 
-- `fn clone(self: &Self) -> PrebindCksumCommand<E>` — [`PrebindCksumCommand`](#prebindcksumcommand)
+- <span id="prebindcksumcommand-clone"></span>`fn clone(&self) -> PrebindCksumCommand<E>` — [`PrebindCksumCommand`](#prebindcksumcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for PrebindCksumCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for PrebindCksumCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for PrebindCksumCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for PrebindCksumCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="prebindcksumcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for PrebindCksumCommand<E>`
 
@@ -2683,6 +3905,8 @@ struct UuidCommand<E: Endian> {
     pub uuid: [u8; 16],
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2114-2121`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2114-L2121)*
 
 #### Fields
 
@@ -2700,15 +3924,15 @@ struct UuidCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for UuidCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for UuidCommand<E>`
 
-- `fn clone(self: &Self) -> UuidCommand<E>` — [`UuidCommand`](#uuidcommand)
+- <span id="uuidcommand-clone"></span>`fn clone(&self) -> UuidCommand<E>` — [`UuidCommand`](#uuidcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for UuidCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for UuidCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for UuidCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for UuidCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="uuidcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for UuidCommand<E>`
 
@@ -2721,6 +3945,8 @@ struct RpathCommand<E: Endian> {
     pub path: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2129-2136`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2129-L2136)*
 
 #### Fields
 
@@ -2738,15 +3964,15 @@ struct RpathCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for RpathCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for RpathCommand<E>`
 
-- `fn clone(self: &Self) -> RpathCommand<E>` — [`RpathCommand`](#rpathcommand)
+- <span id="rpathcommand-clone"></span>`fn clone(&self) -> RpathCommand<E>` — [`RpathCommand`](#rpathcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for RpathCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for RpathCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for RpathCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for RpathCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rpathcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for RpathCommand<E>`
 
@@ -2760,6 +3986,8 @@ struct LinkeditDataCommand<E: Endian> {
     pub datasize: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2144-2155`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2144-L2155)*
 
 #### Fields
 
@@ -2783,15 +4011,15 @@ struct LinkeditDataCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for LinkeditDataCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for LinkeditDataCommand<E>`
 
-- `fn clone(self: &Self) -> LinkeditDataCommand<E>` — [`LinkeditDataCommand`](#linkeditdatacommand)
+- <span id="linkeditdatacommand-clone"></span>`fn clone(&self) -> LinkeditDataCommand<E>` — [`LinkeditDataCommand`](#linkeditdatacommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for LinkeditDataCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for LinkeditDataCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for LinkeditDataCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for LinkeditDataCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linkeditdatacommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for LinkeditDataCommand<E>`
 
@@ -2807,6 +4035,8 @@ struct FilesetEntryCommand<E: Endian> {
     pub reserved: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2159-2172`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2159-L2172)*
 
 #### Fields
 
@@ -2832,15 +4062,15 @@ struct FilesetEntryCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for FilesetEntryCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for FilesetEntryCommand<E>`
 
-- `fn clone(self: &Self) -> FilesetEntryCommand<E>` — [`FilesetEntryCommand`](#filesetentrycommand)
+- <span id="filesetentrycommand-clone"></span>`fn clone(&self) -> FilesetEntryCommand<E>` — [`FilesetEntryCommand`](#filesetentrycommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for FilesetEntryCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for FilesetEntryCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for FilesetEntryCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for FilesetEntryCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="filesetentrycommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for FilesetEntryCommand<E>`
 
@@ -2855,6 +4085,8 @@ struct EncryptionInfoCommand32<E: Endian> {
     pub cryptid: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2180-2191`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2180-L2191)*
 
 #### Fields
 
@@ -2880,15 +4112,15 @@ struct EncryptionInfoCommand32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for EncryptionInfoCommand32<E>`
+##### `impl<E: clone::Clone + Endian> Clone for EncryptionInfoCommand32<E>`
 
-- `fn clone(self: &Self) -> EncryptionInfoCommand32<E>` — [`EncryptionInfoCommand32`](#encryptioninfocommand32)
+- <span id="encryptioninfocommand32-clone"></span>`fn clone(&self) -> EncryptionInfoCommand32<E>` — [`EncryptionInfoCommand32`](#encryptioninfocommand32)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for EncryptionInfoCommand32<E>`
+##### `impl<E: marker::Copy + Endian> Copy for EncryptionInfoCommand32<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for EncryptionInfoCommand32<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for EncryptionInfoCommand32<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="encryptioninfocommand32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for EncryptionInfoCommand32<E>`
 
@@ -2904,6 +4136,8 @@ struct EncryptionInfoCommand64<E: Endian> {
     pub pad: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2199-2212`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2199-L2212)*
 
 #### Fields
 
@@ -2933,15 +4167,15 @@ struct EncryptionInfoCommand64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for EncryptionInfoCommand64<E>`
+##### `impl<E: clone::Clone + Endian> Clone for EncryptionInfoCommand64<E>`
 
-- `fn clone(self: &Self) -> EncryptionInfoCommand64<E>` — [`EncryptionInfoCommand64`](#encryptioninfocommand64)
+- <span id="encryptioninfocommand64-clone"></span>`fn clone(&self) -> EncryptionInfoCommand64<E>` — [`EncryptionInfoCommand64`](#encryptioninfocommand64)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for EncryptionInfoCommand64<E>`
+##### `impl<E: marker::Copy + Endian> Copy for EncryptionInfoCommand64<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for EncryptionInfoCommand64<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for EncryptionInfoCommand64<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="encryptioninfocommand64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for EncryptionInfoCommand64<E>`
 
@@ -2955,6 +4189,8 @@ struct VersionMinCommand<E: Endian> {
     pub sdk: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2220-2229`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2220-L2229)*
 
 #### Fields
 
@@ -2976,15 +4212,15 @@ struct VersionMinCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for VersionMinCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for VersionMinCommand<E>`
 
-- `fn clone(self: &Self) -> VersionMinCommand<E>` — [`VersionMinCommand`](#versionmincommand)
+- <span id="versionmincommand-clone"></span>`fn clone(&self) -> VersionMinCommand<E>` — [`VersionMinCommand`](#versionmincommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for VersionMinCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for VersionMinCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for VersionMinCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for VersionMinCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="versionmincommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for VersionMinCommand<E>`
 
@@ -3000,6 +4236,8 @@ struct BuildVersionCommand<E: Endian> {
     pub ntools: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2238-2251`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2238-L2251)*
 
 #### Fields
 
@@ -3029,15 +4267,15 @@ struct BuildVersionCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for BuildVersionCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for BuildVersionCommand<E>`
 
-- `fn clone(self: &Self) -> BuildVersionCommand<E>` — [`BuildVersionCommand`](#buildversioncommand)
+- <span id="buildversioncommand-clone"></span>`fn clone(&self) -> BuildVersionCommand<E>` — [`BuildVersionCommand`](#buildversioncommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for BuildVersionCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for BuildVersionCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for BuildVersionCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for BuildVersionCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="buildversioncommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for BuildVersionCommand<E>`
 
@@ -3049,6 +4287,8 @@ struct BuildToolVersion<E: Endian> {
     pub version: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2255-2260`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2255-L2260)*
 
 #### Fields
 
@@ -3062,15 +4302,15 @@ struct BuildToolVersion<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for BuildToolVersion<E>`
+##### `impl<E: clone::Clone + Endian> Clone for BuildToolVersion<E>`
 
-- `fn clone(self: &Self) -> BuildToolVersion<E>` — [`BuildToolVersion`](#buildtoolversion)
+- <span id="buildtoolversion-clone"></span>`fn clone(&self) -> BuildToolVersion<E>` — [`BuildToolVersion`](#buildtoolversion)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for BuildToolVersion<E>`
+##### `impl<E: marker::Copy + Endian> Copy for BuildToolVersion<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for BuildToolVersion<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for BuildToolVersion<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="buildtoolversion-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for BuildToolVersion<E>`
 
@@ -3092,6 +4332,8 @@ struct DyldInfoCommand<E: Endian> {
     pub export_size: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2291-2404`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2291-L2404)*
 
 #### Fields
 
@@ -3145,15 +4387,15 @@ struct DyldInfoCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldInfoCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DyldInfoCommand<E>`
 
-- `fn clone(self: &Self) -> DyldInfoCommand<E>` — [`DyldInfoCommand`](#dyldinfocommand)
+- <span id="dyldinfocommand-clone"></span>`fn clone(&self) -> DyldInfoCommand<E>` — [`DyldInfoCommand`](#dyldinfocommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldInfoCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DyldInfoCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldInfoCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DyldInfoCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyldinfocommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DyldInfoCommand<E>`
 
@@ -3167,6 +4409,8 @@ struct LinkerOptionCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2476-2484`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2476-L2484)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -3179,15 +4423,15 @@ struct LinkerOptionCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for LinkerOptionCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for LinkerOptionCommand<E>`
 
-- `fn clone(self: &Self) -> LinkerOptionCommand<E>` — [`LinkerOptionCommand`](#linkeroptioncommand)
+- <span id="linkeroptioncommand-clone"></span>`fn clone(&self) -> LinkerOptionCommand<E>` — [`LinkerOptionCommand`](#linkeroptioncommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for LinkerOptionCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for LinkerOptionCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for LinkerOptionCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for LinkerOptionCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linkeroptioncommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for LinkerOptionCommand<E>`
 
@@ -3201,6 +4445,8 @@ struct SymsegCommand<E: Endian> {
     pub size: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2497-2506`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2497-L2506)*
 
 #### Fields
 
@@ -3222,15 +4468,15 @@ struct SymsegCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for SymsegCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for SymsegCommand<E>`
 
-- `fn clone(self: &Self) -> SymsegCommand<E>` — [`SymsegCommand`](#symsegcommand)
+- <span id="symsegcommand-clone"></span>`fn clone(&self) -> SymsegCommand<E>` — [`SymsegCommand`](#symsegcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for SymsegCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for SymsegCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for SymsegCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for SymsegCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symsegcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for SymsegCommand<E>`
 
@@ -3242,6 +4488,8 @@ struct IdentCommand<E: Endian> {
     pub cmdsize: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2516-2521`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2516-L2521)*
 
 #### Fields
 
@@ -3255,15 +4503,15 @@ struct IdentCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for IdentCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for IdentCommand<E>`
 
-- `fn clone(self: &Self) -> IdentCommand<E>` — [`IdentCommand`](#identcommand)
+- <span id="identcommand-clone"></span>`fn clone(&self) -> IdentCommand<E>` — [`IdentCommand`](#identcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for IdentCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for IdentCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for IdentCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for IdentCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="identcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for IdentCommand<E>`
 
@@ -3277,6 +4525,8 @@ struct FvmfileCommand<E: Endian> {
     pub header_addr: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2531-2540`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2531-L2540)*
 
 #### Fields
 
@@ -3298,15 +4548,15 @@ struct FvmfileCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for FvmfileCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for FvmfileCommand<E>`
 
-- `fn clone(self: &Self) -> FvmfileCommand<E>` — [`FvmfileCommand`](#fvmfilecommand)
+- <span id="fvmfilecommand-clone"></span>`fn clone(&self) -> FvmfileCommand<E>` — [`FvmfileCommand`](#fvmfilecommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for FvmfileCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for FvmfileCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for FvmfileCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for FvmfileCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fvmfilecommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for FvmfileCommand<E>`
 
@@ -3320,6 +4570,8 @@ struct EntryPointCommand<E: Endian> {
     pub stacksize: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2550-2559`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2550-L2559)*
 
 #### Fields
 
@@ -3341,15 +4593,15 @@ struct EntryPointCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for EntryPointCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for EntryPointCommand<E>`
 
-- `fn clone(self: &Self) -> EntryPointCommand<E>` — [`EntryPointCommand`](#entrypointcommand)
+- <span id="entrypointcommand-clone"></span>`fn clone(&self) -> EntryPointCommand<E>` — [`EntryPointCommand`](#entrypointcommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for EntryPointCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for EntryPointCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for EntryPointCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for EntryPointCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="entrypointcommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for EntryPointCommand<E>`
 
@@ -3362,6 +4614,8 @@ struct SourceVersionCommand<E: Endian> {
     pub version: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2567-2574`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2567-L2574)*
 
 #### Fields
 
@@ -3379,15 +4633,15 @@ struct SourceVersionCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for SourceVersionCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for SourceVersionCommand<E>`
 
-- `fn clone(self: &Self) -> SourceVersionCommand<E>` — [`SourceVersionCommand`](#sourceversioncommand)
+- <span id="sourceversioncommand-clone"></span>`fn clone(&self) -> SourceVersionCommand<E>` — [`SourceVersionCommand`](#sourceversioncommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for SourceVersionCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for SourceVersionCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for SourceVersionCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for SourceVersionCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sourceversioncommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for SourceVersionCommand<E>`
 
@@ -3400,6 +4654,8 @@ struct DataInCodeEntry<E: Endian> {
     pub kind: crate::endian::U16<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2583-2590`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2583-L2590)*
 
 #### Fields
 
@@ -3417,15 +4673,15 @@ struct DataInCodeEntry<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for DataInCodeEntry<E>`
+##### `impl<E: clone::Clone + Endian> Clone for DataInCodeEntry<E>`
 
-- `fn clone(self: &Self) -> DataInCodeEntry<E>` — [`DataInCodeEntry`](#dataincodeentry)
+- <span id="dataincodeentry-clone"></span>`fn clone(&self) -> DataInCodeEntry<E>` — [`DataInCodeEntry`](#dataincodeentry)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for DataInCodeEntry<E>`
+##### `impl<E: marker::Copy + Endian> Copy for DataInCodeEntry<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for DataInCodeEntry<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for DataInCodeEntry<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dataincodeentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for DataInCodeEntry<E>`
 
@@ -3440,6 +4696,8 @@ struct NoteCommand<E: Endian> {
     pub size: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2618-2629`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2618-L2629)*
 
 #### Fields
 
@@ -3465,15 +4723,15 @@ struct NoteCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for NoteCommand<E>`
+##### `impl<E: clone::Clone + Endian> Clone for NoteCommand<E>`
 
-- `fn clone(self: &Self) -> NoteCommand<E>` — [`NoteCommand`](#notecommand)
+- <span id="notecommand-clone"></span>`fn clone(&self) -> NoteCommand<E>` — [`NoteCommand`](#notecommand)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for NoteCommand<E>`
+##### `impl<E: marker::Copy + Endian> Copy for NoteCommand<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for NoteCommand<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for NoteCommand<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="notecommand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for NoteCommand<E>`
 
@@ -3488,6 +4746,8 @@ struct Nlist32<E: Endian> {
     pub n_value: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2635-2646`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2635-L2646)*
 
 #### Fields
 
@@ -3513,31 +4773,31 @@ struct Nlist32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for Nlist32<E>`
+##### `impl<E: clone::Clone + Endian> Clone for Nlist32<E>`
 
-- `fn clone(self: &Self) -> Nlist32<E>` — [`Nlist32`](#nlist32)
+- <span id="nlist32-clone"></span>`fn clone(&self) -> Nlist32<E>` — [`Nlist32`](#nlist32)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for Nlist32<E>`
+##### `impl<E: marker::Copy + Endian> Copy for Nlist32<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for Nlist32<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for Nlist32<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nlist32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Endian: endian::Endian> Nlist for macho::Nlist32<Endian>`
 
-- `type Word = u32`
+- <span id="machonlist32-type-word"></span>`type Word = u32`
 
-- `type Endian = Endian`
+- <span id="machonlist32-type-endian"></span>`type Endian = Endian`
 
-- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist32-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md)
 
-- `fn n_type(self: &Self) -> u8`
+- <span id="machonlist32-n-type"></span>`fn n_type(&self) -> u8`
 
-- `fn n_sect(self: &Self) -> u8`
+- <span id="machonlist32-n-sect"></span>`fn n_sect(&self) -> u8`
 
-- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist32-n-desc"></span>`fn n_desc(&self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md)
 
-- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist32-n-value"></span>`fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md)
 
 ##### `impl<E: Endian> Pod for Nlist32<E>`
 
@@ -3552,6 +4812,8 @@ struct Nlist64<E: Endian> {
     pub n_value: crate::endian::U64Bytes<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2653-2665`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2653-L2665)*
 
 #### Fields
 
@@ -3577,31 +4839,31 @@ struct Nlist64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for Nlist64<E>`
+##### `impl<E: clone::Clone + Endian> Clone for Nlist64<E>`
 
-- `fn clone(self: &Self) -> Nlist64<E>` — [`Nlist64`](#nlist64)
+- <span id="nlist64-clone"></span>`fn clone(&self) -> Nlist64<E>` — [`Nlist64`](#nlist64)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for Nlist64<E>`
+##### `impl<E: marker::Copy + Endian> Copy for Nlist64<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for Nlist64<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for Nlist64<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nlist64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Endian: endian::Endian> Nlist for macho::Nlist64<Endian>`
 
-- `type Word = u64`
+- <span id="machonlist64-type-word"></span>`type Word = u64`
 
-- `type Endian = Endian`
+- <span id="machonlist64-type-endian"></span>`type Endian = Endian`
 
-- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist64-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md)
 
-- `fn n_type(self: &Self) -> u8`
+- <span id="machonlist64-n-type"></span>`fn n_type(&self) -> u8`
 
-- `fn n_sect(self: &Self) -> u8`
+- <span id="machonlist64-n-sect"></span>`fn n_sect(&self) -> u8`
 
-- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist64-n-desc"></span>`fn n_desc(&self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md)
 
-- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md)
+- <span id="machonlist64-n-value"></span>`fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md)
 
 ##### `impl<E: Endian> Pod for Nlist64<E>`
 
@@ -3614,6 +4876,8 @@ struct Relocation<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2996-2999`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2996-L2999)*
+
 A relocation entry.
 
 Mach-O relocations have plain and scattered variants, with the
@@ -3624,23 +4888,23 @@ is scattered, and for accessing the fields of each variant.
 
 #### Implementations
 
-- `fn r_scattered(self: Self, endian: E, cputype: u32) -> bool`
+- <span id="relocation-r-scattered"></span>`fn r_scattered(self, endian: E, cputype: u32) -> bool`
 
-- `fn info(self: Self, endian: E) -> RelocationInfo` — [`RelocationInfo`](#relocationinfo)
+- <span id="relocation-info"></span>`fn info(self, endian: E) -> RelocationInfo` — [`RelocationInfo`](#relocationinfo)
 
-- `fn scattered_info(self: Self, endian: E) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](#scatteredrelocationinfo)
+- <span id="relocation-scattered-info"></span>`fn scattered_info(self, endian: E) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](#scatteredrelocationinfo)
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for Relocation<E>`
+##### `impl<E: clone::Clone + Endian> Clone for Relocation<E>`
 
-- `fn clone(self: &Self) -> Relocation<E>` — [`Relocation`](#relocation)
+- <span id="relocation-clone"></span>`fn clone(&self) -> Relocation<E>` — [`Relocation`](#relocation)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for Relocation<E>`
+##### `impl<E: marker::Copy + Endian> Copy for Relocation<E>`
 
-##### `impl<E: $crate::fmt::Debug + Endian> Debug for Relocation<E>`
+##### `impl<E: fmt::Debug + Endian> Debug for Relocation<E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: Endian> Pod for Relocation<E>`
 
@@ -3656,6 +4920,8 @@ struct RelocationInfo {
     pub r_type: u8,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:3061-3074`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3061-L3074)*
 
 #### Fields
 
@@ -3685,19 +4951,19 @@ struct RelocationInfo {
 
 #### Implementations
 
-- `fn relocation<E: Endian>(self: Self, endian: E) -> Relocation<E>` — [`Relocation`](#relocation)
+- <span id="relocationinfo-relocation"></span>`fn relocation<E: Endian>(self, endian: E) -> Relocation<E>` — [`Relocation`](#relocation)
 
 #### Trait Implementations
 
 ##### `impl Clone for RelocationInfo`
 
-- `fn clone(self: &Self) -> RelocationInfo` — [`RelocationInfo`](#relocationinfo)
+- <span id="relocationinfo-clone"></span>`fn clone(&self) -> RelocationInfo` — [`RelocationInfo`](#relocationinfo)
 
 ##### `impl Copy for RelocationInfo`
 
 ##### `impl Debug for RelocationInfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ScatteredRelocationInfo`
 
@@ -3710,6 +4976,8 @@ struct ScatteredRelocationInfo {
     pub r_value: u32,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:3170-3181`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3170-L3181)*
 
 #### Fields
 
@@ -3735,19 +5003,19 @@ struct ScatteredRelocationInfo {
 
 #### Implementations
 
-- `fn relocation<E: Endian>(self: Self, endian: E) -> Relocation<E>` — [`Relocation`](#relocation)
+- <span id="scatteredrelocationinfo-relocation"></span>`fn relocation<E: Endian>(self, endian: E) -> Relocation<E>` — [`Relocation`](#relocation)
 
 #### Trait Implementations
 
 ##### `impl Clone for ScatteredRelocationInfo`
 
-- `fn clone(self: &Self) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](#scatteredrelocationinfo)
+- <span id="scatteredrelocationinfo-clone"></span>`fn clone(&self) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](#scatteredrelocationinfo)
 
 ##### `impl Copy for ScatteredRelocationInfo`
 
 ##### `impl Debug for ScatteredRelocationInfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="scatteredrelocationinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -3761,6 +5029,8 @@ enum PtrauthKey {
     DB,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:293-302`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L293-L302)*
 
 The key used to sign a pointer for authentication.
 
@@ -3789,19 +5059,19 @@ The variant values correspond to the values used in the
 
 ##### `impl Clone for PtrauthKey`
 
-- `fn clone(self: &Self) -> PtrauthKey` — [`PtrauthKey`](#ptrauthkey)
+- <span id="ptrauthkey-clone"></span>`fn clone(&self) -> PtrauthKey` — [`PtrauthKey`](#ptrauthkey)
 
 ##### `impl Copy for PtrauthKey`
 
 ##### `impl Debug for PtrauthKey`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ptrauthkey-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for PtrauthKey`
 
 ##### `impl PartialEq for PtrauthKey`
 
-- `fn eq(self: &Self, other: &PtrauthKey) -> bool` — [`PtrauthKey`](#ptrauthkey)
+- <span id="ptrauthkey-eq"></span>`fn eq(&self, other: &PtrauthKey) -> bool` — [`PtrauthKey`](#ptrauthkey)
 
 ##### `impl StructuralPartialEq for PtrauthKey`
 
@@ -3813,11 +5083,15 @@ The variant values correspond to the values used in the
 const fn cpu_subtype_intel(f: u32, m: u32) -> u32
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:126-128`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L126-L128)*
+
 ### `cpu_subtype_intel_family`
 
 ```rust
 const fn cpu_subtype_intel_family(x: u32) -> u32
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:153-155`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L153-L155)*
 
 ### `cpu_subtype_intel_model`
 
@@ -3825,3517 +5099,4009 @@ const fn cpu_subtype_intel_family(x: u32) -> u32
 const fn cpu_subtype_intel_model(x: u32) -> u32
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:159-161`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L159-L161)*
+
 ## Constants
 
 ### `CPU_ARCH_MASK`
-
 ```rust
 const CPU_ARCH_MASK: u32 = 4_278_190_080u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:20`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L20)*
+
 mask for architecture bits
 
 ### `CPU_ARCH_ABI64`
-
 ```rust
 const CPU_ARCH_ABI64: u32 = 16_777_216u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:22`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L22)*
+
 64 bit ABI
 
 ### `CPU_ARCH_ABI64_32`
-
 ```rust
 const CPU_ARCH_ABI64_32: u32 = 33_554_432u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:24`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L24)*
+
 ABI for 64-bit hardware with 32-bit types; LP32
 
 ### `CPU_TYPE_ANY`
-
 ```rust
 const CPU_TYPE_ANY: u32 = 4_294_967_295u32;
 ```
 
-### `CPU_TYPE_VAX`
+*Defined in [`object-0.37.3/src/macho.rs:30`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L30)*
 
+### `CPU_TYPE_VAX`
 ```rust
 const CPU_TYPE_VAX: u32 = 1u32;
 ```
 
-### `CPU_TYPE_MC680X0`
+*Defined in [`object-0.37.3/src/macho.rs:32`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L32)*
 
+### `CPU_TYPE_MC680X0`
 ```rust
 const CPU_TYPE_MC680X0: u32 = 6u32;
 ```
 
-### `CPU_TYPE_X86`
+*Defined in [`object-0.37.3/src/macho.rs:33`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L33)*
 
+### `CPU_TYPE_X86`
 ```rust
 const CPU_TYPE_X86: u32 = 7u32;
 ```
 
-### `CPU_TYPE_X86_64`
+*Defined in [`object-0.37.3/src/macho.rs:34`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L34)*
 
+### `CPU_TYPE_X86_64`
 ```rust
 const CPU_TYPE_X86_64: u32 = 16_777_223u32;
 ```
 
-### `CPU_TYPE_MIPS`
+*Defined in [`object-0.37.3/src/macho.rs:35`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L35)*
 
+### `CPU_TYPE_MIPS`
 ```rust
 const CPU_TYPE_MIPS: u32 = 8u32;
 ```
 
-### `CPU_TYPE_MC98000`
+*Defined in [`object-0.37.3/src/macho.rs:36`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L36)*
 
+### `CPU_TYPE_MC98000`
 ```rust
 const CPU_TYPE_MC98000: u32 = 10u32;
 ```
 
-### `CPU_TYPE_HPPA`
+*Defined in [`object-0.37.3/src/macho.rs:37`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L37)*
 
+### `CPU_TYPE_HPPA`
 ```rust
 const CPU_TYPE_HPPA: u32 = 11u32;
 ```
 
-### `CPU_TYPE_ARM`
+*Defined in [`object-0.37.3/src/macho.rs:38`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L38)*
 
+### `CPU_TYPE_ARM`
 ```rust
 const CPU_TYPE_ARM: u32 = 12u32;
 ```
 
-### `CPU_TYPE_ARM64`
+*Defined in [`object-0.37.3/src/macho.rs:39`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L39)*
 
+### `CPU_TYPE_ARM64`
 ```rust
 const CPU_TYPE_ARM64: u32 = 16_777_228u32;
 ```
 
-### `CPU_TYPE_ARM64_32`
+*Defined in [`object-0.37.3/src/macho.rs:40`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L40)*
 
+### `CPU_TYPE_ARM64_32`
 ```rust
 const CPU_TYPE_ARM64_32: u32 = 33_554_444u32;
 ```
 
-### `CPU_TYPE_MC88000`
+*Defined in [`object-0.37.3/src/macho.rs:41`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L41)*
 
+### `CPU_TYPE_MC88000`
 ```rust
 const CPU_TYPE_MC88000: u32 = 13u32;
 ```
 
-### `CPU_TYPE_SPARC`
+*Defined in [`object-0.37.3/src/macho.rs:42`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L42)*
 
+### `CPU_TYPE_SPARC`
 ```rust
 const CPU_TYPE_SPARC: u32 = 14u32;
 ```
 
-### `CPU_TYPE_I860`
+*Defined in [`object-0.37.3/src/macho.rs:43`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L43)*
 
+### `CPU_TYPE_I860`
 ```rust
 const CPU_TYPE_I860: u32 = 15u32;
 ```
 
-### `CPU_TYPE_ALPHA`
+*Defined in [`object-0.37.3/src/macho.rs:44`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L44)*
 
+### `CPU_TYPE_ALPHA`
 ```rust
 const CPU_TYPE_ALPHA: u32 = 16u32;
 ```
 
-### `CPU_TYPE_POWERPC`
+*Defined in [`object-0.37.3/src/macho.rs:45`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L45)*
 
+### `CPU_TYPE_POWERPC`
 ```rust
 const CPU_TYPE_POWERPC: u32 = 18u32;
 ```
 
-### `CPU_TYPE_POWERPC64`
+*Defined in [`object-0.37.3/src/macho.rs:46`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L46)*
 
+### `CPU_TYPE_POWERPC64`
 ```rust
 const CPU_TYPE_POWERPC64: u32 = 16_777_234u32;
 ```
 
-### `CPU_SUBTYPE_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:47`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L47)*
 
+### `CPU_SUBTYPE_MASK`
 ```rust
 const CPU_SUBTYPE_MASK: u32 = 4_278_190_080u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:53`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L53)*
+
 mask for feature flags
 
 ### `CPU_SUBTYPE_LIB64`
-
 ```rust
 const CPU_SUBTYPE_LIB64: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:55`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L55)*
+
 64 bit libraries
 
 ### `CPU_SUBTYPE_PTRAUTH_ABI`
-
 ```rust
 const CPU_SUBTYPE_PTRAUTH_ABI: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:57`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L57)*
+
 pointer authentication with versioned ABI
 
 ### `CPU_SUBTYPE_ANY`
-
 ```rust
 const CPU_SUBTYPE_ANY: u32 = 4_294_967_295u32;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:62`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L62)*
 
 When selecting a slice, ANY will pick the slice with the best
 grading for the selected cpu_type_t, unlike the "ALL" subtypes,
 which are the slices that can run on any hardware for that cpu type.
 
 ### `CPU_SUBTYPE_MULTIPLE`
-
 ```rust
 const CPU_SUBTYPE_MULTIPLE: u32 = 4_294_967_295u32;
 ```
 
-### `CPU_SUBTYPE_LITTLE_ENDIAN`
+*Defined in [`object-0.37.3/src/macho.rs:75`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L75)*
 
+### `CPU_SUBTYPE_LITTLE_ENDIAN`
 ```rust
 const CPU_SUBTYPE_LITTLE_ENDIAN: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_BIG_ENDIAN`
+*Defined in [`object-0.37.3/src/macho.rs:76`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L76)*
 
+### `CPU_SUBTYPE_BIG_ENDIAN`
 ```rust
 const CPU_SUBTYPE_BIG_ENDIAN: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_VAX_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:77`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L77)*
 
+### `CPU_SUBTYPE_VAX_ALL`
 ```rust
 const CPU_SUBTYPE_VAX_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_VAX780`
+*Defined in [`object-0.37.3/src/macho.rs:84`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L84)*
 
+### `CPU_SUBTYPE_VAX780`
 ```rust
 const CPU_SUBTYPE_VAX780: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_VAX785`
+*Defined in [`object-0.37.3/src/macho.rs:85`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L85)*
 
+### `CPU_SUBTYPE_VAX785`
 ```rust
 const CPU_SUBTYPE_VAX785: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_VAX750`
+*Defined in [`object-0.37.3/src/macho.rs:86`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L86)*
 
+### `CPU_SUBTYPE_VAX750`
 ```rust
 const CPU_SUBTYPE_VAX750: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_VAX730`
+*Defined in [`object-0.37.3/src/macho.rs:87`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L87)*
 
+### `CPU_SUBTYPE_VAX730`
 ```rust
 const CPU_SUBTYPE_VAX730: u32 = 4u32;
 ```
 
-### `CPU_SUBTYPE_UVAXI`
+*Defined in [`object-0.37.3/src/macho.rs:88`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L88)*
 
+### `CPU_SUBTYPE_UVAXI`
 ```rust
 const CPU_SUBTYPE_UVAXI: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_UVAXII`
+*Defined in [`object-0.37.3/src/macho.rs:89`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L89)*
 
+### `CPU_SUBTYPE_UVAXII`
 ```rust
 const CPU_SUBTYPE_UVAXII: u32 = 6u32;
 ```
 
-### `CPU_SUBTYPE_VAX8200`
+*Defined in [`object-0.37.3/src/macho.rs:90`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L90)*
 
+### `CPU_SUBTYPE_VAX8200`
 ```rust
 const CPU_SUBTYPE_VAX8200: u32 = 7u32;
 ```
 
-### `CPU_SUBTYPE_VAX8500`
+*Defined in [`object-0.37.3/src/macho.rs:91`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L91)*
 
+### `CPU_SUBTYPE_VAX8500`
 ```rust
 const CPU_SUBTYPE_VAX8500: u32 = 8u32;
 ```
 
-### `CPU_SUBTYPE_VAX8600`
+*Defined in [`object-0.37.3/src/macho.rs:92`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L92)*
 
+### `CPU_SUBTYPE_VAX8600`
 ```rust
 const CPU_SUBTYPE_VAX8600: u32 = 9u32;
 ```
 
-### `CPU_SUBTYPE_VAX8650`
+*Defined in [`object-0.37.3/src/macho.rs:93`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L93)*
 
+### `CPU_SUBTYPE_VAX8650`
 ```rust
 const CPU_SUBTYPE_VAX8650: u32 = 10u32;
 ```
 
-### `CPU_SUBTYPE_VAX8800`
+*Defined in [`object-0.37.3/src/macho.rs:94`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L94)*
 
+### `CPU_SUBTYPE_VAX8800`
 ```rust
 const CPU_SUBTYPE_VAX8800: u32 = 11u32;
 ```
 
-### `CPU_SUBTYPE_UVAXIII`
+*Defined in [`object-0.37.3/src/macho.rs:95`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L95)*
 
+### `CPU_SUBTYPE_UVAXIII`
 ```rust
 const CPU_SUBTYPE_UVAXIII: u32 = 12u32;
 ```
 
-### `CPU_SUBTYPE_MC680X0_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:96`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L96)*
 
+### `CPU_SUBTYPE_MC680X0_ALL`
 ```rust
 const CPU_SUBTYPE_MC680X0_ALL: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_MC68030`
+*Defined in [`object-0.37.3/src/macho.rs:115`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L115)*
 
+### `CPU_SUBTYPE_MC68030`
 ```rust
 const CPU_SUBTYPE_MC68030: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_MC68040`
+*Defined in [`object-0.37.3/src/macho.rs:117`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L117)*
 
+### `CPU_SUBTYPE_MC68040`
 ```rust
 const CPU_SUBTYPE_MC68040: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_MC68030_ONLY`
+*Defined in [`object-0.37.3/src/macho.rs:118`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L118)*
 
+### `CPU_SUBTYPE_MC68030_ONLY`
 ```rust
 const CPU_SUBTYPE_MC68030_ONLY: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_I386_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:119`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L119)*
 
+### `CPU_SUBTYPE_I386_ALL`
 ```rust
 const CPU_SUBTYPE_I386_ALL: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_386`
+*Defined in [`object-0.37.3/src/macho.rs:130`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L130)*
 
+### `CPU_SUBTYPE_386`
 ```rust
 const CPU_SUBTYPE_386: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_486`
+*Defined in [`object-0.37.3/src/macho.rs:131`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L131)*
 
+### `CPU_SUBTYPE_486`
 ```rust
 const CPU_SUBTYPE_486: u32 = 4u32;
 ```
 
-### `CPU_SUBTYPE_486SX`
+*Defined in [`object-0.37.3/src/macho.rs:132`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L132)*
 
+### `CPU_SUBTYPE_486SX`
 ```rust
 const CPU_SUBTYPE_486SX: u32 = 132u32;
 ```
 
-### `CPU_SUBTYPE_586`
+*Defined in [`object-0.37.3/src/macho.rs:133`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L133)*
 
+### `CPU_SUBTYPE_586`
 ```rust
 const CPU_SUBTYPE_586: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_PENT`
+*Defined in [`object-0.37.3/src/macho.rs:134`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L134)*
 
+### `CPU_SUBTYPE_PENT`
 ```rust
 const CPU_SUBTYPE_PENT: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_PENTPRO`
+*Defined in [`object-0.37.3/src/macho.rs:135`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L135)*
 
+### `CPU_SUBTYPE_PENTPRO`
 ```rust
 const CPU_SUBTYPE_PENTPRO: u32 = 22u32;
 ```
 
-### `CPU_SUBTYPE_PENTII_M3`
+*Defined in [`object-0.37.3/src/macho.rs:136`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L136)*
 
+### `CPU_SUBTYPE_PENTII_M3`
 ```rust
 const CPU_SUBTYPE_PENTII_M3: u32 = 54u32;
 ```
 
-### `CPU_SUBTYPE_PENTII_M5`
+*Defined in [`object-0.37.3/src/macho.rs:137`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L137)*
 
+### `CPU_SUBTYPE_PENTII_M5`
 ```rust
 const CPU_SUBTYPE_PENTII_M5: u32 = 86u32;
 ```
 
-### `CPU_SUBTYPE_CELERON`
+*Defined in [`object-0.37.3/src/macho.rs:138`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L138)*
 
+### `CPU_SUBTYPE_CELERON`
 ```rust
 const CPU_SUBTYPE_CELERON: u32 = 103u32;
 ```
 
-### `CPU_SUBTYPE_CELERON_MOBILE`
+*Defined in [`object-0.37.3/src/macho.rs:139`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L139)*
 
+### `CPU_SUBTYPE_CELERON_MOBILE`
 ```rust
 const CPU_SUBTYPE_CELERON_MOBILE: u32 = 119u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_3`
+*Defined in [`object-0.37.3/src/macho.rs:140`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L140)*
 
+### `CPU_SUBTYPE_PENTIUM_3`
 ```rust
 const CPU_SUBTYPE_PENTIUM_3: u32 = 8u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_3_M`
+*Defined in [`object-0.37.3/src/macho.rs:141`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L141)*
 
+### `CPU_SUBTYPE_PENTIUM_3_M`
 ```rust
 const CPU_SUBTYPE_PENTIUM_3_M: u32 = 24u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_3_XEON`
+*Defined in [`object-0.37.3/src/macho.rs:142`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L142)*
 
+### `CPU_SUBTYPE_PENTIUM_3_XEON`
 ```rust
 const CPU_SUBTYPE_PENTIUM_3_XEON: u32 = 40u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_M`
+*Defined in [`object-0.37.3/src/macho.rs:143`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L143)*
 
+### `CPU_SUBTYPE_PENTIUM_M`
 ```rust
 const CPU_SUBTYPE_PENTIUM_M: u32 = 9u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_4`
+*Defined in [`object-0.37.3/src/macho.rs:144`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L144)*
 
+### `CPU_SUBTYPE_PENTIUM_4`
 ```rust
 const CPU_SUBTYPE_PENTIUM_4: u32 = 10u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_4_M`
+*Defined in [`object-0.37.3/src/macho.rs:145`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L145)*
 
+### `CPU_SUBTYPE_PENTIUM_4_M`
 ```rust
 const CPU_SUBTYPE_PENTIUM_4_M: u32 = 26u32;
 ```
 
-### `CPU_SUBTYPE_ITANIUM`
+*Defined in [`object-0.37.3/src/macho.rs:146`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L146)*
 
+### `CPU_SUBTYPE_ITANIUM`
 ```rust
 const CPU_SUBTYPE_ITANIUM: u32 = 11u32;
 ```
 
-### `CPU_SUBTYPE_ITANIUM_2`
+*Defined in [`object-0.37.3/src/macho.rs:147`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L147)*
 
+### `CPU_SUBTYPE_ITANIUM_2`
 ```rust
 const CPU_SUBTYPE_ITANIUM_2: u32 = 27u32;
 ```
 
-### `CPU_SUBTYPE_XEON`
+*Defined in [`object-0.37.3/src/macho.rs:148`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L148)*
 
+### `CPU_SUBTYPE_XEON`
 ```rust
 const CPU_SUBTYPE_XEON: u32 = 12u32;
 ```
 
-### `CPU_SUBTYPE_XEON_MP`
+*Defined in [`object-0.37.3/src/macho.rs:149`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L149)*
 
+### `CPU_SUBTYPE_XEON_MP`
 ```rust
 const CPU_SUBTYPE_XEON_MP: u32 = 28u32;
 ```
 
-### `CPU_SUBTYPE_INTEL_FAMILY_MAX`
+*Defined in [`object-0.37.3/src/macho.rs:150`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L150)*
 
+### `CPU_SUBTYPE_INTEL_FAMILY_MAX`
 ```rust
 const CPU_SUBTYPE_INTEL_FAMILY_MAX: u32 = 15u32;
 ```
 
-### `CPU_SUBTYPE_INTEL_MODEL_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:156`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L156)*
 
+### `CPU_SUBTYPE_INTEL_MODEL_ALL`
 ```rust
 const CPU_SUBTYPE_INTEL_MODEL_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_X86_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:162`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L162)*
 
+### `CPU_SUBTYPE_X86_ALL`
 ```rust
 const CPU_SUBTYPE_X86_ALL: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_X86_64_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:168`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L168)*
 
+### `CPU_SUBTYPE_X86_64_ALL`
 ```rust
 const CPU_SUBTYPE_X86_64_ALL: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_X86_ARCH1`
+*Defined in [`object-0.37.3/src/macho.rs:169`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L169)*
 
+### `CPU_SUBTYPE_X86_ARCH1`
 ```rust
 const CPU_SUBTYPE_X86_ARCH1: u32 = 4u32;
 ```
 
-### `CPU_SUBTYPE_X86_64_H`
+*Defined in [`object-0.37.3/src/macho.rs:170`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L170)*
 
+### `CPU_SUBTYPE_X86_64_H`
 ```rust
 const CPU_SUBTYPE_X86_64_H: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:172`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L172)*
+
 Haswell feature subset
 
 ### `CPU_SUBTYPE_MIPS_ALL`
-
 ```rust
 const CPU_SUBTYPE_MIPS_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_MIPS_R2300`
+*Defined in [`object-0.37.3/src/macho.rs:178`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L178)*
 
+### `CPU_SUBTYPE_MIPS_R2300`
 ```rust
 const CPU_SUBTYPE_MIPS_R2300: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_MIPS_R2600`
+*Defined in [`object-0.37.3/src/macho.rs:179`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L179)*
 
+### `CPU_SUBTYPE_MIPS_R2600`
 ```rust
 const CPU_SUBTYPE_MIPS_R2600: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_MIPS_R2800`
+*Defined in [`object-0.37.3/src/macho.rs:180`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L180)*
 
+### `CPU_SUBTYPE_MIPS_R2800`
 ```rust
 const CPU_SUBTYPE_MIPS_R2800: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_MIPS_R2000A`
+*Defined in [`object-0.37.3/src/macho.rs:181`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L181)*
 
+### `CPU_SUBTYPE_MIPS_R2000A`
 ```rust
 const CPU_SUBTYPE_MIPS_R2000A: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:183`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L183)*
+
 pmax
 
 ### `CPU_SUBTYPE_MIPS_R2000`
-
 ```rust
 const CPU_SUBTYPE_MIPS_R2000: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_MIPS_R3000A`
+*Defined in [`object-0.37.3/src/macho.rs:184`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L184)*
 
+### `CPU_SUBTYPE_MIPS_R3000A`
 ```rust
 const CPU_SUBTYPE_MIPS_R3000A: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:186`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L186)*
+
 3max
 
 ### `CPU_SUBTYPE_MIPS_R3000`
-
 ```rust
 const CPU_SUBTYPE_MIPS_R3000: u32 = 7u32;
 ```
 
-### `CPU_SUBTYPE_MC98000_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:187`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L187)*
 
+### `CPU_SUBTYPE_MC98000_ALL`
 ```rust
 const CPU_SUBTYPE_MC98000_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_MC98601`
+*Defined in [`object-0.37.3/src/macho.rs:192`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L192)*
 
+### `CPU_SUBTYPE_MC98601`
 ```rust
 const CPU_SUBTYPE_MC98601: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_HPPA_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:193`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L193)*
 
+### `CPU_SUBTYPE_HPPA_ALL`
 ```rust
 const CPU_SUBTYPE_HPPA_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_HPPA_7100LC`
+*Defined in [`object-0.37.3/src/macho.rs:200`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L200)*
 
+### `CPU_SUBTYPE_HPPA_7100LC`
 ```rust
 const CPU_SUBTYPE_HPPA_7100LC: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_MC88000_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:201`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L201)*
 
+### `CPU_SUBTYPE_MC88000_ALL`
 ```rust
 const CPU_SUBTYPE_MC88000_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_MC88100`
+*Defined in [`object-0.37.3/src/macho.rs:206`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L206)*
 
+### `CPU_SUBTYPE_MC88100`
 ```rust
 const CPU_SUBTYPE_MC88100: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_MC88110`
+*Defined in [`object-0.37.3/src/macho.rs:207`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L207)*
 
+### `CPU_SUBTYPE_MC88110`
 ```rust
 const CPU_SUBTYPE_MC88110: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_SPARC_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:208`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L208)*
 
+### `CPU_SUBTYPE_SPARC_ALL`
 ```rust
 const CPU_SUBTYPE_SPARC_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_I860_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:213`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L213)*
 
+### `CPU_SUBTYPE_I860_ALL`
 ```rust
 const CPU_SUBTYPE_I860_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_I860_860`
+*Defined in [`object-0.37.3/src/macho.rs:218`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L218)*
 
+### `CPU_SUBTYPE_I860_860`
 ```rust
 const CPU_SUBTYPE_I860_860: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:219`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L219)*
 
+### `CPU_SUBTYPE_POWERPC_ALL`
 ```rust
 const CPU_SUBTYPE_POWERPC_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_601`
+*Defined in [`object-0.37.3/src/macho.rs:224`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L224)*
 
+### `CPU_SUBTYPE_POWERPC_601`
 ```rust
 const CPU_SUBTYPE_POWERPC_601: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_602`
+*Defined in [`object-0.37.3/src/macho.rs:225`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L225)*
 
+### `CPU_SUBTYPE_POWERPC_602`
 ```rust
 const CPU_SUBTYPE_POWERPC_602: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_603`
+*Defined in [`object-0.37.3/src/macho.rs:226`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L226)*
 
+### `CPU_SUBTYPE_POWERPC_603`
 ```rust
 const CPU_SUBTYPE_POWERPC_603: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_603E`
+*Defined in [`object-0.37.3/src/macho.rs:227`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L227)*
 
+### `CPU_SUBTYPE_POWERPC_603E`
 ```rust
 const CPU_SUBTYPE_POWERPC_603E: u32 = 4u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_603EV`
+*Defined in [`object-0.37.3/src/macho.rs:228`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L228)*
 
+### `CPU_SUBTYPE_POWERPC_603EV`
 ```rust
 const CPU_SUBTYPE_POWERPC_603EV: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_604`
+*Defined in [`object-0.37.3/src/macho.rs:229`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L229)*
 
+### `CPU_SUBTYPE_POWERPC_604`
 ```rust
 const CPU_SUBTYPE_POWERPC_604: u32 = 6u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_604E`
+*Defined in [`object-0.37.3/src/macho.rs:230`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L230)*
 
+### `CPU_SUBTYPE_POWERPC_604E`
 ```rust
 const CPU_SUBTYPE_POWERPC_604E: u32 = 7u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_620`
+*Defined in [`object-0.37.3/src/macho.rs:231`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L231)*
 
+### `CPU_SUBTYPE_POWERPC_620`
 ```rust
 const CPU_SUBTYPE_POWERPC_620: u32 = 8u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_750`
+*Defined in [`object-0.37.3/src/macho.rs:232`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L232)*
 
+### `CPU_SUBTYPE_POWERPC_750`
 ```rust
 const CPU_SUBTYPE_POWERPC_750: u32 = 9u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_7400`
+*Defined in [`object-0.37.3/src/macho.rs:233`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L233)*
 
+### `CPU_SUBTYPE_POWERPC_7400`
 ```rust
 const CPU_SUBTYPE_POWERPC_7400: u32 = 10u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_7450`
+*Defined in [`object-0.37.3/src/macho.rs:234`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L234)*
 
+### `CPU_SUBTYPE_POWERPC_7450`
 ```rust
 const CPU_SUBTYPE_POWERPC_7450: u32 = 11u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_970`
+*Defined in [`object-0.37.3/src/macho.rs:235`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L235)*
 
+### `CPU_SUBTYPE_POWERPC_970`
 ```rust
 const CPU_SUBTYPE_POWERPC_970: u32 = 100u32;
 ```
 
-### `CPU_SUBTYPE_ARM_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:236`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L236)*
 
+### `CPU_SUBTYPE_ARM_ALL`
 ```rust
 const CPU_SUBTYPE_ARM_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V4T`
+*Defined in [`object-0.37.3/src/macho.rs:241`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L241)*
 
+### `CPU_SUBTYPE_ARM_V4T`
 ```rust
 const CPU_SUBTYPE_ARM_V4T: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V6`
+*Defined in [`object-0.37.3/src/macho.rs:242`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L242)*
 
+### `CPU_SUBTYPE_ARM_V6`
 ```rust
 const CPU_SUBTYPE_ARM_V6: u32 = 6u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V5TEJ`
+*Defined in [`object-0.37.3/src/macho.rs:243`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L243)*
 
+### `CPU_SUBTYPE_ARM_V5TEJ`
 ```rust
 const CPU_SUBTYPE_ARM_V5TEJ: u32 = 7u32;
 ```
 
-### `CPU_SUBTYPE_ARM_XSCALE`
+*Defined in [`object-0.37.3/src/macho.rs:244`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L244)*
 
+### `CPU_SUBTYPE_ARM_XSCALE`
 ```rust
 const CPU_SUBTYPE_ARM_XSCALE: u32 = 8u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V7`
+*Defined in [`object-0.37.3/src/macho.rs:245`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L245)*
 
+### `CPU_SUBTYPE_ARM_V7`
 ```rust
 const CPU_SUBTYPE_ARM_V7: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:247`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L247)*
+
 ARMv7-A and ARMv7-R
 
 ### `CPU_SUBTYPE_ARM_V7F`
-
 ```rust
 const CPU_SUBTYPE_ARM_V7F: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:249`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L249)*
+
 Cortex A9
 
 ### `CPU_SUBTYPE_ARM_V7S`
-
 ```rust
 const CPU_SUBTYPE_ARM_V7S: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:251`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L251)*
+
 Swift
 
 ### `CPU_SUBTYPE_ARM_V7K`
-
 ```rust
 const CPU_SUBTYPE_ARM_V7K: u32 = 12u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V8`
+*Defined in [`object-0.37.3/src/macho.rs:252`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L252)*
 
+### `CPU_SUBTYPE_ARM_V8`
 ```rust
 const CPU_SUBTYPE_ARM_V8: u32 = 13u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V6M`
+*Defined in [`object-0.37.3/src/macho.rs:253`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L253)*
 
+### `CPU_SUBTYPE_ARM_V6M`
 ```rust
 const CPU_SUBTYPE_ARM_V6M: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:255`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L255)*
+
 Not meant to be run under xnu
 
 ### `CPU_SUBTYPE_ARM_V7M`
-
 ```rust
 const CPU_SUBTYPE_ARM_V7M: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:257`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L257)*
+
 Not meant to be run under xnu
 
 ### `CPU_SUBTYPE_ARM_V7EM`
-
 ```rust
 const CPU_SUBTYPE_ARM_V7EM: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:259`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L259)*
+
 Not meant to be run under xnu
 
 ### `CPU_SUBTYPE_ARM_V8M`
-
 ```rust
 const CPU_SUBTYPE_ARM_V8M: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:261`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L261)*
+
 Not meant to be run under xnu
 
 ### `CPU_SUBTYPE_ARM64_ALL`
-
 ```rust
 const CPU_SUBTYPE_ARM64_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_ARM64_V8`
+*Defined in [`object-0.37.3/src/macho.rs:266`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L266)*
 
+### `CPU_SUBTYPE_ARM64_V8`
 ```rust
 const CPU_SUBTYPE_ARM64_V8: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_ARM64E`
+*Defined in [`object-0.37.3/src/macho.rs:267`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L267)*
 
+### `CPU_SUBTYPE_ARM64E`
 ```rust
 const CPU_SUBTYPE_ARM64E: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_ARM64_32_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:268`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L268)*
 
+### `CPU_SUBTYPE_ARM64_32_ALL`
 ```rust
 const CPU_SUBTYPE_ARM64_32_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_ARM64_32_V8`
+*Defined in [`object-0.37.3/src/macho.rs:273`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L273)*
 
+### `CPU_SUBTYPE_ARM64_32_V8`
 ```rust
 const CPU_SUBTYPE_ARM64_32_V8: u32 = 1u32;
 ```
 
-### `VM_PROT_READ`
+*Defined in [`object-0.37.3/src/macho.rs:274`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L274)*
 
+### `VM_PROT_READ`
 ```rust
 const VM_PROT_READ: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:279`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L279)*
+
 read permission
 
 ### `VM_PROT_WRITE`
-
 ```rust
 const VM_PROT_WRITE: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:281`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L281)*
+
 write permission
 
 ### `VM_PROT_EXECUTE`
-
 ```rust
 const VM_PROT_EXECUTE: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:283`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L283)*
+
 execute permission
 
 ### `DYLD_CACHE_MAPPING_AUTH_DATA`
-
 ```rust
 const DYLD_CACHE_MAPPING_AUTH_DATA: u64 = 1u64;
 ```
 
-### `DYLD_CACHE_MAPPING_DIRTY_DATA`
+*Defined in [`object-0.37.3/src/macho.rs:468`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L468)*
 
+### `DYLD_CACHE_MAPPING_DIRTY_DATA`
 ```rust
 const DYLD_CACHE_MAPPING_DIRTY_DATA: u64 = 2u64;
 ```
 
-### `DYLD_CACHE_MAPPING_CONST_DATA`
+*Defined in [`object-0.37.3/src/macho.rs:469`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L469)*
 
+### `DYLD_CACHE_MAPPING_CONST_DATA`
 ```rust
 const DYLD_CACHE_MAPPING_CONST_DATA: u64 = 4u64;
 ```
 
-### `DYLD_CACHE_MAPPING_TEXT_STUBS`
+*Defined in [`object-0.37.3/src/macho.rs:470`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L470)*
 
+### `DYLD_CACHE_MAPPING_TEXT_STUBS`
 ```rust
 const DYLD_CACHE_MAPPING_TEXT_STUBS: u64 = 8u64;
 ```
 
-### `DYLD_CACHE_DYNAMIC_CONFIG_DATA`
+*Defined in [`object-0.37.3/src/macho.rs:471`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L471)*
 
+### `DYLD_CACHE_DYNAMIC_CONFIG_DATA`
 ```rust
 const DYLD_CACHE_DYNAMIC_CONFIG_DATA: u64 = 16u64;
 ```
 
-### `DYLD_CACHE_SLIDE_PAGE_ATTRS`
+*Defined in [`object-0.37.3/src/macho.rs:472`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L472)*
 
+### `DYLD_CACHE_SLIDE_PAGE_ATTRS`
 ```rust
 const DYLD_CACHE_SLIDE_PAGE_ATTRS: u16 = 49_152u16;
 ```
 
-### `DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA`
+*Defined in [`object-0.37.3/src/macho.rs:513`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L513)*
 
+### `DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA`
 ```rust
 const DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA: u16 = 32_768u16;
 ```
 
-### `DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE`
+*Defined in [`object-0.37.3/src/macho.rs:515`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L515)*
 
+### `DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE`
 ```rust
 const DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE: u16 = 16_384u16;
 ```
 
-### `DYLD_CACHE_SLIDE_PAGE_ATTR_END`
+*Defined in [`object-0.37.3/src/macho.rs:517`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L517)*
 
+### `DYLD_CACHE_SLIDE_PAGE_ATTR_END`
 ```rust
 const DYLD_CACHE_SLIDE_PAGE_ATTR_END: u16 = 32_768u16;
 ```
 
-### `DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE`
+*Defined in [`object-0.37.3/src/macho.rs:519`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L519)*
 
+### `DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE`
 ```rust
 const DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE: u16 = 65_535u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:533`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L533)*
+
 Page has no rebasing.
 
 ### `DYLD_CACHE_SLIDE_V5_PAGE_ATTR_NO_REBASE`
-
 ```rust
 const DYLD_CACHE_SLIDE_V5_PAGE_ATTR_NO_REBASE: u16 = 65_535u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:607`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L607)*
+
 Page has no rebasing.
 
 ### `FAT_MAGIC`
-
 ```rust
 const FAT_MAGIC: u32 = 3_405_691_582u32;
 ```
 
-### `FAT_CIGAM`
+*Defined in [`object-0.37.3/src/macho.rs:702`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L702)*
 
+### `FAT_CIGAM`
 ```rust
 const FAT_CIGAM: u32 = 3_199_925_962u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:704`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L704)*
+
 NXSwapLong(FAT_MAGIC)
 
 ### `FAT_MAGIC_64`
-
 ```rust
 const FAT_MAGIC_64: u32 = 3_405_691_583u32;
 ```
 
-### `FAT_CIGAM_64`
+*Defined in [`object-0.37.3/src/macho.rs:737`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L737)*
 
+### `FAT_CIGAM_64`
 ```rust
 const FAT_CIGAM_64: u32 = 3_216_703_178u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:739`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L739)*
+
 NXSwapLong(FAT_MAGIC_64)
 
 ### `MH_MAGIC`
-
 ```rust
 const MH_MAGIC: u32 = 4_277_009_102u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:784`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L784)*
+
 the mach magic number
 
 ### `MH_CIGAM`
-
 ```rust
 const MH_CIGAM: u32 = 3_472_551_422u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:786`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L786)*
+
 NXSwapInt(MH_MAGIC)
 
 ### `MH_MAGIC_64`
-
 ```rust
 const MH_MAGIC_64: u32 = 4_277_009_103u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:814`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L814)*
+
 the 64-bit mach magic number
 
 ### `MH_CIGAM_64`
-
 ```rust
 const MH_CIGAM_64: u32 = 3_489_328_638u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:816`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L816)*
+
 NXSwapInt(MH_MAGIC_64)
 
 ### `MH_OBJECT`
-
 ```rust
 const MH_OBJECT: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:842`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L842)*
+
 relocatable object file
 
 ### `MH_EXECUTE`
-
 ```rust
 const MH_EXECUTE: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:844`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L844)*
+
 demand paged executable file
 
 ### `MH_FVMLIB`
-
 ```rust
 const MH_FVMLIB: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:846`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L846)*
+
 fixed VM shared library file
 
 ### `MH_CORE`
-
 ```rust
 const MH_CORE: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:848`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L848)*
+
 core file
 
 ### `MH_PRELOAD`
-
 ```rust
 const MH_PRELOAD: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:850`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L850)*
+
 preloaded executable file
 
 ### `MH_DYLIB`
-
 ```rust
 const MH_DYLIB: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:852`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L852)*
+
 dynamically bound shared library
 
 ### `MH_DYLINKER`
-
 ```rust
 const MH_DYLINKER: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:854`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L854)*
+
 dynamic link editor
 
 ### `MH_BUNDLE`
-
 ```rust
 const MH_BUNDLE: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:856`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L856)*
+
 dynamically bound bundle file
 
 ### `MH_DYLIB_STUB`
-
 ```rust
 const MH_DYLIB_STUB: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:858`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L858)*
+
 shared library stub for static linking only, no section contents
 
 ### `MH_DSYM`
-
 ```rust
 const MH_DSYM: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:860`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L860)*
+
 companion file with only debug sections
 
 ### `MH_KEXT_BUNDLE`
-
 ```rust
 const MH_KEXT_BUNDLE: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:862`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L862)*
+
 x86_64 kexts
 
 ### `MH_FILESET`
-
 ```rust
 const MH_FILESET: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:864`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L864)*
+
 set of mach-o's
 
 ### `MH_NOUNDEFS`
-
 ```rust
 const MH_NOUNDEFS: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:868`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L868)*
+
 the object file has no undefined references
 
 ### `MH_INCRLINK`
-
 ```rust
 const MH_INCRLINK: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:870`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L870)*
+
 the object file is the output of an incremental link against a base file and can't be link edited again
 
 ### `MH_DYLDLINK`
-
 ```rust
 const MH_DYLDLINK: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:872`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L872)*
+
 the object file is input for the dynamic linker and can't be statically link edited again
 
 ### `MH_BINDATLOAD`
-
 ```rust
 const MH_BINDATLOAD: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:874`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L874)*
+
 the object file's undefined references are bound by the dynamic linker when loaded.
 
 ### `MH_PREBOUND`
-
 ```rust
 const MH_PREBOUND: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:876`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L876)*
+
 the file has its dynamic undefined references prebound.
 
 ### `MH_SPLIT_SEGS`
-
 ```rust
 const MH_SPLIT_SEGS: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:878`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L878)*
+
 the file has its read-only and read-write segments split
 
 ### `MH_LAZY_INIT`
-
 ```rust
 const MH_LAZY_INIT: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:880`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L880)*
+
 the shared library init routine is to be run lazily via catching memory faults to its writeable segments (obsolete)
 
 ### `MH_TWOLEVEL`
-
 ```rust
 const MH_TWOLEVEL: u32 = 128u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:882`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L882)*
+
 the image is using two-level name space bindings
 
 ### `MH_FORCE_FLAT`
-
 ```rust
 const MH_FORCE_FLAT: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:884`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L884)*
+
 the executable is forcing all images to use flat name space bindings
 
 ### `MH_NOMULTIDEFS`
-
 ```rust
 const MH_NOMULTIDEFS: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:886`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L886)*
+
 this umbrella guarantees no multiple definitions of symbols in its sub-images so the two-level namespace hints can always be used.
 
 ### `MH_NOFIXPREBINDING`
-
 ```rust
 const MH_NOFIXPREBINDING: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:888`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L888)*
+
 do not have dyld notify the prebinding agent about this executable
 
 ### `MH_PREBINDABLE`
-
 ```rust
 const MH_PREBINDABLE: u32 = 2_048u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:890`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L890)*
+
 the binary is not prebound but can have its prebinding redone. only used when MH_PREBOUND is not set.
 
 ### `MH_ALLMODSBOUND`
-
 ```rust
 const MH_ALLMODSBOUND: u32 = 4_096u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:892`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L892)*
+
 indicates that this binary binds to all two-level namespace modules of its dependent libraries. only used when MH_PREBINDABLE and MH_TWOLEVEL are both set.
 
 ### `MH_SUBSECTIONS_VIA_SYMBOLS`
-
 ```rust
 const MH_SUBSECTIONS_VIA_SYMBOLS: u32 = 8_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:894`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L894)*
+
 safe to divide up the sections into sub-sections via symbols for dead code stripping
 
 ### `MH_CANONICAL`
-
 ```rust
 const MH_CANONICAL: u32 = 16_384u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:896`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L896)*
+
 the binary has been canonicalized via the unprebind operation
 
 ### `MH_WEAK_DEFINES`
-
 ```rust
 const MH_WEAK_DEFINES: u32 = 32_768u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:898`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L898)*
+
 the final linked image contains external weak symbols
 
 ### `MH_BINDS_TO_WEAK`
-
 ```rust
 const MH_BINDS_TO_WEAK: u32 = 65_536u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:900`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L900)*
+
 the final linked image uses weak symbols
 
 ### `MH_ALLOW_STACK_EXECUTION`
-
 ```rust
 const MH_ALLOW_STACK_EXECUTION: u32 = 131_072u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:902`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L902)*
+
 When this bit is set, all stacks in the task will be given stack execution privilege.  Only used in MH_EXECUTE filetypes.
 
 ### `MH_ROOT_SAFE`
-
 ```rust
 const MH_ROOT_SAFE: u32 = 262_144u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:904`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L904)*
+
 When this bit is set, the binary declares it is safe for use in processes with uid zero
 
 ### `MH_SETUID_SAFE`
-
 ```rust
 const MH_SETUID_SAFE: u32 = 524_288u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:906`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L906)*
+
 When this bit is set, the binary declares it is safe for use in processes when issetugid() is true
 
 ### `MH_NO_REEXPORTED_DYLIBS`
-
 ```rust
 const MH_NO_REEXPORTED_DYLIBS: u32 = 1_048_576u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:908`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L908)*
+
 When this bit is set on a dylib, the static linker does not need to examine dependent dylibs to see if any are re-exported
 
 ### `MH_PIE`
-
 ```rust
 const MH_PIE: u32 = 2_097_152u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:910`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L910)*
+
 When this bit is set, the OS will load the main executable at a random address.  Only used in MH_EXECUTE filetypes.
 
 ### `MH_DEAD_STRIPPABLE_DYLIB`
-
 ```rust
 const MH_DEAD_STRIPPABLE_DYLIB: u32 = 4_194_304u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:912`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L912)*
+
 Only for use on dylibs.  When linking against a dylib that has this bit set, the static linker will automatically not create a LC_LOAD_DYLIB load command to the dylib if no symbols are being referenced from the dylib.
 
 ### `MH_HAS_TLV_DESCRIPTORS`
-
 ```rust
 const MH_HAS_TLV_DESCRIPTORS: u32 = 8_388_608u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:914`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L914)*
+
 Contains a section of type S_THREAD_LOCAL_VARIABLES
 
 ### `MH_NO_HEAP_EXECUTION`
-
 ```rust
 const MH_NO_HEAP_EXECUTION: u32 = 16_777_216u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:916`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L916)*
+
 When this bit is set, the OS will run the main executable with a non-executable heap even on platforms (e.g. i386) that don't require it. Only used in MH_EXECUTE filetypes.
 
 ### `MH_APP_EXTENSION_SAFE`
-
 ```rust
 const MH_APP_EXTENSION_SAFE: u32 = 33_554_432u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:918`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L918)*
+
 The code was linked for use in an application extension.
 
 ### `MH_NLIST_OUTOFSYNC_WITH_DYLDINFO`
-
 ```rust
 const MH_NLIST_OUTOFSYNC_WITH_DYLDINFO: u32 = 67_108_864u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:920`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L920)*
+
 The external symbols listed in the nlist symbol table do not include all the symbols listed in the dyld info.
 
 ### `MH_SIM_SUPPORT`
-
 ```rust
 const MH_SIM_SUPPORT: u32 = 134_217_728u32;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:923`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L923)*
 
 Allow LC_MIN_VERSION_MACOS and LC_BUILD_VERSION load commands with
 the platforms macOS, iOSMac, iOSSimulator, tvOSSimulator and watchOSSimulator.
 
 ### `MH_DYLIB_IN_CACHE`
-
 ```rust
 const MH_DYLIB_IN_CACHE: u32 = 2_147_483_648u32;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:926`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L926)*
 
 Only for use on dylibs. When this bit is set, the dylib is part of the dyld
 shared cache, rather than loose in the filesystem.
 
 ### `LC_REQ_DYLD`
-
 ```rust
 const LC_REQ_DYLD: u32 = 2_147_483_648u32;
 ```
 
-### `LC_SEGMENT`
+*Defined in [`object-0.37.3/src/macho.rs:965`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L965)*
 
+### `LC_SEGMENT`
 ```rust
 const LC_SEGMENT: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:969`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L969)*
+
 segment of this file to be mapped
 
 ### `LC_SYMTAB`
-
 ```rust
 const LC_SYMTAB: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:971`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L971)*
+
 link-edit stab symbol table info
 
 ### `LC_SYMSEG`
-
 ```rust
 const LC_SYMSEG: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:973`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L973)*
+
 link-edit gdb symbol table info (obsolete)
 
 ### `LC_THREAD`
-
 ```rust
 const LC_THREAD: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:975`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L975)*
+
 thread
 
 ### `LC_UNIXTHREAD`
-
 ```rust
 const LC_UNIXTHREAD: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:977`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L977)*
+
 unix thread (includes a stack)
 
 ### `LC_LOADFVMLIB`
-
 ```rust
 const LC_LOADFVMLIB: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:979`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L979)*
+
 load a specified fixed VM shared library
 
 ### `LC_IDFVMLIB`
-
 ```rust
 const LC_IDFVMLIB: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:981`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L981)*
+
 fixed VM shared library identification
 
 ### `LC_IDENT`
-
 ```rust
 const LC_IDENT: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:983`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L983)*
+
 object identification info (obsolete)
 
 ### `LC_FVMFILE`
-
 ```rust
 const LC_FVMFILE: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:985`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L985)*
+
 fixed VM file inclusion (internal use)
 
 ### `LC_PREPAGE`
-
 ```rust
 const LC_PREPAGE: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:987`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L987)*
+
 prepage command (internal use)
 
 ### `LC_DYSYMTAB`
-
 ```rust
 const LC_DYSYMTAB: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:989`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L989)*
+
 dynamic link-edit symbol table info
 
 ### `LC_LOAD_DYLIB`
-
 ```rust
 const LC_LOAD_DYLIB: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:991`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L991)*
+
 load a dynamically linked shared library
 
 ### `LC_ID_DYLIB`
-
 ```rust
 const LC_ID_DYLIB: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:993`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L993)*
+
 dynamically linked shared lib ident
 
 ### `LC_LOAD_DYLINKER`
-
 ```rust
 const LC_LOAD_DYLINKER: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:995`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L995)*
+
 load a dynamic linker
 
 ### `LC_ID_DYLINKER`
-
 ```rust
 const LC_ID_DYLINKER: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:997`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L997)*
+
 dynamic linker identification
 
 ### `LC_PREBOUND_DYLIB`
-
 ```rust
 const LC_PREBOUND_DYLIB: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:999`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L999)*
+
 modules prebound for a dynamically linked shared library
 
 ### `LC_ROUTINES`
-
 ```rust
 const LC_ROUTINES: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1001`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1001)*
+
 image routines
 
 ### `LC_SUB_FRAMEWORK`
-
 ```rust
 const LC_SUB_FRAMEWORK: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1003`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1003)*
+
 sub framework
 
 ### `LC_SUB_UMBRELLA`
-
 ```rust
 const LC_SUB_UMBRELLA: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1005`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1005)*
+
 sub umbrella
 
 ### `LC_SUB_CLIENT`
-
 ```rust
 const LC_SUB_CLIENT: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1007`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1007)*
+
 sub client
 
 ### `LC_SUB_LIBRARY`
-
 ```rust
 const LC_SUB_LIBRARY: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1009`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1009)*
+
 sub library
 
 ### `LC_TWOLEVEL_HINTS`
-
 ```rust
 const LC_TWOLEVEL_HINTS: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1011`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1011)*
+
 two-level namespace lookup hints
 
 ### `LC_PREBIND_CKSUM`
-
 ```rust
 const LC_PREBIND_CKSUM: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1013`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1013)*
+
 prebind checksum
 
 ### `LC_LOAD_WEAK_DYLIB`
-
 ```rust
 const LC_LOAD_WEAK_DYLIB: u32 = 2_147_483_672u32;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1016`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1016)*
 
 load a dynamically linked shared library that is allowed to be missing
 (all symbols are weak imported).
 
 ### `LC_SEGMENT_64`
-
 ```rust
 const LC_SEGMENT_64: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1018`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1018)*
+
 64-bit segment of this file to be mapped
 
 ### `LC_ROUTINES_64`
-
 ```rust
 const LC_ROUTINES_64: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1020`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1020)*
+
 64-bit image routines
 
 ### `LC_UUID`
-
 ```rust
 const LC_UUID: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1022`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1022)*
+
 the uuid
 
 ### `LC_RPATH`
-
 ```rust
 const LC_RPATH: u32 = 2_147_483_676u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1024`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1024)*
+
 runpath additions
 
 ### `LC_CODE_SIGNATURE`
-
 ```rust
 const LC_CODE_SIGNATURE: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1026`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1026)*
+
 local of code signature
 
 ### `LC_SEGMENT_SPLIT_INFO`
-
 ```rust
 const LC_SEGMENT_SPLIT_INFO: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1028`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1028)*
+
 local of info to split segments
 
 ### `LC_REEXPORT_DYLIB`
-
 ```rust
 const LC_REEXPORT_DYLIB: u32 = 2_147_483_679u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1030`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1030)*
+
 load and re-export dylib
 
 ### `LC_LAZY_LOAD_DYLIB`
-
 ```rust
 const LC_LAZY_LOAD_DYLIB: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1032`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1032)*
+
 delay load of dylib until first use
 
 ### `LC_ENCRYPTION_INFO`
-
 ```rust
 const LC_ENCRYPTION_INFO: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1034`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1034)*
+
 encrypted segment information
 
 ### `LC_DYLD_INFO`
-
 ```rust
 const LC_DYLD_INFO: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1036`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1036)*
+
 compressed dyld information
 
 ### `LC_DYLD_INFO_ONLY`
-
 ```rust
 const LC_DYLD_INFO_ONLY: u32 = 2_147_483_682u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1038`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1038)*
+
 compressed dyld information only
 
 ### `LC_LOAD_UPWARD_DYLIB`
-
 ```rust
 const LC_LOAD_UPWARD_DYLIB: u32 = 2_147_483_683u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1040`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1040)*
+
 load upward dylib
 
 ### `LC_VERSION_MIN_MACOSX`
-
 ```rust
 const LC_VERSION_MIN_MACOSX: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1042`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1042)*
+
 build for MacOSX min OS version
 
 ### `LC_VERSION_MIN_IPHONEOS`
-
 ```rust
 const LC_VERSION_MIN_IPHONEOS: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1044`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1044)*
+
 build for iPhoneOS min OS version
 
 ### `LC_FUNCTION_STARTS`
-
 ```rust
 const LC_FUNCTION_STARTS: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1046`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1046)*
+
 compressed table of function start addresses
 
 ### `LC_DYLD_ENVIRONMENT`
-
 ```rust
 const LC_DYLD_ENVIRONMENT: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1048`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1048)*
+
 string for dyld to treat like environment variable
 
 ### `LC_MAIN`
-
 ```rust
 const LC_MAIN: u32 = 2_147_483_688u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1050`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1050)*
+
 replacement for LC_UNIXTHREAD
 
 ### `LC_DATA_IN_CODE`
-
 ```rust
 const LC_DATA_IN_CODE: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1052`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1052)*
+
 table of non-instructions in __text
 
 ### `LC_SOURCE_VERSION`
-
 ```rust
 const LC_SOURCE_VERSION: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1054`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1054)*
+
 source version used to build binary
 
 ### `LC_DYLIB_CODE_SIGN_DRS`
-
 ```rust
 const LC_DYLIB_CODE_SIGN_DRS: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1056`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1056)*
+
 Code signing DRs copied from linked dylibs
 
 ### `LC_ENCRYPTION_INFO_64`
-
 ```rust
 const LC_ENCRYPTION_INFO_64: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1058`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1058)*
+
 64-bit encrypted segment information
 
 ### `LC_LINKER_OPTION`
-
 ```rust
 const LC_LINKER_OPTION: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1060`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1060)*
+
 linker options in MH_OBJECT files
 
 ### `LC_LINKER_OPTIMIZATION_HINT`
-
 ```rust
 const LC_LINKER_OPTIMIZATION_HINT: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1062`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1062)*
+
 optimization hints in MH_OBJECT files
 
 ### `LC_VERSION_MIN_TVOS`
-
 ```rust
 const LC_VERSION_MIN_TVOS: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1064`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1064)*
+
 build for AppleTV min OS version
 
 ### `LC_VERSION_MIN_WATCHOS`
-
 ```rust
 const LC_VERSION_MIN_WATCHOS: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1066`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1066)*
+
 build for Watch min OS version
 
 ### `LC_NOTE`
-
 ```rust
 const LC_NOTE: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1068`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1068)*
+
 arbitrary data included within a Mach-O file
 
 ### `LC_BUILD_VERSION`
-
 ```rust
 const LC_BUILD_VERSION: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1070`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1070)*
+
 build for platform min OS version
 
 ### `LC_DYLD_EXPORTS_TRIE`
-
 ```rust
 const LC_DYLD_EXPORTS_TRIE: u32 = 2_147_483_699u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1072`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1072)*
+
 used with `LinkeditDataCommand`, payload is trie
 
 ### `LC_DYLD_CHAINED_FIXUPS`
-
 ```rust
 const LC_DYLD_CHAINED_FIXUPS: u32 = 2_147_483_700u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1074`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1074)*
+
 used with `LinkeditDataCommand`
 
 ### `LC_FILESET_ENTRY`
-
 ```rust
 const LC_FILESET_ENTRY: u32 = 2_147_483_701u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1076`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1076)*
+
 used with `FilesetEntryCommand`
 
 ### `SG_HIGHVM`
-
 ```rust
 const SG_HIGHVM: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1166`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1166)*
+
 the file contents for this segment is for the high part of the VM space, the low part is zero filled (for stacks in core files)
 
 ### `SG_FVMLIB`
-
 ```rust
 const SG_FVMLIB: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1168`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1168)*
+
 this segment is the VM that is allocated by a fixed VM library, for overlap checking in the link editor
 
 ### `SG_NORELOC`
-
 ```rust
 const SG_NORELOC: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1170`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1170)*
+
 this segment has nothing that was relocated in it and nothing relocated to it, that is it maybe safely replaced without relocation
 
 ### `SG_PROTECTED_VERSION_1`
-
 ```rust
 const SG_PROTECTED_VERSION_1: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1172`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1172)*
+
 This segment is protected.  If the segment starts at file offset 0, the first page of the segment is not protected.  All other pages of the segment are protected.
 
 ### `SG_READ_ONLY`
-
 ```rust
 const SG_READ_ONLY: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1174`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1174)*
+
 This segment is made read-only after fixups
 
 ### `SECTION_TYPE`
-
 ```rust
 const SECTION_TYPE: u32 = 255u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1268`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1268)*
+
 256 section types
 
 ### `SECTION_ATTRIBUTES`
-
 ```rust
 const SECTION_ATTRIBUTES: u32 = 4_294_967_040u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1270`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1270)*
+
 24 section attributes
 
 ### `S_REGULAR`
-
 ```rust
 const S_REGULAR: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1274`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1274)*
+
 regular section
 
 ### `S_ZEROFILL`
-
 ```rust
 const S_ZEROFILL: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1276`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1276)*
+
 zero fill on demand section
 
 ### `S_CSTRING_LITERALS`
-
 ```rust
 const S_CSTRING_LITERALS: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1278`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1278)*
+
 section with only literal C strings
 
 ### `S_4BYTE_LITERALS`
-
 ```rust
 const S_4BYTE_LITERALS: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1280`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1280)*
+
 section with only 4 byte literals
 
 ### `S_8BYTE_LITERALS`
-
 ```rust
 const S_8BYTE_LITERALS: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1282`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1282)*
+
 section with only 8 byte literals
 
 ### `S_LITERAL_POINTERS`
-
 ```rust
 const S_LITERAL_POINTERS: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1284`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1284)*
+
 section with only pointers to literals
 
 ### `S_NON_LAZY_SYMBOL_POINTERS`
-
 ```rust
 const S_NON_LAZY_SYMBOL_POINTERS: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1298`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1298)*
+
 section with only non-lazy symbol pointers
 
 ### `S_LAZY_SYMBOL_POINTERS`
-
 ```rust
 const S_LAZY_SYMBOL_POINTERS: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1300`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1300)*
+
 section with only lazy symbol pointers
 
 ### `S_SYMBOL_STUBS`
-
 ```rust
 const S_SYMBOL_STUBS: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1302`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1302)*
+
 section with only symbol stubs, byte size of stub in the reserved2 field
 
 ### `S_MOD_INIT_FUNC_POINTERS`
-
 ```rust
 const S_MOD_INIT_FUNC_POINTERS: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1304`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1304)*
+
 section with only function pointers for initialization
 
 ### `S_MOD_TERM_FUNC_POINTERS`
-
 ```rust
 const S_MOD_TERM_FUNC_POINTERS: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1306`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1306)*
+
 section with only function pointers for termination
 
 ### `S_COALESCED`
-
 ```rust
 const S_COALESCED: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1308`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1308)*
+
 section contains symbols that are to be coalesced
 
 ### `S_GB_ZEROFILL`
-
 ```rust
 const S_GB_ZEROFILL: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1310`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1310)*
+
 zero fill on demand section (that can be larger than 4 gigabytes)
 
 ### `S_INTERPOSING`
-
 ```rust
 const S_INTERPOSING: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1312`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1312)*
+
 section with only pairs of function pointers for interposing
 
 ### `S_16BYTE_LITERALS`
-
 ```rust
 const S_16BYTE_LITERALS: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1314`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1314)*
+
 section with only 16 byte literals
 
 ### `S_DTRACE_DOF`
-
 ```rust
 const S_DTRACE_DOF: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1316`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1316)*
+
 section contains DTrace Object Format
 
 ### `S_LAZY_DYLIB_SYMBOL_POINTERS`
-
 ```rust
 const S_LAZY_DYLIB_SYMBOL_POINTERS: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1318`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1318)*
+
 section with only lazy symbol pointers to lazy loaded dylibs
 
 ### `S_THREAD_LOCAL_REGULAR`
-
 ```rust
 const S_THREAD_LOCAL_REGULAR: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1323`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1323)*
+
 template of initial values for TLVs
 
 ### `S_THREAD_LOCAL_ZEROFILL`
-
 ```rust
 const S_THREAD_LOCAL_ZEROFILL: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1325`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1325)*
+
 template of initial values for TLVs
 
 ### `S_THREAD_LOCAL_VARIABLES`
-
 ```rust
 const S_THREAD_LOCAL_VARIABLES: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1327`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1327)*
+
 TLV descriptors
 
 ### `S_THREAD_LOCAL_VARIABLE_POINTERS`
-
 ```rust
 const S_THREAD_LOCAL_VARIABLE_POINTERS: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1329`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1329)*
+
 pointers to TLV descriptors
 
 ### `S_THREAD_LOCAL_INIT_FUNCTION_POINTERS`
-
 ```rust
 const S_THREAD_LOCAL_INIT_FUNCTION_POINTERS: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1331`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1331)*
+
 functions to call to initialize TLV values
 
 ### `S_INIT_FUNC_OFFSETS`
-
 ```rust
 const S_INIT_FUNC_OFFSETS: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1333`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1333)*
+
 32-bit offsets to initializers
 
 ### `SECTION_ATTRIBUTES_USR`
-
 ```rust
 const SECTION_ATTRIBUTES_USR: u32 = 4_278_190_080u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1340`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1340)*
+
 User setable attributes
 
 ### `S_ATTR_PURE_INSTRUCTIONS`
-
 ```rust
 const S_ATTR_PURE_INSTRUCTIONS: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1342`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1342)*
+
 section contains only true machine instructions
 
 ### `S_ATTR_NO_TOC`
-
 ```rust
 const S_ATTR_NO_TOC: u32 = 1_073_741_824u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1344`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1344)*
+
 section contains coalesced symbols that are not to be in a ranlib table of contents
 
 ### `S_ATTR_STRIP_STATIC_SYMS`
-
 ```rust
 const S_ATTR_STRIP_STATIC_SYMS: u32 = 536_870_912u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1346`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1346)*
+
 ok to strip static symbols in this section in files with the MH_DYLDLINK flag
 
 ### `S_ATTR_NO_DEAD_STRIP`
-
 ```rust
 const S_ATTR_NO_DEAD_STRIP: u32 = 268_435_456u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1348`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1348)*
+
 no dead stripping
 
 ### `S_ATTR_LIVE_SUPPORT`
-
 ```rust
 const S_ATTR_LIVE_SUPPORT: u32 = 134_217_728u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1350`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1350)*
+
 blocks are live if they reference live blocks
 
 ### `S_ATTR_SELF_MODIFYING_CODE`
-
 ```rust
 const S_ATTR_SELF_MODIFYING_CODE: u32 = 67_108_864u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1352`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1352)*
+
 Used with i386 code stubs written on by dyld
 
 ### `S_ATTR_DEBUG`
-
 ```rust
 const S_ATTR_DEBUG: u32 = 33_554_432u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1363`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1363)*
+
 a debug section
 
 ### `SECTION_ATTRIBUTES_SYS`
-
 ```rust
 const SECTION_ATTRIBUTES_SYS: u32 = 16_776_960u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1365`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1365)*
+
 system setable attributes
 
 ### `S_ATTR_SOME_INSTRUCTIONS`
-
 ```rust
 const S_ATTR_SOME_INSTRUCTIONS: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1367`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1367)*
+
 section contains some machine instructions
 
 ### `S_ATTR_EXT_RELOC`
-
 ```rust
 const S_ATTR_EXT_RELOC: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1369`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1369)*
+
 section has external relocation entries
 
 ### `S_ATTR_LOC_RELOC`
-
 ```rust
 const S_ATTR_LOC_RELOC: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1371`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1371)*
+
 section has local relocation entries
 
 ### `SEG_PAGEZERO`
-
 ```rust
 const SEG_PAGEZERO: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1390`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1390)*
+
 the pagezero segment which has no protections and catches NULL references for MH_EXECUTE files
 
 ### `SEG_TEXT`
-
 ```rust
 const SEG_TEXT: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1393`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1393)*
+
 the tradition UNIX text segment
 
 ### `SECT_TEXT`
-
 ```rust
 const SECT_TEXT: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1395`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1395)*
+
 the real text part of the text section no headers, and no padding
 
 ### `SECT_FVMLIB_INIT0`
-
 ```rust
 const SECT_FVMLIB_INIT0: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1397`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1397)*
+
 the fvmlib initialization section
 
 ### `SECT_FVMLIB_INIT1`
-
 ```rust
 const SECT_FVMLIB_INIT1: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1399`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1399)*
+
 the section following the fvmlib initialization section
 
 ### `SEG_DATA`
-
 ```rust
 const SEG_DATA: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1402`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1402)*
+
 the tradition UNIX data segment
 
 ### `SECT_DATA`
-
 ```rust
 const SECT_DATA: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1404`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1404)*
+
 the real initialized data section no padding, no bss overlap
 
 ### `SECT_BSS`
-
 ```rust
 const SECT_BSS: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1406`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1406)*
+
 the real uninitialized data section no padding
 
 ### `SECT_COMMON`
-
 ```rust
 const SECT_COMMON: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1408`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1408)*
+
 the section common symbols are allocated in by the link editor
 
 ### `SEG_OBJC`
-
 ```rust
 const SEG_OBJC: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1411`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1411)*
+
 objective-C runtime segment
 
 ### `SECT_OBJC_SYMBOLS`
-
 ```rust
 const SECT_OBJC_SYMBOLS: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1413`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1413)*
+
 symbol table
 
 ### `SECT_OBJC_MODULES`
-
 ```rust
 const SECT_OBJC_MODULES: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1415`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1415)*
+
 module information
 
 ### `SECT_OBJC_STRINGS`
-
 ```rust
 const SECT_OBJC_STRINGS: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1417`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1417)*
+
 string table
 
 ### `SECT_OBJC_REFS`
-
 ```rust
 const SECT_OBJC_REFS: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1419`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1419)*
+
 string table
 
 ### `SEG_ICON`
-
 ```rust
 const SEG_ICON: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1422`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1422)*
+
 the icon segment
 
 ### `SECT_ICON_HEADER`
-
 ```rust
 const SECT_ICON_HEADER: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1424`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1424)*
+
 the icon headers
 
 ### `SECT_ICON_TIFF`
-
 ```rust
 const SECT_ICON_TIFF: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1426`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1426)*
+
 the icons in tiff format
 
 ### `SEG_LINKEDIT`
-
 ```rust
 const SEG_LINKEDIT: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1429`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1429)*
+
 the segment containing all structs created and maintained by the link editor.  Created with -seglinkedit option to ld(1) for MH_EXECUTE and FVMLIB file types only
 
 ### `SEG_LINKINFO`
-
 ```rust
 const SEG_LINKINFO: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1432`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1432)*
+
 the segment overlapping with linkedit containing linking information
 
 ### `SEG_UNIXSTACK`
-
 ```rust
 const SEG_UNIXSTACK: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1435`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1435)*
+
 the unix stack segment
 
 ### `SEG_IMPORT`
-
 ```rust
 const SEG_IMPORT: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1438`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1438)*
+
 the segment for the self (dyld) modifying code stubs that has read, write and execute permissions
 
 ### `INDIRECT_SYMBOL_LOCAL`
-
 ```rust
 const INDIRECT_SYMBOL_LOCAL: u32 = 2_147_483_648u32;
 ```
 
-### `INDIRECT_SYMBOL_ABS`
+*Defined in [`object-0.37.3/src/macho.rs:1940`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1940)*
 
+### `INDIRECT_SYMBOL_ABS`
 ```rust
 const INDIRECT_SYMBOL_ABS: u32 = 1_073_741_824u32;
 ```
 
-### `PLATFORM_MACOS`
+*Defined in [`object-0.37.3/src/macho.rs:1941`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1941)*
 
+### `PLATFORM_MACOS`
 ```rust
 const PLATFORM_MACOS: u32 = 1u32;
 ```
 
-### `PLATFORM_IOS`
+*Defined in [`object-0.37.3/src/macho.rs:2263`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2263)*
 
+### `PLATFORM_IOS`
 ```rust
 const PLATFORM_IOS: u32 = 2u32;
 ```
 
-### `PLATFORM_TVOS`
+*Defined in [`object-0.37.3/src/macho.rs:2264`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2264)*
 
+### `PLATFORM_TVOS`
 ```rust
 const PLATFORM_TVOS: u32 = 3u32;
 ```
 
-### `PLATFORM_WATCHOS`
+*Defined in [`object-0.37.3/src/macho.rs:2265`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2265)*
 
+### `PLATFORM_WATCHOS`
 ```rust
 const PLATFORM_WATCHOS: u32 = 4u32;
 ```
 
-### `PLATFORM_BRIDGEOS`
+*Defined in [`object-0.37.3/src/macho.rs:2266`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2266)*
 
+### `PLATFORM_BRIDGEOS`
 ```rust
 const PLATFORM_BRIDGEOS: u32 = 5u32;
 ```
 
-### `PLATFORM_MACCATALYST`
+*Defined in [`object-0.37.3/src/macho.rs:2267`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2267)*
 
+### `PLATFORM_MACCATALYST`
 ```rust
 const PLATFORM_MACCATALYST: u32 = 6u32;
 ```
 
-### `PLATFORM_IOSSIMULATOR`
+*Defined in [`object-0.37.3/src/macho.rs:2268`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2268)*
 
+### `PLATFORM_IOSSIMULATOR`
 ```rust
 const PLATFORM_IOSSIMULATOR: u32 = 7u32;
 ```
 
-### `PLATFORM_TVOSSIMULATOR`
+*Defined in [`object-0.37.3/src/macho.rs:2269`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2269)*
 
+### `PLATFORM_TVOSSIMULATOR`
 ```rust
 const PLATFORM_TVOSSIMULATOR: u32 = 8u32;
 ```
 
-### `PLATFORM_WATCHOSSIMULATOR`
+*Defined in [`object-0.37.3/src/macho.rs:2270`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2270)*
 
+### `PLATFORM_WATCHOSSIMULATOR`
 ```rust
 const PLATFORM_WATCHOSSIMULATOR: u32 = 9u32;
 ```
 
-### `PLATFORM_DRIVERKIT`
+*Defined in [`object-0.37.3/src/macho.rs:2271`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2271)*
 
+### `PLATFORM_DRIVERKIT`
 ```rust
 const PLATFORM_DRIVERKIT: u32 = 10u32;
 ```
 
-### `PLATFORM_XROS`
+*Defined in [`object-0.37.3/src/macho.rs:2272`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2272)*
 
+### `PLATFORM_XROS`
 ```rust
 const PLATFORM_XROS: u32 = 11u32;
 ```
 
-### `PLATFORM_XROSSIMULATOR`
+*Defined in [`object-0.37.3/src/macho.rs:2273`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2273)*
 
+### `PLATFORM_XROSSIMULATOR`
 ```rust
 const PLATFORM_XROSSIMULATOR: u32 = 12u32;
 ```
 
-### `TOOL_CLANG`
+*Defined in [`object-0.37.3/src/macho.rs:2274`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2274)*
 
+### `TOOL_CLANG`
 ```rust
 const TOOL_CLANG: u32 = 1u32;
 ```
 
-### `TOOL_SWIFT`
+*Defined in [`object-0.37.3/src/macho.rs:2277`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2277)*
 
+### `TOOL_SWIFT`
 ```rust
 const TOOL_SWIFT: u32 = 2u32;
 ```
 
-### `TOOL_LD`
+*Defined in [`object-0.37.3/src/macho.rs:2278`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2278)*
 
+### `TOOL_LD`
 ```rust
 const TOOL_LD: u32 = 3u32;
 ```
 
-### `REBASE_TYPE_POINTER`
+*Defined in [`object-0.37.3/src/macho.rs:2279`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2279)*
 
+### `REBASE_TYPE_POINTER`
 ```rust
 const REBASE_TYPE_POINTER: u8 = 1u8;
 ```
 
-### `REBASE_TYPE_TEXT_ABSOLUTE32`
+*Defined in [`object-0.37.3/src/macho.rs:2409`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2409)*
 
+### `REBASE_TYPE_TEXT_ABSOLUTE32`
 ```rust
 const REBASE_TYPE_TEXT_ABSOLUTE32: u8 = 2u8;
 ```
 
-### `REBASE_TYPE_TEXT_PCREL32`
+*Defined in [`object-0.37.3/src/macho.rs:2410`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2410)*
 
+### `REBASE_TYPE_TEXT_PCREL32`
 ```rust
 const REBASE_TYPE_TEXT_PCREL32: u8 = 3u8;
 ```
 
-### `REBASE_OPCODE_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:2411`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2411)*
 
+### `REBASE_OPCODE_MASK`
 ```rust
 const REBASE_OPCODE_MASK: u8 = 240u8;
 ```
 
-### `REBASE_IMMEDIATE_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:2413`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2413)*
 
+### `REBASE_IMMEDIATE_MASK`
 ```rust
 const REBASE_IMMEDIATE_MASK: u8 = 15u8;
 ```
 
-### `REBASE_OPCODE_DONE`
+*Defined in [`object-0.37.3/src/macho.rs:2414`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2414)*
 
+### `REBASE_OPCODE_DONE`
 ```rust
 const REBASE_OPCODE_DONE: u8 = 0u8;
 ```
 
-### `REBASE_OPCODE_SET_TYPE_IMM`
+*Defined in [`object-0.37.3/src/macho.rs:2415`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2415)*
 
+### `REBASE_OPCODE_SET_TYPE_IMM`
 ```rust
 const REBASE_OPCODE_SET_TYPE_IMM: u8 = 16u8;
 ```
 
-### `REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2416`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2416)*
 
+### `REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`
 ```rust
 const REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB: u8 = 32u8;
 ```
 
-### `REBASE_OPCODE_ADD_ADDR_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2417`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2417)*
 
+### `REBASE_OPCODE_ADD_ADDR_ULEB`
 ```rust
 const REBASE_OPCODE_ADD_ADDR_ULEB: u8 = 48u8;
 ```
 
-### `REBASE_OPCODE_ADD_ADDR_IMM_SCALED`
+*Defined in [`object-0.37.3/src/macho.rs:2418`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2418)*
 
+### `REBASE_OPCODE_ADD_ADDR_IMM_SCALED`
 ```rust
 const REBASE_OPCODE_ADD_ADDR_IMM_SCALED: u8 = 64u8;
 ```
 
-### `REBASE_OPCODE_DO_REBASE_IMM_TIMES`
+*Defined in [`object-0.37.3/src/macho.rs:2419`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2419)*
 
+### `REBASE_OPCODE_DO_REBASE_IMM_TIMES`
 ```rust
 const REBASE_OPCODE_DO_REBASE_IMM_TIMES: u8 = 80u8;
 ```
 
-### `REBASE_OPCODE_DO_REBASE_ULEB_TIMES`
+*Defined in [`object-0.37.3/src/macho.rs:2420`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2420)*
 
+### `REBASE_OPCODE_DO_REBASE_ULEB_TIMES`
 ```rust
 const REBASE_OPCODE_DO_REBASE_ULEB_TIMES: u8 = 96u8;
 ```
 
-### `REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2421`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2421)*
 
+### `REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB`
 ```rust
 const REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB: u8 = 112u8;
 ```
 
-### `REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2422`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2422)*
 
+### `REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB`
 ```rust
 const REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB: u8 = 128u8;
 ```
 
-### `BIND_TYPE_POINTER`
+*Defined in [`object-0.37.3/src/macho.rs:2423`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2423)*
 
+### `BIND_TYPE_POINTER`
 ```rust
 const BIND_TYPE_POINTER: u8 = 1u8;
 ```
 
-### `BIND_TYPE_TEXT_ABSOLUTE32`
+*Defined in [`object-0.37.3/src/macho.rs:2428`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2428)*
 
+### `BIND_TYPE_TEXT_ABSOLUTE32`
 ```rust
 const BIND_TYPE_TEXT_ABSOLUTE32: u8 = 2u8;
 ```
 
-### `BIND_TYPE_TEXT_PCREL32`
+*Defined in [`object-0.37.3/src/macho.rs:2429`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2429)*
 
+### `BIND_TYPE_TEXT_PCREL32`
 ```rust
 const BIND_TYPE_TEXT_PCREL32: u8 = 3u8;
 ```
 
-### `BIND_SPECIAL_DYLIB_SELF`
+*Defined in [`object-0.37.3/src/macho.rs:2430`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2430)*
 
+### `BIND_SPECIAL_DYLIB_SELF`
 ```rust
 const BIND_SPECIAL_DYLIB_SELF: i8 = 0i8;
 ```
 
-### `BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE`
+*Defined in [`object-0.37.3/src/macho.rs:2432`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2432)*
 
+### `BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE`
 ```rust
 const BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE: i8 = -1i8;
 ```
 
-### `BIND_SPECIAL_DYLIB_FLAT_LOOKUP`
+*Defined in [`object-0.37.3/src/macho.rs:2433`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2433)*
 
+### `BIND_SPECIAL_DYLIB_FLAT_LOOKUP`
 ```rust
 const BIND_SPECIAL_DYLIB_FLAT_LOOKUP: i8 = -2i8;
 ```
 
-### `BIND_SPECIAL_DYLIB_WEAK_LOOKUP`
+*Defined in [`object-0.37.3/src/macho.rs:2434`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2434)*
 
+### `BIND_SPECIAL_DYLIB_WEAK_LOOKUP`
 ```rust
 const BIND_SPECIAL_DYLIB_WEAK_LOOKUP: i8 = -3i8;
 ```
 
-### `BIND_SYMBOL_FLAGS_WEAK_IMPORT`
+*Defined in [`object-0.37.3/src/macho.rs:2435`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2435)*
 
+### `BIND_SYMBOL_FLAGS_WEAK_IMPORT`
 ```rust
 const BIND_SYMBOL_FLAGS_WEAK_IMPORT: u8 = 1u8;
 ```
 
-### `BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION`
+*Defined in [`object-0.37.3/src/macho.rs:2437`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2437)*
 
+### `BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION`
 ```rust
 const BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION: u8 = 8u8;
 ```
 
-### `BIND_OPCODE_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:2438`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2438)*
 
+### `BIND_OPCODE_MASK`
 ```rust
 const BIND_OPCODE_MASK: u8 = 240u8;
 ```
 
-### `BIND_IMMEDIATE_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:2440`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2440)*
 
+### `BIND_IMMEDIATE_MASK`
 ```rust
 const BIND_IMMEDIATE_MASK: u8 = 15u8;
 ```
 
-### `BIND_OPCODE_DONE`
+*Defined in [`object-0.37.3/src/macho.rs:2441`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2441)*
 
+### `BIND_OPCODE_DONE`
 ```rust
 const BIND_OPCODE_DONE: u8 = 0u8;
 ```
 
-### `BIND_OPCODE_SET_DYLIB_ORDINAL_IMM`
+*Defined in [`object-0.37.3/src/macho.rs:2442`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2442)*
 
+### `BIND_OPCODE_SET_DYLIB_ORDINAL_IMM`
 ```rust
 const BIND_OPCODE_SET_DYLIB_ORDINAL_IMM: u8 = 16u8;
 ```
 
-### `BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2443`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2443)*
 
+### `BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB`
 ```rust
 const BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB: u8 = 32u8;
 ```
 
-### `BIND_OPCODE_SET_DYLIB_SPECIAL_IMM`
+*Defined in [`object-0.37.3/src/macho.rs:2444`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2444)*
 
+### `BIND_OPCODE_SET_DYLIB_SPECIAL_IMM`
 ```rust
 const BIND_OPCODE_SET_DYLIB_SPECIAL_IMM: u8 = 48u8;
 ```
 
-### `BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM`
+*Defined in [`object-0.37.3/src/macho.rs:2445`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2445)*
 
+### `BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM`
 ```rust
 const BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM: u8 = 64u8;
 ```
 
-### `BIND_OPCODE_SET_TYPE_IMM`
+*Defined in [`object-0.37.3/src/macho.rs:2446`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2446)*
 
+### `BIND_OPCODE_SET_TYPE_IMM`
 ```rust
 const BIND_OPCODE_SET_TYPE_IMM: u8 = 80u8;
 ```
 
-### `BIND_OPCODE_SET_ADDEND_SLEB`
+*Defined in [`object-0.37.3/src/macho.rs:2447`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2447)*
 
+### `BIND_OPCODE_SET_ADDEND_SLEB`
 ```rust
 const BIND_OPCODE_SET_ADDEND_SLEB: u8 = 96u8;
 ```
 
-### `BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2448`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2448)*
 
+### `BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`
 ```rust
 const BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB: u8 = 112u8;
 ```
 
-### `BIND_OPCODE_ADD_ADDR_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2449`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2449)*
 
+### `BIND_OPCODE_ADD_ADDR_ULEB`
 ```rust
 const BIND_OPCODE_ADD_ADDR_ULEB: u8 = 128u8;
 ```
 
-### `BIND_OPCODE_DO_BIND`
+*Defined in [`object-0.37.3/src/macho.rs:2450`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2450)*
 
+### `BIND_OPCODE_DO_BIND`
 ```rust
 const BIND_OPCODE_DO_BIND: u8 = 144u8;
 ```
 
-### `BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2451`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2451)*
 
+### `BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB`
 ```rust
 const BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB: u8 = 160u8;
 ```
 
-### `BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED`
+*Defined in [`object-0.37.3/src/macho.rs:2452`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2452)*
 
+### `BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED`
 ```rust
 const BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED: u8 = 176u8;
 ```
 
-### `BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2453`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2453)*
 
+### `BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB`
 ```rust
 const BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB: u8 = 192u8;
 ```
 
-### `BIND_OPCODE_THREADED`
+*Defined in [`object-0.37.3/src/macho.rs:2454`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2454)*
 
+### `BIND_OPCODE_THREADED`
 ```rust
 const BIND_OPCODE_THREADED: u8 = 208u8;
 ```
 
-### `BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2455`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2455)*
 
+### `BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB`
 ```rust
 const BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB: u8 = 0u8;
 ```
 
-### `BIND_SUBOPCODE_THREADED_APPLY`
+*Defined in [`object-0.37.3/src/macho.rs:2456`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2456)*
 
+### `BIND_SUBOPCODE_THREADED_APPLY`
 ```rust
 const BIND_SUBOPCODE_THREADED_APPLY: u8 = 1u8;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_KIND_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:2457`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2457)*
 
+### `EXPORT_SYMBOL_FLAGS_KIND_MASK`
 ```rust
 const EXPORT_SYMBOL_FLAGS_KIND_MASK: u32 = 3u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_KIND_REGULAR`
+*Defined in [`object-0.37.3/src/macho.rs:2463`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2463)*
 
+### `EXPORT_SYMBOL_FLAGS_KIND_REGULAR`
 ```rust
 const EXPORT_SYMBOL_FLAGS_KIND_REGULAR: u32 = 0u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL`
+*Defined in [`object-0.37.3/src/macho.rs:2464`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2464)*
 
+### `EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL`
 ```rust
 const EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL: u32 = 1u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE`
+*Defined in [`object-0.37.3/src/macho.rs:2465`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2465)*
 
+### `EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE`
 ```rust
 const EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE: u32 = 2u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION`
+*Defined in [`object-0.37.3/src/macho.rs:2466`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2466)*
 
+### `EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION`
 ```rust
 const EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION: u32 = 4u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_REEXPORT`
+*Defined in [`object-0.37.3/src/macho.rs:2467`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2467)*
 
+### `EXPORT_SYMBOL_FLAGS_REEXPORT`
 ```rust
 const EXPORT_SYMBOL_FLAGS_REEXPORT: u32 = 8u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`
+*Defined in [`object-0.37.3/src/macho.rs:2468`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2468)*
 
+### `EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`
 ```rust
 const EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER: u32 = 16u32;
 ```
 
-### `DICE_KIND_DATA`
+*Defined in [`object-0.37.3/src/macho.rs:2469`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2469)*
 
+### `DICE_KIND_DATA`
 ```rust
 const DICE_KIND_DATA: u32 = 1u32;
 ```
 
-### `DICE_KIND_JUMP_TABLE8`
+*Defined in [`object-0.37.3/src/macho.rs:2591`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2591)*
 
+### `DICE_KIND_JUMP_TABLE8`
 ```rust
 const DICE_KIND_JUMP_TABLE8: u32 = 2u32;
 ```
 
-### `DICE_KIND_JUMP_TABLE16`
+*Defined in [`object-0.37.3/src/macho.rs:2592`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2592)*
 
+### `DICE_KIND_JUMP_TABLE16`
 ```rust
 const DICE_KIND_JUMP_TABLE16: u32 = 3u32;
 ```
 
-### `DICE_KIND_JUMP_TABLE32`
+*Defined in [`object-0.37.3/src/macho.rs:2593`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2593)*
 
+### `DICE_KIND_JUMP_TABLE32`
 ```rust
 const DICE_KIND_JUMP_TABLE32: u32 = 4u32;
 ```
 
-### `DICE_KIND_ABS_JUMP_TABLE32`
+*Defined in [`object-0.37.3/src/macho.rs:2594`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2594)*
 
+### `DICE_KIND_ABS_JUMP_TABLE32`
 ```rust
 const DICE_KIND_ABS_JUMP_TABLE32: u32 = 5u32;
 ```
 
-### `N_STAB`
+*Defined in [`object-0.37.3/src/macho.rs:2595`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2595)*
 
+### `N_STAB`
 ```rust
 const N_STAB: u8 = 224u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2683`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2683)*
+
 if any of these bits set, a symbolic debugging entry
 
 ### `N_PEXT`
-
 ```rust
 const N_PEXT: u8 = 16u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2685`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2685)*
+
 private external symbol bit
 
 ### `N_TYPE`
-
 ```rust
 const N_TYPE: u8 = 14u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2687`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2687)*
+
 mask for the type bits
 
 ### `N_EXT`
-
 ```rust
 const N_EXT: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2689`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2689)*
+
 external symbol bit, set for external symbols
 
 ### `N_UNDF`
-
 ```rust
 const N_UNDF: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2702`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2702)*
+
 undefined, n_sect == NO_SECT
 
 ### `N_ABS`
-
 ```rust
 const N_ABS: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2704`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2704)*
+
 absolute, n_sect == NO_SECT
 
 ### `N_SECT`
-
 ```rust
 const N_SECT: u8 = 14u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2706`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2706)*
+
 defined in section number n_sect
 
 ### `N_PBUD`
-
 ```rust
 const N_PBUD: u8 = 12u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2708`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2708)*
+
 prebound undefined (defined in a dylib)
 
 ### `N_INDR`
-
 ```rust
 const N_INDR: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2710`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2710)*
+
 indirect
 
 ### `NO_SECT`
-
 ```rust
 const NO_SECT: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2732`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2732)*
+
 symbol is not in any section
 
 ### `MAX_SECT`
-
 ```rust
 const MAX_SECT: u8 = 255u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2734`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2734)*
+
 1 thru 255 inclusive
 
 ### `REFERENCE_TYPE`
-
 ```rust
 const REFERENCE_TYPE: u16 = 7u16;
 ```
 
-### `REFERENCE_FLAG_UNDEFINED_NON_LAZY`
+*Defined in [`object-0.37.3/src/macho.rs:2771`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2771)*
 
+### `REFERENCE_FLAG_UNDEFINED_NON_LAZY`
 ```rust
 const REFERENCE_FLAG_UNDEFINED_NON_LAZY: u16 = 0u16;
 ```
 
-### `REFERENCE_FLAG_UNDEFINED_LAZY`
+*Defined in [`object-0.37.3/src/macho.rs:2773`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2773)*
 
+### `REFERENCE_FLAG_UNDEFINED_LAZY`
 ```rust
 const REFERENCE_FLAG_UNDEFINED_LAZY: u16 = 1u16;
 ```
 
-### `REFERENCE_FLAG_DEFINED`
+*Defined in [`object-0.37.3/src/macho.rs:2774`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2774)*
 
+### `REFERENCE_FLAG_DEFINED`
 ```rust
 const REFERENCE_FLAG_DEFINED: u16 = 2u16;
 ```
 
-### `REFERENCE_FLAG_PRIVATE_DEFINED`
+*Defined in [`object-0.37.3/src/macho.rs:2775`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2775)*
 
+### `REFERENCE_FLAG_PRIVATE_DEFINED`
 ```rust
 const REFERENCE_FLAG_PRIVATE_DEFINED: u16 = 3u16;
 ```
 
-### `REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY`
+*Defined in [`object-0.37.3/src/macho.rs:2776`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2776)*
 
+### `REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY`
 ```rust
 const REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY: u16 = 4u16;
 ```
 
-### `REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY`
+*Defined in [`object-0.37.3/src/macho.rs:2777`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2777)*
 
+### `REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY`
 ```rust
 const REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY: u16 = 5u16;
 ```
 
-### `REFERENCED_DYNAMICALLY`
+*Defined in [`object-0.37.3/src/macho.rs:2778`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2778)*
 
+### `REFERENCED_DYNAMICALLY`
 ```rust
 const REFERENCED_DYNAMICALLY: u16 = 16u16;
 ```
 
-### `SELF_LIBRARY_ORDINAL`
+*Defined in [`object-0.37.3/src/macho.rs:2786`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2786)*
 
+### `SELF_LIBRARY_ORDINAL`
 ```rust
 const SELF_LIBRARY_ORDINAL: u8 = 0u8;
 ```
 
-### `MAX_LIBRARY_ORDINAL`
+*Defined in [`object-0.37.3/src/macho.rs:2820`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2820)*
 
+### `MAX_LIBRARY_ORDINAL`
 ```rust
 const MAX_LIBRARY_ORDINAL: u8 = 253u8;
 ```
 
-### `DYNAMIC_LOOKUP_ORDINAL`
+*Defined in [`object-0.37.3/src/macho.rs:2821`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2821)*
 
+### `DYNAMIC_LOOKUP_ORDINAL`
 ```rust
 const DYNAMIC_LOOKUP_ORDINAL: u8 = 254u8;
 ```
 
-### `EXECUTABLE_ORDINAL`
+*Defined in [`object-0.37.3/src/macho.rs:2822`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2822)*
 
+### `EXECUTABLE_ORDINAL`
 ```rust
 const EXECUTABLE_ORDINAL: u8 = 255u8;
 ```
 
-### `N_NO_DEAD_STRIP`
+*Defined in [`object-0.37.3/src/macho.rs:2823`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2823)*
 
+### `N_NO_DEAD_STRIP`
 ```rust
 const N_NO_DEAD_STRIP: u16 = 32u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2836`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2836)*
+
 symbol is not to be dead stripped
 
 ### `N_DESC_DISCARDED`
-
 ```rust
 const N_DESC_DISCARDED: u16 = 32u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2844`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2844)*
+
 symbol is discarded
 
 ### `N_WEAK_REF`
-
 ```rust
 const N_WEAK_REF: u16 = 64u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2852`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2852)*
+
 symbol is weak referenced
 
 ### `N_WEAK_DEF`
-
 ```rust
 const N_WEAK_DEF: u16 = 128u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2861`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2861)*
+
 coalesced symbol is a weak definition
 
 ### `N_REF_TO_WEAK`
-
 ```rust
 const N_REF_TO_WEAK: u16 = 128u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2868`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2868)*
+
 reference to a weak symbol
 
 ### `N_ARM_THUMB_DEF`
-
 ```rust
 const N_ARM_THUMB_DEF: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2875`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2875)*
+
 symbol is a Thumb function (ARM)
 
 ### `N_SYMBOL_RESOLVER`
-
 ```rust
 const N_SYMBOL_RESOLVER: u16 = 256u16;
 ```
 
-### `N_ALT_ENTRY`
+*Defined in [`object-0.37.3/src/macho.rs:2883`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2883)*
 
+### `N_ALT_ENTRY`
 ```rust
 const N_ALT_ENTRY: u16 = 512u16;
 ```
 
-### `N_GSYM`
+*Defined in [`object-0.37.3/src/macho.rs:2889`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2889)*
 
+### `N_GSYM`
 ```rust
 const N_GSYM: u8 = 32u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2919`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2919)*
+
 global symbol: name,,NO_SECT,type,0
 
 ### `N_FNAME`
-
 ```rust
 const N_FNAME: u8 = 34u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2921`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2921)*
+
 procedure name (f77 kludge): name,,NO_SECT,0,0
 
 ### `N_FUN`
-
 ```rust
 const N_FUN: u8 = 36u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2923`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2923)*
+
 procedure: name,,n_sect,linenumber,address
 
 ### `N_STSYM`
-
 ```rust
 const N_STSYM: u8 = 38u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2925`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2925)*
+
 static symbol: name,,n_sect,type,address
 
 ### `N_LCSYM`
-
 ```rust
 const N_LCSYM: u8 = 40u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2927`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2927)*
+
 .lcomm symbol: name,,n_sect,type,address
 
 ### `N_BNSYM`
-
 ```rust
 const N_BNSYM: u8 = 46u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2929`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2929)*
+
 begin nsect sym: 0,,n_sect,0,address
 
 ### `N_AST`
-
 ```rust
 const N_AST: u8 = 50u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2931`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2931)*
+
 AST file path: name,,NO_SECT,0,0
 
 ### `N_OPT`
-
 ```rust
 const N_OPT: u8 = 60u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2933`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2933)*
+
 emitted with gcc2_compiled and in gcc source
 
 ### `N_RSYM`
-
 ```rust
 const N_RSYM: u8 = 64u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2935`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2935)*
+
 register sym: name,,NO_SECT,type,register
 
 ### `N_SLINE`
-
 ```rust
 const N_SLINE: u8 = 68u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2937`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2937)*
+
 src line: 0,,n_sect,linenumber,address
 
 ### `N_ENSYM`
-
 ```rust
 const N_ENSYM: u8 = 78u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2939`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2939)*
+
 end nsect sym: 0,,n_sect,0,address
 
 ### `N_SSYM`
-
 ```rust
 const N_SSYM: u8 = 96u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2941`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2941)*
+
 structure elt: name,,NO_SECT,type,struct_offset
 
 ### `N_SO`
-
 ```rust
 const N_SO: u8 = 100u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2943`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2943)*
+
 source file name: name,,n_sect,0,address
 
 ### `N_OSO`
-
 ```rust
 const N_OSO: u8 = 102u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2945`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2945)*
+
 object file name: name,,0,0,st_mtime
 
 ### `N_LSYM`
-
 ```rust
 const N_LSYM: u8 = 128u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2947`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2947)*
+
 local sym: name,,NO_SECT,type,offset
 
 ### `N_BINCL`
-
 ```rust
 const N_BINCL: u8 = 130u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2949`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2949)*
+
 include file beginning: name,,NO_SECT,0,sum
 
 ### `N_SOL`
-
 ```rust
 const N_SOL: u8 = 132u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2951`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2951)*
+
 #included file name: name,,n_sect,0,address
 
 ### `N_PARAMS`
-
 ```rust
 const N_PARAMS: u8 = 134u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2953`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2953)*
+
 compiler parameters: name,,NO_SECT,0,0
 
 ### `N_VERSION`
-
 ```rust
 const N_VERSION: u8 = 136u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2955`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2955)*
+
 compiler version: name,,NO_SECT,0,0
 
 ### `N_OLEVEL`
-
 ```rust
 const N_OLEVEL: u8 = 138u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2957`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2957)*
+
 compiler -O level: name,,NO_SECT,0,0
 
 ### `N_PSYM`
-
 ```rust
 const N_PSYM: u8 = 160u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2959`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2959)*
+
 parameter: name,,NO_SECT,type,offset
 
 ### `N_EINCL`
-
 ```rust
 const N_EINCL: u8 = 162u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2961`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2961)*
+
 include file end: name,,NO_SECT,0,0
 
 ### `N_ENTRY`
-
 ```rust
 const N_ENTRY: u8 = 164u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2963`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2963)*
+
 alternate entry: name,,n_sect,linenumber,address
 
 ### `N_LBRAC`
-
 ```rust
 const N_LBRAC: u8 = 192u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2965`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2965)*
+
 left bracket: 0,,NO_SECT,nesting level,address
 
 ### `N_EXCL`
-
 ```rust
 const N_EXCL: u8 = 194u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2967`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2967)*
+
 deleted include file: name,,NO_SECT,0,sum
 
 ### `N_RBRAC`
-
 ```rust
 const N_RBRAC: u8 = 224u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2969`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2969)*
+
 right bracket: 0,,NO_SECT,nesting level,address
 
 ### `N_BCOMM`
-
 ```rust
 const N_BCOMM: u8 = 226u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2971`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2971)*
+
 begin common: name,,NO_SECT,0,0
 
 ### `N_ECOMM`
-
 ```rust
 const N_ECOMM: u8 = 228u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2973`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2973)*
+
 end common: name,,n_sect,0,0
 
 ### `N_ECOML`
-
 ```rust
 const N_ECOML: u8 = 232u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2975`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2975)*
+
 end common (local name): 0,,n_sect,0,address
 
 ### `N_LENG`
-
 ```rust
 const N_LENG: u8 = 254u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2977`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2977)*
+
 second stab entry with length information
 
 ### `N_PC`
-
 ```rust
 const N_PC: u8 = 48u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2983`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2983)*
+
 global pascal symbol: name,,NO_SECT,subtype,line
 
 ### `R_ABS`
-
 ```rust
 const R_ABS: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3101`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3101)*
+
 absolute relocation type for Mach-O files
 
 ### `R_SCATTERED`
-
 ```rust
 const R_SCATTERED: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3167`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3167)*
+
 Bit set in `Relocation::r_word0` for scattered relocations.
 
 ### `GENERIC_RELOC_VANILLA`
-
 ```rust
 const GENERIC_RELOC_VANILLA: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3218`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3218)*
+
 generic relocation as described above
 
 ### `GENERIC_RELOC_PAIR`
-
 ```rust
 const GENERIC_RELOC_PAIR: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3220`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3220)*
+
 Only follows a GENERIC_RELOC_SECTDIFF
 
 ### `GENERIC_RELOC_SECTDIFF`
-
 ```rust
 const GENERIC_RELOC_SECTDIFF: u8 = 2u8;
 ```
 
-### `GENERIC_RELOC_PB_LA_PTR`
+*Defined in [`object-0.37.3/src/macho.rs:3221`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3221)*
 
+### `GENERIC_RELOC_PB_LA_PTR`
 ```rust
 const GENERIC_RELOC_PB_LA_PTR: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3223`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3223)*
+
 prebound lazy pointer
 
 ### `GENERIC_RELOC_LOCAL_SECTDIFF`
-
 ```rust
 const GENERIC_RELOC_LOCAL_SECTDIFF: u8 = 4u8;
 ```
 
-### `GENERIC_RELOC_TLV`
+*Defined in [`object-0.37.3/src/macho.rs:3224`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3224)*
 
+### `GENERIC_RELOC_TLV`
 ```rust
 const GENERIC_RELOC_TLV: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3226`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3226)*
+
 thread local variables
 
 ### `ARM_RELOC_VANILLA`
-
 ```rust
 const ARM_RELOC_VANILLA: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3239`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3239)*
+
 generic relocation as described above
 
 ### `ARM_RELOC_PAIR`
-
 ```rust
 const ARM_RELOC_PAIR: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3241`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3241)*
+
 the second relocation entry of a pair
 
 ### `ARM_RELOC_SECTDIFF`
-
 ```rust
 const ARM_RELOC_SECTDIFF: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3243`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3243)*
+
 a PAIR follows with subtract symbol value
 
 ### `ARM_RELOC_LOCAL_SECTDIFF`
-
 ```rust
 const ARM_RELOC_LOCAL_SECTDIFF: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3245`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3245)*
+
 like ARM_RELOC_SECTDIFF, but the symbol referenced was local.
 
 ### `ARM_RELOC_PB_LA_PTR`
-
 ```rust
 const ARM_RELOC_PB_LA_PTR: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3247`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3247)*
+
 prebound lazy pointer
 
 ### `ARM_RELOC_BR24`
-
 ```rust
 const ARM_RELOC_BR24: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3249`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3249)*
+
 24 bit branch displacement (to a word address)
 
 ### `ARM_THUMB_RELOC_BR22`
-
 ```rust
 const ARM_THUMB_RELOC_BR22: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3251`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3251)*
+
 22 bit branch displacement (to a half-word address)
 
 ### `ARM_THUMB_32BIT_BRANCH`
-
 ```rust
 const ARM_THUMB_32BIT_BRANCH: u8 = 7u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3253`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3253)*
+
 obsolete - a thumb 32-bit branch instruction possibly needing page-spanning branch workaround
 
 ### `ARM_RELOC_HALF`
-
 ```rust
 const ARM_RELOC_HALF: u8 = 8u8;
 ```
 
-### `ARM_RELOC_HALF_SECTDIFF`
+*Defined in [`object-0.37.3/src/macho.rs:3268`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3268)*
 
+### `ARM_RELOC_HALF_SECTDIFF`
 ```rust
 const ARM_RELOC_HALF_SECTDIFF: u8 = 9u8;
 ```
 
-### `ARM64_RELOC_UNSIGNED`
+*Defined in [`object-0.37.3/src/macho.rs:3269`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3269)*
 
+### `ARM64_RELOC_UNSIGNED`
 ```rust
 const ARM64_RELOC_UNSIGNED: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3277`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3277)*
+
 for pointers
 
 ### `ARM64_RELOC_SUBTRACTOR`
-
 ```rust
 const ARM64_RELOC_SUBTRACTOR: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3279`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3279)*
+
 must be followed by a ARM64_RELOC_UNSIGNED
 
 ### `ARM64_RELOC_BRANCH26`
-
 ```rust
 const ARM64_RELOC_BRANCH26: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3281`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3281)*
+
 a B/BL instruction with 26-bit displacement
 
 ### `ARM64_RELOC_PAGE21`
-
 ```rust
 const ARM64_RELOC_PAGE21: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3283`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3283)*
+
 pc-rel distance to page of target
 
 ### `ARM64_RELOC_PAGEOFF12`
-
 ```rust
 const ARM64_RELOC_PAGEOFF12: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3285`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3285)*
+
 offset within page, scaled by r_length
 
 ### `ARM64_RELOC_GOT_LOAD_PAGE21`
-
 ```rust
 const ARM64_RELOC_GOT_LOAD_PAGE21: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3287`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3287)*
+
 pc-rel distance to page of GOT slot
 
 ### `ARM64_RELOC_GOT_LOAD_PAGEOFF12`
-
 ```rust
 const ARM64_RELOC_GOT_LOAD_PAGEOFF12: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3289`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3289)*
+
 offset within page of GOT slot, scaled by r_length
 
 ### `ARM64_RELOC_POINTER_TO_GOT`
-
 ```rust
 const ARM64_RELOC_POINTER_TO_GOT: u8 = 7u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3291`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3291)*
+
 for pointers to GOT slots
 
 ### `ARM64_RELOC_TLVP_LOAD_PAGE21`
-
 ```rust
 const ARM64_RELOC_TLVP_LOAD_PAGE21: u8 = 8u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3293`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3293)*
+
 pc-rel distance to page of TLVP slot
 
 ### `ARM64_RELOC_TLVP_LOAD_PAGEOFF12`
-
 ```rust
 const ARM64_RELOC_TLVP_LOAD_PAGEOFF12: u8 = 9u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3295`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3295)*
+
 offset within page of TLVP slot, scaled by r_length
 
 ### `ARM64_RELOC_ADDEND`
-
 ```rust
 const ARM64_RELOC_ADDEND: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3297`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3297)*
+
 must be followed by PAGE21 or PAGEOFF12
 
 ### `ARM64_RELOC_AUTHENTICATED_POINTER`
-
 ```rust
 const ARM64_RELOC_AUTHENTICATED_POINTER: u8 = 11u8;
 ```
 
-### `PPC_RELOC_VANILLA`
+*Defined in [`object-0.37.3/src/macho.rs:3318`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3318)*
 
+### `PPC_RELOC_VANILLA`
 ```rust
 const PPC_RELOC_VANILLA: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3338`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3338)*
+
 generic relocation as described above
 
 ### `PPC_RELOC_PAIR`
-
 ```rust
 const PPC_RELOC_PAIR: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3340`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3340)*
+
 the second relocation entry of a pair
 
 ### `PPC_RELOC_BR14`
-
 ```rust
 const PPC_RELOC_BR14: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3342`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3342)*
+
 14 bit branch displacement (to a word address)
 
 ### `PPC_RELOC_BR24`
-
 ```rust
 const PPC_RELOC_BR24: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3344`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3344)*
+
 24 bit branch displacement (to a word address)
 
 ### `PPC_RELOC_HI16`
-
 ```rust
 const PPC_RELOC_HI16: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3346`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3346)*
+
 a PAIR follows with the low half
 
 ### `PPC_RELOC_LO16`
-
 ```rust
 const PPC_RELOC_LO16: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3348`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3348)*
+
 a PAIR follows with the high half
 
 ### `PPC_RELOC_HA16`
-
 ```rust
 const PPC_RELOC_HA16: u8 = 6u8;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:3352`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3352)*
 
 Same as the RELOC_HI16 except the low 16 bits and the high 16 bits are added together
 with the low 16 bits sign extended first.  This means if bit 15 of the low 16 bits is
 set the high 16 bits stored in the instruction will be adjusted.
 
 ### `PPC_RELOC_LO14`
-
 ```rust
 const PPC_RELOC_LO14: u8 = 7u8;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:3355`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3355)*
 
 Same as the LO16 except that the low 2 bits are not stored in the instruction and are
 always zero.  This is used in double word load/store instructions.
 
 ### `PPC_RELOC_SECTDIFF`
-
 ```rust
 const PPC_RELOC_SECTDIFF: u8 = 8u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3357`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3357)*
+
 a PAIR follows with subtract symbol value
 
 ### `PPC_RELOC_PB_LA_PTR`
-
 ```rust
 const PPC_RELOC_PB_LA_PTR: u8 = 9u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3359`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3359)*
+
 prebound lazy pointer
 
 ### `PPC_RELOC_HI16_SECTDIFF`
-
 ```rust
 const PPC_RELOC_HI16_SECTDIFF: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3361`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3361)*
+
 section difference forms of above.  a PAIR
 
 ### `PPC_RELOC_LO16_SECTDIFF`
-
 ```rust
 const PPC_RELOC_LO16_SECTDIFF: u8 = 11u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3363`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3363)*
+
 follows these with subtract symbol value
 
 ### `PPC_RELOC_HA16_SECTDIFF`
-
 ```rust
 const PPC_RELOC_HA16_SECTDIFF: u8 = 12u8;
 ```
 
-### `PPC_RELOC_JBSR`
+*Defined in [`object-0.37.3/src/macho.rs:3364`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3364)*
 
+### `PPC_RELOC_JBSR`
 ```rust
 const PPC_RELOC_JBSR: u8 = 13u8;
 ```
 
-### `PPC_RELOC_LO14_SECTDIFF`
+*Defined in [`object-0.37.3/src/macho.rs:3365`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3365)*
 
+### `PPC_RELOC_LO14_SECTDIFF`
 ```rust
 const PPC_RELOC_LO14_SECTDIFF: u8 = 14u8;
 ```
 
-### `PPC_RELOC_LOCAL_SECTDIFF`
+*Defined in [`object-0.37.3/src/macho.rs:3366`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3366)*
 
+### `PPC_RELOC_LOCAL_SECTDIFF`
 ```rust
 const PPC_RELOC_LOCAL_SECTDIFF: u8 = 15u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3368`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3368)*
+
 like PPC_RELOC_SECTDIFF, but the symbol referenced was local.
 
 ### `X86_64_RELOC_UNSIGNED`
-
 ```rust
 const X86_64_RELOC_UNSIGNED: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3523`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3523)*
+
 for absolute addresses
 
 ### `X86_64_RELOC_SIGNED`
-
 ```rust
 const X86_64_RELOC_SIGNED: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3525`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3525)*
+
 for signed 32-bit displacement
 
 ### `X86_64_RELOC_BRANCH`
-
 ```rust
 const X86_64_RELOC_BRANCH: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3527`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3527)*
+
 a CALL/JMP instruction with 32-bit displacement
 
 ### `X86_64_RELOC_GOT_LOAD`
-
 ```rust
 const X86_64_RELOC_GOT_LOAD: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3529`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3529)*
+
 a MOVQ load of a GOT entry
 
 ### `X86_64_RELOC_GOT`
-
 ```rust
 const X86_64_RELOC_GOT: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3531`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3531)*
+
 other GOT references
 
 ### `X86_64_RELOC_SUBTRACTOR`
-
 ```rust
 const X86_64_RELOC_SUBTRACTOR: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3533`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3533)*
+
 must be followed by a X86_64_RELOC_UNSIGNED
 
 ### `X86_64_RELOC_SIGNED_1`
-
 ```rust
 const X86_64_RELOC_SIGNED_1: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3535`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3535)*
+
 for signed 32-bit displacement with a -1 addend
 
 ### `X86_64_RELOC_SIGNED_2`
-
 ```rust
 const X86_64_RELOC_SIGNED_2: u8 = 7u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3537`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3537)*
+
 for signed 32-bit displacement with a -2 addend
 
 ### `X86_64_RELOC_SIGNED_4`
-
 ```rust
 const X86_64_RELOC_SIGNED_4: u8 = 8u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3539`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3539)*
+
 for signed 32-bit displacement with a -4 addend
 
 ### `X86_64_RELOC_TLV`
-
 ```rust
 const X86_64_RELOC_TLV: u8 = 9u8;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:3541`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3541)*
 
 for thread local variables
 

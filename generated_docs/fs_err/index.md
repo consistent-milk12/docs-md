@@ -104,17 +104,101 @@ If the `tokio` feature is enabled, this crate will inherit the MSRV of the selec
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`dir`](#dir)
+  - [`errors`](#errors)
+  - [`file`](#file)
+  - [`open_options`](#open_options)
+  - [`os`](#os)
+  - [`path`](#path)
+  - [`private`](#private)
+  - [`unix`](#unix)
+  - [`unix`](#unix)
+- [Structs](#structs)
+  - [`OpenOptions`](#openoptions)
+  - [`ReadDir`](#readdir)
+  - [`DirEntry`](#direntry)
+  - [`File`](#file)
+- [Traits](#traits)
+  - [`PathExt`](#pathext)
+- [Functions](#functions)
+  - [`read`](#read)
+  - [`read_to_string`](#read_to_string)
+  - [`write`](#write)
+  - [`copy`](#copy)
+  - [`create_dir`](#create_dir)
+  - [`create_dir_all`](#create_dir_all)
+  - [`remove_dir`](#remove_dir)
+  - [`remove_dir_all`](#remove_dir_all)
+  - [`remove_file`](#remove_file)
+  - [`metadata`](#metadata)
+  - [`exists`](#exists)
+  - [`canonicalize`](#canonicalize)
+  - [`hard_link`](#hard_link)
+  - [`read_link`](#read_link)
+  - [`rename`](#rename)
+  - [`soft_link`](#soft_link)
+  - [`symlink_metadata`](#symlink_metadata)
+  - [`set_permissions`](#set_permissions)
+  - [`initial_buffer_size`](#initial_buffer_size)
+  - [`read_dir`](#read_dir)
+  - [`open`](#open)
+  - [`create`](#create)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`dir`](#dir) | mod |  |
+| [`errors`](#errors) | mod |  |
+| [`file`](#file) | mod |  |
+| [`open_options`](#open_options) | mod |  |
+| [`os`](#os) | mod | OS-specific functionality. |
+| [`path`](#path) | mod |  |
+| [`private`](#private) | mod |  |
+| [`unix`](#unix) | mod |  |
+| [`unix`](#unix) | mod |  |
+| [`OpenOptions`](#openoptions) | struct |  |
+| [`ReadDir`](#readdir) | struct | Wrapper around [`std::fs::ReadDir`][std::fs::ReadDir] which adds more helpful information to all errors. |
+| [`DirEntry`](#direntry) | struct | Wrapper around [`std::fs::DirEntry`][std::fs::DirEntry] which adds more helpful information to all errors. |
+| [`File`](#file) | struct | Wrapper around [`std::fs::File`][std::fs::File] which adds more helpful information to all errors. |
+| [`PathExt`](#pathext) | trait |  |
+| [`read`](#read) | fn | Read the entire contents of a file into a bytes vector. |
+| [`read_to_string`](#read_to_string) | fn | Read the entire contents of a file into a string. |
+| [`write`](#write) | fn | Write a slice as the entire contents of a file. |
+| [`copy`](#copy) | fn | Copies the contents of one file to another. |
+| [`create_dir`](#create_dir) | fn | Creates a new, empty directory at the provided path. |
+| [`create_dir_all`](#create_dir_all) | fn | Recursively create a directory and all of its parent components if they are missing. |
+| [`remove_dir`](#remove_dir) | fn | Removes an empty directory. |
+| [`remove_dir_all`](#remove_dir_all) | fn | Removes a directory at this path, after removing all its contents. |
+| [`remove_file`](#remove_file) | fn | Removes a file from the filesystem. |
+| [`metadata`](#metadata) | fn | Given a path, query the file system to get information about a file, directory, etc. |
+| [`exists`](#exists) | fn | Returns `Ok(true)` if the path points at an existing entity. |
+| [`canonicalize`](#canonicalize) | fn | Returns the canonical, absolute form of a path with all intermediate components normalized and symbolic links resolved. |
+| [`hard_link`](#hard_link) | fn | Creates a new hard link on the filesystem. |
+| [`read_link`](#read_link) | fn | Reads a symbolic link, returning the file that the link points to. |
+| [`rename`](#rename) | fn | Rename a file or directory to a new name, replacing the original file if to already exists. |
+| [`soft_link`](#soft_link) | fn | Wrapper for [`fs::soft_link`](https://doc.rust-lang.org/stable/std/fs/fn.soft_link.html). |
+| [`symlink_metadata`](#symlink_metadata) | fn | Query the metadata about a file without following symlinks. |
+| [`set_permissions`](#set_permissions) | fn | Changes the permissions found on a file or a directory. |
+| [`initial_buffer_size`](#initial_buffer_size) | fn |  |
+| [`read_dir`](#read_dir) | fn | Returns an iterator over the entries within a directory. |
+| [`open`](#open) | fn |  |
+| [`create`](#create) | fn |  |
+
 ## Modules
 
-- [`dir`](dir/index.md) - 
-- [`errors`](errors/index.md) - 
-- [`file`](file/index.md) - 
-- [`open_options`](open_options/index.md) - 
-- [`os`](os/index.md) - OS-specific functionality.
-- [`path`](path/index.md) - 
-- [`private`](private/index.md) - 
-- [`unix`](unix/index.md) - 
-- [`unix`](unix/index.md) - 
+- [`dir`](dir/index.md)
+- [`errors`](errors/index.md)
+- [`file`](file/index.md)
+- [`open_options`](open_options/index.md)
+- [`os`](os/index.md) — OS-specific functionality.
+- [`path`](path/index.md)
+- [`private`](private/index.md)
+- [`unix`](unix/index.md)
+- [`unix`](unix/index.md)
 
 ## Structs
 
@@ -124,41 +208,43 @@ If the `tokio` feature is enabled, this crate will inherit the MSRV of the selec
 struct OpenOptions(fs::OpenOptions);
 ```
 
+*Defined in [`fs-err-3.2.0/src/open_options.rs:7`](../../.source_1765210505/fs-err-3.2.0/src/open_options.rs#L7)*
+
 Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html)
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="openoptions-new"></span>`fn new() -> Self`
 
-- `fn read(self: &mut Self, read: bool) -> &mut Self`
+- <span id="openoptions-read"></span>`fn read(&mut self, read: bool) -> &mut Self`
 
-- `fn write(self: &mut Self, write: bool) -> &mut Self`
+- <span id="openoptions-write"></span>`fn write(&mut self, write: bool) -> &mut Self`
 
-- `fn append(self: &mut Self, append: bool) -> &mut Self`
+- <span id="openoptions-append"></span>`fn append(&mut self, append: bool) -> &mut Self`
 
-- `fn truncate(self: &mut Self, truncate: bool) -> &mut Self`
+- <span id="openoptions-truncate"></span>`fn truncate(&mut self, truncate: bool) -> &mut Self`
 
-- `fn create(self: &mut Self, create: bool) -> &mut Self`
+- <span id="openoptions-create"></span>`fn create(&mut self, create: bool) -> &mut Self`
 
-- `fn create_new(self: &mut Self, create_new: bool) -> &mut Self`
+- <span id="openoptions-create-new"></span>`fn create_new(&mut self, create_new: bool) -> &mut Self`
 
-- `fn open<P>(self: &Self, path: P) -> io::Result<crate::File>` — [`File`](#file)
+- <span id="openoptions-open"></span>`fn open<P>(&self, path: P) -> io::Result<crate::File>` — [`File`](#file)
 
 #### Trait Implementations
 
 ##### `impl Clone for OpenOptions`
 
-- `fn clone(self: &Self) -> OpenOptions` — [`OpenOptions`](#openoptions)
+- <span id="openoptions-clone"></span>`fn clone(&self) -> OpenOptions` — [`OpenOptions`](open_options/index.md)
 
 ##### `impl Debug for OpenOptions`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="openoptions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OpenOptionsExt for crate::OpenOptions`
 
-- `fn mode(self: &mut Self, mode: u32) -> &mut Self`
+- <span id="crateopenoptions-mode"></span>`fn mode(&mut self, mode: u32) -> &mut Self`
 
-- `fn custom_flags(self: &mut Self, flags: i32) -> &mut Self`
+- <span id="crateopenoptions-custom-flags"></span>`fn custom_flags(&mut self, flags: i32) -> &mut Self`
 
 ##### `impl Sealed for crate::OpenOptions`
 
@@ -171,6 +257,8 @@ struct ReadDir {
 }
 ```
 
+*Defined in [`fs-err-3.2.0/src/dir.rs:28-31`](../../.source_1765210505/fs-err-3.2.0/src/dir.rs#L28-L31)*
+
 Wrapper around `std::fs::ReadDir` which adds more
 helpful information to all errors.
 
@@ -182,21 +270,21 @@ This struct is created via `fs_err::read_dir`.
 
 ##### `impl Debug for ReadDir`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="readdir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ReadDir`
+##### `impl IntoIterator for ReadDir`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="readdir-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="readdir-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="readdir-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ReadDir`
 
-- `type Item = Result<DirEntry, Error>`
+- <span id="readdir-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="readdir-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `DirEntry`
 
@@ -206,29 +294,31 @@ struct DirEntry {
 }
 ```
 
+*Defined in [`fs-err-3.2.0/src/dir.rs:51-53`](../../.source_1765210505/fs-err-3.2.0/src/dir.rs#L51-L53)*
+
 Wrapper around `std::fs::DirEntry` which adds more
 helpful information to all errors.
 
 
 #### Implementations
 
-- `fn path(self: &Self) -> PathBuf`
+- <span id="direntry-path"></span>`fn path(&self) -> PathBuf`
 
-- `fn metadata(self: &Self) -> io::Result<fs::Metadata>`
+- <span id="direntry-metadata"></span>`fn metadata(&self) -> io::Result<fs::Metadata>`
 
-- `fn file_type(self: &Self) -> io::Result<fs::FileType>`
+- <span id="direntry-file-type"></span>`fn file_type(&self) -> io::Result<fs::FileType>`
 
-- `fn file_name(self: &Self) -> OsString`
+- <span id="direntry-file-name"></span>`fn file_name(&self) -> OsString`
 
 #### Trait Implementations
 
 ##### `impl Debug for DirEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="direntry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DirEntryExt for DirEntry`
 
-- `fn ino(self: &Self) -> u64`
+- <span id="direntry-ino"></span>`fn ino(&self) -> u64`
 
 ### `File`
 
@@ -239,77 +329,121 @@ struct File {
 }
 ```
 
+*Defined in [`fs-err-3.2.0/src/file.rs:13-16`](../../.source_1765210505/fs-err-3.2.0/src/file.rs#L13-L16)*
+
 Wrapper around `std::fs::File` which adds more helpful
 information to all errors.
 
 
 #### Implementations
 
-- `fn open<P>(path: P) -> Result<Self, io::Error>`
+- <span id="file-open"></span>`fn open<P>(path: P) -> Result<Self, io::Error>`
 
-- `fn create<P>(path: P) -> Result<Self, io::Error>`
+- <span id="file-create"></span>`fn create<P>(path: P) -> Result<Self, io::Error>`
 
-- `fn create_new<P>(path: P) -> Result<Self, io::Error>`
+- <span id="file-create-new"></span>`fn create_new<P>(path: P) -> Result<Self, io::Error>`
 
-- `fn options() -> OpenOptions` — [`OpenOptions`](#openoptions)
+- <span id="file-options"></span>`fn options() -> OpenOptions` — [`OpenOptions`](open_options/index.md)
 
-- `fn sync_all(self: &Self) -> Result<(), io::Error>`
+- <span id="file-sync-all"></span>`fn sync_all(&self) -> Result<(), io::Error>`
 
-- `fn sync_data(self: &Self) -> Result<(), io::Error>`
+- <span id="file-sync-data"></span>`fn sync_data(&self) -> Result<(), io::Error>`
 
-- `fn set_len(self: &Self, size: u64) -> Result<(), io::Error>`
+- <span id="file-set-len"></span>`fn set_len(&self, size: u64) -> Result<(), io::Error>`
 
-- `fn metadata(self: &Self) -> Result<fs::Metadata, io::Error>`
+- <span id="file-metadata"></span>`fn metadata(&self) -> Result<fs::Metadata, io::Error>`
 
-- `fn try_clone(self: &Self) -> Result<Self, io::Error>`
+- <span id="file-try-clone"></span>`fn try_clone(&self) -> Result<Self, io::Error>`
 
-- `fn set_permissions(self: &Self, perm: fs::Permissions) -> Result<(), io::Error>`
+- <span id="file-set-permissions"></span>`fn set_permissions(&self, perm: fs::Permissions) -> Result<(), io::Error>`
 
 #### Trait Implementations
 
 ##### `impl AsFd for crate::File`
 
-- `fn as_fd(self: &Self) -> BorrowedFd<'_>`
+- <span id="cratefile-as-fd"></span>`fn as_fd(&self) -> BorrowedFd<'_>`
 
 ##### `impl AsRawFd for crate::File`
 
-- `fn as_raw_fd(self: &Self) -> RawFd`
+- <span id="cratefile-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
 
 ##### `impl Debug for File`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="file-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FileExt for crate::File`
 
-- `fn read_at(self: &Self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
+- <span id="cratefile-read-at"></span>`fn read_at(&self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
 
-- `fn write_at(self: &Self, buf: &[u8], offset: u64) -> io::Result<usize>`
+- <span id="cratefile-write-at"></span>`fn write_at(&self, buf: &[u8], offset: u64) -> io::Result<usize>`
 
 ##### `impl IntoRawFd for crate::File`
 
-- `fn into_raw_fd(self: Self) -> RawFd`
+- <span id="cratefile-into-raw-fd"></span>`fn into_raw_fd(self) -> RawFd`
 
 ##### `impl Read for File`
 
-- `fn read(self: &mut Self, buf: &mut [u8]) -> std::io::Result<usize>`
+- <span id="file-read"></span>`fn read(&mut self, buf: &mut [u8]) -> std::io::Result<usize>`
 
-- `fn read_vectored(self: &mut Self, bufs: &mut [std::io::IoSliceMut<'_>]) -> std::io::Result<usize>`
+- <span id="file-read-vectored"></span>`fn read_vectored(&mut self, bufs: &mut [std::io::IoSliceMut<'_>]) -> std::io::Result<usize>`
 
 ##### `impl Sealed for crate::File`
 
 ##### `impl Seek for File`
 
-- `fn seek(self: &mut Self, pos: std::io::SeekFrom) -> std::io::Result<u64>`
+- <span id="file-seek"></span>`fn seek(&mut self, pos: std::io::SeekFrom) -> std::io::Result<u64>`
 
 ##### `impl Write for File`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
+- <span id="file-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- `fn write_vectored(self: &mut Self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="file-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> std::io::Result<()>`
+- <span id="file-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
 ## Traits
+
+### `PathExt`
+
+```rust
+trait PathExt: crate::Sealed { ... }
+```
+
+*Defined in [`fs-err-3.2.0/src/path.rs:12-39`](../../.source_1765210505/fs-err-3.2.0/src/path.rs#L12-L39)*
+
+Defines aliases on [`Path`](https://doc.rust-lang.org/std/path/struct.Path.html) for `fs_err` functions.
+
+This trait is sealed and can not be implemented by other crates.
+
+#### Required Methods
+
+- `fn fs_err_try_exists(&self) -> io::Result<bool>`
+
+  Returns Ok(true) if the path points at an existing entity.
+
+- `fn fs_err_metadata(&self) -> io::Result<fs::Metadata>`
+
+  Given a path, query the file system to get information about a file, directory, etc.
+
+- `fn fs_err_symlink_metadata(&self) -> io::Result<fs::Metadata>`
+
+  Query the metadata about a file without following symlinks.
+
+- `fn fs_err_canonicalize(&self) -> io::Result<PathBuf>`
+
+  Returns the canonical, absolute form of a path with all intermediate components
+
+- `fn fs_err_read_link(&self) -> io::Result<PathBuf>`
+
+  Reads a symbolic link, returning the file that the link points to.
+
+- `fn fs_err_read_dir(&self) -> io::Result<crate::ReadDir>`
+
+  Returns an iterator over the entries within a directory.
+
+#### Implementors
+
+- `std::path::Path`
 
 ## Functions
 
@@ -318,6 +452,8 @@ information to all errors.
 ```rust
 fn read<P: AsRef<std::path::Path>>(path: P) -> io::Result<Vec<u8>>
 ```
+
+*Defined in [`fs-err-3.2.0/src/lib.rs:136-143`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L136-L143)*
 
 Read the entire contents of a file into a bytes vector.
 
@@ -329,6 +465,8 @@ Wrapper for [`fs::read`](https://doc.rust-lang.org/stable/std/fs/fn.read.html).
 fn read_to_string<P: AsRef<std::path::Path>>(path: P) -> io::Result<String>
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:148-155`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L148-L155)*
+
 Read the entire contents of a file into a string.
 
 Wrapper for [`fs::read_to_string`](https://doc.rust-lang.org/stable/std/fs/fn.read_to_string.html).
@@ -338,6 +476,8 @@ Wrapper for [`fs::read_to_string`](https://doc.rust-lang.org/stable/std/fs/fn.re
 ```rust
 fn write<P: AsRef<std::path::Path>, C: AsRef<[u8]>>(path: P, contents: C) -> io::Result<()>
 ```
+
+*Defined in [`fs-err-3.2.0/src/lib.rs:160-166`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L160-L166)*
 
 Write a slice as the entire contents of a file.
 
@@ -352,6 +492,8 @@ where
     Q: AsRef<std::path::Path>
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:172-181`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L172-L181)*
+
 Copies the contents of one file to another. This function will also copy the
 permission bits of the original file to the destination file.
 
@@ -365,6 +507,8 @@ where
     P: AsRef<std::path::Path>
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:186-192`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L186-L192)*
+
 Creates a new, empty directory at the provided path.
 
 Wrapper for [`fs::create_dir`](https://doc.rust-lang.org/stable/std/fs/fn.create_dir.html).
@@ -376,6 +520,8 @@ fn create_dir_all<P>(path: P) -> io::Result<()>
 where
     P: AsRef<std::path::Path>
 ```
+
+*Defined in [`fs-err-3.2.0/src/lib.rs:197-203`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L197-L203)*
 
 Recursively create a directory and all of its parent components if they are missing.
 
@@ -389,6 +535,8 @@ where
     P: AsRef<std::path::Path>
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:208-214`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L208-L214)*
+
 Removes an empty directory.
 
 Wrapper for [`fs::remove_dir`](https://doc.rust-lang.org/stable/std/fs/fn.remove_dir.html).
@@ -400,6 +548,8 @@ fn remove_dir_all<P>(path: P) -> io::Result<()>
 where
     P: AsRef<std::path::Path>
 ```
+
+*Defined in [`fs-err-3.2.0/src/lib.rs:219-225`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L219-L225)*
 
 Removes a directory at this path, after removing all its contents. Use carefully!
 
@@ -413,6 +563,8 @@ where
     P: AsRef<std::path::Path>
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:230-236`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L230-L236)*
+
 Removes a file from the filesystem.
 
 Wrapper for [`fs::remove_file`](https://doc.rust-lang.org/stable/std/fs/fn.remove_file.html).
@@ -422,6 +574,8 @@ Wrapper for [`fs::remove_file`](https://doc.rust-lang.org/stable/std/fs/fn.remov
 ```rust
 fn metadata<P: AsRef<std::path::Path>>(path: P) -> io::Result<fs::Metadata>
 ```
+
+*Defined in [`fs-err-3.2.0/src/lib.rs:241-244`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L241-L244)*
 
 Given a path, query the file system to get information about a file, directory, etc.
 
@@ -433,6 +587,8 @@ Wrapper for [`fs::metadata`](https://doc.rust-lang.org/stable/std/fs/fn.metadata
 fn exists<P: AsRef<std::path::Path>>(path: P) -> io::Result<bool>
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:250-253`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L250-L253)*
+
 Returns `Ok(true)` if the path points at an existing entity.
 
 Wrapper for [`fs::exists`](https://doc.rust-lang.org/stable/std/fs/fn.exists.html).
@@ -442,6 +598,8 @@ Wrapper for [`fs::exists`](https://doc.rust-lang.org/stable/std/fs/fn.exists.htm
 ```rust
 fn canonicalize<P: AsRef<std::path::Path>>(path: P) -> io::Result<std::path::PathBuf>
 ```
+
+*Defined in [`fs-err-3.2.0/src/lib.rs:259-262`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L259-L262)*
 
 Returns the canonical, absolute form of a path with all intermediate components
 normalized and symbolic links resolved.
@@ -454,6 +612,8 @@ Wrapper for [`fs::canonicalize`](https://doc.rust-lang.org/stable/std/fs/fn.cano
 fn hard_link<P: AsRef<std::path::Path>, Q: AsRef<std::path::Path>>(src: P, dst: Q) -> io::Result<()>
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:267-272`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L267-L272)*
+
 Creates a new hard link on the filesystem.
 
 Wrapper for [`fs::hard_link`](https://doc.rust-lang.org/stable/std/fs/fn.hard_link.html).
@@ -463,6 +623,8 @@ Wrapper for [`fs::hard_link`](https://doc.rust-lang.org/stable/std/fs/fn.hard_li
 ```rust
 fn read_link<P: AsRef<std::path::Path>>(path: P) -> io::Result<std::path::PathBuf>
 ```
+
+*Defined in [`fs-err-3.2.0/src/lib.rs:277-280`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L277-L280)*
 
 Reads a symbolic link, returning the file that the link points to.
 
@@ -474,6 +636,8 @@ Wrapper for [`fs::read_link`](https://doc.rust-lang.org/stable/std/fs/fn.read_li
 fn rename<P: AsRef<std::path::Path>, Q: AsRef<std::path::Path>>(from: P, to: Q) -> io::Result<()>
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:285-290`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L285-L290)*
+
 Rename a file or directory to a new name, replacing the original file if to already exists.
 
 Wrapper for [`fs::rename`](https://doc.rust-lang.org/stable/std/fs/fn.rename.html).
@@ -484,6 +648,8 @@ Wrapper for [`fs::rename`](https://doc.rust-lang.org/stable/std/fs/fn.rename.htm
 fn soft_link<P: AsRef<std::path::Path>, Q: AsRef<std::path::Path>>(src: P, dst: Q) -> io::Result<()>
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:295-301`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L295-L301)*
+
 Wrapper for [`fs::soft_link`](https://doc.rust-lang.org/stable/std/fs/fn.soft_link.html).
 
 ### `symlink_metadata`
@@ -491,6 +657,8 @@ Wrapper for [`fs::soft_link`](https://doc.rust-lang.org/stable/std/fs/fn.soft_li
 ```rust
 fn symlink_metadata<P: AsRef<std::path::Path>>(path: P) -> io::Result<fs::Metadata>
 ```
+
+*Defined in [`fs-err-3.2.0/src/lib.rs:306-310`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L306-L310)*
 
 Query the metadata about a file without following symlinks.
 
@@ -502,6 +670,8 @@ Wrapper for [`fs::symlink_metadata`](https://doc.rust-lang.org/stable/std/fs/fn.
 fn set_permissions<P: AsRef<std::path::Path>>(path: P, perm: fs::Permissions) -> io::Result<()>
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:315-319`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L315-L319)*
+
 Changes the permissions found on a file or a directory.
 
 Wrapper for [`fs::set_permissions`](https://doc.rust-lang.org/stable/std/fs/fn.set_permissions.html).
@@ -512,11 +682,15 @@ Wrapper for [`fs::set_permissions`](https://doc.rust-lang.org/stable/std/fs/fn.s
 fn initial_buffer_size(file: &std::fs::File) -> usize
 ```
 
+*Defined in [`fs-err-3.2.0/src/lib.rs:321-323`](../../.source_1765210505/fs-err-3.2.0/src/lib.rs#L321-L323)*
+
 ### `read_dir`
 
 ```rust
 fn read_dir<P: Into<std::path::PathBuf>>(path: P) -> io::Result<ReadDir>
 ```
+
+*Defined in [`fs-err-3.2.0/src/dir.rs:11-18`](../../.source_1765210505/fs-err-3.2.0/src/dir.rs#L11-L18)*
 
 Returns an iterator over the entries within a directory.
 
@@ -528,9 +702,13 @@ Wrapper for [`fs::read_dir`](https://doc.rust-lang.org/stable/std/fs/fn.read_dir
 fn open(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::PathBuf) -> io::Error>
 ```
 
+*Defined in [`fs-err-3.2.0/src/file.rs:20-22`](../../.source_1765210505/fs-err-3.2.0/src/file.rs#L20-L22)*
+
 ### `create`
 
 ```rust
 fn create(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::PathBuf) -> io::Error>
 ```
+
+*Defined in [`fs-err-3.2.0/src/file.rs:25-27`](../../.source_1765210505/fs-err-3.2.0/src/file.rs#L25-L27)*
 

@@ -1,5 +1,11 @@
 # Crate `pathdiff`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`diff_paths`](#diff_paths) | fn | Construct a relative path from a provided base directory path to the provided path. |
+
 ## Functions
 
 ### `diff_paths`
@@ -10,6 +16,8 @@ where
     P: AsRef<Path>,
     B: AsRef<Path>
 ```
+
+*Defined in [`pathdiff-0.2.3/src/lib.rs:43-86`](../../.source_1765210505/pathdiff-0.2.3/src/lib.rs#L43-L86)*
 
 Construct a relative path from a provided base directory path to the provided path.
 

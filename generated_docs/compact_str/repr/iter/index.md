@@ -6,6 +6,12 @@
 
 Implementations of the `FromIterator` trait to make building [`Repr`](../index.md)s more ergonomic
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`from_as_ref_str_iterator`](#from_as_ref_str_iterator) | fn |  |
+
 ## Functions
 
 ### `from_as_ref_str_iterator`
@@ -17,4 +23,6 @@ where
     I: Iterator<Item = S>,
     alloc::string::String: core::iter::Extend<S> + FromIterator<S>
 ```
+
+*Defined in [`compact_str-0.9.0/src/repr/iter.rs:34-77`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/iter.rs#L34-L77)*
 

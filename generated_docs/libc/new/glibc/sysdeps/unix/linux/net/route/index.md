@@ -9,6 +9,12 @@ Header: `net/route.h`
 Source header: `sysdeps/unix/sysv/linux/net/route.h`
 <https://github.com/bminor/glibc/blob/master/sysdeps/unix/sysv/linux/net/route.h>
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`rtentry`](#rtentry) | struct |  |
+
 ## Structs
 
 ### `rtentry`
@@ -33,15 +39,17 @@ struct rtentry {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/new/glibc/sysdeps/unix/linux/net/route.rs:8-30`](../../../../../../../../../.source_1765210505/libc-0.2.178/src/new/glibc/sysdeps/unix/linux/net/route.rs#L8-L30)*
+
 #### Trait Implementations
 
 ##### `impl Clone for rtentry`
 
-- `fn clone(self: &Self) -> rtentry` — [`rtentry`](../../../../../../index.md)
+- <span id="rtentry-clone"></span>`fn clone(&self) -> rtentry` — [`rtentry`](../../../../../../index.md)
 
 ##### `impl Copy for rtentry`
 
 ##### `impl Debug for rtentry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rtentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

@@ -143,10 +143,20 @@ character or string, in order of decreasing precedence. These may be tweaked in 
 
 Canonically equivalent strings are assigned the same width (CJK and non-CJK).
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`tables`](#tables) | mod |  |
+| [`private`](#private) | mod |  |
+| [`UnicodeWidthChar`](#unicodewidthchar) | trait | Methods for determining displayed width of Unicode characters. |
+| [`UnicodeWidthStr`](#unicodewidthstr) | trait | Methods for determining displayed width of Unicode strings. |
+| [`UNICODE_VERSION`](#unicode_version) | const |  |
+
 ## Modules
 
-- [`tables`](tables/index.md) - 
-- [`private`](private/index.md) - 
+- [`tables`](tables/index.md)
+- [`private`](private/index.md)
 
 ## Traits
 
@@ -156,17 +166,23 @@ Canonically equivalent strings are assigned the same width (CJK and non-CJK).
 trait UnicodeWidthChar: private::Sealed { ... }
 ```
 
+*Defined in [`unicode-width-0.2.2/src/lib.rs:194-213`](../../.source_1765210505/unicode-width-0.2.2/src/lib.rs#L194-L213)*
+
 Methods for determining displayed width of Unicode characters.
 
 #### Required Methods
 
-- `fn width(self: Self) -> Option<usize>`
+- `fn width(self) -> Option<usize>`
 
   Returns the character's displayed width in columns, or `None` if the
 
-- `fn width_cjk(self: Self) -> Option<usize>`
+- `fn width_cjk(self) -> Option<usize>`
 
   Returns the character's displayed width in columns, or `None` if the
+
+#### Implementors
+
+- `char`
 
 ### `UnicodeWidthStr`
 
@@ -174,17 +190,25 @@ Methods for determining displayed width of Unicode characters.
 trait UnicodeWidthStr: private::Sealed { ... }
 ```
 
+*Defined in [`unicode-width-0.2.2/src/lib.rs:229-246`](../../.source_1765210505/unicode-width-0.2.2/src/lib.rs#L229-L246)*
+
 Methods for determining displayed width of Unicode strings.
 
 #### Required Methods
 
-- `fn width(self: &Self) -> usize`
+- `fn width(&self) -> usize`
 
   Returns the string's displayed width in columns.
 
-- `fn width_cjk(self: &Self) -> usize`
+- `fn width_cjk(&self) -> usize`
 
   Returns the string's displayed width in columns.
+
+#### Implementors
+
+- `str`
 
 ## Constants
+
+*Defined in [`unicode-width-0.2.2/src/lib.rs:179`](../../.source_1765210505/unicode-width-0.2.2/src/lib.rs#L179)*
 

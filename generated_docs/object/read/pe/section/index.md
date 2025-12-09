@@ -4,6 +4,42 @@
 
 # Module `section`
 
+## Contents
+
+- [Structs](#structs)
+  - [`PeSegmentIterator`](#pesegmentiterator)
+  - [`PeSegment`](#pesegment)
+  - [`PeSectionIterator`](#pesectioniterator)
+  - [`PeSection`](#pesection)
+  - [`PeRelocationIterator`](#perelocationiterator)
+- [Type Aliases](#type-aliases)
+  - [`PeSegmentIterator32`](#pesegmentiterator32)
+  - [`PeSegmentIterator64`](#pesegmentiterator64)
+  - [`PeSegment32`](#pesegment32)
+  - [`PeSegment64`](#pesegment64)
+  - [`PeSectionIterator32`](#pesectioniterator32)
+  - [`PeSectionIterator64`](#pesectioniterator64)
+  - [`PeSection32`](#pesection32)
+  - [`PeSection64`](#pesection64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PeSegmentIterator`](#pesegmentiterator) | struct | An iterator for the loadable sections in a [`PeFile`]. |
+| [`PeSegment`](#pesegment) | struct | A loadable section in a [`PeFile`]. |
+| [`PeSectionIterator`](#pesectioniterator) | struct | An iterator for the sections in a [`PeFile`]. |
+| [`PeSection`](#pesection) | struct | A section in a [`PeFile`]. |
+| [`PeRelocationIterator`](#perelocationiterator) | struct | An iterator for the relocations in an [`PeSection`]. |
+| [`PeSegmentIterator32`](#pesegmentiterator32) | type | An iterator for the loadable sections in a [`PeFile32`](super::PeFile32). |
+| [`PeSegmentIterator64`](#pesegmentiterator64) | type | An iterator for the loadable sections in a [`PeFile64`](super::PeFile64). |
+| [`PeSegment32`](#pesegment32) | type | A loadable section in a [`PeFile32`](super::PeFile32). |
+| [`PeSegment64`](#pesegment64) | type | A loadable section in a [`PeFile64`](super::PeFile64). |
+| [`PeSectionIterator32`](#pesectioniterator32) | type | An iterator for the sections in a [`PeFile32`](super::PeFile32). |
+| [`PeSectionIterator64`](#pesectioniterator64) | type | An iterator for the sections in a [`PeFile64`](super::PeFile64). |
+| [`PeSection32`](#pesection32) | type | A section in a [`PeFile32`](super::PeFile32). |
+| [`PeSection64`](#pesection64) | type | A section in a [`PeFile64`](super::PeFile64). |
+
 ## Structs
 
 ### `PeSegmentIterator<'data, 'file, Pe, R>`
@@ -18,27 +54,29 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/section.rs:23-30`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L23-L30)*
+
 An iterator for the loadable sections in a [`PeFile`](../index.md).
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeSegmentIterator<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pesegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for PeSegmentIterator<'data, 'file, Pe, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="pesegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="pesegmentiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="pesegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Pe, R> Iterator for PeSegmentIterator<'data, 'file, Pe, R>`
 
-- `type Item = PeSegment<'data, 'file, Pe, R>`
+- <span id="pesegmentiterator-type-item"></span>`type Item = PeSegment<'data, 'file, Pe, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="pesegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `PeSegment<'data, 'file, Pe, R>`
 
@@ -52,41 +90,43 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/section.rs:58-65`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L58-L65)*
+
 A loadable section in a [`PeFile`](../index.md).
 
 Most functionality is provided by the [`ObjectSegment`](../../index.md) trait implementation.
 
 #### Implementations
 
-- `fn pe_file(self: &Self) -> &'file PeFile<'data, Pe, R>` — [`PeFile`](../index.md)
+- <span id="pesegment-pe-file"></span>`fn pe_file(&self) -> &'file PeFile<'data, Pe, R>` — [`PeFile`](../index.md)
 
-- `fn pe_section(self: &Self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../../pe/index.md)
+- <span id="pesegment-pe-section"></span>`fn pe_section(&self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../../pe/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeSegment<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pesegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Pe, R> ObjectSegment for PeSegment<'data, 'file, Pe, R>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="pesegment-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="pesegment-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="pesegment-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- <span id="pesegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="pesegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="pesegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
+- <span id="pesegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
+- <span id="pesegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
 
-- `fn flags(self: &Self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md)
+- <span id="pesegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md)
 
 ##### `impl<'data, 'file, Pe, R> Sealed for PeSegment<'data, 'file, Pe, R>`
 
@@ -102,27 +142,29 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/section.rs:162-169`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L162-L169)*
+
 An iterator for the sections in a [`PeFile`](../index.md).
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeSectionIterator<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pesectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for PeSectionIterator<'data, 'file, Pe, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="pesectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="pesectioniterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="pesectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Pe, R> Iterator for PeSectionIterator<'data, 'file, Pe, R>`
 
-- `type Item = PeSection<'data, 'file, Pe, R>`
+- <span id="pesectioniterator-type-item"></span>`type Item = PeSection<'data, 'file, Pe, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="pesectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `PeSection<'data, 'file, Pe, R>`
 
@@ -137,59 +179,61 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/section.rs:198-206`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L198-L206)*
+
 A section in a [`PeFile`](../index.md).
 
 Most functionality is provided by the [`ObjectSection`](../../index.md) trait implementation.
 
 #### Implementations
 
-- `fn pe_file(self: &Self) -> &'file PeFile<'data, Pe, R>` — [`PeFile`](../index.md)
+- <span id="pesection-pe-file"></span>`fn pe_file(&self) -> &'file PeFile<'data, Pe, R>` — [`PeFile`](../index.md)
 
-- `fn pe_section(self: &Self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../../pe/index.md)
+- <span id="pesection-pe-section"></span>`fn pe_section(&self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../../pe/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeSection<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pesection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Pe, R> ObjectSection for PeSection<'data, 'file, Pe, R>`
 
-- `type RelocationIterator = PeRelocationIterator<'data, 'file, R>`
+- <span id="pesection-type-relocationiterator"></span>`type RelocationIterator = PeRelocationIterator<'data, 'file, R>`
 
-- `fn index(self: &Self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
+- <span id="pesection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="pesection-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="pesection-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="pesection-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> Option<(u64, u64)>`
+- <span id="pesection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="pesection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="pesection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
 
-- `fn compressed_file_range(self: &Self) -> Result<CompressedFileRange>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
+- <span id="pesection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
 
-- `fn compressed_data(self: &Self) -> Result<CompressedData<'data>>` — [`Result`](../../../index.md), [`CompressedData`](../../../index.md)
+- <span id="pesection-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../../index.md), [`CompressedData`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="pesection-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../../index.md)
+- <span id="pesection-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md)
 
-- `fn segment_name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
+- <span id="pesection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
 
-- `fn segment_name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
+- <span id="pesection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
 
-- `fn kind(self: &Self) -> SectionKind` — [`SectionKind`](../../../index.md)
+- <span id="pesection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../../index.md)
 
-- `fn relocations(self: &Self) -> PeRelocationIterator<'data, 'file, R>` — [`PeRelocationIterator`](../index.md)
+- <span id="pesection-relocations"></span>`fn relocations(&self) -> PeRelocationIterator<'data, 'file, R>` — [`PeRelocationIterator`](../index.md)
 
-- `fn relocation_map(self: &Self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md), [`RelocationMap`](../../../index.md)
+- <span id="pesection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md), [`RelocationMap`](../../../index.md)
 
-- `fn flags(self: &Self) -> SectionFlags` — [`SectionFlags`](../../../index.md)
+- <span id="pesection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md)
 
 ##### `impl<'data, 'file, Pe, R> Sealed for PeSection<'data, 'file, Pe, R>`
 
@@ -199,29 +243,31 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 struct PeRelocationIterator<'data, 'file, R>(core::marker::PhantomData<(&'data (), &'file (), R)>);
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/section.rs:466-468`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L466-L468)*
+
 An iterator for the relocations in an [`PeSection`](../index.md).
 
 This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug> Debug for PeRelocationIterator<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug> Debug for PeRelocationIterator<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="perelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for PeRelocationIterator<'data, 'file, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="perelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="perelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="perelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R> Iterator for PeRelocationIterator<'data, 'file, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="perelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="perelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Type Aliases
 
@@ -231,6 +277,8 @@ This is a stub that doesn't implement any functionality.
 type PeSegmentIterator32<'data, 'file, R> = PeSegmentIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/section.rs:15-16`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L15-L16)*
+
 An iterator for the loadable sections in a [`PeFile32`](super::PeFile32).
 
 ### `PeSegmentIterator64<'data, 'file, R>`
@@ -238,6 +286,8 @@ An iterator for the loadable sections in a [`PeFile32`](super::PeFile32).
 ```rust
 type PeSegmentIterator64<'data, 'file, R> = PeSegmentIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/section.rs:18-19`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L18-L19)*
 
 An iterator for the loadable sections in a [`PeFile64`](super::PeFile64).
 
@@ -247,6 +297,8 @@ An iterator for the loadable sections in a [`PeFile64`](super::PeFile64).
 type PeSegment32<'data, 'file, R> = PeSegment<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/section.rs:48-49`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L48-L49)*
+
 A loadable section in a [`PeFile32`](super::PeFile32).
 
 ### `PeSegment64<'data, 'file, R>`
@@ -254,6 +306,8 @@ A loadable section in a [`PeFile32`](super::PeFile32).
 ```rust
 type PeSegment64<'data, 'file, R> = PeSegment<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/section.rs:51-52`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L51-L52)*
 
 A loadable section in a [`PeFile64`](super::PeFile64).
 
@@ -263,6 +317,8 @@ A loadable section in a [`PeFile64`](super::PeFile64).
 type PeSectionIterator32<'data, 'file, R> = PeSectionIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/section.rs:154-155`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L154-L155)*
+
 An iterator for the sections in a [`PeFile32`](super::PeFile32).
 
 ### `PeSectionIterator64<'data, 'file, R>`
@@ -270,6 +326,8 @@ An iterator for the sections in a [`PeFile32`](super::PeFile32).
 ```rust
 type PeSectionIterator64<'data, 'file, R> = PeSectionIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/section.rs:157-158`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L157-L158)*
 
 An iterator for the sections in a [`PeFile64`](super::PeFile64).
 
@@ -279,6 +337,8 @@ An iterator for the sections in a [`PeFile64`](super::PeFile64).
 type PeSection32<'data, 'file, R> = PeSection<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/section.rs:188-189`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L188-L189)*
+
 A section in a [`PeFile32`](super::PeFile32).
 
 ### `PeSection64<'data, 'file, R>`
@@ -286,6 +346,8 @@ A section in a [`PeFile32`](super::PeFile32).
 ```rust
 type PeSection64<'data, 'file, R> = PeSection<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/section.rs:191-192`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/section.rs#L191-L192)*
 
 A section in a [`PeFile64`](super::PeFile64).
 

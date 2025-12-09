@@ -4,6 +4,13 @@
 
 # Module `once`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Once`](#once) | struct | Iterator adaptor for [the `once()` function]. |
+| [`once`](#once) | fn | Creates a parallel iterator that produces an element exactly once. |
+
 ## Structs
 
 ### `Once<T>`
@@ -14,58 +21,60 @@ struct Once<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/once.rs:32-34`](../../../../.source_1765210505/rayon-1.11.0/src/iter/once.rs#L32-L34)*
+
 Iterator adaptor for [the `once()` function].
 
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for Once<T>`
+##### `impl<T: clone::Clone> Clone for Once<T>`
 
-- `fn clone(self: &Self) -> Once<T>` — [`Once`](../index.md)
+- <span id="once-clone"></span>`fn clone(&self) -> Once<T>` — [`Once`](#once)
 
-##### `impl<T: $crate::fmt::Debug> Debug for Once<T>`
+##### `impl<T: fmt::Debug> Debug for Once<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="once-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Send> IndexedParallelIterator for Once<T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="once-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="once-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="once-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for Once<T>`
 
 ##### `impl<T> IntoParallelIterator for Once<T>`
 
-- `type Iter = T`
+- <span id="once-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="once-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="once-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Once<T>`
 
-- `type Item = T`
+- <span id="once-type-item"></span>`type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="once-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Once<T>`
 
-- `const ALIGN: usize`
+- <span id="once-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="once-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="once-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="once-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="once-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="once-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 
@@ -74,6 +83,8 @@ Iterator adaptor for [the `once()` function].
 ```rust
 fn once<T: Send>(item: T) -> Once<T>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/once.rs:24-26`](../../../../.source_1765210505/rayon-1.11.0/src/iter/once.rs#L24-L26)*
 
 Creates a parallel iterator that produces an element exactly once.
 

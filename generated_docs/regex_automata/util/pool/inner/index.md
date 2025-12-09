@@ -4,6 +4,16 @@
 
 # Module `inner`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CacheLine`](#cacheline) | struct | This puts each stack in the pool below into its own cache line. |
+| [`Pool`](#pool) | struct | A thread safe pool utilizing std-only features. |
+| [`PoolGuard`](#poolguard) | struct | A guard that is returned when a caller requests a value from the pool. |
+| [`MAX_POOL_STACKS`](#max_pool_stacks) | const | The number of stacks we use inside of the pool. |
+| [`THREAD_ID`](#thread_id) | const | A thread local used to assign an ID to a thread. |
+
 ## Structs
 
 ### `CacheLine<T>`
@@ -11,6 +21,8 @@
 ```rust
 struct CacheLine<T>(T);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:365`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L365)*
 
 This puts each stack in the pool below into its own cache line. This is
 an absolutely critical optimization that tends to have the most impact
@@ -22,9 +34,9 @@ contention are greatly reduced.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for CacheLine<T>`
+##### `impl<T: fmt::Debug> Debug for CacheLine<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cacheline-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Pool<T, F>`
 
@@ -36,6 +48,8 @@ struct Pool<T, F> {
     owner_val: core::cell::UnsafeCell<Option<T>>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:374-400`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L374-L400)*
 
 A thread safe pool utilizing std-only features.
 
@@ -82,13 +96,13 @@ faster by avoiding mutex unlocking.
 
 #### Implementations
 
-- `fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
+- <span id="pool-new"></span>`fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
 
 #### Trait Implementations
 
 ##### `impl<T: core::fmt::Debug, F> Debug for Pool<T, F>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="pool-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<T: UnwindSafe, F: UnwindSafe + RefUnwindSafe> RefUnwindSafe for Pool<T, F>`
 
@@ -105,6 +119,8 @@ struct PoolGuard<'a, T: Send, F: Fn() -> T> {
     discard: bool,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:660-674`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L660-L674)*
 
 A guard that is returned when a caller requests a value from the pool.
 
@@ -131,31 +147,32 @@ A guard that is returned when a caller requests a value from the pool.
 
 #### Implementations
 
-- `fn value(self: &Self) -> &T`
+- <span id="poolguard-value"></span>`fn value(&self) -> &T`
 
-- `fn value_mut(self: &mut Self) -> &mut T`
+- <span id="poolguard-value-mut"></span>`fn value_mut(&mut self) -> &mut T`
 
-- `fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](#poolguard)
+- <span id="poolguard-put"></span>`fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](#poolguard)
 
-- `fn put_imp(self: &mut Self)`
+- <span id="poolguard-put-imp"></span>`fn put_imp(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl<'a, T: Send + core::fmt::Debug, F: Fn() -> T> Debug for PoolGuard<'a, T, F>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="poolguard-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<'a, T: Send, F: Fn() -> T> Drop for PoolGuard<'a, T, F>`
 
-- `fn drop(self: &mut Self)`
+- <span id="poolguard-drop"></span>`fn drop(&mut self)`
 
 ## Constants
 
 ### `MAX_POOL_STACKS`
-
 ```rust
 const MAX_POOL_STACKS: usize = 8usize;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:331`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L331)*
 
 The number of stacks we use inside of the pool. These are only used for
 non-owners. That is, these represent the "slow" path.
@@ -215,10 +232,11 @@ See this issue for more context and discussion:
 https://github.com/rust-lang/regex/issues/934
 
 ### `THREAD_ID`
-
 ```rust
-const THREAD_ID: $crate::thread::LocalKey<usize>;
+const THREAD_ID: thread::LocalKey<usize>;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:333-354`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L333-L354)*
 
 A thread local used to assign an ID to a thread.
 

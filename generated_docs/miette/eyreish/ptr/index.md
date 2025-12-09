@@ -4,6 +4,15 @@
 
 # Module `ptr`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Own`](#own) | struct | A raw pointer that owns its pointee |
+| [`Ref`](#ref) | struct | A raw pointer that represents a shared borrow of its pointee |
+| [`Mut`](#mut) | struct | A raw pointer that represents a unique borrow of its pointee |
+| [`CastTo`](#castto) | trait |  |
+
 ## Structs
 
 ### `Own<T>`
@@ -16,25 +25,27 @@ where
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:5-10`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/ptr.rs#L5-L10)*
+
 A raw pointer that owns its pointee
 
 #### Implementations
 
-- `fn new(ptr: Box<T>) -> Self`
+- <span id="own-new"></span>`fn new(ptr: Box<T>) -> Self`
 
-- `fn cast<U: CastTo>(self: Self) -> Own<<U as >::Target>` — [`Own`](#own), [`CastTo`](#castto)
+- <span id="own-cast"></span>`fn cast<U: CastTo>(self) -> Own<<U as >::Target>` — [`Own`](#own), [`CastTo`](#castto)
 
-- `unsafe fn boxed(self: Self) -> Box<T>`
+- <span id="own-boxed"></span>`unsafe fn boxed(self) -> Box<T>`
 
-- `const fn by_ref<'a>(self: &Self) -> Ref<'a, T>` — [`Ref`](#ref)
+- <span id="own-by-ref"></span>`const fn by_ref<'a>(&self) -> Ref<'a, T>` — [`Ref`](#ref)
 
-- `fn by_mut<'a>(self: Self) -> Mut<'a, T>` — [`Mut`](#mut)
+- <span id="own-by-mut"></span>`fn by_mut<'a>(self) -> Mut<'a, T>` — [`Mut`](#mut)
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Own<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="own-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Copy for Own<T>`
 
@@ -55,27 +66,29 @@ where
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:64-70`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/ptr.rs#L64-L70)*
+
 A raw pointer that represents a shared borrow of its pointee
 
 #### Implementations
 
-- `fn new(ptr: &'a T) -> Self`
+- <span id="ref-new"></span>`fn new(ptr: &'a T) -> Self`
 
-- `const fn from_raw(ptr: NonNull<T>) -> Self`
+- <span id="ref-from-raw"></span>`const fn from_raw(ptr: NonNull<T>) -> Self`
 
-- `fn cast<U: CastTo>(self: Self) -> Ref<'a, <U as >::Target>` — [`Ref`](#ref), [`CastTo`](#castto)
+- <span id="ref-cast"></span>`fn cast<U: CastTo>(self) -> Ref<'a, <U as >::Target>` — [`Ref`](#ref), [`CastTo`](#castto)
 
-- `fn by_mut(self: Self) -> Mut<'a, T>` — [`Mut`](#mut)
+- <span id="ref-by-mut"></span>`fn by_mut(self) -> Mut<'a, T>` — [`Mut`](#mut)
 
-- `const fn as_ptr(self: Self) -> *const T`
+- <span id="ref-as-ptr"></span>`const fn as_ptr(self) -> *const T`
 
-- `unsafe fn deref(self: Self) -> &'a T`
+- <span id="ref-deref"></span>`unsafe fn deref(self) -> &'a T`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Ref<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="ref-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Copy for Ref<'_, T>`
 
@@ -92,23 +105,25 @@ where
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:127-133`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/ptr.rs#L127-L133)*
+
 A raw pointer that represents a unique borrow of its pointee
 
 #### Implementations
 
-- `fn cast<U: CastTo>(self: Self) -> Mut<'a, <U as >::Target>` — [`Mut`](#mut), [`CastTo`](#castto)
+- <span id="mut-cast"></span>`fn cast<U: CastTo>(self) -> Mut<'a, <U as >::Target>` — [`Mut`](#mut), [`CastTo`](#castto)
 
-- `const fn by_ref(self: Self) -> Ref<'a, T>` — [`Ref`](#ref)
+- <span id="mut-by-ref"></span>`const fn by_ref(self) -> Ref<'a, T>` — [`Ref`](#ref)
 
-- `fn extend<'b>(self: Self) -> Mut<'b, T>` — [`Mut`](#mut)
+- <span id="mut-extend"></span>`fn extend<'b>(self) -> Mut<'b, T>` — [`Mut`](#mut)
 
-- `unsafe fn deref_mut(self: Self) -> &'a mut T`
+- <span id="mut-deref-mut"></span>`unsafe fn deref_mut(self) -> &'a mut T`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Mut<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="mut-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Copy for Mut<'_, T>`
 
@@ -122,7 +137,13 @@ A raw pointer that represents a unique borrow of its pointee
 trait CastTo { ... }
 ```
 
-#### Required Methods
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:182-184`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/ptr.rs#L182-L184)*
+
+#### Associated Types
 
 - `type Target`
+
+#### Implementors
+
+- `T`
 

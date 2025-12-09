@@ -4,6 +4,16 @@
 
 # Module `stream_safe`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`StreamSafe`](#streamsafe) | struct | [UAX15-D4]: This iterator keeps track of how many non-starters there have been since the last starter in *NFKD* and will emit a Combining Grapheme Joiner (U+034F) if the count exceeds 30. |
+| [`Decomposition`](#decomposition) | struct |  |
+| [`classify_nonstarters`](#classify_nonstarters) | fn |  |
+| [`MAX_NONSTARTERS`](#max_nonstarters) | const |  |
+| [`COMBINING_GRAPHEME_JOINER`](#combining_grapheme_joiner) | const |  |
+
 ## Structs
 
 ### `StreamSafe<I>`
@@ -16,6 +26,8 @@ struct StreamSafe<I> {
 }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:18-22`](../../../.source_1765210505/unicode-normalization-0.1.25/src/stream_safe.rs#L18-L22)*
+
 [UAX15-D4]: This iterator keeps track of how many non-starters there have been
 since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 (U+034F) if the count exceeds 30.
@@ -23,7 +35,7 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 #### Implementations
 
-- `fn new(iter: I) -> Self`
+- <span id="streamsafe-new"></span>`fn new(iter: I) -> Self`
 
 #### Trait Implementations
 
@@ -31,31 +43,31 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 ##### `impl<I> IntoIterator for StreamSafe<I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="streamsafe-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="streamsafe-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="streamsafe-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for StreamSafe<I>`
 
-- `type Item = char`
+- <span id="streamsafe-type-item"></span>`type Item = char`
 
-- `fn next(self: &mut Self) -> Option<char>`
+- <span id="streamsafe-next"></span>`fn next(&mut self) -> Option<char>`
 
 ##### `impl<I> UnicodeNormalization for StreamSafe<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="streamsafe-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="streamsafe-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="streamsafe-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="streamsafe-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../index.md)
+- <span id="streamsafe-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
+- <span id="streamsafe-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](#streamsafe)
 
 ### `Decomposition`
 
@@ -67,11 +79,13 @@ struct Decomposition {
 }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:71-75`](../../../.source_1765210505/unicode-normalization-0.1.25/src/stream_safe.rs#L71-L75)*
+
 #### Trait Implementations
 
 ##### `impl Debug for Decomposition`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="decomposition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 
@@ -81,17 +95,21 @@ struct Decomposition {
 fn classify_nonstarters(c: char) -> Decomposition
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:78-112`](../../../.source_1765210505/unicode-normalization-0.1.25/src/stream_safe.rs#L78-L112)*
+
 ## Constants
 
 ### `MAX_NONSTARTERS`
-
 ```rust
 const MAX_NONSTARTERS: usize = 30usize;
 ```
 
-### `COMBINING_GRAPHEME_JOINER`
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:10`](../../../.source_1765210505/unicode-normalization-0.1.25/src/stream_safe.rs#L10)*
 
+### `COMBINING_GRAPHEME_JOINER`
 ```rust
 const COMBINING_GRAPHEME_JOINER: char = '\u{34f}';
 ```
+
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:11`](../../../.source_1765210505/unicode-normalization-0.1.25/src/stream_safe.rs#L11)*
 

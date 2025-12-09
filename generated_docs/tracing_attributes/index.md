@@ -51,10 +51,21 @@ supported compiler version is not considered a semver breaking change as
 long as doing so complies with this policy.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`attr`](#attr) | mod |  |
+| [`expand`](#expand) | mod |  |
+| [`MaybeItemFn`](#maybeitemfn) | struct | This is a more flexible/imprecise `ItemFn` type, which's block is just a `TokenStream` (it may contain invalid code). |
+| [`MaybeItemFnRef`](#maybeitemfnref) | struct | A generic reference type for `MaybeItemFn`, that takes a generic block type `B` that implements `ToTokens` (eg. |
+| [`instrument_speculative`](#instrument_speculative) | fn | Instrument the function, without parsing the function body (instead using the raw tokens). |
+| [`instrument_precise`](#instrument_precise) | fn | Instrument the function, by fully parsing the function body, which allows us to rewrite some statements related to async-like patterns. |
+
 ## Modules
 
-- [`attr`](attr/index.md) - 
-- [`expand`](expand/index.md) - 
+- [`attr`](attr/index.md)
+- [`expand`](expand/index.md)
 
 ## Structs
 
@@ -71,26 +82,28 @@ struct MaybeItemFn {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/lib.rs:638-645`](../../.source_1765210505/tracing-attributes-0.1.31/src/lib.rs#L638-L645)*
+
 This is a more flexible/imprecise `ItemFn` type,
 which's block is just a `TokenStream` (it may contain invalid code).
 
 #### Implementations
 
-- `fn as_ref(self: &Self) -> MaybeItemFnRef<'_, TokenStream>` — [`MaybeItemFnRef`](#maybeitemfnref)
+- <span id="maybeitemfn-as-ref"></span>`fn as_ref(&self) -> MaybeItemFnRef<'_, TokenStream>` — [`MaybeItemFnRef`](#maybeitemfnref)
 
 #### Trait Implementations
 
 ##### `impl Clone for MaybeItemFn`
 
-- `fn clone(self: &Self) -> MaybeItemFn` — [`MaybeItemFn`](#maybeitemfn)
+- <span id="maybeitemfn-clone"></span>`fn clone(&self) -> MaybeItemFn` — [`MaybeItemFn`](#maybeitemfn)
 
 ##### `impl Debug for MaybeItemFn`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="maybeitemfn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Parse for MaybeItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="maybeitemfn-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ### `MaybeItemFnRef<'a, B: ToTokens>`
 
@@ -105,18 +118,20 @@ struct MaybeItemFnRef<'a, B: ToTokens> {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/lib.rs:710-717`](../../.source_1765210505/tracing-attributes-0.1.31/src/lib.rs#L710-L717)*
+
 A generic reference type for `MaybeItemFn`,
 that takes a generic block type `B` that implements `ToTokens` (eg. `TokenStream`, `Block`).
 
 #### Trait Implementations
 
-##### `impl<'a, B: $crate::clone::Clone + ToTokens> Clone for MaybeItemFnRef<'a, B>`
+##### `impl<'a, B: clone::Clone + ToTokens> Clone for MaybeItemFnRef<'a, B>`
 
-- `fn clone(self: &Self) -> MaybeItemFnRef<'a, B>` — [`MaybeItemFnRef`](#maybeitemfnref)
+- <span id="maybeitemfnref-clone"></span>`fn clone(&self) -> MaybeItemFnRef<'a, B>` — [`MaybeItemFnRef`](#maybeitemfnref)
 
-##### `impl<'a, B: $crate::fmt::Debug + ToTokens> Debug for MaybeItemFnRef<'a, B>`
+##### `impl<'a, B: fmt::Debug + ToTokens> Debug for MaybeItemFnRef<'a, B>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="maybeitemfnref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 
@@ -126,6 +141,8 @@ that takes a generic block type `B` that implements `ToTokens` (eg. `TokenStream
 fn instrument_speculative(args: attr::InstrumentArgs, item: proc_macro::TokenStream) -> proc_macro::TokenStream
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/lib.rs:587-600`](../../.source_1765210505/tracing-attributes-0.1.31/src/lib.rs#L587-L600)*
+
 Instrument the function, without parsing the function body (instead using the raw tokens).
 
 ### `instrument_precise`
@@ -133,6 +150,8 @@ Instrument the function, without parsing the function body (instead using the ra
 ```rust
 fn instrument_precise(args: attr::InstrumentArgs, item: proc_macro::TokenStream) -> Result<proc_macro::TokenStream, syn::Error>
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/lib.rs:604-633`](../../.source_1765210505/tracing-attributes-0.1.31/src/lib.rs#L604-L633)*
 
 Instrument the function, by fully parsing the function body,
 which allows us to rewrite some statements related to async-like patterns.

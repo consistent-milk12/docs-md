@@ -4,6 +4,14 @@
 
 # Module `empty`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Empty`](#empty) | struct | Iterator adaptor for [the `empty()` function]. |
+| [`EmptyProducer`](#emptyproducer) | struct | Private empty producer |
+| [`empty`](#empty) | fn | Creates a parallel iterator that produces nothing. |
+
 ## Structs
 
 ### `Empty<T>`
@@ -14,6 +22,8 @@ struct Empty<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:33-35`](../../../../.source_1765210505/rayon-1.11.0/src/iter/empty.rs#L33-L35)*
+
 Iterator adaptor for [the `empty()` function].
 
 
@@ -21,57 +31,59 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T> Clone for Empty<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="empty-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: Send> Debug for Empty<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="empty-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Send> IndexedParallelIterator for Empty<T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="empty-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="empty-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="empty-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for Empty<T>`
 
 ##### `impl<T> IntoParallelIterator for Empty<T>`
 
-- `type Iter = T`
+- <span id="empty-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="empty-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="empty-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Empty<T>`
 
-- `type Item = T`
+- <span id="empty-type-item"></span>`type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="empty-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="empty-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Empty<T>`
 
-- `const ALIGN: usize`
+- <span id="empty-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="empty-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="empty-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="empty-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="empty-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="empty-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `EmptyProducer<T: Send>`
 
 ```rust
 struct EmptyProducer<T: Send>(std::marker::PhantomData<T>);
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:87`](../../../../.source_1765210505/rayon-1.11.0/src/iter/empty.rs#L87)*
 
 Private empty producer
 
@@ -81,29 +93,29 @@ Private empty producer
 
 ##### `impl<T> Pointable for EmptyProducer<T>`
 
-- `const ALIGN: usize`
+- <span id="emptyproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="emptyproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="emptyproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="emptyproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="emptyproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="emptyproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Producer for EmptyProducer<T>`
 
-- `type Item = T`
+- <span id="emptyproducer-type-item"></span>`type Item = T`
 
-- `type IntoIter = Empty<T>`
+- <span id="emptyproducer-type-intoiter"></span>`type IntoIter = Empty<T>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="emptyproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="emptyproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="emptyproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ## Functions
 
@@ -112,6 +124,8 @@ Private empty producer
 ```rust
 fn empty<T: Send>() -> Empty<T>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:24-28`](../../../../.source_1765210505/rayon-1.11.0/src/iter/empty.rs#L24-L28)*
 
 Creates a parallel iterator that produces nothing.
 

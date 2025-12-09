@@ -4,6 +4,14 @@
 
 # Module `date`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Date`](#date) | struct |  |
+| [`parse`](#parse) | fn |  |
+| [`try_parse`](#try_parse) | fn |  |
+
 ## Structs
 
 ### `Date`
@@ -16,41 +24,43 @@ struct Date {
 }
 ```
 
+*Defined in [`rustversion-1.0.22/src/date.rs:8-12`](../../../.source_1765210505/rustversion-1.0.22/src/date.rs#L8-L12)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Date`
 
-- `fn clone(self: &Self) -> Date` — [`Date`](#date)
+- <span id="date-clone"></span>`fn clone(&self) -> Date` — [`Date`](#date)
 
 ##### `impl Copy for Date`
 
 ##### `impl Debug for Date`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="date-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Date`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="date-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Date`
 
 ##### `impl Ord for Date`
 
-- `fn cmp(self: &Self, other: &Date) -> $crate::cmp::Ordering` — [`Date`](#date)
+- <span id="date-cmp"></span>`fn cmp(&self, other: &Date) -> cmp::Ordering` — [`Date`](#date)
 
 ##### `impl PartialEq for Date`
 
-- `fn eq(self: &Self, other: &Date) -> bool` — [`Date`](#date)
+- <span id="date-eq"></span>`fn eq(&self, other: &Date) -> bool` — [`Date`](#date)
 
 ##### `impl PartialOrd for Date`
 
-- `fn partial_cmp(self: &Self, other: &Date) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Date`](#date)
+- <span id="date-partial-cmp"></span>`fn partial_cmp(&self, other: &Date) -> option::Option<cmp::Ordering>` — [`Date`](#date)
 
 ##### `impl StructuralPartialEq for Date`
 
-##### `impl<T> ToString for Date`
+##### `impl ToString for Date`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="date-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
 
@@ -60,9 +70,13 @@ struct Date {
 fn parse(paren: proc_macro::Group, iter: &'_ mut IterImpl) -> std::result::Result<Date, Error>
 ```
 
+*Defined in [`rustversion-1.0.22/src/date.rs:24-29`](../../../.source_1765210505/rustversion-1.0.22/src/date.rs#L24-L29)*
+
 ### `try_parse`
 
 ```rust
 fn try_parse(iter: &'_ mut IterImpl) -> std::result::Result<Date, ()>
 ```
+
+*Defined in [`rustversion-1.0.22/src/date.rs:31-50`](../../../.source_1765210505/rustversion-1.0.22/src/date.rs#L31-L50)*
 

@@ -7,6 +7,33 @@
 A stably addressed token buffer supporting efficient traversal based on a
 cheaply copyable cursor.
 
+## Contents
+
+- [Structs](#structs)
+  - [`TokenBuffer`](#tokenbuffer)
+  - [`Cursor`](#cursor)
+- [Enums](#enums)
+  - [`Entry`](#entry)
+- [Functions](#functions)
+  - [`same_scope`](#same_scope)
+  - [`same_buffer`](#same_buffer)
+  - [`start_of_buffer`](#start_of_buffer)
+  - [`cmp_assuming_same_buffer`](#cmp_assuming_same_buffer)
+  - [`open_span_of_group`](#open_span_of_group)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`TokenBuffer`](#tokenbuffer) | struct | A buffer that can be efficiently traversed multiple times, unlike `TokenStream` which requires a deep copy in order to traverse more than once. |
+| [`Cursor`](#cursor) | struct | A cheaply copyable cursor into a `TokenBuffer`. |
+| [`Entry`](#entry) | enum | Internal type which is used instead of `TokenTree` to represent a token tree within a `TokenBuffer`. |
+| [`same_scope`](#same_scope) | fn |  |
+| [`same_buffer`](#same_buffer) | fn |  |
+| [`start_of_buffer`](#start_of_buffer) | fn |  |
+| [`cmp_assuming_same_buffer`](#cmp_assuming_same_buffer) | fn |  |
+| [`open_span_of_group`](#open_span_of_group) | fn |  |
+
 ## Structs
 
 ### `TokenBuffer`
@@ -17,19 +44,21 @@ struct TokenBuffer {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/buffer.rs:33-37`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L33-L37)*
+
 A buffer that can be efficiently traversed multiple times, unlike
 `TokenStream` which requires a deep copy in order to traverse more than
 once.
 
 #### Implementations
 
-- `fn recursive_new(entries: &mut Vec<Entry>, stream: TokenStream)` — [`Entry`](#entry)
+- <span id="tokenbuffer-recursive-new"></span>`fn recursive_new(entries: &mut Vec<Entry>, stream: TokenStream)` — [`Entry`](#entry)
 
-- `fn new(stream: proc_macro::TokenStream) -> Self`
+- <span id="tokenbuffer-new"></span>`fn new(stream: proc_macro::TokenStream) -> Self`
 
-- `fn new2(stream: TokenStream) -> Self`
+- <span id="tokenbuffer-new2"></span>`fn new2(stream: TokenStream) -> Self`
 
-- `fn begin(self: &Self) -> Cursor<'_>` — [`Cursor`](#cursor)
+- <span id="tokenbuffer-begin"></span>`fn begin(&self) -> Cursor<'_>` — [`Cursor`](#cursor)
 
 ### `Cursor<'a>`
 
@@ -40,6 +69,8 @@ struct Cursor<'a> {
     marker: std::marker::PhantomData<&'a Entry>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/buffer.rs:97-106`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L97-L106)*
 
 A cheaply copyable cursor into a `TokenBuffer`.
 
@@ -52,61 +83,61 @@ object and get a cursor to its first token with `begin()`.
 
 #### Implementations
 
-- `fn empty() -> Self`
+- <span id="cursor-empty"></span>`fn empty() -> Self`
 
-- `unsafe fn create(ptr: *const Entry, scope: *const Entry) -> Self` — [`Entry`](#entry)
+- <span id="cursor-create"></span>`unsafe fn create(ptr: *const Entry, scope: *const Entry) -> Self` — [`Entry`](#entry)
 
-- `fn entry(self: Self) -> &'a Entry` — [`Entry`](#entry)
+- <span id="cursor-entry"></span>`fn entry(self) -> &'a Entry` — [`Entry`](#entry)
 
-- `unsafe fn bump_ignore_group(self: Self) -> Cursor<'a>` — [`Cursor`](#cursor)
+- <span id="cursor-bump-ignore-group"></span>`unsafe fn bump_ignore_group(self) -> Cursor<'a>` — [`Cursor`](#cursor)
 
-- `fn ignore_none(self: &mut Self)`
+- <span id="cursor-ignore-none"></span>`fn ignore_none(&mut self)`
 
-- `fn eof(self: Self) -> bool`
+- <span id="cursor-eof"></span>`fn eof(self) -> bool`
 
-- `fn ident(self: Self) -> Option<(Ident, Cursor<'a>)>` — [`Ident`](../index.md), [`Cursor`](#cursor)
+- <span id="cursor-ident"></span>`fn ident(self) -> Option<(Ident, Cursor<'a>)>` — [`Ident`](../ident/index.md), [`Cursor`](#cursor)
 
-- `fn punct(self: Self) -> Option<(Punct, Cursor<'a>)>` — [`Cursor`](#cursor)
+- <span id="cursor-punct"></span>`fn punct(self) -> Option<(Punct, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn literal(self: Self) -> Option<(Literal, Cursor<'a>)>` — [`Cursor`](#cursor)
+- <span id="cursor-literal"></span>`fn literal(self) -> Option<(Literal, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn lifetime(self: Self) -> Option<(Lifetime, Cursor<'a>)>` — [`Lifetime`](../index.md), [`Cursor`](#cursor)
+- <span id="cursor-lifetime"></span>`fn lifetime(self) -> Option<(Lifetime, Cursor<'a>)>` — [`Lifetime`](../lifetime/index.md), [`Cursor`](#cursor)
 
-- `fn group(self: Self, delim: Delimiter) -> Option<(Cursor<'a>, DelimSpan, Cursor<'a>)>` — [`Cursor`](#cursor)
+- <span id="cursor-group"></span>`fn group(self, delim: Delimiter) -> Option<(Cursor<'a>, DelimSpan, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn any_group(self: Self) -> Option<(Cursor<'a>, Delimiter, DelimSpan, Cursor<'a>)>` — [`Cursor`](#cursor)
+- <span id="cursor-any-group"></span>`fn any_group(self) -> Option<(Cursor<'a>, Delimiter, DelimSpan, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn any_group_token(self: Self) -> Option<(Group, Cursor<'a>)>` — [`Cursor`](#cursor)
+- <span id="cursor-any-group-token"></span>`fn any_group_token(self) -> Option<(Group, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn token_stream(self: Self) -> TokenStream`
+- <span id="cursor-token-stream"></span>`fn token_stream(self) -> TokenStream`
 
-- `fn token_tree(self: Self) -> Option<(TokenTree, Cursor<'a>)>` — [`Cursor`](#cursor)
+- <span id="cursor-token-tree"></span>`fn token_tree(self) -> Option<(TokenTree, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn span(self: Self) -> Span`
+- <span id="cursor-span"></span>`fn span(self) -> Span`
 
-- `fn prev_span(self: Self) -> Span`
+- <span id="cursor-prev-span"></span>`fn prev_span(self) -> Span`
 
-- `fn skip(self: Self) -> Option<Cursor<'a>>` — [`Cursor`](#cursor)
+- <span id="cursor-skip"></span>`fn skip(self) -> Option<Cursor<'a>>` — [`Cursor`](#cursor)
 
-- `fn scope_delimiter(self: Self) -> Delimiter`
+- <span id="cursor-scope-delimiter"></span>`fn scope_delimiter(self) -> Delimiter`
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Cursor<'a>`
+##### `impl Clone for Cursor<'a>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cursor-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a> Copy for Cursor<'a>`
+##### `impl Copy for Cursor<'a>`
 
-##### `impl<'a> Eq for Cursor<'a>`
+##### `impl Eq for Cursor<'a>`
 
-##### `impl<'a> PartialEq for Cursor<'a>`
+##### `impl PartialEq for Cursor<'a>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cursor-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<'a> PartialOrd for Cursor<'a>`
+##### `impl PartialOrd for Cursor<'a>`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<Ordering>`
+- <span id="cursor-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
 ## Enums
 
@@ -122,6 +153,8 @@ enum Entry {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/buffer.rs:18-28`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L18-L28)*
+
 Internal type which is used instead of `TokenTree` to represent a token tree
 within a `TokenBuffer`.
 
@@ -133,11 +166,15 @@ within a `TokenBuffer`.
 fn same_scope(a: Cursor<'_>, b: Cursor<'_>) -> bool
 ```
 
+*Defined in [`syn-2.0.111/src/buffer.rs:409-411`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L409-L411)*
+
 ### `same_buffer`
 
 ```rust
 fn same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> bool
 ```
+
+*Defined in [`syn-2.0.111/src/buffer.rs:413-415`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L413-L415)*
 
 ### `start_of_buffer`
 
@@ -145,15 +182,21 @@ fn same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> bool
 fn start_of_buffer(cursor: Cursor<'_>) -> *const Entry
 ```
 
+*Defined in [`syn-2.0.111/src/buffer.rs:417-424`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L417-L424)*
+
 ### `cmp_assuming_same_buffer`
 
 ```rust
 fn cmp_assuming_same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> std::cmp::Ordering
 ```
 
+*Defined in [`syn-2.0.111/src/buffer.rs:426-428`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L426-L428)*
+
 ### `open_span_of_group`
 
 ```rust
 fn open_span_of_group(cursor: Cursor<'_>) -> proc_macro2::Span
 ```
+
+*Defined in [`syn-2.0.111/src/buffer.rs:430-435`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L430-L435)*
 

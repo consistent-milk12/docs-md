@@ -15,6 +15,12 @@ use portable_atomic::hint;
 hint::spin_loop();
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`spin_loop`](#spin_loop) | fn | Emits a machine instruction to signal the processor that it is running in a busy-wait spin-loop ("spin lock"). |
+
 ## Functions
 
 ### `spin_loop`
@@ -22,6 +28,8 @@ hint::spin_loop();
 ```rust
 fn spin_loop()
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:530-533`](../../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L530-L533)*
 
 Emits a machine instruction to signal the processor that it is running in
 a busy-wait spin-loop ("spin lock").

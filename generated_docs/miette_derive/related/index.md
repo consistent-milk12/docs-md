@@ -4,6 +4,12 @@
 
 # Module `related`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Related`](#related) | struct |  |
+
 ## Structs
 
 ### `Related`
@@ -12,13 +18,15 @@
 struct Related(syn::Member);
 ```
 
+*Defined in [`miette-derive-7.6.0/src/related.rs:11`](../../../.source_1765210505/miette-derive-7.6.0/src/related.rs#L11)*
+
 #### Implementations
 
-- `fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
+- <span id="related-from-fields"></span>`fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
 
-- `fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
+- <span id="related-from-fields-vec"></span>`fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
 
-- `fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
+- <span id="related-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
 
-- `fn gen_struct(self: &Self) -> Option<TokenStream>`
+- <span id="related-gen-struct"></span>`fn gen_struct(&self) -> Option<TokenStream>`
 

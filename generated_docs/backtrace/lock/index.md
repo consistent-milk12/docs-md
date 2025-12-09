@@ -4,6 +4,14 @@
 
 # Module `lock`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`LockGuard`](#lockguard) | struct | A "Maybe" LockGuard |
+| [`lock`](#lock) | fn | Acquire a partially unsound(!!!) global re-entrant lock over backtrace's internals. |
+| [`LOCK_HELD`](#lock_held) | const |  |
+
 ## Structs
 
 ### `LockGuard`
@@ -12,13 +20,15 @@
 struct LockGuard(Option<std::sync::MutexGuard<'static, ()>>);
 ```
 
+*Defined in [`backtrace-0.3.76/src/lib.rs:145`](../../../.source_1765210505/backtrace-0.3.76/src/lib.rs#L145)*
+
 A "Maybe" LockGuard
 
 #### Trait Implementations
 
 ##### `impl Drop for LockGuard`
 
-- `fn drop(self: &mut Self)`
+- <span id="lockguard-drop"></span>`fn drop(&mut self)`
 
 ## Functions
 
@@ -27,6 +37,8 @@ A "Maybe" LockGuard
 ```rust
 fn lock() -> LockGuard
 ```
+
+*Defined in [`backtrace-0.3.76/src/lib.rs:217-228`](../../../.source_1765210505/backtrace-0.3.76/src/lib.rs#L217-L228)*
 
 Acquire a partially unsound(!!!) global re-entrant lock over
 backtrace's internals.
@@ -82,8 +94,9 @@ that prevents two backtraces from getting interleaved during printing.
 ## Constants
 
 ### `LOCK_HELD`
-
 ```rust
-const LOCK_HELD: $crate::thread::LocalKey<std::cell::Cell<bool>>;
+const LOCK_HELD: thread::LocalKey<std::cell::Cell<bool>>;
 ```
+
+*Defined in [`backtrace-0.3.76/src/lib.rs:150`](../../../.source_1765210505/backtrace-0.3.76/src/lib.rs#L150)*
 

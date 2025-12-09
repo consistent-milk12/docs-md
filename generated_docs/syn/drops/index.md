@@ -4,6 +4,13 @@
 
 # Module `drops`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NoDrop`](#nodrop) | struct |  |
+| [`TrivialDrop`](#trivialdrop) | trait |  |
+
 ## Structs
 
 ### `NoDrop<T: ?Sized>`
@@ -12,25 +19,27 @@
 struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 ```
 
+*Defined in [`syn-2.0.111/src/drops.rs:8`](../../../.source_1765210505/syn-2.0.111/src/drops.rs#L8)*
+
 #### Implementations
 
-- `fn new(value: T) -> Self`
+- <span id="nodrop-new"></span>`fn new(value: T) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized> Deref for NoDrop<T>`
 
-- `type Target = T`
+- <span id="nodrop-type-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="nodrop-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<T: ?Sized> DerefMut for NoDrop<T>`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="nodrop-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl<P, T> Receiver for NoDrop<T>`
 
-- `type Target = T`
+- <span id="nodrop-type-target"></span>`type Target = T`
 
 ## Traits
 
@@ -39,4 +48,16 @@ struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 ```rust
 trait TrivialDrop { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/drops.rs:32`](../../../.source_1765210505/syn-2.0.111/src/drops.rs#L32)*
+
+#### Implementors
+
+- [`PrivateIterMut`](../punctuated/index.md)
+- [`PrivateIter`](../punctuated/index.md)
+- `iter::Empty<T>`
+- `option::IntoIter<&T>`
+- `option::IntoIter<&mut T>`
+- `slice::Iter<'_, T>`
+- `slice::IterMut<'_, T>`
 

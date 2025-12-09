@@ -4,6 +4,12 @@
 
 # Module `ansi_colors`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AnsiColors`](#ansicolors) | enum | Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color) or [`OwoColorize::on_color`](OwoColorize::on_color) |
+
 ## Enums
 
 ### `AnsiColors`
@@ -30,6 +36,8 @@ enum AnsiColors {
 }
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+
 Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
 
@@ -37,31 +45,31 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for AnsiColors`
 
-- `fn clone(self: &Self) -> AnsiColors` — [`AnsiColors`](../../index.md)
+- <span id="ansicolors-clone"></span>`fn clone(&self) -> AnsiColors` — [`AnsiColors`](#ansicolors)
 
 ##### `impl Copy for AnsiColors`
 
 ##### `impl Debug for AnsiColors`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ansicolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for AnsiColors`
 
-- `fn fmt_ansi_fg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_ansi_bg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_raw_ansi_fg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_raw_ansi_bg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ansicolors-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AnsiColors`
 
-##### `impl<D> OwoColorize for AnsiColors`
+##### `impl OwoColorize for AnsiColors`
 
 ##### `impl PartialEq for AnsiColors`
 
-- `fn eq(self: &Self, other: &AnsiColors) -> bool` — [`AnsiColors`](../../index.md)
+- <span id="ansicolors-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](#ansicolors)
 
 ##### `impl StructuralPartialEq for AnsiColors`
 

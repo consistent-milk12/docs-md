@@ -15,6 +15,16 @@ syntax options across every builder (of which there are many), we instead
 create small config objects like this one that can be passed around and
 composed.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Config`](#config) | struct | A common set of configuration options that apply to the syntax of a regex. |
+| [`parse`](#parse) | fn | A convenience routine for parsing a pattern into an HIR value with the default configuration. |
+| [`parse_many`](#parse_many) | fn | A convenience routine for parsing many patterns into HIR value with the default configuration. |
+| [`parse_with`](#parse_with) | fn | A convenience routine for parsing a pattern into an HIR value using a `Config`. |
+| [`parse_many_with`](#parse_many_with) | fn | A convenience routine for parsing many patterns into HIR values using a `Config`. |
+
 ## Structs
 
 ### `Config`
@@ -35,6 +45,8 @@ struct Config {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:145-157`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/syntax.rs#L145-L157)*
+
 A common set of configuration options that apply to the syntax of a regex.
 
 This represents a group of configuration options that specifically apply
@@ -51,73 +63,73 @@ are instead provided here as one cohesive unit.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](#config)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- `fn case_insensitive(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-case-insensitive"></span>`fn case_insensitive(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn multi_line(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-multi-line"></span>`fn multi_line(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn dot_matches_new_line(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-dot-matches-new-line"></span>`fn dot_matches_new_line(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn crlf(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-crlf"></span>`fn crlf(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn line_terminator(self: Self, byte: u8) -> Config` — [`Config`](#config)
+- <span id="config-line-terminator"></span>`fn line_terminator(self, byte: u8) -> Config` — [`Config`](#config)
 
-- `fn swap_greed(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-swap-greed"></span>`fn swap_greed(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn ignore_whitespace(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-ignore-whitespace"></span>`fn ignore_whitespace(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn unicode(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-unicode"></span>`fn unicode(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn utf8(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-utf8"></span>`fn utf8(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn nest_limit(self: Self, limit: u32) -> Config` — [`Config`](#config)
+- <span id="config-nest-limit"></span>`fn nest_limit(self, limit: u32) -> Config` — [`Config`](#config)
 
-- `fn octal(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-octal"></span>`fn octal(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn get_unicode(self: &Self) -> bool`
+- <span id="config-get-unicode"></span>`fn get_unicode(&self) -> bool`
 
-- `fn get_case_insensitive(self: &Self) -> bool`
+- <span id="config-get-case-insensitive"></span>`fn get_case_insensitive(&self) -> bool`
 
-- `fn get_multi_line(self: &Self) -> bool`
+- <span id="config-get-multi-line"></span>`fn get_multi_line(&self) -> bool`
 
-- `fn get_dot_matches_new_line(self: &Self) -> bool`
+- <span id="config-get-dot-matches-new-line"></span>`fn get_dot_matches_new_line(&self) -> bool`
 
-- `fn get_crlf(self: &Self) -> bool`
+- <span id="config-get-crlf"></span>`fn get_crlf(&self) -> bool`
 
-- `fn get_line_terminator(self: &Self) -> u8`
+- <span id="config-get-line-terminator"></span>`fn get_line_terminator(&self) -> u8`
 
-- `fn get_swap_greed(self: &Self) -> bool`
+- <span id="config-get-swap-greed"></span>`fn get_swap_greed(&self) -> bool`
 
-- `fn get_ignore_whitespace(self: &Self) -> bool`
+- <span id="config-get-ignore-whitespace"></span>`fn get_ignore_whitespace(&self) -> bool`
 
-- `fn get_utf8(self: &Self) -> bool`
+- <span id="config-get-utf8"></span>`fn get_utf8(&self) -> bool`
 
-- `fn get_nest_limit(self: &Self) -> u32`
+- <span id="config-get-nest-limit"></span>`fn get_nest_limit(&self) -> u32`
 
-- `fn get_octal(self: &Self) -> bool`
+- <span id="config-get-octal"></span>`fn get_octal(&self) -> bool`
 
-- `fn apply(self: &Self, builder: &mut ParserBuilder)`
+- <span id="config-apply"></span>`fn apply(&self, builder: &mut ParserBuilder)`
 
-- `fn apply_ast(self: &Self, builder: &mut ast::parse::ParserBuilder)`
+- <span id="config-apply-ast"></span>`fn apply_ast(&self, builder: &mut ast::parse::ParserBuilder)`
 
-- `fn apply_hir(self: &Self, builder: &mut hir::translate::TranslatorBuilder)`
+- <span id="config-apply-hir"></span>`fn apply_hir(&self, builder: &mut hir::translate::TranslatorBuilder)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](#config)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
 ##### `impl Copy for Config`
 
 ##### `impl Debug for Config`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](#config)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
 
 ## Functions
 
@@ -126,6 +138,8 @@ are instead provided here as one cohesive unit.
 ```rust
 fn parse(pattern: &str) -> Result<regex_syntax::hir::Hir, regex_syntax::Error>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:37-39`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/syntax.rs#L37-L39)*
 
 A convenience routine for parsing a pattern into an HIR value with the
 default configuration.
@@ -148,6 +162,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 ```rust
 fn parse_many<P: AsRef<str>>(patterns: &[P]) -> Result<alloc::vec::Vec<regex_syntax::hir::Hir>, regex_syntax::Error>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:63-65`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/syntax.rs#L63-L65)*
 
 A convenience routine for parsing many patterns into HIR value with the
 default configuration.
@@ -178,6 +194,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 fn parse_with(pattern: &str, config: &Config) -> Result<regex_syntax::hir::Hir, regex_syntax::Error>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:86-90`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/syntax.rs#L86-L90)*
+
 A convenience routine for parsing a pattern into an HIR value using a
 `Config`.
 
@@ -203,6 +221,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 ```rust
 fn parse_many_with<P: AsRef<str>>(patterns: &[P], config: &Config) -> Result<alloc::vec::Vec<regex_syntax::hir::Hir>, regex_syntax::Error>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/syntax.rs:118-129`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/syntax.rs#L118-L129)*
 
 A convenience routine for parsing many patterns into HIR values using a
 `Config`.

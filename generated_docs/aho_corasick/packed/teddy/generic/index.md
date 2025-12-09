@@ -4,6 +4,18 @@
 
 # Module `generic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Match`](#match) | struct | A match type specialized to the Teddy implementations below. |
+| [`Slim`](#slim) | struct | A "slim" Teddy implementation that is generic over both the vector type and the minimum length of the patterns being searched for. |
+| [`Fat`](#fat) | struct | A "fat" Teddy implementation that is generic over both the vector type and the minimum length of the patterns being searched for. |
+| [`Teddy`](#teddy) | struct | The common elements of all "slim" and "fat" Teddy search implementations. |
+| [`Mask`](#mask) | struct | A vector generic mask for the low and high nybbles in a set of patterns. |
+| [`SlimMaskBuilder`](#slimmaskbuilder) | struct | Represents the low and high nybble masks that will be used during search. |
+| [`FatMaskBuilder`](#fatmaskbuilder) | struct | Represents the low and high nybble masks that will be used during "fat" Teddy search. |
+
 ## Structs
 
 ### `Match`
@@ -16,6 +28,8 @@ struct Match {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:26-30`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L26-L30)*
+
 A match type specialized to the Teddy implementations below.
 
 Essentially, instead of representing a match at byte offsets, we use
@@ -27,23 +41,23 @@ Also, the `PatternID` used here is a `u16`.
 
 #### Implementations
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../../index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
 
-- `fn start(self: &Self) -> *const u8`
+- <span id="match-start"></span>`fn start(&self) -> *const u8`
 
-- `fn end(self: &Self) -> *const u8`
+- <span id="match-end"></span>`fn end(&self) -> *const u8`
 
 #### Trait Implementations
 
 ##### `impl Clone for Match`
 
-- `fn clone(self: &Self) -> Match` — [`Match`](#match)
+- <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](#match)
 
 ##### `impl Copy for Match`
 
 ##### `impl Debug for Match`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="match-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Slim<V, const BYTES: usize>`
 
@@ -53,6 +67,8 @@ struct Slim<V, const BYTES: usize> {
     masks: [Mask<V>; BYTES],
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:54-60`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L54-L60)*
 
 A "slim" Teddy implementation that is generic over both the vector type
 and the minimum length of the patterns being searched for.
@@ -72,21 +88,21 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- `unsafe fn find(self: &Self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- <span id="slim-new"></span>`unsafe fn new(patterns: Arc<Patterns>) -> Slim<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Slim`](#slim)
 
-- `unsafe fn find_one(self: &Self, cur: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- <span id="slim-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `unsafe fn candidate(self: &Self, cur: *const u8) -> V`
+- <span id="slim-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
 #### Trait Implementations
 
-##### `impl<V: $crate::clone::Clone, const BYTES: usize> Clone for Slim<V, BYTES>`
+##### `impl<V: clone::Clone, const BYTES: usize> Clone for Slim<V, BYTES>`
 
-- `fn clone(self: &Self) -> Slim<V, BYTES>` — [`Slim`](#slim)
+- <span id="slim-clone"></span>`fn clone(&self) -> Slim<V, BYTES>` — [`Slim`](#slim)
 
-##### `impl<V: $crate::fmt::Debug, const BYTES: usize> Debug for Slim<V, BYTES>`
+##### `impl<V: fmt::Debug, const BYTES: usize> Debug for Slim<V, BYTES>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="slim-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Fat<V, const BYTES: usize>`
 
@@ -96,6 +112,8 @@ struct Fat<V, const BYTES: usize> {
     masks: [Mask<V>; BYTES],
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:387-393`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L387-L393)*
 
 A "fat" Teddy implementation that is generic over both the vector type
 and the minimum length of the patterns being searched for.
@@ -115,21 +133,21 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- `unsafe fn find(self: &Self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- <span id="fat-new"></span>`unsafe fn new(patterns: Arc<Patterns>) -> Fat<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Fat`](#fat)
 
-- `unsafe fn find_one(self: &Self, cur: *const u8, end: *const u8, prev0: &mut V, prev1: &mut V) -> Option<Match>` — [`Match`](#match)
+- <span id="fat-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `unsafe fn candidate(self: &Self, cur: *const u8, prev0: &mut V, prev1: &mut V) -> V`
+- <span id="fat-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
 #### Trait Implementations
 
-##### `impl<V: $crate::clone::Clone, const BYTES: usize> Clone for Fat<V, BYTES>`
+##### `impl<V: clone::Clone, const BYTES: usize> Clone for Fat<V, BYTES>`
 
-- `fn clone(self: &Self) -> Fat<V, BYTES>` — [`Fat`](#fat)
+- <span id="fat-clone"></span>`fn clone(&self) -> Fat<V, BYTES>` — [`Fat`](#fat)
 
-##### `impl<V: $crate::fmt::Debug, const BYTES: usize> Debug for Fat<V, BYTES>`
+##### `impl<V: fmt::Debug, const BYTES: usize> Debug for Fat<V, BYTES>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Teddy<const BUCKETS: usize>`
 
@@ -139,6 +157,8 @@ struct Teddy<const BUCKETS: usize> {
     buckets: [alloc::vec::Vec<crate::PatternID>; BUCKETS],
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:728-747`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L728-L747)*
 
 The common elements of all "slim" and "fat" Teddy search implementations.
 
@@ -169,17 +189,25 @@ be quite expensive if `N` is not a multiple of 2.
 
 #### Implementations
 
-- `unsafe fn verify<V: Vector>(self: &Self, cur: *const u8, end: *const u8, candidate: V) -> Option<Match>` — [`Match`](#match)
+- <span id="teddy-new"></span>`fn new(patterns: Arc<Patterns>) -> Teddy<BUCKETS>` — [`Patterns`](../../pattern/index.md), [`Teddy`](#teddy)
+
+- <span id="teddy-verify64"></span>`unsafe fn verify64(&self, cur: *const u8, end: *const u8, candidate_chunk: u64) -> Option<Match>` — [`Match`](#match)
+
+- <span id="teddy-verify-bucket"></span>`unsafe fn verify_bucket(&self, cur: *const u8, end: *const u8, bucket: usize) -> Option<Match>` — [`Match`](#match)
+
+- <span id="teddy-mask-len"></span>`fn mask_len(&self) -> usize`
+
+- <span id="teddy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
-##### `impl<const BUCKETS: usize> Clone for Teddy<BUCKETS>`
+##### `impl Clone for Teddy<BUCKETS>`
 
-- `fn clone(self: &Self) -> Teddy<BUCKETS>` — [`Teddy`](#teddy)
+- <span id="teddy-clone"></span>`fn clone(&self) -> Teddy<BUCKETS>` — [`Teddy`](#teddy)
 
-##### `impl<const BUCKETS: usize> Debug for Teddy<BUCKETS>`
+##### `impl Debug for Teddy<BUCKETS>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="teddy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Mask<V>`
 
@@ -189,6 +217,8 @@ struct Mask<V> {
     hi: V,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1016-1019`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1016-L1019)*
 
 A vector generic mask for the low and high nybbles in a set of patterns.
 Each 8-bit lane `j` in a vector corresponds to a bitset where the `i`th bit
@@ -208,25 +238,25 @@ if it's in the higher half.
 
 #### Implementations
 
-- `unsafe fn members1(chunk: V, masks: [Mask<V>; 1]) -> V` — [`Mask`](#mask)
+- <span id="mask-members1"></span>`unsafe fn members1(chunk: V, masks: [Mask<V>; 1]) -> V` — [`Mask`](#mask)
 
-- `unsafe fn members2(chunk: V, masks: [Mask<V>; 2]) -> (V, V)` — [`Mask`](#mask)
+- <span id="mask-members2"></span>`unsafe fn members2(chunk: V, masks: [Mask<V>; 2]) -> (V, V)` — [`Mask`](#mask)
 
-- `unsafe fn members3(chunk: V, masks: [Mask<V>; 3]) -> (V, V, V)` — [`Mask`](#mask)
+- <span id="mask-members3"></span>`unsafe fn members3(chunk: V, masks: [Mask<V>; 3]) -> (V, V, V)` — [`Mask`](#mask)
 
-- `unsafe fn members4(chunk: V, masks: [Mask<V>; 4]) -> (V, V, V, V)` — [`Mask`](#mask)
+- <span id="mask-members4"></span>`unsafe fn members4(chunk: V, masks: [Mask<V>; 4]) -> (V, V, V, V)` — [`Mask`](#mask)
 
 #### Trait Implementations
 
-##### `impl<V: $crate::clone::Clone> Clone for Mask<V>`
+##### `impl<V: clone::Clone> Clone for Mask<V>`
 
-- `fn clone(self: &Self) -> Mask<V>` — [`Mask`](#mask)
+- <span id="mask-clone"></span>`fn clone(&self) -> Mask<V>` — [`Mask`](#mask)
 
-##### `impl<V: $crate::marker::Copy> Copy for Mask<V>`
+##### `impl<V: marker::Copy> Copy for Mask<V>`
 
-##### `impl<V: $crate::fmt::Debug> Debug for Mask<V>`
+##### `impl<V: fmt::Debug> Debug for Mask<V>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mask-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SlimMaskBuilder`
 
@@ -236,6 +266,8 @@ struct SlimMaskBuilder {
     hi: [u8; 32],
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1178-1181`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1178-L1181)*
 
 Represents the low and high nybble masks that will be used during
 search. Each mask is 32 bytes wide, although only the first 16 bytes are
@@ -252,25 +284,25 @@ low and high masks together also results in 8-bit bitsets, but where bit
 
 #### Implementations
 
-- `fn add(self: &mut Self, bucket: usize, byte: u8)`
+- <span id="slimmaskbuilder-add"></span>`fn add(&mut self, bucket: usize, byte: u8)`
 
-- `unsafe fn build<V: Vector>(self: &Self) -> Mask<V>` — [`Mask`](#mask)
+- <span id="slimmaskbuilder-build"></span>`unsafe fn build<V: Vector>(&self) -> Mask<V>` — [`Mask`](#mask)
 
-- `unsafe fn from_teddy<const BYTES: usize, V: Vector>(teddy: &Teddy<8>) -> [Mask<V>; BYTES]` — [`Teddy`](#teddy), [`Mask`](#mask)
+- <span id="slimmaskbuilder-from-teddy"></span>`unsafe fn from_teddy<const BYTES: usize, V: Vector>(teddy: &Teddy<8>) -> [Mask<V>; BYTES]` — [`Teddy`](#teddy), [`Mask`](#mask)
 
 #### Trait Implementations
 
 ##### `impl Clone for SlimMaskBuilder`
 
-- `fn clone(self: &Self) -> SlimMaskBuilder` — [`SlimMaskBuilder`](#slimmaskbuilder)
+- <span id="slimmaskbuilder-clone"></span>`fn clone(&self) -> SlimMaskBuilder` — [`SlimMaskBuilder`](#slimmaskbuilder)
 
 ##### `impl Debug for SlimMaskBuilder`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="slimmaskbuilder-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for SlimMaskBuilder`
 
-- `fn default() -> SlimMaskBuilder` — [`SlimMaskBuilder`](#slimmaskbuilder)
+- <span id="slimmaskbuilder-default"></span>`fn default() -> SlimMaskBuilder` — [`SlimMaskBuilder`](#slimmaskbuilder)
 
 ### `FatMaskBuilder`
 
@@ -280,6 +312,8 @@ struct FatMaskBuilder {
     hi: [u8; 32],
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1288-1291`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1288-L1291)*
 
 Represents the low and high nybble masks that will be used during "fat"
 Teddy search.
@@ -299,25 +333,25 @@ the byte (0-15, inclusive) corresponds to the nybble.
 
 #### Implementations
 
-- `fn add(self: &mut Self, bucket: usize, byte: u8)`
+- <span id="fatmaskbuilder-add"></span>`fn add(&mut self, bucket: usize, byte: u8)`
 
-- `unsafe fn build<V: Vector>(self: &Self) -> Mask<V>` — [`Mask`](#mask)
+- <span id="fatmaskbuilder-build"></span>`unsafe fn build<V: Vector>(&self) -> Mask<V>` — [`Mask`](#mask)
 
-- `unsafe fn from_teddy<const BYTES: usize, V: Vector>(teddy: &Teddy<16>) -> [Mask<V>; BYTES]` — [`Teddy`](#teddy), [`Mask`](#mask)
+- <span id="fatmaskbuilder-from-teddy"></span>`unsafe fn from_teddy<const BYTES: usize, V: Vector>(teddy: &Teddy<16>) -> [Mask<V>; BYTES]` — [`Teddy`](#teddy), [`Mask`](#mask)
 
 #### Trait Implementations
 
 ##### `impl Clone for FatMaskBuilder`
 
-- `fn clone(self: &Self) -> FatMaskBuilder` — [`FatMaskBuilder`](#fatmaskbuilder)
+- <span id="fatmaskbuilder-clone"></span>`fn clone(&self) -> FatMaskBuilder` — [`FatMaskBuilder`](#fatmaskbuilder)
 
 ##### `impl Copy for FatMaskBuilder`
 
 ##### `impl Debug for FatMaskBuilder`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="fatmaskbuilder-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for FatMaskBuilder`
 
-- `fn default() -> FatMaskBuilder` — [`FatMaskBuilder`](#fatmaskbuilder)
+- <span id="fatmaskbuilder-default"></span>`fn default() -> FatMaskBuilder` — [`FatMaskBuilder`](#fatmaskbuilder)
 

@@ -3,6 +3,25 @@
 //! This module provides [`UnifiedLinkRegistry`] which maps item IDs across
 //! multiple crates to their documentation file paths, enabling cross-crate
 //! linking in the generated markdown.
+//!
+//! # `rustdoc_types` Path Types
+//!
+//! There are two distinct path representations in `rustdoc_types`:
+//!
+//! - **[`ItemSummary`]**: Contains metadata about items without full content.
+//!   - `path: Vec<String>` - Structured path segments like `["std", "vec", "Vec"]`
+//!   - `kind: ItemKind` - The item's kind (Struct, Enum, Trait, etc.)
+//!   - Use for: kind filtering, path lookups, metadata queries
+//!
+//! - **[`Item`]**: Full item content including inner details.
+//!   - `inner: ItemEnum` - The actual item content (Struct/Enum/Trait data)
+//!   - Use for: rendering, accessing item members, documentation content
+//!
+//! **Optimization tip**: When only the item kind is needed, prefer
+//! `krate.paths.get(&id).map(|p| p.kind)` over looking up the full `Item`.
+//!
+//! [`ItemSummary`]: rustdoc_types::ItemSummary
+//! [`Item`]: rustdoc_types::Item
 
 use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
@@ -140,7 +159,13 @@ impl UnifiedLinkRegistry {
         };
 
         // Register root module at index.md (no crate prefix in path)
-        self.register_item(crate_name, krate.root, crate_name, "index.md", ItemKind::Module);
+        self.register_item(
+            crate_name,
+            krate.root,
+            crate_name,
+            "index.md",
+            ItemKind::Module,
+        );
 
         // Strategy 1: Use the `paths` field to register all items by their canonical path
         // This catches items that are re-exported or in private modules
@@ -190,17 +215,27 @@ impl UnifiedLinkRegistry {
     }
 
     /// Convert `ItemEnum` to `ItemKind` for the name index.
-    fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind {
+    #[expect(clippy::match_same_arms)]
+    const fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind {
         match inner {
             ItemEnum::Module(_) => ItemKind::Module,
+
             ItemEnum::Struct(_) => ItemKind::Struct,
+
             ItemEnum::Enum(_) => ItemKind::Enum,
+
             ItemEnum::Trait(_) => ItemKind::Trait,
+
             ItemEnum::Function(_) => ItemKind::Function,
+
             ItemEnum::Constant { .. } => ItemKind::Constant,
+
             ItemEnum::TypeAlias(_) => ItemKind::TypeAlias,
+
             ItemEnum::Macro(_) => ItemKind::Macro,
+
             ItemEnum::Use(_) => ItemKind::Use,
+
             _ => ItemKind::Use, // Fallback for other types
         }
     }
@@ -282,9 +317,13 @@ impl UnifiedLinkRegistry {
                                 if !matches!(child.visibility, Visibility::Public) {
                                     continue;
                                 }
+
                                 let child_name = child.name.as_deref().unwrap_or("unnamed");
                                 let child_kind = Self::item_enum_to_kind(&child.inner);
-                                self.register_item(crate_name, *child_id, child_name, &file_path, child_kind);
+
+                                self.register_item(
+                                    crate_name, *child_id, child_name, &file_path, child_kind,
+                                );
                             }
                         }
                     }
@@ -294,21 +333,33 @@ impl UnifiedLinkRegistry {
                     let kind = use_item
                         .id
                         .and_then(|id| krate.index.get(&id))
-                        .map_or(ItemKind::Use, |target| Self::item_enum_to_kind(&target.inner));
+                        .map_or(ItemKind::Use, |target| {
+                            Self::item_enum_to_kind(&target.inner)
+                        });
+
                     self.register_item(crate_name, item_id, export_name, &file_path, kind);
 
-                    // Also register the TARGET item's ID to this path
-                    // This ensures links using the target ID resolve to the re-export location
-                    // instead of the original (possibly private) module location
-                    if let Some(target_id) = use_item.id {
-                        self.register_item(crate_name, target_id, export_name, &file_path, kind);
+                    // Also register the TARGET item's ID to this path, but ONLY if it's not
+                    // already registered. This ensures links to items defined in submodules
+                    // (and re-exported from parent modules) resolve to the original definition
+                    // location when generating docs for that submodule, rather than the
+                    // re-export location. Without this check, `TocEntry` defined in `toc/`
+                    // and re-exported from `generator/` would always link to `generator/index.md`
+                    // even when we're generating `toc/index.md` (where it should be `#tocentry`).
+                    if let Some(target_id) = use_item.id
+                        && !self.contains(crate_name, target_id)
+                    {
+                        self.register_item(
+                            crate_name, target_id, export_name, &file_path, kind,
+                        );
                     }
 
                     // For ALL re-exports, store the source path so we can
                     // resolve to the original definition (which has a heading)
                     if !use_item.source.is_empty() {
                         let key = (Str::from(crate_name), item_id);
-                        self.re_export_sources.insert(key, Str::from(use_item.source.as_str()));
+                        self.re_export_sources
+                            .insert(key, Str::from(use_item.source.as_str()));
                     }
                 }
             },
@@ -358,6 +409,7 @@ impl UnifiedLinkRegistry {
         use std::hash::BuildHasher;
         let borrowed = BorrowedKey(crate_name, id);
         let hash = self.item_names.hasher().hash_one(&borrowed);
+
         self.item_names
             .raw_entry()
             .from_hash(hash, |k| keys_match(k, &borrowed))
@@ -373,6 +425,7 @@ impl UnifiedLinkRegistry {
         use std::hash::BuildHasher;
         let borrowed = BorrowedKey(crate_name, id);
         let hash = self.re_export_sources.hasher().hash_one(&borrowed);
+
         self.re_export_sources
             .raw_entry()
             .from_hash(hash, |k| keys_match(k, &borrowed))
@@ -397,6 +450,7 @@ impl UnifiedLinkRegistry {
     #[must_use]
     pub fn resolve_reexport(&self, crate_name: &str, id: Id) -> Option<(Str, Id)> {
         let source = self.get_re_export_source(crate_name, id)?;
+
         self.resolve_path(source)
     }
 
@@ -431,9 +485,11 @@ impl UnifiedLinkRegistry {
                 trace!(resolved_crate = %crate_name, "Resolved to current crate (module)");
                 return Some(((*crate_name).clone(), *id));
             }
+
             // Otherwise take first match from current crate
             let (crate_name, id, _) = current_crate_candidates[0];
             trace!(resolved_crate = %crate_name, "Resolved to current crate");
+
             return Some((crate_name.clone(), *id));
         }
 
@@ -453,9 +509,11 @@ impl UnifiedLinkRegistry {
                     trace!(resolved_crate = %crate_name, "Resolved to primary crate (module)");
                     return Some(((*crate_name).clone(), *id));
                 }
+
                 // Otherwise take first match from primary crate
                 let (crate_name, id, _) = primary_candidates[0];
                 trace!(resolved_crate = %crate_name, "Resolved to primary crate");
+
                 return Some((crate_name.clone(), *id));
             }
         }
@@ -594,6 +652,7 @@ impl UnifiedLinkRegistry {
         use std::hash::BuildHasher;
         let borrowed = BorrowedKey(crate_name, id);
         let hash = self.item_paths.hasher().hash_one(&borrowed);
+
         self.item_paths
             .raw_entry()
             .from_hash(hash, |k| keys_match(k, &borrowed))
@@ -685,7 +744,13 @@ mod tests {
         let id = Id(123);
 
         // Insert using owned key
-        registry.register_item("my_crate", id, "MyType", "module/index.md", ItemKind::Struct);
+        registry.register_item(
+            "my_crate",
+            id,
+            "MyType",
+            "module/index.md",
+            ItemKind::Struct,
+        );
 
         // Lookup using borrowed key (zero-allocation)
         assert!(registry.contains("my_crate", id));

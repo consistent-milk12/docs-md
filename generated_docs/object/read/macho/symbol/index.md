@@ -4,6 +4,39 @@
 
 # Module `symbol`
 
+## Contents
+
+- [Structs](#structs)
+  - [`SymbolTable`](#symboltable)
+  - [`MachOSymbolTable`](#machosymboltable)
+  - [`MachOSymbolIterator`](#machosymboliterator)
+  - [`MachOSymbol`](#machosymbol)
+- [Traits](#traits)
+  - [`Nlist`](#nlist)
+- [Type Aliases](#type-aliases)
+  - [`MachOSymbolTable32`](#machosymboltable32)
+  - [`MachOSymbolTable64`](#machosymboltable64)
+  - [`MachOSymbolIterator32`](#machosymboliterator32)
+  - [`MachOSymbolIterator64`](#machosymboliterator64)
+  - [`MachOSymbol32`](#machosymbol32)
+  - [`MachOSymbol64`](#machosymbol64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SymbolTable`](#symboltable) | struct | A table of symbol entries in a Mach-O file. |
+| [`MachOSymbolTable`](#machosymboltable) | struct | A symbol table in a [`MachOFile`]. |
+| [`MachOSymbolIterator`](#machosymboliterator) | struct | An iterator for the symbols in a [`MachOFile`]. |
+| [`MachOSymbol`](#machosymbol) | struct | A symbol in a [`MachOFile`]. |
+| [`Nlist`](#nlist) | trait | A trait for generic access to [`macho::Nlist32`] and [`macho::Nlist64`]. |
+| [`MachOSymbolTable32`](#machosymboltable32) | type | A symbol table in a [`MachOFile32`](super::MachOFile32). |
+| [`MachOSymbolTable64`](#machosymboltable64) | type | A symbol table in a [`MachOFile64`](super::MachOFile64). |
+| [`MachOSymbolIterator32`](#machosymboliterator32) | type | An iterator for the symbols in a [`MachOFile32`](super::MachOFile32). |
+| [`MachOSymbolIterator64`](#machosymboliterator64) | type | An iterator for the symbols in a [`MachOFile64`](super::MachOFile64). |
+| [`MachOSymbol32`](#machosymbol32) | type | A symbol in a [`MachOFile32`](super::MachOFile32). |
+| [`MachOSymbol64`](#machosymbol64) | type | A symbol in a [`MachOFile64`](super::MachOFile64). |
+
 ## Structs
 
 ### `SymbolTable<'data, Mach: MachHeader, R>`
@@ -17,6 +50,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:23-29`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L23-L29)*
+
 A table of symbol entries in a Mach-O file.
 
 Also includes the string table used for the symbol names.
@@ -25,37 +60,37 @@ Returned by `macho::SymtabCommand::symbols`.
 
 #### Implementations
 
-- `fn new(symbols: &'data [<Mach as >::Nlist], strings: StringTable<'data, R>) -> Self` — [`MachHeader`](../index.md), [`StringTable`](../../index.md)
+- <span id="symboltable-new"></span>`fn new(symbols: &'data [<Mach as >::Nlist], strings: StringTable<'data, R>) -> Self` — [`MachHeader`](../index.md), [`StringTable`](../../index.md)
 
-- `fn strings(self: &Self) -> StringTable<'data, R>` — [`StringTable`](../../index.md)
+- <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../../index.md)
 
-- `fn iter(self: &Self) -> slice::Iter<'data, <Mach as >::Nlist>` — [`MachHeader`](../index.md)
+- <span id="symboltable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Mach as >::Nlist>` — [`MachHeader`](../index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="symboltable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="symboltable-len"></span>`fn len(&self) -> usize`
 
-- `fn symbol(self: &Self, index: SymbolIndex) -> Result<&'data <Mach as >::Nlist>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`MachHeader`](../index.md)
+- <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> Result<&'data <Mach as >::Nlist>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`MachHeader`](../index.md)
 
-- `fn map<Entry: SymbolMapEntry, F: Fn(&'data <Mach as >::Nlist) -> Option<Entry>>(self: &Self, f: F) -> SymbolMap<Entry>` — [`SymbolMap`](../../../index.md)
+- <span id="symboltable-map"></span>`fn map<Entry: SymbolMapEntry, F: Fn(&'data <Mach as >::Nlist) -> Option<Entry>>(&self, f: F) -> SymbolMap<Entry>` — [`SymbolMap`](../../../index.md)
 
-- `fn object_map(self: &Self, endian: <Mach as >::Endian) -> ObjectMap<'data>` — [`MachHeader`](../index.md), [`ObjectMap`](../../../index.md)
+- <span id="symboltable-object-map"></span>`fn object_map(&self, endian: <Mach as >::Endian) -> ObjectMap<'data>` — [`MachHeader`](../index.md), [`ObjectMap`](../../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Mach: $crate::clone::Clone + MachHeader, R> Clone for SymbolTable<'data, Mach, R>`
+##### `impl<'data, Mach: clone::Clone + MachHeader, R> Clone for SymbolTable<'data, Mach, R>`
 
-- `fn clone(self: &Self) -> SymbolTable<'data, Mach, R>` — [`SymbolTable`](../index.md)
+- <span id="symboltable-clone"></span>`fn clone(&self) -> SymbolTable<'data, Mach, R>` — [`SymbolTable`](../index.md)
 
-##### `impl<'data, Mach: $crate::marker::Copy + MachHeader, R> Copy for SymbolTable<'data, Mach, R>`
+##### `impl<'data, Mach: marker::Copy + MachHeader, R> Copy for SymbolTable<'data, Mach, R>`
 
-##### `impl<'data, Mach: $crate::fmt::Debug + MachHeader, R> Debug for SymbolTable<'data, Mach, R>`
+##### `impl<'data, Mach: fmt::Debug + MachHeader, R> Debug for SymbolTable<'data, Mach, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Mach: MachHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Mach, R>`
 
-- `fn default() -> Self`
+- <span id="symboltable-default"></span>`fn default() -> Self`
 
 ### `MachOSymbolTable<'data, 'file, Mach, R>`
 
@@ -68,29 +103,31 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:184-190`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L184-L190)*
+
 A symbol table in a [`MachOFile`](../index.md).
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Mach, R> Clone for MachOSymbolTable<'data, 'file, Mach, R>`
 
-- `fn clone(self: &Self) -> MachOSymbolTable<'data, 'file, Mach, R>` — [`MachOSymbolTable`](../index.md)
+- <span id="machosymboltable-clone"></span>`fn clone(&self) -> MachOSymbolTable<'data, 'file, Mach, R>` — [`MachOSymbolTable`](../index.md)
 
 ##### `impl<'data, 'file, Mach, R> Copy for MachOSymbolTable<'data, 'file, Mach, R>`
 
 ##### `impl<'data, 'file, Mach, R> Debug for MachOSymbolTable<'data, 'file, Mach, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="machosymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Mach, R> ObjectSymbolTable for MachOSymbolTable<'data, 'file, Mach, R>`
 
-- `type Symbol = MachOSymbol<'data, 'file, Mach, R>`
+- <span id="machosymboltable-type-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
 
-- `type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
+- <span id="machosymboltable-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- `fn symbols(self: &Self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md)
+- <span id="machosymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md)
 
-- `fn symbol_by_index(self: &Self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`ObjectSymbolTable`](../../index.md)
+- <span id="machosymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`ObjectSymbolTable`](../../index.md)
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOSymbolTable<'data, 'file, Mach, R>`
 
@@ -106,33 +143,35 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:225-232`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L225-L232)*
+
 An iterator for the symbols in a [`MachOFile`](../index.md).
 
 #### Implementations
 
-- `fn new(file: &'file MachOFile<'data, Mach, R>) -> Self` — [`MachOFile`](../index.md)
+- <span id="machosymboliterator-new"></span>`fn new(file: &'file MachOFile<'data, Mach, R>) -> Self` — [`MachOFile`](../index.md)
 
-- `fn empty(file: &'file MachOFile<'data, Mach, R>) -> Self` — [`MachOFile`](../index.md)
+- <span id="machosymboliterator-empty"></span>`fn empty(file: &'file MachOFile<'data, Mach, R>) -> Self` — [`MachOFile`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Mach, R> Debug for MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="machosymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="machosymboliterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="machosymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Mach, R> Iterator for MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- `type Item = MachOSymbol<'data, 'file, Mach, R>`
+- <span id="machosymboliterator-type-item"></span>`type Item = MachOSymbol<'data, 'file, Mach, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="machosymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `MachOSymbol<'data, 'file, Mach, R>`
 
@@ -147,61 +186,63 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:294-302`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L294-L302)*
+
 A symbol in a [`MachOFile`](../index.md).
 
 Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait implementation.
 
 #### Implementations
 
-- `fn new(file: &'file MachOFile<'data, Mach, R>, index: SymbolIndex, nlist: &'data <Mach as >::Nlist) -> Option<Self>` — [`MachOFile`](../index.md), [`SymbolIndex`](../../../index.md), [`MachHeader`](../index.md)
+- <span id="machosymbol-new"></span>`fn new(file: &'file MachOFile<'data, Mach, R>, index: SymbolIndex, nlist: &'data <Mach as >::Nlist) -> Option<Self>` — [`MachOFile`](../index.md), [`SymbolIndex`](../../../index.md), [`MachHeader`](../index.md)
 
-- `fn macho_file(self: &Self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](../index.md)
+- <span id="machosymbol-macho-file"></span>`fn macho_file(&self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](../index.md)
 
-- `fn macho_symbol(self: &Self) -> &'data <Mach as >::Nlist` — [`MachHeader`](../index.md)
+- <span id="machosymbol-macho-symbol"></span>`fn macho_symbol(&self) -> &'data <Mach as >::Nlist` — [`MachHeader`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Mach, R> Clone for MachOSymbol<'data, 'file, Mach, R>`
 
-- `fn clone(self: &Self) -> MachOSymbol<'data, 'file, Mach, R>` — [`MachOSymbol`](../index.md)
+- <span id="machosymbol-clone"></span>`fn clone(&self) -> MachOSymbol<'data, 'file, Mach, R>` — [`MachOSymbol`](../index.md)
 
 ##### `impl<'data, 'file, Mach, R> Copy for MachOSymbol<'data, 'file, Mach, R>`
 
 ##### `impl<'data, 'file, Mach, R> Debug for MachOSymbol<'data, 'file, Mach, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="machosymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Mach, R> ObjectSymbol for MachOSymbol<'data, 'file, Mach, R>`
 
-- `fn index(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md)
+- <span id="machosymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="machosymbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../../index.md)
+- <span id="machosymbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="machosymbol-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="machosymbol-size"></span>`fn size(&self) -> u64`
 
-- `fn kind(self: &Self) -> SymbolKind` — [`SymbolKind`](../../../index.md)
+- <span id="machosymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../../index.md)
 
-- `fn section(self: &Self) -> SymbolSection` — [`SymbolSection`](../../../index.md)
+- <span id="machosymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../../index.md)
 
-- `fn is_undefined(self: &Self) -> bool`
+- <span id="machosymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
-- `fn is_definition(self: &Self) -> bool`
+- <span id="machosymbol-is-definition"></span>`fn is_definition(&self) -> bool`
 
-- `fn is_common(self: &Self) -> bool`
+- <span id="machosymbol-is-common"></span>`fn is_common(&self) -> bool`
 
-- `fn is_weak(self: &Self) -> bool`
+- <span id="machosymbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- `fn scope(self: &Self) -> SymbolScope` — [`SymbolScope`](../../../index.md)
+- <span id="machosymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../../index.md)
 
-- `fn is_global(self: &Self) -> bool`
+- <span id="machosymbol-is-global"></span>`fn is_global(&self) -> bool`
 
-- `fn is_local(self: &Self) -> bool`
+- <span id="machosymbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- `fn flags(self: &Self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md), [`SectionIndex`](../../../index.md), [`SymbolIndex`](../../../index.md)
+- <span id="machosymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md), [`SectionIndex`](../../../index.md), [`SymbolIndex`](../../../index.md)
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOSymbol<'data, 'file, Mach, R>`
 
@@ -213,41 +254,52 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 trait Nlist: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:457-504`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L457-L504)*
+
 A trait for generic access to [`macho::Nlist32`](../../../macho/index.md) and [`macho::Nlist64`](../../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
-- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32`
+#### Required Methods
 
-- `fn n_type(self: &Self) -> u8`
+- `fn n_strx(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn n_sect(self: &Self) -> u8`
+- `fn n_type(&self) -> u8`
 
-- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn n_sect(&self) -> u8`
 
-- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn n_desc(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
+- `fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn is_stab(self: &Self) -> bool`
+#### Provided Methods
+
+- `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
+
+- `fn is_stab(&self) -> bool`
 
   Return true if this is a STAB symbol.
 
-- `fn is_undefined(self: &Self) -> bool`
+- `fn is_undefined(&self) -> bool`
 
   Return true if this is an undefined symbol.
 
-- `fn is_definition(self: &Self) -> bool`
+- `fn is_definition(&self) -> bool`
 
   Return true if the symbol is a definition of a function or data object.
 
-- `fn library_ordinal(self: &Self, endian: <Self as >::Endian) -> u8`
+- `fn library_ordinal(&self, endian: <Self as >::Endian) -> u8`
 
   Return the library ordinal.
+
+#### Implementors
+
+- [`Nlist32`](../../../macho/index.md)
+- [`Nlist64`](../../../macho/index.md)
 
 ## Type Aliases
 
@@ -257,6 +309,8 @@ A trait for generic access to [`macho::Nlist32`](../../../macho/index.md) and [`
 type MachOSymbolTable32<'data, 'file, Endian, R> = MachOSymbolTable<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:176-177`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L176-L177)*
+
 A symbol table in a [`MachOFile32`](super::MachOFile32).
 
 ### `MachOSymbolTable64<'data, 'file, Endian, R>`
@@ -264,6 +318,8 @@ A symbol table in a [`MachOFile32`](super::MachOFile32).
 ```rust
 type MachOSymbolTable64<'data, 'file, Endian, R> = MachOSymbolTable<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:179-180`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L179-L180)*
 
 A symbol table in a [`MachOFile64`](super::MachOFile64).
 
@@ -273,6 +329,8 @@ A symbol table in a [`MachOFile64`](super::MachOFile64).
 type MachOSymbolIterator32<'data, 'file, Endian, R> = MachOSymbolIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:218-219`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L218-L219)*
+
 An iterator for the symbols in a [`MachOFile32`](super::MachOFile32).
 
 ### `MachOSymbolIterator64<'data, 'file, Endian, R>`
@@ -280,6 +338,8 @@ An iterator for the symbols in a [`MachOFile32`](super::MachOFile32).
 ```rust
 type MachOSymbolIterator64<'data, 'file, Endian, R> = MachOSymbolIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:221-222`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L221-L222)*
 
 An iterator for the symbols in a [`MachOFile64`](super::MachOFile64).
 
@@ -289,6 +349,8 @@ An iterator for the symbols in a [`MachOFile64`](super::MachOFile64).
 type MachOSymbol32<'data, 'file, Endian, R> = MachOSymbol<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:284-285`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L284-L285)*
+
 A symbol in a [`MachOFile32`](super::MachOFile32).
 
 ### `MachOSymbol64<'data, 'file, Endian, R>`
@@ -296,6 +358,8 @@ A symbol in a [`MachOFile32`](super::MachOFile32).
 ```rust
 type MachOSymbol64<'data, 'file, Endian, R> = MachOSymbol<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/symbol.rs:287-288`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/symbol.rs#L287-L288)*
 
 A symbol in a [`MachOFile64`](super::MachOFile64).
 

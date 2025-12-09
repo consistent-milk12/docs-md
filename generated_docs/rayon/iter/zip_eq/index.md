@@ -4,6 +4,12 @@
 
 # Module `zip_eq`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ZipEq`](#zipeq) | struct | An [`IndexedParallelIterator`] that iterates over two parallel iterators of equal length simultaneously. |
+
 ## Structs
 
 ### `ZipEq<A, B>`
@@ -14,64 +20,66 @@ struct ZipEq<A, B> {
 }
 ```
 
-An [`IndexedParallelIterator`](../../prelude/index.md) that iterates over two parallel iterators of equal
+*Defined in [`rayon-1.11.0/src/iter/zip_eq.rs:13-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/zip_eq.rs#L13-L15)*
+
+An [`IndexedParallelIterator`](../index.md) that iterates over two parallel iterators of equal
 length simultaneously.
 
-This struct is created by the [`zip_eq`](#zip-eq) method on [`IndexedParallelIterator`](../../prelude/index.md),
+This struct is created by the [`zip_eq`](#zip-eq) method on [`IndexedParallelIterator`](../index.md),
 see its documentation for more information.
 
 
 #### Implementations
 
-- `fn new(a: A, b: B) -> Self`
+- <span id="zipeq-new"></span>`fn new(a: A, b: B) -> Self`
 
 #### Trait Implementations
 
-##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for ZipEq<A, B>`
+##### `impl<A: clone::Clone, B: clone::Clone> Clone for ZipEq<A, B>`
 
-- `fn clone(self: &Self) -> ZipEq<A, B>` — [`ZipEq`](../index.md)
+- <span id="zipeq-clone"></span>`fn clone(&self) -> ZipEq<A, B>` — [`ZipEq`](#zipeq)
 
-##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for ZipEq<A, B>`
+##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for ZipEq<A, B>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="zipeq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<A, B> IndexedParallelIterator for ZipEq<A, B>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="zipeq-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="zipeq-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="zipeq-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for ZipEq<A, B>`
 
 ##### `impl<T> IntoParallelIterator for ZipEq<A, B>`
 
-- `type Iter = T`
+- <span id="zipeq-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="zipeq-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="zipeq-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for ZipEq<A, B>`
 
-- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
+- <span id="zipeq-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="zipeq-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="zipeq-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for ZipEq<A, B>`
 
-- `const ALIGN: usize`
+- <span id="zipeq-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="zipeq-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="zipeq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="zipeq-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="zipeq-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="zipeq-drop"></span>`unsafe fn drop(ptr: usize)`
 

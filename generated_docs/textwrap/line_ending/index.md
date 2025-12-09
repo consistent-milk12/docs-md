@@ -6,6 +6,13 @@
 
 Line ending detection and conversion.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NonEmptyLines`](#nonemptylines) | struct | An iterator over the lines of a string, as tuples of string slice and [`LineEnding`] value; it only emits non-empty lines (i.e. having some content before the terminating `\r\n` or `\n`). |
+| [`LineEnding`](#lineending) | enum | Supported line endings. |
+
 ## Structs
 
 ### `NonEmptyLines<'a>`
@@ -14,37 +21,39 @@ Line ending detection and conversion.
 struct NonEmptyLines<'a>(&'a str);
 ```
 
+*Defined in [`textwrap-0.16.2/src/line_ending.rs:35`](../../../.source_1765210505/textwrap-0.16.2/src/line_ending.rs#L35)*
+
 An iterator over the lines of a string, as tuples of string slice
-and [`LineEnding`](../index.md) value; it only emits non-empty lines (i.e. having
+and [`LineEnding`](#lineending) value; it only emits non-empty lines (i.e. having
 some content before the terminating `\r\n` or `\n`).
 
 This struct is used internally by the library.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for NonEmptyLines<'a>`
+##### `impl Clone for NonEmptyLines<'a>`
 
-- `fn clone(self: &Self) -> NonEmptyLines<'a>` — [`NonEmptyLines`](#nonemptylines)
+- <span id="nonemptylines-clone"></span>`fn clone(&self) -> NonEmptyLines<'a>` — [`NonEmptyLines`](#nonemptylines)
 
-##### `impl<'a> Copy for NonEmptyLines<'a>`
+##### `impl Copy for NonEmptyLines<'a>`
 
-##### `impl<'a> Debug for NonEmptyLines<'a>`
+##### `impl Debug for NonEmptyLines<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nonemptylines-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for NonEmptyLines<'a>`
+##### `impl IntoIterator for NonEmptyLines<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="nonemptylines-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="nonemptylines-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="nonemptylines-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for NonEmptyLines<'a>`
+##### `impl Iterator for NonEmptyLines<'a>`
 
-- `type Item = (&'a str, Option<LineEnding>)`
+- <span id="nonemptylines-type-item"></span>`type Item = (&'a str, Option<LineEnding>)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="nonemptylines-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Enums
 
@@ -56,6 +65,8 @@ enum LineEnding {
     LF,
 }
 ```
+
+*Defined in [`textwrap-0.16.2/src/line_ending.rs:8-16`](../../../.source_1765210505/textwrap-0.16.2/src/line_ending.rs#L8-L16)*
 
 Supported line endings. Like in the Rust standard library, two line
 endings are supported: `\r\n` and `\n`
@@ -75,25 +86,25 @@ endings are supported: `\r\n` and `\n`
 
 #### Implementations
 
-- `const fn as_str(self: &Self) -> &'static str`
+- <span id="lineending-as-str"></span>`const fn as_str(&self) -> &'static str`
 
 #### Trait Implementations
 
 ##### `impl Clone for LineEnding`
 
-- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](../index.md)
+- <span id="lineending-clone"></span>`fn clone(&self) -> LineEnding` — [`LineEnding`](#lineending)
 
 ##### `impl Copy for LineEnding`
 
 ##### `impl Debug for LineEnding`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineending-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LineEnding`
 
 ##### `impl PartialEq for LineEnding`
 
-- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](../index.md)
+- <span id="lineending-eq"></span>`fn eq(&self, other: &LineEnding) -> bool` — [`LineEnding`](#lineending)
 
 ##### `impl StructuralPartialEq for LineEnding`
 

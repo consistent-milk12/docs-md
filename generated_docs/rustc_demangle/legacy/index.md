@@ -4,6 +4,14 @@
 
 # Module `legacy`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Demangle`](#demangle) | struct | Representation of a demangled symbol name. |
+| [`demangle`](#demangle) | fn | De-mangles a Rust symbol into a more readable version |
+| [`is_rust_hash`](#is_rust_hash) | fn |  |
+
 ## Structs
 
 ### `Demangle<'a>`
@@ -15,6 +23,8 @@ struct Demangle<'a> {
 }
 ```
 
+*Defined in [`rustc-demangle-0.1.26/src/legacy.rs:5-9`](../../../.source_1765210505/rustc-demangle-0.1.26/src/legacy.rs#L5-L9)*
+
 Representation of a demangled symbol name.
 
 #### Fields
@@ -25,9 +35,9 @@ Representation of a demangled symbol name.
 
 #### Trait Implementations
 
-##### `impl<'a> Display for Demangle<'a>`
+##### `impl Display for Demangle<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demangle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 
@@ -36,6 +46,8 @@ Representation of a demangled symbol name.
 ```rust
 fn demangle(s: &str) -> Result<(Demangle<'_>, &str), ()>
 ```
+
+*Defined in [`rustc-demangle-0.1.26/src/legacy.rs:49-98`](../../../.source_1765210505/rustc-demangle-0.1.26/src/legacy.rs#L49-L98)*
 
 De-mangles a Rust symbol into a more readable version
 
@@ -63,4 +75,6 @@ assert_eq!(demangle("foo").to_string(), "foo");
 ```rust
 fn is_rust_hash(s: &str) -> bool
 ```
+
+*Defined in [`rustc-demangle-0.1.26/src/legacy.rs:101-103`](../../../.source_1765210505/rustc-demangle-0.1.26/src/legacy.rs#L101-L103)*
 

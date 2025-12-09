@@ -11,6 +11,1584 @@ some traits useful for those.
 
 This module is based heavily on "winnt.h" (10.0.17763.0).
 
+## Contents
+
+- [Structs](#structs)
+  - [`ImageDosHeader`](#imagedosheader)
+  - [`ImageOs2Header`](#imageos2header)
+  - [`ImageVxdHeader`](#imagevxdheader)
+  - [`MaskedRichHeaderEntry`](#maskedrichheaderentry)
+  - [`ImageFileHeader`](#imagefileheader)
+  - [`ImageDataDirectory`](#imagedatadirectory)
+  - [`ImageOptionalHeader32`](#imageoptionalheader32)
+  - [`ImageRomOptionalHeader`](#imageromoptionalheader)
+  - [`ImageOptionalHeader64`](#imageoptionalheader64)
+  - [`ImageNtHeaders64`](#imagentheaders64)
+  - [`ImageNtHeaders32`](#imagentheaders32)
+  - [`ImageRomHeaders`](#imageromheaders)
+  - [`Guid`](#guid)
+  - [`ClsId`](#clsid)
+  - [`AnonObjectHeader`](#anonobjectheader)
+  - [`AnonObjectHeaderV2`](#anonobjectheaderv2)
+  - [`AnonObjectHeaderBigobj`](#anonobjectheaderbigobj)
+  - [`ImageSectionHeader`](#imagesectionheader)
+  - [`ImageSymbol`](#imagesymbol)
+  - [`ImageSymbolBytes`](#imagesymbolbytes)
+  - [`ImageSymbolEx`](#imagesymbolex)
+  - [`ImageSymbolExBytes`](#imagesymbolexbytes)
+  - [`ImageAuxSymbolTokenDef`](#imageauxsymboltokendef)
+  - [`ImageAuxSymbolFunction`](#imageauxsymbolfunction)
+  - [`ImageAuxSymbolFunctionBeginEnd`](#imageauxsymbolfunctionbeginend)
+  - [`ImageAuxSymbolWeak`](#imageauxsymbolweak)
+  - [`ImageAuxSymbolSection`](#imageauxsymbolsection)
+  - [`ImageAuxSymbolCrc`](#imageauxsymbolcrc)
+  - [`ImageRelocation`](#imagerelocation)
+  - [`ImageLinenumber`](#imagelinenumber)
+  - [`ImageBaseRelocation`](#imagebaserelocation)
+  - [`ImageArchiveMemberHeader`](#imagearchivememberheader)
+  - [`ImageExportDirectory`](#imageexportdirectory)
+  - [`ImageImportByName`](#imageimportbyname)
+  - [`ImageThunkData64`](#imagethunkdata64)
+  - [`ImageThunkData32`](#imagethunkdata32)
+  - [`ImageTlsDirectory64`](#imagetlsdirectory64)
+  - [`ImageTlsDirectory32`](#imagetlsdirectory32)
+  - [`ImageImportDescriptor`](#imageimportdescriptor)
+  - [`ImageBoundImportDescriptor`](#imageboundimportdescriptor)
+  - [`ImageBoundForwarderRef`](#imageboundforwarderref)
+  - [`ImageDelayloadDescriptor`](#imagedelayloaddescriptor)
+  - [`ImageResourceDirectory`](#imageresourcedirectory)
+  - [`ImageResourceDirectoryEntry`](#imageresourcedirectoryentry)
+  - [`ImageResourceDirectoryString`](#imageresourcedirectorystring)
+  - [`ImageResourceDirStringU`](#imageresourcedirstringu)
+  - [`ImageResourceDataEntry`](#imageresourcedataentry)
+  - [`ImageLoadConfigCodeIntegrity`](#imageloadconfigcodeintegrity)
+  - [`ImageDynamicRelocationTable`](#imagedynamicrelocationtable)
+  - [`ImageDynamicRelocation32`](#imagedynamicrelocation32)
+  - [`ImageDynamicRelocation64`](#imagedynamicrelocation64)
+  - [`ImageDynamicRelocation32V2`](#imagedynamicrelocation32v2)
+  - [`ImageDynamicRelocation64V2`](#imagedynamicrelocation64v2)
+  - [`ImagePrologueDynamicRelocationHeader`](#imageprologuedynamicrelocationheader)
+  - [`ImageEpilogueDynamicRelocationHeader`](#imageepiloguedynamicrelocationheader)
+  - [`ImageLoadConfigDirectory32`](#imageloadconfigdirectory32)
+  - [`ImageLoadConfigDirectory64`](#imageloadconfigdirectory64)
+  - [`ImageHotPatchInfo`](#imagehotpatchinfo)
+  - [`ImageHotPatchBase`](#imagehotpatchbase)
+  - [`ImageHotPatchHashes`](#imagehotpatchhashes)
+  - [`ImageArmRuntimeFunctionEntry`](#imagearmruntimefunctionentry)
+  - [`ImageArm64RuntimeFunctionEntry`](#imagearm64runtimefunctionentry)
+  - [`ImageAlpha64RuntimeFunctionEntry`](#imagealpha64runtimefunctionentry)
+  - [`ImageAlphaRuntimeFunctionEntry`](#imagealpharuntimefunctionentry)
+  - [`ImageRuntimeFunctionEntry`](#imageruntimefunctionentry)
+  - [`ImageEnclaveConfig32`](#imageenclaveconfig32)
+  - [`ImageEnclaveConfig64`](#imageenclaveconfig64)
+  - [`ImageEnclaveImport`](#imageenclaveimport)
+  - [`ImageDebugDirectory`](#imagedebugdirectory)
+  - [`ImageCoffSymbolsHeader`](#imagecoffsymbolsheader)
+  - [`ImageDebugMisc`](#imagedebugmisc)
+  - [`ImageFunctionEntry`](#imagefunctionentry)
+  - [`ImageFunctionEntry64`](#imagefunctionentry64)
+  - [`ImageSeparateDebugHeader`](#imageseparatedebugheader)
+  - [`NonPagedDebugInfo`](#nonpageddebuginfo)
+  - [`ImageArchitectureEntry`](#imagearchitectureentry)
+  - [`ImportObjectHeader`](#importobjectheader)
+  - [`ImageCor20Header`](#imagecor20header)
+- [Constants](#constants)
+  - [`IMAGE_DOS_SIGNATURE`](#image_dos_signature)
+  - [`IMAGE_OS2_SIGNATURE`](#image_os2_signature)
+  - [`IMAGE_OS2_SIGNATURE_LE`](#image_os2_signature_le)
+  - [`IMAGE_VXD_SIGNATURE`](#image_vxd_signature)
+  - [`IMAGE_NT_SIGNATURE`](#image_nt_signature)
+  - [`IMAGE_SIZEOF_FILE_HEADER`](#image_sizeof_file_header)
+  - [`IMAGE_FILE_RELOCS_STRIPPED`](#image_file_relocs_stripped)
+  - [`IMAGE_FILE_EXECUTABLE_IMAGE`](#image_file_executable_image)
+  - [`IMAGE_FILE_LINE_NUMS_STRIPPED`](#image_file_line_nums_stripped)
+  - [`IMAGE_FILE_LOCAL_SYMS_STRIPPED`](#image_file_local_syms_stripped)
+  - [`IMAGE_FILE_AGGRESIVE_WS_TRIM`](#image_file_aggresive_ws_trim)
+  - [`IMAGE_FILE_LARGE_ADDRESS_AWARE`](#image_file_large_address_aware)
+  - [`IMAGE_FILE_BYTES_REVERSED_LO`](#image_file_bytes_reversed_lo)
+  - [`IMAGE_FILE_32BIT_MACHINE`](#image_file_32bit_machine)
+  - [`IMAGE_FILE_DEBUG_STRIPPED`](#image_file_debug_stripped)
+  - [`IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP`](#image_file_removable_run_from_swap)
+  - [`IMAGE_FILE_NET_RUN_FROM_SWAP`](#image_file_net_run_from_swap)
+  - [`IMAGE_FILE_SYSTEM`](#image_file_system)
+  - [`IMAGE_FILE_DLL`](#image_file_dll)
+  - [`IMAGE_FILE_UP_SYSTEM_ONLY`](#image_file_up_system_only)
+  - [`IMAGE_FILE_BYTES_REVERSED_HI`](#image_file_bytes_reversed_hi)
+  - [`IMAGE_FILE_MACHINE_UNKNOWN`](#image_file_machine_unknown)
+  - [`IMAGE_FILE_MACHINE_TARGET_HOST`](#image_file_machine_target_host)
+  - [`IMAGE_FILE_MACHINE_I386`](#image_file_machine_i386)
+  - [`IMAGE_FILE_MACHINE_R3000`](#image_file_machine_r3000)
+  - [`IMAGE_FILE_MACHINE_R4000`](#image_file_machine_r4000)
+  - [`IMAGE_FILE_MACHINE_R10000`](#image_file_machine_r10000)
+  - [`IMAGE_FILE_MACHINE_WCEMIPSV2`](#image_file_machine_wcemipsv2)
+  - [`IMAGE_FILE_MACHINE_ALPHA`](#image_file_machine_alpha)
+  - [`IMAGE_FILE_MACHINE_SH3`](#image_file_machine_sh3)
+  - [`IMAGE_FILE_MACHINE_SH3DSP`](#image_file_machine_sh3dsp)
+  - [`IMAGE_FILE_MACHINE_SH3E`](#image_file_machine_sh3e)
+  - [`IMAGE_FILE_MACHINE_SH4`](#image_file_machine_sh4)
+  - [`IMAGE_FILE_MACHINE_SH5`](#image_file_machine_sh5)
+  - [`IMAGE_FILE_MACHINE_ARM`](#image_file_machine_arm)
+  - [`IMAGE_FILE_MACHINE_THUMB`](#image_file_machine_thumb)
+  - [`IMAGE_FILE_MACHINE_ARMNT`](#image_file_machine_armnt)
+  - [`IMAGE_FILE_MACHINE_AM33`](#image_file_machine_am33)
+  - [`IMAGE_FILE_MACHINE_POWERPC`](#image_file_machine_powerpc)
+  - [`IMAGE_FILE_MACHINE_POWERPCFP`](#image_file_machine_powerpcfp)
+  - [`IMAGE_FILE_MACHINE_POWERPCBE`](#image_file_machine_powerpcbe)
+  - [`IMAGE_FILE_MACHINE_IA64`](#image_file_machine_ia64)
+  - [`IMAGE_FILE_MACHINE_MIPS16`](#image_file_machine_mips16)
+  - [`IMAGE_FILE_MACHINE_ALPHA64`](#image_file_machine_alpha64)
+  - [`IMAGE_FILE_MACHINE_MIPSFPU`](#image_file_machine_mipsfpu)
+  - [`IMAGE_FILE_MACHINE_MIPSFPU16`](#image_file_machine_mipsfpu16)
+  - [`IMAGE_FILE_MACHINE_AXP64`](#image_file_machine_axp64)
+  - [`IMAGE_FILE_MACHINE_TRICORE`](#image_file_machine_tricore)
+  - [`IMAGE_FILE_MACHINE_CEF`](#image_file_machine_cef)
+  - [`IMAGE_FILE_MACHINE_EBC`](#image_file_machine_ebc)
+  - [`IMAGE_FILE_MACHINE_AMD64`](#image_file_machine_amd64)
+  - [`IMAGE_FILE_MACHINE_M32R`](#image_file_machine_m32r)
+  - [`IMAGE_FILE_MACHINE_ARM64`](#image_file_machine_arm64)
+  - [`IMAGE_FILE_MACHINE_ARM64EC`](#image_file_machine_arm64ec)
+  - [`IMAGE_FILE_MACHINE_CEE`](#image_file_machine_cee)
+  - [`IMAGE_FILE_MACHINE_RISCV32`](#image_file_machine_riscv32)
+  - [`IMAGE_FILE_MACHINE_RISCV64`](#image_file_machine_riscv64)
+  - [`IMAGE_FILE_MACHINE_RISCV128`](#image_file_machine_riscv128)
+  - [`IMAGE_FILE_MACHINE_ARM64X`](#image_file_machine_arm64x)
+  - [`IMAGE_FILE_MACHINE_CHPE_X86`](#image_file_machine_chpe_x86)
+  - [`IMAGE_NUMBEROF_DIRECTORY_ENTRIES`](#image_numberof_directory_entries)
+  - [`IMAGE_NT_OPTIONAL_HDR32_MAGIC`](#image_nt_optional_hdr32_magic)
+  - [`IMAGE_NT_OPTIONAL_HDR64_MAGIC`](#image_nt_optional_hdr64_magic)
+  - [`IMAGE_ROM_OPTIONAL_HDR_MAGIC`](#image_rom_optional_hdr_magic)
+  - [`IMAGE_SUBSYSTEM_UNKNOWN`](#image_subsystem_unknown)
+  - [`IMAGE_SUBSYSTEM_NATIVE`](#image_subsystem_native)
+  - [`IMAGE_SUBSYSTEM_WINDOWS_GUI`](#image_subsystem_windows_gui)
+  - [`IMAGE_SUBSYSTEM_WINDOWS_CUI`](#image_subsystem_windows_cui)
+  - [`IMAGE_SUBSYSTEM_OS2_CUI`](#image_subsystem_os2_cui)
+  - [`IMAGE_SUBSYSTEM_POSIX_CUI`](#image_subsystem_posix_cui)
+  - [`IMAGE_SUBSYSTEM_NATIVE_WINDOWS`](#image_subsystem_native_windows)
+  - [`IMAGE_SUBSYSTEM_WINDOWS_CE_GUI`](#image_subsystem_windows_ce_gui)
+  - [`IMAGE_SUBSYSTEM_EFI_APPLICATION`](#image_subsystem_efi_application)
+  - [`IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER`](#image_subsystem_efi_boot_service_driver)
+  - [`IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER`](#image_subsystem_efi_runtime_driver)
+  - [`IMAGE_SUBSYSTEM_EFI_ROM`](#image_subsystem_efi_rom)
+  - [`IMAGE_SUBSYSTEM_XBOX`](#image_subsystem_xbox)
+  - [`IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION`](#image_subsystem_windows_boot_application)
+  - [`IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG`](#image_subsystem_xbox_code_catalog)
+  - [`IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA`](#image_dllcharacteristics_high_entropy_va)
+  - [`IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE`](#image_dllcharacteristics_dynamic_base)
+  - [`IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY`](#image_dllcharacteristics_force_integrity)
+  - [`IMAGE_DLLCHARACTERISTICS_NX_COMPAT`](#image_dllcharacteristics_nx_compat)
+  - [`IMAGE_DLLCHARACTERISTICS_NO_ISOLATION`](#image_dllcharacteristics_no_isolation)
+  - [`IMAGE_DLLCHARACTERISTICS_NO_SEH`](#image_dllcharacteristics_no_seh)
+  - [`IMAGE_DLLCHARACTERISTICS_NO_BIND`](#image_dllcharacteristics_no_bind)
+  - [`IMAGE_DLLCHARACTERISTICS_APPCONTAINER`](#image_dllcharacteristics_appcontainer)
+  - [`IMAGE_DLLCHARACTERISTICS_WDM_DRIVER`](#image_dllcharacteristics_wdm_driver)
+  - [`IMAGE_DLLCHARACTERISTICS_GUARD_CF`](#image_dllcharacteristics_guard_cf)
+  - [`IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE`](#image_dllcharacteristics_terminal_server_aware)
+  - [`IMAGE_DIRECTORY_ENTRY_EXPORT`](#image_directory_entry_export)
+  - [`IMAGE_DIRECTORY_ENTRY_IMPORT`](#image_directory_entry_import)
+  - [`IMAGE_DIRECTORY_ENTRY_RESOURCE`](#image_directory_entry_resource)
+  - [`IMAGE_DIRECTORY_ENTRY_EXCEPTION`](#image_directory_entry_exception)
+  - [`IMAGE_DIRECTORY_ENTRY_SECURITY`](#image_directory_entry_security)
+  - [`IMAGE_DIRECTORY_ENTRY_BASERELOC`](#image_directory_entry_basereloc)
+  - [`IMAGE_DIRECTORY_ENTRY_DEBUG`](#image_directory_entry_debug)
+  - [`IMAGE_DIRECTORY_ENTRY_ARCHITECTURE`](#image_directory_entry_architecture)
+  - [`IMAGE_DIRECTORY_ENTRY_GLOBALPTR`](#image_directory_entry_globalptr)
+  - [`IMAGE_DIRECTORY_ENTRY_TLS`](#image_directory_entry_tls)
+  - [`IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG`](#image_directory_entry_load_config)
+  - [`IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT`](#image_directory_entry_bound_import)
+  - [`IMAGE_DIRECTORY_ENTRY_IAT`](#image_directory_entry_iat)
+  - [`IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT`](#image_directory_entry_delay_import)
+  - [`IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR`](#image_directory_entry_com_descriptor)
+  - [`ANON_OBJECT_HEADER_BIGOBJ_CLASS_ID`](#anon_object_header_bigobj_class_id)
+  - [`IMAGE_SIZEOF_SHORT_NAME`](#image_sizeof_short_name)
+  - [`IMAGE_SIZEOF_SECTION_HEADER`](#image_sizeof_section_header)
+  - [`IMAGE_SCN_TYPE_NO_PAD`](#image_scn_type_no_pad)
+  - [`IMAGE_SCN_CNT_CODE`](#image_scn_cnt_code)
+  - [`IMAGE_SCN_CNT_INITIALIZED_DATA`](#image_scn_cnt_initialized_data)
+  - [`IMAGE_SCN_CNT_UNINITIALIZED_DATA`](#image_scn_cnt_uninitialized_data)
+  - [`IMAGE_SCN_LNK_OTHER`](#image_scn_lnk_other)
+  - [`IMAGE_SCN_LNK_INFO`](#image_scn_lnk_info)
+  - [`IMAGE_SCN_LNK_REMOVE`](#image_scn_lnk_remove)
+  - [`IMAGE_SCN_LNK_COMDAT`](#image_scn_lnk_comdat)
+  - [`IMAGE_SCN_NO_DEFER_SPEC_EXC`](#image_scn_no_defer_spec_exc)
+  - [`IMAGE_SCN_GPREL`](#image_scn_gprel)
+  - [`IMAGE_SCN_MEM_FARDATA`](#image_scn_mem_fardata)
+  - [`IMAGE_SCN_MEM_PURGEABLE`](#image_scn_mem_purgeable)
+  - [`IMAGE_SCN_MEM_16BIT`](#image_scn_mem_16bit)
+  - [`IMAGE_SCN_MEM_LOCKED`](#image_scn_mem_locked)
+  - [`IMAGE_SCN_MEM_PRELOAD`](#image_scn_mem_preload)
+  - [`IMAGE_SCN_ALIGN_1BYTES`](#image_scn_align_1bytes)
+  - [`IMAGE_SCN_ALIGN_2BYTES`](#image_scn_align_2bytes)
+  - [`IMAGE_SCN_ALIGN_4BYTES`](#image_scn_align_4bytes)
+  - [`IMAGE_SCN_ALIGN_8BYTES`](#image_scn_align_8bytes)
+  - [`IMAGE_SCN_ALIGN_16BYTES`](#image_scn_align_16bytes)
+  - [`IMAGE_SCN_ALIGN_32BYTES`](#image_scn_align_32bytes)
+  - [`IMAGE_SCN_ALIGN_64BYTES`](#image_scn_align_64bytes)
+  - [`IMAGE_SCN_ALIGN_128BYTES`](#image_scn_align_128bytes)
+  - [`IMAGE_SCN_ALIGN_256BYTES`](#image_scn_align_256bytes)
+  - [`IMAGE_SCN_ALIGN_512BYTES`](#image_scn_align_512bytes)
+  - [`IMAGE_SCN_ALIGN_1024BYTES`](#image_scn_align_1024bytes)
+  - [`IMAGE_SCN_ALIGN_2048BYTES`](#image_scn_align_2048bytes)
+  - [`IMAGE_SCN_ALIGN_4096BYTES`](#image_scn_align_4096bytes)
+  - [`IMAGE_SCN_ALIGN_8192BYTES`](#image_scn_align_8192bytes)
+  - [`IMAGE_SCN_ALIGN_MASK`](#image_scn_align_mask)
+  - [`IMAGE_SCN_LNK_NRELOC_OVFL`](#image_scn_lnk_nreloc_ovfl)
+  - [`IMAGE_SCN_MEM_DISCARDABLE`](#image_scn_mem_discardable)
+  - [`IMAGE_SCN_MEM_NOT_CACHED`](#image_scn_mem_not_cached)
+  - [`IMAGE_SCN_MEM_NOT_PAGED`](#image_scn_mem_not_paged)
+  - [`IMAGE_SCN_MEM_SHARED`](#image_scn_mem_shared)
+  - [`IMAGE_SCN_MEM_EXECUTE`](#image_scn_mem_execute)
+  - [`IMAGE_SCN_MEM_READ`](#image_scn_mem_read)
+  - [`IMAGE_SCN_MEM_WRITE`](#image_scn_mem_write)
+  - [`IMAGE_SCN_SCALE_INDEX`](#image_scn_scale_index)
+  - [`IMAGE_SIZEOF_SYMBOL`](#image_sizeof_symbol)
+  - [`IMAGE_SIZEOF_SYMBOL_EX`](#image_sizeof_symbol_ex)
+  - [`IMAGE_SYM_UNDEFINED`](#image_sym_undefined)
+  - [`IMAGE_SYM_ABSOLUTE`](#image_sym_absolute)
+  - [`IMAGE_SYM_DEBUG`](#image_sym_debug)
+  - [`IMAGE_SYM_SECTION_MAX`](#image_sym_section_max)
+  - [`IMAGE_SYM_SECTION_MAX_EX`](#image_sym_section_max_ex)
+  - [`IMAGE_SYM_TYPE_NULL`](#image_sym_type_null)
+  - [`IMAGE_SYM_TYPE_VOID`](#image_sym_type_void)
+  - [`IMAGE_SYM_TYPE_CHAR`](#image_sym_type_char)
+  - [`IMAGE_SYM_TYPE_SHORT`](#image_sym_type_short)
+  - [`IMAGE_SYM_TYPE_INT`](#image_sym_type_int)
+  - [`IMAGE_SYM_TYPE_LONG`](#image_sym_type_long)
+  - [`IMAGE_SYM_TYPE_FLOAT`](#image_sym_type_float)
+  - [`IMAGE_SYM_TYPE_DOUBLE`](#image_sym_type_double)
+  - [`IMAGE_SYM_TYPE_STRUCT`](#image_sym_type_struct)
+  - [`IMAGE_SYM_TYPE_UNION`](#image_sym_type_union)
+  - [`IMAGE_SYM_TYPE_ENUM`](#image_sym_type_enum)
+  - [`IMAGE_SYM_TYPE_MOE`](#image_sym_type_moe)
+  - [`IMAGE_SYM_TYPE_BYTE`](#image_sym_type_byte)
+  - [`IMAGE_SYM_TYPE_WORD`](#image_sym_type_word)
+  - [`IMAGE_SYM_TYPE_UINT`](#image_sym_type_uint)
+  - [`IMAGE_SYM_TYPE_DWORD`](#image_sym_type_dword)
+  - [`IMAGE_SYM_TYPE_PCODE`](#image_sym_type_pcode)
+  - [`IMAGE_SYM_DTYPE_NULL`](#image_sym_dtype_null)
+  - [`IMAGE_SYM_DTYPE_POINTER`](#image_sym_dtype_pointer)
+  - [`IMAGE_SYM_DTYPE_FUNCTION`](#image_sym_dtype_function)
+  - [`IMAGE_SYM_DTYPE_ARRAY`](#image_sym_dtype_array)
+  - [`IMAGE_SYM_CLASS_END_OF_FUNCTION`](#image_sym_class_end_of_function)
+  - [`IMAGE_SYM_CLASS_NULL`](#image_sym_class_null)
+  - [`IMAGE_SYM_CLASS_AUTOMATIC`](#image_sym_class_automatic)
+  - [`IMAGE_SYM_CLASS_EXTERNAL`](#image_sym_class_external)
+  - [`IMAGE_SYM_CLASS_STATIC`](#image_sym_class_static)
+  - [`IMAGE_SYM_CLASS_REGISTER`](#image_sym_class_register)
+  - [`IMAGE_SYM_CLASS_EXTERNAL_DEF`](#image_sym_class_external_def)
+  - [`IMAGE_SYM_CLASS_LABEL`](#image_sym_class_label)
+  - [`IMAGE_SYM_CLASS_UNDEFINED_LABEL`](#image_sym_class_undefined_label)
+  - [`IMAGE_SYM_CLASS_MEMBER_OF_STRUCT`](#image_sym_class_member_of_struct)
+  - [`IMAGE_SYM_CLASS_ARGUMENT`](#image_sym_class_argument)
+  - [`IMAGE_SYM_CLASS_STRUCT_TAG`](#image_sym_class_struct_tag)
+  - [`IMAGE_SYM_CLASS_MEMBER_OF_UNION`](#image_sym_class_member_of_union)
+  - [`IMAGE_SYM_CLASS_UNION_TAG`](#image_sym_class_union_tag)
+  - [`IMAGE_SYM_CLASS_TYPE_DEFINITION`](#image_sym_class_type_definition)
+  - [`IMAGE_SYM_CLASS_UNDEFINED_STATIC`](#image_sym_class_undefined_static)
+  - [`IMAGE_SYM_CLASS_ENUM_TAG`](#image_sym_class_enum_tag)
+  - [`IMAGE_SYM_CLASS_MEMBER_OF_ENUM`](#image_sym_class_member_of_enum)
+  - [`IMAGE_SYM_CLASS_REGISTER_PARAM`](#image_sym_class_register_param)
+  - [`IMAGE_SYM_CLASS_BIT_FIELD`](#image_sym_class_bit_field)
+  - [`IMAGE_SYM_CLASS_FAR_EXTERNAL`](#image_sym_class_far_external)
+  - [`IMAGE_SYM_CLASS_BLOCK`](#image_sym_class_block)
+  - [`IMAGE_SYM_CLASS_FUNCTION`](#image_sym_class_function)
+  - [`IMAGE_SYM_CLASS_END_OF_STRUCT`](#image_sym_class_end_of_struct)
+  - [`IMAGE_SYM_CLASS_FILE`](#image_sym_class_file)
+  - [`IMAGE_SYM_CLASS_SECTION`](#image_sym_class_section)
+  - [`IMAGE_SYM_CLASS_WEAK_EXTERNAL`](#image_sym_class_weak_external)
+  - [`IMAGE_SYM_CLASS_CLR_TOKEN`](#image_sym_class_clr_token)
+  - [`N_BTMASK`](#n_btmask)
+  - [`N_TMASK`](#n_tmask)
+  - [`N_TMASK1`](#n_tmask1)
+  - [`N_TMASK2`](#n_tmask2)
+  - [`N_BTSHFT`](#n_btshft)
+  - [`N_TSHIFT`](#n_tshift)
+  - [`IMAGE_SYM_DTYPE_SHIFT`](#image_sym_dtype_shift)
+  - [`IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF`](#image_aux_symbol_type_token_def)
+  - [`IMAGE_COMDAT_SELECT_NODUPLICATES`](#image_comdat_select_noduplicates)
+  - [`IMAGE_COMDAT_SELECT_ANY`](#image_comdat_select_any)
+  - [`IMAGE_COMDAT_SELECT_SAME_SIZE`](#image_comdat_select_same_size)
+  - [`IMAGE_COMDAT_SELECT_EXACT_MATCH`](#image_comdat_select_exact_match)
+  - [`IMAGE_COMDAT_SELECT_ASSOCIATIVE`](#image_comdat_select_associative)
+  - [`IMAGE_COMDAT_SELECT_LARGEST`](#image_comdat_select_largest)
+  - [`IMAGE_COMDAT_SELECT_NEWEST`](#image_comdat_select_newest)
+  - [`IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY`](#image_weak_extern_search_nolibrary)
+  - [`IMAGE_WEAK_EXTERN_SEARCH_LIBRARY`](#image_weak_extern_search_library)
+  - [`IMAGE_WEAK_EXTERN_SEARCH_ALIAS`](#image_weak_extern_search_alias)
+  - [`IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY`](#image_weak_extern_anti_dependency)
+  - [`IMAGE_REL_I386_ABSOLUTE`](#image_rel_i386_absolute)
+  - [`IMAGE_REL_I386_DIR16`](#image_rel_i386_dir16)
+  - [`IMAGE_REL_I386_REL16`](#image_rel_i386_rel16)
+  - [`IMAGE_REL_I386_DIR32`](#image_rel_i386_dir32)
+  - [`IMAGE_REL_I386_DIR32NB`](#image_rel_i386_dir32nb)
+  - [`IMAGE_REL_I386_SEG12`](#image_rel_i386_seg12)
+  - [`IMAGE_REL_I386_SECTION`](#image_rel_i386_section)
+  - [`IMAGE_REL_I386_SECREL`](#image_rel_i386_secrel)
+  - [`IMAGE_REL_I386_TOKEN`](#image_rel_i386_token)
+  - [`IMAGE_REL_I386_SECREL7`](#image_rel_i386_secrel7)
+  - [`IMAGE_REL_I386_REL32`](#image_rel_i386_rel32)
+  - [`IMAGE_REL_MIPS_ABSOLUTE`](#image_rel_mips_absolute)
+  - [`IMAGE_REL_MIPS_REFHALF`](#image_rel_mips_refhalf)
+  - [`IMAGE_REL_MIPS_REFWORD`](#image_rel_mips_refword)
+  - [`IMAGE_REL_MIPS_JMPADDR`](#image_rel_mips_jmpaddr)
+  - [`IMAGE_REL_MIPS_REFHI`](#image_rel_mips_refhi)
+  - [`IMAGE_REL_MIPS_REFLO`](#image_rel_mips_reflo)
+  - [`IMAGE_REL_MIPS_GPREL`](#image_rel_mips_gprel)
+  - [`IMAGE_REL_MIPS_LITERAL`](#image_rel_mips_literal)
+  - [`IMAGE_REL_MIPS_SECTION`](#image_rel_mips_section)
+  - [`IMAGE_REL_MIPS_SECREL`](#image_rel_mips_secrel)
+  - [`IMAGE_REL_MIPS_SECRELLO`](#image_rel_mips_secrello)
+  - [`IMAGE_REL_MIPS_SECRELHI`](#image_rel_mips_secrelhi)
+  - [`IMAGE_REL_MIPS_TOKEN`](#image_rel_mips_token)
+  - [`IMAGE_REL_MIPS_JMPADDR16`](#image_rel_mips_jmpaddr16)
+  - [`IMAGE_REL_MIPS_REFWORDNB`](#image_rel_mips_refwordnb)
+  - [`IMAGE_REL_MIPS_PAIR`](#image_rel_mips_pair)
+  - [`IMAGE_REL_ALPHA_ABSOLUTE`](#image_rel_alpha_absolute)
+  - [`IMAGE_REL_ALPHA_REFLONG`](#image_rel_alpha_reflong)
+  - [`IMAGE_REL_ALPHA_REFQUAD`](#image_rel_alpha_refquad)
+  - [`IMAGE_REL_ALPHA_GPREL32`](#image_rel_alpha_gprel32)
+  - [`IMAGE_REL_ALPHA_LITERAL`](#image_rel_alpha_literal)
+  - [`IMAGE_REL_ALPHA_LITUSE`](#image_rel_alpha_lituse)
+  - [`IMAGE_REL_ALPHA_GPDISP`](#image_rel_alpha_gpdisp)
+  - [`IMAGE_REL_ALPHA_BRADDR`](#image_rel_alpha_braddr)
+  - [`IMAGE_REL_ALPHA_HINT`](#image_rel_alpha_hint)
+  - [`IMAGE_REL_ALPHA_INLINE_REFLONG`](#image_rel_alpha_inline_reflong)
+  - [`IMAGE_REL_ALPHA_REFHI`](#image_rel_alpha_refhi)
+  - [`IMAGE_REL_ALPHA_REFLO`](#image_rel_alpha_reflo)
+  - [`IMAGE_REL_ALPHA_PAIR`](#image_rel_alpha_pair)
+  - [`IMAGE_REL_ALPHA_MATCH`](#image_rel_alpha_match)
+  - [`IMAGE_REL_ALPHA_SECTION`](#image_rel_alpha_section)
+  - [`IMAGE_REL_ALPHA_SECREL`](#image_rel_alpha_secrel)
+  - [`IMAGE_REL_ALPHA_REFLONGNB`](#image_rel_alpha_reflongnb)
+  - [`IMAGE_REL_ALPHA_SECRELLO`](#image_rel_alpha_secrello)
+  - [`IMAGE_REL_ALPHA_SECRELHI`](#image_rel_alpha_secrelhi)
+  - [`IMAGE_REL_ALPHA_REFQ3`](#image_rel_alpha_refq3)
+  - [`IMAGE_REL_ALPHA_REFQ2`](#image_rel_alpha_refq2)
+  - [`IMAGE_REL_ALPHA_REFQ1`](#image_rel_alpha_refq1)
+  - [`IMAGE_REL_ALPHA_GPRELLO`](#image_rel_alpha_gprello)
+  - [`IMAGE_REL_ALPHA_GPRELHI`](#image_rel_alpha_gprelhi)
+  - [`IMAGE_REL_PPC_ABSOLUTE`](#image_rel_ppc_absolute)
+  - [`IMAGE_REL_PPC_ADDR64`](#image_rel_ppc_addr64)
+  - [`IMAGE_REL_PPC_ADDR32`](#image_rel_ppc_addr32)
+  - [`IMAGE_REL_PPC_ADDR24`](#image_rel_ppc_addr24)
+  - [`IMAGE_REL_PPC_ADDR16`](#image_rel_ppc_addr16)
+  - [`IMAGE_REL_PPC_ADDR14`](#image_rel_ppc_addr14)
+  - [`IMAGE_REL_PPC_REL24`](#image_rel_ppc_rel24)
+  - [`IMAGE_REL_PPC_REL14`](#image_rel_ppc_rel14)
+  - [`IMAGE_REL_PPC_TOCREL16`](#image_rel_ppc_tocrel16)
+  - [`IMAGE_REL_PPC_TOCREL14`](#image_rel_ppc_tocrel14)
+  - [`IMAGE_REL_PPC_ADDR32NB`](#image_rel_ppc_addr32nb)
+  - [`IMAGE_REL_PPC_SECREL`](#image_rel_ppc_secrel)
+  - [`IMAGE_REL_PPC_SECTION`](#image_rel_ppc_section)
+  - [`IMAGE_REL_PPC_IFGLUE`](#image_rel_ppc_ifglue)
+  - [`IMAGE_REL_PPC_IMGLUE`](#image_rel_ppc_imglue)
+  - [`IMAGE_REL_PPC_SECREL16`](#image_rel_ppc_secrel16)
+  - [`IMAGE_REL_PPC_REFHI`](#image_rel_ppc_refhi)
+  - [`IMAGE_REL_PPC_REFLO`](#image_rel_ppc_reflo)
+  - [`IMAGE_REL_PPC_PAIR`](#image_rel_ppc_pair)
+  - [`IMAGE_REL_PPC_SECRELLO`](#image_rel_ppc_secrello)
+  - [`IMAGE_REL_PPC_SECRELHI`](#image_rel_ppc_secrelhi)
+  - [`IMAGE_REL_PPC_GPREL`](#image_rel_ppc_gprel)
+  - [`IMAGE_REL_PPC_TOKEN`](#image_rel_ppc_token)
+  - [`IMAGE_REL_PPC_TYPEMASK`](#image_rel_ppc_typemask)
+  - [`IMAGE_REL_PPC_NEG`](#image_rel_ppc_neg)
+  - [`IMAGE_REL_PPC_BRTAKEN`](#image_rel_ppc_brtaken)
+  - [`IMAGE_REL_PPC_BRNTAKEN`](#image_rel_ppc_brntaken)
+  - [`IMAGE_REL_PPC_TOCDEFN`](#image_rel_ppc_tocdefn)
+  - [`IMAGE_REL_SH3_ABSOLUTE`](#image_rel_sh3_absolute)
+  - [`IMAGE_REL_SH3_DIRECT16`](#image_rel_sh3_direct16)
+  - [`IMAGE_REL_SH3_DIRECT32`](#image_rel_sh3_direct32)
+  - [`IMAGE_REL_SH3_DIRECT8`](#image_rel_sh3_direct8)
+  - [`IMAGE_REL_SH3_DIRECT8_WORD`](#image_rel_sh3_direct8_word)
+  - [`IMAGE_REL_SH3_DIRECT8_LONG`](#image_rel_sh3_direct8_long)
+  - [`IMAGE_REL_SH3_DIRECT4`](#image_rel_sh3_direct4)
+  - [`IMAGE_REL_SH3_DIRECT4_WORD`](#image_rel_sh3_direct4_word)
+  - [`IMAGE_REL_SH3_DIRECT4_LONG`](#image_rel_sh3_direct4_long)
+  - [`IMAGE_REL_SH3_PCREL8_WORD`](#image_rel_sh3_pcrel8_word)
+  - [`IMAGE_REL_SH3_PCREL8_LONG`](#image_rel_sh3_pcrel8_long)
+  - [`IMAGE_REL_SH3_PCREL12_WORD`](#image_rel_sh3_pcrel12_word)
+  - [`IMAGE_REL_SH3_STARTOF_SECTION`](#image_rel_sh3_startof_section)
+  - [`IMAGE_REL_SH3_SIZEOF_SECTION`](#image_rel_sh3_sizeof_section)
+  - [`IMAGE_REL_SH3_SECTION`](#image_rel_sh3_section)
+  - [`IMAGE_REL_SH3_SECREL`](#image_rel_sh3_secrel)
+  - [`IMAGE_REL_SH3_DIRECT32_NB`](#image_rel_sh3_direct32_nb)
+  - [`IMAGE_REL_SH3_GPREL4_LONG`](#image_rel_sh3_gprel4_long)
+  - [`IMAGE_REL_SH3_TOKEN`](#image_rel_sh3_token)
+  - [`IMAGE_REL_SHM_PCRELPT`](#image_rel_shm_pcrelpt)
+  - [`IMAGE_REL_SHM_REFLO`](#image_rel_shm_reflo)
+  - [`IMAGE_REL_SHM_REFHALF`](#image_rel_shm_refhalf)
+  - [`IMAGE_REL_SHM_RELLO`](#image_rel_shm_rello)
+  - [`IMAGE_REL_SHM_RELHALF`](#image_rel_shm_relhalf)
+  - [`IMAGE_REL_SHM_PAIR`](#image_rel_shm_pair)
+  - [`IMAGE_REL_SH_NOMODE`](#image_rel_sh_nomode)
+  - [`IMAGE_REL_ARM_ABSOLUTE`](#image_rel_arm_absolute)
+  - [`IMAGE_REL_ARM_ADDR32`](#image_rel_arm_addr32)
+  - [`IMAGE_REL_ARM_ADDR32NB`](#image_rel_arm_addr32nb)
+  - [`IMAGE_REL_ARM_BRANCH24`](#image_rel_arm_branch24)
+  - [`IMAGE_REL_ARM_BRANCH11`](#image_rel_arm_branch11)
+  - [`IMAGE_REL_ARM_TOKEN`](#image_rel_arm_token)
+  - [`IMAGE_REL_ARM_GPREL12`](#image_rel_arm_gprel12)
+  - [`IMAGE_REL_ARM_GPREL7`](#image_rel_arm_gprel7)
+  - [`IMAGE_REL_ARM_BLX24`](#image_rel_arm_blx24)
+  - [`IMAGE_REL_ARM_BLX11`](#image_rel_arm_blx11)
+  - [`IMAGE_REL_ARM_REL32`](#image_rel_arm_rel32)
+  - [`IMAGE_REL_ARM_SECTION`](#image_rel_arm_section)
+  - [`IMAGE_REL_ARM_SECREL`](#image_rel_arm_secrel)
+  - [`IMAGE_REL_ARM_MOV32A`](#image_rel_arm_mov32a)
+  - [`IMAGE_REL_ARM_MOV32`](#image_rel_arm_mov32)
+  - [`IMAGE_REL_ARM_MOV32T`](#image_rel_arm_mov32t)
+  - [`IMAGE_REL_THUMB_MOV32`](#image_rel_thumb_mov32)
+  - [`IMAGE_REL_ARM_BRANCH20T`](#image_rel_arm_branch20t)
+  - [`IMAGE_REL_THUMB_BRANCH20`](#image_rel_thumb_branch20)
+  - [`IMAGE_REL_ARM_BRANCH24T`](#image_rel_arm_branch24t)
+  - [`IMAGE_REL_THUMB_BRANCH24`](#image_rel_thumb_branch24)
+  - [`IMAGE_REL_ARM_BLX23T`](#image_rel_arm_blx23t)
+  - [`IMAGE_REL_THUMB_BLX23`](#image_rel_thumb_blx23)
+  - [`IMAGE_REL_AM_ABSOLUTE`](#image_rel_am_absolute)
+  - [`IMAGE_REL_AM_ADDR32`](#image_rel_am_addr32)
+  - [`IMAGE_REL_AM_ADDR32NB`](#image_rel_am_addr32nb)
+  - [`IMAGE_REL_AM_CALL32`](#image_rel_am_call32)
+  - [`IMAGE_REL_AM_FUNCINFO`](#image_rel_am_funcinfo)
+  - [`IMAGE_REL_AM_REL32_1`](#image_rel_am_rel32_1)
+  - [`IMAGE_REL_AM_REL32_2`](#image_rel_am_rel32_2)
+  - [`IMAGE_REL_AM_SECREL`](#image_rel_am_secrel)
+  - [`IMAGE_REL_AM_SECTION`](#image_rel_am_section)
+  - [`IMAGE_REL_AM_TOKEN`](#image_rel_am_token)
+  - [`IMAGE_REL_ARM64_ABSOLUTE`](#image_rel_arm64_absolute)
+  - [`IMAGE_REL_ARM64_ADDR32`](#image_rel_arm64_addr32)
+  - [`IMAGE_REL_ARM64_ADDR32NB`](#image_rel_arm64_addr32nb)
+  - [`IMAGE_REL_ARM64_BRANCH26`](#image_rel_arm64_branch26)
+  - [`IMAGE_REL_ARM64_PAGEBASE_REL21`](#image_rel_arm64_pagebase_rel21)
+  - [`IMAGE_REL_ARM64_REL21`](#image_rel_arm64_rel21)
+  - [`IMAGE_REL_ARM64_PAGEOFFSET_12A`](#image_rel_arm64_pageoffset_12a)
+  - [`IMAGE_REL_ARM64_PAGEOFFSET_12L`](#image_rel_arm64_pageoffset_12l)
+  - [`IMAGE_REL_ARM64_SECREL`](#image_rel_arm64_secrel)
+  - [`IMAGE_REL_ARM64_SECREL_LOW12A`](#image_rel_arm64_secrel_low12a)
+  - [`IMAGE_REL_ARM64_SECREL_HIGH12A`](#image_rel_arm64_secrel_high12a)
+  - [`IMAGE_REL_ARM64_SECREL_LOW12L`](#image_rel_arm64_secrel_low12l)
+  - [`IMAGE_REL_ARM64_TOKEN`](#image_rel_arm64_token)
+  - [`IMAGE_REL_ARM64_SECTION`](#image_rel_arm64_section)
+  - [`IMAGE_REL_ARM64_ADDR64`](#image_rel_arm64_addr64)
+  - [`IMAGE_REL_ARM64_BRANCH19`](#image_rel_arm64_branch19)
+  - [`IMAGE_REL_ARM64_BRANCH14`](#image_rel_arm64_branch14)
+  - [`IMAGE_REL_ARM64_REL32`](#image_rel_arm64_rel32)
+  - [`IMAGE_REL_AMD64_ABSOLUTE`](#image_rel_amd64_absolute)
+  - [`IMAGE_REL_AMD64_ADDR64`](#image_rel_amd64_addr64)
+  - [`IMAGE_REL_AMD64_ADDR32`](#image_rel_amd64_addr32)
+  - [`IMAGE_REL_AMD64_ADDR32NB`](#image_rel_amd64_addr32nb)
+  - [`IMAGE_REL_AMD64_REL32`](#image_rel_amd64_rel32)
+  - [`IMAGE_REL_AMD64_REL32_1`](#image_rel_amd64_rel32_1)
+  - [`IMAGE_REL_AMD64_REL32_2`](#image_rel_amd64_rel32_2)
+  - [`IMAGE_REL_AMD64_REL32_3`](#image_rel_amd64_rel32_3)
+  - [`IMAGE_REL_AMD64_REL32_4`](#image_rel_amd64_rel32_4)
+  - [`IMAGE_REL_AMD64_REL32_5`](#image_rel_amd64_rel32_5)
+  - [`IMAGE_REL_AMD64_SECTION`](#image_rel_amd64_section)
+  - [`IMAGE_REL_AMD64_SECREL`](#image_rel_amd64_secrel)
+  - [`IMAGE_REL_AMD64_SECREL7`](#image_rel_amd64_secrel7)
+  - [`IMAGE_REL_AMD64_TOKEN`](#image_rel_amd64_token)
+  - [`IMAGE_REL_AMD64_SREL32`](#image_rel_amd64_srel32)
+  - [`IMAGE_REL_AMD64_PAIR`](#image_rel_amd64_pair)
+  - [`IMAGE_REL_AMD64_SSPAN32`](#image_rel_amd64_sspan32)
+  - [`IMAGE_REL_AMD64_EHANDLER`](#image_rel_amd64_ehandler)
+  - [`IMAGE_REL_AMD64_IMPORT_BR`](#image_rel_amd64_import_br)
+  - [`IMAGE_REL_AMD64_IMPORT_CALL`](#image_rel_amd64_import_call)
+  - [`IMAGE_REL_AMD64_CFG_BR`](#image_rel_amd64_cfg_br)
+  - [`IMAGE_REL_AMD64_CFG_BR_REX`](#image_rel_amd64_cfg_br_rex)
+  - [`IMAGE_REL_AMD64_CFG_CALL`](#image_rel_amd64_cfg_call)
+  - [`IMAGE_REL_AMD64_INDIR_BR`](#image_rel_amd64_indir_br)
+  - [`IMAGE_REL_AMD64_INDIR_BR_REX`](#image_rel_amd64_indir_br_rex)
+  - [`IMAGE_REL_AMD64_INDIR_CALL`](#image_rel_amd64_indir_call)
+  - [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_FIRST`](#image_rel_amd64_indir_br_switchtable_first)
+  - [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_LAST`](#image_rel_amd64_indir_br_switchtable_last)
+  - [`IMAGE_REL_IA64_ABSOLUTE`](#image_rel_ia64_absolute)
+  - [`IMAGE_REL_IA64_IMM14`](#image_rel_ia64_imm14)
+  - [`IMAGE_REL_IA64_IMM22`](#image_rel_ia64_imm22)
+  - [`IMAGE_REL_IA64_IMM64`](#image_rel_ia64_imm64)
+  - [`IMAGE_REL_IA64_DIR32`](#image_rel_ia64_dir32)
+  - [`IMAGE_REL_IA64_DIR64`](#image_rel_ia64_dir64)
+  - [`IMAGE_REL_IA64_PCREL21B`](#image_rel_ia64_pcrel21b)
+  - [`IMAGE_REL_IA64_PCREL21M`](#image_rel_ia64_pcrel21m)
+  - [`IMAGE_REL_IA64_PCREL21F`](#image_rel_ia64_pcrel21f)
+  - [`IMAGE_REL_IA64_GPREL22`](#image_rel_ia64_gprel22)
+  - [`IMAGE_REL_IA64_LTOFF22`](#image_rel_ia64_ltoff22)
+  - [`IMAGE_REL_IA64_SECTION`](#image_rel_ia64_section)
+  - [`IMAGE_REL_IA64_SECREL22`](#image_rel_ia64_secrel22)
+  - [`IMAGE_REL_IA64_SECREL64I`](#image_rel_ia64_secrel64i)
+  - [`IMAGE_REL_IA64_SECREL32`](#image_rel_ia64_secrel32)
+  - [`IMAGE_REL_IA64_DIR32NB`](#image_rel_ia64_dir32nb)
+  - [`IMAGE_REL_IA64_SREL14`](#image_rel_ia64_srel14)
+  - [`IMAGE_REL_IA64_SREL22`](#image_rel_ia64_srel22)
+  - [`IMAGE_REL_IA64_SREL32`](#image_rel_ia64_srel32)
+  - [`IMAGE_REL_IA64_UREL32`](#image_rel_ia64_urel32)
+  - [`IMAGE_REL_IA64_PCREL60X`](#image_rel_ia64_pcrel60x)
+  - [`IMAGE_REL_IA64_PCREL60B`](#image_rel_ia64_pcrel60b)
+  - [`IMAGE_REL_IA64_PCREL60F`](#image_rel_ia64_pcrel60f)
+  - [`IMAGE_REL_IA64_PCREL60I`](#image_rel_ia64_pcrel60i)
+  - [`IMAGE_REL_IA64_PCREL60M`](#image_rel_ia64_pcrel60m)
+  - [`IMAGE_REL_IA64_IMMGPREL64`](#image_rel_ia64_immgprel64)
+  - [`IMAGE_REL_IA64_TOKEN`](#image_rel_ia64_token)
+  - [`IMAGE_REL_IA64_GPREL32`](#image_rel_ia64_gprel32)
+  - [`IMAGE_REL_IA64_ADDEND`](#image_rel_ia64_addend)
+  - [`IMAGE_REL_CEF_ABSOLUTE`](#image_rel_cef_absolute)
+  - [`IMAGE_REL_CEF_ADDR32`](#image_rel_cef_addr32)
+  - [`IMAGE_REL_CEF_ADDR64`](#image_rel_cef_addr64)
+  - [`IMAGE_REL_CEF_ADDR32NB`](#image_rel_cef_addr32nb)
+  - [`IMAGE_REL_CEF_SECTION`](#image_rel_cef_section)
+  - [`IMAGE_REL_CEF_SECREL`](#image_rel_cef_secrel)
+  - [`IMAGE_REL_CEF_TOKEN`](#image_rel_cef_token)
+  - [`IMAGE_REL_CEE_ABSOLUTE`](#image_rel_cee_absolute)
+  - [`IMAGE_REL_CEE_ADDR32`](#image_rel_cee_addr32)
+  - [`IMAGE_REL_CEE_ADDR64`](#image_rel_cee_addr64)
+  - [`IMAGE_REL_CEE_ADDR32NB`](#image_rel_cee_addr32nb)
+  - [`IMAGE_REL_CEE_SECTION`](#image_rel_cee_section)
+  - [`IMAGE_REL_CEE_SECREL`](#image_rel_cee_secrel)
+  - [`IMAGE_REL_CEE_TOKEN`](#image_rel_cee_token)
+  - [`IMAGE_REL_M32R_ABSOLUTE`](#image_rel_m32r_absolute)
+  - [`IMAGE_REL_M32R_ADDR32`](#image_rel_m32r_addr32)
+  - [`IMAGE_REL_M32R_ADDR32NB`](#image_rel_m32r_addr32nb)
+  - [`IMAGE_REL_M32R_ADDR24`](#image_rel_m32r_addr24)
+  - [`IMAGE_REL_M32R_GPREL16`](#image_rel_m32r_gprel16)
+  - [`IMAGE_REL_M32R_PCREL24`](#image_rel_m32r_pcrel24)
+  - [`IMAGE_REL_M32R_PCREL16`](#image_rel_m32r_pcrel16)
+  - [`IMAGE_REL_M32R_PCREL8`](#image_rel_m32r_pcrel8)
+  - [`IMAGE_REL_M32R_REFHALF`](#image_rel_m32r_refhalf)
+  - [`IMAGE_REL_M32R_REFHI`](#image_rel_m32r_refhi)
+  - [`IMAGE_REL_M32R_REFLO`](#image_rel_m32r_reflo)
+  - [`IMAGE_REL_M32R_PAIR`](#image_rel_m32r_pair)
+  - [`IMAGE_REL_M32R_SECTION`](#image_rel_m32r_section)
+  - [`IMAGE_REL_M32R_SECREL32`](#image_rel_m32r_secrel32)
+  - [`IMAGE_REL_M32R_TOKEN`](#image_rel_m32r_token)
+  - [`IMAGE_REL_EBC_ABSOLUTE`](#image_rel_ebc_absolute)
+  - [`IMAGE_REL_EBC_ADDR32NB`](#image_rel_ebc_addr32nb)
+  - [`IMAGE_REL_EBC_REL32`](#image_rel_ebc_rel32)
+  - [`IMAGE_REL_EBC_SECTION`](#image_rel_ebc_section)
+  - [`IMAGE_REL_EBC_SECREL`](#image_rel_ebc_secrel)
+  - [`EMARCH_ENC_I17_IMM7B_INST_WORD_X`](#emarch_enc_i17_imm7b_inst_word_x)
+  - [`EMARCH_ENC_I17_IMM7B_SIZE_X`](#emarch_enc_i17_imm7b_size_x)
+  - [`EMARCH_ENC_I17_IMM7B_INST_WORD_POS_X`](#emarch_enc_i17_imm7b_inst_word_pos_x)
+  - [`EMARCH_ENC_I17_IMM7B_VAL_POS_X`](#emarch_enc_i17_imm7b_val_pos_x)
+  - [`EMARCH_ENC_I17_IMM9D_INST_WORD_X`](#emarch_enc_i17_imm9d_inst_word_x)
+  - [`EMARCH_ENC_I17_IMM9D_SIZE_X`](#emarch_enc_i17_imm9d_size_x)
+  - [`EMARCH_ENC_I17_IMM9D_INST_WORD_POS_X`](#emarch_enc_i17_imm9d_inst_word_pos_x)
+  - [`EMARCH_ENC_I17_IMM9D_VAL_POS_X`](#emarch_enc_i17_imm9d_val_pos_x)
+  - [`EMARCH_ENC_I17_IMM5C_INST_WORD_X`](#emarch_enc_i17_imm5c_inst_word_x)
+  - [`EMARCH_ENC_I17_IMM5C_SIZE_X`](#emarch_enc_i17_imm5c_size_x)
+  - [`EMARCH_ENC_I17_IMM5C_INST_WORD_POS_X`](#emarch_enc_i17_imm5c_inst_word_pos_x)
+  - [`EMARCH_ENC_I17_IMM5C_VAL_POS_X`](#emarch_enc_i17_imm5c_val_pos_x)
+  - [`EMARCH_ENC_I17_IC_INST_WORD_X`](#emarch_enc_i17_ic_inst_word_x)
+  - [`EMARCH_ENC_I17_IC_SIZE_X`](#emarch_enc_i17_ic_size_x)
+  - [`EMARCH_ENC_I17_IC_INST_WORD_POS_X`](#emarch_enc_i17_ic_inst_word_pos_x)
+  - [`EMARCH_ENC_I17_IC_VAL_POS_X`](#emarch_enc_i17_ic_val_pos_x)
+  - [`EMARCH_ENC_I17_IMM41A_INST_WORD_X`](#emarch_enc_i17_imm41a_inst_word_x)
+  - [`EMARCH_ENC_I17_IMM41A_SIZE_X`](#emarch_enc_i17_imm41a_size_x)
+  - [`EMARCH_ENC_I17_IMM41A_INST_WORD_POS_X`](#emarch_enc_i17_imm41a_inst_word_pos_x)
+  - [`EMARCH_ENC_I17_IMM41A_VAL_POS_X`](#emarch_enc_i17_imm41a_val_pos_x)
+  - [`EMARCH_ENC_I17_IMM41B_INST_WORD_X`](#emarch_enc_i17_imm41b_inst_word_x)
+  - [`EMARCH_ENC_I17_IMM41B_SIZE_X`](#emarch_enc_i17_imm41b_size_x)
+  - [`EMARCH_ENC_I17_IMM41B_INST_WORD_POS_X`](#emarch_enc_i17_imm41b_inst_word_pos_x)
+  - [`EMARCH_ENC_I17_IMM41B_VAL_POS_X`](#emarch_enc_i17_imm41b_val_pos_x)
+  - [`EMARCH_ENC_I17_IMM41C_INST_WORD_X`](#emarch_enc_i17_imm41c_inst_word_x)
+  - [`EMARCH_ENC_I17_IMM41C_SIZE_X`](#emarch_enc_i17_imm41c_size_x)
+  - [`EMARCH_ENC_I17_IMM41C_INST_WORD_POS_X`](#emarch_enc_i17_imm41c_inst_word_pos_x)
+  - [`EMARCH_ENC_I17_IMM41C_VAL_POS_X`](#emarch_enc_i17_imm41c_val_pos_x)
+  - [`EMARCH_ENC_I17_SIGN_INST_WORD_X`](#emarch_enc_i17_sign_inst_word_x)
+  - [`EMARCH_ENC_I17_SIGN_SIZE_X`](#emarch_enc_i17_sign_size_x)
+  - [`EMARCH_ENC_I17_SIGN_INST_WORD_POS_X`](#emarch_enc_i17_sign_inst_word_pos_x)
+  - [`EMARCH_ENC_I17_SIGN_VAL_POS_X`](#emarch_enc_i17_sign_val_pos_x)
+  - [`X3_OPCODE_INST_WORD_X`](#x3_opcode_inst_word_x)
+  - [`X3_OPCODE_SIZE_X`](#x3_opcode_size_x)
+  - [`X3_OPCODE_INST_WORD_POS_X`](#x3_opcode_inst_word_pos_x)
+  - [`X3_OPCODE_SIGN_VAL_POS_X`](#x3_opcode_sign_val_pos_x)
+  - [`X3_I_INST_WORD_X`](#x3_i_inst_word_x)
+  - [`X3_I_SIZE_X`](#x3_i_size_x)
+  - [`X3_I_INST_WORD_POS_X`](#x3_i_inst_word_pos_x)
+  - [`X3_I_SIGN_VAL_POS_X`](#x3_i_sign_val_pos_x)
+  - [`X3_D_WH_INST_WORD_X`](#x3_d_wh_inst_word_x)
+  - [`X3_D_WH_SIZE_X`](#x3_d_wh_size_x)
+  - [`X3_D_WH_INST_WORD_POS_X`](#x3_d_wh_inst_word_pos_x)
+  - [`X3_D_WH_SIGN_VAL_POS_X`](#x3_d_wh_sign_val_pos_x)
+  - [`X3_IMM20_INST_WORD_X`](#x3_imm20_inst_word_x)
+  - [`X3_IMM20_SIZE_X`](#x3_imm20_size_x)
+  - [`X3_IMM20_INST_WORD_POS_X`](#x3_imm20_inst_word_pos_x)
+  - [`X3_IMM20_SIGN_VAL_POS_X`](#x3_imm20_sign_val_pos_x)
+  - [`X3_IMM39_1_INST_WORD_X`](#x3_imm39_1_inst_word_x)
+  - [`X3_IMM39_1_SIZE_X`](#x3_imm39_1_size_x)
+  - [`X3_IMM39_1_INST_WORD_POS_X`](#x3_imm39_1_inst_word_pos_x)
+  - [`X3_IMM39_1_SIGN_VAL_POS_X`](#x3_imm39_1_sign_val_pos_x)
+  - [`X3_IMM39_2_INST_WORD_X`](#x3_imm39_2_inst_word_x)
+  - [`X3_IMM39_2_SIZE_X`](#x3_imm39_2_size_x)
+  - [`X3_IMM39_2_INST_WORD_POS_X`](#x3_imm39_2_inst_word_pos_x)
+  - [`X3_IMM39_2_SIGN_VAL_POS_X`](#x3_imm39_2_sign_val_pos_x)
+  - [`X3_P_INST_WORD_X`](#x3_p_inst_word_x)
+  - [`X3_P_SIZE_X`](#x3_p_size_x)
+  - [`X3_P_INST_WORD_POS_X`](#x3_p_inst_word_pos_x)
+  - [`X3_P_SIGN_VAL_POS_X`](#x3_p_sign_val_pos_x)
+  - [`X3_TMPLT_INST_WORD_X`](#x3_tmplt_inst_word_x)
+  - [`X3_TMPLT_SIZE_X`](#x3_tmplt_size_x)
+  - [`X3_TMPLT_INST_WORD_POS_X`](#x3_tmplt_inst_word_pos_x)
+  - [`X3_TMPLT_SIGN_VAL_POS_X`](#x3_tmplt_sign_val_pos_x)
+  - [`X3_BTYPE_QP_INST_WORD_X`](#x3_btype_qp_inst_word_x)
+  - [`X3_BTYPE_QP_SIZE_X`](#x3_btype_qp_size_x)
+  - [`X3_BTYPE_QP_INST_WORD_POS_X`](#x3_btype_qp_inst_word_pos_x)
+  - [`X3_BTYPE_QP_INST_VAL_POS_X`](#x3_btype_qp_inst_val_pos_x)
+  - [`X3_EMPTY_INST_WORD_X`](#x3_empty_inst_word_x)
+  - [`X3_EMPTY_SIZE_X`](#x3_empty_size_x)
+  - [`X3_EMPTY_INST_WORD_POS_X`](#x3_empty_inst_word_pos_x)
+  - [`X3_EMPTY_INST_VAL_POS_X`](#x3_empty_inst_val_pos_x)
+  - [`IMAGE_REL_BASED_ABSOLUTE`](#image_rel_based_absolute)
+  - [`IMAGE_REL_BASED_HIGH`](#image_rel_based_high)
+  - [`IMAGE_REL_BASED_LOW`](#image_rel_based_low)
+  - [`IMAGE_REL_BASED_HIGHLOW`](#image_rel_based_highlow)
+  - [`IMAGE_REL_BASED_HIGHADJ`](#image_rel_based_highadj)
+  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_5`](#image_rel_based_machine_specific_5)
+  - [`IMAGE_REL_BASED_RESERVED`](#image_rel_based_reserved)
+  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_7`](#image_rel_based_machine_specific_7)
+  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_8`](#image_rel_based_machine_specific_8)
+  - [`IMAGE_REL_BASED_MACHINE_SPECIFIC_9`](#image_rel_based_machine_specific_9)
+  - [`IMAGE_REL_BASED_DIR64`](#image_rel_based_dir64)
+  - [`IMAGE_REL_BASED_IA64_IMM64`](#image_rel_based_ia64_imm64)
+  - [`IMAGE_REL_BASED_MIPS_JMPADDR`](#image_rel_based_mips_jmpaddr)
+  - [`IMAGE_REL_BASED_MIPS_JMPADDR16`](#image_rel_based_mips_jmpaddr16)
+  - [`IMAGE_REL_BASED_ARM_MOV32`](#image_rel_based_arm_mov32)
+  - [`IMAGE_REL_BASED_THUMB_MOV32`](#image_rel_based_thumb_mov32)
+  - [`IMAGE_REL_BASED_RISCV_HIGH20`](#image_rel_based_riscv_high20)
+  - [`IMAGE_REL_BASED_RISCV_LOW12I`](#image_rel_based_riscv_low12i)
+  - [`IMAGE_REL_BASED_RISCV_LOW12S`](#image_rel_based_riscv_low12s)
+  - [`IMAGE_ARCHIVE_START_SIZE`](#image_archive_start_size)
+  - [`IMAGE_ARCHIVE_START`](#image_archive_start)
+  - [`IMAGE_ARCHIVE_END`](#image_archive_end)
+  - [`IMAGE_ARCHIVE_PAD`](#image_archive_pad)
+  - [`IMAGE_ARCHIVE_LINKER_MEMBER`](#image_archive_linker_member)
+  - [`IMAGE_ARCHIVE_LONGNAMES_MEMBER`](#image_archive_longnames_member)
+  - [`IMAGE_ARCHIVE_HYBRIDMAP_MEMBER`](#image_archive_hybridmap_member)
+  - [`IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR`](#image_sizeof_archive_member_hdr)
+  - [`IMAGE_ORDINAL_FLAG64`](#image_ordinal_flag64)
+  - [`IMAGE_ORDINAL_FLAG32`](#image_ordinal_flag32)
+  - [`IMAGE_DELAYLOAD_RVA_BASED`](#image_delayload_rva_based)
+  - [`IMAGE_RESOURCE_NAME_IS_STRING`](#image_resource_name_is_string)
+  - [`IMAGE_RESOURCE_DATA_IS_DIRECTORY`](#image_resource_data_is_directory)
+  - [`RT_CURSOR`](#rt_cursor)
+  - [`RT_BITMAP`](#rt_bitmap)
+  - [`RT_ICON`](#rt_icon)
+  - [`RT_MENU`](#rt_menu)
+  - [`RT_DIALOG`](#rt_dialog)
+  - [`RT_STRING`](#rt_string)
+  - [`RT_FONTDIR`](#rt_fontdir)
+  - [`RT_FONT`](#rt_font)
+  - [`RT_ACCELERATOR`](#rt_accelerator)
+  - [`RT_RCDATA`](#rt_rcdata)
+  - [`RT_MESSAGETABLE`](#rt_messagetable)
+  - [`RT_GROUP_CURSOR`](#rt_group_cursor)
+  - [`RT_GROUP_ICON`](#rt_group_icon)
+  - [`RT_VERSION`](#rt_version)
+  - [`RT_DLGINCLUDE`](#rt_dlginclude)
+  - [`RT_PLUGPLAY`](#rt_plugplay)
+  - [`RT_VXD`](#rt_vxd)
+  - [`RT_ANICURSOR`](#rt_anicursor)
+  - [`RT_ANIICON`](#rt_aniicon)
+  - [`RT_HTML`](#rt_html)
+  - [`RT_MANIFEST`](#rt_manifest)
+  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_PROLOGUE`](#image_dynamic_relocation_guard_rf_prologue)
+  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE`](#image_dynamic_relocation_guard_rf_epilogue)
+  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER`](#image_dynamic_relocation_guard_import_control_transfer)
+  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER`](#image_dynamic_relocation_guard_indir_control_transfer)
+  - [`IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH`](#image_dynamic_relocation_guard_switchtable_branch)
+  - [`IMAGE_HOT_PATCH_BASE_OBLIGATORY`](#image_hot_patch_base_obligatory)
+  - [`IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK`](#image_hot_patch_base_can_roll_back)
+  - [`IMAGE_HOT_PATCH_CHUNK_INVERSE`](#image_hot_patch_chunk_inverse)
+  - [`IMAGE_HOT_PATCH_CHUNK_OBLIGATORY`](#image_hot_patch_chunk_obligatory)
+  - [`IMAGE_HOT_PATCH_CHUNK_RESERVED`](#image_hot_patch_chunk_reserved)
+  - [`IMAGE_HOT_PATCH_CHUNK_TYPE`](#image_hot_patch_chunk_type)
+  - [`IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA`](#image_hot_patch_chunk_source_rva)
+  - [`IMAGE_HOT_PATCH_CHUNK_TARGET_RVA`](#image_hot_patch_chunk_target_rva)
+  - [`IMAGE_HOT_PATCH_CHUNK_SIZE`](#image_hot_patch_chunk_size)
+  - [`IMAGE_HOT_PATCH_NONE`](#image_hot_patch_none)
+  - [`IMAGE_HOT_PATCH_FUNCTION`](#image_hot_patch_function)
+  - [`IMAGE_HOT_PATCH_ABSOLUTE`](#image_hot_patch_absolute)
+  - [`IMAGE_HOT_PATCH_REL32`](#image_hot_patch_rel32)
+  - [`IMAGE_HOT_PATCH_CALL_TARGET`](#image_hot_patch_call_target)
+  - [`IMAGE_HOT_PATCH_INDIRECT`](#image_hot_patch_indirect)
+  - [`IMAGE_HOT_PATCH_NO_CALL_TARGET`](#image_hot_patch_no_call_target)
+  - [`IMAGE_HOT_PATCH_DYNAMIC_VALUE`](#image_hot_patch_dynamic_value)
+  - [`IMAGE_GUARD_CF_INSTRUMENTED`](#image_guard_cf_instrumented)
+  - [`IMAGE_GUARD_CFW_INSTRUMENTED`](#image_guard_cfw_instrumented)
+  - [`IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT`](#image_guard_cf_function_table_present)
+  - [`IMAGE_GUARD_SECURITY_COOKIE_UNUSED`](#image_guard_security_cookie_unused)
+  - [`IMAGE_GUARD_PROTECT_DELAYLOAD_IAT`](#image_guard_protect_delayload_iat)
+  - [`IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION`](#image_guard_delayload_iat_in_its_own_section)
+  - [`IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT`](#image_guard_cf_export_suppression_info_present)
+  - [`IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION`](#image_guard_cf_enable_export_suppression)
+  - [`IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT`](#image_guard_cf_longjump_table_present)
+  - [`IMAGE_GUARD_RF_INSTRUMENTED`](#image_guard_rf_instrumented)
+  - [`IMAGE_GUARD_RF_ENABLE`](#image_guard_rf_enable)
+  - [`IMAGE_GUARD_RF_STRICT`](#image_guard_rf_strict)
+  - [`IMAGE_GUARD_RETPOLINE_PRESENT`](#image_guard_retpoline_present)
+  - [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK`](#image_guard_cf_function_table_size_mask)
+  - [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_SHIFT`](#image_guard_cf_function_table_size_shift)
+  - [`IMAGE_GUARD_FLAG_FID_SUPPRESSED`](#image_guard_flag_fid_suppressed)
+  - [`IMAGE_GUARD_FLAG_EXPORT_SUPPRESSED`](#image_guard_flag_export_suppressed)
+  - [`IMAGE_ENCLAVE_LONG_ID_LENGTH`](#image_enclave_long_id_length)
+  - [`IMAGE_ENCLAVE_SHORT_ID_LENGTH`](#image_enclave_short_id_length)
+  - [`IMAGE_ENCLAVE_POLICY_DEBUGGABLE`](#image_enclave_policy_debuggable)
+  - [`IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE`](#image_enclave_flag_primary_image)
+  - [`IMAGE_ENCLAVE_IMPORT_MATCH_NONE`](#image_enclave_import_match_none)
+  - [`IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID`](#image_enclave_import_match_unique_id)
+  - [`IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID`](#image_enclave_import_match_author_id)
+  - [`IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID`](#image_enclave_import_match_family_id)
+  - [`IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID`](#image_enclave_import_match_image_id)
+  - [`IMAGE_DEBUG_TYPE_UNKNOWN`](#image_debug_type_unknown)
+  - [`IMAGE_DEBUG_TYPE_COFF`](#image_debug_type_coff)
+  - [`IMAGE_DEBUG_TYPE_CODEVIEW`](#image_debug_type_codeview)
+  - [`IMAGE_DEBUG_TYPE_FPO`](#image_debug_type_fpo)
+  - [`IMAGE_DEBUG_TYPE_MISC`](#image_debug_type_misc)
+  - [`IMAGE_DEBUG_TYPE_EXCEPTION`](#image_debug_type_exception)
+  - [`IMAGE_DEBUG_TYPE_FIXUP`](#image_debug_type_fixup)
+  - [`IMAGE_DEBUG_TYPE_OMAP_TO_SRC`](#image_debug_type_omap_to_src)
+  - [`IMAGE_DEBUG_TYPE_OMAP_FROM_SRC`](#image_debug_type_omap_from_src)
+  - [`IMAGE_DEBUG_TYPE_BORLAND`](#image_debug_type_borland)
+  - [`IMAGE_DEBUG_TYPE_RESERVED10`](#image_debug_type_reserved10)
+  - [`IMAGE_DEBUG_TYPE_CLSID`](#image_debug_type_clsid)
+  - [`IMAGE_DEBUG_TYPE_VC_FEATURE`](#image_debug_type_vc_feature)
+  - [`IMAGE_DEBUG_TYPE_POGO`](#image_debug_type_pogo)
+  - [`IMAGE_DEBUG_TYPE_ILTCG`](#image_debug_type_iltcg)
+  - [`IMAGE_DEBUG_TYPE_MPX`](#image_debug_type_mpx)
+  - [`IMAGE_DEBUG_TYPE_REPRO`](#image_debug_type_repro)
+  - [`FRAME_FPO`](#frame_fpo)
+  - [`FRAME_TRAP`](#frame_trap)
+  - [`FRAME_TSS`](#frame_tss)
+  - [`FRAME_NONFPO`](#frame_nonfpo)
+  - [`IMAGE_DEBUG_MISC_EXENAME`](#image_debug_misc_exename)
+  - [`IMAGE_SEPARATE_DEBUG_SIGNATURE`](#image_separate_debug_signature)
+  - [`NON_PAGED_DEBUG_SIGNATURE`](#non_paged_debug_signature)
+  - [`IMAGE_SEPARATE_DEBUG_FLAGS_MASK`](#image_separate_debug_flags_mask)
+  - [`IMAGE_SEPARATE_DEBUG_MISMATCH`](#image_separate_debug_mismatch)
+  - [`IMPORT_OBJECT_HDR_SIG2`](#import_object_hdr_sig2)
+  - [`IMPORT_OBJECT_TYPE_MASK`](#import_object_type_mask)
+  - [`IMPORT_OBJECT_TYPE_SHIFT`](#import_object_type_shift)
+  - [`IMPORT_OBJECT_CODE`](#import_object_code)
+  - [`IMPORT_OBJECT_DATA`](#import_object_data)
+  - [`IMPORT_OBJECT_CONST`](#import_object_const)
+  - [`IMPORT_OBJECT_NAME_MASK`](#import_object_name_mask)
+  - [`IMPORT_OBJECT_NAME_SHIFT`](#import_object_name_shift)
+  - [`IMPORT_OBJECT_ORDINAL`](#import_object_ordinal)
+  - [`IMPORT_OBJECT_NAME`](#import_object_name)
+  - [`IMPORT_OBJECT_NAME_NO_PREFIX`](#import_object_name_no_prefix)
+  - [`IMPORT_OBJECT_NAME_UNDECORATE`](#import_object_name_undecorate)
+  - [`IMPORT_OBJECT_NAME_EXPORTAS`](#import_object_name_exportas)
+  - [`COMIMAGE_FLAGS_ILONLY`](#comimage_flags_ilonly)
+  - [`COMIMAGE_FLAGS_32BITREQUIRED`](#comimage_flags_32bitrequired)
+  - [`COMIMAGE_FLAGS_IL_LIBRARY`](#comimage_flags_il_library)
+  - [`COMIMAGE_FLAGS_STRONGNAMESIGNED`](#comimage_flags_strongnamesigned)
+  - [`COMIMAGE_FLAGS_NATIVE_ENTRYPOINT`](#comimage_flags_native_entrypoint)
+  - [`COMIMAGE_FLAGS_TRACKDEBUGDATA`](#comimage_flags_trackdebugdata)
+  - [`COMIMAGE_FLAGS_32BITPREFERRED`](#comimage_flags_32bitpreferred)
+  - [`COR_VERSION_MAJOR_V2`](#cor_version_major_v2)
+  - [`COR_VERSION_MAJOR`](#cor_version_major)
+  - [`COR_VERSION_MINOR`](#cor_version_minor)
+  - [`COR_DELETED_NAME_LENGTH`](#cor_deleted_name_length)
+  - [`COR_VTABLEGAP_NAME_LENGTH`](#cor_vtablegap_name_length)
+  - [`NATIVE_TYPE_MAX_CB`](#native_type_max_cb)
+  - [`COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE`](#cor_ilmethod_sect_small_max_datasize)
+  - [`IMAGE_COR_MIH_METHODRVA`](#image_cor_mih_methodrva)
+  - [`IMAGE_COR_MIH_EHRVA`](#image_cor_mih_ehrva)
+  - [`IMAGE_COR_MIH_BASICBLOCK`](#image_cor_mih_basicblock)
+  - [`COR_VTABLE_32BIT`](#cor_vtable_32bit)
+  - [`COR_VTABLE_64BIT`](#cor_vtable_64bit)
+  - [`COR_VTABLE_FROM_UNMANAGED`](#cor_vtable_from_unmanaged)
+  - [`COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN`](#cor_vtable_from_unmanaged_retain_appdomain)
+  - [`COR_VTABLE_CALL_MOST_DERIVED`](#cor_vtable_call_most_derived)
+  - [`IMAGE_COR_EATJ_THUNK_SIZE`](#image_cor_eatj_thunk_size)
+  - [`MAX_CLASS_NAME`](#max_class_name)
+  - [`MAX_PACKAGE_NAME`](#max_package_name)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ImageDosHeader`](#imagedosheader) | struct | DOS .EXE header |
+| [`ImageOs2Header`](#imageos2header) | struct | OS/2 .EXE header |
+| [`ImageVxdHeader`](#imagevxdheader) | struct | Windows VXD header |
+| [`MaskedRichHeaderEntry`](#maskedrichheaderentry) | struct | A PE rich header entry. |
+| [`ImageFileHeader`](#imagefileheader) | struct |  |
+| [`ImageDataDirectory`](#imagedatadirectory) | struct |  |
+| [`ImageOptionalHeader32`](#imageoptionalheader32) | struct |  |
+| [`ImageRomOptionalHeader`](#imageromoptionalheader) | struct |  |
+| [`ImageOptionalHeader64`](#imageoptionalheader64) | struct |  |
+| [`ImageNtHeaders64`](#imagentheaders64) | struct |  |
+| [`ImageNtHeaders32`](#imagentheaders32) | struct |  |
+| [`ImageRomHeaders`](#imageromheaders) | struct |  |
+| [`Guid`](#guid) | struct |  |
+| [`ClsId`](#clsid) | struct |  |
+| [`AnonObjectHeader`](#anonobjectheader) | struct | Non-COFF Object file header |
+| [`AnonObjectHeaderV2`](#anonobjectheaderv2) | struct |  |
+| [`AnonObjectHeaderBigobj`](#anonobjectheaderbigobj) | struct |  |
+| [`ImageSectionHeader`](#imagesectionheader) | struct |  |
+| [`ImageSymbol`](#imagesymbol) | struct |  |
+| [`ImageSymbolBytes`](#imagesymbolbytes) | struct |  |
+| [`ImageSymbolEx`](#imagesymbolex) | struct |  |
+| [`ImageSymbolExBytes`](#imagesymbolexbytes) | struct |  |
+| [`ImageAuxSymbolTokenDef`](#imageauxsymboltokendef) | struct |  |
+| [`ImageAuxSymbolFunction`](#imageauxsymbolfunction) | struct | Auxiliary symbol format 1: function definitions. |
+| [`ImageAuxSymbolFunctionBeginEnd`](#imageauxsymbolfunctionbeginend) | struct | Auxiliary symbol format 2: .bf and .ef symbols. |
+| [`ImageAuxSymbolWeak`](#imageauxsymbolweak) | struct | Auxiliary symbol format 3: weak externals. |
+| [`ImageAuxSymbolSection`](#imageauxsymbolsection) | struct | Auxiliary symbol format 5: sections. |
+| [`ImageAuxSymbolCrc`](#imageauxsymbolcrc) | struct |  |
+| [`ImageRelocation`](#imagerelocation) | struct |  |
+| [`ImageLinenumber`](#imagelinenumber) | struct |  |
+| [`ImageBaseRelocation`](#imagebaserelocation) | struct |  |
+| [`ImageArchiveMemberHeader`](#imagearchivememberheader) | struct |  |
+| [`ImageExportDirectory`](#imageexportdirectory) | struct |  |
+| [`ImageImportByName`](#imageimportbyname) | struct |  |
+| [`ImageThunkData64`](#imagethunkdata64) | struct |  |
+| [`ImageThunkData32`](#imagethunkdata32) | struct |  |
+| [`ImageTlsDirectory64`](#imagetlsdirectory64) | struct |  |
+| [`ImageTlsDirectory32`](#imagetlsdirectory32) | struct |  |
+| [`ImageImportDescriptor`](#imageimportdescriptor) | struct |  |
+| [`ImageBoundImportDescriptor`](#imageboundimportdescriptor) | struct |  |
+| [`ImageBoundForwarderRef`](#imageboundforwarderref) | struct |  |
+| [`ImageDelayloadDescriptor`](#imagedelayloaddescriptor) | struct |  |
+| [`ImageResourceDirectory`](#imageresourcedirectory) | struct |  |
+| [`ImageResourceDirectoryEntry`](#imageresourcedirectoryentry) | struct |  |
+| [`ImageResourceDirectoryString`](#imageresourcedirectorystring) | struct |  |
+| [`ImageResourceDirStringU`](#imageresourcedirstringu) | struct |  |
+| [`ImageResourceDataEntry`](#imageresourcedataentry) | struct |  |
+| [`ImageLoadConfigCodeIntegrity`](#imageloadconfigcodeintegrity) | struct |  |
+| [`ImageDynamicRelocationTable`](#imagedynamicrelocationtable) | struct |  |
+| [`ImageDynamicRelocation32`](#imagedynamicrelocation32) | struct |  |
+| [`ImageDynamicRelocation64`](#imagedynamicrelocation64) | struct |  |
+| [`ImageDynamicRelocation32V2`](#imagedynamicrelocation32v2) | struct |  |
+| [`ImageDynamicRelocation64V2`](#imagedynamicrelocation64v2) | struct |  |
+| [`ImagePrologueDynamicRelocationHeader`](#imageprologuedynamicrelocationheader) | struct |  |
+| [`ImageEpilogueDynamicRelocationHeader`](#imageepiloguedynamicrelocationheader) | struct |  |
+| [`ImageLoadConfigDirectory32`](#imageloadconfigdirectory32) | struct |  |
+| [`ImageLoadConfigDirectory64`](#imageloadconfigdirectory64) | struct |  |
+| [`ImageHotPatchInfo`](#imagehotpatchinfo) | struct |  |
+| [`ImageHotPatchBase`](#imagehotpatchbase) | struct |  |
+| [`ImageHotPatchHashes`](#imagehotpatchhashes) | struct |  |
+| [`ImageArmRuntimeFunctionEntry`](#imagearmruntimefunctionentry) | struct |  |
+| [`ImageArm64RuntimeFunctionEntry`](#imagearm64runtimefunctionentry) | struct |  |
+| [`ImageAlpha64RuntimeFunctionEntry`](#imagealpha64runtimefunctionentry) | struct |  |
+| [`ImageAlphaRuntimeFunctionEntry`](#imagealpharuntimefunctionentry) | struct |  |
+| [`ImageRuntimeFunctionEntry`](#imageruntimefunctionentry) | struct |  |
+| [`ImageEnclaveConfig32`](#imageenclaveconfig32) | struct |  |
+| [`ImageEnclaveConfig64`](#imageenclaveconfig64) | struct |  |
+| [`ImageEnclaveImport`](#imageenclaveimport) | struct |  |
+| [`ImageDebugDirectory`](#imagedebugdirectory) | struct |  |
+| [`ImageCoffSymbolsHeader`](#imagecoffsymbolsheader) | struct |  |
+| [`ImageDebugMisc`](#imagedebugmisc) | struct |  |
+| [`ImageFunctionEntry`](#imagefunctionentry) | struct |  |
+| [`ImageFunctionEntry64`](#imagefunctionentry64) | struct |  |
+| [`ImageSeparateDebugHeader`](#imageseparatedebugheader) | struct |  |
+| [`NonPagedDebugInfo`](#nonpageddebuginfo) | struct |  |
+| [`ImageArchitectureEntry`](#imagearchitectureentry) | struct |  |
+| [`ImportObjectHeader`](#importobjectheader) | struct |  |
+| [`ImageCor20Header`](#imagecor20header) | struct |  |
+| [`IMAGE_DOS_SIGNATURE`](#image_dos_signature) | const | MZ |
+| [`IMAGE_OS2_SIGNATURE`](#image_os2_signature) | const | NE |
+| [`IMAGE_OS2_SIGNATURE_LE`](#image_os2_signature_le) | const | LE |
+| [`IMAGE_VXD_SIGNATURE`](#image_vxd_signature) | const | LE |
+| [`IMAGE_NT_SIGNATURE`](#image_nt_signature) | const | PE00 |
+| [`IMAGE_SIZEOF_FILE_HEADER`](#image_sizeof_file_header) | const |  |
+| [`IMAGE_FILE_RELOCS_STRIPPED`](#image_file_relocs_stripped) | const | Relocation info stripped from file. |
+| [`IMAGE_FILE_EXECUTABLE_IMAGE`](#image_file_executable_image) | const | File is executable  (i.e. no unresolved external references). |
+| [`IMAGE_FILE_LINE_NUMS_STRIPPED`](#image_file_line_nums_stripped) | const | Line numbers stripped from file. |
+| [`IMAGE_FILE_LOCAL_SYMS_STRIPPED`](#image_file_local_syms_stripped) | const | Local symbols stripped from file. |
+| [`IMAGE_FILE_AGGRESIVE_WS_TRIM`](#image_file_aggresive_ws_trim) | const | Aggressively trim working set |
+| [`IMAGE_FILE_LARGE_ADDRESS_AWARE`](#image_file_large_address_aware) | const | App can handle >2gb addresses |
+| [`IMAGE_FILE_BYTES_REVERSED_LO`](#image_file_bytes_reversed_lo) | const | Bytes of machine word are reversed. |
+| [`IMAGE_FILE_32BIT_MACHINE`](#image_file_32bit_machine) | const | 32 bit word machine. |
+| [`IMAGE_FILE_DEBUG_STRIPPED`](#image_file_debug_stripped) | const | Debugging info stripped from file in .DBG file |
+| [`IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP`](#image_file_removable_run_from_swap) | const | If Image is on removable media, copy and run from the swap file. |
+| [`IMAGE_FILE_NET_RUN_FROM_SWAP`](#image_file_net_run_from_swap) | const | If Image is on Net, copy and run from the swap file. |
+| [`IMAGE_FILE_SYSTEM`](#image_file_system) | const | System File. |
+| [`IMAGE_FILE_DLL`](#image_file_dll) | const | File is a DLL. |
+| [`IMAGE_FILE_UP_SYSTEM_ONLY`](#image_file_up_system_only) | const | File should only be run on a UP machine |
+| [`IMAGE_FILE_BYTES_REVERSED_HI`](#image_file_bytes_reversed_hi) | const | Bytes of machine word are reversed. |
+| [`IMAGE_FILE_MACHINE_UNKNOWN`](#image_file_machine_unknown) | const |  |
+| [`IMAGE_FILE_MACHINE_TARGET_HOST`](#image_file_machine_target_host) | const | Useful for indicating we want to interact with the host and not a WoW guest. |
+| [`IMAGE_FILE_MACHINE_I386`](#image_file_machine_i386) | const | Intel 386. |
+| [`IMAGE_FILE_MACHINE_R3000`](#image_file_machine_r3000) | const | MIPS little-endian, 0x160 big-endian |
+| [`IMAGE_FILE_MACHINE_R4000`](#image_file_machine_r4000) | const | MIPS little-endian |
+| [`IMAGE_FILE_MACHINE_R10000`](#image_file_machine_r10000) | const | MIPS little-endian |
+| [`IMAGE_FILE_MACHINE_WCEMIPSV2`](#image_file_machine_wcemipsv2) | const | MIPS little-endian WCE v2 |
+| [`IMAGE_FILE_MACHINE_ALPHA`](#image_file_machine_alpha) | const | Alpha_AXP |
+| [`IMAGE_FILE_MACHINE_SH3`](#image_file_machine_sh3) | const | SH3 little-endian |
+| [`IMAGE_FILE_MACHINE_SH3DSP`](#image_file_machine_sh3dsp) | const |  |
+| [`IMAGE_FILE_MACHINE_SH3E`](#image_file_machine_sh3e) | const | SH3E little-endian |
+| [`IMAGE_FILE_MACHINE_SH4`](#image_file_machine_sh4) | const | SH4 little-endian |
+| [`IMAGE_FILE_MACHINE_SH5`](#image_file_machine_sh5) | const | SH5 |
+| [`IMAGE_FILE_MACHINE_ARM`](#image_file_machine_arm) | const | ARM Little-Endian |
+| [`IMAGE_FILE_MACHINE_THUMB`](#image_file_machine_thumb) | const | ARM Thumb/Thumb-2 Little-Endian |
+| [`IMAGE_FILE_MACHINE_ARMNT`](#image_file_machine_armnt) | const | ARM Thumb-2 Little-Endian |
+| [`IMAGE_FILE_MACHINE_AM33`](#image_file_machine_am33) | const |  |
+| [`IMAGE_FILE_MACHINE_POWERPC`](#image_file_machine_powerpc) | const | IBM PowerPC Little-Endian |
+| [`IMAGE_FILE_MACHINE_POWERPCFP`](#image_file_machine_powerpcfp) | const |  |
+| [`IMAGE_FILE_MACHINE_POWERPCBE`](#image_file_machine_powerpcbe) | const | IBM PowerPC Big-Endian |
+| [`IMAGE_FILE_MACHINE_IA64`](#image_file_machine_ia64) | const | Intel 64 |
+| [`IMAGE_FILE_MACHINE_MIPS16`](#image_file_machine_mips16) | const | MIPS |
+| [`IMAGE_FILE_MACHINE_ALPHA64`](#image_file_machine_alpha64) | const | ALPHA64 |
+| [`IMAGE_FILE_MACHINE_MIPSFPU`](#image_file_machine_mipsfpu) | const | MIPS |
+| [`IMAGE_FILE_MACHINE_MIPSFPU16`](#image_file_machine_mipsfpu16) | const | MIPS |
+| [`IMAGE_FILE_MACHINE_AXP64`](#image_file_machine_axp64) | const |  |
+| [`IMAGE_FILE_MACHINE_TRICORE`](#image_file_machine_tricore) | const | Infineon |
+| [`IMAGE_FILE_MACHINE_CEF`](#image_file_machine_cef) | const |  |
+| [`IMAGE_FILE_MACHINE_EBC`](#image_file_machine_ebc) | const | EFI Byte Code |
+| [`IMAGE_FILE_MACHINE_AMD64`](#image_file_machine_amd64) | const | AMD64 (K8) |
+| [`IMAGE_FILE_MACHINE_M32R`](#image_file_machine_m32r) | const | M32R little-endian |
+| [`IMAGE_FILE_MACHINE_ARM64`](#image_file_machine_arm64) | const | ARM64 Little-Endian |
+| [`IMAGE_FILE_MACHINE_ARM64EC`](#image_file_machine_arm64ec) | const | ARM64EC ("Emulation Compatible") |
+| [`IMAGE_FILE_MACHINE_CEE`](#image_file_machine_cee) | const |  |
+| [`IMAGE_FILE_MACHINE_RISCV32`](#image_file_machine_riscv32) | const | RISCV32 |
+| [`IMAGE_FILE_MACHINE_RISCV64`](#image_file_machine_riscv64) | const | RISCV64 |
+| [`IMAGE_FILE_MACHINE_RISCV128`](#image_file_machine_riscv128) | const | RISCV128 |
+| [`IMAGE_FILE_MACHINE_ARM64X`](#image_file_machine_arm64x) | const | ARM64X (Mixed ARM64 and ARM64EC) |
+| [`IMAGE_FILE_MACHINE_CHPE_X86`](#image_file_machine_chpe_x86) | const | CHPE x86 ("Compiled Hybrid Portable Executable") |
+| [`IMAGE_NUMBEROF_DIRECTORY_ENTRIES`](#image_numberof_directory_entries) | const |  |
+| [`IMAGE_NT_OPTIONAL_HDR32_MAGIC`](#image_nt_optional_hdr32_magic) | const |  |
+| [`IMAGE_NT_OPTIONAL_HDR64_MAGIC`](#image_nt_optional_hdr64_magic) | const |  |
+| [`IMAGE_ROM_OPTIONAL_HDR_MAGIC`](#image_rom_optional_hdr_magic) | const |  |
+| [`IMAGE_SUBSYSTEM_UNKNOWN`](#image_subsystem_unknown) | const | Unknown subsystem. |
+| [`IMAGE_SUBSYSTEM_NATIVE`](#image_subsystem_native) | const | Image doesn't require a subsystem. |
+| [`IMAGE_SUBSYSTEM_WINDOWS_GUI`](#image_subsystem_windows_gui) | const | Image runs in the Windows GUI subsystem. |
+| [`IMAGE_SUBSYSTEM_WINDOWS_CUI`](#image_subsystem_windows_cui) | const | Image runs in the Windows character subsystem. |
+| [`IMAGE_SUBSYSTEM_OS2_CUI`](#image_subsystem_os2_cui) | const | image runs in the OS/2 character subsystem. |
+| [`IMAGE_SUBSYSTEM_POSIX_CUI`](#image_subsystem_posix_cui) | const | image runs in the Posix character subsystem. |
+| [`IMAGE_SUBSYSTEM_NATIVE_WINDOWS`](#image_subsystem_native_windows) | const | image is a native Win9x driver. |
+| [`IMAGE_SUBSYSTEM_WINDOWS_CE_GUI`](#image_subsystem_windows_ce_gui) | const | Image runs in the Windows CE subsystem. |
+| [`IMAGE_SUBSYSTEM_EFI_APPLICATION`](#image_subsystem_efi_application) | const |  |
+| [`IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER`](#image_subsystem_efi_boot_service_driver) | const |  |
+| [`IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER`](#image_subsystem_efi_runtime_driver) | const |  |
+| [`IMAGE_SUBSYSTEM_EFI_ROM`](#image_subsystem_efi_rom) | const |  |
+| [`IMAGE_SUBSYSTEM_XBOX`](#image_subsystem_xbox) | const |  |
+| [`IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION`](#image_subsystem_windows_boot_application) | const |  |
+| [`IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG`](#image_subsystem_xbox_code_catalog) | const |  |
+| [`IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA`](#image_dllcharacteristics_high_entropy_va) | const | Image can handle a high entropy 64-bit virtual address space. |
+| [`IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE`](#image_dllcharacteristics_dynamic_base) | const | DLL can move. |
+| [`IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY`](#image_dllcharacteristics_force_integrity) | const | Code Integrity Image |
+| [`IMAGE_DLLCHARACTERISTICS_NX_COMPAT`](#image_dllcharacteristics_nx_compat) | const | Image is NX compatible |
+| [`IMAGE_DLLCHARACTERISTICS_NO_ISOLATION`](#image_dllcharacteristics_no_isolation) | const | Image understands isolation and doesn't want it |
+| [`IMAGE_DLLCHARACTERISTICS_NO_SEH`](#image_dllcharacteristics_no_seh) | const | Image does not use SEH. |
+| [`IMAGE_DLLCHARACTERISTICS_NO_BIND`](#image_dllcharacteristics_no_bind) | const | Do not bind this image. |
+| [`IMAGE_DLLCHARACTERISTICS_APPCONTAINER`](#image_dllcharacteristics_appcontainer) | const | Image should execute in an AppContainer |
+| [`IMAGE_DLLCHARACTERISTICS_WDM_DRIVER`](#image_dllcharacteristics_wdm_driver) | const | Driver uses WDM model |
+| [`IMAGE_DLLCHARACTERISTICS_GUARD_CF`](#image_dllcharacteristics_guard_cf) | const | Image supports Control Flow Guard. |
+| [`IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE`](#image_dllcharacteristics_terminal_server_aware) | const |  |
+| [`IMAGE_DIRECTORY_ENTRY_EXPORT`](#image_directory_entry_export) | const | Export Directory |
+| [`IMAGE_DIRECTORY_ENTRY_IMPORT`](#image_directory_entry_import) | const | Import Directory |
+| [`IMAGE_DIRECTORY_ENTRY_RESOURCE`](#image_directory_entry_resource) | const | Resource Directory |
+| [`IMAGE_DIRECTORY_ENTRY_EXCEPTION`](#image_directory_entry_exception) | const | Exception Directory |
+| [`IMAGE_DIRECTORY_ENTRY_SECURITY`](#image_directory_entry_security) | const | Security Directory |
+| [`IMAGE_DIRECTORY_ENTRY_BASERELOC`](#image_directory_entry_basereloc) | const | Base Relocation Table |
+| [`IMAGE_DIRECTORY_ENTRY_DEBUG`](#image_directory_entry_debug) | const | Debug Directory |
+| [`IMAGE_DIRECTORY_ENTRY_ARCHITECTURE`](#image_directory_entry_architecture) | const | Architecture Specific Data |
+| [`IMAGE_DIRECTORY_ENTRY_GLOBALPTR`](#image_directory_entry_globalptr) | const | RVA of GP |
+| [`IMAGE_DIRECTORY_ENTRY_TLS`](#image_directory_entry_tls) | const | TLS Directory |
+| [`IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG`](#image_directory_entry_load_config) | const | Load Configuration Directory |
+| [`IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT`](#image_directory_entry_bound_import) | const | Bound Import Directory in headers |
+| [`IMAGE_DIRECTORY_ENTRY_IAT`](#image_directory_entry_iat) | const | Import Address Table |
+| [`IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT`](#image_directory_entry_delay_import) | const | Delay Load Import Descriptors |
+| [`IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR`](#image_directory_entry_com_descriptor) | const | COM Runtime descriptor |
+| [`ANON_OBJECT_HEADER_BIGOBJ_CLASS_ID`](#anon_object_header_bigobj_class_id) | const | The required value of `AnonObjectHeaderBigobj::class_id`. |
+| [`IMAGE_SIZEOF_SHORT_NAME`](#image_sizeof_short_name) | const |  |
+| [`IMAGE_SIZEOF_SECTION_HEADER`](#image_sizeof_section_header) | const |  |
+| [`IMAGE_SCN_TYPE_NO_PAD`](#image_scn_type_no_pad) | const | Reserved. |
+| [`IMAGE_SCN_CNT_CODE`](#image_scn_cnt_code) | const | Section contains code. |
+| [`IMAGE_SCN_CNT_INITIALIZED_DATA`](#image_scn_cnt_initialized_data) | const | Section contains initialized data. |
+| [`IMAGE_SCN_CNT_UNINITIALIZED_DATA`](#image_scn_cnt_uninitialized_data) | const | Section contains uninitialized data. |
+| [`IMAGE_SCN_LNK_OTHER`](#image_scn_lnk_other) | const | Reserved. |
+| [`IMAGE_SCN_LNK_INFO`](#image_scn_lnk_info) | const | Section contains comments or some other type of information. |
+| [`IMAGE_SCN_LNK_REMOVE`](#image_scn_lnk_remove) | const | Section contents will not become part of image. |
+| [`IMAGE_SCN_LNK_COMDAT`](#image_scn_lnk_comdat) | const | Section contents comdat. |
+| [`IMAGE_SCN_NO_DEFER_SPEC_EXC`](#image_scn_no_defer_spec_exc) | const | Reset speculative exceptions handling bits in the TLB entries for this section. |
+| [`IMAGE_SCN_GPREL`](#image_scn_gprel) | const | Section content can be accessed relative to GP |
+| [`IMAGE_SCN_MEM_FARDATA`](#image_scn_mem_fardata) | const |  |
+| [`IMAGE_SCN_MEM_PURGEABLE`](#image_scn_mem_purgeable) | const |  |
+| [`IMAGE_SCN_MEM_16BIT`](#image_scn_mem_16bit) | const |  |
+| [`IMAGE_SCN_MEM_LOCKED`](#image_scn_mem_locked) | const |  |
+| [`IMAGE_SCN_MEM_PRELOAD`](#image_scn_mem_preload) | const |  |
+| [`IMAGE_SCN_ALIGN_1BYTES`](#image_scn_align_1bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_2BYTES`](#image_scn_align_2bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_4BYTES`](#image_scn_align_4bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_8BYTES`](#image_scn_align_8bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_16BYTES`](#image_scn_align_16bytes) | const | Default alignment if no others are specified. |
+| [`IMAGE_SCN_ALIGN_32BYTES`](#image_scn_align_32bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_64BYTES`](#image_scn_align_64bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_128BYTES`](#image_scn_align_128bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_256BYTES`](#image_scn_align_256bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_512BYTES`](#image_scn_align_512bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_1024BYTES`](#image_scn_align_1024bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_2048BYTES`](#image_scn_align_2048bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_4096BYTES`](#image_scn_align_4096bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_8192BYTES`](#image_scn_align_8192bytes) | const |  |
+| [`IMAGE_SCN_ALIGN_MASK`](#image_scn_align_mask) | const |  |
+| [`IMAGE_SCN_LNK_NRELOC_OVFL`](#image_scn_lnk_nreloc_ovfl) | const | Section contains extended relocations. |
+| [`IMAGE_SCN_MEM_DISCARDABLE`](#image_scn_mem_discardable) | const | Section can be discarded. |
+| [`IMAGE_SCN_MEM_NOT_CACHED`](#image_scn_mem_not_cached) | const | Section is not cacheable. |
+| [`IMAGE_SCN_MEM_NOT_PAGED`](#image_scn_mem_not_paged) | const | Section is not pageable. |
+| [`IMAGE_SCN_MEM_SHARED`](#image_scn_mem_shared) | const | Section is shareable. |
+| [`IMAGE_SCN_MEM_EXECUTE`](#image_scn_mem_execute) | const | Section is executable. |
+| [`IMAGE_SCN_MEM_READ`](#image_scn_mem_read) | const | Section is readable. |
+| [`IMAGE_SCN_MEM_WRITE`](#image_scn_mem_write) | const | Section is writeable. |
+| [`IMAGE_SCN_SCALE_INDEX`](#image_scn_scale_index) | const | Tls index is scaled |
+| [`IMAGE_SIZEOF_SYMBOL`](#image_sizeof_symbol) | const |  |
+| [`IMAGE_SIZEOF_SYMBOL_EX`](#image_sizeof_symbol_ex) | const |  |
+| [`IMAGE_SYM_UNDEFINED`](#image_sym_undefined) | const | Symbol is undefined or is common. |
+| [`IMAGE_SYM_ABSOLUTE`](#image_sym_absolute) | const | Symbol is an absolute value. |
+| [`IMAGE_SYM_DEBUG`](#image_sym_debug) | const | Symbol is a special debug item. |
+| [`IMAGE_SYM_SECTION_MAX`](#image_sym_section_max) | const | Values 0xFF00-0xFFFF are special |
+| [`IMAGE_SYM_SECTION_MAX_EX`](#image_sym_section_max_ex) | const |  |
+| [`IMAGE_SYM_TYPE_NULL`](#image_sym_type_null) | const | no type. |
+| [`IMAGE_SYM_TYPE_VOID`](#image_sym_type_void) | const |  |
+| [`IMAGE_SYM_TYPE_CHAR`](#image_sym_type_char) | const | type character. |
+| [`IMAGE_SYM_TYPE_SHORT`](#image_sym_type_short) | const | type short integer. |
+| [`IMAGE_SYM_TYPE_INT`](#image_sym_type_int) | const |  |
+| [`IMAGE_SYM_TYPE_LONG`](#image_sym_type_long) | const |  |
+| [`IMAGE_SYM_TYPE_FLOAT`](#image_sym_type_float) | const |  |
+| [`IMAGE_SYM_TYPE_DOUBLE`](#image_sym_type_double) | const |  |
+| [`IMAGE_SYM_TYPE_STRUCT`](#image_sym_type_struct) | const |  |
+| [`IMAGE_SYM_TYPE_UNION`](#image_sym_type_union) | const |  |
+| [`IMAGE_SYM_TYPE_ENUM`](#image_sym_type_enum) | const | enumeration. |
+| [`IMAGE_SYM_TYPE_MOE`](#image_sym_type_moe) | const | member of enumeration. |
+| [`IMAGE_SYM_TYPE_BYTE`](#image_sym_type_byte) | const |  |
+| [`IMAGE_SYM_TYPE_WORD`](#image_sym_type_word) | const |  |
+| [`IMAGE_SYM_TYPE_UINT`](#image_sym_type_uint) | const |  |
+| [`IMAGE_SYM_TYPE_DWORD`](#image_sym_type_dword) | const |  |
+| [`IMAGE_SYM_TYPE_PCODE`](#image_sym_type_pcode) | const |  |
+| [`IMAGE_SYM_DTYPE_NULL`](#image_sym_dtype_null) | const | no derived type. |
+| [`IMAGE_SYM_DTYPE_POINTER`](#image_sym_dtype_pointer) | const | pointer. |
+| [`IMAGE_SYM_DTYPE_FUNCTION`](#image_sym_dtype_function) | const | function. |
+| [`IMAGE_SYM_DTYPE_ARRAY`](#image_sym_dtype_array) | const | array. |
+| [`IMAGE_SYM_CLASS_END_OF_FUNCTION`](#image_sym_class_end_of_function) | const |  |
+| [`IMAGE_SYM_CLASS_NULL`](#image_sym_class_null) | const |  |
+| [`IMAGE_SYM_CLASS_AUTOMATIC`](#image_sym_class_automatic) | const |  |
+| [`IMAGE_SYM_CLASS_EXTERNAL`](#image_sym_class_external) | const |  |
+| [`IMAGE_SYM_CLASS_STATIC`](#image_sym_class_static) | const |  |
+| [`IMAGE_SYM_CLASS_REGISTER`](#image_sym_class_register) | const |  |
+| [`IMAGE_SYM_CLASS_EXTERNAL_DEF`](#image_sym_class_external_def) | const |  |
+| [`IMAGE_SYM_CLASS_LABEL`](#image_sym_class_label) | const |  |
+| [`IMAGE_SYM_CLASS_UNDEFINED_LABEL`](#image_sym_class_undefined_label) | const |  |
+| [`IMAGE_SYM_CLASS_MEMBER_OF_STRUCT`](#image_sym_class_member_of_struct) | const |  |
+| [`IMAGE_SYM_CLASS_ARGUMENT`](#image_sym_class_argument) | const |  |
+| [`IMAGE_SYM_CLASS_STRUCT_TAG`](#image_sym_class_struct_tag) | const |  |
+| [`IMAGE_SYM_CLASS_MEMBER_OF_UNION`](#image_sym_class_member_of_union) | const |  |
+| [`IMAGE_SYM_CLASS_UNION_TAG`](#image_sym_class_union_tag) | const |  |
+| [`IMAGE_SYM_CLASS_TYPE_DEFINITION`](#image_sym_class_type_definition) | const |  |
+| [`IMAGE_SYM_CLASS_UNDEFINED_STATIC`](#image_sym_class_undefined_static) | const |  |
+| [`IMAGE_SYM_CLASS_ENUM_TAG`](#image_sym_class_enum_tag) | const |  |
+| [`IMAGE_SYM_CLASS_MEMBER_OF_ENUM`](#image_sym_class_member_of_enum) | const |  |
+| [`IMAGE_SYM_CLASS_REGISTER_PARAM`](#image_sym_class_register_param) | const |  |
+| [`IMAGE_SYM_CLASS_BIT_FIELD`](#image_sym_class_bit_field) | const |  |
+| [`IMAGE_SYM_CLASS_FAR_EXTERNAL`](#image_sym_class_far_external) | const |  |
+| [`IMAGE_SYM_CLASS_BLOCK`](#image_sym_class_block) | const |  |
+| [`IMAGE_SYM_CLASS_FUNCTION`](#image_sym_class_function) | const |  |
+| [`IMAGE_SYM_CLASS_END_OF_STRUCT`](#image_sym_class_end_of_struct) | const |  |
+| [`IMAGE_SYM_CLASS_FILE`](#image_sym_class_file) | const |  |
+| [`IMAGE_SYM_CLASS_SECTION`](#image_sym_class_section) | const |  |
+| [`IMAGE_SYM_CLASS_WEAK_EXTERNAL`](#image_sym_class_weak_external) | const |  |
+| [`IMAGE_SYM_CLASS_CLR_TOKEN`](#image_sym_class_clr_token) | const |  |
+| [`N_BTMASK`](#n_btmask) | const |  |
+| [`N_TMASK`](#n_tmask) | const |  |
+| [`N_TMASK1`](#n_tmask1) | const |  |
+| [`N_TMASK2`](#n_tmask2) | const |  |
+| [`N_BTSHFT`](#n_btshft) | const |  |
+| [`N_TSHIFT`](#n_tshift) | const |  |
+| [`IMAGE_SYM_DTYPE_SHIFT`](#image_sym_dtype_shift) | const |  |
+| [`IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF`](#image_aux_symbol_type_token_def) | const |  |
+| [`IMAGE_COMDAT_SELECT_NODUPLICATES`](#image_comdat_select_noduplicates) | const |  |
+| [`IMAGE_COMDAT_SELECT_ANY`](#image_comdat_select_any) | const |  |
+| [`IMAGE_COMDAT_SELECT_SAME_SIZE`](#image_comdat_select_same_size) | const |  |
+| [`IMAGE_COMDAT_SELECT_EXACT_MATCH`](#image_comdat_select_exact_match) | const |  |
+| [`IMAGE_COMDAT_SELECT_ASSOCIATIVE`](#image_comdat_select_associative) | const |  |
+| [`IMAGE_COMDAT_SELECT_LARGEST`](#image_comdat_select_largest) | const |  |
+| [`IMAGE_COMDAT_SELECT_NEWEST`](#image_comdat_select_newest) | const |  |
+| [`IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY`](#image_weak_extern_search_nolibrary) | const |  |
+| [`IMAGE_WEAK_EXTERN_SEARCH_LIBRARY`](#image_weak_extern_search_library) | const |  |
+| [`IMAGE_WEAK_EXTERN_SEARCH_ALIAS`](#image_weak_extern_search_alias) | const |  |
+| [`IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY`](#image_weak_extern_anti_dependency) | const |  |
+| [`IMAGE_REL_I386_ABSOLUTE`](#image_rel_i386_absolute) | const | Reference is absolute, no relocation is necessary |
+| [`IMAGE_REL_I386_DIR16`](#image_rel_i386_dir16) | const | Direct 16-bit reference to the symbols virtual address |
+| [`IMAGE_REL_I386_REL16`](#image_rel_i386_rel16) | const | PC-relative 16-bit reference to the symbols virtual address |
+| [`IMAGE_REL_I386_DIR32`](#image_rel_i386_dir32) | const | Direct 32-bit reference to the symbols virtual address |
+| [`IMAGE_REL_I386_DIR32NB`](#image_rel_i386_dir32nb) | const | Direct 32-bit reference to the symbols virtual address, base not included |
+| [`IMAGE_REL_I386_SEG12`](#image_rel_i386_seg12) | const | Direct 16-bit reference to the segment-selector bits of a 32-bit virtual address |
+| [`IMAGE_REL_I386_SECTION`](#image_rel_i386_section) | const |  |
+| [`IMAGE_REL_I386_SECREL`](#image_rel_i386_secrel) | const |  |
+| [`IMAGE_REL_I386_TOKEN`](#image_rel_i386_token) | const | clr token |
+| [`IMAGE_REL_I386_SECREL7`](#image_rel_i386_secrel7) | const | 7 bit offset from base of section containing target |
+| [`IMAGE_REL_I386_REL32`](#image_rel_i386_rel32) | const | PC-relative 32-bit reference to the symbols virtual address |
+| [`IMAGE_REL_MIPS_ABSOLUTE`](#image_rel_mips_absolute) | const | Reference is absolute, no relocation is necessary |
+| [`IMAGE_REL_MIPS_REFHALF`](#image_rel_mips_refhalf) | const |  |
+| [`IMAGE_REL_MIPS_REFWORD`](#image_rel_mips_refword) | const |  |
+| [`IMAGE_REL_MIPS_JMPADDR`](#image_rel_mips_jmpaddr) | const |  |
+| [`IMAGE_REL_MIPS_REFHI`](#image_rel_mips_refhi) | const |  |
+| [`IMAGE_REL_MIPS_REFLO`](#image_rel_mips_reflo) | const |  |
+| [`IMAGE_REL_MIPS_GPREL`](#image_rel_mips_gprel) | const |  |
+| [`IMAGE_REL_MIPS_LITERAL`](#image_rel_mips_literal) | const |  |
+| [`IMAGE_REL_MIPS_SECTION`](#image_rel_mips_section) | const |  |
+| [`IMAGE_REL_MIPS_SECREL`](#image_rel_mips_secrel) | const |  |
+| [`IMAGE_REL_MIPS_SECRELLO`](#image_rel_mips_secrello) | const | Low 16-bit section relative reference (used for >32k TLS) |
+| [`IMAGE_REL_MIPS_SECRELHI`](#image_rel_mips_secrelhi) | const | High 16-bit section relative reference (used for >32k TLS) |
+| [`IMAGE_REL_MIPS_TOKEN`](#image_rel_mips_token) | const | clr token |
+| [`IMAGE_REL_MIPS_JMPADDR16`](#image_rel_mips_jmpaddr16) | const |  |
+| [`IMAGE_REL_MIPS_REFWORDNB`](#image_rel_mips_refwordnb) | const |  |
+| [`IMAGE_REL_MIPS_PAIR`](#image_rel_mips_pair) | const |  |
+| [`IMAGE_REL_ALPHA_ABSOLUTE`](#image_rel_alpha_absolute) | const |  |
+| [`IMAGE_REL_ALPHA_REFLONG`](#image_rel_alpha_reflong) | const |  |
+| [`IMAGE_REL_ALPHA_REFQUAD`](#image_rel_alpha_refquad) | const |  |
+| [`IMAGE_REL_ALPHA_GPREL32`](#image_rel_alpha_gprel32) | const |  |
+| [`IMAGE_REL_ALPHA_LITERAL`](#image_rel_alpha_literal) | const |  |
+| [`IMAGE_REL_ALPHA_LITUSE`](#image_rel_alpha_lituse) | const |  |
+| [`IMAGE_REL_ALPHA_GPDISP`](#image_rel_alpha_gpdisp) | const |  |
+| [`IMAGE_REL_ALPHA_BRADDR`](#image_rel_alpha_braddr) | const |  |
+| [`IMAGE_REL_ALPHA_HINT`](#image_rel_alpha_hint) | const |  |
+| [`IMAGE_REL_ALPHA_INLINE_REFLONG`](#image_rel_alpha_inline_reflong) | const |  |
+| [`IMAGE_REL_ALPHA_REFHI`](#image_rel_alpha_refhi) | const |  |
+| [`IMAGE_REL_ALPHA_REFLO`](#image_rel_alpha_reflo) | const |  |
+| [`IMAGE_REL_ALPHA_PAIR`](#image_rel_alpha_pair) | const |  |
+| [`IMAGE_REL_ALPHA_MATCH`](#image_rel_alpha_match) | const |  |
+| [`IMAGE_REL_ALPHA_SECTION`](#image_rel_alpha_section) | const |  |
+| [`IMAGE_REL_ALPHA_SECREL`](#image_rel_alpha_secrel) | const |  |
+| [`IMAGE_REL_ALPHA_REFLONGNB`](#image_rel_alpha_reflongnb) | const |  |
+| [`IMAGE_REL_ALPHA_SECRELLO`](#image_rel_alpha_secrello) | const | Low 16-bit section relative reference |
+| [`IMAGE_REL_ALPHA_SECRELHI`](#image_rel_alpha_secrelhi) | const | High 16-bit section relative reference |
+| [`IMAGE_REL_ALPHA_REFQ3`](#image_rel_alpha_refq3) | const | High 16 bits of 48 bit reference |
+| [`IMAGE_REL_ALPHA_REFQ2`](#image_rel_alpha_refq2) | const | Middle 16 bits of 48 bit reference |
+| [`IMAGE_REL_ALPHA_REFQ1`](#image_rel_alpha_refq1) | const | Low 16 bits of 48 bit reference |
+| [`IMAGE_REL_ALPHA_GPRELLO`](#image_rel_alpha_gprello) | const | Low 16-bit GP relative reference |
+| [`IMAGE_REL_ALPHA_GPRELHI`](#image_rel_alpha_gprelhi) | const | High 16-bit GP relative reference |
+| [`IMAGE_REL_PPC_ABSOLUTE`](#image_rel_ppc_absolute) | const | NOP |
+| [`IMAGE_REL_PPC_ADDR64`](#image_rel_ppc_addr64) | const | 64-bit address |
+| [`IMAGE_REL_PPC_ADDR32`](#image_rel_ppc_addr32) | const | 32-bit address |
+| [`IMAGE_REL_PPC_ADDR24`](#image_rel_ppc_addr24) | const | 26-bit address, shifted left 2 (branch absolute) |
+| [`IMAGE_REL_PPC_ADDR16`](#image_rel_ppc_addr16) | const | 16-bit address |
+| [`IMAGE_REL_PPC_ADDR14`](#image_rel_ppc_addr14) | const | 16-bit address, shifted left 2 (load doubleword) |
+| [`IMAGE_REL_PPC_REL24`](#image_rel_ppc_rel24) | const | 26-bit PC-relative offset, shifted left 2 (branch relative) |
+| [`IMAGE_REL_PPC_REL14`](#image_rel_ppc_rel14) | const | 16-bit PC-relative offset, shifted left 2 (br cond relative) |
+| [`IMAGE_REL_PPC_TOCREL16`](#image_rel_ppc_tocrel16) | const | 16-bit offset from TOC base |
+| [`IMAGE_REL_PPC_TOCREL14`](#image_rel_ppc_tocrel14) | const | 16-bit offset from TOC base, shifted left 2 (load doubleword) |
+| [`IMAGE_REL_PPC_ADDR32NB`](#image_rel_ppc_addr32nb) | const | 32-bit addr w/o image base |
+| [`IMAGE_REL_PPC_SECREL`](#image_rel_ppc_secrel) | const | va of containing section (as in an image sectionhdr) |
+| [`IMAGE_REL_PPC_SECTION`](#image_rel_ppc_section) | const | sectionheader number |
+| [`IMAGE_REL_PPC_IFGLUE`](#image_rel_ppc_ifglue) | const | substitute TOC restore instruction iff symbol is glue code |
+| [`IMAGE_REL_PPC_IMGLUE`](#image_rel_ppc_imglue) | const | symbol is glue code; virtual address is TOC restore instruction |
+| [`IMAGE_REL_PPC_SECREL16`](#image_rel_ppc_secrel16) | const | va of containing section (limited to 16 bits) |
+| [`IMAGE_REL_PPC_REFHI`](#image_rel_ppc_refhi) | const |  |
+| [`IMAGE_REL_PPC_REFLO`](#image_rel_ppc_reflo) | const |  |
+| [`IMAGE_REL_PPC_PAIR`](#image_rel_ppc_pair) | const |  |
+| [`IMAGE_REL_PPC_SECRELLO`](#image_rel_ppc_secrello) | const | Low 16-bit section relative reference (used for >32k TLS) |
+| [`IMAGE_REL_PPC_SECRELHI`](#image_rel_ppc_secrelhi) | const | High 16-bit section relative reference (used for >32k TLS) |
+| [`IMAGE_REL_PPC_GPREL`](#image_rel_ppc_gprel) | const |  |
+| [`IMAGE_REL_PPC_TOKEN`](#image_rel_ppc_token) | const | clr token |
+| [`IMAGE_REL_PPC_TYPEMASK`](#image_rel_ppc_typemask) | const | mask to isolate above values in IMAGE_RELOCATION.Type |
+| [`IMAGE_REL_PPC_NEG`](#image_rel_ppc_neg) | const | subtract reloc value rather than adding it |
+| [`IMAGE_REL_PPC_BRTAKEN`](#image_rel_ppc_brtaken) | const | fix branch prediction bit to predict branch taken |
+| [`IMAGE_REL_PPC_BRNTAKEN`](#image_rel_ppc_brntaken) | const | fix branch prediction bit to predict branch not taken |
+| [`IMAGE_REL_PPC_TOCDEFN`](#image_rel_ppc_tocdefn) | const | toc slot defined in file (or, data in toc) |
+| [`IMAGE_REL_SH3_ABSOLUTE`](#image_rel_sh3_absolute) | const | No relocation |
+| [`IMAGE_REL_SH3_DIRECT16`](#image_rel_sh3_direct16) | const | 16 bit direct |
+| [`IMAGE_REL_SH3_DIRECT32`](#image_rel_sh3_direct32) | const | 32 bit direct |
+| [`IMAGE_REL_SH3_DIRECT8`](#image_rel_sh3_direct8) | const | 8 bit direct, -128..255 |
+| [`IMAGE_REL_SH3_DIRECT8_WORD`](#image_rel_sh3_direct8_word) | const | 8 bit direct .W (0 ext.) |
+| [`IMAGE_REL_SH3_DIRECT8_LONG`](#image_rel_sh3_direct8_long) | const | 8 bit direct .L (0 ext.) |
+| [`IMAGE_REL_SH3_DIRECT4`](#image_rel_sh3_direct4) | const | 4 bit direct (0 ext.) |
+| [`IMAGE_REL_SH3_DIRECT4_WORD`](#image_rel_sh3_direct4_word) | const | 4 bit direct .W (0 ext.) |
+| [`IMAGE_REL_SH3_DIRECT4_LONG`](#image_rel_sh3_direct4_long) | const | 4 bit direct .L (0 ext.) |
+| [`IMAGE_REL_SH3_PCREL8_WORD`](#image_rel_sh3_pcrel8_word) | const | 8 bit PC relative .W |
+| [`IMAGE_REL_SH3_PCREL8_LONG`](#image_rel_sh3_pcrel8_long) | const | 8 bit PC relative .L |
+| [`IMAGE_REL_SH3_PCREL12_WORD`](#image_rel_sh3_pcrel12_word) | const | 12 LSB PC relative .W |
+| [`IMAGE_REL_SH3_STARTOF_SECTION`](#image_rel_sh3_startof_section) | const | Start of EXE section |
+| [`IMAGE_REL_SH3_SIZEOF_SECTION`](#image_rel_sh3_sizeof_section) | const | Size of EXE section |
+| [`IMAGE_REL_SH3_SECTION`](#image_rel_sh3_section) | const | Section table index |
+| [`IMAGE_REL_SH3_SECREL`](#image_rel_sh3_secrel) | const | Offset within section |
+| [`IMAGE_REL_SH3_DIRECT32_NB`](#image_rel_sh3_direct32_nb) | const | 32 bit direct not based |
+| [`IMAGE_REL_SH3_GPREL4_LONG`](#image_rel_sh3_gprel4_long) | const | GP-relative addressing |
+| [`IMAGE_REL_SH3_TOKEN`](#image_rel_sh3_token) | const | clr token |
+| [`IMAGE_REL_SHM_PCRELPT`](#image_rel_shm_pcrelpt) | const | Offset from current instruction in longwords if not NOMODE, insert the inverse of the low bit at bit 32 to select PTA/PTB |
+| [`IMAGE_REL_SHM_REFLO`](#image_rel_shm_reflo) | const | Low bits of 32-bit address |
+| [`IMAGE_REL_SHM_REFHALF`](#image_rel_shm_refhalf) | const | High bits of 32-bit address |
+| [`IMAGE_REL_SHM_RELLO`](#image_rel_shm_rello) | const | Low bits of relative reference |
+| [`IMAGE_REL_SHM_RELHALF`](#image_rel_shm_relhalf) | const | High bits of relative reference |
+| [`IMAGE_REL_SHM_PAIR`](#image_rel_shm_pair) | const | offset operand for relocation |
+| [`IMAGE_REL_SH_NOMODE`](#image_rel_sh_nomode) | const | relocation ignores section mode |
+| [`IMAGE_REL_ARM_ABSOLUTE`](#image_rel_arm_absolute) | const | No relocation required |
+| [`IMAGE_REL_ARM_ADDR32`](#image_rel_arm_addr32) | const | 32 bit address |
+| [`IMAGE_REL_ARM_ADDR32NB`](#image_rel_arm_addr32nb) | const | 32 bit address w/o image base |
+| [`IMAGE_REL_ARM_BRANCH24`](#image_rel_arm_branch24) | const | 24 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_ARM_BRANCH11`](#image_rel_arm_branch11) | const | Thumb: 2 11 bit offsets |
+| [`IMAGE_REL_ARM_TOKEN`](#image_rel_arm_token) | const | clr token |
+| [`IMAGE_REL_ARM_GPREL12`](#image_rel_arm_gprel12) | const | GP-relative addressing (ARM) |
+| [`IMAGE_REL_ARM_GPREL7`](#image_rel_arm_gprel7) | const | GP-relative addressing (Thumb) |
+| [`IMAGE_REL_ARM_BLX24`](#image_rel_arm_blx24) | const |  |
+| [`IMAGE_REL_ARM_BLX11`](#image_rel_arm_blx11) | const |  |
+| [`IMAGE_REL_ARM_REL32`](#image_rel_arm_rel32) | const | 32-bit relative address from byte following reloc |
+| [`IMAGE_REL_ARM_SECTION`](#image_rel_arm_section) | const | Section table index |
+| [`IMAGE_REL_ARM_SECREL`](#image_rel_arm_secrel) | const | Offset within section |
+| [`IMAGE_REL_ARM_MOV32A`](#image_rel_arm_mov32a) | const | ARM: MOVW/MOVT |
+| [`IMAGE_REL_ARM_MOV32`](#image_rel_arm_mov32) | const | ARM: MOVW/MOVT (deprecated) |
+| [`IMAGE_REL_ARM_MOV32T`](#image_rel_arm_mov32t) | const | Thumb: MOVW/MOVT |
+| [`IMAGE_REL_THUMB_MOV32`](#image_rel_thumb_mov32) | const | Thumb: MOVW/MOVT (deprecated) |
+| [`IMAGE_REL_ARM_BRANCH20T`](#image_rel_arm_branch20t) | const | Thumb: 32-bit conditional B |
+| [`IMAGE_REL_THUMB_BRANCH20`](#image_rel_thumb_branch20) | const | Thumb: 32-bit conditional B (deprecated) |
+| [`IMAGE_REL_ARM_BRANCH24T`](#image_rel_arm_branch24t) | const | Thumb: 32-bit B or BL |
+| [`IMAGE_REL_THUMB_BRANCH24`](#image_rel_thumb_branch24) | const | Thumb: 32-bit B or BL (deprecated) |
+| [`IMAGE_REL_ARM_BLX23T`](#image_rel_arm_blx23t) | const | Thumb: BLX immediate |
+| [`IMAGE_REL_THUMB_BLX23`](#image_rel_thumb_blx23) | const | Thumb: BLX immediate (deprecated) |
+| [`IMAGE_REL_AM_ABSOLUTE`](#image_rel_am_absolute) | const |  |
+| [`IMAGE_REL_AM_ADDR32`](#image_rel_am_addr32) | const |  |
+| [`IMAGE_REL_AM_ADDR32NB`](#image_rel_am_addr32nb) | const |  |
+| [`IMAGE_REL_AM_CALL32`](#image_rel_am_call32) | const |  |
+| [`IMAGE_REL_AM_FUNCINFO`](#image_rel_am_funcinfo) | const |  |
+| [`IMAGE_REL_AM_REL32_1`](#image_rel_am_rel32_1) | const |  |
+| [`IMAGE_REL_AM_REL32_2`](#image_rel_am_rel32_2) | const |  |
+| [`IMAGE_REL_AM_SECREL`](#image_rel_am_secrel) | const |  |
+| [`IMAGE_REL_AM_SECTION`](#image_rel_am_section) | const |  |
+| [`IMAGE_REL_AM_TOKEN`](#image_rel_am_token) | const |  |
+| [`IMAGE_REL_ARM64_ABSOLUTE`](#image_rel_arm64_absolute) | const | No relocation required |
+| [`IMAGE_REL_ARM64_ADDR32`](#image_rel_arm64_addr32) | const | 32 bit address. |
+| [`IMAGE_REL_ARM64_ADDR32NB`](#image_rel_arm64_addr32nb) | const | 32 bit address w/o image base (RVA: for Data/PData/XData) |
+| [`IMAGE_REL_ARM64_BRANCH26`](#image_rel_arm64_branch26) | const | 26 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_ARM64_PAGEBASE_REL21`](#image_rel_arm64_pagebase_rel21) | const | ADRP |
+| [`IMAGE_REL_ARM64_REL21`](#image_rel_arm64_rel21) | const | ADR |
+| [`IMAGE_REL_ARM64_PAGEOFFSET_12A`](#image_rel_arm64_pageoffset_12a) | const | ADD/ADDS (immediate) with zero shift, for page offset |
+| [`IMAGE_REL_ARM64_PAGEOFFSET_12L`](#image_rel_arm64_pageoffset_12l) | const | LDR (indexed, unsigned immediate), for page offset |
+| [`IMAGE_REL_ARM64_SECREL`](#image_rel_arm64_secrel) | const | Offset within section |
+| [`IMAGE_REL_ARM64_SECREL_LOW12A`](#image_rel_arm64_secrel_low12a) | const | ADD/ADDS (immediate) with zero shift, for bit 0:11 of section offset |
+| [`IMAGE_REL_ARM64_SECREL_HIGH12A`](#image_rel_arm64_secrel_high12a) | const | ADD/ADDS (immediate) with zero shift, for bit 12:23 of section offset |
+| [`IMAGE_REL_ARM64_SECREL_LOW12L`](#image_rel_arm64_secrel_low12l) | const | LDR (indexed, unsigned immediate), for bit 0:11 of section offset |
+| [`IMAGE_REL_ARM64_TOKEN`](#image_rel_arm64_token) | const |  |
+| [`IMAGE_REL_ARM64_SECTION`](#image_rel_arm64_section) | const | Section table index |
+| [`IMAGE_REL_ARM64_ADDR64`](#image_rel_arm64_addr64) | const | 64 bit address |
+| [`IMAGE_REL_ARM64_BRANCH19`](#image_rel_arm64_branch19) | const | 19 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_ARM64_BRANCH14`](#image_rel_arm64_branch14) | const | TBZ/TBNZ |
+| [`IMAGE_REL_ARM64_REL32`](#image_rel_arm64_rel32) | const | 32-bit relative address from byte following reloc |
+| [`IMAGE_REL_AMD64_ABSOLUTE`](#image_rel_amd64_absolute) | const | Reference is absolute, no relocation is necessary |
+| [`IMAGE_REL_AMD64_ADDR64`](#image_rel_amd64_addr64) | const | 64-bit address (VA). |
+| [`IMAGE_REL_AMD64_ADDR32`](#image_rel_amd64_addr32) | const | 32-bit address (VA). |
+| [`IMAGE_REL_AMD64_ADDR32NB`](#image_rel_amd64_addr32nb) | const | 32-bit address w/o image base (RVA). |
+| [`IMAGE_REL_AMD64_REL32`](#image_rel_amd64_rel32) | const | 32-bit relative address from byte following reloc |
+| [`IMAGE_REL_AMD64_REL32_1`](#image_rel_amd64_rel32_1) | const | 32-bit relative address from byte distance 1 from reloc |
+| [`IMAGE_REL_AMD64_REL32_2`](#image_rel_amd64_rel32_2) | const | 32-bit relative address from byte distance 2 from reloc |
+| [`IMAGE_REL_AMD64_REL32_3`](#image_rel_amd64_rel32_3) | const | 32-bit relative address from byte distance 3 from reloc |
+| [`IMAGE_REL_AMD64_REL32_4`](#image_rel_amd64_rel32_4) | const | 32-bit relative address from byte distance 4 from reloc |
+| [`IMAGE_REL_AMD64_REL32_5`](#image_rel_amd64_rel32_5) | const | 32-bit relative address from byte distance 5 from reloc |
+| [`IMAGE_REL_AMD64_SECTION`](#image_rel_amd64_section) | const | Section index |
+| [`IMAGE_REL_AMD64_SECREL`](#image_rel_amd64_secrel) | const | 32 bit offset from base of section containing target |
+| [`IMAGE_REL_AMD64_SECREL7`](#image_rel_amd64_secrel7) | const | 7 bit unsigned offset from base of section containing target |
+| [`IMAGE_REL_AMD64_TOKEN`](#image_rel_amd64_token) | const | 32 bit metadata token |
+| [`IMAGE_REL_AMD64_SREL32`](#image_rel_amd64_srel32) | const | 32 bit signed span-dependent value emitted into object |
+| [`IMAGE_REL_AMD64_PAIR`](#image_rel_amd64_pair) | const |  |
+| [`IMAGE_REL_AMD64_SSPAN32`](#image_rel_amd64_sspan32) | const | 32 bit signed span-dependent value applied at link time |
+| [`IMAGE_REL_AMD64_EHANDLER`](#image_rel_amd64_ehandler) | const |  |
+| [`IMAGE_REL_AMD64_IMPORT_BR`](#image_rel_amd64_import_br) | const | Indirect branch to an import |
+| [`IMAGE_REL_AMD64_IMPORT_CALL`](#image_rel_amd64_import_call) | const | Indirect call to an import |
+| [`IMAGE_REL_AMD64_CFG_BR`](#image_rel_amd64_cfg_br) | const | Indirect branch to a CFG check |
+| [`IMAGE_REL_AMD64_CFG_BR_REX`](#image_rel_amd64_cfg_br_rex) | const | Indirect branch to a CFG check, with REX.W prefix |
+| [`IMAGE_REL_AMD64_CFG_CALL`](#image_rel_amd64_cfg_call) | const | Indirect call to a CFG check |
+| [`IMAGE_REL_AMD64_INDIR_BR`](#image_rel_amd64_indir_br) | const | Indirect branch to a target in RAX (no CFG) |
+| [`IMAGE_REL_AMD64_INDIR_BR_REX`](#image_rel_amd64_indir_br_rex) | const | Indirect branch to a target in RAX, with REX.W prefix (no CFG) |
+| [`IMAGE_REL_AMD64_INDIR_CALL`](#image_rel_amd64_indir_call) | const | Indirect call to a target in RAX (no CFG) |
+| [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_FIRST`](#image_rel_amd64_indir_br_switchtable_first) | const | Indirect branch for a switch table using Reg 0 (RAX) |
+| [`IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_LAST`](#image_rel_amd64_indir_br_switchtable_last) | const | Indirect branch for a switch table using Reg 15 (R15) |
+| [`IMAGE_REL_IA64_ABSOLUTE`](#image_rel_ia64_absolute) | const |  |
+| [`IMAGE_REL_IA64_IMM14`](#image_rel_ia64_imm14) | const |  |
+| [`IMAGE_REL_IA64_IMM22`](#image_rel_ia64_imm22) | const |  |
+| [`IMAGE_REL_IA64_IMM64`](#image_rel_ia64_imm64) | const |  |
+| [`IMAGE_REL_IA64_DIR32`](#image_rel_ia64_dir32) | const |  |
+| [`IMAGE_REL_IA64_DIR64`](#image_rel_ia64_dir64) | const |  |
+| [`IMAGE_REL_IA64_PCREL21B`](#image_rel_ia64_pcrel21b) | const |  |
+| [`IMAGE_REL_IA64_PCREL21M`](#image_rel_ia64_pcrel21m) | const |  |
+| [`IMAGE_REL_IA64_PCREL21F`](#image_rel_ia64_pcrel21f) | const |  |
+| [`IMAGE_REL_IA64_GPREL22`](#image_rel_ia64_gprel22) | const |  |
+| [`IMAGE_REL_IA64_LTOFF22`](#image_rel_ia64_ltoff22) | const |  |
+| [`IMAGE_REL_IA64_SECTION`](#image_rel_ia64_section) | const |  |
+| [`IMAGE_REL_IA64_SECREL22`](#image_rel_ia64_secrel22) | const |  |
+| [`IMAGE_REL_IA64_SECREL64I`](#image_rel_ia64_secrel64i) | const |  |
+| [`IMAGE_REL_IA64_SECREL32`](#image_rel_ia64_secrel32) | const |  |
+| [`IMAGE_REL_IA64_DIR32NB`](#image_rel_ia64_dir32nb) | const |  |
+| [`IMAGE_REL_IA64_SREL14`](#image_rel_ia64_srel14) | const |  |
+| [`IMAGE_REL_IA64_SREL22`](#image_rel_ia64_srel22) | const |  |
+| [`IMAGE_REL_IA64_SREL32`](#image_rel_ia64_srel32) | const |  |
+| [`IMAGE_REL_IA64_UREL32`](#image_rel_ia64_urel32) | const |  |
+| [`IMAGE_REL_IA64_PCREL60X`](#image_rel_ia64_pcrel60x) | const | This is always a BRL and never converted |
+| [`IMAGE_REL_IA64_PCREL60B`](#image_rel_ia64_pcrel60b) | const | If possible, convert to MBB bundle with NOP.B in slot 1 |
+| [`IMAGE_REL_IA64_PCREL60F`](#image_rel_ia64_pcrel60f) | const | If possible, convert to MFB bundle with NOP.F in slot 1 |
+| [`IMAGE_REL_IA64_PCREL60I`](#image_rel_ia64_pcrel60i) | const | If possible, convert to MIB bundle with NOP.I in slot 1 |
+| [`IMAGE_REL_IA64_PCREL60M`](#image_rel_ia64_pcrel60m) | const | If possible, convert to MMB bundle with NOP.M in slot 1 |
+| [`IMAGE_REL_IA64_IMMGPREL64`](#image_rel_ia64_immgprel64) | const |  |
+| [`IMAGE_REL_IA64_TOKEN`](#image_rel_ia64_token) | const | clr token |
+| [`IMAGE_REL_IA64_GPREL32`](#image_rel_ia64_gprel32) | const |  |
+| [`IMAGE_REL_IA64_ADDEND`](#image_rel_ia64_addend) | const |  |
+| [`IMAGE_REL_CEF_ABSOLUTE`](#image_rel_cef_absolute) | const | Reference is absolute, no relocation is necessary |
+| [`IMAGE_REL_CEF_ADDR32`](#image_rel_cef_addr32) | const | 32-bit address (VA). |
+| [`IMAGE_REL_CEF_ADDR64`](#image_rel_cef_addr64) | const | 64-bit address (VA). |
+| [`IMAGE_REL_CEF_ADDR32NB`](#image_rel_cef_addr32nb) | const | 32-bit address w/o image base (RVA). |
+| [`IMAGE_REL_CEF_SECTION`](#image_rel_cef_section) | const | Section index |
+| [`IMAGE_REL_CEF_SECREL`](#image_rel_cef_secrel) | const | 32 bit offset from base of section containing target |
+| [`IMAGE_REL_CEF_TOKEN`](#image_rel_cef_token) | const | 32 bit metadata token |
+| [`IMAGE_REL_CEE_ABSOLUTE`](#image_rel_cee_absolute) | const | Reference is absolute, no relocation is necessary |
+| [`IMAGE_REL_CEE_ADDR32`](#image_rel_cee_addr32) | const | 32-bit address (VA). |
+| [`IMAGE_REL_CEE_ADDR64`](#image_rel_cee_addr64) | const | 64-bit address (VA). |
+| [`IMAGE_REL_CEE_ADDR32NB`](#image_rel_cee_addr32nb) | const | 32-bit address w/o image base (RVA). |
+| [`IMAGE_REL_CEE_SECTION`](#image_rel_cee_section) | const | Section index |
+| [`IMAGE_REL_CEE_SECREL`](#image_rel_cee_secrel) | const | 32 bit offset from base of section containing target |
+| [`IMAGE_REL_CEE_TOKEN`](#image_rel_cee_token) | const | 32 bit metadata token |
+| [`IMAGE_REL_M32R_ABSOLUTE`](#image_rel_m32r_absolute) | const | No relocation required |
+| [`IMAGE_REL_M32R_ADDR32`](#image_rel_m32r_addr32) | const | 32 bit address |
+| [`IMAGE_REL_M32R_ADDR32NB`](#image_rel_m32r_addr32nb) | const | 32 bit address w/o image base |
+| [`IMAGE_REL_M32R_ADDR24`](#image_rel_m32r_addr24) | const | 24 bit address |
+| [`IMAGE_REL_M32R_GPREL16`](#image_rel_m32r_gprel16) | const | GP relative addressing |
+| [`IMAGE_REL_M32R_PCREL24`](#image_rel_m32r_pcrel24) | const | 24 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_M32R_PCREL16`](#image_rel_m32r_pcrel16) | const | 16 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_M32R_PCREL8`](#image_rel_m32r_pcrel8) | const | 8 bit offset << 2 & sign ext. |
+| [`IMAGE_REL_M32R_REFHALF`](#image_rel_m32r_refhalf) | const | 16 MSBs |
+| [`IMAGE_REL_M32R_REFHI`](#image_rel_m32r_refhi) | const | 16 MSBs; adj for LSB sign ext. |
+| [`IMAGE_REL_M32R_REFLO`](#image_rel_m32r_reflo) | const | 16 LSBs |
+| [`IMAGE_REL_M32R_PAIR`](#image_rel_m32r_pair) | const | Link HI and LO |
+| [`IMAGE_REL_M32R_SECTION`](#image_rel_m32r_section) | const | Section table index |
+| [`IMAGE_REL_M32R_SECREL32`](#image_rel_m32r_secrel32) | const | 32 bit section relative reference |
+| [`IMAGE_REL_M32R_TOKEN`](#image_rel_m32r_token) | const | clr token |
+| [`IMAGE_REL_EBC_ABSOLUTE`](#image_rel_ebc_absolute) | const | No relocation required |
+| [`IMAGE_REL_EBC_ADDR32NB`](#image_rel_ebc_addr32nb) | const | 32 bit address w/o image base |
+| [`IMAGE_REL_EBC_REL32`](#image_rel_ebc_rel32) | const | 32-bit relative address from byte following reloc |
+| [`IMAGE_REL_EBC_SECTION`](#image_rel_ebc_section) | const | Section table index |
+| [`IMAGE_REL_EBC_SECREL`](#image_rel_ebc_secrel) | const | Offset within section |
+| [`EMARCH_ENC_I17_IMM7B_INST_WORD_X`](#emarch_enc_i17_imm7b_inst_word_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM7B_SIZE_X`](#emarch_enc_i17_imm7b_size_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM7B_INST_WORD_POS_X`](#emarch_enc_i17_imm7b_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM7B_VAL_POS_X`](#emarch_enc_i17_imm7b_val_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM9D_INST_WORD_X`](#emarch_enc_i17_imm9d_inst_word_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM9D_SIZE_X`](#emarch_enc_i17_imm9d_size_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM9D_INST_WORD_POS_X`](#emarch_enc_i17_imm9d_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM9D_VAL_POS_X`](#emarch_enc_i17_imm9d_val_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM5C_INST_WORD_X`](#emarch_enc_i17_imm5c_inst_word_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM5C_SIZE_X`](#emarch_enc_i17_imm5c_size_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM5C_INST_WORD_POS_X`](#emarch_enc_i17_imm5c_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM5C_VAL_POS_X`](#emarch_enc_i17_imm5c_val_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IC_INST_WORD_X`](#emarch_enc_i17_ic_inst_word_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IC_SIZE_X`](#emarch_enc_i17_ic_size_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IC_INST_WORD_POS_X`](#emarch_enc_i17_ic_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IC_VAL_POS_X`](#emarch_enc_i17_ic_val_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41A_INST_WORD_X`](#emarch_enc_i17_imm41a_inst_word_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41A_SIZE_X`](#emarch_enc_i17_imm41a_size_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41A_INST_WORD_POS_X`](#emarch_enc_i17_imm41a_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41A_VAL_POS_X`](#emarch_enc_i17_imm41a_val_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41B_INST_WORD_X`](#emarch_enc_i17_imm41b_inst_word_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41B_SIZE_X`](#emarch_enc_i17_imm41b_size_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41B_INST_WORD_POS_X`](#emarch_enc_i17_imm41b_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41B_VAL_POS_X`](#emarch_enc_i17_imm41b_val_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41C_INST_WORD_X`](#emarch_enc_i17_imm41c_inst_word_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41C_SIZE_X`](#emarch_enc_i17_imm41c_size_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41C_INST_WORD_POS_X`](#emarch_enc_i17_imm41c_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_IMM41C_VAL_POS_X`](#emarch_enc_i17_imm41c_val_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_SIGN_INST_WORD_X`](#emarch_enc_i17_sign_inst_word_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_SIGN_SIZE_X`](#emarch_enc_i17_sign_size_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_SIGN_INST_WORD_POS_X`](#emarch_enc_i17_sign_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`EMARCH_ENC_I17_SIGN_VAL_POS_X`](#emarch_enc_i17_sign_val_pos_x) | const | Intel-IA64-Filler |
+| [`X3_OPCODE_INST_WORD_X`](#x3_opcode_inst_word_x) | const | Intel-IA64-Filler |
+| [`X3_OPCODE_SIZE_X`](#x3_opcode_size_x) | const | Intel-IA64-Filler |
+| [`X3_OPCODE_INST_WORD_POS_X`](#x3_opcode_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`X3_OPCODE_SIGN_VAL_POS_X`](#x3_opcode_sign_val_pos_x) | const | Intel-IA64-Filler |
+| [`X3_I_INST_WORD_X`](#x3_i_inst_word_x) | const | Intel-IA64-Filler |
+| [`X3_I_SIZE_X`](#x3_i_size_x) | const | Intel-IA64-Filler |
+| [`X3_I_INST_WORD_POS_X`](#x3_i_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`X3_I_SIGN_VAL_POS_X`](#x3_i_sign_val_pos_x) | const | Intel-IA64-Filler |
+| [`X3_D_WH_INST_WORD_X`](#x3_d_wh_inst_word_x) | const | Intel-IA64-Filler |
+| [`X3_D_WH_SIZE_X`](#x3_d_wh_size_x) | const | Intel-IA64-Filler |
+| [`X3_D_WH_INST_WORD_POS_X`](#x3_d_wh_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`X3_D_WH_SIGN_VAL_POS_X`](#x3_d_wh_sign_val_pos_x) | const | Intel-IA64-Filler |
+| [`X3_IMM20_INST_WORD_X`](#x3_imm20_inst_word_x) | const | Intel-IA64-Filler |
+| [`X3_IMM20_SIZE_X`](#x3_imm20_size_x) | const | Intel-IA64-Filler |
+| [`X3_IMM20_INST_WORD_POS_X`](#x3_imm20_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`X3_IMM20_SIGN_VAL_POS_X`](#x3_imm20_sign_val_pos_x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_1_INST_WORD_X`](#x3_imm39_1_inst_word_x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_1_SIZE_X`](#x3_imm39_1_size_x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_1_INST_WORD_POS_X`](#x3_imm39_1_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_1_SIGN_VAL_POS_X`](#x3_imm39_1_sign_val_pos_x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_2_INST_WORD_X`](#x3_imm39_2_inst_word_x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_2_SIZE_X`](#x3_imm39_2_size_x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_2_INST_WORD_POS_X`](#x3_imm39_2_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`X3_IMM39_2_SIGN_VAL_POS_X`](#x3_imm39_2_sign_val_pos_x) | const | Intel-IA64-Filler |
+| [`X3_P_INST_WORD_X`](#x3_p_inst_word_x) | const | Intel-IA64-Filler |
+| [`X3_P_SIZE_X`](#x3_p_size_x) | const | Intel-IA64-Filler |
+| [`X3_P_INST_WORD_POS_X`](#x3_p_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`X3_P_SIGN_VAL_POS_X`](#x3_p_sign_val_pos_x) | const | Intel-IA64-Filler |
+| [`X3_TMPLT_INST_WORD_X`](#x3_tmplt_inst_word_x) | const | Intel-IA64-Filler |
+| [`X3_TMPLT_SIZE_X`](#x3_tmplt_size_x) | const | Intel-IA64-Filler |
+| [`X3_TMPLT_INST_WORD_POS_X`](#x3_tmplt_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`X3_TMPLT_SIGN_VAL_POS_X`](#x3_tmplt_sign_val_pos_x) | const | Intel-IA64-Filler |
+| [`X3_BTYPE_QP_INST_WORD_X`](#x3_btype_qp_inst_word_x) | const | Intel-IA64-Filler |
+| [`X3_BTYPE_QP_SIZE_X`](#x3_btype_qp_size_x) | const | Intel-IA64-Filler |
+| [`X3_BTYPE_QP_INST_WORD_POS_X`](#x3_btype_qp_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`X3_BTYPE_QP_INST_VAL_POS_X`](#x3_btype_qp_inst_val_pos_x) | const | Intel-IA64-Filler |
+| [`X3_EMPTY_INST_WORD_X`](#x3_empty_inst_word_x) | const | Intel-IA64-Filler |
+| [`X3_EMPTY_SIZE_X`](#x3_empty_size_x) | const | Intel-IA64-Filler |
+| [`X3_EMPTY_INST_WORD_POS_X`](#x3_empty_inst_word_pos_x) | const | Intel-IA64-Filler |
+| [`X3_EMPTY_INST_VAL_POS_X`](#x3_empty_inst_val_pos_x) | const | Intel-IA64-Filler |
+| [`IMAGE_REL_BASED_ABSOLUTE`](#image_rel_based_absolute) | const |  |
+| [`IMAGE_REL_BASED_HIGH`](#image_rel_based_high) | const |  |
+| [`IMAGE_REL_BASED_LOW`](#image_rel_based_low) | const |  |
+| [`IMAGE_REL_BASED_HIGHLOW`](#image_rel_based_highlow) | const |  |
+| [`IMAGE_REL_BASED_HIGHADJ`](#image_rel_based_highadj) | const |  |
+| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_5`](#image_rel_based_machine_specific_5) | const |  |
+| [`IMAGE_REL_BASED_RESERVED`](#image_rel_based_reserved) | const |  |
+| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_7`](#image_rel_based_machine_specific_7) | const |  |
+| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_8`](#image_rel_based_machine_specific_8) | const |  |
+| [`IMAGE_REL_BASED_MACHINE_SPECIFIC_9`](#image_rel_based_machine_specific_9) | const |  |
+| [`IMAGE_REL_BASED_DIR64`](#image_rel_based_dir64) | const |  |
+| [`IMAGE_REL_BASED_IA64_IMM64`](#image_rel_based_ia64_imm64) | const |  |
+| [`IMAGE_REL_BASED_MIPS_JMPADDR`](#image_rel_based_mips_jmpaddr) | const |  |
+| [`IMAGE_REL_BASED_MIPS_JMPADDR16`](#image_rel_based_mips_jmpaddr16) | const |  |
+| [`IMAGE_REL_BASED_ARM_MOV32`](#image_rel_based_arm_mov32) | const |  |
+| [`IMAGE_REL_BASED_THUMB_MOV32`](#image_rel_based_thumb_mov32) | const |  |
+| [`IMAGE_REL_BASED_RISCV_HIGH20`](#image_rel_based_riscv_high20) | const |  |
+| [`IMAGE_REL_BASED_RISCV_LOW12I`](#image_rel_based_riscv_low12i) | const |  |
+| [`IMAGE_REL_BASED_RISCV_LOW12S`](#image_rel_based_riscv_low12s) | const |  |
+| [`IMAGE_ARCHIVE_START_SIZE`](#image_archive_start_size) | const |  |
+| [`IMAGE_ARCHIVE_START`](#image_archive_start) | const |  |
+| [`IMAGE_ARCHIVE_END`](#image_archive_end) | const |  |
+| [`IMAGE_ARCHIVE_PAD`](#image_archive_pad) | const |  |
+| [`IMAGE_ARCHIVE_LINKER_MEMBER`](#image_archive_linker_member) | const |  |
+| [`IMAGE_ARCHIVE_LONGNAMES_MEMBER`](#image_archive_longnames_member) | const |  |
+| [`IMAGE_ARCHIVE_HYBRIDMAP_MEMBER`](#image_archive_hybridmap_member) | const |  |
+| [`IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR`](#image_sizeof_archive_member_hdr) | const |  |
+| [`IMAGE_ORDINAL_FLAG64`](#image_ordinal_flag64) | const |  |
+| [`IMAGE_ORDINAL_FLAG32`](#image_ordinal_flag32) | const |  |
+| [`IMAGE_DELAYLOAD_RVA_BASED`](#image_delayload_rva_based) | const | Delay load version 2 flag for `ImageDelayloadDescriptor::attributes`. |
+| [`IMAGE_RESOURCE_NAME_IS_STRING`](#image_resource_name_is_string) | const |  |
+| [`IMAGE_RESOURCE_DATA_IS_DIRECTORY`](#image_resource_data_is_directory) | const |  |
+| [`RT_CURSOR`](#rt_cursor) | const | ID for: Hardware-dependent cursor resource. |
+| [`RT_BITMAP`](#rt_bitmap) | const | ID for: Bitmap resource. |
+| [`RT_ICON`](#rt_icon) | const | ID for: Hardware-dependent icon resource. |
+| [`RT_MENU`](#rt_menu) | const | ID for: Menu resource. |
+| [`RT_DIALOG`](#rt_dialog) | const | ID for: Dialog box. |
+| [`RT_STRING`](#rt_string) | const | ID for: String-table entry. |
+| [`RT_FONTDIR`](#rt_fontdir) | const | ID for: Font directory resource. |
+| [`RT_FONT`](#rt_font) | const | ID for: Font resource. |
+| [`RT_ACCELERATOR`](#rt_accelerator) | const | ID for: Accelerator table. |
+| [`RT_RCDATA`](#rt_rcdata) | const | ID for: Application-defined resource (raw data). |
+| [`RT_MESSAGETABLE`](#rt_messagetable) | const | ID for: Message-table entry. |
+| [`RT_GROUP_CURSOR`](#rt_group_cursor) | const | ID for: Hardware-independent cursor resource. |
+| [`RT_GROUP_ICON`](#rt_group_icon) | const | ID for: Hardware-independent icon resource. |
+| [`RT_VERSION`](#rt_version) | const | ID for: Version resource. |
+| [`RT_DLGINCLUDE`](#rt_dlginclude) | const | ID for: Allows a resource editing tool to associate a string with an .rc file. |
+| [`RT_PLUGPLAY`](#rt_plugplay) | const | ID for: Plug and Play resource. |
+| [`RT_VXD`](#rt_vxd) | const | ID for: VXD. |
+| [`RT_ANICURSOR`](#rt_anicursor) | const | ID for: Animated cursor. |
+| [`RT_ANIICON`](#rt_aniicon) | const | ID for: Animated icon. |
+| [`RT_HTML`](#rt_html) | const | ID for: HTML resource. |
+| [`RT_MANIFEST`](#rt_manifest) | const | ID for: Side-by-Side Assembly Manifest. |
+| [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_PROLOGUE`](#image_dynamic_relocation_guard_rf_prologue) | const |  |
+| [`IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE`](#image_dynamic_relocation_guard_rf_epilogue) | const |  |
+| [`IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER`](#image_dynamic_relocation_guard_import_control_transfer) | const |  |
+| [`IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER`](#image_dynamic_relocation_guard_indir_control_transfer) | const |  |
+| [`IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH`](#image_dynamic_relocation_guard_switchtable_branch) | const |  |
+| [`IMAGE_HOT_PATCH_BASE_OBLIGATORY`](#image_hot_patch_base_obligatory) | const |  |
+| [`IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK`](#image_hot_patch_base_can_roll_back) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_INVERSE`](#image_hot_patch_chunk_inverse) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_OBLIGATORY`](#image_hot_patch_chunk_obligatory) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_RESERVED`](#image_hot_patch_chunk_reserved) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_TYPE`](#image_hot_patch_chunk_type) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA`](#image_hot_patch_chunk_source_rva) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_TARGET_RVA`](#image_hot_patch_chunk_target_rva) | const |  |
+| [`IMAGE_HOT_PATCH_CHUNK_SIZE`](#image_hot_patch_chunk_size) | const |  |
+| [`IMAGE_HOT_PATCH_NONE`](#image_hot_patch_none) | const |  |
+| [`IMAGE_HOT_PATCH_FUNCTION`](#image_hot_patch_function) | const |  |
+| [`IMAGE_HOT_PATCH_ABSOLUTE`](#image_hot_patch_absolute) | const |  |
+| [`IMAGE_HOT_PATCH_REL32`](#image_hot_patch_rel32) | const |  |
+| [`IMAGE_HOT_PATCH_CALL_TARGET`](#image_hot_patch_call_target) | const |  |
+| [`IMAGE_HOT_PATCH_INDIRECT`](#image_hot_patch_indirect) | const |  |
+| [`IMAGE_HOT_PATCH_NO_CALL_TARGET`](#image_hot_patch_no_call_target) | const |  |
+| [`IMAGE_HOT_PATCH_DYNAMIC_VALUE`](#image_hot_patch_dynamic_value) | const |  |
+| [`IMAGE_GUARD_CF_INSTRUMENTED`](#image_guard_cf_instrumented) | const | Module performs control flow integrity checks using system-supplied support |
+| [`IMAGE_GUARD_CFW_INSTRUMENTED`](#image_guard_cfw_instrumented) | const | Module performs control flow and write integrity checks |
+| [`IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT`](#image_guard_cf_function_table_present) | const | Module contains valid control flow target metadata |
+| [`IMAGE_GUARD_SECURITY_COOKIE_UNUSED`](#image_guard_security_cookie_unused) | const | Module does not make use of the /GS security cookie |
+| [`IMAGE_GUARD_PROTECT_DELAYLOAD_IAT`](#image_guard_protect_delayload_iat) | const | Module supports read only delay load IAT |
+| [`IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION`](#image_guard_delayload_iat_in_its_own_section) | const | Delayload import table in its own .didat section (with nothing else in it) that can be freely reprotected |
+| [`IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT`](#image_guard_cf_export_suppression_info_present) | const | Module contains suppressed export information. |
+| [`IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION`](#image_guard_cf_enable_export_suppression) | const | Module enables suppression of exports |
+| [`IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT`](#image_guard_cf_longjump_table_present) | const | Module contains longjmp target information |
+| [`IMAGE_GUARD_RF_INSTRUMENTED`](#image_guard_rf_instrumented) | const | Module contains return flow instrumentation and metadata |
+| [`IMAGE_GUARD_RF_ENABLE`](#image_guard_rf_enable) | const | Module requests that the OS enable return flow protection |
+| [`IMAGE_GUARD_RF_STRICT`](#image_guard_rf_strict) | const | Module requests that the OS enable return flow protection in strict mode |
+| [`IMAGE_GUARD_RETPOLINE_PRESENT`](#image_guard_retpoline_present) | const | Module was built with retpoline support |
+| [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK`](#image_guard_cf_function_table_size_mask) | const | Stride of Guard CF function table encoded in these bits (additional count of bytes per element) |
+| [`IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_SHIFT`](#image_guard_cf_function_table_size_shift) | const | Shift to right-justify Guard CF function table stride |
+| [`IMAGE_GUARD_FLAG_FID_SUPPRESSED`](#image_guard_flag_fid_suppressed) | const | The containing GFID entry is suppressed |
+| [`IMAGE_GUARD_FLAG_EXPORT_SUPPRESSED`](#image_guard_flag_export_suppressed) | const | The containing GFID entry is export suppressed |
+| [`IMAGE_ENCLAVE_LONG_ID_LENGTH`](#image_enclave_long_id_length) | const |  |
+| [`IMAGE_ENCLAVE_SHORT_ID_LENGTH`](#image_enclave_short_id_length) | const |  |
+| [`IMAGE_ENCLAVE_POLICY_DEBUGGABLE`](#image_enclave_policy_debuggable) | const |  |
+| [`IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE`](#image_enclave_flag_primary_image) | const |  |
+| [`IMAGE_ENCLAVE_IMPORT_MATCH_NONE`](#image_enclave_import_match_none) | const |  |
+| [`IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID`](#image_enclave_import_match_unique_id) | const |  |
+| [`IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID`](#image_enclave_import_match_author_id) | const |  |
+| [`IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID`](#image_enclave_import_match_family_id) | const |  |
+| [`IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID`](#image_enclave_import_match_image_id) | const |  |
+| [`IMAGE_DEBUG_TYPE_UNKNOWN`](#image_debug_type_unknown) | const |  |
+| [`IMAGE_DEBUG_TYPE_COFF`](#image_debug_type_coff) | const |  |
+| [`IMAGE_DEBUG_TYPE_CODEVIEW`](#image_debug_type_codeview) | const |  |
+| [`IMAGE_DEBUG_TYPE_FPO`](#image_debug_type_fpo) | const |  |
+| [`IMAGE_DEBUG_TYPE_MISC`](#image_debug_type_misc) | const |  |
+| [`IMAGE_DEBUG_TYPE_EXCEPTION`](#image_debug_type_exception) | const |  |
+| [`IMAGE_DEBUG_TYPE_FIXUP`](#image_debug_type_fixup) | const |  |
+| [`IMAGE_DEBUG_TYPE_OMAP_TO_SRC`](#image_debug_type_omap_to_src) | const |  |
+| [`IMAGE_DEBUG_TYPE_OMAP_FROM_SRC`](#image_debug_type_omap_from_src) | const |  |
+| [`IMAGE_DEBUG_TYPE_BORLAND`](#image_debug_type_borland) | const |  |
+| [`IMAGE_DEBUG_TYPE_RESERVED10`](#image_debug_type_reserved10) | const |  |
+| [`IMAGE_DEBUG_TYPE_CLSID`](#image_debug_type_clsid) | const |  |
+| [`IMAGE_DEBUG_TYPE_VC_FEATURE`](#image_debug_type_vc_feature) | const |  |
+| [`IMAGE_DEBUG_TYPE_POGO`](#image_debug_type_pogo) | const |  |
+| [`IMAGE_DEBUG_TYPE_ILTCG`](#image_debug_type_iltcg) | const |  |
+| [`IMAGE_DEBUG_TYPE_MPX`](#image_debug_type_mpx) | const |  |
+| [`IMAGE_DEBUG_TYPE_REPRO`](#image_debug_type_repro) | const |  |
+| [`FRAME_FPO`](#frame_fpo) | const |  |
+| [`FRAME_TRAP`](#frame_trap) | const |  |
+| [`FRAME_TSS`](#frame_tss) | const |  |
+| [`FRAME_NONFPO`](#frame_nonfpo) | const |  |
+| [`IMAGE_DEBUG_MISC_EXENAME`](#image_debug_misc_exename) | const |  |
+| [`IMAGE_SEPARATE_DEBUG_SIGNATURE`](#image_separate_debug_signature) | const |  |
+| [`NON_PAGED_DEBUG_SIGNATURE`](#non_paged_debug_signature) | const |  |
+| [`IMAGE_SEPARATE_DEBUG_FLAGS_MASK`](#image_separate_debug_flags_mask) | const |  |
+| [`IMAGE_SEPARATE_DEBUG_MISMATCH`](#image_separate_debug_mismatch) | const | when DBG was updated, the old checksum didn't match. |
+| [`IMPORT_OBJECT_HDR_SIG2`](#import_object_hdr_sig2) | const |  |
+| [`IMPORT_OBJECT_TYPE_MASK`](#import_object_type_mask) | const |  |
+| [`IMPORT_OBJECT_TYPE_SHIFT`](#import_object_type_shift) | const |  |
+| [`IMPORT_OBJECT_CODE`](#import_object_code) | const |  |
+| [`IMPORT_OBJECT_DATA`](#import_object_data) | const |  |
+| [`IMPORT_OBJECT_CONST`](#import_object_const) | const |  |
+| [`IMPORT_OBJECT_NAME_MASK`](#import_object_name_mask) | const |  |
+| [`IMPORT_OBJECT_NAME_SHIFT`](#import_object_name_shift) | const |  |
+| [`IMPORT_OBJECT_ORDINAL`](#import_object_ordinal) | const | Import by ordinal |
+| [`IMPORT_OBJECT_NAME`](#import_object_name) | const | Import name == public symbol name. |
+| [`IMPORT_OBJECT_NAME_NO_PREFIX`](#import_object_name_no_prefix) | const | Import name == public symbol name skipping leading ?, @, or optionally _. |
+| [`IMPORT_OBJECT_NAME_UNDECORATE`](#import_object_name_undecorate) | const | Import name == public symbol name skipping leading ?, @, or optionally _ and truncating at first @. |
+| [`IMPORT_OBJECT_NAME_EXPORTAS`](#import_object_name_exportas) | const | Import name == a name is explicitly provided after the DLL name. |
+| [`COMIMAGE_FLAGS_ILONLY`](#comimage_flags_ilonly) | const |  |
+| [`COMIMAGE_FLAGS_32BITREQUIRED`](#comimage_flags_32bitrequired) | const |  |
+| [`COMIMAGE_FLAGS_IL_LIBRARY`](#comimage_flags_il_library) | const |  |
+| [`COMIMAGE_FLAGS_STRONGNAMESIGNED`](#comimage_flags_strongnamesigned) | const |  |
+| [`COMIMAGE_FLAGS_NATIVE_ENTRYPOINT`](#comimage_flags_native_entrypoint) | const |  |
+| [`COMIMAGE_FLAGS_TRACKDEBUGDATA`](#comimage_flags_trackdebugdata) | const |  |
+| [`COMIMAGE_FLAGS_32BITPREFERRED`](#comimage_flags_32bitpreferred) | const |  |
+| [`COR_VERSION_MAJOR_V2`](#cor_version_major_v2) | const |  |
+| [`COR_VERSION_MAJOR`](#cor_version_major) | const |  |
+| [`COR_VERSION_MINOR`](#cor_version_minor) | const |  |
+| [`COR_DELETED_NAME_LENGTH`](#cor_deleted_name_length) | const |  |
+| [`COR_VTABLEGAP_NAME_LENGTH`](#cor_vtablegap_name_length) | const |  |
+| [`NATIVE_TYPE_MAX_CB`](#native_type_max_cb) | const |  |
+| [`COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE`](#cor_ilmethod_sect_small_max_datasize) | const |  |
+| [`IMAGE_COR_MIH_METHODRVA`](#image_cor_mih_methodrva) | const |  |
+| [`IMAGE_COR_MIH_EHRVA`](#image_cor_mih_ehrva) | const |  |
+| [`IMAGE_COR_MIH_BASICBLOCK`](#image_cor_mih_basicblock) | const |  |
+| [`COR_VTABLE_32BIT`](#cor_vtable_32bit) | const | V-table slots are 32-bits in size. |
+| [`COR_VTABLE_64BIT`](#cor_vtable_64bit) | const | V-table slots are 64-bits in size. |
+| [`COR_VTABLE_FROM_UNMANAGED`](#cor_vtable_from_unmanaged) | const | If set, transition from unmanaged. |
+| [`COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN`](#cor_vtable_from_unmanaged_retain_appdomain) | const | If set, transition from unmanaged with keeping the current appdomain. |
+| [`COR_VTABLE_CALL_MOST_DERIVED`](#cor_vtable_call_most_derived) | const | Call most derived method described by |
+| [`IMAGE_COR_EATJ_THUNK_SIZE`](#image_cor_eatj_thunk_size) | const | Size of a jump thunk reserved range. |
+| [`MAX_CLASS_NAME`](#max_class_name) | const |  |
+| [`MAX_PACKAGE_NAME`](#max_package_name) | const |  |
+
 ## Structs
 
 ### `ImageDosHeader`
@@ -38,6 +1616,8 @@ struct ImageDosHeader {
     pub e_lfanew: crate::endian::U32<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:29-68`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L29-L68)*
 
 DOS .EXE header
 
@@ -121,21 +1701,21 @@ DOS .EXE header
 
 #### Implementations
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>` — [`Result`](../index.md)
+- <span id="peimagedosheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>` — [`Result`](../index.md)
 
-- `fn nt_headers_offset(self: &Self) -> u32`
+- <span id="peimagedosheader-nt-headers-offset"></span>`fn nt_headers_offset(&self) -> u32`
 
 #### Trait Implementations
 
 ##### `impl Clone for ImageDosHeader`
 
-- `fn clone(self: &Self) -> ImageDosHeader` — [`ImageDosHeader`](#imagedosheader)
+- <span id="imagedosheader-clone"></span>`fn clone(&self) -> ImageDosHeader` — [`ImageDosHeader`](#imagedosheader)
 
 ##### `impl Copy for ImageDosHeader`
 
 ##### `impl Debug for ImageDosHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagedosheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageDosHeader`
 
@@ -175,6 +1755,8 @@ struct ImageOs2Header {
     pub ne_expver: crate::endian::U16<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:73-134`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L73-L134)*
 
 OS/2 .EXE header
 
@@ -304,13 +1886,13 @@ OS/2 .EXE header
 
 ##### `impl Clone for ImageOs2Header`
 
-- `fn clone(self: &Self) -> ImageOs2Header` — [`ImageOs2Header`](#imageos2header)
+- <span id="imageos2header-clone"></span>`fn clone(&self) -> ImageOs2Header` — [`ImageOs2Header`](#imageos2header)
 
 ##### `impl Copy for ImageOs2Header`
 
 ##### `impl Debug for ImageOs2Header`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageos2header-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageOs2Header`
 
@@ -371,6 +1953,8 @@ struct ImageVxdHeader {
     pub e32_ddkver: crate::endian::U16<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:139-240`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L139-L240)*
 
 Windows VXD header
 
@@ -576,13 +2160,13 @@ Windows VXD header
 
 ##### `impl Clone for ImageVxdHeader`
 
-- `fn clone(self: &Self) -> ImageVxdHeader` — [`ImageVxdHeader`](#imagevxdheader)
+- <span id="imagevxdheader-clone"></span>`fn clone(&self) -> ImageVxdHeader` — [`ImageVxdHeader`](#imagevxdheader)
 
 ##### `impl Copy for ImageVxdHeader`
 
 ##### `impl Debug for ImageVxdHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagevxdheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageVxdHeader`
 
@@ -594,6 +2178,8 @@ struct MaskedRichHeaderEntry {
     pub masked_count: crate::endian::U32<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:252-255`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L252-L255)*
 
 A PE rich header entry.
 
@@ -608,13 +2194,13 @@ This data is "masked", i.e. XORed with a checksum derived from the file data.
 
 ##### `impl Clone for MaskedRichHeaderEntry`
 
-- `fn clone(self: &Self) -> MaskedRichHeaderEntry` — [`MaskedRichHeaderEntry`](#maskedrichheaderentry)
+- <span id="maskedrichheaderentry-clone"></span>`fn clone(&self) -> MaskedRichHeaderEntry` — [`MaskedRichHeaderEntry`](#maskedrichheaderentry)
 
 ##### `impl Copy for MaskedRichHeaderEntry`
 
 ##### `impl Debug for MaskedRichHeaderEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="maskedrichheaderentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for MaskedRichHeaderEntry`
 
@@ -632,37 +2218,39 @@ struct ImageFileHeader {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:263-271`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L263-L271)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageFileHeader`
 
-- `fn clone(self: &Self) -> ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
+- <span id="imagefileheader-clone"></span>`fn clone(&self) -> ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
 
 ##### `impl CoffHeader for pe::ImageFileHeader`
 
-- `type ImageSymbol = ImageSymbol`
+- <span id="peimagefileheader-type-imagesymbol"></span>`type ImageSymbol = ImageSymbol`
 
-- `type ImageSymbolBytes = ImageSymbolBytes`
+- <span id="peimagefileheader-type-imagesymbolbytes"></span>`type ImageSymbolBytes = ImageSymbolBytes`
 
-- `fn is_type_bigobj() -> bool`
+- <span id="peimagefileheader-is-type-bigobj"></span>`fn is_type_bigobj() -> bool`
 
-- `fn machine(self: &Self) -> u16`
+- <span id="peimagefileheader-machine"></span>`fn machine(&self) -> u16`
 
-- `fn number_of_sections(self: &Self) -> u32`
+- <span id="peimagefileheader-number-of-sections"></span>`fn number_of_sections(&self) -> u32`
 
-- `fn pointer_to_symbol_table(self: &Self) -> u32`
+- <span id="peimagefileheader-pointer-to-symbol-table"></span>`fn pointer_to_symbol_table(&self) -> u32`
 
-- `fn number_of_symbols(self: &Self) -> u32`
+- <span id="peimagefileheader-number-of-symbols"></span>`fn number_of_symbols(&self) -> u32`
 
-- `fn characteristics(self: &Self) -> u16`
+- <span id="peimagefileheader-characteristics"></span>`fn characteristics(&self) -> u16`
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md)
+- <span id="peimagefileheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md)
 
 ##### `impl Copy for ImageFileHeader`
 
 ##### `impl Debug for ImageFileHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagefileheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageFileHeader`
 
@@ -675,25 +2263,27 @@ struct ImageDataDirectory {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:384-387`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L384-L387)*
+
 #### Implementations
 
-- `fn address_range(self: &Self) -> (u32, u32)`
+- <span id="peimagedatadirectory-address-range"></span>`fn address_range(&self) -> (u32, u32)`
 
-- `fn file_range(self: &Self, sections: &SectionTable<'_>) -> Result<(u32, u32)>` — [`SectionTable`](../read/pe/index.md), [`Result`](../index.md)
+- <span id="peimagedatadirectory-file-range"></span>`fn file_range(&self, sections: &SectionTable<'_>) -> Result<(u32, u32)>` — [`SectionTable`](../read/coff/index.md), [`Result`](../index.md)
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<&'data [u8]>` — [`SectionTable`](../read/pe/index.md), [`Result`](../index.md)
+- <span id="peimagedatadirectory-data"></span>`fn data<'data, R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<&'data [u8]>` — [`SectionTable`](../read/coff/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ImageDataDirectory`
 
-- `fn clone(self: &Self) -> ImageDataDirectory` — [`ImageDataDirectory`](#imagedatadirectory)
+- <span id="imagedatadirectory-clone"></span>`fn clone(&self) -> ImageDataDirectory` — [`ImageDataDirectory`](#imagedatadirectory)
 
 ##### `impl Copy for ImageDataDirectory`
 
 ##### `impl Debug for ImageDataDirectory`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagedatadirectory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageDataDirectory`
 
@@ -734,79 +2324,81 @@ struct ImageOptionalHeader32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:397-432`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L397-L432)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageOptionalHeader32`
 
-- `fn clone(self: &Self) -> ImageOptionalHeader32` — [`ImageOptionalHeader32`](#imageoptionalheader32)
+- <span id="imageoptionalheader32-clone"></span>`fn clone(&self) -> ImageOptionalHeader32` — [`ImageOptionalHeader32`](#imageoptionalheader32)
 
 ##### `impl Copy for ImageOptionalHeader32`
 
 ##### `impl Debug for ImageOptionalHeader32`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageoptionalheader32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl ImageOptionalHeader for pe::ImageOptionalHeader32`
 
-- `fn magic(self: &Self) -> u16`
+- <span id="peimageoptionalheader32-magic"></span>`fn magic(&self) -> u16`
 
-- `fn major_linker_version(self: &Self) -> u8`
+- <span id="peimageoptionalheader32-major-linker-version"></span>`fn major_linker_version(&self) -> u8`
 
-- `fn minor_linker_version(self: &Self) -> u8`
+- <span id="peimageoptionalheader32-minor-linker-version"></span>`fn minor_linker_version(&self) -> u8`
 
-- `fn size_of_code(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-size-of-code"></span>`fn size_of_code(&self) -> u32`
 
-- `fn size_of_initialized_data(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-size-of-initialized-data"></span>`fn size_of_initialized_data(&self) -> u32`
 
-- `fn size_of_uninitialized_data(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-size-of-uninitialized-data"></span>`fn size_of_uninitialized_data(&self) -> u32`
 
-- `fn address_of_entry_point(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-address-of-entry-point"></span>`fn address_of_entry_point(&self) -> u32`
 
-- `fn base_of_code(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-base-of-code"></span>`fn base_of_code(&self) -> u32`
 
-- `fn base_of_data(self: &Self) -> Option<u32>`
+- <span id="peimageoptionalheader32-base-of-data"></span>`fn base_of_data(&self) -> Option<u32>`
 
-- `fn image_base(self: &Self) -> u64`
+- <span id="peimageoptionalheader32-image-base"></span>`fn image_base(&self) -> u64`
 
-- `fn section_alignment(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-section-alignment"></span>`fn section_alignment(&self) -> u32`
 
-- `fn file_alignment(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-file-alignment"></span>`fn file_alignment(&self) -> u32`
 
-- `fn major_operating_system_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader32-major-operating-system-version"></span>`fn major_operating_system_version(&self) -> u16`
 
-- `fn minor_operating_system_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader32-minor-operating-system-version"></span>`fn minor_operating_system_version(&self) -> u16`
 
-- `fn major_image_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader32-major-image-version"></span>`fn major_image_version(&self) -> u16`
 
-- `fn minor_image_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader32-minor-image-version"></span>`fn minor_image_version(&self) -> u16`
 
-- `fn major_subsystem_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader32-major-subsystem-version"></span>`fn major_subsystem_version(&self) -> u16`
 
-- `fn minor_subsystem_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader32-minor-subsystem-version"></span>`fn minor_subsystem_version(&self) -> u16`
 
-- `fn win32_version_value(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-win32-version-value"></span>`fn win32_version_value(&self) -> u32`
 
-- `fn size_of_image(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-size-of-image"></span>`fn size_of_image(&self) -> u32`
 
-- `fn size_of_headers(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-size-of-headers"></span>`fn size_of_headers(&self) -> u32`
 
-- `fn check_sum(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-check-sum"></span>`fn check_sum(&self) -> u32`
 
-- `fn subsystem(self: &Self) -> u16`
+- <span id="peimageoptionalheader32-subsystem"></span>`fn subsystem(&self) -> u16`
 
-- `fn dll_characteristics(self: &Self) -> u16`
+- <span id="peimageoptionalheader32-dll-characteristics"></span>`fn dll_characteristics(&self) -> u16`
 
-- `fn size_of_stack_reserve(self: &Self) -> u64`
+- <span id="peimageoptionalheader32-size-of-stack-reserve"></span>`fn size_of_stack_reserve(&self) -> u64`
 
-- `fn size_of_stack_commit(self: &Self) -> u64`
+- <span id="peimageoptionalheader32-size-of-stack-commit"></span>`fn size_of_stack_commit(&self) -> u64`
 
-- `fn size_of_heap_reserve(self: &Self) -> u64`
+- <span id="peimageoptionalheader32-size-of-heap-reserve"></span>`fn size_of_heap_reserve(&self) -> u64`
 
-- `fn size_of_heap_commit(self: &Self) -> u64`
+- <span id="peimageoptionalheader32-size-of-heap-commit"></span>`fn size_of_heap_commit(&self) -> u64`
 
-- `fn loader_flags(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-loader-flags"></span>`fn loader_flags(&self) -> u32`
 
-- `fn number_of_rva_and_sizes(self: &Self) -> u32`
+- <span id="peimageoptionalheader32-number-of-rva-and-sizes"></span>`fn number_of_rva_and_sizes(&self) -> u32`
 
 ##### `impl Pod for ImageOptionalHeader32`
 
@@ -830,17 +2422,19 @@ struct ImageRomOptionalHeader {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:436-450`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L436-L450)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageRomOptionalHeader`
 
-- `fn clone(self: &Self) -> ImageRomOptionalHeader` — [`ImageRomOptionalHeader`](#imageromoptionalheader)
+- <span id="imageromoptionalheader-clone"></span>`fn clone(&self) -> ImageRomOptionalHeader` — [`ImageRomOptionalHeader`](#imageromoptionalheader)
 
 ##### `impl Copy for ImageRomOptionalHeader`
 
 ##### `impl Debug for ImageRomOptionalHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageromoptionalheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageRomOptionalHeader`
 
@@ -880,79 +2474,81 @@ struct ImageOptionalHeader64 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:454-485`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L454-L485)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageOptionalHeader64`
 
-- `fn clone(self: &Self) -> ImageOptionalHeader64` — [`ImageOptionalHeader64`](#imageoptionalheader64)
+- <span id="imageoptionalheader64-clone"></span>`fn clone(&self) -> ImageOptionalHeader64` — [`ImageOptionalHeader64`](#imageoptionalheader64)
 
 ##### `impl Copy for ImageOptionalHeader64`
 
 ##### `impl Debug for ImageOptionalHeader64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageoptionalheader64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl ImageOptionalHeader for pe::ImageOptionalHeader64`
 
-- `fn magic(self: &Self) -> u16`
+- <span id="peimageoptionalheader64-magic"></span>`fn magic(&self) -> u16`
 
-- `fn major_linker_version(self: &Self) -> u8`
+- <span id="peimageoptionalheader64-major-linker-version"></span>`fn major_linker_version(&self) -> u8`
 
-- `fn minor_linker_version(self: &Self) -> u8`
+- <span id="peimageoptionalheader64-minor-linker-version"></span>`fn minor_linker_version(&self) -> u8`
 
-- `fn size_of_code(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-size-of-code"></span>`fn size_of_code(&self) -> u32`
 
-- `fn size_of_initialized_data(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-size-of-initialized-data"></span>`fn size_of_initialized_data(&self) -> u32`
 
-- `fn size_of_uninitialized_data(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-size-of-uninitialized-data"></span>`fn size_of_uninitialized_data(&self) -> u32`
 
-- `fn address_of_entry_point(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-address-of-entry-point"></span>`fn address_of_entry_point(&self) -> u32`
 
-- `fn base_of_code(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-base-of-code"></span>`fn base_of_code(&self) -> u32`
 
-- `fn base_of_data(self: &Self) -> Option<u32>`
+- <span id="peimageoptionalheader64-base-of-data"></span>`fn base_of_data(&self) -> Option<u32>`
 
-- `fn image_base(self: &Self) -> u64`
+- <span id="peimageoptionalheader64-image-base"></span>`fn image_base(&self) -> u64`
 
-- `fn section_alignment(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-section-alignment"></span>`fn section_alignment(&self) -> u32`
 
-- `fn file_alignment(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-file-alignment"></span>`fn file_alignment(&self) -> u32`
 
-- `fn major_operating_system_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader64-major-operating-system-version"></span>`fn major_operating_system_version(&self) -> u16`
 
-- `fn minor_operating_system_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader64-minor-operating-system-version"></span>`fn minor_operating_system_version(&self) -> u16`
 
-- `fn major_image_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader64-major-image-version"></span>`fn major_image_version(&self) -> u16`
 
-- `fn minor_image_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader64-minor-image-version"></span>`fn minor_image_version(&self) -> u16`
 
-- `fn major_subsystem_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader64-major-subsystem-version"></span>`fn major_subsystem_version(&self) -> u16`
 
-- `fn minor_subsystem_version(self: &Self) -> u16`
+- <span id="peimageoptionalheader64-minor-subsystem-version"></span>`fn minor_subsystem_version(&self) -> u16`
 
-- `fn win32_version_value(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-win32-version-value"></span>`fn win32_version_value(&self) -> u32`
 
-- `fn size_of_image(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-size-of-image"></span>`fn size_of_image(&self) -> u32`
 
-- `fn size_of_headers(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-size-of-headers"></span>`fn size_of_headers(&self) -> u32`
 
-- `fn check_sum(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-check-sum"></span>`fn check_sum(&self) -> u32`
 
-- `fn subsystem(self: &Self) -> u16`
+- <span id="peimageoptionalheader64-subsystem"></span>`fn subsystem(&self) -> u16`
 
-- `fn dll_characteristics(self: &Self) -> u16`
+- <span id="peimageoptionalheader64-dll-characteristics"></span>`fn dll_characteristics(&self) -> u16`
 
-- `fn size_of_stack_reserve(self: &Self) -> u64`
+- <span id="peimageoptionalheader64-size-of-stack-reserve"></span>`fn size_of_stack_reserve(&self) -> u64`
 
-- `fn size_of_stack_commit(self: &Self) -> u64`
+- <span id="peimageoptionalheader64-size-of-stack-commit"></span>`fn size_of_stack_commit(&self) -> u64`
 
-- `fn size_of_heap_reserve(self: &Self) -> u64`
+- <span id="peimageoptionalheader64-size-of-heap-reserve"></span>`fn size_of_heap_reserve(&self) -> u64`
 
-- `fn size_of_heap_commit(self: &Self) -> u64`
+- <span id="peimageoptionalheader64-size-of-heap-commit"></span>`fn size_of_heap_commit(&self) -> u64`
 
-- `fn loader_flags(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-loader-flags"></span>`fn loader_flags(&self) -> u32`
 
-- `fn number_of_rva_and_sizes(self: &Self) -> u32`
+- <span id="peimageoptionalheader64-number-of-rva-and-sizes"></span>`fn number_of_rva_and_sizes(&self) -> u32`
 
 ##### `impl Pod for ImageOptionalHeader64`
 
@@ -966,33 +2562,35 @@ struct ImageNtHeaders64 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:493-497`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L493-L497)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageNtHeaders64`
 
-- `fn clone(self: &Self) -> ImageNtHeaders64` — [`ImageNtHeaders64`](#imagentheaders64)
+- <span id="imagentheaders64-clone"></span>`fn clone(&self) -> ImageNtHeaders64` — [`ImageNtHeaders64`](#imagentheaders64)
 
 ##### `impl Copy for ImageNtHeaders64`
 
 ##### `impl Debug for ImageNtHeaders64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagentheaders64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl ImageNtHeaders for pe::ImageNtHeaders64`
 
-- `type ImageOptionalHeader = ImageOptionalHeader64`
+- <span id="peimagentheaders64-type-imageoptionalheader"></span>`type ImageOptionalHeader = ImageOptionalHeader64`
 
-- `type ImageThunkData = ImageThunkData64`
+- <span id="peimagentheaders64-type-imagethunkdata"></span>`type ImageThunkData = ImageThunkData64`
 
-- `fn is_type_64(self: &Self) -> bool`
+- <span id="peimagentheaders64-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- `fn is_valid_optional_magic(self: &Self) -> bool`
+- <span id="peimagentheaders64-is-valid-optional-magic"></span>`fn is_valid_optional_magic(&self) -> bool`
 
-- `fn signature(self: &Self) -> u32`
+- <span id="peimagentheaders64-signature"></span>`fn signature(&self) -> u32`
 
-- `fn file_header(self: &Self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
+- <span id="peimagentheaders64-file-header"></span>`fn file_header(&self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
 
-- `fn optional_header(self: &Self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md)
+- <span id="peimagentheaders64-optional-header"></span>`fn optional_header(&self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md)
 
 ##### `impl Pod for ImageNtHeaders64`
 
@@ -1006,33 +2604,35 @@ struct ImageNtHeaders32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:501-505`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L501-L505)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageNtHeaders32`
 
-- `fn clone(self: &Self) -> ImageNtHeaders32` — [`ImageNtHeaders32`](#imagentheaders32)
+- <span id="imagentheaders32-clone"></span>`fn clone(&self) -> ImageNtHeaders32` — [`ImageNtHeaders32`](#imagentheaders32)
 
 ##### `impl Copy for ImageNtHeaders32`
 
 ##### `impl Debug for ImageNtHeaders32`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagentheaders32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl ImageNtHeaders for pe::ImageNtHeaders32`
 
-- `type ImageOptionalHeader = ImageOptionalHeader32`
+- <span id="peimagentheaders32-type-imageoptionalheader"></span>`type ImageOptionalHeader = ImageOptionalHeader32`
 
-- `type ImageThunkData = ImageThunkData32`
+- <span id="peimagentheaders32-type-imagethunkdata"></span>`type ImageThunkData = ImageThunkData32`
 
-- `fn is_type_64(self: &Self) -> bool`
+- <span id="peimagentheaders32-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
-- `fn is_valid_optional_magic(self: &Self) -> bool`
+- <span id="peimagentheaders32-is-valid-optional-magic"></span>`fn is_valid_optional_magic(&self) -> bool`
 
-- `fn signature(self: &Self) -> u32`
+- <span id="peimagentheaders32-signature"></span>`fn signature(&self) -> u32`
 
-- `fn file_header(self: &Self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
+- <span id="peimagentheaders32-file-header"></span>`fn file_header(&self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
 
-- `fn optional_header(self: &Self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md)
+- <span id="peimagentheaders32-optional-header"></span>`fn optional_header(&self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md)
 
 ##### `impl Pod for ImageNtHeaders32`
 
@@ -1045,17 +2645,19 @@ struct ImageRomHeaders {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:509-512`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L509-L512)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageRomHeaders`
 
-- `fn clone(self: &Self) -> ImageRomHeaders` — [`ImageRomHeaders`](#imageromheaders)
+- <span id="imageromheaders-clone"></span>`fn clone(&self) -> ImageRomHeaders` — [`ImageRomHeaders`](#imageromheaders)
 
 ##### `impl Copy for ImageRomHeaders`
 
 ##### `impl Debug for ImageRomHeaders`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageromheaders-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageRomHeaders`
 
@@ -1065,33 +2667,35 @@ struct ImageRomHeaders {
 struct Guid([u8; 16]);
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:604`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L604)*
+
 #### Implementations
 
-- `fn data1(self: Self) -> U32<LE>` — [`U32`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data1"></span>`fn data1(self) -> U32<LE>` — [`U32`](../index.md), [`LittleEndian`](../index.md)
 
-- `fn data2(self: Self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data2"></span>`fn data2(self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
 
-- `fn data3(self: Self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data3"></span>`fn data3(self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
 
-- `fn data4(self: Self) -> [u8; 8]`
+- <span id="guid-data4"></span>`fn data4(self) -> [u8; 8]`
 
 #### Trait Implementations
 
 ##### `impl Clone for Guid`
 
-- `fn clone(self: &Self) -> Guid` — [`ClsId`](#clsid)
+- <span id="guid-clone"></span>`fn clone(&self) -> Guid` — [`Guid`](#guid)
 
 ##### `impl Copy for Guid`
 
 ##### `impl Debug for Guid`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="guid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Guid`
 
 ##### `impl PartialEq for Guid`
 
-- `fn eq(self: &Self, other: &Guid) -> bool` — [`ClsId`](#clsid)
+- <span id="guid-eq"></span>`fn eq(&self, other: &Guid) -> bool` — [`Guid`](#guid)
 
 ##### `impl Pod for Guid`
 
@@ -1103,33 +2707,35 @@ struct Guid([u8; 16]);
 struct ClsId([u8; 16]);
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:604`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L604)*
+
 #### Implementations
 
-- `fn data1(self: Self) -> U32<LE>` — [`U32`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data1"></span>`fn data1(self) -> U32<LE>` — [`U32`](../index.md), [`LittleEndian`](../index.md)
 
-- `fn data2(self: Self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data2"></span>`fn data2(self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
 
-- `fn data3(self: Self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
+- <span id="guid-data3"></span>`fn data3(self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
 
-- `fn data4(self: Self) -> [u8; 8]`
+- <span id="guid-data4"></span>`fn data4(self) -> [u8; 8]`
 
 #### Trait Implementations
 
 ##### `impl Clone for Guid`
 
-- `fn clone(self: &Self) -> Guid` — [`ClsId`](#clsid)
+- <span id="guid-clone"></span>`fn clone(&self) -> Guid` — [`Guid`](#guid)
 
 ##### `impl Copy for Guid`
 
 ##### `impl Debug for Guid`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="guid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Guid`
 
 ##### `impl PartialEq for Guid`
 
-- `fn eq(self: &Self, other: &Guid) -> bool` — [`ClsId`](#clsid)
+- <span id="guid-eq"></span>`fn eq(&self, other: &Guid) -> bool` — [`Guid`](#guid)
 
 ##### `impl Pod for Guid`
 
@@ -1148,6 +2754,8 @@ struct AnonObjectHeader {
     pub size_of_data: crate::endian::U32<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:633-646`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L633-L646)*
 
 Non-COFF Object file header
 
@@ -1177,13 +2785,13 @@ Non-COFF Object file header
 
 ##### `impl Clone for AnonObjectHeader`
 
-- `fn clone(self: &Self) -> AnonObjectHeader` — [`AnonObjectHeader`](#anonobjectheader)
+- <span id="anonobjectheader-clone"></span>`fn clone(&self) -> AnonObjectHeader` — [`AnonObjectHeader`](#anonobjectheader)
 
 ##### `impl Copy for AnonObjectHeader`
 
 ##### `impl Debug for AnonObjectHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="anonobjectheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for AnonObjectHeader`
 
@@ -1203,6 +2811,8 @@ struct AnonObjectHeaderV2 {
     pub meta_data_offset: crate::endian::U32<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:650-669`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L650-L669)*
 
 #### Fields
 
@@ -1242,13 +2852,13 @@ struct AnonObjectHeaderV2 {
 
 ##### `impl Clone for AnonObjectHeaderV2`
 
-- `fn clone(self: &Self) -> AnonObjectHeaderV2` — [`AnonObjectHeaderV2`](#anonobjectheaderv2)
+- <span id="anonobjectheaderv2-clone"></span>`fn clone(&self) -> AnonObjectHeaderV2` — [`AnonObjectHeaderV2`](#anonobjectheaderv2)
 
 ##### `impl Copy for AnonObjectHeaderV2`
 
 ##### `impl Debug for AnonObjectHeaderV2`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="anonobjectheaderv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for AnonObjectHeaderV2`
 
@@ -1271,6 +2881,8 @@ struct AnonObjectHeaderBigobj {
     pub number_of_symbols: crate::endian::U32<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:678-705`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L678-L705)*
 
 #### Fields
 
@@ -1318,33 +2930,33 @@ struct AnonObjectHeaderBigobj {
 
 ##### `impl Clone for AnonObjectHeaderBigobj`
 
-- `fn clone(self: &Self) -> AnonObjectHeaderBigobj` — [`AnonObjectHeaderBigobj`](#anonobjectheaderbigobj)
+- <span id="anonobjectheaderbigobj-clone"></span>`fn clone(&self) -> AnonObjectHeaderBigobj` — [`AnonObjectHeaderBigobj`](#anonobjectheaderbigobj)
 
 ##### `impl CoffHeader for pe::AnonObjectHeaderBigobj`
 
-- `type ImageSymbol = ImageSymbolEx`
+- <span id="peanonobjectheaderbigobj-type-imagesymbol"></span>`type ImageSymbol = ImageSymbolEx`
 
-- `type ImageSymbolBytes = ImageSymbolExBytes`
+- <span id="peanonobjectheaderbigobj-type-imagesymbolbytes"></span>`type ImageSymbolBytes = ImageSymbolExBytes`
 
-- `fn is_type_bigobj() -> bool`
+- <span id="peanonobjectheaderbigobj-is-type-bigobj"></span>`fn is_type_bigobj() -> bool`
 
-- `fn machine(self: &Self) -> u16`
+- <span id="peanonobjectheaderbigobj-machine"></span>`fn machine(&self) -> u16`
 
-- `fn number_of_sections(self: &Self) -> u32`
+- <span id="peanonobjectheaderbigobj-number-of-sections"></span>`fn number_of_sections(&self) -> u32`
 
-- `fn pointer_to_symbol_table(self: &Self) -> u32`
+- <span id="peanonobjectheaderbigobj-pointer-to-symbol-table"></span>`fn pointer_to_symbol_table(&self) -> u32`
 
-- `fn number_of_symbols(self: &Self) -> u32`
+- <span id="peanonobjectheaderbigobj-number-of-symbols"></span>`fn number_of_symbols(&self) -> u32`
 
-- `fn characteristics(self: &Self) -> u16`
+- <span id="peanonobjectheaderbigobj-characteristics"></span>`fn characteristics(&self) -> u16`
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md)
+- <span id="peanonobjectheaderbigobj-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md)
 
 ##### `impl Copy for AnonObjectHeaderBigobj`
 
 ##### `impl Debug for AnonObjectHeaderBigobj`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="anonobjectheaderbigobj-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for AnonObjectHeaderBigobj`
 
@@ -1365,37 +2977,27 @@ struct ImageSectionHeader {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:715-726`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L715-L726)*
+
 #### Implementations
 
-- `fn pe_file_range(self: &Self) -> (u32, u32)`
-
-- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
-
-- `fn pe_address_range(self: &Self) -> (u32, u32)`
-
-- `fn pe_data<'data, R: ReadRef<'data>>(self: &Self, data: R) -> Result<&'data [u8]>` — [`Result`](../index.md)
-
-- `fn pe_data_at<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
-
-- `fn contains_rva(self: &Self, va: u32) -> bool`
-
-- `fn pe_data_containing<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
+- <span id="peimagesectionheader-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ImageSectionHeader`
 
-- `fn clone(self: &Self) -> ImageSectionHeader` — [`ImageSectionHeader`](#imagesectionheader)
+- <span id="imagesectionheader-clone"></span>`fn clone(&self) -> ImageSectionHeader` — [`ImageSectionHeader`](#imagesectionheader)
 
 ##### `impl Copy for ImageSectionHeader`
 
 ##### `impl Debug for ImageSectionHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagesectionheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ImageSectionHeader`
 
-- `fn default() -> ImageSectionHeader` — [`ImageSectionHeader`](#imagesectionheader)
+- <span id="imagesectionheader-default"></span>`fn default() -> ImageSectionHeader` — [`ImageSectionHeader`](#imagesectionheader)
 
 ##### `impl Pod for ImageSectionHeader`
 
@@ -1412,6 +3014,8 @@ struct ImageSymbol {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:817-825`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L817-L825)*
+
 #### Fields
 
 - **`name`**: `[u8; 8]`
@@ -1422,27 +3026,27 @@ struct ImageSymbol {
 
 ##### `impl Clone for ImageSymbol`
 
-- `fn clone(self: &Self) -> ImageSymbol` — [`ImageSymbol`](#imagesymbol)
+- <span id="imagesymbol-clone"></span>`fn clone(&self) -> ImageSymbol` — [`ImageSymbol`](#imagesymbol)
 
 ##### `impl Copy for ImageSymbol`
 
 ##### `impl Debug for ImageSymbol`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagesymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl ImageSymbol for pe::ImageSymbol`
 
-- `fn raw_name(self: &Self) -> &[u8; 8]`
+- <span id="peimagesymbol-raw-name"></span>`fn raw_name(&self) -> &[u8; 8]`
 
-- `fn value(self: &Self) -> u32`
+- <span id="peimagesymbol-value"></span>`fn value(&self) -> u32`
 
-- `fn section_number(self: &Self) -> i32`
+- <span id="peimagesymbol-section-number"></span>`fn section_number(&self) -> i32`
 
-- `fn typ(self: &Self) -> u16`
+- <span id="peimagesymbol-typ"></span>`fn typ(&self) -> u16`
 
-- `fn storage_class(self: &Self) -> u8`
+- <span id="peimagesymbol-storage-class"></span>`fn storage_class(&self) -> u8`
 
-- `fn number_of_aux_symbols(self: &Self) -> u8`
+- <span id="peimagesymbol-number-of-aux-symbols"></span>`fn number_of_aux_symbols(&self) -> u8`
 
 ##### `impl Pod for ImageSymbol`
 
@@ -1452,17 +3056,19 @@ struct ImageSymbol {
 struct ImageSymbolBytes([u8; 18]);
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:831`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L831)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageSymbolBytes`
 
-- `fn clone(self: &Self) -> ImageSymbolBytes` — [`ImageSymbolBytes`](#imagesymbolbytes)
+- <span id="imagesymbolbytes-clone"></span>`fn clone(&self) -> ImageSymbolBytes` — [`ImageSymbolBytes`](#imagesymbolbytes)
 
 ##### `impl Copy for ImageSymbolBytes`
 
 ##### `impl Debug for ImageSymbolBytes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagesymbolbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageSymbolBytes`
 
@@ -1479,6 +3085,8 @@ struct ImageSymbolEx {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:836-844`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L836-L844)*
+
 #### Fields
 
 - **`name`**: `[u8; 8]`
@@ -1489,27 +3097,27 @@ struct ImageSymbolEx {
 
 ##### `impl Clone for ImageSymbolEx`
 
-- `fn clone(self: &Self) -> ImageSymbolEx` — [`ImageSymbolEx`](#imagesymbolex)
+- <span id="imagesymbolex-clone"></span>`fn clone(&self) -> ImageSymbolEx` — [`ImageSymbolEx`](#imagesymbolex)
 
 ##### `impl Copy for ImageSymbolEx`
 
 ##### `impl Debug for ImageSymbolEx`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagesymbolex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl ImageSymbol for pe::ImageSymbolEx`
 
-- `fn raw_name(self: &Self) -> &[u8; 8]`
+- <span id="peimagesymbolex-raw-name"></span>`fn raw_name(&self) -> &[u8; 8]`
 
-- `fn value(self: &Self) -> u32`
+- <span id="peimagesymbolex-value"></span>`fn value(&self) -> u32`
 
-- `fn section_number(self: &Self) -> i32`
+- <span id="peimagesymbolex-section-number"></span>`fn section_number(&self) -> i32`
 
-- `fn typ(self: &Self) -> u16`
+- <span id="peimagesymbolex-typ"></span>`fn typ(&self) -> u16`
 
-- `fn storage_class(self: &Self) -> u8`
+- <span id="peimagesymbolex-storage-class"></span>`fn storage_class(&self) -> u8`
 
-- `fn number_of_aux_symbols(self: &Self) -> u8`
+- <span id="peimagesymbolex-number-of-aux-symbols"></span>`fn number_of_aux_symbols(&self) -> u8`
 
 ##### `impl Pod for ImageSymbolEx`
 
@@ -1519,17 +3127,19 @@ struct ImageSymbolEx {
 struct ImageSymbolExBytes([u8; 20]);
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:850`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L850)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageSymbolExBytes`
 
-- `fn clone(self: &Self) -> ImageSymbolExBytes` — [`ImageSymbolExBytes`](#imagesymbolexbytes)
+- <span id="imagesymbolexbytes-clone"></span>`fn clone(&self) -> ImageSymbolExBytes` — [`ImageSymbolExBytes`](#imagesymbolexbytes)
 
 ##### `impl Copy for ImageSymbolExBytes`
 
 ##### `impl Debug for ImageSymbolExBytes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagesymbolexbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageSymbolExBytes`
 
@@ -1543,6 +3153,8 @@ struct ImageAuxSymbolTokenDef {
     pub reserved2: [u8; 12],
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:956-964`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L956-L964)*
 
 #### Fields
 
@@ -1562,13 +3174,13 @@ struct ImageAuxSymbolTokenDef {
 
 ##### `impl Clone for ImageAuxSymbolTokenDef`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolTokenDef` — [`ImageAuxSymbolTokenDef`](#imageauxsymboltokendef)
+- <span id="imageauxsymboltokendef-clone"></span>`fn clone(&self) -> ImageAuxSymbolTokenDef` — [`ImageAuxSymbolTokenDef`](#imageauxsymboltokendef)
 
 ##### `impl Copy for ImageAuxSymbolTokenDef`
 
 ##### `impl Debug for ImageAuxSymbolTokenDef`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageauxsymboltokendef-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageAuxSymbolTokenDef`
 
@@ -1584,19 +3196,21 @@ struct ImageAuxSymbolFunction {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:972-978`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L972-L978)*
+
 Auxiliary symbol format 1: function definitions.
 
 #### Trait Implementations
 
 ##### `impl Clone for ImageAuxSymbolFunction`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolFunction` — [`ImageAuxSymbolFunction`](#imageauxsymbolfunction)
+- <span id="imageauxsymbolfunction-clone"></span>`fn clone(&self) -> ImageAuxSymbolFunction` — [`ImageAuxSymbolFunction`](#imageauxsymbolfunction)
 
 ##### `impl Copy for ImageAuxSymbolFunction`
 
 ##### `impl Debug for ImageAuxSymbolFunction`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageauxsymbolfunction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageAuxSymbolFunction`
 
@@ -1612,6 +3226,8 @@ struct ImageAuxSymbolFunctionBeginEnd {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:984-991`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L984-L991)*
+
 Auxiliary symbol format 2: .bf and .ef symbols.
 
 #### Fields
@@ -1624,13 +3240,13 @@ Auxiliary symbol format 2: .bf and .ef symbols.
 
 ##### `impl Clone for ImageAuxSymbolFunctionBeginEnd`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolFunctionBeginEnd` — [`ImageAuxSymbolFunctionBeginEnd`](#imageauxsymbolfunctionbeginend)
+- <span id="imageauxsymbolfunctionbeginend-clone"></span>`fn clone(&self) -> ImageAuxSymbolFunctionBeginEnd` — [`ImageAuxSymbolFunctionBeginEnd`](#imageauxsymbolfunctionbeginend)
 
 ##### `impl Copy for ImageAuxSymbolFunctionBeginEnd`
 
 ##### `impl Debug for ImageAuxSymbolFunctionBeginEnd`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageauxsymbolfunctionbeginend-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageAuxSymbolFunctionBeginEnd`
 
@@ -1642,6 +3258,8 @@ struct ImageAuxSymbolWeak {
     pub weak_search_type: crate::endian::U32Bytes<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:999-1003`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L999-L1003)*
 
 Auxiliary symbol format 3: weak externals.
 
@@ -1655,19 +3273,19 @@ Used for both `ImageSymbol` and `ImageSymbolEx` (both with padding).
 
 #### Implementations
 
-- `fn default_symbol(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
+- <span id="peimageauxsymbolweak-default-symbol"></span>`fn default_symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ImageAuxSymbolWeak`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolWeak` — [`ImageAuxSymbolWeak`](#imageauxsymbolweak)
+- <span id="imageauxsymbolweak-clone"></span>`fn clone(&self) -> ImageAuxSymbolWeak` — [`ImageAuxSymbolWeak`](#imageauxsymbolweak)
 
 ##### `impl Copy for ImageAuxSymbolWeak`
 
 ##### `impl Debug for ImageAuxSymbolWeak`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageauxsymbolweak-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageAuxSymbolWeak`
 
@@ -1685,6 +3303,8 @@ struct ImageAuxSymbolSection {
     pub high_number: crate::endian::U16Bytes<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:1011-1027`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1011-L1027)*
 
 Auxiliary symbol format 5: sections.
 
@@ -1724,13 +3344,13 @@ Used for both `ImageSymbol` and `ImageSymbolEx` (with padding).
 
 ##### `impl Clone for ImageAuxSymbolSection`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolSection` — [`ImageAuxSymbolSection`](#imageauxsymbolsection)
+- <span id="imageauxsymbolsection-clone"></span>`fn clone(&self) -> ImageAuxSymbolSection` — [`ImageAuxSymbolSection`](#imageauxsymbolsection)
 
 ##### `impl Copy for ImageAuxSymbolSection`
 
 ##### `impl Debug for ImageAuxSymbolSection`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageauxsymbolsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageAuxSymbolSection`
 
@@ -1742,17 +3362,19 @@ struct ImageAuxSymbolCrc {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1033-1035`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1033-L1035)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageAuxSymbolCrc`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolCrc` — [`ImageAuxSymbolCrc`](#imageauxsymbolcrc)
+- <span id="imageauxsymbolcrc-clone"></span>`fn clone(&self) -> ImageAuxSymbolCrc` — [`ImageAuxSymbolCrc`](#imageauxsymbolcrc)
 
 ##### `impl Copy for ImageAuxSymbolCrc`
 
 ##### `impl Debug for ImageAuxSymbolCrc`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageauxsymbolcrc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageAuxSymbolCrc`
 
@@ -1766,6 +3388,8 @@ struct ImageRelocation {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1061-1066`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1061-L1066)*
+
 #### Fields
 
 - **`virtual_address`**: `crate::endian::U32Bytes<crate::endian::LittleEndian>`
@@ -1774,19 +3398,19 @@ struct ImageRelocation {
 
 #### Implementations
 
-- `fn symbol(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
+- <span id="peimagerelocation-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ImageRelocation`
 
-- `fn clone(self: &Self) -> ImageRelocation` — [`ImageRelocation`](#imagerelocation)
+- <span id="imagerelocation-clone"></span>`fn clone(&self) -> ImageRelocation` — [`ImageRelocation`](#imagerelocation)
 
 ##### `impl Copy for ImageRelocation`
 
 ##### `impl Debug for ImageRelocation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagerelocation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageRelocation`
 
@@ -1798,6 +3422,8 @@ struct ImageLinenumber {
     pub linenumber: crate::endian::U16Bytes<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:1721-1727`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1721-L1727)*
 
 #### Fields
 
@@ -1814,13 +3440,13 @@ struct ImageLinenumber {
 
 ##### `impl Clone for ImageLinenumber`
 
-- `fn clone(self: &Self) -> ImageLinenumber` — [`ImageLinenumber`](#imagelinenumber)
+- <span id="imagelinenumber-clone"></span>`fn clone(&self) -> ImageLinenumber` — [`ImageLinenumber`](#imagelinenumber)
 
 ##### `impl Copy for ImageLinenumber`
 
 ##### `impl Debug for ImageLinenumber`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagelinenumber-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageLinenumber`
 
@@ -1833,17 +3459,19 @@ struct ImageBaseRelocation {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1735-1739`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1735-L1739)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageBaseRelocation`
 
-- `fn clone(self: &Self) -> ImageBaseRelocation` — [`ImageBaseRelocation`](#imagebaserelocation)
+- <span id="imagebaserelocation-clone"></span>`fn clone(&self) -> ImageBaseRelocation` — [`ImageBaseRelocation`](#imagebaserelocation)
 
 ##### `impl Copy for ImageBaseRelocation`
 
 ##### `impl Debug for ImageBaseRelocation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagebaserelocation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageBaseRelocation`
 
@@ -1860,6 +3488,8 @@ struct ImageArchiveMemberHeader {
     pub end_header: [u8; 2],
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:1787-1802`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1787-L1802)*
 
 #### Fields
 
@@ -1895,13 +3525,13 @@ struct ImageArchiveMemberHeader {
 
 ##### `impl Clone for ImageArchiveMemberHeader`
 
-- `fn clone(self: &Self) -> ImageArchiveMemberHeader` — [`ImageArchiveMemberHeader`](#imagearchivememberheader)
+- <span id="imagearchivememberheader-clone"></span>`fn clone(&self) -> ImageArchiveMemberHeader` — [`ImageArchiveMemberHeader`](#imagearchivememberheader)
 
 ##### `impl Copy for ImageArchiveMemberHeader`
 
 ##### `impl Debug for ImageArchiveMemberHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagearchivememberheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageArchiveMemberHeader`
 
@@ -1923,6 +3553,8 @@ struct ImageExportDirectory {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1816-1831`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1816-L1831)*
+
 #### Fields
 
 - **`address_of_functions`**: `crate::endian::U32<crate::endian::LittleEndian>`
@@ -1941,13 +3573,13 @@ struct ImageExportDirectory {
 
 ##### `impl Clone for ImageExportDirectory`
 
-- `fn clone(self: &Self) -> ImageExportDirectory` — [`ImageExportDirectory`](#imageexportdirectory)
+- <span id="imageexportdirectory-clone"></span>`fn clone(&self) -> ImageExportDirectory` — [`ImageExportDirectory`](#imageexportdirectory)
 
 ##### `impl Copy for ImageExportDirectory`
 
 ##### `impl Debug for ImageExportDirectory`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageexportdirectory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageExportDirectory`
 
@@ -1959,17 +3591,19 @@ struct ImageImportByName {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1839-1842`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1839-L1842)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageImportByName`
 
-- `fn clone(self: &Self) -> ImageImportByName` — [`ImageImportByName`](#imageimportbyname)
+- <span id="imageimportbyname-clone"></span>`fn clone(&self) -> ImageImportByName` — [`ImageImportByName`](#imageimportbyname)
 
 ##### `impl Copy for ImageImportByName`
 
 ##### `impl Debug for ImageImportByName`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageimportbyname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageImportByName`
 
@@ -1979,27 +3613,29 @@ struct ImageImportByName {
 struct ImageThunkData64(crate::endian::U64<crate::endian::LittleEndian>);
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1846`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1846)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageThunkData64`
 
-- `fn clone(self: &Self) -> ImageThunkData64` — [`ImageThunkData64`](#imagethunkdata64)
+- <span id="imagethunkdata64-clone"></span>`fn clone(&self) -> ImageThunkData64` — [`ImageThunkData64`](#imagethunkdata64)
 
 ##### `impl Copy for ImageThunkData64`
 
 ##### `impl Debug for ImageThunkData64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagethunkdata64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl ImageThunkData for pe::ImageThunkData64`
 
-- `fn raw(self: Self) -> u64`
+- <span id="peimagethunkdata64-raw"></span>`fn raw(self) -> u64`
 
-- `fn is_ordinal(self: Self) -> bool`
+- <span id="peimagethunkdata64-is-ordinal"></span>`fn is_ordinal(self) -> bool`
 
-- `fn ordinal(self: Self) -> u16`
+- <span id="peimagethunkdata64-ordinal"></span>`fn ordinal(self) -> u16`
 
-- `fn address(self: Self) -> u32`
+- <span id="peimagethunkdata64-address"></span>`fn address(self) -> u32`
 
 ##### `impl Pod for ImageThunkData64`
 
@@ -2009,27 +3645,29 @@ struct ImageThunkData64(crate::endian::U64<crate::endian::LittleEndian>);
 struct ImageThunkData32(crate::endian::U32<crate::endian::LittleEndian>);
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1861`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1861)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageThunkData32`
 
-- `fn clone(self: &Self) -> ImageThunkData32` — [`ImageThunkData32`](#imagethunkdata32)
+- <span id="imagethunkdata32-clone"></span>`fn clone(&self) -> ImageThunkData32` — [`ImageThunkData32`](#imagethunkdata32)
 
 ##### `impl Copy for ImageThunkData32`
 
 ##### `impl Debug for ImageThunkData32`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagethunkdata32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl ImageThunkData for pe::ImageThunkData32`
 
-- `fn raw(self: Self) -> u64`
+- <span id="peimagethunkdata32-raw"></span>`fn raw(self) -> u64`
 
-- `fn is_ordinal(self: Self) -> bool`
+- <span id="peimagethunkdata32-is-ordinal"></span>`fn is_ordinal(self) -> bool`
 
-- `fn ordinal(self: Self) -> u16`
+- <span id="peimagethunkdata32-ordinal"></span>`fn ordinal(self) -> u16`
 
-- `fn address(self: Self) -> u32`
+- <span id="peimagethunkdata32-address"></span>`fn address(self) -> u32`
 
 ##### `impl Pod for ImageThunkData32`
 
@@ -2046,6 +3684,8 @@ struct ImageTlsDirectory64 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1892-1901`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1892-L1901)*
+
 #### Fields
 
 - **`address_of_index`**: `crate::endian::U64<crate::endian::LittleEndian>`
@@ -2060,13 +3700,13 @@ struct ImageTlsDirectory64 {
 
 ##### `impl Clone for ImageTlsDirectory64`
 
-- `fn clone(self: &Self) -> ImageTlsDirectory64` — [`ImageTlsDirectory64`](#imagetlsdirectory64)
+- <span id="imagetlsdirectory64-clone"></span>`fn clone(&self) -> ImageTlsDirectory64` — [`ImageTlsDirectory64`](#imagetlsdirectory64)
 
 ##### `impl Copy for ImageTlsDirectory64`
 
 ##### `impl Debug for ImageTlsDirectory64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagetlsdirectory64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageTlsDirectory64`
 
@@ -2083,6 +3723,8 @@ struct ImageTlsDirectory32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1905-1914`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1905-L1914)*
+
 #### Fields
 
 - **`address_of_index`**: `crate::endian::U32<crate::endian::LittleEndian>`
@@ -2097,13 +3739,13 @@ struct ImageTlsDirectory32 {
 
 ##### `impl Clone for ImageTlsDirectory32`
 
-- `fn clone(self: &Self) -> ImageTlsDirectory32` — [`ImageTlsDirectory32`](#imagetlsdirectory32)
+- <span id="imagetlsdirectory32-clone"></span>`fn clone(&self) -> ImageTlsDirectory32` — [`ImageTlsDirectory32`](#imagetlsdirectory32)
 
 ##### `impl Copy for ImageTlsDirectory32`
 
 ##### `impl Debug for ImageTlsDirectory32`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagetlsdirectory32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageTlsDirectory32`
 
@@ -2118,6 +3760,8 @@ struct ImageImportDescriptor {
     pub first_thunk: crate::endian::U32Bytes<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:1918-1932`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1918-L1932)*
 
 #### Fields
 
@@ -2143,19 +3787,19 @@ struct ImageImportDescriptor {
 
 #### Implementations
 
-- `fn is_null(self: &Self) -> bool`
+- <span id="imageimportdescriptor-is-null"></span>`fn is_null(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for ImageImportDescriptor`
 
-- `fn clone(self: &Self) -> ImageImportDescriptor` — [`ImageImportDescriptor`](#imageimportdescriptor)
+- <span id="imageimportdescriptor-clone"></span>`fn clone(&self) -> ImageImportDescriptor` — [`ImageImportDescriptor`](#imageimportdescriptor)
 
 ##### `impl Copy for ImageImportDescriptor`
 
 ##### `impl Debug for ImageImportDescriptor`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageimportdescriptor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageImportDescriptor`
 
@@ -2169,17 +3813,19 @@ struct ImageBoundImportDescriptor {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1952-1957`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1952-L1957)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageBoundImportDescriptor`
 
-- `fn clone(self: &Self) -> ImageBoundImportDescriptor` — [`ImageBoundImportDescriptor`](#imageboundimportdescriptor)
+- <span id="imageboundimportdescriptor-clone"></span>`fn clone(&self) -> ImageBoundImportDescriptor` — [`ImageBoundImportDescriptor`](#imageboundimportdescriptor)
 
 ##### `impl Copy for ImageBoundImportDescriptor`
 
 ##### `impl Debug for ImageBoundImportDescriptor`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageboundimportdescriptor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageBoundImportDescriptor`
 
@@ -2193,17 +3839,19 @@ struct ImageBoundForwarderRef {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1961-1965`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1961-L1965)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageBoundForwarderRef`
 
-- `fn clone(self: &Self) -> ImageBoundForwarderRef` — [`ImageBoundForwarderRef`](#imageboundforwarderref)
+- <span id="imageboundforwarderref-clone"></span>`fn clone(&self) -> ImageBoundForwarderRef` — [`ImageBoundForwarderRef`](#imageboundforwarderref)
 
 ##### `impl Copy for ImageBoundForwarderRef`
 
 ##### `impl Debug for ImageBoundForwarderRef`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageboundforwarderref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageBoundForwarderRef`
 
@@ -2221,6 +3869,8 @@ struct ImageDelayloadDescriptor {
     pub time_date_stamp: crate::endian::U32<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:1969-1986`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1969-L1986)*
 
 #### Fields
 
@@ -2254,19 +3904,19 @@ struct ImageDelayloadDescriptor {
 
 #### Implementations
 
-- `fn is_null(self: &Self) -> bool`
+- <span id="imagedelayloaddescriptor-is-null"></span>`fn is_null(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for ImageDelayloadDescriptor`
 
-- `fn clone(self: &Self) -> ImageDelayloadDescriptor` — [`ImageDelayloadDescriptor`](#imagedelayloaddescriptor)
+- <span id="imagedelayloaddescriptor-clone"></span>`fn clone(&self) -> ImageDelayloadDescriptor` — [`ImageDelayloadDescriptor`](#imagedelayloaddescriptor)
 
 ##### `impl Copy for ImageDelayloadDescriptor`
 
 ##### `impl Debug for ImageDelayloadDescriptor`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagedelayloaddescriptor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageDelayloadDescriptor`
 
@@ -2283,17 +3933,19 @@ struct ImageResourceDirectory {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2026-2033`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2026-L2033)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageResourceDirectory`
 
-- `fn clone(self: &Self) -> ImageResourceDirectory` — [`ImageResourceDirectory`](#imageresourcedirectory)
+- <span id="imageresourcedirectory-clone"></span>`fn clone(&self) -> ImageResourceDirectory` — [`ImageResourceDirectory`](#imageresourcedirectory)
 
 ##### `impl Copy for ImageResourceDirectory`
 
 ##### `impl Debug for ImageResourceDirectory`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageresourcedirectory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageResourceDirectory`
 
@@ -2306,33 +3958,35 @@ struct ImageResourceDirectoryEntry {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2054-2057`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2054-L2057)*
+
 #### Implementations
 
-- `fn has_name(self: &Self) -> bool`
+- <span id="peimageresourcedirectoryentry-has-name"></span>`fn has_name(&self) -> bool`
 
-- `fn name(self: &Self) -> ResourceName` — [`ResourceName`](../read/pe/index.md)
+- <span id="peimageresourcedirectoryentry-name"></span>`fn name(&self) -> ResourceName` — [`ResourceName`](../read/pe/index.md)
 
-- `fn id(self: &Self) -> u16`
+- <span id="peimageresourcedirectoryentry-id"></span>`fn id(&self) -> u16`
 
-- `fn name_or_id(self: &Self) -> ResourceNameOrId` — [`ResourceNameOrId`](../read/pe/index.md)
+- <span id="peimageresourcedirectoryentry-name-or-id"></span>`fn name_or_id(&self) -> ResourceNameOrId` — [`ResourceNameOrId`](../read/pe/index.md)
 
-- `fn is_table(self: &Self) -> bool`
+- <span id="peimageresourcedirectoryentry-is-table"></span>`fn is_table(&self) -> bool`
 
-- `fn data_offset(self: &Self) -> u32`
+- <span id="peimageresourcedirectoryentry-data-offset"></span>`fn data_offset(&self) -> u32`
 
-- `fn data<'data>(self: &Self, section: ResourceDirectory<'data>) -> Result<ResourceDirectoryEntryData<'data>>` — [`ResourceDirectory`](../read/pe/index.md), [`Result`](../index.md), [`ResourceDirectoryEntryData`](../read/pe/index.md)
+- <span id="peimageresourcedirectoryentry-data"></span>`fn data<'data>(&self, section: ResourceDirectory<'data>) -> Result<ResourceDirectoryEntryData<'data>>` — [`ResourceDirectory`](../read/pe/index.md), [`Result`](../index.md), [`ResourceDirectoryEntryData`](../read/pe/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ImageResourceDirectoryEntry`
 
-- `fn clone(self: &Self) -> ImageResourceDirectoryEntry` — [`ImageResourceDirectoryEntry`](#imageresourcedirectoryentry)
+- <span id="imageresourcedirectoryentry-clone"></span>`fn clone(&self) -> ImageResourceDirectoryEntry` — [`ImageResourceDirectoryEntry`](#imageresourcedirectoryentry)
 
 ##### `impl Copy for ImageResourceDirectoryEntry`
 
 ##### `impl Debug for ImageResourceDirectoryEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageresourcedirectoryentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageResourceDirectoryEntry`
 
@@ -2344,17 +3998,19 @@ struct ImageResourceDirectoryString {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2070-2073`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2070-L2073)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageResourceDirectoryString`
 
-- `fn clone(self: &Self) -> ImageResourceDirectoryString` — [`ImageResourceDirectoryString`](#imageresourcedirectorystring)
+- <span id="imageresourcedirectorystring-clone"></span>`fn clone(&self) -> ImageResourceDirectoryString` — [`ImageResourceDirectoryString`](#imageresourcedirectorystring)
 
 ##### `impl Copy for ImageResourceDirectoryString`
 
 ##### `impl Debug for ImageResourceDirectoryString`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageresourcedirectorystring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageResourceDirectoryString`
 
@@ -2366,17 +4022,19 @@ struct ImageResourceDirStringU {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2077-2080`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2077-L2080)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageResourceDirStringU`
 
-- `fn clone(self: &Self) -> ImageResourceDirStringU` — [`ImageResourceDirStringU`](#imageresourcedirstringu)
+- <span id="imageresourcedirstringu-clone"></span>`fn clone(&self) -> ImageResourceDirStringU` — [`ImageResourceDirStringU`](#imageresourcedirstringu)
 
 ##### `impl Copy for ImageResourceDirStringU`
 
 ##### `impl Debug for ImageResourceDirStringU`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageresourcedirstringu-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageResourceDirStringU`
 
@@ -2391,6 +4049,8 @@ struct ImageResourceDataEntry {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2093-2099`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2093-L2099)*
+
 #### Fields
 
 - **`offset_to_data`**: `crate::endian::U32<crate::endian::LittleEndian>`
@@ -2401,13 +4061,13 @@ struct ImageResourceDataEntry {
 
 ##### `impl Clone for ImageResourceDataEntry`
 
-- `fn clone(self: &Self) -> ImageResourceDataEntry` — [`ImageResourceDataEntry`](#imageresourcedataentry)
+- <span id="imageresourcedataentry-clone"></span>`fn clone(&self) -> ImageResourceDataEntry` — [`ImageResourceDataEntry`](#imageresourcedataentry)
 
 ##### `impl Copy for ImageResourceDataEntry`
 
 ##### `impl Debug for ImageResourceDataEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageresourcedataentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageResourceDataEntry`
 
@@ -2421,6 +4081,8 @@ struct ImageLoadConfigCodeIntegrity {
     pub reserved: crate::endian::U32<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:2152-2160`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2152-L2160)*
 
 #### Fields
 
@@ -2440,13 +4102,13 @@ struct ImageLoadConfigCodeIntegrity {
 
 ##### `impl Clone for ImageLoadConfigCodeIntegrity`
 
-- `fn clone(self: &Self) -> ImageLoadConfigCodeIntegrity` — [`ImageLoadConfigCodeIntegrity`](#imageloadconfigcodeintegrity)
+- <span id="imageloadconfigcodeintegrity-clone"></span>`fn clone(&self) -> ImageLoadConfigCodeIntegrity` — [`ImageLoadConfigCodeIntegrity`](#imageloadconfigcodeintegrity)
 
 ##### `impl Copy for ImageLoadConfigCodeIntegrity`
 
 ##### `impl Debug for ImageLoadConfigCodeIntegrity`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageloadconfigcodeintegrity-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageLoadConfigCodeIntegrity`
 
@@ -2459,17 +4121,19 @@ struct ImageDynamicRelocationTable {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2168-2172`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2168-L2172)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageDynamicRelocationTable`
 
-- `fn clone(self: &Self) -> ImageDynamicRelocationTable` — [`ImageDynamicRelocationTable`](#imagedynamicrelocationtable)
+- <span id="imagedynamicrelocationtable-clone"></span>`fn clone(&self) -> ImageDynamicRelocationTable` — [`ImageDynamicRelocationTable`](#imagedynamicrelocationtable)
 
 ##### `impl Copy for ImageDynamicRelocationTable`
 
 ##### `impl Debug for ImageDynamicRelocationTable`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagedynamicrelocationtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageDynamicRelocationTable`
 
@@ -2482,17 +4146,19 @@ struct ImageDynamicRelocation32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2180-2184`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2180-L2184)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageDynamicRelocation32`
 
-- `fn clone(self: &Self) -> ImageDynamicRelocation32` — [`ImageDynamicRelocation32`](#imagedynamicrelocation32)
+- <span id="imagedynamicrelocation32-clone"></span>`fn clone(&self) -> ImageDynamicRelocation32` — [`ImageDynamicRelocation32`](#imagedynamicrelocation32)
 
 ##### `impl Copy for ImageDynamicRelocation32`
 
 ##### `impl Debug for ImageDynamicRelocation32`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagedynamicrelocation32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageDynamicRelocation32`
 
@@ -2505,17 +4171,19 @@ struct ImageDynamicRelocation64 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2188-2192`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2188-L2192)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageDynamicRelocation64`
 
-- `fn clone(self: &Self) -> ImageDynamicRelocation64` — [`ImageDynamicRelocation64`](#imagedynamicrelocation64)
+- <span id="imagedynamicrelocation64-clone"></span>`fn clone(&self) -> ImageDynamicRelocation64` — [`ImageDynamicRelocation64`](#imagedynamicrelocation64)
 
 ##### `impl Copy for ImageDynamicRelocation64`
 
 ##### `impl Debug for ImageDynamicRelocation64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagedynamicrelocation64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageDynamicRelocation64`
 
@@ -2531,17 +4199,19 @@ struct ImageDynamicRelocation32V2 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2196-2204`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2196-L2204)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageDynamicRelocation32V2`
 
-- `fn clone(self: &Self) -> ImageDynamicRelocation32V2` — [`ImageDynamicRelocation32V2`](#imagedynamicrelocation32v2)
+- <span id="imagedynamicrelocation32v2-clone"></span>`fn clone(&self) -> ImageDynamicRelocation32V2` — [`ImageDynamicRelocation32V2`](#imagedynamicrelocation32v2)
 
 ##### `impl Copy for ImageDynamicRelocation32V2`
 
 ##### `impl Debug for ImageDynamicRelocation32V2`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagedynamicrelocation32v2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageDynamicRelocation32V2`
 
@@ -2557,17 +4227,19 @@ struct ImageDynamicRelocation64V2 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2208-2216`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2208-L2216)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageDynamicRelocation64V2`
 
-- `fn clone(self: &Self) -> ImageDynamicRelocation64V2` — [`ImageDynamicRelocation64V2`](#imagedynamicrelocation64v2)
+- <span id="imagedynamicrelocation64v2-clone"></span>`fn clone(&self) -> ImageDynamicRelocation64V2` — [`ImageDynamicRelocation64V2`](#imagedynamicrelocation64v2)
 
 ##### `impl Copy for ImageDynamicRelocation64V2`
 
 ##### `impl Debug for ImageDynamicRelocation64V2`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagedynamicrelocation64v2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageDynamicRelocation64V2`
 
@@ -2579,17 +4251,19 @@ struct ImagePrologueDynamicRelocationHeader {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2231-2234`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2231-L2234)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImagePrologueDynamicRelocationHeader`
 
-- `fn clone(self: &Self) -> ImagePrologueDynamicRelocationHeader` — [`ImagePrologueDynamicRelocationHeader`](#imageprologuedynamicrelocationheader)
+- <span id="imageprologuedynamicrelocationheader-clone"></span>`fn clone(&self) -> ImagePrologueDynamicRelocationHeader` — [`ImagePrologueDynamicRelocationHeader`](#imageprologuedynamicrelocationheader)
 
 ##### `impl Copy for ImagePrologueDynamicRelocationHeader`
 
 ##### `impl Debug for ImagePrologueDynamicRelocationHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageprologuedynamicrelocationheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImagePrologueDynamicRelocationHeader`
 
@@ -2604,17 +4278,19 @@ struct ImageEpilogueDynamicRelocationHeader {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2239-2246`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2239-L2246)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageEpilogueDynamicRelocationHeader`
 
-- `fn clone(self: &Self) -> ImageEpilogueDynamicRelocationHeader` — [`ImageEpilogueDynamicRelocationHeader`](#imageepiloguedynamicrelocationheader)
+- <span id="imageepiloguedynamicrelocationheader-clone"></span>`fn clone(&self) -> ImageEpilogueDynamicRelocationHeader` — [`ImageEpilogueDynamicRelocationHeader`](#imageepiloguedynamicrelocationheader)
 
 ##### `impl Copy for ImageEpilogueDynamicRelocationHeader`
 
 ##### `impl Debug for ImageEpilogueDynamicRelocationHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageepiloguedynamicrelocationheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageEpilogueDynamicRelocationHeader`
 
@@ -2666,6 +4342,8 @@ struct ImageLoadConfigDirectory32 {
     pub volatile_metadata_pointer: crate::endian::U32<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:2285-2343`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2285-L2343)*
 
 #### Fields
 
@@ -2733,13 +4411,13 @@ struct ImageLoadConfigDirectory32 {
 
 ##### `impl Clone for ImageLoadConfigDirectory32`
 
-- `fn clone(self: &Self) -> ImageLoadConfigDirectory32` — [`ImageLoadConfigDirectory32`](#imageloadconfigdirectory32)
+- <span id="imageloadconfigdirectory32-clone"></span>`fn clone(&self) -> ImageLoadConfigDirectory32` — [`ImageLoadConfigDirectory32`](#imageloadconfigdirectory32)
 
 ##### `impl Copy for ImageLoadConfigDirectory32`
 
 ##### `impl Debug for ImageLoadConfigDirectory32`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageloadconfigdirectory32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageLoadConfigDirectory32`
 
@@ -2791,6 +4469,8 @@ struct ImageLoadConfigDirectory64 {
     pub volatile_metadata_pointer: crate::endian::U64<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:2347-2406`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2347-L2406)*
 
 #### Fields
 
@@ -2862,13 +4542,13 @@ struct ImageLoadConfigDirectory64 {
 
 ##### `impl Clone for ImageLoadConfigDirectory64`
 
-- `fn clone(self: &Self) -> ImageLoadConfigDirectory64` — [`ImageLoadConfigDirectory64`](#imageloadconfigdirectory64)
+- <span id="imageloadconfigdirectory64-clone"></span>`fn clone(&self) -> ImageLoadConfigDirectory64` — [`ImageLoadConfigDirectory64`](#imageloadconfigdirectory64)
 
 ##### `impl Copy for ImageLoadConfigDirectory64`
 
 ##### `impl Debug for ImageLoadConfigDirectory64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageloadconfigdirectory64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageLoadConfigDirectory64`
 
@@ -2886,6 +4566,8 @@ struct ImageHotPatchInfo {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2410-2420`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2410-L2420)*
+
 #### Fields
 
 - **`buffer_offset`**: `crate::endian::U32<crate::endian::LittleEndian>`
@@ -2900,13 +4582,13 @@ struct ImageHotPatchInfo {
 
 ##### `impl Clone for ImageHotPatchInfo`
 
-- `fn clone(self: &Self) -> ImageHotPatchInfo` — [`ImageHotPatchInfo`](#imagehotpatchinfo)
+- <span id="imagehotpatchinfo-clone"></span>`fn clone(&self) -> ImageHotPatchInfo` — [`ImageHotPatchInfo`](#imagehotpatchinfo)
 
 ##### `impl Copy for ImageHotPatchInfo`
 
 ##### `impl Debug for ImageHotPatchInfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagehotpatchinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageHotPatchInfo`
 
@@ -2925,6 +4607,8 @@ struct ImageHotPatchBase {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2424-2434`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2424-L2434)*
+
 #### Fields
 
 - **`buffer_offset`**: `crate::endian::U32<crate::endian::LittleEndian>`
@@ -2935,13 +4619,13 @@ struct ImageHotPatchBase {
 
 ##### `impl Clone for ImageHotPatchBase`
 
-- `fn clone(self: &Self) -> ImageHotPatchBase` — [`ImageHotPatchBase`](#imagehotpatchbase)
+- <span id="imagehotpatchbase-clone"></span>`fn clone(&self) -> ImageHotPatchBase` — [`ImageHotPatchBase`](#imagehotpatchbase)
 
 ##### `impl Copy for ImageHotPatchBase`
 
 ##### `impl Debug for ImageHotPatchBase`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagehotpatchbase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageHotPatchBase`
 
@@ -2954,17 +4638,19 @@ struct ImageHotPatchHashes {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2438-2441`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2438-L2441)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageHotPatchHashes`
 
-- `fn clone(self: &Self) -> ImageHotPatchHashes` — [`ImageHotPatchHashes`](#imagehotpatchhashes)
+- <span id="imagehotpatchhashes-clone"></span>`fn clone(&self) -> ImageHotPatchHashes` — [`ImageHotPatchHashes`](#imagehotpatchhashes)
 
 ##### `impl Copy for ImageHotPatchHashes`
 
 ##### `impl Debug for ImageHotPatchHashes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagehotpatchhashes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageHotPatchHashes`
 
@@ -2977,17 +4663,19 @@ struct ImageArmRuntimeFunctionEntry {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2530-2533`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2530-L2533)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageArmRuntimeFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageArmRuntimeFunctionEntry` — [`ImageArmRuntimeFunctionEntry`](#imagearmruntimefunctionentry)
+- <span id="imagearmruntimefunctionentry-clone"></span>`fn clone(&self) -> ImageArmRuntimeFunctionEntry` — [`ImageArmRuntimeFunctionEntry`](#imagearmruntimefunctionentry)
 
 ##### `impl Copy for ImageArmRuntimeFunctionEntry`
 
 ##### `impl Debug for ImageArmRuntimeFunctionEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagearmruntimefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageArmRuntimeFunctionEntry`
 
@@ -3000,17 +4688,19 @@ struct ImageArm64RuntimeFunctionEntry {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2537-2540`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2537-L2540)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageArm64RuntimeFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageArm64RuntimeFunctionEntry` — [`ImageArm64RuntimeFunctionEntry`](#imagearm64runtimefunctionentry)
+- <span id="imagearm64runtimefunctionentry-clone"></span>`fn clone(&self) -> ImageArm64RuntimeFunctionEntry` — [`ImageArm64RuntimeFunctionEntry`](#imagearm64runtimefunctionentry)
 
 ##### `impl Copy for ImageArm64RuntimeFunctionEntry`
 
 ##### `impl Debug for ImageArm64RuntimeFunctionEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagearm64runtimefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageArm64RuntimeFunctionEntry`
 
@@ -3026,17 +4716,19 @@ struct ImageAlpha64RuntimeFunctionEntry {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2544-2550`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2544-L2550)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageAlpha64RuntimeFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageAlpha64RuntimeFunctionEntry` — [`ImageAlpha64RuntimeFunctionEntry`](#imagealpha64runtimefunctionentry)
+- <span id="imagealpha64runtimefunctionentry-clone"></span>`fn clone(&self) -> ImageAlpha64RuntimeFunctionEntry` — [`ImageAlpha64RuntimeFunctionEntry`](#imagealpha64runtimefunctionentry)
 
 ##### `impl Copy for ImageAlpha64RuntimeFunctionEntry`
 
 ##### `impl Debug for ImageAlpha64RuntimeFunctionEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagealpha64runtimefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageAlpha64RuntimeFunctionEntry`
 
@@ -3052,17 +4744,19 @@ struct ImageAlphaRuntimeFunctionEntry {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2554-2560`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2554-L2560)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageAlphaRuntimeFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageAlphaRuntimeFunctionEntry` — [`ImageAlphaRuntimeFunctionEntry`](#imagealpharuntimefunctionentry)
+- <span id="imagealpharuntimefunctionentry-clone"></span>`fn clone(&self) -> ImageAlphaRuntimeFunctionEntry` — [`ImageAlphaRuntimeFunctionEntry`](#imagealpharuntimefunctionentry)
 
 ##### `impl Copy for ImageAlphaRuntimeFunctionEntry`
 
 ##### `impl Debug for ImageAlphaRuntimeFunctionEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagealpharuntimefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageAlphaRuntimeFunctionEntry`
 
@@ -3076,17 +4770,19 @@ struct ImageRuntimeFunctionEntry {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2564-2568`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2564-L2568)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageRuntimeFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageRuntimeFunctionEntry` — [`ImageRuntimeFunctionEntry`](#imageruntimefunctionentry)
+- <span id="imageruntimefunctionentry-clone"></span>`fn clone(&self) -> ImageRuntimeFunctionEntry` — [`ImageRuntimeFunctionEntry`](#imageruntimefunctionentry)
 
 ##### `impl Copy for ImageRuntimeFunctionEntry`
 
 ##### `impl Debug for ImageRuntimeFunctionEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageruntimefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageRuntimeFunctionEntry`
 
@@ -3110,17 +4806,19 @@ struct ImageEnclaveConfig32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2579-2593`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2579-L2593)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageEnclaveConfig32`
 
-- `fn clone(self: &Self) -> ImageEnclaveConfig32` — [`ImageEnclaveConfig32`](#imageenclaveconfig32)
+- <span id="imageenclaveconfig32-clone"></span>`fn clone(&self) -> ImageEnclaveConfig32` — [`ImageEnclaveConfig32`](#imageenclaveconfig32)
 
 ##### `impl Copy for ImageEnclaveConfig32`
 
 ##### `impl Debug for ImageEnclaveConfig32`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageenclaveconfig32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageEnclaveConfig32`
 
@@ -3144,17 +4842,19 @@ struct ImageEnclaveConfig64 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2597-2611`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2597-L2611)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageEnclaveConfig64`
 
-- `fn clone(self: &Self) -> ImageEnclaveConfig64` — [`ImageEnclaveConfig64`](#imageenclaveconfig64)
+- <span id="imageenclaveconfig64-clone"></span>`fn clone(&self) -> ImageEnclaveConfig64` — [`ImageEnclaveConfig64`](#imageenclaveconfig64)
 
 ##### `impl Copy for ImageEnclaveConfig64`
 
 ##### `impl Debug for ImageEnclaveConfig64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageenclaveconfig64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageEnclaveConfig64`
 
@@ -3172,17 +4872,19 @@ struct ImageEnclaveImport {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2621-2629`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2621-L2629)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageEnclaveImport`
 
-- `fn clone(self: &Self) -> ImageEnclaveImport` — [`ImageEnclaveImport`](#imageenclaveimport)
+- <span id="imageenclaveimport-clone"></span>`fn clone(&self) -> ImageEnclaveImport` — [`ImageEnclaveImport`](#imageenclaveimport)
 
 ##### `impl Copy for ImageEnclaveImport`
 
 ##### `impl Debug for ImageEnclaveImport`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageenclaveimport-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageEnclaveImport`
 
@@ -3201,17 +4903,19 @@ struct ImageDebugDirectory {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2643-2652`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2643-L2652)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageDebugDirectory`
 
-- `fn clone(self: &Self) -> ImageDebugDirectory` — [`ImageDebugDirectory`](#imagedebugdirectory)
+- <span id="imagedebugdirectory-clone"></span>`fn clone(&self) -> ImageDebugDirectory` — [`ImageDebugDirectory`](#imagedebugdirectory)
 
 ##### `impl Copy for ImageDebugDirectory`
 
 ##### `impl Debug for ImageDebugDirectory`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagedebugdirectory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageDebugDirectory`
 
@@ -3230,17 +4934,19 @@ struct ImageCoffSymbolsHeader {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2674-2683`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2674-L2683)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageCoffSymbolsHeader`
 
-- `fn clone(self: &Self) -> ImageCoffSymbolsHeader` — [`ImageCoffSymbolsHeader`](#imagecoffsymbolsheader)
+- <span id="imagecoffsymbolsheader-clone"></span>`fn clone(&self) -> ImageCoffSymbolsHeader` — [`ImageCoffSymbolsHeader`](#imagecoffsymbolsheader)
 
 ##### `impl Copy for ImageCoffSymbolsHeader`
 
 ##### `impl Debug for ImageCoffSymbolsHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagecoffsymbolsheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageCoffSymbolsHeader`
 
@@ -3254,6 +4960,8 @@ struct ImageDebugMisc {
     pub reserved: [u8; 3],
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:2723-2733`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2723-L2733)*
 
 #### Fields
 
@@ -3273,13 +4981,13 @@ struct ImageDebugMisc {
 
 ##### `impl Clone for ImageDebugMisc`
 
-- `fn clone(self: &Self) -> ImageDebugMisc` — [`ImageDebugMisc`](#imagedebugmisc)
+- <span id="imagedebugmisc-clone"></span>`fn clone(&self) -> ImageDebugMisc` — [`ImageDebugMisc`](#imagedebugmisc)
 
 ##### `impl Copy for ImageDebugMisc`
 
 ##### `impl Debug for ImageDebugMisc`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagedebugmisc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageDebugMisc`
 
@@ -3293,17 +5001,19 @@ struct ImageFunctionEntry {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2743-2747`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2743-L2747)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageFunctionEntry` — [`ImageFunctionEntry`](#imagefunctionentry)
+- <span id="imagefunctionentry-clone"></span>`fn clone(&self) -> ImageFunctionEntry` — [`ImageFunctionEntry`](#imagefunctionentry)
 
 ##### `impl Copy for ImageFunctionEntry`
 
 ##### `impl Debug for ImageFunctionEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagefunctionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageFunctionEntry`
 
@@ -3317,17 +5027,19 @@ struct ImageFunctionEntry64 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2751-2755`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2751-L2755)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageFunctionEntry64`
 
-- `fn clone(self: &Self) -> ImageFunctionEntry64` — [`ImageFunctionEntry64`](#imagefunctionentry64)
+- <span id="imagefunctionentry64-clone"></span>`fn clone(&self) -> ImageFunctionEntry64` — [`ImageFunctionEntry64`](#imagefunctionentry64)
 
 ##### `impl Copy for ImageFunctionEntry64`
 
 ##### `impl Debug for ImageFunctionEntry64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagefunctionentry64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageFunctionEntry64`
 
@@ -3351,17 +5063,19 @@ struct ImageSeparateDebugHeader {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2779-2793`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2779-L2793)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageSeparateDebugHeader`
 
-- `fn clone(self: &Self) -> ImageSeparateDebugHeader` — [`ImageSeparateDebugHeader`](#imageseparatedebugheader)
+- <span id="imageseparatedebugheader-clone"></span>`fn clone(&self) -> ImageSeparateDebugHeader` — [`ImageSeparateDebugHeader`](#imageseparatedebugheader)
 
 ##### `impl Copy for ImageSeparateDebugHeader`
 
 ##### `impl Debug for ImageSeparateDebugHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imageseparatedebugheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageSeparateDebugHeader`
 
@@ -3381,17 +5095,19 @@ struct NonPagedDebugInfo {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2797-2809`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2797-L2809)*
+
 #### Trait Implementations
 
 ##### `impl Clone for NonPagedDebugInfo`
 
-- `fn clone(self: &Self) -> NonPagedDebugInfo` — [`NonPagedDebugInfo`](#nonpageddebuginfo)
+- <span id="nonpageddebuginfo-clone"></span>`fn clone(&self) -> NonPagedDebugInfo` — [`NonPagedDebugInfo`](#nonpageddebuginfo)
 
 ##### `impl Copy for NonPagedDebugInfo`
 
 ##### `impl Debug for NonPagedDebugInfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nonpageddebuginfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for NonPagedDebugInfo`
 
@@ -3403,6 +5119,8 @@ struct ImageArchitectureEntry {
     pub new_inst: crate::endian::U32<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:2847-2852`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2847-L2852)*
 
 #### Fields
 
@@ -3418,13 +5136,13 @@ struct ImageArchitectureEntry {
 
 ##### `impl Clone for ImageArchitectureEntry`
 
-- `fn clone(self: &Self) -> ImageArchitectureEntry` — [`ImageArchitectureEntry`](#imagearchitectureentry)
+- <span id="imagearchitectureentry-clone"></span>`fn clone(&self) -> ImageArchitectureEntry` — [`ImageArchitectureEntry`](#imagearchitectureentry)
 
 ##### `impl Copy for ImageArchitectureEntry`
 
 ##### `impl Debug for ImageArchitectureEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagearchitectureentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageArchitectureEntry`
 
@@ -3442,6 +5160,8 @@ struct ImportObjectHeader {
     pub name_type: crate::endian::U16<crate::endian::LittleEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:2863-2882`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2863-L2882)*
 
 #### Fields
 
@@ -3467,25 +5187,25 @@ struct ImportObjectHeader {
 
 #### Implementations
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>` — [`Result`](../index.md)
+- <span id="peimportobjectheader-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>` — [`Result`](../index.md)
 
-- `fn parse_data<'data, R: ReadRef<'data>>(self: &Self, data: R, offset: &mut u64) -> Result<ImportObjectData<'data>>` — [`Result`](../index.md), [`ImportObjectData`](../read/coff/index.md)
+- <span id="peimportobjectheader-parse-data"></span>`fn parse_data<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<ImportObjectData<'data>>` — [`Result`](../index.md), [`ImportObjectData`](../read/coff/index.md)
 
-- `fn import_type(self: &Self) -> u16`
+- <span id="peimportobjectheader-import-type"></span>`fn import_type(&self) -> u16`
 
-- `fn name_type(self: &Self) -> u16`
+- <span id="peimportobjectheader-name-type"></span>`fn name_type(&self) -> u16`
 
 #### Trait Implementations
 
 ##### `impl Clone for ImportObjectHeader`
 
-- `fn clone(self: &Self) -> ImportObjectHeader` — [`ImportObjectHeader`](#importobjectheader)
+- <span id="importobjectheader-clone"></span>`fn clone(&self) -> ImportObjectHeader` — [`ImportObjectHeader`](#importobjectheader)
 
 ##### `impl Copy for ImportObjectHeader`
 
 ##### `impl Debug for ImportObjectHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="importobjectheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImportObjectHeader`
 
@@ -3508,5090 +5228,5798 @@ struct ImageCor20Header {
 }
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2951-2976`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2951-L2976)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ImageCor20Header`
 
-- `fn clone(self: &Self) -> ImageCor20Header` — [`ImageCor20Header`](#imagecor20header)
+- <span id="imagecor20header-clone"></span>`fn clone(&self) -> ImageCor20Header` — [`ImageCor20Header`](#imagecor20header)
 
 ##### `impl Copy for ImageCor20Header`
 
 ##### `impl Debug for ImageCor20Header`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imagecor20header-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for ImageCor20Header`
 
 ## Constants
 
 ### `IMAGE_DOS_SIGNATURE`
-
 ```rust
 const IMAGE_DOS_SIGNATURE: u16 = 23_117u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:16`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L16)*
+
 MZ
 
 ### `IMAGE_OS2_SIGNATURE`
-
 ```rust
 const IMAGE_OS2_SIGNATURE: u16 = 17_742u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:18`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L18)*
+
 NE
 
 ### `IMAGE_OS2_SIGNATURE_LE`
-
 ```rust
 const IMAGE_OS2_SIGNATURE_LE: u16 = 17_740u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:20`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L20)*
+
 LE
 
 ### `IMAGE_VXD_SIGNATURE`
-
 ```rust
 const IMAGE_VXD_SIGNATURE: u16 = 17_740u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:22`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L22)*
+
 LE
 
 ### `IMAGE_NT_SIGNATURE`
-
 ```rust
 const IMAGE_NT_SIGNATURE: u32 = 17_744u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:24`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L24)*
+
 PE00
 
 ### `IMAGE_SIZEOF_FILE_HEADER`
-
 ```rust
 const IMAGE_SIZEOF_FILE_HEADER: usize = 20usize;
 ```
 
-### `IMAGE_FILE_RELOCS_STRIPPED`
+*Defined in [`object-0.37.3/src/pe.rs:273`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L273)*
 
+### `IMAGE_FILE_RELOCS_STRIPPED`
 ```rust
 const IMAGE_FILE_RELOCS_STRIPPED: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:276`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L276)*
+
 Relocation info stripped from file.
 
 ### `IMAGE_FILE_EXECUTABLE_IMAGE`
-
 ```rust
 const IMAGE_FILE_EXECUTABLE_IMAGE: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:278`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L278)*
+
 File is executable  (i.e. no unresolved external references).
 
 ### `IMAGE_FILE_LINE_NUMS_STRIPPED`
-
 ```rust
 const IMAGE_FILE_LINE_NUMS_STRIPPED: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:280`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L280)*
+
 Line numbers stripped from file.
 
 ### `IMAGE_FILE_LOCAL_SYMS_STRIPPED`
-
 ```rust
 const IMAGE_FILE_LOCAL_SYMS_STRIPPED: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:282`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L282)*
+
 Local symbols stripped from file.
 
 ### `IMAGE_FILE_AGGRESIVE_WS_TRIM`
-
 ```rust
 const IMAGE_FILE_AGGRESIVE_WS_TRIM: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:284`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L284)*
+
 Aggressively trim working set
 
 ### `IMAGE_FILE_LARGE_ADDRESS_AWARE`
-
 ```rust
 const IMAGE_FILE_LARGE_ADDRESS_AWARE: u16 = 32u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:286`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L286)*
+
 App can handle >2gb addresses
 
 ### `IMAGE_FILE_BYTES_REVERSED_LO`
-
 ```rust
 const IMAGE_FILE_BYTES_REVERSED_LO: u16 = 128u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:288`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L288)*
+
 Bytes of machine word are reversed.
 
 ### `IMAGE_FILE_32BIT_MACHINE`
-
 ```rust
 const IMAGE_FILE_32BIT_MACHINE: u16 = 256u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:290`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L290)*
+
 32 bit word machine.
 
 ### `IMAGE_FILE_DEBUG_STRIPPED`
-
 ```rust
 const IMAGE_FILE_DEBUG_STRIPPED: u16 = 512u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:292`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L292)*
+
 Debugging info stripped from file in .DBG file
 
 ### `IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP`
-
 ```rust
 const IMAGE_FILE_REMOVABLE_RUN_FROM_SWAP: u16 = 1_024u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:294`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L294)*
+
 If Image is on removable media, copy and run from the swap file.
 
 ### `IMAGE_FILE_NET_RUN_FROM_SWAP`
-
 ```rust
 const IMAGE_FILE_NET_RUN_FROM_SWAP: u16 = 2_048u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:296`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L296)*
+
 If Image is on Net, copy and run from the swap file.
 
 ### `IMAGE_FILE_SYSTEM`
-
 ```rust
 const IMAGE_FILE_SYSTEM: u16 = 4_096u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:298`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L298)*
+
 System File.
 
 ### `IMAGE_FILE_DLL`
-
 ```rust
 const IMAGE_FILE_DLL: u16 = 8_192u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:300`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L300)*
+
 File is a DLL.
 
 ### `IMAGE_FILE_UP_SYSTEM_ONLY`
-
 ```rust
 const IMAGE_FILE_UP_SYSTEM_ONLY: u16 = 16_384u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:302`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L302)*
+
 File should only be run on a UP machine
 
 ### `IMAGE_FILE_BYTES_REVERSED_HI`
-
 ```rust
 const IMAGE_FILE_BYTES_REVERSED_HI: u16 = 32_768u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:304`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L304)*
+
 Bytes of machine word are reversed.
 
 ### `IMAGE_FILE_MACHINE_UNKNOWN`
-
 ```rust
 const IMAGE_FILE_MACHINE_UNKNOWN: u16 = 0u16;
 ```
 
-### `IMAGE_FILE_MACHINE_TARGET_HOST`
+*Defined in [`object-0.37.3/src/pe.rs:306`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L306)*
 
+### `IMAGE_FILE_MACHINE_TARGET_HOST`
 ```rust
 const IMAGE_FILE_MACHINE_TARGET_HOST: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:308`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L308)*
+
 Useful for indicating we want to interact with the host and not a WoW guest.
 
 ### `IMAGE_FILE_MACHINE_I386`
-
 ```rust
 const IMAGE_FILE_MACHINE_I386: u16 = 332u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:310`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L310)*
+
 Intel 386.
 
 ### `IMAGE_FILE_MACHINE_R3000`
-
 ```rust
 const IMAGE_FILE_MACHINE_R3000: u16 = 354u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:312`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L312)*
+
 MIPS little-endian, 0x160 big-endian
 
 ### `IMAGE_FILE_MACHINE_R4000`
-
 ```rust
 const IMAGE_FILE_MACHINE_R4000: u16 = 358u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:314`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L314)*
+
 MIPS little-endian
 
 ### `IMAGE_FILE_MACHINE_R10000`
-
 ```rust
 const IMAGE_FILE_MACHINE_R10000: u16 = 360u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:316`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L316)*
+
 MIPS little-endian
 
 ### `IMAGE_FILE_MACHINE_WCEMIPSV2`
-
 ```rust
 const IMAGE_FILE_MACHINE_WCEMIPSV2: u16 = 361u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:318`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L318)*
+
 MIPS little-endian WCE v2
 
 ### `IMAGE_FILE_MACHINE_ALPHA`
-
 ```rust
 const IMAGE_FILE_MACHINE_ALPHA: u16 = 388u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:320`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L320)*
+
 Alpha_AXP
 
 ### `IMAGE_FILE_MACHINE_SH3`
-
 ```rust
 const IMAGE_FILE_MACHINE_SH3: u16 = 418u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:322`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L322)*
+
 SH3 little-endian
 
 ### `IMAGE_FILE_MACHINE_SH3DSP`
-
 ```rust
 const IMAGE_FILE_MACHINE_SH3DSP: u16 = 419u16;
 ```
 
-### `IMAGE_FILE_MACHINE_SH3E`
+*Defined in [`object-0.37.3/src/pe.rs:323`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L323)*
 
+### `IMAGE_FILE_MACHINE_SH3E`
 ```rust
 const IMAGE_FILE_MACHINE_SH3E: u16 = 420u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:325`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L325)*
+
 SH3E little-endian
 
 ### `IMAGE_FILE_MACHINE_SH4`
-
 ```rust
 const IMAGE_FILE_MACHINE_SH4: u16 = 422u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:327`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L327)*
+
 SH4 little-endian
 
 ### `IMAGE_FILE_MACHINE_SH5`
-
 ```rust
 const IMAGE_FILE_MACHINE_SH5: u16 = 424u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:329`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L329)*
+
 SH5
 
 ### `IMAGE_FILE_MACHINE_ARM`
-
 ```rust
 const IMAGE_FILE_MACHINE_ARM: u16 = 448u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:331`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L331)*
+
 ARM Little-Endian
 
 ### `IMAGE_FILE_MACHINE_THUMB`
-
 ```rust
 const IMAGE_FILE_MACHINE_THUMB: u16 = 450u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:333`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L333)*
+
 ARM Thumb/Thumb-2 Little-Endian
 
 ### `IMAGE_FILE_MACHINE_ARMNT`
-
 ```rust
 const IMAGE_FILE_MACHINE_ARMNT: u16 = 452u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:335`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L335)*
+
 ARM Thumb-2 Little-Endian
 
 ### `IMAGE_FILE_MACHINE_AM33`
-
 ```rust
 const IMAGE_FILE_MACHINE_AM33: u16 = 467u16;
 ```
 
-### `IMAGE_FILE_MACHINE_POWERPC`
+*Defined in [`object-0.37.3/src/pe.rs:336`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L336)*
 
+### `IMAGE_FILE_MACHINE_POWERPC`
 ```rust
 const IMAGE_FILE_MACHINE_POWERPC: u16 = 496u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:338`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L338)*
+
 IBM PowerPC Little-Endian
 
 ### `IMAGE_FILE_MACHINE_POWERPCFP`
-
 ```rust
 const IMAGE_FILE_MACHINE_POWERPCFP: u16 = 497u16;
 ```
 
-### `IMAGE_FILE_MACHINE_POWERPCBE`
+*Defined in [`object-0.37.3/src/pe.rs:339`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L339)*
 
+### `IMAGE_FILE_MACHINE_POWERPCBE`
 ```rust
 const IMAGE_FILE_MACHINE_POWERPCBE: u16 = 498u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:341`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L341)*
+
 IBM PowerPC Big-Endian
 
 ### `IMAGE_FILE_MACHINE_IA64`
-
 ```rust
 const IMAGE_FILE_MACHINE_IA64: u16 = 512u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:343`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L343)*
+
 Intel 64
 
 ### `IMAGE_FILE_MACHINE_MIPS16`
-
 ```rust
 const IMAGE_FILE_MACHINE_MIPS16: u16 = 614u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:345`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L345)*
+
 MIPS
 
 ### `IMAGE_FILE_MACHINE_ALPHA64`
-
 ```rust
 const IMAGE_FILE_MACHINE_ALPHA64: u16 = 644u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:347`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L347)*
+
 ALPHA64
 
 ### `IMAGE_FILE_MACHINE_MIPSFPU`
-
 ```rust
 const IMAGE_FILE_MACHINE_MIPSFPU: u16 = 870u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:349`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L349)*
+
 MIPS
 
 ### `IMAGE_FILE_MACHINE_MIPSFPU16`
-
 ```rust
 const IMAGE_FILE_MACHINE_MIPSFPU16: u16 = 1_126u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:351`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L351)*
+
 MIPS
 
 ### `IMAGE_FILE_MACHINE_AXP64`
-
 ```rust
 const IMAGE_FILE_MACHINE_AXP64: u16 = 644u16;
 ```
 
-### `IMAGE_FILE_MACHINE_TRICORE`
+*Defined in [`object-0.37.3/src/pe.rs:352`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L352)*
 
+### `IMAGE_FILE_MACHINE_TRICORE`
 ```rust
 const IMAGE_FILE_MACHINE_TRICORE: u16 = 1_312u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:354`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L354)*
+
 Infineon
 
 ### `IMAGE_FILE_MACHINE_CEF`
-
 ```rust
 const IMAGE_FILE_MACHINE_CEF: u16 = 3_311u16;
 ```
 
-### `IMAGE_FILE_MACHINE_EBC`
+*Defined in [`object-0.37.3/src/pe.rs:355`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L355)*
 
+### `IMAGE_FILE_MACHINE_EBC`
 ```rust
 const IMAGE_FILE_MACHINE_EBC: u16 = 3_772u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:357`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L357)*
+
 EFI Byte Code
 
 ### `IMAGE_FILE_MACHINE_AMD64`
-
 ```rust
 const IMAGE_FILE_MACHINE_AMD64: u16 = 34_404u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:359`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L359)*
+
 AMD64 (K8)
 
 ### `IMAGE_FILE_MACHINE_M32R`
-
 ```rust
 const IMAGE_FILE_MACHINE_M32R: u16 = 36_929u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:361`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L361)*
+
 M32R little-endian
 
 ### `IMAGE_FILE_MACHINE_ARM64`
-
 ```rust
 const IMAGE_FILE_MACHINE_ARM64: u16 = 43_620u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:363`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L363)*
+
 ARM64 Little-Endian
 
 ### `IMAGE_FILE_MACHINE_ARM64EC`
-
 ```rust
 const IMAGE_FILE_MACHINE_ARM64EC: u16 = 42_561u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:365`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L365)*
+
 ARM64EC ("Emulation Compatible")
 
 ### `IMAGE_FILE_MACHINE_CEE`
-
 ```rust
 const IMAGE_FILE_MACHINE_CEE: u16 = 49_390u16;
 ```
 
-### `IMAGE_FILE_MACHINE_RISCV32`
+*Defined in [`object-0.37.3/src/pe.rs:366`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L366)*
 
+### `IMAGE_FILE_MACHINE_RISCV32`
 ```rust
 const IMAGE_FILE_MACHINE_RISCV32: u16 = 20_530u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:368`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L368)*
+
 RISCV32
 
 ### `IMAGE_FILE_MACHINE_RISCV64`
-
 ```rust
 const IMAGE_FILE_MACHINE_RISCV64: u16 = 20_580u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:370`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L370)*
+
 RISCV64
 
 ### `IMAGE_FILE_MACHINE_RISCV128`
-
 ```rust
 const IMAGE_FILE_MACHINE_RISCV128: u16 = 20_776u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:372`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L372)*
+
 RISCV128
 
 ### `IMAGE_FILE_MACHINE_ARM64X`
-
 ```rust
 const IMAGE_FILE_MACHINE_ARM64X: u16 = 42_574u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:374`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L374)*
+
 ARM64X (Mixed ARM64 and ARM64EC)
 
 ### `IMAGE_FILE_MACHINE_CHPE_X86`
-
 ```rust
 const IMAGE_FILE_MACHINE_CHPE_X86: u16 = 14_948u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:376`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L376)*
+
 CHPE x86 ("Compiled Hybrid Portable Executable")
 
 ### `IMAGE_NUMBEROF_DIRECTORY_ENTRIES`
-
 ```rust
 const IMAGE_NUMBEROF_DIRECTORY_ENTRIES: usize = 16usize;
 ```
 
-### `IMAGE_NT_OPTIONAL_HDR32_MAGIC`
+*Defined in [`object-0.37.3/src/pe.rs:389`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L389)*
 
+### `IMAGE_NT_OPTIONAL_HDR32_MAGIC`
 ```rust
 const IMAGE_NT_OPTIONAL_HDR32_MAGIC: u16 = 267u16;
 ```
 
-### `IMAGE_NT_OPTIONAL_HDR64_MAGIC`
+*Defined in [`object-0.37.3/src/pe.rs:487`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L487)*
 
+### `IMAGE_NT_OPTIONAL_HDR64_MAGIC`
 ```rust
 const IMAGE_NT_OPTIONAL_HDR64_MAGIC: u16 = 523u16;
 ```
 
-### `IMAGE_ROM_OPTIONAL_HDR_MAGIC`
+*Defined in [`object-0.37.3/src/pe.rs:488`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L488)*
 
+### `IMAGE_ROM_OPTIONAL_HDR_MAGIC`
 ```rust
 const IMAGE_ROM_OPTIONAL_HDR_MAGIC: u16 = 263u16;
 ```
 
-### `IMAGE_SUBSYSTEM_UNKNOWN`
+*Defined in [`object-0.37.3/src/pe.rs:489`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L489)*
 
+### `IMAGE_SUBSYSTEM_UNKNOWN`
 ```rust
 const IMAGE_SUBSYSTEM_UNKNOWN: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:517`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L517)*
+
 Unknown subsystem.
 
 ### `IMAGE_SUBSYSTEM_NATIVE`
-
 ```rust
 const IMAGE_SUBSYSTEM_NATIVE: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:519`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L519)*
+
 Image doesn't require a subsystem.
 
 ### `IMAGE_SUBSYSTEM_WINDOWS_GUI`
-
 ```rust
 const IMAGE_SUBSYSTEM_WINDOWS_GUI: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:521`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L521)*
+
 Image runs in the Windows GUI subsystem.
 
 ### `IMAGE_SUBSYSTEM_WINDOWS_CUI`
-
 ```rust
 const IMAGE_SUBSYSTEM_WINDOWS_CUI: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:523`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L523)*
+
 Image runs in the Windows character subsystem.
 
 ### `IMAGE_SUBSYSTEM_OS2_CUI`
-
 ```rust
 const IMAGE_SUBSYSTEM_OS2_CUI: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:525`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L525)*
+
 image runs in the OS/2 character subsystem.
 
 ### `IMAGE_SUBSYSTEM_POSIX_CUI`
-
 ```rust
 const IMAGE_SUBSYSTEM_POSIX_CUI: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:527`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L527)*
+
 image runs in the Posix character subsystem.
 
 ### `IMAGE_SUBSYSTEM_NATIVE_WINDOWS`
-
 ```rust
 const IMAGE_SUBSYSTEM_NATIVE_WINDOWS: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:529`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L529)*
+
 image is a native Win9x driver.
 
 ### `IMAGE_SUBSYSTEM_WINDOWS_CE_GUI`
-
 ```rust
 const IMAGE_SUBSYSTEM_WINDOWS_CE_GUI: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:531`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L531)*
+
 Image runs in the Windows CE subsystem.
 
 ### `IMAGE_SUBSYSTEM_EFI_APPLICATION`
-
 ```rust
 const IMAGE_SUBSYSTEM_EFI_APPLICATION: u16 = 10u16;
 ```
 
-### `IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER`
+*Defined in [`object-0.37.3/src/pe.rs:532`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L532)*
 
+### `IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER`
 ```rust
 const IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER: u16 = 11u16;
 ```
 
-### `IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER`
+*Defined in [`object-0.37.3/src/pe.rs:533`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L533)*
 
+### `IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER`
 ```rust
 const IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER: u16 = 12u16;
 ```
 
-### `IMAGE_SUBSYSTEM_EFI_ROM`
+*Defined in [`object-0.37.3/src/pe.rs:534`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L534)*
 
+### `IMAGE_SUBSYSTEM_EFI_ROM`
 ```rust
 const IMAGE_SUBSYSTEM_EFI_ROM: u16 = 13u16;
 ```
 
-### `IMAGE_SUBSYSTEM_XBOX`
+*Defined in [`object-0.37.3/src/pe.rs:535`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L535)*
 
+### `IMAGE_SUBSYSTEM_XBOX`
 ```rust
 const IMAGE_SUBSYSTEM_XBOX: u16 = 14u16;
 ```
 
-### `IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION`
+*Defined in [`object-0.37.3/src/pe.rs:536`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L536)*
 
+### `IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION`
 ```rust
 const IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION: u16 = 16u16;
 ```
 
-### `IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG`
+*Defined in [`object-0.37.3/src/pe.rs:537`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L537)*
 
+### `IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG`
 ```rust
 const IMAGE_SUBSYSTEM_XBOX_CODE_CATALOG: u16 = 17u16;
 ```
 
-### `IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA`
+*Defined in [`object-0.37.3/src/pe.rs:538`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L538)*
 
+### `IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA`
 ```rust
 const IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA: u16 = 32u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:547`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L547)*
+
 Image can handle a high entropy 64-bit virtual address space.
 
 ### `IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE`
-
 ```rust
 const IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE: u16 = 64u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:549`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L549)*
+
 DLL can move.
 
 ### `IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY`
-
 ```rust
 const IMAGE_DLLCHARACTERISTICS_FORCE_INTEGRITY: u16 = 128u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:551`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L551)*
+
 Code Integrity Image
 
 ### `IMAGE_DLLCHARACTERISTICS_NX_COMPAT`
-
 ```rust
 const IMAGE_DLLCHARACTERISTICS_NX_COMPAT: u16 = 256u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:553`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L553)*
+
 Image is NX compatible
 
 ### `IMAGE_DLLCHARACTERISTICS_NO_ISOLATION`
-
 ```rust
 const IMAGE_DLLCHARACTERISTICS_NO_ISOLATION: u16 = 512u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:555`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L555)*
+
 Image understands isolation and doesn't want it
 
 ### `IMAGE_DLLCHARACTERISTICS_NO_SEH`
-
 ```rust
 const IMAGE_DLLCHARACTERISTICS_NO_SEH: u16 = 1_024u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:557`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L557)*
+
 Image does not use SEH.  No SE handler may reside in this image
 
 ### `IMAGE_DLLCHARACTERISTICS_NO_BIND`
-
 ```rust
 const IMAGE_DLLCHARACTERISTICS_NO_BIND: u16 = 2_048u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:559`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L559)*
+
 Do not bind this image.
 
 ### `IMAGE_DLLCHARACTERISTICS_APPCONTAINER`
-
 ```rust
 const IMAGE_DLLCHARACTERISTICS_APPCONTAINER: u16 = 4_096u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:561`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L561)*
+
 Image should execute in an AppContainer
 
 ### `IMAGE_DLLCHARACTERISTICS_WDM_DRIVER`
-
 ```rust
 const IMAGE_DLLCHARACTERISTICS_WDM_DRIVER: u16 = 8_192u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:563`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L563)*
+
 Driver uses WDM model
 
 ### `IMAGE_DLLCHARACTERISTICS_GUARD_CF`
-
 ```rust
 const IMAGE_DLLCHARACTERISTICS_GUARD_CF: u16 = 16_384u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:565`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L565)*
+
 Image supports Control Flow Guard.
 
 ### `IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE`
-
 ```rust
 const IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE: u16 = 32_768u16;
 ```
 
-### `IMAGE_DIRECTORY_ENTRY_EXPORT`
+*Defined in [`object-0.37.3/src/pe.rs:566`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L566)*
 
+### `IMAGE_DIRECTORY_ENTRY_EXPORT`
 ```rust
 const IMAGE_DIRECTORY_ENTRY_EXPORT: usize = 0usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:571`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L571)*
+
 Export Directory
 
 ### `IMAGE_DIRECTORY_ENTRY_IMPORT`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_IMPORT: usize = 1usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:573`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L573)*
+
 Import Directory
 
 ### `IMAGE_DIRECTORY_ENTRY_RESOURCE`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_RESOURCE: usize = 2usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:575`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L575)*
+
 Resource Directory
 
 ### `IMAGE_DIRECTORY_ENTRY_EXCEPTION`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_EXCEPTION: usize = 3usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:577`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L577)*
+
 Exception Directory
 
 ### `IMAGE_DIRECTORY_ENTRY_SECURITY`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_SECURITY: usize = 4usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:579`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L579)*
+
 Security Directory
 
 ### `IMAGE_DIRECTORY_ENTRY_BASERELOC`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_BASERELOC: usize = 5usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:581`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L581)*
+
 Base Relocation Table
 
 ### `IMAGE_DIRECTORY_ENTRY_DEBUG`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_DEBUG: usize = 6usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:583`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L583)*
+
 Debug Directory
 
 ### `IMAGE_DIRECTORY_ENTRY_ARCHITECTURE`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_ARCHITECTURE: usize = 7usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:586`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L586)*
+
 Architecture Specific Data
 
 ### `IMAGE_DIRECTORY_ENTRY_GLOBALPTR`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_GLOBALPTR: usize = 8usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:588`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L588)*
+
 RVA of GP
 
 ### `IMAGE_DIRECTORY_ENTRY_TLS`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_TLS: usize = 9usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:590`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L590)*
+
 TLS Directory
 
 ### `IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_LOAD_CONFIG: usize = 10usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:592`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L592)*
+
 Load Configuration Directory
 
 ### `IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT: usize = 11usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:594`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L594)*
+
 Bound Import Directory in headers
 
 ### `IMAGE_DIRECTORY_ENTRY_IAT`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_IAT: usize = 12usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:596`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L596)*
+
 Import Address Table
 
 ### `IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT: usize = 13usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:598`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L598)*
+
 Delay Load Import Descriptors
 
 ### `IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR`
-
 ```rust
 const IMAGE_DIRECTORY_ENTRY_COM_DESCRIPTOR: usize = 14usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:600`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L600)*
+
 COM Runtime descriptor
 
 ### `ANON_OBJECT_HEADER_BIGOBJ_CLASS_ID`
-
 ```rust
 const ANON_OBJECT_HEADER_BIGOBJ_CLASS_ID: ClsId;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:672-674`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L672-L674)*
+
 The required value of `AnonObjectHeaderBigobj::class_id`.
 
 ### `IMAGE_SIZEOF_SHORT_NAME`
-
 ```rust
 const IMAGE_SIZEOF_SHORT_NAME: usize = 8usize;
 ```
 
-### `IMAGE_SIZEOF_SECTION_HEADER`
+*Defined in [`object-0.37.3/src/pe.rs:707`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L707)*
 
+### `IMAGE_SIZEOF_SECTION_HEADER`
 ```rust
 const IMAGE_SIZEOF_SECTION_HEADER: usize = 40usize;
 ```
 
-### `IMAGE_SCN_TYPE_NO_PAD`
+*Defined in [`object-0.37.3/src/pe.rs:728`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L728)*
 
+### `IMAGE_SCN_TYPE_NO_PAD`
 ```rust
 const IMAGE_SCN_TYPE_NO_PAD: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:737`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L737)*
+
 Reserved.
 
 ### `IMAGE_SCN_CNT_CODE`
-
 ```rust
 const IMAGE_SCN_CNT_CODE: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:741`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L741)*
+
 Section contains code.
 
 ### `IMAGE_SCN_CNT_INITIALIZED_DATA`
-
 ```rust
 const IMAGE_SCN_CNT_INITIALIZED_DATA: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:743`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L743)*
+
 Section contains initialized data.
 
 ### `IMAGE_SCN_CNT_UNINITIALIZED_DATA`
-
 ```rust
 const IMAGE_SCN_CNT_UNINITIALIZED_DATA: u32 = 128u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:745`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L745)*
+
 Section contains uninitialized data.
 
 ### `IMAGE_SCN_LNK_OTHER`
-
 ```rust
 const IMAGE_SCN_LNK_OTHER: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:748`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L748)*
+
 Reserved.
 
 ### `IMAGE_SCN_LNK_INFO`
-
 ```rust
 const IMAGE_SCN_LNK_INFO: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:750`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L750)*
+
 Section contains comments or some other type of information.
 
 ### `IMAGE_SCN_LNK_REMOVE`
-
 ```rust
 const IMAGE_SCN_LNK_REMOVE: u32 = 2_048u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:753`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L753)*
+
 Section contents will not become part of image.
 
 ### `IMAGE_SCN_LNK_COMDAT`
-
 ```rust
 const IMAGE_SCN_LNK_COMDAT: u32 = 4_096u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:755`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L755)*
+
 Section contents comdat.
 
 ### `IMAGE_SCN_NO_DEFER_SPEC_EXC`
-
 ```rust
 const IMAGE_SCN_NO_DEFER_SPEC_EXC: u32 = 16_384u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:759`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L759)*
+
 Reset speculative exceptions handling bits in the TLB entries for this section.
 
 ### `IMAGE_SCN_GPREL`
-
 ```rust
 const IMAGE_SCN_GPREL: u32 = 32_768u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:761`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L761)*
+
 Section content can be accessed relative to GP
 
 ### `IMAGE_SCN_MEM_FARDATA`
-
 ```rust
 const IMAGE_SCN_MEM_FARDATA: u32 = 32_768u32;
 ```
 
-### `IMAGE_SCN_MEM_PURGEABLE`
+*Defined in [`object-0.37.3/src/pe.rs:762`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L762)*
 
+### `IMAGE_SCN_MEM_PURGEABLE`
 ```rust
 const IMAGE_SCN_MEM_PURGEABLE: u32 = 131_072u32;
 ```
 
-### `IMAGE_SCN_MEM_16BIT`
+*Defined in [`object-0.37.3/src/pe.rs:764`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L764)*
 
+### `IMAGE_SCN_MEM_16BIT`
 ```rust
 const IMAGE_SCN_MEM_16BIT: u32 = 131_072u32;
 ```
 
-### `IMAGE_SCN_MEM_LOCKED`
+*Defined in [`object-0.37.3/src/pe.rs:765`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L765)*
 
+### `IMAGE_SCN_MEM_LOCKED`
 ```rust
 const IMAGE_SCN_MEM_LOCKED: u32 = 262_144u32;
 ```
 
-### `IMAGE_SCN_MEM_PRELOAD`
+*Defined in [`object-0.37.3/src/pe.rs:766`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L766)*
 
+### `IMAGE_SCN_MEM_PRELOAD`
 ```rust
 const IMAGE_SCN_MEM_PRELOAD: u32 = 524_288u32;
 ```
 
-### `IMAGE_SCN_ALIGN_1BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:767`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L767)*
 
+### `IMAGE_SCN_ALIGN_1BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_1BYTES: u32 = 1_048_576u32;
 ```
 
-### `IMAGE_SCN_ALIGN_2BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:769`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L769)*
 
+### `IMAGE_SCN_ALIGN_2BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_2BYTES: u32 = 2_097_152u32;
 ```
 
-### `IMAGE_SCN_ALIGN_4BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:770`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L770)*
 
+### `IMAGE_SCN_ALIGN_4BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_4BYTES: u32 = 3_145_728u32;
 ```
 
-### `IMAGE_SCN_ALIGN_8BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:771`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L771)*
 
+### `IMAGE_SCN_ALIGN_8BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_8BYTES: u32 = 4_194_304u32;
 ```
 
-### `IMAGE_SCN_ALIGN_16BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:772`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L772)*
 
+### `IMAGE_SCN_ALIGN_16BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_16BYTES: u32 = 5_242_880u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:774`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L774)*
+
 Default alignment if no others are specified.
 
 ### `IMAGE_SCN_ALIGN_32BYTES`
-
 ```rust
 const IMAGE_SCN_ALIGN_32BYTES: u32 = 6_291_456u32;
 ```
 
-### `IMAGE_SCN_ALIGN_64BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:775`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L775)*
 
+### `IMAGE_SCN_ALIGN_64BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_64BYTES: u32 = 7_340_032u32;
 ```
 
-### `IMAGE_SCN_ALIGN_128BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:776`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L776)*
 
+### `IMAGE_SCN_ALIGN_128BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_128BYTES: u32 = 8_388_608u32;
 ```
 
-### `IMAGE_SCN_ALIGN_256BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:777`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L777)*
 
+### `IMAGE_SCN_ALIGN_256BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_256BYTES: u32 = 9_437_184u32;
 ```
 
-### `IMAGE_SCN_ALIGN_512BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:778`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L778)*
 
+### `IMAGE_SCN_ALIGN_512BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_512BYTES: u32 = 10_485_760u32;
 ```
 
-### `IMAGE_SCN_ALIGN_1024BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:779`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L779)*
 
+### `IMAGE_SCN_ALIGN_1024BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_1024BYTES: u32 = 11_534_336u32;
 ```
 
-### `IMAGE_SCN_ALIGN_2048BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:780`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L780)*
 
+### `IMAGE_SCN_ALIGN_2048BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_2048BYTES: u32 = 12_582_912u32;
 ```
 
-### `IMAGE_SCN_ALIGN_4096BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:781`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L781)*
 
+### `IMAGE_SCN_ALIGN_4096BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_4096BYTES: u32 = 13_631_488u32;
 ```
 
-### `IMAGE_SCN_ALIGN_8192BYTES`
+*Defined in [`object-0.37.3/src/pe.rs:782`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L782)*
 
+### `IMAGE_SCN_ALIGN_8192BYTES`
 ```rust
 const IMAGE_SCN_ALIGN_8192BYTES: u32 = 14_680_064u32;
 ```
 
-### `IMAGE_SCN_ALIGN_MASK`
+*Defined in [`object-0.37.3/src/pe.rs:783`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L783)*
 
+### `IMAGE_SCN_ALIGN_MASK`
 ```rust
 const IMAGE_SCN_ALIGN_MASK: u32 = 15_728_640u32;
 ```
 
-### `IMAGE_SCN_LNK_NRELOC_OVFL`
+*Defined in [`object-0.37.3/src/pe.rs:785`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L785)*
 
+### `IMAGE_SCN_LNK_NRELOC_OVFL`
 ```rust
 const IMAGE_SCN_LNK_NRELOC_OVFL: u32 = 16_777_216u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:788`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L788)*
+
 Section contains extended relocations.
 
 ### `IMAGE_SCN_MEM_DISCARDABLE`
-
 ```rust
 const IMAGE_SCN_MEM_DISCARDABLE: u32 = 33_554_432u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:790`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L790)*
+
 Section can be discarded.
 
 ### `IMAGE_SCN_MEM_NOT_CACHED`
-
 ```rust
 const IMAGE_SCN_MEM_NOT_CACHED: u32 = 67_108_864u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:792`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L792)*
+
 Section is not cacheable.
 
 ### `IMAGE_SCN_MEM_NOT_PAGED`
-
 ```rust
 const IMAGE_SCN_MEM_NOT_PAGED: u32 = 134_217_728u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:794`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L794)*
+
 Section is not pageable.
 
 ### `IMAGE_SCN_MEM_SHARED`
-
 ```rust
 const IMAGE_SCN_MEM_SHARED: u32 = 268_435_456u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:796`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L796)*
+
 Section is shareable.
 
 ### `IMAGE_SCN_MEM_EXECUTE`
-
 ```rust
 const IMAGE_SCN_MEM_EXECUTE: u32 = 536_870_912u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:798`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L798)*
+
 Section is executable.
 
 ### `IMAGE_SCN_MEM_READ`
-
 ```rust
 const IMAGE_SCN_MEM_READ: u32 = 1_073_741_824u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:800`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L800)*
+
 Section is readable.
 
 ### `IMAGE_SCN_MEM_WRITE`
-
 ```rust
 const IMAGE_SCN_MEM_WRITE: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:802`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L802)*
+
 Section is writeable.
 
 ### `IMAGE_SCN_SCALE_INDEX`
-
 ```rust
 const IMAGE_SCN_SCALE_INDEX: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:808`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L808)*
+
 Tls index is scaled
 
 ### `IMAGE_SIZEOF_SYMBOL`
-
 ```rust
 const IMAGE_SIZEOF_SYMBOL: usize = 18usize;
 ```
 
-### `IMAGE_SIZEOF_SYMBOL_EX`
+*Defined in [`object-0.37.3/src/pe.rs:827`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L827)*
 
+### `IMAGE_SIZEOF_SYMBOL_EX`
 ```rust
 const IMAGE_SIZEOF_SYMBOL_EX: usize = 20usize;
 ```
 
-### `IMAGE_SYM_UNDEFINED`
+*Defined in [`object-0.37.3/src/pe.rs:846`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L846)*
 
+### `IMAGE_SYM_UNDEFINED`
 ```rust
 const IMAGE_SYM_UNDEFINED: i32 = 0i32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:858`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L858)*
+
 Symbol is undefined or is common.
 
 ### `IMAGE_SYM_ABSOLUTE`
-
 ```rust
 const IMAGE_SYM_ABSOLUTE: i32 = -1i32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:860`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L860)*
+
 Symbol is an absolute value.
 
 ### `IMAGE_SYM_DEBUG`
-
 ```rust
 const IMAGE_SYM_DEBUG: i32 = -2i32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:862`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L862)*
+
 Symbol is a special debug item.
 
 ### `IMAGE_SYM_SECTION_MAX`
-
 ```rust
 const IMAGE_SYM_SECTION_MAX: u16 = 65_279u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:864`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L864)*
+
 Values 0xFF00-0xFFFF are special
 
 ### `IMAGE_SYM_SECTION_MAX_EX`
-
 ```rust
 const IMAGE_SYM_SECTION_MAX_EX: u32 = 2_147_483_647u32;
 ```
 
-### `IMAGE_SYM_TYPE_NULL`
+*Defined in [`object-0.37.3/src/pe.rs:865`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L865)*
 
+### `IMAGE_SYM_TYPE_NULL`
 ```rust
 const IMAGE_SYM_TYPE_NULL: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:870`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L870)*
+
 no type.
 
 ### `IMAGE_SYM_TYPE_VOID`
-
 ```rust
 const IMAGE_SYM_TYPE_VOID: u16 = 1u16;
 ```
 
-### `IMAGE_SYM_TYPE_CHAR`
+*Defined in [`object-0.37.3/src/pe.rs:871`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L871)*
 
+### `IMAGE_SYM_TYPE_CHAR`
 ```rust
 const IMAGE_SYM_TYPE_CHAR: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:873`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L873)*
+
 type character.
 
 ### `IMAGE_SYM_TYPE_SHORT`
-
 ```rust
 const IMAGE_SYM_TYPE_SHORT: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:875`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L875)*
+
 type short integer.
 
 ### `IMAGE_SYM_TYPE_INT`
-
 ```rust
 const IMAGE_SYM_TYPE_INT: u16 = 4u16;
 ```
 
-### `IMAGE_SYM_TYPE_LONG`
+*Defined in [`object-0.37.3/src/pe.rs:876`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L876)*
 
+### `IMAGE_SYM_TYPE_LONG`
 ```rust
 const IMAGE_SYM_TYPE_LONG: u16 = 5u16;
 ```
 
-### `IMAGE_SYM_TYPE_FLOAT`
+*Defined in [`object-0.37.3/src/pe.rs:877`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L877)*
 
+### `IMAGE_SYM_TYPE_FLOAT`
 ```rust
 const IMAGE_SYM_TYPE_FLOAT: u16 = 6u16;
 ```
 
-### `IMAGE_SYM_TYPE_DOUBLE`
+*Defined in [`object-0.37.3/src/pe.rs:878`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L878)*
 
+### `IMAGE_SYM_TYPE_DOUBLE`
 ```rust
 const IMAGE_SYM_TYPE_DOUBLE: u16 = 7u16;
 ```
 
-### `IMAGE_SYM_TYPE_STRUCT`
+*Defined in [`object-0.37.3/src/pe.rs:879`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L879)*
 
+### `IMAGE_SYM_TYPE_STRUCT`
 ```rust
 const IMAGE_SYM_TYPE_STRUCT: u16 = 8u16;
 ```
 
-### `IMAGE_SYM_TYPE_UNION`
+*Defined in [`object-0.37.3/src/pe.rs:880`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L880)*
 
+### `IMAGE_SYM_TYPE_UNION`
 ```rust
 const IMAGE_SYM_TYPE_UNION: u16 = 9u16;
 ```
 
-### `IMAGE_SYM_TYPE_ENUM`
+*Defined in [`object-0.37.3/src/pe.rs:881`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L881)*
 
+### `IMAGE_SYM_TYPE_ENUM`
 ```rust
 const IMAGE_SYM_TYPE_ENUM: u16 = 10u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:883`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L883)*
+
 enumeration.
 
 ### `IMAGE_SYM_TYPE_MOE`
-
 ```rust
 const IMAGE_SYM_TYPE_MOE: u16 = 11u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:885`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L885)*
+
 member of enumeration.
 
 ### `IMAGE_SYM_TYPE_BYTE`
-
 ```rust
 const IMAGE_SYM_TYPE_BYTE: u16 = 12u16;
 ```
 
-### `IMAGE_SYM_TYPE_WORD`
+*Defined in [`object-0.37.3/src/pe.rs:886`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L886)*
 
+### `IMAGE_SYM_TYPE_WORD`
 ```rust
 const IMAGE_SYM_TYPE_WORD: u16 = 13u16;
 ```
 
-### `IMAGE_SYM_TYPE_UINT`
+*Defined in [`object-0.37.3/src/pe.rs:887`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L887)*
 
+### `IMAGE_SYM_TYPE_UINT`
 ```rust
 const IMAGE_SYM_TYPE_UINT: u16 = 14u16;
 ```
 
-### `IMAGE_SYM_TYPE_DWORD`
+*Defined in [`object-0.37.3/src/pe.rs:888`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L888)*
 
+### `IMAGE_SYM_TYPE_DWORD`
 ```rust
 const IMAGE_SYM_TYPE_DWORD: u16 = 15u16;
 ```
 
-### `IMAGE_SYM_TYPE_PCODE`
+*Defined in [`object-0.37.3/src/pe.rs:889`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L889)*
 
+### `IMAGE_SYM_TYPE_PCODE`
 ```rust
 const IMAGE_SYM_TYPE_PCODE: u16 = 32_768u16;
 ```
 
-### `IMAGE_SYM_DTYPE_NULL`
+*Defined in [`object-0.37.3/src/pe.rs:890`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L890)*
 
+### `IMAGE_SYM_DTYPE_NULL`
 ```rust
 const IMAGE_SYM_DTYPE_NULL: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:895`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L895)*
+
 no derived type.
 
 ### `IMAGE_SYM_DTYPE_POINTER`
-
 ```rust
 const IMAGE_SYM_DTYPE_POINTER: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:897`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L897)*
+
 pointer.
 
 ### `IMAGE_SYM_DTYPE_FUNCTION`
-
 ```rust
 const IMAGE_SYM_DTYPE_FUNCTION: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:899`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L899)*
+
 function.
 
 ### `IMAGE_SYM_DTYPE_ARRAY`
-
 ```rust
 const IMAGE_SYM_DTYPE_ARRAY: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:901`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L901)*
+
 array.
 
 ### `IMAGE_SYM_CLASS_END_OF_FUNCTION`
-
 ```rust
 const IMAGE_SYM_CLASS_END_OF_FUNCTION: u8 = 255u8;
 ```
 
-### `IMAGE_SYM_CLASS_NULL`
+*Defined in [`object-0.37.3/src/pe.rs:904`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L904)*
 
+### `IMAGE_SYM_CLASS_NULL`
 ```rust
 const IMAGE_SYM_CLASS_NULL: u8 = 0u8;
 ```
 
-### `IMAGE_SYM_CLASS_AUTOMATIC`
+*Defined in [`object-0.37.3/src/pe.rs:905`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L905)*
 
+### `IMAGE_SYM_CLASS_AUTOMATIC`
 ```rust
 const IMAGE_SYM_CLASS_AUTOMATIC: u8 = 1u8;
 ```
 
-### `IMAGE_SYM_CLASS_EXTERNAL`
+*Defined in [`object-0.37.3/src/pe.rs:906`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L906)*
 
+### `IMAGE_SYM_CLASS_EXTERNAL`
 ```rust
 const IMAGE_SYM_CLASS_EXTERNAL: u8 = 2u8;
 ```
 
-### `IMAGE_SYM_CLASS_STATIC`
+*Defined in [`object-0.37.3/src/pe.rs:907`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L907)*
 
+### `IMAGE_SYM_CLASS_STATIC`
 ```rust
 const IMAGE_SYM_CLASS_STATIC: u8 = 3u8;
 ```
 
-### `IMAGE_SYM_CLASS_REGISTER`
+*Defined in [`object-0.37.3/src/pe.rs:908`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L908)*
 
+### `IMAGE_SYM_CLASS_REGISTER`
 ```rust
 const IMAGE_SYM_CLASS_REGISTER: u8 = 4u8;
 ```
 
-### `IMAGE_SYM_CLASS_EXTERNAL_DEF`
+*Defined in [`object-0.37.3/src/pe.rs:909`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L909)*
 
+### `IMAGE_SYM_CLASS_EXTERNAL_DEF`
 ```rust
 const IMAGE_SYM_CLASS_EXTERNAL_DEF: u8 = 5u8;
 ```
 
-### `IMAGE_SYM_CLASS_LABEL`
+*Defined in [`object-0.37.3/src/pe.rs:910`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L910)*
 
+### `IMAGE_SYM_CLASS_LABEL`
 ```rust
 const IMAGE_SYM_CLASS_LABEL: u8 = 6u8;
 ```
 
-### `IMAGE_SYM_CLASS_UNDEFINED_LABEL`
+*Defined in [`object-0.37.3/src/pe.rs:911`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L911)*
 
+### `IMAGE_SYM_CLASS_UNDEFINED_LABEL`
 ```rust
 const IMAGE_SYM_CLASS_UNDEFINED_LABEL: u8 = 7u8;
 ```
 
-### `IMAGE_SYM_CLASS_MEMBER_OF_STRUCT`
+*Defined in [`object-0.37.3/src/pe.rs:912`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L912)*
 
+### `IMAGE_SYM_CLASS_MEMBER_OF_STRUCT`
 ```rust
 const IMAGE_SYM_CLASS_MEMBER_OF_STRUCT: u8 = 8u8;
 ```
 
-### `IMAGE_SYM_CLASS_ARGUMENT`
+*Defined in [`object-0.37.3/src/pe.rs:913`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L913)*
 
+### `IMAGE_SYM_CLASS_ARGUMENT`
 ```rust
 const IMAGE_SYM_CLASS_ARGUMENT: u8 = 9u8;
 ```
 
-### `IMAGE_SYM_CLASS_STRUCT_TAG`
+*Defined in [`object-0.37.3/src/pe.rs:914`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L914)*
 
+### `IMAGE_SYM_CLASS_STRUCT_TAG`
 ```rust
 const IMAGE_SYM_CLASS_STRUCT_TAG: u8 = 10u8;
 ```
 
-### `IMAGE_SYM_CLASS_MEMBER_OF_UNION`
+*Defined in [`object-0.37.3/src/pe.rs:915`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L915)*
 
+### `IMAGE_SYM_CLASS_MEMBER_OF_UNION`
 ```rust
 const IMAGE_SYM_CLASS_MEMBER_OF_UNION: u8 = 11u8;
 ```
 
-### `IMAGE_SYM_CLASS_UNION_TAG`
+*Defined in [`object-0.37.3/src/pe.rs:916`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L916)*
 
+### `IMAGE_SYM_CLASS_UNION_TAG`
 ```rust
 const IMAGE_SYM_CLASS_UNION_TAG: u8 = 12u8;
 ```
 
-### `IMAGE_SYM_CLASS_TYPE_DEFINITION`
+*Defined in [`object-0.37.3/src/pe.rs:917`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L917)*
 
+### `IMAGE_SYM_CLASS_TYPE_DEFINITION`
 ```rust
 const IMAGE_SYM_CLASS_TYPE_DEFINITION: u8 = 13u8;
 ```
 
-### `IMAGE_SYM_CLASS_UNDEFINED_STATIC`
+*Defined in [`object-0.37.3/src/pe.rs:918`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L918)*
 
+### `IMAGE_SYM_CLASS_UNDEFINED_STATIC`
 ```rust
 const IMAGE_SYM_CLASS_UNDEFINED_STATIC: u8 = 14u8;
 ```
 
-### `IMAGE_SYM_CLASS_ENUM_TAG`
+*Defined in [`object-0.37.3/src/pe.rs:919`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L919)*
 
+### `IMAGE_SYM_CLASS_ENUM_TAG`
 ```rust
 const IMAGE_SYM_CLASS_ENUM_TAG: u8 = 15u8;
 ```
 
-### `IMAGE_SYM_CLASS_MEMBER_OF_ENUM`
+*Defined in [`object-0.37.3/src/pe.rs:920`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L920)*
 
+### `IMAGE_SYM_CLASS_MEMBER_OF_ENUM`
 ```rust
 const IMAGE_SYM_CLASS_MEMBER_OF_ENUM: u8 = 16u8;
 ```
 
-### `IMAGE_SYM_CLASS_REGISTER_PARAM`
+*Defined in [`object-0.37.3/src/pe.rs:921`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L921)*
 
+### `IMAGE_SYM_CLASS_REGISTER_PARAM`
 ```rust
 const IMAGE_SYM_CLASS_REGISTER_PARAM: u8 = 17u8;
 ```
 
-### `IMAGE_SYM_CLASS_BIT_FIELD`
+*Defined in [`object-0.37.3/src/pe.rs:922`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L922)*
 
+### `IMAGE_SYM_CLASS_BIT_FIELD`
 ```rust
 const IMAGE_SYM_CLASS_BIT_FIELD: u8 = 18u8;
 ```
 
-### `IMAGE_SYM_CLASS_FAR_EXTERNAL`
+*Defined in [`object-0.37.3/src/pe.rs:923`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L923)*
 
+### `IMAGE_SYM_CLASS_FAR_EXTERNAL`
 ```rust
 const IMAGE_SYM_CLASS_FAR_EXTERNAL: u8 = 68u8;
 ```
 
-### `IMAGE_SYM_CLASS_BLOCK`
+*Defined in [`object-0.37.3/src/pe.rs:925`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L925)*
 
+### `IMAGE_SYM_CLASS_BLOCK`
 ```rust
 const IMAGE_SYM_CLASS_BLOCK: u8 = 100u8;
 ```
 
-### `IMAGE_SYM_CLASS_FUNCTION`
+*Defined in [`object-0.37.3/src/pe.rs:927`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L927)*
 
+### `IMAGE_SYM_CLASS_FUNCTION`
 ```rust
 const IMAGE_SYM_CLASS_FUNCTION: u8 = 101u8;
 ```
 
-### `IMAGE_SYM_CLASS_END_OF_STRUCT`
+*Defined in [`object-0.37.3/src/pe.rs:928`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L928)*
 
+### `IMAGE_SYM_CLASS_END_OF_STRUCT`
 ```rust
 const IMAGE_SYM_CLASS_END_OF_STRUCT: u8 = 102u8;
 ```
 
-### `IMAGE_SYM_CLASS_FILE`
+*Defined in [`object-0.37.3/src/pe.rs:929`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L929)*
 
+### `IMAGE_SYM_CLASS_FILE`
 ```rust
 const IMAGE_SYM_CLASS_FILE: u8 = 103u8;
 ```
 
-### `IMAGE_SYM_CLASS_SECTION`
+*Defined in [`object-0.37.3/src/pe.rs:930`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L930)*
 
+### `IMAGE_SYM_CLASS_SECTION`
 ```rust
 const IMAGE_SYM_CLASS_SECTION: u8 = 104u8;
 ```
 
-### `IMAGE_SYM_CLASS_WEAK_EXTERNAL`
+*Defined in [`object-0.37.3/src/pe.rs:932`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L932)*
 
+### `IMAGE_SYM_CLASS_WEAK_EXTERNAL`
 ```rust
 const IMAGE_SYM_CLASS_WEAK_EXTERNAL: u8 = 105u8;
 ```
 
-### `IMAGE_SYM_CLASS_CLR_TOKEN`
+*Defined in [`object-0.37.3/src/pe.rs:933`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L933)*
 
+### `IMAGE_SYM_CLASS_CLR_TOKEN`
 ```rust
 const IMAGE_SYM_CLASS_CLR_TOKEN: u8 = 107u8;
 ```
 
-### `N_BTMASK`
+*Defined in [`object-0.37.3/src/pe.rs:935`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L935)*
 
+### `N_BTMASK`
 ```rust
 const N_BTMASK: u16 = 15u16;
 ```
 
-### `N_TMASK`
+*Defined in [`object-0.37.3/src/pe.rs:939`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L939)*
 
+### `N_TMASK`
 ```rust
 const N_TMASK: u16 = 48u16;
 ```
 
-### `N_TMASK1`
+*Defined in [`object-0.37.3/src/pe.rs:940`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L940)*
 
+### `N_TMASK1`
 ```rust
 const N_TMASK1: u16 = 192u16;
 ```
 
-### `N_TMASK2`
+*Defined in [`object-0.37.3/src/pe.rs:941`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L941)*
 
+### `N_TMASK2`
 ```rust
 const N_TMASK2: u16 = 240u16;
 ```
 
-### `N_BTSHFT`
+*Defined in [`object-0.37.3/src/pe.rs:942`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L942)*
 
+### `N_BTSHFT`
 ```rust
 const N_BTSHFT: usize = 4usize;
 ```
 
-### `N_TSHIFT`
+*Defined in [`object-0.37.3/src/pe.rs:943`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L943)*
 
+### `N_TSHIFT`
 ```rust
 const N_TSHIFT: usize = 2usize;
 ```
 
-### `IMAGE_SYM_DTYPE_SHIFT`
+*Defined in [`object-0.37.3/src/pe.rs:944`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L944)*
 
+### `IMAGE_SYM_DTYPE_SHIFT`
 ```rust
 const IMAGE_SYM_DTYPE_SHIFT: usize = 4usize;
 ```
 
-### `IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF`
+*Defined in [`object-0.37.3/src/pe.rs:946`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L946)*
 
+### `IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF`
 ```rust
 const IMAGE_AUX_SYMBOL_TYPE_TOKEN_DEF: u16 = 1u16;
 ```
 
-### `IMAGE_COMDAT_SELECT_NODUPLICATES`
+*Defined in [`object-0.37.3/src/pe.rs:966`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L966)*
 
+### `IMAGE_COMDAT_SELECT_NODUPLICATES`
 ```rust
 const IMAGE_COMDAT_SELECT_NODUPLICATES: u8 = 1u8;
 ```
 
-### `IMAGE_COMDAT_SELECT_ANY`
+*Defined in [`object-0.37.3/src/pe.rs:1041`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1041)*
 
+### `IMAGE_COMDAT_SELECT_ANY`
 ```rust
 const IMAGE_COMDAT_SELECT_ANY: u8 = 2u8;
 ```
 
-### `IMAGE_COMDAT_SELECT_SAME_SIZE`
+*Defined in [`object-0.37.3/src/pe.rs:1042`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1042)*
 
+### `IMAGE_COMDAT_SELECT_SAME_SIZE`
 ```rust
 const IMAGE_COMDAT_SELECT_SAME_SIZE: u8 = 3u8;
 ```
 
-### `IMAGE_COMDAT_SELECT_EXACT_MATCH`
+*Defined in [`object-0.37.3/src/pe.rs:1043`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1043)*
 
+### `IMAGE_COMDAT_SELECT_EXACT_MATCH`
 ```rust
 const IMAGE_COMDAT_SELECT_EXACT_MATCH: u8 = 4u8;
 ```
 
-### `IMAGE_COMDAT_SELECT_ASSOCIATIVE`
+*Defined in [`object-0.37.3/src/pe.rs:1044`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1044)*
 
+### `IMAGE_COMDAT_SELECT_ASSOCIATIVE`
 ```rust
 const IMAGE_COMDAT_SELECT_ASSOCIATIVE: u8 = 5u8;
 ```
 
-### `IMAGE_COMDAT_SELECT_LARGEST`
+*Defined in [`object-0.37.3/src/pe.rs:1045`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1045)*
 
+### `IMAGE_COMDAT_SELECT_LARGEST`
 ```rust
 const IMAGE_COMDAT_SELECT_LARGEST: u8 = 6u8;
 ```
 
-### `IMAGE_COMDAT_SELECT_NEWEST`
+*Defined in [`object-0.37.3/src/pe.rs:1046`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1046)*
 
+### `IMAGE_COMDAT_SELECT_NEWEST`
 ```rust
 const IMAGE_COMDAT_SELECT_NEWEST: u8 = 7u8;
 ```
 
-### `IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY`
+*Defined in [`object-0.37.3/src/pe.rs:1047`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1047)*
 
+### `IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY`
 ```rust
 const IMAGE_WEAK_EXTERN_SEARCH_NOLIBRARY: u32 = 1u32;
 ```
 
-### `IMAGE_WEAK_EXTERN_SEARCH_LIBRARY`
+*Defined in [`object-0.37.3/src/pe.rs:1049`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1049)*
 
+### `IMAGE_WEAK_EXTERN_SEARCH_LIBRARY`
 ```rust
 const IMAGE_WEAK_EXTERN_SEARCH_LIBRARY: u32 = 2u32;
 ```
 
-### `IMAGE_WEAK_EXTERN_SEARCH_ALIAS`
+*Defined in [`object-0.37.3/src/pe.rs:1050`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1050)*
 
+### `IMAGE_WEAK_EXTERN_SEARCH_ALIAS`
 ```rust
 const IMAGE_WEAK_EXTERN_SEARCH_ALIAS: u32 = 3u32;
 ```
 
-### `IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY`
+*Defined in [`object-0.37.3/src/pe.rs:1051`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1051)*
 
+### `IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY`
 ```rust
 const IMAGE_WEAK_EXTERN_ANTI_DEPENDENCY: u32 = 4u32;
 ```
 
-### `IMAGE_REL_I386_ABSOLUTE`
+*Defined in [`object-0.37.3/src/pe.rs:1052`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1052)*
 
+### `IMAGE_REL_I386_ABSOLUTE`
 ```rust
 const IMAGE_REL_I386_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1072`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1072)*
+
 Reference is absolute, no relocation is necessary
 
 ### `IMAGE_REL_I386_DIR16`
-
 ```rust
 const IMAGE_REL_I386_DIR16: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1074`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1074)*
+
 Direct 16-bit reference to the symbols virtual address
 
 ### `IMAGE_REL_I386_REL16`
-
 ```rust
 const IMAGE_REL_I386_REL16: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1076`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1076)*
+
 PC-relative 16-bit reference to the symbols virtual address
 
 ### `IMAGE_REL_I386_DIR32`
-
 ```rust
 const IMAGE_REL_I386_DIR32: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1078`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1078)*
+
 Direct 32-bit reference to the symbols virtual address
 
 ### `IMAGE_REL_I386_DIR32NB`
-
 ```rust
 const IMAGE_REL_I386_DIR32NB: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1080`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1080)*
+
 Direct 32-bit reference to the symbols virtual address, base not included
 
 ### `IMAGE_REL_I386_SEG12`
-
 ```rust
 const IMAGE_REL_I386_SEG12: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1082`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1082)*
+
 Direct 16-bit reference to the segment-selector bits of a 32-bit virtual address
 
 ### `IMAGE_REL_I386_SECTION`
-
 ```rust
 const IMAGE_REL_I386_SECTION: u16 = 10u16;
 ```
 
-### `IMAGE_REL_I386_SECREL`
+*Defined in [`object-0.37.3/src/pe.rs:1083`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1083)*
 
+### `IMAGE_REL_I386_SECREL`
 ```rust
 const IMAGE_REL_I386_SECREL: u16 = 11u16;
 ```
 
-### `IMAGE_REL_I386_TOKEN`
+*Defined in [`object-0.37.3/src/pe.rs:1084`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1084)*
 
+### `IMAGE_REL_I386_TOKEN`
 ```rust
 const IMAGE_REL_I386_TOKEN: u16 = 12u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1086`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1086)*
+
 clr token
 
 ### `IMAGE_REL_I386_SECREL7`
-
 ```rust
 const IMAGE_REL_I386_SECREL7: u16 = 13u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1088`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1088)*
+
 7 bit offset from base of section containing target
 
 ### `IMAGE_REL_I386_REL32`
-
 ```rust
 const IMAGE_REL_I386_REL32: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1090`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1090)*
+
 PC-relative 32-bit reference to the symbols virtual address
 
 ### `IMAGE_REL_MIPS_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_MIPS_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1096`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1096)*
+
 Reference is absolute, no relocation is necessary
 
 ### `IMAGE_REL_MIPS_REFHALF`
-
 ```rust
 const IMAGE_REL_MIPS_REFHALF: u16 = 1u16;
 ```
 
-### `IMAGE_REL_MIPS_REFWORD`
+*Defined in [`object-0.37.3/src/pe.rs:1097`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1097)*
 
+### `IMAGE_REL_MIPS_REFWORD`
 ```rust
 const IMAGE_REL_MIPS_REFWORD: u16 = 2u16;
 ```
 
-### `IMAGE_REL_MIPS_JMPADDR`
+*Defined in [`object-0.37.3/src/pe.rs:1098`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1098)*
 
+### `IMAGE_REL_MIPS_JMPADDR`
 ```rust
 const IMAGE_REL_MIPS_JMPADDR: u16 = 3u16;
 ```
 
-### `IMAGE_REL_MIPS_REFHI`
+*Defined in [`object-0.37.3/src/pe.rs:1099`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1099)*
 
+### `IMAGE_REL_MIPS_REFHI`
 ```rust
 const IMAGE_REL_MIPS_REFHI: u16 = 4u16;
 ```
 
-### `IMAGE_REL_MIPS_REFLO`
+*Defined in [`object-0.37.3/src/pe.rs:1100`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1100)*
 
+### `IMAGE_REL_MIPS_REFLO`
 ```rust
 const IMAGE_REL_MIPS_REFLO: u16 = 5u16;
 ```
 
-### `IMAGE_REL_MIPS_GPREL`
+*Defined in [`object-0.37.3/src/pe.rs:1101`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1101)*
 
+### `IMAGE_REL_MIPS_GPREL`
 ```rust
 const IMAGE_REL_MIPS_GPREL: u16 = 6u16;
 ```
 
-### `IMAGE_REL_MIPS_LITERAL`
+*Defined in [`object-0.37.3/src/pe.rs:1102`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1102)*
 
+### `IMAGE_REL_MIPS_LITERAL`
 ```rust
 const IMAGE_REL_MIPS_LITERAL: u16 = 7u16;
 ```
 
-### `IMAGE_REL_MIPS_SECTION`
+*Defined in [`object-0.37.3/src/pe.rs:1103`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1103)*
 
+### `IMAGE_REL_MIPS_SECTION`
 ```rust
 const IMAGE_REL_MIPS_SECTION: u16 = 10u16;
 ```
 
-### `IMAGE_REL_MIPS_SECREL`
+*Defined in [`object-0.37.3/src/pe.rs:1104`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1104)*
 
+### `IMAGE_REL_MIPS_SECREL`
 ```rust
 const IMAGE_REL_MIPS_SECREL: u16 = 11u16;
 ```
 
-### `IMAGE_REL_MIPS_SECRELLO`
+*Defined in [`object-0.37.3/src/pe.rs:1105`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1105)*
 
+### `IMAGE_REL_MIPS_SECRELLO`
 ```rust
 const IMAGE_REL_MIPS_SECRELLO: u16 = 12u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1107`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1107)*
+
 Low 16-bit section relative reference (used for >32k TLS)
 
 ### `IMAGE_REL_MIPS_SECRELHI`
-
 ```rust
 const IMAGE_REL_MIPS_SECRELHI: u16 = 13u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1109`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1109)*
+
 High 16-bit section relative reference (used for >32k TLS)
 
 ### `IMAGE_REL_MIPS_TOKEN`
-
 ```rust
 const IMAGE_REL_MIPS_TOKEN: u16 = 14u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1111`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1111)*
+
 clr token
 
 ### `IMAGE_REL_MIPS_JMPADDR16`
-
 ```rust
 const IMAGE_REL_MIPS_JMPADDR16: u16 = 16u16;
 ```
 
-### `IMAGE_REL_MIPS_REFWORDNB`
+*Defined in [`object-0.37.3/src/pe.rs:1112`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1112)*
 
+### `IMAGE_REL_MIPS_REFWORDNB`
 ```rust
 const IMAGE_REL_MIPS_REFWORDNB: u16 = 34u16;
 ```
 
-### `IMAGE_REL_MIPS_PAIR`
+*Defined in [`object-0.37.3/src/pe.rs:1113`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1113)*
 
+### `IMAGE_REL_MIPS_PAIR`
 ```rust
 const IMAGE_REL_MIPS_PAIR: u16 = 37u16;
 ```
 
-### `IMAGE_REL_ALPHA_ABSOLUTE`
+*Defined in [`object-0.37.3/src/pe.rs:1114`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1114)*
 
+### `IMAGE_REL_ALPHA_ABSOLUTE`
 ```rust
 const IMAGE_REL_ALPHA_ABSOLUTE: u16 = 0u16;
 ```
 
-### `IMAGE_REL_ALPHA_REFLONG`
+*Defined in [`object-0.37.3/src/pe.rs:1119`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1119)*
 
+### `IMAGE_REL_ALPHA_REFLONG`
 ```rust
 const IMAGE_REL_ALPHA_REFLONG: u16 = 1u16;
 ```
 
-### `IMAGE_REL_ALPHA_REFQUAD`
+*Defined in [`object-0.37.3/src/pe.rs:1120`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1120)*
 
+### `IMAGE_REL_ALPHA_REFQUAD`
 ```rust
 const IMAGE_REL_ALPHA_REFQUAD: u16 = 2u16;
 ```
 
-### `IMAGE_REL_ALPHA_GPREL32`
+*Defined in [`object-0.37.3/src/pe.rs:1121`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1121)*
 
+### `IMAGE_REL_ALPHA_GPREL32`
 ```rust
 const IMAGE_REL_ALPHA_GPREL32: u16 = 3u16;
 ```
 
-### `IMAGE_REL_ALPHA_LITERAL`
+*Defined in [`object-0.37.3/src/pe.rs:1122`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1122)*
 
+### `IMAGE_REL_ALPHA_LITERAL`
 ```rust
 const IMAGE_REL_ALPHA_LITERAL: u16 = 4u16;
 ```
 
-### `IMAGE_REL_ALPHA_LITUSE`
+*Defined in [`object-0.37.3/src/pe.rs:1123`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1123)*
 
+### `IMAGE_REL_ALPHA_LITUSE`
 ```rust
 const IMAGE_REL_ALPHA_LITUSE: u16 = 5u16;
 ```
 
-### `IMAGE_REL_ALPHA_GPDISP`
+*Defined in [`object-0.37.3/src/pe.rs:1124`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1124)*
 
+### `IMAGE_REL_ALPHA_GPDISP`
 ```rust
 const IMAGE_REL_ALPHA_GPDISP: u16 = 6u16;
 ```
 
-### `IMAGE_REL_ALPHA_BRADDR`
+*Defined in [`object-0.37.3/src/pe.rs:1125`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1125)*
 
+### `IMAGE_REL_ALPHA_BRADDR`
 ```rust
 const IMAGE_REL_ALPHA_BRADDR: u16 = 7u16;
 ```
 
-### `IMAGE_REL_ALPHA_HINT`
+*Defined in [`object-0.37.3/src/pe.rs:1126`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1126)*
 
+### `IMAGE_REL_ALPHA_HINT`
 ```rust
 const IMAGE_REL_ALPHA_HINT: u16 = 8u16;
 ```
 
-### `IMAGE_REL_ALPHA_INLINE_REFLONG`
+*Defined in [`object-0.37.3/src/pe.rs:1127`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1127)*
 
+### `IMAGE_REL_ALPHA_INLINE_REFLONG`
 ```rust
 const IMAGE_REL_ALPHA_INLINE_REFLONG: u16 = 9u16;
 ```
 
-### `IMAGE_REL_ALPHA_REFHI`
+*Defined in [`object-0.37.3/src/pe.rs:1128`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1128)*
 
+### `IMAGE_REL_ALPHA_REFHI`
 ```rust
 const IMAGE_REL_ALPHA_REFHI: u16 = 10u16;
 ```
 
-### `IMAGE_REL_ALPHA_REFLO`
+*Defined in [`object-0.37.3/src/pe.rs:1129`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1129)*
 
+### `IMAGE_REL_ALPHA_REFLO`
 ```rust
 const IMAGE_REL_ALPHA_REFLO: u16 = 11u16;
 ```
 
-### `IMAGE_REL_ALPHA_PAIR`
+*Defined in [`object-0.37.3/src/pe.rs:1130`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1130)*
 
+### `IMAGE_REL_ALPHA_PAIR`
 ```rust
 const IMAGE_REL_ALPHA_PAIR: u16 = 12u16;
 ```
 
-### `IMAGE_REL_ALPHA_MATCH`
+*Defined in [`object-0.37.3/src/pe.rs:1131`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1131)*
 
+### `IMAGE_REL_ALPHA_MATCH`
 ```rust
 const IMAGE_REL_ALPHA_MATCH: u16 = 13u16;
 ```
 
-### `IMAGE_REL_ALPHA_SECTION`
+*Defined in [`object-0.37.3/src/pe.rs:1132`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1132)*
 
+### `IMAGE_REL_ALPHA_SECTION`
 ```rust
 const IMAGE_REL_ALPHA_SECTION: u16 = 14u16;
 ```
 
-### `IMAGE_REL_ALPHA_SECREL`
+*Defined in [`object-0.37.3/src/pe.rs:1133`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1133)*
 
+### `IMAGE_REL_ALPHA_SECREL`
 ```rust
 const IMAGE_REL_ALPHA_SECREL: u16 = 15u16;
 ```
 
-### `IMAGE_REL_ALPHA_REFLONGNB`
+*Defined in [`object-0.37.3/src/pe.rs:1134`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1134)*
 
+### `IMAGE_REL_ALPHA_REFLONGNB`
 ```rust
 const IMAGE_REL_ALPHA_REFLONGNB: u16 = 16u16;
 ```
 
-### `IMAGE_REL_ALPHA_SECRELLO`
+*Defined in [`object-0.37.3/src/pe.rs:1135`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1135)*
 
+### `IMAGE_REL_ALPHA_SECRELLO`
 ```rust
 const IMAGE_REL_ALPHA_SECRELLO: u16 = 17u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1137`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1137)*
+
 Low 16-bit section relative reference
 
 ### `IMAGE_REL_ALPHA_SECRELHI`
-
 ```rust
 const IMAGE_REL_ALPHA_SECRELHI: u16 = 18u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1139`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1139)*
+
 High 16-bit section relative reference
 
 ### `IMAGE_REL_ALPHA_REFQ3`
-
 ```rust
 const IMAGE_REL_ALPHA_REFQ3: u16 = 19u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1141`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1141)*
+
 High 16 bits of 48 bit reference
 
 ### `IMAGE_REL_ALPHA_REFQ2`
-
 ```rust
 const IMAGE_REL_ALPHA_REFQ2: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1143`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1143)*
+
 Middle 16 bits of 48 bit reference
 
 ### `IMAGE_REL_ALPHA_REFQ1`
-
 ```rust
 const IMAGE_REL_ALPHA_REFQ1: u16 = 21u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1145`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1145)*
+
 Low 16 bits of 48 bit reference
 
 ### `IMAGE_REL_ALPHA_GPRELLO`
-
 ```rust
 const IMAGE_REL_ALPHA_GPRELLO: u16 = 22u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1147`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1147)*
+
 Low 16-bit GP relative reference
 
 ### `IMAGE_REL_ALPHA_GPRELHI`
-
 ```rust
 const IMAGE_REL_ALPHA_GPRELHI: u16 = 23u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1149`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1149)*
+
 High 16-bit GP relative reference
 
 ### `IMAGE_REL_PPC_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_PPC_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1155`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1155)*
+
 NOP
 
 ### `IMAGE_REL_PPC_ADDR64`
-
 ```rust
 const IMAGE_REL_PPC_ADDR64: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1157`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1157)*
+
 64-bit address
 
 ### `IMAGE_REL_PPC_ADDR32`
-
 ```rust
 const IMAGE_REL_PPC_ADDR32: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1159`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1159)*
+
 32-bit address
 
 ### `IMAGE_REL_PPC_ADDR24`
-
 ```rust
 const IMAGE_REL_PPC_ADDR24: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1161`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1161)*
+
 26-bit address, shifted left 2 (branch absolute)
 
 ### `IMAGE_REL_PPC_ADDR16`
-
 ```rust
 const IMAGE_REL_PPC_ADDR16: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1163`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1163)*
+
 16-bit address
 
 ### `IMAGE_REL_PPC_ADDR14`
-
 ```rust
 const IMAGE_REL_PPC_ADDR14: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1165`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1165)*
+
 16-bit address, shifted left 2 (load doubleword)
 
 ### `IMAGE_REL_PPC_REL24`
-
 ```rust
 const IMAGE_REL_PPC_REL24: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1167`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1167)*
+
 26-bit PC-relative offset, shifted left 2 (branch relative)
 
 ### `IMAGE_REL_PPC_REL14`
-
 ```rust
 const IMAGE_REL_PPC_REL14: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1169`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1169)*
+
 16-bit PC-relative offset, shifted left 2 (br cond relative)
 
 ### `IMAGE_REL_PPC_TOCREL16`
-
 ```rust
 const IMAGE_REL_PPC_TOCREL16: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1171`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1171)*
+
 16-bit offset from TOC base
 
 ### `IMAGE_REL_PPC_TOCREL14`
-
 ```rust
 const IMAGE_REL_PPC_TOCREL14: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1173`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1173)*
+
 16-bit offset from TOC base, shifted left 2 (load doubleword)
 
 ### `IMAGE_REL_PPC_ADDR32NB`
-
 ```rust
 const IMAGE_REL_PPC_ADDR32NB: u16 = 10u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1176`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1176)*
+
 32-bit addr w/o image base
 
 ### `IMAGE_REL_PPC_SECREL`
-
 ```rust
 const IMAGE_REL_PPC_SECREL: u16 = 11u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1178`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1178)*
+
 va of containing section (as in an image sectionhdr)
 
 ### `IMAGE_REL_PPC_SECTION`
-
 ```rust
 const IMAGE_REL_PPC_SECTION: u16 = 12u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1180`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1180)*
+
 sectionheader number
 
 ### `IMAGE_REL_PPC_IFGLUE`
-
 ```rust
 const IMAGE_REL_PPC_IFGLUE: u16 = 13u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1182`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1182)*
+
 substitute TOC restore instruction iff symbol is glue code
 
 ### `IMAGE_REL_PPC_IMGLUE`
-
 ```rust
 const IMAGE_REL_PPC_IMGLUE: u16 = 14u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1184`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1184)*
+
 symbol is glue code; virtual address is TOC restore instruction
 
 ### `IMAGE_REL_PPC_SECREL16`
-
 ```rust
 const IMAGE_REL_PPC_SECREL16: u16 = 15u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1186`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1186)*
+
 va of containing section (limited to 16 bits)
 
 ### `IMAGE_REL_PPC_REFHI`
-
 ```rust
 const IMAGE_REL_PPC_REFHI: u16 = 16u16;
 ```
 
-### `IMAGE_REL_PPC_REFLO`
+*Defined in [`object-0.37.3/src/pe.rs:1187`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1187)*
 
+### `IMAGE_REL_PPC_REFLO`
 ```rust
 const IMAGE_REL_PPC_REFLO: u16 = 17u16;
 ```
 
-### `IMAGE_REL_PPC_PAIR`
+*Defined in [`object-0.37.3/src/pe.rs:1188`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1188)*
 
+### `IMAGE_REL_PPC_PAIR`
 ```rust
 const IMAGE_REL_PPC_PAIR: u16 = 18u16;
 ```
 
-### `IMAGE_REL_PPC_SECRELLO`
+*Defined in [`object-0.37.3/src/pe.rs:1189`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1189)*
 
+### `IMAGE_REL_PPC_SECRELLO`
 ```rust
 const IMAGE_REL_PPC_SECRELLO: u16 = 19u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1191`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1191)*
+
 Low 16-bit section relative reference (used for >32k TLS)
 
 ### `IMAGE_REL_PPC_SECRELHI`
-
 ```rust
 const IMAGE_REL_PPC_SECRELHI: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1193`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1193)*
+
 High 16-bit section relative reference (used for >32k TLS)
 
 ### `IMAGE_REL_PPC_GPREL`
-
 ```rust
 const IMAGE_REL_PPC_GPREL: u16 = 21u16;
 ```
 
-### `IMAGE_REL_PPC_TOKEN`
+*Defined in [`object-0.37.3/src/pe.rs:1194`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1194)*
 
+### `IMAGE_REL_PPC_TOKEN`
 ```rust
 const IMAGE_REL_PPC_TOKEN: u16 = 22u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1196`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1196)*
+
 clr token
 
 ### `IMAGE_REL_PPC_TYPEMASK`
-
 ```rust
 const IMAGE_REL_PPC_TYPEMASK: u16 = 255u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1199`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1199)*
+
 mask to isolate above values in IMAGE_RELOCATION.Type
 
 ### `IMAGE_REL_PPC_NEG`
-
 ```rust
 const IMAGE_REL_PPC_NEG: u16 = 256u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1204`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1204)*
+
 subtract reloc value rather than adding it
 
 ### `IMAGE_REL_PPC_BRTAKEN`
-
 ```rust
 const IMAGE_REL_PPC_BRTAKEN: u16 = 512u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1206`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1206)*
+
 fix branch prediction bit to predict branch taken
 
 ### `IMAGE_REL_PPC_BRNTAKEN`
-
 ```rust
 const IMAGE_REL_PPC_BRNTAKEN: u16 = 1_024u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1208`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1208)*
+
 fix branch prediction bit to predict branch not taken
 
 ### `IMAGE_REL_PPC_TOCDEFN`
-
 ```rust
 const IMAGE_REL_PPC_TOCDEFN: u16 = 2_048u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1210`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1210)*
+
 toc slot defined in file (or, data in toc)
 
 ### `IMAGE_REL_SH3_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_SH3_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1216`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1216)*
+
 No relocation
 
 ### `IMAGE_REL_SH3_DIRECT16`
-
 ```rust
 const IMAGE_REL_SH3_DIRECT16: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1218`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1218)*
+
 16 bit direct
 
 ### `IMAGE_REL_SH3_DIRECT32`
-
 ```rust
 const IMAGE_REL_SH3_DIRECT32: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1220`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1220)*
+
 32 bit direct
 
 ### `IMAGE_REL_SH3_DIRECT8`
-
 ```rust
 const IMAGE_REL_SH3_DIRECT8: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1222`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1222)*
+
 8 bit direct, -128..255
 
 ### `IMAGE_REL_SH3_DIRECT8_WORD`
-
 ```rust
 const IMAGE_REL_SH3_DIRECT8_WORD: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1224`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1224)*
+
 8 bit direct .W (0 ext.)
 
 ### `IMAGE_REL_SH3_DIRECT8_LONG`
-
 ```rust
 const IMAGE_REL_SH3_DIRECT8_LONG: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1226`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1226)*
+
 8 bit direct .L (0 ext.)
 
 ### `IMAGE_REL_SH3_DIRECT4`
-
 ```rust
 const IMAGE_REL_SH3_DIRECT4: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1228`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1228)*
+
 4 bit direct (0 ext.)
 
 ### `IMAGE_REL_SH3_DIRECT4_WORD`
-
 ```rust
 const IMAGE_REL_SH3_DIRECT4_WORD: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1230`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1230)*
+
 4 bit direct .W (0 ext.)
 
 ### `IMAGE_REL_SH3_DIRECT4_LONG`
-
 ```rust
 const IMAGE_REL_SH3_DIRECT4_LONG: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1232`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1232)*
+
 4 bit direct .L (0 ext.)
 
 ### `IMAGE_REL_SH3_PCREL8_WORD`
-
 ```rust
 const IMAGE_REL_SH3_PCREL8_WORD: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1234`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1234)*
+
 8 bit PC relative .W
 
 ### `IMAGE_REL_SH3_PCREL8_LONG`
-
 ```rust
 const IMAGE_REL_SH3_PCREL8_LONG: u16 = 10u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1236`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1236)*
+
 8 bit PC relative .L
 
 ### `IMAGE_REL_SH3_PCREL12_WORD`
-
 ```rust
 const IMAGE_REL_SH3_PCREL12_WORD: u16 = 11u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1238`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1238)*
+
 12 LSB PC relative .W
 
 ### `IMAGE_REL_SH3_STARTOF_SECTION`
-
 ```rust
 const IMAGE_REL_SH3_STARTOF_SECTION: u16 = 12u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1240`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1240)*
+
 Start of EXE section
 
 ### `IMAGE_REL_SH3_SIZEOF_SECTION`
-
 ```rust
 const IMAGE_REL_SH3_SIZEOF_SECTION: u16 = 13u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1242`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1242)*
+
 Size of EXE section
 
 ### `IMAGE_REL_SH3_SECTION`
-
 ```rust
 const IMAGE_REL_SH3_SECTION: u16 = 14u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1244`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1244)*
+
 Section table index
 
 ### `IMAGE_REL_SH3_SECREL`
-
 ```rust
 const IMAGE_REL_SH3_SECREL: u16 = 15u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1246`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1246)*
+
 Offset within section
 
 ### `IMAGE_REL_SH3_DIRECT32_NB`
-
 ```rust
 const IMAGE_REL_SH3_DIRECT32_NB: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1248`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1248)*
+
 32 bit direct not based
 
 ### `IMAGE_REL_SH3_GPREL4_LONG`
-
 ```rust
 const IMAGE_REL_SH3_GPREL4_LONG: u16 = 17u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1250`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1250)*
+
 GP-relative addressing
 
 ### `IMAGE_REL_SH3_TOKEN`
-
 ```rust
 const IMAGE_REL_SH3_TOKEN: u16 = 18u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1252`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1252)*
+
 clr token
 
 ### `IMAGE_REL_SHM_PCRELPT`
-
 ```rust
 const IMAGE_REL_SHM_PCRELPT: u16 = 19u16;
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:1255`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1255)*
 
 Offset from current instruction in longwords
 if not NOMODE, insert the inverse of the low bit at bit 32 to select PTA/PTB
 
 ### `IMAGE_REL_SHM_REFLO`
-
 ```rust
 const IMAGE_REL_SHM_REFLO: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1257`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1257)*
+
 Low bits of 32-bit address
 
 ### `IMAGE_REL_SHM_REFHALF`
-
 ```rust
 const IMAGE_REL_SHM_REFHALF: u16 = 21u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1259`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1259)*
+
 High bits of 32-bit address
 
 ### `IMAGE_REL_SHM_RELLO`
-
 ```rust
 const IMAGE_REL_SHM_RELLO: u16 = 22u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1261`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1261)*
+
 Low bits of relative reference
 
 ### `IMAGE_REL_SHM_RELHALF`
-
 ```rust
 const IMAGE_REL_SHM_RELHALF: u16 = 23u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1263`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1263)*
+
 High bits of relative reference
 
 ### `IMAGE_REL_SHM_PAIR`
-
 ```rust
 const IMAGE_REL_SHM_PAIR: u16 = 24u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1265`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1265)*
+
 offset operand for relocation
 
 ### `IMAGE_REL_SH_NOMODE`
-
 ```rust
 const IMAGE_REL_SH_NOMODE: u16 = 32_768u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1268`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1268)*
+
 relocation ignores section mode
 
 ### `IMAGE_REL_ARM_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_ARM_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1271`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1271)*
+
 No relocation required
 
 ### `IMAGE_REL_ARM_ADDR32`
-
 ```rust
 const IMAGE_REL_ARM_ADDR32: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1273`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1273)*
+
 32 bit address
 
 ### `IMAGE_REL_ARM_ADDR32NB`
-
 ```rust
 const IMAGE_REL_ARM_ADDR32NB: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1275`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1275)*
+
 32 bit address w/o image base
 
 ### `IMAGE_REL_ARM_BRANCH24`
-
 ```rust
 const IMAGE_REL_ARM_BRANCH24: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1277`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1277)*
+
 24 bit offset << 2 & sign ext.
 
 ### `IMAGE_REL_ARM_BRANCH11`
-
 ```rust
 const IMAGE_REL_ARM_BRANCH11: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1279`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1279)*
+
 Thumb: 2 11 bit offsets
 
 ### `IMAGE_REL_ARM_TOKEN`
-
 ```rust
 const IMAGE_REL_ARM_TOKEN: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1281`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1281)*
+
 clr token
 
 ### `IMAGE_REL_ARM_GPREL12`
-
 ```rust
 const IMAGE_REL_ARM_GPREL12: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1283`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1283)*
+
 GP-relative addressing (ARM)
 
 ### `IMAGE_REL_ARM_GPREL7`
-
 ```rust
 const IMAGE_REL_ARM_GPREL7: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1285`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1285)*
+
 GP-relative addressing (Thumb)
 
 ### `IMAGE_REL_ARM_BLX24`
-
 ```rust
 const IMAGE_REL_ARM_BLX24: u16 = 8u16;
 ```
 
-### `IMAGE_REL_ARM_BLX11`
+*Defined in [`object-0.37.3/src/pe.rs:1286`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1286)*
 
+### `IMAGE_REL_ARM_BLX11`
 ```rust
 const IMAGE_REL_ARM_BLX11: u16 = 9u16;
 ```
 
-### `IMAGE_REL_ARM_REL32`
+*Defined in [`object-0.37.3/src/pe.rs:1287`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1287)*
 
+### `IMAGE_REL_ARM_REL32`
 ```rust
 const IMAGE_REL_ARM_REL32: u16 = 10u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1289`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1289)*
+
 32-bit relative address from byte following reloc
 
 ### `IMAGE_REL_ARM_SECTION`
-
 ```rust
 const IMAGE_REL_ARM_SECTION: u16 = 14u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1291`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1291)*
+
 Section table index
 
 ### `IMAGE_REL_ARM_SECREL`
-
 ```rust
 const IMAGE_REL_ARM_SECREL: u16 = 15u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1293`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1293)*
+
 Offset within section
 
 ### `IMAGE_REL_ARM_MOV32A`
-
 ```rust
 const IMAGE_REL_ARM_MOV32A: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1295`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1295)*
+
 ARM: MOVW/MOVT
 
 ### `IMAGE_REL_ARM_MOV32`
-
 ```rust
 const IMAGE_REL_ARM_MOV32: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1297`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1297)*
+
 ARM: MOVW/MOVT (deprecated)
 
 ### `IMAGE_REL_ARM_MOV32T`
-
 ```rust
 const IMAGE_REL_ARM_MOV32T: u16 = 17u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1299`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1299)*
+
 Thumb: MOVW/MOVT
 
 ### `IMAGE_REL_THUMB_MOV32`
-
 ```rust
 const IMAGE_REL_THUMB_MOV32: u16 = 17u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1301`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1301)*
+
 Thumb: MOVW/MOVT (deprecated)
 
 ### `IMAGE_REL_ARM_BRANCH20T`
-
 ```rust
 const IMAGE_REL_ARM_BRANCH20T: u16 = 18u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1303`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1303)*
+
 Thumb: 32-bit conditional B
 
 ### `IMAGE_REL_THUMB_BRANCH20`
-
 ```rust
 const IMAGE_REL_THUMB_BRANCH20: u16 = 18u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1305`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1305)*
+
 Thumb: 32-bit conditional B (deprecated)
 
 ### `IMAGE_REL_ARM_BRANCH24T`
-
 ```rust
 const IMAGE_REL_ARM_BRANCH24T: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1307`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1307)*
+
 Thumb: 32-bit B or BL
 
 ### `IMAGE_REL_THUMB_BRANCH24`
-
 ```rust
 const IMAGE_REL_THUMB_BRANCH24: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1309`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1309)*
+
 Thumb: 32-bit B or BL (deprecated)
 
 ### `IMAGE_REL_ARM_BLX23T`
-
 ```rust
 const IMAGE_REL_ARM_BLX23T: u16 = 21u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1311`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1311)*
+
 Thumb: BLX immediate
 
 ### `IMAGE_REL_THUMB_BLX23`
-
 ```rust
 const IMAGE_REL_THUMB_BLX23: u16 = 21u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1313`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1313)*
+
 Thumb: BLX immediate (deprecated)
 
 ### `IMAGE_REL_AM_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_AM_ABSOLUTE: u16 = 0u16;
 ```
 
-### `IMAGE_REL_AM_ADDR32`
+*Defined in [`object-0.37.3/src/pe.rs:1315`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1315)*
 
+### `IMAGE_REL_AM_ADDR32`
 ```rust
 const IMAGE_REL_AM_ADDR32: u16 = 1u16;
 ```
 
-### `IMAGE_REL_AM_ADDR32NB`
+*Defined in [`object-0.37.3/src/pe.rs:1316`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1316)*
 
+### `IMAGE_REL_AM_ADDR32NB`
 ```rust
 const IMAGE_REL_AM_ADDR32NB: u16 = 2u16;
 ```
 
-### `IMAGE_REL_AM_CALL32`
+*Defined in [`object-0.37.3/src/pe.rs:1317`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1317)*
 
+### `IMAGE_REL_AM_CALL32`
 ```rust
 const IMAGE_REL_AM_CALL32: u16 = 3u16;
 ```
 
-### `IMAGE_REL_AM_FUNCINFO`
+*Defined in [`object-0.37.3/src/pe.rs:1318`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1318)*
 
+### `IMAGE_REL_AM_FUNCINFO`
 ```rust
 const IMAGE_REL_AM_FUNCINFO: u16 = 4u16;
 ```
 
-### `IMAGE_REL_AM_REL32_1`
+*Defined in [`object-0.37.3/src/pe.rs:1319`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1319)*
 
+### `IMAGE_REL_AM_REL32_1`
 ```rust
 const IMAGE_REL_AM_REL32_1: u16 = 5u16;
 ```
 
-### `IMAGE_REL_AM_REL32_2`
+*Defined in [`object-0.37.3/src/pe.rs:1320`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1320)*
 
+### `IMAGE_REL_AM_REL32_2`
 ```rust
 const IMAGE_REL_AM_REL32_2: u16 = 6u16;
 ```
 
-### `IMAGE_REL_AM_SECREL`
+*Defined in [`object-0.37.3/src/pe.rs:1321`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1321)*
 
+### `IMAGE_REL_AM_SECREL`
 ```rust
 const IMAGE_REL_AM_SECREL: u16 = 7u16;
 ```
 
-### `IMAGE_REL_AM_SECTION`
+*Defined in [`object-0.37.3/src/pe.rs:1322`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1322)*
 
+### `IMAGE_REL_AM_SECTION`
 ```rust
 const IMAGE_REL_AM_SECTION: u16 = 8u16;
 ```
 
-### `IMAGE_REL_AM_TOKEN`
+*Defined in [`object-0.37.3/src/pe.rs:1323`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1323)*
 
+### `IMAGE_REL_AM_TOKEN`
 ```rust
 const IMAGE_REL_AM_TOKEN: u16 = 9u16;
 ```
 
-### `IMAGE_REL_ARM64_ABSOLUTE`
+*Defined in [`object-0.37.3/src/pe.rs:1324`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1324)*
 
+### `IMAGE_REL_ARM64_ABSOLUTE`
 ```rust
 const IMAGE_REL_ARM64_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1331`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1331)*
+
 No relocation required
 
 ### `IMAGE_REL_ARM64_ADDR32`
-
 ```rust
 const IMAGE_REL_ARM64_ADDR32: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1333`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1333)*
+
 32 bit address. Review! do we need it?
 
 ### `IMAGE_REL_ARM64_ADDR32NB`
-
 ```rust
 const IMAGE_REL_ARM64_ADDR32NB: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1335`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1335)*
+
 32 bit address w/o image base (RVA: for Data/PData/XData)
 
 ### `IMAGE_REL_ARM64_BRANCH26`
-
 ```rust
 const IMAGE_REL_ARM64_BRANCH26: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1337`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1337)*
+
 26 bit offset << 2 & sign ext. for B & BL
 
 ### `IMAGE_REL_ARM64_PAGEBASE_REL21`
-
 ```rust
 const IMAGE_REL_ARM64_PAGEBASE_REL21: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1339`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1339)*
+
 ADRP
 
 ### `IMAGE_REL_ARM64_REL21`
-
 ```rust
 const IMAGE_REL_ARM64_REL21: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1341`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1341)*
+
 ADR
 
 ### `IMAGE_REL_ARM64_PAGEOFFSET_12A`
-
 ```rust
 const IMAGE_REL_ARM64_PAGEOFFSET_12A: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1343`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1343)*
+
 ADD/ADDS (immediate) with zero shift, for page offset
 
 ### `IMAGE_REL_ARM64_PAGEOFFSET_12L`
-
 ```rust
 const IMAGE_REL_ARM64_PAGEOFFSET_12L: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1345`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1345)*
+
 LDR (indexed, unsigned immediate), for page offset
 
 ### `IMAGE_REL_ARM64_SECREL`
-
 ```rust
 const IMAGE_REL_ARM64_SECREL: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1347`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1347)*
+
 Offset within section
 
 ### `IMAGE_REL_ARM64_SECREL_LOW12A`
-
 ```rust
 const IMAGE_REL_ARM64_SECREL_LOW12A: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1349`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1349)*
+
 ADD/ADDS (immediate) with zero shift, for bit 0:11 of section offset
 
 ### `IMAGE_REL_ARM64_SECREL_HIGH12A`
-
 ```rust
 const IMAGE_REL_ARM64_SECREL_HIGH12A: u16 = 10u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1351`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1351)*
+
 ADD/ADDS (immediate) with zero shift, for bit 12:23 of section offset
 
 ### `IMAGE_REL_ARM64_SECREL_LOW12L`
-
 ```rust
 const IMAGE_REL_ARM64_SECREL_LOW12L: u16 = 11u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1353`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1353)*
+
 LDR (indexed, unsigned immediate), for bit 0:11 of section offset
 
 ### `IMAGE_REL_ARM64_TOKEN`
-
 ```rust
 const IMAGE_REL_ARM64_TOKEN: u16 = 12u16;
 ```
 
-### `IMAGE_REL_ARM64_SECTION`
+*Defined in [`object-0.37.3/src/pe.rs:1354`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1354)*
 
+### `IMAGE_REL_ARM64_SECTION`
 ```rust
 const IMAGE_REL_ARM64_SECTION: u16 = 13u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1356`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1356)*
+
 Section table index
 
 ### `IMAGE_REL_ARM64_ADDR64`
-
 ```rust
 const IMAGE_REL_ARM64_ADDR64: u16 = 14u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1358`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1358)*
+
 64 bit address
 
 ### `IMAGE_REL_ARM64_BRANCH19`
-
 ```rust
 const IMAGE_REL_ARM64_BRANCH19: u16 = 15u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1360`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1360)*
+
 19 bit offset << 2 & sign ext. for conditional B
 
 ### `IMAGE_REL_ARM64_BRANCH14`
-
 ```rust
 const IMAGE_REL_ARM64_BRANCH14: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1362`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1362)*
+
 TBZ/TBNZ
 
 ### `IMAGE_REL_ARM64_REL32`
-
 ```rust
 const IMAGE_REL_ARM64_REL32: u16 = 17u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1364`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1364)*
+
 32-bit relative address from byte following reloc
 
 ### `IMAGE_REL_AMD64_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_AMD64_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1370`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1370)*
+
 Reference is absolute, no relocation is necessary
 
 ### `IMAGE_REL_AMD64_ADDR64`
-
 ```rust
 const IMAGE_REL_AMD64_ADDR64: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1372`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1372)*
+
 64-bit address (VA).
 
 ### `IMAGE_REL_AMD64_ADDR32`
-
 ```rust
 const IMAGE_REL_AMD64_ADDR32: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1374`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1374)*
+
 32-bit address (VA).
 
 ### `IMAGE_REL_AMD64_ADDR32NB`
-
 ```rust
 const IMAGE_REL_AMD64_ADDR32NB: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1376`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1376)*
+
 32-bit address w/o image base (RVA).
 
 ### `IMAGE_REL_AMD64_REL32`
-
 ```rust
 const IMAGE_REL_AMD64_REL32: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1378`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1378)*
+
 32-bit relative address from byte following reloc
 
 ### `IMAGE_REL_AMD64_REL32_1`
-
 ```rust
 const IMAGE_REL_AMD64_REL32_1: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1380`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1380)*
+
 32-bit relative address from byte distance 1 from reloc
 
 ### `IMAGE_REL_AMD64_REL32_2`
-
 ```rust
 const IMAGE_REL_AMD64_REL32_2: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1382`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1382)*
+
 32-bit relative address from byte distance 2 from reloc
 
 ### `IMAGE_REL_AMD64_REL32_3`
-
 ```rust
 const IMAGE_REL_AMD64_REL32_3: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1384`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1384)*
+
 32-bit relative address from byte distance 3 from reloc
 
 ### `IMAGE_REL_AMD64_REL32_4`
-
 ```rust
 const IMAGE_REL_AMD64_REL32_4: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1386`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1386)*
+
 32-bit relative address from byte distance 4 from reloc
 
 ### `IMAGE_REL_AMD64_REL32_5`
-
 ```rust
 const IMAGE_REL_AMD64_REL32_5: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1388`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1388)*
+
 32-bit relative address from byte distance 5 from reloc
 
 ### `IMAGE_REL_AMD64_SECTION`
-
 ```rust
 const IMAGE_REL_AMD64_SECTION: u16 = 10u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1390`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1390)*
+
 Section index
 
 ### `IMAGE_REL_AMD64_SECREL`
-
 ```rust
 const IMAGE_REL_AMD64_SECREL: u16 = 11u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1392`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1392)*
+
 32 bit offset from base of section containing target
 
 ### `IMAGE_REL_AMD64_SECREL7`
-
 ```rust
 const IMAGE_REL_AMD64_SECREL7: u16 = 12u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1394`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1394)*
+
 7 bit unsigned offset from base of section containing target
 
 ### `IMAGE_REL_AMD64_TOKEN`
-
 ```rust
 const IMAGE_REL_AMD64_TOKEN: u16 = 13u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1396`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1396)*
+
 32 bit metadata token
 
 ### `IMAGE_REL_AMD64_SREL32`
-
 ```rust
 const IMAGE_REL_AMD64_SREL32: u16 = 14u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1398`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1398)*
+
 32 bit signed span-dependent value emitted into object
 
 ### `IMAGE_REL_AMD64_PAIR`
-
 ```rust
 const IMAGE_REL_AMD64_PAIR: u16 = 15u16;
 ```
 
-### `IMAGE_REL_AMD64_SSPAN32`
+*Defined in [`object-0.37.3/src/pe.rs:1399`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1399)*
 
+### `IMAGE_REL_AMD64_SSPAN32`
 ```rust
 const IMAGE_REL_AMD64_SSPAN32: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1401`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1401)*
+
 32 bit signed span-dependent value applied at link time
 
 ### `IMAGE_REL_AMD64_EHANDLER`
-
 ```rust
 const IMAGE_REL_AMD64_EHANDLER: u16 = 17u16;
 ```
 
-### `IMAGE_REL_AMD64_IMPORT_BR`
+*Defined in [`object-0.37.3/src/pe.rs:1402`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1402)*
 
+### `IMAGE_REL_AMD64_IMPORT_BR`
 ```rust
 const IMAGE_REL_AMD64_IMPORT_BR: u16 = 18u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1404`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1404)*
+
 Indirect branch to an import
 
 ### `IMAGE_REL_AMD64_IMPORT_CALL`
-
 ```rust
 const IMAGE_REL_AMD64_IMPORT_CALL: u16 = 19u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1406`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1406)*
+
 Indirect call to an import
 
 ### `IMAGE_REL_AMD64_CFG_BR`
-
 ```rust
 const IMAGE_REL_AMD64_CFG_BR: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1408`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1408)*
+
 Indirect branch to a CFG check
 
 ### `IMAGE_REL_AMD64_CFG_BR_REX`
-
 ```rust
 const IMAGE_REL_AMD64_CFG_BR_REX: u16 = 21u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1410`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1410)*
+
 Indirect branch to a CFG check, with REX.W prefix
 
 ### `IMAGE_REL_AMD64_CFG_CALL`
-
 ```rust
 const IMAGE_REL_AMD64_CFG_CALL: u16 = 22u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1412`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1412)*
+
 Indirect call to a CFG check
 
 ### `IMAGE_REL_AMD64_INDIR_BR`
-
 ```rust
 const IMAGE_REL_AMD64_INDIR_BR: u16 = 23u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1414`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1414)*
+
 Indirect branch to a target in RAX (no CFG)
 
 ### `IMAGE_REL_AMD64_INDIR_BR_REX`
-
 ```rust
 const IMAGE_REL_AMD64_INDIR_BR_REX: u16 = 24u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1416`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1416)*
+
 Indirect branch to a target in RAX, with REX.W prefix (no CFG)
 
 ### `IMAGE_REL_AMD64_INDIR_CALL`
-
 ```rust
 const IMAGE_REL_AMD64_INDIR_CALL: u16 = 25u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1418`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1418)*
+
 Indirect call to a target in RAX (no CFG)
 
 ### `IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_FIRST`
-
 ```rust
 const IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_FIRST: u16 = 32u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1420`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1420)*
+
 Indirect branch for a switch table using Reg 0 (RAX)
 
 ### `IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_LAST`
-
 ```rust
 const IMAGE_REL_AMD64_INDIR_BR_SWITCHTABLE_LAST: u16 = 47u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1422`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1422)*
+
 Indirect branch for a switch table using Reg 15 (R15)
 
 ### `IMAGE_REL_IA64_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_IA64_ABSOLUTE: u16 = 0u16;
 ```
 
-### `IMAGE_REL_IA64_IMM14`
+*Defined in [`object-0.37.3/src/pe.rs:1427`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1427)*
 
+### `IMAGE_REL_IA64_IMM14`
 ```rust
 const IMAGE_REL_IA64_IMM14: u16 = 1u16;
 ```
 
-### `IMAGE_REL_IA64_IMM22`
+*Defined in [`object-0.37.3/src/pe.rs:1428`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1428)*
 
+### `IMAGE_REL_IA64_IMM22`
 ```rust
 const IMAGE_REL_IA64_IMM22: u16 = 2u16;
 ```
 
-### `IMAGE_REL_IA64_IMM64`
+*Defined in [`object-0.37.3/src/pe.rs:1429`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1429)*
 
+### `IMAGE_REL_IA64_IMM64`
 ```rust
 const IMAGE_REL_IA64_IMM64: u16 = 3u16;
 ```
 
-### `IMAGE_REL_IA64_DIR32`
+*Defined in [`object-0.37.3/src/pe.rs:1430`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1430)*
 
+### `IMAGE_REL_IA64_DIR32`
 ```rust
 const IMAGE_REL_IA64_DIR32: u16 = 4u16;
 ```
 
-### `IMAGE_REL_IA64_DIR64`
+*Defined in [`object-0.37.3/src/pe.rs:1431`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1431)*
 
+### `IMAGE_REL_IA64_DIR64`
 ```rust
 const IMAGE_REL_IA64_DIR64: u16 = 5u16;
 ```
 
-### `IMAGE_REL_IA64_PCREL21B`
+*Defined in [`object-0.37.3/src/pe.rs:1432`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1432)*
 
+### `IMAGE_REL_IA64_PCREL21B`
 ```rust
 const IMAGE_REL_IA64_PCREL21B: u16 = 6u16;
 ```
 
-### `IMAGE_REL_IA64_PCREL21M`
+*Defined in [`object-0.37.3/src/pe.rs:1433`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1433)*
 
+### `IMAGE_REL_IA64_PCREL21M`
 ```rust
 const IMAGE_REL_IA64_PCREL21M: u16 = 7u16;
 ```
 
-### `IMAGE_REL_IA64_PCREL21F`
+*Defined in [`object-0.37.3/src/pe.rs:1434`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1434)*
 
+### `IMAGE_REL_IA64_PCREL21F`
 ```rust
 const IMAGE_REL_IA64_PCREL21F: u16 = 8u16;
 ```
 
-### `IMAGE_REL_IA64_GPREL22`
+*Defined in [`object-0.37.3/src/pe.rs:1435`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1435)*
 
+### `IMAGE_REL_IA64_GPREL22`
 ```rust
 const IMAGE_REL_IA64_GPREL22: u16 = 9u16;
 ```
 
-### `IMAGE_REL_IA64_LTOFF22`
+*Defined in [`object-0.37.3/src/pe.rs:1436`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1436)*
 
+### `IMAGE_REL_IA64_LTOFF22`
 ```rust
 const IMAGE_REL_IA64_LTOFF22: u16 = 10u16;
 ```
 
-### `IMAGE_REL_IA64_SECTION`
+*Defined in [`object-0.37.3/src/pe.rs:1437`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1437)*
 
+### `IMAGE_REL_IA64_SECTION`
 ```rust
 const IMAGE_REL_IA64_SECTION: u16 = 11u16;
 ```
 
-### `IMAGE_REL_IA64_SECREL22`
+*Defined in [`object-0.37.3/src/pe.rs:1438`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1438)*
 
+### `IMAGE_REL_IA64_SECREL22`
 ```rust
 const IMAGE_REL_IA64_SECREL22: u16 = 12u16;
 ```
 
-### `IMAGE_REL_IA64_SECREL64I`
+*Defined in [`object-0.37.3/src/pe.rs:1439`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1439)*
 
+### `IMAGE_REL_IA64_SECREL64I`
 ```rust
 const IMAGE_REL_IA64_SECREL64I: u16 = 13u16;
 ```
 
-### `IMAGE_REL_IA64_SECREL32`
+*Defined in [`object-0.37.3/src/pe.rs:1440`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1440)*
 
+### `IMAGE_REL_IA64_SECREL32`
 ```rust
 const IMAGE_REL_IA64_SECREL32: u16 = 14u16;
 ```
 
-### `IMAGE_REL_IA64_DIR32NB`
+*Defined in [`object-0.37.3/src/pe.rs:1441`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1441)*
 
+### `IMAGE_REL_IA64_DIR32NB`
 ```rust
 const IMAGE_REL_IA64_DIR32NB: u16 = 16u16;
 ```
 
-### `IMAGE_REL_IA64_SREL14`
+*Defined in [`object-0.37.3/src/pe.rs:1443`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1443)*
 
+### `IMAGE_REL_IA64_SREL14`
 ```rust
 const IMAGE_REL_IA64_SREL14: u16 = 17u16;
 ```
 
-### `IMAGE_REL_IA64_SREL22`
+*Defined in [`object-0.37.3/src/pe.rs:1444`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1444)*
 
+### `IMAGE_REL_IA64_SREL22`
 ```rust
 const IMAGE_REL_IA64_SREL22: u16 = 18u16;
 ```
 
-### `IMAGE_REL_IA64_SREL32`
+*Defined in [`object-0.37.3/src/pe.rs:1445`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1445)*
 
+### `IMAGE_REL_IA64_SREL32`
 ```rust
 const IMAGE_REL_IA64_SREL32: u16 = 19u16;
 ```
 
-### `IMAGE_REL_IA64_UREL32`
+*Defined in [`object-0.37.3/src/pe.rs:1446`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1446)*
 
+### `IMAGE_REL_IA64_UREL32`
 ```rust
 const IMAGE_REL_IA64_UREL32: u16 = 20u16;
 ```
 
-### `IMAGE_REL_IA64_PCREL60X`
+*Defined in [`object-0.37.3/src/pe.rs:1447`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1447)*
 
+### `IMAGE_REL_IA64_PCREL60X`
 ```rust
 const IMAGE_REL_IA64_PCREL60X: u16 = 21u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1449`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1449)*
+
 This is always a BRL and never converted
 
 ### `IMAGE_REL_IA64_PCREL60B`
-
 ```rust
 const IMAGE_REL_IA64_PCREL60B: u16 = 22u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1451`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1451)*
+
 If possible, convert to MBB bundle with NOP.B in slot 1
 
 ### `IMAGE_REL_IA64_PCREL60F`
-
 ```rust
 const IMAGE_REL_IA64_PCREL60F: u16 = 23u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1453`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1453)*
+
 If possible, convert to MFB bundle with NOP.F in slot 1
 
 ### `IMAGE_REL_IA64_PCREL60I`
-
 ```rust
 const IMAGE_REL_IA64_PCREL60I: u16 = 24u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1455`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1455)*
+
 If possible, convert to MIB bundle with NOP.I in slot 1
 
 ### `IMAGE_REL_IA64_PCREL60M`
-
 ```rust
 const IMAGE_REL_IA64_PCREL60M: u16 = 25u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1457`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1457)*
+
 If possible, convert to MMB bundle with NOP.M in slot 1
 
 ### `IMAGE_REL_IA64_IMMGPREL64`
-
 ```rust
 const IMAGE_REL_IA64_IMMGPREL64: u16 = 26u16;
 ```
 
-### `IMAGE_REL_IA64_TOKEN`
+*Defined in [`object-0.37.3/src/pe.rs:1458`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1458)*
 
+### `IMAGE_REL_IA64_TOKEN`
 ```rust
 const IMAGE_REL_IA64_TOKEN: u16 = 27u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1460`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1460)*
+
 clr token
 
 ### `IMAGE_REL_IA64_GPREL32`
-
 ```rust
 const IMAGE_REL_IA64_GPREL32: u16 = 28u16;
 ```
 
-### `IMAGE_REL_IA64_ADDEND`
+*Defined in [`object-0.37.3/src/pe.rs:1461`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1461)*
 
+### `IMAGE_REL_IA64_ADDEND`
 ```rust
 const IMAGE_REL_IA64_ADDEND: u16 = 31u16;
 ```
 
-### `IMAGE_REL_CEF_ABSOLUTE`
+*Defined in [`object-0.37.3/src/pe.rs:1462`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1462)*
 
+### `IMAGE_REL_CEF_ABSOLUTE`
 ```rust
 const IMAGE_REL_CEF_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1468`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1468)*
+
 Reference is absolute, no relocation is necessary
 
 ### `IMAGE_REL_CEF_ADDR32`
-
 ```rust
 const IMAGE_REL_CEF_ADDR32: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1470`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1470)*
+
 32-bit address (VA).
 
 ### `IMAGE_REL_CEF_ADDR64`
-
 ```rust
 const IMAGE_REL_CEF_ADDR64: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1472`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1472)*
+
 64-bit address (VA).
 
 ### `IMAGE_REL_CEF_ADDR32NB`
-
 ```rust
 const IMAGE_REL_CEF_ADDR32NB: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1474`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1474)*
+
 32-bit address w/o image base (RVA).
 
 ### `IMAGE_REL_CEF_SECTION`
-
 ```rust
 const IMAGE_REL_CEF_SECTION: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1476`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1476)*
+
 Section index
 
 ### `IMAGE_REL_CEF_SECREL`
-
 ```rust
 const IMAGE_REL_CEF_SECREL: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1478`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1478)*
+
 32 bit offset from base of section containing target
 
 ### `IMAGE_REL_CEF_TOKEN`
-
 ```rust
 const IMAGE_REL_CEF_TOKEN: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1480`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1480)*
+
 32 bit metadata token
 
 ### `IMAGE_REL_CEE_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_CEE_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1486`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1486)*
+
 Reference is absolute, no relocation is necessary
 
 ### `IMAGE_REL_CEE_ADDR32`
-
 ```rust
 const IMAGE_REL_CEE_ADDR32: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1488`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1488)*
+
 32-bit address (VA).
 
 ### `IMAGE_REL_CEE_ADDR64`
-
 ```rust
 const IMAGE_REL_CEE_ADDR64: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1490`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1490)*
+
 64-bit address (VA).
 
 ### `IMAGE_REL_CEE_ADDR32NB`
-
 ```rust
 const IMAGE_REL_CEE_ADDR32NB: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1492`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1492)*
+
 32-bit address w/o image base (RVA).
 
 ### `IMAGE_REL_CEE_SECTION`
-
 ```rust
 const IMAGE_REL_CEE_SECTION: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1494`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1494)*
+
 Section index
 
 ### `IMAGE_REL_CEE_SECREL`
-
 ```rust
 const IMAGE_REL_CEE_SECREL: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1496`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1496)*
+
 32 bit offset from base of section containing target
 
 ### `IMAGE_REL_CEE_TOKEN`
-
 ```rust
 const IMAGE_REL_CEE_TOKEN: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1498`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1498)*
+
 32 bit metadata token
 
 ### `IMAGE_REL_M32R_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_M32R_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1501`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1501)*
+
 No relocation required
 
 ### `IMAGE_REL_M32R_ADDR32`
-
 ```rust
 const IMAGE_REL_M32R_ADDR32: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1503`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1503)*
+
 32 bit address
 
 ### `IMAGE_REL_M32R_ADDR32NB`
-
 ```rust
 const IMAGE_REL_M32R_ADDR32NB: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1505`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1505)*
+
 32 bit address w/o image base
 
 ### `IMAGE_REL_M32R_ADDR24`
-
 ```rust
 const IMAGE_REL_M32R_ADDR24: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1507`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1507)*
+
 24 bit address
 
 ### `IMAGE_REL_M32R_GPREL16`
-
 ```rust
 const IMAGE_REL_M32R_GPREL16: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1509`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1509)*
+
 GP relative addressing
 
 ### `IMAGE_REL_M32R_PCREL24`
-
 ```rust
 const IMAGE_REL_M32R_PCREL24: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1511`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1511)*
+
 24 bit offset << 2 & sign ext.
 
 ### `IMAGE_REL_M32R_PCREL16`
-
 ```rust
 const IMAGE_REL_M32R_PCREL16: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1513`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1513)*
+
 16 bit offset << 2 & sign ext.
 
 ### `IMAGE_REL_M32R_PCREL8`
-
 ```rust
 const IMAGE_REL_M32R_PCREL8: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1515`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1515)*
+
 8 bit offset << 2 & sign ext.
 
 ### `IMAGE_REL_M32R_REFHALF`
-
 ```rust
 const IMAGE_REL_M32R_REFHALF: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1517`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1517)*
+
 16 MSBs
 
 ### `IMAGE_REL_M32R_REFHI`
-
 ```rust
 const IMAGE_REL_M32R_REFHI: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1519`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1519)*
+
 16 MSBs; adj for LSB sign ext.
 
 ### `IMAGE_REL_M32R_REFLO`
-
 ```rust
 const IMAGE_REL_M32R_REFLO: u16 = 10u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1521`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1521)*
+
 16 LSBs
 
 ### `IMAGE_REL_M32R_PAIR`
-
 ```rust
 const IMAGE_REL_M32R_PAIR: u16 = 11u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1523`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1523)*
+
 Link HI and LO
 
 ### `IMAGE_REL_M32R_SECTION`
-
 ```rust
 const IMAGE_REL_M32R_SECTION: u16 = 12u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1525`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1525)*
+
 Section table index
 
 ### `IMAGE_REL_M32R_SECREL32`
-
 ```rust
 const IMAGE_REL_M32R_SECREL32: u16 = 13u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1527`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1527)*
+
 32 bit section relative reference
 
 ### `IMAGE_REL_M32R_TOKEN`
-
 ```rust
 const IMAGE_REL_M32R_TOKEN: u16 = 14u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1529`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1529)*
+
 clr token
 
 ### `IMAGE_REL_EBC_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_EBC_ABSOLUTE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1532`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1532)*
+
 No relocation required
 
 ### `IMAGE_REL_EBC_ADDR32NB`
-
 ```rust
 const IMAGE_REL_EBC_ADDR32NB: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1534`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1534)*
+
 32 bit address w/o image base
 
 ### `IMAGE_REL_EBC_REL32`
-
 ```rust
 const IMAGE_REL_EBC_REL32: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1536`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1536)*
+
 32-bit relative address from byte following reloc
 
 ### `IMAGE_REL_EBC_SECTION`
-
 ```rust
 const IMAGE_REL_EBC_SECTION: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1538`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1538)*
+
 Section table index
 
 ### `IMAGE_REL_EBC_SECREL`
-
 ```rust
 const IMAGE_REL_EBC_SECREL: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1540`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1540)*
+
 Offset within section
 
 ### `EMARCH_ENC_I17_IMM7B_INST_WORD_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM7B_INST_WORD_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1553`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1553)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM7B_SIZE_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM7B_SIZE_X: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1555`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1555)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM7B_INST_WORD_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM7B_INST_WORD_POS_X: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1557`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1557)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM7B_VAL_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM7B_VAL_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1559`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1559)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM9D_INST_WORD_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM9D_INST_WORD_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1562`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1562)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM9D_SIZE_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM9D_SIZE_X: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1564`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1564)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM9D_INST_WORD_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM9D_INST_WORD_POS_X: u16 = 18u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1566`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1566)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM9D_VAL_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM9D_VAL_POS_X: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1568`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1568)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM5C_INST_WORD_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM5C_INST_WORD_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1571`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1571)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM5C_SIZE_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM5C_SIZE_X: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1573`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1573)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM5C_INST_WORD_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM5C_INST_WORD_POS_X: u16 = 13u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1575`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1575)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM5C_VAL_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM5C_VAL_POS_X: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1577`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1577)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IC_INST_WORD_X`
-
 ```rust
 const EMARCH_ENC_I17_IC_INST_WORD_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1580`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1580)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IC_SIZE_X`
-
 ```rust
 const EMARCH_ENC_I17_IC_SIZE_X: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1582`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1582)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IC_INST_WORD_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IC_INST_WORD_POS_X: u16 = 12u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1584`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1584)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IC_VAL_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IC_VAL_POS_X: u16 = 21u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1586`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1586)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41A_INST_WORD_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41A_INST_WORD_X: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1589`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1589)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41A_SIZE_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41A_SIZE_X: u16 = 10u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1591`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1591)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41A_INST_WORD_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41A_INST_WORD_POS_X: u16 = 14u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1593`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1593)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41A_VAL_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41A_VAL_POS_X: u16 = 22u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1595`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1595)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41B_INST_WORD_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41B_INST_WORD_X: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1598`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1598)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41B_SIZE_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41B_SIZE_X: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1600`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1600)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41B_INST_WORD_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41B_INST_WORD_POS_X: u16 = 24u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1602`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1602)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41B_VAL_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41B_VAL_POS_X: u16 = 32u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1604`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1604)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41C_INST_WORD_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41C_INST_WORD_X: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1607`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1607)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41C_SIZE_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41C_SIZE_X: u16 = 23u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1609`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1609)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41C_INST_WORD_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41C_INST_WORD_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1611`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1611)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_IMM41C_VAL_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_IMM41C_VAL_POS_X: u16 = 40u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1613`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1613)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_SIGN_INST_WORD_X`
-
 ```rust
 const EMARCH_ENC_I17_SIGN_INST_WORD_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1616`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1616)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_SIGN_SIZE_X`
-
 ```rust
 const EMARCH_ENC_I17_SIGN_SIZE_X: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1618`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1618)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_SIGN_INST_WORD_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_SIGN_INST_WORD_POS_X: u16 = 27u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1620`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1620)*
+
 Intel-IA64-Filler
 
 ### `EMARCH_ENC_I17_SIGN_VAL_POS_X`
-
 ```rust
 const EMARCH_ENC_I17_SIGN_VAL_POS_X: u16 = 63u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1622`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1622)*
+
 Intel-IA64-Filler
 
 ### `X3_OPCODE_INST_WORD_X`
-
 ```rust
 const X3_OPCODE_INST_WORD_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1625`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1625)*
+
 Intel-IA64-Filler
 
 ### `X3_OPCODE_SIZE_X`
-
 ```rust
 const X3_OPCODE_SIZE_X: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1627`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1627)*
+
 Intel-IA64-Filler
 
 ### `X3_OPCODE_INST_WORD_POS_X`
-
 ```rust
 const X3_OPCODE_INST_WORD_POS_X: u16 = 28u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1629`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1629)*
+
 Intel-IA64-Filler
 
 ### `X3_OPCODE_SIGN_VAL_POS_X`
-
 ```rust
 const X3_OPCODE_SIGN_VAL_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1631`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1631)*
+
 Intel-IA64-Filler
 
 ### `X3_I_INST_WORD_X`
-
 ```rust
 const X3_I_INST_WORD_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1634`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1634)*
+
 Intel-IA64-Filler
 
 ### `X3_I_SIZE_X`
-
 ```rust
 const X3_I_SIZE_X: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1636`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1636)*
+
 Intel-IA64-Filler
 
 ### `X3_I_INST_WORD_POS_X`
-
 ```rust
 const X3_I_INST_WORD_POS_X: u16 = 27u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1638`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1638)*
+
 Intel-IA64-Filler
 
 ### `X3_I_SIGN_VAL_POS_X`
-
 ```rust
 const X3_I_SIGN_VAL_POS_X: u16 = 59u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1640`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1640)*
+
 Intel-IA64-Filler
 
 ### `X3_D_WH_INST_WORD_X`
-
 ```rust
 const X3_D_WH_INST_WORD_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1643`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1643)*
+
 Intel-IA64-Filler
 
 ### `X3_D_WH_SIZE_X`
-
 ```rust
 const X3_D_WH_SIZE_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1645`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1645)*
+
 Intel-IA64-Filler
 
 ### `X3_D_WH_INST_WORD_POS_X`
-
 ```rust
 const X3_D_WH_INST_WORD_POS_X: u16 = 24u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1647`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1647)*
+
 Intel-IA64-Filler
 
 ### `X3_D_WH_SIGN_VAL_POS_X`
-
 ```rust
 const X3_D_WH_SIGN_VAL_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1649`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1649)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM20_INST_WORD_X`
-
 ```rust
 const X3_IMM20_INST_WORD_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1652`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1652)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM20_SIZE_X`
-
 ```rust
 const X3_IMM20_SIZE_X: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1654`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1654)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM20_INST_WORD_POS_X`
-
 ```rust
 const X3_IMM20_INST_WORD_POS_X: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1656`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1656)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM20_SIGN_VAL_POS_X`
-
 ```rust
 const X3_IMM20_SIGN_VAL_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1658`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1658)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM39_1_INST_WORD_X`
-
 ```rust
 const X3_IMM39_1_INST_WORD_X: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1661`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1661)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM39_1_SIZE_X`
-
 ```rust
 const X3_IMM39_1_SIZE_X: u16 = 23u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1663`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1663)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM39_1_INST_WORD_POS_X`
-
 ```rust
 const X3_IMM39_1_INST_WORD_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1665`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1665)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM39_1_SIGN_VAL_POS_X`
-
 ```rust
 const X3_IMM39_1_SIGN_VAL_POS_X: u16 = 36u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1667`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1667)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM39_2_INST_WORD_X`
-
 ```rust
 const X3_IMM39_2_INST_WORD_X: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1670`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1670)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM39_2_SIZE_X`
-
 ```rust
 const X3_IMM39_2_SIZE_X: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1672`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1672)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM39_2_INST_WORD_POS_X`
-
 ```rust
 const X3_IMM39_2_INST_WORD_POS_X: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1674`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1674)*
+
 Intel-IA64-Filler
 
 ### `X3_IMM39_2_SIGN_VAL_POS_X`
-
 ```rust
 const X3_IMM39_2_SIGN_VAL_POS_X: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1676`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1676)*
+
 Intel-IA64-Filler
 
 ### `X3_P_INST_WORD_X`
-
 ```rust
 const X3_P_INST_WORD_X: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1679`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1679)*
+
 Intel-IA64-Filler
 
 ### `X3_P_SIZE_X`
-
 ```rust
 const X3_P_SIZE_X: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1681`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1681)*
+
 Intel-IA64-Filler
 
 ### `X3_P_INST_WORD_POS_X`
-
 ```rust
 const X3_P_INST_WORD_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1683`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1683)*
+
 Intel-IA64-Filler
 
 ### `X3_P_SIGN_VAL_POS_X`
-
 ```rust
 const X3_P_SIGN_VAL_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1685`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1685)*
+
 Intel-IA64-Filler
 
 ### `X3_TMPLT_INST_WORD_X`
-
 ```rust
 const X3_TMPLT_INST_WORD_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1688`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1688)*
+
 Intel-IA64-Filler
 
 ### `X3_TMPLT_SIZE_X`
-
 ```rust
 const X3_TMPLT_SIZE_X: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1690`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1690)*
+
 Intel-IA64-Filler
 
 ### `X3_TMPLT_INST_WORD_POS_X`
-
 ```rust
 const X3_TMPLT_INST_WORD_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1692`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1692)*
+
 Intel-IA64-Filler
 
 ### `X3_TMPLT_SIGN_VAL_POS_X`
-
 ```rust
 const X3_TMPLT_SIGN_VAL_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1694`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1694)*
+
 Intel-IA64-Filler
 
 ### `X3_BTYPE_QP_INST_WORD_X`
-
 ```rust
 const X3_BTYPE_QP_INST_WORD_X: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1697`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1697)*
+
 Intel-IA64-Filler
 
 ### `X3_BTYPE_QP_SIZE_X`
-
 ```rust
 const X3_BTYPE_QP_SIZE_X: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1699`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1699)*
+
 Intel-IA64-Filler
 
 ### `X3_BTYPE_QP_INST_WORD_POS_X`
-
 ```rust
 const X3_BTYPE_QP_INST_WORD_POS_X: u16 = 23u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1701`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1701)*
+
 Intel-IA64-Filler
 
 ### `X3_BTYPE_QP_INST_VAL_POS_X`
-
 ```rust
 const X3_BTYPE_QP_INST_VAL_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1703`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1703)*
+
 Intel-IA64-Filler
 
 ### `X3_EMPTY_INST_WORD_X`
-
 ```rust
 const X3_EMPTY_INST_WORD_X: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1706`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1706)*
+
 Intel-IA64-Filler
 
 ### `X3_EMPTY_SIZE_X`
-
 ```rust
 const X3_EMPTY_SIZE_X: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1708`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1708)*
+
 Intel-IA64-Filler
 
 ### `X3_EMPTY_INST_WORD_POS_X`
-
 ```rust
 const X3_EMPTY_INST_WORD_POS_X: u16 = 14u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1710`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1710)*
+
 Intel-IA64-Filler
 
 ### `X3_EMPTY_INST_VAL_POS_X`
-
 ```rust
 const X3_EMPTY_INST_VAL_POS_X: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:1712`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1712)*
+
 Intel-IA64-Filler
 
 ### `IMAGE_REL_BASED_ABSOLUTE`
-
 ```rust
 const IMAGE_REL_BASED_ABSOLUTE: u16 = 0u16;
 ```
 
-### `IMAGE_REL_BASED_HIGH`
+*Defined in [`object-0.37.3/src/pe.rs:1745`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1745)*
 
+### `IMAGE_REL_BASED_HIGH`
 ```rust
 const IMAGE_REL_BASED_HIGH: u16 = 1u16;
 ```
 
-### `IMAGE_REL_BASED_LOW`
+*Defined in [`object-0.37.3/src/pe.rs:1746`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1746)*
 
+### `IMAGE_REL_BASED_LOW`
 ```rust
 const IMAGE_REL_BASED_LOW: u16 = 2u16;
 ```
 
-### `IMAGE_REL_BASED_HIGHLOW`
+*Defined in [`object-0.37.3/src/pe.rs:1747`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1747)*
 
+### `IMAGE_REL_BASED_HIGHLOW`
 ```rust
 const IMAGE_REL_BASED_HIGHLOW: u16 = 3u16;
 ```
 
-### `IMAGE_REL_BASED_HIGHADJ`
+*Defined in [`object-0.37.3/src/pe.rs:1748`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1748)*
 
+### `IMAGE_REL_BASED_HIGHADJ`
 ```rust
 const IMAGE_REL_BASED_HIGHADJ: u16 = 4u16;
 ```
 
-### `IMAGE_REL_BASED_MACHINE_SPECIFIC_5`
+*Defined in [`object-0.37.3/src/pe.rs:1749`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1749)*
 
+### `IMAGE_REL_BASED_MACHINE_SPECIFIC_5`
 ```rust
 const IMAGE_REL_BASED_MACHINE_SPECIFIC_5: u16 = 5u16;
 ```
 
-### `IMAGE_REL_BASED_RESERVED`
+*Defined in [`object-0.37.3/src/pe.rs:1750`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1750)*
 
+### `IMAGE_REL_BASED_RESERVED`
 ```rust
 const IMAGE_REL_BASED_RESERVED: u16 = 6u16;
 ```
 
-### `IMAGE_REL_BASED_MACHINE_SPECIFIC_7`
+*Defined in [`object-0.37.3/src/pe.rs:1751`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1751)*
 
+### `IMAGE_REL_BASED_MACHINE_SPECIFIC_7`
 ```rust
 const IMAGE_REL_BASED_MACHINE_SPECIFIC_7: u16 = 7u16;
 ```
 
-### `IMAGE_REL_BASED_MACHINE_SPECIFIC_8`
+*Defined in [`object-0.37.3/src/pe.rs:1752`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1752)*
 
+### `IMAGE_REL_BASED_MACHINE_SPECIFIC_8`
 ```rust
 const IMAGE_REL_BASED_MACHINE_SPECIFIC_8: u16 = 8u16;
 ```
 
-### `IMAGE_REL_BASED_MACHINE_SPECIFIC_9`
+*Defined in [`object-0.37.3/src/pe.rs:1753`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1753)*
 
+### `IMAGE_REL_BASED_MACHINE_SPECIFIC_9`
 ```rust
 const IMAGE_REL_BASED_MACHINE_SPECIFIC_9: u16 = 9u16;
 ```
 
-### `IMAGE_REL_BASED_DIR64`
+*Defined in [`object-0.37.3/src/pe.rs:1754`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1754)*
 
+### `IMAGE_REL_BASED_DIR64`
 ```rust
 const IMAGE_REL_BASED_DIR64: u16 = 10u16;
 ```
 
-### `IMAGE_REL_BASED_IA64_IMM64`
+*Defined in [`object-0.37.3/src/pe.rs:1755`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1755)*
 
+### `IMAGE_REL_BASED_IA64_IMM64`
 ```rust
 const IMAGE_REL_BASED_IA64_IMM64: u16 = 9u16;
 ```
 
-### `IMAGE_REL_BASED_MIPS_JMPADDR`
+*Defined in [`object-0.37.3/src/pe.rs:1761`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1761)*
 
+### `IMAGE_REL_BASED_MIPS_JMPADDR`
 ```rust
 const IMAGE_REL_BASED_MIPS_JMPADDR: u16 = 5u16;
 ```
 
-### `IMAGE_REL_BASED_MIPS_JMPADDR16`
+*Defined in [`object-0.37.3/src/pe.rs:1763`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1763)*
 
+### `IMAGE_REL_BASED_MIPS_JMPADDR16`
 ```rust
 const IMAGE_REL_BASED_MIPS_JMPADDR16: u16 = 9u16;
 ```
 
-### `IMAGE_REL_BASED_ARM_MOV32`
+*Defined in [`object-0.37.3/src/pe.rs:1764`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1764)*
 
+### `IMAGE_REL_BASED_ARM_MOV32`
 ```rust
 const IMAGE_REL_BASED_ARM_MOV32: u16 = 5u16;
 ```
 
-### `IMAGE_REL_BASED_THUMB_MOV32`
+*Defined in [`object-0.37.3/src/pe.rs:1766`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1766)*
 
+### `IMAGE_REL_BASED_THUMB_MOV32`
 ```rust
 const IMAGE_REL_BASED_THUMB_MOV32: u16 = 7u16;
 ```
 
-### `IMAGE_REL_BASED_RISCV_HIGH20`
+*Defined in [`object-0.37.3/src/pe.rs:1767`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1767)*
 
+### `IMAGE_REL_BASED_RISCV_HIGH20`
 ```rust
 const IMAGE_REL_BASED_RISCV_HIGH20: u16 = 5u16;
 ```
 
-### `IMAGE_REL_BASED_RISCV_LOW12I`
+*Defined in [`object-0.37.3/src/pe.rs:1769`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1769)*
 
+### `IMAGE_REL_BASED_RISCV_LOW12I`
 ```rust
 const IMAGE_REL_BASED_RISCV_LOW12I: u16 = 7u16;
 ```
 
-### `IMAGE_REL_BASED_RISCV_LOW12S`
+*Defined in [`object-0.37.3/src/pe.rs:1770`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1770)*
 
+### `IMAGE_REL_BASED_RISCV_LOW12S`
 ```rust
 const IMAGE_REL_BASED_RISCV_LOW12S: u16 = 8u16;
 ```
 
-### `IMAGE_ARCHIVE_START_SIZE`
+*Defined in [`object-0.37.3/src/pe.rs:1771`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1771)*
 
+### `IMAGE_ARCHIVE_START_SIZE`
 ```rust
 const IMAGE_ARCHIVE_START_SIZE: usize = 8usize;
 ```
 
-### `IMAGE_ARCHIVE_START`
+*Defined in [`object-0.37.3/src/pe.rs:1777`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1777)*
 
+### `IMAGE_ARCHIVE_START`
 ```rust
 const IMAGE_ARCHIVE_START: &[u8; 8];
 ```
 
-### `IMAGE_ARCHIVE_END`
+*Defined in [`object-0.37.3/src/pe.rs:1778`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1778)*
 
+### `IMAGE_ARCHIVE_END`
 ```rust
 const IMAGE_ARCHIVE_END: &[u8];
 ```
 
-### `IMAGE_ARCHIVE_PAD`
+*Defined in [`object-0.37.3/src/pe.rs:1779`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1779)*
 
+### `IMAGE_ARCHIVE_PAD`
 ```rust
 const IMAGE_ARCHIVE_PAD: &[u8];
 ```
 
-### `IMAGE_ARCHIVE_LINKER_MEMBER`
+*Defined in [`object-0.37.3/src/pe.rs:1780`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1780)*
 
+### `IMAGE_ARCHIVE_LINKER_MEMBER`
 ```rust
 const IMAGE_ARCHIVE_LINKER_MEMBER: &[u8; 16];
 ```
 
-### `IMAGE_ARCHIVE_LONGNAMES_MEMBER`
+*Defined in [`object-0.37.3/src/pe.rs:1781`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1781)*
 
+### `IMAGE_ARCHIVE_LONGNAMES_MEMBER`
 ```rust
 const IMAGE_ARCHIVE_LONGNAMES_MEMBER: &[u8; 16];
 ```
 
-### `IMAGE_ARCHIVE_HYBRIDMAP_MEMBER`
+*Defined in [`object-0.37.3/src/pe.rs:1782`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1782)*
 
+### `IMAGE_ARCHIVE_HYBRIDMAP_MEMBER`
 ```rust
 const IMAGE_ARCHIVE_HYBRIDMAP_MEMBER: &[u8; 16];
 ```
 
-### `IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR`
+*Defined in [`object-0.37.3/src/pe.rs:1783`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1783)*
 
+### `IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR`
 ```rust
 const IMAGE_SIZEOF_ARCHIVE_MEMBER_HDR: u16 = 60u16;
 ```
 
-### `IMAGE_ORDINAL_FLAG64`
+*Defined in [`object-0.37.3/src/pe.rs:1804`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1804)*
 
+### `IMAGE_ORDINAL_FLAG64`
 ```rust
 const IMAGE_ORDINAL_FLAG64: u64 = 9_223_372_036_854_775_808u64;
 ```
 
-### `IMAGE_ORDINAL_FLAG32`
+*Defined in [`object-0.37.3/src/pe.rs:1875`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1875)*
 
+### `IMAGE_ORDINAL_FLAG32`
 ```rust
 const IMAGE_ORDINAL_FLAG32: u32 = 2_147_483_648u32;
 ```
 
-### `IMAGE_DELAYLOAD_RVA_BASED`
+*Defined in [`object-0.37.3/src/pe.rs:1876`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L1876)*
 
+### `IMAGE_DELAYLOAD_RVA_BASED`
 ```rust
 const IMAGE_DELAYLOAD_RVA_BASED: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2004`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2004)*
+
 Delay load version 2 flag for `ImageDelayloadDescriptor::attributes`.
 
 ### `IMAGE_RESOURCE_NAME_IS_STRING`
-
 ```rust
 const IMAGE_RESOURCE_NAME_IS_STRING: u32 = 2_147_483_648u32;
 ```
 
-### `IMAGE_RESOURCE_DATA_IS_DIRECTORY`
+*Defined in [`object-0.37.3/src/pe.rs:2035`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2035)*
 
+### `IMAGE_RESOURCE_DATA_IS_DIRECTORY`
 ```rust
 const IMAGE_RESOURCE_DATA_IS_DIRECTORY: u32 = 2_147_483_648u32;
 ```
 
-### `RT_CURSOR`
+*Defined in [`object-0.37.3/src/pe.rs:2036`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2036)*
 
+### `RT_CURSOR`
 ```rust
 const RT_CURSOR: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2104`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2104)*
+
 ID for: Hardware-dependent cursor resource.
 
 ### `RT_BITMAP`
-
 ```rust
 const RT_BITMAP: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2106`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2106)*
+
 ID for: Bitmap resource.
 
 ### `RT_ICON`
-
 ```rust
 const RT_ICON: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2108`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2108)*
+
 ID for: Hardware-dependent icon resource.
 
 ### `RT_MENU`
-
 ```rust
 const RT_MENU: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2110`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2110)*
+
 ID for: Menu resource.
 
 ### `RT_DIALOG`
-
 ```rust
 const RT_DIALOG: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2112`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2112)*
+
 ID for: Dialog box.
 
 ### `RT_STRING`
-
 ```rust
 const RT_STRING: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2114`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2114)*
+
 ID for: String-table entry.
 
 ### `RT_FONTDIR`
-
 ```rust
 const RT_FONTDIR: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2116`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2116)*
+
 ID for: Font directory resource.
 
 ### `RT_FONT`
-
 ```rust
 const RT_FONT: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2118`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2118)*
+
 ID for: Font resource.
 
 ### `RT_ACCELERATOR`
-
 ```rust
 const RT_ACCELERATOR: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2120`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2120)*
+
 ID for: Accelerator table.
 
 ### `RT_RCDATA`
-
 ```rust
 const RT_RCDATA: u16 = 10u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2122`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2122)*
+
 ID for: Application-defined resource (raw data).
 
 ### `RT_MESSAGETABLE`
-
 ```rust
 const RT_MESSAGETABLE: u16 = 11u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2124`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2124)*
+
 ID for: Message-table entry.
 
 ### `RT_GROUP_CURSOR`
-
 ```rust
 const RT_GROUP_CURSOR: u16 = 12u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2126`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2126)*
+
 ID for: Hardware-independent cursor resource.
 
 ### `RT_GROUP_ICON`
-
 ```rust
 const RT_GROUP_ICON: u16 = 14u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2128`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2128)*
+
 ID for: Hardware-independent icon resource.
 
 ### `RT_VERSION`
-
 ```rust
 const RT_VERSION: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2130`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2130)*
+
 ID for: Version resource.
 
 ### `RT_DLGINCLUDE`
-
 ```rust
 const RT_DLGINCLUDE: u16 = 17u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2132`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2132)*
+
 ID for: Allows a resource editing tool to associate a string with an .rc file.
 
 ### `RT_PLUGPLAY`
-
 ```rust
 const RT_PLUGPLAY: u16 = 19u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2134`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2134)*
+
 ID for: Plug and Play resource.
 
 ### `RT_VXD`
-
 ```rust
 const RT_VXD: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2136`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2136)*
+
 ID for: VXD.
 
 ### `RT_ANICURSOR`
-
 ```rust
 const RT_ANICURSOR: u16 = 21u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2138`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2138)*
+
 ID for: Animated cursor.
 
 ### `RT_ANIICON`
-
 ```rust
 const RT_ANIICON: u16 = 22u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2140`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2140)*
+
 ID for: Animated icon.
 
 ### `RT_HTML`
-
 ```rust
 const RT_HTML: u16 = 23u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2142`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2142)*
+
 ID for: HTML resource.
 
 ### `RT_MANIFEST`
-
 ```rust
 const RT_MANIFEST: u16 = 24u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2144`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2144)*
+
 ID for: Side-by-Side Assembly Manifest.
 
 ### `IMAGE_DYNAMIC_RELOCATION_GUARD_RF_PROLOGUE`
-
 ```rust
 const IMAGE_DYNAMIC_RELOCATION_GUARD_RF_PROLOGUE: u32 = 1u32;
 ```
 
-### `IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE`
+*Defined in [`object-0.37.3/src/pe.rs:2222`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2222)*
 
+### `IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE`
 ```rust
 const IMAGE_DYNAMIC_RELOCATION_GUARD_RF_EPILOGUE: u32 = 2u32;
 ```
 
-### `IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER`
+*Defined in [`object-0.37.3/src/pe.rs:2223`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2223)*
 
+### `IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER`
 ```rust
 const IMAGE_DYNAMIC_RELOCATION_GUARD_IMPORT_CONTROL_TRANSFER: u32 = 3u32;
 ```
 
-### `IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER`
+*Defined in [`object-0.37.3/src/pe.rs:2224`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2224)*
 
+### `IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER`
 ```rust
 const IMAGE_DYNAMIC_RELOCATION_GUARD_INDIR_CONTROL_TRANSFER: u32 = 4u32;
 ```
 
-### `IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH`
+*Defined in [`object-0.37.3/src/pe.rs:2225`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2225)*
 
+### `IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH`
 ```rust
 const IMAGE_DYNAMIC_RELOCATION_GUARD_SWITCHTABLE_BRANCH: u32 = 5u32;
 ```
 
-### `IMAGE_HOT_PATCH_BASE_OBLIGATORY`
+*Defined in [`object-0.37.3/src/pe.rs:2226`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2226)*
 
+### `IMAGE_HOT_PATCH_BASE_OBLIGATORY`
 ```rust
 const IMAGE_HOT_PATCH_BASE_OBLIGATORY: u32 = 1u32;
 ```
 
-### `IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK`
+*Defined in [`object-0.37.3/src/pe.rs:2443`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2443)*
 
+### `IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK`
 ```rust
 const IMAGE_HOT_PATCH_BASE_CAN_ROLL_BACK: u32 = 2u32;
 ```
 
-### `IMAGE_HOT_PATCH_CHUNK_INVERSE`
+*Defined in [`object-0.37.3/src/pe.rs:2444`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2444)*
 
+### `IMAGE_HOT_PATCH_CHUNK_INVERSE`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_INVERSE: u32 = 2_147_483_648u32;
 ```
 
-### `IMAGE_HOT_PATCH_CHUNK_OBLIGATORY`
+*Defined in [`object-0.37.3/src/pe.rs:2446`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2446)*
 
+### `IMAGE_HOT_PATCH_CHUNK_OBLIGATORY`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_OBLIGATORY: u32 = 1_073_741_824u32;
 ```
 
-### `IMAGE_HOT_PATCH_CHUNK_RESERVED`
+*Defined in [`object-0.37.3/src/pe.rs:2447`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2447)*
 
+### `IMAGE_HOT_PATCH_CHUNK_RESERVED`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_RESERVED: u32 = 1_072_705_536u32;
 ```
 
-### `IMAGE_HOT_PATCH_CHUNK_TYPE`
+*Defined in [`object-0.37.3/src/pe.rs:2448`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2448)*
 
+### `IMAGE_HOT_PATCH_CHUNK_TYPE`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_TYPE: u32 = 1_032_192u32;
 ```
 
-### `IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA`
+*Defined in [`object-0.37.3/src/pe.rs:2449`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2449)*
 
+### `IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_SOURCE_RVA: u32 = 32_768u32;
 ```
 
-### `IMAGE_HOT_PATCH_CHUNK_TARGET_RVA`
+*Defined in [`object-0.37.3/src/pe.rs:2450`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2450)*
 
+### `IMAGE_HOT_PATCH_CHUNK_TARGET_RVA`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_TARGET_RVA: u32 = 16_384u32;
 ```
 
-### `IMAGE_HOT_PATCH_CHUNK_SIZE`
+*Defined in [`object-0.37.3/src/pe.rs:2451`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2451)*
 
+### `IMAGE_HOT_PATCH_CHUNK_SIZE`
 ```rust
 const IMAGE_HOT_PATCH_CHUNK_SIZE: u32 = 4_095u32;
 ```
 
-### `IMAGE_HOT_PATCH_NONE`
+*Defined in [`object-0.37.3/src/pe.rs:2452`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2452)*
 
+### `IMAGE_HOT_PATCH_NONE`
 ```rust
 const IMAGE_HOT_PATCH_NONE: u32 = 0u32;
 ```
 
-### `IMAGE_HOT_PATCH_FUNCTION`
+*Defined in [`object-0.37.3/src/pe.rs:2454`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2454)*
 
+### `IMAGE_HOT_PATCH_FUNCTION`
 ```rust
 const IMAGE_HOT_PATCH_FUNCTION: u32 = 114_688u32;
 ```
 
-### `IMAGE_HOT_PATCH_ABSOLUTE`
+*Defined in [`object-0.37.3/src/pe.rs:2455`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2455)*
 
+### `IMAGE_HOT_PATCH_ABSOLUTE`
 ```rust
 const IMAGE_HOT_PATCH_ABSOLUTE: u32 = 180_224u32;
 ```
 
-### `IMAGE_HOT_PATCH_REL32`
+*Defined in [`object-0.37.3/src/pe.rs:2456`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2456)*
 
+### `IMAGE_HOT_PATCH_REL32`
 ```rust
 const IMAGE_HOT_PATCH_REL32: u32 = 245_760u32;
 ```
 
-### `IMAGE_HOT_PATCH_CALL_TARGET`
+*Defined in [`object-0.37.3/src/pe.rs:2457`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2457)*
 
+### `IMAGE_HOT_PATCH_CALL_TARGET`
 ```rust
 const IMAGE_HOT_PATCH_CALL_TARGET: u32 = 278_528u32;
 ```
 
-### `IMAGE_HOT_PATCH_INDIRECT`
+*Defined in [`object-0.37.3/src/pe.rs:2458`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2458)*
 
+### `IMAGE_HOT_PATCH_INDIRECT`
 ```rust
 const IMAGE_HOT_PATCH_INDIRECT: u32 = 376_832u32;
 ```
 
-### `IMAGE_HOT_PATCH_NO_CALL_TARGET`
+*Defined in [`object-0.37.3/src/pe.rs:2459`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2459)*
 
+### `IMAGE_HOT_PATCH_NO_CALL_TARGET`
 ```rust
 const IMAGE_HOT_PATCH_NO_CALL_TARGET: u32 = 409_600u32;
 ```
 
-### `IMAGE_HOT_PATCH_DYNAMIC_VALUE`
+*Defined in [`object-0.37.3/src/pe.rs:2460`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2460)*
 
+### `IMAGE_HOT_PATCH_DYNAMIC_VALUE`
 ```rust
 const IMAGE_HOT_PATCH_DYNAMIC_VALUE: u32 = 491_520u32;
 ```
 
-### `IMAGE_GUARD_CF_INSTRUMENTED`
+*Defined in [`object-0.37.3/src/pe.rs:2461`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2461)*
 
+### `IMAGE_GUARD_CF_INSTRUMENTED`
 ```rust
 const IMAGE_GUARD_CF_INSTRUMENTED: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2464`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2464)*
+
 Module performs control flow integrity checks using system-supplied support
 
 ### `IMAGE_GUARD_CFW_INSTRUMENTED`
-
 ```rust
 const IMAGE_GUARD_CFW_INSTRUMENTED: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2466`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2466)*
+
 Module performs control flow and write integrity checks
 
 ### `IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT`
-
 ```rust
 const IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2468`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2468)*
+
 Module contains valid control flow target metadata
 
 ### `IMAGE_GUARD_SECURITY_COOKIE_UNUSED`
-
 ```rust
 const IMAGE_GUARD_SECURITY_COOKIE_UNUSED: u32 = 2_048u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2470`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2470)*
+
 Module does not make use of the /GS security cookie
 
 ### `IMAGE_GUARD_PROTECT_DELAYLOAD_IAT`
-
 ```rust
 const IMAGE_GUARD_PROTECT_DELAYLOAD_IAT: u32 = 4_096u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2472`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2472)*
+
 Module supports read only delay load IAT
 
 ### `IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION`
-
 ```rust
 const IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION: u32 = 8_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2474`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2474)*
+
 Delayload import table in its own .didat section (with nothing else in it) that can be freely reprotected
 
 ### `IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT`
-
 ```rust
 const IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT: u32 = 16_384u32;
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:2478`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2478)*
 
 Module contains suppressed export information.
 
 This also infers that the address taken taken IAT table is also present in the load config.
 
 ### `IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION`
-
 ```rust
 const IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION: u32 = 32_768u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2480`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2480)*
+
 Module enables suppression of exports
 
 ### `IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT`
-
 ```rust
 const IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT: u32 = 65_536u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2482`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2482)*
+
 Module contains longjmp target information
 
 ### `IMAGE_GUARD_RF_INSTRUMENTED`
-
 ```rust
 const IMAGE_GUARD_RF_INSTRUMENTED: u32 = 131_072u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2484`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2484)*
+
 Module contains return flow instrumentation and metadata
 
 ### `IMAGE_GUARD_RF_ENABLE`
-
 ```rust
 const IMAGE_GUARD_RF_ENABLE: u32 = 262_144u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2486`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2486)*
+
 Module requests that the OS enable return flow protection
 
 ### `IMAGE_GUARD_RF_STRICT`
-
 ```rust
 const IMAGE_GUARD_RF_STRICT: u32 = 524_288u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2488`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2488)*
+
 Module requests that the OS enable return flow protection in strict mode
 
 ### `IMAGE_GUARD_RETPOLINE_PRESENT`
-
 ```rust
 const IMAGE_GUARD_RETPOLINE_PRESENT: u32 = 1_048_576u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2490`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2490)*
+
 Module was built with retpoline support
 
 ### `IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK`
-
 ```rust
 const IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK: u32 = 4_026_531_840u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2493`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2493)*
+
 Stride of Guard CF function table encoded in these bits (additional count of bytes per element)
 
 ### `IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_SHIFT`
-
 ```rust
 const IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_SHIFT: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2495`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2495)*
+
 Shift to right-justify Guard CF function table stride
 
 ### `IMAGE_GUARD_FLAG_FID_SUPPRESSED`
-
 ```rust
 const IMAGE_GUARD_FLAG_FID_SUPPRESSED: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2502`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2502)*
+
 The containing GFID entry is suppressed
 
 ### `IMAGE_GUARD_FLAG_EXPORT_SUPPRESSED`
-
 ```rust
 const IMAGE_GUARD_FLAG_EXPORT_SUPPRESSED: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2504`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2504)*
+
 The containing GFID entry is export suppressed
 
 ### `IMAGE_ENCLAVE_LONG_ID_LENGTH`
-
 ```rust
 const IMAGE_ENCLAVE_LONG_ID_LENGTH: usize = 32usize;
 ```
 
-### `IMAGE_ENCLAVE_SHORT_ID_LENGTH`
+*Defined in [`object-0.37.3/src/pe.rs:2574`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2574)*
 
+### `IMAGE_ENCLAVE_SHORT_ID_LENGTH`
 ```rust
 const IMAGE_ENCLAVE_SHORT_ID_LENGTH: usize = 16usize;
 ```
 
-### `IMAGE_ENCLAVE_POLICY_DEBUGGABLE`
+*Defined in [`object-0.37.3/src/pe.rs:2575`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2575)*
 
+### `IMAGE_ENCLAVE_POLICY_DEBUGGABLE`
 ```rust
 const IMAGE_ENCLAVE_POLICY_DEBUGGABLE: u32 = 1u32;
 ```
 
-### `IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE`
+*Defined in [`object-0.37.3/src/pe.rs:2615`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2615)*
 
+### `IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE`
 ```rust
 const IMAGE_ENCLAVE_FLAG_PRIMARY_IMAGE: u32 = 1u32;
 ```
 
-### `IMAGE_ENCLAVE_IMPORT_MATCH_NONE`
+*Defined in [`object-0.37.3/src/pe.rs:2617`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2617)*
 
+### `IMAGE_ENCLAVE_IMPORT_MATCH_NONE`
 ```rust
 const IMAGE_ENCLAVE_IMPORT_MATCH_NONE: u32 = 0u32;
 ```
 
-### `IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID`
+*Defined in [`object-0.37.3/src/pe.rs:2631`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2631)*
 
+### `IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID`
 ```rust
 const IMAGE_ENCLAVE_IMPORT_MATCH_UNIQUE_ID: u32 = 1u32;
 ```
 
-### `IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID`
+*Defined in [`object-0.37.3/src/pe.rs:2632`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2632)*
 
+### `IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID`
 ```rust
 const IMAGE_ENCLAVE_IMPORT_MATCH_AUTHOR_ID: u32 = 2u32;
 ```
 
-### `IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID`
+*Defined in [`object-0.37.3/src/pe.rs:2633`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2633)*
 
+### `IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID`
 ```rust
 const IMAGE_ENCLAVE_IMPORT_MATCH_FAMILY_ID: u32 = 3u32;
 ```
 
-### `IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID`
+*Defined in [`object-0.37.3/src/pe.rs:2634`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2634)*
 
+### `IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID`
 ```rust
 const IMAGE_ENCLAVE_IMPORT_MATCH_IMAGE_ID: u32 = 4u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_UNKNOWN`
+*Defined in [`object-0.37.3/src/pe.rs:2635`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2635)*
 
+### `IMAGE_DEBUG_TYPE_UNKNOWN`
 ```rust
 const IMAGE_DEBUG_TYPE_UNKNOWN: u32 = 0u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_COFF`
+*Defined in [`object-0.37.3/src/pe.rs:2654`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2654)*
 
+### `IMAGE_DEBUG_TYPE_COFF`
 ```rust
 const IMAGE_DEBUG_TYPE_COFF: u32 = 1u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_CODEVIEW`
+*Defined in [`object-0.37.3/src/pe.rs:2655`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2655)*
 
+### `IMAGE_DEBUG_TYPE_CODEVIEW`
 ```rust
 const IMAGE_DEBUG_TYPE_CODEVIEW: u32 = 2u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_FPO`
+*Defined in [`object-0.37.3/src/pe.rs:2656`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2656)*
 
+### `IMAGE_DEBUG_TYPE_FPO`
 ```rust
 const IMAGE_DEBUG_TYPE_FPO: u32 = 3u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_MISC`
+*Defined in [`object-0.37.3/src/pe.rs:2657`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2657)*
 
+### `IMAGE_DEBUG_TYPE_MISC`
 ```rust
 const IMAGE_DEBUG_TYPE_MISC: u32 = 4u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_EXCEPTION`
+*Defined in [`object-0.37.3/src/pe.rs:2658`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2658)*
 
+### `IMAGE_DEBUG_TYPE_EXCEPTION`
 ```rust
 const IMAGE_DEBUG_TYPE_EXCEPTION: u32 = 5u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_FIXUP`
+*Defined in [`object-0.37.3/src/pe.rs:2659`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2659)*
 
+### `IMAGE_DEBUG_TYPE_FIXUP`
 ```rust
 const IMAGE_DEBUG_TYPE_FIXUP: u32 = 6u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_OMAP_TO_SRC`
+*Defined in [`object-0.37.3/src/pe.rs:2660`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2660)*
 
+### `IMAGE_DEBUG_TYPE_OMAP_TO_SRC`
 ```rust
 const IMAGE_DEBUG_TYPE_OMAP_TO_SRC: u32 = 7u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_OMAP_FROM_SRC`
+*Defined in [`object-0.37.3/src/pe.rs:2661`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2661)*
 
+### `IMAGE_DEBUG_TYPE_OMAP_FROM_SRC`
 ```rust
 const IMAGE_DEBUG_TYPE_OMAP_FROM_SRC: u32 = 8u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_BORLAND`
+*Defined in [`object-0.37.3/src/pe.rs:2662`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2662)*
 
+### `IMAGE_DEBUG_TYPE_BORLAND`
 ```rust
 const IMAGE_DEBUG_TYPE_BORLAND: u32 = 9u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_RESERVED10`
+*Defined in [`object-0.37.3/src/pe.rs:2663`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2663)*
 
+### `IMAGE_DEBUG_TYPE_RESERVED10`
 ```rust
 const IMAGE_DEBUG_TYPE_RESERVED10: u32 = 10u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_CLSID`
+*Defined in [`object-0.37.3/src/pe.rs:2664`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2664)*
 
+### `IMAGE_DEBUG_TYPE_CLSID`
 ```rust
 const IMAGE_DEBUG_TYPE_CLSID: u32 = 11u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_VC_FEATURE`
+*Defined in [`object-0.37.3/src/pe.rs:2665`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2665)*
 
+### `IMAGE_DEBUG_TYPE_VC_FEATURE`
 ```rust
 const IMAGE_DEBUG_TYPE_VC_FEATURE: u32 = 12u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_POGO`
+*Defined in [`object-0.37.3/src/pe.rs:2666`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2666)*
 
+### `IMAGE_DEBUG_TYPE_POGO`
 ```rust
 const IMAGE_DEBUG_TYPE_POGO: u32 = 13u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_ILTCG`
+*Defined in [`object-0.37.3/src/pe.rs:2667`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2667)*
 
+### `IMAGE_DEBUG_TYPE_ILTCG`
 ```rust
 const IMAGE_DEBUG_TYPE_ILTCG: u32 = 14u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_MPX`
+*Defined in [`object-0.37.3/src/pe.rs:2668`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2668)*
 
+### `IMAGE_DEBUG_TYPE_MPX`
 ```rust
 const IMAGE_DEBUG_TYPE_MPX: u32 = 15u32;
 ```
 
-### `IMAGE_DEBUG_TYPE_REPRO`
+*Defined in [`object-0.37.3/src/pe.rs:2669`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2669)*
 
+### `IMAGE_DEBUG_TYPE_REPRO`
 ```rust
 const IMAGE_DEBUG_TYPE_REPRO: u32 = 16u32;
 ```
 
-### `FRAME_FPO`
+*Defined in [`object-0.37.3/src/pe.rs:2670`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2670)*
 
+### `FRAME_FPO`
 ```rust
 const FRAME_FPO: u16 = 0u16;
 ```
 
-### `FRAME_TRAP`
+*Defined in [`object-0.37.3/src/pe.rs:2685`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2685)*
 
+### `FRAME_TRAP`
 ```rust
 const FRAME_TRAP: u16 = 1u16;
 ```
 
-### `FRAME_TSS`
+*Defined in [`object-0.37.3/src/pe.rs:2686`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2686)*
 
+### `FRAME_TSS`
 ```rust
 const FRAME_TSS: u16 = 2u16;
 ```
 
-### `FRAME_NONFPO`
+*Defined in [`object-0.37.3/src/pe.rs:2687`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2687)*
 
+### `FRAME_NONFPO`
 ```rust
 const FRAME_NONFPO: u16 = 3u16;
 ```
 
-### `IMAGE_DEBUG_MISC_EXENAME`
+*Defined in [`object-0.37.3/src/pe.rs:2688`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2688)*
 
+### `IMAGE_DEBUG_MISC_EXENAME`
 ```rust
 const IMAGE_DEBUG_MISC_EXENAME: u16 = 1u16;
 ```
 
-### `IMAGE_SEPARATE_DEBUG_SIGNATURE`
+*Defined in [`object-0.37.3/src/pe.rs:2719`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2719)*
 
+### `IMAGE_SEPARATE_DEBUG_SIGNATURE`
 ```rust
 const IMAGE_SEPARATE_DEBUG_SIGNATURE: u16 = 18_756u16;
 ```
 
-### `NON_PAGED_DEBUG_SIGNATURE`
+*Defined in [`object-0.37.3/src/pe.rs:2811`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2811)*
 
+### `NON_PAGED_DEBUG_SIGNATURE`
 ```rust
 const NON_PAGED_DEBUG_SIGNATURE: u16 = 18_766u16;
 ```
 
-### `IMAGE_SEPARATE_DEBUG_FLAGS_MASK`
+*Defined in [`object-0.37.3/src/pe.rs:2812`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2812)*
 
+### `IMAGE_SEPARATE_DEBUG_FLAGS_MASK`
 ```rust
 const IMAGE_SEPARATE_DEBUG_FLAGS_MASK: u16 = 32_768u16;
 ```
 
-### `IMAGE_SEPARATE_DEBUG_MISMATCH`
+*Defined in [`object-0.37.3/src/pe.rs:2814`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2814)*
 
+### `IMAGE_SEPARATE_DEBUG_MISMATCH`
 ```rust
 const IMAGE_SEPARATE_DEBUG_MISMATCH: u16 = 32_768u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2816`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2816)*
+
 when DBG was updated, the old checksum didn't match.
 
 ### `IMPORT_OBJECT_HDR_SIG2`
-
 ```rust
 const IMPORT_OBJECT_HDR_SIG2: u16 = 65_535u16;
 ```
 
-### `IMPORT_OBJECT_TYPE_MASK`
+*Defined in [`object-0.37.3/src/pe.rs:2859`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2859)*
 
+### `IMPORT_OBJECT_TYPE_MASK`
 ```rust
 const IMPORT_OBJECT_TYPE_MASK: u16 = 3u16;
 ```
 
-### `IMPORT_OBJECT_TYPE_SHIFT`
+*Defined in [`object-0.37.3/src/pe.rs:2884`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2884)*
 
+### `IMPORT_OBJECT_TYPE_SHIFT`
 ```rust
 const IMPORT_OBJECT_TYPE_SHIFT: u16 = 0u16;
 ```
 
-### `IMPORT_OBJECT_CODE`
+*Defined in [`object-0.37.3/src/pe.rs:2885`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2885)*
 
+### `IMPORT_OBJECT_CODE`
 ```rust
 const IMPORT_OBJECT_CODE: u16 = 0u16;
 ```
 
-### `IMPORT_OBJECT_DATA`
+*Defined in [`object-0.37.3/src/pe.rs:2886`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2886)*
 
+### `IMPORT_OBJECT_DATA`
 ```rust
 const IMPORT_OBJECT_DATA: u16 = 1u16;
 ```
 
-### `IMPORT_OBJECT_CONST`
+*Defined in [`object-0.37.3/src/pe.rs:2887`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2887)*
 
+### `IMPORT_OBJECT_CONST`
 ```rust
 const IMPORT_OBJECT_CONST: u16 = 2u16;
 ```
 
-### `IMPORT_OBJECT_NAME_MASK`
+*Defined in [`object-0.37.3/src/pe.rs:2888`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2888)*
 
+### `IMPORT_OBJECT_NAME_MASK`
 ```rust
 const IMPORT_OBJECT_NAME_MASK: u16 = 7u16;
 ```
 
-### `IMPORT_OBJECT_NAME_SHIFT`
+*Defined in [`object-0.37.3/src/pe.rs:2890`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2890)*
 
+### `IMPORT_OBJECT_NAME_SHIFT`
 ```rust
 const IMPORT_OBJECT_NAME_SHIFT: u16 = 2u16;
 ```
 
-### `IMPORT_OBJECT_ORDINAL`
+*Defined in [`object-0.37.3/src/pe.rs:2891`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2891)*
 
+### `IMPORT_OBJECT_ORDINAL`
 ```rust
 const IMPORT_OBJECT_ORDINAL: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2893`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2893)*
+
 Import by ordinal
 
 ### `IMPORT_OBJECT_NAME`
-
 ```rust
 const IMPORT_OBJECT_NAME: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2895`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2895)*
+
 Import name == public symbol name.
 
 ### `IMPORT_OBJECT_NAME_NO_PREFIX`
-
 ```rust
 const IMPORT_OBJECT_NAME_NO_PREFIX: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2897`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2897)*
+
 Import name == public symbol name skipping leading ?, @, or optionally _.
 
 ### `IMPORT_OBJECT_NAME_UNDECORATE`
-
 ```rust
 const IMPORT_OBJECT_NAME_UNDECORATE: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2899`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2899)*
+
 Import name == public symbol name skipping leading ?, @, or optionally _ and truncating at first @.
 
 ### `IMPORT_OBJECT_NAME_EXPORTAS`
-
 ```rust
 const IMPORT_OBJECT_NAME_EXPORTAS: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2901`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2901)*
+
 Import name == a name is explicitly provided after the DLL name.
 
 ### `COMIMAGE_FLAGS_ILONLY`
-
 ```rust
 const COMIMAGE_FLAGS_ILONLY: u32 = 1u32;
 ```
 
-### `COMIMAGE_FLAGS_32BITREQUIRED`
+*Defined in [`object-0.37.3/src/pe.rs:2904`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2904)*
 
+### `COMIMAGE_FLAGS_32BITREQUIRED`
 ```rust
 const COMIMAGE_FLAGS_32BITREQUIRED: u32 = 2u32;
 ```
 
-### `COMIMAGE_FLAGS_IL_LIBRARY`
+*Defined in [`object-0.37.3/src/pe.rs:2905`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2905)*
 
+### `COMIMAGE_FLAGS_IL_LIBRARY`
 ```rust
 const COMIMAGE_FLAGS_IL_LIBRARY: u32 = 4u32;
 ```
 
-### `COMIMAGE_FLAGS_STRONGNAMESIGNED`
+*Defined in [`object-0.37.3/src/pe.rs:2906`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2906)*
 
+### `COMIMAGE_FLAGS_STRONGNAMESIGNED`
 ```rust
 const COMIMAGE_FLAGS_STRONGNAMESIGNED: u32 = 8u32;
 ```
 
-### `COMIMAGE_FLAGS_NATIVE_ENTRYPOINT`
+*Defined in [`object-0.37.3/src/pe.rs:2907`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2907)*
 
+### `COMIMAGE_FLAGS_NATIVE_ENTRYPOINT`
 ```rust
 const COMIMAGE_FLAGS_NATIVE_ENTRYPOINT: u32 = 16u32;
 ```
 
-### `COMIMAGE_FLAGS_TRACKDEBUGDATA`
+*Defined in [`object-0.37.3/src/pe.rs:2908`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2908)*
 
+### `COMIMAGE_FLAGS_TRACKDEBUGDATA`
 ```rust
 const COMIMAGE_FLAGS_TRACKDEBUGDATA: u32 = 65_536u32;
 ```
 
-### `COMIMAGE_FLAGS_32BITPREFERRED`
+*Defined in [`object-0.37.3/src/pe.rs:2909`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2909)*
 
+### `COMIMAGE_FLAGS_32BITPREFERRED`
 ```rust
 const COMIMAGE_FLAGS_32BITPREFERRED: u32 = 131_072u32;
 ```
 
-### `COR_VERSION_MAJOR_V2`
+*Defined in [`object-0.37.3/src/pe.rs:2910`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2910)*
 
+### `COR_VERSION_MAJOR_V2`
 ```rust
 const COR_VERSION_MAJOR_V2: u16 = 2u16;
 ```
 
-### `COR_VERSION_MAJOR`
+*Defined in [`object-0.37.3/src/pe.rs:2913`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2913)*
 
+### `COR_VERSION_MAJOR`
 ```rust
 const COR_VERSION_MAJOR: u16 = 2u16;
 ```
 
-### `COR_VERSION_MINOR`
+*Defined in [`object-0.37.3/src/pe.rs:2914`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2914)*
 
+### `COR_VERSION_MINOR`
 ```rust
 const COR_VERSION_MINOR: u16 = 5u16;
 ```
 
-### `COR_DELETED_NAME_LENGTH`
+*Defined in [`object-0.37.3/src/pe.rs:2915`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2915)*
 
+### `COR_DELETED_NAME_LENGTH`
 ```rust
 const COR_DELETED_NAME_LENGTH: usize = 8usize;
 ```
 
-### `COR_VTABLEGAP_NAME_LENGTH`
+*Defined in [`object-0.37.3/src/pe.rs:2916`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2916)*
 
+### `COR_VTABLEGAP_NAME_LENGTH`
 ```rust
 const COR_VTABLEGAP_NAME_LENGTH: usize = 8usize;
 ```
 
-### `NATIVE_TYPE_MAX_CB`
+*Defined in [`object-0.37.3/src/pe.rs:2917`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2917)*
 
+### `NATIVE_TYPE_MAX_CB`
 ```rust
 const NATIVE_TYPE_MAX_CB: u16 = 1u16;
 ```
 
-### `COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE`
+*Defined in [`object-0.37.3/src/pe.rs:2920`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2920)*
 
+### `COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE`
 ```rust
 const COR_ILMETHOD_SECT_SMALL_MAX_DATASIZE: u16 = 255u16;
 ```
 
-### `IMAGE_COR_MIH_METHODRVA`
+*Defined in [`object-0.37.3/src/pe.rs:2921`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2921)*
 
+### `IMAGE_COR_MIH_METHODRVA`
 ```rust
 const IMAGE_COR_MIH_METHODRVA: u16 = 1u16;
 ```
 
-### `IMAGE_COR_MIH_EHRVA`
+*Defined in [`object-0.37.3/src/pe.rs:2924`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2924)*
 
+### `IMAGE_COR_MIH_EHRVA`
 ```rust
 const IMAGE_COR_MIH_EHRVA: u16 = 2u16;
 ```
 
-### `IMAGE_COR_MIH_BASICBLOCK`
+*Defined in [`object-0.37.3/src/pe.rs:2925`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2925)*
 
+### `IMAGE_COR_MIH_BASICBLOCK`
 ```rust
 const IMAGE_COR_MIH_BASICBLOCK: u16 = 8u16;
 ```
 
-### `COR_VTABLE_32BIT`
+*Defined in [`object-0.37.3/src/pe.rs:2926`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2926)*
 
+### `COR_VTABLE_32BIT`
 ```rust
 const COR_VTABLE_32BIT: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2930`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2930)*
+
 V-table slots are 32-bits in size.
 
 ### `COR_VTABLE_64BIT`
-
 ```rust
 const COR_VTABLE_64BIT: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2932`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2932)*
+
 V-table slots are 64-bits in size.
 
 ### `COR_VTABLE_FROM_UNMANAGED`
-
 ```rust
 const COR_VTABLE_FROM_UNMANAGED: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2934`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2934)*
+
 If set, transition from unmanaged.
 
 ### `COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN`
-
 ```rust
 const COR_VTABLE_FROM_UNMANAGED_RETAIN_APPDOMAIN: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2936`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2936)*
+
 If set, transition from unmanaged with keeping the current appdomain.
 
 ### `COR_VTABLE_CALL_MOST_DERIVED`
-
 ```rust
 const COR_VTABLE_CALL_MOST_DERIVED: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2938`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2938)*
+
 Call most derived method described by
 
 ### `IMAGE_COR_EATJ_THUNK_SIZE`
-
 ```rust
 const IMAGE_COR_EATJ_THUNK_SIZE: usize = 32usize;
 ```
 
+*Defined in [`object-0.37.3/src/pe.rs:2942`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2942)*
+
 Size of a jump thunk reserved range.
 
 ### `MAX_CLASS_NAME`
-
 ```rust
 const MAX_CLASS_NAME: usize = 1_024usize;
 ```
 
-### `MAX_PACKAGE_NAME`
+*Defined in [`object-0.37.3/src/pe.rs:2945`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2945)*
 
+### `MAX_PACKAGE_NAME`
 ```rust
 const MAX_PACKAGE_NAME: usize = 1_024usize;
 ```
+
+*Defined in [`object-0.37.3/src/pe.rs:2946`](../../../.source_1765210505/object-0.37.3/src/pe.rs#L2946)*
 

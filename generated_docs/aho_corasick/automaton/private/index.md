@@ -11,6 +11,12 @@ hand, if you have a solid use case for implementing the trait yourself,
 please file an issue and we can discuss it. This was *mostly* done as a
 conservative step.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Sealed`](#sealed) | trait |  |
+
 ## Traits
 
 ### `Sealed`
@@ -18,4 +24,14 @@ conservative step.
 ```rust
 trait Sealed { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:29`](../../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L29)*
+
+#### Implementors
+
+- [`DFA`](../../dfa/index.md)
+- [`NFA`](../../nfa/contiguous/index.md)
+- [`NFA`](../../nfa/noncontiguous/index.md)
+- `&'a T`
+- `alloc::sync::Arc<dyn AcAutomaton>`
 

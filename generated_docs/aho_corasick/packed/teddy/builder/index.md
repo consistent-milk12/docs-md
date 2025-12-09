@@ -4,9 +4,18 @@
 
 # Module `builder`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`x86_64`](#x86_64) | mod |  |
+| [`Builder`](#builder) | struct | A builder for constructing a Teddy matcher. |
+| [`Searcher`](#searcher) | struct | A searcher that dispatches to one of several possible Teddy variants. |
+| [`SearcherT`](#searchert) | trait | A trait that provides dynamic dispatch over the different possible Teddy variants on the same algorithm. |
+
 ## Modules
 
-- [`x86_64`](x86_64/index.md) - 
+- [`x86_64`](x86_64/index.md)
 
 ## Structs
 
@@ -19,6 +28,8 @@ struct Builder {
     heuristic_pattern_limits: bool,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:17-34`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L17-L34)*
 
 A builder for constructing a Teddy matcher.
 
@@ -53,31 +64,31 @@ and number of patterns given to the builder.
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md), [`Searcher`](#searcher)
+- <span id="builder-build"></span>`fn build(&self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md), [`Searcher`](#searcher)
 
-- `fn only_fat(self: &mut Self, yes: Option<bool>) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-only-fat"></span>`fn only_fat(&mut self, yes: Option<bool>) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn only_256bit(self: &mut Self, yes: Option<bool>) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-only-256bit"></span>`fn only_256bit(&mut self, yes: Option<bool>) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn heuristic_pattern_limits(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-heuristic-pattern-limits"></span>`fn heuristic_pattern_limits(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn build_imp(self: &Self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md), [`Searcher`](#searcher)
+- <span id="builder-build-imp"></span>`fn build_imp(&self, patterns: Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../pattern/index.md), [`Searcher`](#searcher)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](#builder)
+- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
 
 ### `Searcher`
 
@@ -88,6 +99,8 @@ struct Searcher {
     minimum_len: usize,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:322-337`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L322-L337)*
 
 A searcher that dispatches to one of several possible Teddy variants.
 
@@ -115,21 +128,21 @@ A searcher that dispatches to one of several possible Teddy variants.
 
 #### Implementations
 
-- `fn find(self: &Self, haystack: &[u8], at: usize) -> Option<crate::Match>` — [`Match`](../../../index.md)
+- <span id="searcher-find"></span>`fn find(&self, haystack: &[u8], at: usize) -> Option<crate::Match>` — [`Match`](../../../util/search/index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="searcher-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn minimum_len(self: &Self) -> usize`
+- <span id="searcher-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for Searcher`
 
-- `fn clone(self: &Self) -> Searcher` — [`Searcher`](#searcher)
+- <span id="searcher-clone"></span>`fn clone(&self) -> Searcher` — [`Searcher`](#searcher)
 
 ##### `impl Debug for Searcher`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="searcher-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -138,6 +151,8 @@ A searcher that dispatches to one of several possible Teddy variants.
 ```rust
 trait SearcherT: Debug + Send + Sync + UnwindSafe + RefUnwindSafe + 'static { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:416-448`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L416-L448)*
 
 A trait that provides dynamic dispatch over the different possible Teddy
 variants on the same algorithm.
@@ -167,7 +182,13 @@ requires `alloc`, there's no real reason (AFAIK) to go down this path. (The
 
 #### Required Methods
 
-- `fn find(self: &Self, start: *const u8, end: *const u8) -> Option<Match>`
+- `fn find(&self, start: *const u8, end: *const u8) -> Option<Match>`
 
   Execute a search on the given haystack (identified by `start` and `end`
+
+#### Implementors
+
+- [`FatAVX2`](x86_64/index.md)
+- [`SlimAVX2`](x86_64/index.md)
+- [`SlimSSSE3`](x86_64/index.md)
 

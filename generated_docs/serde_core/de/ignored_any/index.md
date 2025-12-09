@@ -4,6 +4,12 @@
 
 # Module `ignored_any`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IgnoredAny`](#ignoredany) | struct | An efficient way of discarding data from a deserializer. |
+
 ## Structs
 
 ### `IgnoredAny`
@@ -11,6 +17,8 @@
 ```rust
 struct IgnoredAny;
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/ignored_any.rs:111`](../../../../.source_1765210505/serde_core-1.0.228/src/de/ignored_any.rs#L111)*
 
 An efficient way of discarding data from a deserializer.
 
@@ -120,67 +128,67 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Clone for IgnoredAny`
 
-- `fn clone(self: &Self) -> IgnoredAny` — [`IgnoredAny`](../index.md)
+- <span id="ignoredany-clone"></span>`fn clone(&self) -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
 
 ##### `impl Copy for IgnoredAny`
 
 ##### `impl Debug for IgnoredAny`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ignoredany-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for IgnoredAny`
 
-- `fn default() -> IgnoredAny` — [`IgnoredAny`](../index.md)
+- <span id="ignoredany-default"></span>`fn default() -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
 
-##### `impl<'de> Deserialize for IgnoredAny`
+##### `impl Deserialize for IgnoredAny`
 
-- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](../index.md), [`Deserializer`](../../index.md)
+- <span id="ignoredany-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](#ignoredany), [`Deserializer`](../index.md)
 
-##### `impl<T> DeserializeOwned for IgnoredAny`
+##### `impl DeserializeOwned for IgnoredAny`
 
-##### `impl<'de, T> Expected for IgnoredAny`
+##### `impl Expected for IgnoredAny`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ignoredany-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for IgnoredAny`
 
-- `fn eq(self: &Self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](../index.md)
+- <span id="ignoredany-eq"></span>`fn eq(&self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](#ignoredany)
 
 ##### `impl StructuralPartialEq for IgnoredAny`
 
-##### `impl<'de> Visitor for IgnoredAny`
+##### `impl Visitor for IgnoredAny`
 
-- `type Value = IgnoredAny`
+- <span id="ignoredany-type-value"></span>`type Value = IgnoredAny`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ignoredany-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_bool<E>(self: Self, x: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-bool"></span>`fn visit_bool<E>(self, x: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_i64<E>(self: Self, x: i64) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-i64"></span>`fn visit_i64<E>(self, x: i64) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_i128<E>(self: Self, x: i128) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-i128"></span>`fn visit_i128<E>(self, x: i128) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_u64<E>(self: Self, x: u64) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-u64"></span>`fn visit_u64<E>(self, x: u64) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_u128<E>(self: Self, x: u128) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-u128"></span>`fn visit_u128<E>(self, x: u128) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_f64<E>(self: Self, x: f64) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-f64"></span>`fn visit_f64<E>(self, x: f64) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_str<E>(self: Self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-str"></span>`fn visit_str<E>(self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_none<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-none"></span>`fn visit_none<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_some<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-some"></span>`fn visit_some<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../index.md)
 
-- `fn visit_newtype_struct<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-newtype-struct"></span>`fn visit_newtype_struct<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../index.md)
 
-- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-seq"></span>`fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
 
-- `fn visit_map<A>(self: Self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-map"></span>`fn visit_map<A>(self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
 
-- `fn visit_bytes<E>(self: Self, bytes: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-bytes"></span>`fn visit_bytes<E>(self, bytes: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
+- <span id="ignoredany-visit-enum"></span>`fn visit_enum<A>(self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../index.md)
 

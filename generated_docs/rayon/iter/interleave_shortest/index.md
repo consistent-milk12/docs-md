@@ -4,6 +4,12 @@
 
 # Module `interleave_shortest`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`InterleaveShortest`](#interleaveshortest) | struct | `InterleaveShortest` is an iterator that works similarly to `Interleave`, but this version stops returning elements once one of the iterators run out. |
+
 ## Structs
 
 ### `InterleaveShortest<I, J>`
@@ -14,65 +20,67 @@ struct InterleaveShortest<I, J> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/interleave_shortest.rs:14-16`](../../../../.source_1765210505/rayon-1.11.0/src/iter/interleave_shortest.rs#L14-L16)*
+
 `InterleaveShortest` is an iterator that works similarly to
 `Interleave`, but this version stops returning elements once one
 of the iterators run out.
 
 This struct is created by the `interleave_shortest()` method on
-[`IndexedParallelIterator`](../../prelude/index.md).
+[`IndexedParallelIterator`](../index.md).
 
 
 #### Implementations
 
-- `fn new(i: I, j: J) -> Self`
+- <span id="interleaveshortest-new"></span>`fn new(i: I, j: J) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone, J: $crate::clone::Clone> Clone for InterleaveShortest<I, J>`
+##### `impl<I: clone::Clone, J: clone::Clone> Clone for InterleaveShortest<I, J>`
 
-- `fn clone(self: &Self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](../index.md)
+- <span id="interleaveshortest-clone"></span>`fn clone(&self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](#interleaveshortest)
 
-##### `impl<I: $crate::fmt::Debug, J: $crate::fmt::Debug> Debug for InterleaveShortest<I, J>`
+##### `impl<I: fmt::Debug, J: fmt::Debug> Debug for InterleaveShortest<I, J>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="interleaveshortest-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I, J> IndexedParallelIterator for InterleaveShortest<I, J>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="interleaveshortest-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="interleaveshortest-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="interleaveshortest-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for InterleaveShortest<I, J>`
 
 ##### `impl<T> IntoParallelIterator for InterleaveShortest<I, J>`
 
-- `type Iter = T`
+- <span id="interleaveshortest-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="interleaveshortest-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="interleaveshortest-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, J> ParallelIterator for InterleaveShortest<I, J>`
 
-- `type Item = <I as ParallelIterator>::Item`
+- <span id="interleaveshortest-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="interleaveshortest-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="interleaveshortest-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for InterleaveShortest<I, J>`
 
-- `const ALIGN: usize`
+- <span id="interleaveshortest-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="interleaveshortest-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="interleaveshortest-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="interleaveshortest-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="interleaveshortest-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="interleaveshortest-drop"></span>`unsafe fn drop(ptr: usize)`
 

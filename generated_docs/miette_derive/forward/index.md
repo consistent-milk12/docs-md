@@ -4,6 +4,13 @@
 
 # Module `forward`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Forward`](#forward) | enum |  |
+| [`WhichFn`](#whichfn) | enum |  |
+
 ## Enums
 
 ### `Forward`
@@ -15,19 +22,21 @@ enum Forward {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/forward.rs:9-12`](../../../.source_1765210505/miette-derive-7.6.0/src/forward.rs#L9-L12)*
+
 #### Implementations
 
-- `fn for_transparent_field(fields: &syn::Fields) -> syn::Result<Self>`
+- <span id="forward-for-transparent-field"></span>`fn for_transparent_field(fields: &syn::Fields) -> syn::Result<Self>`
 
-- `fn gen_struct_method(self: &Self, which_fn: WhichFn) -> TokenStream` — [`WhichFn`](#whichfn)
+- <span id="forward-gen-struct-method"></span>`fn gen_struct_method(&self, which_fn: WhichFn) -> TokenStream` — [`WhichFn`](#whichfn)
 
-- `fn gen_enum_match_arm(self: &Self, variant: &syn::Ident, which_fn: WhichFn) -> TokenStream` — [`WhichFn`](#whichfn)
+- <span id="forward-gen-enum-match-arm"></span>`fn gen_enum_match_arm(&self, variant: &syn::Ident, which_fn: WhichFn) -> TokenStream` — [`WhichFn`](#whichfn)
 
 #### Trait Implementations
 
 ##### `impl Parse for Forward`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="forward-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ### `WhichFn`
 
@@ -44,19 +53,21 @@ enum WhichFn {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/forward.rs:33-42`](../../../.source_1765210505/miette-derive-7.6.0/src/forward.rs#L33-L42)*
+
 #### Implementations
 
-- `fn method_call(self: &Self) -> TokenStream`
+- <span id="whichfn-method-call"></span>`fn method_call(&self) -> TokenStream`
 
-- `fn signature(self: &Self) -> TokenStream`
+- <span id="whichfn-signature"></span>`fn signature(&self) -> TokenStream`
 
-- `fn catchall_arm(self: &Self) -> TokenStream`
+- <span id="whichfn-catchall-arm"></span>`fn catchall_arm(&self) -> TokenStream`
 
 #### Trait Implementations
 
 ##### `impl Clone for WhichFn`
 
-- `fn clone(self: &Self) -> WhichFn` — [`WhichFn`](#whichfn)
+- <span id="whichfn-clone"></span>`fn clone(&self) -> WhichFn` — [`WhichFn`](#whichfn)
 
 ##### `impl Copy for WhichFn`
 

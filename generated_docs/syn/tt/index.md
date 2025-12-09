@@ -4,6 +4,13 @@
 
 # Module `tt`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`TokenTreeHelper`](#tokentreehelper) | struct |  |
+| [`TokenStreamHelper`](#tokenstreamhelper) | struct |  |
+
 ## Structs
 
 ### `TokenTreeHelper<'a>`
@@ -12,15 +19,17 @@
 struct TokenTreeHelper<'a>(&'a proc_macro2::TokenTree);
 ```
 
+*Defined in [`syn-2.0.111/src/tt.rs:4`](../../../.source_1765210505/syn-2.0.111/src/tt.rs#L4)*
+
 #### Trait Implementations
 
-##### `impl<'a> Hash for TokenTreeHelper<'a>`
+##### `impl Hash for TokenTreeHelper<'a>`
 
-- `fn hash<H: Hasher>(self: &Self, h: &mut H)`
+- <span id="tokentreehelper-hash"></span>`fn hash<H: Hasher>(&self, h: &mut H)`
 
-##### `impl<'a> PartialEq for TokenTreeHelper<'a>`
+##### `impl PartialEq for TokenTreeHelper<'a>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="tokentreehelper-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `TokenStreamHelper<'a>`
 
@@ -28,13 +37,15 @@ struct TokenTreeHelper<'a>(&'a proc_macro2::TokenTree);
 struct TokenStreamHelper<'a>(&'a proc_macro2::TokenStream);
 ```
 
+*Defined in [`syn-2.0.111/src/tt.rs:65`](../../../.source_1765210505/syn-2.0.111/src/tt.rs#L65)*
+
 #### Trait Implementations
 
-##### `impl<'a> Hash for TokenStreamHelper<'a>`
+##### `impl Hash for TokenStreamHelper<'a>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="tokenstreamhelper-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<'a> PartialEq for TokenStreamHelper<'a>`
+##### `impl PartialEq for TokenStreamHelper<'a>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="tokenstreamhelper-eq"></span>`fn eq(&self, other: &Self) -> bool`
 

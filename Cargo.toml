@@ -8,7 +8,7 @@ repository = "https://github.com/consistent-milk12/docs-md"
 readme = "README.md"
 keywords = ["documentation", "rustdoc", "markdown", "mdbook"]
 categories = ["development-tools", "command-line-utilities"]
-exclude = ["SourceCode/", "generated_docs/", "benches/"]
+exclude = ["SourceCode/", "generated_docs/", "benches/", "scripts/"]
 
 [[bin]]
 name = "cargo-docs-md"
@@ -55,6 +55,19 @@ compact_str = "0.9.0"
 # layer adds overhead. NOT RECOMMENDED - kept for experimentation only.
 simd-json = { version = "0.17.0", optional = true }
 
+# Source code parsing (optional, enabled via 'source-parsing' feature)
+syn = { version = "2.0.111", features = [
+	"full",
+	"parsing",
+	"extra-traits",
+	"visit",
+], optional = true }
+quote = { version = "1.0.42", optional = true }
+proc-macro2 = { version = "1.0.103", features = [
+	"span-locations",
+], optional = true }
+cargo_metadata = { version = "0.23.1", optional = true }
+
 # Structured logging for debugging
 # release_max_level_info compiles out trace!/debug! in release builds (zero overhead)
 tracing = { version = "0.1.43", features = ["release_max_level_info"] }
@@ -71,6 +84,13 @@ default = []
 simd-json = ["dep:simd-json"]
 # Enable CLI logging options (--log-level, --log-file)
 trace = ["dep:tracing-subscriber"]
+# Enable source code parsing from ~/.cargo/registry/src/
+source-parsing = [
+	"dep:syn",
+	"dep:quote",
+	"dep:proc-macro2",
+	"dep:cargo_metadata",
+]
 
 [dev-dependencies]
 # For testing with real crate JSON
@@ -81,6 +101,9 @@ insta = "1.44.3"
 
 # Benchmarking (divan is faster than criterion)
 divan = "0.1.21"
+
+# For tests
+tempfile = "3.23.0"
 
 [[bench]]
 name = "benchmarks"

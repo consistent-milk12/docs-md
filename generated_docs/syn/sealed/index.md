@@ -4,7 +4,13 @@
 
 # Module `sealed`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`lookahead`](#lookahead) | mod |  |
+
 ## Modules
 
-- [`lookahead`](lookahead/index.md) - 
+- [`lookahead`](lookahead/index.md)
 

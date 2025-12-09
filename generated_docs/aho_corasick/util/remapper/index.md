@@ -4,6 +4,14 @@
 
 # Module `remapper`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Remapper`](#remapper) | struct | Remapper is an abstraction the manages the remapping of state IDs in a finite state machine. |
+| [`IndexMapper`](#indexmapper) | struct | A simple type for mapping between state indices and state IDs. |
+| [`Remappable`](#remappable) | trait | Remappable is a tightly coupled abstraction that facilitates remapping state identifiers in DFAs. |
+
 ## Structs
 
 ### `Remapper`
@@ -14,6 +22,8 @@ struct Remapper {
     idx: IndexMapper,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:67-84`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/remapper.rs#L67-L84)*
 
 Remapper is an abstraction the manages the remapping of state IDs in a
 finite state machine. This is useful when one wants to shuffle states into
@@ -50,17 +60,17 @@ will almost certainly result in a corrupt machine.
 
 #### Implementations
 
-- `fn new(r: &impl Remappable, stride2: usize) -> Remapper` — [`Remappable`](#remappable), [`Remapper`](#remapper)
+- <span id="remapper-new"></span>`fn new(r: &impl Remappable, stride2: usize) -> Remapper` — [`Remappable`](#remappable), [`Remapper`](#remapper)
 
-- `fn swap(self: &mut Self, r: &mut impl Remappable, id1: StateID, id2: StateID)` — [`Remappable`](#remappable), [`StateID`](../primitives/index.md)
+- <span id="remapper-swap"></span>`fn swap(&mut self, r: &mut impl Remappable, id1: StateID, id2: StateID)` — [`Remappable`](#remappable), [`StateID`](../primitives/index.md)
 
-- `fn remap(self: Self, r: &mut impl Remappable)` — [`Remappable`](#remappable)
+- <span id="remapper-remap"></span>`fn remap(self, r: &mut impl Remappable)` — [`Remappable`](#remappable)
 
 #### Trait Implementations
 
 ##### `impl Debug for Remapper`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="remapper-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `IndexMapper`
 
@@ -69,6 +79,8 @@ struct IndexMapper {
     stride2: usize,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:177-182`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/remapper.rs#L177-L182)*
 
 A simple type for mapping between state indices and state IDs.
 
@@ -100,15 +112,15 @@ identity.
 
 #### Implementations
 
-- `fn to_index(self: &Self, id: StateID) -> usize` — [`StateID`](../primitives/index.md)
+- <span id="indexmapper-to-index"></span>`fn to_index(&self, id: StateID) -> usize` — [`StateID`](../primitives/index.md)
 
-- `fn to_state_id(self: &Self, index: usize) -> StateID` — [`StateID`](../primitives/index.md)
+- <span id="indexmapper-to-state-id"></span>`fn to_state_id(&self, index: usize) -> StateID` — [`StateID`](../primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for IndexMapper`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="indexmapper-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -117,6 +129,8 @@ identity.
 ```rust
 trait Remappable: core::fmt::Debug { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:28-54`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/remapper.rs#L28-L54)*
 
 Remappable is a tightly coupled abstraction that facilitates remapping
 state identifiers in DFAs.
@@ -144,15 +158,19 @@ DFAs are partitioned.
 
 #### Required Methods
 
-- `fn state_len(self: &Self) -> usize`
+- `fn state_len(&self) -> usize`
 
   Return the total number of states.
 
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)`
+- `fn swap_states(&mut self, id1: StateID, id2: StateID)`
 
   Swap the states pointed to by the given IDs. The underlying finite
 
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)`
+- `fn remap(&mut self, map: impl Fn(StateID) -> StateID)`
 
   This must remap every single state ID in the underlying value according
+
+#### Implementors
+
+- [`NFA`](../../nfa/noncontiguous/index.md)
 

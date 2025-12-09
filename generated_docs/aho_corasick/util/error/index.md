@@ -4,6 +4,15 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BuildError`](#builderror) | struct | An error that occurred during the construction of an Aho-Corasick automaton. |
+| [`MatchError`](#matcherror) | struct | An error that occurred during an Aho-Corasick search. |
+| [`ErrorKind`](#errorkind) | enum | The kind of error that occurred. |
+| [`MatchErrorKind`](#matcherrorkind) | enum | The underlying kind of a [`MatchError`]. |
+
 ## Structs
 
 ### `BuildError`
@@ -13,6 +22,8 @@ struct BuildError {
     kind: ErrorKind,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:17-19`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L17-L19)*
 
 An error that occurred during the construction of an Aho-Corasick
 automaton.
@@ -27,37 +38,39 @@ trait.
 
 #### Implementations
 
-- `fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](../../index.md)
+- <span id="builderror-state-id-overflow"></span>`fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](../../index.md)
+- <span id="builderror-pattern-id-overflow"></span>`fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../../index.md)
+- <span id="builderror-pattern-too-long"></span>`fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](../primitives/index.md), [`BuildError`](#builderror)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../../index.md)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
 
 ##### `impl Debug for BuildError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-##### `impl<T> ToString for BuildError`
+##### `impl ToString for BuildError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `MatchError`
 
 ```rust
 struct MatchError(alloc::boxed::Box<MatchErrorKind>);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:130`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L130)*
 
 An error that occurred during an Aho-Corasick search.
 
@@ -79,33 +92,33 @@ trait.
 
 #### Implementations
 
-- `fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](../../index.md), [`MatchError`](../../index.md)
+- <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](#matcherrorkind), [`MatchError`](#matcherror)
 
-- `fn kind(self: &Self) -> &MatchErrorKind` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
 
-- `fn invalid_input_anchored() -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-invalid-input-anchored"></span>`fn invalid_input_anchored() -> MatchError` — [`MatchError`](#matcherror)
 
-- `fn invalid_input_unanchored() -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-invalid-input-unanchored"></span>`fn invalid_input_unanchored() -> MatchError` — [`MatchError`](#matcherror)
 
-- `fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](../../index.md), [`MatchError`](../../index.md)
+- <span id="matcherror-unsupported-stream"></span>`fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](../search/index.md), [`MatchError`](#matcherror)
 
-- `fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](../../index.md), [`MatchError`](../../index.md)
+- <span id="matcherror-unsupported-overlapping"></span>`fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](../search/index.md), [`MatchError`](#matcherror)
 
-- `fn unsupported_empty() -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-unsupported-empty"></span>`fn unsupported_empty() -> MatchError` — [`MatchError`](#matcherror)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchError`
 
-- `fn clone(self: &Self) -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-clone"></span>`fn clone(&self) -> MatchError` — [`MatchError`](#matcherror)
 
 ##### `impl Debug for MatchError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for MatchError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for MatchError`
 
@@ -113,13 +126,13 @@ trait.
 
 ##### `impl PartialEq for MatchError`
 
-- `fn eq(self: &Self, other: &MatchError) -> bool` — [`MatchError`](../../index.md)
+- <span id="matcherror-eq"></span>`fn eq(&self, other: &MatchError) -> bool` — [`MatchError`](#matcherror)
 
 ##### `impl StructuralPartialEq for MatchError`
 
-##### `impl<T> ToString for MatchError`
+##### `impl ToString for MatchError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="matcherror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -141,6 +154,8 @@ enum ErrorKind {
     },
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:23-49`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L23-L49)*
 
 The kind of error that occurred.
 
@@ -166,11 +181,11 @@ The kind of error that occurred.
 
 ##### `impl Clone for ErrorKind`
 
-- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](#errorkind)
 
 ##### `impl Debug for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `MatchErrorKind`
 
@@ -188,7 +203,9 @@ enum MatchErrorKind {
 }
 ```
 
-The underlying kind of a [`MatchError`](../../index.md).
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:200-222`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L200-L222)*
+
+The underlying kind of a [`MatchError`](#matcherror).
 
 This is a **non-exhaustive** enum. That means new variants may be added in
 a semver-compatible release.
@@ -224,17 +241,17 @@ a semver-compatible release.
 
 ##### `impl Clone for MatchErrorKind`
 
-- `fn clone(self: &Self) -> MatchErrorKind` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherrorkind-clone"></span>`fn clone(&self) -> MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
 
 ##### `impl Debug for MatchErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matcherrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MatchErrorKind`
 
 ##### `impl PartialEq for MatchErrorKind`
 
-- `fn eq(self: &Self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherrorkind-eq"></span>`fn eq(&self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](#matcherrorkind)
 
 ##### `impl StructuralPartialEq for MatchErrorKind`
 

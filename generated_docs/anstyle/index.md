@@ -46,13 +46,69 @@ The core type is [`Style`](#style):
 let style = anstyle::Style::new().bold();
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`macros`](#macros)
+  - [`color`](#color)
+  - [`effect`](#effect)
+  - [`reset`](#reset)
+  - [`style`](#style)
+- [Structs](#structs)
+  - [`Ansi256Color`](#ansi256color)
+  - [`RgbColor`](#rgbcolor)
+  - [`DisplayBuffer`](#displaybuffer)
+  - [`NullFormatter`](#nullformatter)
+  - [`Effects`](#effects)
+  - [`Metadata`](#metadata)
+  - [`EffectsDisplay`](#effectsdisplay)
+  - [`EffectIter`](#effectiter)
+  - [`EffectIndexIter`](#effectindexiter)
+  - [`Reset`](#reset)
+  - [`Style`](#style)
+  - [`StyleDisplay`](#styledisplay)
+- [Enums](#enums)
+  - [`Color`](#color)
+  - [`AnsiColor`](#ansicolor)
+- [Constants](#constants)
+  - [`DISPLAY_BUFFER_CAPACITY`](#display_buffer_capacity)
+  - [`METADATA`](#metadata)
+  - [`RESET`](#reset)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`macros`](#macros) | mod |  |
+| [`color`](#color) | mod |  |
+| [`effect`](#effect) | mod |  |
+| [`reset`](#reset) | mod |  |
+| [`style`](#style) | mod |  |
+| [`Ansi256Color`](#ansi256color) | struct | 256 (8-bit) color support |
+| [`RgbColor`](#rgbcolor) | struct | 24-bit ANSI RGB color codes |
+| [`DisplayBuffer`](#displaybuffer) | struct |  |
+| [`NullFormatter`](#nullformatter) | struct |  |
+| [`Effects`](#effects) | struct | A set of text effects |
+| [`Metadata`](#metadata) | struct |  |
+| [`EffectsDisplay`](#effectsdisplay) | struct |  |
+| [`EffectIter`](#effectiter) | struct | Enumerate each enabled value in [`Effects`] |
+| [`EffectIndexIter`](#effectindexiter) | struct |  |
+| [`Reset`](#reset) | struct | Reset terminal formatting |
+| [`Style`](#style) | struct | ANSI Text styling |
+| [`StyleDisplay`](#styledisplay) | struct |  |
+| [`Color`](#color) | enum | Any ANSI color code scheme |
+| [`AnsiColor`](#ansicolor) | enum | Available 4-bit ANSI color palette codes |
+| [`DISPLAY_BUFFER_CAPACITY`](#display_buffer_capacity) | const |  |
+| [`METADATA`](#metadata) | const |  |
+| [`RESET`](#reset) | const |  |
+
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`color`](color/index.md) - 
-- [`effect`](effect/index.md) - 
-- [`reset`](reset/index.md) - 
-- [`style`](style/index.md) - 
+- [`macros`](macros/index.md)
+- [`color`](color/index.md)
+- [`effect`](effect/index.md)
+- [`reset`](reset/index.md)
+- [`style`](style/index.md)
 
 ## Structs
 
@@ -62,6 +118,8 @@ let style = anstyle::Style::new().bold();
 struct Ansi256Color(u8);
 ```
 
+*Defined in [`anstyle-1.0.13/src/color.rs:352`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L352)*
+
 256 (8-bit) color support
 
 - `0..16` are [`AnsiColor`](#ansicolor) palette codes
@@ -70,55 +128,55 @@ struct Ansi256Color(u8);
 
 #### Implementations
 
-- `fn on(self: Self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
+- <span id="ansi256color-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
 
-- `const fn on_default(self: Self) -> crate::Style` — [`Style`](#style)
+- <span id="ansi256color-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](#style)
 
-- `const fn index(self: Self) -> u8`
+- <span id="ansi256color-index"></span>`const fn index(self) -> u8`
 
-- `const fn into_ansi(self: Self) -> Option<AnsiColor>` — [`AnsiColor`](#ansicolor)
+- <span id="ansi256color-into-ansi"></span>`const fn into_ansi(self) -> Option<AnsiColor>` — [`AnsiColor`](#ansicolor)
 
-- `const fn from_ansi(color: AnsiColor) -> Self` — [`AnsiColor`](#ansicolor)
+- <span id="ansi256color-from-ansi"></span>`const fn from_ansi(color: AnsiColor) -> Self` — [`AnsiColor`](#ansicolor)
 
-- `fn render_fg(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="ansi256color-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
 
-- `fn as_fg_buffer(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansi256color-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
-- `fn render_bg(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="ansi256color-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
 
-- `fn as_bg_buffer(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansi256color-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
-- `fn as_underline_buffer(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansi256color-as-underline-buffer"></span>`fn as_underline_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Ansi256Color`
 
-- `fn clone(self: &Self) -> Ansi256Color` — [`Ansi256Color`](#ansi256color)
+- <span id="ansi256color-clone"></span>`fn clone(&self) -> Ansi256Color` — [`Ansi256Color`](#ansi256color)
 
 ##### `impl Copy for Ansi256Color`
 
 ##### `impl Debug for Ansi256Color`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ansi256color-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Ansi256Color`
 
 ##### `impl Hash for Ansi256Color`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="ansi256color-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Ansi256Color`
 
-- `fn cmp(self: &Self, other: &Ansi256Color) -> $crate::cmp::Ordering` — [`Ansi256Color`](#ansi256color)
+- <span id="ansi256color-cmp"></span>`fn cmp(&self, other: &Ansi256Color) -> cmp::Ordering` — [`Ansi256Color`](#ansi256color)
 
 ##### `impl PartialEq for Ansi256Color`
 
-- `fn eq(self: &Self, other: &Ansi256Color) -> bool` — [`Ansi256Color`](#ansi256color)
+- <span id="ansi256color-eq"></span>`fn eq(&self, other: &Ansi256Color) -> bool` — [`Ansi256Color`](#ansi256color)
 
 ##### `impl PartialOrd for Ansi256Color`
 
-- `fn partial_cmp(self: &Self, other: &Ansi256Color) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Ansi256Color`](#ansi256color)
+- <span id="ansi256color-partial-cmp"></span>`fn partial_cmp(&self, other: &Ansi256Color) -> option::Option<cmp::Ordering>` — [`Ansi256Color`](#ansi256color)
 
 ##### `impl StructuralPartialEq for Ansi256Color`
 
@@ -128,59 +186,61 @@ struct Ansi256Color(u8);
 struct RgbColor(u8, u8, u8);
 ```
 
+*Defined in [`anstyle-1.0.13/src/color.rs:476`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L476)*
+
 24-bit ANSI RGB color codes
 
 #### Implementations
 
-- `fn on(self: Self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
+- <span id="rgbcolor-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
 
-- `const fn on_default(self: Self) -> crate::Style` — [`Style`](#style)
+- <span id="rgbcolor-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](#style)
 
-- `const fn r(self: Self) -> u8`
+- <span id="rgbcolor-r"></span>`const fn r(self) -> u8`
 
-- `const fn g(self: Self) -> u8`
+- <span id="rgbcolor-g"></span>`const fn g(self) -> u8`
 
-- `const fn b(self: Self) -> u8`
+- <span id="rgbcolor-b"></span>`const fn b(self) -> u8`
 
-- `fn render_fg(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="rgbcolor-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
 
-- `fn as_fg_buffer(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="rgbcolor-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
-- `fn render_bg(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="rgbcolor-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
 
-- `fn as_bg_buffer(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="rgbcolor-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
-- `fn as_underline_buffer(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="rgbcolor-as-underline-buffer"></span>`fn as_underline_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for RgbColor`
 
-- `fn clone(self: &Self) -> RgbColor` — [`RgbColor`](#rgbcolor)
+- <span id="rgbcolor-clone"></span>`fn clone(&self) -> RgbColor` — [`RgbColor`](#rgbcolor)
 
 ##### `impl Copy for RgbColor`
 
 ##### `impl Debug for RgbColor`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rgbcolor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RgbColor`
 
 ##### `impl Hash for RgbColor`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="rgbcolor-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for RgbColor`
 
-- `fn cmp(self: &Self, other: &RgbColor) -> $crate::cmp::Ordering` — [`RgbColor`](#rgbcolor)
+- <span id="rgbcolor-cmp"></span>`fn cmp(&self, other: &RgbColor) -> cmp::Ordering` — [`RgbColor`](#rgbcolor)
 
 ##### `impl PartialEq for RgbColor`
 
-- `fn eq(self: &Self, other: &RgbColor) -> bool` — [`RgbColor`](#rgbcolor)
+- <span id="rgbcolor-eq"></span>`fn eq(&self, other: &RgbColor) -> bool` — [`RgbColor`](#rgbcolor)
 
 ##### `impl PartialOrd for RgbColor`
 
-- `fn partial_cmp(self: &Self, other: &RgbColor) -> $crate::option::Option<$crate::cmp::Ordering>` — [`RgbColor`](#rgbcolor)
+- <span id="rgbcolor-partial-cmp"></span>`fn partial_cmp(&self, other: &RgbColor) -> option::Option<cmp::Ordering>` — [`RgbColor`](#rgbcolor)
 
 ##### `impl StructuralPartialEq for RgbColor`
 
@@ -193,39 +253,41 @@ struct DisplayBuffer {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/color.rs:571-574`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L571-L574)*
+
 #### Implementations
 
-- `fn write_str(self: Self, part: &'static str) -> Self`
+- <span id="displaybuffer-write-str"></span>`fn write_str(self, part: &'static str) -> Self`
 
-- `fn write_code(self: Self, code: u8) -> Self`
+- <span id="displaybuffer-write-code"></span>`fn write_code(self, code: u8) -> Self`
 
-- `fn as_str(self: &Self) -> &str`
+- <span id="displaybuffer-as-str"></span>`fn as_str(&self) -> &str`
 
-- `fn write_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="displaybuffer-write-to"></span>`fn write_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DisplayBuffer`
 
-- `fn clone(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="displaybuffer-clone"></span>`fn clone(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
 ##### `impl Copy for DisplayBuffer`
 
 ##### `impl Debug for DisplayBuffer`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="displaybuffer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DisplayBuffer`
 
-- `fn default() -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="displaybuffer-default"></span>`fn default() -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
 ##### `impl Display for DisplayBuffer`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="displaybuffer-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for DisplayBuffer`
+##### `impl ToString for DisplayBuffer`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="displaybuffer-to-string"></span>`fn to_string(&self) -> String`
 
 ### `NullFormatter`
 
@@ -233,35 +295,39 @@ struct DisplayBuffer {
 struct NullFormatter(&'static str);
 ```
 
+*Defined in [`anstyle-1.0.13/src/color.rs:635`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L635)*
+
 #### Trait Implementations
 
 ##### `impl Clone for NullFormatter`
 
-- `fn clone(self: &Self) -> NullFormatter` — [`NullFormatter`](color/index.md)
+- <span id="nullformatter-clone"></span>`fn clone(&self) -> NullFormatter` — [`NullFormatter`](color/index.md)
 
 ##### `impl Copy for NullFormatter`
 
 ##### `impl Debug for NullFormatter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nullformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for NullFormatter`
 
-- `fn default() -> NullFormatter` — [`NullFormatter`](color/index.md)
+- <span id="nullformatter-default"></span>`fn default() -> NullFormatter` — [`NullFormatter`](color/index.md)
 
 ##### `impl Display for NullFormatter`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="nullformatter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for NullFormatter`
+##### `impl ToString for NullFormatter`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="nullformatter-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Effects`
 
 ```rust
 struct Effects(u16);
 ```
+
+*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L9)*
 
 A set of text effects
 
@@ -273,109 +339,109 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 #### Implementations
 
-- `const PLAIN: Self`
+- <span id="effects-const-plain"></span>`const PLAIN: Self`
 
-- `const BOLD: Self`
+- <span id="effects-const-bold"></span>`const BOLD: Self`
 
-- `const DIMMED: Self`
+- <span id="effects-const-dimmed"></span>`const DIMMED: Self`
 
-- `const ITALIC: Self`
+- <span id="effects-const-italic"></span>`const ITALIC: Self`
 
-- `const UNDERLINE: Self`
+- <span id="effects-const-underline"></span>`const UNDERLINE: Self`
 
-- `const DOUBLE_UNDERLINE: Self`
+- <span id="effects-const-double-underline"></span>`const DOUBLE_UNDERLINE: Self`
 
-- `const CURLY_UNDERLINE: Self`
+- <span id="effects-const-curly-underline"></span>`const CURLY_UNDERLINE: Self`
 
-- `const DOTTED_UNDERLINE: Self`
+- <span id="effects-const-dotted-underline"></span>`const DOTTED_UNDERLINE: Self`
 
-- `const DASHED_UNDERLINE: Self`
+- <span id="effects-const-dashed-underline"></span>`const DASHED_UNDERLINE: Self`
 
-- `const BLINK: Self`
+- <span id="effects-const-blink"></span>`const BLINK: Self`
 
-- `const INVERT: Self`
+- <span id="effects-const-invert"></span>`const INVERT: Self`
 
-- `const HIDDEN: Self`
+- <span id="effects-const-hidden"></span>`const HIDDEN: Self`
 
-- `const STRIKETHROUGH: Self`
+- <span id="effects-const-strikethrough"></span>`const STRIKETHROUGH: Self`
 
-- `const fn new() -> Self`
+- <span id="effects-new"></span>`const fn new() -> Self`
 
-- `const fn is_plain(self: Self) -> bool`
+- <span id="effects-is-plain"></span>`const fn is_plain(self) -> bool`
 
-- `const fn contains(self: Self, other: Effects) -> bool` — [`Effects`](#effects)
+- <span id="effects-contains"></span>`const fn contains(self, other: Effects) -> bool` — [`Effects`](#effects)
 
-- `const fn insert(self: Self, other: Effects) -> Self` — [`Effects`](#effects)
+- <span id="effects-insert"></span>`const fn insert(self, other: Effects) -> Self` — [`Effects`](#effects)
 
-- `const fn remove(self: Self, other: Effects) -> Self` — [`Effects`](#effects)
+- <span id="effects-remove"></span>`const fn remove(self, other: Effects) -> Self` — [`Effects`](#effects)
 
-- `const fn clear(self: Self) -> Self`
+- <span id="effects-clear"></span>`const fn clear(self) -> Self`
 
-- `const fn set(self: Self, other: Self, enable: bool) -> Self`
+- <span id="effects-set"></span>`const fn set(self, other: Self, enable: bool) -> Self`
 
-- `fn iter(self: Self) -> EffectIter` — [`EffectIter`](#effectiter)
+- <span id="effects-iter"></span>`fn iter(self) -> EffectIter` — [`EffectIter`](#effectiter)
 
-- `fn index_iter(self: Self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md)
+- <span id="effects-index-iter"></span>`fn index_iter(self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md)
 
-- `fn render(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="effects-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
-- `fn write_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="effects-write-to"></span>`fn write_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl BitOr for Effects`
 
-- `type Output = Effects`
+- <span id="effects-type-output"></span>`type Output = Effects`
 
-- `fn bitor(self: Self, rhs: Self) -> Self`
+- <span id="effects-bitor"></span>`fn bitor(self, rhs: Self) -> Self`
 
 ##### `impl BitOrAssign for Effects`
 
-- `fn bitor_assign(self: &mut Self, other: Self)`
+- <span id="effects-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
 
 ##### `impl Clone for Effects`
 
-- `fn clone(self: &Self) -> Effects` — [`Effects`](#effects)
+- <span id="effects-clone"></span>`fn clone(&self) -> Effects` — [`Effects`](#effects)
 
 ##### `impl Copy for Effects`
 
 ##### `impl Debug for Effects`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="effects-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for Effects`
 
-- `fn default() -> Effects` — [`Effects`](#effects)
+- <span id="effects-default"></span>`fn default() -> Effects` — [`Effects`](#effects)
 
 ##### `impl Eq for Effects`
 
 ##### `impl Hash for Effects`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="effects-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Effects`
 
-- `fn cmp(self: &Self, other: &Effects) -> $crate::cmp::Ordering` — [`Effects`](#effects)
+- <span id="effects-cmp"></span>`fn cmp(&self, other: &Effects) -> cmp::Ordering` — [`Effects`](#effects)
 
 ##### `impl PartialEq for Effects`
 
-- `fn eq(self: &Self, other: &Effects) -> bool` — [`Effects`](#effects)
+- <span id="effects-eq"></span>`fn eq(&self, other: &Effects) -> bool` — [`Effects`](#effects)
 
 ##### `impl PartialOrd for Effects`
 
-- `fn partial_cmp(self: &Self, other: &Effects) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Effects`](#effects)
+- <span id="effects-partial-cmp"></span>`fn partial_cmp(&self, other: &Effects) -> option::Option<cmp::Ordering>` — [`Effects`](#effects)
 
 ##### `impl StructuralPartialEq for Effects`
 
 ##### `impl Sub for Effects`
 
-- `type Output = Effects`
+- <span id="effects-type-output"></span>`type Output = Effects`
 
-- `fn sub(self: Self, other: Self) -> Self`
+- <span id="effects-sub"></span>`fn sub(self, other: Self) -> Self`
 
 ##### `impl SubAssign for Effects`
 
-- `fn sub_assign(self: &mut Self, other: Self)`
+- <span id="effects-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
 ### `Metadata`
 
@@ -386,35 +452,39 @@ struct Metadata {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L263-L266)*
+
 ### `EffectsDisplay`
 
 ```rust
 struct EffectsDisplay(Effects);
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L320)*
+
 #### Trait Implementations
 
 ##### `impl Clone for EffectsDisplay`
 
-- `fn clone(self: &Self) -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md)
+- <span id="effectsdisplay-clone"></span>`fn clone(&self) -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md)
 
 ##### `impl Copy for EffectsDisplay`
 
 ##### `impl Debug for EffectsDisplay`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="effectsdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for EffectsDisplay`
 
-- `fn default() -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md)
+- <span id="effectsdisplay-default"></span>`fn default() -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md)
 
 ##### `impl Display for EffectsDisplay`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="effectsdisplay-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for EffectsDisplay`
+##### `impl ToString for EffectsDisplay`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="effectsdisplay-to-string"></span>`fn to_string(&self) -> String`
 
 ### `EffectIter`
 
@@ -425,37 +495,39 @@ struct EffectIter {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L334-L337)*
+
 Enumerate each enabled value in [`Effects`](#effects)
 
 #### Trait Implementations
 
 ##### `impl Clone for EffectIter`
 
-- `fn clone(self: &Self) -> EffectIter` — [`EffectIter`](#effectiter)
+- <span id="effectiter-clone"></span>`fn clone(&self) -> EffectIter` — [`EffectIter`](#effectiter)
 
 ##### `impl Debug for EffectIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="effectiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for EffectIter`
 
-##### `impl<I> IntoIterator for EffectIter`
+##### `impl IntoIterator for EffectIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="effectiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="effectiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="effectiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIter`
 
-- `type Item = Effects`
+- <span id="effectiter-type-item"></span>`type Item = Effects`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="effectiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl PartialEq for EffectIter`
 
-- `fn eq(self: &Self, other: &EffectIter) -> bool` — [`EffectIter`](#effectiter)
+- <span id="effectiter-eq"></span>`fn eq(&self, other: &EffectIter) -> bool` — [`EffectIter`](#effectiter)
 
 ##### `impl StructuralPartialEq for EffectIter`
 
@@ -468,35 +540,37 @@ struct EffectIndexIter {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L358-L361)*
+
 #### Trait Implementations
 
 ##### `impl Clone for EffectIndexIter`
 
-- `fn clone(self: &Self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md)
+- <span id="effectindexiter-clone"></span>`fn clone(&self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md)
 
 ##### `impl Debug for EffectIndexIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="effectindexiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for EffectIndexIter`
 
-##### `impl<I> IntoIterator for EffectIndexIter`
+##### `impl IntoIterator for EffectIndexIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="effectindexiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="effectindexiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="effectindexiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIndexIter`
 
-- `type Item = usize`
+- <span id="effectindexiter-type-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="effectindexiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl PartialEq for EffectIndexIter`
 
-- `fn eq(self: &Self, other: &EffectIndexIter) -> bool` — [`EffectIndexIter`](effect/index.md)
+- <span id="effectindexiter-eq"></span>`fn eq(&self, other: &EffectIndexIter) -> bool` — [`EffectIndexIter`](effect/index.md)
 
 ##### `impl StructuralPartialEq for EffectIndexIter`
 
@@ -506,55 +580,57 @@ struct EffectIndexIter {
 struct Reset;
 ```
 
+*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../.source_1765210505/anstyle-1.0.13/src/reset.rs#L4)*
+
 Reset terminal formatting
 
 #### Implementations
 
-- `fn render(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="reset-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
 #### Trait Implementations
 
 ##### `impl Clone for Reset`
 
-- `fn clone(self: &Self) -> Reset` — [`Reset`](#reset)
+- <span id="reset-clone"></span>`fn clone(&self) -> Reset` — [`Reset`](#reset)
 
 ##### `impl Copy for Reset`
 
 ##### `impl Debug for Reset`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Reset`
 
-- `fn default() -> Reset` — [`Reset`](#reset)
+- <span id="reset-default"></span>`fn default() -> Reset` — [`Reset`](#reset)
 
 ##### `impl Display for Reset`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="reset-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Reset`
 
 ##### `impl Hash for Reset`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="reset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Reset`
 
-- `fn cmp(self: &Self, other: &Reset) -> $crate::cmp::Ordering` — [`Reset`](#reset)
+- <span id="reset-cmp"></span>`fn cmp(&self, other: &Reset) -> cmp::Ordering` — [`Reset`](#reset)
 
 ##### `impl PartialEq for Reset`
 
-- `fn eq(self: &Self, other: &Reset) -> bool` — [`Reset`](#reset)
+- <span id="reset-eq"></span>`fn eq(&self, other: &Reset) -> bool` — [`Reset`](#reset)
 
 ##### `impl PartialOrd for Reset`
 
-- `fn partial_cmp(self: &Self, other: &Reset) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Reset`](#reset)
+- <span id="reset-partial-cmp"></span>`fn partial_cmp(&self, other: &Reset) -> option::Option<cmp::Ordering>` — [`Reset`](#reset)
 
 ##### `impl StructuralPartialEq for Reset`
 
-##### `impl<T> ToString for Reset`
+##### `impl ToString for Reset`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="reset-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Style`
 
@@ -566,6 +642,8 @@ struct Style {
     effects: crate::Effects,
 }
 ```
+
+*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../.source_1765210505/anstyle-1.0.13/src/style.rs#L18-L23)*
 
 ANSI Text styling
 
@@ -584,89 +662,89 @@ println!("{style}{value}{style:#}");
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="style-new"></span>`const fn new() -> Self`
 
-- `const fn fg_color(self: Self, fg: Option<crate::Color>) -> Self` — [`Color`](#color)
+- <span id="style-fg-color"></span>`const fn fg_color(self, fg: Option<crate::Color>) -> Self` — [`Color`](#color)
 
-- `const fn bg_color(self: Self, bg: Option<crate::Color>) -> Self` — [`Color`](#color)
+- <span id="style-bg-color"></span>`const fn bg_color(self, bg: Option<crate::Color>) -> Self` — [`Color`](#color)
 
-- `const fn underline_color(self: Self, underline: Option<crate::Color>) -> Self` — [`Color`](#color)
+- <span id="style-underline-color"></span>`const fn underline_color(self, underline: Option<crate::Color>) -> Self` — [`Color`](#color)
 
-- `const fn effects(self: Self, effects: crate::Effects) -> Self` — [`Effects`](#effects)
+- <span id="style-effects"></span>`const fn effects(self, effects: crate::Effects) -> Self` — [`Effects`](#effects)
 
-- `fn render(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="style-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
-- `fn fmt_to(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="style-fmt-to"></span>`fn fmt_to(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-- `fn write_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="style-write-to"></span>`fn write_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
-- `fn render_reset(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="style-render-reset"></span>`fn render_reset(self) -> impl core::fmt::Display + Copy`
 
-- `fn write_reset_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="style-write-reset-to"></span>`fn write_reset_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl BitOr for Style`
 
-- `type Output = Style`
+- <span id="style-type-output"></span>`type Output = Style`
 
-- `fn bitor(self: Self, rhs: crate::Effects) -> Self` — [`Effects`](#effects)
+- <span id="style-bitor"></span>`fn bitor(self, rhs: crate::Effects) -> Self` — [`Effects`](#effects)
 
 ##### `impl BitOrAssign for Style`
 
-- `fn bitor_assign(self: &mut Self, other: crate::Effects)` — [`Effects`](#effects)
+- <span id="style-bitor-assign"></span>`fn bitor_assign(&mut self, other: crate::Effects)` — [`Effects`](#effects)
 
 ##### `impl Clone for Style`
 
-- `fn clone(self: &Self) -> Style` — [`Style`](#style)
+- <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](#style)
 
 ##### `impl Copy for Style`
 
 ##### `impl Debug for Style`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="style-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Style`
 
-- `fn default() -> Style` — [`Style`](#style)
+- <span id="style-default"></span>`fn default() -> Style` — [`Style`](#style)
 
 ##### `impl Display for Style`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="style-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Style`
 
 ##### `impl Hash for Style`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="style-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Style`
 
-- `fn cmp(self: &Self, other: &Style) -> $crate::cmp::Ordering` — [`Style`](#style)
+- <span id="style-cmp"></span>`fn cmp(&self, other: &Style) -> cmp::Ordering` — [`Style`](#style)
 
 ##### `impl PartialEq for Style`
 
-- `fn eq(self: &Self, other: &Style) -> bool` — [`Style`](#style)
+- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](#style)
 
 ##### `impl PartialOrd for Style`
 
-- `fn partial_cmp(self: &Self, other: &Style) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Style`](#style)
+- <span id="style-partial-cmp"></span>`fn partial_cmp(&self, other: &Style) -> option::Option<cmp::Ordering>` — [`Style`](#style)
 
 ##### `impl StructuralPartialEq for Style`
 
 ##### `impl Sub for Style`
 
-- `type Output = Style`
+- <span id="style-type-output"></span>`type Output = Style`
 
-- `fn sub(self: Self, other: crate::Effects) -> Self` — [`Effects`](#effects)
+- <span id="style-sub"></span>`fn sub(self, other: crate::Effects) -> Self` — [`Effects`](#effects)
 
 ##### `impl SubAssign for Style`
 
-- `fn sub_assign(self: &mut Self, other: crate::Effects)` — [`Effects`](#effects)
+- <span id="style-sub-assign"></span>`fn sub_assign(&mut self, other: crate::Effects)` — [`Effects`](#effects)
 
-##### `impl<T> ToString for Style`
+##### `impl ToString for Style`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="style-to-string"></span>`fn to_string(&self) -> String`
 
 ### `StyleDisplay`
 
@@ -674,29 +752,31 @@ println!("{style}{value}{style:#}");
 struct StyleDisplay(Style);
 ```
 
+*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../.source_1765210505/anstyle-1.0.13/src/style.rs#L423)*
+
 #### Trait Implementations
 
 ##### `impl Clone for StyleDisplay`
 
-- `fn clone(self: &Self) -> StyleDisplay` — [`StyleDisplay`](style/index.md)
+- <span id="styledisplay-clone"></span>`fn clone(&self) -> StyleDisplay` — [`StyleDisplay`](style/index.md)
 
 ##### `impl Copy for StyleDisplay`
 
 ##### `impl Debug for StyleDisplay`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="styledisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StyleDisplay`
 
-- `fn default() -> StyleDisplay` — [`StyleDisplay`](style/index.md)
+- <span id="styledisplay-default"></span>`fn default() -> StyleDisplay` — [`StyleDisplay`](style/index.md)
 
 ##### `impl Display for StyleDisplay`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="styledisplay-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for StyleDisplay`
+##### `impl ToString for StyleDisplay`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="styledisplay-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -709,6 +789,8 @@ enum Color {
     Rgb(RgbColor),
 }
 ```
+
+*Defined in [`anstyle-1.0.13/src/color.rs:4-17`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L4-L17)*
 
 Any ANSI color code scheme
 
@@ -734,51 +816,51 @@ Any ANSI color code scheme
 
 #### Implementations
 
-- `fn on(self: Self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
+- <span id="color-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
 
-- `const fn on_default(self: Self) -> crate::Style` — [`Style`](#style)
+- <span id="color-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](#style)
 
-- `fn render_fg(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="color-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
 
-- `fn write_fg_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="color-write-fg-to"></span>`fn write_fg_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
-- `fn render_bg(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="color-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
 
-- `fn write_bg_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="color-write-bg-to"></span>`fn write_bg_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
-- `fn render_underline(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="color-render-underline"></span>`fn render_underline(self) -> impl core::fmt::Display + Copy`
 
-- `fn write_underline_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="color-write-underline-to"></span>`fn write_underline_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Color`
 
-- `fn clone(self: &Self) -> Color` — [`Color`](#color)
+- <span id="color-clone"></span>`fn clone(&self) -> Color` — [`Color`](#color)
 
 ##### `impl Copy for Color`
 
 ##### `impl Debug for Color`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="color-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Color`
 
 ##### `impl Hash for Color`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="color-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Color`
 
-- `fn cmp(self: &Self, other: &Color) -> $crate::cmp::Ordering` — [`Color`](#color)
+- <span id="color-cmp"></span>`fn cmp(&self, other: &Color) -> cmp::Ordering` — [`Color`](#color)
 
 ##### `impl PartialEq for Color`
 
-- `fn eq(self: &Self, other: &Color) -> bool` — [`Color`](#color)
+- <span id="color-eq"></span>`fn eq(&self, other: &Color) -> bool` — [`Color`](#color)
 
 ##### `impl PartialOrd for Color`
 
-- `fn partial_cmp(self: &Self, other: &Color) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Color`](#color)
+- <span id="color-partial-cmp"></span>`fn partial_cmp(&self, other: &Color) -> option::Option<cmp::Ordering>` — [`Color`](#color)
 
 ##### `impl StructuralPartialEq for Color`
 
@@ -804,6 +886,8 @@ enum AnsiColor {
     BrightWhite,
 }
 ```
+
+*Defined in [`anstyle-1.0.13/src/color.rs:138-186`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L138-L186)*
 
 Available 4-bit ANSI color palette codes
 
@@ -877,77 +961,80 @@ The user's terminal defines the meaning of the each palette code.
 
 #### Implementations
 
-- `fn on(self: Self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
+- <span id="ansicolor-on"></span>`fn on(self, background: impl Into<Color>) -> crate::Style` — [`Color`](#color), [`Style`](#style)
 
-- `const fn on_default(self: Self) -> crate::Style` — [`Style`](#style)
+- <span id="ansicolor-on-default"></span>`const fn on_default(self) -> crate::Style` — [`Style`](#style)
 
-- `fn render_fg(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="ansicolor-render-fg"></span>`fn render_fg(self) -> impl core::fmt::Display + Copy`
 
-- `fn as_fg_str(self: &Self) -> &'static str`
+- <span id="ansicolor-as-fg-str"></span>`fn as_fg_str(&self) -> &'static str`
 
-- `fn as_fg_buffer(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansicolor-as-fg-buffer"></span>`fn as_fg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
-- `fn render_bg(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="ansicolor-render-bg"></span>`fn render_bg(self) -> impl core::fmt::Display + Copy`
 
-- `fn as_bg_str(self: &Self) -> &'static str`
+- <span id="ansicolor-as-bg-str"></span>`fn as_bg_str(&self) -> &'static str`
 
-- `fn as_bg_buffer(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansicolor-as-bg-buffer"></span>`fn as_bg_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
-- `fn as_underline_buffer(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+- <span id="ansicolor-as-underline-buffer"></span>`fn as_underline_buffer(&self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
 
-- `fn bright(self: Self, yes: bool) -> Self`
+- <span id="ansicolor-bright"></span>`fn bright(self, yes: bool) -> Self`
 
-- `fn is_bright(self: Self) -> bool`
+- <span id="ansicolor-is-bright"></span>`fn is_bright(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for AnsiColor`
 
-- `fn clone(self: &Self) -> AnsiColor` — [`AnsiColor`](#ansicolor)
+- <span id="ansicolor-clone"></span>`fn clone(&self) -> AnsiColor` — [`AnsiColor`](#ansicolor)
 
 ##### `impl Copy for AnsiColor`
 
 ##### `impl Debug for AnsiColor`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ansicolor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AnsiColor`
 
 ##### `impl Hash for AnsiColor`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="ansicolor-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for AnsiColor`
 
-- `fn cmp(self: &Self, other: &AnsiColor) -> $crate::cmp::Ordering` — [`AnsiColor`](#ansicolor)
+- <span id="ansicolor-cmp"></span>`fn cmp(&self, other: &AnsiColor) -> cmp::Ordering` — [`AnsiColor`](#ansicolor)
 
 ##### `impl PartialEq for AnsiColor`
 
-- `fn eq(self: &Self, other: &AnsiColor) -> bool` — [`AnsiColor`](#ansicolor)
+- <span id="ansicolor-eq"></span>`fn eq(&self, other: &AnsiColor) -> bool` — [`AnsiColor`](#ansicolor)
 
 ##### `impl PartialOrd for AnsiColor`
 
-- `fn partial_cmp(self: &Self, other: &AnsiColor) -> $crate::option::Option<$crate::cmp::Ordering>` — [`AnsiColor`](#ansicolor)
+- <span id="ansicolor-partial-cmp"></span>`fn partial_cmp(&self, other: &AnsiColor) -> option::Option<cmp::Ordering>` — [`AnsiColor`](#ansicolor)
 
 ##### `impl StructuralPartialEq for AnsiColor`
 
 ## Constants
 
 ### `DISPLAY_BUFFER_CAPACITY`
-
 ```rust
 const DISPLAY_BUFFER_CAPACITY: usize = 19usize;
 ```
 
-### `METADATA`
+*Defined in [`anstyle-1.0.13/src/color.rs:568`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L568)*
 
+### `METADATA`
 ```rust
 const METADATA: [Metadata; 12];
 ```
 
-### `RESET`
+*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L268-L317)*
 
+### `RESET`
 ```rust
 const RESET: &str;
 ```
+
+*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../.source_1765210505/anstyle-1.0.13/src/reset.rs#L22)*
 

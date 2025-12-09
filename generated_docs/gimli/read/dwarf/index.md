@@ -4,6 +4,32 @@
 
 # Module `dwarf`
 
+## Contents
+
+- [Structs](#structs)
+  - [`DwarfSections`](#dwarfsections)
+  - [`Dwarf`](#dwarf)
+  - [`DwarfPackageSections`](#dwarfpackagesections)
+  - [`DwarfPackage`](#dwarfpackage)
+  - [`Unit`](#unit)
+  - [`UnitRef`](#unitref)
+  - [`RangeIter`](#rangeiter)
+- [Enums](#enums)
+  - [`RangeIterInner`](#rangeiterinner)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DwarfSections`](#dwarfsections) | struct | All of the commonly used DWARF sections. |
+| [`Dwarf`](#dwarf) | struct | All of the commonly used DWARF sections, and other common information. |
+| [`DwarfPackageSections`](#dwarfpackagesections) | struct | The sections from a `.dwp` file. |
+| [`DwarfPackage`](#dwarfpackage) | struct | The sections from a `.dwp` file, with parsed indices. |
+| [`Unit`](#unit) | struct | All of the commonly used information for a unit in the `.debug_info` or `.debug_types` sections. |
+| [`UnitRef`](#unitref) | struct | A reference to a `Unit` and its associated `Dwarf`. |
+| [`RangeIter`](#rangeiter) | struct | An iterator for the address ranges of a `DebuggingInformationEntry`. |
+| [`RangeIterInner`](#rangeiterinner) | enum |  |
+
 ## Structs
 
 ### `DwarfSections<T>`
@@ -27,6 +53,8 @@ struct DwarfSections<T> {
     pub debug_rnglists: crate::read::DebugRngLists<T>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:51-82`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L51-L82)*
 
 All of the commonly used DWARF sections.
 
@@ -120,21 +148,21 @@ unreachable!()
 
 #### Implementations
 
-- `fn load<F, E>(section: F) -> core::result::Result<Self, E>`
+- <span id="dwarfsections-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md)
+- <span id="dwarfsections-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md)
 
-- `fn borrow_with_sup<'a, F, R>(self: &'a Self, sup: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md)
+- <span id="dwarfsections-borrow-with-sup"></span>`fn borrow_with_sup<'a, F, R>(self: &'a Self, sup: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for DwarfSections<T>`
+##### `impl<T: fmt::Debug> Debug for DwarfSections<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwarfsections-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::default::Default> Default for DwarfSections<T>`
+##### `impl<T: default::Default> Default for DwarfSections<T>`
 
-- `fn default() -> DwarfSections<T>` — [`DwarfSections`](../index.md)
+- <span id="dwarfsections-default"></span>`fn default() -> DwarfSections<T>` — [`DwarfSections`](../index.md)
 
 ### `Dwarf<R>`
 
@@ -158,6 +186,8 @@ struct Dwarf<R> {
     pub abbreviations_cache: crate::read::AbbreviationsCache,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:170-218`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L170-L218)*
 
 All of the commonly used DWARF sections, and other common information.
 
@@ -229,73 +259,27 @@ All of the commonly used DWARF sections, and other common information.
 
 #### Implementations
 
-- `fn populate_abbreviations_cache(self: &mut Self, strategy: AbbreviationsCacheStrategy)` — [`AbbreviationsCacheStrategy`](../index.md)
+- <span id="dwarf-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
-- `fn units(self: &Self) -> DebugInfoUnitHeadersIter<R>` — [`DebugInfoUnitHeadersIter`](../index.md)
+- <span id="dwarf-load-sup"></span>`fn load_sup<F, E>(&mut self, section: F) -> core::result::Result<(), E>`
 
-- `fn unit(self: &Self, header: UnitHeader<R>) -> Result<Unit<R>>` — [`UnitHeader`](../index.md), [`Result`](../../index.md), [`Unit`](../index.md)
+- <span id="dwarf-from-sections"></span>`fn from_sections(sections: DwarfSections<T>) -> Self` — [`DwarfSections`](../index.md)
 
-- `fn type_units(self: &Self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](../index.md)
+- <span id="dwarf-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md)
 
-- `fn abbreviations(self: &Self, unit: &UnitHeader<R>) -> Result<Arc<Abbreviations>>` — [`UnitHeader`](../index.md), [`Result`](../../index.md), [`Abbreviations`](../index.md)
+- <span id="dwarf-set-sup"></span>`fn set_sup(&mut self, sup: Dwarf<T>)` — [`Dwarf`](../index.md)
 
-- `fn string_offset(self: &Self, unit: &Unit<R>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Unit`](../index.md), [`DebugStrOffsetsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`DebugStrOffset`](../../index.md)
-
-- `fn string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
-
-- `fn line_string(self: &Self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
-
-- `fn sup_string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
-
-- `fn attr_string(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<R>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md)
-
-- `fn address(self: &Self, unit: &Unit<R>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`Unit`](../index.md), [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
-
-- `fn attr_address(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md)
-
-- `fn ranges_offset_from_raw(self: &Self, unit: &Unit<R>, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`Unit`](../index.md), [`RawRangeListsOffset`](../../index.md), [`Reader`](../index.md), [`RangeListsOffset`](../../index.md)
-
-- `fn ranges_offset(self: &Self, unit: &Unit<R>, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`Unit`](../index.md), [`DebugRngListsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md)
-
-- `fn ranges(self: &Self, unit: &Unit<R>, offset: RangeListsOffset<<R as >::Offset>) -> Result<RngListIter<R>>` — [`Unit`](../index.md), [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
-
-- `fn raw_ranges(self: &Self, unit: &Unit<R>, offset: RangeListsOffset<<R as >::Offset>) -> Result<RawRngListIter<R>>` — [`Unit`](../index.md), [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RawRngListIter`](../index.md)
-
-- `fn attr_ranges_offset(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md), [`Reader`](../index.md)
-
-- `fn attr_ranges(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
-
-- `fn die_ranges(self: &Self, unit: &Unit<R>, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`Unit`](../index.md), [`DebuggingInformationEntry`](../index.md), [`Result`](../../index.md), [`RangeIter`](../index.md)
-
-- `fn unit_ranges(self: &Self, unit: &Unit<R>) -> Result<RangeIter<R>>` — [`Unit`](../index.md), [`Result`](../../index.md), [`RangeIter`](../index.md)
-
-- `fn locations_offset(self: &Self, unit: &Unit<R>, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`Unit`](../index.md), [`DebugLocListsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md)
-
-- `fn locations(self: &Self, unit: &Unit<R>, offset: LocationListsOffset<<R as >::Offset>) -> Result<LocListIter<R>>` — [`Unit`](../index.md), [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
-
-- `fn raw_locations(self: &Self, unit: &Unit<R>, offset: LocationListsOffset<<R as >::Offset>) -> Result<RawLocListIter<R>>` — [`Unit`](../index.md), [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RawLocListIter`](../index.md)
-
-- `fn attr_locations_offset(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md), [`Reader`](../index.md)
-
-- `fn attr_locations(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
-
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(bool, SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](../index.md), [`SectionId`](../../index.md), [`Reader`](../index.md)
-
-- `fn format_error(self: &Self, err: Error) -> String` — [`Error`](../../index.md)
-
-- `fn macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
-
-- `fn macros(self: &Self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
+- <span id="dwarf-sup"></span>`fn sup(&self) -> Option<&Dwarf<T>>` — [`Dwarf`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug> Debug for Dwarf<R>`
+##### `impl<R: fmt::Debug> Debug for Dwarf<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwarf-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for Dwarf<R>`
+##### `impl<R: default::Default> Default for Dwarf<R>`
 
-- `fn default() -> Dwarf<R>` — [`Dwarf`](../index.md)
+- <span id="dwarf-default"></span>`fn default() -> Dwarf<R>` — [`Dwarf`](../index.md)
 
 ### `DwarfPackageSections<T>`
 
@@ -314,6 +298,8 @@ struct DwarfPackageSections<T> {
     pub debug_types: crate::read::DebugTypes<T>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:804-831`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L804-L831)*
 
 The sections from a `.dwp` file.
 
@@ -396,19 +382,19 @@ unreachable!()
 
 #### Implementations
 
-- `fn load<F, E>(section: F) -> core::result::Result<Self, E>`
+- <span id="dwarfpackagesections-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F, empty: R) -> Result<DwarfPackage<R>>` — [`Result`](../../index.md), [`DwarfPackage`](../index.md)
+- <span id="dwarfpackagesections-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F, empty: R) -> Result<DwarfPackage<R>>` — [`Result`](../../index.md), [`DwarfPackage`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for DwarfPackageSections<T>`
+##### `impl<T: fmt::Debug> Debug for DwarfPackageSections<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwarfpackagesections-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::default::Default> Default for DwarfPackageSections<T>`
+##### `impl<T: default::Default> Default for DwarfPackageSections<T>`
 
-- `fn default() -> DwarfPackageSections<T>` — [`DwarfPackageSections`](../index.md)
+- <span id="dwarfpackagesections-default"></span>`fn default() -> DwarfPackageSections<T>` — [`DwarfPackageSections`](../index.md)
 
 ### `DwarfPackage<R: Reader>`
 
@@ -428,6 +414,8 @@ struct DwarfPackage<R: Reader> {
     pub empty: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:886-928`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L886-L928)*
 
 The sections from a `.dwp` file, with parsed indices.
 
@@ -489,25 +477,25 @@ The sections from a `.dwp` file, with parsed indices.
 
 #### Implementations
 
-- `fn load<F, E>(section: F, empty: R) -> core::result::Result<Self, E>`
+- <span id="dwarfpackage-load"></span>`fn load<F, E>(section: F, empty: R) -> core::result::Result<Self, E>`
 
-- `fn from_sections(sections: DwarfPackageSections<R>, empty: R) -> Result<Self>` — [`DwarfPackageSections`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-from-sections"></span>`fn from_sections(sections: DwarfPackageSections<R>, empty: R) -> Result<Self>` — [`DwarfPackageSections`](../index.md), [`Result`](../../index.md)
 
-- `fn find_cu(self: &Self, id: DwoId, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DwoId`](../../index.md), [`Dwarf`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-find-cu"></span>`fn find_cu(&self, id: DwoId, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DwoId`](../../index.md), [`Dwarf`](../index.md), [`Result`](../../index.md)
 
-- `fn find_tu(self: &Self, signature: DebugTypeSignature, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DebugTypeSignature`](../../index.md), [`Dwarf`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-find-tu"></span>`fn find_tu(&self, signature: DebugTypeSignature, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DebugTypeSignature`](../../index.md), [`Dwarf`](../index.md), [`Result`](../../index.md)
 
-- `fn cu_sections(self: &Self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-cu-sections"></span>`fn cu_sections(&self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](../index.md), [`Result`](../../index.md)
 
-- `fn tu_sections(self: &Self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-tu-sections"></span>`fn tu_sections(&self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](../index.md), [`Result`](../../index.md)
 
-- `fn sections(self: &Self, sections: UnitIndexSectionIterator<'_, R>, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`UnitIndexSectionIterator`](../index.md), [`Dwarf`](../index.md), [`Result`](../../index.md)
+- <span id="dwarfpackage-sections"></span>`fn sections(&self, sections: UnitIndexSectionIterator<'_, R>, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`UnitIndexSectionIterator`](../index.md), [`Dwarf`](../index.md), [`Result`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for DwarfPackage<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for DwarfPackage<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwarfpackage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Unit<R, Offset>`
 
@@ -529,6 +517,8 @@ where
     pub dwo_id: Option<crate::common::DwoId>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1133-1170`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1133-L1170)*
 
 All of the commonly used information for a unit in the `.debug_info` or `.debug_types`
 sections.
@@ -581,33 +571,33 @@ sections.
 
 #### Implementations
 
-- `fn new(dwarf: &Dwarf<R>, header: UnitHeader<R>) -> Result<Self>` — [`Dwarf`](../index.md), [`UnitHeader`](../index.md), [`Result`](../../index.md)
+- <span id="unit-new"></span>`fn new(dwarf: &Dwarf<R>, header: UnitHeader<R>) -> Result<Self>` — [`Dwarf`](../index.md), [`UnitHeader`](../index.md), [`Result`](../../index.md)
 
-- `fn new_with_abbreviations(dwarf: &Dwarf<R>, header: UnitHeader<R>, abbreviations: Arc<Abbreviations>) -> Result<Self>` — [`Dwarf`](../index.md), [`UnitHeader`](../index.md), [`Abbreviations`](../index.md), [`Result`](../../index.md)
+- <span id="unit-new-with-abbreviations"></span>`fn new_with_abbreviations(dwarf: &Dwarf<R>, header: UnitHeader<R>, abbreviations: Arc<Abbreviations>) -> Result<Self>` — [`Dwarf`](../index.md), [`UnitHeader`](../index.md), [`Abbreviations`](../index.md), [`Result`](../../index.md)
 
-- `fn unit_ref<'a>(self: &'a Self, dwarf: &'a Dwarf<R>) -> UnitRef<'a, R>` — [`Dwarf`](../index.md), [`UnitRef`](../index.md)
+- <span id="unit-unit-ref"></span>`fn unit_ref<'a>(self: &'a Self, dwarf: &'a Dwarf<R>) -> UnitRef<'a, R>` — [`Dwarf`](../index.md), [`UnitRef`](../index.md)
 
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../../index.md)
+- <span id="unit-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md)
 
-- `fn entry(self: &Self, offset: UnitOffset<<R as >::Offset>) -> Result<DebuggingInformationEntry<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`DebuggingInformationEntry`](../index.md)
+- <span id="unit-entry"></span>`fn entry(&self, offset: UnitOffset<<R as >::Offset>) -> Result<DebuggingInformationEntry<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`DebuggingInformationEntry`](../index.md)
 
-- `fn entries(self: &Self) -> EntriesCursor<'_, '_, R>` — [`EntriesCursor`](../index.md)
+- <span id="unit-entries"></span>`fn entries(&self) -> EntriesCursor<'_, '_, R>` — [`EntriesCursor`](../index.md)
 
-- `fn entries_at_offset(self: &Self, offset: UnitOffset<<R as >::Offset>) -> Result<EntriesCursor<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`EntriesCursor`](../index.md)
+- <span id="unit-entries-at-offset"></span>`fn entries_at_offset(&self, offset: UnitOffset<<R as >::Offset>) -> Result<EntriesCursor<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`EntriesCursor`](../index.md)
 
-- `fn entries_tree(self: &Self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesTree<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`EntriesTree`](../index.md)
+- <span id="unit-entries-tree"></span>`fn entries_tree(&self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesTree<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`EntriesTree`](../index.md)
 
-- `fn entries_raw(self: &Self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesRaw<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`EntriesRaw`](../index.md)
+- <span id="unit-entries-raw"></span>`fn entries_raw(&self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesRaw<'_, '_, R>>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`EntriesRaw`](../index.md)
 
-- `fn copy_relocated_attributes(self: &mut Self, other: &Unit<R>)` — [`Unit`](../index.md)
+- <span id="unit-copy-relocated-attributes"></span>`fn copy_relocated_attributes(&mut self, other: &Unit<R>)` — [`Unit`](../index.md)
 
-- `fn dwo_name(self: &Self) -> Result<Option<AttributeValue<R>>>` — [`Result`](../../index.md), [`AttributeValue`](../index.md)
+- <span id="unit-dwo-name"></span>`fn dwo_name(&self) -> Result<Option<AttributeValue<R>>>` — [`Result`](../../index.md), [`AttributeValue`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Debug for Unit<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unit-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `UnitRef<'a, R: Reader>`
 
@@ -617,6 +607,8 @@ struct UnitRef<'a, R: Reader> {
     pub unit: &'a Unit<R>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1389-1395`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1389-L1395)*
 
 A reference to a `Unit` and its associated `Dwarf`.
 
@@ -637,73 +629,73 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 
 #### Implementations
 
-- `fn new(dwarf: &'a Dwarf<R>, unit: &'a Unit<R>) -> Self` — [`Dwarf`](../index.md), [`Unit`](../index.md)
+- <span id="unitref-new"></span>`fn new(dwarf: &'a Dwarf<R>, unit: &'a Unit<R>) -> Self` — [`Dwarf`](../index.md), [`Unit`](../index.md)
 
-- `fn string_offset(self: &Self, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`DebugStrOffsetsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`DebugStrOffset`](../../index.md)
+- <span id="unitref-string-offset"></span>`fn string_offset(&self, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`DebugStrOffsetsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`DebugStrOffset`](../../index.md)
 
-- `fn string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-string"></span>`fn string(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
 
-- `fn line_string(self: &Self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-line-string"></span>`fn line_string(&self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
 
-- `fn sup_string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-sup-string"></span>`fn sup_string(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
 
-- `fn attr_string(self: &Self, attr: AttributeValue<R>) -> Result<R>` — [`AttributeValue`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-attr-string"></span>`fn attr_string(&self, attr: AttributeValue<R>) -> Result<R>` — [`AttributeValue`](../index.md), [`Result`](../../index.md)
 
-- `fn address(self: &Self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-address"></span>`fn address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
 
-- `fn attr_address(self: &Self, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md)
+- <span id="unitref-attr-address"></span>`fn attr_address(&self, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md)
 
-- `fn ranges_offset_from_raw(self: &Self, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`RawRangeListsOffset`](../../index.md), [`Reader`](../index.md), [`RangeListsOffset`](../../index.md)
+- <span id="unitref-ranges-offset-from-raw"></span>`fn ranges_offset_from_raw(&self, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`RawRangeListsOffset`](../../index.md), [`Reader`](../index.md), [`RangeListsOffset`](../../index.md)
 
-- `fn ranges_offset(self: &Self, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`DebugRngListsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md)
+- <span id="unitref-ranges-offset"></span>`fn ranges_offset(&self, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`DebugRngListsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md)
 
-- `fn ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
+- <span id="unitref-ranges"></span>`fn ranges(&self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
 
-- `fn raw_ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RawRngListIter`](../index.md)
+- <span id="unitref-raw-ranges"></span>`fn raw_ranges(&self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RawRngListIter`](../index.md)
 
-- `fn attr_ranges_offset(self: &Self, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="unitref-attr-ranges-offset"></span>`fn attr_ranges_offset(&self, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md), [`Reader`](../index.md)
 
-- `fn attr_ranges(self: &Self, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
+- <span id="unitref-attr-ranges"></span>`fn attr_ranges(&self, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
 
-- `fn die_ranges(self: &Self, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`DebuggingInformationEntry`](../index.md), [`Result`](../../index.md), [`RangeIter`](../index.md)
+- <span id="unitref-die-ranges"></span>`fn die_ranges(&self, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`DebuggingInformationEntry`](../index.md), [`Result`](../../index.md), [`RangeIter`](../index.md)
 
-- `fn unit_ranges(self: &Self) -> Result<RangeIter<R>>` — [`Result`](../../index.md), [`RangeIter`](../index.md)
+- <span id="unitref-unit-ranges"></span>`fn unit_ranges(&self) -> Result<RangeIter<R>>` — [`Result`](../../index.md), [`RangeIter`](../index.md)
 
-- `fn locations_offset(self: &Self, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`DebugLocListsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md)
+- <span id="unitref-locations-offset"></span>`fn locations_offset(&self, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`DebugLocListsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md)
 
-- `fn locations(self: &Self, offset: LocationListsOffset<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
+- <span id="unitref-locations"></span>`fn locations(&self, offset: LocationListsOffset<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
 
-- `fn raw_locations(self: &Self, offset: LocationListsOffset<<R as >::Offset>) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RawLocListIter`](../index.md)
+- <span id="unitref-raw-locations"></span>`fn raw_locations(&self, offset: LocationListsOffset<<R as >::Offset>) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RawLocListIter`](../index.md)
 
-- `fn attr_locations_offset(self: &Self, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="unitref-attr-locations-offset"></span>`fn attr_locations_offset(&self, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md), [`Reader`](../index.md)
 
-- `fn attr_locations(self: &Self, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
+- <span id="unitref-attr-locations"></span>`fn attr_locations(&self, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`AttributeValue`](../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
 
-- `fn macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
+- <span id="unitref-macinfo"></span>`fn macinfo(&self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
 
-- `fn macros(self: &Self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
+- <span id="unitref-macros"></span>`fn macros(&self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a, R: Reader> Clone for UnitRef<'a, R>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="unitref-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<'a, R: Reader> Copy for UnitRef<'a, R>`
 
-##### `impl<'a, R: $crate::fmt::Debug + Reader> Debug for UnitRef<'a, R>`
+##### `impl<'a, R: fmt::Debug + Reader> Debug for UnitRef<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a, R: Reader> Deref for UnitRef<'a, R>`
 
-- `type Target = Unit<R>`
+- <span id="unitref-type-target"></span>`type Target = Unit<R>`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="unitref-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<P, T> Receiver for UnitRef<'a, R>`
 
-- `type Target = T`
+- <span id="unitref-type-target"></span>`type Target = T`
 
 ### `RangeIter<R: Reader>`
 
@@ -711,23 +703,25 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 struct RangeIter<R: Reader>(RangeIterInner<R>);
 ```
 
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1630`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1630)*
+
 An iterator for the address ranges of a `DebuggingInformationEntry`.
 
 Returned by `Dwarf::die_ranges` and `Dwarf::unit_ranges`.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<Range>>` — [`Result`](../../index.md), [`Range`](../index.md)
+- <span id="rangeiter-next"></span>`fn next(&mut self) -> Result<Option<Range>>` — [`Result`](../../index.md), [`Range`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RangeIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RangeIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rangeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: Reader> Default for RangeIter<R>`
 
-- `fn default() -> Self`
+- <span id="rangeiter-default"></span>`fn default() -> Self`
 
 ## Enums
 
@@ -740,9 +734,11 @@ enum RangeIterInner<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1633-1636`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1633-L1636)*
+
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RangeIterInner<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RangeIterInner<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rangeiterinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

@@ -6,6 +6,36 @@
 
 Defines a translator that converts an `Ast` to an `Hir`.
 
+## Contents
+
+- [Structs](#structs)
+  - [`TranslatorBuilder`](#translatorbuilder)
+  - [`Translator`](#translator)
+  - [`TranslatorI`](#translatori)
+  - [`Flags`](#flags)
+- [Enums](#enums)
+  - [`HirFrame`](#hirframe)
+- [Functions](#functions)
+  - [`hir_ascii_class_bytes`](#hir_ascii_class_bytes)
+  - [`ascii_class`](#ascii_class)
+  - [`ascii_class_as_chars`](#ascii_class_as_chars)
+- [Type Aliases](#type-aliases)
+  - [`Result`](#result)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`TranslatorBuilder`](#translatorbuilder) | struct | A builder for constructing an AST->HIR translator. |
+| [`Translator`](#translator) | struct | A translator maps abstract syntax to a high level intermediate representation. |
+| [`TranslatorI`](#translatori) | struct | The internal implementation of a translator. |
+| [`Flags`](#flags) | struct | A translator's representation of a regular expression's flags at any given moment in time. |
+| [`HirFrame`](#hirframe) | enum | An HirFrame is a single stack frame, represented explicitly, which is created for each item in the Ast that we traverse. |
+| [`hir_ascii_class_bytes`](#hir_ascii_class_bytes) | fn |  |
+| [`ascii_class`](#ascii_class) | fn |  |
+| [`ascii_class_as_chars`](#ascii_class_as_chars) | fn |  |
+| [`Result`](#result) | type |  |
+
 ## Structs
 
 ### `TranslatorBuilder`
@@ -18,43 +48,45 @@ struct TranslatorBuilder {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:20-24`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L20-L24)*
+
 A builder for constructing an AST->HIR translator.
 
 #### Implementations
 
-- `fn new() -> TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-new"></span>`fn new() -> TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn build(self: &Self) -> Translator` — [`Translator`](#translator)
+- <span id="translatorbuilder-build"></span>`fn build(&self) -> Translator` — [`Translator`](#translator)
 
-- `fn utf8(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-utf8"></span>`fn utf8(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for TranslatorBuilder`
 
-- `fn clone(self: &Self) -> TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-clone"></span>`fn clone(&self) -> TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
 ##### `impl Debug for TranslatorBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="translatorbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for TranslatorBuilder`
 
-- `fn default() -> TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
+- <span id="translatorbuilder-default"></span>`fn default() -> TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
 ### `Translator`
 
@@ -66,6 +98,8 @@ struct Translator {
     line_terminator: u8,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:147-156`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L147-L156)*
 
 A translator maps abstract syntax to a high level intermediate
 representation.
@@ -96,19 +130,19 @@ A `Translator` can be configured in more detail via a
 
 #### Implementations
 
-- `fn new() -> Translator` — [`Translator`](#translator)
+- <span id="translator-new"></span>`fn new() -> Translator` — [`Translator`](#translator)
 
-- `fn translate(self: &mut Self, pattern: &str, ast: &Ast) -> core::result::Result<Hir, crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+- <span id="translator-translate"></span>`fn translate(&mut self, pattern: &str, ast: &Ast) -> core::result::Result<Hir, crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Translator`
 
-- `fn clone(self: &Self) -> Translator` — [`Translator`](#translator)
+- <span id="translator-clone"></span>`fn clone(&self) -> Translator` — [`Translator`](#translator)
 
 ##### `impl Debug for Translator`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="translator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `TranslatorI<'t, 'p>`
 
@@ -119,6 +153,8 @@ struct TranslatorI<'t, 'p> {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:674-677`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L674-L677)*
+
 The internal implementation of a translator.
 
 This type is responsible for carrying around the original pattern string,
@@ -128,91 +164,91 @@ A TranslatorI exists for the time it takes to translate a single Ast.
 
 #### Implementations
 
-- `fn new(trans: &'t Translator, pattern: &'p str) -> TranslatorI<'t, 'p>` — [`Translator`](#translator), [`TranslatorI`](#translatori)
+- <span id="translatori-new"></span>`fn new(trans: &'t Translator, pattern: &'p str) -> TranslatorI<'t, 'p>` — [`Translator`](#translator), [`TranslatorI`](#translatori)
 
-- `fn trans(self: &Self) -> &Translator` — [`Translator`](#translator)
+- <span id="translatori-trans"></span>`fn trans(&self) -> &Translator` — [`Translator`](#translator)
 
-- `fn push(self: &Self, frame: HirFrame)` — [`HirFrame`](#hirframe)
+- <span id="translatori-push"></span>`fn push(&self, frame: HirFrame)` — [`HirFrame`](#hirframe)
 
-- `fn push_char(self: &Self, ch: char)`
+- <span id="translatori-push-char"></span>`fn push_char(&self, ch: char)`
 
-- `fn push_byte(self: &Self, byte: u8)`
+- <span id="translatori-push-byte"></span>`fn push_byte(&self, byte: u8)`
 
-- `fn pop(self: &Self) -> Option<HirFrame>` — [`HirFrame`](#hirframe)
+- <span id="translatori-pop"></span>`fn pop(&self) -> Option<HirFrame>` — [`HirFrame`](#hirframe)
 
-- `fn pop_concat_expr(self: &Self) -> Option<Hir>` — [`Hir`](../index.md)
+- <span id="translatori-pop-concat-expr"></span>`fn pop_concat_expr(&self) -> Option<Hir>` — [`Hir`](../index.md)
 
-- `fn pop_alt_expr(self: &Self) -> Option<Hir>` — [`Hir`](../index.md)
+- <span id="translatori-pop-alt-expr"></span>`fn pop_alt_expr(&self) -> Option<Hir>` — [`Hir`](../index.md)
 
-- `fn error(self: &Self, span: Span, kind: ErrorKind) -> Error` — [`Span`](../../ast/index.md), [`ErrorKind`](../index.md), [`Error`](../index.md)
+- <span id="translatori-error"></span>`fn error(&self, span: Span, kind: ErrorKind) -> Error` — [`Span`](../../ast/index.md), [`ErrorKind`](../index.md), [`Error`](../index.md)
 
-- `fn flags(self: &Self) -> Flags` — [`Flags`](#flags)
+- <span id="translatori-flags"></span>`fn flags(&self) -> Flags` — [`Flags`](#flags)
 
-- `fn set_flags(self: &Self, ast_flags: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md)
+- <span id="translatori-set-flags"></span>`fn set_flags(&self, ast_flags: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md)
 
-- `fn ast_literal_to_scalar(self: &Self, lit: &ast::Literal) -> core::result::Result<Either<char, u8>, crate::hir::Error>` — [`Literal`](../../ast/index.md), [`Either`](../../either/index.md), [`Error`](../index.md)
+- <span id="translatori-ast-literal-to-scalar"></span>`fn ast_literal_to_scalar(&self, lit: &ast::Literal) -> core::result::Result<Either<char, u8>, crate::hir::Error>` — [`Literal`](../../ast/index.md), [`Either`](../../either/index.md), [`Error`](../index.md)
 
-- `fn case_fold_char(self: &Self, span: Span, c: char) -> core::result::Result<Option<Hir>, crate::hir::Error>` — [`Span`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+- <span id="translatori-case-fold-char"></span>`fn case_fold_char(&self, span: Span, c: char) -> core::result::Result<Option<Hir>, crate::hir::Error>` — [`Span`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
 
-- `fn hir_dot(self: &Self, span: Span) -> core::result::Result<Hir, crate::hir::Error>` — [`Span`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-dot"></span>`fn hir_dot(&self, span: Span) -> core::result::Result<Hir, crate::hir::Error>` — [`Span`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
 
-- `fn hir_assertion(self: &Self, asst: &ast::Assertion) -> core::result::Result<Hir, crate::hir::Error>` — [`Assertion`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-assertion"></span>`fn hir_assertion(&self, asst: &ast::Assertion) -> core::result::Result<Hir, crate::hir::Error>` — [`Assertion`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
 
-- `fn hir_capture(self: &Self, group: &ast::Group, expr: Hir) -> Hir` — [`Group`](../../ast/index.md), [`Hir`](../index.md)
+- <span id="translatori-hir-capture"></span>`fn hir_capture(&self, group: &ast::Group, expr: Hir) -> Hir` — [`Group`](../../ast/index.md), [`Hir`](../index.md)
 
-- `fn hir_repetition(self: &Self, rep: &ast::Repetition, expr: Hir) -> Hir` — [`Repetition`](../../ast/index.md), [`Hir`](../index.md)
+- <span id="translatori-hir-repetition"></span>`fn hir_repetition(&self, rep: &ast::Repetition, expr: Hir) -> Hir` — [`Repetition`](../../ast/index.md), [`Hir`](../index.md)
 
-- `fn hir_unicode_class(self: &Self, ast_class: &ast::ClassUnicode) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassUnicode`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-hir-unicode-class"></span>`fn hir_unicode_class(&self, ast_class: &ast::ClassUnicode) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassUnicode`](../../ast/index.md), [`Error`](../index.md)
 
-- `fn hir_ascii_unicode_class(self: &Self, ast: &ast::ClassAscii) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassAscii`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-ascii-unicode-class"></span>`fn hir_ascii_unicode_class(&self, ast: &ast::ClassAscii) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassAscii`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
 
-- `fn hir_ascii_byte_class(self: &Self, ast: &ast::ClassAscii) -> core::result::Result<hir::ClassBytes, crate::hir::Error>` — [`ClassAscii`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-ascii-byte-class"></span>`fn hir_ascii_byte_class(&self, ast: &ast::ClassAscii) -> core::result::Result<hir::ClassBytes, crate::hir::Error>` — [`ClassAscii`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
 
-- `fn hir_perl_unicode_class(self: &Self, ast_class: &ast::ClassPerl) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassPerl`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-perl-unicode-class"></span>`fn hir_perl_unicode_class(&self, ast_class: &ast::ClassPerl) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassPerl`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
 
-- `fn hir_perl_byte_class(self: &Self, ast_class: &ast::ClassPerl) -> core::result::Result<hir::ClassBytes, crate::hir::Error>` — [`ClassPerl`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
+- <span id="translatori-hir-perl-byte-class"></span>`fn hir_perl_byte_class(&self, ast_class: &ast::ClassPerl) -> core::result::Result<hir::ClassBytes, crate::hir::Error>` — [`ClassPerl`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
 
-- `fn convert_unicode_class_error(self: &Self, span: &Span, result: core::result::Result<hir::ClassUnicode, unicode::Error>) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../../unicode/index.md)
+- <span id="translatori-convert-unicode-class-error"></span>`fn convert_unicode_class_error(&self, span: &Span, result: core::result::Result<hir::ClassUnicode, unicode::Error>) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../../unicode/index.md)
 
-- `fn unicode_fold_and_negate(self: &Self, span: &Span, negated: bool, class: &mut hir::ClassUnicode) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
+- <span id="translatori-unicode-fold-and-negate"></span>`fn unicode_fold_and_negate(&self, span: &Span, negated: bool, class: &mut hir::ClassUnicode) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
 
-- `fn bytes_fold_and_negate(self: &Self, span: &Span, negated: bool, class: &mut hir::ClassBytes) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
+- <span id="translatori-bytes-fold-and-negate"></span>`fn bytes_fold_and_negate(&self, span: &Span, negated: bool, class: &mut hir::ClassBytes) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
 
-- `fn class_literal_byte(self: &Self, ast: &ast::Literal) -> core::result::Result<u8, crate::hir::Error>` — [`Literal`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-class-literal-byte"></span>`fn class_literal_byte(&self, ast: &ast::Literal) -> core::result::Result<u8, crate::hir::Error>` — [`Literal`](../../ast/index.md), [`Error`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'t, 'p> Clone for TranslatorI<'t, 'p>`
+##### `impl Clone for TranslatorI<'t, 'p>`
 
-- `fn clone(self: &Self) -> TranslatorI<'t, 'p>` — [`TranslatorI`](#translatori)
+- <span id="translatori-clone"></span>`fn clone(&self) -> TranslatorI<'t, 'p>` — [`TranslatorI`](#translatori)
 
-##### `impl<'t, 'p> Debug for TranslatorI<'t, 'p>`
+##### `impl Debug for TranslatorI<'t, 'p>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="translatori-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'t, 'p> Visitor for TranslatorI<'t, 'p>`
+##### `impl Visitor for TranslatorI<'t, 'p>`
 
-- `type Output = Hir`
+- <span id="translatori-type-output"></span>`type Output = Hir`
 
-- `type Err = Error`
+- <span id="translatori-type-err"></span>`type Err = Error`
 
-- `fn finish(self: Self) -> core::result::Result<Hir, crate::hir::Error>` — [`Hir`](../index.md), [`Error`](../index.md)
+- <span id="translatori-finish"></span>`fn finish(self) -> core::result::Result<Hir, crate::hir::Error>` — [`Hir`](../index.md), [`Error`](../index.md)
 
-- `fn visit_pre(self: &mut Self, ast: &Ast) -> core::result::Result<(), crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-pre"></span>`fn visit_pre(&mut self, ast: &Ast) -> core::result::Result<(), crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Error`](../index.md)
 
-- `fn visit_post(self: &mut Self, ast: &Ast) -> core::result::Result<(), crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-post"></span>`fn visit_post(&mut self, ast: &Ast) -> core::result::Result<(), crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Error`](../index.md)
 
-- `fn visit_alternation_in(self: &mut Self) -> core::result::Result<(), crate::hir::Error>` — [`Error`](../index.md)
+- <span id="translatori-visit-alternation-in"></span>`fn visit_alternation_in(&mut self) -> core::result::Result<(), crate::hir::Error>` — [`Error`](../index.md)
 
-- `fn visit_class_set_item_pre(self: &mut Self, ast: &ast::ClassSetItem) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetItem`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetItem`](../../ast/index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_item_post(self: &mut Self, ast: &ast::ClassSetItem) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetItem`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetItem`](../../ast/index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_binary_op_pre(self: &mut Self, _op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-class-set-binary-op-pre"></span>`fn visit_class_set_binary_op_pre(&mut self, _op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_binary_op_in(self: &mut Self, _op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-class-set-binary-op-in"></span>`fn visit_class_set_binary_op_in(&mut self, _op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_binary_op_post(self: &mut Self, op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
+- <span id="translatori-visit-class-set-binary-op-post"></span>`fn visit_class_set_binary_op_post(&mut self, op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
 
 ### `Flags`
 
@@ -227,6 +263,8 @@ struct Flags {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1222-1231`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L1222-L1231)*
+
 A translator's representation of a regular expression's flags at any given
 moment in time.
 
@@ -235,37 +273,37 @@ present but enabled.
 
 #### Implementations
 
-- `fn from_ast(ast: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md)
+- <span id="flags-from-ast"></span>`fn from_ast(ast: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md)
 
-- `fn merge(self: &mut Self, previous: &Flags)` — [`Flags`](#flags)
+- <span id="flags-merge"></span>`fn merge(&mut self, previous: &Flags)` — [`Flags`](#flags)
 
-- `fn case_insensitive(self: &Self) -> bool`
+- <span id="flags-case-insensitive"></span>`fn case_insensitive(&self) -> bool`
 
-- `fn multi_line(self: &Self) -> bool`
+- <span id="flags-multi-line"></span>`fn multi_line(&self) -> bool`
 
-- `fn dot_matches_new_line(self: &Self) -> bool`
+- <span id="flags-dot-matches-new-line"></span>`fn dot_matches_new_line(&self) -> bool`
 
-- `fn swap_greed(self: &Self) -> bool`
+- <span id="flags-swap-greed"></span>`fn swap_greed(&self) -> bool`
 
-- `fn unicode(self: &Self) -> bool`
+- <span id="flags-unicode"></span>`fn unicode(&self) -> bool`
 
-- `fn crlf(self: &Self) -> bool`
+- <span id="flags-crlf"></span>`fn crlf(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Flags`
 
-- `fn clone(self: &Self) -> Flags` — [`Flags`](#flags)
+- <span id="flags-clone"></span>`fn clone(&self) -> Flags` — [`Flags`](#flags)
 
 ##### `impl Copy for Flags`
 
 ##### `impl Debug for Flags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Flags`
 
-- `fn default() -> Flags` — [`Flags`](#flags)
+- <span id="flags-default"></span>`fn default() -> Flags` — [`Flags`](#flags)
 
 ## Enums
 
@@ -286,6 +324,8 @@ enum HirFrame {
     AlternationBranch,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:185-249`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L185-L249)*
 
 An HirFrame is a single stack frame, represented explicitly, which is
 created for each item in the Ast that we traverse.
@@ -365,27 +405,27 @@ traversing the Ast itself.
 
 #### Implementations
 
-- `fn unwrap_expr(self: Self) -> Hir` — [`Hir`](../index.md)
+- <span id="hirframe-unwrap-expr"></span>`fn unwrap_expr(self) -> Hir` — [`Hir`](../index.md)
 
-- `fn unwrap_class_unicode(self: Self) -> hir::ClassUnicode` — [`ClassUnicode`](../index.md)
+- <span id="hirframe-unwrap-class-unicode"></span>`fn unwrap_class_unicode(self) -> hir::ClassUnicode` — [`ClassUnicode`](../index.md)
 
-- `fn unwrap_class_bytes(self: Self) -> hir::ClassBytes` — [`ClassBytes`](../index.md)
+- <span id="hirframe-unwrap-class-bytes"></span>`fn unwrap_class_bytes(self) -> hir::ClassBytes` — [`ClassBytes`](../index.md)
 
-- `fn unwrap_repetition(self: Self)`
+- <span id="hirframe-unwrap-repetition"></span>`fn unwrap_repetition(self)`
 
-- `fn unwrap_group(self: Self) -> Flags` — [`Flags`](#flags)
+- <span id="hirframe-unwrap-group"></span>`fn unwrap_group(self) -> Flags` — [`Flags`](#flags)
 
-- `fn unwrap_alternation_pipe(self: Self)`
+- <span id="hirframe-unwrap-alternation-pipe"></span>`fn unwrap_alternation_pipe(self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for HirFrame`
 
-- `fn clone(self: &Self) -> HirFrame` — [`HirFrame`](#hirframe)
+- <span id="hirframe-clone"></span>`fn clone(&self) -> HirFrame` — [`HirFrame`](#hirframe)
 
 ##### `impl Debug for HirFrame`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="hirframe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 
@@ -395,17 +435,23 @@ traversing the Ast itself.
 fn hir_ascii_class_bytes(kind: &ast::ClassAsciiKind) -> hir::ClassBytes
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1312-1317`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L1312-L1317)*
+
 ### `ascii_class`
 
 ```rust
 fn ascii_class(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (u8, u8)>
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1319-1346`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L1319-L1346)*
+
 ### `ascii_class_as_chars`
 
 ```rust
 fn ascii_class_as_chars(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (char, char)>
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:1348-1352`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L1348-L1352)*
 
 ## Type Aliases
 
@@ -414,4 +460,6 @@ fn ascii_class_as_chars(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (cha
 ```rust
 type Result<T> = core::result::Result<T, crate::hir::Error>;
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/translate.rs:16`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/translate.rs#L16)*
 

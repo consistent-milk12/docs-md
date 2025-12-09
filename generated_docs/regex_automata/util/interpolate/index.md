@@ -49,6 +49,31 @@ module, it is impossible for a replacement string to be invalid. A replacement
 string may not have the intended semantics, but the interpolation procedure
 itself can never fail.
 
+## Contents
+
+- [Structs](#structs)
+  - [`CaptureRef`](#captureref)
+- [Enums](#enums)
+  - [`Ref`](#ref)
+- [Functions](#functions)
+  - [`string`](#string)
+  - [`bytes`](#bytes)
+  - [`find_cap_ref`](#find_cap_ref)
+  - [`find_cap_ref_braced`](#find_cap_ref_braced)
+  - [`is_valid_cap_letter`](#is_valid_cap_letter)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CaptureRef`](#captureref) | struct | `CaptureRef` represents a reference to a capture group inside some text. |
+| [`Ref`](#ref) | enum | A reference to a capture group in some text. |
+| [`string`](#string) | fn | Accepts a replacement string and interpolates capture references with their corresponding values. |
+| [`bytes`](#bytes) | fn | Accepts a replacement byte string and interpolates capture references with their corresponding values. |
+| [`find_cap_ref`](#find_cap_ref) | fn | Parses a possible reference to a capture group name in the given text, starting at the beginning of `replacement`. |
+| [`find_cap_ref_braced`](#find_cap_ref_braced) | fn | Looks for a braced reference, e.g., `${foo1}`. |
+| [`is_valid_cap_letter`](#is_valid_cap_letter) | fn | Returns true if and only if the given byte is allowed in a capture name written in non-brace form. |
+
 ## Structs
 
 ### `CaptureRef<'a>`
@@ -60,6 +85,8 @@ struct CaptureRef<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:226-229`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L226-L229)*
+
 `CaptureRef` represents a reference to a capture group inside some text.
 The reference is either a capture group name or a number.
 
@@ -68,23 +95,23 @@ capture reference.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for CaptureRef<'a>`
+##### `impl Clone for CaptureRef<'a>`
 
-- `fn clone(self: &Self) -> CaptureRef<'a>` — [`CaptureRef`](#captureref)
+- <span id="captureref-clone"></span>`fn clone(&self) -> CaptureRef<'a>` — [`CaptureRef`](#captureref)
 
-##### `impl<'a> Copy for CaptureRef<'a>`
+##### `impl Copy for CaptureRef<'a>`
 
-##### `impl<'a> Debug for CaptureRef<'a>`
+##### `impl Debug for CaptureRef<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="captureref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Eq for CaptureRef<'a>`
+##### `impl Eq for CaptureRef<'a>`
 
-##### `impl<'a> PartialEq for CaptureRef<'a>`
+##### `impl PartialEq for CaptureRef<'a>`
 
-- `fn eq(self: &Self, other: &CaptureRef<'a>) -> bool` — [`CaptureRef`](#captureref)
+- <span id="captureref-eq"></span>`fn eq(&self, other: &CaptureRef<'a>) -> bool` — [`CaptureRef`](#captureref)
 
-##### `impl<'a> StructuralPartialEq for CaptureRef<'a>`
+##### `impl StructuralPartialEq for CaptureRef<'a>`
 
 ## Enums
 
@@ -97,29 +124,31 @@ enum Ref<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:235-238`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L235-L238)*
+
 A reference to a capture group in some text.
 
 e.g., `$2`, `$foo`, `${foo}`.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Ref<'a>`
+##### `impl Clone for Ref<'a>`
 
-- `fn clone(self: &Self) -> Ref<'a>` — [`Ref`](#ref)
+- <span id="ref-clone"></span>`fn clone(&self) -> Ref<'a>` — [`Ref`](#ref)
 
-##### `impl<'a> Copy for Ref<'a>`
+##### `impl Copy for Ref<'a>`
 
-##### `impl<'a> Debug for Ref<'a>`
+##### `impl Debug for Ref<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Eq for Ref<'a>`
+##### `impl Eq for Ref<'a>`
 
-##### `impl<'a> PartialEq for Ref<'a>`
+##### `impl PartialEq for Ref<'a>`
 
-- `fn eq(self: &Self, other: &Ref<'a>) -> bool` — [`Ref`](#ref)
+- <span id="ref-eq"></span>`fn eq(&self, other: &Ref<'a>) -> bool` — [`Ref`](#ref)
 
-##### `impl<'a> StructuralPartialEq for Ref<'a>`
+##### `impl StructuralPartialEq for Ref<'a>`
 
 ## Functions
 
@@ -128,6 +157,8 @@ e.g., `$2`, `$foo`, `${foo}`.
 ```rust
 fn string(replacement: &str, append: impl FnMut(usize, &mut alloc::string::String), name_to_index: impl FnMut(&str) -> Option<usize>, dst: &mut alloc::string::String)
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:94-134`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L94-L134)*
 
 Accepts a replacement string and interpolates capture references with their
 corresponding values.
@@ -178,6 +209,8 @@ assert_eq!("foo BAR baz", dst);
 fn bytes(replacement: &[u8], append: impl FnMut(usize, &mut alloc::vec::Vec<u8>), name_to_index: impl FnMut(&str) -> Option<usize>, dst: &mut alloc::vec::Vec<u8>)
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:178-218`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L178-L218)*
+
 Accepts a replacement byte string and interpolates capture references with
 their corresponding values.
 
@@ -227,6 +260,8 @@ assert_eq!(&b"foo BAR baz"[..], dst);
 fn find_cap_ref(replacement: &[u8]) -> Option<CaptureRef<'_>>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:260-290`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L260-L290)*
+
 Parses a possible reference to a capture group name in the given text,
 starting at the beginning of `replacement`.
 
@@ -242,6 +277,8 @@ being a valid reference, then it should be replaced with the empty string.
 fn find_cap_ref_braced(rep: &[u8], i: usize) -> Option<CaptureRef<'_>>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:295-319`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L295-L319)*
+
 Looks for a braced reference, e.g., `${foo1}`. This assumes that an opening
 brace has been found at `i-1` in `rep`. This then looks for a closing
 brace and returns the capture reference within the brace.
@@ -251,6 +288,8 @@ brace and returns the capture reference within the brace.
 ```rust
 fn is_valid_cap_letter(b: u8) -> bool
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/interpolate.rs:323-325`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/interpolate.rs#L323-L325)*
 
 Returns true if and only if the given byte is allowed in a capture name
 written in non-brace form.

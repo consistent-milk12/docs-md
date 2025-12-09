@@ -4,6 +4,15 @@
 
 # Module `narratable`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NarratableReportHandler`](#narratablereporthandler) | struct | [`ReportHandler`] that renders plain text and avoids extraneous graphics. |
+| [`Line`](#line) | struct |  |
+| [`SpanAttach`](#spanattach) | enum |  |
+| [`safe_get_column`](#safe_get_column) | fn | Returns column at offset, and nearest boundary if offset is in the middle of the character |
+
 ## Structs
 
 ### `NarratableReportHandler`
@@ -16,47 +25,43 @@ struct NarratableReportHandler {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
+
 [`ReportHandler`](../../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
 non-graphical environments, such as non-TTY output.
 
 #### Implementations
 
-- `fn render_report(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../../index.md)
+- <span id="narratablereporthandler-new"></span>`const fn new() -> Self`
 
-- `fn render_header(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../../index.md)
+- <span id="narratablereporthandler-with-cause-chain"></span>`const fn with_cause_chain(self) -> Self`
 
-- `fn render_causes(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../../index.md)
+- <span id="narratablereporthandler-without-cause-chain"></span>`const fn without_cause_chain(self) -> Self`
 
-- `fn render_footer(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../../index.md)
+- <span id="narratablereporthandler-with-footer"></span>`fn with_footer(self, footer: String) -> Self`
 
-- `fn render_related(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../../index.md), [`SourceCode`](../../index.md)
-
-- `fn render_snippets(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, source_code: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../../index.md), [`SourceCode`](../../index.md)
-
-- `fn render_context(self: &Self, f: &mut impl fmt::Write, source: &dyn SourceCode, context: &LabeledSpan, labels: &[LabeledSpan]) -> fmt::Result` — [`SourceCode`](../../index.md), [`LabeledSpan`](../../index.md)
-
-- `fn get_lines<'a>(self: &'a Self, source: &'a dyn SourceCode, context_span: &'a SourceSpan) -> Result<(Box<dyn SpanContents<'a>>, Vec<Line>), fmt::Error>` — [`SourceCode`](../../index.md), [`SourceSpan`](../../index.md), [`SpanContents`](../../index.md), [`Line`](#line)
+- <span id="narratablereporthandler-with-context-lines"></span>`const fn with_context_lines(self, lines: usize) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for NarratableReportHandler`
 
-- `fn clone(self: &Self) -> NarratableReportHandler` — [`NarratableReportHandler`](../index.md)
+- <span id="narratablereporthandler-clone"></span>`fn clone(&self) -> NarratableReportHandler` — [`NarratableReportHandler`](../index.md)
 
 ##### `impl Debug for NarratableReportHandler`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="narratablereporthandler-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for NarratableReportHandler`
 
-- `fn default() -> Self`
+- <span id="narratablereporthandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for NarratableReportHandler`
+##### `impl OwoColorize for NarratableReportHandler`
 
 ##### `impl ReportHandler for NarratableReportHandler`
 
-- `fn debug(self: &Self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md)
+- <span id="narratablereporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md)
 
 ### `Line`
 
@@ -69,13 +74,15 @@ struct Line {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
+
 #### Implementations
 
-- `fn span_attach(self: &Self, span: &SourceSpan) -> Option<SpanAttach>` — [`SourceSpan`](../../index.md), [`SpanAttach`](#spanattach)
+- <span id="line-span-attach"></span>`fn span_attach(&self, span: &SourceSpan) -> Option<SpanAttach>` — [`SourceSpan`](../../index.md), [`SpanAttach`](#spanattach)
 
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for Line`
+##### `impl OwoColorize for Line`
 
 ## Enums
 
@@ -96,9 +103,11 @@ enum SpanAttach {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
+
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for SpanAttach`
+##### `impl OwoColorize for SpanAttach`
 
 ## Functions
 
@@ -107,6 +116,8 @@ enum SpanAttach {
 ```rust
 fn safe_get_column(text: &str, offset: usize, start: bool) -> usize
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
 
 Returns column at offset, and nearest boundary if offset is in the middle of
 the character

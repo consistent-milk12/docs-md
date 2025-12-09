@@ -4,6 +4,13 @@
 
 # Module `traits`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ToCompactString`](#tocompactstring) | trait | A trait for converting a value to a `CompactString`. |
+| [`CompactStringExt`](#compactstringext) | trait | A trait that provides convenience methods for creating a [`CompactString`] from a collection of items. |
+
 ## Traits
 
 ### `ToCompactString`
@@ -12,28 +19,38 @@
 trait ToCompactString { ... }
 ```
 
+*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../../.source_1765210505/compact_str-0.9.0/src/traits.rs#L16-L49)*
+
 A trait for converting a value to a `CompactString`.
 
 This trait is automatically implemented for any type which implements the
-[`fmt::Display`](../../miette_derive/index.md) trait. As such, [`ToCompactString`](../index.md) shouldn't be implemented directly:
-[`fmt::Display`](../../miette_derive/index.md) should be implemented instead, and you get the [`ToCompactString`](../index.md)
+[`fmt::Display`](../../miette_derive/fmt/index.md) trait. As such, [`ToCompactString`](#tocompactstring) shouldn't be implemented directly:
+[`fmt::Display`](../../miette_derive/fmt/index.md) should be implemented instead, and you get the [`ToCompactString`](#tocompactstring)
 implementation for free.
 
 #### Required Methods
 
-- `fn to_compact_string(self: &Self) -> CompactString`
+- `fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
+
+  Fallible version of `ToCompactString::to_compact_string()`
+
+#### Provided Methods
+
+- `fn to_compact_string(&self) -> CompactString`
 
   Converts the given value to a [`CompactString`](../index.md).
 
-- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>`
+#### Implementors
 
-  Fallible version of `ToCompactString::to_compact_string()`
+- `T`
 
 ### `CompactStringExt`
 
 ```rust
 trait CompactStringExt { ... }
 ```
+
+*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../../.source_1765210505/compact_str-0.9.0/src/traits.rs#L142-L169)*
 
 A trait that provides convenience methods for creating a [`CompactString`](../index.md) from a collection of
 items. It is implemented for all types that can be converted into an iterator, and that iterator
@@ -59,11 +76,15 @@ assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
 
 #### Required Methods
 
-- `fn concat_compact(self: Self) -> CompactString`
+- `fn concat_compact(self) -> CompactString`
 
   Concatenates all the items of a collection into a [`CompactString`](../index.md)
 
-- `fn join_compact<S: AsRef<str>>(self: Self, separator: S) -> CompactString`
+- `fn join_compact<S: AsRef<str>>(self, separator: S) -> CompactString`
 
   Joins all the items of a collection, placing a separator between them, forming a
+
+#### Implementors
+
+- `C`
 

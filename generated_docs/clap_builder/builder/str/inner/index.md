@@ -4,6 +4,12 @@
 
 # Module `inner`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Inner`](#inner) | struct |  |
+
 ## Structs
 
 ### `Inner`
@@ -12,39 +18,41 @@
 struct Inner(&'static str);
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/str.rs:277`](../../../../../.source_1765210505/clap_builder-4.5.53/src/builder/str.rs#L277)*
+
 #### Implementations
 
-- `fn from_static_ref(name: &'static str) -> Self`
+- <span id="inner-from-static-ref"></span>`fn from_static_ref(name: &'static str) -> Self`
 
-- `fn as_str(self: &Self) -> &str`
+- <span id="inner-as-str"></span>`fn as_str(&self) -> &str`
 
-- `fn into_string(self: Self) -> String`
+- <span id="inner-into-string"></span>`fn into_string(self) -> String`
 
 #### Trait Implementations
 
 ##### `impl Clone for Inner`
 
-- `fn clone(self: &Self) -> Inner` — [`Inner`](#inner)
+- <span id="inner-clone"></span>`fn clone(&self) -> Inner` — [`Inner`](#inner)
 
 ##### `impl Default for inner::Inner`
 
-- `fn default() -> Self`
+- <span id="innerinner-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for inner::Inner`
 
 ##### `impl Hash for inner::Inner`
 
-- `fn hash<H: std::hash::Hasher>(self: &Self, state: &mut H)`
+- <span id="innerinner-hash"></span>`fn hash<H: std::hash::Hasher>(&self, state: &mut H)`
 
 ##### `impl Ord for inner::Inner`
 
-- `fn cmp(self: &Self, other: &Inner) -> std::cmp::Ordering` — [`Inner`](#inner)
+- <span id="innerinner-cmp"></span>`fn cmp(&self, other: &Inner) -> std::cmp::Ordering` — [`Inner`](#inner)
 
 ##### `impl PartialEq for inner::Inner`
 
-- `fn eq(self: &Self, other: &Inner) -> bool` — [`Inner`](#inner)
+- <span id="innerinner-eq"></span>`fn eq(&self, other: &Inner) -> bool` — [`Inner`](#inner)
 
 ##### `impl PartialOrd for inner::Inner`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<std::cmp::Ordering>`
+- <span id="innerinner-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering>`
 

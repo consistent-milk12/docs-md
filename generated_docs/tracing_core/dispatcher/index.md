@@ -4,7 +4,7 @@
 
 # Module `dispatcher`
 
-Dispatches trace events to [`Subscriber`](../index.md)s.
+Dispatches trace events to [`Subscriber`](../subscriber/index.md)s.
 
 The _dispatcher_ is the component of the tracing system which is responsible
 for forwarding trace data from the instrumentation points that generate it
@@ -26,7 +26,7 @@ duration of a scope, while `set_global_default` sets a default subscriber
 for the entire process.
 
 To use either of these functions, we must first wrap our subscriber in a
-[`Dispatch`](../index.md), a cloneable, type-erased reference to a subscriber. For
+[`Dispatch`](#dispatch), a cloneable, type-erased reference to a subscriber. For
 example:
 ```rust
 pub struct FooSubscriber;
@@ -129,6 +129,52 @@ A thread's current default subscriber can be accessed using the
 currently default `Dispatch`. This is used primarily by `tracing`
 instrumentation.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Dispatch`](#dispatch)
+  - [`WeakDispatch`](#weakdispatch)
+  - [`State`](#state)
+  - [`Entered`](#entered)
+  - [`DefaultGuard`](#defaultguard)
+  - [`SetGlobalDefaultError`](#setglobaldefaulterror)
+  - [`Registrar`](#registrar)
+- [Enums](#enums)
+  - [`Kind`](#kind)
+- [Functions](#functions)
+  - [`with_default`](#with_default)
+  - [`set_default`](#set_default)
+  - [`set_global_default`](#set_global_default)
+  - [`get_default`](#get_default)
+  - [`get_global`](#get_global)
+- [Constants](#constants)
+  - [`CURRENT_STATE`](#current_state)
+  - [`UNINITIALIZED`](#uninitialized)
+  - [`INITIALIZING`](#initializing)
+  - [`INITIALIZED`](#initialized)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Dispatch`](#dispatch) | struct | `Dispatch` trace data to a [`Subscriber`]. |
+| [`WeakDispatch`](#weakdispatch) | struct | `WeakDispatch` is a version of [`Dispatch`] that holds a non-owning reference to a [`Subscriber`]. |
+| [`State`](#state) | struct | The dispatch state of a thread. |
+| [`Entered`](#entered) | struct | While this guard is active, additional calls to subscriber functions on the default dispatcher will not be able to access the dispatch context. |
+| [`DefaultGuard`](#defaultguard) | struct | A guard that resets the current default dispatcher to the prior default dispatcher when dropped. |
+| [`SetGlobalDefaultError`](#setglobaldefaulterror) | struct | Returned if setting the global dispatcher fails. |
+| [`Registrar`](#registrar) | struct |  |
+| [`Kind`](#kind) | enum |  |
+| [`with_default`](#with_default) | fn | Sets this dispatch as the default for the duration of a closure. |
+| [`set_default`](#set_default) | fn | Sets the dispatch as the default dispatch for the duration of the lifetime of the returned DefaultGuard |
+| [`set_global_default`](#set_global_default) | fn | Sets this dispatch as the global default for the duration of the entire program. |
+| [`get_default`](#get_default) | fn | Executes a closure with a reference to this thread's current [dispatcher]. |
+| [`get_global`](#get_global) | fn |  |
+| [`CURRENT_STATE`](#current_state) | const |  |
+| [`UNINITIALIZED`](#uninitialized) | const |  |
+| [`INITIALIZING`](#initializing) | const |  |
+| [`INITIALIZED`](#initialized) | const |  |
+
 ## Structs
 
 ### `Dispatch`
@@ -139,63 +185,65 @@ struct Dispatch {
 }
 ```
 
-`Dispatch` trace data to a [`Subscriber`](../index.md).
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:149-151`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L149-L151)*
+
+`Dispatch` trace data to a [`Subscriber`](../subscriber/index.md).
 
 #### Implementations
 
-- `fn none() -> Self`
+- <span id="dispatch-none"></span>`fn none() -> Self`
 
-- `fn new<S>(subscriber: S) -> Self`
+- <span id="dispatch-new"></span>`fn new<S>(subscriber: S) -> Self`
 
-- `fn registrar(self: &Self) -> Registrar` — [`Registrar`](#registrar)
+- <span id="dispatch-registrar"></span>`fn registrar(&self) -> Registrar` — [`Registrar`](#registrar)
 
-- `fn downgrade(self: &Self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
+- <span id="dispatch-downgrade"></span>`fn downgrade(&self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
 
-- `fn subscriber(self: &Self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](../index.md)
+- <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](../subscriber/index.md)
 
-- `fn register_callsite(self: &Self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](../index.md), [`Interest`](../index.md)
+- <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](../metadata/index.md), [`Interest`](../subscriber/index.md)
 
-- `fn max_level_hint(self: &Self) -> Option<LevelFilter>` — [`LevelFilter`](../index.md)
+- <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](../metadata/index.md)
 
-- `fn new_span(self: &Self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md), [`Id`](../span/index.md)
+- <span id="dispatch-new-span"></span>`fn new_span(&self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md), [`Id`](../span/index.md)
 
-- `fn record(self: &Self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](../span/index.md), [`Record`](../span/index.md)
+- <span id="dispatch-record"></span>`fn record(&self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](../span/index.md), [`Record`](../span/index.md)
 
-- `fn record_follows_from(self: &Self, span: &span::Id, follows: &span::Id)` — [`Id`](../span/index.md)
+- <span id="dispatch-record-follows-from"></span>`fn record_follows_from(&self, span: &span::Id, follows: &span::Id)` — [`Id`](../span/index.md)
 
-- `fn enabled(self: &Self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](../index.md)
+- <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](../metadata/index.md)
 
-- `fn event(self: &Self, event: &Event<'_>)` — [`Event`](../index.md)
+- <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](../event/index.md)
 
-- `fn enter(self: &Self, span: &span::Id)` — [`Id`](../span/index.md)
+- <span id="dispatch-enter"></span>`fn enter(&self, span: &span::Id)` — [`Id`](../span/index.md)
 
-- `fn exit(self: &Self, span: &span::Id)` — [`Id`](../span/index.md)
+- <span id="dispatch-exit"></span>`fn exit(&self, span: &span::Id)` — [`Id`](../span/index.md)
 
-- `fn clone_span(self: &Self, id: &span::Id) -> span::Id` — [`Id`](../span/index.md)
+- <span id="dispatch-clone-span"></span>`fn clone_span(&self, id: &span::Id) -> span::Id` — [`Id`](../span/index.md)
 
-- `fn drop_span(self: &Self, id: span::Id)` — [`Id`](../span/index.md)
+- <span id="dispatch-drop-span"></span>`fn drop_span(&self, id: span::Id)` — [`Id`](../span/index.md)
 
-- `fn try_close(self: &Self, id: span::Id) -> bool` — [`Id`](../span/index.md)
+- <span id="dispatch-try-close"></span>`fn try_close(&self, id: span::Id) -> bool` — [`Id`](../span/index.md)
 
-- `fn current_span(self: &Self) -> span::Current` — [`Current`](../span/index.md)
+- <span id="dispatch-current-span"></span>`fn current_span(&self) -> span::Current` — [`Current`](../span/index.md)
 
-- `fn is<T: Any>(self: &Self) -> bool`
+- <span id="dispatch-is"></span>`fn is<T: Any>(&self) -> bool`
 
-- `fn downcast_ref<T: Any>(self: &Self) -> Option<&T>`
+- <span id="dispatch-downcast-ref"></span>`fn downcast_ref<T: Any>(&self) -> Option<&T>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Dispatch`
 
-- `fn clone(self: &Self) -> Dispatch` — [`Dispatch`](../index.md)
+- <span id="dispatch-clone"></span>`fn clone(&self) -> Dispatch` — [`Dispatch`](#dispatch)
 
 ##### `impl Debug for Dispatch`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dispatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Dispatch`
 
-- `fn default() -> Self`
+- <span id="dispatch-default"></span>`fn default() -> Self`
 
 ### `WeakDispatch`
 
@@ -205,37 +253,39 @@ struct WeakDispatch {
 }
 ```
 
-`WeakDispatch` is a version of [`Dispatch`](../index.md) that holds a non-owning reference
-to a [`Subscriber`](../index.md).
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:172-174`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L172-L174)*
+
+`WeakDispatch` is a version of [`Dispatch`](#dispatch) that holds a non-owning reference
+to a [`Subscriber`](../subscriber/index.md).
 
 The `Subscriber` may be accessed by calling `WeakDispatch::upgrade`,
-which returns an `Option<Dispatch>`. If all [`Dispatch`](../index.md) clones that point
+which returns an `Option<Dispatch>`. If all [`Dispatch`](#dispatch) clones that point
 at the `Subscriber` have been dropped, `WeakDispatch::upgrade` will return
 `None`. Otherwise, it will return `Some(Dispatch)`.
 
-A `WeakDispatch` may be created from a [`Dispatch`](../index.md) by calling the
+A `WeakDispatch` may be created from a [`Dispatch`](#dispatch) by calling the
 `Dispatch::downgrade` method. The primary use for creating a
 [`WeakDispatch`](#weakdispatch) is to allow a Subscriber` to hold a cyclical reference to
 itself without creating a memory leak. See [here] for details.
 
 This type is analogous to the `std::sync::Weak` type, but for a
-[`Dispatch`](../index.md) rather than an `Arc`.
+[`Dispatch`](#dispatch) rather than an `Arc`.
 
 
 
 #### Implementations
 
-- `fn upgrade(self: &Self) -> Option<Dispatch>` — [`Dispatch`](../index.md)
+- <span id="weakdispatch-upgrade"></span>`fn upgrade(&self) -> Option<Dispatch>` — [`Dispatch`](#dispatch)
 
 #### Trait Implementations
 
 ##### `impl Clone for WeakDispatch`
 
-- `fn clone(self: &Self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
+- <span id="weakdispatch-clone"></span>`fn clone(&self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
 
 ##### `impl Debug for WeakDispatch`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="weakdispatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `State`
 
@@ -245,6 +295,8 @@ struct State {
     can_enter: std::cell::Cell<bool>,
 }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:212-223`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L212-L223)*
 
 The dispatch state of a thread.
 
@@ -266,9 +318,9 @@ The dispatch state of a thread.
 
 #### Implementations
 
-- `fn set_default(new_dispatch: Dispatch) -> DefaultGuard` — [`Dispatch`](../index.md), [`DefaultGuard`](#defaultguard)
+- <span id="state-set-default"></span>`fn set_default(new_dispatch: Dispatch) -> DefaultGuard` — [`Dispatch`](#dispatch), [`DefaultGuard`](#defaultguard)
 
-- `fn enter(self: &Self) -> Option<Entered<'_>>` — [`Entered`](#entered)
+- <span id="state-enter"></span>`fn enter(&self) -> Option<Entered<'_>>` — [`Entered`](#entered)
 
 ### `Entered<'a>`
 
@@ -276,25 +328,29 @@ The dispatch state of a thread.
 struct Entered<'a>(&'a State);
 ```
 
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:229`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L229)*
+
 While this guard is active, additional calls to subscriber functions on
 the default dispatcher will not be able to access the dispatch context.
 Dropping the guard will allow the dispatch context to be re-entered.
 
 #### Implementations
 
-- `fn current(self: &Self) -> Ref<'a, Dispatch>` — [`Dispatch`](../index.md)
+- <span id="entered-current"></span>`fn current(&self) -> Ref<'a, Dispatch>` — [`Dispatch`](#dispatch)
 
 #### Trait Implementations
 
 ##### `impl Drop for Entered<'_>`
 
-- `fn drop(self: &mut Self)`
+- <span id="entered-drop"></span>`fn drop(&mut self)`
 
 ### `DefaultGuard`
 
 ```rust
 struct DefaultGuard(Option<Dispatch>);
 ```
+
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:236`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L236)*
 
 A guard that resets the current default dispatcher to the prior
 default dispatcher when dropped.
@@ -303,11 +359,11 @@ default dispatcher when dropped.
 
 ##### `impl Debug for DefaultGuard`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="defaultguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for DefaultGuard`
 
-- `fn drop(self: &mut Self)`
+- <span id="defaultguard-drop"></span>`fn drop(&mut self)`
 
 ### `SetGlobalDefaultError`
 
@@ -317,27 +373,29 @@ struct SetGlobalDefaultError {
 }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:345-347`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L345-L347)*
+
 Returned if setting the global dispatcher fails.
 
 #### Implementations
 
-- `const MESSAGE: &'static str`
+- <span id="setglobaldefaulterror-const-message"></span>`const MESSAGE: &'static str`
 
 #### Trait Implementations
 
 ##### `impl Debug for SetGlobalDefaultError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="setglobaldefaulterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for SetGlobalDefaultError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="setglobaldefaulterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for SetGlobalDefaultError`
 
-##### `impl<T> ToString for SetGlobalDefaultError`
+##### `impl ToString for SetGlobalDefaultError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="setglobaldefaulterror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Registrar`
 
@@ -345,9 +403,11 @@ Returned if setting the global dispatcher fails.
 struct Registrar(Kind<alloc::sync::Weak<dyn Subscriber + Send + Sync>>);
 ```
 
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:458`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L458)*
+
 #### Implementations
 
-- `fn upgrade(self: &Self) -> Option<Dispatch>` — [`Dispatch`](../index.md)
+- <span id="registrar-upgrade"></span>`fn upgrade(&self) -> Option<Dispatch>` — [`Dispatch`](#dispatch)
 
 ## Enums
 
@@ -360,15 +420,17 @@ enum Kind<T> {
 }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:177-180`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L177-L180)*
+
 #### Implementations
 
-- `fn upgrade(self: &Self) -> Option<Kind<Arc<dyn Subscriber + Send + Sync>>>` — [`Kind`](#kind), [`Subscriber`](../index.md)
+- <span id="kind-downgrade"></span>`fn downgrade(&self) -> Kind<Weak<dyn Subscriber + Send + Sync>>` — [`Kind`](#kind), [`Subscriber`](../subscriber/index.md)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for Kind<T>`
+##### `impl<T: clone::Clone> Clone for Kind<T>`
 
-- `fn clone(self: &Self) -> Kind<T>` — [`Kind`](#kind)
+- <span id="kind-clone"></span>`fn clone(&self) -> Kind<T>` — [`Kind`](#kind)
 
 ## Functions
 
@@ -378,10 +440,12 @@ enum Kind<T> {
 fn with_default<T>(dispatcher: &Dispatch, f: impl FnOnce() -> T) -> T
 ```
 
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:254-261`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L254-L261)*
+
 Sets this dispatch as the default for the duration of a closure.
 
 The default dispatcher is used when creating a new [`span`](../span/index.md) or
-[`Event`](../index.md).
+[`Event`](../event/index.md).
 
 <pre class="ignore" style="white-space:normal;font:inherit;">
     <strong>Note</strong>: This function required the Rust standard library.
@@ -398,6 +462,8 @@ The default dispatcher is used when creating a new [`span`](../span/index.md) or
 fn set_default(dispatcher: &Dispatch) -> DefaultGuard
 ```
 
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:276-281`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L276-L281)*
+
 Sets the dispatch as the default dispatch for the duration of the lifetime
 of the returned DefaultGuard
 
@@ -413,6 +479,8 @@ of the returned DefaultGuard
 ```rust
 fn set_global_default(dispatcher: Dispatch) -> Result<(), SetGlobalDefaultError>
 ```
+
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:299-332`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L299-L332)*
 
 Sets this dispatch as the global default for the duration of the entire program.
 Will be used as a fallback if no thread-local dispatch has been set in a thread
@@ -438,6 +506,8 @@ where
     F: FnMut(&Dispatch) -> T
 ```
 
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:379-398`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L379-L398)*
+
 Executes a closure with a reference to this thread's current [dispatcher](#dispatcher).
 
 Note that calls to `get_default` should not be nested; if this function is
@@ -451,29 +521,35 @@ with `Dispatch::none` rather than the previously set dispatcher.
 fn get_global() -> &'static Dispatch
 ```
 
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:446-455`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L446-L455)*
+
 ## Constants
 
 ### `CURRENT_STATE`
-
 ```rust
-const CURRENT_STATE: $crate::thread::LocalKey<State>;
+const CURRENT_STATE: thread::LocalKey<State>;
 ```
 
-### `UNINITIALIZED`
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:183-190`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L183-L190)*
 
+### `UNINITIALIZED`
 ```rust
 const UNINITIALIZED: usize = 0usize;
 ```
 
-### `INITIALIZING`
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:198`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L198)*
 
+### `INITIALIZING`
 ```rust
 const INITIALIZING: usize = 1usize;
 ```
 
-### `INITIALIZED`
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:199`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L199)*
 
+### `INITIALIZED`
 ```rust
 const INITIALIZED: usize = 2usize;
 ```
+
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:200`](../../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L200)*
 

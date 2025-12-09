@@ -4,6 +4,13 @@
 
 # Module `udiv128`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`u128_mulhi`](#u128_mulhi) | fn | Multiply unsigned 128 bit integers, return upper 128 bits of the result |
+| [`udivmod_1e19`](#udivmod_1e19) | fn | Divide `n` by 1e19 and return quotient and remainder |
+
 ## Functions
 
 ### `u128_mulhi`
@@ -12,6 +19,8 @@
 fn u128_mulhi(x: u128, y: u128) -> u128
 ```
 
+*Defined in [`itoa-1.0.15/src/udiv128.rs:7-22`](../../../.source_1765210505/itoa-1.0.15/src/udiv128.rs#L7-L22)*
+
 Multiply unsigned 128 bit integers, return upper 128 bits of the result
 
 ### `udivmod_1e19`
@@ -19,6 +28,8 @@ Multiply unsigned 128 bit integers, return upper 128 bits of the result
 ```rust
 fn udivmod_1e19(n: u128) -> (u128, u64)
 ```
+
+*Defined in [`itoa-1.0.15/src/udiv128.rs:34-48`](../../../.source_1765210505/itoa-1.0.15/src/udiv128.rs#L34-L48)*
 
 Divide `n` by 1e19 and return quotient and remainder
 

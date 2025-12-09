@@ -13,6 +13,63 @@ They could be implemented as a separate library built on top of rustix,
 rather than being part of rustix itself. This module contains an incomplete
 list of such functions.
 
+## Contents
+
+- [Functions](#functions)
+  - [`getpwent`](#getpwent)
+  - [`getpwuid`](#getpwuid)
+  - [`getpwnam`](#getpwnam)
+  - [`getpwuid_r`](#getpwuid_r)
+  - [`getpwnam_r`](#getpwnam_r)
+  - [`gethostbyname`](#gethostbyname)
+  - [`execv`](#execv)
+  - [`execvp`](#execvp)
+  - [`execvpe`](#execvpe)
+  - [`wordexp`](#wordexp)
+  - [`localtime`](#localtime)
+  - [`localtime_r`](#localtime_r)
+  - [`gmtime`](#gmtime)
+  - [`gmtime_r`](#gmtime_r)
+  - [`ctime`](#ctime)
+  - [`ctime_r`](#ctime_r)
+  - [`asctime`](#asctime)
+  - [`asctime_r`](#asctime_r)
+  - [`mktime`](#mktime)
+  - [`getifaddrs`](#getifaddrs)
+  - [`closefrom`](#closefrom)
+  - [`login_tty`](#login_tty)
+  - [`openpty`](#openpty)
+  - [`isatty`](#isatty)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`getpwent`](#getpwent) | fn | See the [module comment](self). |
+| [`getpwuid`](#getpwuid) | fn | See the [module comment](self). |
+| [`getpwnam`](#getpwnam) | fn | See the [module comment](self). |
+| [`getpwuid_r`](#getpwuid_r) | fn | See the [module comment](self). |
+| [`getpwnam_r`](#getpwnam_r) | fn | See the [module comment](self). |
+| [`gethostbyname`](#gethostbyname) | fn | See the [module comment](self). |
+| [`execv`](#execv) | fn | See the [module comment](self). |
+| [`execvp`](#execvp) | fn | See the [module comment](self). |
+| [`execvpe`](#execvpe) | fn | See the [module comment](self). |
+| [`wordexp`](#wordexp) | fn | See the [module comment](self). |
+| [`localtime`](#localtime) | fn | See the [module comment](self). |
+| [`localtime_r`](#localtime_r) | fn | See the [module comment](self). |
+| [`gmtime`](#gmtime) | fn | See the [module comment](self). |
+| [`gmtime_r`](#gmtime_r) | fn | See the [module comment](self). |
+| [`ctime`](#ctime) | fn | See the [module comment](self). |
+| [`ctime_r`](#ctime_r) | fn | See the [module comment](self). |
+| [`asctime`](#asctime) | fn | See the [module comment](self). |
+| [`asctime_r`](#asctime_r) | fn | See the [module comment](self). |
+| [`mktime`](#mktime) | fn | See the [module comment](self). |
+| [`getifaddrs`](#getifaddrs) | fn | See the [module comment](self). |
+| [`closefrom`](#closefrom) | fn | See [rustix-openpty](https://crates.io/crates/rustix-openpty). |
+| [`login_tty`](#login_tty) | fn | See [rustix-openpty](https://crates.io/crates/rustix-openpty). |
+| [`openpty`](#openpty) | fn | See [rustix-openpty](https://crates.io/crates/rustix-openpty). |
+| [`isatty`](#isatty) | fn | See [`std::io::IsTerminal`]. |
+
 ## Functions
 
 ### `getpwent`
@@ -20,6 +77,8 @@ list of such functions.
 ```rust
 fn getpwent()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:226`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L226)*
 
 See the [module comment](self).
 
@@ -29,6 +88,8 @@ See the [module comment](self).
 fn getpwuid()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:227`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L227)*
+
 See the [module comment](self).
 
 ### `getpwnam`
@@ -36,6 +97,8 @@ See the [module comment](self).
 ```rust
 fn getpwnam()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:228`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L228)*
 
 See the [module comment](self).
 
@@ -45,6 +108,8 @@ See the [module comment](self).
 fn getpwuid_r()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:229`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L229)*
+
 See the [module comment](self).
 
 ### `getpwnam_r`
@@ -52,6 +117,8 @@ See the [module comment](self).
 ```rust
 fn getpwnam_r()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:230`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L230)*
 
 See the [module comment](self).
 
@@ -61,6 +128,8 @@ See the [module comment](self).
 fn gethostbyname()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:231`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L231)*
+
 See the [module comment](self).
 
 ### `execv`
@@ -68,6 +137,8 @@ See the [module comment](self).
 ```rust
 fn execv()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:232`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L232)*
 
 See the [module comment](self).
 
@@ -77,6 +148,8 @@ See the [module comment](self).
 fn execvp()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:233`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L233)*
+
 See the [module comment](self).
 
 ### `execvpe`
@@ -84,6 +157,8 @@ See the [module comment](self).
 ```rust
 fn execvpe()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:234`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L234)*
 
 See the [module comment](self).
 
@@ -93,6 +168,8 @@ See the [module comment](self).
 fn wordexp()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:235`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L235)*
+
 See the [module comment](self).
 
 ### `localtime`
@@ -100,6 +177,8 @@ See the [module comment](self).
 ```rust
 fn localtime()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:236`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L236)*
 
 See the [module comment](self).
 
@@ -109,6 +188,8 @@ See the [module comment](self).
 fn localtime_r()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:237`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L237)*
+
 See the [module comment](self).
 
 ### `gmtime`
@@ -116,6 +197,8 @@ See the [module comment](self).
 ```rust
 fn gmtime()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:238`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L238)*
 
 See the [module comment](self).
 
@@ -125,6 +208,8 @@ See the [module comment](self).
 fn gmtime_r()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:239`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L239)*
+
 See the [module comment](self).
 
 ### `ctime`
@@ -132,6 +217,8 @@ See the [module comment](self).
 ```rust
 fn ctime()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:240`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L240)*
 
 See the [module comment](self).
 
@@ -141,6 +228,8 @@ See the [module comment](self).
 fn ctime_r()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:241`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L241)*
+
 See the [module comment](self).
 
 ### `asctime`
@@ -148,6 +237,8 @@ See the [module comment](self).
 ```rust
 fn asctime()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:242`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L242)*
 
 See the [module comment](self).
 
@@ -157,6 +248,8 @@ See the [module comment](self).
 fn asctime_r()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:243`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L243)*
+
 See the [module comment](self).
 
 ### `mktime`
@@ -164,6 +257,8 @@ See the [module comment](self).
 ```rust
 fn mktime()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:244`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L244)*
 
 See the [module comment](self).
 
@@ -173,6 +268,8 @@ See the [module comment](self).
 fn getifaddrs()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:245`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L245)*
+
 See the [module comment](self).
 
 ### `closefrom`
@@ -180,6 +277,8 @@ See the [module comment](self).
 ```rust
 fn closefrom()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:248-250`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L248-L250)*
 
 See [rustix-openpty](https://crates.io/crates/rustix-openpty).
 
@@ -189,6 +288,8 @@ See [rustix-openpty](https://crates.io/crates/rustix-openpty).
 fn login_tty()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:252-254`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L252-L254)*
+
 See [rustix-openpty](https://crates.io/crates/rustix-openpty).
 
 ### `openpty`
@@ -197,6 +298,8 @@ See [rustix-openpty](https://crates.io/crates/rustix-openpty).
 fn openpty()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:256-258`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L256-L258)*
+
 See [rustix-openpty](https://crates.io/crates/rustix-openpty).
 
 ### `isatty`
@@ -204,6 +307,8 @@ See [rustix-openpty](https://crates.io/crates/rustix-openpty).
 ```rust
 fn isatty()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:268-270`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L268-L270)*
 
 See [`std::io::IsTerminal`](../../../anstream/stream/index.md).
 

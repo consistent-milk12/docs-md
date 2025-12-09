@@ -4,6 +4,16 @@
 
 # Module `raw_entry`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RawEntryBuilderMut`](#rawentrybuildermut) | struct | A builder for computing where in a [`HashMap`] a key-value pair would be stored. |
+| [`RawOccupiedEntryMut`](#rawoccupiedentrymut) | struct | A view into an occupied entry in a `HashMap`. |
+| [`RawVacantEntryMut`](#rawvacantentrymut) | struct | A view into a vacant entry in a `HashMap`. |
+| [`RawEntryBuilder`](#rawentrybuilder) | struct | A builder for computing where in a [`HashMap`] a key-value pair would be stored. |
+| [`RawEntryMut`](#rawentrymut) | enum | A view into a single entry in a map, which may either be vacant or occupied. |
+
 ## Structs
 
 ### `RawEntryBuilderMut<'a, K, V, S, A: Allocator>`
@@ -14,7 +24,9 @@ struct RawEntryBuilderMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-A builder for computing where in a [`HashMap`](../index.md) a key-value pair would be stored.
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:216-218`](../../../.source_1765210505/hashbrown-0.16.1/src/raw_entry.rs#L216-L218)*
+
+A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
 
 See the `HashMap::raw_entry_mut` docs for usage examples.
 
@@ -70,15 +82,15 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- `fn from_hash<F>(self: Self, hash: u64, is_match: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
+- <span id="rawentrybuildermut-from-key"></span>`fn from_key<Q>(self, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
 
-- `fn search<F>(self: Self, hash: u64, is_match: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
+- <span id="rawentrybuildermut-from-key-hashed-nocheck"></span>`fn from_key_hashed_nocheck<Q>(self, hash: u64, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
 
 #### Trait Implementations
 
 ##### `impl<K, V, S, A: Allocator> Debug for RawEntryBuilderMut<'_, K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rawentrybuildermut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RawOccupiedEntryMut<'a, K, V, S, A: Allocator>`
 
@@ -89,6 +101,8 @@ struct RawOccupiedEntryMut<'a, K, V, S, A: Allocator> {
     hash_builder: &'a S,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:395-399`](../../../.source_1765210505/hashbrown-0.16.1/src/raw_entry.rs#L395-L399)*
 
 A view into an occupied entry in a `HashMap`.
 It is part of the [`RawEntryMut`](#rawentrymut) enum.
@@ -151,39 +165,39 @@ assert_eq!(map.len(), 1);
 
 #### Implementations
 
-- `fn key(self: &Self) -> &K`
+- <span id="rawoccupiedentrymut-key"></span>`fn key(&self) -> &K`
 
-- `fn key_mut(self: &mut Self) -> &mut K`
+- <span id="rawoccupiedentrymut-key-mut"></span>`fn key_mut(&mut self) -> &mut K`
 
-- `fn into_key(self: Self) -> &'a mut K`
+- <span id="rawoccupiedentrymut-into-key"></span>`fn into_key(self) -> &'a mut K`
 
-- `fn get(self: &Self) -> &V`
+- <span id="rawoccupiedentrymut-get"></span>`fn get(&self) -> &V`
 
-- `fn into_mut(self: Self) -> &'a mut V`
+- <span id="rawoccupiedentrymut-into-mut"></span>`fn into_mut(self) -> &'a mut V`
 
-- `fn get_mut(self: &mut Self) -> &mut V`
+- <span id="rawoccupiedentrymut-get-mut"></span>`fn get_mut(&mut self) -> &mut V`
 
-- `fn get_key_value(self: &Self) -> (&K, &V)`
+- <span id="rawoccupiedentrymut-get-key-value"></span>`fn get_key_value(&self) -> (&K, &V)`
 
-- `fn get_key_value_mut(self: &mut Self) -> (&mut K, &mut V)`
+- <span id="rawoccupiedentrymut-get-key-value-mut"></span>`fn get_key_value_mut(&mut self) -> (&mut K, &mut V)`
 
-- `fn into_key_value(self: Self) -> (&'a mut K, &'a mut V)`
+- <span id="rawoccupiedentrymut-into-key-value"></span>`fn into_key_value(self) -> (&'a mut K, &'a mut V)`
 
-- `fn insert(self: &mut Self, value: V) -> V`
+- <span id="rawoccupiedentrymut-insert"></span>`fn insert(&mut self, value: V) -> V`
 
-- `fn insert_key(self: &mut Self, key: K) -> K`
+- <span id="rawoccupiedentrymut-insert-key"></span>`fn insert_key(&mut self, key: K) -> K`
 
-- `fn remove(self: Self) -> V`
+- <span id="rawoccupiedentrymut-remove"></span>`fn remove(self) -> V`
 
-- `fn remove_entry(self: Self) -> (K, V)`
+- <span id="rawoccupiedentrymut-remove-entry"></span>`fn remove_entry(self) -> (K, V)`
 
-- `fn replace_entry_with<F>(self: Self, f: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
+- <span id="rawoccupiedentrymut-replace-entry-with"></span>`fn replace_entry_with<F>(self, f: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
 
 #### Trait Implementations
 
 ##### `impl<K: Debug, V: Debug, S, A: Allocator> Debug for RawOccupiedEntryMut<'_, K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rawoccupiedentrymut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, S, A> Send for RawOccupiedEntryMut<'_, K, V, S, A>`
 
@@ -197,6 +211,8 @@ struct RawVacantEntryMut<'a, K, V, S, A: Allocator> {
     hash_builder: &'a S,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:466-469`](../../../.source_1765210505/hashbrown-0.16.1/src/raw_entry.rs#L466-L469)*
 
 A view into a vacant entry in a `HashMap`.
 It is part of the [`RawEntryMut`](#rawentrymut) enum.
@@ -247,19 +263,19 @@ assert!(map[&"c"] == 30 && map.len() == 3);
 
 #### Implementations
 
-- `fn insert(self: Self, key: K, value: V) -> (&'a mut K, &'a mut V)`
+- <span id="rawvacantentrymut-insert"></span>`fn insert(self, key: K, value: V) -> (&'a mut K, &'a mut V)`
 
-- `fn insert_hashed_nocheck(self: Self, hash: u64, key: K, value: V) -> (&'a mut K, &'a mut V)`
+- <span id="rawvacantentrymut-insert-hashed-nocheck"></span>`fn insert_hashed_nocheck(self, hash: u64, key: K, value: V) -> (&'a mut K, &'a mut V)`
 
-- `fn insert_with_hasher<H>(self: Self, hash: u64, key: K, value: V, hasher: H) -> (&'a mut K, &'a mut V)`
+- <span id="rawvacantentrymut-insert-with-hasher"></span>`fn insert_with_hasher<H>(self, hash: u64, key: K, value: V, hasher: H) -> (&'a mut K, &'a mut V)`
 
-- `fn insert_entry(self: Self, key: K, value: V) -> RawOccupiedEntryMut<'a, K, V, S, A>` — [`RawOccupiedEntryMut`](#rawoccupiedentrymut)
+- <span id="rawvacantentrymut-insert-entry"></span>`fn insert_entry(self, key: K, value: V) -> RawOccupiedEntryMut<'a, K, V, S, A>` — [`RawOccupiedEntryMut`](#rawoccupiedentrymut)
 
 #### Trait Implementations
 
 ##### `impl<K, V, S, A: Allocator> Debug for RawVacantEntryMut<'_, K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rawvacantentrymut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RawEntryBuilder<'a, K, V, S, A: Allocator>`
 
@@ -269,7 +285,9 @@ struct RawEntryBuilder<'a, K, V, S, A: Allocator> {
 }
 ```
 
-A builder for computing where in a [`HashMap`](../index.md) a key-value pair would be stored.
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:505-507`](../../../.source_1765210505/hashbrown-0.16.1/src/raw_entry.rs#L505-L507)*
+
+A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
 
 See the `HashMap::raw_entry` docs for usage examples.
 
@@ -304,19 +322,19 @@ for k in 0..6 {
 
 #### Implementations
 
-- `fn from_key<Q>(self: Self, k: &Q) -> Option<(&'a K, &'a V)>`
+- <span id="rawentrybuilder-from-key"></span>`fn from_key<Q>(self, k: &Q) -> Option<(&'a K, &'a V)>`
 
-- `fn from_key_hashed_nocheck<Q>(self: Self, hash: u64, k: &Q) -> Option<(&'a K, &'a V)>`
+- <span id="rawentrybuilder-from-key-hashed-nocheck"></span>`fn from_key_hashed_nocheck<Q>(self, hash: u64, k: &Q) -> Option<(&'a K, &'a V)>`
 
-- `fn search<F>(self: Self, hash: u64, is_match: F) -> Option<(&'a K, &'a V)>`
+- <span id="rawentrybuilder-search"></span>`fn search<F>(self, hash: u64, is_match: F) -> Option<(&'a K, &'a V)>`
 
-- `fn from_hash<F>(self: Self, hash: u64, is_match: F) -> Option<(&'a K, &'a V)>`
+- <span id="rawentrybuilder-from-hash"></span>`fn from_hash<F>(self, hash: u64, is_match: F) -> Option<(&'a K, &'a V)>`
 
 #### Trait Implementations
 
 ##### `impl<K, V, S, A: Allocator> Debug for RawEntryBuilder<'_, K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rawentrybuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -329,11 +347,13 @@ enum RawEntryMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw_entry.rs:304-333`](../../../.source_1765210505/hashbrown-0.16.1/src/raw_entry.rs#L304-L333)*
+
 A view into a single entry in a map, which may either be vacant or occupied.
 
 This is a lower-level version of [`Entry`](../hash_map/index.md).
 
-This `enum` is constructed through the `raw_entry_mut` method on [`HashMap`](../index.md),
+This `enum` is constructed through the `raw_entry_mut` method on [`HashMap`](../hash_map/index.md),
 then calling one of the methods of that [`RawEntryBuilderMut`](#rawentrybuildermut).
 
 
@@ -448,19 +468,19 @@ assert_eq!(vec, [('a', 10), ('b', 20), ('c', 30), ('d', 40), ('e', 50), ('f', 60
 
 #### Implementations
 
-- `fn insert(self: Self, key: K, value: V) -> RawOccupiedEntryMut<'a, K, V, S, A>` — [`RawOccupiedEntryMut`](#rawoccupiedentrymut)
+- <span id="rawentrymut-insert"></span>`fn insert(self, key: K, value: V) -> RawOccupiedEntryMut<'a, K, V, S, A>` — [`RawOccupiedEntryMut`](#rawoccupiedentrymut)
 
-- `fn or_insert(self: Self, default_key: K, default_val: V) -> (&'a mut K, &'a mut V)`
+- <span id="rawentrymut-or-insert"></span>`fn or_insert(self, default_key: K, default_val: V) -> (&'a mut K, &'a mut V)`
 
-- `fn or_insert_with<F>(self: Self, default: F) -> (&'a mut K, &'a mut V)`
+- <span id="rawentrymut-or-insert-with"></span>`fn or_insert_with<F>(self, default: F) -> (&'a mut K, &'a mut V)`
 
-- `fn and_modify<F>(self: Self, f: F) -> Self`
+- <span id="rawentrymut-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
 
-- `fn and_replace_entry_with<F>(self: Self, f: F) -> Self`
+- <span id="rawentrymut-and-replace-entry-with"></span>`fn and_replace_entry_with<F>(self, f: F) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<K: Debug, V: Debug, S, A: Allocator> Debug for RawEntryMut<'_, K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rawentrymut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

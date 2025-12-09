@@ -4,6 +4,16 @@
 
 # Module `definitions`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`State`](#state) | enum |  |
+| [`Action`](#action) | enum |  |
+| [`unpack`](#unpack) | fn | Unpack a u8 into a State and Action |
+| [`STATES`](#states) | const |  |
+| [`ACTIONS`](#actions) | const |  |
+
 ## Enums
 
 ### `State`
@@ -29,27 +39,29 @@ enum State {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:8-26`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L8-L26)*
+
 #### Trait Implementations
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](../index.md)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
 ##### `impl Copy for State`
 
 ##### `impl Debug for State`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for State`
 
-- `fn default() -> State` — [`State`](../index.md)
+- <span id="state-default"></span>`fn default() -> State` — [`State`](#state)
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](../index.md)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
 
@@ -76,27 +88,29 @@ enum Action {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:59-77`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L59-L77)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Action`
 
-- `fn clone(self: &Self) -> Action` — [`Action`](../index.md)
+- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](#action)
 
 ##### `impl Copy for Action`
 
 ##### `impl Debug for Action`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="action-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Action`
 
-- `fn default() -> Action` — [`Action`](../index.md)
+- <span id="action-default"></span>`fn default() -> Action` — [`Action`](#action)
 
 ##### `impl Eq for Action`
 
 ##### `impl PartialEq for Action`
 
-- `fn eq(self: &Self, other: &Action) -> bool` — [`Action`](../index.md)
+- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](#action)
 
 ##### `impl StructuralPartialEq for Action`
 
@@ -107,6 +121,8 @@ enum Action {
 ```rust
 const fn unpack(delta: u8) -> (State, Action)
 ```
+
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:115-124`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L115-L124)*
 
 Unpack a u8 into a State and Action
 
@@ -119,14 +135,16 @@ Bad things will happen if those invariants are violated.
 ## Constants
 
 ### `STATES`
-
 ```rust
 const STATES: [State; 16];
 ```
 
-### `ACTIONS`
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:37-54`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L37-L54)*
 
+### `ACTIONS`
 ```rust
 const ACTIONS: [Action; 16];
 ```
+
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:88-105`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L88-L105)*
 

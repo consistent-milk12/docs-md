@@ -6,6 +6,12 @@
 
 Platform dependent types.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BytesOrWideString`](#bytesorwidestring) | enum | A platform independent representation of a string. |
+
 ## Enums
 
 ### `BytesOrWideString<'a>`
@@ -16,6 +22,8 @@ enum BytesOrWideString<'a> {
     Wide(&'a [u16]),
 }
 ```
+
+*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../../.source_1765210505/backtrace-0.3.76/src/types.rs#L17-L22)*
 
 A platform independent representation of a string. When working with `std`
 enabled it is recommended to the convenience methods for providing
@@ -33,21 +41,21 @@ conversions to `std` types.
 
 #### Implementations
 
-- `fn to_str_lossy(self: &Self) -> Cow<'a, str>`
+- <span id="bytesorwidestring-to-str-lossy"></span>`fn to_str_lossy(&self) -> Cow<'a, str>`
 
-- `fn into_path_buf(self: Self) -> PathBuf`
+- <span id="bytesorwidestring-into-path-buf"></span>`fn into_path_buf(self) -> PathBuf`
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for BytesOrWideString<'a>`
+##### `impl Debug for BytesOrWideString<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bytesorwidestring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Display for BytesOrWideString<'a>`
+##### `impl Display for BytesOrWideString<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytesorwidestring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for BytesOrWideString<'a>`
+##### `impl ToString for BytesOrWideString<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="bytesorwidestring-to-string"></span>`fn to_string(&self) -> String`
 

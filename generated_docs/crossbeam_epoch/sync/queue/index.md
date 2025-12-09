@@ -14,6 +14,13 @@ Algorithms.  PODC 1996.  <http://dl.acm.org/citation.cfm?id=248106>
 Simon Doherty, Lindsay Groves, Victor Luchangco, and Mark Moir. 2004b. Formal Verification of a
 Practical Lock-Free Queue Algorithm. <https://doi.org/10.1007/978-3-540-30232-2_7>
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Queue`](#queue) | struct |  |
+| [`Node`](#node) | struct |  |
+
 ## Structs
 
 ### `Queue<T>`
@@ -25,45 +32,47 @@ struct Queue<T> {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:22-25`](../../../../.source_1765210505/crossbeam-epoch-0.9.18/src/sync/queue.rs#L22-L25)*
+
 #### Implementations
 
-- `fn new() -> Queue<T>` — [`Queue`](#queue)
+- <span id="queue-new"></span>`fn new() -> Queue<T>` — [`Queue`](#queue)
 
-- `fn push_internal(self: &Self, onto: Shared<'_, Node<T>>, new: Shared<'_, Node<T>>, guard: &Guard) -> bool` — [`Shared`](../../index.md), [`Node`](#node), [`Guard`](../../index.md)
+- <span id="queue-push-internal"></span>`fn push_internal(&self, onto: Shared<'_, Node<T>>, new: Shared<'_, Node<T>>, guard: &Guard) -> bool` — [`Shared`](../../atomic/index.md), [`Node`](#node), [`Guard`](../../guard/index.md)
 
-- `fn push(self: &Self, t: T, guard: &Guard)` — [`Guard`](../../index.md)
+- <span id="queue-push"></span>`fn push(&self, t: T, guard: &Guard)` — [`Guard`](../../guard/index.md)
 
-- `fn pop_internal(self: &Self, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../index.md)
+- <span id="queue-pop-internal"></span>`fn pop_internal(&self, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md)
 
-- `fn pop_if_internal<F>(self: &Self, condition: F, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../index.md)
+- <span id="queue-pop-if-internal"></span>`fn pop_if_internal<F>(&self, condition: F, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md)
 
-- `fn try_pop(self: &Self, guard: &Guard) -> Option<T>` — [`Guard`](../../index.md)
+- <span id="queue-try-pop"></span>`fn try_pop(&self, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md)
 
-- `fn try_pop_if<F>(self: &Self, condition: F, guard: &Guard) -> Option<T>` — [`Guard`](../../index.md)
+- <span id="queue-try-pop-if"></span>`fn try_pop_if<F>(&self, condition: F, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for Queue<T>`
+##### `impl<T: fmt::Debug> Debug for Queue<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="queue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Drop for Queue<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="queue-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for Queue<T>`
 
-- `const ALIGN: usize`
+- <span id="queue-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="queue-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
+- <span id="queue-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="queue-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="queue-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="queue-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for Queue<T>`
 
@@ -77,6 +86,8 @@ struct Node<T> {
     next: crate::Atomic<Node<T>>,
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:27-37`](../../../../.source_1765210505/crossbeam-epoch-0.9.18/src/sync/queue.rs#L27-L37)*
 
 #### Fields
 
@@ -93,15 +104,15 @@ struct Node<T> {
 
 ##### `impl<T> Pointable for Node<T>`
 
-- `const ALIGN: usize`
+- <span id="node-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="node-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
+- <span id="node-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="node-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="node-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="node-drop"></span>`unsafe fn drop(ptr: usize)`
 

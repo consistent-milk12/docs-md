@@ -4,6 +4,12 @@
 
 # Module `lazy`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Lazy`](#lazy) | struct | A non-std lazy initialized value. |
+
 ## Structs
 
 ### `Lazy<T, F>`
@@ -15,6 +21,8 @@ struct Lazy<T, F> {
     owned: core::marker::PhantomData<alloc::boxed::Box<T>>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/lazy.rs:120-131`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/lazy.rs#L120-L131)*
 
 A non-std lazy initialized value.
 
@@ -32,19 +40,17 @@ convenient I think.
 
 #### Implementations
 
-- `fn get(self: &Self) -> &T`
-
-- `fn poll(self: &Self) -> Option<&T>`
+- <span id="lazy-new"></span>`const fn new(create: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, F: Fn() -> T> Debug for Lazy<T, F>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lazy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, F> Drop for Lazy<T, F>`
 
-- `fn drop(self: &mut Self)`
+- <span id="lazy-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T: Send + Sync, F: Send + Sync> Sync for Lazy<T, F>`
 

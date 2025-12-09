@@ -4,6 +4,39 @@
 
 # Module `symbol`
 
+## Contents
+
+- [Structs](#structs)
+  - [`SymbolTable`](#symboltable)
+  - [`ElfSymbolTable`](#elfsymboltable)
+  - [`ElfSymbolIterator`](#elfsymboliterator)
+  - [`ElfSymbol`](#elfsymbol)
+- [Traits](#traits)
+  - [`Sym`](#sym)
+- [Type Aliases](#type-aliases)
+  - [`ElfSymbolTable32`](#elfsymboltable32)
+  - [`ElfSymbolTable64`](#elfsymboltable64)
+  - [`ElfSymbolIterator32`](#elfsymboliterator32)
+  - [`ElfSymbolIterator64`](#elfsymboliterator64)
+  - [`ElfSymbol32`](#elfsymbol32)
+  - [`ElfSymbol64`](#elfsymbol64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SymbolTable`](#symboltable) | struct | A table of symbol entries in an ELF file. |
+| [`ElfSymbolTable`](#elfsymboltable) | struct | A symbol table in an [`ElfFile`](super::ElfFile). |
+| [`ElfSymbolIterator`](#elfsymboliterator) | struct | An iterator for the symbols in an [`ElfFile`](super::ElfFile). |
+| [`ElfSymbol`](#elfsymbol) | struct | A symbol in an [`ElfFile`](super::ElfFile). |
+| [`Sym`](#sym) | trait | A trait for generic access to [`elf::Sym32`] and [`elf::Sym64`]. |
+| [`ElfSymbolTable32`](#elfsymboltable32) | type | A symbol table in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSymbolTable64`](#elfsymboltable64) | type | A symbol table in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSymbolIterator32`](#elfsymboliterator32) | type | An iterator for the symbols in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSymbolIterator64`](#elfsymboliterator64) | type | An iterator for the symbols in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfSymbol32`](#elfsymbol32) | type | A symbol in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSymbol64`](#elfsymbol64) | type | A symbol in an [`ElfFile64`](super::ElfFile64). |
+
 ## Structs
 
 ### `SymbolTable<'data, Elf: FileHeader, R>`
@@ -21,6 +54,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:24-34`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L24-L34)*
+
 A table of symbol entries in an ELF file.
 
 Also includes the string table used for the symbol names.
@@ -29,51 +64,51 @@ Returned by `SectionTable::symbols`.
 
 #### Implementations
 
-- `fn parse(endian: <Elf as >::Endian, data: R, sections: &SectionTable<'data, Elf, R>, section_index: SectionIndex, section: &<Elf as >::SectionHeader) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md), [`SectionTable`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`SymbolTable`](../index.md)
+- <span id="symboltable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: R, sections: &SectionTable<'data, Elf, R>, section_index: SectionIndex, section: &<Elf as >::SectionHeader) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md), [`SectionTable`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`SymbolTable`](../index.md)
 
-- `fn section(self: &Self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
+- <span id="symboltable-section"></span>`fn section(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
 
-- `fn shndx_section(self: &Self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
+- <span id="symboltable-shndx-section"></span>`fn shndx_section(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
 
-- `fn string_section(self: &Self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
+- <span id="symboltable-string-section"></span>`fn string_section(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
 
-- `fn strings(self: &Self) -> StringTable<'data, R>` — [`StringTable`](../../index.md)
+- <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../../index.md)
 
-- `fn symbols(self: &Self) -> &'data [<Elf as >::Sym]` — [`FileHeader`](../index.md)
+- <span id="symboltable-symbols"></span>`fn symbols(&self) -> &'data [<Elf as >::Sym]` — [`FileHeader`](../index.md)
 
-- `fn iter(self: &Self) -> slice::Iter<'data, <Elf as >::Sym>` — [`FileHeader`](../index.md)
+- <span id="symboltable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Elf as >::Sym>` — [`FileHeader`](../index.md)
 
-- `fn enumerate(self: &Self) -> impl Iterator<Item = (SymbolIndex, &'data <Elf as >::Sym)>` — [`SymbolIndex`](../../../index.md), [`FileHeader`](../index.md)
+- <span id="symboltable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SymbolIndex, &'data <Elf as >::Sym)>` — [`SymbolIndex`](../../../index.md), [`FileHeader`](../index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="symboltable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="symboltable-len"></span>`fn len(&self) -> usize`
 
-- `fn symbol(self: &Self, index: SymbolIndex) -> read::Result<&'data <Elf as >::Sym>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`FileHeader`](../index.md)
+- <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> read::Result<&'data <Elf as >::Sym>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`FileHeader`](../index.md)
 
-- `fn shndx(self: &Self, endian: <Elf as >::Endian, index: SymbolIndex) -> Option<u32>` — [`FileHeader`](../index.md), [`SymbolIndex`](../../../index.md)
+- <span id="symboltable-shndx"></span>`fn shndx(&self, endian: <Elf as >::Endian, index: SymbolIndex) -> Option<u32>` — [`FileHeader`](../index.md), [`SymbolIndex`](../../../index.md)
 
-- `fn symbol_section(self: &Self, endian: <Elf as >::Endian, symbol: &<Elf as >::Sym, index: SymbolIndex) -> read::Result<Option<SectionIndex>>` — [`FileHeader`](../index.md), [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`SectionIndex`](../../../index.md)
+- <span id="symboltable-symbol-section"></span>`fn symbol_section(&self, endian: <Elf as >::Endian, symbol: &<Elf as >::Sym, index: SymbolIndex) -> read::Result<Option<SectionIndex>>` — [`FileHeader`](../index.md), [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`SectionIndex`](../../../index.md)
 
-- `fn symbol_name(self: &Self, endian: <Elf as >::Endian, symbol: &<Elf as >::Sym) -> read::Result<&'data [u8]>` — [`FileHeader`](../index.md), [`Result`](../../../index.md)
+- <span id="symboltable-symbol-name"></span>`fn symbol_name(&self, endian: <Elf as >::Endian, symbol: &<Elf as >::Sym) -> read::Result<&'data [u8]>` — [`FileHeader`](../index.md), [`Result`](../../../index.md)
 
-- `fn map<Entry: SymbolMapEntry, F: Fn(&'data <Elf as >::Sym) -> Option<Entry>>(self: &Self, endian: <Elf as >::Endian, f: F) -> SymbolMap<Entry>` — [`FileHeader`](../index.md), [`SymbolMap`](../../../index.md)
+- <span id="symboltable-map"></span>`fn map<Entry: SymbolMapEntry, F: Fn(&'data <Elf as >::Sym) -> Option<Entry>>(&self, endian: <Elf as >::Endian, f: F) -> SymbolMap<Entry>` — [`FileHeader`](../index.md), [`SymbolMap`](../../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader, R> Clone for SymbolTable<'data, Elf, R>`
+##### `impl<'data, Elf: clone::Clone + FileHeader, R> Clone for SymbolTable<'data, Elf, R>`
 
-- `fn clone(self: &Self) -> SymbolTable<'data, Elf, R>` — [`SymbolTable`](../index.md)
+- <span id="symboltable-clone"></span>`fn clone(&self) -> SymbolTable<'data, Elf, R>` — [`SymbolTable`](../index.md)
 
-##### `impl<'data, Elf: $crate::marker::Copy + FileHeader, R> Copy for SymbolTable<'data, Elf, R>`
+##### `impl<'data, Elf: marker::Copy + FileHeader, R> Copy for SymbolTable<'data, Elf, R>`
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader, R> Debug for SymbolTable<'data, Elf, R>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader, R> Debug for SymbolTable<'data, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Elf: FileHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Elf, R>`
 
-- `fn default() -> Self`
+- <span id="symboltable-default"></span>`fn default() -> Self`
 
 ### `ElfSymbolTable<'data, 'file, Elf, R>`
 
@@ -87,29 +122,31 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:229-236`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L229-L236)*
+
 A symbol table in an [`ElfFile`](super::ElfFile).
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Clone for ElfSymbolTable<'data, 'file, Elf, R>`
 
-- `fn clone(self: &Self) -> ElfSymbolTable<'data, 'file, Elf, R>` — [`ElfSymbolTable`](../index.md)
+- <span id="elfsymboltable-clone"></span>`fn clone(&self) -> ElfSymbolTable<'data, 'file, Elf, R>` — [`ElfSymbolTable`](../index.md)
 
 ##### `impl<'data, 'file, Elf, R> Copy for ElfSymbolTable<'data, 'file, Elf, R>`
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSymbolTable<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for ElfSymbolTable<'data, 'file, Elf, R>`
 
-- `type Symbol = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elfsymboltable-type-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
 
-- `type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
+- <span id="elfsymboltable-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- `fn symbols(self: &Self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md)
+- <span id="elfsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md)
 
-- `fn symbol_by_index(self: &Self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`ObjectSymbolTable`](../../index.md)
+- <span id="elfsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`ObjectSymbolTable`](../../index.md)
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Sealed for ElfSymbolTable<'data, 'file, Elf, R>`
 
@@ -126,31 +163,33 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:272-280`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L272-L280)*
+
 An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, symbols: &'file SymbolTable<'data, Elf, R>) -> Self` — [`FileHeader`](../index.md), [`SymbolTable`](../index.md)
+- <span id="elfsymboliterator-new"></span>`fn new(endian: <Elf as >::Endian, symbols: &'file SymbolTable<'data, Elf, R>) -> Self` — [`FileHeader`](../index.md), [`SymbolTable`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Debug for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfsymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfsymboliterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Iterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- `type Item = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elfsymboliterator-type-item"></span>`type Item = ElfSymbol<'data, 'file, Elf, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ElfSymbol<'data, 'file, Elf, R>`
 
@@ -166,61 +205,63 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:333-342`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L333-L342)*
+
 A symbol in an [`ElfFile`](super::ElfFile).
 
 Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait implementation.
 
 #### Implementations
 
-- `fn endian(self: &Self) -> <Elf as >::Endian` — [`FileHeader`](../index.md)
+- <span id="elfsymbol-endian"></span>`fn endian(&self) -> <Elf as >::Endian` — [`FileHeader`](../index.md)
 
-- `fn raw_symbol(self: &Self) -> &'data <Elf as >::Sym` — [`FileHeader`](../index.md)
+- <span id="elfsymbol-raw-symbol"></span>`fn raw_symbol(&self) -> &'data <Elf as >::Sym` — [`FileHeader`](../index.md)
 
-- `fn elf_symbol(self: &Self) -> &'data <Elf as >::Sym` — [`FileHeader`](../index.md)
+- <span id="elfsymbol-elf-symbol"></span>`fn elf_symbol(&self) -> &'data <Elf as >::Sym` — [`FileHeader`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Clone for ElfSymbol<'data, 'file, Elf, R>`
 
-- `fn clone(self: &Self) -> ElfSymbol<'data, 'file, Elf, R>` — [`ElfSymbol`](../index.md)
+- <span id="elfsymbol-clone"></span>`fn clone(&self) -> ElfSymbol<'data, 'file, Elf, R>` — [`ElfSymbol`](../index.md)
 
 ##### `impl<'data, 'file, Elf, R> Copy for ElfSymbol<'data, 'file, Elf, R>`
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSymbol<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> ObjectSymbol for ElfSymbol<'data, 'file, Elf, R>`
 
-- `fn index(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md)
+- <span id="elfsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="elfsymbol-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> read::Result<&'data str>` — [`Result`](../../../index.md)
+- <span id="elfsymbol-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="elfsymbol-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="elfsymbol-size"></span>`fn size(&self) -> u64`
 
-- `fn kind(self: &Self) -> SymbolKind` — [`SymbolKind`](../../../index.md)
+- <span id="elfsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../../index.md)
 
-- `fn section(self: &Self) -> SymbolSection` — [`SymbolSection`](../../../index.md)
+- <span id="elfsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../../index.md)
 
-- `fn is_undefined(self: &Self) -> bool`
+- <span id="elfsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
-- `fn is_definition(self: &Self) -> bool`
+- <span id="elfsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
 
-- `fn is_common(self: &Self) -> bool`
+- <span id="elfsymbol-is-common"></span>`fn is_common(&self) -> bool`
 
-- `fn is_weak(self: &Self) -> bool`
+- <span id="elfsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- `fn scope(self: &Self) -> SymbolScope` — [`SymbolScope`](../../../index.md)
+- <span id="elfsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../../index.md)
 
-- `fn is_global(self: &Self) -> bool`
+- <span id="elfsymbol-is-global"></span>`fn is_global(&self) -> bool`
 
-- `fn is_local(self: &Self) -> bool`
+- <span id="elfsymbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- `fn flags(self: &Self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md), [`SectionIndex`](../../../index.md), [`SymbolIndex`](../../../index.md)
+- <span id="elfsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../../index.md), [`SectionIndex`](../../../index.md), [`SymbolIndex`](../../../index.md)
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Sealed for ElfSymbol<'data, 'file, Elf, R>`
 
@@ -232,59 +273,70 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 trait Sym: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:491-554`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L491-L554)*
+
 A trait for generic access to [`elf::Sym32`](../../../elf/index.md) and [`elf::Sym64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
-- `fn st_name(self: &Self, endian: <Self as >::Endian) -> u32`
+#### Required Methods
 
-- `fn st_info(self: &Self) -> u8`
+- `fn st_name(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn st_bind(self: &Self) -> u8`
+- `fn st_info(&self) -> u8`
 
-- `fn st_type(self: &Self) -> u8`
+- `fn st_bind(&self) -> u8`
 
-- `fn st_other(self: &Self) -> u8`
+- `fn st_type(&self) -> u8`
 
-- `fn st_visibility(self: &Self) -> u8`
+- `fn st_other(&self) -> u8`
 
-- `fn st_shndx(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn st_visibility(&self) -> u8`
 
-- `fn st_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn st_shndx(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn st_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
+- `fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
+
+- `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
   Parse the symbol name from the string table.
 
-- `fn is_undefined(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_undefined(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_UNDEF`.
 
-- `fn is_definition(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_definition(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol is a definition of a function or data object.
 
-- `fn is_common(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_common(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_COMMON`.
 
-- `fn is_absolute(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_absolute(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_ABS`.
 
-- `fn is_local(self: &Self) -> bool`
+- `fn is_local(&self) -> bool`
 
   Return true if the symbol binding is `STB_LOCAL`.
 
-- `fn is_weak(self: &Self) -> bool`
+- `fn is_weak(&self) -> bool`
 
   Return true if the symbol binding is `STB_WEAK`.
+
+#### Implementors
+
+- [`Sym32`](../../../elf/index.md)
+- [`Sym64`](../../../elf/index.md)
 
 ## Type Aliases
 
@@ -294,6 +346,8 @@ A trait for generic access to [`elf::Sym32`](../../../elf/index.md) and [`elf::S
 type ElfSymbolTable32<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:221-222`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L221-L222)*
+
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbolTable64<'data, 'file, Endian, R>`
@@ -301,6 +355,8 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbolTable64<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:224-225`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L224-L225)*
 
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
@@ -310,6 +366,8 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolIterator32<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:265-266`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L265-L266)*
+
 An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbolIterator64<'data, 'file, Endian, R>`
@@ -317,6 +375,8 @@ An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbolIterator64<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:268-269`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L268-L269)*
 
 An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 
@@ -326,6 +386,8 @@ An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbol32<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:323-324`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L323-L324)*
+
 A symbol in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbol64<'data, 'file, Endian, R>`
@@ -333,6 +395,8 @@ A symbol in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbol64<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:326-327`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L326-L327)*
 
 A symbol in an [`ElfFile64`](super::ElfFile64).
 

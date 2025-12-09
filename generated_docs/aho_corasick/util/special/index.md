@@ -4,6 +4,12 @@
 
 # Module `special`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Special`](#special) | struct | A collection of sentinel state IDs for Aho-Corasick automata. |
+
 ## Structs
 
 ### `Special`
@@ -16,6 +22,8 @@ struct Special {
     start_anchored_id: crate::util::primitives::StateID,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/special.rs:10-28`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/special.rs#L10-L28)*
 
 A collection of sentinel state IDs for Aho-Corasick automata.
 
@@ -53,15 +61,15 @@ its ID.
 
 #### Implementations
 
-- `fn zero() -> Special` — [`Special`](#special)
+- <span id="special-zero"></span>`fn zero() -> Special` — [`Special`](#special)
 
 #### Trait Implementations
 
 ##### `impl Clone for Special`
 
-- `fn clone(self: &Self) -> Special` — [`Special`](#special)
+- <span id="special-clone"></span>`fn clone(&self) -> Special` — [`Special`](#special)
 
 ##### `impl Debug for Special`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="special-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

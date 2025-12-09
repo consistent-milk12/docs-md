@@ -4,6 +4,13 @@
 
 # Module `core`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`display_width`](#display_width) | fn | Compute the display width of `text` |
+| [`ch_width`](#ch_width) | fn |  |
+
 ## Functions
 
 ### `display_width`
@@ -11,6 +18,8 @@
 ```rust
 fn display_width(text: &str) -> usize
 ```
+
+*Defined in [`clap_builder-4.5.53/src/output/textwrap/core.rs:55-74`](../../../../../.source_1765210505/clap_builder-4.5.53/src/output/textwrap/core.rs#L55-L74)*
 
 Compute the display width of `text`
 
@@ -70,4 +79,6 @@ shows "👨‍🦰" as “👨🦰”.
 ```rust
 fn ch_width(_: char) -> usize
 ```
+
+*Defined in [`clap_builder-4.5.53/src/output/textwrap/core.rs:82-84`](../../../../../.source_1765210505/clap_builder-4.5.53/src/output/textwrap/core.rs#L82-L84)*
 

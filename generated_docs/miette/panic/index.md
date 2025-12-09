@@ -4,6 +4,13 @@
 
 # Module `panic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Panic`](#panic) | struct |  |
+| [`set_panic_hook`](#set_panic_hook) | fn | Tells miette to render panics using its rendering engine. |
+
 ## Structs
 
 ### `Panic`
@@ -12,37 +19,39 @@
 struct Panic(String);
 ```
 
+*Defined in [`miette-7.6.0/src/panic.rs:30`](../../../.source_1765210505/miette-7.6.0/src/panic.rs#L30)*
+
 #### Implementations
 
-- `fn backtrace() -> String`
+- <span id="panic-backtrace"></span>`fn backtrace() -> String`
 
 #### Trait Implementations
 
 ##### `impl Debug for Panic`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="panic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for Panic`
+##### `impl Diag for Panic`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../index.md)
+- <span id="panic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
 
 ##### `impl Diagnostic for Panic`
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="panic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
 ##### `impl Display for Panic`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="panic-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Error for Panic`
 
-##### `impl<D> OwoColorize for Panic`
+##### `impl OwoColorize for Panic`
 
-##### `impl<T> ToString for Panic`
+##### `impl ToString for Panic`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="panic-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for Panic`
+##### `impl TraitKind for Panic`
 
 ## Functions
 
@@ -51,6 +60,8 @@ struct Panic(String);
 ```rust
 fn set_panic_hook()
 ```
+
+*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../../.source_1765210505/miette-7.6.0/src/panic.rs#L8-L27)*
 
 Tells miette to render panics using its rendering engine.
 

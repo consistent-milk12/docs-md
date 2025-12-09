@@ -322,18 +322,27 @@ representation to use less space. Also, one can enable DFA minimization
 via `dense::Config::minimize`, but it can increase compilation times
 dramatically.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`onepass`](#onepass) | mod | A DFA that can return spans for matching capturing groups. |
+| [`remapper`](#remapper) | mod |  |
+| [`DEAD`](#dead) | const | This is an alias for a state ID of zero. |
+
 ## Modules
 
-- [`onepass`](onepass/index.md) - A DFA that can return spans for matching capturing groups.
-- [`remapper`](remapper/index.md) - 
+- [`onepass`](onepass/index.md) — A DFA that can return spans for matching capturing groups.
+- [`remapper`](remapper/index.md)
 
 ## Constants
 
 ### `DEAD`
-
 ```rust
 const DEAD: crate::util::primitives::StateID;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/dfa/mod.rs:333-334`](../../../.source_1765210505/regex-automata-0.4.13/src/dfa/mod.rs#L333-L334)*
 
 This is an alias for a state ID of zero. It has special significance
 because it always corresponds to the first state in a DFA, and the first

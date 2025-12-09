@@ -4,6 +4,73 @@
 
 # Module `line`
 
+## Contents
+
+- [Structs](#structs)
+  - [`DebugLine`](#debugline)
+  - [`LineRows`](#linerows)
+  - [`LineInstructions`](#lineinstructions)
+  - [`LineRow`](#linerow)
+  - [`LineSequence`](#linesequence)
+  - [`LineProgramHeader`](#lineprogramheader)
+  - [`IncompleteLineProgram`](#incompletelineprogram)
+  - [`CompleteLineProgram`](#completelineprogram)
+  - [`FileEntry`](#fileentry)
+  - [`FileEntryFormat`](#fileentryformat)
+- [Enums](#enums)
+  - [`LineInstruction`](#lineinstruction)
+  - [`ColumnType`](#columntype)
+- [Traits](#traits)
+  - [`LineProgram`](#lineprogram)
+- [Functions](#functions)
+  - [`parse_directory_v5`](#parse_directory_v5)
+  - [`parse_file_v5`](#parse_file_v5)
+  - [`parse_attribute`](#parse_attribute)
+- [Type Aliases](#type-aliases)
+  - [`LineNumberProgram`](#linenumberprogram)
+  - [`StateMachine`](#statemachine)
+  - [`OneShotLineRows`](#oneshotlinerows)
+  - [`ResumedLineRows`](#resumedlinerows)
+  - [`Opcode`](#opcode)
+  - [`OpcodesIter`](#opcodesiter)
+  - [`LineNumberRow`](#linenumberrow)
+  - [`LineNumberSequence`](#linenumbersequence)
+  - [`LineNumberProgramHeader`](#linenumberprogramheader)
+  - [`IncompleteLineNumberProgram`](#incompletelinenumberprogram)
+  - [`CompleteLineNumberProgram`](#completelinenumberprogram)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugLine`](#debugline) | struct | The `DebugLine` struct contains the source location to instruction mapping found in the `.debug_line` section. |
+| [`LineRows`](#linerows) | struct | Executes a `LineProgram` to iterate over the rows in the matrix of line number information. |
+| [`LineInstructions`](#lineinstructions) | struct | An iterator yielding parsed instructions. |
+| [`LineRow`](#linerow) | struct | A row in the line number program's resulting matrix. |
+| [`LineSequence`](#linesequence) | struct | A sequence within a line number program. |
+| [`LineProgramHeader`](#lineprogramheader) | struct | A header for a line number program in the `.debug_line` section, as defined in section 6.2.4 of the standard. |
+| [`IncompleteLineProgram`](#incompletelineprogram) | struct | A line number program that has not been run to completion. |
+| [`CompleteLineProgram`](#completelineprogram) | struct | A line number program that has previously been run to completion. |
+| [`FileEntry`](#fileentry) | struct | An entry in the `LineProgramHeader`'s `file_names` set. |
+| [`FileEntryFormat`](#fileentryformat) | struct | The format of a component of an include directory or file name entry. |
+| [`LineInstruction`](#lineinstruction) | enum | A parsed line number program instruction. |
+| [`ColumnType`](#columntype) | enum | The type of column that a row is referring to. |
+| [`LineProgram`](#lineprogram) | trait | A `LineProgram` provides access to a `LineProgramHeader` and a way to add files to the files table if necessary. |
+| [`parse_directory_v5`](#parse_directory_v5) | fn |  |
+| [`parse_file_v5`](#parse_file_v5) | fn |  |
+| [`parse_attribute`](#parse_attribute) | fn |  |
+| [`LineNumberProgram`](#linenumberprogram) | type | Deprecated. |
+| [`StateMachine`](#statemachine) | type | Deprecated. |
+| [`OneShotLineRows`](#oneshotlinerows) | type |  |
+| [`ResumedLineRows`](#resumedlinerows) | type |  |
+| [`Opcode`](#opcode) | type | Deprecated. |
+| [`OpcodesIter`](#opcodesiter) | type | Deprecated. |
+| [`LineNumberRow`](#linenumberrow) | type | Deprecated. |
+| [`LineNumberSequence`](#linenumbersequence) | type | Deprecated. |
+| [`LineNumberProgramHeader`](#linenumberprogramheader) | type | Deprecated. |
+| [`IncompleteLineNumberProgram`](#incompletelinenumberprogram) | type | Deprecated. |
+| [`CompleteLineNumberProgram`](#completelinenumberprogram) | type | Deprecated. |
+
 ## Structs
 
 ### `DebugLine<R>`
@@ -14,34 +81,36 @@ struct DebugLine<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:17-19`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L17-L19)*
+
 The `DebugLine` struct contains the source location to instruction mapping
 found in the `.debug_line` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLine<R>` — [`DebugLine`](../index.md)
+- <span id="debugline-new"></span>`fn new(debug_line_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugLine<R>`
+##### `impl<R: clone::Clone> Clone for DebugLine<R>`
 
-- `fn clone(self: &Self) -> DebugLine<R>` — [`DebugLine`](../index.md)
+- <span id="debugline-clone"></span>`fn clone(&self) -> DebugLine<R>` — [`DebugLine`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugLine<R>`
+##### `impl<R: marker::Copy> Copy for DebugLine<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugLine<R>`
+##### `impl<R: fmt::Debug> Debug for DebugLine<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugline-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugLine<R>`
+##### `impl<R: default::Default> Default for DebugLine<R>`
 
-- `fn default() -> DebugLine<R>` — [`DebugLine`](../index.md)
+- <span id="debugline-default"></span>`fn default() -> DebugLine<R>` — [`DebugLine`](../index.md)
 
 ##### `impl<R> Section for DebugLine<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugline-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugline-reader"></span>`fn reader(&self) -> &R`
 
 ### `LineRows<R, Program, Offset>`
 
@@ -57,6 +126,8 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:168-177`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L168-L177)*
+
 Executes a `LineProgram` to iterate over the rows in the matrix of line number information.
 
 "The hypothetical machine used by a consumer of the line number information
@@ -65,23 +136,23 @@ information." -- Section 6.2.1
 
 #### Implementations
 
-- `fn new(program: IncompleteLineProgram<R, Offset>) -> LineRows<R, IncompleteLineProgram<R, Offset>, Offset>` — [`IncompleteLineProgram`](../index.md), [`LineRows`](../index.md)
+- <span id="linerows-new"></span>`fn new(program: IncompleteLineProgram<R, Offset>) -> LineRows<R, IncompleteLineProgram<R, Offset>, Offset>` — [`IncompleteLineProgram`](../index.md), [`LineRows`](../index.md)
 
-- `fn resume<'program>(program: &'program CompleteLineProgram<R, Offset>, sequence: &LineSequence<R>) -> LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>` — [`CompleteLineProgram`](../index.md), [`LineSequence`](../index.md), [`LineRows`](../index.md)
+- <span id="linerows-resume"></span>`fn resume<'program>(program: &'program CompleteLineProgram<R, Offset>, sequence: &LineSequence<R>) -> LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>` — [`CompleteLineProgram`](../index.md), [`LineSequence`](../index.md), [`LineRows`](../index.md)
 
-- `fn header(self: &Self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
+- <span id="linerows-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
 
-- `fn next_row(self: &mut Self) -> Result<Option<(&LineProgramHeader<R, Offset>, &LineRow)>>` — [`Result`](../../index.md), [`LineProgramHeader`](../index.md), [`LineRow`](../index.md)
+- <span id="linerows-next-row"></span>`fn next_row(&mut self) -> Result<Option<(&LineProgramHeader<R, Offset>, &LineRow)>>` — [`Result`](../../index.md), [`LineProgramHeader`](../index.md), [`LineRow`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Program, Offset> Clone for LineRows<R, Program, Offset>`
 
-- `fn clone(self: &Self) -> LineRows<R, Program, Offset>` — [`LineRows`](../index.md)
+- <span id="linerows-clone"></span>`fn clone(&self) -> LineRows<R, Program, Offset>` — [`LineRows`](../index.md)
 
 ##### `impl<R, Program, Offset> Debug for LineRows<R, Program, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linerows-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LineInstructions<R: Reader>`
 
@@ -91,6 +162,8 @@ struct LineInstructions<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:529-531`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L529-L531)*
+
 An iterator yielding parsed instructions.
 
 See
@@ -99,17 +172,17 @@ for more details.
 
 #### Implementations
 
-- `fn next_instruction(self: &mut Self, header: &LineProgramHeader<R>) -> Result<Option<LineInstruction<R>>>` — [`LineProgramHeader`](../index.md), [`Result`](../../index.md), [`LineInstruction`](../index.md)
+- <span id="lineinstructions-remove-trailing"></span>`fn remove_trailing(&self, other: &LineInstructions<R>) -> Result<LineInstructions<R>>` — [`LineInstructions`](../index.md), [`Result`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for LineInstructions<R>`
+##### `impl<R: clone::Clone + Reader> Clone for LineInstructions<R>`
 
-- `fn clone(self: &Self) -> LineInstructions<R>` — [`LineInstructions`](../index.md)
+- <span id="lineinstructions-clone"></span>`fn clone(&self) -> LineInstructions<R>` — [`LineInstructions`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for LineInstructions<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for LineInstructions<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineinstructions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LineRow`
 
@@ -131,69 +204,71 @@ struct LineRow {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:580-594`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L580-L594)*
+
 A row in the line number program's resulting matrix.
 
 Each row is a copy of the registers of the state machine, as defined in section 6.2.2.
 
 #### Implementations
 
-- `fn new<R: Reader>(header: &LineProgramHeader<R>) -> Self` — [`LineProgramHeader`](../index.md)
+- <span id="linerow-new"></span>`fn new<R: Reader>(header: &LineProgramHeader<R>) -> Self` — [`LineProgramHeader`](../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="linerow-address"></span>`fn address(&self) -> u64`
 
-- `fn op_index(self: &Self) -> u64`
+- <span id="linerow-op-index"></span>`fn op_index(&self) -> u64`
 
-- `fn file_index(self: &Self) -> u64`
+- <span id="linerow-file-index"></span>`fn file_index(&self) -> u64`
 
-- `fn file<'header, R: Reader>(self: &Self, header: &'header LineProgramHeader<R>) -> Option<&'header FileEntry<R>>` — [`LineProgramHeader`](../index.md), [`FileEntry`](../index.md)
+- <span id="linerow-file"></span>`fn file<'header, R: Reader>(&self, header: &'header LineProgramHeader<R>) -> Option<&'header FileEntry<R>>` — [`LineProgramHeader`](../index.md), [`FileEntry`](../index.md)
 
-- `fn line(self: &Self) -> Option<NonZeroU64>`
+- <span id="linerow-line"></span>`fn line(&self) -> Option<NonZeroU64>`
 
-- `fn column(self: &Self) -> ColumnType` — [`ColumnType`](../index.md)
+- <span id="linerow-column"></span>`fn column(&self) -> ColumnType` — [`ColumnType`](../index.md)
 
-- `fn is_stmt(self: &Self) -> bool`
+- <span id="linerow-is-stmt"></span>`fn is_stmt(&self) -> bool`
 
-- `fn basic_block(self: &Self) -> bool`
+- <span id="linerow-basic-block"></span>`fn basic_block(&self) -> bool`
 
-- `fn end_sequence(self: &Self) -> bool`
+- <span id="linerow-end-sequence"></span>`fn end_sequence(&self) -> bool`
 
-- `fn prologue_end(self: &Self) -> bool`
+- <span id="linerow-prologue-end"></span>`fn prologue_end(&self) -> bool`
 
-- `fn epilogue_begin(self: &Self) -> bool`
+- <span id="linerow-epilogue-begin"></span>`fn epilogue_begin(&self) -> bool`
 
-- `fn isa(self: &Self) -> u64`
+- <span id="linerow-isa"></span>`fn isa(&self) -> u64`
 
-- `fn discriminator(self: &Self) -> u64`
+- <span id="linerow-discriminator"></span>`fn discriminator(&self) -> u64`
 
-- `fn execute<R, Program>(self: &mut Self, instruction: LineInstruction<R>, program: &mut Program) -> Result<bool>` — [`LineInstruction`](../index.md), [`Result`](../../index.md)
+- <span id="linerow-execute"></span>`fn execute<R, Program>(&mut self, instruction: LineInstruction<R>, program: &mut Program) -> Result<bool>` — [`LineInstruction`](../index.md), [`Result`](../../index.md)
 
-- `fn reset<R: Reader>(self: &mut Self, header: &LineProgramHeader<R>)` — [`LineProgramHeader`](../index.md)
+- <span id="linerow-reset"></span>`fn reset<R: Reader>(&mut self, header: &LineProgramHeader<R>)` — [`LineProgramHeader`](../index.md)
 
-- `fn apply_line_advance(self: &mut Self, line_increment: i64)`
+- <span id="linerow-apply-line-advance"></span>`fn apply_line_advance(&mut self, line_increment: i64)`
 
-- `fn apply_operation_advance<R: Reader>(self: &mut Self, operation_advance: u64, header: &LineProgramHeader<R>) -> Result<()>` — [`LineProgramHeader`](../index.md), [`Result`](../../index.md)
+- <span id="linerow-apply-operation-advance"></span>`fn apply_operation_advance<R: Reader>(&mut self, operation_advance: u64, header: &LineProgramHeader<R>) -> Result<()>` — [`LineProgramHeader`](../index.md), [`Result`](../../index.md)
 
-- `fn adjust_opcode<R: Reader>(self: &Self, opcode: u8, header: &LineProgramHeader<R>) -> u8` — [`LineProgramHeader`](../index.md)
+- <span id="linerow-adjust-opcode"></span>`fn adjust_opcode<R: Reader>(&self, opcode: u8, header: &LineProgramHeader<R>) -> u8` — [`LineProgramHeader`](../index.md)
 
-- `fn exec_special_opcode<R: Reader>(self: &mut Self, opcode: u8, header: &LineProgramHeader<R>) -> Result<()>` — [`LineProgramHeader`](../index.md), [`Result`](../../index.md)
+- <span id="linerow-exec-special-opcode"></span>`fn exec_special_opcode<R: Reader>(&mut self, opcode: u8, header: &LineProgramHeader<R>) -> Result<()>` — [`LineProgramHeader`](../index.md), [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for LineRow`
 
-- `fn clone(self: &Self) -> LineRow` — [`LineRow`](../index.md)
+- <span id="linerow-clone"></span>`fn clone(&self) -> LineRow` — [`LineRow`](../index.md)
 
 ##### `impl Copy for LineRow`
 
 ##### `impl Debug for LineRow`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linerow-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LineRow`
 
 ##### `impl PartialEq for LineRow`
 
-- `fn eq(self: &Self, other: &LineRow) -> bool` — [`LineRow`](../index.md)
+- <span id="linerow-eq"></span>`fn eq(&self, other: &LineRow) -> bool` — [`LineRow`](../index.md)
 
 ##### `impl StructuralPartialEq for LineRow`
 
@@ -206,6 +281,8 @@ struct LineSequence<R: Reader> {
     instructions: LineInstructions<R>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:977-985`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L977-L985)*
 
 A sequence within a line number program.  A sequence, as defined in section
 6.2.5 of the standard, is a linear subset of a line number program within
@@ -225,13 +302,13 @@ which addresses are monotonically increasing.
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for LineSequence<R>`
+##### `impl<R: clone::Clone + Reader> Clone for LineSequence<R>`
 
-- `fn clone(self: &Self) -> LineSequence<R>` — [`LineSequence`](../index.md)
+- <span id="linesequence-clone"></span>`fn clone(&self) -> LineSequence<R>` — [`LineSequence`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for LineSequence<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for LineSequence<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linesequence-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LineProgramHeader<R, Offset>`
 
@@ -256,6 +333,8 @@ where
     comp_file: Option<FileEntry<R, Offset>>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:996-1047`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L996-L1047)*
 
 A header for a line number program in the `.debug_line` section, as defined
 in section 6.2.4 of the standard.
@@ -312,77 +391,77 @@ in section 6.2.4 of the standard.
 
 #### Implementations
 
-- `fn offset(self: &Self) -> DebugLineOffset<<R as >::Offset>` — [`DebugLineOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="lineprogramheader-offset"></span>`fn offset(&self) -> DebugLineOffset<<R as >::Offset>` — [`DebugLineOffset`](../../index.md), [`Reader`](../index.md)
 
-- `fn unit_length(self: &Self) -> <R as >::Offset` — [`Reader`](../index.md)
+- <span id="lineprogramheader-unit-length"></span>`fn unit_length(&self) -> <R as >::Offset` — [`Reader`](../index.md)
 
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../../index.md)
+- <span id="lineprogramheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md)
 
-- `fn version(self: &Self) -> u16`
+- <span id="lineprogramheader-version"></span>`fn version(&self) -> u16`
 
-- `fn header_length(self: &Self) -> <R as >::Offset` — [`Reader`](../index.md)
+- <span id="lineprogramheader-header-length"></span>`fn header_length(&self) -> <R as >::Offset` — [`Reader`](../index.md)
 
-- `fn address_size(self: &Self) -> u8`
+- <span id="lineprogramheader-address-size"></span>`fn address_size(&self) -> u8`
 
-- `fn format(self: &Self) -> Format` — [`Format`](../../index.md)
+- <span id="lineprogramheader-format"></span>`fn format(&self) -> Format` — [`Format`](../../index.md)
 
-- `fn line_encoding(self: &Self) -> LineEncoding` — [`LineEncoding`](../../index.md)
+- <span id="lineprogramheader-line-encoding"></span>`fn line_encoding(&self) -> LineEncoding` — [`LineEncoding`](../../index.md)
 
-- `fn minimum_instruction_length(self: &Self) -> u8`
+- <span id="lineprogramheader-minimum-instruction-length"></span>`fn minimum_instruction_length(&self) -> u8`
 
-- `fn maximum_operations_per_instruction(self: &Self) -> u8`
+- <span id="lineprogramheader-maximum-operations-per-instruction"></span>`fn maximum_operations_per_instruction(&self) -> u8`
 
-- `fn default_is_stmt(self: &Self) -> bool`
+- <span id="lineprogramheader-default-is-stmt"></span>`fn default_is_stmt(&self) -> bool`
 
-- `fn line_base(self: &Self) -> i8`
+- <span id="lineprogramheader-line-base"></span>`fn line_base(&self) -> i8`
 
-- `fn line_range(self: &Self) -> u8`
+- <span id="lineprogramheader-line-range"></span>`fn line_range(&self) -> u8`
 
-- `fn opcode_base(self: &Self) -> u8`
+- <span id="lineprogramheader-opcode-base"></span>`fn opcode_base(&self) -> u8`
 
-- `fn standard_opcode_lengths(self: &Self) -> &R`
+- <span id="lineprogramheader-standard-opcode-lengths"></span>`fn standard_opcode_lengths(&self) -> &R`
 
-- `fn directory_entry_format(self: &Self) -> &[FileEntryFormat]` — [`FileEntryFormat`](../index.md)
+- <span id="lineprogramheader-directory-entry-format"></span>`fn directory_entry_format(&self) -> &[FileEntryFormat]` — [`FileEntryFormat`](../index.md)
 
-- `fn include_directories(self: &Self) -> &[AttributeValue<R, Offset>]` — [`AttributeValue`](../index.md)
+- <span id="lineprogramheader-include-directories"></span>`fn include_directories(&self) -> &[AttributeValue<R, Offset>]` — [`AttributeValue`](../index.md)
 
-- `fn directory(self: &Self, directory: u64) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](../index.md)
+- <span id="lineprogramheader-directory"></span>`fn directory(&self, directory: u64) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](../index.md)
 
-- `fn file_name_entry_format(self: &Self) -> &[FileEntryFormat]` — [`FileEntryFormat`](../index.md)
+- <span id="lineprogramheader-file-name-entry-format"></span>`fn file_name_entry_format(&self) -> &[FileEntryFormat]` — [`FileEntryFormat`](../index.md)
 
-- `fn file_has_timestamp(self: &Self) -> bool`
+- <span id="lineprogramheader-file-has-timestamp"></span>`fn file_has_timestamp(&self) -> bool`
 
-- `fn file_has_size(self: &Self) -> bool`
+- <span id="lineprogramheader-file-has-size"></span>`fn file_has_size(&self) -> bool`
 
-- `fn file_has_md5(self: &Self) -> bool`
+- <span id="lineprogramheader-file-has-md5"></span>`fn file_has_md5(&self) -> bool`
 
-- `fn file_has_source(self: &Self) -> bool`
+- <span id="lineprogramheader-file-has-source"></span>`fn file_has_source(&self) -> bool`
 
-- `fn file_names(self: &Self) -> &[FileEntry<R, Offset>]` — [`FileEntry`](../index.md)
+- <span id="lineprogramheader-file-names"></span>`fn file_names(&self) -> &[FileEntry<R, Offset>]` — [`FileEntry`](../index.md)
 
-- `fn file(self: &Self, file: u64) -> Option<&FileEntry<R, Offset>>` — [`FileEntry`](../index.md)
+- <span id="lineprogramheader-file"></span>`fn file(&self, file: u64) -> Option<&FileEntry<R, Offset>>` — [`FileEntry`](../index.md)
 
-- `fn raw_program_buf(self: &Self) -> R`
+- <span id="lineprogramheader-raw-program-buf"></span>`fn raw_program_buf(&self) -> R`
 
-- `fn instructions(self: &Self) -> LineInstructions<R>` — [`LineInstructions`](../index.md)
+- <span id="lineprogramheader-instructions"></span>`fn instructions(&self) -> LineInstructions<R>` — [`LineInstructions`](../index.md)
 
-- `fn parse(input: &mut R, offset: DebugLineOffset<Offset>, address_size: u8, comp_dir: Option<R>, comp_name: Option<R>) -> Result<LineProgramHeader<R, Offset>>` — [`DebugLineOffset`](../../index.md), [`Result`](../../index.md), [`LineProgramHeader`](../index.md)
+- <span id="lineprogramheader-parse"></span>`fn parse(input: &mut R, offset: DebugLineOffset<Offset>, address_size: u8, comp_dir: Option<R>, comp_name: Option<R>) -> Result<LineProgramHeader<R, Offset>>` — [`DebugLineOffset`](../../index.md), [`Result`](../../index.md), [`LineProgramHeader`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for LineProgramHeader<R, Offset>`
 
-- `fn clone(self: &Self) -> LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
+- <span id="lineprogramheader-clone"></span>`fn clone(&self) -> LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
 
 ##### `impl<R, Offset> Debug for LineProgramHeader<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineprogramheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for LineProgramHeader<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for LineProgramHeader<R, Offset>`
 
-- `fn eq(self: &Self, other: &LineProgramHeader<R, Offset>) -> bool` — [`LineProgramHeader`](../index.md)
+- <span id="lineprogramheader-eq"></span>`fn eq(&self, other: &LineProgramHeader<R, Offset>) -> bool` — [`LineProgramHeader`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for LineProgramHeader<R, Offset>`
 
@@ -397,37 +476,39 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:1411-1417`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1411-L1417)*
+
 A line number program that has not been run to completion.
 
 #### Implementations
 
-- `fn header(self: &Self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
+- <span id="incompletelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
 
-- `fn rows(self: Self) -> LineRows<R, IncompleteLineProgram<R, Offset>, Offset>` — [`LineRows`](../index.md), [`IncompleteLineProgram`](../index.md)
+- <span id="incompletelineprogram-rows"></span>`fn rows(self) -> LineRows<R, IncompleteLineProgram<R, Offset>, Offset>` — [`LineRows`](../index.md), [`IncompleteLineProgram`](../index.md)
 
-- `fn sequences(self: Self) -> Result<(CompleteLineProgram<R, Offset>, Vec<LineSequence<R>>)>` — [`Result`](../../index.md), [`CompleteLineProgram`](../index.md), [`LineSequence`](../index.md)
+- <span id="incompletelineprogram-sequences"></span>`fn sequences(self) -> Result<(CompleteLineProgram<R, Offset>, Vec<LineSequence<R>>)>` — [`Result`](../../index.md), [`CompleteLineProgram`](../index.md), [`LineSequence`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for IncompleteLineProgram<R, Offset>`
 
-- `fn clone(self: &Self) -> IncompleteLineProgram<R, Offset>` — [`IncompleteLineProgram`](../index.md)
+- <span id="incompletelineprogram-clone"></span>`fn clone(&self) -> IncompleteLineProgram<R, Offset>` — [`IncompleteLineProgram`](../index.md)
 
 ##### `impl<R, Offset> Debug for IncompleteLineProgram<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="incompletelineprogram-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for IncompleteLineProgram<R, Offset>`
 
 ##### `impl<R, Offset> LineProgram for IncompleteLineProgram<R, Offset>`
 
-- `fn header(self: &Self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
+- <span id="incompletelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
 
-- `fn add_file(self: &mut Self, file: FileEntry<R, Offset>)` — [`FileEntry`](../index.md)
+- <span id="incompletelineprogram-add-file"></span>`fn add_file(&mut self, file: FileEntry<R, Offset>)` — [`FileEntry`](../index.md)
 
 ##### `impl<R, Offset> PartialEq for IncompleteLineProgram<R, Offset>`
 
-- `fn eq(self: &Self, other: &IncompleteLineProgram<R, Offset>) -> bool` — [`IncompleteLineProgram`](../index.md)
+- <span id="incompletelineprogram-eq"></span>`fn eq(&self, other: &IncompleteLineProgram<R, Offset>) -> bool` — [`IncompleteLineProgram`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for IncompleteLineProgram<R, Offset>`
 
@@ -442,29 +523,37 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:1504-1510`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1504-L1510)*
+
 A line number program that has previously been run to completion.
 
 #### Implementations
 
-- `fn header(self: &Self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
+- <span id="completelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
 
-- `fn resume_from<'program>(self: &'program Self, sequence: &LineSequence<R>) -> LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>` — [`LineSequence`](../index.md), [`LineRows`](../index.md), [`CompleteLineProgram`](../index.md)
+- <span id="completelineprogram-resume-from"></span>`fn resume_from<'program>(self: &'program Self, sequence: &LineSequence<R>) -> LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>` — [`LineSequence`](../index.md), [`LineRows`](../index.md), [`CompleteLineProgram`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for CompleteLineProgram<R, Offset>`
 
-- `fn clone(self: &Self) -> CompleteLineProgram<R, Offset>` — [`CompleteLineProgram`](../index.md)
+- <span id="completelineprogram-clone"></span>`fn clone(&self) -> CompleteLineProgram<R, Offset>` — [`CompleteLineProgram`](../index.md)
 
 ##### `impl<R, Offset> Debug for CompleteLineProgram<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="completelineprogram-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for CompleteLineProgram<R, Offset>`
 
+##### `impl<'program, R, Offset> LineProgram for &'program CompleteLineProgram<R, Offset>`
+
+- <span id="program-completelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](../index.md)
+
+- <span id="program-completelineprogram-add-file"></span>`fn add_file(&mut self, _: FileEntry<R, Offset>)` — [`FileEntry`](../index.md)
+
 ##### `impl<R, Offset> PartialEq for CompleteLineProgram<R, Offset>`
 
-- `fn eq(self: &Self, other: &CompleteLineProgram<R, Offset>) -> bool` — [`CompleteLineProgram`](../index.md)
+- <span id="completelineprogram-eq"></span>`fn eq(&self, other: &CompleteLineProgram<R, Offset>) -> bool` — [`CompleteLineProgram`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for CompleteLineProgram<R, Offset>`
 
@@ -484,43 +573,45 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:1553-1564`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1553-L1564)*
+
 An entry in the `LineProgramHeader`'s `file_names` set.
 
 #### Implementations
 
-- `fn parse(input: &mut R, path_name: R) -> Result<FileEntry<R, Offset>>` — [`Result`](../../index.md), [`FileEntry`](../index.md)
+- <span id="fileentry-parse"></span>`fn parse(input: &mut R, path_name: R) -> Result<FileEntry<R, Offset>>` — [`Result`](../../index.md), [`FileEntry`](../index.md)
 
-- `fn path_name(self: &Self) -> AttributeValue<R, Offset>` — [`AttributeValue`](../index.md)
+- <span id="fileentry-path-name"></span>`fn path_name(&self) -> AttributeValue<R, Offset>` — [`AttributeValue`](../index.md)
 
-- `fn directory_index(self: &Self) -> u64`
+- <span id="fileentry-directory-index"></span>`fn directory_index(&self) -> u64`
 
-- `fn directory(self: &Self, header: &LineProgramHeader<R>) -> Option<AttributeValue<R, Offset>>` — [`LineProgramHeader`](../index.md), [`AttributeValue`](../index.md)
+- <span id="fileentry-directory"></span>`fn directory(&self, header: &LineProgramHeader<R>) -> Option<AttributeValue<R, Offset>>` — [`LineProgramHeader`](../index.md), [`AttributeValue`](../index.md)
 
-- `fn timestamp(self: &Self) -> u64`
+- <span id="fileentry-timestamp"></span>`fn timestamp(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="fileentry-size"></span>`fn size(&self) -> u64`
 
-- `fn md5(self: &Self) -> &[u8; 16]`
+- <span id="fileentry-md5"></span>`fn md5(&self) -> &[u8; 16]`
 
-- `fn source(self: &Self) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](../index.md)
+- <span id="fileentry-source"></span>`fn source(&self) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for FileEntry<R, Offset>`
 
-- `fn clone(self: &Self) -> FileEntry<R, Offset>` — [`FileEntry`](../index.md)
+- <span id="fileentry-clone"></span>`fn clone(&self) -> FileEntry<R, Offset>` — [`FileEntry`](../index.md)
 
 ##### `impl<R, Offset> Copy for FileEntry<R, Offset>`
 
 ##### `impl<R, Offset> Debug for FileEntry<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fileentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for FileEntry<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for FileEntry<R, Offset>`
 
-- `fn eq(self: &Self, other: &FileEntry<R, Offset>) -> bool` — [`FileEntry`](../index.md)
+- <span id="fileentry-eq"></span>`fn eq(&self, other: &FileEntry<R, Offset>) -> bool` — [`FileEntry`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for FileEntry<R, Offset>`
 
@@ -532,6 +623,8 @@ struct FileEntryFormat {
     pub form: constants::DwForm,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:1667-1673`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1667-L1673)*
 
 The format of a component of an include directory or file name entry.
 
@@ -547,25 +640,25 @@ The format of a component of an include directory or file name entry.
 
 #### Implementations
 
-- `fn parse<R: Reader>(input: &mut R) -> Result<Vec<FileEntryFormat>>` — [`Result`](../../index.md), [`FileEntryFormat`](../index.md)
+- <span id="fileentryformat-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Vec<FileEntryFormat>>` — [`Result`](../../index.md), [`FileEntryFormat`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for FileEntryFormat`
 
-- `fn clone(self: &Self) -> FileEntryFormat` — [`FileEntryFormat`](../index.md)
+- <span id="fileentryformat-clone"></span>`fn clone(&self) -> FileEntryFormat` — [`FileEntryFormat`](../index.md)
 
 ##### `impl Copy for FileEntryFormat`
 
 ##### `impl Debug for FileEntryFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fileentryformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FileEntryFormat`
 
 ##### `impl PartialEq for FileEntryFormat`
 
-- `fn eq(self: &Self, other: &FileEntryFormat) -> bool` — [`FileEntryFormat`](../index.md)
+- <span id="fileentryformat-eq"></span>`fn eq(&self, other: &FileEntryFormat) -> bool` — [`FileEntryFormat`](../index.md)
 
 ##### `impl StructuralPartialEq for FileEntryFormat`
 
@@ -601,6 +694,8 @@ where
     UnknownExtended(constants::DwLne, R),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:267-399`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L267-L399)*
 
 A parsed line number program instruction.
 
@@ -757,25 +852,25 @@ A parsed line number program instruction.
 
 #### Implementations
 
-- `fn parse<'header>(header: &'header LineProgramHeader<R>, input: &mut R) -> Result<LineInstruction<R>>` — [`LineProgramHeader`](../index.md), [`Result`](../../index.md), [`LineInstruction`](../index.md)
+- <span id="lineinstruction-parse"></span>`fn parse<'header>(header: &'header LineProgramHeader<R>, input: &mut R) -> Result<LineInstruction<R>>` — [`LineProgramHeader`](../index.md), [`Result`](../../index.md), [`LineInstruction`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for LineInstruction<R, Offset>`
 
-- `fn clone(self: &Self) -> LineInstruction<R, Offset>` — [`LineInstruction`](../index.md)
+- <span id="lineinstruction-clone"></span>`fn clone(&self) -> LineInstruction<R, Offset>` — [`LineInstruction`](../index.md)
 
 ##### `impl<R, Offset> Copy for LineInstruction<R, Offset>`
 
 ##### `impl<R, Offset> Debug for LineInstruction<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineinstruction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for LineInstruction<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for LineInstruction<R, Offset>`
 
-- `fn eq(self: &Self, other: &LineInstruction<R, Offset>) -> bool` — [`LineInstruction`](../index.md)
+- <span id="lineinstruction-eq"></span>`fn eq(&self, other: &LineInstruction<R, Offset>) -> bool` — [`LineInstruction`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for LineInstruction<R, Offset>`
 
@@ -787,6 +882,8 @@ enum ColumnType {
     Column(core::num::NonZeroU64),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:961-967`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L961-L967)*
 
 The type of column that a row is referring to.
 
@@ -805,27 +902,27 @@ The type of column that a row is referring to.
 
 ##### `impl Clone for ColumnType`
 
-- `fn clone(self: &Self) -> ColumnType` — [`ColumnType`](../index.md)
+- <span id="columntype-clone"></span>`fn clone(&self) -> ColumnType` — [`ColumnType`](../index.md)
 
 ##### `impl Copy for ColumnType`
 
 ##### `impl Debug for ColumnType`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="columntype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ColumnType`
 
 ##### `impl Ord for ColumnType`
 
-- `fn cmp(self: &Self, other: &ColumnType) -> $crate::cmp::Ordering` — [`ColumnType`](../index.md)
+- <span id="columntype-cmp"></span>`fn cmp(&self, other: &ColumnType) -> cmp::Ordering` — [`ColumnType`](../index.md)
 
 ##### `impl PartialEq for ColumnType`
 
-- `fn eq(self: &Self, other: &ColumnType) -> bool` — [`ColumnType`](../index.md)
+- <span id="columntype-eq"></span>`fn eq(&self, other: &ColumnType) -> bool` — [`ColumnType`](../index.md)
 
 ##### `impl PartialOrd for ColumnType`
 
-- `fn partial_cmp(self: &Self, other: &ColumnType) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ColumnType`](../index.md)
+- <span id="columntype-partial-cmp"></span>`fn partial_cmp(&self, other: &ColumnType) -> option::Option<cmp::Ordering>` — [`ColumnType`](../index.md)
 
 ##### `impl StructuralPartialEq for ColumnType`
 
@@ -840,19 +937,26 @@ where
     Offset: ReaderOffset { ... }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:121-130`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L121-L130)*
+
 A `LineProgram` provides access to a `LineProgramHeader` and
 a way to add files to the files table if necessary. Gimli consumers should
 never need to use or see this trait.
 
 #### Required Methods
 
-- `fn header(self: &Self) -> &LineProgramHeader<R, Offset>`
+- `fn header(&self) -> &LineProgramHeader<R, Offset>`
 
   Get a reference to the held `LineProgramHeader`.
 
-- `fn add_file(self: &mut Self, file: FileEntry<R, Offset>)`
+- `fn add_file(&mut self, file: FileEntry<R, Offset>)`
 
   Add a file to the file table if necessary.
+
+#### Implementors
+
+- [`IncompleteLineProgram`](../index.md)
+- `&'program CompleteLineProgram<R, Offset>`
 
 ## Functions
 
@@ -862,17 +966,23 @@ never need to use or see this trait.
 fn parse_directory_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, formats: &[FileEntryFormat]) -> crate::read::Result<crate::read::AttributeValue<R>>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:1702-1717`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1702-L1717)*
+
 ### `parse_file_v5`
 
 ```rust
 fn parse_file_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, formats: &[FileEntryFormat]) -> crate::read::Result<FileEntry<R>>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:1719-1773`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1719-L1773)*
+
 ### `parse_attribute`
 
 ```rust
 fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, form: constants::DwForm) -> crate::read::Result<crate::read::AttributeValue<R>>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:1776-1878`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1776-L1878)*
 
 ## Type Aliases
 
@@ -882,6 +992,8 @@ fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 type LineNumberProgram<R, Offset> = dyn LineProgram<R, Offset>;
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:116`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L116)*
+
 Deprecated. `LineNumberProgram` has been renamed to `LineProgram`.
 
 ### `StateMachine<R, Program, Offset>`
@@ -889,6 +1001,8 @@ Deprecated. `LineNumberProgram` has been renamed to `LineProgram`.
 ```rust
 type StateMachine<R, Program, Offset> = LineRows<R, Program, Offset>;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:160`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L160)*
 
 Deprecated. `StateMachine` has been renamed to `LineRows`.
 
@@ -898,17 +1012,23 @@ Deprecated. `StateMachine` has been renamed to `LineRows`.
 type OneShotLineRows<R, Offset> = LineRows<R, IncompleteLineProgram<R, Offset>, Offset>;
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:179-180`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L179-L180)*
+
 ### `ResumedLineRows<'program, R, Offset>`
 
 ```rust
 type ResumedLineRows<'program, R, Offset> = LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>;
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:182-183`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L182-L183)*
+
 ### `Opcode<R>`
 
 ```rust
 type Opcode<R> = LineInstruction<R, <R as Reader>::Offset>;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:263`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L263)*
 
 Deprecated. `Opcode` has been renamed to `LineInstruction`.
 
@@ -918,6 +1038,8 @@ Deprecated. `Opcode` has been renamed to `LineInstruction`.
 type OpcodesIter<R> = LineInstructions<R>;
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:521`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L521)*
+
 Deprecated. `OpcodesIter` has been renamed to `LineInstructions`.
 
 ### `LineNumberRow`
@@ -925,6 +1047,8 @@ Deprecated. `OpcodesIter` has been renamed to `LineInstructions`.
 ```rust
 type LineNumberRow = LineRow;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:574`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L574)*
 
 Deprecated. `LineNumberRow` has been renamed to `LineRow`.
 
@@ -934,6 +1058,8 @@ Deprecated. `LineNumberRow` has been renamed to `LineRow`.
 type LineNumberSequence<R> = LineSequence<R>;
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:971`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L971)*
+
 Deprecated. `LineNumberSequence` has been renamed to `LineSequence`.
 
 ### `LineNumberProgramHeader<R, Offset>`
@@ -941,6 +1067,8 @@ Deprecated. `LineNumberSequence` has been renamed to `LineSequence`.
 ```rust
 type LineNumberProgramHeader<R, Offset> = LineProgramHeader<R, Offset>;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:991`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L991)*
 
 Deprecated. `LineNumberProgramHeader` has been renamed to `LineProgramHeader`.
 
@@ -950,6 +1078,8 @@ Deprecated. `LineNumberProgramHeader` has been renamed to `LineProgramHeader`.
 type IncompleteLineNumberProgram<R, Offset> = IncompleteLineProgram<R, Offset>;
 ```
 
+*Defined in [`gimli-0.32.3/src/read/line.rs:1407`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1407)*
+
 Deprecated. `IncompleteLineNumberProgram` has been renamed to `IncompleteLineProgram`.
 
 ### `CompleteLineNumberProgram<R, Offset>`
@@ -957,6 +1087,8 @@ Deprecated. `IncompleteLineNumberProgram` has been renamed to `IncompleteLinePro
 ```rust
 type CompleteLineNumberProgram<R, Offset> = CompleteLineProgram<R, Offset>;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/line.rs:1500`](../../../../.source_1765210505/gimli-0.32.3/src/read/line.rs#L1500)*
 
 Deprecated. `CompleteLineNumberProgram` has been renamed to `CompleteLineProgram`.
 

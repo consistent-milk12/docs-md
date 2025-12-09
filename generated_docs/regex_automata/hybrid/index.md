@@ -136,13 +136,42 @@ There are no plans to lift either of these limitations.
 Note that these restrictions are identical to the restrictions on fully
 compiled DFAs.
 
+## Contents
+
+- [Modules](#modules)
+  - [`dfa`](#dfa)
+  - [`error`](#error)
+  - [`id`](#id)
+  - [`regex`](#regex)
+  - [`search`](#search)
+- [Structs](#structs)
+  - [`BuildError`](#builderror)
+  - [`CacheError`](#cacheerror)
+  - [`LazyStateID`](#lazystateid)
+- [Enums](#enums)
+  - [`StartError`](#starterror)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`dfa`](#dfa) | mod | Types and routines specific to lazy DFAs. |
+| [`error`](#error) | mod |  |
+| [`id`](#id) | mod |  |
+| [`regex`](#regex) | mod | A lazy DFA backed `Regex`. |
+| [`search`](#search) | mod |  |
+| [`BuildError`](#builderror) | struct |  |
+| [`CacheError`](#cacheerror) | struct |  |
+| [`LazyStateID`](#lazystateid) | struct |  |
+| [`StartError`](#starterror) | enum |  |
+
 ## Modules
 
-- [`dfa`](dfa/index.md) - Types and routines specific to lazy DFAs.
-- [`error`](error/index.md) - 
-- [`id`](id/index.md) - 
-- [`regex`](regex/index.md) - A lazy DFA backed `Regex`.
-- [`search`](search/index.md) - 
+- [`dfa`](dfa/index.md) — Types and routines specific to lazy DFAs.
+- [`error`](error/index.md)
+- [`id`](id/index.md)
+- [`regex`](regex/index.md) — A lazy DFA backed `Regex`.
+- [`search`](search/index.md)
 
 ## Structs
 
@@ -153,6 +182,8 @@ struct BuildError {
     kind: BuildErrorKind,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:23-25`](../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/error.rs#L23-L25)*
 
 An error that occurs when initial construction of a lazy DFA fails.
 
@@ -176,41 +207,43 @@ trait.
 
 #### Implementations
 
-- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/index.md)
+- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/error/index.md)
 
-- `fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-insufficient-cache-capacity"></span>`fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](error/index.md)
 
-- `fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](id/index.md), [`BuildError`](#builderror)
+- <span id="builderror-insufficient-state-id-capacity"></span>`fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](id/index.md), [`BuildError`](error/index.md)
 
-- `fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-unsupported-dfa-word-boundary-unicode"></span>`fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](error/index.md)
 
 ##### `impl Debug for BuildError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-- `fn source(self: &Self) -> Option<&dyn std::error::Error>`
+- <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
-##### `impl<T> ToString for BuildError`
+##### `impl ToString for BuildError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `CacheError`
 
 ```rust
 struct CacheError(());
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:222`](../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/error.rs#L222)*
 
 An error that occurs when cache usage has become inefficient.
 
@@ -232,35 +265,37 @@ trait.
 
 #### Implementations
 
-- `fn too_many_cache_clears() -> CacheError` — [`CacheError`](#cacheerror)
+- <span id="cacheerror-too-many-cache-clears"></span>`fn too_many_cache_clears() -> CacheError` — [`CacheError`](error/index.md)
 
-- `fn bad_efficiency() -> CacheError` — [`CacheError`](#cacheerror)
+- <span id="cacheerror-bad-efficiency"></span>`fn bad_efficiency() -> CacheError` — [`CacheError`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for CacheError`
 
-- `fn clone(self: &Self) -> CacheError` — [`CacheError`](#cacheerror)
+- <span id="cacheerror-clone"></span>`fn clone(&self) -> CacheError` — [`CacheError`](error/index.md)
 
 ##### `impl Debug for CacheError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cacheerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for CacheError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="cacheerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for CacheError`
 
-##### `impl<T> ToString for CacheError`
+##### `impl ToString for CacheError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="cacheerror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `LazyStateID`
 
 ```rust
 struct LazyStateID(u32);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:169`](../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/id.rs#L169)*
 
 A state identifier specifically tailored for lazy DFAs.
 
@@ -430,83 +465,83 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `const MAX_BIT: usize`
+- <span id="lazystateid-const-max-bit"></span>`const MAX_BIT: usize`
 
-- `const MASK_UNKNOWN: usize`
+- <span id="lazystateid-const-mask-unknown"></span>`const MASK_UNKNOWN: usize`
 
-- `const MASK_DEAD: usize`
+- <span id="lazystateid-const-mask-dead"></span>`const MASK_DEAD: usize`
 
-- `const MASK_QUIT: usize`
+- <span id="lazystateid-const-mask-quit"></span>`const MASK_QUIT: usize`
 
-- `const MASK_START: usize`
+- <span id="lazystateid-const-mask-start"></span>`const MASK_START: usize`
 
-- `const MASK_MATCH: usize`
+- <span id="lazystateid-const-mask-match"></span>`const MASK_MATCH: usize`
 
-- `const MAX: usize`
+- <span id="lazystateid-const-max"></span>`const MAX: usize`
 
-- `fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](#lazystateid), [`LazyStateIDError`](id/index.md)
+- <span id="lazystateid-new"></span>`fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](id/index.md), [`LazyStateIDError`](id/index.md)
 
-- `const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-new-unchecked"></span>`const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-- `fn as_usize_untagged(self: &Self) -> usize`
+- <span id="lazystateid-as-usize-untagged"></span>`fn as_usize_untagged(&self) -> usize`
 
-- `const fn as_usize_unchecked(self: &Self) -> usize`
+- <span id="lazystateid-as-usize-unchecked"></span>`const fn as_usize_unchecked(&self) -> usize`
 
-- `const fn to_unknown(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-to-unknown"></span>`const fn to_unknown(&self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-- `const fn to_dead(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-to-dead"></span>`const fn to_dead(&self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-- `const fn to_quit(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-to-quit"></span>`const fn to_quit(&self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-- `const fn to_start(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-to-start"></span>`const fn to_start(&self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-- `const fn to_match(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-to-match"></span>`const fn to_match(&self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-- `const fn is_tagged(self: &Self) -> bool`
+- <span id="lazystateid-is-tagged"></span>`const fn is_tagged(&self) -> bool`
 
-- `const fn is_unknown(self: &Self) -> bool`
+- <span id="lazystateid-is-unknown"></span>`const fn is_unknown(&self) -> bool`
 
-- `const fn is_dead(self: &Self) -> bool`
+- <span id="lazystateid-is-dead"></span>`const fn is_dead(&self) -> bool`
 
-- `const fn is_quit(self: &Self) -> bool`
+- <span id="lazystateid-is-quit"></span>`const fn is_quit(&self) -> bool`
 
-- `const fn is_start(self: &Self) -> bool`
+- <span id="lazystateid-is-start"></span>`const fn is_start(&self) -> bool`
 
-- `const fn is_match(self: &Self) -> bool`
+- <span id="lazystateid-is-match"></span>`const fn is_match(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for LazyStateID`
 
-- `fn clone(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-clone"></span>`fn clone(&self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
 ##### `impl Copy for LazyStateID`
 
 ##### `impl Debug for LazyStateID`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lazystateid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LazyStateID`
 
-- `fn default() -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-default"></span>`fn default() -> LazyStateID` — [`LazyStateID`](id/index.md)
 
 ##### `impl Eq for LazyStateID`
 
 ##### `impl Hash for LazyStateID`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="lazystateid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for LazyStateID`
 
-- `fn cmp(self: &Self, other: &LazyStateID) -> $crate::cmp::Ordering` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-cmp"></span>`fn cmp(&self, other: &LazyStateID) -> cmp::Ordering` — [`LazyStateID`](id/index.md)
 
 ##### `impl PartialEq for LazyStateID`
 
-- `fn eq(self: &Self, other: &LazyStateID) -> bool` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-eq"></span>`fn eq(&self, other: &LazyStateID) -> bool` — [`LazyStateID`](id/index.md)
 
 ##### `impl PartialOrd for LazyStateID`
 
-- `fn partial_cmp(self: &Self, other: &LazyStateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`LazyStateID`](#lazystateid)
+- <span id="lazystateid-partial-cmp"></span>`fn partial_cmp(&self, other: &LazyStateID) -> option::Option<cmp::Ordering>` — [`LazyStateID`](id/index.md)
 
 ##### `impl StructuralPartialEq for LazyStateID`
 
@@ -527,6 +562,8 @@ enum StartError {
     },
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:117-136`](../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/error.rs#L117-L136)*
 
 An error that can occur when computing the start state for a search.
 
@@ -566,31 +603,31 @@ semver compatible release.
 
 #### Implementations
 
-- `fn cache(err: CacheError) -> StartError` — [`CacheError`](#cacheerror), [`StartError`](#starterror)
+- <span id="starterror-cache"></span>`fn cache(err: CacheError) -> StartError` — [`CacheError`](error/index.md), [`StartError`](error/index.md)
 
-- `fn quit(byte: u8) -> StartError` — [`StartError`](#starterror)
+- <span id="starterror-quit"></span>`fn quit(byte: u8) -> StartError` — [`StartError`](error/index.md)
 
-- `fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../index.md), [`StartError`](#starterror)
+- <span id="starterror-unsupported-anchored"></span>`fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../index.md), [`StartError`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for StartError`
 
-- `fn clone(self: &Self) -> StartError` — [`StartError`](#starterror)
+- <span id="starterror-clone"></span>`fn clone(&self) -> StartError` — [`StartError`](error/index.md)
 
 ##### `impl Debug for StartError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="starterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StartError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="starterror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for StartError`
 
-- `fn source(self: &Self) -> Option<&dyn std::error::Error>`
+- <span id="starterror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
-##### `impl<T> ToString for StartError`
+##### `impl ToString for StartError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="starterror-to-string"></span>`fn to_string(&self) -> String`
 

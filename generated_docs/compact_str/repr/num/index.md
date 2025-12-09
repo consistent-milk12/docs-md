@@ -9,6 +9,15 @@ Implementations for efficiently converting a number into a [`Repr`](../index.md)
 Adapted from the implementation in the `std` library at
 <https://github.com/rust-lang/rust/blob/b8214dc6c6fc20d0a660fb5700dca9ebf51ebe89/src/libcore/fmt/num.rs#L188-L266>
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NumChars`](#numchars) | trait | All of these `num_chars(...)` methods are kind of crazy, but they are necessary. |
+| [`DEC_DIGITS_LUT`](#dec_digits_lut) | const |  |
+| [`impl_IntoRepr!`](#impl_intorepr) | macro | Defines the implementation of [`IntoRepr`] for integer types |
+| [`impl_NonZero_IntoRepr!`](#impl_nonzero_intorepr) | macro | Defines the implementation of [`IntoRepr`] for NonZero integer types |
+
 ## Traits
 
 ### `NumChars`
@@ -16,6 +25,8 @@ Adapted from the implementation in the `std` library at
 ```rust
 trait NumChars { ... }
 ```
+
+*Defined in [`compact_str-0.9.0/src/repr/num.rs:207-209`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/num.rs#L207-L209)*
 
 All of these `num_chars(...)` methods are kind of crazy, but they are necessary.
 
@@ -63,21 +74,39 @@ assert_eq!(num_digits, 20);
 
 - `fn num_chars(val: Self) -> usize`
 
+#### Implementors
+
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
 ## Constants
 
 ### `DEC_DIGITS_LUT`
-
 ```rust
 const DEC_DIGITS_LUT: &[u8];
 ```
+
+*Defined in [`compact_str-0.9.0/src/repr/num.rs:12-17`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/num.rs#L12-L17)*
 
 ## Macros
 
 ### `impl_IntoRepr!`
 
+*Defined in [`compact_str-0.9.0/src/repr/num.rs:20-101`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/num.rs#L20-L101)*
+
 Defines the implementation of [`IntoRepr`](../traits/index.md) for integer types
 
 ### `impl_NonZero_IntoRepr!`
+
+*Defined in [`compact_str-0.9.0/src/repr/num.rs:142-151`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/num.rs#L142-L151)*
 
 Defines the implementation of [`IntoRepr`](../traits/index.md) for NonZero integer types
 

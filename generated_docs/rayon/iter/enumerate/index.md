@@ -4,6 +4,13 @@
 
 # Module `enumerate`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Enumerate`](#enumerate) | struct | `Enumerate` is an iterator that returns the current count along with the element. |
+| [`EnumerateProducer`](#enumerateproducer) | struct |  |
+
 ## Structs
 
 ### `Enumerate<I>`
@@ -14,63 +21,65 @@ struct Enumerate<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:12-14`](../../../../.source_1765210505/rayon-1.11.0/src/iter/enumerate.rs#L12-L14)*
+
 `Enumerate` is an iterator that returns the current count along with the element.
-This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
 
-- `fn new(base: I) -> Self`
+- <span id="enumerate-new"></span>`fn new(base: I) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for Enumerate<I>`
+##### `impl<I: clone::Clone> Clone for Enumerate<I>`
 
-- `fn clone(self: &Self) -> Enumerate<I>` — [`Enumerate`](../index.md)
+- <span id="enumerate-clone"></span>`fn clone(&self) -> Enumerate<I>` — [`Enumerate`](#enumerate)
 
-##### `impl<I: $crate::fmt::Debug> Debug for Enumerate<I>`
+##### `impl<I: fmt::Debug> Debug for Enumerate<I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="enumerate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IndexedParallelIterator for Enumerate<I>`
 
-- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="enumerate-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="enumerate-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="enumerate-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for Enumerate<I>`
 
 ##### `impl<T> IntoParallelIterator for Enumerate<I>`
 
-- `type Iter = T`
+- <span id="enumerate-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="enumerate-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="enumerate-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Enumerate<I>`
 
-- `type Item = (usize, <I as ParallelIterator>::Item)`
+- <span id="enumerate-type-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="enumerate-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="enumerate-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Enumerate<I>`
 
-- `const ALIGN: usize`
+- <span id="enumerate-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="enumerate-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="enumerate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="enumerate-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="enumerate-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="enumerate-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `EnumerateProducer<P>`
 
@@ -81,35 +90,37 @@ struct EnumerateProducer<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:82-85`](../../../../.source_1765210505/rayon-1.11.0/src/iter/enumerate.rs#L82-L85)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for EnumerateProducer<P>`
 
 ##### `impl<T> Pointable for EnumerateProducer<P>`
 
-- `const ALIGN: usize`
+- <span id="enumerateproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="enumerateproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="enumerateproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="enumerateproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="enumerateproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="enumerateproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<P> Producer for EnumerateProducer<P>`
 
-- `type Item = (usize, <P as Producer>::Item)`
+- <span id="enumerateproducer-type-item"></span>`type Item = (usize, <P as Producer>::Item)`
 
-- `type IntoIter = Zip<Range<usize>, <P as Producer>::IntoIter>`
+- <span id="enumerateproducer-type-intoiter"></span>`type IntoIter = Zip<Range<usize>, <P as Producer>::IntoIter>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="enumerateproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
-- `fn min_len(self: &Self) -> usize`
+- <span id="enumerateproducer-min-len"></span>`fn min_len(&self) -> usize`
 
-- `fn max_len(self: &Self) -> usize`
+- <span id="enumerateproducer-max-len"></span>`fn max_len(&self) -> usize`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="enumerateproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 

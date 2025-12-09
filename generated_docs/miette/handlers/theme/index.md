@@ -4,6 +4,15 @@
 
 # Module `theme`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`GraphicalTheme`](#graphicaltheme) | struct | Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to render fancy [`Diagnostic`](crate::Diagnostic) reports. |
+| [`ThemeStyles`](#themestyles) | struct | Styles for various parts of graphical rendering for the [`GraphicalReportHandler`](crate::GraphicalReportHandler). |
+| [`ThemeCharacters`](#themecharacters) | struct | Characters to be used when drawing when using [`GraphicalReportHandler`](crate::GraphicalReportHandler). |
+| [`style`](#style) | fn |  |
+
 ## Structs
 
 ### `GraphicalTheme`
@@ -14,6 +23,8 @@ struct GraphicalTheme {
     pub styles: ThemeStyles,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
 
 Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to
 render fancy [`Diagnostic`](crate::Diagnostic) reports.
@@ -37,29 +48,29 @@ one of the predefined ones using the methods below.
 
 #### Implementations
 
-- `fn ascii() -> Self`
+- <span id="graphicaltheme-ascii"></span>`fn ascii() -> Self`
 
-- `fn unicode() -> Self`
+- <span id="graphicaltheme-unicode"></span>`fn unicode() -> Self`
 
-- `fn unicode_nocolor() -> Self`
+- <span id="graphicaltheme-unicode-nocolor"></span>`fn unicode_nocolor() -> Self`
 
-- `fn none() -> Self`
+- <span id="graphicaltheme-none"></span>`fn none() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for GraphicalTheme`
 
-- `fn clone(self: &Self) -> GraphicalTheme` — [`GraphicalTheme`](../index.md)
+- <span id="graphicaltheme-clone"></span>`fn clone(&self) -> GraphicalTheme` — [`GraphicalTheme`](../index.md)
 
 ##### `impl Debug for GraphicalTheme`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="graphicaltheme-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for GraphicalTheme`
 
-- `fn default() -> Self`
+- <span id="graphicaltheme-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for GraphicalTheme`
+##### `impl OwoColorize for GraphicalTheme`
 
 ### `ThemeStyles`
 
@@ -74,6 +85,8 @@ struct ThemeStyles {
     pub highlights: Vec<owo_colors::Style>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
 
 Styles for various parts of graphical rendering for the
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -111,23 +124,23 @@ Styles for various parts of graphical rendering for the
 
 #### Implementations
 
-- `fn rgb() -> Self`
+- <span id="themestyles-rgb"></span>`fn rgb() -> Self`
 
-- `fn ansi() -> Self`
+- <span id="themestyles-ansi"></span>`fn ansi() -> Self`
 
-- `fn none() -> Self`
+- <span id="themestyles-none"></span>`fn none() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for ThemeStyles`
 
-- `fn clone(self: &Self) -> ThemeStyles` — [`ThemeStyles`](../index.md)
+- <span id="themestyles-clone"></span>`fn clone(&self) -> ThemeStyles` — [`ThemeStyles`](../index.md)
 
 ##### `impl Debug for ThemeStyles`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="themestyles-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for ThemeStyles`
+##### `impl OwoColorize for ThemeStyles`
 
 ### `ThemeCharacters`
 
@@ -157,34 +170,36 @@ struct ThemeCharacters {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
+
 Characters to be used when drawing when using
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
 
 #### Implementations
 
-- `fn unicode() -> Self`
+- <span id="themecharacters-unicode"></span>`fn unicode() -> Self`
 
-- `fn emoji() -> Self`
+- <span id="themecharacters-emoji"></span>`fn emoji() -> Self`
 
-- `fn ascii() -> Self`
+- <span id="themecharacters-ascii"></span>`fn ascii() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for ThemeCharacters`
 
-- `fn clone(self: &Self) -> ThemeCharacters` — [`ThemeCharacters`](../index.md)
+- <span id="themecharacters-clone"></span>`fn clone(&self) -> ThemeCharacters` — [`ThemeCharacters`](../index.md)
 
 ##### `impl Debug for ThemeCharacters`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="themecharacters-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ThemeCharacters`
 
-##### `impl<D> OwoColorize for ThemeCharacters`
+##### `impl OwoColorize for ThemeCharacters`
 
 ##### `impl PartialEq for ThemeCharacters`
 
-- `fn eq(self: &Self, other: &ThemeCharacters) -> bool` — [`ThemeCharacters`](../index.md)
+- <span id="themecharacters-eq"></span>`fn eq(&self, other: &ThemeCharacters) -> bool` — [`ThemeCharacters`](../index.md)
 
 ##### `impl StructuralPartialEq for ThemeCharacters`
 
@@ -195,4 +210,6 @@ Characters to be used when drawing when using
 ```rust
 fn style() -> owo_colors::Style
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
 

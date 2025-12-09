@@ -6,6 +6,13 @@
 
 Utilities related to FFI bindings.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`c_void`](#c_void) | struct |  |
+| [`c_uint`](#c_uint) | fn |  |
+
 ## Structs
 
 ### `c_void`
@@ -19,6 +26,8 @@ struct c_void {
     total_pattern_bytes: usize,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:20-41`](../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L20-L41)*
 
 *Re-exported from `aho_corasick`*
 
@@ -66,39 +75,41 @@ than once.
 
 #### Implementations
 
-- `fn new() -> Patterns` — [`c_void`](#c-void)
+- <span id="patterns-new"></span>`fn new() -> Patterns` — [`c_void`](#c-void)
 
-- `fn add(self: &mut Self, bytes: &[u8])`
+- <span id="patterns-add"></span>`fn add(&mut self, bytes: &[u8])`
 
-- `fn set_match_kind(self: &mut Self, kind: MatchKind)` — [`tcdrain`](../backend/termios/syscalls/index.md)
+- <span id="patterns-set-match-kind"></span>`fn set_match_kind(&mut self, kind: MatchKind)` — [`tcdrain`](../backend/termios/syscalls/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="patterns-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="patterns-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="patterns-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn reset(self: &mut Self)`
+- <span id="patterns-reset"></span>`fn reset(&mut self)`
 
-- `fn minimum_len(self: &Self) -> usize`
+- <span id="patterns-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
-- `fn match_kind(self: &Self) -> &MatchKind` — [`tcdrain`](../backend/termios/syscalls/index.md)
+- <span id="patterns-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`tcdrain`](../backend/termios/syscalls/index.md)
 
-- `fn get(self: &Self, id: PatternID) -> Pattern<'_>`
+- <span id="patterns-get"></span>`fn get(&self, id: PatternID) -> Pattern<'_>`
 
-- `unsafe fn get_unchecked(self: &Self, id: PatternID) -> Pattern<'_>`
+- <span id="patterns-get-unchecked"></span>`unsafe fn get_unchecked(&self, id: PatternID) -> Pattern<'_>`
 
-- `fn iter(self: &Self) -> PatternIter<'_>`
+- <span id="patterns-iter"></span>`fn iter(&self) -> PatternIter<'_>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Patterns`
 
-- `fn clone(self: &Self) -> Patterns` — [`c_void`](#c-void)
+- <span id="patterns-clone"></span>`fn clone(&self) -> Patterns` — [`c_void`](#c-void)
 
 ##### `impl Debug for Patterns`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result` — [`ArgReg`](../backend/reg/index.md), [`A0`](../backend/reg/index.md)
+- <span id="patterns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`ArgReg`](../backend/reg/index.md), [`A0`](../backend/reg/index.md)
 
 ## Functions
+
+*Defined in [`rustix-1.1.2/src/ffi.rs:9`](../../../.source_1765210505/rustix-1.1.2/src/ffi.rs#L9)*
 

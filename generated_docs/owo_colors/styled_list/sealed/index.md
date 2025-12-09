@@ -4,6 +4,12 @@
 
 # Module `sealed`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IsStyled`](#isstyled) | trait |  |
+
 ## Traits
 
 ### `IsStyled`
@@ -12,11 +18,20 @@
 trait IsStyled { ... }
 ```
 
-#### Required Methods
+*Defined in [`owo-colors-4.2.3/src/styled_list.rs:12-17`](../../../../.source_1765210505/owo-colors-4.2.3/src/styled_list.rs#L12-L17)*
+
+#### Associated Types
 
 - `type Inner: 1`
 
-- `fn style(self: &Self) -> &crate::Style`
+#### Required Methods
 
-- `fn inner(self: &Self) -> &<Self as >::Inner`
+- `fn style(&self) -> &crate::Style`
+
+- `fn inner(&self) -> &<Self as >::Inner`
+
+#### Implementors
+
+- [`Styled`](../../index.md)
+- `&T`
 

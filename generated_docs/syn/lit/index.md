@@ -4,12 +4,58 @@
 
 # Module `lit`
 
+## Contents
+
+- [Modules](#modules)
+  - [`debug_impls`](#debug_impls)
+  - [`parsing`](#parsing)
+  - [`printing`](#printing)
+  - [`value`](#value)
+- [Structs](#structs)
+  - [`LitStr`](#litstr)
+  - [`LitByteStr`](#litbytestr)
+  - [`LitCStr`](#litcstr)
+  - [`LitByte`](#litbyte)
+  - [`LitChar`](#litchar)
+  - [`LitRepr`](#litrepr)
+  - [`LitInt`](#litint)
+  - [`LitIntRepr`](#litintrepr)
+  - [`LitFloat`](#litfloat)
+  - [`LitFloatRepr`](#litfloatrepr)
+  - [`LitBool`](#litbool)
+- [Enums](#enums)
+  - [`Lit`](#lit)
+- [Macros](#macros)
+  - [`lit_extra_traits!`](#lit_extra_traits)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`debug_impls`](#debug_impls) | mod |  |
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`value`](#value) | mod |  |
+| [`LitStr`](#litstr) | struct | A UTF-8 string literal: `"foo"`. |
+| [`LitByteStr`](#litbytestr) | struct | A byte string literal: `b"foo"`. |
+| [`LitCStr`](#litcstr) | struct | A nul-terminated C-string literal: `c"foo"`. |
+| [`LitByte`](#litbyte) | struct | A byte literal: `b'f'`. |
+| [`LitChar`](#litchar) | struct | A character literal: `'a'`. |
+| [`LitRepr`](#litrepr) | struct |  |
+| [`LitInt`](#litint) | struct | An integer literal: `1` or `1u16`. |
+| [`LitIntRepr`](#litintrepr) | struct |  |
+| [`LitFloat`](#litfloat) | struct | A floating point literal: `1f64` or `1.0e10f64`. |
+| [`LitFloatRepr`](#litfloatrepr) | struct |  |
+| [`LitBool`](#litbool) | struct | A boolean literal: `true` or `false`. |
+| [`Lit`](#lit) | enum | A Rust literal such as a string or integer or boolean. |
+| [`lit_extra_traits!`](#lit_extra_traits) | macro |  |
+
 ## Modules
 
-- [`debug_impls`](debug_impls/index.md) - 
-- [`parsing`](parsing/index.md) - 
-- [`printing`](printing/index.md) - 
-- [`value`](value/index.md) - 
+- [`debug_impls`](debug_impls/index.md)
+- [`parsing`](parsing/index.md)
+- [`printing`](printing/index.md)
+- [`value`](value/index.md)
 
 ## Structs
 
@@ -21,59 +67,47 @@ struct LitStr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:58-63`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L58-L63)*
+
 A UTF-8 string literal: `"foo"`.
 
 #### Implementations
 
-- `fn new(value: &str, span: Span) -> Self`
-
-- `fn value(self: &Self) -> String`
-
-- `fn parse<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../index.md)
-
-- `fn parse_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](../index.md), [`Parser`](../parse/index.md)
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn token(self: &Self) -> Literal`
+- <span id="cratelitlitstr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitStr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litstr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitStr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitstr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitStr`
 
 ##### `impl Hash for LitStr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litstr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitstr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitStr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litstr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitStr`
+##### `impl Sealed for LitStr`
 
-##### `impl<T> Spanned for LitStr`
+##### `impl Spanned for LitStr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litstr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitStr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitstr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitStr`
 
@@ -85,55 +119,47 @@ struct LitByteStr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:65-70`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L65-L70)*
+
 A byte string literal: `b"foo"`.
 
 #### Implementations
 
-- `fn new(value: &[u8], span: Span) -> Self`
-
-- `fn value(self: &Self) -> Vec<u8>`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn token(self: &Self) -> Literal`
+- <span id="cratelitlitbytestr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitByteStr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litbytestr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitByteStr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitbytestr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitByteStr`
 
 ##### `impl Hash for LitByteStr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litbytestr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitByteStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitbytestr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitByteStr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litbytestr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitByteStr`
+##### `impl Sealed for LitByteStr`
 
-##### `impl<T> Spanned for LitByteStr`
+##### `impl Spanned for LitByteStr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litbytestr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitByteStr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitbytestr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitByteStr`
 
@@ -145,45 +171,47 @@ struct LitCStr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:72-77`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L72-L77)*
+
 A nul-terminated C-string literal: `c"foo"`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratelitlitcstr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitCStr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litcstr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitCStr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitcstr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitCStr`
 
 ##### `impl Hash for LitCStr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litcstr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitCStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitcstr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitCStr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litcstr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitCStr`
+##### `impl Sealed for LitCStr`
 
-##### `impl<T> Spanned for LitCStr`
+##### `impl Spanned for LitCStr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litcstr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitCStr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitcstr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitCStr`
 
@@ -195,55 +223,47 @@ struct LitByte {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:79-84`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L79-L84)*
+
 A byte literal: `b'f'`.
 
 #### Implementations
 
-- `fn new(value: u8, span: Span) -> Self`
-
-- `fn value(self: &Self) -> u8`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn token(self: &Self) -> Literal`
+- <span id="cratelitlitbyte-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitByte`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litbyte-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitByte`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitbyte-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitByte`
 
 ##### `impl Hash for LitByte`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litbyte-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitByte`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitbyte-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitByte`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litbyte-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitByte`
+##### `impl Sealed for LitByte`
 
-##### `impl<T> Spanned for LitByte`
+##### `impl Spanned for LitByte`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litbyte-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitByte`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitbyte-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitByte`
 
@@ -255,45 +275,47 @@ struct LitChar {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:86-91`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L86-L91)*
+
 A character literal: `'a'`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratelitlitchar-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitChar`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litchar-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitChar`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitchar-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitChar`
 
 ##### `impl Hash for LitChar`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litchar-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitChar`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitchar-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitChar`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litchar-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitChar`
+##### `impl Sealed for LitChar`
 
-##### `impl<T> Spanned for LitChar`
+##### `impl Spanned for LitChar`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litchar-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitChar`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitchar-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitChar`
 
@@ -306,11 +328,13 @@ struct LitRepr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:93-96`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L93-L96)*
+
 #### Trait Implementations
 
 ##### `impl Clone for LitRepr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litrepr-clone"></span>`fn clone(&self) -> Self`
 
 ### `LitInt`
 
@@ -320,65 +344,55 @@ struct LitInt {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:98-103`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L98-L103)*
+
 An integer literal: `1` or `1u16`.
 
 #### Implementations
 
-- `fn new(repr: &str, span: Span) -> Self`
-
-- `fn base10_digits(self: &Self) -> &str`
-
-- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](../index.md)
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn token(self: &Self) -> Literal`
+- <span id="cratelitlitint-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitInt`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litint-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitInt`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitint-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for LitInt`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="litint-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitInt`
 
 ##### `impl Hash for LitInt`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litint-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitInt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitint-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitInt`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litint-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitInt`
+##### `impl Sealed for LitInt`
 
-##### `impl<T> Spanned for LitInt`
+##### `impl Spanned for LitInt`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litint-span"></span>`fn span(&self) -> Span`
 
-##### `impl<T> ToString for LitInt`
+##### `impl ToString for LitInt`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="litint-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for crate::lit::LitInt`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitint-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitInt`
 
@@ -392,11 +406,13 @@ struct LitIntRepr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:105-109`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L105-L109)*
+
 #### Trait Implementations
 
 ##### `impl Clone for LitIntRepr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litintrepr-clone"></span>`fn clone(&self) -> Self`
 
 ### `LitFloat`
 
@@ -406,55 +422,57 @@ struct LitFloat {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:111-118`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L111-L118)*
+
 A floating point literal: `1f64` or `1.0e10f64`.
 
 Must be finite. May not be infinite or NaN.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratelitlitfloat-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitFloat`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litfloat-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitFloat`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitfloat-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for LitFloat`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="litfloat-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitFloat`
 
 ##### `impl Hash for LitFloat`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litfloat-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitFloat`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitfloat-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitFloat`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litfloat-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitFloat`
+##### `impl Sealed for LitFloat`
 
-##### `impl<T> Spanned for LitFloat`
+##### `impl Spanned for LitFloat`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litfloat-span"></span>`fn span(&self) -> Span`
 
-##### `impl<T> ToString for LitFloat`
+##### `impl ToString for LitFloat`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="litfloat-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for crate::lit::LitFloat`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitfloat-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitFloat`
 
@@ -468,11 +486,13 @@ struct LitFloatRepr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:120-124`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L120-L124)*
+
 #### Trait Implementations
 
 ##### `impl Clone for LitFloatRepr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litfloatrepr-clone"></span>`fn clone(&self) -> Self`
 
 ### `LitBool`
 
@@ -483,45 +503,47 @@ struct LitBool {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:126-132`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L126-L132)*
+
 A boolean literal: `true` or `false`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratelitlitbool-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::LitBool`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelitbool-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitBool`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitbool-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitBool`
 
 ##### `impl Hash for crate::LitBool`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelitbool-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitBool`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitbool-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::LitBool`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelitbool-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitBool`
+##### `impl Sealed for LitBool`
 
-##### `impl<T> Spanned for LitBool`
+##### `impl Spanned for LitBool`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litbool-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitBool`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitbool-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitBool`
 
@@ -542,6 +564,8 @@ enum Lit {
     Verbatim(proc_macro2::Literal),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lit.rs:17-56`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L17-L56)*
 
 A Rust literal such as a string or integer or boolean.
 
@@ -592,53 +616,55 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn new(token: Literal) -> Self`
+- <span id="cratelitlit-new"></span>`fn new(token: Literal) -> Self`
 
-- `fn from_str(token: Literal, repr: &str) -> Self`
+- <span id="cratelitlit-from-str"></span>`fn from_str(token: Literal, repr: &str) -> Self`
 
-- `fn suffix(self: &Self) -> &str`
+- <span id="cratelitlit-suffix"></span>`fn suffix(&self) -> &str`
 
-- `fn span(self: &Self) -> Span`
+- <span id="cratelitlit-span"></span>`fn span(&self) -> Span`
 
-- `fn set_span(self: &mut Self, span: Span)`
+- <span id="cratelitlit-set-span"></span>`fn set_span(&mut self, span: Span)`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Lit`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelit-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Lit`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelit-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Lit`
 
 ##### `impl Hash for crate::Lit`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelit-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::Lit`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlit-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Lit`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelit-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Lit`
+##### `impl Sealed for Lit`
 
-##### `impl<T> Spanned for Lit`
+##### `impl Spanned for Lit`
 
-- `fn span(self: &Self) -> Span`
+- <span id="lit-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Lit`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="lit-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ##### `impl Token for crate::lit::Lit`
 
 ## Macros
 
 ### `lit_extra_traits!`
+
+*Defined in [`syn-2.0.111/src/lit.rs:778-818`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L778-L818)*
 

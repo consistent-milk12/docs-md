@@ -4,6 +4,17 @@
 
 # Module `lookup`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugLookup`](#debuglookup) | struct |  |
+| [`LookupEntryIter`](#lookupentryiter) | struct |  |
+| [`PubStuffHeader`](#pubstuffheader) | struct |  |
+| [`PubStuffParser`](#pubstuffparser) | struct |  |
+| [`LookupParser`](#lookupparser) | trait |  |
+| [`PubStuffEntry`](#pubstuffentry) | trait |  |
+
 ## Structs
 
 ### `DebugLookup<R, Parser>`
@@ -18,21 +29,23 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:32-39`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L32-L39)*
+
 #### Implementations
 
-- `fn items(self: &Self) -> LookupEntryIter<R, Parser>` — [`LookupEntryIter`](#lookupentryiter)
+- <span id="debuglookup-items"></span>`fn items(&self) -> LookupEntryIter<R, Parser>` — [`LookupEntryIter`](#lookupentryiter)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debuglookup-reader"></span>`fn reader(&self) -> &R`
 
 #### Trait Implementations
 
 ##### `impl<R, Parser> Clone for DebugLookup<R, Parser>`
 
-- `fn clone(self: &Self) -> DebugLookup<R, Parser>` — [`DebugLookup`](#debuglookup)
+- <span id="debuglookup-clone"></span>`fn clone(&self) -> DebugLookup<R, Parser>` — [`DebugLookup`](#debuglookup)
 
 ##### `impl<R, Parser> Debug for DebugLookup<R, Parser>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debuglookup-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LookupEntryIter<R, Parser>`
 
@@ -46,19 +59,21 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:72-79`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L72-L79)*
+
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<<Parser as >::Entry>>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
+- <span id="lookupentryiter-next"></span>`fn next(&mut self) -> Result<Option<<Parser as >::Entry>>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
 
 #### Trait Implementations
 
 ##### `impl<R, Parser> Clone for LookupEntryIter<R, Parser>`
 
-- `fn clone(self: &Self) -> LookupEntryIter<R, Parser>` — [`LookupEntryIter`](#lookupentryiter)
+- <span id="lookupentryiter-clone"></span>`fn clone(&self) -> LookupEntryIter<R, Parser>` — [`LookupEntryIter`](#lookupentryiter)
 
 ##### `impl<R, Parser> Debug for LookupEntryIter<R, Parser>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lookupentryiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `PubStuffHeader<T>`
 
@@ -72,21 +87,23 @@ struct PubStuffHeader<T> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:129-135`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L129-L135)*
+
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for PubStuffHeader<T>`
+##### `impl<T: clone::Clone> Clone for PubStuffHeader<T>`
 
-- `fn clone(self: &Self) -> PubStuffHeader<T>` — [`PubStuffHeader`](#pubstuffheader)
+- <span id="pubstuffheader-clone"></span>`fn clone(&self) -> PubStuffHeader<T>` — [`PubStuffHeader`](#pubstuffheader)
 
-##### `impl<T: $crate::fmt::Debug> Debug for PubStuffHeader<T>`
+##### `impl<T: fmt::Debug> Debug for PubStuffHeader<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubstuffheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for PubStuffHeader<T>`
+##### `impl<T: cmp::Eq> Eq for PubStuffHeader<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for PubStuffHeader<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for PubStuffHeader<T>`
 
-- `fn eq(self: &Self, other: &PubStuffHeader<T>) -> bool` — [`PubStuffHeader`](#pubstuffheader)
+- <span id="pubstuffheader-eq"></span>`fn eq(&self, other: &PubStuffHeader<T>) -> bool` — [`PubStuffHeader`](#pubstuffheader)
 
 ##### `impl<T> StructuralPartialEq for PubStuffHeader<T>`
 
@@ -101,25 +118,27 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:146-153`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L146-L153)*
+
 #### Trait Implementations
 
 ##### `impl<R, Entry> Clone for PubStuffParser<R, Entry>`
 
-- `fn clone(self: &Self) -> PubStuffParser<R, Entry>` — [`PubStuffParser`](#pubstuffparser)
+- <span id="pubstuffparser-clone"></span>`fn clone(&self) -> PubStuffParser<R, Entry>` — [`PubStuffParser`](#pubstuffparser)
 
 ##### `impl<R, Entry> Debug for PubStuffParser<R, Entry>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubstuffparser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Entry> LookupParser for PubStuffParser<R, Entry>`
 
-- `type Header = PubStuffHeader<<R as Reader>::Offset>`
+- <span id="pubstuffparser-type-header"></span>`type Header = PubStuffHeader<<R as Reader>::Offset>`
 
-- `type Entry = Entry`
+- <span id="pubstuffparser-type-entry"></span>`type Entry = Entry`
 
-- `fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
+- <span id="pubstuffparser-parse-header"></span>`fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
 
-- `fn parse_entry(input: &mut R, header: &<Self as >::Header) -> Result<Option<<Self as >::Entry>>` — [`LookupParser`](#lookupparser), [`Result`](../../index.md)
+- <span id="pubstuffparser-parse-entry"></span>`fn parse_entry(input: &mut R, header: &<Self as >::Header) -> Result<Option<<Self as >::Entry>>` — [`LookupParser`](#lookupparser), [`Result`](../../index.md)
 
 ## Traits
 
@@ -129,11 +148,15 @@ where
 trait LookupParser<R: Reader> { ... }
 ```
 
-#### Required Methods
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:15-29`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L15-L29)*
+
+#### Associated Types
 
 - `type Header`
 
 - `type Entry`
+
+#### Required Methods
 
 - `fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>`
 
@@ -143,13 +166,24 @@ trait LookupParser<R: Reader> { ... }
 
   Parse a single entry from `input`. Returns either a parsed representation of the entry
 
+#### Implementors
+
+- [`PubStuffParser`](#pubstuffparser)
+
 ### `PubStuffEntry<R: Reader>`
 
 ```rust
 trait PubStuffEntry<R: Reader> { ... }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:137-143`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L137-L143)*
+
 #### Required Methods
 
 - `fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self`
+
+#### Implementors
+
+- [`PubNamesEntry`](../index.md)
+- [`PubTypesEntry`](../index.md)
 

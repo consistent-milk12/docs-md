@@ -4,6 +4,13 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Error`](#error) | struct |  |
+| [`Result`](#result) | type |  |
+
 ## Structs
 
 ### `Error`
@@ -16,15 +23,17 @@ struct Error {
 }
 ```
 
+*Defined in [`rustversion-1.0.22/src/error.rs:7-11`](../../../.source_1765210505/rustversion-1.0.22/src/error.rs#L7-L11)*
+
 #### Implementations
 
-- `fn new(span: Span, msg: impl Display) -> Self`
+- <span id="error-new"></span>`fn new(span: Span, msg: impl Display) -> Self`
 
-- `fn new2(begin: Span, end: Span, msg: impl Display) -> Self`
+- <span id="error-new2"></span>`fn new2(begin: Span, end: Span, msg: impl Display) -> Self`
 
-- `fn group(group: Group, msg: impl Display) -> Self`
+- <span id="error-group"></span>`fn group(group: Group, msg: impl Display) -> Self`
 
-- `fn into_compile_error(self: Self) -> TokenStream`
+- <span id="error-into-compile-error"></span>`fn into_compile_error(self) -> TokenStream`
 
 ## Type Aliases
 
@@ -33,4 +42,6 @@ struct Error {
 ```rust
 type Result<T, E> = std::result::Result<T, E>;
 ```
+
+*Defined in [`rustversion-1.0.22/src/error.rs:5`](../../../.source_1765210505/rustversion-1.0.22/src/error.rs#L5)*
 

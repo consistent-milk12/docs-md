@@ -4,17 +4,56 @@
 allocator-api2 crate.
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`stable`](#stable)
+  - [`alloc`](#alloc)
+  - [`boxed`](#boxed)
+  - [`raw_vec`](#raw_vec)
+  - [`vec`](#vec)
+  - [`macros`](#macros)
+  - [`slice`](#slice)
+  - [`unique`](#unique)
+  - [`collections`](#collections)
+- [Functions](#functions)
+  - [`assume`](#assume)
+  - [`addr`](#addr)
+  - [`invalid_mut`](#invalid_mut)
+- [Macros](#macros)
+  - [`vec!`](#vec)
+  - [`unsize_box!`](#unsize_box)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`stable`](#stable) | mod |  |
+| [`alloc`](#alloc) | mod | Memory allocation APIs |
+| [`boxed`](#boxed) | mod | The `Box<T>` type for heap allocation. |
+| [`raw_vec`](#raw_vec) | mod |  |
+| [`vec`](#vec) | mod | A contiguous growable array type with heap-allocated contents, written `Vec<T>`. |
+| [`macros`](#macros) | mod |  |
+| [`slice`](#slice) | mod |  |
+| [`unique`](#unique) | mod |  |
+| [`collections`](#collections) | mod |  |
+| [`assume`](#assume) | fn |  |
+| [`addr`](#addr) | fn |  |
+| [`invalid_mut`](#invalid_mut) | fn |  |
+| [`vec!`](#vec) | macro | Creates a [`Vec`] containing the arguments. |
+| [`unsize_box!`](#unsize_box) | macro | Allows turning a [`Box<T: Sized, A>`][boxed::Box] into a [`Box<U: ?Sized, A>`][boxed::Box] where `T` can be unsizing-coerced into a `U`. |
+
 ## Modules
 
-- [`stable`](stable/index.md) - 
-- [`alloc`](alloc/index.md) - Memory allocation APIs
-- [`boxed`](boxed/index.md) - The `Box<T>` type for heap allocation.
-- [`raw_vec`](raw_vec/index.md) - 
-- [`vec`](vec/index.md) - A contiguous growable array type with heap-allocated contents, written
-- [`macros`](macros/index.md) - 
-- [`slice`](slice/index.md) - 
-- [`unique`](unique/index.md) - 
-- [`collections`](collections/index.md) - 
+- [`stable`](stable/index.md)
+- [`alloc`](alloc/index.md) — Memory allocation APIs
+- [`boxed`](boxed/index.md) — The `Box<T>` type for heap allocation.
+- [`raw_vec`](raw_vec/index.md)
+- [`vec`](vec/index.md) — A contiguous growable array type with heap-allocated contents, written
+- [`macros`](macros/index.md)
+- [`slice`](slice/index.md)
+- [`unique`](unique/index.md)
+- [`collections`](collections/index.md)
 
 ## Functions
 
@@ -24,11 +63,15 @@ allocator-api2 crate.
 unsafe fn assume(v: bool)
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:71-75`](../../.source_1765210505/allocator-api2-0.2.21/src/stable/mod.rs#L71-L75)*
+
 ### `addr`
 
 ```rust
 fn addr<T>(x: *const T) -> usize
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:91-96`](../../.source_1765210505/allocator-api2-0.2.21/src/stable/mod.rs#L91-L96)*
 
 ### `invalid_mut`
 
@@ -36,9 +79,13 @@ fn addr<T>(x: *const T) -> usize
 fn invalid_mut<T>(addr: usize) -> *mut T
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:100-105`](../../.source_1765210505/allocator-api2-0.2.21/src/stable/mod.rs#L100-L105)*
+
 ## Macros
 
 ### `vec!`
+
+*Defined in [`allocator-api2-0.2.21/src/stable/macros.rs:56-83`](../../.source_1765210505/allocator-api2-0.2.21/src/stable/macros.rs#L56-L83)*
 
 Creates a [`Vec`](stable/vec/index.md) containing the arguments.
 
@@ -94,6 +141,8 @@ be mindful of side effects.
 
 
 ### `unsize_box!`
+
+*Defined in [`allocator-api2-0.2.21/src/stable/mod.rs:47-60`](../../.source_1765210505/allocator-api2-0.2.21/src/stable/mod.rs#L47-L60)*
 
 Allows turning a `Box<T: Sized, A>` into a `Box<U: ?Sized, A>` where `T` can be unsizing-coerced into a `U`.
 

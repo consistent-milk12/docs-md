@@ -4,6 +4,12 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MietteError`](#mietteerror) | enum | Error enum for miette. |
+
 ## Enums
 
 ### `MietteError`
@@ -15,13 +21,15 @@ enum MietteError {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/error.rs:13-21`](../../../.source_1765210505/miette-7.6.0/src/error.rs#L13-L21)*
+
 Error enum for miette. Used by certain operations in the protocol.
 
 #### Variants
 
 - **`IoError`**
 
-  Wrapper around [`std::io::Error`](../../docs_md/error/index.md). This is returned when something went
+  Wrapper around [`std::io::Error`](../../addr2line/index.md). This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**
@@ -33,33 +41,33 @@ Error enum for miette. Used by certain operations in the protocol.
 
 ##### `impl Debug for MietteError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mietteerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for MietteError`
+##### `impl Diag for MietteError`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../index.md)
+- <span id="mietteerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
 
 ##### `impl Diagnostic for MietteError`
 
-- `fn code<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
+- <span id="mietteerror-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
+- <span id="mietteerror-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
 
-- `fn url<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
+- <span id="mietteerror-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
 
 ##### `impl Display for MietteError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mietteerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for MietteError`
 
-- `fn source(self: &Self) -> Option<&dyn Error>`
+- <span id="mietteerror-source"></span>`fn source(&self) -> Option<&dyn Error>`
 
-##### `impl<D> OwoColorize for MietteError`
+##### `impl OwoColorize for MietteError`
 
-##### `impl<T> ToString for MietteError`
+##### `impl ToString for MietteError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="mietteerror-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for MietteError`
+##### `impl TraitKind for MietteError`
 

@@ -8,7 +8,13 @@ Source directory: `sysdeps/unix/sysv/linux` (the `sysv` is flattened).
 
 <https://github.com/bminor/glibc/tree/master/sysdeps/unix/sysv/linux>
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`net`](#net) | mod | Directory: `net/` |
+
 ## Modules
 
-- [`net`](net/index.md) - Directory: `net/`
+- [`net`](net/index.md) — Directory: `net/`
 

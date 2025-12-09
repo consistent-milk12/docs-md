@@ -10,9 +10,16 @@ Benefits of forking:
 - Pull in only what we need rather than relying on the compiler to remove what we don't need
 - `LineWrapper` is able to incrementally wrap which will help with `StyledStr`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`core`](#core) | mod |  |
+| [`wrap`](#wrap) | fn |  |
+
 ## Modules
 
-- [`core`](core/index.md) - 
+- [`core`](core/index.md)
 
 ## Functions
 
@@ -21,4 +28,6 @@ Benefits of forking:
 ```rust
 fn wrap(content: &str, _hard_width: usize) -> String
 ```
+
+*Defined in [`clap_builder-4.5.53/src/output/textwrap/mod.rs:26-28`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/textwrap/mod.rs#L26-L28)*
 

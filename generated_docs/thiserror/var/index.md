@@ -4,6 +4,12 @@
 
 # Module `var`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Var`](#var) | struct |  |
+
 ## Structs
 
 ### `Var<'a, T: ?Sized>`
@@ -12,9 +18,11 @@
 struct Var<'a, T: ?Sized>(&'a T);
 ```
 
+*Defined in [`thiserror-2.0.17/src/var.rs:3`](../../../.source_1765210505/thiserror-2.0.17/src/var.rs#L3)*
+
 #### Trait Implementations
 
 ##### `impl<'a, T: Pointer + ?Sized> Pointer for Var<'a, T>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="var-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 

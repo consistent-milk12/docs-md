@@ -12,7 +12,7 @@ expands to the token type of the given token.
 
 # Example
 
-The [`ItemStatic`](../index.md) syntax tree node is defined like this.
+The [`ItemStatic`](../item/index.md) syntax tree node is defined like this.
 
 ```rust
 use syn::{Attribute, Expr, Ident, Token, Type, Visibility};
@@ -87,9 +87,245 @@ Every keyword and punctuation token supports the following operations.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`private`](#private)
+- [Structs](#structs)
+  - [`Underscore`](#underscore)
+  - [`Group`](#group)
+  - [`Abstract`](#abstract)
+  - [`As`](#as)
+  - [`Async`](#async)
+  - [`Auto`](#auto)
+  - [`Await`](#await)
+  - [`Become`](#become)
+  - [`Box`](#box)
+  - [`Break`](#break)
+  - [`Const`](#const)
+  - [`Continue`](#continue)
+  - [`Crate`](#crate)
+  - [`Default`](#default)
+  - [`Do`](#do)
+  - [`Dyn`](#dyn)
+  - [`Else`](#else)
+  - [`Enum`](#enum)
+  - [`Extern`](#extern)
+  - [`Final`](#final)
+  - [`Fn`](#fn)
+  - [`For`](#for)
+  - [`If`](#if)
+  - [`Impl`](#impl)
+  - [`In`](#in)
+  - [`Let`](#let)
+  - [`Loop`](#loop)
+  - [`Macro`](#macro)
+  - [`Match`](#match)
+  - [`Mod`](#mod)
+  - [`Move`](#move)
+  - [`Mut`](#mut)
+  - [`Override`](#override)
+  - [`Priv`](#priv)
+  - [`Pub`](#pub)
+  - [`Raw`](#raw)
+  - [`Ref`](#ref)
+  - [`Return`](#return)
+  - [`SelfType`](#selftype)
+  - [`SelfValue`](#selfvalue)
+  - [`Static`](#static)
+  - [`Struct`](#struct)
+  - [`Super`](#super)
+  - [`Trait`](#trait)
+  - [`Try`](#try)
+  - [`Type`](#type)
+  - [`Typeof`](#typeof)
+  - [`Union`](#union)
+  - [`Unsafe`](#unsafe)
+  - [`Unsized`](#unsized)
+  - [`Use`](#use)
+  - [`Virtual`](#virtual)
+  - [`Where`](#where)
+  - [`While`](#while)
+  - [`Yield`](#yield)
+  - [`And`](#and)
+  - [`AndAnd`](#andand)
+  - [`AndEq`](#andeq)
+  - [`At`](#at)
+  - [`Caret`](#caret)
+  - [`CaretEq`](#careteq)
+  - [`Colon`](#colon)
+  - [`Comma`](#comma)
+  - [`Dollar`](#dollar)
+  - [`Dot`](#dot)
+  - [`DotDot`](#dotdot)
+  - [`DotDotDot`](#dotdotdot)
+  - [`DotDotEq`](#dotdoteq)
+  - [`Eq`](#eq)
+  - [`EqEq`](#eqeq)
+  - [`FatArrow`](#fatarrow)
+  - [`Ge`](#ge)
+  - [`Gt`](#gt)
+  - [`LArrow`](#larrow)
+  - [`Le`](#le)
+  - [`Lt`](#lt)
+  - [`Minus`](#minus)
+  - [`MinusEq`](#minuseq)
+  - [`Ne`](#ne)
+  - [`Not`](#not)
+  - [`Or`](#or)
+  - [`OrEq`](#oreq)
+  - [`OrOr`](#oror)
+  - [`PathSep`](#pathsep)
+  - [`Percent`](#percent)
+  - [`PercentEq`](#percenteq)
+  - [`Plus`](#plus)
+  - [`PlusEq`](#pluseq)
+  - [`Pound`](#pound)
+  - [`Question`](#question)
+  - [`RArrow`](#rarrow)
+  - [`Semi`](#semi)
+  - [`Shl`](#shl)
+  - [`ShlEq`](#shleq)
+  - [`Shr`](#shr)
+  - [`ShrEq`](#shreq)
+  - [`Slash`](#slash)
+  - [`SlashEq`](#slasheq)
+  - [`Star`](#star)
+  - [`StarEq`](#stareq)
+  - [`Tilde`](#tilde)
+  - [`Brace`](#brace)
+  - [`Bracket`](#bracket)
+  - [`Paren`](#paren)
+- [Traits](#traits)
+  - [`Token`](#token)
+- [Macros](#macros)
+  - [`impl_low_level_token!`](#impl_low_level_token)
+  - [`define_keywords!`](#define_keywords)
+  - [`impl_deref_if_len_is_1!`](#impl_deref_if_len_is_1)
+  - [`define_punctuation_structs!`](#define_punctuation_structs)
+  - [`define_punctuation!`](#define_punctuation)
+  - [`define_delimiters!`](#define_delimiters)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`Underscore`](#underscore) | struct | `_` |
+| [`Group`](#group) | struct | None-delimited group |
+| [`Abstract`](#abstract) | struct | `abstract` |
+| [`As`](#as) | struct | `as` |
+| [`Async`](#async) | struct | `async` |
+| [`Auto`](#auto) | struct | `auto` |
+| [`Await`](#await) | struct | `await` |
+| [`Become`](#become) | struct | `become` |
+| [`Box`](#box) | struct | `box` |
+| [`Break`](#break) | struct | `break` |
+| [`Const`](#const) | struct | `const` |
+| [`Continue`](#continue) | struct | `continue` |
+| [`Crate`](#crate) | struct | `crate` |
+| [`Default`](#default) | struct | `default` |
+| [`Do`](#do) | struct | `do` |
+| [`Dyn`](#dyn) | struct | `dyn` |
+| [`Else`](#else) | struct | `else` |
+| [`Enum`](#enum) | struct | `enum` |
+| [`Extern`](#extern) | struct | `extern` |
+| [`Final`](#final) | struct | `final` |
+| [`Fn`](#fn) | struct | `fn` |
+| [`For`](#for) | struct | `for` |
+| [`If`](#if) | struct | `if` |
+| [`Impl`](#impl) | struct | `impl` |
+| [`In`](#in) | struct | `in` |
+| [`Let`](#let) | struct | `let` |
+| [`Loop`](#loop) | struct | `loop` |
+| [`Macro`](#macro) | struct | `macro` |
+| [`Match`](#match) | struct | `match` |
+| [`Mod`](#mod) | struct | `mod` |
+| [`Move`](#move) | struct | `move` |
+| [`Mut`](#mut) | struct | `mut` |
+| [`Override`](#override) | struct | `override` |
+| [`Priv`](#priv) | struct | `priv` |
+| [`Pub`](#pub) | struct | `pub` |
+| [`Raw`](#raw) | struct | `raw` |
+| [`Ref`](#ref) | struct | `ref` |
+| [`Return`](#return) | struct | `return` |
+| [`SelfType`](#selftype) | struct | `Self` |
+| [`SelfValue`](#selfvalue) | struct | `self` |
+| [`Static`](#static) | struct | `static` |
+| [`Struct`](#struct) | struct | `struct` |
+| [`Super`](#super) | struct | `super` |
+| [`Trait`](#trait) | struct | `trait` |
+| [`Try`](#try) | struct | `try` |
+| [`Type`](#type) | struct | `type` |
+| [`Typeof`](#typeof) | struct | `typeof` |
+| [`Union`](#union) | struct | `union` |
+| [`Unsafe`](#unsafe) | struct | `unsafe` |
+| [`Unsized`](#unsized) | struct | `unsized` |
+| [`Use`](#use) | struct | `use` |
+| [`Virtual`](#virtual) | struct | `virtual` |
+| [`Where`](#where) | struct | `where` |
+| [`While`](#while) | struct | `while` |
+| [`Yield`](#yield) | struct | `yield` |
+| [`And`](#and) | struct | `&` |
+| [`AndAnd`](#andand) | struct | `&&` |
+| [`AndEq`](#andeq) | struct | `&=` |
+| [`At`](#at) | struct | `@` |
+| [`Caret`](#caret) | struct | `^` |
+| [`CaretEq`](#careteq) | struct | `^=` |
+| [`Colon`](#colon) | struct | `:` |
+| [`Comma`](#comma) | struct | `,` |
+| [`Dollar`](#dollar) | struct | `$` |
+| [`Dot`](#dot) | struct | `.` |
+| [`DotDot`](#dotdot) | struct | `..` |
+| [`DotDotDot`](#dotdotdot) | struct | `...` |
+| [`DotDotEq`](#dotdoteq) | struct | `..=` |
+| [`Eq`](#eq) | struct | `=` |
+| [`EqEq`](#eqeq) | struct | `==` |
+| [`FatArrow`](#fatarrow) | struct | `=>` |
+| [`Ge`](#ge) | struct | `>=` |
+| [`Gt`](#gt) | struct | `>` |
+| [`LArrow`](#larrow) | struct | `<-` |
+| [`Le`](#le) | struct | `<=` |
+| [`Lt`](#lt) | struct | `<` |
+| [`Minus`](#minus) | struct | `-` |
+| [`MinusEq`](#minuseq) | struct | `-=` |
+| [`Ne`](#ne) | struct | `!=` |
+| [`Not`](#not) | struct | `!` |
+| [`Or`](#or) | struct | `\|` |
+| [`OrEq`](#oreq) | struct | `\|=` |
+| [`OrOr`](#oror) | struct | `\|\|` |
+| [`PathSep`](#pathsep) | struct | `::` |
+| [`Percent`](#percent) | struct | `%` |
+| [`PercentEq`](#percenteq) | struct | `%=` |
+| [`Plus`](#plus) | struct | `+` |
+| [`PlusEq`](#pluseq) | struct | `+=` |
+| [`Pound`](#pound) | struct | `#` |
+| [`Question`](#question) | struct | `?` |
+| [`RArrow`](#rarrow) | struct | `->` |
+| [`Semi`](#semi) | struct | `;` |
+| [`Shl`](#shl) | struct | `<<` |
+| [`ShlEq`](#shleq) | struct | `<<=` |
+| [`Shr`](#shr) | struct | `>>` |
+| [`ShrEq`](#shreq) | struct | `>>=` |
+| [`Slash`](#slash) | struct | `/` |
+| [`SlashEq`](#slasheq) | struct | `/=` |
+| [`Star`](#star) | struct | `*` |
+| [`StarEq`](#stareq) | struct | `*=` |
+| [`Tilde`](#tilde) | struct | `~` |
+| [`Brace`](#brace) | struct | `{`&hellip;`}` |
+| [`Bracket`](#bracket) | struct | `[`&hellip;`]` |
+| [`Paren`](#paren) | struct | `(`&hellip;`)` |
+| [`Token`](#token) | trait | Marker trait for types that represent single tokens. |
+| [`impl_low_level_token!`](#impl_low_level_token) | macro |  |
+| [`define_keywords!`](#define_keywords) | macro |  |
+| [`impl_deref_if_len_is_1!`](#impl_deref_if_len_is_1) | macro |  |
+| [`define_punctuation_structs!`](#define_punctuation_structs) | macro |  |
+| [`define_punctuation!`](#define_punctuation) | macro |  |
+| [`define_delimiters!`](#define_delimiters) | macro |  |
+
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -100,6 +336,8 @@ struct Underscore {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:521-523`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L521-L523)*
 
 `_`
 
@@ -114,55 +352,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Underscore`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="underscore-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Underscore`
 
 ##### `impl Debug for Underscore`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="underscore-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Underscore`
 
-- `fn default() -> Self`
+- <span id="underscore-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Underscore`
 
-- `type Target = WithSpan`
+- <span id="underscore-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="underscore-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Underscore`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="underscore-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Underscore`
 
 ##### `impl Hash for Underscore`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="underscore-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Underscore`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="underscore-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Underscore`
 
-- `fn eq(self: &Self, _other: &Underscore) -> bool` — [`Underscore`](#underscore)
+- <span id="underscore-eq"></span>`fn eq(&self, _other: &Underscore) -> bool` — [`Underscore`](#underscore)
 
-##### `impl<P, T> Receiver for Underscore`
+##### `impl Receiver for Underscore`
 
-- `type Target = T`
+- <span id="underscore-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Underscore`
+##### `impl Sealed for Underscore`
 
-##### `impl<T> Spanned for Underscore`
+##### `impl Spanned for Underscore`
 
-- `fn span(self: &Self) -> Span`
+- <span id="underscore-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Underscore`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="underscore-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Underscore`
 
@@ -174,37 +412,39 @@ struct Group {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:574-576`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L574-L576)*
+
 None-delimited group
 
 #### Implementations
 
-- `fn surround<F>(self: &Self, tokens: &mut TokenStream, f: F)`
+- <span id="group-surround"></span>`fn surround<F>(&self, tokens: &mut TokenStream, f: F)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Group`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="group-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Group`
 
 ##### `impl Debug for Group`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="group-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Group`
 
-- `fn default() -> Self`
+- <span id="group-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Group`
 
 ##### `impl Hash for Group`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="group-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl PartialEq for Group`
 
-- `fn eq(self: &Self, _other: &Group) -> bool` — [`Group`](#group)
+- <span id="group-eq"></span>`fn eq(&self, _other: &Group) -> bool` — [`Group`](#group)
 
 ##### `impl Sealed for Group`
 
@@ -218,6 +458,8 @@ struct Abstract {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `abstract`
 
 Don't try to remember the name of this type &mdash; use the
@@ -228,41 +470,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Abstract`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="abstract-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Abstract`
 
 ##### `impl Debug for Abstract`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="abstract-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Abstract`
 
-- `fn default() -> Self`
+- <span id="abstract-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Abstract`
 
 ##### `impl Hash for Abstract`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="abstract-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Abstract`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="abstract-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Abstract`
 
-- `fn eq(self: &Self, _other: &Abstract) -> bool` — [`Abstract`](#abstract)
+- <span id="abstract-eq"></span>`fn eq(&self, _other: &Abstract) -> bool` — [`Abstract`](#abstract)
 
-##### `impl<T> Sealed for Abstract`
+##### `impl Sealed for Abstract`
 
-##### `impl<T> Spanned for Abstract`
+##### `impl Spanned for Abstract`
 
-- `fn span(self: &Self) -> Span`
+- <span id="abstract-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Abstract`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="abstract-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Abstract`
 
@@ -274,6 +516,8 @@ struct As {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `as`
 
 Don't try to remember the name of this type &mdash; use the
@@ -284,41 +528,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for As`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="as-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for As`
 
 ##### `impl Debug for As`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="as-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for As`
 
-- `fn default() -> Self`
+- <span id="as-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for As`
 
 ##### `impl Hash for As`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="as-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for As`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="as-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for As`
 
-- `fn eq(self: &Self, _other: &As) -> bool` — [`As`](#as)
+- <span id="as-eq"></span>`fn eq(&self, _other: &As) -> bool` — [`As`](#as)
 
 ##### `impl Sealed for As`
 
-##### `impl<T> Spanned for As`
+##### `impl Spanned for As`
 
-- `fn span(self: &Self) -> Span`
+- <span id="as-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for As`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="as-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for As`
 
@@ -330,6 +574,8 @@ struct Async {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `async`
 
 Don't try to remember the name of this type &mdash; use the
@@ -340,41 +586,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Async`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="async-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Async`
 
 ##### `impl Debug for Async`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="async-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Async`
 
-- `fn default() -> Self`
+- <span id="async-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Async`
 
 ##### `impl Hash for Async`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="async-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Async`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="async-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Async`
 
-- `fn eq(self: &Self, _other: &Async) -> bool` — [`Async`](#async)
+- <span id="async-eq"></span>`fn eq(&self, _other: &Async) -> bool` — [`Async`](#async)
 
-##### `impl<T> Sealed for Async`
+##### `impl Sealed for Async`
 
-##### `impl<T> Spanned for Async`
+##### `impl Spanned for Async`
 
-- `fn span(self: &Self) -> Span`
+- <span id="async-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Async`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="async-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Async`
 
@@ -386,6 +632,8 @@ struct Auto {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `auto`
 
 Don't try to remember the name of this type &mdash; use the
@@ -396,41 +644,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Auto`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="auto-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Auto`
 
 ##### `impl Debug for Auto`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="auto-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Auto`
 
-- `fn default() -> Self`
+- <span id="auto-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Auto`
 
 ##### `impl Hash for Auto`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="auto-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Auto`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="auto-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Auto`
 
-- `fn eq(self: &Self, _other: &Auto) -> bool` — [`Auto`](#auto)
+- <span id="auto-eq"></span>`fn eq(&self, _other: &Auto) -> bool` — [`Auto`](#auto)
 
 ##### `impl Sealed for Auto`
 
-##### `impl<T> Spanned for Auto`
+##### `impl Spanned for Auto`
 
-- `fn span(self: &Self) -> Span`
+- <span id="auto-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Auto`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="auto-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Auto`
 
@@ -442,6 +690,8 @@ struct Await {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `await`
 
 Don't try to remember the name of this type &mdash; use the
@@ -452,41 +702,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Await`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="await-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Await`
 
 ##### `impl Debug for Await`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="await-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Await`
 
-- `fn default() -> Self`
+- <span id="await-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Await`
 
 ##### `impl Hash for Await`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="await-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Await`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="await-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Await`
 
-- `fn eq(self: &Self, _other: &Await) -> bool` — [`Await`](#await)
+- <span id="await-eq"></span>`fn eq(&self, _other: &Await) -> bool` — [`Await`](#await)
 
 ##### `impl Sealed for Await`
 
-##### `impl<T> Spanned for Await`
+##### `impl Spanned for Await`
 
-- `fn span(self: &Self) -> Span`
+- <span id="await-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Await`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="await-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Await`
 
@@ -498,6 +748,8 @@ struct Become {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `become`
 
 Don't try to remember the name of this type &mdash; use the
@@ -508,41 +760,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Become`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="become-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Become`
 
 ##### `impl Debug for Become`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="become-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Become`
 
-- `fn default() -> Self`
+- <span id="become-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Become`
 
 ##### `impl Hash for Become`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="become-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Become`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="become-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Become`
 
-- `fn eq(self: &Self, _other: &Become) -> bool` — [`Become`](#become)
+- <span id="become-eq"></span>`fn eq(&self, _other: &Become) -> bool` — [`Become`](#become)
 
-##### `impl<T> Sealed for Become`
+##### `impl Sealed for Become`
 
-##### `impl<T> Spanned for Become`
+##### `impl Spanned for Become`
 
-- `fn span(self: &Self) -> Span`
+- <span id="become-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Become`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="become-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Become`
 
@@ -554,6 +806,8 @@ struct Box {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `box`
 
 Don't try to remember the name of this type &mdash; use the
@@ -564,41 +818,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Box`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="box-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Box`
 
 ##### `impl Debug for Box`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="box-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Box`
 
-- `fn default() -> Self`
+- <span id="box-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Box`
 
 ##### `impl Hash for Box`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="box-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Box`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="box-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Box`
 
-- `fn eq(self: &Self, _other: &Box) -> bool` — [`Box`](#box)
+- <span id="box-eq"></span>`fn eq(&self, _other: &Box) -> bool` — [`Box`](#box)
 
-##### `impl<T> Sealed for Box`
+##### `impl Sealed for Box`
 
-##### `impl<T> Spanned for Box`
+##### `impl Spanned for Box`
 
-- `fn span(self: &Self) -> Span`
+- <span id="box-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Box`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="box-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Box`
 
@@ -610,6 +864,8 @@ struct Break {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `break`
 
 Don't try to remember the name of this type &mdash; use the
@@ -620,41 +876,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Break`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="break-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Break`
 
 ##### `impl Debug for Break`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="break-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Break`
 
-- `fn default() -> Self`
+- <span id="break-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Break`
 
 ##### `impl Hash for Break`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="break-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Break`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="break-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Break`
 
-- `fn eq(self: &Self, _other: &Break) -> bool` — [`Break`](#break)
+- <span id="break-eq"></span>`fn eq(&self, _other: &Break) -> bool` — [`Break`](#break)
 
-##### `impl<T> Sealed for Break`
+##### `impl Sealed for Break`
 
-##### `impl<T> Spanned for Break`
+##### `impl Spanned for Break`
 
-- `fn span(self: &Self) -> Span`
+- <span id="break-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Break`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="break-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Break`
 
@@ -666,6 +922,8 @@ struct Const {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `const`
 
 Don't try to remember the name of this type &mdash; use the
@@ -676,41 +934,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Const`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="const-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Const`
 
 ##### `impl Debug for Const`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="const-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Const`
 
-- `fn default() -> Self`
+- <span id="const-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Const`
 
 ##### `impl Hash for Const`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="const-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Const`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="const-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Const`
 
-- `fn eq(self: &Self, _other: &Const) -> bool` — [`Const`](#const)
+- <span id="const-eq"></span>`fn eq(&self, _other: &Const) -> bool` — [`Const`](#const)
 
 ##### `impl Sealed for Const`
 
-##### `impl<T> Spanned for Const`
+##### `impl Spanned for Const`
 
-- `fn span(self: &Self) -> Span`
+- <span id="const-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Const`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="const-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Const`
 
@@ -722,6 +980,8 @@ struct Continue {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `continue`
 
 Don't try to remember the name of this type &mdash; use the
@@ -732,41 +992,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Continue`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="continue-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Continue`
 
 ##### `impl Debug for Continue`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="continue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Continue`
 
-- `fn default() -> Self`
+- <span id="continue-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Continue`
 
 ##### `impl Hash for Continue`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="continue-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Continue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="continue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Continue`
 
-- `fn eq(self: &Self, _other: &Continue) -> bool` — [`Continue`](#continue)
+- <span id="continue-eq"></span>`fn eq(&self, _other: &Continue) -> bool` — [`Continue`](#continue)
 
 ##### `impl Sealed for Continue`
 
-##### `impl<T> Spanned for Continue`
+##### `impl Spanned for Continue`
 
-- `fn span(self: &Self) -> Span`
+- <span id="continue-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Continue`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="continue-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Continue`
 
@@ -778,6 +1038,8 @@ struct Crate {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `crate`
 
 Don't try to remember the name of this type &mdash; use the
@@ -788,41 +1050,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Crate`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crate-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Crate`
 
 ##### `impl Debug for Crate`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Crate`
 
-- `fn default() -> Self`
+- <span id="crate-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Crate`
 
 ##### `impl Hash for Crate`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="crate-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Crate`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crate-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Crate`
 
-- `fn eq(self: &Self, _other: &Crate) -> bool` — [`Crate`](#crate)
+- <span id="crate-eq"></span>`fn eq(&self, _other: &Crate) -> bool` — [`Crate`](#crate)
 
-##### `impl<T> Sealed for Crate`
+##### `impl Sealed for Crate`
 
-##### `impl<T> Spanned for Crate`
+##### `impl Spanned for Crate`
 
-- `fn span(self: &Self) -> Span`
+- <span id="crate-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Crate`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crate-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Crate`
 
@@ -834,6 +1096,8 @@ struct Default {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `default`
 
 Don't try to remember the name of this type &mdash; use the
@@ -844,41 +1108,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Default`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="default-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Default`
 
 ##### `impl Debug for Default`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="default-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Default`
 
-- `fn default() -> Self`
+- <span id="default-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Default`
 
 ##### `impl Hash for Default`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="default-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Default`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="default-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Default`
 
-- `fn eq(self: &Self, _other: &Default) -> bool` — [`Default`](#default)
+- <span id="default-eq"></span>`fn eq(&self, _other: &Default) -> bool` — [`Default`](#default)
 
-##### `impl<T> Sealed for Default`
+##### `impl Sealed for Default`
 
-##### `impl<T> Spanned for Default`
+##### `impl Spanned for Default`
 
-- `fn span(self: &Self) -> Span`
+- <span id="default-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Default`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="default-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Default`
 
@@ -890,6 +1154,8 @@ struct Do {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `do`
 
 Don't try to remember the name of this type &mdash; use the
@@ -900,41 +1166,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Do`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="do-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Do`
 
 ##### `impl Debug for Do`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="do-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Do`
 
-- `fn default() -> Self`
+- <span id="do-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Do`
 
 ##### `impl Hash for Do`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="do-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Do`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="do-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Do`
 
-- `fn eq(self: &Self, _other: &Do) -> bool` — [`Do`](#do)
+- <span id="do-eq"></span>`fn eq(&self, _other: &Do) -> bool` — [`Do`](#do)
 
-##### `impl<T> Sealed for Do`
+##### `impl Sealed for Do`
 
-##### `impl<T> Spanned for Do`
+##### `impl Spanned for Do`
 
-- `fn span(self: &Self) -> Span`
+- <span id="do-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Do`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="do-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Do`
 
@@ -946,6 +1212,8 @@ struct Dyn {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `dyn`
 
 Don't try to remember the name of this type &mdash; use the
@@ -956,41 +1224,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Dyn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="dyn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Dyn`
 
 ##### `impl Debug for Dyn`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dyn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Dyn`
 
-- `fn default() -> Self`
+- <span id="dyn-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Dyn`
 
 ##### `impl Hash for Dyn`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="dyn-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Dyn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dyn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Dyn`
 
-- `fn eq(self: &Self, _other: &Dyn) -> bool` — [`Dyn`](#dyn)
+- <span id="dyn-eq"></span>`fn eq(&self, _other: &Dyn) -> bool` — [`Dyn`](#dyn)
 
 ##### `impl Sealed for Dyn`
 
-##### `impl<T> Spanned for Dyn`
+##### `impl Spanned for Dyn`
 
-- `fn span(self: &Self) -> Span`
+- <span id="dyn-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Dyn`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="dyn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Dyn`
 
@@ -1002,6 +1270,8 @@ struct Else {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `else`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1012,41 +1282,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Else`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="else-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Else`
 
 ##### `impl Debug for Else`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="else-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Else`
 
-- `fn default() -> Self`
+- <span id="else-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Else`
 
 ##### `impl Hash for Else`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="else-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Else`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="else-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Else`
 
-- `fn eq(self: &Self, _other: &Else) -> bool` — [`Else`](#else)
+- <span id="else-eq"></span>`fn eq(&self, _other: &Else) -> bool` — [`Else`](#else)
 
 ##### `impl Sealed for Else`
 
-##### `impl<T> Spanned for Else`
+##### `impl Spanned for Else`
 
-- `fn span(self: &Self) -> Span`
+- <span id="else-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Else`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="else-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Else`
 
@@ -1058,6 +1328,8 @@ struct Enum {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `enum`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1068,41 +1340,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Enum`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="enum-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Enum`
 
 ##### `impl Debug for Enum`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="enum-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Enum`
 
-- `fn default() -> Self`
+- <span id="enum-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Enum`
 
 ##### `impl Hash for Enum`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="enum-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Enum`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="enum-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Enum`
 
-- `fn eq(self: &Self, _other: &Enum) -> bool` — [`Enum`](#enum)
+- <span id="enum-eq"></span>`fn eq(&self, _other: &Enum) -> bool` — [`Enum`](#enum)
 
 ##### `impl Sealed for Enum`
 
-##### `impl<T> Spanned for Enum`
+##### `impl Spanned for Enum`
 
-- `fn span(self: &Self) -> Span`
+- <span id="enum-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Enum`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="enum-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Enum`
 
@@ -1114,6 +1386,8 @@ struct Extern {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `extern`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1124,41 +1398,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Extern`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="extern-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Extern`
 
 ##### `impl Debug for Extern`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="extern-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Extern`
 
-- `fn default() -> Self`
+- <span id="extern-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Extern`
 
 ##### `impl Hash for Extern`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="extern-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Extern`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="extern-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Extern`
 
-- `fn eq(self: &Self, _other: &Extern) -> bool` — [`Extern`](#extern)
+- <span id="extern-eq"></span>`fn eq(&self, _other: &Extern) -> bool` — [`Extern`](#extern)
 
-##### `impl<T> Sealed for Extern`
+##### `impl Sealed for Extern`
 
-##### `impl<T> Spanned for Extern`
+##### `impl Spanned for Extern`
 
-- `fn span(self: &Self) -> Span`
+- <span id="extern-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Extern`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="extern-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Extern`
 
@@ -1170,6 +1444,8 @@ struct Final {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `final`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1180,41 +1456,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Final`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="final-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Final`
 
 ##### `impl Debug for Final`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="final-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Final`
 
-- `fn default() -> Self`
+- <span id="final-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Final`
 
 ##### `impl Hash for Final`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="final-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Final`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="final-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Final`
 
-- `fn eq(self: &Self, _other: &Final) -> bool` — [`Final`](#final)
+- <span id="final-eq"></span>`fn eq(&self, _other: &Final) -> bool` — [`Final`](#final)
 
 ##### `impl Sealed for Final`
 
-##### `impl<T> Spanned for Final`
+##### `impl Spanned for Final`
 
-- `fn span(self: &Self) -> Span`
+- <span id="final-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Final`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="final-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Final`
 
@@ -1226,6 +1502,8 @@ struct Fn {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `fn`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1236,41 +1514,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Fn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="fn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Fn`
 
 ##### `impl Debug for Fn`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Fn`
 
-- `fn default() -> Self`
+- <span id="fn-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Fn`
 
 ##### `impl Hash for Fn`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="fn-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Fn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="fn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Fn`
 
-- `fn eq(self: &Self, _other: &Fn) -> bool` — [`Fn`](#fn)
+- <span id="fn-eq"></span>`fn eq(&self, _other: &Fn) -> bool` — [`Fn`](#fn)
 
-##### `impl<T> Sealed for Fn`
+##### `impl Sealed for Fn`
 
-##### `impl<T> Spanned for Fn`
+##### `impl Spanned for Fn`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fn-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Fn`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="fn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Fn`
 
@@ -1282,6 +1560,8 @@ struct For {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `for`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1292,41 +1572,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for For`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="for-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for For`
 
 ##### `impl Debug for For`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="for-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for For`
 
-- `fn default() -> Self`
+- <span id="for-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for For`
 
 ##### `impl Hash for For`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="for-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for For`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="for-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for For`
 
-- `fn eq(self: &Self, _other: &For) -> bool` — [`For`](#for)
+- <span id="for-eq"></span>`fn eq(&self, _other: &For) -> bool` — [`For`](#for)
 
-##### `impl<T> Sealed for For`
+##### `impl Sealed for For`
 
-##### `impl<T> Spanned for For`
+##### `impl Spanned for For`
 
-- `fn span(self: &Self) -> Span`
+- <span id="for-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for For`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="for-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for For`
 
@@ -1338,6 +1618,8 @@ struct If {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `if`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1348,41 +1630,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for If`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="if-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for If`
 
 ##### `impl Debug for If`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="if-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for If`
 
-- `fn default() -> Self`
+- <span id="if-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for If`
 
 ##### `impl Hash for If`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="if-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for If`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="if-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for If`
 
-- `fn eq(self: &Self, _other: &If) -> bool` — [`If`](#if)
+- <span id="if-eq"></span>`fn eq(&self, _other: &If) -> bool` — [`If`](#if)
 
-##### `impl<T> Sealed for If`
+##### `impl Sealed for If`
 
-##### `impl<T> Spanned for If`
+##### `impl Spanned for If`
 
-- `fn span(self: &Self) -> Span`
+- <span id="if-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for If`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="if-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for If`
 
@@ -1394,6 +1676,8 @@ struct Impl {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `impl`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1404,41 +1688,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Impl`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="impl-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Impl`
 
 ##### `impl Debug for Impl`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="impl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Impl`
 
-- `fn default() -> Self`
+- <span id="impl-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Impl`
 
 ##### `impl Hash for Impl`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="impl-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Impl`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="impl-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Impl`
 
-- `fn eq(self: &Self, _other: &Impl) -> bool` — [`Impl`](#impl)
+- <span id="impl-eq"></span>`fn eq(&self, _other: &Impl) -> bool` — [`Impl`](#impl)
 
 ##### `impl Sealed for Impl`
 
-##### `impl<T> Spanned for Impl`
+##### `impl Spanned for Impl`
 
-- `fn span(self: &Self) -> Span`
+- <span id="impl-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Impl`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="impl-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Impl`
 
@@ -1450,6 +1734,8 @@ struct In {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `in`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1460,41 +1746,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for In`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="in-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for In`
 
 ##### `impl Debug for In`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="in-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for In`
 
-- `fn default() -> Self`
+- <span id="in-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for In`
 
 ##### `impl Hash for In`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="in-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for In`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="in-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for In`
 
-- `fn eq(self: &Self, _other: &In) -> bool` — [`In`](#in)
+- <span id="in-eq"></span>`fn eq(&self, _other: &In) -> bool` — [`In`](#in)
 
 ##### `impl Sealed for In`
 
-##### `impl<T> Spanned for In`
+##### `impl Spanned for In`
 
-- `fn span(self: &Self) -> Span`
+- <span id="in-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for In`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="in-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for In`
 
@@ -1506,6 +1792,8 @@ struct Let {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `let`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1516,41 +1804,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Let`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="let-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Let`
 
 ##### `impl Debug for Let`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="let-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Let`
 
-- `fn default() -> Self`
+- <span id="let-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Let`
 
 ##### `impl Hash for Let`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="let-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Let`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="let-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Let`
 
-- `fn eq(self: &Self, _other: &Let) -> bool` — [`Let`](#let)
+- <span id="let-eq"></span>`fn eq(&self, _other: &Let) -> bool` — [`Let`](#let)
 
 ##### `impl Sealed for Let`
 
-##### `impl<T> Spanned for Let`
+##### `impl Spanned for Let`
 
-- `fn span(self: &Self) -> Span`
+- <span id="let-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Let`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="let-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Let`
 
@@ -1562,6 +1850,8 @@ struct Loop {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `loop`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1572,41 +1862,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Loop`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="loop-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Loop`
 
 ##### `impl Debug for Loop`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="loop-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Loop`
 
-- `fn default() -> Self`
+- <span id="loop-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Loop`
 
 ##### `impl Hash for Loop`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="loop-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Loop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="loop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Loop`
 
-- `fn eq(self: &Self, _other: &Loop) -> bool` — [`Loop`](#loop)
+- <span id="loop-eq"></span>`fn eq(&self, _other: &Loop) -> bool` — [`Loop`](#loop)
 
 ##### `impl Sealed for Loop`
 
-##### `impl<T> Spanned for Loop`
+##### `impl Spanned for Loop`
 
-- `fn span(self: &Self) -> Span`
+- <span id="loop-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Loop`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="loop-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Loop`
 
@@ -1618,6 +1908,8 @@ struct Macro {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `macro`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1628,41 +1920,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Macro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="macro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Macro`
 
 ##### `impl Debug for Macro`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="macro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Macro`
 
-- `fn default() -> Self`
+- <span id="macro-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Macro`
 
 ##### `impl Hash for Macro`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="macro-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Macro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="macro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Macro`
 
-- `fn eq(self: &Self, _other: &Macro) -> bool` — [`Macro`](#macro)
+- <span id="macro-eq"></span>`fn eq(&self, _other: &Macro) -> bool` — [`Macro`](#macro)
 
-##### `impl<T> Sealed for Macro`
+##### `impl Sealed for Macro`
 
-##### `impl<T> Spanned for Macro`
+##### `impl Spanned for Macro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="macro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Macro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="macro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Macro`
 
@@ -1674,6 +1966,8 @@ struct Match {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `match`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1684,41 +1978,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Match`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="match-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Match`
 
 ##### `impl Debug for Match`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="match-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Match`
 
-- `fn default() -> Self`
+- <span id="match-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Match`
 
 ##### `impl Hash for Match`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="match-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Match`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="match-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Match`
 
-- `fn eq(self: &Self, _other: &Match) -> bool` — [`Match`](#match)
+- <span id="match-eq"></span>`fn eq(&self, _other: &Match) -> bool` — [`Match`](#match)
 
-##### `impl<T> Sealed for Match`
+##### `impl Sealed for Match`
 
-##### `impl<T> Spanned for Match`
+##### `impl Spanned for Match`
 
-- `fn span(self: &Self) -> Span`
+- <span id="match-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Match`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="match-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Match`
 
@@ -1730,6 +2024,8 @@ struct Mod {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `mod`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1740,41 +2036,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Mod`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="mod-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Mod`
 
 ##### `impl Debug for Mod`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mod-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Mod`
 
-- `fn default() -> Self`
+- <span id="mod-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Mod`
 
 ##### `impl Hash for Mod`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="mod-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Mod`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="mod-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Mod`
 
-- `fn eq(self: &Self, _other: &Mod) -> bool` — [`Mod`](#mod)
+- <span id="mod-eq"></span>`fn eq(&self, _other: &Mod) -> bool` — [`Mod`](#mod)
 
-##### `impl<T> Sealed for Mod`
+##### `impl Sealed for Mod`
 
-##### `impl<T> Spanned for Mod`
+##### `impl Spanned for Mod`
 
-- `fn span(self: &Self) -> Span`
+- <span id="mod-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Mod`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="mod-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Mod`
 
@@ -1786,6 +2082,8 @@ struct Move {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `move`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1796,41 +2094,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Move`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="move-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Move`
 
 ##### `impl Debug for Move`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="move-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Move`
 
-- `fn default() -> Self`
+- <span id="move-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Move`
 
 ##### `impl Hash for Move`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="move-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Move`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="move-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Move`
 
-- `fn eq(self: &Self, _other: &Move) -> bool` — [`Move`](#move)
+- <span id="move-eq"></span>`fn eq(&self, _other: &Move) -> bool` — [`Move`](#move)
 
 ##### `impl Sealed for Move`
 
-##### `impl<T> Spanned for Move`
+##### `impl Spanned for Move`
 
-- `fn span(self: &Self) -> Span`
+- <span id="move-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Move`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="move-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Move`
 
@@ -1842,6 +2140,8 @@ struct Mut {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `mut`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1852,41 +2152,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Mut`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="mut-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Mut`
 
 ##### `impl Debug for Mut`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Mut`
 
-- `fn default() -> Self`
+- <span id="mut-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Mut`
 
 ##### `impl Hash for Mut`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="mut-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Mut`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="mut-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Mut`
 
-- `fn eq(self: &Self, _other: &Mut) -> bool` — [`Mut`](#mut)
+- <span id="mut-eq"></span>`fn eq(&self, _other: &Mut) -> bool` — [`Mut`](#mut)
 
 ##### `impl Sealed for Mut`
 
-##### `impl<T> Spanned for Mut`
+##### `impl Spanned for Mut`
 
-- `fn span(self: &Self) -> Span`
+- <span id="mut-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Mut`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="mut-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Mut`
 
@@ -1898,6 +2198,8 @@ struct Override {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `override`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1908,41 +2210,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Override`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="override-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Override`
 
 ##### `impl Debug for Override`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="override-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Override`
 
-- `fn default() -> Self`
+- <span id="override-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Override`
 
 ##### `impl Hash for Override`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="override-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Override`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="override-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Override`
 
-- `fn eq(self: &Self, _other: &Override) -> bool` — [`Override`](#override)
+- <span id="override-eq"></span>`fn eq(&self, _other: &Override) -> bool` — [`Override`](#override)
 
 ##### `impl Sealed for Override`
 
-##### `impl<T> Spanned for Override`
+##### `impl Spanned for Override`
 
-- `fn span(self: &Self) -> Span`
+- <span id="override-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Override`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="override-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Override`
 
@@ -1954,6 +2256,8 @@ struct Priv {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `priv`
 
 Don't try to remember the name of this type &mdash; use the
@@ -1964,41 +2268,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Priv`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="priv-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Priv`
 
 ##### `impl Debug for Priv`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="priv-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Priv`
 
-- `fn default() -> Self`
+- <span id="priv-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Priv`
 
 ##### `impl Hash for Priv`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="priv-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Priv`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="priv-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Priv`
 
-- `fn eq(self: &Self, _other: &Priv) -> bool` — [`Priv`](#priv)
+- <span id="priv-eq"></span>`fn eq(&self, _other: &Priv) -> bool` — [`Priv`](#priv)
 
 ##### `impl Sealed for Priv`
 
-##### `impl<T> Spanned for Priv`
+##### `impl Spanned for Priv`
 
-- `fn span(self: &Self) -> Span`
+- <span id="priv-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Priv`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="priv-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Priv`
 
@@ -2010,6 +2314,8 @@ struct Pub {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `pub`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2020,41 +2326,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Pub`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="pub-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Pub`
 
 ##### `impl Debug for Pub`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pub-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Pub`
 
-- `fn default() -> Self`
+- <span id="pub-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Pub`
 
 ##### `impl Hash for Pub`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="pub-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Pub`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="pub-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Pub`
 
-- `fn eq(self: &Self, _other: &Pub) -> bool` — [`Pub`](#pub)
+- <span id="pub-eq"></span>`fn eq(&self, _other: &Pub) -> bool` — [`Pub`](#pub)
 
 ##### `impl Sealed for Pub`
 
-##### `impl<T> Spanned for Pub`
+##### `impl Spanned for Pub`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pub-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Pub`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="pub-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Pub`
 
@@ -2066,6 +2372,8 @@ struct Raw {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `raw`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2076,41 +2384,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Raw`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="raw-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Raw`
 
 ##### `impl Debug for Raw`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="raw-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Raw`
 
-- `fn default() -> Self`
+- <span id="raw-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Raw`
 
 ##### `impl Hash for Raw`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="raw-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Raw`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="raw-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Raw`
 
-- `fn eq(self: &Self, _other: &Raw) -> bool` — [`Raw`](#raw)
+- <span id="raw-eq"></span>`fn eq(&self, _other: &Raw) -> bool` — [`Raw`](#raw)
 
-##### `impl<T> Sealed for Raw`
+##### `impl Sealed for Raw`
 
-##### `impl<T> Spanned for Raw`
+##### `impl Spanned for Raw`
 
-- `fn span(self: &Self) -> Span`
+- <span id="raw-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Raw`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="raw-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Raw`
 
@@ -2122,6 +2430,8 @@ struct Ref {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `ref`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2132,41 +2442,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Ref`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="ref-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Ref`
 
 ##### `impl Debug for Ref`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Ref`
 
-- `fn default() -> Self`
+- <span id="ref-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Ref`
 
 ##### `impl Hash for Ref`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="ref-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Ref`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="ref-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Ref`
 
-- `fn eq(self: &Self, _other: &Ref) -> bool` — [`Ref`](#ref)
+- <span id="ref-eq"></span>`fn eq(&self, _other: &Ref) -> bool` — [`Ref`](#ref)
 
 ##### `impl Sealed for Ref`
 
-##### `impl<T> Spanned for Ref`
+##### `impl Spanned for Ref`
 
-- `fn span(self: &Self) -> Span`
+- <span id="ref-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Ref`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="ref-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Ref`
 
@@ -2178,6 +2488,8 @@ struct Return {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `return`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2188,41 +2500,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Return`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="return-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Return`
 
 ##### `impl Debug for Return`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="return-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Return`
 
-- `fn default() -> Self`
+- <span id="return-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Return`
 
 ##### `impl Hash for Return`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="return-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Return`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="return-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Return`
 
-- `fn eq(self: &Self, _other: &Return) -> bool` — [`Return`](#return)
+- <span id="return-eq"></span>`fn eq(&self, _other: &Return) -> bool` — [`Return`](#return)
 
 ##### `impl Sealed for Return`
 
-##### `impl<T> Spanned for Return`
+##### `impl Spanned for Return`
 
-- `fn span(self: &Self) -> Span`
+- <span id="return-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Return`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="return-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Return`
 
@@ -2234,6 +2546,8 @@ struct SelfType {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `Self`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2244,41 +2558,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for SelfType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="selftype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for SelfType`
 
 ##### `impl Debug for SelfType`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="selftype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SelfType`
 
-- `fn default() -> Self`
+- <span id="selftype-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for SelfType`
 
 ##### `impl Hash for SelfType`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="selftype-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for SelfType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="selftype-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for SelfType`
 
-- `fn eq(self: &Self, _other: &SelfType) -> bool` — [`SelfType`](#selftype)
+- <span id="selftype-eq"></span>`fn eq(&self, _other: &SelfType) -> bool` — [`SelfType`](#selftype)
 
-##### `impl<T> Sealed for SelfType`
+##### `impl Sealed for SelfType`
 
-##### `impl<T> Spanned for SelfType`
+##### `impl Spanned for SelfType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="selftype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for SelfType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="selftype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for SelfType`
 
@@ -2290,6 +2604,8 @@ struct SelfValue {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `self`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2300,41 +2616,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for SelfValue`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="selfvalue-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for SelfValue`
 
 ##### `impl Debug for SelfValue`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="selfvalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SelfValue`
 
-- `fn default() -> Self`
+- <span id="selfvalue-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for SelfValue`
 
 ##### `impl Hash for SelfValue`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="selfvalue-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for SelfValue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="selfvalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for SelfValue`
 
-- `fn eq(self: &Self, _other: &SelfValue) -> bool` — [`SelfValue`](#selfvalue)
+- <span id="selfvalue-eq"></span>`fn eq(&self, _other: &SelfValue) -> bool` — [`SelfValue`](#selfvalue)
 
-##### `impl<T> Sealed for SelfValue`
+##### `impl Sealed for SelfValue`
 
-##### `impl<T> Spanned for SelfValue`
+##### `impl Spanned for SelfValue`
 
-- `fn span(self: &Self) -> Span`
+- <span id="selfvalue-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for SelfValue`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="selfvalue-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for SelfValue`
 
@@ -2346,6 +2662,8 @@ struct Static {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `static`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2356,41 +2674,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Static`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="static-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Static`
 
 ##### `impl Debug for Static`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="static-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Static`
 
-- `fn default() -> Self`
+- <span id="static-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Static`
 
 ##### `impl Hash for Static`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="static-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Static`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="static-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Static`
 
-- `fn eq(self: &Self, _other: &Static) -> bool` — [`Static`](#static)
+- <span id="static-eq"></span>`fn eq(&self, _other: &Static) -> bool` — [`Static`](#static)
 
-##### `impl<T> Sealed for Static`
+##### `impl Sealed for Static`
 
-##### `impl<T> Spanned for Static`
+##### `impl Spanned for Static`
 
-- `fn span(self: &Self) -> Span`
+- <span id="static-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Static`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="static-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Static`
 
@@ -2402,6 +2720,8 @@ struct Struct {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `struct`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2412,41 +2732,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Struct`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="struct-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Struct`
 
 ##### `impl Debug for Struct`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="struct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Struct`
 
-- `fn default() -> Self`
+- <span id="struct-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Struct`
 
 ##### `impl Hash for Struct`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="struct-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Struct`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="struct-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Struct`
 
-- `fn eq(self: &Self, _other: &Struct) -> bool` — [`Struct`](#struct)
+- <span id="struct-eq"></span>`fn eq(&self, _other: &Struct) -> bool` — [`Struct`](#struct)
 
 ##### `impl Sealed for Struct`
 
-##### `impl<T> Spanned for Struct`
+##### `impl Spanned for Struct`
 
-- `fn span(self: &Self) -> Span`
+- <span id="struct-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Struct`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="struct-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Struct`
 
@@ -2458,6 +2778,8 @@ struct Super {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `super`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2468,41 +2790,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Super`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="super-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Super`
 
 ##### `impl Debug for Super`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="super-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Super`
 
-- `fn default() -> Self`
+- <span id="super-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Super`
 
 ##### `impl Hash for Super`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="super-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Super`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="super-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Super`
 
-- `fn eq(self: &Self, _other: &Super) -> bool` — [`Super`](#super)
+- <span id="super-eq"></span>`fn eq(&self, _other: &Super) -> bool` — [`Super`](#super)
 
 ##### `impl Sealed for Super`
 
-##### `impl<T> Spanned for Super`
+##### `impl Spanned for Super`
 
-- `fn span(self: &Self) -> Span`
+- <span id="super-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Super`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="super-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Super`
 
@@ -2514,6 +2836,8 @@ struct Trait {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `trait`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2524,41 +2848,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Trait`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="trait-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Trait`
 
 ##### `impl Debug for Trait`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="trait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Trait`
 
-- `fn default() -> Self`
+- <span id="trait-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Trait`
 
 ##### `impl Hash for Trait`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="trait-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Trait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="trait-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Trait`
 
-- `fn eq(self: &Self, _other: &Trait) -> bool` — [`Trait`](#trait)
+- <span id="trait-eq"></span>`fn eq(&self, _other: &Trait) -> bool` — [`Trait`](#trait)
 
 ##### `impl Sealed for Trait`
 
-##### `impl<T> Spanned for Trait`
+##### `impl Spanned for Trait`
 
-- `fn span(self: &Self) -> Span`
+- <span id="trait-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Trait`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="trait-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Trait`
 
@@ -2570,6 +2894,8 @@ struct Try {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `try`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2580,41 +2906,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Try`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="try-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Try`
 
 ##### `impl Debug for Try`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="try-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Try`
 
-- `fn default() -> Self`
+- <span id="try-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Try`
 
 ##### `impl Hash for Try`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="try-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Try`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="try-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Try`
 
-- `fn eq(self: &Self, _other: &Try) -> bool` — [`Try`](#try)
+- <span id="try-eq"></span>`fn eq(&self, _other: &Try) -> bool` — [`Try`](#try)
 
 ##### `impl Sealed for Try`
 
-##### `impl<T> Spanned for Try`
+##### `impl Spanned for Try`
 
-- `fn span(self: &Self) -> Span`
+- <span id="try-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Try`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="try-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Try`
 
@@ -2626,6 +2952,8 @@ struct Type {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `type`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2636,41 +2964,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Type`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="type-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Type`
 
 ##### `impl Debug for Type`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="type-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Type`
 
-- `fn default() -> Self`
+- <span id="type-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Type`
 
 ##### `impl Hash for Type`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="type-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Type`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="type-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Type`
 
-- `fn eq(self: &Self, _other: &Type) -> bool` — [`Type`](#type)
+- <span id="type-eq"></span>`fn eq(&self, _other: &Type) -> bool` — [`Type`](#type)
 
-##### `impl<T> Sealed for Type`
+##### `impl Sealed for Type`
 
-##### `impl<T> Spanned for Type`
+##### `impl Spanned for Type`
 
-- `fn span(self: &Self) -> Span`
+- <span id="type-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Type`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="type-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Type`
 
@@ -2682,6 +3010,8 @@ struct Typeof {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `typeof`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2692,41 +3022,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Typeof`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="typeof-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Typeof`
 
 ##### `impl Debug for Typeof`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="typeof-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Typeof`
 
-- `fn default() -> Self`
+- <span id="typeof-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Typeof`
 
 ##### `impl Hash for Typeof`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="typeof-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Typeof`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="typeof-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Typeof`
 
-- `fn eq(self: &Self, _other: &Typeof) -> bool` — [`Typeof`](#typeof)
+- <span id="typeof-eq"></span>`fn eq(&self, _other: &Typeof) -> bool` — [`Typeof`](#typeof)
 
 ##### `impl Sealed for Typeof`
 
-##### `impl<T> Spanned for Typeof`
+##### `impl Spanned for Typeof`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typeof-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Typeof`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="typeof-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Typeof`
 
@@ -2738,6 +3068,8 @@ struct Union {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `union`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2748,41 +3080,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Union`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="union-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Union`
 
 ##### `impl Debug for Union`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="union-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Union`
 
-- `fn default() -> Self`
+- <span id="union-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Union`
 
 ##### `impl Hash for Union`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="union-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Union`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="union-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Union`
 
-- `fn eq(self: &Self, _other: &Union) -> bool` — [`Union`](#union)
+- <span id="union-eq"></span>`fn eq(&self, _other: &Union) -> bool` — [`Union`](#union)
 
 ##### `impl Sealed for Union`
 
-##### `impl<T> Spanned for Union`
+##### `impl Spanned for Union`
 
-- `fn span(self: &Self) -> Span`
+- <span id="union-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Union`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="union-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Union`
 
@@ -2794,6 +3126,8 @@ struct Unsafe {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `unsafe`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2804,41 +3138,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Unsafe`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="unsafe-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Unsafe`
 
 ##### `impl Debug for Unsafe`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unsafe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Unsafe`
 
-- `fn default() -> Self`
+- <span id="unsafe-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Unsafe`
 
 ##### `impl Hash for Unsafe`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="unsafe-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Unsafe`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="unsafe-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Unsafe`
 
-- `fn eq(self: &Self, _other: &Unsafe) -> bool` — [`Unsafe`](#unsafe)
+- <span id="unsafe-eq"></span>`fn eq(&self, _other: &Unsafe) -> bool` — [`Unsafe`](#unsafe)
 
-##### `impl<T> Sealed for Unsafe`
+##### `impl Sealed for Unsafe`
 
-##### `impl<T> Spanned for Unsafe`
+##### `impl Spanned for Unsafe`
 
-- `fn span(self: &Self) -> Span`
+- <span id="unsafe-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Unsafe`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="unsafe-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Unsafe`
 
@@ -2850,6 +3184,8 @@ struct Unsized {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `unsized`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2860,41 +3196,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Unsized`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="unsized-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Unsized`
 
 ##### `impl Debug for Unsized`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unsized-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Unsized`
 
-- `fn default() -> Self`
+- <span id="unsized-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Unsized`
 
 ##### `impl Hash for Unsized`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="unsized-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Unsized`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="unsized-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Unsized`
 
-- `fn eq(self: &Self, _other: &Unsized) -> bool` — [`Unsized`](#unsized)
+- <span id="unsized-eq"></span>`fn eq(&self, _other: &Unsized) -> bool` — [`Unsized`](#unsized)
 
-##### `impl<T> Sealed for Unsized`
+##### `impl Sealed for Unsized`
 
-##### `impl<T> Spanned for Unsized`
+##### `impl Spanned for Unsized`
 
-- `fn span(self: &Self) -> Span`
+- <span id="unsized-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Unsized`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="unsized-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Unsized`
 
@@ -2906,6 +3242,8 @@ struct Use {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `use`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2916,41 +3254,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Use`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="use-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Use`
 
 ##### `impl Debug for Use`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="use-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Use`
 
-- `fn default() -> Self`
+- <span id="use-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Use`
 
 ##### `impl Hash for Use`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="use-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Use`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="use-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Use`
 
-- `fn eq(self: &Self, _other: &Use) -> bool` — [`Use`](#use)
+- <span id="use-eq"></span>`fn eq(&self, _other: &Use) -> bool` — [`Use`](#use)
 
-##### `impl<T> Sealed for Use`
+##### `impl Sealed for Use`
 
-##### `impl<T> Spanned for Use`
+##### `impl Spanned for Use`
 
-- `fn span(self: &Self) -> Span`
+- <span id="use-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Use`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="use-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Use`
 
@@ -2962,6 +3300,8 @@ struct Virtual {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `virtual`
 
 Don't try to remember the name of this type &mdash; use the
@@ -2972,41 +3312,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Virtual`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="virtual-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Virtual`
 
 ##### `impl Debug for Virtual`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="virtual-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Virtual`
 
-- `fn default() -> Self`
+- <span id="virtual-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Virtual`
 
 ##### `impl Hash for Virtual`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="virtual-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Virtual`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="virtual-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Virtual`
 
-- `fn eq(self: &Self, _other: &Virtual) -> bool` — [`Virtual`](#virtual)
+- <span id="virtual-eq"></span>`fn eq(&self, _other: &Virtual) -> bool` — [`Virtual`](#virtual)
 
-##### `impl<T> Sealed for Virtual`
+##### `impl Sealed for Virtual`
 
-##### `impl<T> Spanned for Virtual`
+##### `impl Spanned for Virtual`
 
-- `fn span(self: &Self) -> Span`
+- <span id="virtual-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Virtual`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="virtual-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Virtual`
 
@@ -3018,6 +3358,8 @@ struct Where {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `where`
 
 Don't try to remember the name of this type &mdash; use the
@@ -3028,41 +3370,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Where`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="where-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Where`
 
 ##### `impl Debug for Where`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="where-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Where`
 
-- `fn default() -> Self`
+- <span id="where-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Where`
 
 ##### `impl Hash for Where`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="where-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Where`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="where-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Where`
 
-- `fn eq(self: &Self, _other: &Where) -> bool` — [`Where`](#where)
+- <span id="where-eq"></span>`fn eq(&self, _other: &Where) -> bool` — [`Where`](#where)
 
 ##### `impl Sealed for Where`
 
-##### `impl<T> Spanned for Where`
+##### `impl Spanned for Where`
 
-- `fn span(self: &Self) -> Span`
+- <span id="where-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Where`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="where-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Where`
 
@@ -3074,6 +3416,8 @@ struct While {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `while`
 
 Don't try to remember the name of this type &mdash; use the
@@ -3084,41 +3428,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for While`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="while-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for While`
 
 ##### `impl Debug for While`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="while-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for While`
 
-- `fn default() -> Self`
+- <span id="while-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for While`
 
 ##### `impl Hash for While`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="while-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for While`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="while-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for While`
 
-- `fn eq(self: &Self, _other: &While) -> bool` — [`While`](#while)
+- <span id="while-eq"></span>`fn eq(&self, _other: &While) -> bool` — [`While`](#while)
 
-##### `impl<T> Sealed for While`
+##### `impl Sealed for While`
 
-##### `impl<T> Spanned for While`
+##### `impl Spanned for While`
 
-- `fn span(self: &Self) -> Span`
+- <span id="while-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for While`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="while-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for While`
 
@@ -3130,6 +3474,8 @@ struct Yield {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `yield`
 
 Don't try to remember the name of this type &mdash; use the
@@ -3140,41 +3486,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Yield`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="yield-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Yield`
 
 ##### `impl Debug for Yield`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="yield-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Yield`
 
-- `fn default() -> Self`
+- <span id="yield-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Yield`
 
 ##### `impl Hash for Yield`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="yield-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Yield`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="yield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Yield`
 
-- `fn eq(self: &Self, _other: &Yield) -> bool` — [`Yield`](#yield)
+- <span id="yield-eq"></span>`fn eq(&self, _other: &Yield) -> bool` — [`Yield`](#yield)
 
 ##### `impl Sealed for Yield`
 
-##### `impl<T> Spanned for Yield`
+##### `impl Spanned for Yield`
 
-- `fn span(self: &Self) -> Span`
+- <span id="yield-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Yield`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="yield-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Yield`
 
@@ -3185,6 +3531,8 @@ struct And {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&`
 
@@ -3199,55 +3547,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for And`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="and-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for And`
 
 ##### `impl Debug for And`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="and-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for And`
 
-- `fn default() -> Self`
+- <span id="and-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for And`
 
-- `type Target = WithSpan`
+- <span id="and-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="and-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for And`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="and-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for And`
 
 ##### `impl Hash for And`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="and-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for And`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="and-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for And`
 
-- `fn eq(self: &Self, _other: &And) -> bool` — [`And`](#and)
+- <span id="and-eq"></span>`fn eq(&self, _other: &And) -> bool` — [`And`](#and)
 
-##### `impl<P, T> Receiver for And`
+##### `impl Receiver for And`
 
-- `type Target = T`
+- <span id="and-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for And`
 
-##### `impl<T> Spanned for And`
+##### `impl Spanned for And`
 
-- `fn span(self: &Self) -> Span`
+- <span id="and-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for And`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="and-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for And`
 
@@ -3258,6 +3606,8 @@ struct AndAnd {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&&`
 
@@ -3272,41 +3622,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for AndAnd`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="andand-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for AndAnd`
 
 ##### `impl Debug for AndAnd`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="andand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AndAnd`
 
-- `fn default() -> Self`
+- <span id="andand-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for AndAnd`
 
 ##### `impl Hash for AndAnd`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="andand-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for AndAnd`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="andand-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for AndAnd`
 
-- `fn eq(self: &Self, _other: &AndAnd) -> bool` — [`AndAnd`](#andand)
+- <span id="andand-eq"></span>`fn eq(&self, _other: &AndAnd) -> bool` — [`AndAnd`](#andand)
 
-##### `impl<T> Sealed for AndAnd`
+##### `impl Sealed for AndAnd`
 
-##### `impl<T> Spanned for AndAnd`
+##### `impl Spanned for AndAnd`
 
-- `fn span(self: &Self) -> Span`
+- <span id="andand-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for AndAnd`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="andand-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for AndAnd`
 
@@ -3317,6 +3667,8 @@ struct AndEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&=`
 
@@ -3331,41 +3683,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for AndEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="andeq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for AndEq`
 
 ##### `impl Debug for AndEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="andeq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AndEq`
 
-- `fn default() -> Self`
+- <span id="andeq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for AndEq`
 
 ##### `impl Hash for AndEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="andeq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for AndEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="andeq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for AndEq`
 
-- `fn eq(self: &Self, _other: &AndEq) -> bool` — [`AndEq`](#andeq)
+- <span id="andeq-eq"></span>`fn eq(&self, _other: &AndEq) -> bool` — [`AndEq`](#andeq)
 
-##### `impl<T> Sealed for AndEq`
+##### `impl Sealed for AndEq`
 
-##### `impl<T> Spanned for AndEq`
+##### `impl Spanned for AndEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="andeq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for AndEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="andeq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for AndEq`
 
@@ -3376,6 +3728,8 @@ struct At {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `@`
 
@@ -3390,55 +3744,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for At`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="at-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for At`
 
 ##### `impl Debug for At`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="at-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for At`
 
-- `fn default() -> Self`
+- <span id="at-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for At`
 
-- `type Target = WithSpan`
+- <span id="at-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="at-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for At`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="at-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for At`
 
 ##### `impl Hash for At`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="at-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for At`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="at-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for At`
 
-- `fn eq(self: &Self, _other: &At) -> bool` — [`At`](#at)
+- <span id="at-eq"></span>`fn eq(&self, _other: &At) -> bool` — [`At`](#at)
 
-##### `impl<P, T> Receiver for At`
+##### `impl Receiver for At`
 
-- `type Target = T`
+- <span id="at-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for At`
+##### `impl Sealed for At`
 
-##### `impl<T> Spanned for At`
+##### `impl Spanned for At`
 
-- `fn span(self: &Self) -> Span`
+- <span id="at-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for At`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="at-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for At`
 
@@ -3449,6 +3803,8 @@ struct Caret {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `^`
 
@@ -3463,55 +3819,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Caret`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="caret-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Caret`
 
 ##### `impl Debug for Caret`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="caret-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Caret`
 
-- `fn default() -> Self`
+- <span id="caret-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Caret`
 
-- `type Target = WithSpan`
+- <span id="caret-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="caret-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Caret`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="caret-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Caret`
 
 ##### `impl Hash for Caret`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="caret-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Caret`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="caret-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Caret`
 
-- `fn eq(self: &Self, _other: &Caret) -> bool` — [`Caret`](#caret)
+- <span id="caret-eq"></span>`fn eq(&self, _other: &Caret) -> bool` — [`Caret`](#caret)
 
-##### `impl<P, T> Receiver for Caret`
+##### `impl Receiver for Caret`
 
-- `type Target = T`
+- <span id="caret-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Caret`
 
-##### `impl<T> Spanned for Caret`
+##### `impl Spanned for Caret`
 
-- `fn span(self: &Self) -> Span`
+- <span id="caret-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Caret`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="caret-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Caret`
 
@@ -3522,6 +3878,8 @@ struct CaretEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `^=`
 
@@ -3536,41 +3894,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for CaretEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="careteq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for CaretEq`
 
 ##### `impl Debug for CaretEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="careteq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CaretEq`
 
-- `fn default() -> Self`
+- <span id="careteq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for CaretEq`
 
 ##### `impl Hash for CaretEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="careteq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for CaretEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="careteq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for CaretEq`
 
-- `fn eq(self: &Self, _other: &CaretEq) -> bool` — [`CaretEq`](#careteq)
+- <span id="careteq-eq"></span>`fn eq(&self, _other: &CaretEq) -> bool` — [`CaretEq`](#careteq)
 
-##### `impl<T> Sealed for CaretEq`
+##### `impl Sealed for CaretEq`
 
-##### `impl<T> Spanned for CaretEq`
+##### `impl Spanned for CaretEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="careteq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for CaretEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="careteq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for CaretEq`
 
@@ -3581,6 +3939,8 @@ struct Colon {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `:`
 
@@ -3595,55 +3955,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Colon`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="colon-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Colon`
 
 ##### `impl Debug for Colon`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="colon-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Colon`
 
-- `fn default() -> Self`
+- <span id="colon-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Colon`
 
-- `type Target = WithSpan`
+- <span id="colon-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="colon-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Colon`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="colon-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Colon`
 
 ##### `impl Hash for Colon`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="colon-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Colon`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="colon-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Colon`
 
-- `fn eq(self: &Self, _other: &Colon) -> bool` — [`Colon`](#colon)
+- <span id="colon-eq"></span>`fn eq(&self, _other: &Colon) -> bool` — [`Colon`](#colon)
 
-##### `impl<P, T> Receiver for Colon`
+##### `impl Receiver for Colon`
 
-- `type Target = T`
+- <span id="colon-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Colon`
 
-##### `impl<T> Spanned for Colon`
+##### `impl Spanned for Colon`
 
-- `fn span(self: &Self) -> Span`
+- <span id="colon-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Colon`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="colon-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Colon`
 
@@ -3654,6 +4014,8 @@ struct Comma {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `,`
 
@@ -3668,55 +4030,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Comma`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="comma-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Comma`
 
 ##### `impl Debug for Comma`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="comma-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Comma`
 
-- `fn default() -> Self`
+- <span id="comma-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Comma`
 
-- `type Target = WithSpan`
+- <span id="comma-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="comma-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Comma`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="comma-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Comma`
 
 ##### `impl Hash for Comma`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="comma-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Comma`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="comma-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Comma`
 
-- `fn eq(self: &Self, _other: &Comma) -> bool` — [`Comma`](#comma)
+- <span id="comma-eq"></span>`fn eq(&self, _other: &Comma) -> bool` — [`Comma`](#comma)
 
-##### `impl<P, T> Receiver for Comma`
+##### `impl Receiver for Comma`
 
-- `type Target = T`
+- <span id="comma-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Comma`
+##### `impl Sealed for Comma`
 
-##### `impl<T> Spanned for Comma`
+##### `impl Spanned for Comma`
 
-- `fn span(self: &Self) -> Span`
+- <span id="comma-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Comma`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="comma-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Comma`
 
@@ -3727,6 +4089,8 @@ struct Dollar {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `$`
 
@@ -3741,55 +4105,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Dollar`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="dollar-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Dollar`
 
 ##### `impl Debug for Dollar`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dollar-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Dollar`
 
-- `fn default() -> Self`
+- <span id="dollar-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Dollar`
 
-- `type Target = WithSpan`
+- <span id="dollar-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="dollar-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Dollar`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="dollar-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Dollar`
 
 ##### `impl Hash for Dollar`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="dollar-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Dollar`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dollar-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Dollar`
 
-- `fn eq(self: &Self, _other: &Dollar) -> bool` — [`Dollar`](#dollar)
+- <span id="dollar-eq"></span>`fn eq(&self, _other: &Dollar) -> bool` — [`Dollar`](#dollar)
 
-##### `impl<P, T> Receiver for Dollar`
+##### `impl Receiver for Dollar`
 
-- `type Target = T`
+- <span id="dollar-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Dollar`
+##### `impl Sealed for Dollar`
 
-##### `impl<T> Spanned for Dollar`
+##### `impl Spanned for Dollar`
 
-- `fn span(self: &Self) -> Span`
+- <span id="dollar-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Dollar`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="dollar-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Dollar`
 
@@ -3800,6 +4164,8 @@ struct Dot {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `.`
 
@@ -3814,55 +4180,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Dot`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="dot-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Dot`
 
 ##### `impl Debug for Dot`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dot-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Dot`
 
-- `fn default() -> Self`
+- <span id="dot-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Dot`
 
-- `type Target = WithSpan`
+- <span id="dot-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="dot-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Dot`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="dot-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Dot`
 
 ##### `impl Hash for Dot`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="dot-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Dot`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dot-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Dot`
 
-- `fn eq(self: &Self, _other: &Dot) -> bool` — [`Dot`](#dot)
+- <span id="dot-eq"></span>`fn eq(&self, _other: &Dot) -> bool` — [`Dot`](#dot)
 
-##### `impl<P, T> Receiver for Dot`
+##### `impl Receiver for Dot`
 
-- `type Target = T`
+- <span id="dot-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Dot`
+##### `impl Sealed for Dot`
 
-##### `impl<T> Spanned for Dot`
+##### `impl Spanned for Dot`
 
-- `fn span(self: &Self) -> Span`
+- <span id="dot-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Dot`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="dot-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Dot`
 
@@ -3873,6 +4239,8 @@ struct DotDot {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `..`
 
@@ -3887,41 +4255,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for DotDot`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="dotdot-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for DotDot`
 
 ##### `impl Debug for DotDot`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dotdot-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DotDot`
 
-- `fn default() -> Self`
+- <span id="dotdot-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for DotDot`
 
 ##### `impl Hash for DotDot`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="dotdot-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for DotDot`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dotdot-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for DotDot`
 
-- `fn eq(self: &Self, _other: &DotDot) -> bool` — [`DotDot`](#dotdot)
+- <span id="dotdot-eq"></span>`fn eq(&self, _other: &DotDot) -> bool` — [`DotDot`](#dotdot)
 
-##### `impl<T> Sealed for DotDot`
+##### `impl Sealed for DotDot`
 
-##### `impl<T> Spanned for DotDot`
+##### `impl Spanned for DotDot`
 
-- `fn span(self: &Self) -> Span`
+- <span id="dotdot-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for DotDot`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="dotdot-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for DotDot`
 
@@ -3932,6 +4300,8 @@ struct DotDotDot {
     pub spans: [Span; 3],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `...`
 
@@ -3946,41 +4316,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for DotDotDot`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="dotdotdot-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for DotDotDot`
 
 ##### `impl Debug for DotDotDot`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dotdotdot-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DotDotDot`
 
-- `fn default() -> Self`
+- <span id="dotdotdot-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for DotDotDot`
 
 ##### `impl Hash for DotDotDot`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="dotdotdot-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for DotDotDot`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dotdotdot-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for DotDotDot`
 
-- `fn eq(self: &Self, _other: &DotDotDot) -> bool` — [`DotDotDot`](#dotdotdot)
+- <span id="dotdotdot-eq"></span>`fn eq(&self, _other: &DotDotDot) -> bool` — [`DotDotDot`](#dotdotdot)
 
-##### `impl<T> Sealed for DotDotDot`
+##### `impl Sealed for DotDotDot`
 
-##### `impl<T> Spanned for DotDotDot`
+##### `impl Spanned for DotDotDot`
 
-- `fn span(self: &Self) -> Span`
+- <span id="dotdotdot-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for DotDotDot`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="dotdotdot-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for DotDotDot`
 
@@ -3991,6 +4361,8 @@ struct DotDotEq {
     pub spans: [Span; 3],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `..=`
 
@@ -4005,41 +4377,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for DotDotEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="dotdoteq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for DotDotEq`
 
 ##### `impl Debug for DotDotEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dotdoteq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DotDotEq`
 
-- `fn default() -> Self`
+- <span id="dotdoteq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for DotDotEq`
 
 ##### `impl Hash for DotDotEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="dotdoteq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for DotDotEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dotdoteq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for DotDotEq`
 
-- `fn eq(self: &Self, _other: &DotDotEq) -> bool` — [`DotDotEq`](#dotdoteq)
+- <span id="dotdoteq-eq"></span>`fn eq(&self, _other: &DotDotEq) -> bool` — [`DotDotEq`](#dotdoteq)
 
-##### `impl<T> Sealed for DotDotEq`
+##### `impl Sealed for DotDotEq`
 
-##### `impl<T> Spanned for DotDotEq`
+##### `impl Spanned for DotDotEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="dotdoteq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for DotDotEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="dotdoteq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for DotDotEq`
 
@@ -4050,6 +4422,8 @@ struct Eq {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `=`
 
@@ -4064,55 +4438,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Eq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="eq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Eq`
 
 ##### `impl Debug for Eq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="eq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Eq`
 
-- `fn default() -> Self`
+- <span id="eq-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Eq`
 
-- `type Target = WithSpan`
+- <span id="eq-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="eq-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Eq`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="eq-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Eq`
 
 ##### `impl Hash for Eq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="eq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Eq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="eq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Eq`
 
-- `fn eq(self: &Self, _other: &Eq) -> bool` — [`Eq`](#eq)
+- <span id="eq-eq"></span>`fn eq(&self, _other: &Eq) -> bool` — [`Eq`](#eq)
 
-##### `impl<P, T> Receiver for Eq`
+##### `impl Receiver for Eq`
 
-- `type Target = T`
+- <span id="eq-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Eq`
+##### `impl Sealed for Eq`
 
-##### `impl<T> Spanned for Eq`
+##### `impl Spanned for Eq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="eq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Eq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="eq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Eq`
 
@@ -4123,6 +4497,8 @@ struct EqEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `==`
 
@@ -4137,41 +4513,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for EqEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="eqeq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for EqEq`
 
 ##### `impl Debug for EqEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="eqeq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for EqEq`
 
-- `fn default() -> Self`
+- <span id="eqeq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for EqEq`
 
 ##### `impl Hash for EqEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="eqeq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for EqEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="eqeq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for EqEq`
 
-- `fn eq(self: &Self, _other: &EqEq) -> bool` — [`EqEq`](#eqeq)
+- <span id="eqeq-eq"></span>`fn eq(&self, _other: &EqEq) -> bool` — [`EqEq`](#eqeq)
 
 ##### `impl Sealed for EqEq`
 
-##### `impl<T> Spanned for EqEq`
+##### `impl Spanned for EqEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="eqeq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for EqEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="eqeq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for EqEq`
 
@@ -4182,6 +4558,8 @@ struct FatArrow {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `=>`
 
@@ -4196,41 +4574,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for FatArrow`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="fatarrow-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for FatArrow`
 
 ##### `impl Debug for FatArrow`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fatarrow-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for FatArrow`
 
-- `fn default() -> Self`
+- <span id="fatarrow-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for FatArrow`
 
 ##### `impl Hash for FatArrow`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="fatarrow-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for FatArrow`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="fatarrow-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for FatArrow`
 
-- `fn eq(self: &Self, _other: &FatArrow) -> bool` — [`FatArrow`](#fatarrow)
+- <span id="fatarrow-eq"></span>`fn eq(&self, _other: &FatArrow) -> bool` — [`FatArrow`](#fatarrow)
 
 ##### `impl Sealed for FatArrow`
 
-##### `impl<T> Spanned for FatArrow`
+##### `impl Spanned for FatArrow`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fatarrow-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for FatArrow`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="fatarrow-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for FatArrow`
 
@@ -4241,6 +4619,8 @@ struct Ge {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>=`
 
@@ -4255,41 +4635,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Ge`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="ge-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Ge`
 
 ##### `impl Debug for Ge`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ge-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Ge`
 
-- `fn default() -> Self`
+- <span id="ge-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Ge`
 
 ##### `impl Hash for Ge`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="ge-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Ge`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="ge-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Ge`
 
-- `fn eq(self: &Self, _other: &Ge) -> bool` — [`Ge`](#ge)
+- <span id="ge-eq"></span>`fn eq(&self, _other: &Ge) -> bool` — [`Ge`](#ge)
 
-##### `impl<T> Sealed for Ge`
+##### `impl Sealed for Ge`
 
-##### `impl<T> Spanned for Ge`
+##### `impl Spanned for Ge`
 
-- `fn span(self: &Self) -> Span`
+- <span id="ge-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Ge`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="ge-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Ge`
 
@@ -4300,6 +4680,8 @@ struct Gt {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>`
 
@@ -4314,55 +4696,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Gt`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="gt-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Gt`
 
 ##### `impl Debug for Gt`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="gt-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Gt`
 
-- `fn default() -> Self`
+- <span id="gt-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Gt`
 
-- `type Target = WithSpan`
+- <span id="gt-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="gt-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Gt`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="gt-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Gt`
 
 ##### `impl Hash for Gt`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="gt-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Gt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="gt-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Gt`
 
-- `fn eq(self: &Self, _other: &Gt) -> bool` — [`Gt`](#gt)
+- <span id="gt-eq"></span>`fn eq(&self, _other: &Gt) -> bool` — [`Gt`](#gt)
 
-##### `impl<P, T> Receiver for Gt`
+##### `impl Receiver for Gt`
 
-- `type Target = T`
+- <span id="gt-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Gt`
 
-##### `impl<T> Spanned for Gt`
+##### `impl Spanned for Gt`
 
-- `fn span(self: &Self) -> Span`
+- <span id="gt-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Gt`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="gt-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Gt`
 
@@ -4373,6 +4755,8 @@ struct LArrow {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<-`
 
@@ -4387,41 +4771,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for LArrow`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="larrow-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for LArrow`
 
 ##### `impl Debug for LArrow`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="larrow-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LArrow`
 
-- `fn default() -> Self`
+- <span id="larrow-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for LArrow`
 
 ##### `impl Hash for LArrow`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="larrow-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for LArrow`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="larrow-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LArrow`
 
-- `fn eq(self: &Self, _other: &LArrow) -> bool` — [`LArrow`](#larrow)
+- <span id="larrow-eq"></span>`fn eq(&self, _other: &LArrow) -> bool` — [`LArrow`](#larrow)
 
-##### `impl<T> Sealed for LArrow`
+##### `impl Sealed for LArrow`
 
-##### `impl<T> Spanned for LArrow`
+##### `impl Spanned for LArrow`
 
-- `fn span(self: &Self) -> Span`
+- <span id="larrow-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for LArrow`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="larrow-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for LArrow`
 
@@ -4432,6 +4816,8 @@ struct Le {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<=`
 
@@ -4446,41 +4832,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Le`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="le-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Le`
 
 ##### `impl Debug for Le`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="le-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Le`
 
-- `fn default() -> Self`
+- <span id="le-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Le`
 
 ##### `impl Hash for Le`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="le-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Le`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="le-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Le`
 
-- `fn eq(self: &Self, _other: &Le) -> bool` — [`Le`](#le)
+- <span id="le-eq"></span>`fn eq(&self, _other: &Le) -> bool` — [`Le`](#le)
 
 ##### `impl Sealed for Le`
 
-##### `impl<T> Spanned for Le`
+##### `impl Spanned for Le`
 
-- `fn span(self: &Self) -> Span`
+- <span id="le-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Le`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="le-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Le`
 
@@ -4491,6 +4877,8 @@ struct Lt {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<`
 
@@ -4505,55 +4893,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Lt`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="lt-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Lt`
 
 ##### `impl Debug for Lt`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lt-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Lt`
 
-- `fn default() -> Self`
+- <span id="lt-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Lt`
 
-- `type Target = WithSpan`
+- <span id="lt-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="lt-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Lt`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="lt-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Lt`
 
 ##### `impl Hash for Lt`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="lt-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Lt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="lt-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Lt`
 
-- `fn eq(self: &Self, _other: &Lt) -> bool` — [`Lt`](#lt)
+- <span id="lt-eq"></span>`fn eq(&self, _other: &Lt) -> bool` — [`Lt`](#lt)
 
-##### `impl<P, T> Receiver for Lt`
+##### `impl Receiver for Lt`
 
-- `type Target = T`
+- <span id="lt-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Lt`
 
-##### `impl<T> Spanned for Lt`
+##### `impl Spanned for Lt`
 
-- `fn span(self: &Self) -> Span`
+- <span id="lt-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Lt`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="lt-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Lt`
 
@@ -4564,6 +4952,8 @@ struct Minus {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `-`
 
@@ -4578,55 +4968,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Minus`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="minus-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Minus`
 
 ##### `impl Debug for Minus`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="minus-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Minus`
 
-- `fn default() -> Self`
+- <span id="minus-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Minus`
 
-- `type Target = WithSpan`
+- <span id="minus-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="minus-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Minus`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="minus-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Minus`
 
 ##### `impl Hash for Minus`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="minus-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Minus`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="minus-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Minus`
 
-- `fn eq(self: &Self, _other: &Minus) -> bool` — [`Minus`](#minus)
+- <span id="minus-eq"></span>`fn eq(&self, _other: &Minus) -> bool` — [`Minus`](#minus)
 
-##### `impl<P, T> Receiver for Minus`
+##### `impl Receiver for Minus`
 
-- `type Target = T`
+- <span id="minus-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Minus`
+##### `impl Sealed for Minus`
 
-##### `impl<T> Spanned for Minus`
+##### `impl Spanned for Minus`
 
-- `fn span(self: &Self) -> Span`
+- <span id="minus-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Minus`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="minus-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Minus`
 
@@ -4637,6 +5027,8 @@ struct MinusEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `-=`
 
@@ -4651,41 +5043,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for MinusEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="minuseq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for MinusEq`
 
 ##### `impl Debug for MinusEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="minuseq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MinusEq`
 
-- `fn default() -> Self`
+- <span id="minuseq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for MinusEq`
 
 ##### `impl Hash for MinusEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="minuseq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for MinusEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="minuseq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for MinusEq`
 
-- `fn eq(self: &Self, _other: &MinusEq) -> bool` — [`MinusEq`](#minuseq)
+- <span id="minuseq-eq"></span>`fn eq(&self, _other: &MinusEq) -> bool` — [`MinusEq`](#minuseq)
 
-##### `impl<T> Sealed for MinusEq`
+##### `impl Sealed for MinusEq`
 
-##### `impl<T> Spanned for MinusEq`
+##### `impl Spanned for MinusEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="minuseq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for MinusEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="minuseq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for MinusEq`
 
@@ -4696,6 +5088,8 @@ struct Ne {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `!=`
 
@@ -4710,41 +5104,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Ne`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="ne-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Ne`
 
 ##### `impl Debug for Ne`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ne-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Ne`
 
-- `fn default() -> Self`
+- <span id="ne-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Ne`
 
 ##### `impl Hash for Ne`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="ne-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Ne`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="ne-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Ne`
 
-- `fn eq(self: &Self, _other: &Ne) -> bool` — [`Ne`](#ne)
+- <span id="ne-eq"></span>`fn eq(&self, _other: &Ne) -> bool` — [`Ne`](#ne)
 
-##### `impl<T> Sealed for Ne`
+##### `impl Sealed for Ne`
 
-##### `impl<T> Spanned for Ne`
+##### `impl Spanned for Ne`
 
-- `fn span(self: &Self) -> Span`
+- <span id="ne-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Ne`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="ne-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Ne`
 
@@ -4755,6 +5149,8 @@ struct Not {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `!`
 
@@ -4769,55 +5165,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Not`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="not-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Not`
 
 ##### `impl Debug for Not`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="not-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Not`
 
-- `fn default() -> Self`
+- <span id="not-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Not`
 
-- `type Target = WithSpan`
+- <span id="not-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="not-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Not`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="not-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Not`
 
 ##### `impl Hash for Not`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="not-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Not`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="not-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Not`
 
-- `fn eq(self: &Self, _other: &Not) -> bool` — [`Not`](#not)
+- <span id="not-eq"></span>`fn eq(&self, _other: &Not) -> bool` — [`Not`](#not)
 
-##### `impl<P, T> Receiver for Not`
+##### `impl Receiver for Not`
 
-- `type Target = T`
+- <span id="not-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Not`
+##### `impl Sealed for Not`
 
-##### `impl<T> Spanned for Not`
+##### `impl Spanned for Not`
 
-- `fn span(self: &Self) -> Span`
+- <span id="not-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Not`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="not-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Not`
 
@@ -4828,6 +5224,8 @@ struct Or {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `|`
 
@@ -4842,55 +5240,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Or`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="or-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Or`
 
 ##### `impl Debug for Or`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="or-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Or`
 
-- `fn default() -> Self`
+- <span id="or-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Or`
 
-- `type Target = WithSpan`
+- <span id="or-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="or-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Or`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="or-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Or`
 
 ##### `impl Hash for Or`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="or-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Or`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="or-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Or`
 
-- `fn eq(self: &Self, _other: &Or) -> bool` — [`Or`](#or)
+- <span id="or-eq"></span>`fn eq(&self, _other: &Or) -> bool` — [`Or`](#or)
 
-##### `impl<P, T> Receiver for Or`
+##### `impl Receiver for Or`
 
-- `type Target = T`
+- <span id="or-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Or`
+##### `impl Sealed for Or`
 
-##### `impl<T> Spanned for Or`
+##### `impl Spanned for Or`
 
-- `fn span(self: &Self) -> Span`
+- <span id="or-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Or`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="or-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Or`
 
@@ -4901,6 +5299,8 @@ struct OrEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `|=`
 
@@ -4915,41 +5315,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for OrEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="oreq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for OrEq`
 
 ##### `impl Debug for OrEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="oreq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for OrEq`
 
-- `fn default() -> Self`
+- <span id="oreq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for OrEq`
 
 ##### `impl Hash for OrEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="oreq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for OrEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="oreq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for OrEq`
 
-- `fn eq(self: &Self, _other: &OrEq) -> bool` — [`OrEq`](#oreq)
+- <span id="oreq-eq"></span>`fn eq(&self, _other: &OrEq) -> bool` — [`OrEq`](#oreq)
 
 ##### `impl Sealed for OrEq`
 
-##### `impl<T> Spanned for OrEq`
+##### `impl Spanned for OrEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="oreq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for OrEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="oreq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for OrEq`
 
@@ -4960,6 +5360,8 @@ struct OrOr {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `||`
 
@@ -4974,41 +5376,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for OrOr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="oror-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for OrOr`
 
 ##### `impl Debug for OrOr`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="oror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for OrOr`
 
-- `fn default() -> Self`
+- <span id="oror-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for OrOr`
 
 ##### `impl Hash for OrOr`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="oror-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for OrOr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="oror-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for OrOr`
 
-- `fn eq(self: &Self, _other: &OrOr) -> bool` — [`OrOr`](#oror)
+- <span id="oror-eq"></span>`fn eq(&self, _other: &OrOr) -> bool` — [`OrOr`](#oror)
 
-##### `impl<T> Sealed for OrOr`
+##### `impl Sealed for OrOr`
 
-##### `impl<T> Spanned for OrOr`
+##### `impl Spanned for OrOr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="oror-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for OrOr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="oror-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for OrOr`
 
@@ -5019,6 +5421,8 @@ struct PathSep {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `::`
 
@@ -5033,41 +5437,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for PathSep`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="pathsep-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for PathSep`
 
 ##### `impl Debug for PathSep`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pathsep-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PathSep`
 
-- `fn default() -> Self`
+- <span id="pathsep-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for PathSep`
 
 ##### `impl Hash for PathSep`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="pathsep-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for PathSep`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="pathsep-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for PathSep`
 
-- `fn eq(self: &Self, _other: &PathSep) -> bool` — [`PathSep`](#pathsep)
+- <span id="pathsep-eq"></span>`fn eq(&self, _other: &PathSep) -> bool` — [`PathSep`](#pathsep)
 
 ##### `impl Sealed for PathSep`
 
-##### `impl<T> Spanned for PathSep`
+##### `impl Spanned for PathSep`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pathsep-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for PathSep`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="pathsep-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for PathSep`
 
@@ -5078,6 +5482,8 @@ struct Percent {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `%`
 
@@ -5092,55 +5498,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Percent`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="percent-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Percent`
 
 ##### `impl Debug for Percent`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="percent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Percent`
 
-- `fn default() -> Self`
+- <span id="percent-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Percent`
 
-- `type Target = WithSpan`
+- <span id="percent-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="percent-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Percent`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="percent-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Percent`
 
 ##### `impl Hash for Percent`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="percent-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Percent`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="percent-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Percent`
 
-- `fn eq(self: &Self, _other: &Percent) -> bool` — [`Percent`](#percent)
+- <span id="percent-eq"></span>`fn eq(&self, _other: &Percent) -> bool` — [`Percent`](#percent)
 
-##### `impl<P, T> Receiver for Percent`
+##### `impl Receiver for Percent`
 
-- `type Target = T`
+- <span id="percent-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Percent`
+##### `impl Sealed for Percent`
 
-##### `impl<T> Spanned for Percent`
+##### `impl Spanned for Percent`
 
-- `fn span(self: &Self) -> Span`
+- <span id="percent-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Percent`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="percent-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Percent`
 
@@ -5151,6 +5557,8 @@ struct PercentEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `%=`
 
@@ -5165,41 +5573,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for PercentEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="percenteq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for PercentEq`
 
 ##### `impl Debug for PercentEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="percenteq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PercentEq`
 
-- `fn default() -> Self`
+- <span id="percenteq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for PercentEq`
 
 ##### `impl Hash for PercentEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="percenteq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for PercentEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="percenteq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for PercentEq`
 
-- `fn eq(self: &Self, _other: &PercentEq) -> bool` — [`PercentEq`](#percenteq)
+- <span id="percenteq-eq"></span>`fn eq(&self, _other: &PercentEq) -> bool` — [`PercentEq`](#percenteq)
 
-##### `impl<T> Sealed for PercentEq`
+##### `impl Sealed for PercentEq`
 
-##### `impl<T> Spanned for PercentEq`
+##### `impl Spanned for PercentEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="percenteq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for PercentEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="percenteq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for PercentEq`
 
@@ -5210,6 +5618,8 @@ struct Plus {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `+`
 
@@ -5224,55 +5634,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Plus`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="plus-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Plus`
 
 ##### `impl Debug for Plus`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="plus-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Plus`
 
-- `fn default() -> Self`
+- <span id="plus-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Plus`
 
-- `type Target = WithSpan`
+- <span id="plus-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="plus-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Plus`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="plus-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Plus`
 
 ##### `impl Hash for Plus`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="plus-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Plus`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="plus-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Plus`
 
-- `fn eq(self: &Self, _other: &Plus) -> bool` — [`Plus`](#plus)
+- <span id="plus-eq"></span>`fn eq(&self, _other: &Plus) -> bool` — [`Plus`](#plus)
 
-##### `impl<P, T> Receiver for Plus`
+##### `impl Receiver for Plus`
 
-- `type Target = T`
+- <span id="plus-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Plus`
 
-##### `impl<T> Spanned for Plus`
+##### `impl Spanned for Plus`
 
-- `fn span(self: &Self) -> Span`
+- <span id="plus-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Plus`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="plus-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Plus`
 
@@ -5283,6 +5693,8 @@ struct PlusEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `+=`
 
@@ -5297,41 +5709,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for PlusEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="pluseq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for PlusEq`
 
 ##### `impl Debug for PlusEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pluseq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PlusEq`
 
-- `fn default() -> Self`
+- <span id="pluseq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for PlusEq`
 
 ##### `impl Hash for PlusEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="pluseq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for PlusEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="pluseq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for PlusEq`
 
-- `fn eq(self: &Self, _other: &PlusEq) -> bool` — [`PlusEq`](#pluseq)
+- <span id="pluseq-eq"></span>`fn eq(&self, _other: &PlusEq) -> bool` — [`PlusEq`](#pluseq)
 
 ##### `impl Sealed for PlusEq`
 
-##### `impl<T> Spanned for PlusEq`
+##### `impl Spanned for PlusEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pluseq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for PlusEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="pluseq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for PlusEq`
 
@@ -5342,6 +5754,8 @@ struct Pound {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `#`
 
@@ -5356,55 +5770,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Pound`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="pound-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Pound`
 
 ##### `impl Debug for Pound`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pound-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Pound`
 
-- `fn default() -> Self`
+- <span id="pound-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Pound`
 
-- `type Target = WithSpan`
+- <span id="pound-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="pound-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Pound`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="pound-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Pound`
 
 ##### `impl Hash for Pound`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="pound-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Pound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="pound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Pound`
 
-- `fn eq(self: &Self, _other: &Pound) -> bool` — [`Pound`](#pound)
+- <span id="pound-eq"></span>`fn eq(&self, _other: &Pound) -> bool` — [`Pound`](#pound)
 
-##### `impl<P, T> Receiver for Pound`
+##### `impl Receiver for Pound`
 
-- `type Target = T`
+- <span id="pound-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Pound`
+##### `impl Sealed for Pound`
 
-##### `impl<T> Spanned for Pound`
+##### `impl Spanned for Pound`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pound-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Pound`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="pound-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Pound`
 
@@ -5415,6 +5829,8 @@ struct Question {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `?`
 
@@ -5429,55 +5845,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Question`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="question-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Question`
 
 ##### `impl Debug for Question`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="question-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Question`
 
-- `fn default() -> Self`
+- <span id="question-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Question`
 
-- `type Target = WithSpan`
+- <span id="question-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="question-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Question`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="question-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Question`
 
 ##### `impl Hash for Question`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="question-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Question`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="question-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Question`
 
-- `fn eq(self: &Self, _other: &Question) -> bool` — [`Question`](#question)
+- <span id="question-eq"></span>`fn eq(&self, _other: &Question) -> bool` — [`Question`](#question)
 
-##### `impl<P, T> Receiver for Question`
+##### `impl Receiver for Question`
 
-- `type Target = T`
+- <span id="question-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Question`
 
-##### `impl<T> Spanned for Question`
+##### `impl Spanned for Question`
 
-- `fn span(self: &Self) -> Span`
+- <span id="question-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Question`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="question-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Question`
 
@@ -5488,6 +5904,8 @@ struct RArrow {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `->`
 
@@ -5502,41 +5920,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for RArrow`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="rarrow-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for RArrow`
 
 ##### `impl Debug for RArrow`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rarrow-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RArrow`
 
-- `fn default() -> Self`
+- <span id="rarrow-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for RArrow`
 
 ##### `impl Hash for RArrow`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="rarrow-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for RArrow`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="rarrow-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for RArrow`
 
-- `fn eq(self: &Self, _other: &RArrow) -> bool` — [`RArrow`](#rarrow)
+- <span id="rarrow-eq"></span>`fn eq(&self, _other: &RArrow) -> bool` — [`RArrow`](#rarrow)
 
-##### `impl<T> Sealed for RArrow`
+##### `impl Sealed for RArrow`
 
-##### `impl<T> Spanned for RArrow`
+##### `impl Spanned for RArrow`
 
-- `fn span(self: &Self) -> Span`
+- <span id="rarrow-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for RArrow`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="rarrow-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for RArrow`
 
@@ -5547,6 +5965,8 @@ struct Semi {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `;`
 
@@ -5561,55 +5981,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Semi`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="semi-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Semi`
 
 ##### `impl Debug for Semi`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="semi-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Semi`
 
-- `fn default() -> Self`
+- <span id="semi-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Semi`
 
-- `type Target = WithSpan`
+- <span id="semi-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="semi-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Semi`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="semi-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Semi`
 
 ##### `impl Hash for Semi`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="semi-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Semi`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="semi-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Semi`
 
-- `fn eq(self: &Self, _other: &Semi) -> bool` — [`Semi`](#semi)
+- <span id="semi-eq"></span>`fn eq(&self, _other: &Semi) -> bool` — [`Semi`](#semi)
 
-##### `impl<P, T> Receiver for Semi`
+##### `impl Receiver for Semi`
 
-- `type Target = T`
+- <span id="semi-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Semi`
 
-##### `impl<T> Spanned for Semi`
+##### `impl Spanned for Semi`
 
-- `fn span(self: &Self) -> Span`
+- <span id="semi-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Semi`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="semi-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Semi`
 
@@ -5620,6 +6040,8 @@ struct Shl {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<<`
 
@@ -5634,41 +6056,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Shl`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="shl-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Shl`
 
 ##### `impl Debug for Shl`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Shl`
 
-- `fn default() -> Self`
+- <span id="shl-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Shl`
 
 ##### `impl Hash for Shl`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="shl-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Shl`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="shl-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Shl`
 
-- `fn eq(self: &Self, _other: &Shl) -> bool` — [`Shl`](#shl)
+- <span id="shl-eq"></span>`fn eq(&self, _other: &Shl) -> bool` — [`Shl`](#shl)
 
 ##### `impl Sealed for Shl`
 
-##### `impl<T> Spanned for Shl`
+##### `impl Spanned for Shl`
 
-- `fn span(self: &Self) -> Span`
+- <span id="shl-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Shl`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="shl-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Shl`
 
@@ -5679,6 +6101,8 @@ struct ShlEq {
     pub spans: [Span; 3],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<<=`
 
@@ -5693,41 +6117,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for ShlEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="shleq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for ShlEq`
 
 ##### `impl Debug for ShlEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shleq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ShlEq`
 
-- `fn default() -> Self`
+- <span id="shleq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for ShlEq`
 
 ##### `impl Hash for ShlEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="shleq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for ShlEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="shleq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for ShlEq`
 
-- `fn eq(self: &Self, _other: &ShlEq) -> bool` — [`ShlEq`](#shleq)
+- <span id="shleq-eq"></span>`fn eq(&self, _other: &ShlEq) -> bool` — [`ShlEq`](#shleq)
 
 ##### `impl Sealed for ShlEq`
 
-##### `impl<T> Spanned for ShlEq`
+##### `impl Spanned for ShlEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="shleq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for ShlEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="shleq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for ShlEq`
 
@@ -5738,6 +6162,8 @@ struct Shr {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>>`
 
@@ -5752,41 +6178,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Shr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="shr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Shr`
 
 ##### `impl Debug for Shr`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Shr`
 
-- `fn default() -> Self`
+- <span id="shr-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Shr`
 
 ##### `impl Hash for Shr`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="shr-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Shr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="shr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Shr`
 
-- `fn eq(self: &Self, _other: &Shr) -> bool` — [`Shr`](#shr)
+- <span id="shr-eq"></span>`fn eq(&self, _other: &Shr) -> bool` — [`Shr`](#shr)
 
-##### `impl<T> Sealed for Shr`
+##### `impl Sealed for Shr`
 
-##### `impl<T> Spanned for Shr`
+##### `impl Spanned for Shr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="shr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Shr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="shr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Shr`
 
@@ -5797,6 +6223,8 @@ struct ShrEq {
     pub spans: [Span; 3],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>>=`
 
@@ -5811,41 +6239,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for ShrEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="shreq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for ShrEq`
 
 ##### `impl Debug for ShrEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shreq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ShrEq`
 
-- `fn default() -> Self`
+- <span id="shreq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for ShrEq`
 
 ##### `impl Hash for ShrEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="shreq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for ShrEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="shreq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for ShrEq`
 
-- `fn eq(self: &Self, _other: &ShrEq) -> bool` — [`ShrEq`](#shreq)
+- <span id="shreq-eq"></span>`fn eq(&self, _other: &ShrEq) -> bool` — [`ShrEq`](#shreq)
 
 ##### `impl Sealed for ShrEq`
 
-##### `impl<T> Spanned for ShrEq`
+##### `impl Spanned for ShrEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="shreq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for ShrEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="shreq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for ShrEq`
 
@@ -5856,6 +6284,8 @@ struct Slash {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `/`
 
@@ -5870,55 +6300,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Slash`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="slash-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Slash`
 
 ##### `impl Debug for Slash`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="slash-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Slash`
 
-- `fn default() -> Self`
+- <span id="slash-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Slash`
 
-- `type Target = WithSpan`
+- <span id="slash-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="slash-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Slash`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="slash-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Slash`
 
 ##### `impl Hash for Slash`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="slash-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Slash`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="slash-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Slash`
 
-- `fn eq(self: &Self, _other: &Slash) -> bool` — [`Slash`](#slash)
+- <span id="slash-eq"></span>`fn eq(&self, _other: &Slash) -> bool` — [`Slash`](#slash)
 
-##### `impl<P, T> Receiver for Slash`
+##### `impl Receiver for Slash`
 
-- `type Target = T`
+- <span id="slash-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Slash`
 
-##### `impl<T> Spanned for Slash`
+##### `impl Spanned for Slash`
 
-- `fn span(self: &Self) -> Span`
+- <span id="slash-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Slash`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="slash-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Slash`
 
@@ -5929,6 +6359,8 @@ struct SlashEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `/=`
 
@@ -5943,41 +6375,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for SlashEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="slasheq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for SlashEq`
 
 ##### `impl Debug for SlashEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="slasheq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SlashEq`
 
-- `fn default() -> Self`
+- <span id="slasheq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for SlashEq`
 
 ##### `impl Hash for SlashEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="slasheq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for SlashEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="slasheq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for SlashEq`
 
-- `fn eq(self: &Self, _other: &SlashEq) -> bool` — [`SlashEq`](#slasheq)
+- <span id="slasheq-eq"></span>`fn eq(&self, _other: &SlashEq) -> bool` — [`SlashEq`](#slasheq)
 
 ##### `impl Sealed for SlashEq`
 
-##### `impl<T> Spanned for SlashEq`
+##### `impl Spanned for SlashEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="slasheq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for SlashEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="slasheq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for SlashEq`
 
@@ -5988,6 +6420,8 @@ struct Star {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `*`
 
@@ -6002,55 +6436,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Star`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="star-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Star`
 
 ##### `impl Debug for Star`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="star-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Star`
 
-- `fn default() -> Self`
+- <span id="star-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Star`
 
-- `type Target = WithSpan`
+- <span id="star-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="star-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Star`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="star-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Star`
 
 ##### `impl Hash for Star`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="star-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Star`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="star-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Star`
 
-- `fn eq(self: &Self, _other: &Star) -> bool` — [`Star`](#star)
+- <span id="star-eq"></span>`fn eq(&self, _other: &Star) -> bool` — [`Star`](#star)
 
-##### `impl<P, T> Receiver for Star`
+##### `impl Receiver for Star`
 
-- `type Target = T`
+- <span id="star-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Star`
+##### `impl Sealed for Star`
 
-##### `impl<T> Spanned for Star`
+##### `impl Spanned for Star`
 
-- `fn span(self: &Self) -> Span`
+- <span id="star-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Star`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="star-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Star`
 
@@ -6061,6 +6495,8 @@ struct StarEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `*=`
 
@@ -6075,41 +6511,41 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for StarEq`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="stareq-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for StarEq`
 
 ##### `impl Debug for StarEq`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stareq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StarEq`
 
-- `fn default() -> Self`
+- <span id="stareq-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for StarEq`
 
 ##### `impl Hash for StarEq`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="stareq-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for StarEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="stareq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for StarEq`
 
-- `fn eq(self: &Self, _other: &StarEq) -> bool` — [`StarEq`](#stareq)
+- <span id="stareq-eq"></span>`fn eq(&self, _other: &StarEq) -> bool` — [`StarEq`](#stareq)
 
-##### `impl<T> Sealed for StarEq`
+##### `impl Sealed for StarEq`
 
-##### `impl<T> Spanned for StarEq`
+##### `impl Spanned for StarEq`
 
-- `fn span(self: &Self) -> Span`
+- <span id="stareq-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for StarEq`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="stareq-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for StarEq`
 
@@ -6120,6 +6556,8 @@ struct Tilde {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `~`
 
@@ -6134,55 +6572,55 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Clone for Tilde`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="tilde-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Tilde`
 
 ##### `impl Debug for Tilde`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tilde-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Tilde`
 
-- `fn default() -> Self`
+- <span id="tilde-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for Tilde`
 
-- `type Target = WithSpan`
+- <span id="tilde-type-target"></span>`type Target = WithSpan`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="tilde-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for Tilde`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="tilde-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Eq for Tilde`
 
 ##### `impl Hash for Tilde`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="tilde-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Tilde`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="tilde-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Tilde`
 
-- `fn eq(self: &Self, _other: &Tilde) -> bool` — [`Tilde`](#tilde)
+- <span id="tilde-eq"></span>`fn eq(&self, _other: &Tilde) -> bool` — [`Tilde`](#tilde)
 
-##### `impl<P, T> Receiver for Tilde`
+##### `impl Receiver for Tilde`
 
-- `type Target = T`
+- <span id="tilde-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Tilde`
+##### `impl Sealed for Tilde`
 
-##### `impl<T> Spanned for Tilde`
+##### `impl Spanned for Tilde`
 
-- `fn span(self: &Self) -> Span`
+- <span id="tilde-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Tilde`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="tilde-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for Tilde`
 
@@ -6194,37 +6632,39 @@ struct Brace {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L797-L801)*
+
 `{`&hellip;`}`
 
 #### Implementations
 
-- `fn surround<F>(self: &Self, tokens: &mut TokenStream, f: F)`
+- <span id="brace-surround"></span>`fn surround<F>(&self, tokens: &mut TokenStream, f: F)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Brace`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="brace-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Brace`
 
 ##### `impl Debug for Brace`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="brace-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Brace`
 
-- `fn default() -> Self`
+- <span id="brace-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Brace`
 
 ##### `impl Hash for Brace`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="brace-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl PartialEq for Brace`
 
-- `fn eq(self: &Self, _other: &Brace) -> bool` — [`Brace`](#brace)
+- <span id="brace-eq"></span>`fn eq(&self, _other: &Brace) -> bool` — [`Brace`](#brace)
 
 ##### `impl Sealed for Brace`
 
@@ -6238,37 +6678,39 @@ struct Bracket {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L797-L801)*
+
 ``&hellip;``
 
 #### Implementations
 
-- `fn surround<F>(self: &Self, tokens: &mut TokenStream, f: F)`
+- <span id="bracket-surround"></span>`fn surround<F>(&self, tokens: &mut TokenStream, f: F)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Bracket`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="bracket-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Bracket`
 
 ##### `impl Debug for Bracket`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bracket-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Bracket`
 
-- `fn default() -> Self`
+- <span id="bracket-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Bracket`
 
 ##### `impl Hash for Bracket`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="bracket-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl PartialEq for Bracket`
 
-- `fn eq(self: &Self, _other: &Bracket) -> bool` — [`Bracket`](#bracket)
+- <span id="bracket-eq"></span>`fn eq(&self, _other: &Bracket) -> bool` — [`Bracket`](#bracket)
 
 ##### `impl Sealed for Bracket`
 
@@ -6282,37 +6724,39 @@ struct Paren {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L797-L801)*
+
 `(`&hellip;`)`
 
 #### Implementations
 
-- `fn surround<F>(self: &Self, tokens: &mut TokenStream, f: F)`
+- <span id="paren-surround"></span>`fn surround<F>(&self, tokens: &mut TokenStream, f: F)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Paren`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="paren-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Paren`
 
 ##### `impl Debug for Paren`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="paren-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Paren`
 
-- `fn default() -> Self`
+- <span id="paren-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Paren`
 
 ##### `impl Hash for Paren`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="paren-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl PartialEq for Paren`
 
-- `fn eq(self: &Self, _other: &Paren) -> bool` — [`Paren`](#paren)
+- <span id="paren-eq"></span>`fn eq(&self, _other: &Paren) -> bool` — [`Paren`](#paren)
 
 ##### `impl Sealed for Paren`
 
@@ -6326,21 +6770,158 @@ struct Paren {
 trait Token: private::Sealed { ... }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:125-133`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L125-L133)*
+
 Marker trait for types that represent single tokens.
 
 This trait is sealed and cannot be implemented for types outside of Syn.
+
+#### Implementors
+
+- [`Abstract`](#abstract)
+- [`AndAnd`](#andand)
+- [`AndEq`](#andeq)
+- [`And`](#and)
+- [`As`](#as)
+- [`Async`](#async)
+- [`At`](#at)
+- [`Auto`](#auto)
+- [`Await`](#await)
+- [`Become`](#become)
+- [`Box`](#box)
+- [`Brace`](#brace)
+- [`Bracket`](#bracket)
+- [`Break`](#break)
+- [`CaretEq`](#careteq)
+- [`Caret`](#caret)
+- [`Colon`](#colon)
+- [`Comma`](#comma)
+- [`Const`](#const)
+- [`Continue`](#continue)
+- [`Crate`](#crate)
+- [`Default`](#default)
+- [`Do`](#do)
+- [`Dollar`](#dollar)
+- [`DotDotDot`](#dotdotdot)
+- [`DotDotEq`](#dotdoteq)
+- [`DotDot`](#dotdot)
+- [`Dot`](#dot)
+- [`Dyn`](#dyn)
+- [`Else`](#else)
+- [`Enum`](#enum)
+- [`EqEq`](#eqeq)
+- [`Eq`](#eq)
+- [`Extern`](#extern)
+- [`FatArrow`](#fatarrow)
+- [`Final`](#final)
+- [`Fn`](#fn)
+- [`For`](#for)
+- [`Ge`](#ge)
+- [`Group`](#group)
+- [`Gt`](#gt)
+- [`Ident`](../ident/index.md)
+- [`If`](#if)
+- [`Impl`](#impl)
+- [`In`](#in)
+- [`LArrow`](#larrow)
+- [`Le`](#le)
+- [`Let`](#let)
+- [`Lifetime`](../lifetime/index.md)
+- [`LitBool`](../lit/index.md)
+- [`LitByteStr`](../lit/index.md)
+- [`LitByte`](../lit/index.md)
+- [`LitCStr`](../lit/index.md)
+- [`LitChar`](../lit/index.md)
+- [`LitFloat`](../lit/index.md)
+- [`LitInt`](../lit/index.md)
+- [`LitStr`](../lit/index.md)
+- [`Lit`](../lit/index.md)
+- [`Loop`](#loop)
+- [`Lt`](#lt)
+- [`Macro`](#macro)
+- [`Match`](#match)
+- [`MinusEq`](#minuseq)
+- [`Minus`](#minus)
+- [`Mod`](#mod)
+- [`Move`](#move)
+- [`Mut`](#mut)
+- [`Ne`](#ne)
+- [`Not`](#not)
+- [`OrEq`](#oreq)
+- [`OrOr`](#oror)
+- [`Or`](#or)
+- [`Override`](#override)
+- [`Paren`](#paren)
+- [`PathSep`](#pathsep)
+- [`PercentEq`](#percenteq)
+- [`Percent`](#percent)
+- [`PlusEq`](#pluseq)
+- [`Plus`](#plus)
+- [`Pound`](#pound)
+- [`Priv`](#priv)
+- [`Pub`](#pub)
+- [`Question`](#question)
+- [`RArrow`](#rarrow)
+- [`Raw`](#raw)
+- [`Ref`](#ref)
+- [`Return`](#return)
+- [`SelfType`](#selftype)
+- [`SelfValue`](#selfvalue)
+- [`Semi`](#semi)
+- [`ShlEq`](#shleq)
+- [`Shl`](#shl)
+- [`ShrEq`](#shreq)
+- [`Shr`](#shr)
+- [`SlashEq`](#slasheq)
+- [`Slash`](#slash)
+- [`StarEq`](#stareq)
+- [`Star`](#star)
+- [`Static`](#static)
+- [`Struct`](#struct)
+- [`Super`](#super)
+- [`Tilde`](#tilde)
+- [`Trait`](#trait)
+- [`Try`](#try)
+- [`Type`](#type)
+- [`Typeof`](#typeof)
+- [`Underscore`](#underscore)
+- [`Union`](#union)
+- [`Unsafe`](#unsafe)
+- [`Unsized`](#unsized)
+- [`Use`](#use)
+- [`Virtual`](#virtual)
+- [`Where`](#where)
+- [`While`](#while)
+- [`Yield`](#yield)
+- `T`
+- `proc_macro2::Group`
+- `proc_macro2::Literal`
+- `proc_macro2::Punct`
+- `proc_macro2::TokenTree`
 
 ## Macros
 
 ### `impl_low_level_token!`
 
+*Defined in [`syn-2.0.111/src/token.rs:163-179`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L163-L179)*
+
 ### `define_keywords!`
+
+*Defined in [`syn-2.0.111/src/token.rs:201-301`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L201-L301)*
 
 ### `impl_deref_if_len_is_1!`
 
+*Defined in [`syn-2.0.111/src/token.rs:303-321`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L303-L321)*
+
 ### `define_punctuation_structs!`
+
+*Defined in [`syn-2.0.111/src/token.rs:323-398`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L323-L398)*
 
 ### `define_punctuation!`
 
+*Defined in [`syn-2.0.111/src/token.rs:400-440`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L400-L440)*
+
 ### `define_delimiters!`
+
+*Defined in [`syn-2.0.111/src/token.rs:442-519`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L442-L519)*
 

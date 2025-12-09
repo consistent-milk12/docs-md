@@ -27,14 +27,70 @@ The crate has a CLI wrapper around the library which provides some of
 the functionality of the `addr2line` command line tool distributed with
 [GNU binutils](https://sourceware.org/binutils/docs/binutils/addr2line.html).
 
+## Contents
+
+- [Modules](#modules)
+  - [`maybe_small`](#maybe_small)
+  - [`frame`](#frame)
+  - [`function`](#function)
+  - [`line`](#line)
+  - [`lookup`](#lookup)
+  - [`unit`](#unit)
+- [Structs](#structs)
+  - [`Frame`](#frame)
+  - [`FrameIter`](#frameiter)
+  - [`FunctionName`](#functionname)
+  - [`Location`](#location)
+  - [`SplitDwarfLoad`](#splitdwarfload)
+  - [`LocationRangeIter`](#locationrangeiter)
+  - [`Context`](#context)
+  - [`RangeAttributes`](#rangeattributes)
+- [Enums](#enums)
+  - [`LookupResult`](#lookupresult)
+  - [`DebugFile`](#debugfile)
+- [Traits](#traits)
+  - [`LookupContinuation`](#lookupcontinuation)
+- [Functions](#functions)
+  - [`demangle`](#demangle)
+  - [`demangle_auto`](#demangle_auto)
+- [Type Aliases](#type-aliases)
+  - [`Error`](#error)
+  - [`LazyResult`](#lazyresult)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`maybe_small`](#maybe_small) | mod |  |
+| [`frame`](#frame) | mod |  |
+| [`function`](#function) | mod |  |
+| [`line`](#line) | mod |  |
+| [`lookup`](#lookup) | mod |  |
+| [`unit`](#unit) | mod |  |
+| [`Frame`](#frame) | struct |  |
+| [`FrameIter`](#frameiter) | struct |  |
+| [`FunctionName`](#functionname) | struct |  |
+| [`Location`](#location) | struct |  |
+| [`SplitDwarfLoad`](#splitdwarfload) | struct |  |
+| [`LocationRangeIter`](#locationrangeiter) | struct |  |
+| [`Context`](#context) | struct | The state necessary to perform address to line translation. |
+| [`RangeAttributes`](#rangeattributes) | struct |  |
+| [`LookupResult`](#lookupresult) | enum |  |
+| [`DebugFile`](#debugfile) | enum |  |
+| [`LookupContinuation`](#lookupcontinuation) | trait |  |
+| [`demangle`](#demangle) | fn |  |
+| [`demangle_auto`](#demangle_auto) | fn |  |
+| [`Error`](#error) | type |  |
+| [`LazyResult`](#lazyresult) | type |  |
+
 ## Modules
 
-- [`maybe_small`](maybe_small/index.md) - 
-- [`frame`](frame/index.md) - 
-- [`function`](function/index.md) - 
-- [`line`](line/index.md) - 
-- [`lookup`](lookup/index.md) - 
-- [`unit`](unit/index.md) - 
+- [`maybe_small`](maybe_small/index.md)
+- [`frame`](frame/index.md)
+- [`function`](function/index.md)
+- [`line`](line/index.md)
+- [`lookup`](lookup/index.md)
+- [`unit`](unit/index.md)
 
 ## Structs
 
@@ -47,6 +103,8 @@ struct Frame<'ctx, R: gimli::Reader> {
     pub location: Option<Location<'ctx>>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:20-27`](../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L20-L27)*
 
 A function frame.
 
@@ -72,17 +130,19 @@ where
     R: gimli::Reader;
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:30-32`](../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L30-L32)*
+
 An iterator over function frames.
 
 #### Implementations
 
-- `fn new_empty() -> Self`
+- <span id="frameiter-new-empty"></span>`fn new_empty() -> Self`
 
-- `fn new_location(location: Location<'ctx>) -> Self` — [`Location`](#location)
+- <span id="frameiter-new-location"></span>`fn new_location(location: Location<'ctx>) -> Self` — [`Location`](frame/index.md)
 
-- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](unit/index.md), [`Function`](function/index.md), [`InlinedFunction`](function/index.md), [`Location`](#location)
+- <span id="frameiter-new-frames"></span>`fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](unit/index.md), [`Function`](function/index.md), [`InlinedFunction`](function/index.md), [`Location`](frame/index.md)
 
-- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](#frame)
+- <span id="frameiter-next"></span>`fn next(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](frame/index.md)
 
 ### `FunctionName<R: gimli::Reader>`
 
@@ -92,6 +152,8 @@ struct FunctionName<R: gimli::Reader> {
     pub language: Option<gimli::DwLang>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:163-168`](../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L163-L168)*
 
 A function name.
 
@@ -107,9 +169,9 @@ A function name.
 
 #### Implementations
 
-- `fn raw_name(self: &Self) -> Result<Cow<'_, str>, gimli::Error>`
+- <span id="functionname-raw-name"></span>`fn raw_name(&self) -> Result<Cow<'_, str>, gimli::Error>`
 
-- `fn demangle(self: &Self) -> Result<Cow<'_, str>, gimli::Error>`
+- <span id="functionname-demangle"></span>`fn demangle(&self) -> Result<Cow<'_, str>, gimli::Error>`
 
 ### `Location<'a>`
 
@@ -120,6 +182,8 @@ struct Location<'a> {
     pub column: Option<u32>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:8-17`](../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L8-L17)*
 
 A source location.
 
@@ -149,6 +213,8 @@ struct SplitDwarfLoad<R> {
     pub parent: alloc::sync::Arc<gimli::Dwarf<R>>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/lookup.rs:7-19`](../../.source_1765210505/addr2line-0.25.1/src/lookup.rs#L7-L19)*
 
 This struct contains the information needed to find split DWARF data
 and to produce a `gimli::Dwarf<R>` for it.
@@ -186,27 +252,29 @@ struct LocationRangeIter<'ctx, R: gimli::Reader> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/unit.rs:539-546`](../../.source_1765210505/addr2line-0.25.1/src/unit.rs#L539-L546)*
+
 Iterator over `Location`s in a range of addresses, returned by `Context::find_location_range`.
 
 #### Implementations
 
-- `fn next_loc(self: &mut Self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](#location)
+- <span id="locationrangeiter-next-loc"></span>`fn next_loc(&mut self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](frame/index.md)
 
 #### Trait Implementations
 
 ##### `impl<I> IntoIterator for LocationRangeIter<'ctx, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="locationrangeiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="locationrangeiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="locationrangeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'ctx, R> Iterator for LocationRangeIter<'ctx, R>`
 
-- `type Item = (u64, u64, Location<'ctx>)`
+- <span id="locationrangeiter-type-item"></span>`type Item = (u64, u64, Location<'ctx>)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="locationrangeiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `Context<R: gimli::Reader>`
 
@@ -218,6 +286,8 @@ struct Context<R: gimli::Reader> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/lib.rs:95-99`](../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L95-L99)*
+
 The state necessary to perform address to line translation.
 
 Constructing a `Context` is somewhat costly, so users should aim to reuse `Context`s
@@ -225,15 +295,11 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- `fn find_dwarf_and_unit(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`LookupResult`](#lookupresult), [`LookupContinuation`](#lookupcontinuation)
+- <span id="context-from-sections"></span>`fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
 
-- `fn find_location(self: &Self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](#location)
+- <span id="context-from-dwarf"></span>`fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
 
-- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>` — [`LocationRangeIter`](#locationrangeiter)
-
-- `fn find_frames(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`LookupResult`](#lookupresult), [`LookupContinuation`](#lookupcontinuation), [`FrameIter`](#frameiter)
-
-- `fn preload_units(self: &Self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`SplitDwarfLoad`](#splitdwarfload)
+- <span id="context-from-arc-dwarf"></span>`fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
 
 ### `RangeAttributes<R: gimli::Reader>`
 
@@ -246,15 +312,17 @@ struct RangeAttributes<R: gimli::Reader> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/lib.rs:363-368`](../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L363-L368)*
+
 #### Implementations
 
-- `fn for_each_range<F: FnMut(gimli::Range)>(self: &Self, unit: gimli::UnitRef<'_, R>, f: F) -> Result<bool, gimli::Error>`
+- <span id="rangeattributes-for-each-range"></span>`fn for_each_range<F: FnMut(gimli::Range)>(&self, unit: gimli::UnitRef<'_, R>, f: F) -> Result<bool, gimli::Error>`
 
 #### Trait Implementations
 
 ##### `impl<R: gimli::Reader> Default for RangeAttributes<R>`
 
-- `fn default() -> Self`
+- <span id="rangeattributes-default"></span>`fn default() -> Self`
 
 ## Enums
 
@@ -269,6 +337,8 @@ enum LookupResult<L: LookupContinuation> {
     Output(<L as LookupContinuation>::Output),
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/lookup.rs:45-55`](../../.source_1765210505/addr2line-0.25.1/src/lookup.rs#L45-L55)*
 
 Operations that consult debug information may require additional files
 to be loaded if split DWARF is being used. This enum returns the result
@@ -307,11 +377,11 @@ This enum is intended to be used in a loop like so:
 
 #### Implementations
 
-- `fn skip_all_loads(self: Self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
+- <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md)
 
-- `fn map<T, F: FnOnce(<L as >::Output) -> T>(self: Self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](#lookupresult), [`MappedLookup`](lookup/index.md)
+- <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](lookup/index.md), [`MappedLookup`](lookup/index.md)
 
-- `fn unwrap(self: Self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
+- <span id="lookupresult-unwrap"></span>`fn unwrap(self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md)
 
 ### `DebugFile`
 
@@ -323,29 +393,65 @@ enum DebugFile {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/lib.rs:85-89`](../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L85-L89)*
+
 #### Trait Implementations
 
 ##### `impl Clone for DebugFile`
 
-- `fn clone(self: &Self) -> DebugFile` — [`DebugFile`](#debugfile)
+- <span id="debugfile-clone"></span>`fn clone(&self) -> DebugFile` — [`DebugFile`](#debugfile)
 
 ##### `impl Copy for DebugFile`
 
 ##### `impl Debug for DebugFile`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DebugFile`
 
 ##### `impl PartialEq for DebugFile`
 
-- `fn eq(self: &Self, other: &DebugFile) -> bool` — [`DebugFile`](#debugfile)
+- <span id="debugfile-eq"></span>`fn eq(&self, other: &DebugFile) -> bool` — [`DebugFile`](#debugfile)
 
 ##### `impl StructuralPartialEq for DebugFile`
 
 ## Traits
 
+### `LookupContinuation`
+
+```rust
+trait LookupContinuation: Sized { ... }
+```
+
+*Defined in [`addr2line-0.25.1/src/lookup.rs:60-77`](../../.source_1765210505/addr2line-0.25.1/src/lookup.rs#L60-L77)*
+
+This trait represents a partially complete operation that can be resumed
+once a load of needed split DWARF data is completed or abandoned by the
+API consumer.
+
+#### Associated Types
+
+- `type Output`
+
+- `type Buf: 1`
+
+#### Required Methods
+
+- `fn resume(self, input: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>`
+
+  Resumes the operation with the provided data.
+
+#### Implementors
+
+- [`LoopingLookup`](lookup/index.md)
+- [`MappedLookup`](lookup/index.md)
+- [`SimpleLookup`](lookup/index.md)
+
 ## Functions
+
+*Defined in [`addr2line-0.25.1/src/lib.rs:65`](../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L65)*
+
+*Defined in [`addr2line-0.25.1/src/lib.rs:65`](../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L65)*
 
 ## Type Aliases
 
@@ -355,9 +461,13 @@ enum DebugFile {
 type Error = gimli::Error;
 ```
 
+*Defined in [`addr2line-0.25.1/src/lib.rs:81`](../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L81)*
+
 ### `LazyResult<T>`
 
 ```rust
 type LazyResult<T> = core::cell::OnceCell<Result<T, gimli::Error>>;
 ```
+
+*Defined in [`addr2line-0.25.1/src/lib.rs:82`](../../.source_1765210505/addr2line-0.25.1/src/lib.rs#L82)*
 

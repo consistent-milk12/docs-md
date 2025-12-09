@@ -2,14 +2,33 @@
 //!
 //! This module provides the [`ImplRenderer`] struct which handles rendering
 //! impl blocks (both inherent and trait implementations) to markdown format.
+//!
+//! # Path Types in `rustdoc_types::Impl`
+//!
+//! When working with impl blocks, there are two different path representations:
+//!
+//! - **`Impl.trait_: Option<Path>`** - The trait being implemented
+//!   - `Path.path` is a `String` like `"Clone"` or `"std::fmt::Debug"`
+//!   - Use for display/rendering in documentation output
+//!   - Extract trait name with `path.rsplit("::").next()`
+//!
+//! - **`ItemSummary.path: Vec<String>`** - Structured path from `krate.paths`
+//!   - Example: `["std", "clone", "Clone"]`
+//!   - Use for lookups and resolution via item IDs
+//!
+//! The `Path.path` string is already formatted for display, while
+//! `ItemSummary.path` is structured for programmatic manipulation.
 
 use std::borrow::Cow;
 use std::fmt::Write;
 
-use rustdoc_types::{Id, Impl, Item};
+use rustdoc_types::{Id, Impl, Item, Type};
 
 use crate::generator::context::RenderContext;
-use crate::generator::render_shared::{impl_sort_key, render_impl_items};
+use crate::generator::render_shared::{
+    impl_sort_key, render_collapsible_end, render_collapsible_start, render_impl_items,
+    sanitize_path,
+};
 use crate::types::TypeRenderer;
 
 /// Blanket trait implementations to filter from output.
@@ -32,6 +51,92 @@ const BLANKET_TRAITS: &[&str] = &[
     "CloneToUninit",
 ];
 
+/// Trivial derive trait implementations that can be collapsed.
+///
+/// These are traits commonly derived via `#[derive(...)]` that have standard,
+/// predictable implementations. When `RenderConfig.hide_trivial_derives` is enabled,
+/// these are grouped into a collapsible `<details>` block with a summary table.
+///
+/// The list includes:
+/// - **Cloning**: `Clone`, `Copy`
+/// - **Formatting**: `Debug`
+/// - **Default values**: `Default`
+/// - **Equality**: `PartialEq`, `Eq`
+/// - **Hashing**: `Hash`
+/// - **Ordering**: `PartialOrd`, `Ord`
+pub const TRIVIAL_DERIVE_TRAITS: &[&str] = &[
+    // Cloning traits
+    "Clone",
+    "Copy",
+    // Formatting
+    "Debug",
+    // Default values
+    "Default",
+    // Equality comparison
+    "PartialEq",
+    "Eq",
+    // Hashing
+    "Hash",
+    // Ordering comparison
+    "PartialOrd",
+    "Ord",
+];
+
+/// Short descriptions for trivial derive traits, used in summary tables.
+///
+/// Maps trait names to brief descriptions for the collapsible summary table.
+pub const TRIVIAL_DERIVE_DESCRIPTIONS: &[(&str, &str)] = &[
+    ("Clone", "Returns a copy of the value"),
+    ("Copy", "Marker trait for types with copy semantics"),
+    ("Debug", "Formats the value for debugging"),
+    ("Default", "Returns the default value"),
+    ("PartialEq", "Compares for equality"),
+    ("Eq", "Marker for total equality"),
+    ("Hash", "Feeds this value into a Hasher"),
+    ("PartialOrd", "Partial ordering comparison"),
+    ("Ord", "Total ordering comparison"),
+];
+
+/// Check if an impl block is for a trivial derive trait.
+///
+/// Returns `true` if the impl is for one of the commonly derived traits
+/// `(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)`.
+///
+/// # Examples
+///
+/// ```
+/// use rustdoc_types::Impl;
+/// // For an impl block with trait "Clone", returns true
+/// // For an impl block with trait "Display", returns false
+/// ```
+#[must_use]
+pub fn is_trivial_derive_impl(impl_block: &Impl) -> bool {
+    let Some(trait_ref) = &impl_block.trait_ else {
+        return false;
+    };
+
+    // Extract the trait name (last segment of the path)
+    // Using rsplit().next() is more efficient than split().last()
+    let trait_name = trait_ref.path.rsplit("::").next().unwrap_or(&trait_ref.path);
+
+    TRIVIAL_DERIVE_TRAITS.contains(&trait_name)
+}
+
+/// Get the description for a trivial derive trait.
+///
+/// Returns `None` if the trait is not in the trivial derives list.
+#[must_use]
+pub fn get_trivial_derive_description(trait_name: &str) -> Option<&'static str> {
+    // Extract just the trait name if it's a full path
+    // Using rsplit().next() is more efficient than split().last()
+    let name = trait_name.rsplit("::").next().unwrap_or(trait_name);
+
+    TRIVIAL_DERIVE_DESCRIPTIONS
+        .iter()
+        .find(|(t, _)| *t == name)
+        .map(|(_, desc)| *desc)
+}
+
 /// Check if an impl block is for a blanket trait that should be filtered.
 ///
 /// Returns `true` if the impl is for one of the commonly auto-derived traits
@@ -43,9 +148,84 @@ pub fn is_blanket_impl(impl_block: &Impl) -> bool {
     };
 
     // Extract the trait name (last segment of the path)
-    let trait_name = trait_ref.path.split("::").last().unwrap_or(&trait_ref.path);
+    // Using rsplit().next() is more efficient than split().last()
+    let trait_name = trait_ref.path.rsplit("::").next().unwrap_or(&trait_ref.path);
 
     BLANKET_TRAITS.contains(&trait_name)
+}
+
+/// Check if a type is generic (contains a type parameter like `T`).
+///
+/// This is used to determine whether to show generic parameters in impl blocks.
+/// For blanket impls like `impl<T> Trait for T`, we only show the generics if
+/// the `for_` type is actually generic. When the impl is instantiated for a
+/// concrete type like `TocEntry`, we hide the generics.
+///
+/// # Examples
+///
+/// ```text
+/// // Generic type - returns true
+/// is_generic_type(&Type::Generic("T")) == true
+///
+/// // Concrete type - returns false
+/// is_generic_type(&Type::ResolvedPath { name: "TocEntry", .. }) == false
+///
+/// // Container with generic - returns true
+/// is_generic_type(&Type::ResolvedPath {
+///     name: "Vec",
+///     args: Some(GenericArgs::AngleBracketed { args: [Type::Generic("T")] })
+/// }) == true
+/// ```
+#[must_use]
+pub fn is_generic_type(ty: &Type) -> bool {
+    match ty {
+        // Direct generic parameter like `T`
+        Type::Generic(_) => true,
+
+        // Check nested types for generic parameters
+        Type::ResolvedPath(path) => {
+            // Check generic args of the path
+            path.args
+                .as_ref()
+                .is_some_and(|args| generic_args_contain_generic(args))
+        },
+
+        // References, raw pointers, and arrays: check the inner type
+        Type::BorrowedRef { type_, .. }
+        | Type::RawPointer { type_, .. }
+        | Type::Array { type_, .. } => is_generic_type(type_),
+
+        // Slices: check the element type
+        Type::Slice(inner) => is_generic_type(inner),
+
+        // Tuples: check all element types
+        Type::Tuple(types) => types.iter().any(is_generic_type),
+
+        // Qualified paths like `<T as Trait>::Item`
+        Type::QualifiedPath { self_type, .. } => is_generic_type(self_type),
+
+        // Primitives and other types are not generic
+        _ => false,
+    }
+}
+
+/// Check if generic args contain any generic type parameters.
+fn generic_args_contain_generic(args: &rustdoc_types::GenericArgs) -> bool {
+    match args {
+        rustdoc_types::GenericArgs::AngleBracketed { args, .. } => {
+            args.iter().any(|arg| match arg {
+                rustdoc_types::GenericArg::Type(ty) => is_generic_type(ty),
+                rustdoc_types::GenericArg::Const(_)
+                | rustdoc_types::GenericArg::Lifetime(_)
+                | rustdoc_types::GenericArg::Infer => false,
+            })
+        },
+        rustdoc_types::GenericArgs::Parenthesized { inputs, output } => {
+            inputs.iter().any(is_generic_type)
+                || output.as_ref().is_some_and(is_generic_type)
+        },
+        rustdoc_types::GenericArgs::ReturnTypeNotation => false,
+    }
 }
 
 /// Renders impl blocks to markdown.
@@ -146,12 +326,62 @@ impl<'a> ImplRenderer<'a> {
                 .collect()
         };
 
-        if !filtered_trait_impls.is_empty() {
-            md.push_str("#### Trait Implementations\n\n");
+        if filtered_trait_impls.is_empty() {
+            return;
+        }
+
+        md.push_str("#### Trait Implementations\n\n");
+
+        // Check if we should collapse trivial derives
+        let hide_trivial = self.ctx.render_config().hide_trivial_derives;
+
+        if hide_trivial {
+            // Partition into trivial derives and non-trivial impls
+            let (trivial_impls, other_impls): (Vec<_>, Vec<_>) = filtered_trait_impls
+                .into_iter()
+                .partition(|i| is_trivial_derive_impl(i));
+
+            // Render trivial derives in a collapsible block
+            if !trivial_impls.is_empty() {
+                Self::render_trivial_derives_collapsed(md, &trivial_impls);
+            }
+
+            // Render non-trivial trait impls normally
+            for impl_block in other_impls {
+                self.render_trait_impl(md, impl_block);
+            }
+        } else {
+            // Render all trait impls normally (no collapsing)
             for impl_block in filtered_trait_impls {
                 self.render_trait_impl(md, impl_block);
             }
         }
+    }
+
+    /// Render trivial derive trait implementations in a collapsible block.
+    ///
+    /// Groups `Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord`
+    /// implementations into a `<details>` block with a summary table.
+    fn render_trivial_derives_collapsed(md: &mut String, impls: &[&&Impl]) {
+        let count = impls.len();
+        let summary = format!("Derived Traits ({count} implementations)");
+
+        md.push_str(&render_collapsible_start(&summary));
+
+        // Render as a summary table
+        md.push_str("| Trait | Description |\n");
+        md.push_str("| ----- | ----------- |\n");
+
+        for impl_block in impls {
+            if let Some(trait_ref) = &impl_block.trait_ {
+                let trait_name = trait_ref.path.rsplit("::").next().unwrap_or(&trait_ref.path);
+                let description =
+                    get_trivial_derive_description(trait_name).unwrap_or("Derived trait");
+                _ = writeln!(md, "| `{trait_name}` | {description} |");
+            }
+        }
+
+        md.push_str(render_collapsible_end());
     }
 
     /// Render a single trait implementation block.
@@ -166,7 +396,7 @@ impl<'a> ImplRenderer<'a> {
             .trait_
             .as_ref()
             .map(|t| {
-                let mut name = t.path.clone();
+                let mut name = sanitize_path(&t.path).into_owned();
                 if let Some(args) = &t.args {
                     name.push_str(&self.render_generic_args_for_impl(args));
                 }
@@ -174,9 +404,15 @@ impl<'a> ImplRenderer<'a> {
             })
             .unwrap_or_default();
 
-        let generics = self
-            .type_renderer
-            .render_generics(&impl_block.generics.params);
+        // Only show generic parameters if the `for_` type is itself generic.
+        // For concrete types like `TocEntry`, we don't want to show `impl<T>` even
+        // if the original blanket impl was defined as `impl<T> Trait for T`.
+        let generics = if is_generic_type(&impl_block.for_) {
+            self.type_renderer
+                .render_generics(&impl_block.generics.params)
+        } else {
+            String::new()
+        };
         let for_type = self.type_renderer.render_type(&impl_block.for_);
 
         let unsafe_str = if impl_block.is_unsafe { "unsafe " } else { "" };
@@ -199,8 +435,13 @@ impl<'a> ImplRenderer<'a> {
     ///
     /// For methods, the first line of documentation is included as a brief summary.
     /// Type links are added for resolvable types in method signatures.
+    /// Method anchors are generated for deep linking (e.g., `#typename-methodname`).
     fn render_impl_methods(&self, md: &mut String, impl_block: &Impl) {
         let krate = self.ctx.krate();
+
+        // Extract the type name for method anchor generation
+        let type_name = self.type_renderer.render_type(&impl_block.for_);
+
         render_impl_items(
             md,
             impl_block,
@@ -208,6 +449,7 @@ impl<'a> ImplRenderer<'a> {
             &self.type_renderer,
             &Some(|item: &Item| self.process_docs(item)),
             &Some(|id: rustdoc_types::Id| self.ctx.create_link(id, self.current_file)),
+            Some(type_name.as_ref()),
         );
     }
 
@@ -301,6 +543,108 @@ impl<'a> ImplRenderer<'a> {
             },
 
             rustdoc_types::GenericArgs::ReturnTypeNotation => " (..)".to_string(),
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    mod trivial_derive_traits_tests {
+        use super::*;
+
+        #[test]
+        fn trivial_traits_list_has_nine_entries() {
+            assert_eq!(TRIVIAL_DERIVE_TRAITS.len(), 9);
+        }
+
+        #[test]
+        fn descriptions_match_traits_count() {
+            assert_eq!(
+                TRIVIAL_DERIVE_TRAITS.len(),
+                TRIVIAL_DERIVE_DESCRIPTIONS.len()
+            );
+        }
+
+        #[test]
+        fn all_traits_have_descriptions() {
+            for trait_name in TRIVIAL_DERIVE_TRAITS {
+                assert!(
+                    get_trivial_derive_description(trait_name).is_some(),
+                    "Missing description for trait: {trait_name}"
+                );
+            }
+        }
+
+        #[test]
+        fn get_description_for_clone() {
+            assert_eq!(
+                get_trivial_derive_description("Clone"),
+                Some("Returns a copy of the value")
+            );
+        }
+
+        #[test]
+        fn get_description_for_debug() {
+            assert_eq!(
+                get_trivial_derive_description("Debug"),
+                Some("Formats the value for debugging")
+            );
+        }
+
+        #[test]
+        fn get_description_for_full_path() {
+            // Should extract trait name from full path
+            assert_eq!(
+                get_trivial_derive_description("std::clone::Clone"),
+                Some("Returns a copy of the value")
+            );
+        }
+
+        #[test]
+        fn get_description_for_unknown_trait() {
+            assert_eq!(get_trivial_derive_description("Display"), None);
+        }
+
+        #[test]
+        fn contains_cloning_traits() {
+            assert!(TRIVIAL_DERIVE_TRAITS.contains(&"Clone"));
+            assert!(TRIVIAL_DERIVE_TRAITS.contains(&"Copy"));
+        }
+
+        #[test]
+        fn contains_equality_traits() {
+            assert!(TRIVIAL_DERIVE_TRAITS.contains(&"PartialEq"));
+            assert!(TRIVIAL_DERIVE_TRAITS.contains(&"Eq"));
+        }
+
+        #[test]
+        fn contains_ordering_traits() {
+            assert!(TRIVIAL_DERIVE_TRAITS.contains(&"PartialOrd"));
+            assert!(TRIVIAL_DERIVE_TRAITS.contains(&"Ord"));
+        }
+
+        #[test]
+        fn contains_hash_trait() {
+            assert!(TRIVIAL_DERIVE_TRAITS.contains(&"Hash"));
+        }
+
+        #[test]
+        fn contains_debug_and_default() {
+            assert!(TRIVIAL_DERIVE_TRAITS.contains(&"Debug"));
+            assert!(TRIVIAL_DERIVE_TRAITS.contains(&"Default"));
+        }
+
+        #[test]
+        fn does_not_contain_display() {
+            assert!(!TRIVIAL_DERIVE_TRAITS.contains(&"Display"));
+        }
+
+        #[test]
+        fn does_not_contain_serialize() {
+            assert!(!TRIVIAL_DERIVE_TRAITS.contains(&"Serialize"));
+            assert!(!TRIVIAL_DERIVE_TRAITS.contains(&"Deserialize"));
         }
     }
 }

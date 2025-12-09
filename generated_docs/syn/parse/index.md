@@ -115,7 +115,7 @@ The `parse_quote!` macro also uses this approach.
 # The `Parser` trait
 
 Some types can be parsed in several ways depending on context. For example
-an [`Attribute`](../index.md) can be either "outer" like `#[...]` or "inner" like
+an [`Attribute`](../attr/index.md) can be either "outer" like `#[...]` or "inner" like
 `#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
@@ -175,9 +175,67 @@ fn call_some_parser_methods(input: TokenStream) -> Result<()> {
 }
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`discouraged`](#discouraged)
+- [Structs](#structs)
+  - [`Error`](#error)
+  - [`End`](#end)
+  - [`Lookahead1`](#lookahead1)
+  - [`ParseBuffer`](#parsebuffer)
+  - [`StepCursor`](#stepcursor)
+  - [`Nothing`](#nothing)
+- [Enums](#enums)
+  - [`Unexpected`](#unexpected)
+- [Traits](#traits)
+  - [`Peek`](#peek)
+  - [`Parse`](#parse)
+  - [`Parser`](#parser)
+- [Functions](#functions)
+  - [`advance_step_cursor`](#advance_step_cursor)
+  - [`new_parse_buffer`](#new_parse_buffer)
+  - [`cell_clone`](#cell_clone)
+  - [`inner_unexpected`](#inner_unexpected)
+  - [`get_unexpected`](#get_unexpected)
+  - [`span_of_unexpected_ignoring_nones`](#span_of_unexpected_ignoring_nones)
+  - [`tokens_to_parse_buffer`](#tokens_to_parse_buffer)
+  - [`parse_scoped`](#parse_scoped)
+  - [`err_unexpected_token`](#err_unexpected_token)
+- [Type Aliases](#type-aliases)
+  - [`Result`](#result)
+  - [`ParseStream`](#parsestream)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`discouraged`](#discouraged) | mod | Extensions to the parsing API with niche applicability. |
+| [`Error`](#error) | struct |  |
+| [`End`](#end) | struct |  |
+| [`Lookahead1`](#lookahead1) | struct |  |
+| [`ParseBuffer`](#parsebuffer) | struct | Cursor position within a buffered token stream. |
+| [`StepCursor`](#stepcursor) | struct | Cursor state associated with speculative parsing. |
+| [`Nothing`](#nothing) | struct | An empty syntax tree node that consumes no tokens when parsed. |
+| [`Unexpected`](#unexpected) | enum |  |
+| [`Peek`](#peek) | trait |  |
+| [`Parse`](#parse) | trait | Parsing interface implemented by all types that can be parsed in a default way from a token stream. |
+| [`Parser`](#parser) | trait | Parser that can parse Rust tokens into a particular syntax tree node. |
+| [`advance_step_cursor`](#advance_step_cursor) | fn |  |
+| [`new_parse_buffer`](#new_parse_buffer) | fn |  |
+| [`cell_clone`](#cell_clone) | fn |  |
+| [`inner_unexpected`](#inner_unexpected) | fn |  |
+| [`get_unexpected`](#get_unexpected) | fn |  |
+| [`span_of_unexpected_ignoring_nones`](#span_of_unexpected_ignoring_nones) | fn |  |
+| [`tokens_to_parse_buffer`](#tokens_to_parse_buffer) | fn |  |
+| [`parse_scoped`](#parse_scoped) | fn |  |
+| [`err_unexpected_token`](#err_unexpected_token) | fn |  |
+| [`Result`](#result) | type |  |
+| [`ParseStream`](#parsestream) | type | Input to a Syn parser function. |
+
 ## Modules
 
-- [`discouraged`](discouraged/index.md) - Extensions to the parsing API with niche applicability.
+- [`discouraged`](discouraged/index.md) — Extensions to the parsing API with niche applicability.
 
 ## Structs
 
@@ -188,6 +246,8 @@ struct Error {
     messages: Vec<ErrorMessage>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../../.source_1765210505/syn-2.0.111/src/error.rs#L101-L103)*
 
 Error returned when a Syn parser cannot parse the input tokens.
 
@@ -270,55 +330,57 @@ mod expand {
 
 #### Implementations
 
-- `fn new<T: Display>(span: Span, message: T) -> Self`
+- <span id="error-new"></span>`fn new<T: Display>(span: Span, message: T) -> Self`
 
-- `fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
+- <span id="error-new-spanned"></span>`fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
 
-- `fn span(self: &Self) -> Span`
+- <span id="error-span"></span>`fn span(&self) -> Span`
 
-- `fn to_compile_error(self: &Self) -> TokenStream`
+- <span id="error-to-compile-error"></span>`fn to_compile_error(&self) -> TokenStream`
 
-- `fn into_compile_error(self: Self) -> TokenStream`
+- <span id="error-into-compile-error"></span>`fn into_compile_error(self) -> TokenStream`
 
-- `fn combine(self: &mut Self, another: Error)` — [`Error`](../index.md)
+- <span id="error-combine"></span>`fn combine(&mut self, another: Error)` — [`Error`](../error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="error-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
 ##### `impl Extend for Error`
 
-- `fn extend<T: IntoIterator<Item = Error>>(self: &mut Self, iter: T)`
+- <span id="error-extend"></span>`fn extend<T: IntoIterator<Item = Error>>(&mut self, iter: T)`
 
 ##### `impl IntoIterator for Error`
 
-- `type Item = Error`
+- <span id="error-type-item"></span>`type Item = Error`
 
-- `type IntoIter = IntoIter`
+- <span id="error-type-intoiter"></span>`type IntoIter = IntoIter`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="error-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `End`
 
 ```rust
 struct End;
 ```
+
+*Defined in [`syn-2.0.111/src/lookahead.rs:310`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L310)*
 
 Pseudo-token used for peeking the end of a parse stream.
 
@@ -455,19 +517,19 @@ Ok(())
 
 ##### `impl Clone for End`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="end-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for End`
 
 ##### `impl Peek for End`
 
-##### `impl<T> Sealed for End`
+##### `impl Sealed for End`
 
-##### `impl<T> Token for End`
+##### `impl Token for End`
 
-- `fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md)
+- <span id="end-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md)
 
-- `fn display() -> &'static str`
+- <span id="end-display"></span>`fn display() -> &'static str`
 
 ### `Lookahead1<'a>`
 
@@ -478,6 +540,8 @@ struct Lookahead1<'a> {
     comparisons: std::cell::RefCell<Vec<&'static str>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lookahead.rs:63-67`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L63-L67)*
 
 Support for checking the next token in a stream to decide how to parse.
 
@@ -533,9 +597,9 @@ impl Parse for GenericParam {
 
 #### Implementations
 
-- `fn peek<T: Peek>(self: &Self, token: T) -> bool`
+- <span id="lookahead1-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
-- `fn error(self: Self) -> Error` — [`Error`](../index.md)
+- <span id="lookahead1-error"></span>`fn error(self) -> Error` — [`Error`](../error/index.md)
 
 ### `ParseBuffer<'a>`
 
@@ -547,6 +611,8 @@ struct ParseBuffer<'a> {
     unexpected: std::cell::Cell<Option<std::rc::Rc<std::cell::Cell<Unexpected>>>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/parse.rs:246-262`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L246-L262)*
 
 Cursor position within a buffered token stream.
 
@@ -570,63 +636,63 @@ you will need to go through one of the public parsing entry points.
 
 #### Implementations
 
-- `fn parse<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../index.md)
+- <span id="parsebuffer-parse"></span>`fn parse<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md)
 
-- `fn call<T>(self: &'a Self, function: fn(ParseStream<'a>) -> Result<T>) -> Result<T>` — [`ParseStream`](#parsestream), [`Result`](../index.md)
+- <span id="parsebuffer-call"></span>`fn call<T>(self: &'a Self, function: fn(ParseStream<'a>) -> Result<T>) -> Result<T>` — [`ParseStream`](#parsestream), [`Result`](../error/index.md)
 
-- `fn peek<T: Peek>(self: &Self, token: T) -> bool`
+- <span id="parsebuffer-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
-- `fn peek2<T: Peek>(self: &Self, token: T) -> bool`
+- <span id="parsebuffer-peek2"></span>`fn peek2<T: Peek>(&self, token: T) -> bool`
 
-- `fn peek3<T: Peek>(self: &Self, token: T) -> bool`
+- <span id="parsebuffer-peek3"></span>`fn peek3<T: Peek>(&self, token: T) -> bool`
 
-- `fn parse_terminated<T, P>(self: &'a Self, parser: fn(ParseStream<'a>) -> Result<T>, separator: P) -> Result<Punctuated<T, <P as >::Token>>` — [`ParseStream`](#parsestream), [`Result`](../index.md), [`Punctuated`](../punctuated/index.md), [`Peek`](#peek)
+- <span id="parsebuffer-parse-terminated"></span>`fn parse_terminated<T, P>(self: &'a Self, parser: fn(ParseStream<'a>) -> Result<T>, separator: P) -> Result<Punctuated<T, <P as >::Token>>` — [`ParseStream`](#parsestream), [`Result`](../error/index.md), [`Punctuated`](../punctuated/index.md), [`Peek`](../lookahead/index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="parsebuffer-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn lookahead1(self: &Self) -> Lookahead1<'a>` — [`Lookahead1`](#lookahead1)
+- <span id="parsebuffer-lookahead1"></span>`fn lookahead1(&self) -> Lookahead1<'a>` — [`Lookahead1`](../lookahead/index.md)
 
-- `fn fork(self: &Self) -> Self`
+- <span id="parsebuffer-fork"></span>`fn fork(&self) -> Self`
 
-- `fn error<T: Display>(self: &Self, message: T) -> Error` — [`Error`](../index.md)
+- <span id="parsebuffer-error"></span>`fn error<T: Display>(&self, message: T) -> Error` — [`Error`](../error/index.md)
 
-- `fn step<F, R>(self: &Self, function: F) -> Result<R>` — [`Result`](../index.md)
+- <span id="parsebuffer-step"></span>`fn step<F, R>(&self, function: F) -> Result<R>` — [`Result`](../error/index.md)
 
-- `fn span(self: &Self) -> Span`
+- <span id="parsebuffer-span"></span>`fn span(&self) -> Span`
 
-- `fn cursor(self: &Self) -> Cursor<'a>` — [`Cursor`](../buffer/index.md)
+- <span id="parsebuffer-cursor"></span>`fn cursor(&self) -> Cursor<'a>` — [`Cursor`](../buffer/index.md)
 
-- `fn check_unexpected(self: &Self) -> Result<()>` — [`Result`](../index.md)
+- <span id="parsebuffer-check-unexpected"></span>`fn check_unexpected(&self) -> Result<()>` — [`Result`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a> AnyDelimiter for crate::parse::ParseBuffer<'a>`
+##### `impl AnyDelimiter for crate::parse::ParseBuffer<'a>`
 
-- `fn parse_any_delimiter(self: &Self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>` — [`Result`](../index.md), [`ParseBuffer`](#parsebuffer)
+- <span id="crateparseparsebuffer-parse-any-delimiter"></span>`fn parse_any_delimiter(&self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>` — [`Result`](../error/index.md), [`ParseBuffer`](#parsebuffer)
 
-##### `impl<'a> Debug for ParseBuffer<'a>`
+##### `impl Debug for ParseBuffer<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parsebuffer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Display for ParseBuffer<'a>`
+##### `impl Display for ParseBuffer<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parsebuffer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Drop for ParseBuffer<'a>`
+##### `impl Drop for ParseBuffer<'a>`
 
-- `fn drop(self: &mut Self)`
+- <span id="parsebuffer-drop"></span>`fn drop(&mut self)`
 
-##### `impl<'a> RefUnwindSafe for ParseBuffer<'a>`
+##### `impl RefUnwindSafe for ParseBuffer<'a>`
 
-##### `impl<'a> Speculative for crate::parse::ParseBuffer<'a>`
+##### `impl Speculative for crate::parse::ParseBuffer<'a>`
 
-- `fn advance_to(self: &Self, fork: &Self)`
+- <span id="crateparseparsebuffer-advance-to"></span>`fn advance_to(&self, fork: &Self)`
 
-##### `impl<T> ToString for ParseBuffer<'a>`
+##### `impl ToString for ParseBuffer<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="parsebuffer-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<'a> UnwindSafe for ParseBuffer<'a>`
+##### `impl UnwindSafe for ParseBuffer<'a>`
 
 ### `StepCursor<'c, 'a>`
 
@@ -637,6 +703,8 @@ struct StepCursor<'c, 'a> {
     marker: std::marker::PhantomData<fn(crate::buffer::Cursor<'c>) -> crate::buffer::Cursor<'a>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/parse.rs:335-348`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L335-L348)*
 
 Cursor state associated with speculative parsing.
 
@@ -683,31 +751,33 @@ assert_eq!(remainder.to_string(), "b c");
 
 #### Implementations
 
-- `fn error<T: Display>(self: Self, message: T) -> Error` — [`Error`](../index.md)
+- <span id="stepcursor-error"></span>`fn error<T: Display>(self, message: T) -> Error` — [`Error`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl<'c, 'a> Clone for StepCursor<'c, 'a>`
+##### `impl Clone for StepCursor<'c, 'a>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="stepcursor-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'c, 'a> Copy for StepCursor<'c, 'a>`
+##### `impl Copy for StepCursor<'c, 'a>`
 
-##### `impl<'c, 'a> Deref for StepCursor<'c, 'a>`
+##### `impl Deref for StepCursor<'c, 'a>`
 
-- `type Target = Cursor<'c>`
+- <span id="stepcursor-type-target"></span>`type Target = Cursor<'c>`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="stepcursor-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for StepCursor<'c, 'a>`
+##### `impl Receiver for StepCursor<'c, 'a>`
 
-- `type Target = T`
+- <span id="stepcursor-type-target"></span>`type Target = T`
 
 ### `Nothing`
 
 ```rust
 struct Nothing;
 ```
+
+*Defined in [`syn-2.0.111/src/parse.rs:1367`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L1367)*
 
 An empty syntax tree node that consumes no tokens when parsed.
 
@@ -744,37 +814,37 @@ error: unexpected token
 
 ##### `impl Clone for Nothing`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="nothing-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Nothing`
 
 ##### `impl Debug for Nothing`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nothing-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Nothing`
 
 ##### `impl Hash for Nothing`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="nothing-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Nothing`
 
-- `fn parse(_input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](#parsestream), [`Result`](../index.md)
+- <span id="nothing-parse"></span>`fn parse(_input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](#parsestream), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Nothing`
 
-- `fn eq(self: &Self, _other: &Self) -> bool`
+- <span id="nothing-eq"></span>`fn eq(&self, _other: &Self) -> bool`
 
-##### `impl<T> Sealed for Nothing`
+##### `impl Sealed for Nothing`
 
-##### `impl<T> Spanned for Nothing`
+##### `impl Spanned for Nothing`
 
-- `fn span(self: &Self) -> Span`
+- <span id="nothing-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Nothing`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="nothing-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -788,23 +858,49 @@ enum Unexpected {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/parse.rs:399-403`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L399-L403)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Unexpected`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="unexpected-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Default for Unexpected`
 
-- `fn default() -> Self`
+- <span id="unexpected-default"></span>`fn default() -> Self`
 
 ## Traits
+
+### `Peek`
+
+```rust
+trait Peek: Sealed { ... }
+```
+
+*Defined in [`syn-2.0.111/src/lookahead.rs:174-178`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L174-L178)*
+
+Types that can be parsed by looking at just one token.
+
+Use `ParseStream::peek` to peek one of these types in a parse stream
+without consuming it from the stream.
+
+This trait is sealed and cannot be implemented for types outside of Syn.
+
+
+#### Implementors
+
+- [`End`](../lookahead/index.md)
+- [`PeekFn`](../ext/private/index.md)
+- `F`
 
 ### `Parse`
 
 ```rust
 trait Parse: Sized { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/parse.rs:214-216`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L214-L216)*
 
 Parsing interface implemented by all types that can be parsed in a default
 way from a token stream.
@@ -817,32 +913,301 @@ the `Parse` trait.
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>`
 
+#### Implementors
+
+- [`Abi`](../ty/index.md)
+- [`Abstract`](../token/index.md)
+- [`AndAnd`](../token/index.md)
+- [`AndEq`](../token/index.md)
+- [`And`](../token/index.md)
+- [`AngleBracketedGenericArguments`](../path/index.md)
+- [`Arm`](../expr/index.md)
+- [`As`](../token/index.md)
+- [`Async`](../token/index.md)
+- [`At`](../token/index.md)
+- [`Auto`](../token/index.md)
+- [`Await`](../token/index.md)
+- [`BareFnArg`](../ty/index.md)
+- [`Become`](../token/index.md)
+- [`BinOp`](../op/index.md)
+- [`Block`](../stmt/index.md)
+- [`BoundLifetimes`](../generics/index.md)
+- [`Box`](../token/index.md)
+- [`Break`](../token/index.md)
+- [`CapturedParam`](../generics/index.md)
+- [`CaretEq`](../token/index.md)
+- [`Caret`](../token/index.md)
+- [`Colon`](../token/index.md)
+- [`Comma`](../token/index.md)
+- [`ConstParam`](../generics/index.md)
+- [`Const`](../token/index.md)
+- [`Continue`](../token/index.md)
+- [`Crate`](../token/index.md)
+- [`Default`](../token/index.md)
+- [`DeriveInput`](../derive/index.md)
+- [`Do`](../token/index.md)
+- [`Dollar`](../token/index.md)
+- [`DotDotDot`](../token/index.md)
+- [`DotDotEq`](../token/index.md)
+- [`DotDot`](../token/index.md)
+- [`Dot`](../token/index.md)
+- [`Dyn`](../token/index.md)
+- [`Else`](../token/index.md)
+- [`Enum`](../token/index.md)
+- [`EqEq`](../token/index.md)
+- [`Eq`](../token/index.md)
+- [`ExprArray`](../expr/index.md)
+- [`ExprAssign`](../expr/index.md)
+- [`ExprAsync`](../expr/index.md)
+- [`ExprAwait`](../expr/index.md)
+- [`ExprBinary`](../expr/index.md)
+- [`ExprBlock`](../expr/index.md)
+- [`ExprBreak`](../expr/index.md)
+- [`ExprCall`](../expr/index.md)
+- [`ExprCast`](../expr/index.md)
+- [`ExprClosure`](../expr/index.md)
+- [`ExprConst`](../expr/index.md)
+- [`ExprContinue`](../expr/index.md)
+- [`ExprField`](../expr/index.md)
+- [`ExprForLoop`](../expr/index.md)
+- [`ExprIf`](../expr/index.md)
+- [`ExprIndex`](../expr/index.md)
+- [`ExprInfer`](../expr/index.md)
+- [`ExprLet`](../expr/index.md)
+- [`ExprLit`](../expr/index.md)
+- [`ExprLoop`](../expr/index.md)
+- [`ExprMacro`](../expr/index.md)
+- [`ExprMatch`](../expr/index.md)
+- [`ExprMethodCall`](../expr/index.md)
+- [`ExprParen`](../expr/index.md)
+- [`ExprPath`](../expr/index.md)
+- [`ExprRange`](../expr/index.md)
+- [`ExprRawAddr`](../expr/index.md)
+- [`ExprReference`](../expr/index.md)
+- [`ExprRepeat`](../expr/index.md)
+- [`ExprReturn`](../expr/index.md)
+- [`ExprStruct`](../expr/index.md)
+- [`ExprTryBlock`](../expr/index.md)
+- [`ExprTry`](../expr/index.md)
+- [`ExprTuple`](../expr/index.md)
+- [`ExprUnary`](../expr/index.md)
+- [`ExprUnsafe`](../expr/index.md)
+- [`ExprWhile`](../expr/index.md)
+- [`ExprYield`](../expr/index.md)
+- [`Expr`](../expr/index.md)
+- [`Extern`](../token/index.md)
+- [`FatArrow`](../token/index.md)
+- [`FieldValue`](../expr/index.md)
+- [`FieldsNamed`](../data/index.md)
+- [`FieldsUnnamed`](../data/index.md)
+- [`File`](../file/index.md)
+- [`Final`](../token/index.md)
+- [`FnArg`](../item/index.md)
+- [`Fn`](../token/index.md)
+- [`For`](../token/index.md)
+- [`ForeignItemFn`](../item/index.md)
+- [`ForeignItemMacro`](../item/index.md)
+- [`ForeignItemStatic`](../item/index.md)
+- [`ForeignItemType`](../item/index.md)
+- [`ForeignItem`](../item/index.md)
+- [`Ge`](../token/index.md)
+- [`GenericArgument`](../path/index.md)
+- [`GenericParam`](../generics/index.md)
+- [`Generics`](../generics/index.md)
+- [`Gt`](../token/index.md)
+- [`Ident`](../ident/index.md)
+- [`If`](../token/index.md)
+- [`ImplItemConst`](../item/index.md)
+- [`ImplItemFn`](../item/index.md)
+- [`ImplItemMacro`](../item/index.md)
+- [`ImplItemType`](../item/index.md)
+- [`ImplItem`](../item/index.md)
+- [`Impl`](../token/index.md)
+- [`In`](../token/index.md)
+- [`Index`](../expr/index.md)
+- [`ItemConst`](../item/index.md)
+- [`ItemEnum`](../item/index.md)
+- [`ItemExternCrate`](../item/index.md)
+- [`ItemFn`](../item/index.md)
+- [`ItemForeignMod`](../item/index.md)
+- [`ItemImpl`](../item/index.md)
+- [`ItemMacro`](../item/index.md)
+- [`ItemMod`](../item/index.md)
+- [`ItemStatic`](../item/index.md)
+- [`ItemStruct`](../item/index.md)
+- [`ItemTraitAlias`](../item/index.md)
+- [`ItemTrait`](../item/index.md)
+- [`ItemType`](../item/index.md)
+- [`ItemUnion`](../item/index.md)
+- [`ItemUse`](../item/index.md)
+- [`Item`](../item/index.md)
+- [`LArrow`](../token/index.md)
+- [`Label`](../expr/index.md)
+- [`Le`](../token/index.md)
+- [`Let`](../token/index.md)
+- [`LifetimeParam`](../generics/index.md)
+- [`Lifetime`](../lifetime/index.md)
+- [`LitBool`](../lit/index.md)
+- [`LitByteStr`](../lit/index.md)
+- [`LitByte`](../lit/index.md)
+- [`LitCStr`](../lit/index.md)
+- [`LitChar`](../lit/index.md)
+- [`LitFloat`](../lit/index.md)
+- [`LitInt`](../lit/index.md)
+- [`LitStr`](../lit/index.md)
+- [`Lit`](../lit/index.md)
+- [`Loop`](../token/index.md)
+- [`Lt`](../token/index.md)
+- [`Macro`](../mac/index.md)
+- [`Macro`](../token/index.md)
+- [`Match`](../token/index.md)
+- [`Member`](../expr/index.md)
+- [`MetaList`](../attr/index.md)
+- [`MetaNameValue`](../attr/index.md)
+- [`Meta`](../attr/index.md)
+- [`MinusEq`](../token/index.md)
+- [`Minus`](../token/index.md)
+- [`Mod`](../token/index.md)
+- [`Move`](../token/index.md)
+- [`Mut`](../token/index.md)
+- [`Ne`](../token/index.md)
+- [`Not`](../token/index.md)
+- [`Nothing`](#nothing)
+- [`OrEq`](../token/index.md)
+- [`OrOr`](../token/index.md)
+- [`Or`](../token/index.md)
+- [`Override`](../token/index.md)
+- [`ParenthesizedGenericArguments`](../path/index.md)
+- [`PatType`](../pat/index.md)
+- [`PathSegment`](../path/index.md)
+- [`PathSep`](../token/index.md)
+- [`Path`](../path/index.md)
+- [`PercentEq`](../token/index.md)
+- [`Percent`](../token/index.md)
+- [`PlusEq`](../token/index.md)
+- [`Plus`](../token/index.md)
+- [`PointerMutability`](../expr/index.md)
+- [`Pound`](../token/index.md)
+- [`PreciseCapture`](../generics/index.md)
+- [`Priv`](../token/index.md)
+- [`Pub`](../token/index.md)
+- [`Question`](../token/index.md)
+- [`RArrow`](../token/index.md)
+- [`RangeLimits`](../expr/index.md)
+- [`Raw`](../token/index.md)
+- [`Receiver`](../item/index.md)
+- [`Ref`](../token/index.md)
+- [`ReturnType`](../ty/index.md)
+- [`Return`](../token/index.md)
+- [`SelfType`](../token/index.md)
+- [`SelfValue`](../token/index.md)
+- [`Semi`](../token/index.md)
+- [`ShlEq`](../token/index.md)
+- [`Shl`](../token/index.md)
+- [`ShrEq`](../token/index.md)
+- [`Shr`](../token/index.md)
+- [`Signature`](../item/index.md)
+- [`SlashEq`](../token/index.md)
+- [`Slash`](../token/index.md)
+- [`StarEq`](../token/index.md)
+- [`Star`](../token/index.md)
+- [`StaticMutability`](../item/index.md)
+- [`Static`](../token/index.md)
+- [`Stmt`](../stmt/index.md)
+- [`Struct`](../token/index.md)
+- [`Super`](../token/index.md)
+- [`Tilde`](../token/index.md)
+- [`TraitBoundModifier`](../generics/index.md)
+- [`TraitBound`](../generics/index.md)
+- [`TraitItemConst`](../item/index.md)
+- [`TraitItemFn`](../item/index.md)
+- [`TraitItemMacro`](../item/index.md)
+- [`TraitItemType`](../item/index.md)
+- [`TraitItem`](../item/index.md)
+- [`Trait`](../token/index.md)
+- [`Try`](../token/index.md)
+- [`TypeArray`](../ty/index.md)
+- [`TypeBareFn`](../ty/index.md)
+- [`TypeGroup`](../ty/index.md)
+- [`TypeImplTrait`](../ty/index.md)
+- [`TypeInfer`](../ty/index.md)
+- [`TypeMacro`](../ty/index.md)
+- [`TypeNever`](../ty/index.md)
+- [`TypeParamBound`](../generics/index.md)
+- [`TypeParam`](../generics/index.md)
+- [`TypeParen`](../ty/index.md)
+- [`TypePath`](../ty/index.md)
+- [`TypePtr`](../ty/index.md)
+- [`TypeReference`](../ty/index.md)
+- [`TypeSlice`](../ty/index.md)
+- [`TypeTraitObject`](../ty/index.md)
+- [`TypeTuple`](../ty/index.md)
+- [`Type`](../token/index.md)
+- [`Type`](../ty/index.md)
+- [`Typeof`](../token/index.md)
+- [`UnOp`](../op/index.md)
+- [`Underscore`](../token/index.md)
+- [`Union`](../token/index.md)
+- [`Unsafe`](../token/index.md)
+- [`Unsized`](../token/index.md)
+- [`UseTree`](../item/index.md)
+- [`Use`](../token/index.md)
+- [`Variant`](../data/index.md)
+- [`Virtual`](../token/index.md)
+- [`Visibility`](../restriction/index.md)
+- [`WhereClause`](../generics/index.md)
+- [`WherePredicate`](../generics/index.md)
+- [`Where`](../token/index.md)
+- [`While`](../token/index.md)
+- [`Yield`](../token/index.md)
+- `Box<T>`
+- `Option<T>`
+- `Option<crate::expr::Label>`
+- `Option<crate::generics::BoundLifetimes>`
+- `Option<crate::generics::WhereClause>`
+- `Option<crate::ty::Abi>`
+- `proc_macro2::Group`
+- `proc_macro2::Literal`
+- `proc_macro2::Punct`
+- `proc_macro2::TokenStream`
+- `proc_macro2::TokenTree`
+
 ### `Parser`
 
 ```rust
 trait Parser: Sized { ... }
 ```
 
+*Defined in [`syn-2.0.111/src/parse.rs:1239-1277`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L1239-L1277)*
+
 Parser that can parse Rust tokens into a particular syntax tree node.
 
 Refer to the [module documentation] for details about parsing in Syn.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
 
-- `fn parse2(self: Self, tokens: TokenStream) -> Result<<Self as >::Output>`
+#### Required Methods
+
+- `fn parse2(self, tokens: TokenStream) -> Result<<Self as >::Output>`
 
   Parse a proc-macro2 token stream into the chosen syntax tree node.
 
-- `fn parse(self: Self, tokens: proc_macro::TokenStream) -> Result<<Self as >::Output>`
+#### Provided Methods
+
+- `fn parse(self, tokens: proc_macro::TokenStream) -> Result<<Self as >::Output>`
 
   Parse tokens of source code into the chosen syntax tree node.
 
-- `fn parse_str(self: Self, s: &str) -> Result<<Self as >::Output>`
+- `fn parse_str(self, s: &str) -> Result<<Self as >::Output>`
 
   Parse a string of Rust code into the chosen syntax tree node.
+
+#### Implementors
+
+- `F`
 
 ## Functions
 
@@ -852,11 +1217,15 @@ Refer to the [module documentation] for details about parsing in Syn.
 fn advance_step_cursor<'c, 'a>(proof: StepCursor<'c, 'a>, to: crate::buffer::Cursor<'c>) -> crate::buffer::Cursor<'a>
 ```
 
+*Defined in [`syn-2.0.111/src/parse.rs:376-383`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L376-L383)*
+
 ### `new_parse_buffer`
 
 ```rust
 fn new_parse_buffer(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>, unexpected: std::rc::Rc<std::cell::Cell<Unexpected>>) -> ParseBuffer<'_>
 ```
+
+*Defined in [`syn-2.0.111/src/parse.rs:385-397`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L385-L397)*
 
 ### `cell_clone`
 
@@ -864,11 +1233,15 @@ fn new_parse_buffer(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>,
 fn cell_clone<T: Default + Clone>(cell: &std::cell::Cell<T>) -> T
 ```
 
+*Defined in [`syn-2.0.111/src/parse.rs:423-428`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L423-L428)*
+
 ### `inner_unexpected`
 
 ```rust
 fn inner_unexpected(buffer: &ParseBuffer<'_>) -> (std::rc::Rc<std::cell::Cell<Unexpected>>, Option<(proc_macro2::Span, proc_macro2::Delimiter)>)
 ```
+
+*Defined in [`syn-2.0.111/src/parse.rs:430-439`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L430-L439)*
 
 ### `get_unexpected`
 
@@ -876,11 +1249,15 @@ fn inner_unexpected(buffer: &ParseBuffer<'_>) -> (std::rc::Rc<std::cell::Cell<Un
 fn get_unexpected(buffer: &ParseBuffer<'_>) -> std::rc::Rc<std::cell::Cell<Unexpected>>
 ```
 
+*Defined in [`syn-2.0.111/src/parse.rs:441-443`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L441-L443)*
+
 ### `span_of_unexpected_ignoring_nones`
 
 ```rust
 fn span_of_unexpected_ignoring_nones(cursor: crate::buffer::Cursor<'_>) -> Option<(proc_macro2::Span, proc_macro2::Delimiter)>
 ```
+
+*Defined in [`syn-2.0.111/src/parse.rs:445-460`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L445-L460)*
 
 ### `tokens_to_parse_buffer`
 
@@ -888,11 +1265,15 @@ fn span_of_unexpected_ignoring_nones(cursor: crate::buffer::Cursor<'_>) -> Optio
 fn tokens_to_parse_buffer(tokens: &crate::buffer::TokenBuffer) -> ParseBuffer<'_>
 ```
 
+*Defined in [`syn-2.0.111/src/parse.rs:1279-1284`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L1279-L1284)*
+
 ### `parse_scoped`
 
 ```rust
 fn parse_scoped<F: Parser>(f: F, scope: proc_macro2::Span, tokens: proc_macro2::TokenStream) -> Result<<F as >::Output>
 ```
+
+*Defined in [`syn-2.0.111/src/parse.rs:1323-1325`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L1323-L1325)*
 
 ### `err_unexpected_token`
 
@@ -900,13 +1281,19 @@ fn parse_scoped<F: Parser>(f: F, scope: proc_macro2::Span, tokens: proc_macro2::
 fn err_unexpected_token(span: proc_macro2::Span, delimiter: proc_macro2::Delimiter) -> Error
 ```
 
+*Defined in [`syn-2.0.111/src/parse.rs:1327-1335`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L1327-L1335)*
+
 ## Type Aliases
+
+*Defined in [`syn-2.0.111/src/parse.rs:204`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L204)*
 
 ### `ParseStream<'a>`
 
 ```rust
 type ParseStream<'a> = &'a ParseBuffer<'a>;
 ```
+
+*Defined in [`syn-2.0.111/src/parse.rs:224`](../../../.source_1765210505/syn-2.0.111/src/parse.rs#L224)*
 
 Input to a Syn parser function.
 

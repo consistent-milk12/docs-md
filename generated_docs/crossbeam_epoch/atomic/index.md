@@ -4,6 +4,46 @@
 
 # Module `atomic`
 
+## Contents
+
+- [Structs](#structs)
+  - [`CompareExchangeError`](#compareexchangeerror)
+  - [`Array`](#array)
+  - [`Atomic`](#atomic)
+  - [`Owned`](#owned)
+  - [`Shared`](#shared)
+- [Traits](#traits)
+  - [`CompareAndSetOrdering`](#compareandsetordering)
+  - [`Pointable`](#pointable)
+  - [`Pointer`](#pointer)
+- [Functions](#functions)
+  - [`strongest_failure_ordering`](#strongest_failure_ordering)
+  - [`low_bits`](#low_bits)
+  - [`ensure_aligned`](#ensure_aligned)
+  - [`compose_tag`](#compose_tag)
+  - [`decompose_tag`](#decompose_tag)
+- [Type Aliases](#type-aliases)
+  - [`CompareAndSetError`](#compareandseterror)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CompareExchangeError`](#compareexchangeerror) | struct | The error returned on failed compare-and-swap operation. |
+| [`Array`](#array) | struct | Array with size. |
+| [`Atomic`](#atomic) | struct | An atomic pointer that can be safely shared between threads. |
+| [`Owned`](#owned) | struct | An owned heap-allocated object. |
+| [`Shared`](#shared) | struct | A pointer to an object protected by the epoch GC. |
+| [`CompareAndSetOrdering`](#compareandsetordering) | trait | Memory orderings for compare-and-set operations. |
+| [`Pointable`](#pointable) | trait | Types that are pointed to by a single word. |
+| [`Pointer`](#pointer) | trait | A trait for either `Owned` or `Shared` pointers. |
+| [`strongest_failure_ordering`](#strongest_failure_ordering) | fn | Given ordering for the success case in a compare-exchange operation, returns the strongest appropriate ordering for the failure case. |
+| [`low_bits`](#low_bits) | fn | Returns a bitmask containing the unused least significant bits of an aligned pointer to `T`. |
+| [`ensure_aligned`](#ensure_aligned) | fn | Panics if the pointer is not properly unaligned. |
+| [`compose_tag`](#compose_tag) | fn | Given a tagged pointer `data`, returns the same pointer, but tagged with `tag`. |
+| [`decompose_tag`](#decompose_tag) | fn | Decomposes a tagged pointer `data` into the pointer and the tag. |
+| [`CompareAndSetError`](#compareandseterror) | type | The error returned on failed compare-and-set operation. |
+
 ## Structs
 
 ### `CompareExchangeError<'g, T: ?Sized + Pointable, P: Pointer<T>>`
@@ -14,6 +54,8 @@ struct CompareExchangeError<'g, T: ?Sized + Pointable, P: Pointer<T>> {
     pub new: P,
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:34-40`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L34-L40)*
 
 The error returned on failed compare-and-swap operation.
 
@@ -31,21 +73,21 @@ The error returned on failed compare-and-swap operation.
 
 ##### `impl<T, P: Pointer<T> + fmt::Debug> Debug for CompareExchangeError<'_, T, P>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compareexchangeerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for CompareExchangeError<'g, T, P>`
 
-- `const ALIGN: usize`
+- <span id="compareexchangeerror-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="compareexchangeerror-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="compareexchangeerror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="compareexchangeerror-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="compareexchangeerror-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="compareexchangeerror-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Array<T>`
 
@@ -55,6 +97,8 @@ struct Array<T> {
     elements: [core::mem::MaybeUninit<T>; 0],
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:237-241`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L237-L241)*
 
 Array with size.
 
@@ -85,23 +129,23 @@ Elements are not present in the type, but they will be in the allocation.
 
 #### Implementations
 
-- `fn layout(len: usize) -> Layout`
+- <span id="array-layout"></span>`fn layout(len: usize) -> Layout`
 
 #### Trait Implementations
 
 ##### `impl<T> Pointable for Array<T>`
 
-- `const ALIGN: usize`
+- <span id="array-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="array-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="array-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="array-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="array-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="array-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Atomic<T: ?Sized + Pointable>`
 
@@ -112,83 +156,53 @@ struct Atomic<T: ?Sized + Pointable> {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:294-297`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L294-L297)*
+
 An atomic pointer that can be safely shared between threads.
 
 The pointer must be properly aligned. Since it is aligned, a tag can be stored into the unused
 least significant bits of the address. For example, the tag for a pointer to a sized type `T`
 should be less than `(1 << mem::align_of::<T>().trailing_zeros())`.
 
-Any method that loads the pointer must be passed a reference to a [`Guard`](../index.md).
+Any method that loads the pointer must be passed a reference to a [`Guard`](../guard/index.md).
 
-Crossbeam supports dynamically sized types.  See [`Pointable`](../index.md) for details.
+Crossbeam supports dynamically sized types.  See [`Pointable`](#pointable) for details.
 
 #### Implementations
 
-- `fn init(init: <T as >::Init) -> Atomic<T>` — [`Pointable`](../index.md), [`Atomic`](../index.md)
-
-- `fn from_usize(data: usize) -> Self`
-
-- `const fn null() -> Atomic<T>` — [`Atomic`](../index.md)
-
-- `fn load<'g>(self: &Self, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn load_consume<'g>(self: &Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn store<P: Pointer<T>>(self: &Self, new: P, ord: Ordering)`
-
-- `fn swap<'g, P: Pointer<T>>(self: &Self, new: P, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn compare_exchange<'g, P>(self: &Self, current: Shared<'_, T>, new: P, success: Ordering, failure: Ordering, _: &'g Guard) -> Result<Shared<'g, T>, CompareExchangeError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareExchangeError`](../index.md)
-
-- `fn compare_exchange_weak<'g, P>(self: &Self, current: Shared<'_, T>, new: P, success: Ordering, failure: Ordering, _: &'g Guard) -> Result<Shared<'g, T>, CompareExchangeError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareExchangeError`](../index.md)
-
-- `fn fetch_update<'g, F>(self: &Self, set_order: Ordering, fail_order: Ordering, guard: &'g Guard, func: F) -> Result<Shared<'g, T>, Shared<'g, T>>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn compare_and_set<'g, O, P>(self: &Self, current: Shared<'_, T>, new: P, ord: O, guard: &'g Guard) -> Result<Shared<'g, T>, CompareAndSetError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareAndSetError`](../index.md)
-
-- `fn compare_and_set_weak<'g, O, P>(self: &Self, current: Shared<'_, T>, new: P, ord: O, guard: &'g Guard) -> Result<Shared<'g, T>, CompareAndSetError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareAndSetError`](../index.md)
-
-- `fn fetch_and<'g>(self: &Self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn fetch_or<'g>(self: &Self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn fetch_xor<'g>(self: &Self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `unsafe fn into_owned(self: Self) -> Owned<T>` — [`Owned`](../index.md)
-
-- `unsafe fn try_into_owned(self: Self) -> Option<Owned<T>>` — [`Owned`](../index.md)
+- <span id="atomic-new"></span>`fn new(init: T) -> Atomic<T>` — [`Atomic`](#atomic)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + Pointable> Clone for Atomic<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="atomic-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Debug for Atomic<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable> Default for Atomic<T>`
 
-- `fn default() -> Self`
+- <span id="atomic-default"></span>`fn default() -> Self`
 
 ##### `impl<T> Pointable for Atomic<T>`
 
-- `const ALIGN: usize`
+- <span id="atomic-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="atomic-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="atomic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="atomic-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="atomic-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="atomic-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Atomic<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable + Send + Sync> Send for Atomic<T>`
 
@@ -203,6 +217,8 @@ struct Owned<T: ?Sized + Pointable> {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1048-1051`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L1048-L1051)*
+
 An owned heap-allocated object.
 
 This type is very similar to `Box<T>`.
@@ -212,67 +228,67 @@ least significant bits of the address.
 
 #### Implementations
 
-- `unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](../index.md)
+- <span id="owned-from-raw"></span>`unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](#owned)
 
-- `fn into_box(self: Self) -> Box<T>`
+- <span id="owned-into-box"></span>`fn into_box(self) -> Box<T>`
 
-- `fn new(init: T) -> Owned<T>` — [`Owned`](../index.md)
+- <span id="owned-new"></span>`fn new(init: T) -> Owned<T>` — [`Owned`](#owned)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + Pointable> AsMut for Owned<T>`
 
-- `fn as_mut(self: &mut Self) -> &mut T`
+- <span id="owned-as-mut"></span>`fn as_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + Pointable> AsRef for Owned<T>`
 
-- `fn as_ref(self: &Self) -> &T`
+- <span id="owned-as-ref"></span>`fn as_ref(&self) -> &T`
 
 ##### `impl<T: Clone> Clone for Owned<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="owned-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Debug for Owned<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="owned-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable> Deref for Owned<T>`
 
-- `type Target = T`
+- <span id="owned-type-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="owned-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T: ?Sized + Pointable> DerefMut for Owned<T>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="owned-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + Pointable> Drop for Owned<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="owned-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for Owned<T>`
 
-- `const ALIGN: usize`
+- <span id="owned-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="owned-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="owned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="owned-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="owned-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="owned-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Owned<T>`
 
-- `fn into_usize(self: Self) -> usize`
+- <span id="owned-into-usize"></span>`fn into_usize(self) -> usize`
 
-- `unsafe fn from_usize(data: usize) -> Self`
+- <span id="owned-from-usize"></span>`unsafe fn from_usize(data: usize) -> Self`
 
 ##### `impl<P, T> Receiver for Owned<T>`
 
-- `type Target = T`
+- <span id="owned-type-target"></span>`type Target = T`
 
 ### `Shared<'g, T: 'g + ?Sized + Pointable>`
 
@@ -283,6 +299,8 @@ struct Shared<'g, T: 'g + ?Sized + Pointable> {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1297-1300`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L1297-L1300)*
+
 A pointer to an object protected by the epoch GC.
 
 The pointer is valid for use only during the lifetime `'g`.
@@ -292,73 +310,57 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn null() -> Shared<'g, T>` — [`Shared`](../index.md)
-
-- `fn is_null(self: &Self) -> bool`
-
-- `unsafe fn deref(self: &Self) -> &'g T`
-
-- `unsafe fn deref_mut(self: &mut Self) -> &'g mut T`
-
-- `unsafe fn as_ref(self: &Self) -> Option<&'g T>`
-
-- `unsafe fn into_owned(self: Self) -> Owned<T>` — [`Owned`](../index.md)
-
-- `unsafe fn try_into_owned(self: Self) -> Option<Owned<T>>` — [`Owned`](../index.md)
-
-- `fn tag(self: &Self) -> usize`
-
-- `fn with_tag(self: &Self, tag: usize) -> Shared<'g, T>` — [`Shared`](../index.md)
+- <span id="shared-as-raw"></span>`fn as_raw(&self) -> *const T`
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + Pointable> Clone for Shared<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="shared-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Copy for Shared<'_, T>`
 
 ##### `impl<T: ?Sized + Pointable> Debug for Shared<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shared-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable> Default for Shared<'_, T>`
 
-- `fn default() -> Self`
+- <span id="shared-default"></span>`fn default() -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Eq for Shared<'_, T>`
 
 ##### `impl<T: ?Sized + Pointable> Ord for Shared<'_, T>`
 
-- `fn cmp(self: &Self, other: &Self) -> cmp::Ordering`
+- <span id="shared-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl<'g, T: ?Sized + Pointable> PartialEq for Shared<'g, T>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="shared-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<'g, T: ?Sized + Pointable> PartialOrd for Shared<'g, T>`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<cmp::Ordering>`
+- <span id="shared-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering>`
 
 ##### `impl<T> Pointable for Shared<'g, T>`
 
-- `const ALIGN: usize`
+- <span id="shared-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="shared-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="shared-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="shared-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="shared-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="shared-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Shared<'_, T>`
 
-- `fn into_usize(self: Self) -> usize`
+- <span id="shared-into-usize"></span>`fn into_usize(self) -> usize`
 
-- `unsafe fn from_usize(data: usize) -> Self`
+- <span id="shared-from-usize"></span>`unsafe fn from_usize(data: usize) -> Self`
 
 ## Traits
 
@@ -367,6 +369,8 @@ least significant bits of the address.
 ```rust
 trait CompareAndSetOrdering { ... }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:67-76`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L67-L76)*
 
 Memory orderings for compare-and-set operations.
 
@@ -382,19 +386,26 @@ The two ways of specifying orderings for compare-and-set are:
 
 #### Required Methods
 
-- `fn success(self: &Self) -> Ordering`
+- `fn success(&self) -> Ordering`
 
   The ordering of the operation when it succeeds.
 
-- `fn failure(self: &Self) -> Ordering`
+- `fn failure(&self) -> Ordering`
 
   The ordering of the operation when it fails.
+
+#### Implementors
+
+- `(core::sync::atomic::Ordering, core::sync::atomic::Ordering)`
+- `core::sync::atomic::Ordering`
 
 ### `Pointable`
 
 ```rust
 trait Pointable { ... }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:150-192`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L150-L192)*
 
 Types that are pointed to by a single word.
 
@@ -407,7 +418,7 @@ allocated in heap and it is owned by a single-word pointer.  This trait is also 
 `[MaybeUninit<T>]` by storing its size along with its elements and pointing to the pair of array
 size and elements.
 
-Pointers to `Pointable` types can be stored in [`Atomic`](../index.md), [`Owned`](../index.md), and [`Shared`](../index.md).  In
+Pointers to `Pointable` types can be stored in [`Atomic`](#atomic), [`Owned`](#owned), and [`Shared`](#shared).  In
 particular, Crossbeam supports dynamically sized slices as follows.
 
 ```rust
@@ -417,11 +428,15 @@ use crossbeam_epoch::Owned;
 let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 ```
 
-#### Required Methods
+#### Associated Types
+
+- `type Init`
+
+#### Associated Constants
 
 - `const ALIGN: usize`
 
-- `type Init`
+#### Required Methods
 
 - `fn init(init: <Self as >::Init) -> usize`
 
@@ -439,23 +454,35 @@ let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 
   Drops the object pointed to by the given pointer.
 
+#### Implementors
+
+- `T`
+- `[core::mem::MaybeUninit<T>]`
+
 ### `Pointer<T: ?Sized + Pointable>`
 
 ```rust
 trait Pointer<T: ?Sized + Pointable> { ... }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:1029-1040`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L1029-L1040)*
+
 A trait for either `Owned` or `Shared` pointers.
 
 #### Required Methods
 
-- `fn into_usize(self: Self) -> usize`
+- `fn into_usize(self) -> usize`
 
   Returns the machine representation of the pointer.
 
 - `fn from_usize(data: usize) -> Self`
 
   Returns a new pointer pointing to the tagged pointer `data`.
+
+#### Implementors
+
+- [`Owned`](#owned)
+- [`Shared`](#shared)
 
 ## Functions
 
@@ -464,6 +491,8 @@ A trait for either `Owned` or `Shared` pointers.
 ```rust
 fn strongest_failure_ordering(ord: core::sync::atomic::Ordering) -> core::sync::atomic::Ordering
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:19-26`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L19-L26)*
 
 Given ordering for the success case in a compare-exchange operation, returns the strongest
 appropriate ordering for the failure case.
@@ -474,6 +503,8 @@ appropriate ordering for the failure case.
 fn low_bits<T: ?Sized + Pointable>() -> usize
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:106-108`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L106-L108)*
+
 Returns a bitmask containing the unused least significant bits of an aligned pointer to `T`.
 
 ### `ensure_aligned`
@@ -482,6 +513,8 @@ Returns a bitmask containing the unused least significant bits of an aligned poi
 fn ensure_aligned<T: ?Sized + Pointable>(raw: usize)
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:112-114`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L112-L114)*
+
 Panics if the pointer is not properly unaligned.
 
 ### `compose_tag`
@@ -489,6 +522,8 @@ Panics if the pointer is not properly unaligned.
 ```rust
 fn compose_tag<T: ?Sized + Pointable>(data: usize, tag: usize) -> usize
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:120-122`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L120-L122)*
 
 Given a tagged pointer `data`, returns the same pointer, but tagged with `tag`.
 
@@ -500,6 +535,8 @@ Given a tagged pointer `data`, returns the same pointer, but tagged with `tag`.
 fn decompose_tag<T: ?Sized + Pointable>(data: usize) -> (usize, usize)
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:126-128`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L126-L128)*
+
 Decomposes a tagged pointer `data` into the pointer and the tag.
 
 ## Type Aliases
@@ -509,6 +546,8 @@ Decomposes a tagged pointer `data` into the pointer and the tag.
 ```rust
 type CompareAndSetError<'g, T, P> = CompareExchangeError<'g, T, P>;
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/atomic.rs:31`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/atomic.rs#L31)*
 
 The error returned on failed compare-and-set operation.
 

@@ -4,9 +4,17 @@
 
 # Module `util`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`sealed`](#sealed) | mod |  |
+| [`ArrayVec`](#arrayvec) | struct |  |
+| [`ArrayLike`](#arraylike) | trait | Marker trait for types that can be used as backing storage when a growable array type is needed. |
+
 ## Modules
 
-- [`sealed`](sealed/index.md) - 
+- [`sealed`](sealed/index.md)
 
 ## Structs
 
@@ -19,47 +27,59 @@ struct ArrayVec<A: ArrayLike> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/util.rs:121-124`](../../../../.source_1765210505/gimli-0.32.3/src/read/util.rs#L121-L124)*
+
 #### Implementations
 
-- `fn into_vec(self: Self) -> Vec<T>`
+- <span id="arrayvec-new"></span>`fn new() -> Self`
+
+- <span id="arrayvec-clear"></span>`fn clear(&mut self)`
+
+- <span id="arrayvec-try-push"></span>`fn try_push(&mut self, value: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md), [`CapacityFull`](sealed/index.md)
+
+- <span id="arrayvec-try-insert"></span>`fn try_insert(&mut self, index: usize, element: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md), [`CapacityFull`](sealed/index.md)
+
+- <span id="arrayvec-pop"></span>`fn pop(&mut self) -> Option<<A as >::Item>` — [`ArrayLike`](../index.md)
+
+- <span id="arrayvec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> <A as >::Item` — [`ArrayLike`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<A: ArrayLike> Clone for ArrayVec<A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="arrayvec-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<A: ArrayLike> Debug for ArrayVec<A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayvec-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<A: ArrayLike> Default for ArrayVec<A>`
 
-- `fn default() -> Self`
+- <span id="arrayvec-default"></span>`fn default() -> Self`
 
 ##### `impl<A: ArrayLike> Deref for ArrayVec<A>`
 
-- `type Target = [<A as ArrayLike>::Item]`
+- <span id="arrayvec-type-target"></span>`type Target = [<A as ArrayLike>::Item]`
 
-- `fn deref(self: &Self) -> &[<A as >::Item]` — [`ArrayLike`](../index.md)
+- <span id="arrayvec-deref"></span>`fn deref(&self) -> &[<A as >::Item]` — [`ArrayLike`](../index.md)
 
 ##### `impl<A: ArrayLike> DerefMut for ArrayVec<A>`
 
-- `fn deref_mut(self: &mut Self) -> &mut [<A as >::Item]` — [`ArrayLike`](../index.md)
+- <span id="arrayvec-deref-mut"></span>`fn deref_mut(&mut self) -> &mut [<A as >::Item]` — [`ArrayLike`](../index.md)
 
 ##### `impl<A: ArrayLike> Drop for ArrayVec<A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="arrayvec-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<A: ArrayLike> Eq for ArrayVec<A>`
 
 ##### `impl<A: ArrayLike> PartialEq for ArrayVec<A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="arrayvec-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<P, T> Receiver for ArrayVec<A>`
 
-- `type Target = T`
+- <span id="arrayvec-type-target"></span>`type Target = T`
 
 ## Traits
 
@@ -69,11 +89,19 @@ struct ArrayVec<A: ArrayLike> {
 trait ArrayLike: Sealed { ... }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/util.rs:33-42`](../../../../.source_1765210505/gimli-0.32.3/src/read/util.rs#L33-L42)*
+
 Marker trait for types that can be used as backing storage when a growable array type is needed.
 
 This trait is sealed and cannot be implemented for types outside this crate.
 
-#### Required Methods
+#### Associated Types
 
 - `type Item`
+
+#### Implementors
+
+- `[T; N]`
+- `alloc::boxed::Box<[T; N]>`
+- `alloc::vec::Vec<T>`
 

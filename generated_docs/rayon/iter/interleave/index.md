@@ -4,6 +4,14 @@
 
 # Module `interleave`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Interleave`](#interleave) | struct | `Interleave` is an iterator that interleaves elements of iterators `i` and `j` in one continuous iterator. |
+| [`InterleaveProducer`](#interleaveproducer) | struct |  |
+| [`InterleaveSeq`](#interleaveseq) | struct | Wrapper for Interleave to implement DoubleEndedIterator and ExactSizeIterator. |
+
 ## Structs
 
 ### `Interleave<I, J>`
@@ -15,64 +23,66 @@ struct Interleave<I, J> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/interleave.rs:12-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/interleave.rs#L12-L15)*
+
 `Interleave` is an iterator that interleaves elements of iterators
 `i` and `j` in one continuous iterator. This struct is created by
-the `interleave()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+the `interleave()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
 
-- `fn new(i: I, j: J) -> Self`
+- <span id="interleave-new"></span>`fn new(i: I, j: J) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone, J: $crate::clone::Clone> Clone for Interleave<I, J>`
+##### `impl<I: clone::Clone, J: clone::Clone> Clone for Interleave<I, J>`
 
-- `fn clone(self: &Self) -> Interleave<I, J>` — [`Interleave`](../index.md)
+- <span id="interleave-clone"></span>`fn clone(&self) -> Interleave<I, J>` — [`Interleave`](#interleave)
 
-##### `impl<I: $crate::fmt::Debug, J: $crate::fmt::Debug> Debug for Interleave<I, J>`
+##### `impl<I: fmt::Debug, J: fmt::Debug> Debug for Interleave<I, J>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="interleave-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I, J> IndexedParallelIterator for Interleave<I, J>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="interleave-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="interleave-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="interleave-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for Interleave<I, J>`
 
 ##### `impl<T> IntoParallelIterator for Interleave<I, J>`
 
-- `type Iter = T`
+- <span id="interleave-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="interleave-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="interleave-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, J> ParallelIterator for Interleave<I, J>`
 
-- `type Item = <I as ParallelIterator>::Item`
+- <span id="interleave-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="interleave-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="interleave-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Interleave<I, J>`
 
-- `const ALIGN: usize`
+- <span id="interleave-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="interleave-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="interleave-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="interleave-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="interleave-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="interleave-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `InterleaveProducer<I, J>`
 
@@ -89,9 +99,11 @@ where
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/interleave.rs:133-143`](../../../../.source_1765210505/rayon-1.11.0/src/iter/interleave.rs#L133-L143)*
+
 #### Implementations
 
-- `fn new(i: I, j: J, i_len: usize, j_len: usize, i_next: bool) -> InterleaveProducer<I, J>` — [`InterleaveProducer`](#interleaveproducer)
+- <span id="interleaveproducer-new"></span>`fn new(i: I, j: J, i_len: usize, j_len: usize, i_next: bool) -> InterleaveProducer<I, J>` — [`InterleaveProducer`](#interleaveproducer)
 
 #### Trait Implementations
 
@@ -99,31 +111,31 @@ where
 
 ##### `impl<T> Pointable for InterleaveProducer<I, J>`
 
-- `const ALIGN: usize`
+- <span id="interleaveproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="interleaveproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="interleaveproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="interleaveproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="interleaveproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="interleaveproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<I, J> Producer for InterleaveProducer<I, J>`
 
-- `type Item = <I as Producer>::Item`
+- <span id="interleaveproducer-type-item"></span>`type Item = <I as Producer>::Item`
 
-- `type IntoIter = InterleaveSeq<<I as Producer>::IntoIter, <J as Producer>::IntoIter>`
+- <span id="interleaveproducer-type-intoiter"></span>`type IntoIter = InterleaveSeq<<I as Producer>::IntoIter, <J as Producer>::IntoIter>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="interleaveproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
-- `fn min_len(self: &Self) -> usize`
+- <span id="interleaveproducer-min-len"></span>`fn min_len(&self) -> usize`
 
-- `fn max_len(self: &Self) -> usize`
+- <span id="interleaveproducer-max-len"></span>`fn max_len(&self) -> usize`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="interleaveproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
 ### `InterleaveSeq<I, J>`
 
@@ -134,6 +146,8 @@ struct InterleaveSeq<I, J> {
     i_next: bool,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/interleave.rs:243-251`](../../../../.source_1765210505/rayon-1.11.0/src/iter/interleave.rs#L243-L251)*
 
 Wrapper for Interleave to implement DoubleEndedIterator and
 ExactSizeIterator.
@@ -152,41 +166,41 @@ This iterator is fused.
 
 ##### `impl<I, J> DoubleEndedIterator for InterleaveSeq<I, J>`
 
-- `fn next_back(self: &mut Self) -> Option<<I as >::Item>`
+- <span id="interleaveseq-next-back"></span>`fn next_back(&mut self) -> Option<<I as >::Item>`
 
 ##### `impl<I, J> ExactSizeIterator for InterleaveSeq<I, J>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="interleaveseq-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<T> IntoEither for InterleaveSeq<I, J>`
 
 ##### `impl<I> IntoIterator for InterleaveSeq<I, J>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="interleaveseq-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="interleaveseq-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="interleaveseq-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I, J> Iterator for InterleaveSeq<I, J>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="interleaveseq-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="interleaveseq-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="interleaveseq-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T> Pointable for InterleaveSeq<I, J>`
 
-- `const ALIGN: usize`
+- <span id="interleaveseq-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="interleaveseq-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="interleaveseq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="interleaveseq-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="interleaveseq-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="interleaveseq-drop"></span>`unsafe fn drop(ptr: usize)`
 

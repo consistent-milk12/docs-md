@@ -4,9 +4,43 @@
 
 # Module `symbolize`
 
+## Contents
+
+- [Modules](#modules)
+  - [`gimli`](#gimli)
+- [Structs](#structs)
+  - [`Symbol`](#symbol)
+  - [`SymbolName`](#symbolname)
+- [Enums](#enums)
+  - [`ResolveWhat`](#resolvewhat)
+- [Functions](#functions)
+  - [`resolve`](#resolve)
+  - [`resolve_frame`](#resolve_frame)
+  - [`adjust_ip`](#adjust_ip)
+  - [`resolve_unsynchronized`](#resolve_unsynchronized)
+  - [`resolve_frame_unsynchronized`](#resolve_frame_unsynchronized)
+  - [`format_symbol_name`](#format_symbol_name)
+  - [`clear_symbol_cache`](#clear_symbol_cache)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`gimli`](#gimli) | mod | Support for symbolication using the `gimli` crate on crates.io |
+| [`Symbol`](#symbol) | struct | A trait representing the resolution of a symbol in a file. |
+| [`SymbolName`](#symbolname) | struct | A wrapper around a symbol name to provide ergonomic accessors to the demangled name, the raw bytes, the raw string, etc. |
+| [`ResolveWhat`](#resolvewhat) | enum |  |
+| [`resolve`](#resolve) | fn | Resolve an address to a symbol, passing the symbol to the specified closure. |
+| [`resolve_frame`](#resolve_frame) | fn | Resolve a previously captured frame to a symbol, passing the symbol to the specified closure. |
+| [`adjust_ip`](#adjust_ip) | fn |  |
+| [`resolve_unsynchronized`](#resolve_unsynchronized) | fn | Same as `resolve`, only unsafe as it's unsynchronized. |
+| [`resolve_frame_unsynchronized`](#resolve_frame_unsynchronized) | fn | Same as `resolve_frame`, only unsafe as it's unsynchronized. |
+| [`format_symbol_name`](#format_symbol_name) | fn |  |
+| [`clear_symbol_cache`](#clear_symbol_cache) | fn | Attempt to reclaim that cached memory used to symbolicate addresses. |
+
 ## Modules
 
-- [`gimli`](gimli/index.md) - Support for symbolication using the `gimli` crate on crates.io
+- [`gimli`](gimli/index.md) — Support for symbolication using the `gimli` crate on crates.io
 
 ## Structs
 
@@ -17,6 +51,8 @@ struct Symbol {
     inner: imp::Symbol<'static>,
 }
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:190-195`](../../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L190-L195)*
 
 A trait representing the resolution of a symbol in a file.
 
@@ -30,23 +66,23 @@ always available in a symbol, however, so all methods return an `Option`.
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../index.md)
+- <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](#symbolname)
 
-- `fn addr(self: &Self) -> Option<*mut c_void>`
+- <span id="symbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
-- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../index.md)
+- <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../types/index.md)
 
-- `fn colno(self: &Self) -> Option<u32>`
+- <span id="symbol-colno"></span>`fn colno(&self) -> Option<u32>`
 
-- `fn lineno(self: &Self) -> Option<u32>`
+- <span id="symbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
-- `fn filename(self: &Self) -> Option<&Path>`
+- <span id="symbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 
 #### Trait Implementations
 
 ##### `impl Debug for Symbol`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SymbolName<'a>`
 
@@ -57,30 +93,32 @@ struct SymbolName<'a> {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:300-305`](../../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L300-L305)*
+
 A wrapper around a symbol name to provide ergonomic accessors to the
 demangled name, the raw bytes, the raw string, etc.
 
 #### Implementations
 
-- `fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](../index.md)
+- <span id="symbolname-new"></span>`fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](#symbolname)
 
-- `fn as_str(self: &Self) -> Option<&'a str>`
+- <span id="symbolname-as-str"></span>`fn as_str(&self) -> Option<&'a str>`
 
-- `fn as_bytes(self: &Self) -> &'a [u8]`
+- <span id="symbolname-as-bytes"></span>`fn as_bytes(&self) -> &'a [u8]`
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for SymbolName<'a>`
+##### `impl Debug for SymbolName<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Display for SymbolName<'a>`
+##### `impl Display for SymbolName<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for SymbolName<'a>`
+##### `impl ToString for SymbolName<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="symbolname-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -93,9 +131,11 @@ enum ResolveWhat<'a> {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:108-111`](../../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L108-L111)*
+
 #### Implementations
 
-- `fn address_or_ip(self: &Self) -> *mut c_void`
+- <span id="resolvewhat-address-or-ip"></span>`fn address_or_ip(&self) -> *mut c_void`
 
 ## Functions
 
@@ -104,6 +144,8 @@ enum ResolveWhat<'a> {
 ```rust
 fn resolve<F: FnMut(&Symbol)>(addr: *mut core::ffi::c_void, cb: F)
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:61-64`](../../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L61-L64)*
 
 Resolve an address to a symbol, passing the symbol to the specified
 closure.
@@ -157,6 +199,8 @@ fn main() {
 fn resolve_frame<F: FnMut(&Symbol)>(frame: &super::backtrace::Frame, cb: F)
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:103-106`](../../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L103-L106)*
+
 Resolve a previously captured frame to a symbol, passing the symbol to the
 specified closure.
 
@@ -200,6 +244,8 @@ fn main() {
 fn adjust_ip(a: *mut core::ffi::c_void) -> *mut core::ffi::c_void
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:141-147`](../../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L141-L147)*
+
 ### `resolve_unsynchronized`
 
 ```rust
@@ -207,6 +253,8 @@ unsafe fn resolve_unsynchronized<F>(addr: *mut core::ffi::c_void, cb: F)
 where
     F: FnMut(&Symbol)
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:158-163`](../../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L158-L163)*
 
 Same as `resolve`, only unsafe as it's unsynchronized.
 
@@ -226,6 +274,8 @@ where
     F: FnMut(&Symbol)
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:174-179`](../../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L174-L179)*
+
 Same as `resolve_frame`, only unsafe as it's unsynchronized.
 
 This function does not have synchronization guarantees but is available
@@ -242,11 +292,15 @@ See information on `resolve_frame` for caveats on `cb` panicking.
 fn format_symbol_name(fmt: fn(&str, &mut fmt::Formatter<'_>) -> fmt::Result, bytes: &[u8], f: &mut fmt::Formatter<'_>) -> fmt::Result
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:344-366`](../../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L344-L366)*
+
 ### `clear_symbol_cache`
 
 ```rust
 fn clear_symbol_cache()
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/mod.rs:426-431`](../../../.source_1765210505/backtrace-0.3.76/src/symbolize/mod.rs#L426-L431)*
 
 Attempt to reclaim that cached memory used to symbolicate addresses.
 

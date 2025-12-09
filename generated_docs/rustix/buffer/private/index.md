@@ -4,6 +4,12 @@
 
 # Module `private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Sealed`](#sealed) | trait |  |
+
 ## Traits
 
 ### `Sealed<T>`
@@ -12,15 +18,29 @@
 trait Sealed<T> { ... }
 ```
 
-#### Required Methods
+*Defined in [`rustix-1.1.2/src/buffer.rs:299-322`](../../../../.source_1765210505/rustix-1.1.2/src/buffer.rs#L299-L322)*
+
+#### Associated Types
 
 - `type Output`
 
-- `fn parts_mut(self: &mut Self) -> (*mut T, usize)`
+#### Required Methods
+
+- `fn parts_mut(&mut self) -> (*mut T, usize)`
 
   Return a pointer and length for this buffer.
 
-- `fn assume_init(self: Self, len: usize) -> <Self as >::Output`
+- `fn assume_init(self, len: usize) -> <Self as >::Output`
 
   Convert a finished buffer pointer into its result.
+
+#### Implementors
+
+- [`SpareCapacity`](../index.md)
+- `&'a mut [core::mem::MaybeUninit<T>; N]`
+- `&'a mut [core::mem::MaybeUninit<T>]`
+- `&'a mut alloc::vec::Vec<core::mem::MaybeUninit<T>>`
+- `&mut [T; N]`
+- `&mut [T]`
+- `&mut alloc::vec::Vec<T>`
 

@@ -45,20 +45,216 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`file`](#file)
+  - [`segment`](#segment)
+  - [`section`](#section)
+  - [`symbol`](#symbol)
+  - [`relocation`](#relocation)
+  - [`comdat`](#comdat)
+  - [`dynamic`](#dynamic)
+  - [`compression`](#compression)
+  - [`note`](#note)
+  - [`hash`](#hash)
+  - [`version`](#version)
+  - [`attributes`](#attributes)
+- [Structs](#structs)
+  - [`ElfFile`](#elffile)
+  - [`ElfSegmentIterator`](#elfsegmentiterator)
+  - [`ElfSegment`](#elfsegment)
+  - [`SectionTable`](#sectiontable)
+  - [`ElfSectionIterator`](#elfsectioniterator)
+  - [`ElfSection`](#elfsection)
+  - [`SymbolTable`](#symboltable)
+  - [`ElfSymbolTable`](#elfsymboltable)
+  - [`ElfSymbolIterator`](#elfsymboliterator)
+  - [`ElfSymbol`](#elfsymbol)
+  - [`RelocationSections`](#relocationsections)
+  - [`ElfDynamicRelocationIterator`](#elfdynamicrelocationiterator)
+  - [`ElfSectionRelocationIterator`](#elfsectionrelocationiterator)
+  - [`RelrIterator`](#relriterator)
+  - [`Crel`](#crel)
+  - [`CrelIteratorHeader`](#creliteratorheader)
+  - [`CrelIteratorState`](#creliteratorstate)
+  - [`CrelIterator`](#creliterator)
+  - [`ElfComdatIterator`](#elfcomdatiterator)
+  - [`ElfComdat`](#elfcomdat)
+  - [`ElfComdatSectionIterator`](#elfcomdatsectioniterator)
+  - [`NoteIterator`](#noteiterator)
+  - [`Note`](#note)
+  - [`GnuPropertyIterator`](#gnupropertyiterator)
+  - [`GnuProperty`](#gnuproperty)
+  - [`HashTable`](#hashtable)
+  - [`GnuHashTable`](#gnuhashtable)
+  - [`VersionIndex`](#versionindex)
+  - [`Version`](#version)
+  - [`VersionTable`](#versiontable)
+  - [`VerdefIterator`](#verdefiterator)
+  - [`VerdauxIterator`](#verdauxiterator)
+  - [`VerneedIterator`](#verneediterator)
+  - [`VernauxIterator`](#vernauxiterator)
+  - [`AttributesSection`](#attributessection)
+  - [`AttributesSubsectionIterator`](#attributessubsectioniterator)
+  - [`AttributesSubsection`](#attributessubsection)
+  - [`AttributesSubsubsectionIterator`](#attributessubsubsectioniterator)
+  - [`AttributesSubsubsection`](#attributessubsubsection)
+  - [`AttributeIndexIterator`](#attributeindexiterator)
+  - [`AttributeReader`](#attributereader)
+- [Enums](#enums)
+  - [`ElfRelocationIterator`](#elfrelocationiterator)
+- [Traits](#traits)
+  - [`FileHeader`](#fileheader)
+  - [`ProgramHeader`](#programheader)
+  - [`SectionHeader`](#sectionheader)
+  - [`Sym`](#sym)
+  - [`Rel`](#rel)
+  - [`Rela`](#rela)
+  - [`Relr`](#relr)
+  - [`Dyn`](#dyn)
+  - [`CompressionHeader`](#compressionheader)
+  - [`NoteHeader`](#noteheader)
+- [Functions](#functions)
+  - [`parse_relocation`](#parse_relocation)
+- [Type Aliases](#type-aliases)
+  - [`ElfFile32`](#elffile32)
+  - [`ElfFile64`](#elffile64)
+  - [`ElfSegmentIterator32`](#elfsegmentiterator32)
+  - [`ElfSegmentIterator64`](#elfsegmentiterator64)
+  - [`ElfSegment32`](#elfsegment32)
+  - [`ElfSegment64`](#elfsegment64)
+  - [`ElfSectionIterator32`](#elfsectioniterator32)
+  - [`ElfSectionIterator64`](#elfsectioniterator64)
+  - [`ElfSection32`](#elfsection32)
+  - [`ElfSection64`](#elfsection64)
+  - [`ElfSymbolTable32`](#elfsymboltable32)
+  - [`ElfSymbolTable64`](#elfsymboltable64)
+  - [`ElfSymbolIterator32`](#elfsymboliterator32)
+  - [`ElfSymbolIterator64`](#elfsymboliterator64)
+  - [`ElfSymbol32`](#elfsymbol32)
+  - [`ElfSymbol64`](#elfsymbol64)
+  - [`ElfDynamicRelocationIterator32`](#elfdynamicrelocationiterator32)
+  - [`ElfDynamicRelocationIterator64`](#elfdynamicrelocationiterator64)
+  - [`ElfSectionRelocationIterator32`](#elfsectionrelocationiterator32)
+  - [`ElfSectionRelocationIterator64`](#elfsectionrelocationiterator64)
+  - [`ElfComdatIterator32`](#elfcomdatiterator32)
+  - [`ElfComdatIterator64`](#elfcomdatiterator64)
+  - [`ElfComdat32`](#elfcomdat32)
+  - [`ElfComdat64`](#elfcomdat64)
+  - [`ElfComdatSectionIterator32`](#elfcomdatsectioniterator32)
+  - [`ElfComdatSectionIterator64`](#elfcomdatsectioniterator64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`file`](#file) | mod |  |
+| [`segment`](#segment) | mod |  |
+| [`section`](#section) | mod |  |
+| [`symbol`](#symbol) | mod |  |
+| [`relocation`](#relocation) | mod |  |
+| [`comdat`](#comdat) | mod |  |
+| [`dynamic`](#dynamic) | mod |  |
+| [`compression`](#compression) | mod |  |
+| [`note`](#note) | mod |  |
+| [`hash`](#hash) | mod |  |
+| [`version`](#version) | mod |  |
+| [`attributes`](#attributes) | mod |  |
+| [`ElfFile`](#elffile) | struct | A partially parsed ELF file. |
+| [`ElfSegmentIterator`](#elfsegmentiterator) | struct | An iterator for the segments in an [`ElfFile`]. |
+| [`ElfSegment`](#elfsegment) | struct | A segment in an [`ElfFile`]. |
+| [`SectionTable`](#sectiontable) | struct | The table of section headers in an ELF file. |
+| [`ElfSectionIterator`](#elfsectioniterator) | struct | An iterator for the sections in an [`ElfFile`]. |
+| [`ElfSection`](#elfsection) | struct | A section in an [`ElfFile`]. |
+| [`SymbolTable`](#symboltable) | struct | A table of symbol entries in an ELF file. |
+| [`ElfSymbolTable`](#elfsymboltable) | struct | A symbol table in an [`ElfFile`](super::ElfFile). |
+| [`ElfSymbolIterator`](#elfsymboliterator) | struct | An iterator for the symbols in an [`ElfFile`](super::ElfFile). |
+| [`ElfSymbol`](#elfsymbol) | struct | A symbol in an [`ElfFile`](super::ElfFile). |
+| [`RelocationSections`](#relocationsections) | struct | A mapping from section index to associated relocation sections. |
+| [`ElfDynamicRelocationIterator`](#elfdynamicrelocationiterator) | struct | An iterator for the dynamic relocations in an [`ElfFile`]. |
+| [`ElfSectionRelocationIterator`](#elfsectionrelocationiterator) | struct | An iterator for the relocations for an [`ElfSection`](super::ElfSection). |
+| [`RelrIterator`](#relriterator) | struct | An iterator over the relative relocations in an ELF `SHT_RELR` section. |
+| [`Crel`](#crel) | struct | Compact relocation |
+| [`CrelIteratorHeader`](#creliteratorheader) | struct |  |
+| [`CrelIteratorState`](#creliteratorstate) | struct |  |
+| [`CrelIterator`](#creliterator) | struct | Compact relocation iterator. |
+| [`ElfComdatIterator`](#elfcomdatiterator) | struct | An iterator for the COMDAT section groups in an [`ElfFile`]. |
+| [`ElfComdat`](#elfcomdat) | struct | A COMDAT section group in an [`ElfFile`]. |
+| [`ElfComdatSectionIterator`](#elfcomdatsectioniterator) | struct | An iterator for the sections in a COMDAT section group in an [`ElfFile`]. |
+| [`NoteIterator`](#noteiterator) | struct | An iterator over the notes in an ELF section or segment. |
+| [`Note`](#note) | struct | A parsed [`NoteHeader`]. |
+| [`GnuPropertyIterator`](#gnupropertyiterator) | struct | An iterator for the properties in a [`elf::NT_GNU_PROPERTY_TYPE_0`] note. |
+| [`GnuProperty`](#gnuproperty) | struct | A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`] note. |
+| [`HashTable`](#hashtable) | struct | A SysV symbol hash table in an ELF file. |
+| [`GnuHashTable`](#gnuhashtable) | struct | A GNU symbol hash table in an ELF file. |
+| [`VersionIndex`](#versionindex) | struct | A version index. |
+| [`Version`](#version) | struct | A version definition or requirement. |
+| [`VersionTable`](#versiontable) | struct | A table of version definitions and requirements. |
+| [`VerdefIterator`](#verdefiterator) | struct | An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`] section. |
+| [`VerdauxIterator`](#verdauxiterator) | struct | An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERDEF`] section. |
+| [`VerneedIterator`](#verneediterator) | struct | An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`] section. |
+| [`VernauxIterator`](#vernauxiterator) | struct | An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERNEED`] section. |
+| [`AttributesSection`](#attributessection) | struct | An ELF attributes section. |
+| [`AttributesSubsectionIterator`](#attributessubsectioniterator) | struct | An iterator for the subsections in an [`AttributesSection`]. |
+| [`AttributesSubsection`](#attributessubsection) | struct | A subsection in an [`AttributesSection`]. |
+| [`AttributesSubsubsectionIterator`](#attributessubsubsectioniterator) | struct | An iterator for the sub-subsections in an [`AttributesSubsection`]. |
+| [`AttributesSubsubsection`](#attributessubsubsection) | struct | A sub-subsection in an [`AttributesSubsection`]. |
+| [`AttributeIndexIterator`](#attributeindexiterator) | struct | An iterator over the indices in an [`AttributesSubsubsection`]. |
+| [`AttributeReader`](#attributereader) | struct | A parser for the attributes in an [`AttributesSubsubsection`]. |
+| [`ElfRelocationIterator`](#elfrelocationiterator) | enum |  |
+| [`FileHeader`](#fileheader) | trait | A trait for generic access to [`elf::FileHeader32`] and [`elf::FileHeader64`]. |
+| [`ProgramHeader`](#programheader) | trait | A trait for generic access to [`elf::ProgramHeader32`] and [`elf::ProgramHeader64`]. |
+| [`SectionHeader`](#sectionheader) | trait | A trait for generic access to [`elf::SectionHeader32`] and [`elf::SectionHeader64`]. |
+| [`Sym`](#sym) | trait | A trait for generic access to [`elf::Sym32`] and [`elf::Sym64`]. |
+| [`Rel`](#rel) | trait | A trait for generic access to [`elf::Rel32`] and [`elf::Rel64`]. |
+| [`Rela`](#rela) | trait | A trait for generic access to [`elf::Rela32`] and [`elf::Rela64`]. |
+| [`Relr`](#relr) | trait | A trait for generic access to [`elf::Relr32`] and [`elf::Relr64`]. |
+| [`Dyn`](#dyn) | trait | A trait for generic access to [`elf::Dyn32`] and [`elf::Dyn64`]. |
+| [`CompressionHeader`](#compressionheader) | trait | A trait for generic access to [`elf::CompressionHeader32`] and [`elf::CompressionHeader64`]. |
+| [`NoteHeader`](#noteheader) | trait | A trait for generic access to [`elf::NoteHeader32`] and [`elf::NoteHeader64`]. |
+| [`parse_relocation`](#parse_relocation) | fn |  |
+| [`ElfFile32`](#elffile32) | type | A 32-bit ELF object file. |
+| [`ElfFile64`](#elffile64) | type | A 64-bit ELF object file. |
+| [`ElfSegmentIterator32`](#elfsegmentiterator32) | type | An iterator for the segments in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSegmentIterator64`](#elfsegmentiterator64) | type | An iterator for the segments in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfSegment32`](#elfsegment32) | type | A segment in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSegment64`](#elfsegment64) | type | A segment in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfSectionIterator32`](#elfsectioniterator32) | type | An iterator for the sections in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSectionIterator64`](#elfsectioniterator64) | type | An iterator for the sections in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfSection32`](#elfsection32) | type | A section in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSection64`](#elfsection64) | type | A section in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfSymbolTable32`](#elfsymboltable32) | type | A symbol table in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSymbolTable64`](#elfsymboltable64) | type | A symbol table in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSymbolIterator32`](#elfsymboliterator32) | type | An iterator for the symbols in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSymbolIterator64`](#elfsymboliterator64) | type | An iterator for the symbols in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfSymbol32`](#elfsymbol32) | type | A symbol in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSymbol64`](#elfsymbol64) | type | A symbol in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfDynamicRelocationIterator32`](#elfdynamicrelocationiterator32) | type | An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfDynamicRelocationIterator64`](#elfdynamicrelocationiterator64) | type | An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfSectionRelocationIterator32`](#elfsectionrelocationiterator32) | type | An iterator for the relocations for an [`ElfSection32`](super::ElfSection32). |
+| [`ElfSectionRelocationIterator64`](#elfsectionrelocationiterator64) | type | An iterator for the relocations for an [`ElfSection64`](super::ElfSection64). |
+| [`ElfComdatIterator32`](#elfcomdatiterator32) | type | An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfComdatIterator64`](#elfcomdatiterator64) | type | An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfComdat32`](#elfcomdat32) | type | A COMDAT section group in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfComdat64`](#elfcomdat64) | type | A COMDAT section group in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfComdatSectionIterator32`](#elfcomdatsectioniterator32) | type | An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfComdatSectionIterator64`](#elfcomdatsectioniterator64) | type | An iterator for the sections in a COMDAT section group in an [`ElfFile64`](super::ElfFile64). |
+
 ## Modules
 
-- [`file`](file/index.md) - 
-- [`segment`](segment/index.md) - 
-- [`section`](section/index.md) - 
-- [`symbol`](symbol/index.md) - 
-- [`relocation`](relocation/index.md) - 
-- [`comdat`](comdat/index.md) - 
-- [`dynamic`](dynamic/index.md) - 
-- [`compression`](compression/index.md) - 
-- [`note`](note/index.md) - 
-- [`hash`](hash/index.md) - 
-- [`version`](version/index.md) - 
-- [`attributes`](attributes/index.md) - 
+- [`file`](file/index.md)
+- [`segment`](segment/index.md)
+- [`section`](section/index.md)
+- [`symbol`](symbol/index.md)
+- [`relocation`](relocation/index.md)
+- [`comdat`](comdat/index.md)
+- [`dynamic`](dynamic/index.md)
+- [`compression`](compression/index.md)
+- [`note`](note/index.md)
+- [`hash`](hash/index.md)
+- [`version`](version/index.md)
+- [`attributes`](attributes/index.md)
 
 ## Structs
 
@@ -80,113 +276,115 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/file.rs:38-51`](../../../../.source_1765210505/object-0.37.3/src/read/elf/file.rs#L38-L51)*
+
 A partially parsed ELF file.
 
 Most functionality is provided by the [`Object`](../index.md) trait implementation.
 
 #### Implementations
 
-- `fn parse(data: R) -> read::Result<Self>` — [`Result`](../../index.md)
+- <span id="elffile-parse"></span>`fn parse(data: R) -> read::Result<Self>` — [`Result`](../../index.md)
 
-- `fn endian(self: &Self) -> <Elf as >::Endian` — [`FileHeader`](#fileheader)
+- <span id="elffile-endian"></span>`fn endian(&self) -> <Elf as >::Endian` — [`FileHeader`](#fileheader)
 
-- `fn data(self: &Self) -> R`
+- <span id="elffile-data"></span>`fn data(&self) -> R`
 
-- `fn raw_header(self: &Self) -> &'data Elf`
+- <span id="elffile-raw-header"></span>`fn raw_header(&self) -> &'data Elf`
 
-- `fn raw_segments(self: &Self) -> &'data [<Elf as >::ProgramHeader]` — [`FileHeader`](#fileheader)
+- <span id="elffile-raw-segments"></span>`fn raw_segments(&self) -> &'data [<Elf as >::ProgramHeader]` — [`FileHeader`](#fileheader)
 
-- `fn elf_header(self: &Self) -> &'data Elf`
+- <span id="elffile-elf-header"></span>`fn elf_header(&self) -> &'data Elf`
 
-- `fn elf_program_headers(self: &Self) -> &'data [<Elf as >::ProgramHeader]` — [`FileHeader`](#fileheader)
+- <span id="elffile-elf-program-headers"></span>`fn elf_program_headers(&self) -> &'data [<Elf as >::ProgramHeader]` — [`FileHeader`](#fileheader)
 
-- `fn elf_section_table(self: &Self) -> &SectionTable<'data, Elf, R>` — [`SectionTable`](#sectiontable)
+- <span id="elffile-elf-section-table"></span>`fn elf_section_table(&self) -> &SectionTable<'data, Elf, R>` — [`SectionTable`](#sectiontable)
 
-- `fn elf_symbol_table(self: &Self) -> &SymbolTable<'data, Elf, R>` — [`SymbolTable`](#symboltable)
+- <span id="elffile-elf-symbol-table"></span>`fn elf_symbol_table(&self) -> &SymbolTable<'data, Elf, R>` — [`SymbolTable`](#symboltable)
 
-- `fn elf_dynamic_symbol_table(self: &Self) -> &SymbolTable<'data, Elf, R>` — [`SymbolTable`](#symboltable)
+- <span id="elffile-elf-dynamic-symbol-table"></span>`fn elf_dynamic_symbol_table(&self) -> &SymbolTable<'data, Elf, R>` — [`SymbolTable`](#symboltable)
 
-- `fn elf_relocation_sections(self: &Self) -> &RelocationSections` — [`RelocationSections`](#relocationsections)
+- <span id="elffile-elf-relocation-sections"></span>`fn elf_relocation_sections(&self) -> &RelocationSections` — [`RelocationSections`](#relocationsections)
 
-- `fn raw_section_by_name<'file>(self: &'file Self, section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](#elfsection)
+- <span id="elffile-raw-section-by-name"></span>`fn raw_section_by_name<'file>(self: &'file Self, section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](#elfsection)
 
-- `fn zdebug_section_by_name<'file>(self: &'file Self, _section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](#elfsection)
+- <span id="elffile-zdebug-section-by-name"></span>`fn zdebug_section_by_name<'file>(self: &'file Self, _section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](#elfsection)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf, R> Debug for ElfFile<'data, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elffile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Elf, R> Object for ElfFile<'data, Elf, R>`
 
-- `type Segment = ElfSegment<'data, 'file, Elf, R>`
+- <span id="elffile-type-segment"></span>`type Segment = ElfSegment<'data, 'file, Elf, R>`
 
-- `type SegmentIterator = ElfSegmentIterator<'data, 'file, Elf, R>`
+- <span id="elffile-type-segmentiterator"></span>`type SegmentIterator = ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- `type Section = ElfSection<'data, 'file, Elf, R>`
+- <span id="elffile-type-section"></span>`type Section = ElfSection<'data, 'file, Elf, R>`
 
-- `type SectionIterator = ElfSectionIterator<'data, 'file, Elf, R>`
+- <span id="elffile-type-sectioniterator"></span>`type SectionIterator = ElfSectionIterator<'data, 'file, Elf, R>`
 
-- `type Comdat = ElfComdat<'data, 'file, Elf, R>`
+- <span id="elffile-type-comdat"></span>`type Comdat = ElfComdat<'data, 'file, Elf, R>`
 
-- `type ComdatIterator = ElfComdatIterator<'data, 'file, Elf, R>`
+- <span id="elffile-type-comdatiterator"></span>`type ComdatIterator = ElfComdatIterator<'data, 'file, Elf, R>`
 
-- `type Symbol = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elffile-type-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
 
-- `type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
+- <span id="elffile-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- `type SymbolTable = ElfSymbolTable<'data, 'file, Elf, R>`
+- <span id="elffile-type-symboltable"></span>`type SymbolTable = ElfSymbolTable<'data, 'file, Elf, R>`
 
-- `type DynamicRelocationIterator = ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+- <span id="elffile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- `fn architecture(self: &Self) -> Architecture` — [`Architecture`](../../index.md)
+- <span id="elffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
 
-- `fn is_little_endian(self: &Self) -> bool`
+- <span id="elffile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- `fn is_64(self: &Self) -> bool`
+- <span id="elffile-is-64"></span>`fn is_64(&self) -> bool`
 
-- `fn kind(self: &Self) -> ObjectKind` — [`ObjectKind`](../../index.md)
+- <span id="elffile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md)
 
-- `fn segments(self: &Self) -> ElfSegmentIterator<'data, '_, Elf, R>` — [`ElfSegmentIterator`](#elfsegmentiterator)
+- <span id="elffile-segments"></span>`fn segments(&self) -> ElfSegmentIterator<'data, '_, Elf, R>` — [`ElfSegmentIterator`](#elfsegmentiterator)
 
-- `fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](#elfsection)
+- <span id="elffile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<ElfSection<'data, 'file, Elf, R>>` — [`ElfSection`](#elfsection)
 
-- `fn section_by_index(self: &Self, index: SectionIndex) -> read::Result<ElfSection<'data, '_, Elf, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ElfSection`](#elfsection)
+- <span id="elffile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> read::Result<ElfSection<'data, '_, Elf, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ElfSection`](#elfsection)
 
-- `fn sections(self: &Self) -> ElfSectionIterator<'data, '_, Elf, R>` — [`ElfSectionIterator`](#elfsectioniterator)
+- <span id="elffile-sections"></span>`fn sections(&self) -> ElfSectionIterator<'data, '_, Elf, R>` — [`ElfSectionIterator`](#elfsectioniterator)
 
-- `fn comdats(self: &Self) -> ElfComdatIterator<'data, '_, Elf, R>` — [`ElfComdatIterator`](#elfcomdatiterator)
+- <span id="elffile-comdats"></span>`fn comdats(&self) -> ElfComdatIterator<'data, '_, Elf, R>` — [`ElfComdatIterator`](#elfcomdatiterator)
 
-- `fn symbol_by_index(self: &Self, index: SymbolIndex) -> read::Result<ElfSymbol<'data, '_, Elf, R>>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ElfSymbol`](#elfsymbol)
+- <span id="elffile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<ElfSymbol<'data, '_, Elf, R>>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ElfSymbol`](#elfsymbol)
 
-- `fn symbols(self: &Self) -> ElfSymbolIterator<'data, '_, Elf, R>` — [`ElfSymbolIterator`](#elfsymboliterator)
+- <span id="elffile-symbols"></span>`fn symbols(&self) -> ElfSymbolIterator<'data, '_, Elf, R>` — [`ElfSymbolIterator`](#elfsymboliterator)
 
-- `fn symbol_table(self: &Self) -> Option<ElfSymbolTable<'data, '_, Elf, R>>` — [`ElfSymbolTable`](#elfsymboltable)
+- <span id="elffile-symbol-table"></span>`fn symbol_table(&self) -> Option<ElfSymbolTable<'data, '_, Elf, R>>` — [`ElfSymbolTable`](#elfsymboltable)
 
-- `fn dynamic_symbols(self: &Self) -> ElfSymbolIterator<'data, '_, Elf, R>` — [`ElfSymbolIterator`](#elfsymboliterator)
+- <span id="elffile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> ElfSymbolIterator<'data, '_, Elf, R>` — [`ElfSymbolIterator`](#elfsymboliterator)
 
-- `fn dynamic_symbol_table(self: &Self) -> Option<ElfSymbolTable<'data, '_, Elf, R>>` — [`ElfSymbolTable`](#elfsymboltable)
+- <span id="elffile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<ElfSymbolTable<'data, '_, Elf, R>>` — [`ElfSymbolTable`](#elfsymboltable)
 
-- `fn dynamic_relocations<'file>(self: &'file Self) -> Option<ElfDynamicRelocationIterator<'data, 'file, Elf, R>>` — [`ElfDynamicRelocationIterator`](#elfdynamicrelocationiterator)
+- <span id="elffile-dynamic-relocations"></span>`fn dynamic_relocations<'file>(self: &'file Self) -> Option<ElfDynamicRelocationIterator<'data, 'file, Elf, R>>` — [`ElfDynamicRelocationIterator`](#elfdynamicrelocationiterator)
 
-- `fn imports(self: &Self) -> read::Result<Vec<Import<'data>>>` — [`Result`](../../index.md), [`Import`](../../index.md)
+- <span id="elffile-imports"></span>`fn imports(&self) -> read::Result<Vec<Import<'data>>>` — [`Result`](../../index.md), [`Import`](../../index.md)
 
-- `fn exports(self: &Self) -> read::Result<Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](../../index.md)
+- <span id="elffile-exports"></span>`fn exports(&self) -> read::Result<Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](../../index.md)
 
-- `fn has_debug_symbols(self: &Self) -> bool`
+- <span id="elffile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- `fn build_id(self: &Self) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="elffile-build-id"></span>`fn build_id(&self) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn gnu_debuglink(self: &Self) -> read::Result<Option<(&'data [u8], u32)>>` — [`Result`](../../index.md)
+- <span id="elffile-gnu-debuglink"></span>`fn gnu_debuglink(&self) -> read::Result<Option<(&'data [u8], u32)>>` — [`Result`](../../index.md)
 
-- `fn gnu_debugaltlink(self: &Self) -> read::Result<Option<(&'data [u8], &'data [u8])>>` — [`Result`](../../index.md)
+- <span id="elffile-gnu-debugaltlink"></span>`fn gnu_debugaltlink(&self) -> read::Result<Option<(&'data [u8], &'data [u8])>>` — [`Result`](../../index.md)
 
-- `fn relative_address_base(self: &Self) -> u64`
+- <span id="elffile-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
-- `fn entry(self: &Self) -> u64`
+- <span id="elffile-entry"></span>`fn entry(&self) -> u64`
 
-- `fn flags(self: &Self) -> FileFlags` — [`FileFlags`](../../index.md)
+- <span id="elffile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md)
 
 ##### `impl<'data, Elf, R> Sealed for ElfFile<'data, Elf, R>`
 
@@ -202,27 +400,29 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:20-27`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L20-L27)*
+
 An iterator for the segments in an [`ElfFile`](#elffile).
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfsegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfsegmentiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- `type Item = ElfSegment<'data, 'file, Elf, R>`
+- <span id="elfsegmentiterator-type-item"></span>`type Item = ElfSegment<'data, 'file, Elf, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ElfSegment<'data, 'file, Elf, R>`
 
@@ -236,43 +436,45 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:60-67`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L60-L67)*
+
 A segment in an [`ElfFile`](#elffile).
 
 Most functionality is provided by the [`ObjectSegment`](../index.md) trait implementation.
 
 #### Implementations
 
-- `fn elf_file(self: &Self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](#elffile)
+- <span id="elfsegment-elf-file"></span>`fn elf_file(&self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](#elffile)
 
-- `fn elf_program_header(self: &Self) -> &'data <Elf as >::ProgramHeader` — [`FileHeader`](#fileheader)
+- <span id="elfsegment-elf-program-header"></span>`fn elf_program_header(&self) -> &'data <Elf as >::ProgramHeader` — [`FileHeader`](#fileheader)
 
-- `fn bytes(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="elfsegment-bytes"></span>`fn bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSegment<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Elf, R> ObjectSegment for ElfSegment<'data, 'file, Elf, R>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="elfsegment-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="elfsegment-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="elfsegment-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- <span id="elfsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- `fn data(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="elfsegment-data"></span>`fn data(&self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="elfsegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> read::Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="elfsegment-name-bytes"></span>`fn name_bytes(&self) -> read::Result<Option<&[u8]>>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> read::Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="elfsegment-name"></span>`fn name(&self) -> read::Result<Option<&str>>` — [`Result`](../../index.md)
 
-- `fn flags(self: &Self) -> SegmentFlags` — [`SegmentFlags`](../../index.md)
+- <span id="elfsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md)
 
 ##### `impl<'data, 'file, Elf, R> Sealed for ElfSegment<'data, 'file, Elf, R>`
 
@@ -287,6 +489,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L25-L31)*
+
 The table of section headers in an ELF file.
 
 Also includes the string table used for the section names.
@@ -295,63 +499,63 @@ Returned by `FileHeader::sections`.
 
 #### Implementations
 
-- `fn new(sections: &'data [<Elf as >::SectionHeader], strings: StringTable<'data, R>) -> Self` — [`FileHeader`](#fileheader), [`StringTable`](../index.md)
+- <span id="sectiontable-new"></span>`fn new(sections: &'data [<Elf as >::SectionHeader], strings: StringTable<'data, R>) -> Self` — [`FileHeader`](#fileheader), [`StringTable`](../index.md)
 
-- `fn iter(self: &Self) -> slice::Iter<'data, <Elf as >::SectionHeader>` — [`FileHeader`](#fileheader)
+- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Elf as >::SectionHeader>` — [`FileHeader`](#fileheader)
 
-- `fn enumerate(self: &Self) -> impl Iterator<Item = (SectionIndex, &'data <Elf as >::SectionHeader)>` — [`SectionIndex`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data <Elf as >::SectionHeader)>` — [`SectionIndex`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="sectiontable-len"></span>`fn len(&self) -> usize`
 
-- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data <Elf as >::SectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data <Elf as >::SectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn section_by_name(self: &Self, endian: <Elf as >::Endian, name: &[u8]) -> Option<(SectionIndex, &'data <Elf as >::SectionHeader)>` — [`FileHeader`](#fileheader), [`SectionIndex`](../../index.md)
+- <span id="sectiontable-section-by-name"></span>`fn section_by_name(&self, endian: <Elf as >::Endian, name: &[u8]) -> Option<(SectionIndex, &'data <Elf as >::SectionHeader)>` — [`FileHeader`](#fileheader), [`SectionIndex`](../../index.md)
 
-- `fn section_name(self: &Self, endian: <Elf as >::Endian, section: &<Elf as >::SectionHeader) -> read::Result<&'data [u8]>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
+- <span id="sectiontable-section-name"></span>`fn section_name(&self, endian: <Elf as >::Endian, section: &<Elf as >::SectionHeader) -> read::Result<&'data [u8]>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
 
-- `fn strings(self: &Self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<StringTable<'data, R>>` — [`FileHeader`](#fileheader), [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`StringTable`](../index.md)
+- <span id="sectiontable-strings"></span>`fn strings(&self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<StringTable<'data, R>>` — [`FileHeader`](#fileheader), [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`StringTable`](../index.md)
 
-- `fn symbols(self: &Self, endian: <Elf as >::Endian, data: R, sh_type: u32) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`SymbolTable`](#symboltable)
+- <span id="sectiontable-symbols"></span>`fn symbols(&self, endian: <Elf as >::Endian, data: R, sh_type: u32) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`SymbolTable`](#symboltable)
 
-- `fn symbol_table_by_index(self: &Self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](#fileheader), [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`SymbolTable`](#symboltable)
+- <span id="sectiontable-symbol-table-by-index"></span>`fn symbol_table_by_index(&self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](#fileheader), [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`SymbolTable`](#symboltable)
 
-- `fn relocation_sections(self: &Self, endian: <Elf as >::Endian, symbol_section: SectionIndex) -> read::Result<RelocationSections>` — [`FileHeader`](#fileheader), [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`RelocationSections`](#relocationsections)
+- <span id="sectiontable-relocation-sections"></span>`fn relocation_sections(&self, endian: <Elf as >::Endian, symbol_section: SectionIndex) -> read::Result<RelocationSections>` — [`FileHeader`](#fileheader), [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`RelocationSections`](#relocationsections)
 
-- `fn dynamic(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [<Elf as >::Dyn], SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`SectionIndex`](../../index.md)
+- <span id="sectiontable-dynamic"></span>`fn dynamic(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [<Elf as >::Dyn], SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`SectionIndex`](../../index.md)
 
-- `fn hash_header(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Elf as >::Endian>>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`HashHeader`](../../elf/index.md)
+- <span id="sectiontable-hash-header"></span>`fn hash_header(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Elf as >::Endian>>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`HashHeader`](../../elf/index.md)
 
-- `fn hash(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`HashTable`](#hashtable), [`SectionIndex`](../../index.md)
+- <span id="sectiontable-hash"></span>`fn hash(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`HashTable`](#hashtable), [`SectionIndex`](../../index.md)
 
-- `fn gnu_hash_header(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Elf as >::Endian>>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`GnuHashHeader`](../../elf/index.md)
+- <span id="sectiontable-gnu-hash-header"></span>`fn gnu_hash_header(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Elf as >::Endian>>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`GnuHashHeader`](../../elf/index.md)
 
-- `fn gnu_hash(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`GnuHashTable`](#gnuhashtable), [`SectionIndex`](../../index.md)
+- <span id="sectiontable-gnu-hash"></span>`fn gnu_hash(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`GnuHashTable`](#gnuhashtable), [`SectionIndex`](../../index.md)
 
-- `fn gnu_versym(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Elf as >::Endian>], SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`Versym`](../../elf/index.md), [`SectionIndex`](../../index.md)
+- <span id="sectiontable-gnu-versym"></span>`fn gnu_versym(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Elf as >::Endian>], SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`Versym`](../../elf/index.md), [`SectionIndex`](../../index.md)
 
-- `fn gnu_verdef(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`VerdefIterator`](#verdefiterator), [`SectionIndex`](../../index.md)
+- <span id="sectiontable-gnu-verdef"></span>`fn gnu_verdef(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`VerdefIterator`](#verdefiterator), [`SectionIndex`](../../index.md)
 
-- `fn gnu_verneed(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`VerneedIterator`](#verneediterator), [`SectionIndex`](../../index.md)
+- <span id="sectiontable-gnu-verneed"></span>`fn gnu_verneed(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`VerneedIterator`](#verneediterator), [`SectionIndex`](../../index.md)
 
-- `fn versions(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<VersionTable<'data, Elf>>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`VersionTable`](#versiontable)
+- <span id="sectiontable-versions"></span>`fn versions(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<VersionTable<'data, Elf>>>` — [`FileHeader`](#fileheader), [`Result`](../../index.md), [`VersionTable`](#versiontable)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader, R> Clone for SectionTable<'data, Elf, R>`
+##### `impl<'data, Elf: clone::Clone + FileHeader, R> Clone for SectionTable<'data, Elf, R>`
 
-- `fn clone(self: &Self) -> SectionTable<'data, Elf, R>` — [`SectionTable`](#sectiontable)
+- <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data, Elf, R>` — [`SectionTable`](#sectiontable)
 
-##### `impl<'data, Elf: $crate::marker::Copy + FileHeader, R> Copy for SectionTable<'data, Elf, R>`
+##### `impl<'data, Elf: marker::Copy + FileHeader, R> Copy for SectionTable<'data, Elf, R>`
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader, R> Debug for SectionTable<'data, Elf, R>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader, R> Debug for SectionTable<'data, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Elf: FileHeader, R: ReadRef<'data>> Default for SectionTable<'data, Elf, R>`
 
-- `fn default() -> Self`
+- <span id="sectiontable-default"></span>`fn default() -> Self`
 
 ### `ElfSectionIterator<'data, 'file, Elf, R>`
 
@@ -365,31 +569,33 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L358-L365)*
+
 An iterator for the sections in an [`ElfFile`](#elffile).
 
 #### Implementations
 
-- `fn new(file: &'file ElfFile<'data, Elf, R>) -> Self` — [`ElfFile`](#elffile)
+- <span id="elfsectioniterator-new"></span>`fn new(file: &'file ElfFile<'data, Elf, R>) -> Self` — [`ElfFile`](#elffile)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- `type Item = ElfSection<'data, 'file, Elf, R>`
+- <span id="elfsectioniterator-type-item"></span>`type Item = ElfSection<'data, 'file, Elf, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ElfSection<'data, 'file, Elf, R>`
 
@@ -404,73 +610,75 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L406-L414)*
+
 A section in an [`ElfFile`](#elffile).
 
 Most functionality is provided by the [`ObjectSection`](../index.md) trait implementation.
 
 #### Implementations
 
-- `fn elf_file(self: &Self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](#elffile)
+- <span id="elfsection-elf-file"></span>`fn elf_file(&self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](#elffile)
 
-- `fn elf_section_header(self: &Self) -> &'data <Elf as >::SectionHeader` — [`FileHeader`](#fileheader)
+- <span id="elfsection-elf-section-header"></span>`fn elf_section_header(&self) -> &'data <Elf as >::SectionHeader` — [`FileHeader`](#fileheader)
 
-- `fn elf_relocation_section_index(self: &Self) -> read::Result<Option<SectionIndex>>` — [`Result`](../../index.md), [`SectionIndex`](../../index.md)
+- <span id="elfsection-elf-relocation-section-index"></span>`fn elf_relocation_section_index(&self) -> read::Result<Option<SectionIndex>>` — [`Result`](../../index.md), [`SectionIndex`](../../index.md)
 
-- `fn elf_relocation_section(self: &Self) -> read::Result<Option<&'data <Elf as >::SectionHeader>>` — [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="elfsection-elf-relocation-section"></span>`fn elf_relocation_section(&self) -> read::Result<Option<&'data <Elf as >::SectionHeader>>` — [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn elf_linked_rel(self: &Self) -> read::Result<&'data [<Elf as >::Rel]>` — [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="elfsection-elf-linked-rel"></span>`fn elf_linked_rel(&self) -> read::Result<&'data [<Elf as >::Rel]>` — [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn elf_linked_rela(self: &Self) -> read::Result<&'data [<Elf as >::Rela]>` — [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="elfsection-elf-linked-rela"></span>`fn elf_linked_rela(&self) -> read::Result<&'data [<Elf as >::Rela]>` — [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn bytes(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="elfsection-bytes"></span>`fn bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn maybe_compressed(self: &Self) -> read::Result<Option<CompressedFileRange>>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
+- <span id="elfsection-maybe-compressed"></span>`fn maybe_compressed(&self) -> read::Result<Option<CompressedFileRange>>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
 
-- `fn maybe_compressed_gnu(self: &Self) -> read::Result<Option<CompressedFileRange>>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
+- <span id="elfsection-maybe-compressed-gnu"></span>`fn maybe_compressed_gnu(&self) -> read::Result<Option<CompressedFileRange>>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSection<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Elf, R> ObjectSection for ElfSection<'data, 'file, Elf, R>`
 
-- `type RelocationIterator = ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+- <span id="elfsection-type-relocationiterator"></span>`type RelocationIterator = ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- `fn index(self: &Self) -> SectionIndex` — [`SectionIndex`](../../index.md)
+- <span id="elfsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="elfsection-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="elfsection-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="elfsection-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> Option<(u64, u64)>`
+- <span id="elfsection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- `fn data(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="elfsection-data"></span>`fn data(&self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="elfsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn compressed_file_range(self: &Self) -> read::Result<CompressedFileRange>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
+- <span id="elfsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> read::Result<CompressedFileRange>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
 
-- `fn compressed_data(self: &Self) -> read::Result<CompressedData<'data>>` — [`Result`](../../index.md), [`CompressedData`](../../index.md)
+- <span id="elfsection-compressed-data"></span>`fn compressed_data(&self) -> read::Result<CompressedData<'data>>` — [`Result`](../../index.md), [`CompressedData`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="elfsection-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> read::Result<&'data str>` — [`Result`](../../index.md)
+- <span id="elfsection-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn segment_name_bytes(self: &Self) -> read::Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="elfsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> read::Result<Option<&[u8]>>` — [`Result`](../../index.md)
 
-- `fn segment_name(self: &Self) -> read::Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="elfsection-segment-name"></span>`fn segment_name(&self) -> read::Result<Option<&str>>` — [`Result`](../../index.md)
 
-- `fn kind(self: &Self) -> SectionKind` — [`SectionKind`](../../index.md)
+- <span id="elfsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md)
 
-- `fn relocations(self: &Self) -> ElfSectionRelocationIterator<'data, 'file, Elf, R>` — [`ElfSectionRelocationIterator`](#elfsectionrelocationiterator)
+- <span id="elfsection-relocations"></span>`fn relocations(&self) -> ElfSectionRelocationIterator<'data, 'file, Elf, R>` — [`ElfSectionRelocationIterator`](#elfsectionrelocationiterator)
 
-- `fn relocation_map(self: &Self) -> read::Result<RelocationMap>` — [`Result`](../../index.md), [`RelocationMap`](../../index.md)
+- <span id="elfsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../index.md), [`RelocationMap`](../../index.md)
 
-- `fn flags(self: &Self) -> SectionFlags` — [`SectionFlags`](../../index.md)
+- <span id="elfsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md)
 
 ##### `impl<'data, 'file, Elf, R> Sealed for ElfSection<'data, 'file, Elf, R>`
 
@@ -489,6 +697,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:24-34`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L24-L34)*
+
 A table of symbol entries in an ELF file.
 
 Also includes the string table used for the symbol names.
@@ -497,51 +707,51 @@ Returned by `SectionTable::symbols`.
 
 #### Implementations
 
-- `fn parse(endian: <Elf as >::Endian, data: R, sections: &SectionTable<'data, Elf, R>, section_index: SectionIndex, section: &<Elf as >::SectionHeader) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](#fileheader), [`SectionTable`](#sectiontable), [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`SymbolTable`](#symboltable)
+- <span id="symboltable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: R, sections: &SectionTable<'data, Elf, R>, section_index: SectionIndex, section: &<Elf as >::SectionHeader) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](#fileheader), [`SectionTable`](#sectiontable), [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`SymbolTable`](#symboltable)
 
-- `fn section(self: &Self) -> SectionIndex` — [`SectionIndex`](../../index.md)
+- <span id="symboltable-section"></span>`fn section(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
-- `fn shndx_section(self: &Self) -> SectionIndex` — [`SectionIndex`](../../index.md)
+- <span id="symboltable-shndx-section"></span>`fn shndx_section(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
-- `fn string_section(self: &Self) -> SectionIndex` — [`SectionIndex`](../../index.md)
+- <span id="symboltable-string-section"></span>`fn string_section(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
-- `fn strings(self: &Self) -> StringTable<'data, R>` — [`StringTable`](../index.md)
+- <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md)
 
-- `fn symbols(self: &Self) -> &'data [<Elf as >::Sym]` — [`FileHeader`](#fileheader)
+- <span id="symboltable-symbols"></span>`fn symbols(&self) -> &'data [<Elf as >::Sym]` — [`FileHeader`](#fileheader)
 
-- `fn iter(self: &Self) -> slice::Iter<'data, <Elf as >::Sym>` — [`FileHeader`](#fileheader)
+- <span id="symboltable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Elf as >::Sym>` — [`FileHeader`](#fileheader)
 
-- `fn enumerate(self: &Self) -> impl Iterator<Item = (SymbolIndex, &'data <Elf as >::Sym)>` — [`SymbolIndex`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="symboltable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SymbolIndex, &'data <Elf as >::Sym)>` — [`SymbolIndex`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="symboltable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="symboltable-len"></span>`fn len(&self) -> usize`
 
-- `fn symbol(self: &Self, index: SymbolIndex) -> read::Result<&'data <Elf as >::Sym>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> read::Result<&'data <Elf as >::Sym>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn shndx(self: &Self, endian: <Elf as >::Endian, index: SymbolIndex) -> Option<u32>` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md)
+- <span id="symboltable-shndx"></span>`fn shndx(&self, endian: <Elf as >::Endian, index: SymbolIndex) -> Option<u32>` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md)
 
-- `fn symbol_section(self: &Self, endian: <Elf as >::Endian, symbol: &<Elf as >::Sym, index: SymbolIndex) -> read::Result<Option<SectionIndex>>` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`SectionIndex`](../../index.md)
+- <span id="symboltable-symbol-section"></span>`fn symbol_section(&self, endian: <Elf as >::Endian, symbol: &<Elf as >::Sym, index: SymbolIndex) -> read::Result<Option<SectionIndex>>` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`SectionIndex`](../../index.md)
 
-- `fn symbol_name(self: &Self, endian: <Elf as >::Endian, symbol: &<Elf as >::Sym) -> read::Result<&'data [u8]>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
+- <span id="symboltable-symbol-name"></span>`fn symbol_name(&self, endian: <Elf as >::Endian, symbol: &<Elf as >::Sym) -> read::Result<&'data [u8]>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
 
-- `fn map<Entry: SymbolMapEntry, F: Fn(&'data <Elf as >::Sym) -> Option<Entry>>(self: &Self, endian: <Elf as >::Endian, f: F) -> SymbolMap<Entry>` — [`FileHeader`](#fileheader), [`SymbolMap`](../../index.md)
+- <span id="symboltable-map"></span>`fn map<Entry: SymbolMapEntry, F: Fn(&'data <Elf as >::Sym) -> Option<Entry>>(&self, endian: <Elf as >::Endian, f: F) -> SymbolMap<Entry>` — [`FileHeader`](#fileheader), [`SymbolMap`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader, R> Clone for SymbolTable<'data, Elf, R>`
+##### `impl<'data, Elf: clone::Clone + FileHeader, R> Clone for SymbolTable<'data, Elf, R>`
 
-- `fn clone(self: &Self) -> SymbolTable<'data, Elf, R>` — [`SymbolTable`](#symboltable)
+- <span id="symboltable-clone"></span>`fn clone(&self) -> SymbolTable<'data, Elf, R>` — [`SymbolTable`](#symboltable)
 
-##### `impl<'data, Elf: $crate::marker::Copy + FileHeader, R> Copy for SymbolTable<'data, Elf, R>`
+##### `impl<'data, Elf: marker::Copy + FileHeader, R> Copy for SymbolTable<'data, Elf, R>`
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader, R> Debug for SymbolTable<'data, Elf, R>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader, R> Debug for SymbolTable<'data, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Elf: FileHeader, R: ReadRef<'data>> Default for SymbolTable<'data, Elf, R>`
 
-- `fn default() -> Self`
+- <span id="symboltable-default"></span>`fn default() -> Self`
 
 ### `ElfSymbolTable<'data, 'file, Elf, R>`
 
@@ -555,29 +765,31 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:229-236`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L229-L236)*
+
 A symbol table in an [`ElfFile`](super::ElfFile).
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Clone for ElfSymbolTable<'data, 'file, Elf, R>`
 
-- `fn clone(self: &Self) -> ElfSymbolTable<'data, 'file, Elf, R>` — [`ElfSymbolTable`](#elfsymboltable)
+- <span id="elfsymboltable-clone"></span>`fn clone(&self) -> ElfSymbolTable<'data, 'file, Elf, R>` — [`ElfSymbolTable`](#elfsymboltable)
 
 ##### `impl<'data, 'file, Elf, R> Copy for ElfSymbolTable<'data, 'file, Elf, R>`
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSymbolTable<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for ElfSymbolTable<'data, 'file, Elf, R>`
 
-- `type Symbol = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elfsymboltable-type-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
 
-- `type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
+- <span id="elfsymboltable-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- `fn symbols(self: &Self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
+- <span id="elfsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
 
-- `fn symbol_by_index(self: &Self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ObjectSymbolTable`](../index.md)
+- <span id="elfsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ObjectSymbolTable`](../index.md)
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Sealed for ElfSymbolTable<'data, 'file, Elf, R>`
 
@@ -594,31 +806,33 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:272-280`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L272-L280)*
+
 An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, symbols: &'file SymbolTable<'data, Elf, R>) -> Self` — [`FileHeader`](#fileheader), [`SymbolTable`](#symboltable)
+- <span id="elfsymboliterator-new"></span>`fn new(endian: <Elf as >::Endian, symbols: &'file SymbolTable<'data, Elf, R>) -> Self` — [`FileHeader`](#fileheader), [`SymbolTable`](#symboltable)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Debug for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfsymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfsymboliterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Iterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- `type Item = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elfsymboliterator-type-item"></span>`type Item = ElfSymbol<'data, 'file, Elf, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ElfSymbol<'data, 'file, Elf, R>`
 
@@ -634,61 +848,63 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:333-342`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L333-L342)*
+
 A symbol in an [`ElfFile`](super::ElfFile).
 
 Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implementation.
 
 #### Implementations
 
-- `fn endian(self: &Self) -> <Elf as >::Endian` — [`FileHeader`](#fileheader)
+- <span id="elfsymbol-endian"></span>`fn endian(&self) -> <Elf as >::Endian` — [`FileHeader`](#fileheader)
 
-- `fn raw_symbol(self: &Self) -> &'data <Elf as >::Sym` — [`FileHeader`](#fileheader)
+- <span id="elfsymbol-raw-symbol"></span>`fn raw_symbol(&self) -> &'data <Elf as >::Sym` — [`FileHeader`](#fileheader)
 
-- `fn elf_symbol(self: &Self) -> &'data <Elf as >::Sym` — [`FileHeader`](#fileheader)
+- <span id="elfsymbol-elf-symbol"></span>`fn elf_symbol(&self) -> &'data <Elf as >::Sym` — [`FileHeader`](#fileheader)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Clone for ElfSymbol<'data, 'file, Elf, R>`
 
-- `fn clone(self: &Self) -> ElfSymbol<'data, 'file, Elf, R>` — [`ElfSymbol`](#elfsymbol)
+- <span id="elfsymbol-clone"></span>`fn clone(&self) -> ElfSymbol<'data, 'file, Elf, R>` — [`ElfSymbol`](#elfsymbol)
 
 ##### `impl<'data, 'file, Elf, R> Copy for ElfSymbol<'data, 'file, Elf, R>`
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSymbol<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> ObjectSymbol for ElfSymbol<'data, 'file, Elf, R>`
 
-- `fn index(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="elfsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="elfsymbol-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> read::Result<&'data str>` — [`Result`](../../index.md)
+- <span id="elfsymbol-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="elfsymbol-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="elfsymbol-size"></span>`fn size(&self) -> u64`
 
-- `fn kind(self: &Self) -> SymbolKind` — [`SymbolKind`](../../index.md)
+- <span id="elfsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md)
 
-- `fn section(self: &Self) -> SymbolSection` — [`SymbolSection`](../../index.md)
+- <span id="elfsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md)
 
-- `fn is_undefined(self: &Self) -> bool`
+- <span id="elfsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
-- `fn is_definition(self: &Self) -> bool`
+- <span id="elfsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
 
-- `fn is_common(self: &Self) -> bool`
+- <span id="elfsymbol-is-common"></span>`fn is_common(&self) -> bool`
 
-- `fn is_weak(self: &Self) -> bool`
+- <span id="elfsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- `fn scope(self: &Self) -> SymbolScope` — [`SymbolScope`](../../index.md)
+- <span id="elfsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md)
 
-- `fn is_global(self: &Self) -> bool`
+- <span id="elfsymbol-is-global"></span>`fn is_global(&self) -> bool`
 
-- `fn is_local(self: &Self) -> bool`
+- <span id="elfsymbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- `fn flags(self: &Self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md), [`SectionIndex`](../../index.md), [`SymbolIndex`](../../index.md)
+- <span id="elfsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md), [`SectionIndex`](../../index.md), [`SymbolIndex`](../../index.md)
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Sealed for ElfSymbol<'data, 'file, Elf, R>`
 
@@ -700,23 +916,25 @@ struct RelocationSections {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:18-20`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L18-L20)*
+
 A mapping from section index to associated relocation sections.
 
 #### Implementations
 
-- `fn parse<'data, Elf: FileHeader, R: ReadRef<'data>>(endian: <Elf as >::Endian, sections: &SectionTable<'data, Elf, R>, symbol_section: SectionIndex) -> read::Result<Self>` — [`FileHeader`](#fileheader), [`SectionTable`](#sectiontable), [`SectionIndex`](../../index.md), [`Result`](../../index.md)
+- <span id="relocationsections-parse"></span>`fn parse<'data, Elf: FileHeader, R: ReadRef<'data>>(endian: <Elf as >::Endian, sections: &SectionTable<'data, Elf, R>, symbol_section: SectionIndex) -> read::Result<Self>` — [`FileHeader`](#fileheader), [`SectionTable`](#sectiontable), [`SectionIndex`](../../index.md), [`Result`](../../index.md)
 
-- `fn get(self: &Self, index: SectionIndex) -> Option<SectionIndex>` — [`SectionIndex`](../../index.md)
+- <span id="relocationsections-get"></span>`fn get(&self, index: SectionIndex) -> Option<SectionIndex>` — [`SectionIndex`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for RelocationSections`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationsections-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RelocationSections`
 
-- `fn default() -> RelocationSections` — [`RelocationSections`](#relocationsections)
+- <span id="relocationsections-default"></span>`fn default() -> RelocationSections` — [`RelocationSections`](#relocationsections)
 
 ### `ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
@@ -731,6 +949,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:123-132`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L123-L132)*
+
 An iterator for the dynamic relocations in an [`ElfFile`](#elffile).
 
 #### Fields
@@ -743,21 +963,21 @@ An iterator for the dynamic relocations in an [`ElfFile`](#elffile).
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfdynamicrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfdynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfdynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfdynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="elfdynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfdynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
@@ -772,6 +992,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:207-216`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L207-L216)*
+
 An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
 #### Fields
@@ -784,21 +1006,21 @@ An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsectionrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfsectionrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfsectionrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfsectionrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="elfsectionrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfsectionrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `RelrIterator<'data, Elf: FileHeader>`
 
@@ -812,33 +1034,35 @@ struct RelrIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:681-687`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L681-L687)*
+
 An iterator over the relative relocations in an ELF `SHT_RELR` section.
 
 Returned by [`SectionHeader::relr`](super::SectionHeader::relr).
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, data: &'data [<Elf as >::Relr]) -> Self` — [`FileHeader`](#fileheader)
+- <span id="relriterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [<Elf as >::Relr]) -> Self` — [`FileHeader`](#fileheader)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for RelrIterator<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for RelrIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relriterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for RelrIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="relriterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="relriterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="relriterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for RelrIterator<'data, Elf>`
 
-- `type Item = <Elf as FileHeader>::Word`
+- <span id="relriterator-type-item"></span>`type Item = <Elf as FileHeader>::Word`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="relriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `Crel`
 
@@ -850,6 +1074,8 @@ struct Crel {
     pub r_addend: i64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:792-803`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L792-L803)*
 
 Compact relocation
 
@@ -877,23 +1103,23 @@ The specification has been submited here: <https://groups.google.com/g/generic-a
 
 #### Implementations
 
-- `fn symbol(self: &Self) -> Option<SymbolIndex>` — [`SymbolIndex`](../../index.md)
+- <span id="crel-symbol"></span>`fn symbol(&self) -> Option<SymbolIndex>` — [`SymbolIndex`](../../index.md)
 
-- `fn from_rel<R: Rel>(r: &R, endian: <R as >::Endian) -> Crel` — [`Rel`](#rel), [`Crel`](#crel)
+- <span id="crel-from-rel"></span>`fn from_rel<R: Rel>(r: &R, endian: <R as >::Endian) -> Crel` — [`Rel`](#rel), [`Crel`](#crel)
 
-- `fn from_rela<R: Rela>(r: &R, endian: <R as >::Endian, is_mips64el: bool) -> Crel` — [`Rela`](#rela), [`Crel`](#crel)
+- <span id="crel-from-rela"></span>`fn from_rela<R: Rela>(r: &R, endian: <R as >::Endian, is_mips64el: bool) -> Crel` — [`Rela`](#rela), [`Crel`](#crel)
 
 #### Trait Implementations
 
 ##### `impl Clone for Crel`
 
-- `fn clone(self: &Self) -> Crel` — [`Crel`](#crel)
+- <span id="crel-clone"></span>`fn clone(&self) -> Crel` — [`Crel`](#crel)
 
 ##### `impl Copy for Crel`
 
 ##### `impl Debug for Crel`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="crel-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `CrelIteratorHeader`
 
@@ -905,6 +1131,8 @@ struct CrelIteratorHeader {
     is_rela: bool,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:839-848`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L839-L848)*
 
 #### Fields
 
@@ -928,11 +1156,11 @@ struct CrelIteratorHeader {
 
 ##### `impl Clone for CrelIteratorHeader`
 
-- `fn clone(self: &Self) -> CrelIteratorHeader` — [`CrelIteratorHeader`](relocation/index.md)
+- <span id="creliteratorheader-clone"></span>`fn clone(&self) -> CrelIteratorHeader` — [`CrelIteratorHeader`](relocation/index.md)
 
 ##### `impl Debug for CrelIteratorHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="creliteratorheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `CrelIteratorState`
 
@@ -945,6 +1173,8 @@ struct CrelIteratorState {
     typ: u32,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:851-862`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L851-L862)*
 
 #### Fields
 
@@ -972,15 +1202,15 @@ struct CrelIteratorState {
 
 ##### `impl Clone for CrelIteratorState`
 
-- `fn clone(self: &Self) -> CrelIteratorState` — [`CrelIteratorState`](relocation/index.md)
+- <span id="creliteratorstate-clone"></span>`fn clone(&self) -> CrelIteratorState` — [`CrelIteratorState`](relocation/index.md)
 
 ##### `impl Debug for CrelIteratorState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="creliteratorstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CrelIteratorState`
 
-- `fn default() -> CrelIteratorState` — [`CrelIteratorState`](relocation/index.md)
+- <span id="creliteratorstate-default"></span>`fn default() -> CrelIteratorState` — [`CrelIteratorState`](relocation/index.md)
 
 ### `CrelIterator<'data>`
 
@@ -991,6 +1221,8 @@ struct CrelIterator<'data> {
     state: CrelIteratorState,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:866-873`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L866-L873)*
 
 Compact relocation iterator.
 
@@ -1010,41 +1242,41 @@ Compact relocation iterator.
 
 #### Implementations
 
-- `fn new(data: &'data [u8]) -> Result<Self, Error>` — [`Error`](../../index.md)
+- <span id="creliterator-new"></span>`fn new(data: &'data [u8]) -> Result<Self, Error>` — [`Error`](../../index.md)
 
-- `fn is_rela(self: &Self) -> bool`
+- <span id="creliterator-is-rela"></span>`fn is_rela(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="creliterator-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="creliterator-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn parse(self: &mut Self) -> read::Result<Crel>` — [`Result`](../../index.md), [`Crel`](#crel)
+- <span id="creliterator-parse"></span>`fn parse(&mut self) -> read::Result<Crel>` — [`Result`](../../index.md), [`Crel`](#crel)
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for CrelIterator<'data>`
+##### `impl Clone for CrelIterator<'data>`
 
-- `fn clone(self: &Self) -> CrelIterator<'data>` — [`CrelIterator`](#creliterator)
+- <span id="creliterator-clone"></span>`fn clone(&self) -> CrelIterator<'data>` — [`CrelIterator`](#creliterator)
 
-##### `impl<'data> Debug for CrelIterator<'data>`
+##### `impl Debug for CrelIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="creliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for CrelIterator<'data>`
+##### `impl IntoIterator for CrelIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="creliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="creliterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="creliterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data> Iterator for CrelIterator<'data>`
+##### `impl Iterator for CrelIterator<'data>`
 
-- `type Item = Result<Crel, Error>`
+- <span id="creliterator-type-item"></span>`type Item = Result<Crel, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="creliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="creliterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `ElfComdatIterator<'data, 'file, Elf, R>`
 
@@ -1058,31 +1290,33 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:19-26`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L19-L26)*
+
 An iterator for the COMDAT section groups in an [`ElfFile`](#elffile).
 
 #### Implementations
 
-- `fn new(file: &'file ElfFile<'data, Elf, R>) -> ElfComdatIterator<'data, 'file, Elf, R>` — [`ElfFile`](#elffile), [`ElfComdatIterator`](#elfcomdatiterator)
+- <span id="elfcomdatiterator-new"></span>`fn new(file: &'file ElfFile<'data, Elf, R>) -> ElfComdatIterator<'data, 'file, Elf, R>` — [`ElfFile`](#elffile), [`ElfComdatIterator`](#elfcomdatiterator)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfComdatIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfcomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfComdatIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfcomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfcomdatiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfComdatIterator<'data, 'file, Elf, R>`
 
-- `type Item = ElfComdat<'data, 'file, Elf, R>`
+- <span id="elfcomdatiterator-type-item"></span>`type Item = ElfComdat<'data, 'file, Elf, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ElfComdat<'data, 'file, Elf, R>`
 
@@ -1097,37 +1331,39 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:70-78`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L70-L78)*
+
 A COMDAT section group in an [`ElfFile`](#elffile).
 
 Most functionality is provided by the [`ObjectComdat`](../index.md) trait implementation.
 
 #### Implementations
 
-- `fn parse(file: &'file ElfFile<'data, Elf, R>, section: &'data <Elf as >::SectionHeader) -> Option<ElfComdat<'data, 'file, Elf, R>>` — [`ElfFile`](#elffile), [`FileHeader`](#fileheader), [`ElfComdat`](#elfcomdat)
+- <span id="elfcomdat-parse"></span>`fn parse(file: &'file ElfFile<'data, Elf, R>, section: &'data <Elf as >::SectionHeader) -> Option<ElfComdat<'data, 'file, Elf, R>>` — [`ElfFile`](#elffile), [`FileHeader`](#fileheader), [`ElfComdat`](#elfcomdat)
 
-- `fn elf_file(self: &Self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](#elffile)
+- <span id="elfcomdat-elf-file"></span>`fn elf_file(&self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](#elffile)
 
-- `fn elf_section_header(self: &Self) -> &'data <Elf as >::SectionHeader` — [`FileHeader`](#fileheader)
+- <span id="elfcomdat-elf-section-header"></span>`fn elf_section_header(&self) -> &'data <Elf as >::SectionHeader` — [`FileHeader`](#fileheader)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfComdat<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfcomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Elf, R> ObjectComdat for ElfComdat<'data, 'file, Elf, R>`
 
-- `type SectionIterator = ElfComdatSectionIterator<'data, 'file, Elf, R>`
+- <span id="elfcomdat-type-sectioniterator"></span>`type SectionIterator = ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
-- `fn kind(self: &Self) -> ComdatKind` — [`ComdatKind`](../../index.md)
+- <span id="elfcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md)
 
-- `fn symbol(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="elfcomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="elfcomdat-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> read::Result<&'data str>` — [`Result`](../../index.md)
+- <span id="elfcomdat-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn sections(self: &Self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md)
+- <span id="elfcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md)
 
 ##### `impl<'data, 'file, Elf, R> Sealed for ElfComdat<'data, 'file, Elf, R>`
 
@@ -1143,27 +1379,29 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:166-173`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L166-L173)*
+
 An iterator for the sections in a COMDAT section group in an [`ElfFile`](#elffile).
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfcomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfcomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfcomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
-- `type Item = SectionIndex`
+- <span id="elfcomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `NoteIterator<'data, Elf>`
 
@@ -1177,6 +1415,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L17-L24)*
+
 An iterator over the notes in an ELF section or segment.
 
 Returned [`ProgramHeader::notes`](super::ProgramHeader::notes)
@@ -1184,31 +1424,31 @@ and [`SectionHeader::notes`](super::SectionHeader::notes).
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, align: <Elf as >::Word, data: &'data [u8]) -> read::Result<Self>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
+- <span id="noteiterator-new"></span>`fn new(endian: <Elf as >::Endian, align: <Elf as >::Word, data: &'data [u8]) -> read::Result<Self>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
 
-- `fn next(self: &mut Self) -> read::Result<Option<Note<'data, Elf>>>` — [`Result`](../../index.md), [`Note`](#note)
+- <span id="noteiterator-next"></span>`fn next(&mut self) -> read::Result<Option<Note<'data, Elf>>>` — [`Result`](../../index.md), [`Note`](#note)
 
-- `fn parse(self: &mut Self) -> read::Result<Note<'data, Elf>>` — [`Result`](../../index.md), [`Note`](#note)
+- <span id="noteiterator-parse"></span>`fn parse(&mut self) -> read::Result<Note<'data, Elf>>` — [`Result`](../../index.md), [`Note`](#note)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf> Debug for NoteIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="noteiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for NoteIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="noteiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="noteiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="noteiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for NoteIterator<'data, Elf>`
 
-- `type Item = Result<Note<'data, Elf>, Error>`
+- <span id="noteiterator-type-item"></span>`type Item = Result<Note<'data, Elf>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="noteiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `Note<'data, Elf>`
 
@@ -1222,29 +1462,31 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L109-L116)*
+
 A parsed [`NoteHeader`](#noteheader).
 
 #### Implementations
 
-- `fn n_type(self: &Self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](#fileheader)
+- <span id="note-n-type"></span>`fn n_type(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](#fileheader)
 
-- `fn n_namesz(self: &Self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](#fileheader)
+- <span id="note-n-namesz"></span>`fn n_namesz(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](#fileheader)
 
-- `fn n_descsz(self: &Self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](#fileheader)
+- <span id="note-n-descsz"></span>`fn n_descsz(&self, endian: <Elf as >::Endian) -> u32` — [`FileHeader`](#fileheader)
 
-- `fn name_bytes(self: &Self) -> &'data [u8]`
+- <span id="note-name-bytes"></span>`fn name_bytes(&self) -> &'data [u8]`
 
-- `fn name(self: &Self) -> &'data [u8]`
+- <span id="note-name"></span>`fn name(&self) -> &'data [u8]`
 
-- `fn desc(self: &Self) -> &'data [u8]`
+- <span id="note-desc"></span>`fn desc(&self) -> &'data [u8]`
 
-- `fn gnu_properties(self: &Self, endian: <Elf as >::Endian) -> Option<GnuPropertyIterator<'data, <Elf as >::Endian>>` — [`FileHeader`](#fileheader), [`GnuPropertyIterator`](#gnupropertyiterator)
+- <span id="note-gnu-properties"></span>`fn gnu_properties(&self, endian: <Elf as >::Endian) -> Option<GnuPropertyIterator<'data, <Elf as >::Endian>>` — [`FileHeader`](#fileheader), [`GnuPropertyIterator`](#gnupropertyiterator)
 
 #### Trait Implementations
 
 ##### `impl<'data, Elf> Debug for Note<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="note-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `GnuPropertyIterator<'data, Endian: endian::Endian>`
 
@@ -1256,35 +1498,37 @@ struct GnuPropertyIterator<'data, Endian: endian::Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L235-L239)*
+
 An iterator for the properties in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
 Returned by `Note::gnu_properties`.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> read::Result<Option<GnuProperty<'data>>>` — [`Result`](../../index.md), [`GnuProperty`](#gnuproperty)
+- <span id="gnupropertyiterator-next"></span>`fn next(&mut self) -> read::Result<Option<GnuProperty<'data>>>` — [`Result`](../../index.md), [`GnuProperty`](#gnuproperty)
 
-- `fn parse(self: &mut Self) -> read::Result<GnuProperty<'data>>` — [`Result`](../../index.md), [`GnuProperty`](#gnuproperty)
+- <span id="gnupropertyiterator-parse"></span>`fn parse(&mut self) -> read::Result<GnuProperty<'data>>` — [`Result`](../../index.md), [`GnuProperty`](#gnuproperty)
 
 #### Trait Implementations
 
-##### `impl<'data, Endian: $crate::fmt::Debug + endian::Endian> Debug for GnuPropertyIterator<'data, Endian>`
+##### `impl<'data, Endian: fmt::Debug + endian::Endian> Debug for GnuPropertyIterator<'data, Endian>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="gnupropertyiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for GnuPropertyIterator<'data, Endian>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="gnupropertyiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="gnupropertyiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="gnupropertyiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Endian: endian::Endian> Iterator for GnuPropertyIterator<'data, Endian>`
 
-- `type Item = Result<GnuProperty<'data>, Error>`
+- <span id="gnupropertyiterator-type-item"></span>`type Item = Result<GnuProperty<'data>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="gnupropertyiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `GnuProperty<'data>`
 
@@ -1295,21 +1539,23 @@ struct GnuProperty<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L277-L280)*
+
 A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
 #### Implementations
 
-- `fn pr_type(self: &Self) -> u32`
+- <span id="gnuproperty-pr-type"></span>`fn pr_type(&self) -> u32`
 
-- `fn pr_data(self: &Self) -> &'data [u8]`
+- <span id="gnuproperty-pr-data"></span>`fn pr_data(&self) -> &'data [u8]`
 
-- `fn data_u32<E: endian::Endian>(self: &Self, endian: E) -> read::Result<u32>` — [`Result`](../../index.md)
+- <span id="gnuproperty-data-u32"></span>`fn data_u32<E: endian::Endian>(&self, endian: E) -> read::Result<u32>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data> Debug for GnuProperty<'data>`
+##### `impl Debug for GnuProperty<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="gnuproperty-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `HashTable<'data, Elf: FileHeader>`
 
@@ -1320,27 +1566,29 @@ struct HashTable<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:13-16`](../../../../.source_1765210505/object-0.37.3/src/read/elf/hash.rs#L13-L16)*
+
 A SysV symbol hash table in an ELF file.
 
 Returned by [`SectionHeader::hash`](super::SectionHeader::hash).
 
 #### Implementations
 
-- `fn parse(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
+- <span id="hashtable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
 
-- `fn symbol_table_length(self: &Self) -> u32`
+- <span id="hashtable-symbol-table-length"></span>`fn symbol_table_length(&self) -> u32`
 
-- `fn bucket(self: &Self, endian: <Elf as >::Endian, hash: u32) -> SymbolIndex` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md)
+- <span id="hashtable-bucket"></span>`fn bucket(&self, endian: <Elf as >::Endian, hash: u32) -> SymbolIndex` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md)
 
-- `fn chain(self: &Self, endian: <Elf as >::Endian, index: SymbolIndex) -> SymbolIndex` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md)
+- <span id="hashtable-chain"></span>`fn chain(&self, endian: <Elf as >::Endian, index: SymbolIndex) -> SymbolIndex` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md)
 
-- `fn find<R: ReadRef<'data>>(self: &Self, endian: <Elf as >::Endian, name: &[u8], hash: u32, version: Option<&Version<'_>>, symbols: &SymbolTable<'data, Elf, R>, versions: &VersionTable<'data, Elf>) -> Option<(SymbolIndex, &'data <Elf as >::Sym)>` — [`FileHeader`](#fileheader), [`Version`](#version), [`SymbolTable`](#symboltable), [`VersionTable`](#versiontable), [`SymbolIndex`](../../index.md)
+- <span id="hashtable-find"></span>`fn find<R: ReadRef<'data>>(&self, endian: <Elf as >::Endian, name: &[u8], hash: u32, version: Option<&Version<'_>>, symbols: &SymbolTable<'data, Elf, R>, versions: &VersionTable<'data, Elf>) -> Option<(SymbolIndex, &'data <Elf as >::Sym)>` — [`FileHeader`](#fileheader), [`Version`](#version), [`SymbolTable`](#symboltable), [`VersionTable`](#versiontable), [`SymbolIndex`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for HashTable<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for HashTable<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="hashtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `GnuHashTable<'data, Elf: FileHeader>`
 
@@ -1354,27 +1602,29 @@ struct GnuHashTable<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:86-92`](../../../../.source_1765210505/object-0.37.3/src/read/elf/hash.rs#L86-L92)*
+
 A GNU symbol hash table in an ELF file.
 
 Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
 
 #### Implementations
 
-- `fn parse(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
+- <span id="gnuhashtable-parse"></span>`fn parse(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
 
-- `fn symbol_base(self: &Self) -> u32`
+- <span id="gnuhashtable-symbol-base"></span>`fn symbol_base(&self) -> u32`
 
-- `fn symbol_table_length(self: &Self, endian: <Elf as >::Endian) -> Option<u32>` — [`FileHeader`](#fileheader)
+- <span id="gnuhashtable-symbol-table-length"></span>`fn symbol_table_length(&self, endian: <Elf as >::Endian) -> Option<u32>` — [`FileHeader`](#fileheader)
 
-- `fn bucket(self: &Self, endian: <Elf as >::Endian, hash: u32) -> SymbolIndex` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md)
+- <span id="gnuhashtable-bucket"></span>`fn bucket(&self, endian: <Elf as >::Endian, hash: u32) -> SymbolIndex` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md)
 
-- `fn find<R: ReadRef<'data>>(self: &Self, endian: <Elf as >::Endian, name: &[u8], hash: u32, version: Option<&Version<'_>>, symbols: &SymbolTable<'data, Elf, R>, versions: &VersionTable<'data, Elf>) -> Option<(SymbolIndex, &'data <Elf as >::Sym)>` — [`FileHeader`](#fileheader), [`Version`](#version), [`SymbolTable`](#symboltable), [`VersionTable`](#versiontable), [`SymbolIndex`](../../index.md)
+- <span id="gnuhashtable-find"></span>`fn find<R: ReadRef<'data>>(&self, endian: <Elf as >::Endian, name: &[u8], hash: u32, version: Option<&Version<'_>>, symbols: &SymbolTable<'data, Elf, R>, versions: &VersionTable<'data, Elf>) -> Option<(SymbolIndex, &'data <Elf as >::Sym)>` — [`FileHeader`](#fileheader), [`Version`](#version), [`SymbolTable`](#symboltable), [`VersionTable`](#versiontable), [`SymbolIndex`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for GnuHashTable<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for GnuHashTable<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="gnuhashtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `VersionIndex`
 
@@ -1382,33 +1632,35 @@ Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
 struct VersionIndex(u16);
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L10)*
+
 A version index.
 
 #### Implementations
 
-- `fn index(self: &Self) -> u16`
+- <span id="versionindex-index"></span>`fn index(&self) -> u16`
 
-- `fn is_local(self: &Self) -> bool`
+- <span id="versionindex-is-local"></span>`fn is_local(&self) -> bool`
 
-- `fn is_global(self: &Self) -> bool`
+- <span id="versionindex-is-global"></span>`fn is_global(&self) -> bool`
 
-- `fn is_hidden(self: &Self) -> bool`
+- <span id="versionindex-is-hidden"></span>`fn is_hidden(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for VersionIndex`
 
-- `fn clone(self: &Self) -> VersionIndex` — [`VersionIndex`](#versionindex)
+- <span id="versionindex-clone"></span>`fn clone(&self) -> VersionIndex` — [`VersionIndex`](#versionindex)
 
 ##### `impl Copy for VersionIndex`
 
 ##### `impl Debug for VersionIndex`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="versionindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for VersionIndex`
 
-- `fn default() -> VersionIndex` — [`VersionIndex`](#versionindex)
+- <span id="versionindex-default"></span>`fn default() -> VersionIndex` — [`VersionIndex`](#versionindex)
 
 ### `Version<'data>`
 
@@ -1421,33 +1673,35 @@ struct Version<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L38-L44)*
+
 A version definition or requirement.
 
 This is derived from entries in the [`elf::SHT_GNU_VERDEF`](../../elf/index.md) and [`elf::SHT_GNU_VERNEED`](../../elf/index.md) sections.
 
 #### Implementations
 
-- `fn name(self: &Self) -> &'data [u8]`
+- <span id="version-name"></span>`fn name(&self) -> &'data [u8]`
 
-- `fn hash(self: &Self) -> u32`
+- <span id="version-hash"></span>`fn hash(&self) -> u32`
 
-- `fn file(self: &Self) -> Option<&'data [u8]>`
+- <span id="version-file"></span>`fn file(&self) -> Option<&'data [u8]>`
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Version<'data>`
+##### `impl Clone for Version<'data>`
 
-- `fn clone(self: &Self) -> Version<'data>` — [`Version`](#version)
+- <span id="version-clone"></span>`fn clone(&self) -> Version<'data>` — [`Version`](#version)
 
-##### `impl<'data> Copy for Version<'data>`
+##### `impl Copy for Version<'data>`
 
-##### `impl<'data> Debug for Version<'data>`
+##### `impl Debug for Version<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="version-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for Version<'data>`
+##### `impl Default for Version<'data>`
 
-- `fn default() -> Version<'data>` — [`Version`](#version)
+- <span id="version-default"></span>`fn default() -> Version<'data>` — [`Version`](#version)
 
 ### `VersionTable<'data, Elf: FileHeader>`
 
@@ -1457,6 +1711,8 @@ struct VersionTable<'data, Elf: FileHeader> {
     versions: alloc::vec::Vec<Version<'data>>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L75-L78)*
 
 A table of version definitions and requirements.
 
@@ -1469,29 +1725,29 @@ Returned by [`SectionTable::versions`](super::SectionTable::versions).
 
 #### Implementations
 
-- `fn parse<R: ReadRef<'data>>(endian: <Elf as >::Endian, versyms: &'data [elf::Versym<<Elf as >::Endian>], verdefs: Option<VerdefIterator<'data, Elf>>, verneeds: Option<VerneedIterator<'data, Elf>>, strings: StringTable<'data, R>) -> Result<Self>` — [`FileHeader`](#fileheader), [`Versym`](../../elf/index.md), [`VerdefIterator`](#verdefiterator), [`VerneedIterator`](#verneediterator), [`StringTable`](../index.md), [`Result`](../../index.md)
+- <span id="versiontable-parse"></span>`fn parse<R: ReadRef<'data>>(endian: <Elf as >::Endian, versyms: &'data [elf::Versym<<Elf as >::Endian>], verdefs: Option<VerdefIterator<'data, Elf>>, verneeds: Option<VerneedIterator<'data, Elf>>, strings: StringTable<'data, R>) -> Result<Self>` — [`FileHeader`](#fileheader), [`Versym`](../../elf/index.md), [`VerdefIterator`](#verdefiterator), [`VerneedIterator`](#verneediterator), [`StringTable`](../index.md), [`Result`](../../index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="versiontable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn version_index(self: &Self, endian: <Elf as >::Endian, index: SymbolIndex) -> VersionIndex` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md), [`VersionIndex`](#versionindex)
+- <span id="versiontable-version-index"></span>`fn version_index(&self, endian: <Elf as >::Endian, index: SymbolIndex) -> VersionIndex` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md), [`VersionIndex`](#versionindex)
 
-- `fn version(self: &Self, index: VersionIndex) -> Result<Option<&Version<'data>>>` — [`VersionIndex`](#versionindex), [`Result`](../../index.md), [`Version`](#version)
+- <span id="versiontable-version"></span>`fn version(&self, index: VersionIndex) -> Result<Option<&Version<'data>>>` — [`VersionIndex`](#versionindex), [`Result`](../../index.md), [`Version`](#version)
 
-- `fn matches(self: &Self, endian: <Elf as >::Endian, index: SymbolIndex, need: Option<&Version<'_>>) -> bool` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md), [`Version`](#version)
+- <span id="versiontable-matches"></span>`fn matches(&self, endian: <Elf as >::Endian, index: SymbolIndex, need: Option<&Version<'_>>) -> bool` — [`FileHeader`](#fileheader), [`SymbolIndex`](../../index.md), [`Version`](#version)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for VersionTable<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VersionTable<'data, Elf>`
 
-- `fn clone(self: &Self) -> VersionTable<'data, Elf>` — [`VersionTable`](#versiontable)
+- <span id="versiontable-clone"></span>`fn clone(&self) -> VersionTable<'data, Elf>` — [`VersionTable`](#versiontable)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for VersionTable<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VersionTable<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="versiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Elf: FileHeader> Default for VersionTable<'data, Elf>`
 
-- `fn default() -> Self`
+- <span id="versiontable-default"></span>`fn default() -> Self`
 
 ### `VerdefIterator<'data, Elf: FileHeader>`
 
@@ -1502,39 +1758,41 @@ struct VerdefIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L234-L237)*
+
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md) section.
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Self` — [`FileHeader`](#fileheader)
+- <span id="verdefiterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Self` — [`FileHeader`](#fileheader)
 
-- `fn next(self: &mut Self) -> Result<Option<(&'data elf::Verdef<<Elf as >::Endian>, VerdauxIterator<'data, Elf>)>>` — [`Result`](../../index.md), [`Verdef`](../../elf/index.md), [`FileHeader`](#fileheader), [`VerdauxIterator`](#verdauxiterator)
+- <span id="verdefiterator-next"></span>`fn next(&mut self) -> Result<Option<(&'data elf::Verdef<<Elf as >::Endian>, VerdauxIterator<'data, Elf>)>>` — [`Result`](../../index.md), [`Verdef`](../../elf/index.md), [`FileHeader`](#fileheader), [`VerdauxIterator`](#verdauxiterator)
 
-- `fn parse(self: &mut Self) -> Result<(&'data elf::Verdef<<Elf as >::Endian>, VerdauxIterator<'data, Elf>)>` — [`Result`](../../index.md), [`Verdef`](../../elf/index.md), [`FileHeader`](#fileheader), [`VerdauxIterator`](#verdauxiterator)
+- <span id="verdefiterator-parse"></span>`fn parse(&mut self) -> Result<(&'data elf::Verdef<<Elf as >::Endian>, VerdauxIterator<'data, Elf>)>` — [`Result`](../../index.md), [`Verdef`](../../elf/index.md), [`FileHeader`](#fileheader), [`VerdauxIterator`](#verdauxiterator)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for VerdefIterator<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VerdefIterator<'data, Elf>`
 
-- `fn clone(self: &Self) -> VerdefIterator<'data, Elf>` — [`VerdefIterator`](#verdefiterator)
+- <span id="verdefiterator-clone"></span>`fn clone(&self) -> VerdefIterator<'data, Elf>` — [`VerdefIterator`](#verdefiterator)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for VerdefIterator<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VerdefIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="verdefiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for VerdefIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="verdefiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="verdefiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="verdefiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VerdefIterator<'data, Elf>`
 
-- `type Item = Result<(&'data Verdef<<Elf as FileHeader>::Endian>, VerdauxIterator<'data, Elf>), Error>`
+- <span id="verdefiterator-type-item"></span>`type Item = Result<(&'data Verdef<<Elf as FileHeader>::Endian>, VerdauxIterator<'data, Elf>), Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="verdefiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `VerdauxIterator<'data, Elf: FileHeader>`
 
@@ -1546,39 +1804,41 @@ struct VerdauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L297-L301)*
+
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md) section.
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, data: &'data [u8], count: u16) -> Self` — [`FileHeader`](#fileheader)
+- <span id="verdauxiterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8], count: u16) -> Self` — [`FileHeader`](#fileheader)
 
-- `fn next(self: &mut Self) -> Result<Option<&'data elf::Verdaux<<Elf as >::Endian>>>` — [`Result`](../../index.md), [`Verdaux`](../../elf/index.md), [`FileHeader`](#fileheader)
+- <span id="verdauxiterator-next"></span>`fn next(&mut self) -> Result<Option<&'data elf::Verdaux<<Elf as >::Endian>>>` — [`Result`](../../index.md), [`Verdaux`](../../elf/index.md), [`FileHeader`](#fileheader)
 
-- `fn parse(self: &mut Self) -> Result<&'data elf::Verdaux<<Elf as >::Endian>>` — [`Result`](../../index.md), [`Verdaux`](../../elf/index.md), [`FileHeader`](#fileheader)
+- <span id="verdauxiterator-parse"></span>`fn parse(&mut self) -> Result<&'data elf::Verdaux<<Elf as >::Endian>>` — [`Result`](../../index.md), [`Verdaux`](../../elf/index.md), [`FileHeader`](#fileheader)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for VerdauxIterator<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VerdauxIterator<'data, Elf>`
 
-- `fn clone(self: &Self) -> VerdauxIterator<'data, Elf>` — [`VerdauxIterator`](#verdauxiterator)
+- <span id="verdauxiterator-clone"></span>`fn clone(&self) -> VerdauxIterator<'data, Elf>` — [`VerdauxIterator`](#verdauxiterator)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for VerdauxIterator<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VerdauxIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="verdauxiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for VerdauxIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="verdauxiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="verdauxiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="verdauxiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VerdauxIterator<'data, Elf>`
 
-- `type Item = Result<&'data Verdaux<<Elf as FileHeader>::Endian>, Error>`
+- <span id="verdauxiterator-type-item"></span>`type Item = Result<&'data Verdaux<<Elf as FileHeader>::Endian>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="verdauxiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `VerneedIterator<'data, Elf: FileHeader>`
 
@@ -1589,39 +1849,41 @@ struct VerneedIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L350-L353)*
+
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.md) section.
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Self` — [`FileHeader`](#fileheader)
+- <span id="verneediterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Self` — [`FileHeader`](#fileheader)
 
-- `fn next(self: &mut Self) -> Result<Option<(&'data elf::Verneed<<Elf as >::Endian>, VernauxIterator<'data, Elf>)>>` — [`Result`](../../index.md), [`Verneed`](../../elf/index.md), [`FileHeader`](#fileheader), [`VernauxIterator`](#vernauxiterator)
+- <span id="verneediterator-next"></span>`fn next(&mut self) -> Result<Option<(&'data elf::Verneed<<Elf as >::Endian>, VernauxIterator<'data, Elf>)>>` — [`Result`](../../index.md), [`Verneed`](../../elf/index.md), [`FileHeader`](#fileheader), [`VernauxIterator`](#vernauxiterator)
 
-- `fn parse(self: &mut Self) -> Result<(&'data elf::Verneed<<Elf as >::Endian>, VernauxIterator<'data, Elf>)>` — [`Result`](../../index.md), [`Verneed`](../../elf/index.md), [`FileHeader`](#fileheader), [`VernauxIterator`](#vernauxiterator)
+- <span id="verneediterator-parse"></span>`fn parse(&mut self) -> Result<(&'data elf::Verneed<<Elf as >::Endian>, VernauxIterator<'data, Elf>)>` — [`Result`](../../index.md), [`Verneed`](../../elf/index.md), [`FileHeader`](#fileheader), [`VernauxIterator`](#vernauxiterator)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for VerneedIterator<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VerneedIterator<'data, Elf>`
 
-- `fn clone(self: &Self) -> VerneedIterator<'data, Elf>` — [`VerneedIterator`](#verneediterator)
+- <span id="verneediterator-clone"></span>`fn clone(&self) -> VerneedIterator<'data, Elf>` — [`VerneedIterator`](#verneediterator)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for VerneedIterator<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VerneedIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="verneediterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for VerneedIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="verneediterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="verneediterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="verneediterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VerneedIterator<'data, Elf>`
 
-- `type Item = Result<(&'data Verneed<<Elf as FileHeader>::Endian>, VernauxIterator<'data, Elf>), Error>`
+- <span id="verneediterator-type-item"></span>`type Item = Result<(&'data Verneed<<Elf as FileHeader>::Endian>, VernauxIterator<'data, Elf>), Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="verneediterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `VernauxIterator<'data, Elf: FileHeader>`
 
@@ -1633,39 +1895,41 @@ struct VernauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L426-L430)*
+
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.md) section.
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, data: &'data [u8], count: u16) -> Self` — [`FileHeader`](#fileheader)
+- <span id="vernauxiterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8], count: u16) -> Self` — [`FileHeader`](#fileheader)
 
-- `fn next(self: &mut Self) -> Result<Option<&'data elf::Vernaux<<Elf as >::Endian>>>` — [`Result`](../../index.md), [`Vernaux`](../../elf/index.md), [`FileHeader`](#fileheader)
+- <span id="vernauxiterator-next"></span>`fn next(&mut self) -> Result<Option<&'data elf::Vernaux<<Elf as >::Endian>>>` — [`Result`](../../index.md), [`Vernaux`](../../elf/index.md), [`FileHeader`](#fileheader)
 
-- `fn parse(self: &mut Self) -> Result<&'data elf::Vernaux<<Elf as >::Endian>>` — [`Result`](../../index.md), [`Vernaux`](../../elf/index.md), [`FileHeader`](#fileheader)
+- <span id="vernauxiterator-parse"></span>`fn parse(&mut self) -> Result<&'data elf::Vernaux<<Elf as >::Endian>>` — [`Result`](../../index.md), [`Vernaux`](../../elf/index.md), [`FileHeader`](#fileheader)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for VernauxIterator<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for VernauxIterator<'data, Elf>`
 
-- `fn clone(self: &Self) -> VernauxIterator<'data, Elf>` — [`VernauxIterator`](#vernauxiterator)
+- <span id="vernauxiterator-clone"></span>`fn clone(&self) -> VernauxIterator<'data, Elf>` — [`VernauxIterator`](#vernauxiterator)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for VernauxIterator<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for VernauxIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="vernauxiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for VernauxIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="vernauxiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="vernauxiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="vernauxiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VernauxIterator<'data, Elf>`
 
-- `type Item = Result<&'data Vernaux<<Elf as FileHeader>::Endian>, Error>`
+- <span id="vernauxiterator-type-item"></span>`type Item = Result<&'data Vernaux<<Elf as FileHeader>::Endian>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="vernauxiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `AttributesSection<'data, Elf: FileHeader>`
 
@@ -1676,6 +1940,8 @@ struct AttributesSection<'data, Elf: FileHeader> {
     data: crate::read::Bytes<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:18-22`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L18-L22)*
 
 An ELF attributes section.
 
@@ -1688,21 +1954,21 @@ and [`SectionHeader::gnu_attributes`](super::SectionHeader::gnu_attributes).
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
+- <span id="attributessection-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](#fileheader), [`Result`](../../index.md)
 
-- `fn version(self: &Self) -> u8`
+- <span id="attributessection-version"></span>`fn version(&self) -> u8`
 
-- `fn subsections(self: &Self) -> Result<AttributesSubsectionIterator<'data, Elf>>` — [`Result`](../../index.md), [`AttributesSubsectionIterator`](#attributessubsectioniterator)
+- <span id="attributessection-subsections"></span>`fn subsections(&self) -> Result<AttributesSubsectionIterator<'data, Elf>>` — [`Result`](../../index.md), [`AttributesSubsectionIterator`](#attributessubsectioniterator)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for AttributesSection<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSection<'data, Elf>`
 
-- `fn clone(self: &Self) -> AttributesSection<'data, Elf>` — [`AttributesSection`](#attributessection)
+- <span id="attributessection-clone"></span>`fn clone(&self) -> AttributesSection<'data, Elf>` — [`AttributesSection`](#attributessection)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for AttributesSection<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSection<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributessection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AttributesSubsectionIterator<'data, Elf: FileHeader>`
 
@@ -1713,37 +1979,39 @@ struct AttributesSubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:61-64`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L61-L64)*
+
 An iterator for the subsections in an [`AttributesSection`](#attributessection).
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<AttributesSubsection<'data, Elf>>>` — [`Result`](../../index.md), [`AttributesSubsection`](#attributessubsection)
+- <span id="attributessubsectioniterator-next"></span>`fn next(&mut self) -> Result<Option<AttributesSubsection<'data, Elf>>>` — [`Result`](../../index.md), [`AttributesSubsection`](#attributessubsection)
 
-- `fn parse(self: &mut Self) -> Result<AttributesSubsection<'data, Elf>>` — [`Result`](../../index.md), [`AttributesSubsection`](#attributessubsection)
+- <span id="attributessubsectioniterator-parse"></span>`fn parse(&mut self) -> Result<AttributesSubsection<'data, Elf>>` — [`Result`](../../index.md), [`AttributesSubsection`](#attributessubsection)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for AttributesSubsectionIterator<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsectionIterator<'data, Elf>`
 
-- `fn clone(self: &Self) -> AttributesSubsectionIterator<'data, Elf>` — [`AttributesSubsectionIterator`](#attributessubsectioniterator)
+- <span id="attributessubsectioniterator-clone"></span>`fn clone(&self) -> AttributesSubsectionIterator<'data, Elf>` — [`AttributesSubsectionIterator`](#attributessubsectioniterator)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for AttributesSubsectionIterator<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsectionIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributessubsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for AttributesSubsectionIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="attributessubsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="attributessubsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="attributessubsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for AttributesSubsectionIterator<'data, Elf>`
 
-- `type Item = Result<AttributesSubsection<'data, Elf>, Error>`
+- <span id="attributessubsectioniterator-type-item"></span>`type Item = Result<AttributesSubsection<'data, Elf>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="attributessubsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `AttributesSubsection<'data, Elf: FileHeader>`
 
@@ -1756,6 +2024,8 @@ struct AttributesSubsection<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:124-129`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L124-L129)*
+
 A subsection in an [`AttributesSection`](#attributessection).
 
 A subsection is identified by a vendor name.  It contains a series of
@@ -1763,21 +2033,21 @@ A subsection is identified by a vendor name.  It contains a series of
 
 #### Implementations
 
-- `fn length(self: &Self) -> u32`
+- <span id="attributessubsection-length"></span>`fn length(&self) -> u32`
 
-- `fn vendor(self: &Self) -> &'data [u8]`
+- <span id="attributessubsection-vendor"></span>`fn vendor(&self) -> &'data [u8]`
 
-- `fn subsubsections(self: &Self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](#attributessubsubsectioniterator)
+- <span id="attributessubsection-subsubsections"></span>`fn subsubsections(&self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](#attributessubsubsectioniterator)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for AttributesSubsection<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsection<'data, Elf>`
 
-- `fn clone(self: &Self) -> AttributesSubsection<'data, Elf>` — [`AttributesSubsection`](#attributessubsection)
+- <span id="attributessubsection-clone"></span>`fn clone(&self) -> AttributesSubsection<'data, Elf>` — [`AttributesSubsection`](#attributessubsection)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for AttributesSubsection<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsection<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributessubsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AttributesSubsubsectionIterator<'data, Elf: FileHeader>`
 
@@ -1788,37 +2058,39 @@ struct AttributesSubsubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:153-156`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L153-L156)*
+
 An iterator for the sub-subsections in an [`AttributesSubsection`](#attributessubsection).
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<AttributesSubsubsection<'data>>>` — [`Result`](../../index.md), [`AttributesSubsubsection`](#attributessubsubsection)
+- <span id="attributessubsubsectioniterator-next"></span>`fn next(&mut self) -> Result<Option<AttributesSubsubsection<'data>>>` — [`Result`](../../index.md), [`AttributesSubsubsection`](#attributessubsubsection)
 
-- `fn parse(self: &mut Self) -> Result<AttributesSubsubsection<'data>>` — [`Result`](../../index.md), [`AttributesSubsubsection`](#attributessubsubsection)
+- <span id="attributessubsubsectioniterator-parse"></span>`fn parse(&mut self) -> Result<AttributesSubsubsection<'data>>` — [`Result`](../../index.md), [`AttributesSubsubsection`](#attributessubsubsection)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for AttributesSubsubsectionIterator<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsubsectionIterator<'data, Elf>`
 
-- `fn clone(self: &Self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](#attributessubsubsectioniterator)
+- <span id="attributessubsubsectioniterator-clone"></span>`fn clone(&self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](#attributessubsubsectioniterator)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for AttributesSubsubsectionIterator<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsubsectionIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributessubsubsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for AttributesSubsubsectionIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="attributessubsubsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="attributessubsubsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="attributessubsubsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for AttributesSubsubsectionIterator<'data, Elf>`
 
-- `type Item = Result<AttributesSubsubsection<'data>, Error>`
+- <span id="attributessubsubsectioniterator-type-item"></span>`type Item = Result<AttributesSubsubsection<'data>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="attributessubsubsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `AttributesSubsubsection<'data>`
 
@@ -1831,6 +2103,8 @@ struct AttributesSubsubsection<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:229-234`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L229-L234)*
+
 A sub-subsection in an [`AttributesSubsection`](#attributessubsection).
 
 A sub-subsection is identified by a tag.  It contains an optional series of indices,
@@ -1838,27 +2112,27 @@ followed by a series of attributes.
 
 #### Implementations
 
-- `fn tag(self: &Self) -> u8`
+- <span id="attributessubsubsection-tag"></span>`fn tag(&self) -> u8`
 
-- `fn length(self: &Self) -> u32`
+- <span id="attributessubsubsection-length"></span>`fn length(&self) -> u32`
 
-- `fn indices_data(self: &Self) -> &'data [u8]`
+- <span id="attributessubsubsection-indices-data"></span>`fn indices_data(&self) -> &'data [u8]`
 
-- `fn indices(self: &Self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](#attributeindexiterator)
+- <span id="attributessubsubsection-indices"></span>`fn indices(&self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](#attributeindexiterator)
 
-- `fn attributes_data(self: &Self) -> &'data [u8]`
+- <span id="attributessubsubsection-attributes-data"></span>`fn attributes_data(&self) -> &'data [u8]`
 
-- `fn attributes(self: &Self) -> AttributeReader<'data>` — [`AttributeReader`](#attributereader)
+- <span id="attributessubsubsection-attributes"></span>`fn attributes(&self) -> AttributeReader<'data>` — [`AttributeReader`](#attributereader)
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for AttributesSubsubsection<'data>`
+##### `impl Clone for AttributesSubsubsection<'data>`
 
-- `fn clone(self: &Self) -> AttributesSubsubsection<'data>` — [`AttributesSubsubsection`](#attributessubsubsection)
+- <span id="attributessubsubsection-clone"></span>`fn clone(&self) -> AttributesSubsubsection<'data>` — [`AttributesSubsubsection`](#attributessubsubsection)
 
-##### `impl<'data> Debug for AttributesSubsubsection<'data>`
+##### `impl Debug for AttributesSubsubsection<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributessubsubsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AttributeIndexIterator<'data>`
 
@@ -1868,37 +2142,39 @@ struct AttributeIndexIterator<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:274-276`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L274-L276)*
+
 An iterator over the indices in an [`AttributesSubsubsection`](#attributessubsubsection).
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<u32>>` — [`Result`](../../index.md)
+- <span id="attributeindexiterator-next"></span>`fn next(&mut self) -> Result<Option<u32>>` — [`Result`](../../index.md)
 
-- `fn parse(self: &mut Self) -> Result<u32>` — [`Result`](../../index.md)
+- <span id="attributeindexiterator-parse"></span>`fn parse(&mut self) -> Result<u32>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for AttributeIndexIterator<'data>`
+##### `impl Clone for AttributeIndexIterator<'data>`
 
-- `fn clone(self: &Self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](#attributeindexiterator)
+- <span id="attributeindexiterator-clone"></span>`fn clone(&self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](#attributeindexiterator)
 
-##### `impl<'data> Debug for AttributeIndexIterator<'data>`
+##### `impl Debug for AttributeIndexIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributeindexiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for AttributeIndexIterator<'data>`
+##### `impl IntoIterator for AttributeIndexIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="attributeindexiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="attributeindexiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="attributeindexiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data> Iterator for AttributeIndexIterator<'data>`
+##### `impl Iterator for AttributeIndexIterator<'data>`
 
-- `type Item = Result<u32, Error>`
+- <span id="attributeindexiterator-type-item"></span>`type Item = Result<u32, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="attributeindexiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `AttributeReader<'data>`
 
@@ -1908,27 +2184,29 @@ struct AttributeReader<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:315-317`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L315-L317)*
+
 A parser for the attributes in an [`AttributesSubsubsection`](#attributessubsubsection).
 
 The parser relies on the caller to know the format of the data for each attribute tag.
 
 #### Implementations
 
-- `fn read_tag(self: &mut Self) -> Result<Option<u64>>` — [`Result`](../../index.md)
+- <span id="attributereader-read-tag"></span>`fn read_tag(&mut self) -> Result<Option<u64>>` — [`Result`](../../index.md)
 
-- `fn read_integer(self: &mut Self) -> Result<u64>` — [`Result`](../../index.md)
+- <span id="attributereader-read-integer"></span>`fn read_integer(&mut self) -> Result<u64>` — [`Result`](../../index.md)
 
-- `fn read_string(self: &mut Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="attributereader-read-string"></span>`fn read_string(&mut self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for AttributeReader<'data>`
+##### `impl Clone for AttributeReader<'data>`
 
-- `fn clone(self: &Self) -> AttributeReader<'data>` — [`AttributeReader`](#attributereader)
+- <span id="attributereader-clone"></span>`fn clone(&self) -> AttributeReader<'data>` — [`AttributeReader`](#attributereader)
 
-##### `impl<'data> Debug for AttributeReader<'data>`
+##### `impl Debug for AttributeReader<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributereader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -1942,25 +2220,27 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:83-87`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L83-L87)*
+
 #### Implementations
 
-- `fn is_rel(self: &Self) -> bool`
+- <span id="elfrelocationiterator-is-rel"></span>`fn is_rel(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl<I> IntoIterator for ElfRelocationIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for ElfRelocationIterator<'data, Elf>`
 
-- `type Item = Crel`
+- <span id="elfrelocationiterator-type-item"></span>`type Item = Crel`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Traits
 
@@ -1970,9 +2250,11 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 trait FileHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/file.rs:530-819`](../../../../.source_1765210505/object-0.37.3/src/read/elf/file.rs#L530-L819)*
+
 A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`elf::FileHeader64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 3`
 
@@ -1998,7 +2280,9 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
 
 - `type Relr: 1`
 
-- `fn is_type_64(self: &Self) -> bool`
+#### Required Methods
+
+- `fn is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
 
@@ -2006,91 +2290,98 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
 
   Return true if this type is a 64-bit header.
 
-- `fn e_ident(self: &Self) -> &elf::Ident`
+- `fn e_ident(&self) -> &elf::Ident`
 
-- `fn e_type(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_type(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_machine(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_machine(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_version(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn e_version(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn e_entry(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn e_entry(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn e_phoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn e_phoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn e_shoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn e_shoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn e_flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn e_flags(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn e_ehsize(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_ehsize(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_phentsize(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_phentsize(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_phnum(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_phnum(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_shentsize(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_shentsize(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_shnum(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_shnum(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn e_shstrndx(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16`
+
+#### Provided Methods
 
 - `fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>`
 
   Read the file header.
 
-- `fn is_supported(self: &Self) -> bool`
+- `fn is_supported(&self) -> bool`
 
   Check that the ident field in the file header is a supported format.
 
-- `fn is_class_32(self: &Self) -> bool`
+- `fn is_class_32(&self) -> bool`
 
-- `fn is_class_64(self: &Self) -> bool`
+- `fn is_class_64(&self) -> bool`
 
-- `fn is_little_endian(self: &Self) -> bool`
+- `fn is_little_endian(&self) -> bool`
 
-- `fn is_big_endian(self: &Self) -> bool`
+- `fn is_big_endian(&self) -> bool`
 
-- `fn endian(self: &Self) -> read::Result<<Self as >::Endian>`
+- `fn endian(&self) -> read::Result<<Self as >::Endian>`
 
-- `fn section_0<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data <Self as >::SectionHeader>>`
+- `fn section_0<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data <Self as >::SectionHeader>>`
 
   Return the first section header, if present.
 
-- `fn phnum<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
+- `fn phnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
 
   Return the `e_phnum` field of the header. Handles extended values.
 
-- `fn shnum<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
+- `fn shnum<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<usize>`
 
   Return the `e_shnum` field of the header. Handles extended values.
 
-- `fn shstrndx<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<u32>`
+- `fn shstrndx<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<u32>`
 
   Return the `e_shstrndx` field of the header. Handles extended values.
 
-- `fn program_headers<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::ProgramHeader]>`
+- `fn program_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::ProgramHeader]>`
 
   Return the slice of program headers.
 
-- `fn section_headers<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::SectionHeader]>`
+- `fn section_headers<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [<Self as >::SectionHeader]>`
 
   Return the slice of section headers.
 
-- `fn section_strings_index<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<SectionIndex>`
+- `fn section_strings_index<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionIndex>`
 
   Get the section index of the section header string table.
 
-- `fn section_strings<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R, sections: &[<Self as >::SectionHeader]) -> read::Result<StringTable<'data, R>>`
+- `fn section_strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &[<Self as >::SectionHeader]) -> read::Result<StringTable<'data, R>>`
 
   Return the string table for the section headers.
 
-- `fn sections<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<SectionTable<'data, Self, R>>`
+- `fn sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<SectionTable<'data, Self, R>>`
 
   Return the section table.
 
-- `fn is_mips64el(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_mips64el(&self, endian: <Self as >::Endian) -> bool`
 
   Returns whether this is a mips64el elf file.
+
+#### Implementors
+
+- [`FileHeader32`](../../elf/index.md)
+- [`FileHeader64`](../../elf/index.md)
 
 ### `ProgramHeader`
 
@@ -2098,9 +2389,11 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
 trait ProgramHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:152-273`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L152-L273)*
+
 A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [`elf::ProgramHeader64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Elf: 1`
 
@@ -2108,49 +2401,58 @@ A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [
 
 - `type Endian: 1`
 
-- `fn p_type(self: &Self, endian: <Self as >::Endian) -> u32`
+#### Required Methods
 
-- `fn p_flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn p_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn p_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_flags(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn p_vaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_paddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_filesz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_memsz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_align(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn file_range(self: &Self, endian: <Self as >::Endian) -> (u64, u64)`
+- `fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
+
+- `fn file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
 
   Return the offset and size of the segment in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> Result<&'data [u8], ()>`
+- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [u8], ()>`
 
   Return the segment data.
 
-- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> Result<&'data [T], ()>`
+- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [T], ()>`
 
   Return the segment data as a slice of the given type.
 
-- `fn data_range<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R, address: u64, size: u64) -> Result<Option<&'data [u8]>, ()>`
+- `fn data_range<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, address: u64, size: u64) -> Result<Option<&'data [u8]>, ()>`
 
   Return the segment data in the given virtual address range
 
-- `fn dynamic<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [<<Self as >::Elf as FileHeader>::Dyn]>>`
+- `fn dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [<<Self as >::Elf as FileHeader>::Dyn]>>`
 
   Return entries in a dynamic segment.
 
-- `fn interpreter<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [u8]>>`
+- `fn interpreter<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [u8]>>`
 
   Return the data in an interpreter segment.
 
-- `fn notes<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
+- `fn notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
 
   Return a note iterator for the segment data.
+
+#### Implementors
+
+- [`ProgramHeader32`](../../elf/index.md)
+- [`ProgramHeader64`](../../elf/index.md)
 
 ### `SectionHeader`
 
@@ -2158,9 +2460,11 @@ A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [
 trait SectionHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
+
 A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [`elf::SectionHeader64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Elf: 1`
 
@@ -2168,129 +2472,138 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
 
 - `type Endian: 1`
 
-- `fn sh_name(self: &Self, endian: <Self as >::Endian) -> u32`
+#### Required Methods
 
-- `fn sh_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_name(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_flags(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_link(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_info(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_link(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_info(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_entsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
+- `fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
+
+- `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
   Parse the section name from the string table.
 
-- `fn link(self: &Self, endian: <Self as >::Endian) -> SectionIndex`
+- `fn link(&self, endian: <Self as >::Endian) -> SectionIndex`
 
   Get the `sh_link` field as a section index.
 
-- `fn has_info_link(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn has_info_link(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the `SHF_INFO_LINK` flag is set.
 
-- `fn info_link(self: &Self, endian: <Self as >::Endian) -> SectionIndex`
+- `fn info_link(&self, endian: <Self as >::Endian) -> SectionIndex`
 
   Get the `sh_info` field as a section index.
 
-- `fn file_range(self: &Self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
+- `fn file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
 
   Return the offset and size of the section in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [u8]>`
+- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [u8]>`
 
   Return the section data.
 
-- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [T]>`
+- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [T]>`
 
   Return the section data as a slice of the given type.
 
-- `fn strings<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<StringTable<'data, R>>>`
+- `fn strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<StringTable<'data, R>>>`
 
   Return the strings in the section.
 
-- `fn symbols<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R, sections: &SectionTable<'data, <Self as >::Elf, R>, section_index: SectionIndex) -> read::Result<Option<SymbolTable<'data, <Self as >::Elf, R>>>`
+- `fn symbols<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &SectionTable<'data, <Self as >::Elf, R>, section_index: SectionIndex) -> read::Result<Option<SymbolTable<'data, <Self as >::Elf, R>>>`
 
   Return the symbols in the section.
 
-- `fn rel<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rel], SectionIndex)>>`
+- `fn rel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rel], SectionIndex)>>`
 
   Return the `Elf::Rel` entries in the section.
 
-- `fn rela<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rela], SectionIndex)>>`
+- `fn rela<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rela], SectionIndex)>>`
 
   Return the `Elf::Rela` entries in the section.
 
-- `fn relr<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<RelrIterator<'data, <Self as >::Elf>>>`
+- `fn relr<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<RelrIterator<'data, <Self as >::Elf>>>`
 
   Return the `Elf::Relr` entries in the section.
 
-- `fn crel<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(CrelIterator<'data>, SectionIndex)>>`
+- `fn crel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(CrelIterator<'data>, SectionIndex)>>`
 
   Return the `Crel` entries in the section.
 
-- `fn dynamic<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Dyn], SectionIndex)>>`
+- `fn dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Dyn], SectionIndex)>>`
 
   Return entries in a dynamic section.
 
-- `fn notes<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
+- `fn notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
 
   Return a note iterator for the section data.
 
-- `fn group<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(u32, &'data [U32Bytes<<Self as >::Endian>])>>`
+- `fn group<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(u32, &'data [U32Bytes<<Self as >::Endian>])>>`
 
   Return the contents of a group section.
 
-- `fn hash_header<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Self as >::Endian>>>`
+- `fn hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Self as >::Endian>>>`
 
   Return the header of a SysV hash section.
 
-- `fn hash<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return the contents of a SysV hash section.
 
-- `fn gnu_hash_header<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Self as >::Endian>>>`
+- `fn gnu_hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Self as >::Endian>>>`
 
   Return the header of a GNU hash section.
 
-- `fn gnu_hash<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn gnu_hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return the contents of a GNU hash section.
 
-- `fn gnu_versym<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Self as >::Endian>], SectionIndex)>>`
+- `fn gnu_versym<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Self as >::Endian>], SectionIndex)>>`
 
   Return the contents of a `SHT_GNU_VERSYM` section.
 
-- `fn gnu_verdef<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn gnu_verdef<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return an iterator for the entries of a `SHT_GNU_VERDEF` section.
 
-- `fn gnu_verneed<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn gnu_verneed<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return an iterator for the entries of a `SHT_GNU_VERNEED` section.
 
-- `fn gnu_attributes<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<AttributesSection<'data, <Self as >::Elf>>>`
+- `fn gnu_attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<AttributesSection<'data, <Self as >::Elf>>>`
 
   Return the contents of a `SHT_GNU_ATTRIBUTES` section.
 
-- `fn attributes<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<AttributesSection<'data, <Self as >::Elf>>`
+- `fn attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<AttributesSection<'data, <Self as >::Elf>>`
 
   Parse the contents of the section as attributes.
 
-- `fn compression<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data <<Self as >::Elf as FileHeader>::CompressionHeader, u64, u64)>>`
+- `fn compression<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data <<Self as >::Elf as FileHeader>::CompressionHeader, u64, u64)>>`
 
   Parse the compression header if present.
+
+#### Implementors
+
+- [`SectionHeader32`](../../elf/index.md)
+- [`SectionHeader64`](../../elf/index.md)
 
 ### `Sym`
 
@@ -2298,59 +2611,70 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
 trait Sym: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:491-554`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L491-L554)*
+
 A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
-- `fn st_name(self: &Self, endian: <Self as >::Endian) -> u32`
+#### Required Methods
 
-- `fn st_info(self: &Self) -> u8`
+- `fn st_name(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn st_bind(self: &Self) -> u8`
+- `fn st_info(&self) -> u8`
 
-- `fn st_type(self: &Self) -> u8`
+- `fn st_bind(&self) -> u8`
 
-- `fn st_other(self: &Self) -> u8`
+- `fn st_type(&self) -> u8`
 
-- `fn st_visibility(self: &Self) -> u8`
+- `fn st_other(&self) -> u8`
 
-- `fn st_shndx(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn st_visibility(&self) -> u8`
 
-- `fn st_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn st_shndx(&self, endian: <Self as >::Endian) -> u16`
 
-- `fn st_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
+- `fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
+
+- `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
   Parse the symbol name from the string table.
 
-- `fn is_undefined(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_undefined(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_UNDEF`.
 
-- `fn is_definition(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_definition(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol is a definition of a function or data object.
 
-- `fn is_common(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_common(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_COMMON`.
 
-- `fn is_absolute(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_absolute(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the symbol section is `SHN_ABS`.
 
-- `fn is_local(self: &Self) -> bool`
+- `fn is_local(&self) -> bool`
 
   Return true if the symbol binding is `STB_LOCAL`.
 
-- `fn is_weak(self: &Self) -> bool`
+- `fn is_weak(&self) -> bool`
 
   Return true if the symbol binding is `STB_WEAK`.
+
+#### Implementors
+
+- [`Sym32`](../../elf/index.md)
+- [`Sym64`](../../elf/index.md)
 
 ### `Rel`
 
@@ -2358,9 +2682,11 @@ A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym6
 trait Rel: Debug + Pod + Clone { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:514-535`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L514-L535)*
+
 A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
@@ -2368,17 +2694,26 @@ A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel6
 
 - `type Endian: 1`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+#### Required Methods
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn r_sym(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn symbol(self: &Self, endian: <Self as >::Endian) -> Option<SymbolIndex>`
+- `fn r_type(&self, endian: <Self as >::Endian) -> u32`
+
+#### Provided Methods
+
+- `fn symbol(&self, endian: <Self as >::Endian) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
+
+#### Implementors
+
+- [`Rel32`](../../elf/index.md)
+- [`Rel64`](../../elf/index.md)
 
 ### `Rela`
 
@@ -2386,9 +2721,11 @@ A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel6
 trait Rela: Debug + Pod + Clone { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:591-613`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L591-L613)*
+
 A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rela64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
@@ -2396,19 +2733,28 @@ A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rel
 
 - `type Endian: 1`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+#### Required Methods
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word`
+- `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_addend(self: &Self, endian: <Self as >::Endian) -> <Self as >::Sword`
+- `fn r_info(&self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word`
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+- `fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword`
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+- `fn r_sym(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
 
-- `fn symbol(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> Option<SymbolIndex>`
+- `fn r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+
+#### Provided Methods
+
+- `fn symbol(&self, endian: <Self as >::Endian, is_mips64el: bool) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
+
+#### Implementors
+
+- [`Rela32`](../../elf/index.md)
+- [`Rela64`](../../elf/index.md)
 
 ### `Relr`
 
@@ -2416,17 +2762,23 @@ A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rel
 trait Relr: Debug + Pod + Clone { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:727-746`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L727-L746)*
+
 A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Relr64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
+#### Associated Constants
+
 - `const COUNT: u8`
 
-- `fn get(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+#### Required Methods
+
+- `fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
   Get the relocation entry.
 
@@ -2434,43 +2786,59 @@ A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Rel
 
   Return the offset corresponding to the next bit in the bit mask.
 
+#### Implementors
+
+- [`Relr32`](../../elf/index.md)
+- [`Relr64`](../../elf/index.md)
+
 ### `Dyn`
 
 ```rust
 trait Dyn: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/dynamic.rs:11-87`](../../../../.source_1765210505/object-0.37.3/src/read/elf/dynamic.rs#L11-L87)*
+
 A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
-- `fn d_tag(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+#### Required Methods
 
-- `fn d_val(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn tag32(self: &Self, endian: <Self as >::Endian) -> Option<u32>`
+- `fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
+
+- `fn tag32(&self, endian: <Self as >::Endian) -> Option<u32>`
 
   Try to convert the tag to a `u32`.
 
-- `fn val32(self: &Self, endian: <Self as >::Endian) -> Option<u32>`
+- `fn val32(&self, endian: <Self as >::Endian) -> Option<u32>`
 
   Try to convert the value to a `u32`.
 
-- `fn is_string(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_string(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the value is an offset in the dynamic string table.
 
-- `fn string<'data>(self: &Self, endian: <Self as >::Endian, strings: StringTable<'data>) -> Result<&'data [u8]>`
+- `fn string<'data>(&self, endian: <Self as >::Endian, strings: StringTable<'data>) -> Result<&'data [u8]>`
 
   Use the value to get a string in a string table.
 
-- `fn is_address(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn is_address(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the value is an address.
+
+#### Implementors
+
+- [`Dyn32`](../../elf/index.md)
+- [`Dyn64`](../../elf/index.md)
 
 ### `CompressionHeader`
 
@@ -2478,19 +2846,28 @@ A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn6
 trait CompressionHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/compression.rs:9-16`](../../../../.source_1765210505/object-0.37.3/src/read/elf/compression.rs#L9-L16)*
+
 A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) and [`elf::CompressionHeader64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
-- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32`
+#### Required Methods
 
-- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ch_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+- `fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Implementors
+
+- [`CompressionHeader32`](../../elf/index.md)
+- [`CompressionHeader64`](../../elf/index.md)
 
 ### `NoteHeader`
 
@@ -2498,17 +2875,26 @@ A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) a
 trait NoteHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L185-L191)*
+
 A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`elf::NoteHeader64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Endian: 1`
 
-- `fn n_namesz(self: &Self, endian: <Self as >::Endian) -> u32`
+#### Required Methods
 
-- `fn n_descsz(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn n_namesz(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn n_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn n_descsz(&self, endian: <Self as >::Endian) -> u32`
+
+- `fn n_type(&self, endian: <Self as >::Endian) -> u32`
+
+#### Implementors
+
+- [`NoteHeader32`](../../elf/index.md)
+- [`NoteHeader64`](../../elf/index.md)
 
 ## Functions
 
@@ -2518,6 +2904,8 @@ A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`el
 fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, reloc: Crel, implicit_addend: bool) -> crate::read::Relocation
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:278-510`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L278-L510)*
+
 ## Type Aliases
 
 ### `ElfFile32<'data, Endian, R>`
@@ -2525,6 +2913,8 @@ fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, re
 ```rust
 type ElfFile32<'data, Endian, R> = ElfFile<'data, elf::FileHeader32<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/file.rs:25-26`](../../../../.source_1765210505/object-0.37.3/src/read/elf/file.rs#L25-L26)*
 
 A 32-bit ELF object file.
 
@@ -2537,6 +2927,8 @@ to [`crate::FileKind::Elf32`](../../index.md).
 type ElfFile64<'data, Endian, R> = ElfFile<'data, elf::FileHeader64<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/file.rs:31-32`](../../../../.source_1765210505/object-0.37.3/src/read/elf/file.rs#L31-L32)*
+
 A 64-bit ELF object file.
 
 This is a file that starts with [`elf::FileHeader64`](../../elf/index.md), and corresponds
@@ -2548,6 +2940,8 @@ to [`crate::FileKind::Elf64`](../../index.md).
 type ElfSegmentIterator32<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:12-13`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L12-L13)*
+
 An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSegmentIterator64<'data, 'file, Endian, R>`
@@ -2555,6 +2949,8 @@ An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSegmentIterator64<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:15-16`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L15-L16)*
 
 An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 
@@ -2564,6 +2960,8 @@ An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 type ElfSegment32<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:50-51`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L50-L51)*
+
 A segment in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSegment64<'data, 'file, Endian, R>`
@@ -2571,6 +2969,8 @@ A segment in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSegment64<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:53-54`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L53-L54)*
 
 A segment in an [`ElfFile64`](super::ElfFile64).
 
@@ -2580,6 +2980,8 @@ A segment in an [`ElfFile64`](super::ElfFile64).
 type ElfSectionIterator32<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L350-L351)*
+
 An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSectionIterator64<'data, 'file, Endian, R>`
@@ -2587,6 +2989,8 @@ An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSectionIterator64<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L353-L354)*
 
 An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 
@@ -2596,6 +3000,8 @@ An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 type ElfSection32<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L396-L397)*
+
 A section in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSection64<'data, 'file, Endian, R>`
@@ -2603,6 +3009,8 @@ A section in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSection64<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L399-L400)*
 
 A section in an [`ElfFile64`](super::ElfFile64).
 
@@ -2612,6 +3020,8 @@ A section in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbolTable32<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:221-222`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L221-L222)*
+
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbolTable64<'data, 'file, Endian, R>`
@@ -2619,6 +3029,8 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbolTable64<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:224-225`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L224-L225)*
 
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
@@ -2628,6 +3040,8 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolIterator32<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:265-266`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L265-L266)*
+
 An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbolIterator64<'data, 'file, Endian, R>`
@@ -2635,6 +3049,8 @@ An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbolIterator64<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:268-269`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L268-L269)*
 
 An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 
@@ -2644,6 +3060,8 @@ An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbol32<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:323-324`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L323-L324)*
+
 A symbol in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbol64<'data, 'file, Endian, R>`
@@ -2651,6 +3069,8 @@ A symbol in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbol64<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:326-327`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L326-L327)*
 
 A symbol in an [`ElfFile64`](super::ElfFile64).
 
@@ -2660,6 +3080,8 @@ A symbol in an [`ElfFile64`](super::ElfFile64).
 type ElfDynamicRelocationIterator32<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:116-117`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L116-L117)*
+
 An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfDynamicRelocationIterator64<'data, 'file, Endian, R>`
@@ -2667,6 +3089,8 @@ An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfDynamicRelocationIterator64<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:119-120`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L119-L120)*
 
 An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 
@@ -2676,6 +3100,8 @@ An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 type ElfSectionRelocationIterator32<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:200-201`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L200-L201)*
+
 An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 
 ### `ElfSectionRelocationIterator64<'data, 'file, Endian, R>`
@@ -2683,6 +3109,8 @@ An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 ```rust
 type ElfSectionRelocationIterator64<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:203-204`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L203-L204)*
 
 An iterator for the relocations for an [`ElfSection64`](super::ElfSection64).
 
@@ -2692,6 +3120,8 @@ An iterator for the relocations for an [`ElfSection64`](super::ElfSection64).
 type ElfComdatIterator32<'data, 'file, Endian, R> = ElfComdatIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:11-12`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L11-L12)*
+
 An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfComdatIterator64<'data, 'file, Endian, R>`
@@ -2699,6 +3129,8 @@ An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfComdatIterator64<'data, 'file, Endian, R> = ElfComdatIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:14-15`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L14-L15)*
 
 An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64).
 
@@ -2708,6 +3140,8 @@ An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64).
 type ElfComdat32<'data, 'file, Endian, R> = ElfComdat<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:60-61`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L60-L61)*
+
 A COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfComdat64<'data, 'file, Endian, R>`
@@ -2715,6 +3149,8 @@ A COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfComdat64<'data, 'file, Endian, R> = ElfComdat<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:63-64`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L63-L64)*
 
 A COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 
@@ -2724,6 +3160,8 @@ A COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 type ElfComdatSectionIterator32<'data, 'file, Endian, R> = ElfComdatSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:158-159`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L158-L159)*
+
 An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfComdatSectionIterator64<'data, 'file, Endian, R>`
@@ -2731,6 +3169,8 @@ An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super
 ```rust
 type ElfComdatSectionIterator64<'data, 'file, Endian, R> = ElfComdatSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:161-162`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L161-L162)*
 
 An iterator for the sections in a COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 

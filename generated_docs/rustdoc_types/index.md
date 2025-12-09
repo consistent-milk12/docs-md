@@ -6,7 +6,7 @@ These types are the public API exposed through the `--output-format json` flag. 
 struct is the root of the JSON blob and all other items are contained within.
 
 We expose a `rustc-hash` feature that is disabled by default. This feature switches the
-[`std::collections::HashMap`](../hashbrown/index.md) for `rustc_hash::FxHashMap` to improve the performance of said
+[`std::collections::HashMap`](../hashbrown/hash_map/index.md) for `rustc_hash::FxHashMap` to improve the performance of said
 `HashMap` in specific situations.
 
 `cargo-semver-checks` for example, saw a [-3% improvement][1] when benchmarking using the
@@ -15,6 +15,127 @@ turning this feature on, as [`FxHashMap`][2] only concerns itself with hash spee
 increase the number of collisions.
 
 
+
+## Contents
+
+- [Structs](#structs)
+  - [`Crate`](#crate)
+  - [`Target`](#target)
+  - [`TargetFeature`](#targetfeature)
+  - [`ExternalCrate`](#externalcrate)
+  - [`ItemSummary`](#itemsummary)
+  - [`Item`](#item)
+  - [`AttributeRepr`](#attributerepr)
+  - [`Span`](#span)
+  - [`Deprecation`](#deprecation)
+  - [`DynTrait`](#dyntrait)
+  - [`PolyTrait`](#polytrait)
+  - [`Constant`](#constant)
+  - [`AssocItemConstraint`](#associtemconstraint)
+  - [`Id`](#id)
+  - [`Module`](#module)
+  - [`Union`](#union)
+  - [`Struct`](#struct)
+  - [`Enum`](#enum)
+  - [`Variant`](#variant)
+  - [`Discriminant`](#discriminant)
+  - [`FunctionHeader`](#functionheader)
+  - [`Function`](#function)
+  - [`Generics`](#generics)
+  - [`GenericParamDef`](#genericparamdef)
+  - [`Path`](#path)
+  - [`FunctionPointer`](#functionpointer)
+  - [`FunctionSignature`](#functionsignature)
+  - [`Trait`](#trait)
+  - [`TraitAlias`](#traitalias)
+  - [`Impl`](#impl)
+  - [`Use`](#use)
+  - [`ProcMacro`](#procmacro)
+  - [`TypeAlias`](#typealias)
+  - [`Static`](#static)
+  - [`Primitive`](#primitive)
+- [Enums](#enums)
+  - [`Attribute`](#attribute)
+  - [`ReprKind`](#reprkind)
+  - [`Visibility`](#visibility)
+  - [`GenericArgs`](#genericargs)
+  - [`GenericArg`](#genericarg)
+  - [`AssocItemConstraintKind`](#associtemconstraintkind)
+  - [`ItemKind`](#itemkind)
+  - [`ItemEnum`](#itemenum)
+  - [`StructKind`](#structkind)
+  - [`VariantKind`](#variantkind)
+  - [`Abi`](#abi)
+  - [`GenericParamDefKind`](#genericparamdefkind)
+  - [`WherePredicate`](#wherepredicate)
+  - [`GenericBound`](#genericbound)
+  - [`TraitBoundModifier`](#traitboundmodifier)
+  - [`PreciseCapturingArg`](#precisecapturingarg)
+  - [`Term`](#term)
+  - [`Type`](#type)
+  - [`MacroKind`](#macrokind)
+- [Constants](#constants)
+  - [`FORMAT_VERSION`](#format_version)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Crate`](#crate) | struct | The root of the emitted JSON blob. |
+| [`Target`](#target) | struct | Information about a target |
+| [`TargetFeature`](#targetfeature) | struct | Information about a target feature. |
+| [`ExternalCrate`](#externalcrate) | struct | Metadata of a crate, either the same crate on which `rustdoc` was invoked, or its dependency. |
+| [`ItemSummary`](#itemsummary) | struct | Information about an external (not defined in the local crate) [`Item`]. |
+| [`Item`](#item) | struct | Anything that can hold documentation - modules, structs, enums, functions, traits, etc. |
+| [`AttributeRepr`](#attributerepr) | struct | The contents of a `#[repr(...)]` attribute. |
+| [`Span`](#span) | struct | A range of source code. |
+| [`Deprecation`](#deprecation) | struct | Information about the deprecation of an [`Item`]. |
+| [`DynTrait`](#dyntrait) | struct | Dynamic trait object type (`dyn Trait`). |
+| [`PolyTrait`](#polytrait) | struct | A trait and potential HRTBs |
+| [`Constant`](#constant) | struct | A constant. |
+| [`AssocItemConstraint`](#associtemconstraint) | struct | Describes a bound applied to an associated type/constant. |
+| [`Id`](#id) | struct | An opaque identifier for an item. |
+| [`Module`](#module) | struct | A module declaration, e.g. `mod foo;` or `mod foo {}`. |
+| [`Union`](#union) | struct | A `union`. |
+| [`Struct`](#struct) | struct | A `struct`. |
+| [`Enum`](#enum) | struct | An `enum`. |
+| [`Variant`](#variant) | struct | A variant of an enum. |
+| [`Discriminant`](#discriminant) | struct | The value that distinguishes a variant in an [`Enum`] from other variants. |
+| [`FunctionHeader`](#functionheader) | struct | A set of fundamental properties of a function. |
+| [`Function`](#function) | struct | A function declaration (including methods and other associated functions). |
+| [`Generics`](#generics) | struct | Generic parameters accepted by an item and `where` clauses imposed on it and the parameters. |
+| [`GenericParamDef`](#genericparamdef) | struct | One generic parameter accepted by an item. |
+| [`Path`](#path) | struct | A type that has a simple path to it. |
+| [`FunctionPointer`](#functionpointer) | struct | A type that is a function pointer. |
+| [`FunctionSignature`](#functionsignature) | struct | The signature of a function. |
+| [`Trait`](#trait) | struct | A `trait` declaration. |
+| [`TraitAlias`](#traitalias) | struct | A trait alias declaration, e.g. `trait Int = Add + Sub + Mul + Div;` |
+| [`Impl`](#impl) | struct | An `impl` block. |
+| [`Use`](#use) | struct | A `use` statement. |
+| [`ProcMacro`](#procmacro) | struct | A procedural macro. |
+| [`TypeAlias`](#typealias) | struct | A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;` |
+| [`Static`](#static) | struct | A `static` declaration. |
+| [`Primitive`](#primitive) | struct | A primitive type declaration. |
+| [`Attribute`](#attribute) | enum | An attribute, e.g. `#[repr(C)]` |
+| [`ReprKind`](#reprkind) | enum | The kind of `#[repr]`. |
+| [`Visibility`](#visibility) | enum | Visibility of an [`Item`]. |
+| [`GenericArgs`](#genericargs) | enum | A set of generic arguments provided to a path segment, e.g. |
+| [`GenericArg`](#genericarg) | enum | One argument in a list of generic arguments to a path segment. |
+| [`AssocItemConstraintKind`](#associtemconstraintkind) | enum | The way in which an associate type/constant is bound. |
+| [`ItemKind`](#itemkind) | enum | The fundamental kind of an item. |
+| [`ItemEnum`](#itemenum) | enum | Specific fields of an item. |
+| [`StructKind`](#structkind) | enum | The kind of a [`Struct`] and the data specific to it, i.e. fields. |
+| [`VariantKind`](#variantkind) | enum | The kind of an [`Enum`] [`Variant`] and the data specific to it, i.e. fields. |
+| [`Abi`](#abi) | enum | The ABI (Application Binary Interface) used by a function. |
+| [`GenericParamDefKind`](#genericparamdefkind) | enum | The kind of a [`GenericParamDef`]. |
+| [`WherePredicate`](#wherepredicate) | enum | One `where` clause. |
+| [`GenericBound`](#genericbound) | enum | Either a trait bound or a lifetime bound. |
+| [`TraitBoundModifier`](#traitboundmodifier) | enum | A set of modifiers applied to a trait. |
+| [`PreciseCapturingArg`](#precisecapturingarg) | enum | One precise capturing argument. |
+| [`Term`](#term) | enum | Either a type or a constant, usually stored as the right-hand side of an equation in places like [`AssocItemConstraint`] |
+| [`Type`](#type) | enum | A type. |
+| [`MacroKind`](#macrokind) | enum | The way a [`ProcMacro`] is declared to be used. |
+| [`FORMAT_VERSION`](#format_version) | const | The version of JSON output that this crate represents. |
 
 ## Structs
 
@@ -32,6 +153,8 @@ struct Crate {
     pub format_version: u32,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:48-67`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L48-L67)*
 
 The root of the emitted JSON blob.
 
@@ -79,27 +202,27 @@ tools to find or link to them.
 
 ##### `impl Clone for Crate`
 
-- `fn clone(self: &Self) -> Crate` — [`Crate`](#crate)
+- <span id="crate-clone"></span>`fn clone(&self) -> Crate` — [`Crate`](#crate)
 
 ##### `impl Debug for Crate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="crate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Crate`
+##### `impl Deserialize for Crate`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="crate-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Crate`
+##### `impl DeserializeOwned for Crate`
 
 ##### `impl Eq for Crate`
 
 ##### `impl PartialEq for Crate`
 
-- `fn eq(self: &Self, other: &Crate) -> bool` — [`Crate`](#crate)
+- <span id="crate-eq"></span>`fn eq(&self, other: &Crate) -> bool` — [`Crate`](#crate)
 
 ##### `impl Serialize for Crate`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="crate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Crate`
 
@@ -111,6 +234,8 @@ struct Target {
     pub target_features: Vec<TargetFeature>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:71-77`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L71-L77)*
 
 Information about a target
 
@@ -129,27 +254,27 @@ Information about a target
 
 ##### `impl Clone for Target`
 
-- `fn clone(self: &Self) -> Target` — [`Target`](#target)
+- <span id="target-clone"></span>`fn clone(&self) -> Target` — [`Target`](#target)
 
 ##### `impl Debug for Target`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="target-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Target`
+##### `impl Deserialize for Target`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="target-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Target`
+##### `impl DeserializeOwned for Target`
 
 ##### `impl Eq for Target`
 
 ##### `impl PartialEq for Target`
 
-- `fn eq(self: &Self, other: &Target) -> bool` — [`Target`](#target)
+- <span id="target-eq"></span>`fn eq(&self, other: &Target) -> bool` — [`Target`](#target)
 
 ##### `impl Serialize for Target`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="target-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Target`
 
@@ -163,6 +288,8 @@ struct TargetFeature {
     pub globally_enabled: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:101-121`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L101-L121)*
 
 Information about a target feature.
 
@@ -217,27 +344,27 @@ context.
 
 ##### `impl Clone for TargetFeature`
 
-- `fn clone(self: &Self) -> TargetFeature` — [`TargetFeature`](#targetfeature)
+- <span id="targetfeature-clone"></span>`fn clone(&self) -> TargetFeature` — [`TargetFeature`](#targetfeature)
 
 ##### `impl Debug for TargetFeature`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="targetfeature-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for TargetFeature`
+##### `impl Deserialize for TargetFeature`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="targetfeature-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for TargetFeature`
+##### `impl DeserializeOwned for TargetFeature`
 
 ##### `impl Eq for TargetFeature`
 
 ##### `impl PartialEq for TargetFeature`
 
-- `fn eq(self: &Self, other: &TargetFeature) -> bool` — [`TargetFeature`](#targetfeature)
+- <span id="targetfeature-eq"></span>`fn eq(&self, other: &TargetFeature) -> bool` — [`TargetFeature`](#targetfeature)
 
 ##### `impl Serialize for TargetFeature`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="targetfeature-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TargetFeature`
 
@@ -250,6 +377,8 @@ struct ExternalCrate {
     pub path: std::path::PathBuf,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:125-143`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L125-L143)*
 
 Metadata of a crate, either the same crate on which `rustdoc` was invoked, or its dependency.
 
@@ -280,31 +409,31 @@ Metadata of a crate, either the same crate on which `rustdoc` was invoked, or it
 
 ##### `impl Clone for ExternalCrate`
 
-- `fn clone(self: &Self) -> ExternalCrate` — [`ExternalCrate`](#externalcrate)
+- <span id="externalcrate-clone"></span>`fn clone(&self) -> ExternalCrate` — [`ExternalCrate`](#externalcrate)
 
 ##### `impl Debug for ExternalCrate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="externalcrate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ExternalCrate`
+##### `impl Deserialize for ExternalCrate`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="externalcrate-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ExternalCrate`
+##### `impl DeserializeOwned for ExternalCrate`
 
 ##### `impl Eq for ExternalCrate`
 
 ##### `impl Hash for ExternalCrate`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="externalcrate-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ExternalCrate`
 
-- `fn eq(self: &Self, other: &ExternalCrate) -> bool` — [`ExternalCrate`](#externalcrate)
+- <span id="externalcrate-eq"></span>`fn eq(&self, other: &ExternalCrate) -> bool` — [`ExternalCrate`](#externalcrate)
 
 ##### `impl Serialize for ExternalCrate`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="externalcrate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ExternalCrate`
 
@@ -317,6 +446,8 @@ struct ItemSummary {
     pub kind: ItemKind,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:152-166`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L152-L166)*
 
 Information about an external (not defined in the local crate) [`Item`](#item).
 
@@ -339,7 +470,7 @@ the actual item definition with all the relevant info.
   
   Note that items can appear in multiple paths, and the one chosen is implementation
   defined. Currently, this is the full path to where the item was defined. Eg
-  [`String`](../clap_builder/index.md) is currently `["alloc", "string", "String"]` and [`HashMap`][`std::collections::HashMap`](../hashbrown/index.md)
+  [`String`](../clap_builder/index.md) is currently `["alloc", "string", "String"]` and [`HashMap`][`std::collections::HashMap`](../hashbrown/hash_map/index.md)
   is `["std", "collections", "hash", "map", "HashMap"]`, but this is subject to change.
 
 - **`kind`**: `ItemKind`
@@ -350,31 +481,31 @@ the actual item definition with all the relevant info.
 
 ##### `impl Clone for ItemSummary`
 
-- `fn clone(self: &Self) -> ItemSummary` — [`ItemSummary`](#itemsummary)
+- <span id="itemsummary-clone"></span>`fn clone(&self) -> ItemSummary` — [`ItemSummary`](#itemsummary)
 
 ##### `impl Debug for ItemSummary`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itemsummary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ItemSummary`
+##### `impl Deserialize for ItemSummary`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="itemsummary-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ItemSummary`
+##### `impl DeserializeOwned for ItemSummary`
 
 ##### `impl Eq for ItemSummary`
 
 ##### `impl Hash for ItemSummary`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="itemsummary-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ItemSummary`
 
-- `fn eq(self: &Self, other: &ItemSummary) -> bool` — [`ItemSummary`](#itemsummary)
+- <span id="itemsummary-eq"></span>`fn eq(&self, other: &ItemSummary) -> bool` — [`ItemSummary`](#itemsummary)
 
 ##### `impl Serialize for ItemSummary`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="itemsummary-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ItemSummary`
 
@@ -394,6 +525,8 @@ struct Item {
     pub inner: ItemEnum,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:173-208`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L173-L208)*
 
 Anything that can hold documentation - modules, structs, enums, functions, traits, etc.
 
@@ -460,27 +593,27 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 
 ##### `impl Clone for Item`
 
-- `fn clone(self: &Self) -> Item` — [`Item`](#item)
+- <span id="item-clone"></span>`fn clone(&self) -> Item` — [`Item`](#item)
 
 ##### `impl Debug for Item`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="item-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Item`
+##### `impl Deserialize for Item`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="item-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Item`
+##### `impl DeserializeOwned for Item`
 
 ##### `impl Eq for Item`
 
 ##### `impl PartialEq for Item`
 
-- `fn eq(self: &Self, other: &Item) -> bool` — [`Item`](#item)
+- <span id="item-eq"></span>`fn eq(&self, other: &Item) -> bool` — [`Item`](#item)
 
 ##### `impl Serialize for Item`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="item-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Item`
 
@@ -494,6 +627,8 @@ struct AttributeRepr {
     pub int: Option<String>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:261-274`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L261-L274)*
 
 The contents of a `#[repr(...)]` attribute.
 
@@ -523,27 +658,27 @@ Used in [`Attribute::Repr`](#attributerepr).
 
 ##### `impl Clone for AttributeRepr`
 
-- `fn clone(self: &Self) -> AttributeRepr` — [`AttributeRepr`](#attributerepr)
+- <span id="attributerepr-clone"></span>`fn clone(&self) -> AttributeRepr` — [`AttributeRepr`](#attributerepr)
 
 ##### `impl Debug for AttributeRepr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributerepr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for AttributeRepr`
+##### `impl Deserialize for AttributeRepr`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="attributerepr-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for AttributeRepr`
+##### `impl DeserializeOwned for AttributeRepr`
 
 ##### `impl Eq for AttributeRepr`
 
 ##### `impl PartialEq for AttributeRepr`
 
-- `fn eq(self: &Self, other: &AttributeRepr) -> bool` — [`AttributeRepr`](#attributerepr)
+- <span id="attributerepr-eq"></span>`fn eq(&self, other: &AttributeRepr) -> bool` — [`AttributeRepr`](#attributerepr)
 
 ##### `impl Serialize for AttributeRepr`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="attributerepr-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for AttributeRepr`
 
@@ -556,6 +691,8 @@ struct Span {
     pub end: (usize, usize),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:296-303`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L296-L303)*
 
 A range of source code.
 
@@ -577,31 +714,31 @@ A range of source code.
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](#span)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](#span)
 
 ##### `impl Debug for Span`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="span-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Span`
+##### `impl Deserialize for Span`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="span-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Span`
+##### `impl DeserializeOwned for Span`
 
 ##### `impl Eq for Span`
 
 ##### `impl Hash for Span`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="span-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](#span)
+- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
 
 ##### `impl Serialize for Span`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="span-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Span`
 
@@ -613,6 +750,8 @@ struct Deprecation {
     pub note: Option<String>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:307-312`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L307-L312)*
 
 Information about the deprecation of an [`Item`](#item).
 
@@ -630,31 +769,31 @@ Information about the deprecation of an [`Item`](#item).
 
 ##### `impl Clone for Deprecation`
 
-- `fn clone(self: &Self) -> Deprecation` — [`Deprecation`](#deprecation)
+- <span id="deprecation-clone"></span>`fn clone(&self) -> Deprecation` — [`Deprecation`](#deprecation)
 
 ##### `impl Debug for Deprecation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="deprecation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Deprecation`
+##### `impl Deserialize for Deprecation`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="deprecation-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Deprecation`
+##### `impl DeserializeOwned for Deprecation`
 
 ##### `impl Eq for Deprecation`
 
 ##### `impl Hash for Deprecation`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="deprecation-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Deprecation`
 
-- `fn eq(self: &Self, other: &Deprecation) -> bool` — [`Deprecation`](#deprecation)
+- <span id="deprecation-eq"></span>`fn eq(&self, other: &Deprecation) -> bool` — [`Deprecation`](#deprecation)
 
 ##### `impl Serialize for Deprecation`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="deprecation-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Deprecation`
 
@@ -666,6 +805,8 @@ struct DynTrait {
     pub lifetime: Option<String>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:339-350`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L339-L350)*
 
 Dynamic trait object type (`dyn Trait`).
 
@@ -689,31 +830,31 @@ Dynamic trait object type (`dyn Trait`).
 
 ##### `impl Clone for DynTrait`
 
-- `fn clone(self: &Self) -> DynTrait` — [`DynTrait`](#dyntrait)
+- <span id="dyntrait-clone"></span>`fn clone(&self) -> DynTrait` — [`DynTrait`](#dyntrait)
 
 ##### `impl Debug for DynTrait`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyntrait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for DynTrait`
+##### `impl Deserialize for DynTrait`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="dyntrait-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for DynTrait`
+##### `impl DeserializeOwned for DynTrait`
 
 ##### `impl Eq for DynTrait`
 
 ##### `impl Hash for DynTrait`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dyntrait-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for DynTrait`
 
-- `fn eq(self: &Self, other: &DynTrait) -> bool` — [`DynTrait`](#dyntrait)
+- <span id="dyntrait-eq"></span>`fn eq(&self, other: &DynTrait) -> bool` — [`DynTrait`](#dyntrait)
 
 ##### `impl Serialize for DynTrait`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="dyntrait-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for DynTrait`
 
@@ -725,6 +866,8 @@ struct PolyTrait {
     pub generic_params: Vec<GenericParamDef>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:354-364`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L354-L364)*
 
 A trait and potential HRTBs
 
@@ -746,31 +889,31 @@ A trait and potential HRTBs
 
 ##### `impl Clone for PolyTrait`
 
-- `fn clone(self: &Self) -> PolyTrait` — [`PolyTrait`](#polytrait)
+- <span id="polytrait-clone"></span>`fn clone(&self) -> PolyTrait` — [`PolyTrait`](#polytrait)
 
 ##### `impl Debug for PolyTrait`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="polytrait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for PolyTrait`
+##### `impl Deserialize for PolyTrait`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="polytrait-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for PolyTrait`
+##### `impl DeserializeOwned for PolyTrait`
 
 ##### `impl Eq for PolyTrait`
 
 ##### `impl Hash for PolyTrait`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="polytrait-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for PolyTrait`
 
-- `fn eq(self: &Self, other: &PolyTrait) -> bool` — [`PolyTrait`](#polytrait)
+- <span id="polytrait-eq"></span>`fn eq(&self, other: &PolyTrait) -> bool` — [`PolyTrait`](#polytrait)
 
 ##### `impl Serialize for PolyTrait`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="polytrait-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for PolyTrait`
 
@@ -783,6 +926,8 @@ struct Constant {
     pub is_literal: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:431-440`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L431-L440)*
 
 A constant.
 
@@ -806,31 +951,31 @@ A constant.
 
 ##### `impl Clone for Constant`
 
-- `fn clone(self: &Self) -> Constant` — [`Constant`](#constant)
+- <span id="constant-clone"></span>`fn clone(&self) -> Constant` — [`Constant`](#constant)
 
 ##### `impl Debug for Constant`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="constant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Constant`
+##### `impl Deserialize for Constant`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="constant-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Constant`
+##### `impl DeserializeOwned for Constant`
 
 ##### `impl Eq for Constant`
 
 ##### `impl Hash for Constant`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="constant-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Constant`
 
-- `fn eq(self: &Self, other: &Constant) -> bool` — [`Constant`](#constant)
+- <span id="constant-eq"></span>`fn eq(&self, other: &Constant) -> bool` — [`Constant`](#constant)
 
 ##### `impl Serialize for Constant`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="constant-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Constant`
 
@@ -843,6 +988,8 @@ struct AssocItemConstraint {
     pub binding: AssocItemConstraintKind,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:450-457`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L450-L457)*
 
 Describes a bound applied to an associated type/constant.
 
@@ -870,31 +1017,31 @@ IntoIterator<Item = u32, IntoIter: Clone>
 
 ##### `impl Clone for AssocItemConstraint`
 
-- `fn clone(self: &Self) -> AssocItemConstraint` — [`AssocItemConstraint`](#associtemconstraint)
+- <span id="associtemconstraint-clone"></span>`fn clone(&self) -> AssocItemConstraint` — [`AssocItemConstraint`](#associtemconstraint)
 
 ##### `impl Debug for AssocItemConstraint`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="associtemconstraint-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for AssocItemConstraint`
+##### `impl Deserialize for AssocItemConstraint`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="associtemconstraint-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for AssocItemConstraint`
+##### `impl DeserializeOwned for AssocItemConstraint`
 
 ##### `impl Eq for AssocItemConstraint`
 
 ##### `impl Hash for AssocItemConstraint`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="associtemconstraint-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for AssocItemConstraint`
 
-- `fn eq(self: &Self, other: &AssocItemConstraint) -> bool` — [`AssocItemConstraint`](#associtemconstraint)
+- <span id="associtemconstraint-eq"></span>`fn eq(&self, other: &AssocItemConstraint) -> bool` — [`AssocItemConstraint`](#associtemconstraint)
 
 ##### `impl Serialize for AssocItemConstraint`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="associtemconstraint-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for AssocItemConstraint`
 
@@ -903,6 +1050,8 @@ IntoIterator<Item = u32, IntoIter: Clone>
 ```rust
 struct Id(u32);
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:490`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L490)*
 
 An opaque identifier for an item.
 
@@ -920,41 +1069,41 @@ to parse them, or otherwise depend on any implementation details.
 
 ##### `impl Clone for Id`
 
-- `fn clone(self: &Self) -> Id` — [`Id`](#id)
+- <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](#id)
 
 ##### `impl Copy for Id`
 
 ##### `impl Debug for Id`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="id-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Id`
+##### `impl Deserialize for Id`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="id-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Id`
+##### `impl DeserializeOwned for Id`
 
 ##### `impl Eq for Id`
 
 ##### `impl Hash for Id`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="id-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Id`
 
-- `fn cmp(self: &Self, other: &Id) -> $crate::cmp::Ordering` — [`Id`](#id)
+- <span id="id-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](#id)
 
 ##### `impl PartialEq for Id`
 
-- `fn eq(self: &Self, other: &Id) -> bool` — [`Id`](#id)
+- <span id="id-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](#id)
 
 ##### `impl PartialOrd for Id`
 
-- `fn partial_cmp(self: &Self, other: &Id) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Id`](#id)
+- <span id="id-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](#id)
 
 ##### `impl Serialize for Id`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="id-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Id`
 
@@ -967,6 +1116,8 @@ struct Module {
     pub is_stripped: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:686-697`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L686-L697)*
 
 A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
@@ -992,31 +1143,31 @@ A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
 ##### `impl Clone for Module`
 
-- `fn clone(self: &Self) -> Module` — [`Module`](#module)
+- <span id="module-clone"></span>`fn clone(&self) -> Module` — [`Module`](#module)
 
 ##### `impl Debug for Module`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="module-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Module`
+##### `impl Deserialize for Module`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="module-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Module`
+##### `impl DeserializeOwned for Module`
 
 ##### `impl Eq for Module`
 
 ##### `impl Hash for Module`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="module-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Module`
 
-- `fn eq(self: &Self, other: &Module) -> bool` — [`Module`](#module)
+- <span id="module-eq"></span>`fn eq(&self, other: &Module) -> bool` — [`Module`](#module)
 
 ##### `impl Serialize for Module`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="module-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Module`
 
@@ -1030,6 +1181,8 @@ struct Union {
     pub impls: Vec<Id>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:701-714`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L701-L714)*
 
 A `union`.
 
@@ -1059,31 +1212,31 @@ A `union`.
 
 ##### `impl Clone for Union`
 
-- `fn clone(self: &Self) -> Union` — [`Union`](#union)
+- <span id="union-clone"></span>`fn clone(&self) -> Union` — [`Union`](#union)
 
 ##### `impl Debug for Union`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="union-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Union`
+##### `impl Deserialize for Union`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="union-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Union`
+##### `impl DeserializeOwned for Union`
 
 ##### `impl Eq for Union`
 
 ##### `impl Hash for Union`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="union-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Union`
 
-- `fn eq(self: &Self, other: &Union) -> bool` — [`Union`](#union)
+- <span id="union-eq"></span>`fn eq(&self, other: &Union) -> bool` — [`Union`](#union)
 
 ##### `impl Serialize for Union`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="union-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Union`
 
@@ -1096,6 +1249,8 @@ struct Struct {
     pub impls: Vec<Id>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:718-727`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L718-L727)*
 
 A `struct`.
 
@@ -1119,31 +1274,31 @@ A `struct`.
 
 ##### `impl Clone for Struct`
 
-- `fn clone(self: &Self) -> Struct` — [`Struct`](#struct)
+- <span id="struct-clone"></span>`fn clone(&self) -> Struct` — [`Struct`](#struct)
 
 ##### `impl Debug for Struct`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="struct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Struct`
+##### `impl Deserialize for Struct`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="struct-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Struct`
+##### `impl DeserializeOwned for Struct`
 
 ##### `impl Eq for Struct`
 
 ##### `impl Hash for Struct`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="struct-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Struct`
 
-- `fn eq(self: &Self, other: &Struct) -> bool` — [`Struct`](#struct)
+- <span id="struct-eq"></span>`fn eq(&self, other: &Struct) -> bool` — [`Struct`](#struct)
 
 ##### `impl Serialize for Struct`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="struct-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Struct`
 
@@ -1157,6 +1312,8 @@ struct Enum {
     pub impls: Vec<Id>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:768-779`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L768-L779)*
 
 An `enum`.
 
@@ -1184,31 +1341,31 @@ An `enum`.
 
 ##### `impl Clone for Enum`
 
-- `fn clone(self: &Self) -> Enum` — [`Enum`](#enum)
+- <span id="enum-clone"></span>`fn clone(&self) -> Enum` — [`Enum`](#enum)
 
 ##### `impl Debug for Enum`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="enum-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Enum`
+##### `impl Deserialize for Enum`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="enum-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Enum`
+##### `impl DeserializeOwned for Enum`
 
 ##### `impl Eq for Enum`
 
 ##### `impl Hash for Enum`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="enum-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Enum`
 
-- `fn eq(self: &Self, other: &Enum) -> bool` — [`Enum`](#enum)
+- <span id="enum-eq"></span>`fn eq(&self, other: &Enum) -> bool` — [`Enum`](#enum)
 
 ##### `impl Serialize for Enum`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="enum-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Enum`
 
@@ -1220,6 +1377,8 @@ struct Variant {
     pub discriminant: Option<Discriminant>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:783-788`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L783-L788)*
 
 A variant of an enum.
 
@@ -1237,31 +1396,31 @@ A variant of an enum.
 
 ##### `impl Clone for Variant`
 
-- `fn clone(self: &Self) -> Variant` — [`Variant`](#variant)
+- <span id="variant-clone"></span>`fn clone(&self) -> Variant` — [`Variant`](#variant)
 
 ##### `impl Debug for Variant`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="variant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Variant`
+##### `impl Deserialize for Variant`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="variant-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Variant`
+##### `impl DeserializeOwned for Variant`
 
 ##### `impl Eq for Variant`
 
 ##### `impl Hash for Variant`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="variant-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Variant`
 
-- `fn eq(self: &Self, other: &Variant) -> bool` — [`Variant`](#variant)
+- <span id="variant-eq"></span>`fn eq(&self, other: &Variant) -> bool` — [`Variant`](#variant)
 
 ##### `impl Serialize for Variant`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="variant-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Variant`
 
@@ -1273,6 +1432,8 @@ struct Discriminant {
     pub value: String,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:835-849`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L835-L849)*
 
 The value that distinguishes a variant in an [`Enum`](#enum) from other variants.
 
@@ -1299,31 +1460,31 @@ The value that distinguishes a variant in an [`Enum`](#enum) from other variants
 
 ##### `impl Clone for Discriminant`
 
-- `fn clone(self: &Self) -> Discriminant` — [`Discriminant`](#discriminant)
+- <span id="discriminant-clone"></span>`fn clone(&self) -> Discriminant` — [`Discriminant`](#discriminant)
 
 ##### `impl Debug for Discriminant`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="discriminant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Discriminant`
+##### `impl Deserialize for Discriminant`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="discriminant-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Discriminant`
+##### `impl DeserializeOwned for Discriminant`
 
 ##### `impl Eq for Discriminant`
 
 ##### `impl Hash for Discriminant`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="discriminant-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Discriminant`
 
-- `fn eq(self: &Self, other: &Discriminant) -> bool` — [`Discriminant`](#discriminant)
+- <span id="discriminant-eq"></span>`fn eq(&self, other: &Discriminant) -> bool` — [`Discriminant`](#discriminant)
 
 ##### `impl Serialize for Discriminant`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="discriminant-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Discriminant`
 
@@ -1337,6 +1498,8 @@ struct FunctionHeader {
     pub abi: Abi,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:853-862`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L853-L862)*
 
 A set of fundamental properties of a function.
 
@@ -1362,31 +1525,31 @@ A set of fundamental properties of a function.
 
 ##### `impl Clone for FunctionHeader`
 
-- `fn clone(self: &Self) -> FunctionHeader` — [`FunctionHeader`](#functionheader)
+- <span id="functionheader-clone"></span>`fn clone(&self) -> FunctionHeader` — [`FunctionHeader`](#functionheader)
 
 ##### `impl Debug for FunctionHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="functionheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for FunctionHeader`
+##### `impl Deserialize for FunctionHeader`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="functionheader-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for FunctionHeader`
+##### `impl DeserializeOwned for FunctionHeader`
 
 ##### `impl Eq for FunctionHeader`
 
 ##### `impl Hash for FunctionHeader`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="functionheader-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for FunctionHeader`
 
-- `fn eq(self: &Self, other: &FunctionHeader) -> bool` — [`FunctionHeader`](#functionheader)
+- <span id="functionheader-eq"></span>`fn eq(&self, other: &FunctionHeader) -> bool` — [`FunctionHeader`](#functionheader)
 
 ##### `impl Serialize for FunctionHeader`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="functionheader-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for FunctionHeader`
 
@@ -1400,6 +1563,8 @@ struct Function {
     pub has_body: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:900-909`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L900-L909)*
 
 A function declaration (including methods and other associated functions).
 
@@ -1425,31 +1590,31 @@ A function declaration (including methods and other associated functions).
 
 ##### `impl Clone for Function`
 
-- `fn clone(self: &Self) -> Function` — [`Function`](#function)
+- <span id="function-clone"></span>`fn clone(&self) -> Function` — [`Function`](#function)
 
 ##### `impl Debug for Function`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="function-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Function`
+##### `impl Deserialize for Function`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="function-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Function`
+##### `impl DeserializeOwned for Function`
 
 ##### `impl Eq for Function`
 
 ##### `impl Hash for Function`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="function-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Function`
 
-- `fn eq(self: &Self, other: &Function) -> bool` — [`Function`](#function)
+- <span id="function-eq"></span>`fn eq(&self, other: &Function) -> bool` — [`Function`](#function)
 
 ##### `impl Serialize for Function`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="function-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Function`
 
@@ -1461,6 +1626,8 @@ struct Generics {
     pub where_predicates: Vec<WherePredicate>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:913-918`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L913-L918)*
 
 Generic parameters accepted by an item and `where` clauses imposed on it and the parameters.
 
@@ -1478,31 +1645,31 @@ Generic parameters accepted by an item and `where` clauses imposed on it and the
 
 ##### `impl Clone for Generics`
 
-- `fn clone(self: &Self) -> Generics` — [`Generics`](#generics)
+- <span id="generics-clone"></span>`fn clone(&self) -> Generics` — [`Generics`](#generics)
 
 ##### `impl Debug for Generics`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="generics-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Generics`
+##### `impl Deserialize for Generics`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="generics-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Generics`
+##### `impl DeserializeOwned for Generics`
 
 ##### `impl Eq for Generics`
 
 ##### `impl Hash for Generics`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="generics-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Generics`
 
-- `fn eq(self: &Self, other: &Generics) -> bool` — [`Generics`](#generics)
+- <span id="generics-eq"></span>`fn eq(&self, other: &Generics) -> bool` — [`Generics`](#generics)
 
 ##### `impl Serialize for Generics`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="generics-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Generics`
 
@@ -1514,6 +1681,8 @@ struct GenericParamDef {
     pub kind: GenericParamDefKind,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:922-932`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L922-L932)*
 
 One generic parameter accepted by an item.
 
@@ -1536,31 +1705,31 @@ One generic parameter accepted by an item.
 
 ##### `impl Clone for GenericParamDef`
 
-- `fn clone(self: &Self) -> GenericParamDef` — [`GenericParamDef`](#genericparamdef)
+- <span id="genericparamdef-clone"></span>`fn clone(&self) -> GenericParamDef` — [`GenericParamDef`](#genericparamdef)
 
 ##### `impl Debug for GenericParamDef`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="genericparamdef-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for GenericParamDef`
+##### `impl Deserialize for GenericParamDef`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="genericparamdef-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for GenericParamDef`
+##### `impl DeserializeOwned for GenericParamDef`
 
 ##### `impl Eq for GenericParamDef`
 
 ##### `impl Hash for GenericParamDef`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="genericparamdef-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for GenericParamDef`
 
-- `fn eq(self: &Self, other: &GenericParamDef) -> bool` — [`GenericParamDef`](#genericparamdef)
+- <span id="genericparamdef-eq"></span>`fn eq(&self, other: &GenericParamDef) -> bool` — [`GenericParamDef`](#genericparamdef)
 
 ##### `impl Serialize for GenericParamDef`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="genericparamdef-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericParamDef`
 
@@ -1573,6 +1742,8 @@ struct Path {
     pub args: Option<Box<GenericArgs>>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1231-1255`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1231-L1255)*
 
 A type that has a simple path to it. This is the kind of type of structs, unions, enums, etc.
 
@@ -1609,31 +1780,31 @@ A type that has a simple path to it. This is the kind of type of structs, unions
 
 ##### `impl Clone for Path`
 
-- `fn clone(self: &Self) -> Path` — [`Path`](#path)
+- <span id="path-clone"></span>`fn clone(&self) -> Path` — [`Path`](#path)
 
 ##### `impl Debug for Path`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="path-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Path`
+##### `impl Deserialize for Path`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="path-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Path`
+##### `impl DeserializeOwned for Path`
 
 ##### `impl Eq for Path`
 
 ##### `impl Hash for Path`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="path-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Path`
 
-- `fn eq(self: &Self, other: &Path) -> bool` — [`Path`](#path)
+- <span id="path-eq"></span>`fn eq(&self, other: &Path) -> bool` — [`Path`](#path)
 
 ##### `impl Serialize for Path`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="path-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Path`
 
@@ -1646,6 +1817,8 @@ struct FunctionPointer {
     pub header: FunctionHeader,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1259-1271`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1259-L1271)*
 
 A type that is a function pointer.
 
@@ -1672,31 +1845,31 @@ A type that is a function pointer.
 
 ##### `impl Clone for FunctionPointer`
 
-- `fn clone(self: &Self) -> FunctionPointer` — [`FunctionPointer`](#functionpointer)
+- <span id="functionpointer-clone"></span>`fn clone(&self) -> FunctionPointer` — [`FunctionPointer`](#functionpointer)
 
 ##### `impl Debug for FunctionPointer`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="functionpointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for FunctionPointer`
+##### `impl Deserialize for FunctionPointer`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="functionpointer-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for FunctionPointer`
+##### `impl DeserializeOwned for FunctionPointer`
 
 ##### `impl Eq for FunctionPointer`
 
 ##### `impl Hash for FunctionPointer`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="functionpointer-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for FunctionPointer`
 
-- `fn eq(self: &Self, other: &FunctionPointer) -> bool` — [`FunctionPointer`](#functionpointer)
+- <span id="functionpointer-eq"></span>`fn eq(&self, other: &FunctionPointer) -> bool` — [`FunctionPointer`](#functionpointer)
 
 ##### `impl Serialize for FunctionPointer`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="functionpointer-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for FunctionPointer`
 
@@ -1709,6 +1882,8 @@ struct FunctionSignature {
     pub is_c_variadic: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1275-1289`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1275-L1289)*
 
 The signature of a function.
 
@@ -1737,31 +1912,31 @@ The signature of a function.
 
 ##### `impl Clone for FunctionSignature`
 
-- `fn clone(self: &Self) -> FunctionSignature` — [`FunctionSignature`](#functionsignature)
+- <span id="functionsignature-clone"></span>`fn clone(&self) -> FunctionSignature` — [`FunctionSignature`](#functionsignature)
 
 ##### `impl Debug for FunctionSignature`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="functionsignature-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for FunctionSignature`
+##### `impl Deserialize for FunctionSignature`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="functionsignature-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for FunctionSignature`
+##### `impl DeserializeOwned for FunctionSignature`
 
 ##### `impl Eq for FunctionSignature`
 
 ##### `impl Hash for FunctionSignature`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="functionsignature-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for FunctionSignature`
 
-- `fn eq(self: &Self, other: &FunctionSignature) -> bool` — [`FunctionSignature`](#functionsignature)
+- <span id="functionsignature-eq"></span>`fn eq(&self, other: &FunctionSignature) -> bool` — [`FunctionSignature`](#functionsignature)
 
 ##### `impl Serialize for FunctionSignature`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="functionsignature-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for FunctionSignature`
 
@@ -1778,6 +1953,8 @@ struct Trait {
     pub implementations: Vec<Id>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1293-1311`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1293-L1311)*
 
 A `trait` declaration.
 
@@ -1818,31 +1995,31 @@ A `trait` declaration.
 
 ##### `impl Clone for Trait`
 
-- `fn clone(self: &Self) -> Trait` — [`Trait`](#trait)
+- <span id="trait-clone"></span>`fn clone(&self) -> Trait` — [`Trait`](#trait)
 
 ##### `impl Debug for Trait`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="trait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Trait`
+##### `impl Deserialize for Trait`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="trait-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Trait`
+##### `impl DeserializeOwned for Trait`
 
 ##### `impl Eq for Trait`
 
 ##### `impl Hash for Trait`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="trait-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Trait`
 
-- `fn eq(self: &Self, other: &Trait) -> bool` — [`Trait`](#trait)
+- <span id="trait-eq"></span>`fn eq(&self, other: &Trait) -> bool` — [`Trait`](#trait)
 
 ##### `impl Serialize for Trait`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="trait-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Trait`
 
@@ -1854,6 +2031,8 @@ struct TraitAlias {
     pub params: Vec<GenericBound>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1317-1322`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1317-L1322)*
 
 A trait alias declaration, e.g. `trait Int = Add + Sub + Mul + Div;`
 
@@ -1873,31 +2052,31 @@ See [the tracking issue](https://github.com/rust-lang/rust/issues/41517)
 
 ##### `impl Clone for TraitAlias`
 
-- `fn clone(self: &Self) -> TraitAlias` — [`TraitAlias`](#traitalias)
+- <span id="traitalias-clone"></span>`fn clone(&self) -> TraitAlias` — [`TraitAlias`](#traitalias)
 
 ##### `impl Debug for TraitAlias`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="traitalias-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for TraitAlias`
+##### `impl Deserialize for TraitAlias`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="traitalias-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for TraitAlias`
+##### `impl DeserializeOwned for TraitAlias`
 
 ##### `impl Eq for TraitAlias`
 
 ##### `impl Hash for TraitAlias`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="traitalias-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for TraitAlias`
 
-- `fn eq(self: &Self, other: &TraitAlias) -> bool` — [`TraitAlias`](#traitalias)
+- <span id="traitalias-eq"></span>`fn eq(&self, other: &TraitAlias) -> bool` — [`TraitAlias`](#traitalias)
 
 ##### `impl Serialize for TraitAlias`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="traitalias-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TraitAlias`
 
@@ -1916,6 +2095,8 @@ struct Impl {
     pub blanket_impl: Option<Type>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1326-1360`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1326-L1360)*
 
 An `impl` block.
 
@@ -1970,31 +2151,31 @@ An `impl` block.
 
 ##### `impl Clone for Impl`
 
-- `fn clone(self: &Self) -> Impl` — [`Impl`](#impl)
+- <span id="impl-clone"></span>`fn clone(&self) -> Impl` — [`Impl`](#impl)
 
 ##### `impl Debug for Impl`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="impl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Impl`
+##### `impl Deserialize for Impl`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="impl-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Impl`
+##### `impl DeserializeOwned for Impl`
 
 ##### `impl Eq for Impl`
 
 ##### `impl Hash for Impl`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="impl-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Impl`
 
-- `fn eq(self: &Self, other: &Impl) -> bool` — [`Impl`](#impl)
+- <span id="impl-eq"></span>`fn eq(&self, other: &Impl) -> bool` — [`Impl`](#impl)
 
 ##### `impl Serialize for Impl`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="impl-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Impl`
 
@@ -2008,6 +2189,8 @@ struct Use {
     pub is_glob: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1365-1378`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1365-L1378)*
 
 A `use` statement.
 
@@ -2037,31 +2220,31 @@ A `use` statement.
 
 ##### `impl Clone for Use`
 
-- `fn clone(self: &Self) -> Use` — [`Use`](#use)
+- <span id="use-clone"></span>`fn clone(&self) -> Use` — [`Use`](#use)
 
 ##### `impl Debug for Use`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="use-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Use`
+##### `impl Deserialize for Use`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="use-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Use`
+##### `impl DeserializeOwned for Use`
 
 ##### `impl Eq for Use`
 
 ##### `impl Hash for Use`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="use-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Use`
 
-- `fn eq(self: &Self, other: &Use) -> bool` — [`Use`](#use)
+- <span id="use-eq"></span>`fn eq(&self, other: &Use) -> bool` — [`Use`](#use)
 
 ##### `impl Serialize for Use`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="use-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Use`
 
@@ -2073,6 +2256,8 @@ struct ProcMacro {
     pub helpers: Vec<String>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1382-1401`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1382-L1401)*
 
 A procedural macro.
 
@@ -2104,31 +2289,31 @@ A procedural macro.
 
 ##### `impl Clone for ProcMacro`
 
-- `fn clone(self: &Self) -> ProcMacro` — [`ProcMacro`](#procmacro)
+- <span id="procmacro-clone"></span>`fn clone(&self) -> ProcMacro` — [`ProcMacro`](#procmacro)
 
 ##### `impl Debug for ProcMacro`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="procmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ProcMacro`
+##### `impl Deserialize for ProcMacro`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="procmacro-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ProcMacro`
+##### `impl DeserializeOwned for ProcMacro`
 
 ##### `impl Eq for ProcMacro`
 
 ##### `impl Hash for ProcMacro`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="procmacro-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ProcMacro`
 
-- `fn eq(self: &Self, other: &ProcMacro) -> bool` — [`ProcMacro`](#procmacro)
+- <span id="procmacro-eq"></span>`fn eq(&self, other: &ProcMacro) -> bool` — [`ProcMacro`](#procmacro)
 
 ##### `impl Serialize for ProcMacro`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="procmacro-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ProcMacro`
 
@@ -2140,6 +2325,8 @@ struct TypeAlias {
     pub generics: Generics,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1417-1423`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1417-L1423)*
 
 A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
@@ -2157,31 +2344,31 @@ A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
 ##### `impl Clone for TypeAlias`
 
-- `fn clone(self: &Self) -> TypeAlias` — [`TypeAlias`](#typealias)
+- <span id="typealias-clone"></span>`fn clone(&self) -> TypeAlias` — [`TypeAlias`](#typealias)
 
 ##### `impl Debug for TypeAlias`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="typealias-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for TypeAlias`
+##### `impl Deserialize for TypeAlias`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="typealias-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for TypeAlias`
+##### `impl DeserializeOwned for TypeAlias`
 
 ##### `impl Eq for TypeAlias`
 
 ##### `impl Hash for TypeAlias`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="typealias-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for TypeAlias`
 
-- `fn eq(self: &Self, other: &TypeAlias) -> bool` — [`TypeAlias`](#typealias)
+- <span id="typealias-eq"></span>`fn eq(&self, other: &TypeAlias) -> bool` — [`TypeAlias`](#typealias)
 
 ##### `impl Serialize for TypeAlias`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="typealias-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TypeAlias`
 
@@ -2195,6 +2382,8 @@ struct Static {
     pub is_unsafe: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1427-1453`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1427-L1453)*
 
 A `static` declaration.
 
@@ -2235,31 +2424,31 @@ A `static` declaration.
 
 ##### `impl Clone for Static`
 
-- `fn clone(self: &Self) -> Static` — [`Static`](#static)
+- <span id="static-clone"></span>`fn clone(&self) -> Static` — [`Static`](#static)
 
 ##### `impl Debug for Static`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="static-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Static`
+##### `impl Deserialize for Static`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="static-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Static`
+##### `impl DeserializeOwned for Static`
 
 ##### `impl Eq for Static`
 
 ##### `impl Hash for Static`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="static-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Static`
 
-- `fn eq(self: &Self, other: &Static) -> bool` — [`Static`](#static)
+- <span id="static-eq"></span>`fn eq(&self, other: &Static) -> bool` — [`Static`](#static)
 
 ##### `impl Serialize for Static`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="static-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Static`
 
@@ -2271,6 +2460,8 @@ struct Primitive {
     pub impls: Vec<Id>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1457-1462`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1457-L1462)*
 
 A primitive type declaration. Declarations of this kind can only come from the core library.
 
@@ -2288,31 +2479,31 @@ A primitive type declaration. Declarations of this kind can only come from the c
 
 ##### `impl Clone for Primitive`
 
-- `fn clone(self: &Self) -> Primitive` — [`Primitive`](#primitive)
+- <span id="primitive-clone"></span>`fn clone(&self) -> Primitive` — [`Primitive`](#primitive)
 
 ##### `impl Debug for Primitive`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="primitive-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Primitive`
+##### `impl Deserialize for Primitive`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="primitive-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Primitive`
+##### `impl DeserializeOwned for Primitive`
 
 ##### `impl Eq for Primitive`
 
 ##### `impl Hash for Primitive`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="primitive-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Primitive`
 
-- `fn eq(self: &Self, other: &Primitive) -> bool` — [`Primitive`](#primitive)
+- <span id="primitive-eq"></span>`fn eq(&self, other: &Primitive) -> bool` — [`Primitive`](#primitive)
 
 ##### `impl Serialize for Primitive`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="primitive-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Primitive`
 
@@ -2338,6 +2529,8 @@ enum Attribute {
     Other(String),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:217-255`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L217-L255)*
 
 An attribute, e.g. `#[repr(C)]`
 
@@ -2399,27 +2592,27 @@ This doesn't include:
 
 ##### `impl Clone for Attribute`
 
-- `fn clone(self: &Self) -> Attribute` — [`Attribute`](#attribute)
+- <span id="attribute-clone"></span>`fn clone(&self) -> Attribute` — [`Attribute`](#attribute)
 
 ##### `impl Debug for Attribute`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attribute-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Attribute`
+##### `impl Deserialize for Attribute`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="attribute-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Attribute`
+##### `impl DeserializeOwned for Attribute`
 
 ##### `impl Eq for Attribute`
 
 ##### `impl PartialEq for Attribute`
 
-- `fn eq(self: &Self, other: &Attribute) -> bool` — [`Attribute`](#attribute)
+- <span id="attribute-eq"></span>`fn eq(&self, other: &Attribute) -> bool` — [`Attribute`](#attribute)
 
 ##### `impl Serialize for Attribute`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="attribute-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Attribute`
 
@@ -2433,6 +2626,8 @@ enum ReprKind {
     Simd,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:281-292`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L281-L292)*
 
 The kind of `#[repr]`.
 
@@ -2462,27 +2657,27 @@ See [AttributeRepr::kind]`.
 
 ##### `impl Clone for ReprKind`
 
-- `fn clone(self: &Self) -> ReprKind` — [`ReprKind`](#reprkind)
+- <span id="reprkind-clone"></span>`fn clone(&self) -> ReprKind` — [`ReprKind`](#reprkind)
 
 ##### `impl Debug for ReprKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reprkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ReprKind`
+##### `impl Deserialize for ReprKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="reprkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ReprKind`
+##### `impl DeserializeOwned for ReprKind`
 
 ##### `impl Eq for ReprKind`
 
 ##### `impl PartialEq for ReprKind`
 
-- `fn eq(self: &Self, other: &ReprKind) -> bool` — [`ReprKind`](#reprkind)
+- <span id="reprkind-eq"></span>`fn eq(&self, other: &ReprKind) -> bool` — [`ReprKind`](#reprkind)
 
 ##### `impl Serialize for ReprKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="reprkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ReprKind`
 
@@ -2499,6 +2694,8 @@ enum Visibility {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:317-335`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L317-L335)*
 
 Visibility of an [`Item`](#item).
 
@@ -2525,31 +2722,31 @@ Visibility of an [`Item`](#item).
 
 ##### `impl Clone for Visibility`
 
-- `fn clone(self: &Self) -> Visibility` — [`Visibility`](#visibility)
+- <span id="visibility-clone"></span>`fn clone(&self) -> Visibility` — [`Visibility`](#visibility)
 
 ##### `impl Debug for Visibility`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="visibility-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Visibility`
+##### `impl Deserialize for Visibility`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="visibility-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Visibility`
+##### `impl DeserializeOwned for Visibility`
 
 ##### `impl Eq for Visibility`
 
 ##### `impl Hash for Visibility`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="visibility-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Visibility`
 
-- `fn eq(self: &Self, other: &Visibility) -> bool` — [`Visibility`](#visibility)
+- <span id="visibility-eq"></span>`fn eq(&self, other: &Visibility) -> bool` — [`Visibility`](#visibility)
 
 ##### `impl Serialize for Visibility`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="visibility-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Visibility`
 
@@ -2568,6 +2765,8 @@ enum GenericArgs {
     ReturnTypeNotation,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:374-395`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L374-L395)*
 
 A set of generic arguments provided to a path segment, e.g.
 
@@ -2594,31 +2793,31 @@ std::option::Option<u32>
 
 ##### `impl Clone for GenericArgs`
 
-- `fn clone(self: &Self) -> GenericArgs` — [`GenericArgs`](#genericargs)
+- <span id="genericargs-clone"></span>`fn clone(&self) -> GenericArgs` — [`GenericArgs`](#genericargs)
 
 ##### `impl Debug for GenericArgs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="genericargs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for GenericArgs`
+##### `impl Deserialize for GenericArgs`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="genericargs-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for GenericArgs`
+##### `impl DeserializeOwned for GenericArgs`
 
 ##### `impl Eq for GenericArgs`
 
 ##### `impl Hash for GenericArgs`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="genericargs-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for GenericArgs`
 
-- `fn eq(self: &Self, other: &GenericArgs) -> bool` — [`GenericArgs`](#genericargs)
+- <span id="genericargs-eq"></span>`fn eq(&self, other: &GenericArgs) -> bool` — [`GenericArgs`](#genericargs)
 
 ##### `impl Serialize for GenericArgs`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="genericargs-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericArgs`
 
@@ -2632,6 +2831,8 @@ enum GenericArg {
     Infer,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:402-427`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L402-L427)*
 
 One argument in a list of generic arguments to a path segment.
 
@@ -2675,31 +2876,31 @@ Part of [`GenericArgs`](#genericargs).
 
 ##### `impl Clone for GenericArg`
 
-- `fn clone(self: &Self) -> GenericArg` — [`GenericArg`](#genericarg)
+- <span id="genericarg-clone"></span>`fn clone(&self) -> GenericArg` — [`GenericArg`](#genericarg)
 
 ##### `impl Debug for GenericArg`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="genericarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for GenericArg`
+##### `impl Deserialize for GenericArg`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="genericarg-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for GenericArg`
+##### `impl DeserializeOwned for GenericArg`
 
 ##### `impl Eq for GenericArg`
 
 ##### `impl Hash for GenericArg`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="genericarg-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for GenericArg`
 
-- `fn eq(self: &Self, other: &GenericArg) -> bool` — [`GenericArg`](#genericarg)
+- <span id="genericarg-eq"></span>`fn eq(&self, other: &GenericArg) -> bool` — [`GenericArg`](#genericarg)
 
 ##### `impl Serialize for GenericArg`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="genericarg-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericArg`
 
@@ -2711,6 +2912,8 @@ enum AssocItemConstraintKind {
     Constraint(Vec<GenericBound>),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:462-475`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L462-L475)*
 
 The way in which an associate type/constant is bound.
 
@@ -2736,31 +2939,31 @@ The way in which an associate type/constant is bound.
 
 ##### `impl Clone for AssocItemConstraintKind`
 
-- `fn clone(self: &Self) -> AssocItemConstraintKind` — [`AssocItemConstraintKind`](#associtemconstraintkind)
+- <span id="associtemconstraintkind-clone"></span>`fn clone(&self) -> AssocItemConstraintKind` — [`AssocItemConstraintKind`](#associtemconstraintkind)
 
 ##### `impl Debug for AssocItemConstraintKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="associtemconstraintkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for AssocItemConstraintKind`
+##### `impl Deserialize for AssocItemConstraintKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="associtemconstraintkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for AssocItemConstraintKind`
+##### `impl DeserializeOwned for AssocItemConstraintKind`
 
 ##### `impl Eq for AssocItemConstraintKind`
 
 ##### `impl Hash for AssocItemConstraintKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="associtemconstraintkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for AssocItemConstraintKind`
 
-- `fn eq(self: &Self, other: &AssocItemConstraintKind) -> bool` — [`AssocItemConstraintKind`](#associtemconstraintkind)
+- <span id="associtemconstraintkind-eq"></span>`fn eq(&self, other: &AssocItemConstraintKind) -> bool` — [`AssocItemConstraintKind`](#associtemconstraintkind)
 
 ##### `impl Serialize for AssocItemConstraintKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="associtemconstraintkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for AssocItemConstraintKind`
 
@@ -2794,6 +2997,8 @@ enum ItemKind {
     Attribute,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:497-565`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L497-L565)*
 
 The fundamental kind of an item. Unlike [`ItemEnum`](#itemenum), this does not carry any additional info.
 
@@ -2920,33 +3125,33 @@ Part of [`ItemSummary`](#itemsummary).
 
 ##### `impl Clone for ItemKind`
 
-- `fn clone(self: &Self) -> ItemKind` — [`ItemKind`](#itemkind)
+- <span id="itemkind-clone"></span>`fn clone(&self) -> ItemKind` — [`ItemKind`](#itemkind)
 
 ##### `impl Copy for ItemKind`
 
 ##### `impl Debug for ItemKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itemkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ItemKind`
+##### `impl Deserialize for ItemKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="itemkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ItemKind`
+##### `impl DeserializeOwned for ItemKind`
 
 ##### `impl Eq for ItemKind`
 
 ##### `impl Hash for ItemKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="itemkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ItemKind`
 
-- `fn eq(self: &Self, other: &ItemKind) -> bool` — [`ItemKind`](#itemkind)
+- <span id="itemkind-eq"></span>`fn eq(&self, other: &ItemKind) -> bool` — [`ItemKind`](#itemkind)
 
 ##### `impl Serialize for ItemKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="itemkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ItemKind`
 
@@ -2990,6 +3195,8 @@ enum ItemEnum {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:572-682`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L572-L682)*
 
 Specific fields of an item.
 
@@ -3092,31 +3299,31 @@ Part of [`Item`](#item).
 
 ##### `impl Clone for ItemEnum`
 
-- `fn clone(self: &Self) -> ItemEnum` — [`ItemEnum`](#itemenum)
+- <span id="itemenum-clone"></span>`fn clone(&self) -> ItemEnum` — [`ItemEnum`](#itemenum)
 
 ##### `impl Debug for ItemEnum`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itemenum-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ItemEnum`
+##### `impl Deserialize for ItemEnum`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="itemenum-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ItemEnum`
+##### `impl DeserializeOwned for ItemEnum`
 
 ##### `impl Eq for ItemEnum`
 
 ##### `impl Hash for ItemEnum`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="itemenum-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ItemEnum`
 
-- `fn eq(self: &Self, other: &ItemEnum) -> bool` — [`ItemEnum`](#itemenum)
+- <span id="itemenum-eq"></span>`fn eq(&self, other: &ItemEnum) -> bool` — [`ItemEnum`](#itemenum)
 
 ##### `impl Serialize for ItemEnum`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="itemenum-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ItemEnum`
 
@@ -3132,6 +3339,8 @@ enum StructKind {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:732-764`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L732-L764)*
 
 The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
@@ -3171,31 +3380,31 @@ The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
 ##### `impl Clone for StructKind`
 
-- `fn clone(self: &Self) -> StructKind` — [`StructKind`](#structkind)
+- <span id="structkind-clone"></span>`fn clone(&self) -> StructKind` — [`StructKind`](#structkind)
 
 ##### `impl Debug for StructKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="structkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for StructKind`
+##### `impl Deserialize for StructKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="structkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for StructKind`
+##### `impl DeserializeOwned for StructKind`
 
 ##### `impl Eq for StructKind`
 
 ##### `impl Hash for StructKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="structkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for StructKind`
 
-- `fn eq(self: &Self, other: &StructKind) -> bool` — [`StructKind`](#structkind)
+- <span id="structkind-eq"></span>`fn eq(&self, other: &StructKind) -> bool` — [`StructKind`](#structkind)
 
 ##### `impl Serialize for StructKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="structkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for StructKind`
 
@@ -3211,6 +3420,8 @@ enum VariantKind {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:793-831`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L793-L831)*
 
 The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it, i.e. fields.
 
@@ -3257,31 +3468,31 @@ The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it
 
 ##### `impl Clone for VariantKind`
 
-- `fn clone(self: &Self) -> VariantKind` — [`VariantKind`](#variantkind)
+- <span id="variantkind-clone"></span>`fn clone(&self) -> VariantKind` — [`VariantKind`](#variantkind)
 
 ##### `impl Debug for VariantKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="variantkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for VariantKind`
+##### `impl Deserialize for VariantKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="variantkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for VariantKind`
+##### `impl DeserializeOwned for VariantKind`
 
 ##### `impl Eq for VariantKind`
 
 ##### `impl Hash for VariantKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="variantkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for VariantKind`
 
-- `fn eq(self: &Self, other: &VariantKind) -> bool` — [`VariantKind`](#variantkind)
+- <span id="variantkind-eq"></span>`fn eq(&self, other: &VariantKind) -> bool` — [`VariantKind`](#variantkind)
 
 ##### `impl Serialize for VariantKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="variantkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for VariantKind`
 
@@ -3317,6 +3528,8 @@ enum Abi {
     Other(String),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:873-896`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L873-L896)*
 
 The ABI (Application Binary Interface) used by a function.
 
@@ -3373,31 +3586,31 @@ on unwinding for more info.
 
 ##### `impl Clone for Abi`
 
-- `fn clone(self: &Self) -> Abi` — [`Abi`](#abi)
+- <span id="abi-clone"></span>`fn clone(&self) -> Abi` — [`Abi`](#abi)
 
 ##### `impl Debug for Abi`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="abi-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Abi`
+##### `impl Deserialize for Abi`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="abi-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Abi`
+##### `impl DeserializeOwned for Abi`
 
 ##### `impl Eq for Abi`
 
 ##### `impl Hash for Abi`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="abi-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Abi`
 
-- `fn eq(self: &Self, other: &Abi) -> bool` — [`Abi`](#abi)
+- <span id="abi-eq"></span>`fn eq(&self, other: &Abi) -> bool` — [`Abi`](#abi)
 
 ##### `impl Serialize for Abi`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="abi-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Abi`
 
@@ -3420,6 +3633,8 @@ enum GenericParamDefKind {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:937-1001`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L937-L1001)*
+
 The kind of a [`GenericParamDef`](#genericparamdef).
 
 #### Variants
@@ -3440,31 +3655,31 @@ The kind of a [`GenericParamDef`](#genericparamdef).
 
 ##### `impl Clone for GenericParamDefKind`
 
-- `fn clone(self: &Self) -> GenericParamDefKind` — [`GenericParamDefKind`](#genericparamdefkind)
+- <span id="genericparamdefkind-clone"></span>`fn clone(&self) -> GenericParamDefKind` — [`GenericParamDefKind`](#genericparamdefkind)
 
 ##### `impl Debug for GenericParamDefKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="genericparamdefkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for GenericParamDefKind`
+##### `impl Deserialize for GenericParamDefKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="genericparamdefkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for GenericParamDefKind`
+##### `impl DeserializeOwned for GenericParamDefKind`
 
 ##### `impl Eq for GenericParamDefKind`
 
 ##### `impl Hash for GenericParamDefKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="genericparamdefkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for GenericParamDefKind`
 
-- `fn eq(self: &Self, other: &GenericParamDefKind) -> bool` — [`GenericParamDefKind`](#genericparamdefkind)
+- <span id="genericparamdefkind-eq"></span>`fn eq(&self, other: &GenericParamDefKind) -> bool` — [`GenericParamDefKind`](#genericparamdefkind)
 
 ##### `impl Serialize for GenericParamDefKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="genericparamdefkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericParamDefKind`
 
@@ -3487,6 +3702,8 @@ enum WherePredicate {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1010-1051`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1010-L1051)*
 
 One `where` clause.
 ```rust
@@ -3512,31 +3729,31 @@ fn default<T>() -> T where T: Default { T::default() }
 
 ##### `impl Clone for WherePredicate`
 
-- `fn clone(self: &Self) -> WherePredicate` — [`WherePredicate`](#wherepredicate)
+- <span id="wherepredicate-clone"></span>`fn clone(&self) -> WherePredicate` — [`WherePredicate`](#wherepredicate)
 
 ##### `impl Debug for WherePredicate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wherepredicate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for WherePredicate`
+##### `impl Deserialize for WherePredicate`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="wherepredicate-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for WherePredicate`
+##### `impl DeserializeOwned for WherePredicate`
 
 ##### `impl Eq for WherePredicate`
 
 ##### `impl Hash for WherePredicate`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="wherepredicate-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for WherePredicate`
 
-- `fn eq(self: &Self, other: &WherePredicate) -> bool` — [`WherePredicate`](#wherepredicate)
+- <span id="wherepredicate-eq"></span>`fn eq(&self, other: &WherePredicate) -> bool` — [`WherePredicate`](#wherepredicate)
 
 ##### `impl Serialize for WherePredicate`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="wherepredicate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for WherePredicate`
 
@@ -3553,6 +3770,8 @@ enum GenericBound {
     Use(Vec<PreciseCapturingArg>),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1056-1081`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1056-L1081)*
 
 Either a trait bound or a lifetime bound.
 
@@ -3578,31 +3797,31 @@ Either a trait bound or a lifetime bound.
 
 ##### `impl Clone for GenericBound`
 
-- `fn clone(self: &Self) -> GenericBound` — [`GenericBound`](#genericbound)
+- <span id="genericbound-clone"></span>`fn clone(&self) -> GenericBound` — [`GenericBound`](#genericbound)
 
 ##### `impl Debug for GenericBound`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="genericbound-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for GenericBound`
+##### `impl Deserialize for GenericBound`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="genericbound-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for GenericBound`
+##### `impl DeserializeOwned for GenericBound`
 
 ##### `impl Eq for GenericBound`
 
 ##### `impl Hash for GenericBound`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="genericbound-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for GenericBound`
 
-- `fn eq(self: &Self, other: &GenericBound) -> bool` — [`GenericBound`](#genericbound)
+- <span id="genericbound-eq"></span>`fn eq(&self, other: &GenericBound) -> bool` — [`GenericBound`](#genericbound)
 
 ##### `impl Serialize for GenericBound`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="genericbound-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericBound`
 
@@ -3615,6 +3834,8 @@ enum TraitBoundModifier {
     MaybeConst,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1086-1096`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1086-L1096)*
 
 A set of modifiers applied to a trait.
 
@@ -3639,33 +3860,33 @@ A set of modifiers applied to a trait.
 
 ##### `impl Clone for TraitBoundModifier`
 
-- `fn clone(self: &Self) -> TraitBoundModifier` — [`TraitBoundModifier`](#traitboundmodifier)
+- <span id="traitboundmodifier-clone"></span>`fn clone(&self) -> TraitBoundModifier` — [`TraitBoundModifier`](#traitboundmodifier)
 
 ##### `impl Copy for TraitBoundModifier`
 
 ##### `impl Debug for TraitBoundModifier`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="traitboundmodifier-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for TraitBoundModifier`
+##### `impl Deserialize for TraitBoundModifier`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="traitboundmodifier-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for TraitBoundModifier`
+##### `impl DeserializeOwned for TraitBoundModifier`
 
 ##### `impl Eq for TraitBoundModifier`
 
 ##### `impl Hash for TraitBoundModifier`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="traitboundmodifier-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for TraitBoundModifier`
 
-- `fn eq(self: &Self, other: &TraitBoundModifier) -> bool` — [`TraitBoundModifier`](#traitboundmodifier)
+- <span id="traitboundmodifier-eq"></span>`fn eq(&self, other: &TraitBoundModifier) -> bool` — [`TraitBoundModifier`](#traitboundmodifier)
 
 ##### `impl Serialize for TraitBoundModifier`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="traitboundmodifier-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TraitBoundModifier`
 
@@ -3677,6 +3898,8 @@ enum PreciseCapturingArg {
     Param(String),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1101-1112`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1101-L1112)*
 
 One precise capturing argument. See [the rust reference](https://doc.rust-lang.org/reference/types/impl-trait.html#precise-capturing).
 
@@ -3700,31 +3923,31 @@ One precise capturing argument. See [the rust reference](https://doc.rust-lang.o
 
 ##### `impl Clone for PreciseCapturingArg`
 
-- `fn clone(self: &Self) -> PreciseCapturingArg` — [`PreciseCapturingArg`](#precisecapturingarg)
+- <span id="precisecapturingarg-clone"></span>`fn clone(&self) -> PreciseCapturingArg` — [`PreciseCapturingArg`](#precisecapturingarg)
 
 ##### `impl Debug for PreciseCapturingArg`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="precisecapturingarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for PreciseCapturingArg`
+##### `impl Deserialize for PreciseCapturingArg`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="precisecapturingarg-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for PreciseCapturingArg`
+##### `impl DeserializeOwned for PreciseCapturingArg`
 
 ##### `impl Eq for PreciseCapturingArg`
 
 ##### `impl Hash for PreciseCapturingArg`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="precisecapturingarg-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for PreciseCapturingArg`
 
-- `fn eq(self: &Self, other: &PreciseCapturingArg) -> bool` — [`PreciseCapturingArg`](#precisecapturingarg)
+- <span id="precisecapturingarg-eq"></span>`fn eq(&self, other: &PreciseCapturingArg) -> bool` — [`PreciseCapturingArg`](#precisecapturingarg)
 
 ##### `impl Serialize for PreciseCapturingArg`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="precisecapturingarg-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for PreciseCapturingArg`
 
@@ -3736,6 +3959,8 @@ enum Term {
     Constant(Constant),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1118-1137`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1118-L1137)*
 
 Either a type or a constant, usually stored as the right-hand side of an equation in places like
 [`AssocItemConstraint`](#associtemconstraint)
@@ -3768,31 +3993,31 @@ Either a type or a constant, usually stored as the right-hand side of an equatio
 
 ##### `impl Clone for Term`
 
-- `fn clone(self: &Self) -> Term` — [`Term`](#term)
+- <span id="term-clone"></span>`fn clone(&self) -> Term` — [`Term`](#term)
 
 ##### `impl Debug for Term`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="term-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Term`
+##### `impl Deserialize for Term`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="term-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Term`
+##### `impl DeserializeOwned for Term`
 
 ##### `impl Eq for Term`
 
 ##### `impl Hash for Term`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="term-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Term`
 
-- `fn eq(self: &Self, other: &Term) -> bool` — [`Term`](#term)
+- <span id="term-eq"></span>`fn eq(&self, other: &Term) -> bool` — [`Term`](#term)
 
 ##### `impl Serialize for Term`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="term-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Term`
 
@@ -3833,6 +4058,8 @@ enum Type {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1142-1227`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1142-L1227)*
 
 A type.
 
@@ -3901,31 +4128,31 @@ A type.
 
 ##### `impl Clone for Type`
 
-- `fn clone(self: &Self) -> Type` — [`Type`](#type)
+- <span id="type-clone"></span>`fn clone(&self) -> Type` — [`Type`](#type)
 
 ##### `impl Debug for Type`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="type-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Type`
+##### `impl Deserialize for Type`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="type-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Type`
+##### `impl DeserializeOwned for Type`
 
 ##### `impl Eq for Type`
 
 ##### `impl Hash for Type`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="type-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Type`
 
-- `fn eq(self: &Self, other: &Type) -> bool` — [`Type`](#type)
+- <span id="type-eq"></span>`fn eq(&self, other: &Type) -> bool` — [`Type`](#type)
 
 ##### `impl Serialize for Type`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="type-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Type`
 
@@ -3938,6 +4165,8 @@ enum MacroKind {
     Derive,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1406-1413`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1406-L1413)*
 
 The way a [`ProcMacro`](#procmacro) is declared to be used.
 
@@ -3959,43 +4188,44 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 
 ##### `impl Clone for MacroKind`
 
-- `fn clone(self: &Self) -> MacroKind` — [`MacroKind`](#macrokind)
+- <span id="macrokind-clone"></span>`fn clone(&self) -> MacroKind` — [`MacroKind`](#macrokind)
 
 ##### `impl Copy for MacroKind`
 
 ##### `impl Debug for MacroKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="macrokind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for MacroKind`
+##### `impl Deserialize for MacroKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="macrokind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for MacroKind`
+##### `impl DeserializeOwned for MacroKind`
 
 ##### `impl Eq for MacroKind`
 
 ##### `impl Hash for MacroKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="macrokind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for MacroKind`
 
-- `fn eq(self: &Self, other: &MacroKind) -> bool` — [`MacroKind`](#macrokind)
+- <span id="macrokind-eq"></span>`fn eq(&self, other: &MacroKind) -> bool` — [`MacroKind`](#macrokind)
 
 ##### `impl Serialize for MacroKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="macrokind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for MacroKind`
 
 ## Constants
 
 ### `FORMAT_VERSION`
-
 ```rust
 const FORMAT_VERSION: u32 = 57u32;
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:40`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L40)*
 
 The version of JSON output that this crate represents.
 

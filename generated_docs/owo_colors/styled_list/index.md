@@ -4,9 +4,17 @@
 
 # Module `styled_list`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`sealed`](#sealed) | mod |  |
+| [`StyledList`](#styledlist) | struct | A collection of [`Styled`] items that are displayed in such a way as to minimize the amount of characters that are written when displayed. |
+| [`Transition`](#transition) | enum | How the transition between two styles should be printed |
+
 ## Modules
 
-- [`sealed`](sealed/index.md) - 
+- [`sealed`](sealed/index.md)
 
 ## Structs
 
@@ -18,6 +26,8 @@ where
     T: AsRef<[U]>,
     U: IsStyled;
 ```
+
+*Defined in [`owo-colors-4.2.3/src/styled_list.rs:64-67`](../../../.source_1765210505/owo-colors-4.2.3/src/styled_list.rs#L64-L67)*
 
 A collection of [`Styled`](../index.md) items that are displayed in such a way as to minimize the amount of characters
 that are written when displayed.
@@ -42,7 +52,7 @@ assert!(styled_length < normal_length);
 
 ##### `impl<T, U> Display for StyledList<T, U>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledlist-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for StyledList<T, U>`
 
@@ -58,13 +68,15 @@ enum Transition<'a> {
 }
 ```
 
+*Defined in [`owo-colors-4.2.3/src/styled_list.rs:157-161`](../../../.source_1765210505/owo-colors-4.2.3/src/styled_list.rs#L157-L161)*
+
 How the transition between two styles should be printed
 
 #### Trait Implementations
 
 ##### `impl Display for Transition<'_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="transition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for Transition<'a>`
+##### `impl OwoColorize for Transition<'a>`
 

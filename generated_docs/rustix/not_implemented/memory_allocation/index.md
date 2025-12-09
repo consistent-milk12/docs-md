@@ -17,6 +17,18 @@ Another allocator implementation is [talc].
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`malloc`](#malloc) | fn | See the [module comment](self). |
+| [`realloc`](#realloc) | fn | See the [module comment](self). |
+| [`calloc`](#calloc) | fn | See the [module comment](self). |
+| [`free`](#free) | fn | See the [module comment](self). |
+| [`posix_memalign`](#posix_memalign) | fn | See the [module comment](self). |
+| [`aligned_alloc`](#aligned_alloc) | fn | See the [module comment](self). |
+| [`malloc_usable_size`](#malloc_usable_size) | fn | See the [module comment](self). |
+
 ## Functions
 
 ### `malloc`
@@ -24,6 +36,8 @@ Another allocator implementation is [talc].
 ```rust
 fn malloc()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:30`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L30)*
 
 See the [module comment](self).
 
@@ -33,6 +47,8 @@ See the [module comment](self).
 fn realloc()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:31`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L31)*
+
 See the [module comment](self).
 
 ### `calloc`
@@ -40,6 +56,8 @@ See the [module comment](self).
 ```rust
 fn calloc()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:32`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L32)*
 
 See the [module comment](self).
 
@@ -49,6 +67,8 @@ See the [module comment](self).
 fn free()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:33`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L33)*
+
 See the [module comment](self).
 
 ### `posix_memalign`
@@ -56,6 +76,8 @@ See the [module comment](self).
 ```rust
 fn posix_memalign()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:34`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L34)*
 
 See the [module comment](self).
 
@@ -65,6 +87,8 @@ See the [module comment](self).
 fn aligned_alloc()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:35`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L35)*
+
 See the [module comment](self).
 
 ### `malloc_usable_size`
@@ -72,6 +96,8 @@ See the [module comment](self).
 ```rust
 fn malloc_usable_size()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:36`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L36)*
 
 See the [module comment](self).
 

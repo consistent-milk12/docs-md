@@ -4,6 +4,12 @@
 
 # Module `dynamic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Rgb`](#rgb) | struct | Available RGB colors for use with [`OwoColorize::color`](OwoColorize::color) or [`OwoColorize::on_color`](OwoColorize::on_color) |
+
 ## Structs
 
 ### `Rgb`
@@ -12,6 +18,8 @@
 struct Rgb(u8, u8, u8);
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/dynamic.rs:10`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/dynamic.rs#L10)*
+
 Available RGB colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
 
@@ -19,31 +27,31 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for Rgb`
 
-- `fn clone(self: &Self) -> Rgb` — [`Rgb`](../../index.md)
+- <span id="rgb-clone"></span>`fn clone(&self) -> Rgb` — [`Rgb`](#rgb)
 
 ##### `impl Copy for Rgb`
 
 ##### `impl Debug for Rgb`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rgb-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for Rgb`
 
-- `fn fmt_ansi_fg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgb-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_ansi_bg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgb-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_raw_ansi_fg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgb-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_raw_ansi_bg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rgb-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Rgb`
 
-##### `impl<D> OwoColorize for Rgb`
+##### `impl OwoColorize for Rgb`
 
 ##### `impl PartialEq for Rgb`
 
-- `fn eq(self: &Self, other: &Rgb) -> bool` — [`Rgb`](../../index.md)
+- <span id="rgb-eq"></span>`fn eq(&self, other: &Rgb) -> bool` — [`Rgb`](#rgb)
 
 ##### `impl StructuralPartialEq for Rgb`
 

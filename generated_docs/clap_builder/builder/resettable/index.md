@@ -4,6 +4,13 @@
 
 # Module `resettable`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Resettable`](#resettable) | enum | Clearable builder value |
+| [`IntoResettable`](#intoresettable) | trait | Convert to the intended resettable type |
+
 ## Enums
 
 ### `Resettable<T>`
@@ -14,6 +21,8 @@ enum Resettable<T> {
     Reset,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
 
 Clearable builder value
 
@@ -48,41 +57,41 @@ command.mut_arg("input", |arg| arg.short(None));
 
 #### Implementations
 
-- `fn into_option(self: Self) -> Option<T>`
+- <span id="resettable-into-option"></span>`fn into_option(self) -> Option<T>`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for Resettable<T>`
+##### `impl<T: clone::Clone> Clone for Resettable<T>`
 
-- `fn clone(self: &Self) -> Resettable<T>` — [`Resettable`](../index.md)
+- <span id="resettable-clone"></span>`fn clone(&self) -> Resettable<T>` — [`Resettable`](#resettable)
 
-##### `impl<T: $crate::marker::Copy> Copy for Resettable<T>`
+##### `impl<T: marker::Copy> Copy for Resettable<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for Resettable<T>`
+##### `impl<T: fmt::Debug> Debug for Resettable<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="resettable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for Resettable<T>`
+##### `impl<T: cmp::Eq> Eq for Resettable<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for Resettable<T>`
+##### `impl<T: hash::Hash> Hash for Resettable<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="resettable-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<T> IntoResettable for Resettable<T>`
 
-- `fn into_resettable(self: Self) -> Resettable<T>` — [`Resettable`](../index.md)
+- <span id="resettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<T>` — [`Resettable`](#resettable)
 
-##### `impl<T: $crate::cmp::Ord> Ord for Resettable<T>`
+##### `impl<T: cmp::Ord> Ord for Resettable<T>`
 
-- `fn cmp(self: &Self, other: &Resettable<T>) -> $crate::cmp::Ordering` — [`Resettable`](../index.md)
+- <span id="resettable-cmp"></span>`fn cmp(&self, other: &Resettable<T>) -> cmp::Ordering` — [`Resettable`](#resettable)
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for Resettable<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for Resettable<T>`
 
-- `fn eq(self: &Self, other: &Resettable<T>) -> bool` — [`Resettable`](../index.md)
+- <span id="resettable-eq"></span>`fn eq(&self, other: &Resettable<T>) -> bool` — [`Resettable`](#resettable)
 
-##### `impl<T: $crate::cmp::PartialOrd> PartialOrd for Resettable<T>`
+##### `impl<T: cmp::PartialOrd> PartialOrd for Resettable<T>`
 
-- `fn partial_cmp(self: &Self, other: &Resettable<T>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Resettable`](../index.md)
+- <span id="resettable-partial-cmp"></span>`fn partial_cmp(&self, other: &Resettable<T>) -> option::Option<cmp::Ordering>` — [`Resettable`](#resettable)
 
 ##### `impl<T> StructuralPartialEq for Resettable<T>`
 
@@ -94,11 +103,28 @@ command.mut_arg("input", |arg| arg.short(None));
 trait IntoResettable<T> { ... }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
+
 Convert to the intended resettable type
 
 #### Required Methods
 
-- `fn into_resettable(self: Self) -> Resettable<T>`
+- `fn into_resettable(self) -> Resettable<T>`
 
   Convert to the intended resettable type
+
+#### Implementors
+
+- [`ArgAction`](../action/index.md)
+- [`Resettable`](#resettable)
+- [`ValueHint`](../value_hint/index.md)
+- `I`
+- `Option<&'static str>`
+- `Option<char>`
+- `Option<crate::builder::ArgAction>`
+- `Option<crate::builder::ValueHint>`
+- `Option<crate::builder::ValueParser>`
+- `Option<usize>`
+- `char`
+- `usize`
 

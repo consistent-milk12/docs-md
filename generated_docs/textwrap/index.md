@@ -19,8 +19,8 @@ assert_eq!(textwrap::wrap(text, 18),
 }
 ```
 
-The [`wrap()`](#wrap) function returns the individual lines, use
-[`fill()`](#fill) is you want the lines joined with `'\n'` to form a
+The [`wrap()`](wrap/index.md) function returns the individual lines, use
+[`fill()`](fill/index.md) is you want the lines joined with `'\n'` to form a
 `String`.
 
 If you enable the `hyphenation` Cargo feature, you can get
@@ -41,7 +41,7 @@ assert_eq!(wrap(text, &options),
 }
 ```
 
-See also the [`unfill()`](#unfill) and [`refill()`](#refill) functions which allow
+See also the [`unfill()`](refill/index.md) and [`refill()`](refill/index.md) functions which allow
 you to manipulate already wrapped text.
 
 ## Wrapping Strings at Compile Time
@@ -73,7 +73,7 @@ default).
 
 The textwrap library also offers functions for adding a prefix to
 every line of a string and to remove leading whitespace. As an
-example, [`indent()`](#indent) allows you to turn lines of text into a
+example, [`indent()`](indentation/index.md) allows you to turn lines of text into a
 bullet list:
 
 ```rust
@@ -90,7 +90,7 @@ let after = "\
 assert_eq!(textwrap::indent(before, "* "), after);
 ```
 
-Removing leading whitespace is done with [`dedent()`](#dedent):
+Removing leading whitespace is done with [`dedent()`](indentation/index.md):
 
 ```rust
 let before = "
@@ -129,7 +129,7 @@ These features are enabled by default:
   This feature can be disabled if you are happy to find words
   separated by ASCII space characters only. People wrapping text
   with emojis or East-Asian characters will want most likely want
-  to enable this feature. See [`WordSeparator`](#wordseparator) for details.
+  to enable this feature. See [`WordSeparator`](word_separators/index.md) for details.
 
 * `unicode-width`: enables correct width computation of non-ASCII
   characters via the [unicode-width] crate. Without this feature,
@@ -184,7 +184,7 @@ These Cargo features enable new functionality:
   `Options::with_termwidth()` for details.
 
 * `hyphenation`: enables language-sensitive hyphenation via the
-  [hyphenation] crate. See the [`word_splitters::WordSplitter`](#word-splitterswordsplitter)
+  [hyphenation] crate. See the [`word_splitters::WordSplitter`](word_splitters/index.md)
   trait for details.
 
 
@@ -194,19 +194,79 @@ These Cargo features enable new functionality:
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`core`](#core)
+  - [`word_splitters`](#word_splitters)
+  - [`wrap_algorithms`](#wrap_algorithms)
+  - [`columns`](#columns)
+  - [`fill`](#fill)
+  - [`indentation`](#indentation)
+  - [`line_ending`](#line_ending)
+  - [`options`](#options)
+  - [`refill`](#refill)
+  - [`word_separators`](#word_separators)
+  - [`wrap`](#wrap)
+- [Structs](#structs)
+  - [`Options`](#options)
+- [Enums](#enums)
+  - [`LineEnding`](#lineending)
+  - [`WordSeparator`](#wordseparator)
+  - [`WordSplitter`](#wordsplitter)
+  - [`WrapAlgorithm`](#wrapalgorithm)
+- [Functions](#functions)
+  - [`wrap_columns`](#wrap_columns)
+  - [`fill`](#fill)
+  - [`fill_inplace`](#fill_inplace)
+  - [`dedent`](#dedent)
+  - [`indent`](#indent)
+  - [`refill`](#refill)
+  - [`unfill`](#unfill)
+  - [`wrap`](#wrap)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`core`](#core) | mod | Building blocks for advanced wrapping functionality. |
+| [`word_splitters`](#word_splitters) | mod | Word splitting functionality. |
+| [`wrap_algorithms`](#wrap_algorithms) | mod | Word wrapping algorithms. |
+| [`columns`](#columns) | mod | Functionality for wrapping text into columns. |
+| [`fill`](#fill) | mod | Functions for filling text. |
+| [`indentation`](#indentation) | mod | Functions related to adding and removing indentation from lines of text. |
+| [`line_ending`](#line_ending) | mod | Line ending detection and conversion. |
+| [`options`](#options) | mod | Options for wrapping text. |
+| [`refill`](#refill) | mod | Functionality for unfilling and refilling text. |
+| [`word_separators`](#word_separators) | mod | Functionality for finding words. |
+| [`wrap`](#wrap) | mod | Functions for wrapping text. |
+| [`Options`](#options) | struct |  |
+| [`LineEnding`](#lineending) | enum |  |
+| [`WordSeparator`](#wordseparator) | enum |  |
+| [`WordSplitter`](#wordsplitter) | enum |  |
+| [`WrapAlgorithm`](#wrapalgorithm) | enum |  |
+| [`wrap_columns`](#wrap_columns) | fn |  |
+| [`fill`](#fill) | fn |  |
+| [`fill_inplace`](#fill_inplace) | fn |  |
+| [`dedent`](#dedent) | fn |  |
+| [`indent`](#indent) | fn |  |
+| [`refill`](#refill) | fn |  |
+| [`unfill`](#unfill) | fn |  |
+| [`wrap`](#wrap) | fn |  |
+
 ## Modules
 
-- [`core`](core/index.md) - Building blocks for advanced wrapping functionality.
-- [`word_splitters`](word_splitters/index.md) - Word splitting functionality.
-- [`wrap_algorithms`](wrap_algorithms/index.md) - Word wrapping algorithms.
-- [`columns`](columns/index.md) - Functionality for wrapping text into columns.
-- [`fill`](fill/index.md) - Functions for filling text.
-- [`indentation`](indentation/index.md) - Functions related to adding and removing indentation from lines of
-- [`line_ending`](line_ending/index.md) - Line ending detection and conversion.
-- [`options`](options/index.md) - Options for wrapping text.
-- [`refill`](refill/index.md) - Functionality for unfilling and refilling text.
-- [`word_separators`](word_separators/index.md) - Functionality for finding words.
-- [`wrap`](wrap/index.md) - Functions for wrapping text.
+- [`core`](core/index.md) — Building blocks for advanced wrapping functionality.
+- [`word_splitters`](word_splitters/index.md) — Word splitting functionality.
+- [`wrap_algorithms`](wrap_algorithms/index.md) — Word wrapping algorithms.
+- [`columns`](columns/index.md) — Functionality for wrapping text into columns.
+- [`fill`](fill/index.md) — Functions for filling text.
+- [`indentation`](indentation/index.md) — Functions related to adding and removing indentation from lines of
+- [`line_ending`](line_ending/index.md) — Line ending detection and conversion.
+- [`options`](options/index.md) — Options for wrapping text.
+- [`refill`](refill/index.md) — Functionality for unfilling and refilling text.
+- [`word_separators`](word_separators/index.md) — Functionality for finding words.
+- [`wrap`](wrap/index.md) — Functions for wrapping text.
 
 ## Structs
 
@@ -224,6 +284,8 @@ struct Options<'a> {
     pub word_splitter: crate::WordSplitter,
 }
 ```
+
+*Defined in [`textwrap-0.16.2/src/options.rs:8-33`](../../.source_1765210505/textwrap-0.16.2/src/options.rs#L8-L33)*
 
 Holds configuration options for wrapping and filling text.
 
@@ -256,11 +318,11 @@ Holds configuration options for wrapping and filling text.
 - **`wrap_algorithm`**: `crate::WrapAlgorithm`
 
   Wrapping algorithm to use, see the implementations of the
-  [`WrapAlgorithm`](#wrapalgorithm) trait for details.
+  [`WrapAlgorithm`](wrap_algorithms/index.md) trait for details.
 
 - **`word_separator`**: `crate::WordSeparator`
 
-  The line breaking algorithm to use, see the [`WordSeparator`](#wordseparator)
+  The line breaking algorithm to use, see the [`WordSeparator`](word_separators/index.md)
   trait for an overview and possible implementations.
 
 - **`word_splitter`**: `crate::WordSplitter`
@@ -271,33 +333,33 @@ Holds configuration options for wrapping and filling text.
 
 #### Implementations
 
-- `const fn new(width: usize) -> Self`
+- <span id="options-new"></span>`const fn new(width: usize) -> Self`
 
-- `fn line_ending(self: Self, line_ending: LineEnding) -> Self` — [`LineEnding`](#lineending)
+- <span id="options-line-ending"></span>`fn line_ending(self, line_ending: LineEnding) -> Self` — [`LineEnding`](line_ending/index.md)
 
-- `fn width(self: Self, width: usize) -> Self`
+- <span id="options-width"></span>`fn width(self, width: usize) -> Self`
 
-- `fn initial_indent(self: Self, initial_indent: &'a str) -> Self`
+- <span id="options-initial-indent"></span>`fn initial_indent(self, initial_indent: &'a str) -> Self`
 
-- `fn subsequent_indent(self: Self, subsequent_indent: &'a str) -> Self`
+- <span id="options-subsequent-indent"></span>`fn subsequent_indent(self, subsequent_indent: &'a str) -> Self`
 
-- `fn break_words(self: Self, break_words: bool) -> Self`
+- <span id="options-break-words"></span>`fn break_words(self, break_words: bool) -> Self`
 
-- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](#wordseparator), [`Options`](#options)
+- <span id="options-word-separator"></span>`fn word_separator(self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](word_separators/index.md), [`Options`](options/index.md)
 
-- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](#wrapalgorithm), [`Options`](#options)
+- <span id="options-wrap-algorithm"></span>`fn wrap_algorithm(self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](wrap_algorithms/index.md), [`Options`](options/index.md)
 
-- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](#wordsplitter), [`Options`](#options)
+- <span id="options-word-splitter"></span>`fn word_splitter(self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](word_splitters/index.md), [`Options`](options/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Options<'a>`
+##### `impl Clone for Options<'a>`
 
-- `fn clone(self: &Self) -> Options<'a>` — [`Options`](#options)
+- <span id="options-clone"></span>`fn clone(&self) -> Options<'a>` — [`Options`](options/index.md)
 
-##### `impl<'a> Debug for Options<'a>`
+##### `impl Debug for Options<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="options-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -309,6 +371,8 @@ enum LineEnding {
     LF,
 }
 ```
+
+*Defined in [`textwrap-0.16.2/src/line_ending.rs:8-16`](../../.source_1765210505/textwrap-0.16.2/src/line_ending.rs#L8-L16)*
 
 Supported line endings. Like in the Rust standard library, two line
 endings are supported: `\r\n` and `\n`
@@ -328,25 +392,25 @@ endings are supported: `\r\n` and `\n`
 
 #### Implementations
 
-- `const fn as_str(self: &Self) -> &'static str`
+- <span id="lineending-as-str"></span>`const fn as_str(&self) -> &'static str`
 
 #### Trait Implementations
 
 ##### `impl Clone for LineEnding`
 
-- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](#lineending)
+- <span id="lineending-clone"></span>`fn clone(&self) -> LineEnding` — [`LineEnding`](line_ending/index.md)
 
 ##### `impl Copy for LineEnding`
 
 ##### `impl Debug for LineEnding`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineending-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LineEnding`
 
 ##### `impl PartialEq for LineEnding`
 
-- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](#lineending)
+- <span id="lineending-eq"></span>`fn eq(&self, other: &LineEnding) -> bool` — [`LineEnding`](line_ending/index.md)
 
 ##### `impl StructuralPartialEq for LineEnding`
 
@@ -359,6 +423,8 @@ enum WordSeparator {
     Custom(fn(&str) -> Box<dyn Iterator<Item = crate::core::Word<'_>>>),
 }
 ```
+
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:42-123`](../../.source_1765210505/textwrap-0.16.2/src/word_separators.rs#L42-L123)*
 
 Describes where words occur in a line of text.
 
@@ -468,25 +534,25 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="wordseparator-new"></span>`const fn new() -> Self`
 
-- `fn find_words<'a>(self: &Self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](core/index.md)
+- <span id="wordseparator-find-words"></span>`fn find_words<'a>(&self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](core/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WordSeparator`
 
-- `fn clone(self: &Self) -> WordSeparator` — [`WordSeparator`](#wordseparator)
+- <span id="wordseparator-clone"></span>`fn clone(&self) -> WordSeparator` — [`WordSeparator`](word_separators/index.md)
 
 ##### `impl Copy for WordSeparator`
 
 ##### `impl Debug for WordSeparator`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wordseparator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for WordSeparator`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="wordseparator-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `WordSplitter`
 
@@ -497,6 +563,8 @@ enum WordSplitter {
     Custom(fn(&str) -> Vec<usize>),
 }
 ```
+
+*Defined in [`textwrap-0.16.2/src/word_splitters.rs:37-99`](../../.source_1765210505/textwrap-0.16.2/src/word_splitters.rs#L37-L99)*
 
 The `WordSplitter` enum describes where words can be split.
 
@@ -583,21 +651,21 @@ details.
 
 #### Implementations
 
-- `fn split_points(self: &Self, word: &str) -> Vec<usize>`
+- <span id="wordsplitter-split-points"></span>`fn split_points(&self, word: &str) -> Vec<usize>`
 
 #### Trait Implementations
 
 ##### `impl Clone for WordSplitter`
 
-- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](#wordsplitter)
+- <span id="wordsplitter-clone"></span>`fn clone(&self) -> WordSplitter` — [`WordSplitter`](word_splitters/index.md)
 
 ##### `impl Debug for WordSplitter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wordsplitter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for WordSplitter`
 
-- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](#wordsplitter)
+- <span id="wordsplitter-eq"></span>`fn eq(&self, other: &WordSplitter) -> bool` — [`WordSplitter`](word_splitters/index.md)
 
 ### `WrapAlgorithm`
 
@@ -607,6 +675,8 @@ enum WrapAlgorithm {
     Custom(fn(&'b [crate::core::Word<'a>], &'b [usize]) -> Vec<&'b [crate::core::Word<'a>]>),
 }
 ```
+
+*Defined in [`textwrap-0.16.2/src/wrap_algorithms.rs:36-90`](../../.source_1765210505/textwrap-0.16.2/src/wrap_algorithms.rs#L36-L90)*
 
 Describes how to wrap words into lines.
 
@@ -662,29 +732,45 @@ an entire paragraph at a time in order to find optimal line breaks
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="wrapalgorithm-new"></span>`const fn new() -> Self`
 
-- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](core/index.md)
+- <span id="wrapalgorithm-wrap"></span>`fn wrap<'a, 'b>(&self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](core/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WrapAlgorithm`
 
-- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](#wrapalgorithm)
+- <span id="wrapalgorithm-clone"></span>`fn clone(&self) -> WrapAlgorithm` — [`WrapAlgorithm`](wrap_algorithms/index.md)
 
 ##### `impl Copy for WrapAlgorithm`
 
 ##### `impl Debug for WrapAlgorithm`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wrapalgorithm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for WrapAlgorithm`
 
-- `fn default() -> Self`
+- <span id="wrapalgorithm-default"></span>`fn default() -> Self`
 
 ##### `impl PartialEq for WrapAlgorithm`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="wrapalgorithm-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ## Functions
+
+*Defined in [`textwrap-0.16.2/src/lib.rs:224`](../../.source_1765210505/textwrap-0.16.2/src/lib.rs#L224)*
+
+*Defined in [`textwrap-0.16.2/src/lib.rs:225`](../../.source_1765210505/textwrap-0.16.2/src/lib.rs#L225)*
+
+*Defined in [`textwrap-0.16.2/src/lib.rs:225`](../../.source_1765210505/textwrap-0.16.2/src/lib.rs#L225)*
+
+*Defined in [`textwrap-0.16.2/src/lib.rs:226`](../../.source_1765210505/textwrap-0.16.2/src/lib.rs#L226)*
+
+*Defined in [`textwrap-0.16.2/src/lib.rs:226`](../../.source_1765210505/textwrap-0.16.2/src/lib.rs#L226)*
+
+*Defined in [`textwrap-0.16.2/src/lib.rs:229`](../../.source_1765210505/textwrap-0.16.2/src/lib.rs#L229)*
+
+*Defined in [`textwrap-0.16.2/src/lib.rs:229`](../../.source_1765210505/textwrap-0.16.2/src/lib.rs#L229)*
+
+*Defined in [`textwrap-0.16.2/src/lib.rs:234`](../../.source_1765210505/textwrap-0.16.2/src/lib.rs#L234)*
 

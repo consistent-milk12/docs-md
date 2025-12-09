@@ -6,8 +6,8 @@
 
 Generic data structure deserialization framework.
 
-The two most important traits in this module are [`Deserialize`](../index.md) and
-[`Deserializer`](../index.md).
+The two most important traits in this module are [`Deserialize`](#deserialize) and
+[`Deserializer`](#deserializer).
 
  - **A type that implements `Deserialize` is a data structure** that can be
    deserialized from any data format supported by Serde, and conversely
@@ -16,26 +16,26 @@ The two most important traits in this module are [`Deserialize`](../index.md) an
 
 # The Deserialize trait
 
-Serde provides [`Deserialize`](../index.md) implementations for many Rust primitive and
+Serde provides [`Deserialize`](#deserialize) implementations for many Rust primitive and
 standard library types. The complete list is below. All of these can be
 deserialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called `serde_derive` to
-automatically generate [`Deserialize`](../index.md) implementations for structs and enums
+automatically generate [`Deserialize`](#deserialize) implementations for structs and enums
 in your program. See the [derive section of the manual] for how to use this.
 
-In rare cases it may be necessary to implement [`Deserialize`](../index.md) manually for
+In rare cases it may be necessary to implement [`Deserialize`](#deserialize) manually for
 some type in your program. See the [Implementing `Deserialize`] section of
 the manual for more about this.
 
-Third-party crates may provide [`Deserialize`](../index.md) implementations for types
+Third-party crates may provide [`Deserialize`](#deserialize) implementations for types
 that they expose. For example the `linked-hash-map` crate provides a
 `LinkedHashMap<K, V>` type that is deserializable by Serde because the
-crate provides an implementation of [`Deserialize`](../index.md) for it.
+crate provides an implementation of [`Deserialize`](#deserialize) for it.
 
 # The Deserializer trait
 
-[`Deserializer`](../index.md) implementations are provided by third-party crates, for
+[`Deserializer`](#deserializer) implementations are provided by third-party crates, for
 example `serde_json`, `serde_yaml` and `postcard`.
 
 A partial list of well-maintained formats is given on the [Serde
@@ -117,11 +117,64 @@ One example is `OsStr`.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`value`](#value)
+  - [`ignored_any`](#ignored_any)
+  - [`impls`](#impls)
+- [Structs](#structs)
+  - [`IgnoredAny`](#ignoredany)
+  - [`OneOf`](#oneof)
+  - [`WithDecimalPoint`](#withdecimalpoint)
+- [Enums](#enums)
+  - [`Unexpected`](#unexpected)
+- [Traits](#traits)
+  - [`Error`](#error)
+  - [`Expected`](#expected)
+  - [`Deserialize`](#deserialize)
+  - [`DeserializeOwned`](#deserializeowned)
+  - [`DeserializeSeed`](#deserializeseed)
+  - [`Deserializer`](#deserializer)
+  - [`Visitor`](#visitor)
+  - [`SeqAccess`](#seqaccess)
+  - [`MapAccess`](#mapaccess)
+  - [`EnumAccess`](#enumaccess)
+  - [`VariantAccess`](#variantaccess)
+  - [`IntoDeserializer`](#intodeserializer)
+- [Macros](#macros)
+  - [`declare_error_trait!`](#declare_error_trait)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`value`](#value) | mod | Building blocks for deserializing basic values using the `IntoDeserializer` trait. |
+| [`ignored_any`](#ignored_any) | mod |  |
+| [`impls`](#impls) | mod |  |
+| [`IgnoredAny`](#ignoredany) | struct |  |
+| [`OneOf`](#oneof) | struct | Used in error messages. |
+| [`WithDecimalPoint`](#withdecimalpoint) | struct |  |
+| [`Unexpected`](#unexpected) | enum | `Unexpected` represents an unexpected invocation of any one of the `Visitor` trait methods. |
+| [`Error`](#error) | trait | The `Error` trait allows `Deserialize` implementations to create descriptive error messages belonging to the `Deserializer` against which they are currently running. |
+| [`Expected`](#expected) | trait | `Expected` represents an explanation of what data a `Visitor` was expecting to receive. |
+| [`Deserialize`](#deserialize) | trait | A **data structure** that can be deserialized from any data format supported by Serde. |
+| [`DeserializeOwned`](#deserializeowned) | trait | A data structure that can be deserialized without borrowing any data from the deserializer. |
+| [`DeserializeSeed`](#deserializeseed) | trait | `DeserializeSeed` is the stateful form of the `Deserialize` trait. |
+| [`Deserializer`](#deserializer) | trait | A **data format** that can deserialize any data structure supported by Serde. |
+| [`Visitor`](#visitor) | trait | This trait represents a visitor that walks through a deserializer. |
+| [`SeqAccess`](#seqaccess) | trait | Provides a `Visitor` access to each element of a sequence in the input. |
+| [`MapAccess`](#mapaccess) | trait | Provides a `Visitor` access to each entry of a map in the input. |
+| [`EnumAccess`](#enumaccess) | trait | Provides a `Visitor` access to the data of an enum in the input. |
+| [`VariantAccess`](#variantaccess) | trait | `VariantAccess` is a visitor that is created by the `Deserializer` and passed to the `Deserialize` to deserialize the content of a particular enum variant. |
+| [`IntoDeserializer`](#intodeserializer) | trait | Converts an existing value into a `Deserializer` from which other values can be deserialized. |
+| [`declare_error_trait!`](#declare_error_trait) | macro |  |
+
 ## Modules
 
-- [`value`](value/index.md) - Building blocks for deserializing basic values using the `IntoDeserializer`
-- [`ignored_any`](ignored_any/index.md) - 
-- [`impls`](impls/index.md) - 
+- [`value`](value/index.md) — Building blocks for deserializing basic values using the `IntoDeserializer`
+- [`ignored_any`](ignored_any/index.md)
+- [`impls`](impls/index.md)
 
 ## Structs
 
@@ -130,6 +183,8 @@ One example is `OsStr`.
 ```rust
 struct IgnoredAny;
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/ignored_any.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/de/ignored_any.rs#L111)*
 
 An efficient way of discarding data from a deserializer.
 
@@ -239,69 +294,69 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Clone for IgnoredAny`
 
-- `fn clone(self: &Self) -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
+- <span id="ignoredany-clone"></span>`fn clone(&self) -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md)
 
 ##### `impl Copy for IgnoredAny`
 
 ##### `impl Debug for IgnoredAny`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ignoredany-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for IgnoredAny`
 
-- `fn default() -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
+- <span id="ignoredany-default"></span>`fn default() -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md)
 
-##### `impl<'de> Deserialize for IgnoredAny`
+##### `impl Deserialize for IgnoredAny`
 
-- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](#ignoredany), [`Deserializer`](../index.md)
+- <span id="ignoredany-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](ignored_any/index.md), [`Deserializer`](#deserializer)
 
-##### `impl<T> DeserializeOwned for IgnoredAny`
+##### `impl DeserializeOwned for IgnoredAny`
 
-##### `impl<'de, T> Expected for IgnoredAny`
+##### `impl Expected for IgnoredAny`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ignoredany-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for IgnoredAny`
 
-- `fn eq(self: &Self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](#ignoredany)
+- <span id="ignoredany-eq"></span>`fn eq(&self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](ignored_any/index.md)
 
 ##### `impl StructuralPartialEq for IgnoredAny`
 
-##### `impl<'de> Visitor for IgnoredAny`
+##### `impl Visitor for IgnoredAny`
 
-- `type Value = IgnoredAny`
+- <span id="ignoredany-type-value"></span>`type Value = IgnoredAny`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ignoredany-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_bool<E>(self: Self, x: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-bool"></span>`fn visit_bool<E>(self, x: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_i64<E>(self: Self, x: i64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-i64"></span>`fn visit_i64<E>(self, x: i64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_i128<E>(self: Self, x: i128) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-i128"></span>`fn visit_i128<E>(self, x: i128) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_u64<E>(self: Self, x: u64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-u64"></span>`fn visit_u64<E>(self, x: u64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_u128<E>(self: Self, x: u128) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-u128"></span>`fn visit_u128<E>(self, x: u128) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_f64<E>(self: Self, x: f64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-f64"></span>`fn visit_f64<E>(self, x: f64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_str<E>(self: Self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-str"></span>`fn visit_str<E>(self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_none<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-none"></span>`fn visit_none<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_some<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-some"></span>`fn visit_some<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_newtype_struct<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-newtype-struct"></span>`fn visit_newtype_struct<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-seq"></span>`fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_map<A>(self: Self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-map"></span>`fn visit_map<A>(self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_bytes<E>(self: Self, bytes: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-bytes"></span>`fn visit_bytes<E>(self, bytes: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-enum"></span>`fn visit_enum<A>(self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
 
 ### `OneOf`
 
@@ -310,6 +365,8 @@ struct OneOf {
     names: &'static [&'static str],
 }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2333-2335`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L2333-L2335)*
 
 Used in error messages.
 
@@ -323,11 +380,11 @@ The slice of names must not be empty.
 
 ##### `impl Display for OneOf`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="oneof-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for OneOf`
+##### `impl ToString for OneOf`
 
-- `fn to_string(self: &Self) -> String` — [`String`](../lib/index.md)
+- <span id="oneof-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
 
 ### `WithDecimalPoint`
 
@@ -335,15 +392,17 @@ The slice of names must not be empty.
 struct WithDecimalPoint(f64);
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2357`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L2357)*
+
 #### Trait Implementations
 
 ##### `impl Display for WithDecimalPoint`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="withdecimalpoint-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for WithDecimalPoint`
+##### `impl ToString for WithDecimalPoint`
 
-- `fn to_string(self: &Self) -> String` — [`String`](../lib/index.md)
+- <span id="withdecimalpoint-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
 
 ## Enums
 
@@ -371,6 +430,8 @@ enum Unexpected<'a> {
     Other(&'a str),
 }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:338-399`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L338-L399)*
 
 `Unexpected` represents an unexpected invocation of any one of the `Visitor`
 trait methods.
@@ -484,29 +545,29 @@ where
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Unexpected<'a>`
+##### `impl Clone for Unexpected<'a>`
 
-- `fn clone(self: &Self) -> Unexpected<'a>` — [`Unexpected`](#unexpected)
+- <span id="unexpected-clone"></span>`fn clone(&self) -> Unexpected<'a>` — [`Unexpected`](#unexpected)
 
-##### `impl<'a> Copy for Unexpected<'a>`
+##### `impl Copy for Unexpected<'a>`
 
-##### `impl<'a> Debug for Unexpected<'a>`
+##### `impl Debug for Unexpected<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unexpected-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Display for Unexpected<'a>`
+##### `impl Display for Unexpected<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unexpected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> PartialEq for Unexpected<'a>`
+##### `impl PartialEq for Unexpected<'a>`
 
-- `fn eq(self: &Self, other: &Unexpected<'a>) -> bool` — [`Unexpected`](#unexpected)
+- <span id="unexpected-eq"></span>`fn eq(&self, other: &Unexpected<'a>) -> bool` — [`Unexpected`](#unexpected)
 
-##### `impl<'a> StructuralPartialEq for Unexpected<'a>`
+##### `impl StructuralPartialEq for Unexpected<'a>`
 
-##### `impl<T> ToString for Unexpected<'a>`
+##### `impl ToString for Unexpected<'a>`
 
-- `fn to_string(self: &Self) -> String` — [`String`](../lib/index.md)
+- <span id="unexpected-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
 
 ## Traits
 
@@ -515,6 +576,8 @@ where
 ```rust
 trait Error: Sized + StdError { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:304`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L304)*
 
 The `Error` trait allows `Deserialize` implementations to create descriptive
 error messages belonging to the `Deserializer` against which they are
@@ -541,6 +604,8 @@ type appropriate for a basic JSON data format.
 - `fn custom<T>(msg: T) -> Self`
 
   Raised when there is general error when deserializing a type.
+
+#### Provided Methods
 
 - `fn invalid_type(unexp: Unexpected<'_>, exp: &dyn Expected) -> Self`
 
@@ -570,11 +635,17 @@ type appropriate for a basic JSON data format.
 
   Raised when a `Deserialize` struct type received more than one of the
 
+#### Implementors
+
+- [`Error`](value/index.md)
+
 ### `Expected`
 
 ```rust
 trait Expected { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:484-488`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L484-L488)*
 
 `Expected` represents an explanation of what data a `Visitor` was expecting
 to receive.
@@ -630,15 +701,24 @@ return Err(de::Error::invalid_type(
 
 #### Required Methods
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- `fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   Format an explanation of what data was being expected. Same signature as
+
+#### Implementors
+
+- [`ExpectedInMap`](value/index.md)
+- [`ExpectedInSeq`](value/index.md)
+- `&str`
+- `T`
 
 ### `Deserialize<'de>`
 
 ```rust
 trait Deserialize<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:554-593`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L554-L593)*
 
 A **data structure** that can be deserialized from any data format supported
 by Serde.
@@ -675,11 +755,150 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 
   Deserialize this value from the given Serde deserializer.
 
+#### Implementors
+
+- [`AtomicBool`](../lib/index.md)
+- [`AtomicI16`](../lib/index.md)
+- [`AtomicI32`](../lib/index.md)
+- [`AtomicI64`](../lib/index.md)
+- [`AtomicI8`](../lib/index.md)
+- [`AtomicIsize`](../lib/index.md)
+- [`AtomicU16`](../lib/index.md)
+- [`AtomicU32`](../lib/index.md)
+- [`AtomicU64`](../lib/index.md)
+- [`AtomicU8`](../lib/index.md)
+- [`AtomicUsize`](../lib/index.md)
+- [`BTreeMap`](../lib/index.md)
+- [`BTreeSet`](../lib/index.md)
+- [`BinaryHeap`](../lib/index.md)
+- [`Bound`](../lib/index.md)
+- [`Box`](../lib/index.md)
+- [`CString`](../lib/index.md)
+- [`Cell`](../lib/index.md)
+- [`Cow`](../lib/index.md)
+- [`Duration`](../lib/index.md)
+- [`Field`](impls/range/index.md)
+- [`Field`](impls/range_from/index.md)
+- [`Field`](impls/range_to/index.md)
+- [`HashMap`](../lib/index.md)
+- [`HashSet`](../lib/index.md)
+- [`IgnoredAny`](ignored_any/index.md)
+- [`LinkedList`](../lib/index.md)
+- [`Mutex`](../lib/index.md)
+- [`OsStringKind`](impls/index.md)
+- [`OsString`](../lib/index.md)
+- [`PathBuf`](../lib/index.md)
+- [`PhantomData`](../lib/index.md)
+- [`RangeFrom`](../lib/index.md)
+- [`RangeInclusive`](../lib/index.md)
+- [`RangeTo`](../lib/index.md)
+- [`Range`](../lib/index.md)
+- [`RefCell`](../lib/index.md)
+- [`Reverse`](../lib/index.md)
+- [`RwLock`](../lib/index.md)
+- [`Saturating`](../lib/index.md)
+- [`String`](../lib/index.md)
+- [`SystemTime`](../lib/index.md)
+- [`VecDeque`](../lib/index.md)
+- [`Vec`](../lib/index.md)
+- [`Wrapping`](../lib/index.md)
+- `&'a Path`
+- `&'a [u8]`
+- `&'a str`
+- `()`
+- `(T)`
+- `(T0, T1)`
+- `(T0, T1, T2)`
+- `(T0, T1, T2, T3)`
+- `(T0, T1, T2, T3, T4)`
+- `(T0, T1, T2, T3, T4, T5)`
+- `(T0, T1, T2, T3, T4, T5, T6)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15)`
+- `Option<T>`
+- `Result<T, E>`
+- `[T; 0]`
+- `[T; 10]`
+- `[T; 11]`
+- `[T; 12]`
+- `[T; 13]`
+- `[T; 14]`
+- `[T; 15]`
+- `[T; 16]`
+- `[T; 17]`
+- `[T; 18]`
+- `[T; 19]`
+- `[T; 1]`
+- `[T; 20]`
+- `[T; 21]`
+- `[T; 22]`
+- `[T; 23]`
+- `[T; 24]`
+- `[T; 25]`
+- `[T; 26]`
+- `[T; 27]`
+- `[T; 28]`
+- `[T; 29]`
+- `[T; 2]`
+- `[T; 30]`
+- `[T; 31]`
+- `[T; 32]`
+- `[T; 3]`
+- `[T; 4]`
+- `[T; 5]`
+- `[T; 6]`
+- `[T; 7]`
+- `[T; 8]`
+- `[T; 9]`
+- `bool`
+- `char`
+- `f32`
+- `f64`
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `net::IpAddr`
+- `net::Ipv4Addr`
+- `net::Ipv6Addr`
+- `net::SocketAddrV4`
+- `net::SocketAddrV6`
+- `net::SocketAddr`
+- `num::NonZeroI128`
+- `num::NonZeroI16`
+- `num::NonZeroI32`
+- `num::NonZeroI64`
+- `num::NonZeroI8`
+- `num::NonZeroIsize`
+- `num::NonZeroU128`
+- `num::NonZeroU16`
+- `num::NonZeroU32`
+- `num::NonZeroU64`
+- `num::NonZeroU8`
+- `num::NonZeroUsize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
 ### `DeserializeOwned`
 
 ```rust
 trait DeserializeOwned: Deserialize<'de> { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:632`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L632)*
 
 A data structure that can be deserialized without borrowing any data from
 the deserializer.
@@ -712,11 +931,17 @@ bounds is explained in more detail on the page [Understanding deserializer
 lifetimes].
 
 
+#### Implementors
+
+- `T`
+
 ### `DeserializeSeed<'de>`
 
 ```rust
 trait DeserializeSeed<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:803-812`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L803-L812)*
 
 `DeserializeSeed` is the stateful form of the `Deserialize` trait. If you
 ever find yourself looking for a way to pass data into a `Deserialize` impl,
@@ -879,19 +1104,29 @@ let flattened: Vec<u64> = deserializer.deserialize_seq(visitor)?;
 }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Value`
 
-- `fn deserialize<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
+#### Required Methods
+
+- `fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
   Equivalent to the more common `Deserialize::deserialize` method, except
+
+#### Implementors
+
+- [`PhantomData`](../lib/index.md)
+- [`SeedStructVariant`](value/private/index.md)
+- [`SeedTupleVariant`](value/private/index.md)
 
 ### `Deserializer<'de>`
 
 ```rust
 trait Deserializer<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:945-1266`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L945-L1266)*
 
 A **data format** that can deserialize any data structure supported by
 Serde.
@@ -997,143 +1232,181 @@ The [example data format] presented on the website contains example code for
 a basic JSON `Deserializer`.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Error: 1`
 
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+#### Required Methods
+
+- `fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Require the `Deserializer` to figure out how to drive the visitor based
 
-- `fn deserialize_bool<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `bool` value.
 
-- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i8` value.
 
-- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i16` value.
 
-- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i32` value.
 
-- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i64` value.
 
-- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
-
-  Hint that the `Deserialize` type is expecting an `i128` value.
-
-- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u8` value.
 
-- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u16` value.
 
-- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u32` value.
 
-- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u64` value.
 
-- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
-
-  Hint that the `Deserialize` type is expecting an `u128` value.
-
-- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `f32` value.
 
-- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `f64` value.
 
-- `fn deserialize_char<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_char<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `char` value.
 
-- `fn deserialize_str<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_str<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a string value and does
 
-- `fn deserialize_string<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_string<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a string value and would
 
-- `fn deserialize_bytes<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a byte array and does not
 
-- `fn deserialize_byte_buf<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a byte array and would
 
-- `fn deserialize_option<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an optional value.
 
-- `fn deserialize_unit<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_unit<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a unit value.
 
-- `fn deserialize_unit_struct<V>(self: Self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a unit struct with a
 
-- `fn deserialize_newtype_struct<V>(self: Self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a newtype struct with a
 
-- `fn deserialize_seq<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a sequence of values.
 
-- `fn deserialize_tuple<V>(self: Self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_tuple<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a sequence of values and
 
-- `fn deserialize_tuple_struct<V>(self: Self, name: &'static str, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a tuple struct with a
 
-- `fn deserialize_map<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_map<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a map of key-value pairs.
 
-- `fn deserialize_struct<V>(self: Self, name: &'static str, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a struct with a particular
 
-- `fn deserialize_enum<V>(self: Self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an enum value with a
 
-- `fn deserialize_identifier<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_identifier<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting the name of a struct
 
-- `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_ignored_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type needs to deserialize a value whose type
 
-- `fn is_human_readable(self: &Self) -> bool`
+#### Provided Methods
+
+- `fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an `i128` value.
+
+- `fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an `u128` value.
+
+- `fn is_human_readable(&self) -> bool`
 
   Determine whether `Deserialize` implementations should expect to
+
+#### Implementors
+
+- [`BoolDeserializer`](value/index.md)
+- [`BorrowedBytesDeserializer`](value/index.md)
+- [`BorrowedStrDeserializer`](value/index.md)
+- [`BytesDeserializer`](value/index.md)
+- [`CharDeserializer`](value/index.md)
+- [`CowStrDeserializer`](value/index.md)
+- [`EnumAccessDeserializer`](value/index.md)
+- [`F32Deserializer`](value/index.md)
+- [`F64Deserializer`](value/index.md)
+- [`I128Deserializer`](value/index.md)
+- [`I16Deserializer`](value/index.md)
+- [`I32Deserializer`](value/index.md)
+- [`I64Deserializer`](value/index.md)
+- [`I8Deserializer`](value/index.md)
+- [`IsizeDeserializer`](value/index.md)
+- [`MapAccessDeserializer`](value/index.md)
+- [`MapDeserializer`](value/index.md)
+- [`PairDeserializer`](value/index.md)
+- [`SeqAccessDeserializer`](value/index.md)
+- [`SeqDeserializer`](value/index.md)
+- [`StrDeserializer`](value/index.md)
+- [`StringDeserializer`](value/index.md)
+- [`U128Deserializer`](value/index.md)
+- [`U16Deserializer`](value/index.md)
+- [`U32Deserializer`](value/index.md)
+- [`U64Deserializer`](value/index.md)
+- [`U8Deserializer`](value/index.md)
+- [`UnitDeserializer`](value/index.md)
+- [`UsizeDeserializer`](value/index.md)
 
 ### `Visitor<'de>`
 
 ```rust
 trait Visitor<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:1317-1720`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L1317-L1720)*
 
 This trait represents a visitor that walks through a deserializer.
 
@@ -1175,127 +1448,156 @@ impl<'de> Visitor<'de> for LongString {
 }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Value`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+#### Required Methods
+
+- `fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   Format a message stating what data this Visitor expects to receive.
 
-- `fn visit_bool<E>(self: Self, v: bool) -> Result<<Self as >::Value, E>`
+#### Provided Methods
+
+- `fn visit_bool<E>(self, v: bool) -> Result<<Self as >::Value, E>`
 
   The input contains a boolean.
 
-- `fn visit_i8<E>(self: Self, v: i8) -> Result<<Self as >::Value, E>`
+- `fn visit_i8<E>(self, v: i8) -> Result<<Self as >::Value, E>`
 
   The input contains an `i8`.
 
-- `fn visit_i16<E>(self: Self, v: i16) -> Result<<Self as >::Value, E>`
+- `fn visit_i16<E>(self, v: i16) -> Result<<Self as >::Value, E>`
 
   The input contains an `i16`.
 
-- `fn visit_i32<E>(self: Self, v: i32) -> Result<<Self as >::Value, E>`
+- `fn visit_i32<E>(self, v: i32) -> Result<<Self as >::Value, E>`
 
   The input contains an `i32`.
 
-- `fn visit_i64<E>(self: Self, v: i64) -> Result<<Self as >::Value, E>`
+- `fn visit_i64<E>(self, v: i64) -> Result<<Self as >::Value, E>`
 
   The input contains an `i64`.
 
-- `fn visit_i128<E>(self: Self, v: i128) -> Result<<Self as >::Value, E>`
+- `fn visit_i128<E>(self, v: i128) -> Result<<Self as >::Value, E>`
 
   The input contains a `i128`.
 
-- `fn visit_u8<E>(self: Self, v: u8) -> Result<<Self as >::Value, E>`
+- `fn visit_u8<E>(self, v: u8) -> Result<<Self as >::Value, E>`
 
   The input contains a `u8`.
 
-- `fn visit_u16<E>(self: Self, v: u16) -> Result<<Self as >::Value, E>`
+- `fn visit_u16<E>(self, v: u16) -> Result<<Self as >::Value, E>`
 
   The input contains a `u16`.
 
-- `fn visit_u32<E>(self: Self, v: u32) -> Result<<Self as >::Value, E>`
+- `fn visit_u32<E>(self, v: u32) -> Result<<Self as >::Value, E>`
 
   The input contains a `u32`.
 
-- `fn visit_u64<E>(self: Self, v: u64) -> Result<<Self as >::Value, E>`
+- `fn visit_u64<E>(self, v: u64) -> Result<<Self as >::Value, E>`
 
   The input contains a `u64`.
 
-- `fn visit_u128<E>(self: Self, v: u128) -> Result<<Self as >::Value, E>`
+- `fn visit_u128<E>(self, v: u128) -> Result<<Self as >::Value, E>`
 
   The input contains a `u128`.
 
-- `fn visit_f32<E>(self: Self, v: f32) -> Result<<Self as >::Value, E>`
+- `fn visit_f32<E>(self, v: f32) -> Result<<Self as >::Value, E>`
 
   The input contains an `f32`.
 
-- `fn visit_f64<E>(self: Self, v: f64) -> Result<<Self as >::Value, E>`
+- `fn visit_f64<E>(self, v: f64) -> Result<<Self as >::Value, E>`
 
   The input contains an `f64`.
 
-- `fn visit_char<E>(self: Self, v: char) -> Result<<Self as >::Value, E>`
+- `fn visit_char<E>(self, v: char) -> Result<<Self as >::Value, E>`
 
   The input contains a `char`.
 
-- `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>`
+- `fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>`
 
   The input contains a string. The lifetime of the string is ephemeral and
 
-- `fn visit_borrowed_str<E>(self: Self, v: &'de str) -> Result<<Self as >::Value, E>`
+- `fn visit_borrowed_str<E>(self, v: &'de str) -> Result<<Self as >::Value, E>`
 
   The input contains a string that lives at least as long as the
 
-- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>`
+- `fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>`
 
   The input contains a string and ownership of the string is being given
 
-- `fn visit_bytes<E>(self: Self, v: &[u8]) -> Result<<Self as >::Value, E>`
+- `fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>`
 
   The input contains a byte array. The lifetime of the byte array is
 
-- `fn visit_borrowed_bytes<E>(self: Self, v: &'de [u8]) -> Result<<Self as >::Value, E>`
+- `fn visit_borrowed_bytes<E>(self, v: &'de [u8]) -> Result<<Self as >::Value, E>`
 
   The input contains a byte array that lives at least as long as the
 
-- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>`
+- `fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>`
 
   The input contains a byte array and ownership of the byte array is being
 
-- `fn visit_none<E>(self: Self) -> Result<<Self as >::Value, E>`
+- `fn visit_none<E>(self) -> Result<<Self as >::Value, E>`
 
   The input contains an optional that is absent.
 
-- `fn visit_some<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
+- `fn visit_some<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
   The input contains an optional that is present.
 
-- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>`
+- `fn visit_unit<E>(self) -> Result<<Self as >::Value, E>`
 
   The input contains a unit `()`.
 
-- `fn visit_newtype_struct<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
+- `fn visit_newtype_struct<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
   The input contains a newtype struct.
 
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>`
+- `fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>`
 
   The input contains a sequence of elements.
 
-- `fn visit_map<A>(self: Self, map: A) -> Result<<Self as >::Value, <A as >::Error>`
+- `fn visit_map<A>(self, map: A) -> Result<<Self as >::Value, <A as >::Error>`
 
   The input contains a key-value map.
 
-- `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>`
+- `fn visit_enum<A>(self, data: A) -> Result<<Self as >::Value, <A as >::Error>`
 
   The input contains an enum.
+
+#### Implementors
+
+- [`ArrayInPlaceVisitor`](impls/index.md)
+- [`ArrayVisitor`](impls/index.md)
+- [`BoolVisitor`](impls/index.md)
+- [`BytesVisitor`](impls/index.md)
+- [`CStringVisitor`](impls/index.md)
+- [`CharVisitor`](impls/index.md)
+- [`FromStrVisitor`](impls/index.md)
+- [`IgnoredAny`](ignored_any/index.md)
+- [`OptionVisitor`](impls/index.md)
+- [`OsStringVisitor`](impls/index.md)
+- [`PathBufVisitor`](impls/index.md)
+- [`PathVisitor`](impls/index.md)
+- [`PhantomDataVisitor`](impls/index.md)
+- [`RangeFromVisitor`](impls/range_from/index.md)
+- [`RangeToVisitor`](impls/range_to/index.md)
+- [`RangeVisitor`](impls/range/index.md)
+- [`StrVisitor`](impls/index.md)
+- [`StringInPlaceVisitor`](impls/index.md)
+- [`StringVisitor`](impls/index.md)
+- [`UnitVisitor`](impls/index.md)
 
 ### `SeqAccess<'de>`
 
 ```rust
 trait SeqAccess<'de> { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:1749-1781`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L1749-L1781)*
 
 Provides a `Visitor` access to each element of a sequence in the input.
 
@@ -1314,27 +1616,40 @@ The [example data format] presented on the website demonstrates an
 implementation of `SeqAccess` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Error: 1`
 
-- `fn next_element_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>`
+#### Required Methods
+
+- `fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>`
 
   This returns `Ok(Some(value))` for the next value in the sequence, or
 
-- `fn next_element<T>(self: &mut Self) -> Result<Option<T>, <Self as >::Error>`
+#### Provided Methods
+
+- `fn next_element<T>(&mut self) -> Result<Option<T>, <Self as >::Error>`
 
   This returns `Ok(Some(value))` for the next value in the sequence, or
 
-- `fn size_hint(self: &Self) -> Option<usize>`
+- `fn size_hint(&self) -> Option<usize>`
 
   Returns the number of elements remaining in the sequence, if known.
+
+#### Implementors
+
+- [`MapDeserializer`](value/index.md)
+- [`PairVisitor`](value/index.md)
+- [`SeqDeserializer`](value/index.md)
+- `&mut A`
 
 ### `MapAccess<'de>`
 
 ```rust
 trait MapAccess<'de> { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:1837-1940`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L1837-L1940)*
 
 Provides a `Visitor` access to each entry of a map in the input.
 
@@ -1352,43 +1667,54 @@ The [example data format] presented on the website demonstrates an
 implementation of `MapAccess` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Error: 1`
 
-- `fn next_key_seed<K>(self: &mut Self, seed: K) -> Result<Option<<K as >::Value>, <Self as >::Error>`
+#### Required Methods
+
+- `fn next_key_seed<K>(&mut self, seed: K) -> Result<Option<<K as >::Value>, <Self as >::Error>`
 
   This returns `Ok(Some(key))` for the next key in the map, or `Ok(None)`
 
-- `fn next_value_seed<V>(self: &mut Self, seed: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn next_value_seed<V>(&mut self, seed: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   This returns a `Ok(value)` for the next value in the map.
 
-- `fn next_entry_seed<K, V>(self: &mut Self, kseed: K, vseed: V) -> Result<Option<(<K as >::Value, <V as >::Value)>, <Self as >::Error>`
+#### Provided Methods
+
+- `fn next_entry_seed<K, V>(&mut self, kseed: K, vseed: V) -> Result<Option<(<K as >::Value, <V as >::Value)>, <Self as >::Error>`
 
   This returns `Ok(Some((key, value)))` for the next (key-value) pair in
 
-- `fn next_key<K>(self: &mut Self) -> Result<Option<K>, <Self as >::Error>`
+- `fn next_key<K>(&mut self) -> Result<Option<K>, <Self as >::Error>`
 
   This returns `Ok(Some(key))` for the next key in the map, or `Ok(None)`
 
-- `fn next_value<V>(self: &mut Self) -> Result<V, <Self as >::Error>`
+- `fn next_value<V>(&mut self) -> Result<V, <Self as >::Error>`
 
   This returns a `Ok(value)` for the next value in the map.
 
-- `fn next_entry<K, V>(self: &mut Self) -> Result<Option<(K, V)>, <Self as >::Error>`
+- `fn next_entry<K, V>(&mut self) -> Result<Option<(K, V)>, <Self as >::Error>`
 
   This returns `Ok(Some((key, value)))` for the next (key-value) pair in
 
-- `fn size_hint(self: &Self) -> Option<usize>`
+- `fn size_hint(&self) -> Option<usize>`
 
   Returns the number of entries remaining in the map, if known.
+
+#### Implementors
+
+- [`MapDeserializer`](value/index.md)
+- `&mut A`
 
 ### `EnumAccess<'de>`
 
 ```rust
 trait EnumAccess<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2035-2062`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L2035-L2062)*
 
 Provides a `Visitor` access to the data of an enum in the input.
 
@@ -1407,25 +1733,40 @@ The [example data format] presented on the website demonstrates an
 implementation of `EnumAccess` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Error: 1`
 
 - `type Variant: 1`
 
-- `fn variant_seed<V>(self: Self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), <Self as >::Error>`
+#### Required Methods
+
+- `fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), <Self as >::Error>`
 
   `variant` is called to identify which variant to deserialize.
 
-- `fn variant<V>(self: Self) -> Result<(V, <Self as >::Variant), <Self as >::Error>`
+#### Provided Methods
+
+- `fn variant<V>(self) -> Result<(V, <Self as >::Variant), <Self as >::Error>`
 
   `variant` is called to identify which variant to deserialize.
+
+#### Implementors
+
+- [`BorrowedStrDeserializer`](value/index.md)
+- [`CowStrDeserializer`](value/index.md)
+- [`MapAccessDeserializer`](value/index.md)
+- [`StrDeserializer`](value/index.md)
+- [`StringDeserializer`](value/index.md)
+- [`U32Deserializer`](value/index.md)
 
 ### `VariantAccess<'de>`
 
 ```rust
 trait VariantAccess<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2088-2280`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L2088-L2280)*
 
 `VariantAccess` is a visitor that is created by the `Deserializer` and
 passed to the `Deserialize` to deserialize the content of a particular enum
@@ -1443,35 +1784,46 @@ The [example data format] presented on the website demonstrates an
 implementation of `VariantAccess` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Error: 1`
 
-- `fn unit_variant(self: Self) -> Result<(), <Self as >::Error>`
+#### Required Methods
+
+- `fn unit_variant(self) -> Result<(), <Self as >::Error>`
 
   Called when deserializing a variant with no values.
 
-- `fn newtype_variant_seed<T>(self: Self, seed: T) -> Result<<T as >::Value, <Self as >::Error>`
+- `fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, <Self as >::Error>`
 
   Called when deserializing a variant with a single value.
 
-- `fn newtype_variant<T>(self: Self) -> Result<T, <Self as >::Error>`
-
-  Called when deserializing a variant with a single value.
-
-- `fn tuple_variant<V>(self: Self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn tuple_variant<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Called when deserializing a tuple-like variant.
 
-- `fn struct_variant<V>(self: Self, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn struct_variant<V>(self, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Called when deserializing a struct-like variant.
+
+#### Provided Methods
+
+- `fn newtype_variant<T>(self) -> Result<T, <Self as >::Error>`
+
+  Called when deserializing a variant with a single value.
+
+#### Implementors
+
+- [`MapAsEnum`](value/private/index.md)
+- [`UnitOnly`](value/private/index.md)
 
 ### `IntoDeserializer<'de, E: Error>`
 
 ```rust
 trait IntoDeserializer<'de, E: Error> { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2316-2322`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L2316-L2322)*
 
 Converts an existing value into a `Deserializer` from which other values can
 be deserialized.
@@ -1504,15 +1856,76 @@ impl FromStr for Setting {
 }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Deserializer: 1`
 
-- `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
+#### Required Methods
+
+- `fn into_deserializer(self) -> <Self as >::Deserializer`
 
   Convert this value into a deserializer.
+
+#### Implementors
+
+- [`BTreeMap`](../lib/index.md)
+- [`BTreeSet`](../lib/index.md)
+- [`BoolDeserializer`](value/index.md)
+- [`BorrowedBytesDeserializer`](value/index.md)
+- [`BorrowedStrDeserializer`](value/index.md)
+- [`BytesDeserializer`](value/index.md)
+- [`CharDeserializer`](value/index.md)
+- [`CowStrDeserializer`](value/index.md)
+- [`Cow`](../lib/index.md)
+- [`EnumAccessDeserializer`](value/index.md)
+- [`F32Deserializer`](value/index.md)
+- [`F64Deserializer`](value/index.md)
+- [`HashMap`](../lib/index.md)
+- [`HashSet`](../lib/index.md)
+- [`I128Deserializer`](value/index.md)
+- [`I16Deserializer`](value/index.md)
+- [`I32Deserializer`](value/index.md)
+- [`I64Deserializer`](value/index.md)
+- [`I8Deserializer`](value/index.md)
+- [`IsizeDeserializer`](value/index.md)
+- [`MapAccessDeserializer`](value/index.md)
+- [`MapDeserializer`](value/index.md)
+- [`SeqAccessDeserializer`](value/index.md)
+- [`SeqDeserializer`](value/index.md)
+- [`StrDeserializer`](value/index.md)
+- [`StringDeserializer`](value/index.md)
+- [`String`](../lib/index.md)
+- [`U128Deserializer`](value/index.md)
+- [`U16Deserializer`](value/index.md)
+- [`U32Deserializer`](value/index.md)
+- [`U64Deserializer`](value/index.md)
+- [`U8Deserializer`](value/index.md)
+- [`UnitDeserializer`](value/index.md)
+- [`UsizeDeserializer`](value/index.md)
+- [`Vec`](../lib/index.md)
+- `&'a [u8]`
+- `&'a str`
+- `()`
+- `bool`
+- `char`
+- `f32`
+- `f64`
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ## Macros
 
 ### `declare_error_trait!`
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:137-301`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L137-L301)*
 

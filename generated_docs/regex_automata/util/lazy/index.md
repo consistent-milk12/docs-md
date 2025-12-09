@@ -9,9 +9,16 @@ A lazily initialized value for safe sharing between threads.
 The principal type in this module is `Lazy`, which makes it easy to construct
 values that are shared safely across multiple threads simultaneously.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`lazy`](#lazy) | mod |  |
+| [`Lazy`](#lazy) | struct | A lazily initialized value that implements `Deref` for `T`. |
+
 ## Modules
 
-- [`lazy`](lazy/index.md) - 
+- [`lazy`](lazy/index.md)
 
 ## Structs
 
@@ -20,6 +27,8 @@ values that are shared safely across multiple threads simultaneously.
 ```rust
 struct Lazy<T, F>(lazy::Lazy<T, F>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/lazy.rs:52`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/lazy.rs#L52)*
 
 A lazily initialized value that implements `Deref` for `T`.
 
@@ -64,21 +73,21 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `const fn new(create: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
+- <span id="lazy-new"></span>`const fn new(create: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, F: Fn() -> T> Debug for Lazy<T, F>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lazy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, F: Fn() -> T> Deref for Lazy<T, F>`
 
-- `type Target = T`
+- <span id="lazy-type-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="lazy-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<P, T> Receiver for Lazy<T, F>`
 
-- `type Target = T`
+- <span id="lazy-type-target"></span>`type Target = T`
 

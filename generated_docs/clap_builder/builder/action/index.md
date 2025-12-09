@@ -4,6 +4,13 @@
 
 # Module `action`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ArgAction`](#argaction) | enum | Behavior of arguments when they are encountered while parsing |
+| [`CountType`](#counttype) | type |  |
+
 ## Enums
 
 ### `ArgAction`
@@ -21,6 +28,8 @@ enum ArgAction {
     Version,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
 
 Behavior of arguments when they are encountered while parsing
 
@@ -388,33 +397,33 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 #### Implementations
 
-- `fn takes_values(self: &Self) -> bool`
+- <span id="argaction-takes-values"></span>`fn takes_values(&self) -> bool`
 
-- `fn max_num_args(self: &Self) -> ValueRange` — [`ValueRange`](../index.md)
+- <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](../range/index.md)
 
-- `fn default_num_args(self: &Self) -> ValueRange` — [`ValueRange`](../index.md)
+- <span id="argaction-default-num-args"></span>`fn default_num_args(&self) -> ValueRange` — [`ValueRange`](../range/index.md)
 
-- `fn default_value(self: &Self) -> Option<&'static std::ffi::OsStr>`
+- <span id="argaction-default-value"></span>`fn default_value(&self) -> Option<&'static std::ffi::OsStr>`
 
-- `fn default_missing_value(self: &Self) -> Option<&'static std::ffi::OsStr>`
+- <span id="argaction-default-missing-value"></span>`fn default_missing_value(&self) -> Option<&'static std::ffi::OsStr>`
 
-- `fn default_value_parser(self: &Self) -> Option<super::ValueParser>` — [`ValueParser`](../index.md)
+- <span id="argaction-default-value-parser"></span>`fn default_value_parser(&self) -> Option<super::ValueParser>` — [`ValueParser`](../value_parser/index.md)
 
-- `fn value_type_id(self: &Self) -> Option<AnyValueId>` — [`AnyValueId`](../../util/any_value/index.md)
+- <span id="argaction-value-type-id"></span>`fn value_type_id(&self) -> Option<AnyValueId>` — [`AnyValueId`](../../util/any_value/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgAction`
 
-- `fn clone(self: &Self) -> ArgAction` — [`ArgAction`](../../index.md)
+- <span id="argaction-clone"></span>`fn clone(&self) -> ArgAction` — [`ArgAction`](#argaction)
 
 ##### `impl Debug for ArgAction`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="argaction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoResettable for crate::builder::ArgAction`
+##### `impl IntoResettable for Option<crate::builder::ArgAction>`
 
-- `fn into_resettable(self: Self) -> Resettable<ArgAction>` — [`Resettable`](../index.md), [`ArgAction`](../../index.md)
+- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ArgAction>` — [`Resettable`](../resettable/index.md), [`ArgAction`](#argaction)
 
 ## Type Aliases
 
@@ -423,4 +432,6 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 ```rust
 type CountType = u8;
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:461`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/action.rs#L461)*
 

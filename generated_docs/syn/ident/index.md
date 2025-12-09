@@ -4,9 +4,17 @@
 
 # Module `ident`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`xid_ok`](#xid_ok) | fn |  |
+| [`ident_from_token!`](#ident_from_token) | macro |  |
+
 ## Modules
 
-- [`parsing`](parsing/index.md) - 
+- [`parsing`](parsing/index.md)
 
 ## Functions
 
@@ -16,7 +24,11 @@
 fn xid_ok(symbol: &str) -> bool
 ```
 
+*Defined in [`syn-2.0.111/src/ident.rs:37-49`](../../../.source_1765210505/syn-2.0.111/src/ident.rs#L37-L49)*
+
 ## Macros
 
 ### `ident_from_token!`
+
+*Defined in [`syn-2.0.111/src/ident.rs:15-23`](../../../.source_1765210505/syn-2.0.111/src/ident.rs#L15-L23)*
 

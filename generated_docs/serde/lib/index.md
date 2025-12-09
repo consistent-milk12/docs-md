@@ -8,9 +8,40 @@ A facade around all the types we need from the `std`, `core`, and `alloc`
 crates. This avoids elaborate import wrangling having to happen in every
 module.
 
+## Contents
+
+- [Modules](#modules)
+  - [`core`](#core)
+- [Structs](#structs)
+  - [`ptr`](#ptr)
+  - [`default`](#default)
+- [Functions](#functions)
+  - [`convert`](#convert)
+  - [`fmt`](#fmt)
+  - [`FmtWrite`](#fmtwrite)
+  - [`PhantomData`](#phantomdata)
+  - [`result`](#result)
+  - [`String`](#string)
+  - [`ToString`](#tostring)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`core`](#core) | mod |  |
+| [`ptr`](#ptr) | struct |  |
+| [`default`](#default) | struct |  |
+| [`convert`](#convert) | fn |  |
+| [`fmt`](#fmt) | fn |  |
+| [`FmtWrite`](#fmtwrite) | fn |  |
+| [`PhantomData`](#phantomdata) | fn |  |
+| [`result`](#result) | fn |  |
+| [`String`](#string) | fn |  |
+| [`ToString`](#tostring) | fn |  |
+
 ## Modules
 
-- [`core`](core/index.md) - 
+- [`core`](core/index.md)
 
 ## Structs
 
@@ -23,6 +54,8 @@ struct ptr<'a> {
     pub column: Option<u32>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:8-17`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L8-L17)*
 
 *Re-exported from `addr2line`*
 
@@ -64,6 +97,8 @@ struct default {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/dfa.rs:91-132`](../../../.source_1765210505/aho-corasick-1.1.4/src/dfa.rs#L91-L132)*
+
 *Re-exported from `aho_corasick`*
 
 A DFA implementation of Aho-Corasick.
@@ -73,7 +108,7 @@ this type directly. Using a `DFA` directly is typically only necessary when
 one needs access to the `Automaton` trait implementation.
 
 This DFA can only be built by first constructing a [`noncontiguous::NFA`](#noncontiguousnfa).
-Both [`DFA::new`](../../docs_md/error/index.md) and `Builder::build` do this for you automatically, but
+Both [`DFA::new`](../../addr2line/index.md) and `Builder::build` do this for you automatically, but
 [`Builder::build_from_noncontiguous`](../../clap_builder/index.md) permits doing it explicitly.
 
 A DFA provides the best possible search performance (in this crate) via two
@@ -199,57 +234,71 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- `const DEAD: StateID`
+- <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
 
-- `fn set_matches(self: &mut Self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
+- <span id="dfa-builder"></span>`fn builder() -> Builder`
 
-- `fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
+- <span id="dfa-const-dead"></span>`const DEAD: StateID`
 
-- `fn builder() -> Builder`
+- <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
 
 #### Trait Implementations
 
 ##### `impl Automaton for DFA`
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`FmtWrite`](#fmtwrite)
+- <span id="dfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`FmtWrite`](#fmtwrite)
 
-- `fn next_state(self: &Self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID`
+- <span id="dfa-next-state"></span>`fn next_state(&self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID`
 
-- `fn is_special(self: &Self, sid: StateID) -> bool`
+- <span id="dfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool`
 
-- `fn is_dead(self: &Self, sid: StateID) -> bool`
+- <span id="dfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool`
 
-- `fn is_match(self: &Self, sid: StateID) -> bool`
+- <span id="dfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool`
 
-- `fn is_start(self: &Self, sid: StateID) -> bool`
+- <span id="dfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool`
 
-- `fn match_kind(self: &Self) -> MatchKind`
+- <span id="dfa-match-kind"></span>`fn match_kind(&self) -> MatchKind`
 
-- `fn patterns_len(self: &Self) -> usize`
+- <span id="dfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize`
+- <span id="dfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize`
 
-- `fn min_pattern_len(self: &Self) -> usize`
+- <span id="dfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
-- `fn max_pattern_len(self: &Self) -> usize`
+- <span id="dfa-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
 
-- `fn match_len(self: &Self, sid: StateID) -> usize`
+- <span id="dfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize`
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID`
+- <span id="dfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="dfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn prefilter(self: &Self) -> Option<&Prefilter>` — [`Cow`](#cow)
+- <span id="dfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Cow`](#cow)
 
 ##### `impl Clone for DFA`
 
-- `fn clone(self: &Self) -> DFA` — [`default`](#default)
+- <span id="dfa-clone"></span>`fn clone(&self) -> DFA` — [`default`](#default)
 
 ##### `impl Debug for DFA`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="dfa-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Sealed for crate::dfa::DFA`
 
 ## Functions
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
 

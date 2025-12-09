@@ -6,6 +6,7 @@
 
 use std::collections::HashMap;
 use std::fmt::Write;
+use std::path::Path;
 use std::sync::LazyLock;
 
 use regex::Regex;
@@ -13,12 +14,14 @@ use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
 use tracing::{debug, instrument, trace};
 
 use crate::Args;
+use crate::generator::config::RenderConfig;
 use crate::generator::doc_links::{
     convert_html_links, convert_path_reference_links, strip_duplicate_title,
     strip_reference_definitions, unhide_code_lines,
 };
+use crate::generator::render_shared::SourcePathConfig;
 use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
-use crate::linker::{item_has_anchor, LinkRegistry, slugify_anchor};
+use crate::linker::{LinkRegistry, item_has_anchor, slugify_anchor};
 use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
 
 /// Regex for backtick code links: [`Name`] not followed by ( or [
@@ -45,20 +48,34 @@ pub struct MultiCrateContext<'a> {
     /// CLI arguments.
     args: &'a Args,
 
+    /// Rendering configuration options.
+    config: RenderConfig,
+
     /// Pre-computed cross-crate impl blocks.
     ///
     /// Maps target crate name -> type name -> impl blocks from other crates.
     /// This is computed once during construction rather than per-view.
     cross_crate_impls: HashMap<String, HashMap<String, Vec<&'a Impl>>>,
+
+    /// Base source path configuration for transforming cargo registry paths.
+    ///
+    /// `None` if source locations are disabled or no `.source_*` dir detected.
+    source_path_config: Option<SourcePathConfig>,
 }
 
 impl<'a> MultiCrateContext<'a> {
     /// Create a new multi-crate context.
     ///
     /// Builds the unified link registry and pre-computes cross-crate impls.
+    ///
+    /// # Arguments
+    ///
+    /// * `crates` - Collection of parsed crates
+    /// * `args` - CLI arguments
+    /// * `config` - Rendering configuration options
     #[must_use]
-    #[instrument(skip(crates, args), fields(crate_count = crates.names().len()))]
-    pub fn new(crates: &'a CrateCollection, args: &'a Args) -> Self {
+    #[instrument(skip(crates, args, config), fields(crate_count = crates.names().len()))]
+    pub fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self {
         debug!("Creating multi-crate context");
 
         let primary = args.primary_crate.as_deref();
@@ -67,6 +84,17 @@ impl<'a> MultiCrateContext<'a> {
         // Pre-compute cross-crate impls for all crates
         debug!("Building cross-crate impl map");
         let cross_crate_impls = Self::build_cross_crate_impls(crates);
+
+        // Build source path config if source_locations is enabled and we have a source_dir
+        let source_path_config = if config.include_source.source_locations {
+            config
+                .include_source
+                .source_dir
+                .as_ref()
+                .map(|dir| SourcePathConfig::new(dir, ""))
+        } else {
+            None
+        };
 
         debug!(
             cross_crate_impl_count = cross_crate_impls.values().map(HashMap::len).sum::<usize>(),
@@ -77,8 +105,31 @@ impl<'a> MultiCrateContext<'a> {
             crates,
             registry,
             args,
+            config,
             cross_crate_impls,
+            source_path_config,
         }
+    }
+
+    /// Set the source directory for path transformation.
+    ///
+    /// This can be called after construction if a `.source_*` directory
+    /// is detected or specified via CLI. Only has effect if `source_locations`
+    /// is enabled in the config.
+    pub fn set_source_dir(&mut self, source_dir: &Path) {
+        if self.config.include_source.source_locations {
+            self.source_path_config = Some(SourcePathConfig::new(source_dir, ""));
+        }
+    }
+
+    /// Get source path config for a specific file.
+    ///
+    /// Returns `None` if source locations are disabled or no source dir configured.
+    #[must_use]
+    pub fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig> {
+        self.source_path_config
+            .as_ref()
+            .map(|base| base.with_depth(current_file))
     }
 
     /// Build the cross-crate impl map for all crates.
@@ -282,14 +333,29 @@ impl<'a> SingleCrateView<'a> {
     }
 
     /// Build the impl map for all types.
+    ///
+    /// Uses the `impls` field on Struct/Enum/Union items directly rather than
+    /// scanning all items and checking the `for_` field. This provides clearer
+    /// semantics and leverages `rustdoc_types` structured data.
     fn build_impl_map(&mut self) {
         self.impl_map.clear();
 
-        for item in self.krate.index.values() {
-            if let ItemEnum::Impl(impl_block) = &item.inner
-                && let Some(target_id) = Self::get_impl_target_id(impl_block)
-            {
-                self.impl_map.entry(target_id).or_default().push(impl_block);
+        // Iterate over all types that can have impl blocks and collect their impls
+        for (type_id, item) in &self.krate.index {
+            let impl_ids: &[Id] = match &item.inner {
+                ItemEnum::Struct(s) => &s.impls,
+                ItemEnum::Enum(e) => &e.impls,
+                ItemEnum::Union(u) => &u.impls,
+                _ => continue,
+            };
+
+            // Look up each impl block and add to the map
+            for impl_id in impl_ids {
+                if let Some(impl_item) = self.krate.index.get(impl_id)
+                    && let ItemEnum::Impl(impl_block) = &impl_item.inner
+                {
+                    self.impl_map.entry(*type_id).or_default().push(impl_block);
+                }
             }
         }
 
@@ -320,23 +386,14 @@ impl<'a> SingleCrateView<'a> {
         }
     }
 
-    /// Get the target type ID for an impl block.
-    const fn get_impl_target_id(impl_block: &Impl) -> Option<Id> {
-        use rustdoc_types::Type;
-
-        match &impl_block.for_ {
-            Type::ResolvedPath(path) => Some(path.id),
-            _ => None,
-        }
-    }
-
     /// Generate a sort key for impl blocks.
     fn impl_sort_key(impl_block: &Impl) -> (u8, String) {
         // Extract trait name from the path (last segment)
+        // Using rsplit().next() is more efficient than split().last()
         let trait_name: String = impl_block
             .trait_
             .as_ref()
-            .and_then(|p| p.path.split("::").last())
+            .and_then(|p| p.path.rsplit("::").next())
             .unwrap_or("")
             .to_string();
 
@@ -688,6 +745,7 @@ impl<'a> SingleCrateView<'a> {
     ///
     /// Returns `Some(markdown_link)` if the item can be resolved,
     /// `None` if it should remain as plain text.
+    #[expect(clippy::similar_names)]
     #[tracing::instrument(skip(self), level = "trace")]
     fn resolve_plain_link(&self, link_text: &str, current_file: &str) -> Option<String> {
         // Try to find the item in the registry
@@ -757,13 +815,8 @@ impl<'a> SingleCrateView<'a> {
                 target_path = %target_path,
                 "Creating cross-file link"
             );
-            let relative = self.build_markdown_link(
-                current_file,
-                &target_crate,
-                target_path,
-                link_text,
-                None,
-            );
+            let relative =
+                self.build_markdown_link(current_file, &target_crate, target_path, link_text, None);
             Some(relative)
         }
     }
@@ -897,14 +950,15 @@ impl<'a> SingleCrateView<'a> {
         // For simple names without ::, check if the item exists and has a heading.
         // Only structs, enums, traits, functions, etc. get headings.
         // Methods, fields, and variants don't have headings (they're bullet points).
-        if let Some((_, id)) = self.registry.resolve_name(link_text, self.crate_name) {
-            if let Some(path_info) = self.krate.paths.get(&id) {
-                if item_has_anchor(path_info.kind) {
-                    return Some(format!("[`{link_text}`](#{})", slugify_anchor(link_text)));
-                }
-                // Item exists but no anchor - link to page without anchor
-                return Some(format!("[`{link_text}`]()"));
+        if let Some((_, id)) = self.registry.resolve_name(link_text, self.crate_name)
+            && let Some(path_info) = self.krate.paths.get(&id)
+        {
+            if item_has_anchor(path_info.kind) {
+                return Some(format!("[`{link_text}`](#{})", slugify_anchor(link_text)));
             }
+
+            // Item exists but no anchor - link to page without anchor
+            return Some(format!("[`{link_text}`]()"));
         }
         // Unknown item - return None (renders as inline code)
         None
@@ -939,6 +993,7 @@ impl<'a> SingleCrateView<'a> {
     ///
     /// Output: Some("[`ConfigBuilder`](../config/index.md)")
     /// ```
+    #[expect(clippy::too_many_lines)]
     #[tracing::instrument(skip(self), level = "trace")]
     fn build_link_to_id(
         &self,
@@ -984,53 +1039,46 @@ impl<'a> SingleCrateView<'a> {
             // Method 2a: If the Use item has a target ID, look up via paths
             // This handles cases where source is relative (e.g., "self::event::Event")
             // but the ID points to the actual item in another crate
-            if let Some(target_id) = use_item.id {
-                if let Some(path_info) = self.krate.paths.get(&target_id) {
-                    if let Some(external_crate) = path_info.path.first() {
-                        tracing::trace!(
-                            external_crate = %external_crate,
-                            path = ?path_info.path,
-                            "Following Use item target ID to external crate"
-                        );
+            if let Some(target_id) = use_item.id
+                && let Some(path_info) = self.krate.paths.get(&target_id)
+                && let Some(external_crate) = path_info.path.first()
+            {
+                tracing::trace!(
+                    external_crate = %external_crate,
+                    path = ?path_info.path,
+                    "Following Use item target ID to external crate"
+                );
 
-                        // Try to find the item in the external crate by name
-                        let item_name = path_info.path.last().unwrap_or(&path_info.path[0]);
-                        if let Some((resolved_crate, resolved_id)) =
-                            self.registry.resolve_name(item_name, external_crate)
-                        {
-                            if let Some(target_path) =
-                                self.registry.get_path(&resolved_crate, resolved_id)
-                            {
-                                return Some(self.build_markdown_link(
-                                    current_file,
-                                    &resolved_crate,
-                                    target_path,
-                                    display_name,
-                                    anchor,
-                                ));
-                            }
-                        }
-                    }
+                // Try to find the item in the external crate by name
+                let item_name = path_info.path.last().unwrap_or(&path_info.path[0]);
+
+                if let Some((resolved_crate, resolved_id)) =
+                    self.registry.resolve_name(item_name, external_crate)
+                    && let Some(target_path) = self.registry.get_path(&resolved_crate, resolved_id)
+                {
+                    return Some(self.build_markdown_link(
+                        current_file,
+                        &resolved_crate,
+                        target_path,
+                        display_name,
+                        anchor,
+                    ));
                 }
             }
 
             // Method 2b: Try to resolve the source path directly
-            if !use_item.source.is_empty() {
-                if let Some((original_crate, original_id)) =
+            if !use_item.source.is_empty()
+                && let Some((original_crate, original_id)) =
                     self.registry.resolve_path(&use_item.source)
-                {
-                    if let Some(target_path) =
-                        self.registry.get_path(&original_crate, original_id)
-                    {
-                        return Some(self.build_markdown_link(
-                            current_file,
-                            &original_crate,
-                            target_path,
-                            display_name,
-                            anchor,
-                        ));
-                    }
-                }
+                && let Some(target_path) = self.registry.get_path(&original_crate, original_id)
+            {
+                return Some(self.build_markdown_link(
+                    current_file,
+                    &original_crate,
+                    target_path,
+                    display_name,
+                    anchor,
+                ));
             }
         }
 
@@ -1079,6 +1127,7 @@ impl<'a> SingleCrateView<'a> {
                         target_path = %target_path,
                         "Found external item by direct ID lookup"
                     );
+
                     return Some(self.build_markdown_link(
                         current_file,
                         external_crate,
@@ -1141,10 +1190,7 @@ impl<'a> SingleCrateView<'a> {
                 }
             }
         } else {
-            tracing::trace!(
-                strategy = "external_paths",
-                "No path info found for ID"
-            );
+            tracing::trace!(strategy = "external_paths", "No path info found for ID");
         }
 
         tracing::trace!("All strategies exhausted, returning None");
@@ -1568,6 +1614,14 @@ impl ItemAccess for SingleCrateView<'_> {
 
     fn crate_version(&self) -> Option<&str> {
         self.krate.crate_version.as_deref()
+    }
+
+    fn render_config(&self) -> &RenderConfig {
+        &self.ctx.config
+    }
+
+    fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig> {
+        self.ctx.source_path_config_for_file(current_file)
     }
 }
 

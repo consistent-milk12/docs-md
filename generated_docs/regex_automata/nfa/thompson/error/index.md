@@ -4,6 +4,13 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BuildError`](#builderror) | struct | An error that can occurred during the construction of a thompson NFA. |
+| [`BuildErrorKind`](#builderrorkind) | enum | The kind of error that occurred during the construction of a thompson NFA. |
+
 ## Structs
 
 ### `BuildError`
@@ -14,13 +21,15 @@ struct BuildError {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
+
 An error that can occurred during the construction of a thompson NFA.
 
 This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](../../../../regex_syntax/index.md) type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../../regex_syntax/ast/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 
@@ -31,47 +40,47 @@ building the NFA will fail.
 
 #### Implementations
 
-- `fn size_limit(self: &Self) -> Option<usize>`
+- <span id="builderror-size-limit"></span>`fn size_limit(&self) -> Option<usize>`
 
-- `fn kind(self: &Self) -> &BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
+- <span id="builderror-kind"></span>`fn kind(&self) -> &BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
-- `fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-syntax"></span>`fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../../util/captures/index.md), [`BuildError`](../index.md)
+- <span id="builderror-captures"></span>`fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../../util/captures/index.md), [`BuildError`](#builderror)
 
-- `fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md), [`BuildError`](../index.md)
+- <span id="builderror-word"></span>`fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md), [`BuildError`](#builderror)
 
-- `fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-too-many-patterns"></span>`fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn too_many_states(given: usize) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-too-many-states"></span>`fn too_many_states(given: usize) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-exceeded-size-limit"></span>`fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-invalid-capture-index"></span>`fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn unsupported_captures() -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-unsupported-captures"></span>`fn unsupported_captures() -> BuildError` — [`BuildError`](#builderror)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
 
 ##### `impl Debug for BuildError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-- `fn source(self: &Self) -> Option<&dyn std::error::Error>`
+- <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
-##### `impl<T> ToString for BuildError`
+##### `impl ToString for BuildError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -99,6 +108,8 @@ enum BuildErrorKind {
     UnsupportedCaptures,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:27-76`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/error.rs#L27-L76)*
 
 The kind of error that occurred during the construction of a thompson NFA.
 
@@ -153,9 +164,9 @@ The kind of error that occurred during the construction of a thompson NFA.
 
 ##### `impl Clone for BuildErrorKind`
 
-- `fn clone(self: &Self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
+- <span id="builderrorkind-clone"></span>`fn clone(&self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
 ##### `impl Debug for BuildErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

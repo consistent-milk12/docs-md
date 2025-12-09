@@ -4,6 +4,41 @@
 
 # Module `ctypes`
 
+## Contents
+
+- [Type Aliases](#type-aliases)
+  - [`c_char`](#c_char)
+  - [`c_schar`](#c_schar)
+  - [`c_uchar`](#c_uchar)
+  - [`c_short`](#c_short)
+  - [`c_ushort`](#c_ushort)
+  - [`c_int`](#c_int)
+  - [`c_uint`](#c_uint)
+  - [`c_long`](#c_long)
+  - [`c_ulong`](#c_ulong)
+  - [`c_longlong`](#c_longlong)
+  - [`c_ulonglong`](#c_ulonglong)
+  - [`c_float`](#c_float)
+  - [`c_double`](#c_double)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`c_char`](#c_char) | type |  |
+| [`c_schar`](#c_schar) | type |  |
+| [`c_uchar`](#c_uchar) | type |  |
+| [`c_short`](#c_short) | type |  |
+| [`c_ushort`](#c_ushort) | type |  |
+| [`c_int`](#c_int) | type |  |
+| [`c_uint`](#c_uint) | type |  |
+| [`c_long`](#c_long) | type |  |
+| [`c_ulong`](#c_ulong) | type |  |
+| [`c_longlong`](#c_longlong) | type |  |
+| [`c_ulonglong`](#c_ulonglong) | type |  |
+| [`c_float`](#c_float) | type |  |
+| [`c_double`](#c_double) | type |  |
+
 ## Type Aliases
 
 ### `c_char`
@@ -12,11 +47,15 @@
 type c_char = c_schar;
 ```
 
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:40`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L40)*
+
 ### `c_schar`
 
 ```rust
 type c_schar = i8;
 ```
+
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:49`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L49)*
 
 ### `c_uchar`
 
@@ -24,11 +63,15 @@ type c_schar = i8;
 type c_uchar = u8;
 ```
 
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:50`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L50)*
+
 ### `c_short`
 
 ```rust
 type c_short = i16;
 ```
+
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:51`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L51)*
 
 ### `c_ushort`
 
@@ -36,11 +79,15 @@ type c_short = i16;
 type c_ushort = u16;
 ```
 
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:52`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L52)*
+
 ### `c_int`
 
 ```rust
 type c_int = i32;
 ```
+
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:53`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L53)*
 
 ### `c_uint`
 
@@ -48,11 +95,15 @@ type c_int = i32;
 type c_uint = u32;
 ```
 
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:54`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L54)*
+
 ### `c_long`
 
 ```rust
 type c_long = i64;
 ```
+
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:60`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L60)*
 
 ### `c_ulong`
 
@@ -60,11 +111,15 @@ type c_long = i64;
 type c_ulong = u64;
 ```
 
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:62`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L62)*
+
 ### `c_longlong`
 
 ```rust
 type c_longlong = i64;
 ```
+
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:63`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L63)*
 
 ### `c_ulonglong`
 
@@ -72,15 +127,21 @@ type c_longlong = i64;
 type c_ulonglong = u64;
 ```
 
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:64`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L64)*
+
 ### `c_float`
 
 ```rust
 type c_float = f32;
 ```
 
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:65`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L65)*
+
 ### `c_double`
 
 ```rust
 type c_double = f64;
 ```
+
+*Defined in [`linux-raw-sys-0.11.0/src/lib.rs:66`](../../../.source_1765210505/linux-raw-sys-0.11.0/src/lib.rs#L66)*
 

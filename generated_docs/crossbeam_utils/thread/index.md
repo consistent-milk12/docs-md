@@ -117,9 +117,35 @@ thread::scope(|s| {
 }).unwrap();
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`unix`](#unix)
+- [Structs](#structs)
+  - [`Scope`](#scope)
+  - [`ScopedThreadBuilder`](#scopedthreadbuilder)
+  - [`ScopedJoinHandle`](#scopedjoinhandle)
+- [Functions](#functions)
+  - [`scope`](#scope)
+- [Type Aliases](#type-aliases)
+  - [`SharedVec`](#sharedvec)
+  - [`SharedOption`](#sharedoption)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unix`](#unix) | mod | Unix-specific extensions. |
+| [`Scope`](#scope) | struct | A scope for spawning threads. |
+| [`ScopedThreadBuilder`](#scopedthreadbuilder) | struct | Configures the properties of a new thread. |
+| [`ScopedJoinHandle`](#scopedjoinhandle) | struct | A handle that can be used to join its scoped thread. |
+| [`scope`](#scope) | fn | Creates a new scope for spawning threads. |
+| [`SharedVec`](#sharedvec) | type |  |
+| [`SharedOption`](#sharedoption) | type |  |
+
 ## Modules
 
-- [`unix`](unix/index.md) - Unix-specific extensions.
+- [`unix`](unix/index.md) — Unix-specific extensions.
 
 ## Structs
 
@@ -132,6 +158,8 @@ struct Scope<'env> {
     _marker: std::marker::PhantomData<&'env mut &'env ()>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:213-222`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/thread.rs#L213-L222)*
 
 A scope for spawning threads.
 
@@ -151,15 +179,15 @@ A scope for spawning threads.
 
 #### Implementations
 
-- `fn spawn<'scope, F, T>(self: &'scope Self, f: F) -> ScopedJoinHandle<'scope, T>` — [`ScopedJoinHandle`](#scopedjoinhandle)
+- <span id="scope-spawn"></span>`fn spawn<'scope, F, T>(self: &'scope Self, f: F) -> ScopedJoinHandle<'scope, T>` — [`ScopedJoinHandle`](#scopedjoinhandle)
 
-- `fn builder<'scope>(self: &'scope Self) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
+- <span id="scope-builder"></span>`fn builder<'scope>(self: &'scope Self) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
 #### Trait Implementations
 
 ##### `impl Debug for Scope<'_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scope-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Sync for Scope<'_>`
 
@@ -171,6 +199,8 @@ struct ScopedThreadBuilder<'scope, 'env> {
     builder: thread::Builder,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:336-339`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/thread.rs#L336-L339)*
 
 Configures the properties of a new thread.
 
@@ -206,17 +236,17 @@ thread::scope(|s| {
 
 #### Implementations
 
-- `fn name(self: Self, name: String) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
+- <span id="scopedthreadbuilder-name"></span>`fn name(self, name: String) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
-- `fn stack_size(self: Self, size: usize) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
+- <span id="scopedthreadbuilder-stack-size"></span>`fn stack_size(self, size: usize) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
-- `fn spawn<F, T>(self: Self, f: F) -> io::Result<ScopedJoinHandle<'scope, T>>` — [`ScopedJoinHandle`](#scopedjoinhandle)
+- <span id="scopedthreadbuilder-spawn"></span>`fn spawn<F, T>(self, f: F) -> io::Result<ScopedJoinHandle<'scope, T>>` — [`ScopedJoinHandle`](#scopedjoinhandle)
 
 #### Trait Implementations
 
-##### `impl<'scope, 'env> Debug for ScopedThreadBuilder<'scope, 'env>`
+##### `impl Debug for ScopedThreadBuilder<'scope, 'env>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="scopedthreadbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ScopedJoinHandle<'scope, T>`
 
@@ -228,6 +258,8 @@ struct ScopedJoinHandle<'scope, T> {
     _marker: std::marker::PhantomData<&'scope ()>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:496-508`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/thread.rs#L496-L508)*
 
 A handle that can be used to join its scoped thread.
 
@@ -254,21 +286,21 @@ This struct is created by the `Scope::spawn` method and the
 
 #### Implementations
 
-- `fn join(self: Self) -> thread::Result<T>`
+- <span id="scopedjoinhandle-join"></span>`fn join(self) -> thread::Result<T>`
 
-- `fn thread(self: &Self) -> &thread::Thread`
+- <span id="scopedjoinhandle-thread"></span>`fn thread(&self) -> &thread::Thread`
 
 #### Trait Implementations
 
 ##### `impl<T> Debug for ScopedJoinHandle<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scopedjoinhandle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> JoinHandleExt for super::ScopedJoinHandle<'_, T>`
 
-- `fn as_pthread_t(self: &Self) -> RawPthread`
+- <span id="superscopedjoinhandle-as-pthread-t"></span>`fn as_pthread_t(&self) -> RawPthread`
 
-- `fn into_pthread_t(self: Self) -> RawPthread`
+- <span id="superscopedjoinhandle-into-pthread-t"></span>`fn into_pthread_t(self) -> RawPthread`
 
 ##### `impl<T> Send for ScopedJoinHandle<'_, T>`
 
@@ -283,6 +315,8 @@ fn scope<'env, F, R>(f: F) -> thread::Result<R>
 where
     F: FnOnce(&Scope<'env>) -> R
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:153-210`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/thread.rs#L153-L210)*
 
 Creates a new scope for spawning threads.
 
@@ -316,9 +350,13 @@ thread::scope(|s| {
 type SharedVec<T> = std::sync::Arc<std::sync::Mutex<std::vec::Vec<T>>>;
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:127`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/thread.rs#L127)*
+
 ### `SharedOption<T>`
 
 ```rust
 type SharedOption<T> = std::sync::Arc<std::sync::Mutex<Option<T>>>;
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/thread.rs:128`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/thread.rs#L128)*
 

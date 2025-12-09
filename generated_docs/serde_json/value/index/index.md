@@ -4,9 +4,17 @@
 
 # Module `index`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`Type`](#type) | struct | Used in panic messages. |
+| [`Index`](#index) | trait | A type that can be used to index into a `serde_json::Value`. |
+
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -16,17 +24,19 @@
 struct Type<'a>(&'a super::Value);
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/index.rs:144`](../../../../.source_1765210505/serde_json-1.0.145/src/value/index.rs#L144)*
+
 Used in panic messages.
 
 #### Trait Implementations
 
-##### `impl<'a> Display for Type<'a>`
+##### `impl Display for Type<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="type-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for Type<'a>`
+##### `impl ToString for Type<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="type-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 
@@ -35,6 +45,8 @@ Used in panic messages.
 ```rust
 trait Index: private::Sealed { ... }
 ```
+
+*Defined in [`serde_json-1.0.145/src/value/index.rs:37-52`](../../../../.source_1765210505/serde_json-1.0.145/src/value/index.rs#L37-L52)*
 
 A type that can be used to index into a `serde_json::Value`.
 
@@ -63,4 +75,11 @@ let first = &inner[0];
 
 assert_eq!(first, 1);
 ```
+
+#### Implementors
+
+- `&T`
+- `alloc::string::String`
+- `str`
+- `usize`
 

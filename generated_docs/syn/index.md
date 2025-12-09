@@ -234,54 +234,576 @@ are available.
 - **`proc-macro`** *(enabled by default)* — Runtime dependency on the
   dynamic library libproc_macro from rustc toolchain.
 
+## Contents
+
+- [Modules](#modules)
+  - [`macros`](#macros)
+  - [`group`](#group)
+  - [`token`](#token)
+  - [`attr`](#attr)
+  - [`bigint`](#bigint)
+  - [`buffer`](#buffer)
+  - [`classify`](#classify)
+  - [`custom_keyword`](#custom_keyword)
+  - [`custom_punctuation`](#custom_punctuation)
+  - [`data`](#data)
+  - [`derive`](#derive)
+  - [`drops`](#drops)
+  - [`error`](#error)
+  - [`expr`](#expr)
+  - [`ext`](#ext)
+  - [`file`](#file)
+  - [`fixup`](#fixup)
+  - [`generics`](#generics)
+  - [`ident`](#ident)
+  - [`item`](#item)
+  - [`lifetime`](#lifetime)
+  - [`lit`](#lit)
+  - [`lookahead`](#lookahead)
+  - [`mac`](#mac)
+  - [`meta`](#meta)
+  - [`op`](#op)
+  - [`parse`](#parse)
+  - [`parse_macro_input`](#parse_macro_input)
+  - [`parse_quote`](#parse_quote)
+  - [`pat`](#pat)
+  - [`path`](#path)
+  - [`precedence`](#precedence)
+  - [`print`](#print)
+  - [`punctuated`](#punctuated)
+  - [`restriction`](#restriction)
+  - [`sealed`](#sealed)
+  - [`span`](#span)
+  - [`spanned`](#spanned)
+  - [`stmt`](#stmt)
+  - [`thread`](#thread)
+  - [`tt`](#tt)
+  - [`ty`](#ty)
+  - [`verbatim`](#verbatim)
+  - [`whitespace`](#whitespace)
+  - [`gen`](#gen)
+  - [`visit_mut`](#visit_mut)
+- [Structs](#structs)
+  - [`Attribute`](#attribute)
+  - [`MetaList`](#metalist)
+  - [`MetaNameValue`](#metanamevalue)
+  - [`Field`](#field)
+  - [`FieldsNamed`](#fieldsnamed)
+  - [`FieldsUnnamed`](#fieldsunnamed)
+  - [`Variant`](#variant)
+  - [`DataEnum`](#dataenum)
+  - [`DataStruct`](#datastruct)
+  - [`DataUnion`](#dataunion)
+  - [`DeriveInput`](#deriveinput)
+  - [`Error`](#error)
+  - [`Arm`](#arm)
+  - [`Label`](#label)
+  - [`ExprBinary`](#exprbinary)
+  - [`ExprCall`](#exprcall)
+  - [`ExprCast`](#exprcast)
+  - [`ExprField`](#exprfield)
+  - [`ExprIndex`](#exprindex)
+  - [`ExprLit`](#exprlit)
+  - [`ExprMacro`](#exprmacro)
+  - [`ExprMethodCall`](#exprmethodcall)
+  - [`ExprParen`](#exprparen)
+  - [`ExprPath`](#exprpath)
+  - [`ExprReference`](#exprreference)
+  - [`ExprStruct`](#exprstruct)
+  - [`ExprUnary`](#exprunary)
+  - [`FieldValue`](#fieldvalue)
+  - [`Index`](#index)
+  - [`ExprArray`](#exprarray)
+  - [`ExprAssign`](#exprassign)
+  - [`ExprAsync`](#exprasync)
+  - [`ExprAwait`](#exprawait)
+  - [`ExprBlock`](#exprblock)
+  - [`ExprBreak`](#exprbreak)
+  - [`ExprClosure`](#exprclosure)
+  - [`ExprConst`](#exprconst)
+  - [`ExprContinue`](#exprcontinue)
+  - [`ExprForLoop`](#exprforloop)
+  - [`ExprGroup`](#exprgroup)
+  - [`ExprIf`](#exprif)
+  - [`ExprInfer`](#exprinfer)
+  - [`ExprLet`](#exprlet)
+  - [`ExprLoop`](#exprloop)
+  - [`ExprMatch`](#exprmatch)
+  - [`ExprRange`](#exprrange)
+  - [`ExprRawAddr`](#exprrawaddr)
+  - [`ExprRepeat`](#exprrepeat)
+  - [`ExprReturn`](#exprreturn)
+  - [`ExprTry`](#exprtry)
+  - [`ExprTryBlock`](#exprtryblock)
+  - [`ExprTuple`](#exprtuple)
+  - [`ExprUnsafe`](#exprunsafe)
+  - [`ExprWhile`](#exprwhile)
+  - [`ExprYield`](#expryield)
+  - [`File`](#file)
+  - [`BoundLifetimes`](#boundlifetimes)
+  - [`ConstParam`](#constparam)
+  - [`Generics`](#generics)
+  - [`LifetimeParam`](#lifetimeparam)
+  - [`PredicateLifetime`](#predicatelifetime)
+  - [`PredicateType`](#predicatetype)
+  - [`TraitBound`](#traitbound)
+  - [`TypeParam`](#typeparam)
+  - [`WhereClause`](#whereclause)
+  - [`PreciseCapture`](#precisecapture)
+  - [`ImplGenerics`](#implgenerics)
+  - [`Turbofish`](#turbofish)
+  - [`TypeGenerics`](#typegenerics)
+  - [`ForeignItemFn`](#foreignitemfn)
+  - [`ForeignItemMacro`](#foreignitemmacro)
+  - [`ForeignItemStatic`](#foreignitemstatic)
+  - [`ForeignItemType`](#foreignitemtype)
+  - [`ImplItemConst`](#implitemconst)
+  - [`ImplItemFn`](#implitemfn)
+  - [`ImplItemMacro`](#implitemmacro)
+  - [`ImplItemType`](#implitemtype)
+  - [`ItemConst`](#itemconst)
+  - [`ItemEnum`](#itemenum)
+  - [`ItemExternCrate`](#itemexterncrate)
+  - [`ItemFn`](#itemfn)
+  - [`ItemForeignMod`](#itemforeignmod)
+  - [`ItemImpl`](#itemimpl)
+  - [`ItemMacro`](#itemmacro)
+  - [`ItemMod`](#itemmod)
+  - [`ItemStatic`](#itemstatic)
+  - [`ItemStruct`](#itemstruct)
+  - [`ItemTrait`](#itemtrait)
+  - [`ItemTraitAlias`](#itemtraitalias)
+  - [`ItemType`](#itemtype)
+  - [`ItemUnion`](#itemunion)
+  - [`ItemUse`](#itemuse)
+  - [`Receiver`](#receiver)
+  - [`Signature`](#signature)
+  - [`TraitItemConst`](#traititemconst)
+  - [`TraitItemFn`](#traititemfn)
+  - [`TraitItemMacro`](#traititemmacro)
+  - [`TraitItemType`](#traititemtype)
+  - [`UseGlob`](#useglob)
+  - [`UseGroup`](#usegroup)
+  - [`UseName`](#usename)
+  - [`UsePath`](#usepath)
+  - [`UseRename`](#userename)
+  - [`Variadic`](#variadic)
+  - [`Lifetime`](#lifetime)
+  - [`LitBool`](#litbool)
+  - [`LitByte`](#litbyte)
+  - [`LitByteStr`](#litbytestr)
+  - [`LitCStr`](#litcstr)
+  - [`LitChar`](#litchar)
+  - [`LitFloat`](#litfloat)
+  - [`LitInt`](#litint)
+  - [`LitStr`](#litstr)
+  - [`Macro`](#macro)
+  - [`FieldPat`](#fieldpat)
+  - [`PatConst`](#patconst)
+  - [`PatIdent`](#patident)
+  - [`PatLit`](#patlit)
+  - [`PatMacro`](#patmacro)
+  - [`PatOr`](#pator)
+  - [`PatParen`](#patparen)
+  - [`PatPath`](#patpath)
+  - [`PatRange`](#patrange)
+  - [`PatReference`](#patreference)
+  - [`PatRest`](#patrest)
+  - [`PatSlice`](#patslice)
+  - [`PatStruct`](#patstruct)
+  - [`PatTuple`](#pattuple)
+  - [`PatTupleStruct`](#pattuplestruct)
+  - [`PatType`](#pattype)
+  - [`PatWild`](#patwild)
+  - [`AngleBracketedGenericArguments`](#anglebracketedgenericarguments)
+  - [`AssocConst`](#assocconst)
+  - [`AssocType`](#assoctype)
+  - [`Constraint`](#constraint)
+  - [`ParenthesizedGenericArguments`](#parenthesizedgenericarguments)
+  - [`Path`](#path)
+  - [`PathSegment`](#pathsegment)
+  - [`QSelf`](#qself)
+  - [`VisRestricted`](#visrestricted)
+  - [`Block`](#block)
+  - [`Local`](#local)
+  - [`LocalInit`](#localinit)
+  - [`StmtMacro`](#stmtmacro)
+  - [`Abi`](#abi)
+  - [`BareFnArg`](#barefnarg)
+  - [`BareVariadic`](#barevariadic)
+  - [`TypeArray`](#typearray)
+  - [`TypeBareFn`](#typebarefn)
+  - [`TypeGroup`](#typegroup)
+  - [`TypeImplTrait`](#typeimpltrait)
+  - [`TypeInfer`](#typeinfer)
+  - [`TypeMacro`](#typemacro)
+  - [`TypeNever`](#typenever)
+  - [`TypeParen`](#typeparen)
+  - [`TypePath`](#typepath)
+  - [`TypePtr`](#typeptr)
+  - [`TypeReference`](#typereference)
+  - [`TypeSlice`](#typeslice)
+  - [`TypeTraitObject`](#typetraitobject)
+  - [`TypeTuple`](#typetuple)
+- [Enums](#enums)
+  - [`AttrStyle`](#attrstyle)
+  - [`Meta`](#meta)
+  - [`Fields`](#fields)
+  - [`Data`](#data)
+  - [`PointerMutability`](#pointermutability)
+  - [`RangeLimits`](#rangelimits)
+  - [`Expr`](#expr)
+  - [`Member`](#member)
+  - [`GenericParam`](#genericparam)
+  - [`TraitBoundModifier`](#traitboundmodifier)
+  - [`TypeParamBound`](#typeparambound)
+  - [`WherePredicate`](#wherepredicate)
+  - [`CapturedParam`](#capturedparam)
+  - [`FnArg`](#fnarg)
+  - [`ForeignItem`](#foreignitem)
+  - [`ImplItem`](#implitem)
+  - [`ImplRestriction`](#implrestriction)
+  - [`Item`](#item)
+  - [`StaticMutability`](#staticmutability)
+  - [`TraitItem`](#traititem)
+  - [`UseTree`](#usetree)
+  - [`Lit`](#lit)
+  - [`MacroDelimiter`](#macrodelimiter)
+  - [`BinOp`](#binop)
+  - [`UnOp`](#unop)
+  - [`Pat`](#pat)
+  - [`GenericArgument`](#genericargument)
+  - [`PathArguments`](#patharguments)
+  - [`FieldMutability`](#fieldmutability)
+  - [`Visibility`](#visibility)
+  - [`Stmt`](#stmt)
+  - [`ReturnType`](#returntype)
+  - [`Type`](#type)
+- [Functions](#functions)
+  - [`parse`](#parse)
+  - [`parse2`](#parse2)
+  - [`parse_str`](#parse_str)
+  - [`parse_file`](#parse_file)
+- [Type Aliases](#type-aliases)
+  - [`Result`](#result)
+- [Macros](#macros)
+  - [`parenthesized!`](#parenthesized)
+  - [`braced!`](#braced)
+  - [`bracketed!`](#bracketed)
+  - [`Token!`](#token)
+  - [`custom_keyword!`](#custom_keyword)
+  - [`custom_punctuation!`](#custom_punctuation)
+  - [`parse_macro_input!`](#parse_macro_input)
+  - [`parse_quote!`](#parse_quote)
+  - [`parse_quote_spanned!`](#parse_quote_spanned)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`macros`](#macros) | mod |  |
+| [`group`](#group) | mod |  |
+| [`token`](#token) | mod | Tokens representing Rust punctuation, keywords, and delimiters. |
+| [`attr`](#attr) | mod |  |
+| [`bigint`](#bigint) | mod |  |
+| [`buffer`](#buffer) | mod | A stably addressed token buffer supporting efficient traversal based on a cheaply copyable cursor. |
+| [`classify`](#classify) | mod |  |
+| [`custom_keyword`](#custom_keyword) | mod |  |
+| [`custom_punctuation`](#custom_punctuation) | mod |  |
+| [`data`](#data) | mod |  |
+| [`derive`](#derive) | mod |  |
+| [`drops`](#drops) | mod |  |
+| [`error`](#error) | mod |  |
+| [`expr`](#expr) | mod |  |
+| [`ext`](#ext) | mod | Extension traits to provide parsing methods on foreign types. |
+| [`file`](#file) | mod |  |
+| [`fixup`](#fixup) | mod |  |
+| [`generics`](#generics) | mod |  |
+| [`ident`](#ident) | mod |  |
+| [`item`](#item) | mod |  |
+| [`lifetime`](#lifetime) | mod |  |
+| [`lit`](#lit) | mod |  |
+| [`lookahead`](#lookahead) | mod |  |
+| [`mac`](#mac) | mod |  |
+| [`meta`](#meta) | mod | Facility for interpreting structured content inside of an `Attribute`. |
+| [`op`](#op) | mod |  |
+| [`parse`](#parse) | mod | Parsing interface for parsing a token stream into a syntax tree node. |
+| [`parse_macro_input`](#parse_macro_input) | mod |  |
+| [`parse_quote`](#parse_quote) | mod |  |
+| [`pat`](#pat) | mod |  |
+| [`path`](#path) | mod |  |
+| [`precedence`](#precedence) | mod |  |
+| [`print`](#print) | mod |  |
+| [`punctuated`](#punctuated) | mod | A punctuated sequence of syntax tree nodes separated by punctuation. |
+| [`restriction`](#restriction) | mod |  |
+| [`sealed`](#sealed) | mod |  |
+| [`span`](#span) | mod |  |
+| [`spanned`](#spanned) | mod | A trait that can provide the `Span` of the complete contents of a syntax tree node. |
+| [`stmt`](#stmt) | mod |  |
+| [`thread`](#thread) | mod |  |
+| [`tt`](#tt) | mod |  |
+| [`ty`](#ty) | mod |  |
+| [`verbatim`](#verbatim) | mod |  |
+| [`whitespace`](#whitespace) | mod |  |
+| [`gen`](#gen) | mod |  |
+| [`visit_mut`](#visit_mut) | mod |  |
+| [`Attribute`](#attribute) | struct |  |
+| [`MetaList`](#metalist) | struct |  |
+| [`MetaNameValue`](#metanamevalue) | struct |  |
+| [`Field`](#field) | struct |  |
+| [`FieldsNamed`](#fieldsnamed) | struct |  |
+| [`FieldsUnnamed`](#fieldsunnamed) | struct |  |
+| [`Variant`](#variant) | struct |  |
+| [`DataEnum`](#dataenum) | struct |  |
+| [`DataStruct`](#datastruct) | struct |  |
+| [`DataUnion`](#dataunion) | struct |  |
+| [`DeriveInput`](#deriveinput) | struct |  |
+| [`Error`](#error) | struct |  |
+| [`Arm`](#arm) | struct |  |
+| [`Label`](#label) | struct |  |
+| [`ExprBinary`](#exprbinary) | struct |  |
+| [`ExprCall`](#exprcall) | struct |  |
+| [`ExprCast`](#exprcast) | struct |  |
+| [`ExprField`](#exprfield) | struct |  |
+| [`ExprIndex`](#exprindex) | struct |  |
+| [`ExprLit`](#exprlit) | struct |  |
+| [`ExprMacro`](#exprmacro) | struct |  |
+| [`ExprMethodCall`](#exprmethodcall) | struct |  |
+| [`ExprParen`](#exprparen) | struct |  |
+| [`ExprPath`](#exprpath) | struct |  |
+| [`ExprReference`](#exprreference) | struct |  |
+| [`ExprStruct`](#exprstruct) | struct |  |
+| [`ExprUnary`](#exprunary) | struct |  |
+| [`FieldValue`](#fieldvalue) | struct |  |
+| [`Index`](#index) | struct |  |
+| [`ExprArray`](#exprarray) | struct |  |
+| [`ExprAssign`](#exprassign) | struct |  |
+| [`ExprAsync`](#exprasync) | struct |  |
+| [`ExprAwait`](#exprawait) | struct |  |
+| [`ExprBlock`](#exprblock) | struct |  |
+| [`ExprBreak`](#exprbreak) | struct |  |
+| [`ExprClosure`](#exprclosure) | struct |  |
+| [`ExprConst`](#exprconst) | struct |  |
+| [`ExprContinue`](#exprcontinue) | struct |  |
+| [`ExprForLoop`](#exprforloop) | struct |  |
+| [`ExprGroup`](#exprgroup) | struct |  |
+| [`ExprIf`](#exprif) | struct |  |
+| [`ExprInfer`](#exprinfer) | struct |  |
+| [`ExprLet`](#exprlet) | struct |  |
+| [`ExprLoop`](#exprloop) | struct |  |
+| [`ExprMatch`](#exprmatch) | struct |  |
+| [`ExprRange`](#exprrange) | struct |  |
+| [`ExprRawAddr`](#exprrawaddr) | struct |  |
+| [`ExprRepeat`](#exprrepeat) | struct |  |
+| [`ExprReturn`](#exprreturn) | struct |  |
+| [`ExprTry`](#exprtry) | struct |  |
+| [`ExprTryBlock`](#exprtryblock) | struct |  |
+| [`ExprTuple`](#exprtuple) | struct |  |
+| [`ExprUnsafe`](#exprunsafe) | struct |  |
+| [`ExprWhile`](#exprwhile) | struct |  |
+| [`ExprYield`](#expryield) | struct |  |
+| [`File`](#file) | struct |  |
+| [`BoundLifetimes`](#boundlifetimes) | struct |  |
+| [`ConstParam`](#constparam) | struct |  |
+| [`Generics`](#generics) | struct |  |
+| [`LifetimeParam`](#lifetimeparam) | struct |  |
+| [`PredicateLifetime`](#predicatelifetime) | struct |  |
+| [`PredicateType`](#predicatetype) | struct |  |
+| [`TraitBound`](#traitbound) | struct |  |
+| [`TypeParam`](#typeparam) | struct |  |
+| [`WhereClause`](#whereclause) | struct |  |
+| [`PreciseCapture`](#precisecapture) | struct |  |
+| [`ImplGenerics`](#implgenerics) | struct |  |
+| [`Turbofish`](#turbofish) | struct |  |
+| [`TypeGenerics`](#typegenerics) | struct |  |
+| [`ForeignItemFn`](#foreignitemfn) | struct |  |
+| [`ForeignItemMacro`](#foreignitemmacro) | struct |  |
+| [`ForeignItemStatic`](#foreignitemstatic) | struct |  |
+| [`ForeignItemType`](#foreignitemtype) | struct |  |
+| [`ImplItemConst`](#implitemconst) | struct |  |
+| [`ImplItemFn`](#implitemfn) | struct |  |
+| [`ImplItemMacro`](#implitemmacro) | struct |  |
+| [`ImplItemType`](#implitemtype) | struct |  |
+| [`ItemConst`](#itemconst) | struct |  |
+| [`ItemEnum`](#itemenum) | struct |  |
+| [`ItemExternCrate`](#itemexterncrate) | struct |  |
+| [`ItemFn`](#itemfn) | struct |  |
+| [`ItemForeignMod`](#itemforeignmod) | struct |  |
+| [`ItemImpl`](#itemimpl) | struct |  |
+| [`ItemMacro`](#itemmacro) | struct |  |
+| [`ItemMod`](#itemmod) | struct |  |
+| [`ItemStatic`](#itemstatic) | struct |  |
+| [`ItemStruct`](#itemstruct) | struct |  |
+| [`ItemTrait`](#itemtrait) | struct |  |
+| [`ItemTraitAlias`](#itemtraitalias) | struct |  |
+| [`ItemType`](#itemtype) | struct |  |
+| [`ItemUnion`](#itemunion) | struct |  |
+| [`ItemUse`](#itemuse) | struct |  |
+| [`Receiver`](#receiver) | struct |  |
+| [`Signature`](#signature) | struct |  |
+| [`TraitItemConst`](#traititemconst) | struct |  |
+| [`TraitItemFn`](#traititemfn) | struct |  |
+| [`TraitItemMacro`](#traititemmacro) | struct |  |
+| [`TraitItemType`](#traititemtype) | struct |  |
+| [`UseGlob`](#useglob) | struct |  |
+| [`UseGroup`](#usegroup) | struct |  |
+| [`UseName`](#usename) | struct |  |
+| [`UsePath`](#usepath) | struct |  |
+| [`UseRename`](#userename) | struct |  |
+| [`Variadic`](#variadic) | struct |  |
+| [`Lifetime`](#lifetime) | struct |  |
+| [`LitBool`](#litbool) | struct |  |
+| [`LitByte`](#litbyte) | struct |  |
+| [`LitByteStr`](#litbytestr) | struct |  |
+| [`LitCStr`](#litcstr) | struct |  |
+| [`LitChar`](#litchar) | struct |  |
+| [`LitFloat`](#litfloat) | struct |  |
+| [`LitInt`](#litint) | struct |  |
+| [`LitStr`](#litstr) | struct |  |
+| [`Macro`](#macro) | struct |  |
+| [`FieldPat`](#fieldpat) | struct |  |
+| [`PatConst`](#patconst) | struct |  |
+| [`PatIdent`](#patident) | struct |  |
+| [`PatLit`](#patlit) | struct |  |
+| [`PatMacro`](#patmacro) | struct |  |
+| [`PatOr`](#pator) | struct |  |
+| [`PatParen`](#patparen) | struct |  |
+| [`PatPath`](#patpath) | struct |  |
+| [`PatRange`](#patrange) | struct |  |
+| [`PatReference`](#patreference) | struct |  |
+| [`PatRest`](#patrest) | struct |  |
+| [`PatSlice`](#patslice) | struct |  |
+| [`PatStruct`](#patstruct) | struct |  |
+| [`PatTuple`](#pattuple) | struct |  |
+| [`PatTupleStruct`](#pattuplestruct) | struct |  |
+| [`PatType`](#pattype) | struct |  |
+| [`PatWild`](#patwild) | struct |  |
+| [`AngleBracketedGenericArguments`](#anglebracketedgenericarguments) | struct |  |
+| [`AssocConst`](#assocconst) | struct |  |
+| [`AssocType`](#assoctype) | struct |  |
+| [`Constraint`](#constraint) | struct |  |
+| [`ParenthesizedGenericArguments`](#parenthesizedgenericarguments) | struct |  |
+| [`Path`](#path) | struct |  |
+| [`PathSegment`](#pathsegment) | struct |  |
+| [`QSelf`](#qself) | struct |  |
+| [`VisRestricted`](#visrestricted) | struct |  |
+| [`Block`](#block) | struct |  |
+| [`Local`](#local) | struct |  |
+| [`LocalInit`](#localinit) | struct |  |
+| [`StmtMacro`](#stmtmacro) | struct |  |
+| [`Abi`](#abi) | struct |  |
+| [`BareFnArg`](#barefnarg) | struct |  |
+| [`BareVariadic`](#barevariadic) | struct |  |
+| [`TypeArray`](#typearray) | struct |  |
+| [`TypeBareFn`](#typebarefn) | struct |  |
+| [`TypeGroup`](#typegroup) | struct |  |
+| [`TypeImplTrait`](#typeimpltrait) | struct |  |
+| [`TypeInfer`](#typeinfer) | struct |  |
+| [`TypeMacro`](#typemacro) | struct |  |
+| [`TypeNever`](#typenever) | struct |  |
+| [`TypeParen`](#typeparen) | struct |  |
+| [`TypePath`](#typepath) | struct |  |
+| [`TypePtr`](#typeptr) | struct |  |
+| [`TypeReference`](#typereference) | struct |  |
+| [`TypeSlice`](#typeslice) | struct |  |
+| [`TypeTraitObject`](#typetraitobject) | struct |  |
+| [`TypeTuple`](#typetuple) | struct |  |
+| [`AttrStyle`](#attrstyle) | enum |  |
+| [`Meta`](#meta) | enum |  |
+| [`Fields`](#fields) | enum |  |
+| [`Data`](#data) | enum |  |
+| [`PointerMutability`](#pointermutability) | enum |  |
+| [`RangeLimits`](#rangelimits) | enum |  |
+| [`Expr`](#expr) | enum |  |
+| [`Member`](#member) | enum |  |
+| [`GenericParam`](#genericparam) | enum |  |
+| [`TraitBoundModifier`](#traitboundmodifier) | enum |  |
+| [`TypeParamBound`](#typeparambound) | enum |  |
+| [`WherePredicate`](#wherepredicate) | enum |  |
+| [`CapturedParam`](#capturedparam) | enum |  |
+| [`FnArg`](#fnarg) | enum |  |
+| [`ForeignItem`](#foreignitem) | enum |  |
+| [`ImplItem`](#implitem) | enum |  |
+| [`ImplRestriction`](#implrestriction) | enum |  |
+| [`Item`](#item) | enum |  |
+| [`StaticMutability`](#staticmutability) | enum |  |
+| [`TraitItem`](#traititem) | enum |  |
+| [`UseTree`](#usetree) | enum |  |
+| [`Lit`](#lit) | enum |  |
+| [`MacroDelimiter`](#macrodelimiter) | enum |  |
+| [`BinOp`](#binop) | enum |  |
+| [`UnOp`](#unop) | enum |  |
+| [`Pat`](#pat) | enum |  |
+| [`GenericArgument`](#genericargument) | enum |  |
+| [`PathArguments`](#patharguments) | enum |  |
+| [`FieldMutability`](#fieldmutability) | enum |  |
+| [`Visibility`](#visibility) | enum |  |
+| [`Stmt`](#stmt) | enum |  |
+| [`ReturnType`](#returntype) | enum |  |
+| [`Type`](#type) | enum |  |
+| [`parse`](#parse) | fn | Parse tokens of source code into the chosen syntax tree node. |
+| [`parse2`](#parse2) | fn | Parse a proc-macro2 token stream into the chosen syntax tree node. |
+| [`parse_str`](#parse_str) | fn | Parse a string of Rust code into the chosen syntax tree node. |
+| [`parse_file`](#parse_file) | fn | Parse the content of a file of Rust code. |
+| [`Result`](#result) | type |  |
+| [`parenthesized!`](#parenthesized) | macro | Parse a set of parentheses and expose their content to subsequent parsers. |
+| [`braced!`](#braced) | macro | Parse a set of curly braces and expose their content to subsequent parsers. |
+| [`bracketed!`](#bracketed) | macro | Parse a set of square brackets and expose their content to subsequent parsers. |
+| [`Token!`](#token) | macro | A type-macro that expands to the name of the Rust type representation of a given token. |
+| [`custom_keyword!`](#custom_keyword) | macro | Define a type that supports parsing and printing a given identifier as if it were a keyword. |
+| [`custom_punctuation!`](#custom_punctuation) | macro | Define a type that supports parsing and printing a multi-character symbol as if it were a punctuation token. |
+| [`parse_macro_input!`](#parse_macro_input) | macro | Parse the input TokenStream of a macro, triggering a compile error if the tokens fail to parse. |
+| [`parse_quote!`](#parse_quote) | macro | Quasi-quotation macro that accepts input like the [`quote!`] macro but uses type inference to figure out a return type for those tokens. |
+| [`parse_quote_spanned!`](#parse_quote_spanned) | macro | This macro is [`parse_quote!`] + [`quote_spanned!`][quote::quote_spanned]. |
+
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`group`](group/index.md) - 
-- [`token`](token/index.md) - Tokens representing Rust punctuation, keywords, and delimiters.
-- [`attr`](attr/index.md) - 
-- [`bigint`](bigint/index.md) - 
-- [`buffer`](buffer/index.md) - A stably addressed token buffer supporting efficient traversal based on a
-- [`classify`](classify/index.md) - 
-- [`custom_keyword`](custom_keyword/index.md) - 
-- [`custom_punctuation`](custom_punctuation/index.md) - 
-- [`data`](data/index.md) - 
-- [`derive`](derive/index.md) - 
-- [`drops`](drops/index.md) - 
-- [`error`](error/index.md) - 
-- [`expr`](expr/index.md) - 
-- [`ext`](ext/index.md) - Extension traits to provide parsing methods on foreign types.
-- [`file`](file/index.md) - 
-- [`fixup`](fixup/index.md) - 
-- [`generics`](generics/index.md) - 
-- [`ident`](ident/index.md) - 
-- [`item`](item/index.md) - 
-- [`lifetime`](lifetime/index.md) - 
-- [`lit`](lit/index.md) - 
-- [`lookahead`](lookahead/index.md) - 
-- [`mac`](mac/index.md) - 
-- [`meta`](meta/index.md) - Facility for interpreting structured content inside of an `Attribute`.
-- [`op`](op/index.md) - 
-- [`parse`](parse/index.md) - Parsing interface for parsing a token stream into a syntax tree node.
-- [`parse_macro_input`](parse_macro_input/index.md) - 
-- [`parse_quote`](parse_quote/index.md) - 
-- [`pat`](pat/index.md) - 
-- [`path`](path/index.md) - 
-- [`precedence`](precedence/index.md) - 
-- [`print`](print/index.md) - 
-- [`punctuated`](punctuated/index.md) - A punctuated sequence of syntax tree nodes separated by punctuation.
-- [`restriction`](restriction/index.md) - 
-- [`sealed`](sealed/index.md) - 
-- [`span`](span/index.md) - 
-- [`spanned`](spanned/index.md) - A trait that can provide the `Span` of the complete contents of a syntax
-- [`stmt`](stmt/index.md) - 
-- [`thread`](thread/index.md) - 
-- [`tt`](tt/index.md) - 
-- [`ty`](ty/index.md) - 
-- [`verbatim`](verbatim/index.md) - 
-- [`whitespace`](whitespace/index.md) - 
-- [`gen`](gen/index.md) - 
-- [`visit_mut`](visit_mut/index.md) - 
+- [`macros`](macros/index.md)
+- [`group`](group/index.md)
+- [`token`](token/index.md) — Tokens representing Rust punctuation, keywords, and delimiters.
+- [`attr`](attr/index.md)
+- [`bigint`](bigint/index.md)
+- [`buffer`](buffer/index.md) — A stably addressed token buffer supporting efficient traversal based on a
+- [`classify`](classify/index.md)
+- [`custom_keyword`](custom_keyword/index.md)
+- [`custom_punctuation`](custom_punctuation/index.md)
+- [`data`](data/index.md)
+- [`derive`](derive/index.md)
+- [`drops`](drops/index.md)
+- [`error`](error/index.md)
+- [`expr`](expr/index.md)
+- [`ext`](ext/index.md) — Extension traits to provide parsing methods on foreign types.
+- [`file`](file/index.md)
+- [`fixup`](fixup/index.md)
+- [`generics`](generics/index.md)
+- [`ident`](ident/index.md)
+- [`item`](item/index.md)
+- [`lifetime`](lifetime/index.md)
+- [`lit`](lit/index.md)
+- [`lookahead`](lookahead/index.md)
+- [`mac`](mac/index.md)
+- [`meta`](meta/index.md) — Facility for interpreting structured content inside of an `Attribute`.
+- [`op`](op/index.md)
+- [`parse`](parse/index.md) — Parsing interface for parsing a token stream into a syntax tree node.
+- [`parse_macro_input`](parse_macro_input/index.md)
+- [`parse_quote`](parse_quote/index.md)
+- [`pat`](pat/index.md)
+- [`path`](path/index.md)
+- [`precedence`](precedence/index.md)
+- [`print`](print/index.md)
+- [`punctuated`](punctuated/index.md) — A punctuated sequence of syntax tree nodes separated by punctuation.
+- [`restriction`](restriction/index.md)
+- [`sealed`](sealed/index.md)
+- [`span`](span/index.md)
+- [`spanned`](spanned/index.md) — A trait that can provide the `Span` of the complete contents of a syntax
+- [`stmt`](stmt/index.md)
+- [`thread`](thread/index.md)
+- [`tt`](tt/index.md)
+- [`ty`](ty/index.md)
+- [`verbatim`](verbatim/index.md)
+- [`whitespace`](whitespace/index.md)
+- [`gen`](gen/index.md)
+- [`visit_mut`](visit_mut/index.md) — Syntax tree traversal to mutate an exclusive borrow of a syntax tree in
 
 ## Structs
 
@@ -289,12 +811,14 @@ are available.
 
 ```rust
 struct Attribute {
-    pub pound_token: $crate::token::Pound,
+    pub pound_token: token::Pound,
     pub style: AttrStyle,
     pub bracket_token: token::Bracket,
     pub meta: Meta,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../.source_1765210505/syn-2.0.111/src/attr.rs#L19-L179)*
 
 An attribute, like `#[repr(transparent)]`.
 
@@ -447,47 +971,47 @@ assert_eq!(doc, attr);
 
 #### Implementations
 
-- `fn path(self: &Self) -> &Path` — [`Path`](#path)
+- <span id="attribute-path"></span>`fn path(&self) -> &Path` — [`Path`](path/index.md)
 
-- `fn parse_args<T: Parse>(self: &Self) -> Result<T>` — [`Result`](#result)
+- <span id="attribute-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](error/index.md)
 
-- `fn parse_args_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](#result), [`Parser`](parse/index.md)
+- <span id="attribute-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](error/index.md), [`Parser`](parse/index.md)
 
-- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](meta/index.md), [`Result`](#result)
+- <span id="attribute-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](meta/index.md), [`Result`](error/index.md)
 
-- `fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="attribute-parse-outer"></span>`fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="attribute-parse-inner"></span>`fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Attribute`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateattribute-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Attribute`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateattribute-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Attribute`
 
 ##### `impl Hash for crate::Attribute`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateattribute-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Attribute`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateattribute-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Attribute`
+##### `impl Sealed for Attribute`
 
-##### `impl<T> Spanned for Attribute`
+##### `impl Spanned for Attribute`
 
-- `fn span(self: &Self) -> Span`
+- <span id="attribute-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::attr::Attribute`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateattrattribute-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `MetaList`
 
@@ -499,99 +1023,103 @@ struct MetaList {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../.source_1765210505/syn-2.0.111/src/attr.rs#L484-L492)*
+
 A structured list within an attribute, like `derive(Copy, Clone)`.
 
 #### Implementations
 
-- `fn parse_args<T: Parse>(self: &Self) -> Result<T>` — [`Result`](#result)
+- <span id="metalist-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](error/index.md)
 
-- `fn parse_args_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](#result), [`Parser`](parse/index.md)
+- <span id="metalist-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](error/index.md), [`Parser`](parse/index.md)
 
-- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](meta/index.md), [`Result`](#result)
+- <span id="metalist-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](meta/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::MetaList`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemetalist-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::MetaList`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemetalist-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::MetaList`
 
 ##### `impl Hash for crate::MetaList`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratemetalist-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::attr::MetaList`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateattrmetalist-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::MetaList`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratemetalist-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for MetaList`
+##### `impl Sealed for MetaList`
 
-##### `impl<T> Spanned for MetaList`
+##### `impl Spanned for MetaList`
 
-- `fn span(self: &Self) -> Span`
+- <span id="metalist-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::attr::MetaList`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateattrmetalist-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `MetaNameValue`
 
 ```rust
 struct MetaNameValue {
     pub path: crate::path::Path,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub value: crate::expr::Expr,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../.source_1765210505/syn-2.0.111/src/attr.rs#L494-L502)*
 
 A name-value pair within an attribute, like `feature = "nightly"`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratemetanamevalue-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::MetaNameValue`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemetanamevalue-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::MetaNameValue`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemetanamevalue-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::MetaNameValue`
 
 ##### `impl Hash for crate::MetaNameValue`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratemetanamevalue-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::attr::MetaNameValue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateattrmetanamevalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::MetaNameValue`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratemetanamevalue-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for MetaNameValue`
+##### `impl Sealed for MetaNameValue`
 
-##### `impl<T> Spanned for MetaNameValue`
+##### `impl Spanned for MetaNameValue`
 
-- `fn span(self: &Self) -> Span`
+- <span id="metanamevalue-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::attr::MetaNameValue`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateattrmetanamevalue-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Field`
 
@@ -601,10 +1129,12 @@ struct Field {
     pub vis: crate::restriction::Visibility,
     pub mutability: crate::restriction::FieldMutability,
     pub ident: Option<crate::ident::Ident>,
-    pub colon_token: Option<$crate::token::Colon>,
+    pub colon_token: Option<token::Colon>,
     pub ty: crate::ty::Type,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../.source_1765210505/syn-2.0.111/src/data.rs#L181-L200)*
 
 A field of a struct or enum variant.
 
@@ -618,138 +1148,142 @@ A field of a struct or enum variant.
 
 #### Implementations
 
-- `fn parse_named(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratedatafield-parse-named"></span>`fn parse_named(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_unnamed(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratedatafield-parse-unnamed"></span>`fn parse_unnamed(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Field`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefield-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Field`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefield-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Field`
 
 ##### `impl Hash for crate::Field`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefield-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Field`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefield-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Field`
+##### `impl Sealed for Field`
 
-##### `impl<T> Spanned for Field`
+##### `impl Spanned for Field`
 
-- `fn span(self: &Self) -> Span`
+- <span id="field-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::data::Field`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratedatafield-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FieldsNamed`
 
 ```rust
 struct FieldsNamed {
     pub brace_token: token::Brace,
-    pub named: crate::punctuated::Punctuated<Field, $crate::token::Comma>,
+    pub named: crate::punctuated::Punctuated<Field, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../.source_1765210505/syn-2.0.111/src/data.rs#L48-L56)*
 
 Named fields of a struct or struct variant such as `Point { x: f64,
 y: f64 }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratefieldsnamed-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::FieldsNamed`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefieldsnamed-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::FieldsNamed`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefieldsnamed-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FieldsNamed`
 
 ##### `impl Hash for crate::FieldsNamed`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefieldsnamed-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::data::FieldsNamed`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratedatafieldsnamed-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::FieldsNamed`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefieldsnamed-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for FieldsNamed`
+##### `impl Sealed for FieldsNamed`
 
-##### `impl<T> Spanned for FieldsNamed`
+##### `impl Spanned for FieldsNamed`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fieldsnamed-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::data::FieldsNamed`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratedatafieldsnamed-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FieldsUnnamed`
 
 ```rust
 struct FieldsUnnamed {
     pub paren_token: token::Paren,
-    pub unnamed: crate::punctuated::Punctuated<Field, $crate::token::Comma>,
+    pub unnamed: crate::punctuated::Punctuated<Field, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../.source_1765210505/syn-2.0.111/src/data.rs#L58-L65)*
 
 Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratefieldsunnamed-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::FieldsUnnamed`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefieldsunnamed-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::FieldsUnnamed`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefieldsunnamed-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FieldsUnnamed`
 
 ##### `impl Hash for crate::FieldsUnnamed`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefieldsunnamed-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::data::FieldsUnnamed`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratedatafieldsunnamed-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::FieldsUnnamed`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefieldsunnamed-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for FieldsUnnamed`
+##### `impl Sealed for FieldsUnnamed`
 
-##### `impl<T> Spanned for FieldsUnnamed`
+##### `impl Spanned for FieldsUnnamed`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fieldsunnamed-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::data::FieldsUnnamed`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratedatafieldsunnamed-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Variant`
 
@@ -758,9 +1292,11 @@ struct Variant {
     pub attrs: Vec<crate::attr::Attribute>,
     pub ident: crate::ident::Ident,
     pub fields: Fields,
-    pub discriminant: Option<($crate::token::Eq, crate::expr::Expr)>,
+    pub discriminant: Option<(token::Eq, crate::expr::Expr)>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../.source_1765210505/syn-2.0.111/src/data.rs#L9-L24)*
 
 An enum variant.
 
@@ -774,7 +1310,7 @@ An enum variant.
 
   Content stored in the variant.
 
-- **`discriminant`**: `Option<($crate::token::Eq, crate::expr::Expr)>`
+- **`discriminant`**: `Option<(token::Eq, crate::expr::Expr)>`
 
   Explicit discriminant: `Variant = 1`
 
@@ -782,142 +1318,148 @@ An enum variant.
 
 ##### `impl Clone for crate::Variant`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratevariant-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Variant`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratevariant-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Variant`
 
 ##### `impl Hash for crate::Variant`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratevariant-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::data::Variant`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratedatavariant-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Variant`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratevariant-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Variant`
+##### `impl Sealed for Variant`
 
-##### `impl<T> Spanned for Variant`
+##### `impl Spanned for Variant`
 
-- `fn span(self: &Self) -> Span`
+- <span id="variant-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::data::Variant`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratedatavariant-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `DataEnum`
 
 ```rust
 struct DataEnum {
-    pub enum_token: $crate::token::Enum,
+    pub enum_token: token::Enum,
     pub brace_token: token::Brace,
-    pub variants: crate::punctuated::Punctuated<crate::data::Variant, $crate::token::Comma>,
+    pub variants: crate::punctuated::Punctuated<crate::data::Variant, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/derive.rs:47-55`](../../.source_1765210505/syn-2.0.111/src/derive.rs#L47-L55)*
 
 An enum input to a `proc_macro_derive` macro.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratedataenum-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::DataEnum`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratedataenum-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::DataEnum`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratedataenum-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::DataEnum`
 
 ##### `impl Hash for crate::DataEnum`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratedataenum-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::DataEnum`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratedataenum-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `DataStruct`
 
 ```rust
 struct DataStruct {
-    pub struct_token: $crate::token::Struct,
+    pub struct_token: token::Struct,
     pub fields: crate::data::Fields,
-    pub semi_token: Option<$crate::token::Semi>,
+    pub semi_token: Option<token::Semi>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/derive.rs:37-45`](../../.source_1765210505/syn-2.0.111/src/derive.rs#L37-L45)*
 
 A struct input to a `proc_macro_derive` macro.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratedatastruct-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::DataStruct`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratedatastruct-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::DataStruct`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratedatastruct-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::DataStruct`
 
 ##### `impl Hash for crate::DataStruct`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratedatastruct-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::DataStruct`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratedatastruct-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `DataUnion`
 
 ```rust
 struct DataUnion {
-    pub union_token: $crate::token::Union,
+    pub union_token: token::Union,
     pub fields: crate::data::FieldsNamed,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/derive.rs:57-64`](../../.source_1765210505/syn-2.0.111/src/derive.rs#L57-L64)*
 
 An untagged union input to a `proc_macro_derive` macro.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratedataunion-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::DataUnion`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratedataunion-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::DataUnion`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratedataunion-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::DataUnion`
 
 ##### `impl Hash for crate::DataUnion`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratedataunion-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::DataUnion`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratedataunion-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `DeriveInput`
 
@@ -931,41 +1473,43 @@ struct DeriveInput {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/derive.rs:9-19`](../../.source_1765210505/syn-2.0.111/src/derive.rs#L9-L19)*
+
 Data structure sent to a `proc_macro_derive` macro.
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::DeriveInput`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratederiveinput-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::DeriveInput`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratederiveinput-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::DeriveInput`
 
 ##### `impl Hash for crate::DeriveInput`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratederiveinput-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::derive::DeriveInput`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratederivederiveinput-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::DeriveInput`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratederiveinput-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for DeriveInput`
+##### `impl Sealed for DeriveInput`
 
-##### `impl<T> Spanned for DeriveInput`
+##### `impl Spanned for DeriveInput`
 
-- `fn span(self: &Self) -> Span`
+- <span id="deriveinput-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::derive::DeriveInput`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratederivederiveinput-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Error`
 
@@ -974,6 +1518,8 @@ struct Error {
     messages: Vec<ErrorMessage>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../.source_1765210505/syn-2.0.111/src/error.rs#L101-L103)*
 
 Error returned when a Syn parser cannot parse the input tokens.
 
@@ -1056,49 +1602,49 @@ mod expand {
 
 #### Implementations
 
-- `fn new<T: Display>(span: Span, message: T) -> Self`
+- <span id="error-new"></span>`fn new<T: Display>(span: Span, message: T) -> Self`
 
-- `fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
+- <span id="error-new-spanned"></span>`fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
 
-- `fn span(self: &Self) -> Span`
+- <span id="error-span"></span>`fn span(&self) -> Span`
 
-- `fn to_compile_error(self: &Self) -> TokenStream`
+- <span id="error-to-compile-error"></span>`fn to_compile_error(&self) -> TokenStream`
 
-- `fn into_compile_error(self: Self) -> TokenStream`
+- <span id="error-into-compile-error"></span>`fn into_compile_error(self) -> TokenStream`
 
-- `fn combine(self: &mut Self, another: Error)` — [`Error`](#error)
+- <span id="error-combine"></span>`fn combine(&mut self, another: Error)` — [`Error`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="error-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
 ##### `impl Extend for Error`
 
-- `fn extend<T: IntoIterator<Item = Error>>(self: &mut Self, iter: T)`
+- <span id="error-extend"></span>`fn extend<T: IntoIterator<Item = Error>>(&mut self, iter: T)`
 
 ##### `impl IntoIterator for Error`
 
-- `type Item = Error`
+- <span id="error-type-item"></span>`type Item = Error`
 
-- `type IntoIter = IntoIter`
+- <span id="error-type-intoiter"></span>`type IntoIter = IntoIter`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="error-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Arm`
 
@@ -1106,12 +1652,14 @@ mod expand {
 struct Arm {
     pub attrs: Vec<crate::attr::Attribute>,
     pub pat: crate::pat::Pat,
-    pub guard: Option<($crate::token::If, Box<Expr>)>,
-    pub fat_arrow_token: $crate::token::FatArrow,
+    pub guard: Option<(token::If, Box<Expr>)>,
+    pub fat_arrow_token: token::FatArrow,
     pub body: Box<Expr>,
-    pub comma: Option<$crate::token::Comma>,
+    pub comma: Option<token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:1119-1146`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L1119-L1146)*
 
 One arm of a `match` expression: `0..=10 => { return true; }`.
 
@@ -1133,50 +1681,52 @@ match n {
 
 #### Implementations
 
-- `fn parse_multiple(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprarm-parse-multiple"></span>`fn parse_multiple(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Arm`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratearm-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Arm`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratearm-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Arm`
 
 ##### `impl Hash for crate::Arm`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratearm-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::Arm`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Arm>` — [`ParseStream`](parse/index.md), [`Result`](#result), [`Arm`](#arm)
+- <span id="crateexprarm-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Arm>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Arm`](expr/index.md)
 
 ##### `impl PartialEq for crate::Arm`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratearm-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Arm`
+##### `impl Sealed for Arm`
 
-##### `impl<T> Spanned for Arm`
+##### `impl Spanned for Arm`
 
-- `fn span(self: &Self) -> Span`
+- <span id="arm-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::Arm`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprarm-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Label`
 
 ```rust
 struct Label {
     pub name: crate::lifetime::Lifetime,
-    pub colon_token: $crate::token::Colon,
+    pub colon_token: token::Colon,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:1109-1116`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L1109-L1116)*
 
 A lifetime labeling a `for`, `while`, or `loop`.
 
@@ -1184,35 +1734,35 @@ A lifetime labeling a `for`, `while`, or `loop`.
 
 ##### `impl Clone for crate::Label`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelabel-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Label`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelabel-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Label`
 
 ##### `impl Hash for crate::Label`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelabel-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::Label`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprlabel-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Label`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelabel-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Label`
+##### `impl Sealed for Label`
 
-##### `impl<T> Spanned for Label`
+##### `impl Spanned for Label`
 
-- `fn span(self: &Self) -> Span`
+- <span id="label-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::Label`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprlabel-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprBinary`
 
@@ -1225,45 +1775,47 @@ struct ExprBinary {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:312-321`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L312-L321)*
+
 A binary operation: `a + b`, `a += b`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprbinary-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprBinary`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprbinary-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprBinary`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprbinary-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprBinary`
 
 ##### `impl Hash for crate::ExprBinary`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprbinary-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprBinary`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprbinary-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprBinary`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprbinary-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprBinary`
+##### `impl Sealed for ExprBinary`
 
-##### `impl<T> Spanned for ExprBinary`
+##### `impl Spanned for ExprBinary`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprbinary-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprBinary`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprbinary-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprCall`
 
@@ -1272,49 +1824,51 @@ struct ExprCall {
     pub attrs: Vec<crate::attr::Attribute>,
     pub func: Box<Expr>,
     pub paren_token: token::Paren,
-    pub args: crate::punctuated::Punctuated<Expr, $crate::token::Comma>,
+    pub args: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:345-354`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L345-L354)*
 
 A function call expression: `invoke(a, b)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprcall-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprCall`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprcall-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprCall`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprcall-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprCall`
 
 ##### `impl Hash for crate::ExprCall`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprcall-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprCall`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprcall-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprCall`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprcall-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprCall`
+##### `impl Sealed for ExprCall`
 
-##### `impl<T> Spanned for ExprCall`
+##### `impl Spanned for ExprCall`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprcall-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprCall`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprcall-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprCast`
 
@@ -1322,50 +1876,52 @@ A function call expression: `invoke(a, b)`.
 struct ExprCast {
     pub attrs: Vec<crate::attr::Attribute>,
     pub expr: Box<Expr>,
-    pub as_token: $crate::token::As,
+    pub as_token: token::As,
     pub ty: Box<crate::ty::Type>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:356-365`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L356-L365)*
 
 A cast expression: `foo as f64`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprcast-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprCast`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprcast-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprCast`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprcast-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprCast`
 
 ##### `impl Hash for crate::ExprCast`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprcast-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprCast`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprcast-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprCast`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprcast-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprCast`
+##### `impl Sealed for ExprCast`
 
-##### `impl<T> Spanned for ExprCast`
+##### `impl Spanned for ExprCast`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprcast-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprCast`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprcast-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprField`
 
@@ -1373,51 +1929,53 @@ A cast expression: `foo as f64`.
 struct ExprField {
     pub attrs: Vec<crate::attr::Attribute>,
     pub base: Box<Expr>,
-    pub dot_token: $crate::token::Dot,
+    pub dot_token: token::Dot,
     pub member: Member,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:405-415`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L405-L415)*
 
 Access of a named struct field (`obj.k`) or unnamed tuple struct
 field (`obj.0`).
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprfield-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprField`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprfield-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprField`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprfield-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprField`
 
 ##### `impl Hash for crate::ExprField`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprfield-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprField`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprfield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprField`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprfield-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprField`
+##### `impl Sealed for ExprField`
 
-##### `impl<T> Spanned for ExprField`
+##### `impl Spanned for ExprField`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprfield-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprField`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprfield-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprIndex`
 
@@ -1430,45 +1988,47 @@ struct ExprIndex {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:461-470`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L461-L470)*
+
 A square bracketed indexing expression: `vector[2]`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprindex-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprIndex`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprindex-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprIndex`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprindex-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprIndex`
 
 ##### `impl Hash for crate::ExprIndex`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprindex-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprIndex`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprindex-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprIndex`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprindex-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprIndex`
+##### `impl Sealed for ExprIndex`
 
-##### `impl<T> Spanned for ExprIndex`
+##### `impl Spanned for ExprIndex`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprindex-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprIndex`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprindex-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprLit`
 
@@ -1479,45 +2039,47 @@ struct ExprLit {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L493-L500)*
+
 A literal in place of an expression: `1`, `"foo"`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprlit-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprLit`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprlit-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprLit`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprlit-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprLit`
 
 ##### `impl Hash for crate::ExprLit`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprlit-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprLit`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprlit-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprLit`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprlit-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprLit`
+##### `impl Sealed for ExprLit`
 
-##### `impl<T> Spanned for ExprLit`
+##### `impl Spanned for ExprLit`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprlit-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprLit`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprlit-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprMacro`
 
@@ -1528,45 +2090,47 @@ struct ExprMacro {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L513-L520)*
+
 A macro invocation expression: `format!("{}", q)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprmacro-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprMacro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprmacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprMacro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprMacro`
 
 ##### `impl Hash for crate::ExprMacro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprMacro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprMacro`
+##### `impl Sealed for ExprMacro`
 
-##### `impl<T> Spanned for ExprMacro`
+##### `impl Spanned for ExprMacro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprmacro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprMacro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprMethodCall`
 
@@ -1574,53 +2138,55 @@ A macro invocation expression: `format!("{}", q)`.
 struct ExprMethodCall {
     pub attrs: Vec<crate::attr::Attribute>,
     pub receiver: Box<Expr>,
-    pub dot_token: $crate::token::Dot,
+    pub dot_token: token::Dot,
     pub method: crate::ident::Ident,
     pub turbofish: Option<crate::path::AngleBracketedGenericArguments>,
     pub paren_token: token::Paren,
-    pub args: crate::punctuated::Punctuated<Expr, $crate::token::Comma>,
+    pub args: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:534-546`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L534-L546)*
 
 A method call expression: `x.foo::<T>(a, b)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprmethodcall-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprMethodCall`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprmethodcall-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprMethodCall`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprmethodcall-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprMethodCall`
 
 ##### `impl Hash for crate::ExprMethodCall`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprmethodcall-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprMethodCall`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprmethodcall-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprMethodCall`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprmethodcall-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprMethodCall`
+##### `impl Sealed for ExprMethodCall`
 
-##### `impl<T> Spanned for ExprMethodCall`
+##### `impl Spanned for ExprMethodCall`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprmethodcall-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprMethodCall`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprmethodcall-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprParen`
 
@@ -1632,45 +2198,47 @@ struct ExprParen {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:548-556`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L548-L556)*
+
 A parenthesized expression: `(a + b)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprparen-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprParen`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprparen-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprParen`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprparen-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprParen`
 
 ##### `impl Hash for crate::ExprParen`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprparen-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprParen`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprparen-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprParen`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprparen-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprParen`
+##### `impl Sealed for ExprParen`
 
-##### `impl<T> Spanned for ExprParen`
+##### `impl Spanned for ExprParen`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprparen-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprParen`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprparen-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprPath`
 
@@ -1682,6 +2250,8 @@ struct ExprPath {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L558-L569)*
+
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
 
@@ -1689,92 +2259,94 @@ A plain identifier like `x` is a path of length 1.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprpath-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprPath`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprpath-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprPath`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprpath-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprPath`
 
 ##### `impl Hash for crate::ExprPath`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprpath-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprPath`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprpath-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprPath`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprpath-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprPath`
+##### `impl Sealed for ExprPath`
 
-##### `impl<T> Spanned for ExprPath`
+##### `impl Spanned for ExprPath`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprpath-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprPath`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprpath-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprReference`
 
 ```rust
 struct ExprReference {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub and_token: $crate::token::And,
-    pub mutability: Option<$crate::token::Mut>,
+    pub and_token: token::And,
+    pub mutability: Option<token::Mut>,
     pub expr: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:594-603`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L594-L603)*
 
 A referencing operation: `&a` or `&mut a`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprreference-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprReference`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprreference-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprReference`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprreference-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprReference`
 
 ##### `impl Hash for crate::ExprReference`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprreference-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprReference`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprreference-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprReference`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprreference-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprReference`
+##### `impl Sealed for ExprReference`
 
-##### `impl<T> Spanned for ExprReference`
+##### `impl Spanned for ExprReference`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprreference-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprReference`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprreference-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprStruct`
 
@@ -1784,11 +2356,13 @@ struct ExprStruct {
     pub qself: Option<crate::path::QSelf>,
     pub path: crate::path::Path,
     pub brace_token: token::Brace,
-    pub fields: crate::punctuated::Punctuated<FieldValue, $crate::token::Comma>,
-    pub dot2_token: Option<$crate::token::DotDot>,
+    pub fields: crate::punctuated::Punctuated<FieldValue, token::Comma>,
+    pub dot2_token: Option<token::DotDot>,
     pub rest: Option<Box<Expr>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:627-642`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L627-L642)*
 
 A struct literal expression: `Point { x: 1, y: 1 }`.
 
@@ -1797,41 +2371,41 @@ The `rest` provides the value of the remaining fields as in `S { a:
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprstruct-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprStruct`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprstruct-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprStruct`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprstruct-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprStruct`
 
 ##### `impl Hash for crate::ExprStruct`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprstruct-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprStruct`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprstruct-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprStruct`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprstruct-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprStruct`
+##### `impl Sealed for ExprStruct`
 
-##### `impl<T> Spanned for ExprStruct`
+##### `impl Spanned for ExprStruct`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprstruct-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprStruct`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprstruct-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprUnary`
 
@@ -1843,45 +2417,47 @@ struct ExprUnary {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:674-682`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L674-L682)*
+
 A unary operation: `!x`, `*x`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprunary-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprUnary`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprunary-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprUnary`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprunary-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprUnary`
 
 ##### `impl Hash for crate::ExprUnary`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprunary-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprUnary`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprunary-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprUnary`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprunary-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprUnary`
+##### `impl Sealed for ExprUnary`
 
-##### `impl<T> Spanned for ExprUnary`
+##### `impl Spanned for ExprUnary`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprunary-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprUnary`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprunary-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FieldValue`
 
@@ -1889,16 +2465,18 @@ A unary operation: `!x`, `*x`.
 struct FieldValue {
     pub attrs: Vec<crate::attr::Attribute>,
     pub member: Member,
-    pub colon_token: Option<$crate::token::Colon>,
+    pub colon_token: Option<token::Colon>,
     pub expr: Expr,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:1093-1106`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L1093-L1106)*
 
 A field-value pair in a struct literal.
 
 #### Fields
 
-- **`colon_token`**: `Option<$crate::token::Colon>`
+- **`colon_token`**: `Option<token::Colon>`
 
   The colon in `Struct { x: x }`. If written in shorthand like
   `Struct { x }`, there is no colon.
@@ -1907,35 +2485,35 @@ A field-value pair in a struct literal.
 
 ##### `impl Clone for crate::FieldValue`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefieldvalue-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::FieldValue`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefieldvalue-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FieldValue`
 
 ##### `impl Hash for crate::FieldValue`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefieldvalue-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::FieldValue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprfieldvalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::FieldValue`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefieldvalue-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for FieldValue`
+##### `impl Sealed for FieldValue`
 
-##### `impl<T> Spanned for FieldValue`
+##### `impl Spanned for FieldValue`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fieldvalue-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::FieldValue`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprfieldvalue-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Index`
 
@@ -1946,47 +2524,49 @@ struct Index {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:1049-1056`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L1049-L1056)*
+
 The index of an unnamed tuple struct field.
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Index`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateindex-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Index`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateindex-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Index`
 
 ##### `impl Hash for Index`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="index-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl IdentFragment for Index`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="index-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn span(self: &Self) -> Option<Span>`
+- <span id="index-span"></span>`fn span(&self) -> Option<Span>`
 
 ##### `impl Parse for crate::expr::Index`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprindex-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for Index`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="index-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Index`
+##### `impl Sealed for Index`
 
-##### `impl<T> Spanned for Index`
+##### `impl Spanned for Index`
 
-- `fn span(self: &Self) -> Span`
+- <span id="index-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::Index`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprindex-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprArray`
 
@@ -1994,49 +2574,51 @@ The index of an unnamed tuple struct field.
 struct ExprArray {
     pub attrs: Vec<crate::attr::Attribute>,
     pub bracket_token: token::Bracket,
-    pub elems: crate::punctuated::Punctuated<Expr, $crate::token::Comma>,
+    pub elems: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:269-277`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L269-L277)*
 
 A slice literal expression: `[a, b, c, d]`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprarray-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprArray`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprarray-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprArray`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprarray-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprArray`
 
 ##### `impl Hash for crate::ExprArray`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprarray-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprArray`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprarray-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprArray`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprarray-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprArray`
+##### `impl Sealed for ExprArray`
 
-##### `impl<T> Spanned for ExprArray`
+##### `impl Spanned for ExprArray`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprarray-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprArray`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprarray-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprAssign`
 
@@ -2044,101 +2626,105 @@ A slice literal expression: `[a, b, c, d]`.
 struct ExprAssign {
     pub attrs: Vec<crate::attr::Attribute>,
     pub left: Box<Expr>,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub right: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:279-288`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L279-L288)*
 
 An assignment expression: `a = compute()`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprassign-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprAssign`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprassign-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprAssign`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprassign-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprAssign`
 
 ##### `impl Hash for crate::ExprAssign`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprassign-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprAssign`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprassign-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprAssign`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprassign-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprAssign`
+##### `impl Sealed for ExprAssign`
 
-##### `impl<T> Spanned for ExprAssign`
+##### `impl Spanned for ExprAssign`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprassign-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprAssign`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprassign-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprAsync`
 
 ```rust
 struct ExprAsync {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub async_token: $crate::token::Async,
-    pub capture: Option<$crate::token::Move>,
+    pub async_token: token::Async,
+    pub capture: Option<token::Move>,
     pub block: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:290-299`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L290-L299)*
 
 An async block: `async { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprasync-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprAsync`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprasync-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprAsync`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprasync-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprAsync`
 
 ##### `impl Hash for crate::ExprAsync`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprasync-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprAsync`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprasync-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprAsync`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprasync-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprAsync`
+##### `impl Sealed for ExprAsync`
 
-##### `impl<T> Spanned for ExprAsync`
+##### `impl Spanned for ExprAsync`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprasync-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprAsync`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprasync-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprAwait`
 
@@ -2146,50 +2732,52 @@ An async block: `async { ... }`.
 struct ExprAwait {
     pub attrs: Vec<crate::attr::Attribute>,
     pub base: Box<Expr>,
-    pub dot_token: $crate::token::Dot,
-    pub await_token: $crate::token::Await,
+    pub dot_token: token::Dot,
+    pub await_token: token::Await,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:301-310`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L301-L310)*
 
 An await expression: `fut.await`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprawait-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprAwait`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprawait-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprAwait`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprawait-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprAwait`
 
 ##### `impl Hash for crate::ExprAwait`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprawait-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprAwait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprawait-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprAwait`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprawait-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprAwait`
+##### `impl Sealed for ExprAwait`
 
-##### `impl<T> Spanned for ExprAwait`
+##### `impl Spanned for ExprAwait`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprawait-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprAwait`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprawait-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprBlock`
 
@@ -2201,97 +2789,101 @@ struct ExprBlock {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:323-331`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L323-L331)*
+
 A blocked scope: `{ ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprblock-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprBlock`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprblock-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprBlock`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprblock-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprBlock`
 
 ##### `impl Hash for crate::ExprBlock`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprblock-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprBlock`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprBlock`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprblock-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprBlock`
+##### `impl Sealed for ExprBlock`
 
-##### `impl<T> Spanned for ExprBlock`
+##### `impl Spanned for ExprBlock`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprblock-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprBlock`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprblock-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprBreak`
 
 ```rust
 struct ExprBreak {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub break_token: $crate::token::Break,
+    pub break_token: token::Break,
     pub label: Option<crate::lifetime::Lifetime>,
     pub expr: Option<Box<Expr>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:333-343`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L333-L343)*
 
 A `break`, with an optional label to break and an optional
 expression.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprbreak-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprBreak`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprbreak-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprBreak`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprbreak-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprBreak`
 
 ##### `impl Hash for crate::ExprBreak`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprbreak-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprBreak`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprbreak-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprBreak`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprbreak-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprBreak`
+##### `impl Sealed for ExprBreak`
 
-##### `impl<T> Spanned for ExprBreak`
+##### `impl Spanned for ExprBreak`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprbreak-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprBreak`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprbreak-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprClosure`
 
@@ -2299,157 +2891,163 @@ expression.
 struct ExprClosure {
     pub attrs: Vec<crate::attr::Attribute>,
     pub lifetimes: Option<crate::generics::BoundLifetimes>,
-    pub constness: Option<$crate::token::Const>,
-    pub movability: Option<$crate::token::Static>,
-    pub asyncness: Option<$crate::token::Async>,
-    pub capture: Option<$crate::token::Move>,
-    pub or1_token: $crate::token::Or,
-    pub inputs: crate::punctuated::Punctuated<crate::pat::Pat, $crate::token::Comma>,
-    pub or2_token: $crate::token::Or,
+    pub constness: Option<token::Const>,
+    pub movability: Option<token::Static>,
+    pub asyncness: Option<token::Async>,
+    pub capture: Option<token::Move>,
+    pub or1_token: token::Or,
+    pub inputs: crate::punctuated::Punctuated<crate::pat::Pat, token::Comma>,
+    pub or2_token: token::Or,
     pub output: crate::ty::ReturnType,
     pub body: Box<Expr>,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:367-383`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L367-L383)*
+
 A closure expression: `|a, b| a + b`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprclosure-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprClosure`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprclosure-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprClosure`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprclosure-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprClosure`
 
 ##### `impl Hash for crate::ExprClosure`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprclosure-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprClosure`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprclosure-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprClosure`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprclosure-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprClosure`
+##### `impl Sealed for ExprClosure`
 
-##### `impl<T> Spanned for ExprClosure`
+##### `impl Spanned for ExprClosure`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprclosure-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprClosure`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprclosure-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprConst`
 
 ```rust
 struct ExprConst {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub const_token: $crate::token::Const,
+    pub const_token: token::Const,
     pub block: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprconst-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprConst`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprconst-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprConst`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprConst`
 
 ##### `impl Hash for crate::ExprConst`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprconst-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprConst`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprConst`
+##### `impl Sealed for ExprConst`
 
-##### `impl<T> Spanned for ExprConst`
+##### `impl Spanned for ExprConst`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprconst-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprConst`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprContinue`
 
 ```rust
 struct ExprContinue {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub continue_token: $crate::token::Continue,
+    pub continue_token: token::Continue,
     pub label: Option<crate::lifetime::Lifetime>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:395-403`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L395-L403)*
 
 A `continue`, with an optional label.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprcontinue-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprContinue`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprcontinue-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprContinue`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprcontinue-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprContinue`
 
 ##### `impl Hash for crate::ExprContinue`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprcontinue-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprContinue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprcontinue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprContinue`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprcontinue-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprContinue`
+##### `impl Sealed for ExprContinue`
 
-##### `impl<T> Spanned for ExprContinue`
+##### `impl Spanned for ExprContinue`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprcontinue-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprContinue`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprcontinue-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprForLoop`
 
@@ -2457,53 +3055,55 @@ A `continue`, with an optional label.
 struct ExprForLoop {
     pub attrs: Vec<crate::attr::Attribute>,
     pub label: Option<Label>,
-    pub for_token: $crate::token::For,
+    pub for_token: token::For,
     pub pat: Box<crate::pat::Pat>,
-    pub in_token: $crate::token::In,
+    pub in_token: token::In,
     pub expr: Box<Expr>,
     pub body: crate::stmt::Block,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:417-429`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L417-L429)*
+
 A for loop: `for pat in expr { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprforloop-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprForLoop`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprforloop-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprForLoop`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprforloop-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprForLoop`
 
 ##### `impl Hash for crate::ExprForLoop`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprforloop-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprForLoop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprforloop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprForLoop`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprforloop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprForLoop`
+##### `impl Sealed for ExprForLoop`
 
-##### `impl<T> Spanned for ExprForLoop`
+##### `impl Spanned for ExprForLoop`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprforloop-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprForLoop`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprforloop-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprGroup`
 
@@ -2515,6 +3115,8 @@ struct ExprGroup {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:431-443`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L431-L443)*
+
 An expression contained within invisible delimiters.
 
 This variant is important for faithfully representing the precedence
@@ -2523,49 +3125,51 @@ of expressions and is related to `None`-delimited spans in a
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprgroup-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprGroup`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprgroup-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprGroup`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprgroup-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprGroup`
 
 ##### `impl Hash for crate::ExprGroup`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprgroup-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::ExprGroup`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprgroup-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprGroup`
+##### `impl Sealed for ExprGroup`
 
-##### `impl<T> Spanned for ExprGroup`
+##### `impl Spanned for ExprGroup`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprgroup-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprGroup`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprgroup-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprIf`
 
 ```rust
 struct ExprIf {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub if_token: $crate::token::If,
+    pub if_token: token::If,
     pub cond: Box<Expr>,
     pub then_branch: crate::stmt::Block,
-    pub else_branch: Option<($crate::token::Else, Box<Expr>)>,
+    pub else_branch: Option<(token::Else, Box<Expr>)>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:445-459`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L445-L459)*
 
 An `if` expression with an optional `else` block: `if expr { ... }
 else { ... }`.
@@ -2575,142 +3179,146 @@ expression, not any of the other types of expression.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprif-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprIf`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprif-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprIf`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprif-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprIf`
 
 ##### `impl Hash for crate::ExprIf`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprif-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprIf`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprif-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprIf`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprif-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprIf`
+##### `impl Sealed for ExprIf`
 
-##### `impl<T> Spanned for ExprIf`
+##### `impl Spanned for ExprIf`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprif-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprIf`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprif-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprInfer`
 
 ```rust
 struct ExprInfer {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub underscore_token: $crate::token::Underscore,
+    pub underscore_token: token::Underscore,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:472-479`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L472-L479)*
 
 The inferred value of a const generic argument, denoted `_`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprinfer-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprInfer`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprinfer-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprInfer`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprinfer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprInfer`
 
 ##### `impl Hash for crate::ExprInfer`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprinfer-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprInfer`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprinfer-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprInfer`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprinfer-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprInfer`
+##### `impl Sealed for ExprInfer`
 
-##### `impl<T> Spanned for ExprInfer`
+##### `impl Spanned for ExprInfer`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprinfer-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprInfer`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprinfer-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprLet`
 
 ```rust
 struct ExprLet {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub let_token: $crate::token::Let,
+    pub let_token: token::Let,
     pub pat: Box<crate::pat::Pat>,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub expr: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:481-491`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L481-L491)*
 
 A `let` guard: `let Some(x) = opt`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprlet-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprLet`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprlet-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprLet`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprlet-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprLet`
 
 ##### `impl Hash for crate::ExprLet`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprlet-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprLet`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprlet-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprLet`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprlet-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprLet`
+##### `impl Sealed for ExprLet`
 
-##### `impl<T> Spanned for ExprLet`
+##### `impl Spanned for ExprLet`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprlet-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprLet`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprlet-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprLoop`
 
@@ -2718,102 +3326,106 @@ A `let` guard: `let Some(x) = opt`.
 struct ExprLoop {
     pub attrs: Vec<crate::attr::Attribute>,
     pub label: Option<Label>,
-    pub loop_token: $crate::token::Loop,
+    pub loop_token: token::Loop,
     pub body: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:502-511`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L502-L511)*
 
 Conditionless loop: `loop { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprloop-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprLoop`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprloop-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprLoop`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprloop-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprLoop`
 
 ##### `impl Hash for crate::ExprLoop`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprloop-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprLoop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprloop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprLoop`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprloop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprLoop`
+##### `impl Sealed for ExprLoop`
 
-##### `impl<T> Spanned for ExprLoop`
+##### `impl Spanned for ExprLoop`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprloop-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprLoop`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprloop-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprMatch`
 
 ```rust
 struct ExprMatch {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub match_token: $crate::token::Match,
+    pub match_token: token::Match,
     pub expr: Box<Expr>,
     pub brace_token: token::Brace,
     pub arms: Vec<Arm>,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:522-532`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L522-L532)*
+
 A `match` expression: `match n { Some(n) => {}, None => {} }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprmatch-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprMatch`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprmatch-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprMatch`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprmatch-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprMatch`
 
 ##### `impl Hash for crate::ExprMatch`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprmatch-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprMatch`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprmatch-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprMatch`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprmatch-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprMatch`
+##### `impl Sealed for ExprMatch`
 
-##### `impl<T> Spanned for ExprMatch`
+##### `impl Spanned for ExprMatch`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprmatch-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprMatch`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprmatch-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprRange`
 
@@ -2826,97 +3438,101 @@ struct ExprRange {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L571-L580)*
+
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprrange-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprRange`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprrange-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprRange`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprrange-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprRange`
 
 ##### `impl Hash for crate::ExprRange`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprrange-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprRange`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprrange-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprRange`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprrange-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprRange`
+##### `impl Sealed for ExprRange`
 
-##### `impl<T> Spanned for ExprRange`
+##### `impl Spanned for ExprRange`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprrange-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprRange`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprrange-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprRawAddr`
 
 ```rust
 struct ExprRawAddr {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub and_token: $crate::token::And,
-    pub raw: $crate::token::Raw,
+    pub and_token: token::And,
+    pub raw: token::Raw,
     pub mutability: PointerMutability,
     pub expr: Box<Expr>,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:582-592`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L582-L592)*
+
 Address-of operation: `&raw const place` or `&raw mut place`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprrawaddr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprRawAddr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprrawaddr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprRawAddr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprrawaddr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprRawAddr`
 
 ##### `impl Hash for crate::ExprRawAddr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprrawaddr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprRawAddr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprrawaddr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprRawAddr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprrawaddr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprRawAddr`
+##### `impl Sealed for ExprRawAddr`
 
-##### `impl<T> Spanned for ExprRawAddr`
+##### `impl Spanned for ExprRawAddr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprrawaddr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprRawAddr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprrawaddr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprRepeat`
 
@@ -2925,100 +3541,104 @@ struct ExprRepeat {
     pub attrs: Vec<crate::attr::Attribute>,
     pub bracket_token: token::Bracket,
     pub expr: Box<Expr>,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
     pub len: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:605-615`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L605-L615)*
 
 An array literal constructed from one repeated element: `[0u8; N]`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprrepeat-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprRepeat`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprrepeat-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprRepeat`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprrepeat-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprRepeat`
 
 ##### `impl Hash for crate::ExprRepeat`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprrepeat-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprRepeat`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprrepeat-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprRepeat`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprrepeat-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprRepeat`
+##### `impl Sealed for ExprRepeat`
 
-##### `impl<T> Spanned for ExprRepeat`
+##### `impl Spanned for ExprRepeat`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprrepeat-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprRepeat`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprrepeat-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprReturn`
 
 ```rust
 struct ExprReturn {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub return_token: $crate::token::Return,
+    pub return_token: token::Return,
     pub expr: Option<Box<Expr>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:617-625`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L617-L625)*
 
 A `return`, with an optional value to be returned.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprreturn-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprReturn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprreturn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprReturn`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprreturn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprReturn`
 
 ##### `impl Hash for crate::ExprReturn`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprreturn-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprReturn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprreturn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprReturn`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprreturn-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprReturn`
+##### `impl Sealed for ExprReturn`
 
-##### `impl<T> Spanned for ExprReturn`
+##### `impl Spanned for ExprReturn`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprreturn-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprReturn`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprreturn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprTry`
 
@@ -3026,99 +3646,103 @@ A `return`, with an optional value to be returned.
 struct ExprTry {
     pub attrs: Vec<crate::attr::Attribute>,
     pub expr: Box<Expr>,
-    pub question_token: $crate::token::Question,
+    pub question_token: token::Question,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:644-652`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L644-L652)*
 
 A try-expression: `expr?`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprtry-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprTry`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprtry-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprTry`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprtry-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprTry`
 
 ##### `impl Hash for crate::ExprTry`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprtry-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprTry`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprtry-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprTry`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprtry-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprTry`
+##### `impl Sealed for ExprTry`
 
-##### `impl<T> Spanned for ExprTry`
+##### `impl Spanned for ExprTry`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprtry-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprTry`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprtry-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprTryBlock`
 
 ```rust
 struct ExprTryBlock {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub try_token: $crate::token::Try,
+    pub try_token: token::Try,
     pub block: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:654-662`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L654-L662)*
 
 A try block: `try { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprtryblock-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprTryBlock`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprtryblock-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprTryBlock`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprtryblock-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprTryBlock`
 
 ##### `impl Hash for crate::ExprTryBlock`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprtryblock-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprTryBlock`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprtryblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprTryBlock`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprtryblock-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprTryBlock`
+##### `impl Sealed for ExprTryBlock`
 
-##### `impl<T> Spanned for ExprTryBlock`
+##### `impl Spanned for ExprTryBlock`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprtryblock-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprTryBlock`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprtryblock-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprTuple`
 
@@ -3126,99 +3750,103 @@ A try block: `try { ... }`.
 struct ExprTuple {
     pub attrs: Vec<crate::attr::Attribute>,
     pub paren_token: token::Paren,
-    pub elems: crate::punctuated::Punctuated<Expr, $crate::token::Comma>,
+    pub elems: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:664-672`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L664-L672)*
 
 A tuple expression: `(a, b, c, d)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprtuple-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprTuple`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprtuple-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprTuple`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprtuple-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprTuple`
 
 ##### `impl Hash for crate::ExprTuple`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprtuple-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprTuple`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprtuple-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprTuple`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprtuple-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprTuple`
+##### `impl Sealed for ExprTuple`
 
-##### `impl<T> Spanned for ExprTuple`
+##### `impl Spanned for ExprTuple`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprtuple-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprTuple`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprtuple-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprUnsafe`
 
 ```rust
 struct ExprUnsafe {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub unsafe_token: $crate::token::Unsafe,
+    pub unsafe_token: token::Unsafe,
     pub block: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:684-692`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L684-L692)*
 
 An unsafe block: `unsafe { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprunsafe-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprUnsafe`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprunsafe-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprUnsafe`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprunsafe-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprUnsafe`
 
 ##### `impl Hash for crate::ExprUnsafe`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprunsafe-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprUnsafe`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprunsafe-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprUnsafe`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprunsafe-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprUnsafe`
+##### `impl Sealed for ExprUnsafe`
 
-##### `impl<T> Spanned for ExprUnsafe`
+##### `impl Spanned for ExprUnsafe`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprunsafe-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprUnsafe`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprunsafe-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprWhile`
 
@@ -3226,101 +3854,105 @@ An unsafe block: `unsafe { ... }`.
 struct ExprWhile {
     pub attrs: Vec<crate::attr::Attribute>,
     pub label: Option<Label>,
-    pub while_token: $crate::token::While,
+    pub while_token: token::While,
     pub cond: Box<Expr>,
     pub body: crate::stmt::Block,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:694-704`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L694-L704)*
+
 A while loop: `while expr { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprwhile-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprWhile`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprwhile-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprWhile`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprwhile-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprWhile`
 
 ##### `impl Hash for crate::ExprWhile`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprwhile-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprWhile`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprwhile-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprWhile`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprwhile-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprWhile`
+##### `impl Sealed for ExprWhile`
 
-##### `impl<T> Spanned for ExprWhile`
+##### `impl Spanned for ExprWhile`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprwhile-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprWhile`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprwhile-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprYield`
 
 ```rust
 struct ExprYield {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub yield_token: $crate::token::Yield,
+    pub yield_token: token::Yield,
     pub expr: Option<Box<Expr>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:706-714`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L706-L714)*
 
 A yield expression: `yield expr`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexpryield-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprYield`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexpryield-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprYield`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexpryield-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprYield`
 
 ##### `impl Hash for crate::ExprYield`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexpryield-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprYield`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexpryield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprYield`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexpryield-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprYield`
+##### `impl Sealed for ExprYield`
 
-##### `impl<T> Spanned for ExprYield`
+##### `impl Spanned for ExprYield`
 
-- `fn span(self: &Self) -> Span`
+- <span id="expryield-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprYield`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexpryield-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `File`
 
@@ -3331,6 +3963,8 @@ struct File {
     pub items: Vec<crate::item::Item>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/file.rs:4-84`](../../.source_1765210505/syn-2.0.111/src/file.rs#L4-L84)*
 
 A complete file of Rust source code.
 
@@ -3408,46 +4042,48 @@ File {
 
 ##### `impl Clone for crate::File`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefile-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::File`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefile-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::File`
 
 ##### `impl Hash for crate::File`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefile-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::file::File`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratefilefile-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::File`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefile-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for File`
+##### `impl Sealed for File`
 
-##### `impl<T> Spanned for File`
+##### `impl Spanned for File`
 
-- `fn span(self: &Self) -> Span`
+- <span id="file-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::file::File`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratefilefile-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `BoundLifetimes`
 
 ```rust
 struct BoundLifetimes {
-    pub for_token: $crate::token::For,
-    pub lt_token: $crate::token::Lt,
-    pub lifetimes: crate::punctuated::Punctuated<GenericParam, $crate::token::Comma>,
-    pub gt_token: $crate::token::Gt,
+    pub for_token: token::For,
+    pub lt_token: token::Lt,
+    pub lifetimes: crate::punctuated::Punctuated<GenericParam, token::Comma>,
+    pub gt_token: token::Gt,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:352-361`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L352-L361)*
 
 A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
@@ -3455,53 +4091,55 @@ A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
 ##### `impl Clone for crate::BoundLifetimes`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateboundlifetimes-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::BoundLifetimes`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateboundlifetimes-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BoundLifetimes`
 
-- `fn default() -> Self`
+- <span id="boundlifetimes-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for crate::BoundLifetimes`
 
 ##### `impl Hash for crate::BoundLifetimes`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateboundlifetimes-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::BoundLifetimes`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericsboundlifetimes-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::BoundLifetimes`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateboundlifetimes-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for BoundLifetimes`
+##### `impl Sealed for BoundLifetimes`
 
-##### `impl<T> Spanned for BoundLifetimes`
+##### `impl Spanned for BoundLifetimes`
 
-- `fn span(self: &Self) -> Span`
+- <span id="boundlifetimes-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::BoundLifetimes`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsboundlifetimes-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ConstParam`
 
 ```rust
 struct ConstParam {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub const_token: $crate::token::Const,
+    pub const_token: token::Const,
     pub ident: crate::ident::Ident,
-    pub colon_token: $crate::token::Colon,
+    pub colon_token: token::Colon,
     pub ty: crate::ty::Type,
-    pub eq_token: Option<$crate::token::Eq>,
+    pub eq_token: Option<token::Eq>,
     pub default: Option<crate::expr::Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:80-92`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L80-L92)*
 
 A const generic parameter: `const LENGTH: usize`.
 
@@ -3509,46 +4147,48 @@ A const generic parameter: `const LENGTH: usize`.
 
 ##### `impl Clone for crate::ConstParam`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateconstparam-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ConstParam`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateconstparam-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ConstParam`
 
 ##### `impl Hash for crate::ConstParam`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateconstparam-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::ConstParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericsconstparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ConstParam`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateconstparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ConstParam`
+##### `impl Sealed for ConstParam`
 
-##### `impl<T> Spanned for ConstParam`
+##### `impl Spanned for ConstParam`
 
-- `fn span(self: &Self) -> Span`
+- <span id="constparam-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::ConstParam`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsconstparam-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Generics`
 
 ```rust
 struct Generics {
-    pub lt_token: Option<$crate::token::Lt>,
-    pub params: crate::punctuated::Punctuated<GenericParam, $crate::token::Comma>,
-    pub gt_token: Option<$crate::token::Gt>,
+    pub lt_token: Option<token::Lt>,
+    pub params: crate::punctuated::Punctuated<GenericParam, token::Comma>,
+    pub gt_token: Option<token::Gt>,
     pub where_clause: Option<WhereClause>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:15-32`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L15-L32)*
 
 Lifetimes and type parameters attached to a declaration of a function,
 enum, trait, etc.
@@ -3561,59 +4201,59 @@ grammar, there may be other tokens in between these two things.
 
 #### Implementations
 
-- `fn lifetimes(self: &Self) -> Lifetimes<'_>` — [`Lifetimes`](generics/index.md)
+- <span id="generics-lifetimes"></span>`fn lifetimes(&self) -> Lifetimes<'_>` — [`Lifetimes`](generics/index.md)
 
-- `fn lifetimes_mut(self: &mut Self) -> LifetimesMut<'_>` — [`LifetimesMut`](generics/index.md)
+- <span id="generics-lifetimes-mut"></span>`fn lifetimes_mut(&mut self) -> LifetimesMut<'_>` — [`LifetimesMut`](generics/index.md)
 
-- `fn type_params(self: &Self) -> TypeParams<'_>` — [`TypeParams`](generics/index.md)
+- <span id="generics-type-params"></span>`fn type_params(&self) -> TypeParams<'_>` — [`TypeParams`](generics/index.md)
 
-- `fn type_params_mut(self: &mut Self) -> TypeParamsMut<'_>` — [`TypeParamsMut`](generics/index.md)
+- <span id="generics-type-params-mut"></span>`fn type_params_mut(&mut self) -> TypeParamsMut<'_>` — [`TypeParamsMut`](generics/index.md)
 
-- `fn const_params(self: &Self) -> ConstParams<'_>` — [`ConstParams`](generics/index.md)
+- <span id="generics-const-params"></span>`fn const_params(&self) -> ConstParams<'_>` — [`ConstParams`](generics/index.md)
 
-- `fn const_params_mut(self: &mut Self) -> ConstParamsMut<'_>` — [`ConstParamsMut`](generics/index.md)
+- <span id="generics-const-params-mut"></span>`fn const_params_mut(&mut self) -> ConstParamsMut<'_>` — [`ConstParamsMut`](generics/index.md)
 
-- `fn make_where_clause(self: &mut Self) -> &mut WhereClause` — [`WhereClause`](#whereclause)
+- <span id="generics-make-where-clause"></span>`fn make_where_clause(&mut self) -> &mut WhereClause` — [`WhereClause`](generics/index.md)
 
-- `fn split_for_impl(self: &Self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](#implgenerics), [`TypeGenerics`](#typegenerics), [`WhereClause`](#whereclause)
+- <span id="generics-split-for-impl"></span>`fn split_for_impl(&self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](generics/index.md), [`TypeGenerics`](generics/index.md), [`WhereClause`](generics/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Generics`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crategenerics-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Generics`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crategenerics-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Generics`
 
-- `fn default() -> Self`
+- <span id="generics-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for crate::Generics`
 
 ##### `impl Hash for crate::Generics`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crategenerics-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::Generics`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericsgenerics-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Generics`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crategenerics-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Generics`
+##### `impl Sealed for Generics`
 
-##### `impl<T> Spanned for Generics`
+##### `impl Spanned for Generics`
 
-- `fn span(self: &Self) -> Span`
+- <span id="generics-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::Generics`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsgenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `LifetimeParam`
 
@@ -3621,60 +4261,64 @@ grammar, there may be other tokens in between these two things.
 struct LifetimeParam {
     pub attrs: Vec<crate::attr::Attribute>,
     pub lifetime: crate::lifetime::Lifetime,
-    pub colon_token: Option<$crate::token::Colon>,
-    pub bounds: crate::punctuated::Punctuated<crate::lifetime::Lifetime, $crate::token::Plus>,
+    pub colon_token: Option<token::Colon>,
+    pub bounds: crate::punctuated::Punctuated<crate::lifetime::Lifetime, token::Plus>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:56-65`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L56-L65)*
 
 A lifetime definition: `'a: 'b + 'c + 'd`.
 
 #### Implementations
 
-- `fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](#lifetime)
+- <span id="lifetimeparam-new"></span>`fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](lifetime/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::LifetimeParam`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelifetimeparam-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::LifetimeParam`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelifetimeparam-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LifetimeParam`
 
 ##### `impl Hash for crate::LifetimeParam`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelifetimeparam-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::LifetimeParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericslifetimeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::LifetimeParam`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelifetimeparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LifetimeParam`
+##### `impl Sealed for LifetimeParam`
 
-##### `impl<T> Spanned for LifetimeParam`
+##### `impl Spanned for LifetimeParam`
 
-- `fn span(self: &Self) -> Span`
+- <span id="lifetimeparam-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::LifetimeParam`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericslifetimeparam-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PredicateLifetime`
 
 ```rust
 struct PredicateLifetime {
     pub lifetime: crate::lifetime::Lifetime,
-    pub colon_token: $crate::token::Colon,
-    pub bounds: crate::punctuated::Punctuated<crate::lifetime::Lifetime, $crate::token::Plus>,
+    pub colon_token: token::Colon,
+    pub bounds: crate::punctuated::Punctuated<crate::lifetime::Lifetime, token::Plus>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:490-498`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L490-L498)*
 
 A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 
@@ -3682,31 +4326,31 @@ A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 
 ##### `impl Clone for crate::PredicateLifetime`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepredicatelifetime-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PredicateLifetime`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepredicatelifetime-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PredicateLifetime`
 
 ##### `impl Hash for crate::PredicateLifetime`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepredicatelifetime-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PredicateLifetime`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepredicatelifetime-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PredicateLifetime`
+##### `impl Sealed for PredicateLifetime`
 
-##### `impl<T> Spanned for PredicateLifetime`
+##### `impl Spanned for PredicateLifetime`
 
-- `fn span(self: &Self) -> Span`
+- <span id="predicatelifetime-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::PredicateLifetime`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericspredicatelifetime-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PredicateType`
 
@@ -3714,10 +4358,12 @@ A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 struct PredicateType {
     pub lifetimes: Option<BoundLifetimes>,
     pub bounded_ty: crate::ty::Type,
-    pub colon_token: $crate::token::Colon,
-    pub bounds: crate::punctuated::Punctuated<TypeParamBound, $crate::token::Plus>,
+    pub colon_token: token::Colon,
+    pub bounds: crate::punctuated::Punctuated<TypeParamBound, token::Plus>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:500-512`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L500-L512)*
 
 A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
@@ -3731,7 +4377,7 @@ A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
   The type being bounded
 
-- **`bounds`**: `crate::punctuated::Punctuated<TypeParamBound, $crate::token::Plus>`
+- **`bounds`**: `crate::punctuated::Punctuated<TypeParamBound, token::Plus>`
 
   Trait and lifetime bounds (`Clone+Send+'static`)
 
@@ -3739,31 +4385,31 @@ A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
 ##### `impl Clone for crate::PredicateType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepredicatetype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PredicateType`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepredicatetype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PredicateType`
 
 ##### `impl Hash for crate::PredicateType`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepredicatetype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PredicateType`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepredicatetype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PredicateType`
+##### `impl Sealed for PredicateType`
 
-##### `impl<T> Spanned for PredicateType`
+##### `impl Spanned for PredicateType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="predicatetype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::PredicateType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericspredicatetype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TraitBound`
 
@@ -3775,6 +4421,8 @@ struct TraitBound {
     pub path: crate::path::Path,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:410-421`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L410-L421)*
 
 A trait used as a bound on a type parameter.
 
@@ -3790,41 +4438,41 @@ A trait used as a bound on a type parameter.
 
 #### Implementations
 
-- `fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericstraitbound-do-parse"></span>`fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TraitBound`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetraitbound-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TraitBound`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraitbound-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitBound`
 
 ##### `impl Hash for crate::TraitBound`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetraitbound-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::TraitBound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericstraitbound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TraitBound`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetraitbound-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TraitBound`
+##### `impl Sealed for TraitBound`
 
-##### `impl<T> Spanned for TraitBound`
+##### `impl Spanned for TraitBound`
 
-- `fn span(self: &Self) -> Span`
+- <span id="traitbound-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::TraitBound`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericstraitbound-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeParam`
 
@@ -3832,12 +4480,14 @@ A trait used as a bound on a type parameter.
 struct TypeParam {
     pub attrs: Vec<crate::attr::Attribute>,
     pub ident: crate::ident::Ident,
-    pub colon_token: Option<$crate::token::Colon>,
-    pub bounds: crate::punctuated::Punctuated<TypeParamBound, $crate::token::Plus>,
-    pub eq_token: Option<$crate::token::Eq>,
+    pub colon_token: Option<token::Colon>,
+    pub bounds: crate::punctuated::Punctuated<TypeParamBound, token::Plus>,
+    pub eq_token: Option<token::Eq>,
     pub default: Option<crate::ty::Type>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:67-78`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L67-L78)*
 
 A generic type parameter: `T: Into<String>`.
 
@@ -3845,44 +4495,46 @@ A generic type parameter: `T: Into<String>`.
 
 ##### `impl Clone for crate::TypeParam`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypeparam-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeParam`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypeparam-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeParam`
 
 ##### `impl Hash for crate::TypeParam`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypeparam-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::TypeParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericstypeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeParam`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypeparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeParam`
+##### `impl Sealed for TypeParam`
 
-##### `impl<T> Spanned for TypeParam`
+##### `impl Spanned for TypeParam`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typeparam-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::TypeParam`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericstypeparam-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `WhereClause`
 
 ```rust
 struct WhereClause {
-    pub where_token: $crate::token::Where,
-    pub predicates: crate::punctuated::Punctuated<WherePredicate, $crate::token::Comma>,
+    pub where_token: token::Where,
+    pub predicates: crate::punctuated::Punctuated<WherePredicate, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:461-469`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L461-L469)*
 
 A `where` clause in a definition: `where T: Deserialize<'de>, D:
 'static`.
@@ -3891,46 +4543,48 @@ A `where` clause in a definition: `where T: Deserialize<'de>, D:
 
 ##### `impl Clone for crate::WhereClause`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratewhereclause-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::WhereClause`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratewhereclause-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::WhereClause`
 
 ##### `impl Hash for crate::WhereClause`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratewhereclause-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::WhereClause`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericswhereclause-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::WhereClause`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratewhereclause-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for WhereClause`
+##### `impl Sealed for WhereClause`
 
-##### `impl<T> Spanned for WhereClause`
+##### `impl Spanned for WhereClause`
 
-- `fn span(self: &Self) -> Span`
+- <span id="whereclause-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::WhereClause`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericswhereclause-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PreciseCapture`
 
 ```rust
 struct PreciseCapture {
-    pub use_token: $crate::token::Use,
-    pub lt_token: $crate::token::Lt,
-    pub params: crate::punctuated::Punctuated<CapturedParam, $crate::token::Comma>,
-    pub gt_token: $crate::token::Gt,
+    pub use_token: token::Use,
+    pub lt_token: token::Lt,
+    pub params: crate::punctuated::Punctuated<CapturedParam, token::Comma>,
+    pub gt_token: token::Gt,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:433-443`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L433-L443)*
 
 Precise capturing bound: the 'use&lt;&hellip;&gt;' in `impl Trait +
 use<'a, T>`.
@@ -3939,35 +4593,35 @@ use<'a, T>`.
 
 ##### `impl Clone for crate::PreciseCapture`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateprecisecapture-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PreciseCapture`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateprecisecapture-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PreciseCapture`
 
 ##### `impl Hash for crate::PreciseCapture`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateprecisecapture-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::PreciseCapture`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericsprecisecapture-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::PreciseCapture`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateprecisecapture-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PreciseCapture`
+##### `impl Sealed for PreciseCapture`
 
-##### `impl<T> Spanned for PreciseCapture`
+##### `impl Spanned for PreciseCapture`
 
-- `fn span(self: &Self) -> Span`
+- <span id="precisecapture-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::PreciseCapture`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsprecisecapture-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ImplGenerics<'a>`
 
@@ -3975,37 +4629,39 @@ use<'a, T>`.
 struct ImplGenerics<'a>(&'a Generics);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:275`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L275)*
+
 Returned by `Generics::split_for_impl`.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for ImplGenerics<'a>`
+##### `impl Clone for ImplGenerics<'a>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="implgenerics-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a> Debug for ImplGenerics<'a>`
+##### `impl Debug for ImplGenerics<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="implgenerics-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Eq for ImplGenerics<'a>`
+##### `impl Eq for ImplGenerics<'a>`
 
-##### `impl<'a> Hash for ImplGenerics<'a>`
+##### `impl Hash for ImplGenerics<'a>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="implgenerics-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<'a> PartialEq for ImplGenerics<'a>`
+##### `impl PartialEq for ImplGenerics<'a>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="implgenerics-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ImplGenerics<'a>`
+##### `impl Sealed for ImplGenerics<'a>`
 
-##### `impl<T> Spanned for ImplGenerics<'a>`
+##### `impl Spanned for ImplGenerics<'a>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="implgenerics-span"></span>`fn span(&self) -> Span`
 
-##### `impl<'a> ToTokens for crate::generics::ImplGenerics<'a>`
+##### `impl ToTokens for crate::generics::ImplGenerics<'a>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsimplgenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Turbofish<'a>`
 
@@ -4013,37 +4669,39 @@ Returned by `Generics::split_for_impl`.
 struct Turbofish<'a>(&'a Generics);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:291`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L291)*
+
 Returned by `TypeGenerics::as_turbofish`.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Turbofish<'a>`
+##### `impl Clone for Turbofish<'a>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="turbofish-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a> Debug for Turbofish<'a>`
+##### `impl Debug for Turbofish<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="turbofish-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Eq for Turbofish<'a>`
+##### `impl Eq for Turbofish<'a>`
 
-##### `impl<'a> Hash for Turbofish<'a>`
+##### `impl Hash for Turbofish<'a>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="turbofish-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<'a> PartialEq for Turbofish<'a>`
+##### `impl PartialEq for Turbofish<'a>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="turbofish-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Turbofish<'a>`
+##### `impl Sealed for Turbofish<'a>`
 
-##### `impl<T> Spanned for Turbofish<'a>`
+##### `impl Spanned for Turbofish<'a>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="turbofish-span"></span>`fn span(&self) -> Span`
 
-##### `impl<'a> ToTokens for crate::generics::Turbofish<'a>`
+##### `impl ToTokens for crate::generics::Turbofish<'a>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsturbofish-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeGenerics<'a>`
 
@@ -4051,41 +4709,43 @@ Returned by `TypeGenerics::as_turbofish`.
 struct TypeGenerics<'a>(&'a Generics);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:283`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L283)*
+
 Returned by `Generics::split_for_impl`.
 
 #### Implementations
 
-- `fn as_turbofish(self: &Self) -> Turbofish<'a>` — [`Turbofish`](#turbofish)
+- <span id="typegenerics-as-turbofish"></span>`fn as_turbofish(&self) -> Turbofish<'a>` — [`Turbofish`](generics/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for TypeGenerics<'a>`
+##### `impl Clone for TypeGenerics<'a>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="typegenerics-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a> Debug for TypeGenerics<'a>`
+##### `impl Debug for TypeGenerics<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="typegenerics-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Eq for TypeGenerics<'a>`
+##### `impl Eq for TypeGenerics<'a>`
 
-##### `impl<'a> Hash for TypeGenerics<'a>`
+##### `impl Hash for TypeGenerics<'a>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="typegenerics-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<'a> PartialEq for TypeGenerics<'a>`
+##### `impl PartialEq for TypeGenerics<'a>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="typegenerics-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeGenerics<'a>`
+##### `impl Sealed for TypeGenerics<'a>`
 
-##### `impl<T> Spanned for TypeGenerics<'a>`
+##### `impl Spanned for TypeGenerics<'a>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typegenerics-span"></span>`fn span(&self) -> Span`
 
-##### `impl<'a> ToTokens for crate::generics::TypeGenerics<'a>`
+##### `impl ToTokens for crate::generics::TypeGenerics<'a>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericstypegenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ForeignItemFn`
 
@@ -4094,49 +4754,51 @@ struct ForeignItemFn {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
     pub sig: Signature,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:542-551`](../../.source_1765210505/syn-2.0.111/src/item.rs#L542-L551)*
 
 A foreign function in an `extern` block.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateforeignitemfn-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ForeignItemFn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateforeignitemfn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ForeignItemFn`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateforeignitemfn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ForeignItemFn`
 
 ##### `impl Hash for crate::ForeignItemFn`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateforeignitemfn-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ForeignItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemforeignitemfn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ForeignItemFn`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateforeignitemfn-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ForeignItemFn`
+##### `impl Sealed for ForeignItemFn`
 
-##### `impl<T> Spanned for ForeignItemFn`
+##### `impl Spanned for ForeignItemFn`
 
-- `fn span(self: &Self) -> Span`
+- <span id="foreignitemfn-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ForeignItemFn`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemforeignitemfn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ForeignItemMacro`
 
@@ -4144,49 +4806,51 @@ A foreign function in an `extern` block.
 struct ForeignItemMacro {
     pub attrs: Vec<crate::attr::Attribute>,
     pub mac: crate::mac::Macro,
-    pub semi_token: Option<$crate::token::Semi>,
+    pub semi_token: Option<token::Semi>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:581-589`](../../.source_1765210505/syn-2.0.111/src/item.rs#L581-L589)*
 
 A macro invocation within an extern block.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateforeignitemmacro-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ForeignItemMacro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateforeignitemmacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ForeignItemMacro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateforeignitemmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ForeignItemMacro`
 
 ##### `impl Hash for crate::ForeignItemMacro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateforeignitemmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ForeignItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemforeignitemmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ForeignItemMacro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateforeignitemmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ForeignItemMacro`
+##### `impl Sealed for ForeignItemMacro`
 
-##### `impl<T> Spanned for ForeignItemMacro`
+##### `impl Spanned for ForeignItemMacro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="foreignitemmacro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ForeignItemMacro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemforeignitemmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ForeignItemStatic`
 
@@ -4194,54 +4858,56 @@ A macro invocation within an extern block.
 struct ForeignItemStatic {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub static_token: $crate::token::Static,
+    pub static_token: token::Static,
     pub mutability: StaticMutability,
     pub ident: crate::ident::Ident,
-    pub colon_token: $crate::token::Colon,
+    pub colon_token: token::Colon,
     pub ty: Box<crate::ty::Type>,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:553-566`](../../.source_1765210505/syn-2.0.111/src/item.rs#L553-L566)*
 
 A foreign static item in an `extern` block: `static ext: u8`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateforeignitemstatic-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ForeignItemStatic`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateforeignitemstatic-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ForeignItemStatic`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateforeignitemstatic-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ForeignItemStatic`
 
 ##### `impl Hash for crate::ForeignItemStatic`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateforeignitemstatic-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ForeignItemStatic`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemforeignitemstatic-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ForeignItemStatic`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateforeignitemstatic-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ForeignItemStatic`
+##### `impl Sealed for ForeignItemStatic`
 
-##### `impl<T> Spanned for ForeignItemStatic`
+##### `impl Spanned for ForeignItemStatic`
 
-- `fn span(self: &Self) -> Span`
+- <span id="foreignitemstatic-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ForeignItemStatic`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemforeignitemstatic-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ForeignItemType`
 
@@ -4249,52 +4915,54 @@ A foreign static item in an `extern` block: `static ext: u8`.
 struct ForeignItemType {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub type_token: $crate::token::Type,
+    pub type_token: token::Type,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:568-579`](../../.source_1765210505/syn-2.0.111/src/item.rs#L568-L579)*
 
 A foreign type in an `extern` block: `type void`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateforeignitemtype-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ForeignItemType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateforeignitemtype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ForeignItemType`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateforeignitemtype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ForeignItemType`
 
 ##### `impl Hash for crate::ForeignItemType`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateforeignitemtype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ForeignItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemforeignitemtype-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ForeignItemType`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateforeignitemtype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ForeignItemType`
+##### `impl Sealed for ForeignItemType`
 
-##### `impl<T> Spanned for ForeignItemType`
+##### `impl Spanned for ForeignItemType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="foreignitemtype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ForeignItemType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemforeignitemtype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ImplItemConst`
 
@@ -4302,57 +4970,59 @@ A foreign type in an `extern` block: `type void`.
 struct ImplItemConst {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub defaultness: Option<$crate::token::Default>,
-    pub const_token: $crate::token::Const,
+    pub defaultness: Option<token::Default>,
+    pub const_token: token::Const,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
-    pub colon_token: $crate::token::Colon,
+    pub colon_token: token::Colon,
     pub ty: crate::ty::Type,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub expr: crate::expr::Expr,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:734-750`](../../.source_1765210505/syn-2.0.111/src/item.rs#L734-L750)*
 
 An associated constant within an impl block.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateimplitemconst-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ImplItemConst`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateimplitemconst-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ImplItemConst`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplitemconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplItemConst`
 
 ##### `impl Hash for crate::ImplItemConst`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateimplitemconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ImplItemConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemimplitemconst-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ImplItemConst`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateimplitemconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ImplItemConst`
+##### `impl Sealed for ImplItemConst`
 
-##### `impl<T> Spanned for ImplItemConst`
+##### `impl Spanned for ImplItemConst`
 
-- `fn span(self: &Self) -> Span`
+- <span id="implitemconst-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ImplItemConst`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemimplitemconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ImplItemFn`
 
@@ -4360,51 +5030,53 @@ An associated constant within an impl block.
 struct ImplItemFn {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub defaultness: Option<$crate::token::Default>,
+    pub defaultness: Option<token::Default>,
     pub sig: Signature,
     pub block: crate::stmt::Block,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/item.rs:752-762`](../../.source_1765210505/syn-2.0.111/src/item.rs#L752-L762)*
+
 An associated function within an impl block.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateimplitemfn-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ImplItemFn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateimplitemfn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ImplItemFn`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplitemfn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplItemFn`
 
 ##### `impl Hash for crate::ImplItemFn`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateimplitemfn-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ImplItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemimplitemfn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ImplItemFn`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateimplitemfn-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ImplItemFn`
+##### `impl Sealed for ImplItemFn`
 
-##### `impl<T> Spanned for ImplItemFn`
+##### `impl Spanned for ImplItemFn`
 
-- `fn span(self: &Self) -> Span`
+- <span id="implitemfn-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ImplItemFn`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemimplitemfn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ImplItemMacro`
 
@@ -4412,49 +5084,51 @@ An associated function within an impl block.
 struct ImplItemMacro {
     pub attrs: Vec<crate::attr::Attribute>,
     pub mac: crate::mac::Macro,
-    pub semi_token: Option<$crate::token::Semi>,
+    pub semi_token: Option<token::Semi>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:780-788`](../../.source_1765210505/syn-2.0.111/src/item.rs#L780-L788)*
 
 A macro invocation within an impl block.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateimplitemmacro-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ImplItemMacro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateimplitemmacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ImplItemMacro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplitemmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplItemMacro`
 
 ##### `impl Hash for crate::ImplItemMacro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateimplitemmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ImplItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemimplitemmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ImplItemMacro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateimplitemmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ImplItemMacro`
+##### `impl Sealed for ImplItemMacro`
 
-##### `impl<T> Spanned for ImplItemMacro`
+##### `impl Spanned for ImplItemMacro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="implitemmacro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ImplItemMacro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemimplitemmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ImplItemType`
 
@@ -4462,55 +5136,57 @@ A macro invocation within an impl block.
 struct ImplItemType {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub defaultness: Option<$crate::token::Default>,
-    pub type_token: $crate::token::Type,
+    pub defaultness: Option<token::Default>,
+    pub type_token: token::Type,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub ty: crate::ty::Type,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:764-778`](../../.source_1765210505/syn-2.0.111/src/item.rs#L764-L778)*
 
 An associated type within an impl block.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateimplitemtype-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ImplItemType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateimplitemtype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ImplItemType`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplitemtype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplItemType`
 
 ##### `impl Hash for crate::ImplItemType`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateimplitemtype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ImplItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemimplitemtype-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ImplItemType`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateimplitemtype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ImplItemType`
+##### `impl Sealed for ImplItemType`
 
-##### `impl<T> Spanned for ImplItemType`
+##### `impl Spanned for ImplItemType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="implitemtype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ImplItemType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemimplitemtype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemConst`
 
@@ -4518,56 +5194,58 @@ An associated type within an impl block.
 struct ItemConst {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub const_token: $crate::token::Const,
+    pub const_token: token::Const,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
-    pub colon_token: $crate::token::Colon,
+    pub colon_token: token::Colon,
     pub ty: Box<crate::ty::Type>,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub expr: Box<crate::expr::Expr>,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:101-116`](../../.source_1765210505/syn-2.0.111/src/item.rs#L101-L116)*
 
 A constant item: `const MAX: u16 = 65535`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemconst-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemConst`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemconst-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemConst`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemConst`
 
 ##### `impl Hash for crate::ItemConst`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemconst-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemConst`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemConst`
+##### `impl Sealed for ItemConst`
 
-##### `impl<T> Spanned for ItemConst`
+##### `impl Spanned for ItemConst`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemconst-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemConst`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemEnum`
 
@@ -4575,53 +5253,55 @@ A constant item: `const MAX: u16 = 65535`.
 struct ItemEnum {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub enum_token: $crate::token::Enum,
+    pub enum_token: token::Enum,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
     pub brace_token: token::Brace,
-    pub variants: crate::punctuated::Punctuated<crate::data::Variant, $crate::token::Comma>,
+    pub variants: crate::punctuated::Punctuated<crate::data::Variant, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:118-130`](../../.source_1765210505/syn-2.0.111/src/item.rs#L118-L130)*
 
 An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemenum-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemEnum`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemenum-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemEnum`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemenum-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemEnum`
 
 ##### `impl Hash for crate::ItemEnum`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemenum-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemEnum`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemenum-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemEnum`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemenum-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemEnum`
+##### `impl Sealed for ItemEnum`
 
-##### `impl<T> Spanned for ItemEnum`
+##### `impl Spanned for ItemEnum`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemenum-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemEnum`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemenum-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemExternCrate`
 
@@ -4629,53 +5309,55 @@ An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 struct ItemExternCrate {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub extern_token: $crate::token::Extern,
-    pub crate_token: $crate::token::Crate,
+    pub extern_token: token::Extern,
+    pub crate_token: token::Crate,
     pub ident: crate::ident::Ident,
-    pub rename: Option<($crate::token::As, crate::ident::Ident)>,
-    pub semi_token: $crate::token::Semi,
+    pub rename: Option<(token::As, crate::ident::Ident)>,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:132-144`](../../.source_1765210505/syn-2.0.111/src/item.rs#L132-L144)*
 
 An `extern crate` item: `extern crate serde`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemexterncrate-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemExternCrate`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemexterncrate-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemExternCrate`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemexterncrate-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemExternCrate`
 
 ##### `impl Hash for crate::ItemExternCrate`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemexterncrate-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemExternCrate`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemexterncrate-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemExternCrate`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemexterncrate-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemExternCrate`
+##### `impl Sealed for ItemExternCrate`
 
-##### `impl<T> Spanned for ItemExternCrate`
+##### `impl Spanned for ItemExternCrate`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemexterncrate-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemExternCrate`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemexterncrate-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemFn`
 
@@ -4688,120 +5370,126 @@ struct ItemFn {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/item.rs:146-155`](../../.source_1765210505/syn-2.0.111/src/item.rs#L146-L155)*
+
 A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemfn-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemFn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemfn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemFn`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemfn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemFn`
 
 ##### `impl Hash for crate::ItemFn`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemfn-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemfn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemFn`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemfn-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemFn`
+##### `impl Sealed for ItemFn`
 
-##### `impl<T> Spanned for ItemFn`
+##### `impl Spanned for ItemFn`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemfn-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemFn`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemfn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemForeignMod`
 
 ```rust
 struct ItemForeignMod {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub unsafety: Option<$crate::token::Unsafe>,
+    pub unsafety: Option<token::Unsafe>,
     pub abi: crate::ty::Abi,
     pub brace_token: token::Brace,
     pub items: Vec<ForeignItem>,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/item.rs:157-167`](../../.source_1765210505/syn-2.0.111/src/item.rs#L157-L167)*
+
 A block of foreign items: `extern "C" { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemforeignmod-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemForeignMod`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemforeignmod-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemForeignMod`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemforeignmod-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemForeignMod`
 
 ##### `impl Hash for crate::ItemForeignMod`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemforeignmod-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemForeignMod`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemforeignmod-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemForeignMod`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemforeignmod-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemForeignMod`
+##### `impl Sealed for ItemForeignMod`
 
-##### `impl<T> Spanned for ItemForeignMod`
+##### `impl Spanned for ItemForeignMod`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemforeignmod-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemForeignMod`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemforeignmod-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemImpl`
 
 ```rust
 struct ItemImpl {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub defaultness: Option<$crate::token::Default>,
-    pub unsafety: Option<$crate::token::Unsafe>,
-    pub impl_token: $crate::token::Impl,
+    pub defaultness: Option<token::Default>,
+    pub unsafety: Option<token::Unsafe>,
+    pub impl_token: token::Impl,
     pub generics: crate::generics::Generics,
-    pub trait_: Option<(Option<$crate::token::Not>, crate::path::Path, $crate::token::For)>,
+    pub trait_: Option<(Option<token::Not>, crate::path::Path, token::For)>,
     pub self_ty: Box<crate::ty::Type>,
     pub brace_token: token::Brace,
     pub items: Vec<ImplItem>,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/item.rs:169-186`](../../.source_1765210505/syn-2.0.111/src/item.rs#L169-L186)*
+
 An impl block providing trait or associated items: `impl<A> Trait
 for Data<A> { ... }`.
 
 #### Fields
 
-- **`trait_`**: `Option<(Option<$crate::token::Not>, crate::path::Path, $crate::token::For)>`
+- **`trait_`**: `Option<(Option<token::Not>, crate::path::Path, token::For)>`
 
   Trait this impl implements.
 
@@ -4811,41 +5499,41 @@ for Data<A> { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemimpl-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemImpl`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemimpl-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemImpl`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemimpl-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemImpl`
 
 ##### `impl Hash for crate::ItemImpl`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemimpl-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemImpl`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemimpl-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemImpl`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemimpl-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemImpl`
+##### `impl Sealed for ItemImpl`
 
-##### `impl<T> Spanned for ItemImpl`
+##### `impl Spanned for ItemImpl`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemimpl-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemImpl`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemimpl-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemMacro`
 
@@ -4854,9 +5542,11 @@ struct ItemMacro {
     pub attrs: Vec<crate::attr::Attribute>,
     pub ident: Option<crate::ident::Ident>,
     pub mac: crate::mac::Macro,
-    pub semi_token: Option<$crate::token::Semi>,
+    pub semi_token: Option<token::Semi>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:188-198`](../../.source_1765210505/syn-2.0.111/src/item.rs#L188-L198)*
 
 A macro invocation, which includes `macro_rules!` definitions.
 
@@ -4868,41 +5558,41 @@ A macro invocation, which includes `macro_rules!` definitions.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemmacro-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemMacro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemmacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemMacro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemMacro`
 
 ##### `impl Hash for crate::ItemMacro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemMacro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemMacro`
+##### `impl Sealed for ItemMacro`
 
-##### `impl<T> Spanned for ItemMacro`
+##### `impl Spanned for ItemMacro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemmacro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemMacro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemMod`
 
@@ -4910,53 +5600,55 @@ A macro invocation, which includes `macro_rules!` definitions.
 struct ItemMod {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub unsafety: Option<$crate::token::Unsafe>,
-    pub mod_token: $crate::token::Mod,
+    pub unsafety: Option<token::Unsafe>,
+    pub mod_token: token::Mod,
     pub ident: crate::ident::Ident,
     pub content: Option<(token::Brace, Vec<Item>)>,
-    pub semi: Option<$crate::token::Semi>,
+    pub semi: Option<token::Semi>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:200-212`](../../.source_1765210505/syn-2.0.111/src/item.rs#L200-L212)*
 
 A module or module declaration: `mod m` or `mod m { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemmod-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemMod`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemmod-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemMod`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemmod-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemMod`
 
 ##### `impl Hash for crate::ItemMod`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemmod-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemMod`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemmod-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemMod`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemmod-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemMod`
+##### `impl Sealed for ItemMod`
 
-##### `impl<T> Spanned for ItemMod`
+##### `impl Spanned for ItemMod`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemmod-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemMod`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemmod-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemStatic`
 
@@ -4964,56 +5656,58 @@ A module or module declaration: `mod m` or `mod m { ... }`.
 struct ItemStatic {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub static_token: $crate::token::Static,
+    pub static_token: token::Static,
     pub mutability: StaticMutability,
     pub ident: crate::ident::Ident,
-    pub colon_token: $crate::token::Colon,
+    pub colon_token: token::Colon,
     pub ty: Box<crate::ty::Type>,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub expr: Box<crate::expr::Expr>,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:214-229`](../../.source_1765210505/syn-2.0.111/src/item.rs#L214-L229)*
 
 A static item: `static BIKE: Shed = Shed(42)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemstatic-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemStatic`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemstatic-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemStatic`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemstatic-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemStatic`
 
 ##### `impl Hash for crate::ItemStatic`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemstatic-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemStatic`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemstatic-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemStatic`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemstatic-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemStatic`
+##### `impl Sealed for ItemStatic`
 
-##### `impl<T> Spanned for ItemStatic`
+##### `impl Spanned for ItemStatic`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemstatic-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemStatic`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemstatic-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemStruct`
 
@@ -5021,53 +5715,55 @@ A static item: `static BIKE: Shed = Shed(42)`.
 struct ItemStruct {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub struct_token: $crate::token::Struct,
+    pub struct_token: token::Struct,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
     pub fields: crate::data::Fields,
-    pub semi_token: Option<$crate::token::Semi>,
+    pub semi_token: Option<token::Semi>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:231-243`](../../.source_1765210505/syn-2.0.111/src/item.rs#L231-L243)*
 
 A struct definition: `struct Foo<A> { x: A }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemstruct-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemStruct`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemstruct-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemStruct`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemstruct-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemStruct`
 
 ##### `impl Hash for crate::ItemStruct`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemstruct-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemStruct`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemstruct-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemStruct`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemstruct-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemStruct`
+##### `impl Sealed for ItemStruct`
 
-##### `impl<T> Spanned for ItemStruct`
+##### `impl Spanned for ItemStruct`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemstruct-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemStruct`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemstruct-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemTrait`
 
@@ -5075,58 +5771,60 @@ A struct definition: `struct Foo<A> { x: A }`.
 struct ItemTrait {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub unsafety: Option<$crate::token::Unsafe>,
-    pub auto_token: Option<$crate::token::Auto>,
+    pub unsafety: Option<token::Unsafe>,
+    pub auto_token: Option<token::Auto>,
     pub restriction: Option<ImplRestriction>,
-    pub trait_token: $crate::token::Trait,
+    pub trait_token: token::Trait,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
-    pub colon_token: Option<$crate::token::Colon>,
-    pub supertraits: crate::punctuated::Punctuated<crate::generics::TypeParamBound, $crate::token::Plus>,
+    pub colon_token: Option<token::Colon>,
+    pub supertraits: crate::punctuated::Punctuated<crate::generics::TypeParamBound, token::Plus>,
     pub brace_token: token::Brace,
     pub items: Vec<TraitItem>,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/item.rs:245-262`](../../.source_1765210505/syn-2.0.111/src/item.rs#L245-L262)*
+
 A trait definition: `pub trait Iterator { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemtrait-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemTrait`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemtrait-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemTrait`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemtrait-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemTrait`
 
 ##### `impl Hash for crate::ItemTrait`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemtrait-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemTrait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemtrait-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemTrait`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemtrait-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemTrait`
+##### `impl Sealed for ItemTrait`
 
-##### `impl<T> Spanned for ItemTrait`
+##### `impl Spanned for ItemTrait`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemtrait-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemTrait`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemtrait-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemTraitAlias`
 
@@ -5134,54 +5832,56 @@ A trait definition: `pub trait Iterator { ... }`.
 struct ItemTraitAlias {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub trait_token: $crate::token::Trait,
+    pub trait_token: token::Trait,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
-    pub eq_token: $crate::token::Eq,
-    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, $crate::token::Plus>,
-    pub semi_token: $crate::token::Semi,
+    pub eq_token: token::Eq,
+    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, token::Plus>,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:264-277`](../../.source_1765210505/syn-2.0.111/src/item.rs#L264-L277)*
 
 A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemtraitalias-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemTraitAlias`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemtraitalias-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemTraitAlias`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemtraitalias-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemTraitAlias`
 
 ##### `impl Hash for crate::ItemTraitAlias`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemtraitalias-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemTraitAlias`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemtraitalias-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemTraitAlias`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemtraitalias-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemTraitAlias`
+##### `impl Sealed for ItemTraitAlias`
 
-##### `impl<T> Spanned for ItemTraitAlias`
+##### `impl Spanned for ItemTraitAlias`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemtraitalias-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemTraitAlias`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemtraitalias-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemType`
 
@@ -5189,54 +5889,56 @@ A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 struct ItemType {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub type_token: $crate::token::Type,
+    pub type_token: token::Type,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub ty: Box<crate::ty::Type>,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:279-292`](../../.source_1765210505/syn-2.0.111/src/item.rs#L279-L292)*
 
 A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemtype-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemtype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemType`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemtype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemType`
 
 ##### `impl Hash for crate::ItemType`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemtype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemtype-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemType`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemtype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemType`
+##### `impl Sealed for ItemType`
 
-##### `impl<T> Spanned for ItemType`
+##### `impl Spanned for ItemType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemtype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemtype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemUnion`
 
@@ -5244,52 +5946,54 @@ A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 struct ItemUnion {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub union_token: $crate::token::Union,
+    pub union_token: token::Union,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
     pub fields: crate::data::FieldsNamed,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/item.rs:294-305`](../../.source_1765210505/syn-2.0.111/src/item.rs#L294-L305)*
+
 A union definition: `union Foo<A, B> { x: A, y: B }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemunion-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemUnion`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemunion-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemUnion`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemunion-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemUnion`
 
 ##### `impl Hash for crate::ItemUnion`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemunion-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemUnion`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemunion-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemUnion`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemunion-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemUnion`
+##### `impl Sealed for ItemUnion`
 
-##### `impl<T> Spanned for ItemUnion`
+##### `impl Spanned for ItemUnion`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemunion-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemUnion`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemunion-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ItemUse`
 
@@ -5297,65 +6001,69 @@ A union definition: `union Foo<A, B> { x: A, y: B }`.
 struct ItemUse {
     pub attrs: Vec<crate::attr::Attribute>,
     pub vis: crate::restriction::Visibility,
-    pub use_token: $crate::token::Use,
-    pub leading_colon: Option<$crate::token::PathSep>,
+    pub use_token: token::Use,
+    pub leading_colon: Option<token::PathSep>,
     pub tree: UseTree,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:307-318`](../../.source_1765210505/syn-2.0.111/src/item.rs#L307-L318)*
 
 A use declaration: `use std::collections::HashMap`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateitemuse-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ItemUse`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitemuse-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ItemUse`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitemuse-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ItemUse`
 
 ##### `impl Hash for crate::ItemUse`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitemuse-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ItemUse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitemuse-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ItemUse`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitemuse-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ItemUse`
+##### `impl Sealed for ItemUse`
 
-##### `impl<T> Spanned for ItemUse`
+##### `impl Spanned for ItemUse`
 
-- `fn span(self: &Self) -> Span`
+- <span id="itemuse-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::ItemUse`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemitemuse-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Receiver`
 
 ```rust
 struct Receiver {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub reference: Option<($crate::token::And, Option<crate::lifetime::Lifetime>)>,
-    pub mutability: Option<$crate::token::Mut>,
-    pub self_token: $crate::token::SelfValue,
-    pub colon_token: Option<$crate::token::Colon>,
+    pub reference: Option<(token::And, Option<crate::lifetime::Lifetime>)>,
+    pub mutability: Option<token::Mut>,
+    pub self_token: token::SelfValue,
+    pub colon_token: Option<token::Colon>,
     pub ty: Box<crate::ty::Type>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:832-849`](../../.source_1765210505/syn-2.0.111/src/item.rs#L832-L849)*
 
 The `self` argument of an associated method.
 
@@ -5367,155 +6075,159 @@ shorthand case, the type in `ty` is reconstructed as one of `Self`,
 
 #### Implementations
 
-- `fn lifetime(self: &Self) -> Option<&Lifetime>` — [`Lifetime`](#lifetime)
+- <span id="receiver-lifetime"></span>`fn lifetime(&self) -> Option<&Lifetime>` — [`Lifetime`](lifetime/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Receiver`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratereceiver-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Receiver`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratereceiver-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Receiver`
 
 ##### `impl Hash for crate::Receiver`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratereceiver-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::Receiver`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemreceiver-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Receiver`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratereceiver-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Receiver`
+##### `impl Sealed for Receiver`
 
-##### `impl<T> Spanned for Receiver`
+##### `impl Spanned for Receiver`
 
-- `fn span(self: &Self) -> Span`
+- <span id="receiver-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::Receiver`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemreceiver-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Signature`
 
 ```rust
 struct Signature {
-    pub constness: Option<$crate::token::Const>,
-    pub asyncness: Option<$crate::token::Async>,
-    pub unsafety: Option<$crate::token::Unsafe>,
+    pub constness: Option<token::Const>,
+    pub asyncness: Option<token::Async>,
+    pub unsafety: Option<token::Unsafe>,
     pub abi: Option<crate::ty::Abi>,
-    pub fn_token: $crate::token::Fn,
+    pub fn_token: token::Fn,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
     pub paren_token: token::Paren,
-    pub inputs: crate::punctuated::Punctuated<FnArg, $crate::token::Comma>,
+    pub inputs: crate::punctuated::Punctuated<FnArg, token::Comma>,
     pub variadic: Option<Variadic>,
     pub output: crate::ty::ReturnType,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:790-807`](../../.source_1765210505/syn-2.0.111/src/item.rs#L790-L807)*
 
 A function signature in a trait or implementation: `unsafe fn
 initialize(&self)`.
 
 #### Implementations
 
-- `fn receiver(self: &Self) -> Option<&Receiver>` — [`Receiver`](#receiver)
+- <span id="signature-receiver"></span>`fn receiver(&self) -> Option<&Receiver>` — [`Receiver`](item/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Signature`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratesignature-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Signature`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratesignature-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Signature`
 
 ##### `impl Hash for crate::Signature`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratesignature-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::Signature`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemsignature-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Signature`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratesignature-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Signature`
+##### `impl Sealed for Signature`
 
-##### `impl<T> Spanned for Signature`
+##### `impl Spanned for Signature`
 
-- `fn span(self: &Self) -> Span`
+- <span id="signature-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::Signature`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemsignature-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TraitItemConst`
 
 ```rust
 struct TraitItemConst {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub const_token: $crate::token::Const,
+    pub const_token: token::Const,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
-    pub colon_token: $crate::token::Colon,
+    pub colon_token: token::Colon,
     pub ty: crate::ty::Type,
-    pub default: Option<($crate::token::Eq, crate::expr::Expr)>,
-    pub semi_token: $crate::token::Semi,
+    pub default: Option<(token::Eq, crate::expr::Expr)>,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:637-650`](../../.source_1765210505/syn-2.0.111/src/item.rs#L637-L650)*
 
 An associated constant within the definition of a trait.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetraititemconst-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TraitItemConst`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetraititemconst-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TraitItemConst`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraititemconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitItemConst`
 
 ##### `impl Hash for crate::TraitItemConst`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetraititemconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::TraitItemConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemtraititemconst-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TraitItemConst`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetraititemconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TraitItemConst`
+##### `impl Sealed for TraitItemConst`
 
-##### `impl<T> Spanned for TraitItemConst`
+##### `impl Spanned for TraitItemConst`
 
-- `fn span(self: &Self) -> Span`
+- <span id="traititemconst-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::TraitItemConst`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemtraititemconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TraitItemFn`
 
@@ -5524,49 +6236,51 @@ struct TraitItemFn {
     pub attrs: Vec<crate::attr::Attribute>,
     pub sig: Signature,
     pub default: Option<crate::stmt::Block>,
-    pub semi_token: Option<$crate::token::Semi>,
+    pub semi_token: Option<token::Semi>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:652-661`](../../.source_1765210505/syn-2.0.111/src/item.rs#L652-L661)*
 
 An associated function within the definition of a trait.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetraititemfn-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TraitItemFn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetraititemfn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TraitItemFn`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraititemfn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitItemFn`
 
 ##### `impl Hash for crate::TraitItemFn`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetraititemfn-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::TraitItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemtraititemfn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TraitItemFn`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetraititemfn-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TraitItemFn`
+##### `impl Sealed for TraitItemFn`
 
-##### `impl<T> Spanned for TraitItemFn`
+##### `impl Spanned for TraitItemFn`
 
-- `fn span(self: &Self) -> Span`
+- <span id="traititemfn-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::TraitItemFn`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemtraititemfn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TraitItemMacro`
 
@@ -5574,112 +6288,118 @@ An associated function within the definition of a trait.
 struct TraitItemMacro {
     pub attrs: Vec<crate::attr::Attribute>,
     pub mac: crate::mac::Macro,
-    pub semi_token: Option<$crate::token::Semi>,
+    pub semi_token: Option<token::Semi>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:678-686`](../../.source_1765210505/syn-2.0.111/src/item.rs#L678-L686)*
 
 A macro invocation within the definition of a trait.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetraititemmacro-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TraitItemMacro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetraititemmacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TraitItemMacro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraititemmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitItemMacro`
 
 ##### `impl Hash for crate::TraitItemMacro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetraititemmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::TraitItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemtraititemmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TraitItemMacro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetraititemmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TraitItemMacro`
+##### `impl Sealed for TraitItemMacro`
 
-##### `impl<T> Spanned for TraitItemMacro`
+##### `impl Spanned for TraitItemMacro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="traititemmacro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::TraitItemMacro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemtraititemmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TraitItemType`
 
 ```rust
 struct TraitItemType {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub type_token: $crate::token::Type,
+    pub type_token: token::Type,
     pub ident: crate::ident::Ident,
     pub generics: crate::generics::Generics,
-    pub colon_token: Option<$crate::token::Colon>,
-    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, $crate::token::Plus>,
-    pub default: Option<($crate::token::Eq, crate::ty::Type)>,
-    pub semi_token: $crate::token::Semi,
+    pub colon_token: Option<token::Colon>,
+    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, token::Plus>,
+    pub default: Option<(token::Eq, crate::ty::Type)>,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:663-676`](../../.source_1765210505/syn-2.0.111/src/item.rs#L663-L676)*
 
 An associated type within the definition of a trait.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetraititemtype-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TraitItemType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetraititemtype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TraitItemType`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraititemtype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitItemType`
 
 ##### `impl Hash for crate::TraitItemType`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetraititemtype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::TraitItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemtraititemtype-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TraitItemType`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetraititemtype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TraitItemType`
+##### `impl Sealed for TraitItemType`
 
-##### `impl<T> Spanned for TraitItemType`
+##### `impl Spanned for TraitItemType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="traititemtype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::TraitItemType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemtraititemtype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `UseGlob`
 
 ```rust
 struct UseGlob {
-    pub star_token: $crate::token::Star,
+    pub star_token: token::Star,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:479-485`](../../.source_1765210505/syn-2.0.111/src/item.rs#L479-L485)*
 
 A glob import in a `use` item: `*`.
 
@@ -5687,40 +6407,42 @@ A glob import in a `use` item: `*`.
 
 ##### `impl Clone for crate::UseGlob`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateuseglob-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::UseGlob`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateuseglob-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UseGlob`
 
 ##### `impl Hash for crate::UseGlob`
 
-- `fn hash<H>(self: &Self, _state: &mut H)`
+- <span id="crateuseglob-hash"></span>`fn hash<H>(&self, _state: &mut H)`
 
 ##### `impl PartialEq for crate::UseGlob`
 
-- `fn eq(self: &Self, _other: &Self) -> bool`
+- <span id="crateuseglob-eq"></span>`fn eq(&self, _other: &Self) -> bool`
 
-##### `impl<T> Sealed for UseGlob`
+##### `impl Sealed for UseGlob`
 
-##### `impl<T> Spanned for UseGlob`
+##### `impl Spanned for UseGlob`
 
-- `fn span(self: &Self) -> Span`
+- <span id="useglob-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::UseGlob`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemuseglob-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `UseGroup`
 
 ```rust
 struct UseGroup {
     pub brace_token: token::Brace,
-    pub items: crate::punctuated::Punctuated<UseTree, $crate::token::Comma>,
+    pub items: crate::punctuated::Punctuated<UseTree, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:487-494`](../../.source_1765210505/syn-2.0.111/src/item.rs#L487-L494)*
 
 A braced group of imports in a `use` item: `{A, B, C}`.
 
@@ -5728,31 +6450,31 @@ A braced group of imports in a `use` item: `{A, B, C}`.
 
 ##### `impl Clone for crate::UseGroup`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateusegroup-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::UseGroup`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateusegroup-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UseGroup`
 
 ##### `impl Hash for crate::UseGroup`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateusegroup-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::UseGroup`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateusegroup-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for UseGroup`
+##### `impl Sealed for UseGroup`
 
-##### `impl<T> Spanned for UseGroup`
+##### `impl Spanned for UseGroup`
 
-- `fn span(self: &Self) -> Span`
+- <span id="usegroup-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::UseGroup`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemusegroup-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `UseName`
 
@@ -5762,47 +6484,51 @@ struct UseName {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/item.rs:461-467`](../../.source_1765210505/syn-2.0.111/src/item.rs#L461-L467)*
+
 An identifier imported by a `use` item: `HashMap`.
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::UseName`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateusename-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::UseName`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateusename-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UseName`
 
 ##### `impl Hash for crate::UseName`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateusename-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::UseName`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateusename-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for UseName`
+##### `impl Sealed for UseName`
 
-##### `impl<T> Spanned for UseName`
+##### `impl Spanned for UseName`
 
-- `fn span(self: &Self) -> Span`
+- <span id="usename-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::UseName`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemusename-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `UsePath`
 
 ```rust
 struct UsePath {
     pub ident: crate::ident::Ident,
-    pub colon2_token: $crate::token::PathSep,
+    pub colon2_token: token::PathSep,
     pub tree: Box<UseTree>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:451-459`](../../.source_1765210505/syn-2.0.111/src/item.rs#L451-L459)*
 
 A path prefix of imports in a `use` item: `std::...`.
 
@@ -5810,41 +6536,43 @@ A path prefix of imports in a `use` item: `std::...`.
 
 ##### `impl Clone for crate::UsePath`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateusepath-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::UsePath`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateusepath-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UsePath`
 
 ##### `impl Hash for crate::UsePath`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateusepath-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::UsePath`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateusepath-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for UsePath`
+##### `impl Sealed for UsePath`
 
-##### `impl<T> Spanned for UsePath`
+##### `impl Spanned for UsePath`
 
-- `fn span(self: &Self) -> Span`
+- <span id="usepath-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::UsePath`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemusepath-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `UseRename`
 
 ```rust
 struct UseRename {
     pub ident: crate::ident::Ident,
-    pub as_token: $crate::token::As,
+    pub as_token: token::As,
     pub rename: crate::ident::Ident,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:469-477`](../../.source_1765210505/syn-2.0.111/src/item.rs#L469-L477)*
 
 An renamed identifier imported by a `use` item: `HashMap as Map`.
 
@@ -5852,42 +6580,44 @@ An renamed identifier imported by a `use` item: `HashMap as Map`.
 
 ##### `impl Clone for crate::UseRename`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateuserename-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::UseRename`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateuserename-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UseRename`
 
 ##### `impl Hash for crate::UseRename`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateuserename-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::UseRename`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateuserename-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for UseRename`
+##### `impl Sealed for UseRename`
 
-##### `impl<T> Spanned for UseRename`
+##### `impl Spanned for UseRename`
 
-- `fn span(self: &Self) -> Span`
+- <span id="userename-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::UseRename`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemuserename-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Variadic`
 
 ```rust
 struct Variadic {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub pat: Option<(Box<crate::pat::Pat>, $crate::token::Colon)>,
-    pub dots: $crate::token::DotDotDot,
-    pub comma: Option<$crate::token::Comma>,
+    pub pat: Option<(Box<crate::pat::Pat>, token::Colon)>,
+    pub dots: token::DotDotDot,
+    pub comma: Option<token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:857-876`](../../.source_1765210505/syn-2.0.111/src/item.rs#L857-L876)*
 
 The variadic argument of a foreign function.
 
@@ -5905,31 +6635,31 @@ extern "C" {
 
 ##### `impl Clone for crate::Variadic`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratevariadic-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Variadic`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratevariadic-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Variadic`
 
 ##### `impl Hash for crate::Variadic`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratevariadic-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Variadic`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratevariadic-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Variadic`
+##### `impl Sealed for Variadic`
 
-##### `impl<T> Spanned for Variadic`
+##### `impl Spanned for Variadic`
 
-- `fn span(self: &Self) -> Span`
+- <span id="variadic-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::Variadic`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemvariadic-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Lifetime`
 
@@ -5939,6 +6669,8 @@ struct Lifetime {
     pub ident: proc_macro2::Ident,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lifetime.rs:18-21`](../../.source_1765210505/syn-2.0.111/src/lifetime.rs#L18-L21)*
 
 A Rust lifetime: `'a`.
 
@@ -5953,57 +6685,61 @@ Lifetime names must conform to the following rules:
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="lifetime-new"></span>`fn new(symbol: &str, span: Span) -> Self`
+
+- <span id="lifetime-span"></span>`fn span(&self) -> Span`
+
+- <span id="lifetime-set-span"></span>`fn set_span(&mut self, span: Span)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Lifetime`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="lifetime-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Lifetime`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelifetime-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Lifetime`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lifetime-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Lifetime`
 
 ##### `impl Hash for Lifetime`
 
-- `fn hash<H: Hasher>(self: &Self, h: &mut H)`
+- <span id="lifetime-hash"></span>`fn hash<H: Hasher>(&self, h: &mut H)`
 
 ##### `impl Ord for Lifetime`
 
-- `fn cmp(self: &Self, other: &Lifetime) -> Ordering` — [`Lifetime`](#lifetime)
+- <span id="lifetime-cmp"></span>`fn cmp(&self, other: &Lifetime) -> Ordering` — [`Lifetime`](lifetime/index.md)
 
 ##### `impl Parse for crate::lifetime::Lifetime`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratelifetimelifetime-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for Lifetime`
 
-- `fn eq(self: &Self, other: &Lifetime) -> bool` — [`Lifetime`](#lifetime)
+- <span id="lifetime-eq"></span>`fn eq(&self, other: &Lifetime) -> bool` — [`Lifetime`](lifetime/index.md)
 
 ##### `impl PartialOrd for Lifetime`
 
-- `fn partial_cmp(self: &Self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](#lifetime)
+- <span id="lifetime-partial-cmp"></span>`fn partial_cmp(&self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](lifetime/index.md)
 
-##### `impl<T> Sealed for Lifetime`
+##### `impl Sealed for Lifetime`
 
-##### `impl<T> Spanned for Lifetime`
+##### `impl Spanned for Lifetime`
 
-- `fn span(self: &Self) -> Span`
+- <span id="lifetime-span"></span>`fn span(&self) -> Span`
 
-##### `impl<T> ToString for Lifetime`
+##### `impl ToString for Lifetime`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="lifetime-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for crate::lifetime::Lifetime`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelifetimelifetime-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lifetime::Lifetime`
 
@@ -6016,45 +6752,47 @@ struct LitBool {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:126-132`](../../.source_1765210505/syn-2.0.111/src/lit.rs#L126-L132)*
+
 A boolean literal: `true` or `false`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratelitlitbool-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::LitBool`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelitbool-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitBool`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitbool-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitBool`
 
 ##### `impl Hash for crate::LitBool`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelitbool-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitBool`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratelitlitbool-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::LitBool`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelitbool-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitBool`
+##### `impl Sealed for LitBool`
 
-##### `impl<T> Spanned for LitBool`
+##### `impl Spanned for LitBool`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litbool-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitBool`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitbool-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitBool`
 
@@ -6066,55 +6804,47 @@ struct LitByte {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:79-84`](../../.source_1765210505/syn-2.0.111/src/lit.rs#L79-L84)*
+
 A byte literal: `b'f'`.
 
 #### Implementations
 
-- `fn new(value: u8, span: Span) -> Self`
-
-- `fn value(self: &Self) -> u8`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn token(self: &Self) -> Literal`
+- <span id="cratelitlitbyte-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitByte`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litbyte-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitByte`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitbyte-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitByte`
 
 ##### `impl Hash for LitByte`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litbyte-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitByte`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratelitlitbyte-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for LitByte`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litbyte-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitByte`
+##### `impl Sealed for LitByte`
 
-##### `impl<T> Spanned for LitByte`
+##### `impl Spanned for LitByte`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litbyte-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitByte`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitbyte-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitByte`
 
@@ -6126,55 +6856,47 @@ struct LitByteStr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:65-70`](../../.source_1765210505/syn-2.0.111/src/lit.rs#L65-L70)*
+
 A byte string literal: `b"foo"`.
 
 #### Implementations
 
-- `fn new(value: &[u8], span: Span) -> Self`
-
-- `fn value(self: &Self) -> Vec<u8>`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn token(self: &Self) -> Literal`
+- <span id="cratelitlitbytestr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitByteStr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litbytestr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitByteStr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitbytestr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitByteStr`
 
 ##### `impl Hash for LitByteStr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litbytestr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitByteStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratelitlitbytestr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for LitByteStr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litbytestr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitByteStr`
+##### `impl Sealed for LitByteStr`
 
-##### `impl<T> Spanned for LitByteStr`
+##### `impl Spanned for LitByteStr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litbytestr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitByteStr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitbytestr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitByteStr`
 
@@ -6186,45 +6908,47 @@ struct LitCStr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:72-77`](../../.source_1765210505/syn-2.0.111/src/lit.rs#L72-L77)*
+
 A nul-terminated C-string literal: `c"foo"`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratelitlitcstr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitCStr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litcstr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitCStr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitcstr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitCStr`
 
 ##### `impl Hash for LitCStr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litcstr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitCStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratelitlitcstr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for LitCStr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litcstr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitCStr`
+##### `impl Sealed for LitCStr`
 
-##### `impl<T> Spanned for LitCStr`
+##### `impl Spanned for LitCStr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litcstr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitCStr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitcstr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitCStr`
 
@@ -6236,45 +6960,47 @@ struct LitChar {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:86-91`](../../.source_1765210505/syn-2.0.111/src/lit.rs#L86-L91)*
+
 A character literal: `'a'`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratelitlitchar-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitChar`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litchar-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitChar`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitchar-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitChar`
 
 ##### `impl Hash for LitChar`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litchar-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitChar`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratelitlitchar-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for LitChar`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litchar-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitChar`
+##### `impl Sealed for LitChar`
 
-##### `impl<T> Spanned for LitChar`
+##### `impl Spanned for LitChar`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litchar-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitChar`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitchar-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitChar`
 
@@ -6286,55 +7012,57 @@ struct LitFloat {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:111-118`](../../.source_1765210505/syn-2.0.111/src/lit.rs#L111-L118)*
+
 A floating point literal: `1f64` or `1.0e10f64`.
 
 Must be finite. May not be infinite or NaN.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratelitlitfloat-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitFloat`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litfloat-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitFloat`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitfloat-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for LitFloat`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="litfloat-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitFloat`
 
 ##### `impl Hash for LitFloat`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litfloat-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitFloat`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratelitlitfloat-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for LitFloat`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litfloat-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitFloat`
+##### `impl Sealed for LitFloat`
 
-##### `impl<T> Spanned for LitFloat`
+##### `impl Spanned for LitFloat`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litfloat-span"></span>`fn span(&self) -> Span`
 
-##### `impl<T> ToString for LitFloat`
+##### `impl ToString for LitFloat`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="litfloat-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for crate::lit::LitFloat`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitfloat-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitFloat`
 
@@ -6346,65 +7074,55 @@ struct LitInt {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:98-103`](../../.source_1765210505/syn-2.0.111/src/lit.rs#L98-L103)*
+
 An integer literal: `1` or `1u16`.
 
 #### Implementations
 
-- `fn new(repr: &str, span: Span) -> Self`
-
-- `fn base10_digits(self: &Self) -> &str`
-
-- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](#result)
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn token(self: &Self) -> Literal`
+- <span id="cratelitlitint-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitInt`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litint-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitInt`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitint-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for LitInt`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="litint-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitInt`
 
 ##### `impl Hash for LitInt`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litint-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitInt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratelitlitint-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for LitInt`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litint-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitInt`
+##### `impl Sealed for LitInt`
 
-##### `impl<T> Spanned for LitInt`
+##### `impl Spanned for LitInt`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litint-span"></span>`fn span(&self) -> Span`
 
-##### `impl<T> ToString for LitInt`
+##### `impl ToString for LitInt`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="litint-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for crate::lit::LitInt`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitint-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitInt`
 
@@ -6416,59 +7134,47 @@ struct LitStr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:58-63`](../../.source_1765210505/syn-2.0.111/src/lit.rs#L58-L63)*
+
 A UTF-8 string literal: `"foo"`.
 
 #### Implementations
 
-- `fn new(value: &str, span: Span) -> Self`
-
-- `fn value(self: &Self) -> String`
-
-- `fn parse<T: Parse>(self: &Self) -> Result<T>` — [`Result`](#result)
-
-- `fn parse_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](#result), [`Parser`](parse/index.md)
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn token(self: &Self) -> Literal`
+- <span id="cratelitlitstr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for LitStr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="litstr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::lit::LitStr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelitlitstr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LitStr`
 
 ##### `impl Hash for LitStr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="litstr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::LitStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratelitlitstr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for LitStr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="litstr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitStr`
+##### `impl Sealed for LitStr`
 
-##### `impl<T> Spanned for LitStr`
+##### `impl Spanned for LitStr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litstr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::lit::LitStr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelitlitstr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lit::LitStr`
 
@@ -6477,53 +7183,55 @@ A UTF-8 string literal: `"foo"`.
 ```rust
 struct Macro {
     pub path: crate::path::Path,
-    pub bang_token: $crate::token::Not,
+    pub bang_token: token::Not,
     pub delimiter: MacroDelimiter,
     pub tokens: proc_macro2::TokenStream,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/mac.rs:14-23`](../../.source_1765210505/syn-2.0.111/src/mac.rs#L14-L23)*
+
 A macro invocation: `println!("{}", mac)`.
 
 #### Implementations
 
-- `fn parse_body<T: Parse>(self: &Self) -> Result<T>` — [`Result`](#result)
+- <span id="macro-parse-body"></span>`fn parse_body<T: Parse>(&self) -> Result<T>` — [`Result`](error/index.md)
 
-- `fn parse_body_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](#result), [`Parser`](parse/index.md)
+- <span id="macro-parse-body-with"></span>`fn parse_body_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](error/index.md), [`Parser`](parse/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Macro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Macro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Macro`
 
 ##### `impl Hash for crate::Macro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratemacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::mac::Macro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratemacmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Macro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratemacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Macro`
+##### `impl Sealed for Macro`
 
-##### `impl<T> Spanned for Macro`
+##### `impl Spanned for Macro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="macro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::mac::Macro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratemacmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FieldPat`
 
@@ -6531,10 +7239,12 @@ A macro invocation: `println!("{}", mac)`.
 struct FieldPat {
     pub attrs: Vec<crate::attr::Attribute>,
     pub member: crate::expr::Member,
-    pub colon_token: Option<$crate::token::Colon>,
+    pub colon_token: Option<token::Colon>,
     pub pat: Box<Pat>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:224-236`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L224-L236)*
 
 A single field in a struct pattern.
 
@@ -6545,93 +7255,97 @@ the same as `x: x, y: ref y, z: ref mut z` but there is no colon token.
 
 ##### `impl Clone for crate::FieldPat`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefieldpat-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::FieldPat`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefieldpat-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FieldPat`
 
 ##### `impl Hash for crate::FieldPat`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefieldpat-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::FieldPat`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefieldpat-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for FieldPat`
+##### `impl Sealed for FieldPat`
 
-##### `impl<T> Spanned for FieldPat`
+##### `impl Spanned for FieldPat`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fieldpat-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::FieldPat`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatfieldpat-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatConst`
 
 ```rust
 struct PatConst {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub const_token: $crate::token::Const,
+    pub const_token: token::Const,
     pub block: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprconst-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprConst`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprconst-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprConst`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprConst`
 
 ##### `impl Hash for crate::ExprConst`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprconst-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprConst`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprConst`
+##### `impl Sealed for ExprConst`
 
-##### `impl<T> Spanned for ExprConst`
+##### `impl Spanned for ExprConst`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprconst-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprConst`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatIdent`
 
 ```rust
 struct PatIdent {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub by_ref: Option<$crate::token::Ref>,
-    pub mutability: Option<$crate::token::Mut>,
+    pub by_ref: Option<token::Ref>,
+    pub mutability: Option<token::Mut>,
     pub ident: crate::ident::Ident,
-    pub subpat: Option<($crate::token::At, Box<Pat>)>,
+    pub subpat: Option<(token::At, Box<Pat>)>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:104-117`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L104-L117)*
 
 A pattern that binds a new variable: `ref mut binding @ SUBPATTERN`.
 
@@ -6640,37 +7354,37 @@ constant; these cannot be distinguished syntactically.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepatident-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatIdent`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepatident-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatIdent`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepatident-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatIdent`
 
 ##### `impl Hash for crate::PatIdent`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepatident-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PatIdent`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepatident-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatIdent`
+##### `impl Sealed for PatIdent`
 
-##### `impl<T> Spanned for PatIdent`
+##### `impl Spanned for PatIdent`
 
-- `fn span(self: &Self) -> Span`
+- <span id="patident-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatIdent`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpatident-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatLit`
 
@@ -6681,45 +7395,47 @@ struct PatLit {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L493-L500)*
+
 A literal in place of an expression: `1`, `"foo"`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprlit-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprLit`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprlit-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprLit`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprlit-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprLit`
 
 ##### `impl Hash for crate::ExprLit`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprlit-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprLit`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprlit-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprLit`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprlit-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprLit`
+##### `impl Sealed for ExprLit`
 
-##### `impl<T> Spanned for ExprLit`
+##### `impl Spanned for ExprLit`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprlit-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprLit`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprlit-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatMacro`
 
@@ -6730,91 +7446,95 @@ struct PatMacro {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L513-L520)*
+
 A macro invocation expression: `format!("{}", q)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprmacro-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprMacro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprmacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprMacro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprMacro`
 
 ##### `impl Hash for crate::ExprMacro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprMacro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprMacro`
+##### `impl Sealed for ExprMacro`
 
-##### `impl<T> Spanned for ExprMacro`
+##### `impl Spanned for ExprMacro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprmacro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprMacro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatOr`
 
 ```rust
 struct PatOr {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub leading_vert: Option<$crate::token::Or>,
-    pub cases: crate::punctuated::Punctuated<Pat, $crate::token::Or>,
+    pub leading_vert: Option<token::Or>,
+    pub cases: crate::punctuated::Punctuated<Pat, token::Or>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:119-127`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L119-L127)*
 
 A pattern that matches any one of a set of cases.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepator-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatOr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepator-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatOr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepator-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatOr`
 
 ##### `impl Hash for crate::PatOr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepator-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PatOr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepator-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatOr`
+##### `impl Sealed for PatOr`
 
-##### `impl<T> Spanned for PatOr`
+##### `impl Spanned for PatOr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pator-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatOr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpator-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatParen`
 
@@ -6826,41 +7546,43 @@ struct PatParen {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/pat.rs:129-137`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L129-L137)*
+
 A parenthesized pattern: `(A | B)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepatparen-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatParen`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepatparen-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatParen`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepatparen-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatParen`
 
 ##### `impl Hash for crate::PatParen`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepatparen-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PatParen`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepatparen-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatParen`
+##### `impl Sealed for PatParen`
 
-##### `impl<T> Spanned for PatParen`
+##### `impl Spanned for PatParen`
 
-- `fn span(self: &Self) -> Span`
+- <span id="patparen-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatParen`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpatparen-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatPath`
 
@@ -6872,6 +7594,8 @@ struct PatPath {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L558-L569)*
+
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
 
@@ -6879,41 +7603,41 @@ A plain identifier like `x` is a path of length 1.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprpath-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprPath`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprpath-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprPath`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprpath-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprPath`
 
 ##### `impl Hash for crate::ExprPath`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprpath-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprPath`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprpath-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprPath`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprpath-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprPath`
+##### `impl Sealed for ExprPath`
 
-##### `impl<T> Spanned for ExprPath`
+##### `impl Spanned for ExprPath`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprpath-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprPath`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprpath-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatRange`
 
@@ -6926,137 +7650,143 @@ struct PatRange {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L571-L580)*
+
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprrange-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprRange`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprrange-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprRange`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprrange-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprRange`
 
 ##### `impl Hash for crate::ExprRange`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprrange-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprRange`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexprrange-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ExprRange`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprrange-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprRange`
+##### `impl Sealed for ExprRange`
 
-##### `impl<T> Spanned for ExprRange`
+##### `impl Spanned for ExprRange`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprrange-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprRange`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprrange-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatReference`
 
 ```rust
 struct PatReference {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub and_token: $crate::token::And,
-    pub mutability: Option<$crate::token::Mut>,
+    pub and_token: token::And,
+    pub mutability: Option<token::Mut>,
     pub pat: Box<Pat>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:139-148`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L139-L148)*
 
 A reference pattern: `&mut var`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepatreference-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatReference`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepatreference-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatReference`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepatreference-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatReference`
 
 ##### `impl Hash for crate::PatReference`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepatreference-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PatReference`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepatreference-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatReference`
+##### `impl Sealed for PatReference`
 
-##### `impl<T> Spanned for PatReference`
+##### `impl Spanned for PatReference`
 
-- `fn span(self: &Self) -> Span`
+- <span id="patreference-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatReference`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpatreference-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatRest`
 
 ```rust
 struct PatRest {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub dot2_token: $crate::token::DotDot,
+    pub dot2_token: token::DotDot,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:150-157`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L150-L157)*
 
 The dots in a tuple or slice pattern: `[0, 1, ..]`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepatrest-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatRest`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepatrest-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatRest`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepatrest-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatRest`
 
 ##### `impl Hash for crate::PatRest`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepatrest-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PatRest`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepatrest-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatRest`
+##### `impl Sealed for PatRest`
 
-##### `impl<T> Spanned for PatRest`
+##### `impl Spanned for PatRest`
 
-- `fn span(self: &Self) -> Span`
+- <span id="patrest-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatRest`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpatrest-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatSlice`
 
@@ -7064,45 +7794,47 @@ The dots in a tuple or slice pattern: `[0, 1, ..]`.
 struct PatSlice {
     pub attrs: Vec<crate::attr::Attribute>,
     pub bracket_token: token::Bracket,
-    pub elems: crate::punctuated::Punctuated<Pat, $crate::token::Comma>,
+    pub elems: crate::punctuated::Punctuated<Pat, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:159-167`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L159-L167)*
 
 A dynamically sized slice pattern: `[a, b, ref i @ .., y, z]`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepatslice-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatSlice`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepatslice-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatSlice`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepatslice-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatSlice`
 
 ##### `impl Hash for crate::PatSlice`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepatslice-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PatSlice`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepatslice-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatSlice`
+##### `impl Sealed for PatSlice`
 
-##### `impl<T> Spanned for PatSlice`
+##### `impl Spanned for PatSlice`
 
-- `fn span(self: &Self) -> Span`
+- <span id="patslice-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatSlice`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpatslice-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatStruct`
 
@@ -7112,46 +7844,48 @@ struct PatStruct {
     pub qself: Option<crate::path::QSelf>,
     pub path: crate::path::Path,
     pub brace_token: token::Brace,
-    pub fields: crate::punctuated::Punctuated<FieldPat, $crate::token::Comma>,
+    pub fields: crate::punctuated::Punctuated<FieldPat, token::Comma>,
     pub rest: Option<PatRest>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:169-180`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L169-L180)*
 
 A struct or struct variant pattern: `Variant { x, y, .. }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepatstruct-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatStruct`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepatstruct-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatStruct`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepatstruct-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatStruct`
 
 ##### `impl Hash for crate::PatStruct`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepatstruct-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PatStruct`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepatstruct-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatStruct`
+##### `impl Sealed for PatStruct`
 
-##### `impl<T> Spanned for PatStruct`
+##### `impl Spanned for PatStruct`
 
-- `fn span(self: &Self) -> Span`
+- <span id="patstruct-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatStruct`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpatstruct-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatTuple`
 
@@ -7159,45 +7893,47 @@ A struct or struct variant pattern: `Variant { x, y, .. }`.
 struct PatTuple {
     pub attrs: Vec<crate::attr::Attribute>,
     pub paren_token: token::Paren,
-    pub elems: crate::punctuated::Punctuated<Pat, $crate::token::Comma>,
+    pub elems: crate::punctuated::Punctuated<Pat, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:182-190`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L182-L190)*
 
 A tuple pattern: `(a, b)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepattuple-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatTuple`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepattuple-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatTuple`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepattuple-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatTuple`
 
 ##### `impl Hash for crate::PatTuple`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepattuple-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PatTuple`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepattuple-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatTuple`
+##### `impl Sealed for PatTuple`
 
-##### `impl<T> Spanned for PatTuple`
+##### `impl Spanned for PatTuple`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pattuple-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatTuple`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpattuple-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatTupleStruct`
 
@@ -7207,45 +7943,47 @@ struct PatTupleStruct {
     pub qself: Option<crate::path::QSelf>,
     pub path: crate::path::Path,
     pub paren_token: token::Paren,
-    pub elems: crate::punctuated::Punctuated<Pat, $crate::token::Comma>,
+    pub elems: crate::punctuated::Punctuated<Pat, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:192-202`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L192-L202)*
 
 A tuple struct or tuple variant pattern: `Variant(x, y, .., z)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepattuplestruct-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatTupleStruct`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepattuplestruct-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatTupleStruct`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepattuplestruct-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatTupleStruct`
 
 ##### `impl Hash for crate::PatTupleStruct`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepattuplestruct-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PatTupleStruct`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepattuplestruct-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatTupleStruct`
+##### `impl Sealed for PatTupleStruct`
 
-##### `impl<T> Spanned for PatTupleStruct`
+##### `impl Spanned for PatTupleStruct`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pattuplestruct-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatTupleStruct`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpattuplestruct-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatType`
 
@@ -7253,149 +7991,155 @@ A tuple struct or tuple variant pattern: `Variant(x, y, .., z)`.
 struct PatType {
     pub attrs: Vec<crate::attr::Attribute>,
     pub pat: Box<Pat>,
-    pub colon_token: $crate::token::Colon,
+    pub colon_token: token::Colon,
     pub ty: Box<crate::ty::Type>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:204-213`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L204-L213)*
 
 A type ascription pattern: `foo: f64`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepattype-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepattype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatType`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepattype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatType`
 
 ##### `impl Hash for crate::PatType`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepattype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::pat::PatType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepatpattype-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::PatType`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepattype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatType`
+##### `impl Sealed for PatType`
 
-##### `impl<T> Spanned for PatType`
+##### `impl Spanned for PatType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pattype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpattype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PatWild`
 
 ```rust
 struct PatWild {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub underscore_token: $crate::token::Underscore,
+    pub underscore_token: token::Underscore,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:215-222`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L215-L222)*
 
 A pattern that matches any value: `_`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepatwild-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PatWild`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepatwild-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PatWild`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepatwild-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PatWild`
 
 ##### `impl Hash for crate::PatWild`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepatwild-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PatWild`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepatwild-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PatWild`
+##### `impl Sealed for PatWild`
 
-##### `impl<T> Spanned for PatWild`
+##### `impl Spanned for PatWild`
 
-- `fn span(self: &Self) -> Span`
+- <span id="patwild-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::pat::PatWild`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepatpatwild-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `AngleBracketedGenericArguments`
 
 ```rust
 struct AngleBracketedGenericArguments {
-    pub colon2_token: Option<$crate::token::PathSep>,
-    pub lt_token: $crate::token::Lt,
-    pub args: crate::punctuated::Punctuated<GenericArgument, $crate::token::Comma>,
-    pub gt_token: $crate::token::Gt,
+    pub colon2_token: Option<token::PathSep>,
+    pub lt_token: token::Lt,
+    pub args: crate::punctuated::Punctuated<GenericArgument, token::Comma>,
+    pub gt_token: token::Gt,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:196-206`](../../.source_1765210505/syn-2.0.111/src/path.rs#L196-L206)*
 
 Angle bracketed arguments of a path segment: the `<K, V>` in `HashMap<K,
 V>`.
 
 #### Implementations
 
-- `fn parse_turbofish(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepathanglebracketedgenericarguments-parse-turbofish"></span>`fn parse_turbofish(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn do_parse(colon2_token: Option<$crate::token::PathSep>, input: ParseStream<'_>) -> Result<Self>` — [`PathSep`](token/index.md), [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepathanglebracketedgenericarguments-do-parse"></span>`fn do_parse(colon2_token: Option<token::PathSep>, input: ParseStream<'_>) -> Result<Self>` — [`PathSep`](token/index.md), [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::AngleBracketedGenericArguments`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateanglebracketedgenericarguments-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::AngleBracketedGenericArguments`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateanglebracketedgenericarguments-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::AngleBracketedGenericArguments`
 
 ##### `impl Hash for crate::AngleBracketedGenericArguments`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateanglebracketedgenericarguments-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::path::AngleBracketedGenericArguments`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepathanglebracketedgenericarguments-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::AngleBracketedGenericArguments`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateanglebracketedgenericarguments-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for AngleBracketedGenericArguments`
+##### `impl Sealed for AngleBracketedGenericArguments`
 
-##### `impl<T> Spanned for AngleBracketedGenericArguments`
+##### `impl Spanned for AngleBracketedGenericArguments`
 
-- `fn span(self: &Self) -> Span`
+- <span id="anglebracketedgenericarguments-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::AngleBracketedGenericArguments`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathanglebracketedgenericarguments-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `AssocConst`
 
@@ -7403,10 +8147,12 @@ V>`.
 struct AssocConst {
     pub ident: crate::ident::Ident,
     pub generics: Option<AngleBracketedGenericArguments>,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub value: crate::expr::Expr,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:220-230`](../../.source_1765210505/syn-2.0.111/src/path.rs#L220-L230)*
 
 An equality constraint on an associated constant: the `PANIC = false` in
 `Trait<PANIC = false>`.
@@ -7415,31 +8161,31 @@ An equality constraint on an associated constant: the `PANIC = false` in
 
 ##### `impl Clone for crate::AssocConst`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateassocconst-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::AssocConst`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateassocconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::AssocConst`
 
 ##### `impl Hash for crate::AssocConst`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateassocconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::AssocConst`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateassocconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for AssocConst`
+##### `impl Sealed for AssocConst`
 
-##### `impl<T> Spanned for AssocConst`
+##### `impl Spanned for AssocConst`
 
-- `fn span(self: &Self) -> Span`
+- <span id="assocconst-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::AssocConst`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathassocconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `AssocType`
 
@@ -7447,10 +8193,12 @@ An equality constraint on an associated constant: the `PANIC = false` in
 struct AssocType {
     pub ident: crate::ident::Ident,
     pub generics: Option<AngleBracketedGenericArguments>,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub ty: crate::ty::Type,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:208-218`](../../.source_1765210505/syn-2.0.111/src/path.rs#L208-L218)*
 
 A binding (equality constraint) on an associated type: the `Item = u8`
 in `Iterator<Item = u8>`.
@@ -7459,31 +8207,31 @@ in `Iterator<Item = u8>`.
 
 ##### `impl Clone for crate::AssocType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateassoctype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::AssocType`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateassoctype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::AssocType`
 
 ##### `impl Hash for crate::AssocType`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateassoctype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::AssocType`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateassoctype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for AssocType`
+##### `impl Sealed for AssocType`
 
-##### `impl<T> Spanned for AssocType`
+##### `impl Spanned for AssocType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="assoctype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::AssocType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathassoctype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Constraint`
 
@@ -7491,10 +8239,12 @@ in `Iterator<Item = u8>`.
 struct Constraint {
     pub ident: crate::ident::Ident,
     pub generics: Option<AngleBracketedGenericArguments>,
-    pub colon_token: $crate::token::Colon,
-    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, $crate::token::Plus>,
+    pub colon_token: token::Colon,
+    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, token::Plus>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:232-241`](../../.source_1765210505/syn-2.0.111/src/path.rs#L232-L241)*
 
 An associated type bound: `Iterator<Item: Display>`.
 
@@ -7502,48 +8252,50 @@ An associated type bound: `Iterator<Item: Display>`.
 
 ##### `impl Clone for crate::Constraint`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateconstraint-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Constraint`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateconstraint-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Constraint`
 
 ##### `impl Hash for crate::Constraint`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateconstraint-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Constraint`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateconstraint-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Constraint`
+##### `impl Sealed for Constraint`
 
-##### `impl<T> Spanned for Constraint`
+##### `impl Spanned for Constraint`
 
-- `fn span(self: &Self) -> Span`
+- <span id="constraint-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::Constraint`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathconstraint-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ParenthesizedGenericArguments`
 
 ```rust
 struct ParenthesizedGenericArguments {
     pub paren_token: token::Paren,
-    pub inputs: crate::punctuated::Punctuated<crate::ty::Type, $crate::token::Comma>,
+    pub inputs: crate::punctuated::Punctuated<crate::ty::Type, token::Comma>,
     pub output: crate::ty::ReturnType,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:243-254`](../../.source_1765210505/syn-2.0.111/src/path.rs#L243-L254)*
 
 Arguments of a function path segment: the `(A, B) -> C` in `Fn(A,B) ->
 C`.
 
 #### Fields
 
-- **`inputs`**: `crate::punctuated::Punctuated<crate::ty::Type, $crate::token::Comma>`
+- **`inputs`**: `crate::punctuated::Punctuated<crate::ty::Type, token::Comma>`
 
   `(A, B)`
 
@@ -7553,92 +8305,100 @@ C`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateparenthesizedgenericarguments-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ParenthesizedGenericArguments`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateparenthesizedgenericarguments-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ParenthesizedGenericArguments`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateparenthesizedgenericarguments-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ParenthesizedGenericArguments`
 
 ##### `impl Hash for crate::ParenthesizedGenericArguments`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateparenthesizedgenericarguments-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::path::ParenthesizedGenericArguments`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepathparenthesizedgenericarguments-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ParenthesizedGenericArguments`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateparenthesizedgenericarguments-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ParenthesizedGenericArguments`
+##### `impl Sealed for ParenthesizedGenericArguments`
 
-##### `impl<T> Spanned for ParenthesizedGenericArguments`
+##### `impl Spanned for ParenthesizedGenericArguments`
 
-- `fn span(self: &Self) -> Span`
+- <span id="parenthesizedgenericarguments-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::ParenthesizedGenericArguments`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathparenthesizedgenericarguments-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Path`
 
 ```rust
 struct Path {
-    pub leading_colon: Option<$crate::token::PathSep>,
-    pub segments: crate::punctuated::Punctuated<PathSegment, $crate::token::PathSep>,
+    pub leading_colon: Option<token::PathSep>,
+    pub segments: crate::punctuated::Punctuated<PathSegment, token::PathSep>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:11-18`](../../.source_1765210505/syn-2.0.111/src/path.rs#L11-L18)*
 
 A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepathpath-parse-mod-style"></span>`fn parse_mod_style(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
+
+- <span id="cratepathpath-parse-helper"></span>`fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
+
+- <span id="cratepathpath-parse-rest"></span>`fn parse_rest(input: ParseStream<'_>, path: &mut Self, expr_style: bool) -> Result<()>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
+
+- <span id="cratepathpath-is-mod-style"></span>`fn is_mod_style(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Path`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepath-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Path`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepath-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Path`
 
 ##### `impl Hash for crate::Path`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepath-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::path::Path`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepathpath-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Path`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepath-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl PartialEq for syn::Path`
 
-##### `impl<T> Sealed for Path`
+##### `impl Sealed for Path`
 
-##### `impl<T> Spanned for Path`
+##### `impl Spanned for Path`
 
-- `fn span(self: &Self) -> Span`
+- <span id="path-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::Path`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathpath-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PathSegment`
 
@@ -7649,57 +8409,61 @@ struct PathSegment {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/path.rs:107-114`](../../.source_1765210505/syn-2.0.111/src/path.rs#L107-L114)*
+
 A segment of a path together with any path arguments on that segment.
 
 #### Implementations
 
-- `fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepathpathsegment-parse-helper"></span>`fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PathSegment`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepathsegment-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PathSegment`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepathsegment-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PathSegment`
 
 ##### `impl Hash for crate::PathSegment`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepathsegment-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::path::PathSegment`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepathpathsegment-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::PathSegment`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepathsegment-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PathSegment`
+##### `impl Sealed for PathSegment`
 
-##### `impl<T> Spanned for PathSegment`
+##### `impl Spanned for PathSegment`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pathsegment-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::PathSegment`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathpathsegment-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `QSelf`
 
 ```rust
 struct QSelf {
-    pub lt_token: $crate::token::Lt,
+    pub lt_token: token::Lt,
     pub ty: Box<crate::ty::Type>,
     pub position: usize,
-    pub as_token: Option<$crate::token::As>,
-    pub gt_token: $crate::token::Gt,
+    pub as_token: Option<token::As>,
+    pub gt_token: token::Gt,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:256-281`](../../.source_1765210505/syn-2.0.111/src/path.rs#L256-L281)*
 
 The explicit Self type in a qualified path: the `T` in `<T as
 Display>::fmt`.
@@ -7722,75 +8486,77 @@ item qualified with this Self type.
 
 ##### `impl Clone for crate::QSelf`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateqself-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::QSelf`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateqself-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::QSelf`
 
 ##### `impl Hash for crate::QSelf`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateqself-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::QSelf`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateqself-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for crate::QSelf`
 
 ##### `impl Spanned for crate::path::QSelf`
 
-- `fn span(self: &Self) -> Span`
+- <span id="cratepathqself-span"></span>`fn span(&self) -> Span`
 
 ### `VisRestricted`
 
 ```rust
 struct VisRestricted {
-    pub pub_token: $crate::token::Pub,
+    pub pub_token: token::Pub,
     pub paren_token: token::Paren,
-    pub in_token: Option<$crate::token::In>,
+    pub in_token: Option<token::In>,
     pub path: Box<crate::path::Path>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/restriction.rs:27-37`](../../.source_1765210505/syn-2.0.111/src/restriction.rs#L27-L37)*
 
 A visibility level restricted to some path: `pub(self)` or
 `pub(super)` or `pub(crate)` or `pub(in some::module)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratevisrestricted-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::VisRestricted`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratevisrestricted-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::VisRestricted`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratevisrestricted-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::VisRestricted`
 
 ##### `impl Hash for crate::VisRestricted`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratevisrestricted-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::VisRestricted`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratevisrestricted-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for VisRestricted`
+##### `impl Sealed for VisRestricted`
 
-##### `impl<T> Spanned for VisRestricted`
+##### `impl Spanned for VisRestricted`
 
-- `fn span(self: &Self) -> Span`
+- <span id="visrestricted-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::restriction::VisRestricted`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="craterestrictionvisrestricted-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Block`
 
@@ -7800,6 +8566,8 @@ struct Block {
     pub stmts: Vec<Stmt>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/stmt.rs:8-16`](../../.source_1765210505/syn-2.0.111/src/stmt.rs#L8-L16)*
 
 A braced block containing Rust statements.
 
@@ -7811,99 +8579,103 @@ A braced block containing Rust statements.
 
 #### Implementations
 
-- `fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](parse/index.md), [`Result`](#result), [`Stmt`](#stmt)
+- <span id="cratestmtblock-parse-within"></span>`fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Stmt`](stmt/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Block`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateblock-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Block`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateblock-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Block`
 
 ##### `impl Hash for crate::Block`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateblock-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::stmt::Block`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratestmtblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Block`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateblock-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Block`
+##### `impl Sealed for Block`
 
-##### `impl<T> Spanned for Block`
+##### `impl Spanned for Block`
 
-- `fn span(self: &Self) -> Span`
+- <span id="block-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::stmt::Block`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratestmtblock-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Local`
 
 ```rust
 struct Local {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub let_token: $crate::token::Let,
+    pub let_token: token::Let,
     pub pat: crate::pat::Pat,
     pub init: Option<LocalInit>,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/stmt.rs:40-50`](../../.source_1765210505/syn-2.0.111/src/stmt.rs#L40-L50)*
 
 A local `let` binding: `let x: u64 = s.parse()?;`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratelocal-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Local`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelocal-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Local`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelocal-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Local`
 
 ##### `impl Hash for crate::Local`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelocal-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Local`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelocal-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Local`
+##### `impl Sealed for Local`
 
-##### `impl<T> Spanned for Local`
+##### `impl Spanned for Local`
 
-- `fn span(self: &Self) -> Span`
+- <span id="local-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::stmt::Local`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratestmtlocal-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `LocalInit`
 
 ```rust
 struct LocalInit {
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub expr: Box<crate::expr::Expr>,
-    pub diverge: Option<($crate::token::Else, Box<crate::expr::Expr>)>,
+    pub diverge: Option<(token::Else, Box<crate::expr::Expr>)>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/stmt.rs:52-64`](../../.source_1765210505/syn-2.0.111/src/stmt.rs#L52-L64)*
 
 The expression assigned in a local `let` binding, including optional
 diverging `else` block.
@@ -7915,21 +8687,21 @@ diverging `else` block.
 
 ##### `impl Clone for crate::LocalInit`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelocalinit-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::LocalInit`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelocalinit-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LocalInit`
 
 ##### `impl Hash for crate::LocalInit`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelocalinit-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::LocalInit`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelocalinit-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `StmtMacro`
 
@@ -7937,9 +8709,11 @@ diverging `else` block.
 struct StmtMacro {
     pub attrs: Vec<crate::attr::Attribute>,
     pub mac: crate::mac::Macro,
-    pub semi_token: Option<$crate::token::Semi>,
+    pub semi_token: Option<token::Semi>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/stmt.rs:66-78`](../../.source_1765210505/syn-2.0.111/src/stmt.rs#L66-L78)*
 
 A macro invocation in statement position.
 
@@ -7949,46 +8723,48 @@ expression.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratestmtmacro-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::StmtMacro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratestmtmacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::StmtMacro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratestmtmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::StmtMacro`
 
 ##### `impl Hash for crate::StmtMacro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratestmtmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::StmtMacro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratestmtmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for StmtMacro`
+##### `impl Sealed for StmtMacro`
 
-##### `impl<T> Spanned for StmtMacro`
+##### `impl Spanned for StmtMacro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="stmtmacro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::stmt::StmtMacro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratestmtstmtmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Abi`
 
 ```rust
 struct Abi {
-    pub extern_token: $crate::token::Extern,
+    pub extern_token: token::Extern,
     pub name: Option<crate::lit::LitStr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:230-237`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L230-L237)*
 
 The binary interface of a function: `extern "C"`.
 
@@ -7996,45 +8772,47 @@ The binary interface of a function: `extern "C"`.
 
 ##### `impl Clone for crate::Abi`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateabi-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Abi`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateabi-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Abi`
 
 ##### `impl Hash for crate::Abi`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateabi-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::Abi`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetyabi-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Abi`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateabi-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Abi`
+##### `impl Sealed for Abi`
 
-##### `impl<T> Spanned for Abi`
+##### `impl Spanned for Abi`
 
-- `fn span(self: &Self) -> Span`
+- <span id="abi-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::Abi`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetyabi-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `BareFnArg`
 
 ```rust
 struct BareFnArg {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub name: Option<(crate::ident::Ident, $crate::token::Colon)>,
+    pub name: Option<(crate::ident::Ident, token::Colon)>,
     pub ty: Type,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:239-247`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L239-L247)*
 
 An argument in a function type: the `usize` in `fn(usize) -> bool`.
 
@@ -8042,46 +8820,48 @@ An argument in a function type: the `usize` in `fn(usize) -> bool`.
 
 ##### `impl Clone for crate::BareFnArg`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratebarefnarg-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::BareFnArg`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratebarefnarg-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::BareFnArg`
 
 ##### `impl Hash for crate::BareFnArg`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratebarefnarg-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::BareFnArg`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetybarefnarg-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::BareFnArg`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratebarefnarg-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for BareFnArg`
+##### `impl Sealed for BareFnArg`
 
-##### `impl<T> Spanned for BareFnArg`
+##### `impl Spanned for BareFnArg`
 
-- `fn span(self: &Self) -> Span`
+- <span id="barefnarg-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::BareFnArg`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetybarefnarg-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `BareVariadic`
 
 ```rust
 struct BareVariadic {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub name: Option<(crate::ident::Ident, $crate::token::Colon)>,
-    pub dots: $crate::token::DotDotDot,
-    pub comma: Option<$crate::token::Comma>,
+    pub name: Option<(crate::ident::Ident, token::Colon)>,
+    pub dots: token::DotDotDot,
+    pub comma: Option<token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:249-258`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L249-L258)*
 
 The variadic argument of a function pointer like `fn(usize, ...)`.
 
@@ -8089,31 +8869,31 @@ The variadic argument of a function pointer like `fn(usize, ...)`.
 
 ##### `impl Clone for crate::BareVariadic`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratebarevariadic-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::BareVariadic`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratebarevariadic-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::BareVariadic`
 
 ##### `impl Hash for crate::BareVariadic`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratebarevariadic-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::BareVariadic`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratebarevariadic-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for BareVariadic`
+##### `impl Sealed for BareVariadic`
 
-##### `impl<T> Spanned for BareVariadic`
+##### `impl Spanned for BareVariadic`
 
-- `fn span(self: &Self) -> Span`
+- <span id="barevariadic-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::BareVariadic`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetybarevariadic-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeArray`
 
@@ -8121,105 +8901,109 @@ The variadic argument of a function pointer like `fn(usize, ...)`.
 struct TypeArray {
     pub bracket_token: token::Bracket,
     pub elem: Box<Type>,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
     pub len: crate::expr::Expr,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:92-101`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L92-L101)*
 
 A fixed size array type: `[T; n]`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypearray-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeArray`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypearray-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeArray`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypearray-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeArray`
 
 ##### `impl Hash for crate::TypeArray`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypearray-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeArray`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypearray-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeArray`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypearray-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeArray`
+##### `impl Sealed for TypeArray`
 
-##### `impl<T> Spanned for TypeArray`
+##### `impl Spanned for TypeArray`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typearray-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeArray`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypearray-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeBareFn`
 
 ```rust
 struct TypeBareFn {
     pub lifetimes: Option<crate::generics::BoundLifetimes>,
-    pub unsafety: Option<$crate::token::Unsafe>,
+    pub unsafety: Option<token::Unsafe>,
     pub abi: Option<Abi>,
-    pub fn_token: $crate::token::Fn,
+    pub fn_token: token::Fn,
     pub paren_token: token::Paren,
-    pub inputs: crate::punctuated::Punctuated<BareFnArg, $crate::token::Comma>,
+    pub inputs: crate::punctuated::Punctuated<BareFnArg, token::Comma>,
     pub variadic: Option<BareVariadic>,
     pub output: ReturnType,
 }
 ```
 
+*Defined in [`syn-2.0.111/src/ty.rs:103-116`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L103-L116)*
+
 A bare function type: `fn(usize) -> bool`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypebarefn-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeBareFn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypebarefn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeBareFn`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypebarefn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeBareFn`
 
 ##### `impl Hash for crate::TypeBareFn`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypebarefn-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeBareFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypebarefn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeBareFn`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypebarefn-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeBareFn`
+##### `impl Sealed for TypeBareFn`
 
-##### `impl<T> Spanned for TypeBareFn`
+##### `impl Spanned for TypeBareFn`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typebarefn-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeBareFn`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypebarefn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeGroup`
 
@@ -8230,143 +9014,151 @@ struct TypeGroup {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/ty.rs:118-125`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L118-L125)*
+
 A type contained within invisible delimiters.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypegroup-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeGroup`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypegroup-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeGroup`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypegroup-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeGroup`
 
 ##### `impl Hash for crate::TypeGroup`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypegroup-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeGroup`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypegroup-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeGroup`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypegroup-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeGroup`
+##### `impl Sealed for TypeGroup`
 
-##### `impl<T> Spanned for TypeGroup`
+##### `impl Spanned for TypeGroup`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typegroup-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeGroup`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypegroup-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeImplTrait`
 
 ```rust
 struct TypeImplTrait {
-    pub impl_token: $crate::token::Impl,
-    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, $crate::token::Plus>,
+    pub impl_token: token::Impl,
+    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, token::Plus>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:127-135`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L127-L135)*
 
 An `impl Bound1 + Bound2 + Bound3` type where `Bound` is a trait or
 a lifetime.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetytypeimpltrait-without-plus"></span>`fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
+
+- <span id="cratetytypeimpltrait-parse"></span>`fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeImplTrait`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypeimpltrait-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeImplTrait`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypeimpltrait-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeImplTrait`
 
 ##### `impl Hash for crate::TypeImplTrait`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypeimpltrait-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeImplTrait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypeimpltrait-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeImplTrait`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypeimpltrait-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeImplTrait`
+##### `impl Sealed for TypeImplTrait`
 
-##### `impl<T> Spanned for TypeImplTrait`
+##### `impl Spanned for TypeImplTrait`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typeimpltrait-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeImplTrait`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypeimpltrait-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeInfer`
 
 ```rust
 struct TypeInfer {
-    pub underscore_token: $crate::token::Underscore,
+    pub underscore_token: token::Underscore,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:137-143`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L137-L143)*
 
 Indication that a type should be inferred by the compiler: `_`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypeinfer-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeInfer`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypeinfer-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeInfer`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypeinfer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeInfer`
 
 ##### `impl Hash for crate::TypeInfer`
 
-- `fn hash<H>(self: &Self, _state: &mut H)`
+- <span id="cratetypeinfer-hash"></span>`fn hash<H>(&self, _state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeInfer`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypeinfer-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeInfer`
 
-- `fn eq(self: &Self, _other: &Self) -> bool`
+- <span id="cratetypeinfer-eq"></span>`fn eq(&self, _other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeInfer`
+##### `impl Sealed for TypeInfer`
 
-##### `impl<T> Spanned for TypeInfer`
+##### `impl Spanned for TypeInfer`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typeinfer-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeInfer`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypeinfer-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeMacro`
 
@@ -8376,93 +9168,97 @@ struct TypeMacro {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/ty.rs:145-151`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L145-L151)*
+
 A macro in the type position.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypemacro-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeMacro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypemacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeMacro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypemacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeMacro`
 
 ##### `impl Hash for crate::TypeMacro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypemacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypemacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeMacro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypemacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeMacro`
+##### `impl Sealed for TypeMacro`
 
-##### `impl<T> Spanned for TypeMacro`
+##### `impl Spanned for TypeMacro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typemacro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeMacro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypemacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeNever`
 
 ```rust
 struct TypeNever {
-    pub bang_token: $crate::token::Not,
+    pub bang_token: token::Not,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:153-159`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L153-L159)*
 
 The never type: `!`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypenever-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeNever`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypenever-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeNever`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypenever-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeNever`
 
 ##### `impl Hash for crate::TypeNever`
 
-- `fn hash<H>(self: &Self, _state: &mut H)`
+- <span id="cratetypenever-hash"></span>`fn hash<H>(&self, _state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeNever`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypenever-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeNever`
 
-- `fn eq(self: &Self, _other: &Self) -> bool`
+- <span id="cratetypenever-eq"></span>`fn eq(&self, _other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeNever`
+##### `impl Sealed for TypeNever`
 
-##### `impl<T> Spanned for TypeNever`
+##### `impl Spanned for TypeNever`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typenever-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeNever`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypenever-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeParen`
 
@@ -8473,45 +9269,47 @@ struct TypeParen {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/ty.rs:161-168`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L161-L168)*
+
 A parenthesized type equivalent to the inner type.
 
 #### Implementations
 
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypeparen-parse"></span>`fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeParen`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypeparen-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeParen`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypeparen-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeParen`
 
 ##### `impl Hash for crate::TypeParen`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypeparen-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeParen`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypeparen-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeParen`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypeparen-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeParen`
+##### `impl Sealed for TypeParen`
 
-##### `impl<T> Spanned for TypeParen`
+##### `impl Spanned for TypeParen`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typeparen-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeParen`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypeparen-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypePath`
 
@@ -8522,148 +9320,154 @@ struct TypePath {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/ty.rs:170-178`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L170-L178)*
+
 A path like `std::slice::Iter`, optionally qualified with a
 self-type as in `<Vec<T> as SomeTrait>::Associated`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypepath-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypePath`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypepath-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypePath`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypepath-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypePath`
 
 ##### `impl Hash for crate::TypePath`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypepath-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypePath`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypepath-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypePath`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypepath-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypePath`
+##### `impl Sealed for TypePath`
 
-##### `impl<T> Spanned for TypePath`
+##### `impl Spanned for TypePath`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typepath-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypePath`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypepath-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypePtr`
 
 ```rust
 struct TypePtr {
-    pub star_token: $crate::token::Star,
-    pub const_token: Option<$crate::token::Const>,
-    pub mutability: Option<$crate::token::Mut>,
+    pub star_token: token::Star,
+    pub const_token: Option<token::Const>,
+    pub mutability: Option<token::Mut>,
     pub elem: Box<Type>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:180-189`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L180-L189)*
 
 A raw pointer type: `*const T` or `*mut T`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypeptr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypePtr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypeptr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypePtr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypeptr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypePtr`
 
 ##### `impl Hash for crate::TypePtr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypeptr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypePtr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypeptr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypePtr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypeptr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypePtr`
+##### `impl Sealed for TypePtr`
 
-##### `impl<T> Spanned for TypePtr`
+##### `impl Spanned for TypePtr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typeptr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypePtr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypeptr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeReference`
 
 ```rust
 struct TypeReference {
-    pub and_token: $crate::token::And,
+    pub and_token: token::And,
     pub lifetime: Option<crate::lifetime::Lifetime>,
-    pub mutability: Option<$crate::token::Mut>,
+    pub mutability: Option<token::Mut>,
     pub elem: Box<Type>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:191-200`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L191-L200)*
 
 A reference type: `&'a T` or `&'a mut T`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypereference-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeReference`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypereference-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeReference`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypereference-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeReference`
 
 ##### `impl Hash for crate::TypeReference`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypereference-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeReference`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypereference-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeReference`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypereference-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeReference`
+##### `impl Sealed for TypeReference`
 
-##### `impl<T> Spanned for TypeReference`
+##### `impl Spanned for TypeReference`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typereference-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeReference`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypereference-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeSlice`
 
@@ -8674,148 +9478,154 @@ struct TypeSlice {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/ty.rs:202-209`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L202-L209)*
+
 A dynamically sized slice type: `[T]`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypeslice-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeSlice`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypeslice-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeSlice`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypeslice-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeSlice`
 
 ##### `impl Hash for crate::TypeSlice`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypeslice-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeSlice`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypeslice-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeSlice`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypeslice-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeSlice`
+##### `impl Sealed for TypeSlice`
 
-##### `impl<T> Spanned for TypeSlice`
+##### `impl Spanned for TypeSlice`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typeslice-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeSlice`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypeslice-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeTraitObject`
 
 ```rust
 struct TypeTraitObject {
-    pub dyn_token: Option<$crate::token::Dyn>,
-    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, $crate::token::Plus>,
+    pub dyn_token: Option<token::Dyn>,
+    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, token::Plus>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:211-219`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L211-L219)*
 
 A trait object type `dyn Bound1 + Bound2 + Bound3` where `Bound` is a
 trait or a lifetime.
 
 #### Implementations
 
-- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypetraitobject-without-plus"></span>`fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypetraitobject-parse"></span>`fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_bounds(dyn_span: Span, input: ParseStream<'_>, allow_plus: bool) -> Result<Punctuated<TypeParamBound, $crate::token::Plus>>` — [`ParseStream`](parse/index.md), [`Result`](#result), [`Punctuated`](punctuated/index.md), [`TypeParamBound`](#typeparambound), [`Plus`](token/index.md)
+- <span id="cratetytypetraitobject-parse-bounds"></span>`fn parse_bounds(dyn_span: Span, input: ParseStream<'_>, allow_plus: bool) -> Result<Punctuated<TypeParamBound, token::Plus>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Punctuated`](punctuated/index.md), [`TypeParamBound`](generics/index.md), [`Plus`](token/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeTraitObject`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypetraitobject-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeTraitObject`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypetraitobject-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeTraitObject`
 
 ##### `impl Hash for crate::TypeTraitObject`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypetraitobject-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeTraitObject`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypetraitobject-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeTraitObject`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypetraitobject-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeTraitObject`
+##### `impl Sealed for TypeTraitObject`
 
-##### `impl<T> Spanned for TypeTraitObject`
+##### `impl Spanned for TypeTraitObject`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typetraitobject-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeTraitObject`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypetraitobject-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeTuple`
 
 ```rust
 struct TypeTuple {
     pub paren_token: token::Paren,
-    pub elems: crate::punctuated::Punctuated<Type, $crate::token::Comma>,
+    pub elems: crate::punctuated::Punctuated<Type, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:221-228`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L221-L228)*
 
 A tuple type: `(A, B, C, String)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetypetuple-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeTuple`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypetuple-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeTuple`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypetuple-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeTuple`
 
 ##### `impl Hash for crate::TypeTuple`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypetuple-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::TypeTuple`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytypetuple-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeTuple`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypetuple-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeTuple`
+##### `impl Sealed for TypeTuple`
 
-##### `impl<T> Spanned for TypeTuple`
+##### `impl Spanned for TypeTuple`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typetuple-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::TypeTuple`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetytypetuple-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -8824,9 +9634,11 @@ A tuple type: `(A, B, C, String)`.
 ```rust
 enum AttrStyle {
     Outer,
-    Inner($crate::token::Not),
+    Inner(token::Not),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../.source_1765210505/syn-2.0.111/src/attr.rs#L429-L449)*
 
 Distinguishes between attributes that decorate an item and attributes
 that are contained within an item.
@@ -8847,23 +9659,23 @@ that are contained within an item.
 
 ##### `impl Clone for crate::AttrStyle`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateattrstyle-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for crate::AttrStyle`
 
 ##### `impl Debug for crate::AttrStyle`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateattrstyle-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::AttrStyle`
 
 ##### `impl Hash for crate::AttrStyle`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateattrstyle-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::AttrStyle`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateattrstyle-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `Meta`
 
@@ -8874,6 +9686,8 @@ enum Meta {
     NameValue(MetaNameValue),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../.source_1765210505/syn-2.0.111/src/attr.rs#L451-L482)*
 
 Content of a compile-time structured attribute.
 
@@ -8907,47 +9721,47 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn path(self: &Self) -> &Path` — [`Path`](#path)
+- <span id="meta-path"></span>`fn path(&self) -> &Path` — [`Path`](path/index.md)
 
-- `fn require_path_only(self: &Self) -> Result<&Path>` — [`Result`](#result), [`Path`](#path)
+- <span id="meta-require-path-only"></span>`fn require_path_only(&self) -> Result<&Path>` — [`Result`](error/index.md), [`Path`](path/index.md)
 
-- `fn require_list(self: &Self) -> Result<&MetaList>` — [`Result`](#result), [`MetaList`](#metalist)
+- <span id="meta-require-list"></span>`fn require_list(&self) -> Result<&MetaList>` — [`Result`](error/index.md), [`MetaList`](attr/index.md)
 
-- `fn require_name_value(self: &Self) -> Result<&MetaNameValue>` — [`Result`](#result), [`MetaNameValue`](#metanamevalue)
+- <span id="meta-require-name-value"></span>`fn require_name_value(&self) -> Result<&MetaNameValue>` — [`Result`](error/index.md), [`MetaNameValue`](attr/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Meta`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemeta-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Meta`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemeta-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Meta`
 
 ##### `impl Hash for crate::Meta`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratemeta-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::attr::Meta`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateattrmeta-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Meta`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratemeta-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Meta`
+##### `impl Sealed for Meta`
 
-##### `impl<T> Spanned for Meta`
+##### `impl Spanned for Meta`
 
-- `fn span(self: &Self) -> Span`
+- <span id="meta-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::attr::Meta`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateattrmeta-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Fields`
 
@@ -8958,6 +9772,8 @@ enum Fields {
     Unit,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../.source_1765210505/syn-2.0.111/src/data.rs#L26-L46)*
 
 Data stored within an enum variant or struct.
 
@@ -8983,53 +9799,53 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn iter(self: &Self) -> punctuated::Iter<'_, Field>` — [`Iter`](punctuated/index.md), [`Field`](#field)
+- <span id="fields-iter"></span>`fn iter(&self) -> punctuated::Iter<'_, Field>` — [`Iter`](punctuated/index.md), [`Field`](data/index.md)
 
-- `fn iter_mut(self: &mut Self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](punctuated/index.md), [`Field`](#field)
+- <span id="fields-iter-mut"></span>`fn iter_mut(&mut self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](punctuated/index.md), [`Field`](data/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="fields-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="fields-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn members(self: &Self) -> Members<'_>` — [`Members`](data/index.md)
+- <span id="fields-members"></span>`fn members(&self) -> Members<'_>` — [`Members`](data/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Fields`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefields-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Fields`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefields-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Fields`
 
 ##### `impl Hash for crate::Fields`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefields-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl IntoIterator for Fields`
 
-- `type Item = Field`
+- <span id="fields-type-item"></span>`type Item = Field`
 
-- `type IntoIter = IntoIter<Field>`
+- <span id="fields-type-intoiter"></span>`type IntoIter = IntoIter<Field>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="fields-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl PartialEq for crate::Fields`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefields-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Fields`
+##### `impl Sealed for Fields`
 
-##### `impl<T> Spanned for Fields`
+##### `impl Spanned for Fields`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fields-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Fields`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="fields-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `Data`
 
@@ -9040,6 +9856,8 @@ enum Data {
     Union(DataUnion),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/derive.rs:21-35`](../../.source_1765210505/syn-2.0.111/src/derive.rs#L21-L35)*
 
 The storage of a struct, enum or union data structure.
 
@@ -9052,30 +9870,32 @@ This type is a [syntax tree enum].
 
 ##### `impl Clone for crate::Data`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratedata-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Data`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratedata-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Data`
 
 ##### `impl Hash for crate::Data`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratedata-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Data`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratedata-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `PointerMutability`
 
 ```rust
 enum PointerMutability {
-    Const($crate::token::Const),
-    Mut($crate::token::Mut),
+    Const(token::Const),
+    Mut(token::Mut),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:1161-1169`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L1161-L1169)*
 
 Mutability of a raw pointer (`*const T`, `*mut T`), in which non-mutable
 isn't the implicit default.
@@ -9084,44 +9904,46 @@ isn't the implicit default.
 
 ##### `impl Clone for crate::PointerMutability`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepointermutability-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PointerMutability`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepointermutability-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PointerMutability`
 
 ##### `impl Hash for crate::PointerMutability`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepointermutability-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::PointerMutability`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprpointermutability-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::PointerMutability`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepointermutability-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PointerMutability`
+##### `impl Sealed for PointerMutability`
 
-##### `impl<T> Spanned for PointerMutability`
+##### `impl Spanned for PointerMutability`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pointermutability-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::PointerMutability`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprpointermutability-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `RangeLimits`
 
 ```rust
 enum RangeLimits {
-    HalfOpen($crate::token::DotDot),
-    Closed($crate::token::DotDotEq),
+    HalfOpen(token::DotDot),
+    Closed(token::DotDotEq),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:1149-1158`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L1149-L1158)*
 
 Limit types of a range, inclusive or exclusive.
 
@@ -9137,43 +9959,43 @@ Limit types of a range, inclusive or exclusive.
 
 #### Implementations
 
-- `fn parse_obsolete(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprrangelimits-parse-obsolete"></span>`fn parse_obsolete(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::RangeLimits`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="craterangelimits-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for crate::RangeLimits`
 
 ##### `impl Debug for crate::RangeLimits`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="craterangelimits-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::RangeLimits`
 
 ##### `impl Hash for crate::RangeLimits`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="craterangelimits-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::RangeLimits`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprrangelimits-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::RangeLimits`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="craterangelimits-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for RangeLimits`
+##### `impl Sealed for RangeLimits`
 
-##### `impl<T> Spanned for RangeLimits`
+##### `impl Spanned for RangeLimits`
 
-- `fn span(self: &Self) -> Span`
+- <span id="rangelimits-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::RangeLimits`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprrangelimits-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Expr`
 
@@ -9221,6 +10043,8 @@ enum Expr {
     Yield(ExprYield),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:35-267`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L35-L267)*
 
 A Rust expression.
 
@@ -9477,49 +10301,49 @@ see names getting repeated in your code, like accessing
 
 #### Implementations
 
-- `const PLACEHOLDER: Self`
+- <span id="expr-const-placeholder"></span>`const PLACEHOLDER: Self`
 
-- `fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](parse/index.md), [`Result`](#result), [`Expr`](#expr)
+- <span id="expr-parse-without-eager-brace"></span>`fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Expr`](expr/index.md)
 
-- `fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](parse/index.md), [`Result`](#result), [`Expr`](#expr)
+- <span id="expr-parse-with-earlier-boundary-rule"></span>`fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Expr`](expr/index.md)
 
-- `fn peek(input: ParseStream<'_>) -> bool` — [`ParseStream`](parse/index.md)
+- <span id="expr-peek"></span>`fn peek(input: ParseStream<'_>) -> bool` — [`ParseStream`](parse/index.md)
 
-- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](#attribute)
+- <span id="expr-replace-attrs"></span>`fn replace_attrs(&mut self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](attr/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Expr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexpr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Expr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexpr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Expr`
 
 ##### `impl Hash for crate::Expr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexpr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::Expr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprexpr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Expr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexpr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Expr`
+##### `impl Sealed for Expr`
 
-##### `impl<T> Spanned for Expr`
+##### `impl Spanned for Expr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="expr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Expr`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="expr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `Member`
 
@@ -9529,6 +10353,8 @@ enum Member {
     Unnamed(Index),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:971-981`](../../.source_1765210505/syn-2.0.111/src/expr.rs#L971-L981)*
 
 A struct or tuple struct field accessed in a struct literal or field
 expression.
@@ -9545,47 +10371,47 @@ expression.
 
 #### Implementations
 
-- `fn is_named(self: &Self) -> bool`
+- <span id="member-is-named"></span>`fn is_named(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Member`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemember-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Member`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemember-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Member`
 
 ##### `impl Hash for Member`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="member-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl IdentFragment for Member`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="member-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn span(self: &Self) -> Option<Span>`
+- <span id="member-span"></span>`fn span(&self) -> Option<Span>`
 
 ##### `impl Parse for crate::expr::Member`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateexprmember-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for Member`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="member-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Member`
+##### `impl Sealed for Member`
 
-##### `impl<T> Spanned for Member`
+##### `impl Spanned for Member`
 
-- `fn span(self: &Self) -> Span`
+- <span id="member-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::Member`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprmember-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `GenericParam`
 
@@ -9596,6 +10422,8 @@ enum GenericParam {
     Const(ConstParam),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:34-54`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L34-L54)*
 
 A generic type parameter, lifetime, or const generic: `T: Into<String>`,
 `'a: 'b`, `const LEN: usize`.
@@ -9623,44 +10451,46 @@ This type is a [syntax tree enum].
 
 ##### `impl Clone for crate::GenericParam`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crategenericparam-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::GenericParam`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crategenericparam-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::GenericParam`
 
 ##### `impl Hash for crate::GenericParam`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crategenericparam-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::GenericParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericsgenericparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::GenericParam`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crategenericparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for GenericParam`
+##### `impl Sealed for GenericParam`
 
-##### `impl<T> Spanned for GenericParam`
+##### `impl Spanned for GenericParam`
 
-- `fn span(self: &Self) -> Span`
+- <span id="genericparam-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for GenericParam`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="genericparam-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `TraitBoundModifier`
 
 ```rust
 enum TraitBoundModifier {
     None,
-    Maybe($crate::token::Question),
+    Maybe(token::Question),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:423-431`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L423-L431)*
 
 A modifier on a trait bound, currently only used for the `?` in
 `?Sized`.
@@ -9669,37 +10499,37 @@ A modifier on a trait bound, currently only used for the `?` in
 
 ##### `impl Clone for crate::TraitBoundModifier`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetraitboundmodifier-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for crate::TraitBoundModifier`
 
 ##### `impl Debug for crate::TraitBoundModifier`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraitboundmodifier-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitBoundModifier`
 
 ##### `impl Hash for crate::TraitBoundModifier`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetraitboundmodifier-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::TraitBoundModifier`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericstraitboundmodifier-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TraitBoundModifier`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetraitboundmodifier-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TraitBoundModifier`
+##### `impl Sealed for TraitBoundModifier`
 
-##### `impl<T> Spanned for TraitBoundModifier`
+##### `impl Spanned for TraitBoundModifier`
 
-- `fn span(self: &Self) -> Span`
+- <span id="traitboundmodifier-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::TraitBoundModifier`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericstraitboundmodifier-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeParamBound`
 
@@ -9712,47 +10542,49 @@ enum TypeParamBound {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:398-408`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L398-L408)*
+
 A trait or lifetime used as a bound on a type parameter.
 
 #### Implementations
 
-- `fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericstypeparambound-parse-single"></span>`fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, $crate::token::Plus>>` — [`ParseStream`](parse/index.md), [`Result`](#result), [`Punctuated`](punctuated/index.md), [`Plus`](token/index.md)
+- <span id="crategenericstypeparambound-parse-multiple"></span>`fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, token::Plus>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Punctuated`](punctuated/index.md), [`Plus`](token/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeParamBound`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypeparambound-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeParamBound`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypeparambound-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeParamBound`
 
 ##### `impl Hash for crate::TypeParamBound`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypeparambound-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::TypeParamBound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericstypeparambound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TypeParamBound`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypeparambound-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeParamBound`
+##### `impl Sealed for TypeParamBound`
 
-##### `impl<T> Spanned for TypeParamBound`
+##### `impl Spanned for TypeParamBound`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typeparambound-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for TypeParamBound`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="typeparambound-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `WherePredicate`
 
@@ -9762,6 +10594,8 @@ enum WherePredicate {
     Type(PredicateType),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:471-488`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L471-L488)*
 
 A single predicate in a `where` clause: `T: Deserialize<'de>`.
 
@@ -9784,35 +10618,35 @@ This type is a [syntax tree enum].
 
 ##### `impl Clone for crate::WherePredicate`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratewherepredicate-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::WherePredicate`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratewherepredicate-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::WherePredicate`
 
 ##### `impl Hash for crate::WherePredicate`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratewherepredicate-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::WherePredicate`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericswherepredicate-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::WherePredicate`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratewherepredicate-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for WherePredicate`
+##### `impl Sealed for WherePredicate`
 
-##### `impl<T> Spanned for WherePredicate`
+##### `impl Spanned for WherePredicate`
 
-- `fn span(self: &Self) -> Span`
+- <span id="wherepredicate-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for WherePredicate`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="wherepredicate-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `CapturedParam`
 
@@ -9822,6 +10656,8 @@ enum CapturedParam {
     Ident(crate::ident::Ident),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:446-459`](../../.source_1765210505/syn-2.0.111/src/generics.rs#L446-L459)*
 
 Single parameter in a precise capturing bound.
 
@@ -9842,35 +10678,35 @@ Single parameter in a precise capturing bound.
 
 ##### `impl Clone for crate::CapturedParam`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratecapturedparam-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::CapturedParam`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratecapturedparam-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::CapturedParam`
 
 ##### `impl Hash for crate::CapturedParam`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratecapturedparam-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::CapturedParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crategenericscapturedparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::CapturedParam`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratecapturedparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for CapturedParam`
+##### `impl Sealed for CapturedParam`
 
-##### `impl<T> Spanned for CapturedParam`
+##### `impl Spanned for CapturedParam`
 
-- `fn span(self: &Self) -> Span`
+- <span id="capturedparam-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::CapturedParam`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericscapturedparam-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FnArg`
 
@@ -9880,6 +10716,8 @@ enum FnArg {
     Typed(crate::pat::PatType),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:820-830`](../../.source_1765210505/syn-2.0.111/src/item.rs#L820-L830)*
 
 An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
@@ -9897,35 +10735,35 @@ An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
 ##### `impl Clone for crate::FnArg`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefnarg-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::FnArg`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefnarg-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FnArg`
 
 ##### `impl Hash for crate::FnArg`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefnarg-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::FnArg`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemfnarg-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::FnArg`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefnarg-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for FnArg`
+##### `impl Sealed for FnArg`
 
-##### `impl<T> Spanned for FnArg`
+##### `impl Spanned for FnArg`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fnarg-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for FnArg`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="fnarg-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `ForeignItem`
 
@@ -9938,6 +10776,8 @@ enum ForeignItem {
     Verbatim(proc_macro2::TokenStream),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:496-540`](../../.source_1765210505/syn-2.0.111/src/item.rs#L496-L540)*
 
 An item within an `extern` block.
 
@@ -9972,35 +10812,35 @@ This type is a [syntax tree enum].
 
 ##### `impl Clone for crate::ForeignItem`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateforeignitem-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ForeignItem`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateforeignitem-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ForeignItem`
 
 ##### `impl Hash for crate::ForeignItem`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateforeignitem-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ForeignItem`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemforeignitem-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ForeignItem`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateforeignitem-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ForeignItem`
+##### `impl Sealed for ForeignItem`
 
-##### `impl<T> Spanned for ForeignItem`
+##### `impl Spanned for ForeignItem`
 
-- `fn span(self: &Self) -> Span`
+- <span id="foreignitem-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for ForeignItem`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="foreignitem-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `ImplItem`
 
@@ -10013,6 +10853,8 @@ enum ImplItem {
     Verbatim(proc_macro2::TokenStream),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:688-732`](../../.source_1765210505/syn-2.0.111/src/item.rs#L688-L732)*
 
 An item within an impl block.
 
@@ -10047,35 +10889,35 @@ This type is a [syntax tree enum].
 
 ##### `impl Clone for crate::ImplItem`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateimplitem-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ImplItem`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplitem-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplItem`
 
 ##### `impl Hash for crate::ImplItem`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateimplitem-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::ImplItem`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemimplitem-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ImplItem`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateimplitem-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ImplItem`
+##### `impl Sealed for ImplItem`
 
-##### `impl<T> Spanned for ImplItem`
+##### `impl Spanned for ImplItem`
 
-- `fn span(self: &Self) -> Span`
+- <span id="implitem-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for ImplItem`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="implitem-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `ImplRestriction`
 
@@ -10084,27 +10926,29 @@ enum ImplRestriction {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/item.rs:888-903`](../../.source_1765210505/syn-2.0.111/src/item.rs#L888-L903)*
+
 Unused, but reserved for RFC 3323 restrictions.
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ImplRestriction`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateimplrestriction-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ImplRestriction`
 
-- `fn fmt(self: &Self, _formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateimplrestriction-fmt"></span>`fn fmt(&self, _formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ImplRestriction`
 
 ##### `impl Hash for crate::ImplRestriction`
 
-- `fn hash<H>(self: &Self, _state: &mut H)`
+- <span id="crateimplrestriction-hash"></span>`fn hash<H>(&self, _state: &mut H)`
 
 ##### `impl PartialEq for crate::ImplRestriction`
 
-- `fn eq(self: &Self, _other: &Self) -> bool`
+- <span id="crateimplrestriction-eq"></span>`fn eq(&self, _other: &Self) -> bool`
 
 ### `Item`
 
@@ -10128,6 +10972,8 @@ enum Item {
     Verbatim(proc_macro2::TokenStream),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:20-99`](../../.source_1765210505/syn-2.0.111/src/item.rs#L20-L99)*
 
 Things that can appear directly inside of a module or scope.
 
@@ -10206,50 +11052,52 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](#attribute)
+- <span id="item-replace-attrs"></span>`fn replace_attrs(&mut self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](attr/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Item`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateitem-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Item`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateitem-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Item`
 
 ##### `impl Hash for crate::Item`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateitem-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::Item`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemitem-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Item`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateitem-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Item`
+##### `impl Sealed for Item`
 
-##### `impl<T> Spanned for Item`
+##### `impl Spanned for Item`
 
-- `fn span(self: &Self) -> Span`
+- <span id="item-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Item`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="item-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `StaticMutability`
 
 ```rust
 enum StaticMutability {
-    Mut($crate::token::Mut),
+    Mut(token::Mut),
     None,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:878-886`](../../.source_1765210505/syn-2.0.111/src/item.rs#L878-L886)*
 
 The mutability of an `Item::Static` or `ForeignItem::Static`.
 
@@ -10257,35 +11105,35 @@ The mutability of an `Item::Static` or `ForeignItem::Static`.
 
 ##### `impl Clone for crate::StaticMutability`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratestaticmutability-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::StaticMutability`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratestaticmutability-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::StaticMutability`
 
 ##### `impl Hash for crate::StaticMutability`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratestaticmutability-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::StaticMutability`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemstaticmutability-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::StaticMutability`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratestaticmutability-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for StaticMutability`
+##### `impl Sealed for StaticMutability`
 
-##### `impl<T> Spanned for StaticMutability`
+##### `impl Spanned for StaticMutability`
 
-- `fn span(self: &Self) -> Span`
+- <span id="staticmutability-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::item::StaticMutability`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateitemstaticmutability-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TraitItem`
 
@@ -10298,6 +11146,8 @@ enum TraitItem {
     Verbatim(proc_macro2::TokenStream),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:591-635`](../../.source_1765210505/syn-2.0.111/src/item.rs#L591-L635)*
 
 An item declaration within the definition of a trait.
 
@@ -10332,35 +11182,35 @@ This type is a [syntax tree enum].
 
 ##### `impl Clone for crate::TraitItem`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetraititem-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TraitItem`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraititem-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitItem`
 
 ##### `impl Hash for crate::TraitItem`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetraititem-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::TraitItem`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateitemtraititem-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::TraitItem`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetraititem-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TraitItem`
+##### `impl Sealed for TraitItem`
 
-##### `impl<T> Spanned for TraitItem`
+##### `impl Spanned for TraitItem`
 
-- `fn span(self: &Self) -> Span`
+- <span id="traititem-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for TraitItem`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="traititem-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `UseTree`
 
@@ -10373,6 +11223,8 @@ enum UseTree {
     Group(UseGroup),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/item.rs:424-449`](../../.source_1765210505/syn-2.0.111/src/item.rs#L424-L449)*
 
 A suffix of an import tree in a `use` item: `Type as Renamed` or `*`.
 
@@ -10407,35 +11259,35 @@ This type is a [syntax tree enum].
 
 ##### `impl Clone for crate::UseTree`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateusetree-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::UseTree`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateusetree-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UseTree`
 
 ##### `impl Hash for crate::UseTree`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateusetree-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::item::UseTree`
 
-- `fn parse(input: ParseStream<'_>) -> Result<UseTree>` — [`ParseStream`](parse/index.md), [`Result`](#result), [`UseTree`](#usetree)
+- <span id="crateitemusetree-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<UseTree>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`UseTree`](item/index.md)
 
 ##### `impl PartialEq for crate::UseTree`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateusetree-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for UseTree`
+##### `impl Sealed for UseTree`
 
-##### `impl<T> Spanned for UseTree`
+##### `impl Spanned for UseTree`
 
-- `fn span(self: &Self) -> Span`
+- <span id="usetree-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for UseTree`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="usetree-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `Lit`
 
@@ -10452,6 +11304,8 @@ enum Lit {
     Verbatim(proc_macro2::Literal),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lit.rs:17-56`](../../.source_1765210505/syn-2.0.111/src/lit.rs#L17-L56)*
 
 A Rust literal such as a string or integer or boolean.
 
@@ -10502,49 +11356,49 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn new(token: Literal) -> Self`
+- <span id="cratelitlit-new"></span>`fn new(token: Literal) -> Self`
 
-- `fn from_str(token: Literal, repr: &str) -> Self`
+- <span id="cratelitlit-from-str"></span>`fn from_str(token: Literal, repr: &str) -> Self`
 
-- `fn suffix(self: &Self) -> &str`
+- <span id="cratelitlit-suffix"></span>`fn suffix(&self) -> &str`
 
-- `fn span(self: &Self) -> Span`
+- <span id="cratelitlit-span"></span>`fn span(&self) -> Span`
 
-- `fn set_span(self: &mut Self, span: Span)`
+- <span id="cratelitlit-set-span"></span>`fn set_span(&mut self, span: Span)`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Lit`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelit-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Lit`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelit-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Lit`
 
 ##### `impl Hash for crate::Lit`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelit-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::lit::Lit`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratelitlit-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Lit`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelit-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Lit`
+##### `impl Sealed for Lit`
 
-##### `impl<T> Spanned for Lit`
+##### `impl Spanned for Lit`
 
-- `fn span(self: &Self) -> Span`
+- <span id="lit-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Lit`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="lit-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ##### `impl Token for crate::lit::Lit`
 
@@ -10558,66 +11412,70 @@ enum MacroDelimiter {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/mac.rs:25-33`](../../.source_1765210505/syn-2.0.111/src/mac.rs#L25-L33)*
+
 A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]`.
 
 #### Implementations
 
-- `fn surround(self: &Self, tokens: &mut TokenStream, inner: TokenStream)`
+- <span id="cratemacmacrodelimiter-surround"></span>`fn surround(&self, tokens: &mut TokenStream, inner: TokenStream)`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::MacroDelimiter`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemacrodelimiter-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::MacroDelimiter`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemacrodelimiter-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::MacroDelimiter`
 
 ##### `impl Hash for crate::MacroDelimiter`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratemacrodelimiter-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::MacroDelimiter`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratemacrodelimiter-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `BinOp`
 
 ```rust
 enum BinOp {
-    Add($crate::token::Plus),
-    Sub($crate::token::Minus),
-    Mul($crate::token::Star),
-    Div($crate::token::Slash),
-    Rem($crate::token::Percent),
-    And($crate::token::AndAnd),
-    Or($crate::token::OrOr),
-    BitXor($crate::token::Caret),
-    BitAnd($crate::token::And),
-    BitOr($crate::token::Or),
-    Shl($crate::token::Shl),
-    Shr($crate::token::Shr),
-    Eq($crate::token::EqEq),
-    Lt($crate::token::Lt),
-    Le($crate::token::Le),
-    Ne($crate::token::Ne),
-    Ge($crate::token::Ge),
-    Gt($crate::token::Gt),
-    AddAssign($crate::token::PlusEq),
-    SubAssign($crate::token::MinusEq),
-    MulAssign($crate::token::StarEq),
-    DivAssign($crate::token::SlashEq),
-    RemAssign($crate::token::PercentEq),
-    BitXorAssign($crate::token::CaretEq),
-    BitAndAssign($crate::token::AndEq),
-    BitOrAssign($crate::token::OrEq),
-    ShlAssign($crate::token::ShlEq),
-    ShrAssign($crate::token::ShrEq),
+    Add(token::Plus),
+    Sub(token::Minus),
+    Mul(token::Star),
+    Div(token::Slash),
+    Rem(token::Percent),
+    And(token::AndAnd),
+    Or(token::OrOr),
+    BitXor(token::Caret),
+    BitAnd(token::And),
+    BitOr(token::Or),
+    Shl(token::Shl),
+    Shr(token::Shr),
+    Eq(token::EqEq),
+    Lt(token::Lt),
+    Le(token::Le),
+    Ne(token::Ne),
+    Ge(token::Ge),
+    Gt(token::Gt),
+    AddAssign(token::PlusEq),
+    SubAssign(token::MinusEq),
+    MulAssign(token::StarEq),
+    DivAssign(token::SlashEq),
+    RemAssign(token::PercentEq),
+    BitXorAssign(token::CaretEq),
+    BitAndAssign(token::AndEq),
+    BitOrAssign(token::OrEq),
+    ShlAssign(token::ShlEq),
+    ShrAssign(token::ShrEq),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../.source_1765210505/syn-2.0.111/src/op.rs#L1-L63)*
 
 A binary operator: `+`, `+=`, `&`.
 
@@ -10739,47 +11597,49 @@ A binary operator: `+`, `+=`, `&`.
 
 ##### `impl Clone for crate::BinOp`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratebinop-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for crate::BinOp`
 
 ##### `impl Debug for crate::BinOp`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratebinop-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::BinOp`
 
 ##### `impl Hash for crate::BinOp`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratebinop-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::op::BinOp`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateopbinop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::BinOp`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratebinop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for BinOp`
+##### `impl Sealed for BinOp`
 
-##### `impl<T> Spanned for BinOp`
+##### `impl Spanned for BinOp`
 
-- `fn span(self: &Self) -> Span`
+- <span id="binop-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::op::BinOp`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateopbinop-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `UnOp`
 
 ```rust
 enum UnOp {
-    Deref($crate::token::Star),
-    Not($crate::token::Not),
-    Neg($crate::token::Minus),
+    Deref(token::Star),
+    Not(token::Not),
+    Neg(token::Minus),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../.source_1765210505/syn-2.0.111/src/op.rs#L65-L77)*
 
 A unary operator: `*`, `!`, `-`.
 
@@ -10801,37 +11661,37 @@ A unary operator: `*`, `!`, `-`.
 
 ##### `impl Clone for crate::UnOp`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateunop-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for crate::UnOp`
 
 ##### `impl Debug for crate::UnOp`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateunop-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::UnOp`
 
 ##### `impl Hash for crate::UnOp`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateunop-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::op::UnOp`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="crateopunop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::UnOp`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateunop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for UnOp`
+##### `impl Sealed for UnOp`
 
-##### `impl<T> Spanned for UnOp`
+##### `impl Spanned for UnOp`
 
-- `fn span(self: &Self) -> Span`
+- <span id="unop-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::op::UnOp`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateopunop-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Pat`
 
@@ -10856,6 +11716,8 @@ enum Pat {
     Wild(PatWild),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/pat.rs:15-102`](../../.source_1765210505/syn-2.0.111/src/pat.rs#L15-L102)*
 
 A pattern in a local binding, function signature, match expression, or
 various other places.
@@ -10943,41 +11805,41 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn parse_single(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepatpat-parse-single"></span>`fn parse_single(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_multi(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepatpat-parse-multi"></span>`fn parse_multi(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_multi_with_leading_vert(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepatpat-parse-multi-with-leading-vert"></span>`fn parse_multi_with_leading_vert(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Pat`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepat-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Pat`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepat-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Pat`
 
 ##### `impl Hash for crate::Pat`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepat-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Pat`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepat-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Pat`
+##### `impl Sealed for Pat`
 
-##### `impl<T> Spanned for Pat`
+##### `impl Spanned for Pat`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pat-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Pat`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="pat-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `GenericArgument`
 
@@ -10991,6 +11853,8 @@ enum GenericArgument {
     Constraint(Constraint),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:171-194`](../../.source_1765210505/syn-2.0.111/src/path.rs#L171-L194)*
 
 An individual generic argument, like `'a`, `T`, or `Item = T`.
 
@@ -11029,35 +11893,35 @@ An individual generic argument, like `'a`, `T`, or `Item = T`.
 
 ##### `impl Clone for crate::GenericArgument`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crategenericargument-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::GenericArgument`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crategenericargument-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::GenericArgument`
 
 ##### `impl Hash for crate::GenericArgument`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crategenericargument-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::path::GenericArgument`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratepathgenericargument-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::GenericArgument`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crategenericargument-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for GenericArgument`
+##### `impl Sealed for GenericArgument`
 
-##### `impl<T> Spanned for GenericArgument`
+##### `impl Spanned for GenericArgument`
 
-- `fn span(self: &Self) -> Span`
+- <span id="genericargument-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::GenericArgument`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathgenericargument-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PathArguments`
 
@@ -11068,6 +11932,8 @@ enum PathArguments {
     Parenthesized(ParenthesizedGenericArguments),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:128-146`](../../.source_1765210505/syn-2.0.111/src/path.rs#L128-L146)*
 
 Angle bracketed or parenthesized arguments of a path segment.
 
@@ -11091,43 +11957,43 @@ The `(A, B) -> C` in `Fn(A, B) -> C`.
 
 #### Implementations
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="patharguments-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn is_none(self: &Self) -> bool`
+- <span id="patharguments-is-none"></span>`fn is_none(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PathArguments`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepatharguments-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PathArguments`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepatharguments-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PathArguments`
 
-- `fn default() -> Self`
+- <span id="patharguments-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for crate::PathArguments`
 
 ##### `impl Hash for crate::PathArguments`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepatharguments-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PathArguments`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepatharguments-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PathArguments`
+##### `impl Sealed for PathArguments`
 
-##### `impl<T> Spanned for PathArguments`
+##### `impl Spanned for PathArguments`
 
-- `fn span(self: &Self) -> Span`
+- <span id="patharguments-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::PathArguments`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathpatharguments-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FieldMutability`
 
@@ -11137,37 +12003,41 @@ enum FieldMutability {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/restriction.rs:39-57`](../../.source_1765210505/syn-2.0.111/src/restriction.rs#L39-L57)*
+
 Unused, but reserved for RFC 3323 restrictions.
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::FieldMutability`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefieldmutability-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::FieldMutability`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefieldmutability-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FieldMutability`
 
 ##### `impl Hash for crate::FieldMutability`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefieldmutability-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::FieldMutability`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefieldmutability-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `Visibility`
 
 ```rust
 enum Visibility {
-    Public($crate::token::Pub),
+    Public(token::Pub),
     Restricted(VisRestricted),
     Inherited,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/restriction.rs:4-25`](../../.source_1765210505/syn-2.0.111/src/restriction.rs#L4-L25)*
 
 The visibility level of an item: inherited or `pub` or
 `pub(restricted)`.
@@ -11194,43 +12064,41 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn parse_pub(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
-
-- `fn is_some(self: &Self) -> bool`
+- <span id="craterestrictionvisibility-is-inherited"></span>`fn is_inherited(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Visibility`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratevisibility-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Visibility`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratevisibility-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Visibility`
 
 ##### `impl Hash for crate::Visibility`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratevisibility-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::restriction::Visibility`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="craterestrictionvisibility-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Visibility`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratevisibility-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Visibility`
+##### `impl Sealed for Visibility`
 
-##### `impl<T> Spanned for Visibility`
+##### `impl Spanned for Visibility`
 
-- `fn span(self: &Self) -> Span`
+- <span id="visibility-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::restriction::Visibility`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="craterestrictionvisibility-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Stmt`
 
@@ -11238,10 +12106,12 @@ This type is a [syntax tree enum].
 enum Stmt {
     Local(Local),
     Item(crate::item::Item),
-    Expr(crate::expr::Expr, Option<$crate::token::Semi>),
+    Expr(crate::expr::Expr, Option<token::Semi>),
     Macro(StmtMacro),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/stmt.rs:18-38`](../../.source_1765210505/syn-2.0.111/src/stmt.rs#L18-L38)*
 
 A statement, usually ending in a semicolon.
 
@@ -11271,44 +12141,46 @@ A statement, usually ending in a semicolon.
 
 ##### `impl Clone for crate::Stmt`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratestmt-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Stmt`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratestmt-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Stmt`
 
 ##### `impl Hash for crate::Stmt`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratestmt-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::stmt::Stmt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratestmtstmt-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Stmt`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratestmt-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Stmt`
+##### `impl Sealed for Stmt`
 
-##### `impl<T> Spanned for Stmt`
+##### `impl Spanned for Stmt`
 
-- `fn span(self: &Self) -> Span`
+- <span id="stmt-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::stmt::Stmt`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratestmtstmt-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ReturnType`
 
 ```rust
 enum ReturnType {
     Default,
-    Type($crate::token::RArrow, Box<Type>),
+    Type(token::RArrow, Box<Type>),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:260-271`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L260-L271)*
 
 Return type of a function signature.
 
@@ -11326,43 +12198,43 @@ Return type of a function signature.
 
 #### Implementations
 
-- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetyreturntype-without-plus"></span>`fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetyreturntype-parse"></span>`fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ReturnType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratereturntype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ReturnType`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratereturntype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ReturnType`
 
 ##### `impl Hash for crate::ReturnType`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratereturntype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::ReturnType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetyreturntype-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::ReturnType`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratereturntype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ReturnType`
+##### `impl Sealed for ReturnType`
 
-##### `impl<T> Spanned for ReturnType`
+##### `impl Spanned for ReturnType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="returntype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::ty::ReturnType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratetyreturntype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Type`
 
@@ -11385,6 +12257,8 @@ enum Type {
     Verbatim(proc_macro2::TokenStream),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/ty.rs:13-90`](../../.source_1765210505/syn-2.0.111/src/ty.rs#L13-L90)*
 
 The possible types that a Rust value could have.
 
@@ -11460,41 +12334,41 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytype-without-plus"></span>`fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Type`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Type`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Type`
 
 ##### `impl Hash for crate::Type`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::ty::Type`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- <span id="cratetytype-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 ##### `impl PartialEq for crate::Type`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Type`
+##### `impl Sealed for Type`
 
-##### `impl<T> Spanned for Type`
+##### `impl Spanned for Type`
 
-- `fn span(self: &Self) -> Span`
+- <span id="type-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Type`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="type-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ## Functions
 
@@ -11503,6 +12377,8 @@ This type is a [syntax tree enum].
 ```rust
 fn parse<T: parse::Parse>(tokens: proc_macro::TokenStream) -> Result<T>
 ```
+
+*Defined in [`syn-2.0.111/src/lib.rs:902-904`](../../.source_1765210505/syn-2.0.111/src/lib.rs#L902-L904)*
 
 Parse tokens of source code into the chosen syntax tree node.
 
@@ -11524,11 +12400,13 @@ unparsed tokens at the end of the stream, an error is returned.
 fn parse2<T: parse::Parse>(tokens: proc_macro2::TokenStream) -> Result<T>
 ```
 
+*Defined in [`syn-2.0.111/src/lib.rs:920-922`](../../.source_1765210505/syn-2.0.111/src/lib.rs#L920-L922)*
+
 Parse a proc-macro2 token stream into the chosen syntax tree node.
 
 This function parses a `proc_macro2::TokenStream` which is commonly useful
 when the input comes from a node of the Syn syntax tree, for example the
-body tokens of a [`Macro`](#macro) node. When in a procedural macro parsing the
+body tokens of a [`Macro`](mac/index.md) node. When in a procedural macro parsing the
 `proc_macro::TokenStream` provided by the compiler, use `syn::parse`
 instead.
 
@@ -11540,6 +12418,8 @@ unparsed tokens at the end of the stream, an error is returned.
 ```rust
 fn parse_str<T: parse::Parse>(s: &str) -> Result<T>
 ```
+
+*Defined in [`syn-2.0.111/src/lib.rs:950-952`](../../.source_1765210505/syn-2.0.111/src/lib.rs#L950-L952)*
 
 Parse a string of Rust code into the chosen syntax tree node.
 
@@ -11571,6 +12451,8 @@ run().unwrap();
 ```rust
 fn parse_file(content: &str) -> Result<File>
 ```
+
+*Defined in [`syn-2.0.111/src/lib.rs:985-1009`](../../.source_1765210505/syn-2.0.111/src/lib.rs#L985-L1009)*
 
 Parse the content of a file of Rust code.
 
@@ -11604,9 +12486,13 @@ run().unwrap();
 
 ## Type Aliases
 
+*Defined in [`syn-2.0.111/src/lib.rs:365`](../../.source_1765210505/syn-2.0.111/src/lib.rs#L365)*
+
 ## Macros
 
 ### `parenthesized!`
+
+*Defined in [`syn-2.0.111/src/group.rs:146-159`](../../.source_1765210505/syn-2.0.111/src/group.rs#L146-L159)*
 
 Parse a set of parentheses and expose their content to subsequent parsers.
 
@@ -11652,6 +12538,8 @@ fn main() {
 ```
 
 ### `braced!`
+
+*Defined in [`syn-2.0.111/src/group.rs:225-238`](../../.source_1765210505/syn-2.0.111/src/group.rs#L225-L238)*
 
 Parse a set of curly braces and expose their content to subsequent parsers.
 
@@ -11718,6 +12606,8 @@ fn main() {
 
 ### `bracketed!`
 
+*Defined in [`syn-2.0.111/src/group.rs:281-294`](../../.source_1765210505/syn-2.0.111/src/group.rs#L281-L294)*
+
 Parse a set of square brackets and expose their content to subsequent
 parsers.
 
@@ -11759,6 +12649,8 @@ fn main() {
 ```
 
 ### `Token!`
+
+*Defined in [`syn-2.0.111/src/token.rs:871-972`](../../.source_1765210505/syn-2.0.111/src/token.rs#L871-L972)*
 
 A type-macro that expands to the name of the Rust type representation of a
 given token.
@@ -11828,6 +12720,8 @@ See the [token module] documentation for details and examples.
 
 
 ### `custom_keyword!`
+
+*Defined in [`syn-2.0.111/src/custom_keyword.rs:90-123`](../../.source_1765210505/syn-2.0.111/src/custom_keyword.rs#L90-L123)*
 
 Define a type that supports parsing and printing a given identifier as if it
 were a keyword.
@@ -11918,6 +12812,8 @@ impl Parse for Argument {
 
 ### `custom_punctuation!`
 
+*Defined in [`syn-2.0.111/src/custom_punctuation.rs:79-110`](../../.source_1765210505/syn-2.0.111/src/custom_punctuation.rs#L79-L110)*
+
 Define a type that supports parsing and printing a multi-character symbol
 as if it were a punctuation token.
 
@@ -11995,6 +12891,8 @@ fn main() {
 ```
 
 ### `parse_macro_input!`
+
+*Defined in [`syn-2.0.111/src/parse_macro_input.rs:108-128`](../../.source_1765210505/syn-2.0.111/src/parse_macro_input.rs#L108-L128)*
 
 Parse the input TokenStream of a macro, triggering a compile error if the
 tokens fail to parse.
@@ -12100,6 +12998,8 @@ fn test(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 
 ### `parse_quote!`
 
+*Defined in [`syn-2.0.111/src/parse_quote.rs:80-84`](../../.source_1765210505/syn-2.0.111/src/parse_quote.rs#L80-L84)*
+
 Quasi-quotation macro that accepts input like the `quote!` macro but uses
 type inference to figure out a return type for those tokens.
 
@@ -12149,7 +13049,7 @@ fn add_trait_bounds(mut generics: Generics) -> Generics {
 This macro can parse the following additional types as a special case even
 though they do not implement the `Parse` trait.
 
-- [`Attribute`](#attribute) — parses one attribute, allowing either outer like `#[...]`
+- [`Attribute`](attr/index.md) — parses one attribute, allowing either outer like `#[...]`
   or inner like `#![...]`
 - `Vec<Attribute>` — parses multiple attributes, including mixed kinds in
   any order
@@ -12158,9 +13058,9 @@ though they do not implement the `Parse` trait.
 - `Vec<Arm>` — parses arms separated by optional commas according to the
   same grammar as the inside of a `match` expression
 - `Vec<Stmt>` — parses the same as `Block::parse_within`
-- [`Pat`](#pat), `Box<Pat>` — parses the same as
+- [`Pat`](pat/index.md), `Box<Pat>` — parses the same as
   `Pat::parse_multi_with_leading_vert`
-- [`Field`](#field) — parses a named or unnamed struct field
+- [`Field`](data/index.md) — parses a named or unnamed struct field
 
 
 
@@ -12173,6 +13073,8 @@ caller is responsible for ensuring that the input tokens are syntactically
 valid.
 
 ### `parse_quote_spanned!`
+
+*Defined in [`syn-2.0.111/src/parse_quote.rs:112-116`](../../.source_1765210505/syn-2.0.111/src/parse_quote.rs#L112-L116)*
 
 This macro is [`parse_quote!`](#parse-quote) + `quote_spanned!`.
 

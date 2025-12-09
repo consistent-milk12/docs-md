@@ -4,6 +4,13 @@
 
 # Module `fmt`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Colorizer`](#colorizer) | struct |  |
+| [`Stream`](#stream) | enum |  |
+
 ## Structs
 
 ### `Colorizer`
@@ -16,29 +23,31 @@ struct Colorizer {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/fmt.rs:11-16`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/fmt.rs#L11-L16)*
+
 #### Implementations
 
-- `fn new(stream: Stream, color_when: ColorChoice) -> Self` — [`Stream`](#stream), [`ColorChoice`](../../index.md)
+- <span id="colorizer-new"></span>`fn new(stream: Stream, color_when: ColorChoice) -> Self` — [`Stream`](#stream), [`ColorChoice`](../../util/color/index.md)
 
-- `fn with_content(self: Self, content: StyledStr) -> Self` — [`StyledStr`](../../builder/index.md)
+- <span id="colorizer-with-content"></span>`fn with_content(self, content: StyledStr) -> Self` — [`StyledStr`](../../builder/styled_str/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Colorizer`
 
-- `fn clone(self: &Self) -> Colorizer` — [`Colorizer`](#colorizer)
+- <span id="colorizer-clone"></span>`fn clone(&self) -> Colorizer` — [`Colorizer`](#colorizer)
 
 ##### `impl Debug for Colorizer`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="colorizer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Colorizer`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="colorizer-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-##### `impl<T> ToString for Colorizer`
+##### `impl ToString for Colorizer`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="colorizer-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -51,23 +60,25 @@ enum Stream {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/fmt.rs:5-8`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/fmt.rs#L5-L8)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Stream`
 
-- `fn clone(self: &Self) -> Stream` — [`Stream`](#stream)
+- <span id="stream-clone"></span>`fn clone(&self) -> Stream` — [`Stream`](#stream)
 
 ##### `impl Copy for Stream`
 
 ##### `impl Debug for Stream`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Stream`
 
 ##### `impl PartialEq for Stream`
 
-- `fn eq(self: &Self, other: &Stream) -> bool` — [`Stream`](#stream)
+- <span id="stream-eq"></span>`fn eq(&self, other: &Stream) -> bool` — [`Stream`](#stream)
 
 ##### `impl StructuralPartialEq for Stream`
 

@@ -7,9 +7,20 @@
 Code that decides when workers should go to sleep. See README.md
 for an overview.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`counters`](#counters) | mod |  |
+| [`Sleep`](#sleep) | struct | The `Sleep` struct is embedded into each registry. |
+| [`IdleState`](#idlestate) | struct | An instance of this struct is created when a thread becomes idle. |
+| [`WorkerSleepState`](#workersleepstate) | struct | The "sleep state" for an individual worker. |
+| [`ROUNDS_UNTIL_SLEEPY`](#rounds_until_sleepy) | const |  |
+| [`ROUNDS_UNTIL_SLEEPING`](#rounds_until_sleeping) | const |  |
+
 ## Modules
 
-- [`counters`](counters/index.md) - 
+- [`counters`](counters/index.md)
 
 ## Structs
 
@@ -21,6 +32,8 @@ struct Sleep {
     counters: self::counters::AtomicCounters,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:21-27`](../../../.source_1765210505/rayon-core-1.13.0/src/sleep/mod.rs#L21-L27)*
 
 The `Sleep` struct is embedded into each registry. It governs the waking and sleeping
 of workers. It has callbacks that are invoked periodically at significant events,
@@ -39,45 +52,45 @@ events. See the `README.md` in this module for more details.
 
 #### Implementations
 
-- `fn new(n_threads: usize) -> Sleep` — [`Sleep`](#sleep)
+- <span id="sleep-new"></span>`fn new(n_threads: usize) -> Sleep` — [`Sleep`](#sleep)
 
-- `fn start_looking(self: &Self, worker_index: usize) -> IdleState` — [`IdleState`](#idlestate)
+- <span id="sleep-start-looking"></span>`fn start_looking(&self, worker_index: usize) -> IdleState` — [`IdleState`](#idlestate)
 
-- `fn work_found(self: &Self)`
+- <span id="sleep-work-found"></span>`fn work_found(&self)`
 
-- `fn no_work_found(self: &Self, idle_state: &mut IdleState, latch: &CoreLatch, has_injected_jobs: impl FnOnce() -> bool)` — [`IdleState`](#idlestate), [`CoreLatch`](../latch/index.md)
+- <span id="sleep-no-work-found"></span>`fn no_work_found(&self, idle_state: &mut IdleState, latch: &CoreLatch, has_injected_jobs: impl FnOnce() -> bool)` — [`IdleState`](#idlestate), [`CoreLatch`](../latch/index.md)
 
-- `fn announce_sleepy(self: &Self) -> JobsEventCounter` — [`JobsEventCounter`](counters/index.md)
+- <span id="sleep-announce-sleepy"></span>`fn announce_sleepy(&self) -> JobsEventCounter` — [`JobsEventCounter`](counters/index.md)
 
-- `fn sleep(self: &Self, idle_state: &mut IdleState, latch: &CoreLatch, has_injected_jobs: impl FnOnce() -> bool)` — [`IdleState`](#idlestate), [`CoreLatch`](../latch/index.md)
+- <span id="sleep-sleep"></span>`fn sleep(&self, idle_state: &mut IdleState, latch: &CoreLatch, has_injected_jobs: impl FnOnce() -> bool)` — [`IdleState`](#idlestate), [`CoreLatch`](../latch/index.md)
 
-- `fn notify_worker_latch_is_set(self: &Self, target_worker_index: usize)`
+- <span id="sleep-notify-worker-latch-is-set"></span>`fn notify_worker_latch_is_set(&self, target_worker_index: usize)`
 
-- `fn new_injected_jobs(self: &Self, num_jobs: u32, queue_was_empty: bool)`
+- <span id="sleep-new-injected-jobs"></span>`fn new_injected_jobs(&self, num_jobs: u32, queue_was_empty: bool)`
 
-- `fn new_internal_jobs(self: &Self, num_jobs: u32, queue_was_empty: bool)`
+- <span id="sleep-new-internal-jobs"></span>`fn new_internal_jobs(&self, num_jobs: u32, queue_was_empty: bool)`
 
-- `fn new_jobs(self: &Self, num_jobs: u32, queue_was_empty: bool)`
+- <span id="sleep-new-jobs"></span>`fn new_jobs(&self, num_jobs: u32, queue_was_empty: bool)`
 
-- `fn wake_any_threads(self: &Self, num_to_wake: u32)`
+- <span id="sleep-wake-any-threads"></span>`fn wake_any_threads(&self, num_to_wake: u32)`
 
-- `fn wake_specific_thread(self: &Self, index: usize) -> bool`
+- <span id="sleep-wake-specific-thread"></span>`fn wake_specific_thread(&self, index: usize) -> bool`
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for Sleep`
+##### `impl Pointable for Sleep`
 
-- `const ALIGN: usize`
+- <span id="sleep-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="sleep-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sleep-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sleep-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sleep-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="sleep-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `IdleState`
 
@@ -88,6 +101,8 @@ struct IdleState {
     jobs_counter: self::counters::JobsEventCounter,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:34-44`](../../../.source_1765210505/rayon-core-1.13.0/src/sleep/mod.rs#L34-L44)*
 
 An instance of this struct is created when a thread becomes idle.
 It is consumed when the thread finds work, and passed by `&mut`
@@ -112,25 +127,25 @@ idle.) It tracks state such as how long the thread has been idle.
 
 #### Implementations
 
-- `fn wake_fully(self: &mut Self)`
+- <span id="idlestate-wake-fully"></span>`fn wake_fully(&mut self)`
 
-- `fn wake_partly(self: &mut Self)`
+- <span id="idlestate-wake-partly"></span>`fn wake_partly(&mut self)`
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for IdleState`
+##### `impl Pointable for IdleState`
 
-- `const ALIGN: usize`
+- <span id="idlestate-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="idlestate-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="idlestate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="idlestate-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="idlestate-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="idlestate-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `WorkerSleepState`
 
@@ -140,6 +155,8 @@ struct WorkerSleepState {
     condvar: crate::sync::Condvar,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:48-54`](../../../.source_1765210505/rayon-core-1.13.0/src/sleep/mod.rs#L48-L54)*
 
 The "sleep state" for an individual worker.
 
@@ -154,33 +171,35 @@ The "sleep state" for an individual worker.
 
 ##### `impl Default for WorkerSleepState`
 
-- `fn default() -> WorkerSleepState` — [`WorkerSleepState`](#workersleepstate)
+- <span id="workersleepstate-default"></span>`fn default() -> WorkerSleepState` — [`WorkerSleepState`](#workersleepstate)
 
-##### `impl<T> Pointable for WorkerSleepState`
+##### `impl Pointable for WorkerSleepState`
 
-- `const ALIGN: usize`
+- <span id="workersleepstate-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="workersleepstate-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="workersleepstate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="workersleepstate-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="workersleepstate-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="workersleepstate-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Constants
 
 ### `ROUNDS_UNTIL_SLEEPY`
-
 ```rust
 const ROUNDS_UNTIL_SLEEPY: u32 = 32u32;
 ```
 
-### `ROUNDS_UNTIL_SLEEPING`
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:56`](../../../.source_1765210505/rayon-core-1.13.0/src/sleep/mod.rs#L56)*
 
+### `ROUNDS_UNTIL_SLEEPING`
 ```rust
 const ROUNDS_UNTIL_SLEEPING: u32 = 33u32;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:57`](../../../.source_1765210505/rayon-core-1.13.0/src/sleep/mod.rs#L57)*
 

@@ -10,22 +10,73 @@ The original C++ version of [SwissTable] can be found [here], and this
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`macros`](#macros)
+  - [`control`](#control)
+  - [`hasher`](#hasher)
+  - [`raw`](#raw)
+  - [`util`](#util)
+  - [`external_trait_impls`](#external_trait_impls)
+  - [`map`](#map)
+  - [`raw_entry`](#raw_entry)
+  - [`scopeguard`](#scopeguard)
+  - [`set`](#set)
+  - [`table`](#table)
+  - [`hash_map`](#hash_map)
+  - [`hash_set`](#hash_set)
+  - [`hash_table`](#hash_table)
+- [Structs](#structs)
+  - [`DefaultHashBuilder`](#defaulthashbuilder)
+  - [`DefaultHasher`](#defaulthasher)
+  - [`HashMap`](#hashmap)
+  - [`HashSet`](#hashset)
+  - [`HashTable`](#hashtable)
+- [Enums](#enums)
+  - [`TryReserveError`](#tryreserveerror)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`macros`](#macros) | mod |  |
+| [`control`](#control) | mod |  |
+| [`hasher`](#hasher) | mod |  |
+| [`raw`](#raw) | mod |  |
+| [`util`](#util) | mod |  |
+| [`external_trait_impls`](#external_trait_impls) | mod |  |
+| [`map`](#map) | mod |  |
+| [`raw_entry`](#raw_entry) | mod |  |
+| [`scopeguard`](#scopeguard) | mod |  |
+| [`set`](#set) | mod |  |
+| [`table`](#table) | mod |  |
+| [`hash_map`](#hash_map) | mod | A hash map implemented with quadratic probing and SIMD lookup. |
+| [`hash_set`](#hash_set) | mod | A hash set implemented as a `HashMap` where the value is `()`. |
+| [`hash_table`](#hash_table) | mod | A hash table implemented with quadratic probing and SIMD lookup. |
+| [`DefaultHashBuilder`](#defaulthashbuilder) | struct |  |
+| [`DefaultHasher`](#defaulthasher) | struct |  |
+| [`HashMap`](#hashmap) | struct |  |
+| [`HashSet`](#hashset) | struct |  |
+| [`HashTable`](#hashtable) | struct |  |
+| [`TryReserveError`](#tryreserveerror) | enum | The error type for `try_reserve` methods. |
+
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`control`](control/index.md) - 
-- [`hasher`](hasher/index.md) - 
-- [`raw`](raw/index.md) - 
-- [`util`](util/index.md) - 
-- [`external_trait_impls`](external_trait_impls/index.md) - 
-- [`map`](map/index.md) - 
-- [`raw_entry`](raw_entry/index.md) - 
-- [`scopeguard`](scopeguard/index.md) - 
-- [`set`](set/index.md) - 
-- [`table`](table/index.md) - 
-- [`hash_map`](hash_map/index.md) - A hash map implemented with quadratic probing and SIMD lookup.
-- [`hash_set`](hash_set/index.md) - A hash set implemented as a `HashMap` where the value is `()`.
-- [`hash_table`](hash_table/index.md) - A hash table implemented with quadratic probing and SIMD lookup.
+- [`macros`](macros/index.md)
+- [`control`](control/index.md)
+- [`hasher`](hasher/index.md)
+- [`raw`](raw/index.md)
+- [`util`](util/index.md)
+- [`external_trait_impls`](external_trait_impls/index.md)
+- [`map`](map/index.md)
+- [`raw_entry`](raw_entry/index.md)
+- [`scopeguard`](scopeguard/index.md)
+- [`set`](set/index.md)
+- [`table`](table/index.md)
+- [`hash_map`](hash_map/index.md) — A hash map implemented with quadratic probing and SIMD lookup.
+- [`hash_set`](hash_set/index.md) — A hash set implemented as a `HashMap` where the value is `()`.
+- [`hash_table`](hash_table/index.md) — A hash table implemented with quadratic probing and SIMD lookup.
 
 ## Structs
 
@@ -36,6 +87,8 @@ struct DefaultHashBuilder {
     inner: foldhash::fast::RandomState,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
 
 Default hash builder for the `S` type parameter of
 [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
@@ -48,21 +101,21 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl BuildHasher for DefaultHashBuilder`
 
-- `type Hasher = DefaultHasher`
+- <span id="defaulthashbuilder-type-hasher"></span>`type Hasher = DefaultHasher`
 
-- `fn build_hasher(self: &Self) -> <Self as >::Hasher`
+- <span id="defaulthashbuilder-build-hasher"></span>`fn build_hasher(&self) -> <Self as >::Hasher`
 
 ##### `impl Clone for DefaultHashBuilder`
 
-- `fn clone(self: &Self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
+- <span id="defaulthashbuilder-clone"></span>`fn clone(&self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](hasher/index.md)
 
 ##### `impl Debug for DefaultHashBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="defaulthashbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DefaultHashBuilder`
 
-- `fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
+- <span id="defaulthashbuilder-default"></span>`fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](hasher/index.md)
 
 ### `DefaultHasher`
 
@@ -72,43 +125,45 @@ struct DefaultHasher {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
+
 Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
 #### Trait Implementations
 
 ##### `impl Clone for DefaultHasher`
 
-- `fn clone(self: &Self) -> DefaultHasher` — [`DefaultHasher`](#defaulthasher)
+- <span id="defaulthasher-clone"></span>`fn clone(&self) -> DefaultHasher` — [`DefaultHasher`](hasher/index.md)
 
 ##### `impl Hasher for DefaultHasher`
 
-- `fn write(self: &mut Self, arg: &[u8])`
+- <span id="defaulthasher-write"></span>`fn write(&mut self, arg: &[u8])`
 
-- `fn write_u8(self: &mut Self, arg: u8)`
+- <span id="defaulthasher-write-u8"></span>`fn write_u8(&mut self, arg: u8)`
 
-- `fn write_u16(self: &mut Self, arg: u16)`
+- <span id="defaulthasher-write-u16"></span>`fn write_u16(&mut self, arg: u16)`
 
-- `fn write_u32(self: &mut Self, arg: u32)`
+- <span id="defaulthasher-write-u32"></span>`fn write_u32(&mut self, arg: u32)`
 
-- `fn write_u64(self: &mut Self, arg: u64)`
+- <span id="defaulthasher-write-u64"></span>`fn write_u64(&mut self, arg: u64)`
 
-- `fn write_u128(self: &mut Self, arg: u128)`
+- <span id="defaulthasher-write-u128"></span>`fn write_u128(&mut self, arg: u128)`
 
-- `fn write_usize(self: &mut Self, arg: usize)`
+- <span id="defaulthasher-write-usize"></span>`fn write_usize(&mut self, arg: usize)`
 
-- `fn write_i8(self: &mut Self, arg: i8)`
+- <span id="defaulthasher-write-i8"></span>`fn write_i8(&mut self, arg: i8)`
 
-- `fn write_i16(self: &mut Self, arg: i16)`
+- <span id="defaulthasher-write-i16"></span>`fn write_i16(&mut self, arg: i16)`
 
-- `fn write_i32(self: &mut Self, arg: i32)`
+- <span id="defaulthasher-write-i32"></span>`fn write_i32(&mut self, arg: i32)`
 
-- `fn write_i64(self: &mut Self, arg: i64)`
+- <span id="defaulthasher-write-i64"></span>`fn write_i64(&mut self, arg: i64)`
 
-- `fn write_i128(self: &mut Self, arg: i128)`
+- <span id="defaulthasher-write-i128"></span>`fn write_i128(&mut self, arg: i128)`
 
-- `fn write_isize(self: &mut Self, arg: isize)`
+- <span id="defaulthasher-write-isize"></span>`fn write_isize(&mut self, arg: isize)`
 
-- `fn finish(self: &Self) -> u64`
+- <span id="defaulthasher-finish"></span>`fn finish(&self) -> u64`
 
 ### `HashMap<K, V, S, A: Allocator>`
 
@@ -118,6 +173,8 @@ struct HashMap<K, V, S, A: Allocator> {
     table: crate::raw::RawTable<(K, V), A>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L185-L188)*
 
 A hash map implemented with quadratic probing and SIMD lookup.
 
@@ -289,57 +346,57 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- `fn raw_entry_mut(self: &mut Self) -> RawEntryBuilderMut<'_, K, V, S, A>` — [`RawEntryBuilderMut`](raw_entry/index.md)
+- <span id="hashmap-new"></span>`fn new() -> Self`
 
-- `fn raw_entry(self: &Self) -> RawEntryBuilder<'_, K, V, S, A>` — [`RawEntryBuilder`](raw_entry/index.md)
+- <span id="hashmap-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<K: Clone, V: Clone, S: Clone, A: Allocator + Clone> Clone for HashMap<K, V, S, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="hashmap-clone"></span>`fn clone(&self) -> Self`
 
-- `fn clone_from(self: &mut Self, source: &Self)`
+- <span id="hashmap-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
 ##### `impl<K, V, S, A> Debug for HashMap<K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, S, A> Default for HashMap<K, V, S, A>`
 
-- `fn default() -> Self`
+- <span id="hashmap-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V, S, A> Eq for HashMap<K, V, S, A>`
 
 ##### `impl<Q, K> Equivalent for HashMap<K, V, S, A>`
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- <span id="hashmap-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl<K, V, S, A> Extend for HashMap<K, V, S, A>`
 
-- `fn extend<T: IntoIterator<Item = (K, V)>>(self: &mut Self, iter: T)`
+- <span id="hashmap-extend"></span>`fn extend<T: IntoIterator<Item = (K, V)>>(&mut self, iter: T)`
 
 ##### `impl<K, V, S, A> FromIterator for HashMap<K, V, S, A>`
 
-- `fn from_iter<T: IntoIterator<Item = (K, V)>>(iter: T) -> Self`
+- <span id="hashmap-from-iter"></span>`fn from_iter<T: IntoIterator<Item = (K, V)>>(iter: T) -> Self`
 
 ##### `impl<K, Q, V, S, A> Index for HashMap<K, V, S, A>`
 
-- `type Output = V`
+- <span id="hashmap-type-output"></span>`type Output = V`
 
-- `fn index(self: &Self, key: &Q) -> &V`
+- <span id="hashmap-index"></span>`fn index(&self, key: &Q) -> &V`
 
-##### `impl<K, V, S, A: Allocator> IntoIterator for HashMap<K, V, S, A>`
+##### `impl<'a, K, V, S, A: Allocator> IntoIterator for &'a HashMap<K, V, S, A>`
 
-- `type Item = (K, V)`
+- <span id="a-hashmap-type-item"></span>`type Item = (&'a K, &'a V)`
 
-- `type IntoIter = IntoIter<K, V, A>`
+- <span id="a-hashmap-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
 
-- `fn into_iter(self: Self) -> IntoIter<K, V, A>` — [`IntoIter`](hash_map/index.md)
+- <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](hash_map/index.md)
 
 ##### `impl<K, V, S, A> PartialEq for HashMap<K, V, S, A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="hashmap-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `HashSet<T, S, A: Allocator>`
 
@@ -349,9 +406,11 @@ struct HashSet<T, S, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../.source_1765210505/hashbrown-0.16.1/src/set.rs#L114-L116)*
+
 A hash set implemented as a `HashMap` where the value is `()`.
 
-As with the [`HashMap`](#hashmap) type, a `HashSet` requires that the elements
+As with the [`HashMap`](hash_map/index.md) type, a `HashSet` requires that the elements
 implement the `Eq` and `Hash` traits. This can frequently be achieved by
 using `#[derive(PartialEq, Eq, Hash)]`. If you implement these yourself,
 it is important that the following property holds:
@@ -446,71 +505,91 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- `fn allocator(self: &Self) -> &A`
+- <span id="hashset-new"></span>`fn new() -> Self`
 
-- `const fn with_hasher_in(hasher: S, alloc: A) -> Self`
-
-- `fn with_capacity_and_hasher_in(capacity: usize, hasher: S, alloc: A) -> Self`
-
-- `fn hasher(self: &Self) -> &S`
+- <span id="hashset-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
+##### `impl<T, S, A> BitAnd for &HashSet<T, S, A>`
+
+- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+
+- <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
+
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
 
-- `fn bitand_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
+
+##### `impl<T, S, A> BitOr for &HashSet<T, S, A>`
+
+- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+
+- <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
 
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
 
-- `fn bitor_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
+
+##### `impl<T, S, A> BitXor for &HashSet<T, S, A>`
+
+- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+
+- <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
 
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
 
-- `fn bitxor_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
 
 ##### `impl<T: Clone, S: Clone, A: Allocator + Clone> Clone for HashSet<T, S, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="hashset-clone"></span>`fn clone(&self) -> Self`
 
-- `fn clone_from(self: &mut Self, source: &Self)`
+- <span id="hashset-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
 ##### `impl<T, S, A> Debug for HashSet<T, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S, A> Default for HashSet<T, S, A>`
 
-- `fn default() -> Self`
+- <span id="hashset-default"></span>`fn default() -> Self`
 
 ##### `impl<T, S, A> Eq for HashSet<T, S, A>`
 
 ##### `impl<Q, K> Equivalent for HashSet<T, S, A>`
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- <span id="hashset-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl<T, S, A> Extend for HashSet<T, S, A>`
 
-- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, iter: I)`
+- <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
 
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 
-- `fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+- <span id="hashset-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
-##### `impl<T, S, A: Allocator> IntoIterator for HashSet<T, S, A>`
+##### `impl<'a, T, S, A: Allocator> IntoIterator for &'a HashSet<T, S, A>`
 
-- `type Item = T`
+- <span id="a-hashset-type-item"></span>`type Item = &'a T`
 
-- `type IntoIter = IntoIter<T, A>`
+- <span id="a-hashset-type-intoiter"></span>`type IntoIter = Iter<'a, T>`
 
-- `fn into_iter(self: Self) -> IntoIter<T, A>` — [`IntoIter`](hash_set/index.md)
+- <span id="a-hashset-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](hash_set/index.md)
 
 ##### `impl<T, S, A> PartialEq for HashSet<T, S, A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="hashset-eq"></span>`fn eq(&self, other: &Self) -> bool`
+
+##### `impl<T, S, A> Sub for &HashSet<T, S, A>`
+
+- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+
+- <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
 
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
 
-- `fn sub_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
 
 ### `HashTable<T, A>`
 
@@ -522,9 +601,11 @@ where
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L48-L53)*
+
 Low-level hash table with explicit hashing.
 
-The primary use case for this type over [`HashMap`](#hashmap) or [`HashSet`](#hashset) is to
+The primary use case for this type over [`HashMap`](hash_map/index.md) or [`HashSet`](hash_set/index.md) is to
 support types that do not implement the `Hash` and `Eq` traits, but
 instead require additional data not contained in the key itself to compute a
 hash and compare two elements for equality.
@@ -547,7 +628,7 @@ instead be wrapped in a helper type which handles the work of calculating
 hash values and comparing elements.
 
 Due to its low-level nature, this type provides fewer guarantees than
-[`HashMap`](#hashmap) and [`HashSet`](#hashset). Specifically, the API allows you to shoot
+[`HashMap`](hash_map/index.md) and [`HashSet`](hash_set/index.md). Specifically, the API allows you to shoot
 yourself in the foot by having multiple elements with identical keys in the
 table. The table itself will still function correctly and lookups will
 arbitrarily return one of the matching elements. However you should avoid
@@ -560,103 +641,31 @@ doing this because it changes the runtime of hash table operations from
 
 #### Implementations
 
-- `const fn new_in(alloc: A) -> Self`
+- <span id="hashtable-new"></span>`const fn new() -> Self`
 
-- `fn with_capacity_in(capacity: usize, alloc: A) -> Self`
-
-- `fn allocator(self: &Self) -> &A`
-
-- `fn find(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&T>`
-
-- `fn find_mut(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&mut T>`
-
-- `fn find_entry(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Result<OccupiedEntry<'_, T, A>, AbsentEntry<'_, T, A>>` — [`OccupiedEntry`](hash_table/index.md), [`AbsentEntry`](hash_table/index.md)
-
-- `fn find_bucket_index(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<usize>`
-
-- `fn entry(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool, hasher: impl Fn(&T) -> u64) -> Entry<'_, T, A>` — [`Entry`](hash_table/index.md)
-
-- `fn get_bucket_entry(self: &mut Self, index: usize) -> Result<OccupiedEntry<'_, T, A>, AbsentEntry<'_, T, A>>` — [`OccupiedEntry`](hash_table/index.md), [`AbsentEntry`](hash_table/index.md)
-
-- `unsafe fn get_bucket_entry_unchecked(self: &mut Self, index: usize) -> OccupiedEntry<'_, T, A>` — [`OccupiedEntry`](hash_table/index.md)
-
-- `fn get_bucket(self: &Self, index: usize) -> Option<&T>`
-
-- `unsafe fn get_bucket_unchecked(self: &Self, index: usize) -> &T`
-
-- `fn get_bucket_mut(self: &mut Self, index: usize) -> Option<&mut T>`
-
-- `unsafe fn get_bucket_unchecked_mut(self: &mut Self, index: usize) -> &mut T`
-
-- `fn insert_unique(self: &mut Self, hash: u64, value: T, hasher: impl Fn(&T) -> u64) -> OccupiedEntry<'_, T, A>` — [`OccupiedEntry`](hash_table/index.md)
-
-- `fn clear(self: &mut Self)`
-
-- `fn shrink_to_fit(self: &mut Self, hasher: impl Fn(&T) -> u64)`
-
-- `fn shrink_to(self: &mut Self, min_capacity: usize, hasher: impl Fn(&T) -> u64)`
-
-- `fn reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64)`
-
-- `fn try_reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64) -> Result<(), TryReserveError>` — [`TryReserveError`](#tryreserveerror)
-
-- `fn num_buckets(self: &Self) -> usize`
-
-- `fn capacity(self: &Self) -> usize`
-
-- `fn len(self: &Self) -> usize`
-
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](hash_table/index.md)
-
-- `fn iter_mut(self: &mut Self) -> IterMut<'_, T>` — [`IterMut`](hash_table/index.md)
-
-- `fn iter_buckets(self: &Self) -> IterBuckets<'_, T>` — [`IterBuckets`](hash_table/index.md)
-
-- `fn iter_hash(self: &Self, hash: u64) -> IterHash<'_, T>` — [`IterHash`](hash_table/index.md)
-
-- `fn iter_hash_mut(self: &mut Self, hash: u64) -> IterHashMut<'_, T>` — [`IterHashMut`](hash_table/index.md)
-
-- `fn iter_hash_buckets(self: &Self, hash: u64) -> IterHashBuckets<'_, T>` — [`IterHashBuckets`](hash_table/index.md)
-
-- `fn retain(self: &mut Self, f: impl FnMut(&mut T) -> bool)`
-
-- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](hash_table/index.md)
-
-- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](hash_table/index.md)
-
-- `fn get_disjoint_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `fn get_many_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `unsafe fn get_disjoint_unchecked_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `unsafe fn get_many_unchecked_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `fn allocation_size(self: &Self) -> usize`
+- <span id="hashtable-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T, A> Clone for HashTable<T, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="hashtable-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, A> Debug for HashTable<T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A> Default for HashTable<T, A>`
 
-- `fn default() -> Self`
+- <span id="hashtable-default"></span>`fn default() -> Self`
 
 ##### `impl<T, A> IntoIterator for HashTable<T, A>`
 
-- `type Item = T`
+- <span id="hashtable-type-item"></span>`type Item = T`
 
-- `type IntoIter = IntoIter<T, A>`
+- <span id="hashtable-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
-- `fn into_iter(self: Self) -> IntoIter<T, A>` — [`IntoIter`](hash_table/index.md)
+- <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](hash_table/index.md)
 
 ## Enums
 
@@ -670,6 +679,8 @@ enum TryReserveError {
     },
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/lib.rs:180-190`](../../.source_1765210505/hashbrown-0.16.1/src/lib.rs#L180-L190)*
 
 The error type for `try_reserve` methods.
 
@@ -688,21 +699,21 @@ The error type for `try_reserve` methods.
 
 ##### `impl Clone for TryReserveError`
 
-- `fn clone(self: &Self) -> TryReserveError` — [`TryReserveError`](#tryreserveerror)
+- <span id="tryreserveerror-clone"></span>`fn clone(&self) -> TryReserveError` — [`TryReserveError`](#tryreserveerror)
 
 ##### `impl Debug for TryReserveError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tryreserveerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TryReserveError`
 
-##### `impl<Q, K> Equivalent for TryReserveError`
+##### `impl Equivalent for TryReserveError`
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- <span id="tryreserveerror-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl PartialEq for TryReserveError`
 
-- `fn eq(self: &Self, other: &TryReserveError) -> bool` — [`TryReserveError`](#tryreserveerror)
+- <span id="tryreserveerror-eq"></span>`fn eq(&self, other: &TryReserveError) -> bool` — [`TryReserveError`](#tryreserveerror)
 
 ##### `impl StructuralPartialEq for TryReserveError`
 

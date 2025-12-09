@@ -6,9 +6,536 @@
 
 XTerm 256-bit colors. Not as widely supported as standard ANSI but contains 240 more colors.
 
+## Contents
+
+- [Modules](#modules)
+  - [`dynamic`](#dynamic)
+- [Structs](#structs)
+  - [`UserBlack`](#userblack)
+  - [`UserRed`](#userred)
+  - [`UserGreen`](#usergreen)
+  - [`UserYellow`](#useryellow)
+  - [`UserBlue`](#userblue)
+  - [`UserMagenta`](#usermagenta)
+  - [`UserCyan`](#usercyan)
+  - [`UserWhite`](#userwhite)
+  - [`UserBrightBlack`](#userbrightblack)
+  - [`UserBrightRed`](#userbrightred)
+  - [`UserBrightGreen`](#userbrightgreen)
+  - [`UserBrightYellow`](#userbrightyellow)
+  - [`UserBrightBlue`](#userbrightblue)
+  - [`UserBrightMagenta`](#userbrightmagenta)
+  - [`UserBrightCyan`](#userbrightcyan)
+  - [`UserBrightWhite`](#userbrightwhite)
+  - [`Black`](#black)
+  - [`StratosBlue`](#stratosblue)
+  - [`NavyBlue`](#navyblue)
+  - [`MidnightBlue`](#midnightblue)
+  - [`DarkBlue`](#darkblue)
+  - [`Blue`](#blue)
+  - [`CamaroneGreen`](#camaronegreen)
+  - [`BlueStone`](#bluestone)
+  - [`OrientBlue`](#orientblue)
+  - [`EndeavourBlue`](#endeavourblue)
+  - [`ScienceBlue`](#scienceblue)
+  - [`BlueRibbon`](#blueribbon)
+  - [`JapaneseLaurel`](#japaneselaurel)
+  - [`DeepSeaGreen`](#deepseagreen)
+  - [`Teal`](#teal)
+  - [`DeepCerulean`](#deepcerulean)
+  - [`LochmaraBlue`](#lochmarablue)
+  - [`AzureRadiance`](#azureradiance)
+  - [`LightJapaneseLaurel`](#lightjapaneselaurel)
+  - [`Jade`](#jade)
+  - [`PersianGreen`](#persiangreen)
+  - [`BondiBlue`](#bondiblue)
+  - [`Cerulean`](#cerulean)
+  - [`LightAzureRadiance`](#lightazureradiance)
+  - [`DarkGreen`](#darkgreen)
+  - [`Malachite`](#malachite)
+  - [`CaribbeanGreen`](#caribbeangreen)
+  - [`LightCaribbeanGreen`](#lightcaribbeangreen)
+  - [`RobinEggBlue`](#robineggblue)
+  - [`Aqua`](#aqua)
+  - [`Green`](#green)
+  - [`DarkSpringGreen`](#darkspringgreen)
+  - [`SpringGreen`](#springgreen)
+  - [`LightSpringGreen`](#lightspringgreen)
+  - [`BrightTurquoise`](#brightturquoise)
+  - [`Cyan`](#cyan)
+  - [`Rosewood`](#rosewood)
+  - [`PompadourMagenta`](#pompadourmagenta)
+  - [`PigmentIndigo`](#pigmentindigo)
+  - [`DarkPurple`](#darkpurple)
+  - [`ElectricIndigo`](#electricindigo)
+  - [`ElectricPurple`](#electricpurple)
+  - [`VerdunGreen`](#verdungreen)
+  - [`ScorpionOlive`](#scorpionolive)
+  - [`Lilac`](#lilac)
+  - [`ScampiIndigo`](#scampiindigo)
+  - [`Indigo`](#indigo)
+  - [`DarkCornflowerBlue`](#darkcornflowerblue)
+  - [`DarkLimeade`](#darklimeade)
+  - [`GladeGreen`](#gladegreen)
+  - [`JuniperGreen`](#junipergreen)
+  - [`HippieBlue`](#hippieblue)
+  - [`HavelockBlue`](#havelockblue)
+  - [`CornflowerBlue`](#cornflowerblue)
+  - [`Limeade`](#limeade)
+  - [`FernGreen`](#ferngreen)
+  - [`SilverTree`](#silvertree)
+  - [`Tradewind`](#tradewind)
+  - [`ShakespeareBlue`](#shakespeareblue)
+  - [`DarkMalibuBlue`](#darkmalibublue)
+  - [`DarkBrightGreen`](#darkbrightgreen)
+  - [`DarkPastelGreen`](#darkpastelgreen)
+  - [`PastelGreen`](#pastelgreen)
+  - [`DownyTeal`](#downyteal)
+  - [`Viking`](#viking)
+  - [`MalibuBlue`](#malibublue)
+  - [`BrightGreen`](#brightgreen)
+  - [`DarkScreaminGreen`](#darkscreamingreen)
+  - [`ScreaminGreen`](#screamingreen)
+  - [`DarkAquamarine`](#darkaquamarine)
+  - [`Aquamarine`](#aquamarine)
+  - [`LightAquamarine`](#lightaquamarine)
+  - [`Maroon`](#maroon)
+  - [`DarkFreshEggplant`](#darkfresheggplant)
+  - [`LightFreshEggplant`](#lightfresheggplant)
+  - [`Purple`](#purple)
+  - [`ElectricViolet`](#electricviolet)
+  - [`LightElectricViolet`](#lightelectricviolet)
+  - [`Brown`](#brown)
+  - [`CopperRose`](#copperrose)
+  - [`StrikemasterPurple`](#strikemasterpurple)
+  - [`DelugePurple`](#delugepurple)
+  - [`DarkMediumPurple`](#darkmediumpurple)
+  - [`DarkHeliotropePurple`](#darkheliotropepurple)
+  - [`Olive`](#olive)
+  - [`ClayCreekOlive`](#claycreekolive)
+  - [`DarkGray`](#darkgray)
+  - [`WildBlueYonder`](#wildblueyonder)
+  - [`ChetwodeBlue`](#chetwodeblue)
+  - [`SlateBlue`](#slateblue)
+  - [`LightLimeade`](#lightlimeade)
+  - [`ChelseaCucumber`](#chelseacucumber)
+  - [`BayLeaf`](#bayleaf)
+  - [`GulfStream`](#gulfstream)
+  - [`PoloBlue`](#poloblue)
+  - [`LightMalibuBlue`](#lightmalibublue)
+  - [`Pistachio`](#pistachio)
+  - [`LightPastelGreen`](#lightpastelgreen)
+  - [`DarkFeijoaGreen`](#darkfeijoagreen)
+  - [`VistaBlue`](#vistablue)
+  - [`Bermuda`](#bermuda)
+  - [`DarkAnakiwaBlue`](#darkanakiwablue)
+  - [`ChartreuseGreen`](#chartreusegreen)
+  - [`LightScreaminGreen`](#lightscreamingreen)
+  - [`DarkMintGreen`](#darkmintgreen)
+  - [`MintGreen`](#mintgreen)
+  - [`LighterAquamarine`](#lighteraquamarine)
+  - [`AnakiwaBlue`](#anakiwablue)
+  - [`BrightRed`](#brightred)
+  - [`DarkFlirt`](#darkflirt)
+  - [`Flirt`](#flirt)
+  - [`LightFlirt`](#lightflirt)
+  - [`DarkViolet`](#darkviolet)
+  - [`BrightElectricViolet`](#brightelectricviolet)
+  - [`RoseofSharonOrange`](#roseofsharonorange)
+  - [`MatrixPink`](#matrixpink)
+  - [`TapestryPink`](#tapestrypink)
+  - [`FuchsiaPink`](#fuchsiapink)
+  - [`MediumPurple`](#mediumpurple)
+  - [`Heliotrope`](#heliotrope)
+  - [`PirateGold`](#pirategold)
+  - [`MuesliOrange`](#muesliorange)
+  - [`PharlapPink`](#pharlappink)
+  - [`Bouquet`](#bouquet)
+  - [`Lavender`](#lavender)
+  - [`LightHeliotrope`](#lightheliotrope)
+  - [`BuddhaGold`](#buddhagold)
+  - [`OliveGreen`](#olivegreen)
+  - [`HillaryOlive`](#hillaryolive)
+  - [`SilverChalice`](#silverchalice)
+  - [`WistfulLilac`](#wistfullilac)
+  - [`MelroseLilac`](#melroselilac)
+  - [`RioGrandeGreen`](#riograndegreen)
+  - [`ConiferGreen`](#conifergreen)
+  - [`Feijoa`](#feijoa)
+  - [`PixieGreen`](#pixiegreen)
+  - [`JungleMist`](#junglemist)
+  - [`LightAnakiwaBlue`](#lightanakiwablue)
+  - [`Lime`](#lime)
+  - [`GreenYellow`](#greenyellow)
+  - [`LightMintGreen`](#lightmintgreen)
+  - [`Celadon`](#celadon)
+  - [`AeroBlue`](#aeroblue)
+  - [`FrenchPassLightBlue`](#frenchpasslightblue)
+  - [`GuardsmanRed`](#guardsmanred)
+  - [`RazzmatazzCerise`](#razzmatazzcerise)
+  - [`MediumVioletRed`](#mediumvioletred)
+  - [`HollywoodCerise`](#hollywoodcerise)
+  - [`DarkPurplePizzazz`](#darkpurplepizzazz)
+  - [`BrighterElectricViolet`](#brighterelectricviolet)
+  - [`TennOrange`](#tennorange)
+  - [`RomanOrange`](#romanorange)
+  - [`CranberryPink`](#cranberrypink)
+  - [`HopbushPink`](#hopbushpink)
+  - [`Orchid`](#orchid)
+  - [`LighterHeliotrope`](#lighterheliotrope)
+  - [`MangoTango`](#mangotango)
+  - [`Copperfield`](#copperfield)
+  - [`SeaPink`](#seapink)
+  - [`CanCanPink`](#cancanpink)
+  - [`LightOrchid`](#lightorchid)
+  - [`BrightHeliotrope`](#brightheliotrope)
+  - [`DarkCorn`](#darkcorn)
+  - [`DarkTachaOrange`](#darktachaorange)
+  - [`TanBeige`](#tanbeige)
+  - [`ClamShell`](#clamshell)
+  - [`ThistlePink`](#thistlepink)
+  - [`Mauve`](#mauve)
+  - [`Corn`](#corn)
+  - [`TachaOrange`](#tachaorange)
+  - [`DecoOrange`](#decoorange)
+  - [`PaleGoldenrod`](#palegoldenrod)
+  - [`AltoBeige`](#altobeige)
+  - [`FogPink`](#fogpink)
+  - [`ChartreuseYellow`](#chartreuseyellow)
+  - [`Canary`](#canary)
+  - [`Honeysuckle`](#honeysuckle)
+  - [`ReefPaleYellow`](#reefpaleyellow)
+  - [`SnowyMint`](#snowymint)
+  - [`OysterBay`](#oysterbay)
+  - [`Red`](#red)
+  - [`DarkRose`](#darkrose)
+  - [`Rose`](#rose)
+  - [`LightHollywoodCerise`](#lighthollywoodcerise)
+  - [`PurplePizzazz`](#purplepizzazz)
+  - [`Fuchsia`](#fuchsia)
+  - [`BlazeOrange`](#blazeorange)
+  - [`BittersweetOrange`](#bittersweetorange)
+  - [`WildWatermelon`](#wildwatermelon)
+  - [`DarkHotPink`](#darkhotpink)
+  - [`HotPink`](#hotpink)
+  - [`PinkFlamingo`](#pinkflamingo)
+  - [`FlushOrange`](#flushorange)
+  - [`Salmon`](#salmon)
+  - [`VividTangerine`](#vividtangerine)
+  - [`PinkSalmon`](#pinksalmon)
+  - [`DarkLavenderRose`](#darklavenderrose)
+  - [`BlushPink`](#blushpink)
+  - [`YellowSea`](#yellowsea)
+  - [`TexasRose`](#texasrose)
+  - [`Tacao`](#tacao)
+  - [`Sundown`](#sundown)
+  - [`CottonCandy`](#cottoncandy)
+  - [`LavenderRose`](#lavenderrose)
+  - [`Gold`](#gold)
+  - [`Dandelion`](#dandelion)
+  - [`GrandisCaramel`](#grandiscaramel)
+  - [`Caramel`](#caramel)
+  - [`CosmosSalmon`](#cosmossalmon)
+  - [`PinkLace`](#pinklace)
+  - [`Yellow`](#yellow)
+  - [`LaserLemon`](#laserlemon)
+  - [`DollyYellow`](#dollyyellow)
+  - [`PortafinoYellow`](#portafinoyellow)
+  - [`Cumulus`](#cumulus)
+  - [`White`](#white)
+  - [`DarkCodGray`](#darkcodgray)
+  - [`CodGray`](#codgray)
+  - [`LightCodGray`](#lightcodgray)
+  - [`DarkMineShaft`](#darkmineshaft)
+  - [`MineShaft`](#mineshaft)
+  - [`LightMineShaft`](#lightmineshaft)
+  - [`DarkTundora`](#darktundora)
+  - [`Tundora`](#tundora)
+  - [`ScorpionGray`](#scorpiongray)
+  - [`DarkDoveGray`](#darkdovegray)
+  - [`DoveGray`](#dovegray)
+  - [`Boulder`](#boulder)
+  - [`Gray`](#gray)
+  - [`LightGray`](#lightgray)
+  - [`DustyGray`](#dustygray)
+  - [`NobelGray`](#nobelgray)
+  - [`DarkSilverChalice`](#darksilverchalice)
+  - [`LightSilverChalice`](#lightsilverchalice)
+  - [`DarkSilver`](#darksilver)
+  - [`Silver`](#silver)
+  - [`DarkAlto`](#darkalto)
+  - [`Alto`](#alto)
+  - [`Mercury`](#mercury)
+  - [`GalleryGray`](#gallerygray)
+- [Macros](#macros)
+  - [`xterm_colors!`](#xterm_colors)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`dynamic`](#dynamic) | mod |  |
+| [`UserBlack`](#userblack) | struct |  |
+| [`UserRed`](#userred) | struct |  |
+| [`UserGreen`](#usergreen) | struct |  |
+| [`UserYellow`](#useryellow) | struct |  |
+| [`UserBlue`](#userblue) | struct |  |
+| [`UserMagenta`](#usermagenta) | struct |  |
+| [`UserCyan`](#usercyan) | struct |  |
+| [`UserWhite`](#userwhite) | struct |  |
+| [`UserBrightBlack`](#userbrightblack) | struct |  |
+| [`UserBrightRed`](#userbrightred) | struct |  |
+| [`UserBrightGreen`](#userbrightgreen) | struct |  |
+| [`UserBrightYellow`](#userbrightyellow) | struct |  |
+| [`UserBrightBlue`](#userbrightblue) | struct |  |
+| [`UserBrightMagenta`](#userbrightmagenta) | struct |  |
+| [`UserBrightCyan`](#userbrightcyan) | struct |  |
+| [`UserBrightWhite`](#userbrightwhite) | struct |  |
+| [`Black`](#black) | struct |  |
+| [`StratosBlue`](#stratosblue) | struct |  |
+| [`NavyBlue`](#navyblue) | struct |  |
+| [`MidnightBlue`](#midnightblue) | struct |  |
+| [`DarkBlue`](#darkblue) | struct |  |
+| [`Blue`](#blue) | struct |  |
+| [`CamaroneGreen`](#camaronegreen) | struct |  |
+| [`BlueStone`](#bluestone) | struct |  |
+| [`OrientBlue`](#orientblue) | struct |  |
+| [`EndeavourBlue`](#endeavourblue) | struct |  |
+| [`ScienceBlue`](#scienceblue) | struct |  |
+| [`BlueRibbon`](#blueribbon) | struct |  |
+| [`JapaneseLaurel`](#japaneselaurel) | struct |  |
+| [`DeepSeaGreen`](#deepseagreen) | struct |  |
+| [`Teal`](#teal) | struct |  |
+| [`DeepCerulean`](#deepcerulean) | struct |  |
+| [`LochmaraBlue`](#lochmarablue) | struct |  |
+| [`AzureRadiance`](#azureradiance) | struct |  |
+| [`LightJapaneseLaurel`](#lightjapaneselaurel) | struct |  |
+| [`Jade`](#jade) | struct |  |
+| [`PersianGreen`](#persiangreen) | struct |  |
+| [`BondiBlue`](#bondiblue) | struct |  |
+| [`Cerulean`](#cerulean) | struct |  |
+| [`LightAzureRadiance`](#lightazureradiance) | struct |  |
+| [`DarkGreen`](#darkgreen) | struct |  |
+| [`Malachite`](#malachite) | struct |  |
+| [`CaribbeanGreen`](#caribbeangreen) | struct |  |
+| [`LightCaribbeanGreen`](#lightcaribbeangreen) | struct |  |
+| [`RobinEggBlue`](#robineggblue) | struct |  |
+| [`Aqua`](#aqua) | struct |  |
+| [`Green`](#green) | struct |  |
+| [`DarkSpringGreen`](#darkspringgreen) | struct |  |
+| [`SpringGreen`](#springgreen) | struct |  |
+| [`LightSpringGreen`](#lightspringgreen) | struct |  |
+| [`BrightTurquoise`](#brightturquoise) | struct |  |
+| [`Cyan`](#cyan) | struct |  |
+| [`Rosewood`](#rosewood) | struct |  |
+| [`PompadourMagenta`](#pompadourmagenta) | struct |  |
+| [`PigmentIndigo`](#pigmentindigo) | struct |  |
+| [`DarkPurple`](#darkpurple) | struct |  |
+| [`ElectricIndigo`](#electricindigo) | struct |  |
+| [`ElectricPurple`](#electricpurple) | struct |  |
+| [`VerdunGreen`](#verdungreen) | struct |  |
+| [`ScorpionOlive`](#scorpionolive) | struct |  |
+| [`Lilac`](#lilac) | struct |  |
+| [`ScampiIndigo`](#scampiindigo) | struct |  |
+| [`Indigo`](#indigo) | struct |  |
+| [`DarkCornflowerBlue`](#darkcornflowerblue) | struct |  |
+| [`DarkLimeade`](#darklimeade) | struct |  |
+| [`GladeGreen`](#gladegreen) | struct |  |
+| [`JuniperGreen`](#junipergreen) | struct |  |
+| [`HippieBlue`](#hippieblue) | struct |  |
+| [`HavelockBlue`](#havelockblue) | struct |  |
+| [`CornflowerBlue`](#cornflowerblue) | struct |  |
+| [`Limeade`](#limeade) | struct |  |
+| [`FernGreen`](#ferngreen) | struct |  |
+| [`SilverTree`](#silvertree) | struct |  |
+| [`Tradewind`](#tradewind) | struct |  |
+| [`ShakespeareBlue`](#shakespeareblue) | struct |  |
+| [`DarkMalibuBlue`](#darkmalibublue) | struct |  |
+| [`DarkBrightGreen`](#darkbrightgreen) | struct |  |
+| [`DarkPastelGreen`](#darkpastelgreen) | struct |  |
+| [`PastelGreen`](#pastelgreen) | struct |  |
+| [`DownyTeal`](#downyteal) | struct |  |
+| [`Viking`](#viking) | struct |  |
+| [`MalibuBlue`](#malibublue) | struct |  |
+| [`BrightGreen`](#brightgreen) | struct |  |
+| [`DarkScreaminGreen`](#darkscreamingreen) | struct |  |
+| [`ScreaminGreen`](#screamingreen) | struct |  |
+| [`DarkAquamarine`](#darkaquamarine) | struct |  |
+| [`Aquamarine`](#aquamarine) | struct |  |
+| [`LightAquamarine`](#lightaquamarine) | struct |  |
+| [`Maroon`](#maroon) | struct |  |
+| [`DarkFreshEggplant`](#darkfresheggplant) | struct |  |
+| [`LightFreshEggplant`](#lightfresheggplant) | struct |  |
+| [`Purple`](#purple) | struct |  |
+| [`ElectricViolet`](#electricviolet) | struct |  |
+| [`LightElectricViolet`](#lightelectricviolet) | struct |  |
+| [`Brown`](#brown) | struct |  |
+| [`CopperRose`](#copperrose) | struct |  |
+| [`StrikemasterPurple`](#strikemasterpurple) | struct |  |
+| [`DelugePurple`](#delugepurple) | struct |  |
+| [`DarkMediumPurple`](#darkmediumpurple) | struct |  |
+| [`DarkHeliotropePurple`](#darkheliotropepurple) | struct |  |
+| [`Olive`](#olive) | struct |  |
+| [`ClayCreekOlive`](#claycreekolive) | struct |  |
+| [`DarkGray`](#darkgray) | struct |  |
+| [`WildBlueYonder`](#wildblueyonder) | struct |  |
+| [`ChetwodeBlue`](#chetwodeblue) | struct |  |
+| [`SlateBlue`](#slateblue) | struct |  |
+| [`LightLimeade`](#lightlimeade) | struct |  |
+| [`ChelseaCucumber`](#chelseacucumber) | struct |  |
+| [`BayLeaf`](#bayleaf) | struct |  |
+| [`GulfStream`](#gulfstream) | struct |  |
+| [`PoloBlue`](#poloblue) | struct |  |
+| [`LightMalibuBlue`](#lightmalibublue) | struct |  |
+| [`Pistachio`](#pistachio) | struct |  |
+| [`LightPastelGreen`](#lightpastelgreen) | struct |  |
+| [`DarkFeijoaGreen`](#darkfeijoagreen) | struct |  |
+| [`VistaBlue`](#vistablue) | struct |  |
+| [`Bermuda`](#bermuda) | struct |  |
+| [`DarkAnakiwaBlue`](#darkanakiwablue) | struct |  |
+| [`ChartreuseGreen`](#chartreusegreen) | struct |  |
+| [`LightScreaminGreen`](#lightscreamingreen) | struct |  |
+| [`DarkMintGreen`](#darkmintgreen) | struct |  |
+| [`MintGreen`](#mintgreen) | struct |  |
+| [`LighterAquamarine`](#lighteraquamarine) | struct |  |
+| [`AnakiwaBlue`](#anakiwablue) | struct |  |
+| [`BrightRed`](#brightred) | struct |  |
+| [`DarkFlirt`](#darkflirt) | struct |  |
+| [`Flirt`](#flirt) | struct |  |
+| [`LightFlirt`](#lightflirt) | struct |  |
+| [`DarkViolet`](#darkviolet) | struct |  |
+| [`BrightElectricViolet`](#brightelectricviolet) | struct |  |
+| [`RoseofSharonOrange`](#roseofsharonorange) | struct |  |
+| [`MatrixPink`](#matrixpink) | struct |  |
+| [`TapestryPink`](#tapestrypink) | struct |  |
+| [`FuchsiaPink`](#fuchsiapink) | struct |  |
+| [`MediumPurple`](#mediumpurple) | struct |  |
+| [`Heliotrope`](#heliotrope) | struct |  |
+| [`PirateGold`](#pirategold) | struct |  |
+| [`MuesliOrange`](#muesliorange) | struct |  |
+| [`PharlapPink`](#pharlappink) | struct |  |
+| [`Bouquet`](#bouquet) | struct |  |
+| [`Lavender`](#lavender) | struct |  |
+| [`LightHeliotrope`](#lightheliotrope) | struct |  |
+| [`BuddhaGold`](#buddhagold) | struct |  |
+| [`OliveGreen`](#olivegreen) | struct |  |
+| [`HillaryOlive`](#hillaryolive) | struct |  |
+| [`SilverChalice`](#silverchalice) | struct |  |
+| [`WistfulLilac`](#wistfullilac) | struct |  |
+| [`MelroseLilac`](#melroselilac) | struct |  |
+| [`RioGrandeGreen`](#riograndegreen) | struct |  |
+| [`ConiferGreen`](#conifergreen) | struct |  |
+| [`Feijoa`](#feijoa) | struct |  |
+| [`PixieGreen`](#pixiegreen) | struct |  |
+| [`JungleMist`](#junglemist) | struct |  |
+| [`LightAnakiwaBlue`](#lightanakiwablue) | struct |  |
+| [`Lime`](#lime) | struct |  |
+| [`GreenYellow`](#greenyellow) | struct |  |
+| [`LightMintGreen`](#lightmintgreen) | struct |  |
+| [`Celadon`](#celadon) | struct |  |
+| [`AeroBlue`](#aeroblue) | struct |  |
+| [`FrenchPassLightBlue`](#frenchpasslightblue) | struct |  |
+| [`GuardsmanRed`](#guardsmanred) | struct |  |
+| [`RazzmatazzCerise`](#razzmatazzcerise) | struct |  |
+| [`MediumVioletRed`](#mediumvioletred) | struct |  |
+| [`HollywoodCerise`](#hollywoodcerise) | struct |  |
+| [`DarkPurplePizzazz`](#darkpurplepizzazz) | struct |  |
+| [`BrighterElectricViolet`](#brighterelectricviolet) | struct |  |
+| [`TennOrange`](#tennorange) | struct |  |
+| [`RomanOrange`](#romanorange) | struct |  |
+| [`CranberryPink`](#cranberrypink) | struct |  |
+| [`HopbushPink`](#hopbushpink) | struct |  |
+| [`Orchid`](#orchid) | struct |  |
+| [`LighterHeliotrope`](#lighterheliotrope) | struct |  |
+| [`MangoTango`](#mangotango) | struct |  |
+| [`Copperfield`](#copperfield) | struct |  |
+| [`SeaPink`](#seapink) | struct |  |
+| [`CanCanPink`](#cancanpink) | struct |  |
+| [`LightOrchid`](#lightorchid) | struct |  |
+| [`BrightHeliotrope`](#brightheliotrope) | struct |  |
+| [`DarkCorn`](#darkcorn) | struct |  |
+| [`DarkTachaOrange`](#darktachaorange) | struct |  |
+| [`TanBeige`](#tanbeige) | struct |  |
+| [`ClamShell`](#clamshell) | struct |  |
+| [`ThistlePink`](#thistlepink) | struct |  |
+| [`Mauve`](#mauve) | struct |  |
+| [`Corn`](#corn) | struct |  |
+| [`TachaOrange`](#tachaorange) | struct |  |
+| [`DecoOrange`](#decoorange) | struct |  |
+| [`PaleGoldenrod`](#palegoldenrod) | struct |  |
+| [`AltoBeige`](#altobeige) | struct |  |
+| [`FogPink`](#fogpink) | struct |  |
+| [`ChartreuseYellow`](#chartreuseyellow) | struct |  |
+| [`Canary`](#canary) | struct |  |
+| [`Honeysuckle`](#honeysuckle) | struct |  |
+| [`ReefPaleYellow`](#reefpaleyellow) | struct |  |
+| [`SnowyMint`](#snowymint) | struct |  |
+| [`OysterBay`](#oysterbay) | struct |  |
+| [`Red`](#red) | struct |  |
+| [`DarkRose`](#darkrose) | struct |  |
+| [`Rose`](#rose) | struct |  |
+| [`LightHollywoodCerise`](#lighthollywoodcerise) | struct |  |
+| [`PurplePizzazz`](#purplepizzazz) | struct |  |
+| [`Fuchsia`](#fuchsia) | struct |  |
+| [`BlazeOrange`](#blazeorange) | struct |  |
+| [`BittersweetOrange`](#bittersweetorange) | struct |  |
+| [`WildWatermelon`](#wildwatermelon) | struct |  |
+| [`DarkHotPink`](#darkhotpink) | struct |  |
+| [`HotPink`](#hotpink) | struct |  |
+| [`PinkFlamingo`](#pinkflamingo) | struct |  |
+| [`FlushOrange`](#flushorange) | struct |  |
+| [`Salmon`](#salmon) | struct |  |
+| [`VividTangerine`](#vividtangerine) | struct |  |
+| [`PinkSalmon`](#pinksalmon) | struct |  |
+| [`DarkLavenderRose`](#darklavenderrose) | struct |  |
+| [`BlushPink`](#blushpink) | struct |  |
+| [`YellowSea`](#yellowsea) | struct |  |
+| [`TexasRose`](#texasrose) | struct |  |
+| [`Tacao`](#tacao) | struct |  |
+| [`Sundown`](#sundown) | struct |  |
+| [`CottonCandy`](#cottoncandy) | struct |  |
+| [`LavenderRose`](#lavenderrose) | struct |  |
+| [`Gold`](#gold) | struct |  |
+| [`Dandelion`](#dandelion) | struct |  |
+| [`GrandisCaramel`](#grandiscaramel) | struct |  |
+| [`Caramel`](#caramel) | struct |  |
+| [`CosmosSalmon`](#cosmossalmon) | struct |  |
+| [`PinkLace`](#pinklace) | struct |  |
+| [`Yellow`](#yellow) | struct |  |
+| [`LaserLemon`](#laserlemon) | struct |  |
+| [`DollyYellow`](#dollyyellow) | struct |  |
+| [`PortafinoYellow`](#portafinoyellow) | struct |  |
+| [`Cumulus`](#cumulus) | struct |  |
+| [`White`](#white) | struct |  |
+| [`DarkCodGray`](#darkcodgray) | struct |  |
+| [`CodGray`](#codgray) | struct |  |
+| [`LightCodGray`](#lightcodgray) | struct |  |
+| [`DarkMineShaft`](#darkmineshaft) | struct |  |
+| [`MineShaft`](#mineshaft) | struct |  |
+| [`LightMineShaft`](#lightmineshaft) | struct |  |
+| [`DarkTundora`](#darktundora) | struct |  |
+| [`Tundora`](#tundora) | struct |  |
+| [`ScorpionGray`](#scorpiongray) | struct |  |
+| [`DarkDoveGray`](#darkdovegray) | struct |  |
+| [`DoveGray`](#dovegray) | struct |  |
+| [`Boulder`](#boulder) | struct |  |
+| [`Gray`](#gray) | struct |  |
+| [`LightGray`](#lightgray) | struct |  |
+| [`DustyGray`](#dustygray) | struct |  |
+| [`NobelGray`](#nobelgray) | struct |  |
+| [`DarkSilverChalice`](#darksilverchalice) | struct |  |
+| [`LightSilverChalice`](#lightsilverchalice) | struct |  |
+| [`DarkSilver`](#darksilver) | struct |  |
+| [`Silver`](#silver) | struct |  |
+| [`DarkAlto`](#darkalto) | struct |  |
+| [`Alto`](#alto) | struct |  |
+| [`Mercury`](#mercury) | struct |  |
+| [`GalleryGray`](#gallerygray) | struct |  |
+| [`xterm_colors!`](#xterm_colors) | macro |  |
+
 ## Modules
 
-- [`dynamic`](dynamic/index.md) - 
+- [`dynamic`](dynamic/index.md)
 
 ## Structs
 
@@ -18,19 +545,21 @@ XTerm 256-bit colors. Not as widely supported as standard ANSI but contains 240 
 struct UserBlack;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserBlack`
 
-- `const ANSI_FG: &'static str`
+- <span id="userblack-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userblack-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userblack-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userblack-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserBlack`
+##### `impl OwoColorize for UserBlack`
 
 ### `UserRed`
 
@@ -38,19 +567,21 @@ struct UserBlack;
 struct UserRed;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserRed`
 
-- `const ANSI_FG: &'static str`
+- <span id="userred-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userred-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userred-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userred-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserRed`
+##### `impl OwoColorize for UserRed`
 
 ### `UserGreen`
 
@@ -58,19 +589,21 @@ struct UserRed;
 struct UserGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="usergreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="usergreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="usergreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="usergreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserGreen`
+##### `impl OwoColorize for UserGreen`
 
 ### `UserYellow`
 
@@ -78,19 +611,21 @@ struct UserGreen;
 struct UserYellow;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserYellow`
 
-- `const ANSI_FG: &'static str`
+- <span id="useryellow-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="useryellow-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="useryellow-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="useryellow-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserYellow`
+##### `impl OwoColorize for UserYellow`
 
 ### `UserBlue`
 
@@ -98,19 +633,21 @@ struct UserYellow;
 struct UserBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="userblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserBlue`
+##### `impl OwoColorize for UserBlue`
 
 ### `UserMagenta`
 
@@ -118,19 +655,21 @@ struct UserBlue;
 struct UserMagenta;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserMagenta`
 
-- `const ANSI_FG: &'static str`
+- <span id="usermagenta-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="usermagenta-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="usermagenta-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="usermagenta-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserMagenta`
+##### `impl OwoColorize for UserMagenta`
 
 ### `UserCyan`
 
@@ -138,19 +677,21 @@ struct UserMagenta;
 struct UserCyan;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserCyan`
 
-- `const ANSI_FG: &'static str`
+- <span id="usercyan-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="usercyan-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="usercyan-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="usercyan-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserCyan`
+##### `impl OwoColorize for UserCyan`
 
 ### `UserWhite`
 
@@ -158,19 +699,21 @@ struct UserCyan;
 struct UserWhite;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserWhite`
 
-- `const ANSI_FG: &'static str`
+- <span id="userwhite-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userwhite-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userwhite-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userwhite-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserWhite`
+##### `impl OwoColorize for UserWhite`
 
 ### `UserBrightBlack`
 
@@ -178,19 +721,21 @@ struct UserWhite;
 struct UserBrightBlack;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserBrightBlack`
 
-- `const ANSI_FG: &'static str`
+- <span id="userbrightblack-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userbrightblack-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userbrightblack-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userbrightblack-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserBrightBlack`
+##### `impl OwoColorize for UserBrightBlack`
 
 ### `UserBrightRed`
 
@@ -198,19 +743,21 @@ struct UserBrightBlack;
 struct UserBrightRed;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserBrightRed`
 
-- `const ANSI_FG: &'static str`
+- <span id="userbrightred-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userbrightred-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userbrightred-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userbrightred-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserBrightRed`
+##### `impl OwoColorize for UserBrightRed`
 
 ### `UserBrightGreen`
 
@@ -218,19 +765,21 @@ struct UserBrightRed;
 struct UserBrightGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserBrightGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="userbrightgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userbrightgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userbrightgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userbrightgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserBrightGreen`
+##### `impl OwoColorize for UserBrightGreen`
 
 ### `UserBrightYellow`
 
@@ -238,19 +787,21 @@ struct UserBrightGreen;
 struct UserBrightYellow;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserBrightYellow`
 
-- `const ANSI_FG: &'static str`
+- <span id="userbrightyellow-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userbrightyellow-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userbrightyellow-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userbrightyellow-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserBrightYellow`
+##### `impl OwoColorize for UserBrightYellow`
 
 ### `UserBrightBlue`
 
@@ -258,19 +809,21 @@ struct UserBrightYellow;
 struct UserBrightBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserBrightBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="userbrightblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userbrightblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userbrightblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userbrightblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserBrightBlue`
+##### `impl OwoColorize for UserBrightBlue`
 
 ### `UserBrightMagenta`
 
@@ -278,19 +831,21 @@ struct UserBrightBlue;
 struct UserBrightMagenta;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserBrightMagenta`
 
-- `const ANSI_FG: &'static str`
+- <span id="userbrightmagenta-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userbrightmagenta-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userbrightmagenta-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userbrightmagenta-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserBrightMagenta`
+##### `impl OwoColorize for UserBrightMagenta`
 
 ### `UserBrightCyan`
 
@@ -298,19 +853,21 @@ struct UserBrightMagenta;
 struct UserBrightCyan;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserBrightCyan`
 
-- `const ANSI_FG: &'static str`
+- <span id="userbrightcyan-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userbrightcyan-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userbrightcyan-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userbrightcyan-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserBrightCyan`
+##### `impl OwoColorize for UserBrightCyan`
 
 ### `UserBrightWhite`
 
@@ -318,19 +875,21 @@ struct UserBrightCyan;
 struct UserBrightWhite;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for UserBrightWhite`
 
-- `const ANSI_FG: &'static str`
+- <span id="userbrightwhite-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="userbrightwhite-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="userbrightwhite-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="userbrightwhite-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for UserBrightWhite`
+##### `impl OwoColorize for UserBrightWhite`
 
 ### `Black`
 
@@ -338,19 +897,21 @@ struct UserBrightWhite;
 struct Black;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Black`
 
-- `const ANSI_FG: &'static str`
+- <span id="black-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="black-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="black-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="black-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Black`
+##### `impl OwoColorize for Black`
 
 ### `StratosBlue`
 
@@ -358,19 +919,21 @@ struct Black;
 struct StratosBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for StratosBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="stratosblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="stratosblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="stratosblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="stratosblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for StratosBlue`
+##### `impl OwoColorize for StratosBlue`
 
 ### `NavyBlue`
 
@@ -378,19 +941,21 @@ struct StratosBlue;
 struct NavyBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for NavyBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="navyblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="navyblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="navyblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="navyblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for NavyBlue`
+##### `impl OwoColorize for NavyBlue`
 
 ### `MidnightBlue`
 
@@ -398,19 +963,21 @@ struct NavyBlue;
 struct MidnightBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for MidnightBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="midnightblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="midnightblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="midnightblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="midnightblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for MidnightBlue`
+##### `impl OwoColorize for MidnightBlue`
 
 ### `DarkBlue`
 
@@ -418,19 +985,21 @@ struct MidnightBlue;
 struct DarkBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkBlue`
+##### `impl OwoColorize for DarkBlue`
 
 ### `Blue`
 
@@ -438,19 +1007,21 @@ struct DarkBlue;
 struct Blue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Blue`
 
-- `const ANSI_FG: &'static str`
+- <span id="blue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="blue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="blue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="blue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Blue`
+##### `impl OwoColorize for Blue`
 
 ### `CamaroneGreen`
 
@@ -458,19 +1029,21 @@ struct Blue;
 struct CamaroneGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for CamaroneGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="camaronegreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="camaronegreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="camaronegreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="camaronegreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for CamaroneGreen`
+##### `impl OwoColorize for CamaroneGreen`
 
 ### `BlueStone`
 
@@ -478,19 +1051,21 @@ struct CamaroneGreen;
 struct BlueStone;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BlueStone`
 
-- `const ANSI_FG: &'static str`
+- <span id="bluestone-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="bluestone-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="bluestone-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="bluestone-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BlueStone`
+##### `impl OwoColorize for BlueStone`
 
 ### `OrientBlue`
 
@@ -498,19 +1073,21 @@ struct BlueStone;
 struct OrientBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for OrientBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="orientblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="orientblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="orientblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="orientblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for OrientBlue`
+##### `impl OwoColorize for OrientBlue`
 
 ### `EndeavourBlue`
 
@@ -518,19 +1095,21 @@ struct OrientBlue;
 struct EndeavourBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for EndeavourBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="endeavourblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="endeavourblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="endeavourblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="endeavourblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for EndeavourBlue`
+##### `impl OwoColorize for EndeavourBlue`
 
 ### `ScienceBlue`
 
@@ -538,19 +1117,21 @@ struct EndeavourBlue;
 struct ScienceBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ScienceBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="scienceblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="scienceblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="scienceblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="scienceblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ScienceBlue`
+##### `impl OwoColorize for ScienceBlue`
 
 ### `BlueRibbon`
 
@@ -558,19 +1139,21 @@ struct ScienceBlue;
 struct BlueRibbon;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BlueRibbon`
 
-- `const ANSI_FG: &'static str`
+- <span id="blueribbon-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="blueribbon-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="blueribbon-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="blueribbon-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BlueRibbon`
+##### `impl OwoColorize for BlueRibbon`
 
 ### `JapaneseLaurel`
 
@@ -578,19 +1161,21 @@ struct BlueRibbon;
 struct JapaneseLaurel;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for JapaneseLaurel`
 
-- `const ANSI_FG: &'static str`
+- <span id="japaneselaurel-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="japaneselaurel-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="japaneselaurel-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="japaneselaurel-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for JapaneseLaurel`
+##### `impl OwoColorize for JapaneseLaurel`
 
 ### `DeepSeaGreen`
 
@@ -598,19 +1183,21 @@ struct JapaneseLaurel;
 struct DeepSeaGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DeepSeaGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="deepseagreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="deepseagreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="deepseagreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="deepseagreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DeepSeaGreen`
+##### `impl OwoColorize for DeepSeaGreen`
 
 ### `Teal`
 
@@ -618,19 +1205,21 @@ struct DeepSeaGreen;
 struct Teal;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Teal`
 
-- `const ANSI_FG: &'static str`
+- <span id="teal-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="teal-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="teal-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="teal-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Teal`
+##### `impl OwoColorize for Teal`
 
 ### `DeepCerulean`
 
@@ -638,19 +1227,21 @@ struct Teal;
 struct DeepCerulean;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DeepCerulean`
 
-- `const ANSI_FG: &'static str`
+- <span id="deepcerulean-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="deepcerulean-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="deepcerulean-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="deepcerulean-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DeepCerulean`
+##### `impl OwoColorize for DeepCerulean`
 
 ### `LochmaraBlue`
 
@@ -658,19 +1249,21 @@ struct DeepCerulean;
 struct LochmaraBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LochmaraBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="lochmarablue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lochmarablue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lochmarablue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lochmarablue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LochmaraBlue`
+##### `impl OwoColorize for LochmaraBlue`
 
 ### `AzureRadiance`
 
@@ -678,19 +1271,21 @@ struct LochmaraBlue;
 struct AzureRadiance;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for AzureRadiance`
 
-- `const ANSI_FG: &'static str`
+- <span id="azureradiance-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="azureradiance-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="azureradiance-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="azureradiance-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for AzureRadiance`
+##### `impl OwoColorize for AzureRadiance`
 
 ### `LightJapaneseLaurel`
 
@@ -698,19 +1293,21 @@ struct AzureRadiance;
 struct LightJapaneseLaurel;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightJapaneseLaurel`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightjapaneselaurel-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightjapaneselaurel-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightjapaneselaurel-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightjapaneselaurel-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightJapaneseLaurel`
+##### `impl OwoColorize for LightJapaneseLaurel`
 
 ### `Jade`
 
@@ -718,19 +1315,21 @@ struct LightJapaneseLaurel;
 struct Jade;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Jade`
 
-- `const ANSI_FG: &'static str`
+- <span id="jade-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="jade-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="jade-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="jade-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Jade`
+##### `impl OwoColorize for Jade`
 
 ### `PersianGreen`
 
@@ -738,19 +1337,21 @@ struct Jade;
 struct PersianGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PersianGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="persiangreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="persiangreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="persiangreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="persiangreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PersianGreen`
+##### `impl OwoColorize for PersianGreen`
 
 ### `BondiBlue`
 
@@ -758,19 +1359,21 @@ struct PersianGreen;
 struct BondiBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BondiBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="bondiblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="bondiblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="bondiblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="bondiblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BondiBlue`
+##### `impl OwoColorize for BondiBlue`
 
 ### `Cerulean`
 
@@ -778,19 +1381,21 @@ struct BondiBlue;
 struct Cerulean;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Cerulean`
 
-- `const ANSI_FG: &'static str`
+- <span id="cerulean-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="cerulean-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="cerulean-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="cerulean-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Cerulean`
+##### `impl OwoColorize for Cerulean`
 
 ### `LightAzureRadiance`
 
@@ -798,19 +1403,21 @@ struct Cerulean;
 struct LightAzureRadiance;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightAzureRadiance`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightazureradiance-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightazureradiance-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightazureradiance-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightazureradiance-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightAzureRadiance`
+##### `impl OwoColorize for LightAzureRadiance`
 
 ### `DarkGreen`
 
@@ -818,19 +1425,21 @@ struct LightAzureRadiance;
 struct DarkGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkGreen`
+##### `impl OwoColorize for DarkGreen`
 
 ### `Malachite`
 
@@ -838,19 +1447,21 @@ struct DarkGreen;
 struct Malachite;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Malachite`
 
-- `const ANSI_FG: &'static str`
+- <span id="malachite-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="malachite-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="malachite-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="malachite-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Malachite`
+##### `impl OwoColorize for Malachite`
 
 ### `CaribbeanGreen`
 
@@ -858,19 +1469,21 @@ struct Malachite;
 struct CaribbeanGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for CaribbeanGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="caribbeangreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="caribbeangreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="caribbeangreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="caribbeangreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for CaribbeanGreen`
+##### `impl OwoColorize for CaribbeanGreen`
 
 ### `LightCaribbeanGreen`
 
@@ -878,19 +1491,21 @@ struct CaribbeanGreen;
 struct LightCaribbeanGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightCaribbeanGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightcaribbeangreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightcaribbeangreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightcaribbeangreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightcaribbeangreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightCaribbeanGreen`
+##### `impl OwoColorize for LightCaribbeanGreen`
 
 ### `RobinEggBlue`
 
@@ -898,19 +1513,21 @@ struct LightCaribbeanGreen;
 struct RobinEggBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for RobinEggBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="robineggblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="robineggblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="robineggblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="robineggblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for RobinEggBlue`
+##### `impl OwoColorize for RobinEggBlue`
 
 ### `Aqua`
 
@@ -918,19 +1535,21 @@ struct RobinEggBlue;
 struct Aqua;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Aqua`
 
-- `const ANSI_FG: &'static str`
+- <span id="aqua-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="aqua-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="aqua-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="aqua-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Aqua`
+##### `impl OwoColorize for Aqua`
 
 ### `Green`
 
@@ -938,19 +1557,21 @@ struct Aqua;
 struct Green;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Green`
 
-- `const ANSI_FG: &'static str`
+- <span id="green-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="green-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="green-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="green-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Green`
+##### `impl OwoColorize for Green`
 
 ### `DarkSpringGreen`
 
@@ -958,19 +1579,21 @@ struct Green;
 struct DarkSpringGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkSpringGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkspringgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkspringgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkspringgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkspringgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkSpringGreen`
+##### `impl OwoColorize for DarkSpringGreen`
 
 ### `SpringGreen`
 
@@ -978,19 +1601,21 @@ struct DarkSpringGreen;
 struct SpringGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for SpringGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="springgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="springgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="springgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="springgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for SpringGreen`
+##### `impl OwoColorize for SpringGreen`
 
 ### `LightSpringGreen`
 
@@ -998,19 +1623,21 @@ struct SpringGreen;
 struct LightSpringGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightSpringGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightspringgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightspringgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightspringgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightspringgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightSpringGreen`
+##### `impl OwoColorize for LightSpringGreen`
 
 ### `BrightTurquoise`
 
@@ -1018,19 +1645,21 @@ struct LightSpringGreen;
 struct BrightTurquoise;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BrightTurquoise`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightturquoise-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightturquoise-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightturquoise-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightturquoise-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BrightTurquoise`
+##### `impl OwoColorize for BrightTurquoise`
 
 ### `Cyan`
 
@@ -1038,19 +1667,21 @@ struct BrightTurquoise;
 struct Cyan;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Cyan`
 
-- `const ANSI_FG: &'static str`
+- <span id="cyan-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="cyan-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="cyan-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="cyan-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Cyan`
+##### `impl OwoColorize for Cyan`
 
 ### `Rosewood`
 
@@ -1058,19 +1689,21 @@ struct Cyan;
 struct Rosewood;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Rosewood`
 
-- `const ANSI_FG: &'static str`
+- <span id="rosewood-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="rosewood-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="rosewood-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="rosewood-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Rosewood`
+##### `impl OwoColorize for Rosewood`
 
 ### `PompadourMagenta`
 
@@ -1078,19 +1711,21 @@ struct Rosewood;
 struct PompadourMagenta;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PompadourMagenta`
 
-- `const ANSI_FG: &'static str`
+- <span id="pompadourmagenta-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="pompadourmagenta-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="pompadourmagenta-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="pompadourmagenta-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PompadourMagenta`
+##### `impl OwoColorize for PompadourMagenta`
 
 ### `PigmentIndigo`
 
@@ -1098,19 +1733,21 @@ struct PompadourMagenta;
 struct PigmentIndigo;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PigmentIndigo`
 
-- `const ANSI_FG: &'static str`
+- <span id="pigmentindigo-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="pigmentindigo-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="pigmentindigo-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="pigmentindigo-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PigmentIndigo`
+##### `impl OwoColorize for PigmentIndigo`
 
 ### `DarkPurple`
 
@@ -1118,19 +1755,21 @@ struct PigmentIndigo;
 struct DarkPurple;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkPurple`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkpurple-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkpurple-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkpurple-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkpurple-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkPurple`
+##### `impl OwoColorize for DarkPurple`
 
 ### `ElectricIndigo`
 
@@ -1138,19 +1777,21 @@ struct DarkPurple;
 struct ElectricIndigo;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ElectricIndigo`
 
-- `const ANSI_FG: &'static str`
+- <span id="electricindigo-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="electricindigo-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="electricindigo-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="electricindigo-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ElectricIndigo`
+##### `impl OwoColorize for ElectricIndigo`
 
 ### `ElectricPurple`
 
@@ -1158,19 +1799,21 @@ struct ElectricIndigo;
 struct ElectricPurple;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ElectricPurple`
 
-- `const ANSI_FG: &'static str`
+- <span id="electricpurple-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="electricpurple-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="electricpurple-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="electricpurple-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ElectricPurple`
+##### `impl OwoColorize for ElectricPurple`
 
 ### `VerdunGreen`
 
@@ -1178,19 +1821,21 @@ struct ElectricPurple;
 struct VerdunGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for VerdunGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="verdungreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="verdungreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="verdungreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="verdungreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for VerdunGreen`
+##### `impl OwoColorize for VerdunGreen`
 
 ### `ScorpionOlive`
 
@@ -1198,19 +1843,21 @@ struct VerdunGreen;
 struct ScorpionOlive;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ScorpionOlive`
 
-- `const ANSI_FG: &'static str`
+- <span id="scorpionolive-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="scorpionolive-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="scorpionolive-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="scorpionolive-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ScorpionOlive`
+##### `impl OwoColorize for ScorpionOlive`
 
 ### `Lilac`
 
@@ -1218,19 +1865,21 @@ struct ScorpionOlive;
 struct Lilac;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Lilac`
 
-- `const ANSI_FG: &'static str`
+- <span id="lilac-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lilac-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lilac-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lilac-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Lilac`
+##### `impl OwoColorize for Lilac`
 
 ### `ScampiIndigo`
 
@@ -1238,19 +1887,21 @@ struct Lilac;
 struct ScampiIndigo;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ScampiIndigo`
 
-- `const ANSI_FG: &'static str`
+- <span id="scampiindigo-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="scampiindigo-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="scampiindigo-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="scampiindigo-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ScampiIndigo`
+##### `impl OwoColorize for ScampiIndigo`
 
 ### `Indigo`
 
@@ -1258,19 +1909,21 @@ struct ScampiIndigo;
 struct Indigo;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Indigo`
 
-- `const ANSI_FG: &'static str`
+- <span id="indigo-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="indigo-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="indigo-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="indigo-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Indigo`
+##### `impl OwoColorize for Indigo`
 
 ### `DarkCornflowerBlue`
 
@@ -1278,19 +1931,21 @@ struct Indigo;
 struct DarkCornflowerBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkCornflowerBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkcornflowerblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkcornflowerblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkcornflowerblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkcornflowerblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkCornflowerBlue`
+##### `impl OwoColorize for DarkCornflowerBlue`
 
 ### `DarkLimeade`
 
@@ -1298,19 +1953,21 @@ struct DarkCornflowerBlue;
 struct DarkLimeade;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkLimeade`
 
-- `const ANSI_FG: &'static str`
+- <span id="darklimeade-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darklimeade-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darklimeade-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darklimeade-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkLimeade`
+##### `impl OwoColorize for DarkLimeade`
 
 ### `GladeGreen`
 
@@ -1318,19 +1975,21 @@ struct DarkLimeade;
 struct GladeGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for GladeGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="gladegreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="gladegreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="gladegreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="gladegreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for GladeGreen`
+##### `impl OwoColorize for GladeGreen`
 
 ### `JuniperGreen`
 
@@ -1338,19 +1997,21 @@ struct GladeGreen;
 struct JuniperGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for JuniperGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="junipergreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="junipergreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="junipergreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="junipergreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for JuniperGreen`
+##### `impl OwoColorize for JuniperGreen`
 
 ### `HippieBlue`
 
@@ -1358,19 +2019,21 @@ struct JuniperGreen;
 struct HippieBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for HippieBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="hippieblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="hippieblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="hippieblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="hippieblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for HippieBlue`
+##### `impl OwoColorize for HippieBlue`
 
 ### `HavelockBlue`
 
@@ -1378,19 +2041,21 @@ struct HippieBlue;
 struct HavelockBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for HavelockBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="havelockblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="havelockblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="havelockblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="havelockblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for HavelockBlue`
+##### `impl OwoColorize for HavelockBlue`
 
 ### `CornflowerBlue`
 
@@ -1398,19 +2063,21 @@ struct HavelockBlue;
 struct CornflowerBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for CornflowerBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="cornflowerblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="cornflowerblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="cornflowerblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="cornflowerblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for CornflowerBlue`
+##### `impl OwoColorize for CornflowerBlue`
 
 ### `Limeade`
 
@@ -1418,19 +2085,21 @@ struct CornflowerBlue;
 struct Limeade;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Limeade`
 
-- `const ANSI_FG: &'static str`
+- <span id="limeade-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="limeade-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="limeade-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="limeade-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Limeade`
+##### `impl OwoColorize for Limeade`
 
 ### `FernGreen`
 
@@ -1438,19 +2107,21 @@ struct Limeade;
 struct FernGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for FernGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="ferngreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="ferngreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="ferngreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="ferngreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for FernGreen`
+##### `impl OwoColorize for FernGreen`
 
 ### `SilverTree`
 
@@ -1458,19 +2129,21 @@ struct FernGreen;
 struct SilverTree;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for SilverTree`
 
-- `const ANSI_FG: &'static str`
+- <span id="silvertree-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="silvertree-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="silvertree-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="silvertree-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for SilverTree`
+##### `impl OwoColorize for SilverTree`
 
 ### `Tradewind`
 
@@ -1478,19 +2151,21 @@ struct SilverTree;
 struct Tradewind;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Tradewind`
 
-- `const ANSI_FG: &'static str`
+- <span id="tradewind-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="tradewind-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="tradewind-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="tradewind-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Tradewind`
+##### `impl OwoColorize for Tradewind`
 
 ### `ShakespeareBlue`
 
@@ -1498,19 +2173,21 @@ struct Tradewind;
 struct ShakespeareBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ShakespeareBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="shakespeareblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="shakespeareblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="shakespeareblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="shakespeareblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ShakespeareBlue`
+##### `impl OwoColorize for ShakespeareBlue`
 
 ### `DarkMalibuBlue`
 
@@ -1518,19 +2195,21 @@ struct ShakespeareBlue;
 struct DarkMalibuBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkMalibuBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkmalibublue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkmalibublue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkmalibublue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkmalibublue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkMalibuBlue`
+##### `impl OwoColorize for DarkMalibuBlue`
 
 ### `DarkBrightGreen`
 
@@ -1538,19 +2217,21 @@ struct DarkMalibuBlue;
 struct DarkBrightGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkBrightGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkbrightgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkbrightgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkbrightgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkbrightgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkBrightGreen`
+##### `impl OwoColorize for DarkBrightGreen`
 
 ### `DarkPastelGreen`
 
@@ -1558,19 +2239,21 @@ struct DarkBrightGreen;
 struct DarkPastelGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkPastelGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkpastelgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkpastelgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkpastelgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkpastelgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkPastelGreen`
+##### `impl OwoColorize for DarkPastelGreen`
 
 ### `PastelGreen`
 
@@ -1578,19 +2261,21 @@ struct DarkPastelGreen;
 struct PastelGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PastelGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="pastelgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="pastelgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="pastelgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="pastelgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PastelGreen`
+##### `impl OwoColorize for PastelGreen`
 
 ### `DownyTeal`
 
@@ -1598,19 +2283,21 @@ struct PastelGreen;
 struct DownyTeal;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DownyTeal`
 
-- `const ANSI_FG: &'static str`
+- <span id="downyteal-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="downyteal-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="downyteal-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="downyteal-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DownyTeal`
+##### `impl OwoColorize for DownyTeal`
 
 ### `Viking`
 
@@ -1618,19 +2305,21 @@ struct DownyTeal;
 struct Viking;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Viking`
 
-- `const ANSI_FG: &'static str`
+- <span id="viking-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="viking-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="viking-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="viking-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Viking`
+##### `impl OwoColorize for Viking`
 
 ### `MalibuBlue`
 
@@ -1638,19 +2327,21 @@ struct Viking;
 struct MalibuBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for MalibuBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="malibublue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="malibublue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="malibublue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="malibublue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for MalibuBlue`
+##### `impl OwoColorize for MalibuBlue`
 
 ### `BrightGreen`
 
@@ -1658,19 +2349,21 @@ struct MalibuBlue;
 struct BrightGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BrightGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BrightGreen`
+##### `impl OwoColorize for BrightGreen`
 
 ### `DarkScreaminGreen`
 
@@ -1678,19 +2371,21 @@ struct BrightGreen;
 struct DarkScreaminGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkScreaminGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkscreamingreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkscreamingreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkscreamingreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkscreamingreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkScreaminGreen`
+##### `impl OwoColorize for DarkScreaminGreen`
 
 ### `ScreaminGreen`
 
@@ -1698,19 +2393,21 @@ struct DarkScreaminGreen;
 struct ScreaminGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ScreaminGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="screamingreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="screamingreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="screamingreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="screamingreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ScreaminGreen`
+##### `impl OwoColorize for ScreaminGreen`
 
 ### `DarkAquamarine`
 
@@ -1718,19 +2415,21 @@ struct ScreaminGreen;
 struct DarkAquamarine;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkAquamarine`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkaquamarine-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkaquamarine-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkaquamarine-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkaquamarine-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkAquamarine`
+##### `impl OwoColorize for DarkAquamarine`
 
 ### `Aquamarine`
 
@@ -1738,19 +2437,21 @@ struct DarkAquamarine;
 struct Aquamarine;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Aquamarine`
 
-- `const ANSI_FG: &'static str`
+- <span id="aquamarine-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="aquamarine-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="aquamarine-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="aquamarine-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Aquamarine`
+##### `impl OwoColorize for Aquamarine`
 
 ### `LightAquamarine`
 
@@ -1758,19 +2459,21 @@ struct Aquamarine;
 struct LightAquamarine;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightAquamarine`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightaquamarine-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightaquamarine-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightaquamarine-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightaquamarine-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightAquamarine`
+##### `impl OwoColorize for LightAquamarine`
 
 ### `Maroon`
 
@@ -1778,19 +2481,21 @@ struct LightAquamarine;
 struct Maroon;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Maroon`
 
-- `const ANSI_FG: &'static str`
+- <span id="maroon-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="maroon-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="maroon-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="maroon-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Maroon`
+##### `impl OwoColorize for Maroon`
 
 ### `DarkFreshEggplant`
 
@@ -1798,19 +2503,21 @@ struct Maroon;
 struct DarkFreshEggplant;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkFreshEggplant`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkfresheggplant-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkfresheggplant-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkfresheggplant-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkfresheggplant-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkFreshEggplant`
+##### `impl OwoColorize for DarkFreshEggplant`
 
 ### `LightFreshEggplant`
 
@@ -1818,19 +2525,21 @@ struct DarkFreshEggplant;
 struct LightFreshEggplant;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightFreshEggplant`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightfresheggplant-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightfresheggplant-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightfresheggplant-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightfresheggplant-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightFreshEggplant`
+##### `impl OwoColorize for LightFreshEggplant`
 
 ### `Purple`
 
@@ -1838,19 +2547,21 @@ struct LightFreshEggplant;
 struct Purple;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Purple`
 
-- `const ANSI_FG: &'static str`
+- <span id="purple-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="purple-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="purple-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="purple-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Purple`
+##### `impl OwoColorize for Purple`
 
 ### `ElectricViolet`
 
@@ -1858,19 +2569,21 @@ struct Purple;
 struct ElectricViolet;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ElectricViolet`
 
-- `const ANSI_FG: &'static str`
+- <span id="electricviolet-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="electricviolet-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="electricviolet-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="electricviolet-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ElectricViolet`
+##### `impl OwoColorize for ElectricViolet`
 
 ### `LightElectricViolet`
 
@@ -1878,19 +2591,21 @@ struct ElectricViolet;
 struct LightElectricViolet;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightElectricViolet`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightelectricviolet-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightelectricviolet-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightelectricviolet-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightelectricviolet-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightElectricViolet`
+##### `impl OwoColorize for LightElectricViolet`
 
 ### `Brown`
 
@@ -1898,19 +2613,21 @@ struct LightElectricViolet;
 struct Brown;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Brown`
 
-- `const ANSI_FG: &'static str`
+- <span id="brown-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brown-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brown-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brown-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Brown`
+##### `impl OwoColorize for Brown`
 
 ### `CopperRose`
 
@@ -1918,19 +2635,21 @@ struct Brown;
 struct CopperRose;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for CopperRose`
 
-- `const ANSI_FG: &'static str`
+- <span id="copperrose-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="copperrose-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="copperrose-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="copperrose-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for CopperRose`
+##### `impl OwoColorize for CopperRose`
 
 ### `StrikemasterPurple`
 
@@ -1938,19 +2657,21 @@ struct CopperRose;
 struct StrikemasterPurple;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for StrikemasterPurple`
 
-- `const ANSI_FG: &'static str`
+- <span id="strikemasterpurple-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="strikemasterpurple-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="strikemasterpurple-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="strikemasterpurple-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for StrikemasterPurple`
+##### `impl OwoColorize for StrikemasterPurple`
 
 ### `DelugePurple`
 
@@ -1958,19 +2679,21 @@ struct StrikemasterPurple;
 struct DelugePurple;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DelugePurple`
 
-- `const ANSI_FG: &'static str`
+- <span id="delugepurple-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="delugepurple-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="delugepurple-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="delugepurple-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DelugePurple`
+##### `impl OwoColorize for DelugePurple`
 
 ### `DarkMediumPurple`
 
@@ -1978,19 +2701,21 @@ struct DelugePurple;
 struct DarkMediumPurple;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkMediumPurple`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkmediumpurple-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkmediumpurple-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkmediumpurple-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkmediumpurple-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkMediumPurple`
+##### `impl OwoColorize for DarkMediumPurple`
 
 ### `DarkHeliotropePurple`
 
@@ -1998,19 +2723,21 @@ struct DarkMediumPurple;
 struct DarkHeliotropePurple;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkHeliotropePurple`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkheliotropepurple-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkheliotropepurple-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkheliotropepurple-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkheliotropepurple-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkHeliotropePurple`
+##### `impl OwoColorize for DarkHeliotropePurple`
 
 ### `Olive`
 
@@ -2018,19 +2745,21 @@ struct DarkHeliotropePurple;
 struct Olive;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Olive`
 
-- `const ANSI_FG: &'static str`
+- <span id="olive-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="olive-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="olive-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="olive-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Olive`
+##### `impl OwoColorize for Olive`
 
 ### `ClayCreekOlive`
 
@@ -2038,19 +2767,21 @@ struct Olive;
 struct ClayCreekOlive;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ClayCreekOlive`
 
-- `const ANSI_FG: &'static str`
+- <span id="claycreekolive-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="claycreekolive-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="claycreekolive-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="claycreekolive-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ClayCreekOlive`
+##### `impl OwoColorize for ClayCreekOlive`
 
 ### `DarkGray`
 
@@ -2058,19 +2789,21 @@ struct ClayCreekOlive;
 struct DarkGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkgray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkgray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkgray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkgray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkGray`
+##### `impl OwoColorize for DarkGray`
 
 ### `WildBlueYonder`
 
@@ -2078,19 +2811,21 @@ struct DarkGray;
 struct WildBlueYonder;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for WildBlueYonder`
 
-- `const ANSI_FG: &'static str`
+- <span id="wildblueyonder-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="wildblueyonder-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="wildblueyonder-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="wildblueyonder-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for WildBlueYonder`
+##### `impl OwoColorize for WildBlueYonder`
 
 ### `ChetwodeBlue`
 
@@ -2098,19 +2833,21 @@ struct WildBlueYonder;
 struct ChetwodeBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ChetwodeBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="chetwodeblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="chetwodeblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="chetwodeblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="chetwodeblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ChetwodeBlue`
+##### `impl OwoColorize for ChetwodeBlue`
 
 ### `SlateBlue`
 
@@ -2118,19 +2855,21 @@ struct ChetwodeBlue;
 struct SlateBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for SlateBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="slateblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="slateblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="slateblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="slateblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for SlateBlue`
+##### `impl OwoColorize for SlateBlue`
 
 ### `LightLimeade`
 
@@ -2138,19 +2877,21 @@ struct SlateBlue;
 struct LightLimeade;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightLimeade`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightlimeade-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightlimeade-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightlimeade-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightlimeade-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightLimeade`
+##### `impl OwoColorize for LightLimeade`
 
 ### `ChelseaCucumber`
 
@@ -2158,19 +2899,21 @@ struct LightLimeade;
 struct ChelseaCucumber;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ChelseaCucumber`
 
-- `const ANSI_FG: &'static str`
+- <span id="chelseacucumber-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="chelseacucumber-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="chelseacucumber-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="chelseacucumber-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ChelseaCucumber`
+##### `impl OwoColorize for ChelseaCucumber`
 
 ### `BayLeaf`
 
@@ -2178,19 +2921,21 @@ struct ChelseaCucumber;
 struct BayLeaf;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BayLeaf`
 
-- `const ANSI_FG: &'static str`
+- <span id="bayleaf-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="bayleaf-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="bayleaf-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="bayleaf-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BayLeaf`
+##### `impl OwoColorize for BayLeaf`
 
 ### `GulfStream`
 
@@ -2198,19 +2943,21 @@ struct BayLeaf;
 struct GulfStream;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for GulfStream`
 
-- `const ANSI_FG: &'static str`
+- <span id="gulfstream-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="gulfstream-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="gulfstream-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="gulfstream-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for GulfStream`
+##### `impl OwoColorize for GulfStream`
 
 ### `PoloBlue`
 
@@ -2218,19 +2965,21 @@ struct GulfStream;
 struct PoloBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PoloBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="poloblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="poloblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="poloblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="poloblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PoloBlue`
+##### `impl OwoColorize for PoloBlue`
 
 ### `LightMalibuBlue`
 
@@ -2238,19 +2987,21 @@ struct PoloBlue;
 struct LightMalibuBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightMalibuBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightmalibublue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightmalibublue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightmalibublue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightmalibublue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightMalibuBlue`
+##### `impl OwoColorize for LightMalibuBlue`
 
 ### `Pistachio`
 
@@ -2258,19 +3009,21 @@ struct LightMalibuBlue;
 struct Pistachio;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Pistachio`
 
-- `const ANSI_FG: &'static str`
+- <span id="pistachio-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="pistachio-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="pistachio-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="pistachio-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Pistachio`
+##### `impl OwoColorize for Pistachio`
 
 ### `LightPastelGreen`
 
@@ -2278,19 +3031,21 @@ struct Pistachio;
 struct LightPastelGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightPastelGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightpastelgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightpastelgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightpastelgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightpastelgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightPastelGreen`
+##### `impl OwoColorize for LightPastelGreen`
 
 ### `DarkFeijoaGreen`
 
@@ -2298,19 +3053,21 @@ struct LightPastelGreen;
 struct DarkFeijoaGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkFeijoaGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkfeijoagreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkfeijoagreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkfeijoagreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkfeijoagreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkFeijoaGreen`
+##### `impl OwoColorize for DarkFeijoaGreen`
 
 ### `VistaBlue`
 
@@ -2318,19 +3075,21 @@ struct DarkFeijoaGreen;
 struct VistaBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for VistaBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="vistablue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="vistablue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="vistablue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="vistablue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for VistaBlue`
+##### `impl OwoColorize for VistaBlue`
 
 ### `Bermuda`
 
@@ -2338,19 +3097,21 @@ struct VistaBlue;
 struct Bermuda;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Bermuda`
 
-- `const ANSI_FG: &'static str`
+- <span id="bermuda-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="bermuda-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="bermuda-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="bermuda-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Bermuda`
+##### `impl OwoColorize for Bermuda`
 
 ### `DarkAnakiwaBlue`
 
@@ -2358,19 +3119,21 @@ struct Bermuda;
 struct DarkAnakiwaBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkAnakiwaBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkanakiwablue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkanakiwablue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkanakiwablue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkanakiwablue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkAnakiwaBlue`
+##### `impl OwoColorize for DarkAnakiwaBlue`
 
 ### `ChartreuseGreen`
 
@@ -2378,19 +3141,21 @@ struct DarkAnakiwaBlue;
 struct ChartreuseGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ChartreuseGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="chartreusegreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="chartreusegreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="chartreusegreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="chartreusegreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ChartreuseGreen`
+##### `impl OwoColorize for ChartreuseGreen`
 
 ### `LightScreaminGreen`
 
@@ -2398,19 +3163,21 @@ struct ChartreuseGreen;
 struct LightScreaminGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightScreaminGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightscreamingreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightscreamingreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightscreamingreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightscreamingreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightScreaminGreen`
+##### `impl OwoColorize for LightScreaminGreen`
 
 ### `DarkMintGreen`
 
@@ -2418,19 +3185,21 @@ struct LightScreaminGreen;
 struct DarkMintGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkMintGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkmintgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkmintgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkmintgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkmintgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkMintGreen`
+##### `impl OwoColorize for DarkMintGreen`
 
 ### `MintGreen`
 
@@ -2438,19 +3207,21 @@ struct DarkMintGreen;
 struct MintGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for MintGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="mintgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="mintgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="mintgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="mintgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for MintGreen`
+##### `impl OwoColorize for MintGreen`
 
 ### `LighterAquamarine`
 
@@ -2458,19 +3229,21 @@ struct MintGreen;
 struct LighterAquamarine;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LighterAquamarine`
 
-- `const ANSI_FG: &'static str`
+- <span id="lighteraquamarine-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lighteraquamarine-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lighteraquamarine-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lighteraquamarine-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LighterAquamarine`
+##### `impl OwoColorize for LighterAquamarine`
 
 ### `AnakiwaBlue`
 
@@ -2478,19 +3251,21 @@ struct LighterAquamarine;
 struct AnakiwaBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for AnakiwaBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="anakiwablue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="anakiwablue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="anakiwablue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="anakiwablue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for AnakiwaBlue`
+##### `impl OwoColorize for AnakiwaBlue`
 
 ### `BrightRed`
 
@@ -2498,19 +3273,21 @@ struct AnakiwaBlue;
 struct BrightRed;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BrightRed`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightred-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightred-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightred-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightred-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BrightRed`
+##### `impl OwoColorize for BrightRed`
 
 ### `DarkFlirt`
 
@@ -2518,19 +3295,21 @@ struct BrightRed;
 struct DarkFlirt;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkFlirt`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkflirt-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkflirt-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkflirt-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkflirt-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkFlirt`
+##### `impl OwoColorize for DarkFlirt`
 
 ### `Flirt`
 
@@ -2538,19 +3317,21 @@ struct DarkFlirt;
 struct Flirt;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Flirt`
 
-- `const ANSI_FG: &'static str`
+- <span id="flirt-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="flirt-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="flirt-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="flirt-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Flirt`
+##### `impl OwoColorize for Flirt`
 
 ### `LightFlirt`
 
@@ -2558,19 +3339,21 @@ struct Flirt;
 struct LightFlirt;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightFlirt`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightflirt-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightflirt-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightflirt-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightflirt-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightFlirt`
+##### `impl OwoColorize for LightFlirt`
 
 ### `DarkViolet`
 
@@ -2578,19 +3361,21 @@ struct LightFlirt;
 struct DarkViolet;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkViolet`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkviolet-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkviolet-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkviolet-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkviolet-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkViolet`
+##### `impl OwoColorize for DarkViolet`
 
 ### `BrightElectricViolet`
 
@@ -2598,19 +3383,21 @@ struct DarkViolet;
 struct BrightElectricViolet;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BrightElectricViolet`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightelectricviolet-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightelectricviolet-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightelectricviolet-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightelectricviolet-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BrightElectricViolet`
+##### `impl OwoColorize for BrightElectricViolet`
 
 ### `RoseofSharonOrange`
 
@@ -2618,19 +3405,21 @@ struct BrightElectricViolet;
 struct RoseofSharonOrange;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for RoseofSharonOrange`
 
-- `const ANSI_FG: &'static str`
+- <span id="roseofsharonorange-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="roseofsharonorange-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="roseofsharonorange-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="roseofsharonorange-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for RoseofSharonOrange`
+##### `impl OwoColorize for RoseofSharonOrange`
 
 ### `MatrixPink`
 
@@ -2638,19 +3427,21 @@ struct RoseofSharonOrange;
 struct MatrixPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for MatrixPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="matrixpink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="matrixpink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="matrixpink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="matrixpink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for MatrixPink`
+##### `impl OwoColorize for MatrixPink`
 
 ### `TapestryPink`
 
@@ -2658,19 +3449,21 @@ struct MatrixPink;
 struct TapestryPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for TapestryPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="tapestrypink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="tapestrypink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="tapestrypink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="tapestrypink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for TapestryPink`
+##### `impl OwoColorize for TapestryPink`
 
 ### `FuchsiaPink`
 
@@ -2678,19 +3471,21 @@ struct TapestryPink;
 struct FuchsiaPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for FuchsiaPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="fuchsiapink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="fuchsiapink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="fuchsiapink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="fuchsiapink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for FuchsiaPink`
+##### `impl OwoColorize for FuchsiaPink`
 
 ### `MediumPurple`
 
@@ -2698,19 +3493,21 @@ struct FuchsiaPink;
 struct MediumPurple;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for MediumPurple`
 
-- `const ANSI_FG: &'static str`
+- <span id="mediumpurple-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="mediumpurple-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="mediumpurple-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="mediumpurple-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for MediumPurple`
+##### `impl OwoColorize for MediumPurple`
 
 ### `Heliotrope`
 
@@ -2718,19 +3515,21 @@ struct MediumPurple;
 struct Heliotrope;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Heliotrope`
 
-- `const ANSI_FG: &'static str`
+- <span id="heliotrope-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="heliotrope-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="heliotrope-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="heliotrope-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Heliotrope`
+##### `impl OwoColorize for Heliotrope`
 
 ### `PirateGold`
 
@@ -2738,19 +3537,21 @@ struct Heliotrope;
 struct PirateGold;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PirateGold`
 
-- `const ANSI_FG: &'static str`
+- <span id="pirategold-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="pirategold-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="pirategold-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="pirategold-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PirateGold`
+##### `impl OwoColorize for PirateGold`
 
 ### `MuesliOrange`
 
@@ -2758,19 +3559,21 @@ struct PirateGold;
 struct MuesliOrange;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for MuesliOrange`
 
-- `const ANSI_FG: &'static str`
+- <span id="muesliorange-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="muesliorange-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="muesliorange-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="muesliorange-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for MuesliOrange`
+##### `impl OwoColorize for MuesliOrange`
 
 ### `PharlapPink`
 
@@ -2778,19 +3581,21 @@ struct MuesliOrange;
 struct PharlapPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PharlapPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="pharlappink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="pharlappink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="pharlappink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="pharlappink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PharlapPink`
+##### `impl OwoColorize for PharlapPink`
 
 ### `Bouquet`
 
@@ -2798,19 +3603,21 @@ struct PharlapPink;
 struct Bouquet;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Bouquet`
 
-- `const ANSI_FG: &'static str`
+- <span id="bouquet-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="bouquet-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="bouquet-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="bouquet-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Bouquet`
+##### `impl OwoColorize for Bouquet`
 
 ### `Lavender`
 
@@ -2818,19 +3625,21 @@ struct Bouquet;
 struct Lavender;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Lavender`
 
-- `const ANSI_FG: &'static str`
+- <span id="lavender-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lavender-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lavender-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lavender-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Lavender`
+##### `impl OwoColorize for Lavender`
 
 ### `LightHeliotrope`
 
@@ -2838,19 +3647,21 @@ struct Lavender;
 struct LightHeliotrope;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightHeliotrope`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightheliotrope-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightheliotrope-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightheliotrope-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightheliotrope-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightHeliotrope`
+##### `impl OwoColorize for LightHeliotrope`
 
 ### `BuddhaGold`
 
@@ -2858,19 +3669,21 @@ struct LightHeliotrope;
 struct BuddhaGold;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BuddhaGold`
 
-- `const ANSI_FG: &'static str`
+- <span id="buddhagold-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="buddhagold-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="buddhagold-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="buddhagold-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BuddhaGold`
+##### `impl OwoColorize for BuddhaGold`
 
 ### `OliveGreen`
 
@@ -2878,19 +3691,21 @@ struct BuddhaGold;
 struct OliveGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for OliveGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="olivegreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="olivegreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="olivegreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="olivegreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for OliveGreen`
+##### `impl OwoColorize for OliveGreen`
 
 ### `HillaryOlive`
 
@@ -2898,19 +3713,21 @@ struct OliveGreen;
 struct HillaryOlive;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for HillaryOlive`
 
-- `const ANSI_FG: &'static str`
+- <span id="hillaryolive-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="hillaryolive-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="hillaryolive-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="hillaryolive-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for HillaryOlive`
+##### `impl OwoColorize for HillaryOlive`
 
 ### `SilverChalice`
 
@@ -2918,19 +3735,21 @@ struct HillaryOlive;
 struct SilverChalice;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for SilverChalice`
 
-- `const ANSI_FG: &'static str`
+- <span id="silverchalice-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="silverchalice-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="silverchalice-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="silverchalice-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for SilverChalice`
+##### `impl OwoColorize for SilverChalice`
 
 ### `WistfulLilac`
 
@@ -2938,19 +3757,21 @@ struct SilverChalice;
 struct WistfulLilac;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for WistfulLilac`
 
-- `const ANSI_FG: &'static str`
+- <span id="wistfullilac-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="wistfullilac-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="wistfullilac-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="wistfullilac-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for WistfulLilac`
+##### `impl OwoColorize for WistfulLilac`
 
 ### `MelroseLilac`
 
@@ -2958,19 +3779,21 @@ struct WistfulLilac;
 struct MelroseLilac;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for MelroseLilac`
 
-- `const ANSI_FG: &'static str`
+- <span id="melroselilac-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="melroselilac-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="melroselilac-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="melroselilac-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for MelroseLilac`
+##### `impl OwoColorize for MelroseLilac`
 
 ### `RioGrandeGreen`
 
@@ -2978,19 +3801,21 @@ struct MelroseLilac;
 struct RioGrandeGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for RioGrandeGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="riograndegreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="riograndegreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="riograndegreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="riograndegreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for RioGrandeGreen`
+##### `impl OwoColorize for RioGrandeGreen`
 
 ### `ConiferGreen`
 
@@ -2998,19 +3823,21 @@ struct RioGrandeGreen;
 struct ConiferGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ConiferGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="conifergreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="conifergreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="conifergreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="conifergreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ConiferGreen`
+##### `impl OwoColorize for ConiferGreen`
 
 ### `Feijoa`
 
@@ -3018,19 +3845,21 @@ struct ConiferGreen;
 struct Feijoa;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Feijoa`
 
-- `const ANSI_FG: &'static str`
+- <span id="feijoa-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="feijoa-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="feijoa-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="feijoa-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Feijoa`
+##### `impl OwoColorize for Feijoa`
 
 ### `PixieGreen`
 
@@ -3038,19 +3867,21 @@ struct Feijoa;
 struct PixieGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PixieGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="pixiegreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="pixiegreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="pixiegreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="pixiegreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PixieGreen`
+##### `impl OwoColorize for PixieGreen`
 
 ### `JungleMist`
 
@@ -3058,19 +3889,21 @@ struct PixieGreen;
 struct JungleMist;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for JungleMist`
 
-- `const ANSI_FG: &'static str`
+- <span id="junglemist-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="junglemist-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="junglemist-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="junglemist-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for JungleMist`
+##### `impl OwoColorize for JungleMist`
 
 ### `LightAnakiwaBlue`
 
@@ -3078,19 +3911,21 @@ struct JungleMist;
 struct LightAnakiwaBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightAnakiwaBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightanakiwablue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightanakiwablue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightanakiwablue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightanakiwablue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightAnakiwaBlue`
+##### `impl OwoColorize for LightAnakiwaBlue`
 
 ### `Lime`
 
@@ -3098,19 +3933,21 @@ struct LightAnakiwaBlue;
 struct Lime;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Lime`
 
-- `const ANSI_FG: &'static str`
+- <span id="lime-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lime-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lime-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lime-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Lime`
+##### `impl OwoColorize for Lime`
 
 ### `GreenYellow`
 
@@ -3118,19 +3955,21 @@ struct Lime;
 struct GreenYellow;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for GreenYellow`
 
-- `const ANSI_FG: &'static str`
+- <span id="greenyellow-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="greenyellow-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="greenyellow-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="greenyellow-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for GreenYellow`
+##### `impl OwoColorize for GreenYellow`
 
 ### `LightMintGreen`
 
@@ -3138,19 +3977,21 @@ struct GreenYellow;
 struct LightMintGreen;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightMintGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightmintgreen-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightmintgreen-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightmintgreen-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightmintgreen-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightMintGreen`
+##### `impl OwoColorize for LightMintGreen`
 
 ### `Celadon`
 
@@ -3158,19 +3999,21 @@ struct LightMintGreen;
 struct Celadon;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Celadon`
 
-- `const ANSI_FG: &'static str`
+- <span id="celadon-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="celadon-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="celadon-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="celadon-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Celadon`
+##### `impl OwoColorize for Celadon`
 
 ### `AeroBlue`
 
@@ -3178,19 +4021,21 @@ struct Celadon;
 struct AeroBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for AeroBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="aeroblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="aeroblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="aeroblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="aeroblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for AeroBlue`
+##### `impl OwoColorize for AeroBlue`
 
 ### `FrenchPassLightBlue`
 
@@ -3198,19 +4043,21 @@ struct AeroBlue;
 struct FrenchPassLightBlue;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for FrenchPassLightBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="frenchpasslightblue-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="frenchpasslightblue-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="frenchpasslightblue-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="frenchpasslightblue-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for FrenchPassLightBlue`
+##### `impl OwoColorize for FrenchPassLightBlue`
 
 ### `GuardsmanRed`
 
@@ -3218,19 +4065,21 @@ struct FrenchPassLightBlue;
 struct GuardsmanRed;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for GuardsmanRed`
 
-- `const ANSI_FG: &'static str`
+- <span id="guardsmanred-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="guardsmanred-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="guardsmanred-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="guardsmanred-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for GuardsmanRed`
+##### `impl OwoColorize for GuardsmanRed`
 
 ### `RazzmatazzCerise`
 
@@ -3238,19 +4087,21 @@ struct GuardsmanRed;
 struct RazzmatazzCerise;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for RazzmatazzCerise`
 
-- `const ANSI_FG: &'static str`
+- <span id="razzmatazzcerise-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="razzmatazzcerise-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="razzmatazzcerise-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="razzmatazzcerise-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for RazzmatazzCerise`
+##### `impl OwoColorize for RazzmatazzCerise`
 
 ### `MediumVioletRed`
 
@@ -3258,19 +4109,21 @@ struct RazzmatazzCerise;
 struct MediumVioletRed;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for MediumVioletRed`
 
-- `const ANSI_FG: &'static str`
+- <span id="mediumvioletred-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="mediumvioletred-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="mediumvioletred-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="mediumvioletred-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for MediumVioletRed`
+##### `impl OwoColorize for MediumVioletRed`
 
 ### `HollywoodCerise`
 
@@ -3278,19 +4131,21 @@ struct MediumVioletRed;
 struct HollywoodCerise;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for HollywoodCerise`
 
-- `const ANSI_FG: &'static str`
+- <span id="hollywoodcerise-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="hollywoodcerise-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="hollywoodcerise-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="hollywoodcerise-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for HollywoodCerise`
+##### `impl OwoColorize for HollywoodCerise`
 
 ### `DarkPurplePizzazz`
 
@@ -3298,19 +4153,21 @@ struct HollywoodCerise;
 struct DarkPurplePizzazz;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkPurplePizzazz`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkpurplepizzazz-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkpurplepizzazz-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkpurplepizzazz-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkpurplepizzazz-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkPurplePizzazz`
+##### `impl OwoColorize for DarkPurplePizzazz`
 
 ### `BrighterElectricViolet`
 
@@ -3318,19 +4175,21 @@ struct DarkPurplePizzazz;
 struct BrighterElectricViolet;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BrighterElectricViolet`
 
-- `const ANSI_FG: &'static str`
+- <span id="brighterelectricviolet-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brighterelectricviolet-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brighterelectricviolet-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brighterelectricviolet-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BrighterElectricViolet`
+##### `impl OwoColorize for BrighterElectricViolet`
 
 ### `TennOrange`
 
@@ -3338,19 +4197,21 @@ struct BrighterElectricViolet;
 struct TennOrange;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for TennOrange`
 
-- `const ANSI_FG: &'static str`
+- <span id="tennorange-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="tennorange-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="tennorange-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="tennorange-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for TennOrange`
+##### `impl OwoColorize for TennOrange`
 
 ### `RomanOrange`
 
@@ -3358,19 +4219,21 @@ struct TennOrange;
 struct RomanOrange;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for RomanOrange`
 
-- `const ANSI_FG: &'static str`
+- <span id="romanorange-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="romanorange-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="romanorange-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="romanorange-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for RomanOrange`
+##### `impl OwoColorize for RomanOrange`
 
 ### `CranberryPink`
 
@@ -3378,19 +4241,21 @@ struct RomanOrange;
 struct CranberryPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for CranberryPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="cranberrypink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="cranberrypink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="cranberrypink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="cranberrypink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for CranberryPink`
+##### `impl OwoColorize for CranberryPink`
 
 ### `HopbushPink`
 
@@ -3398,19 +4263,21 @@ struct CranberryPink;
 struct HopbushPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for HopbushPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="hopbushpink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="hopbushpink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="hopbushpink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="hopbushpink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for HopbushPink`
+##### `impl OwoColorize for HopbushPink`
 
 ### `Orchid`
 
@@ -3418,19 +4285,21 @@ struct HopbushPink;
 struct Orchid;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Orchid`
 
-- `const ANSI_FG: &'static str`
+- <span id="orchid-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="orchid-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="orchid-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="orchid-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Orchid`
+##### `impl OwoColorize for Orchid`
 
 ### `LighterHeliotrope`
 
@@ -3438,19 +4307,21 @@ struct Orchid;
 struct LighterHeliotrope;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LighterHeliotrope`
 
-- `const ANSI_FG: &'static str`
+- <span id="lighterheliotrope-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lighterheliotrope-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lighterheliotrope-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lighterheliotrope-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LighterHeliotrope`
+##### `impl OwoColorize for LighterHeliotrope`
 
 ### `MangoTango`
 
@@ -3458,19 +4329,21 @@ struct LighterHeliotrope;
 struct MangoTango;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for MangoTango`
 
-- `const ANSI_FG: &'static str`
+- <span id="mangotango-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="mangotango-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="mangotango-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="mangotango-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for MangoTango`
+##### `impl OwoColorize for MangoTango`
 
 ### `Copperfield`
 
@@ -3478,19 +4351,21 @@ struct MangoTango;
 struct Copperfield;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Copperfield`
 
-- `const ANSI_FG: &'static str`
+- <span id="copperfield-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="copperfield-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="copperfield-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="copperfield-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Copperfield`
+##### `impl OwoColorize for Copperfield`
 
 ### `SeaPink`
 
@@ -3498,19 +4373,21 @@ struct Copperfield;
 struct SeaPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for SeaPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="seapink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="seapink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="seapink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="seapink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for SeaPink`
+##### `impl OwoColorize for SeaPink`
 
 ### `CanCanPink`
 
@@ -3518,19 +4395,21 @@ struct SeaPink;
 struct CanCanPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for CanCanPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="cancanpink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="cancanpink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="cancanpink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="cancanpink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for CanCanPink`
+##### `impl OwoColorize for CanCanPink`
 
 ### `LightOrchid`
 
@@ -3538,19 +4417,21 @@ struct CanCanPink;
 struct LightOrchid;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightOrchid`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightorchid-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightorchid-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightorchid-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightorchid-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightOrchid`
+##### `impl OwoColorize for LightOrchid`
 
 ### `BrightHeliotrope`
 
@@ -3558,19 +4439,21 @@ struct LightOrchid;
 struct BrightHeliotrope;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BrightHeliotrope`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightheliotrope-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightheliotrope-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightheliotrope-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightheliotrope-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BrightHeliotrope`
+##### `impl OwoColorize for BrightHeliotrope`
 
 ### `DarkCorn`
 
@@ -3578,19 +4461,21 @@ struct BrightHeliotrope;
 struct DarkCorn;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkCorn`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkcorn-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkcorn-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkcorn-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkcorn-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkCorn`
+##### `impl OwoColorize for DarkCorn`
 
 ### `DarkTachaOrange`
 
@@ -3598,19 +4483,21 @@ struct DarkCorn;
 struct DarkTachaOrange;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkTachaOrange`
 
-- `const ANSI_FG: &'static str`
+- <span id="darktachaorange-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darktachaorange-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darktachaorange-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darktachaorange-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkTachaOrange`
+##### `impl OwoColorize for DarkTachaOrange`
 
 ### `TanBeige`
 
@@ -3618,19 +4505,21 @@ struct DarkTachaOrange;
 struct TanBeige;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for TanBeige`
 
-- `const ANSI_FG: &'static str`
+- <span id="tanbeige-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="tanbeige-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="tanbeige-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="tanbeige-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for TanBeige`
+##### `impl OwoColorize for TanBeige`
 
 ### `ClamShell`
 
@@ -3638,19 +4527,21 @@ struct TanBeige;
 struct ClamShell;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ClamShell`
 
-- `const ANSI_FG: &'static str`
+- <span id="clamshell-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="clamshell-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="clamshell-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="clamshell-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ClamShell`
+##### `impl OwoColorize for ClamShell`
 
 ### `ThistlePink`
 
@@ -3658,19 +4549,21 @@ struct ClamShell;
 struct ThistlePink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ThistlePink`
 
-- `const ANSI_FG: &'static str`
+- <span id="thistlepink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="thistlepink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="thistlepink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="thistlepink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ThistlePink`
+##### `impl OwoColorize for ThistlePink`
 
 ### `Mauve`
 
@@ -3678,19 +4571,21 @@ struct ThistlePink;
 struct Mauve;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Mauve`
 
-- `const ANSI_FG: &'static str`
+- <span id="mauve-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="mauve-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="mauve-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="mauve-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Mauve`
+##### `impl OwoColorize for Mauve`
 
 ### `Corn`
 
@@ -3698,19 +4593,21 @@ struct Mauve;
 struct Corn;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Corn`
 
-- `const ANSI_FG: &'static str`
+- <span id="corn-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="corn-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="corn-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="corn-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Corn`
+##### `impl OwoColorize for Corn`
 
 ### `TachaOrange`
 
@@ -3718,19 +4615,21 @@ struct Corn;
 struct TachaOrange;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for TachaOrange`
 
-- `const ANSI_FG: &'static str`
+- <span id="tachaorange-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="tachaorange-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="tachaorange-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="tachaorange-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for TachaOrange`
+##### `impl OwoColorize for TachaOrange`
 
 ### `DecoOrange`
 
@@ -3738,19 +4637,21 @@ struct TachaOrange;
 struct DecoOrange;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DecoOrange`
 
-- `const ANSI_FG: &'static str`
+- <span id="decoorange-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="decoorange-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="decoorange-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="decoorange-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DecoOrange`
+##### `impl OwoColorize for DecoOrange`
 
 ### `PaleGoldenrod`
 
@@ -3758,19 +4659,21 @@ struct DecoOrange;
 struct PaleGoldenrod;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PaleGoldenrod`
 
-- `const ANSI_FG: &'static str`
+- <span id="palegoldenrod-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="palegoldenrod-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="palegoldenrod-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="palegoldenrod-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PaleGoldenrod`
+##### `impl OwoColorize for PaleGoldenrod`
 
 ### `AltoBeige`
 
@@ -3778,19 +4681,21 @@ struct PaleGoldenrod;
 struct AltoBeige;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for AltoBeige`
 
-- `const ANSI_FG: &'static str`
+- <span id="altobeige-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="altobeige-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="altobeige-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="altobeige-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for AltoBeige`
+##### `impl OwoColorize for AltoBeige`
 
 ### `FogPink`
 
@@ -3798,19 +4703,21 @@ struct AltoBeige;
 struct FogPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for FogPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="fogpink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="fogpink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="fogpink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="fogpink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for FogPink`
+##### `impl OwoColorize for FogPink`
 
 ### `ChartreuseYellow`
 
@@ -3818,19 +4725,21 @@ struct FogPink;
 struct ChartreuseYellow;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ChartreuseYellow`
 
-- `const ANSI_FG: &'static str`
+- <span id="chartreuseyellow-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="chartreuseyellow-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="chartreuseyellow-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="chartreuseyellow-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ChartreuseYellow`
+##### `impl OwoColorize for ChartreuseYellow`
 
 ### `Canary`
 
@@ -3838,19 +4747,21 @@ struct ChartreuseYellow;
 struct Canary;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Canary`
 
-- `const ANSI_FG: &'static str`
+- <span id="canary-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="canary-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="canary-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="canary-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Canary`
+##### `impl OwoColorize for Canary`
 
 ### `Honeysuckle`
 
@@ -3858,19 +4769,21 @@ struct Canary;
 struct Honeysuckle;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Honeysuckle`
 
-- `const ANSI_FG: &'static str`
+- <span id="honeysuckle-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="honeysuckle-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="honeysuckle-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="honeysuckle-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Honeysuckle`
+##### `impl OwoColorize for Honeysuckle`
 
 ### `ReefPaleYellow`
 
@@ -3878,19 +4791,21 @@ struct Honeysuckle;
 struct ReefPaleYellow;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ReefPaleYellow`
 
-- `const ANSI_FG: &'static str`
+- <span id="reefpaleyellow-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="reefpaleyellow-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="reefpaleyellow-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="reefpaleyellow-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ReefPaleYellow`
+##### `impl OwoColorize for ReefPaleYellow`
 
 ### `SnowyMint`
 
@@ -3898,19 +4813,21 @@ struct ReefPaleYellow;
 struct SnowyMint;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for SnowyMint`
 
-- `const ANSI_FG: &'static str`
+- <span id="snowymint-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="snowymint-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="snowymint-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="snowymint-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for SnowyMint`
+##### `impl OwoColorize for SnowyMint`
 
 ### `OysterBay`
 
@@ -3918,19 +4835,21 @@ struct SnowyMint;
 struct OysterBay;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for OysterBay`
 
-- `const ANSI_FG: &'static str`
+- <span id="oysterbay-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="oysterbay-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="oysterbay-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="oysterbay-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for OysterBay`
+##### `impl OwoColorize for OysterBay`
 
 ### `Red`
 
@@ -3938,19 +4857,21 @@ struct OysterBay;
 struct Red;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Red`
 
-- `const ANSI_FG: &'static str`
+- <span id="red-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="red-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="red-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="red-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Red`
+##### `impl OwoColorize for Red`
 
 ### `DarkRose`
 
@@ -3958,19 +4879,21 @@ struct Red;
 struct DarkRose;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkRose`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkrose-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkrose-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkrose-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkrose-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkRose`
+##### `impl OwoColorize for DarkRose`
 
 ### `Rose`
 
@@ -3978,19 +4901,21 @@ struct DarkRose;
 struct Rose;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Rose`
 
-- `const ANSI_FG: &'static str`
+- <span id="rose-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="rose-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="rose-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="rose-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Rose`
+##### `impl OwoColorize for Rose`
 
 ### `LightHollywoodCerise`
 
@@ -3998,19 +4923,21 @@ struct Rose;
 struct LightHollywoodCerise;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightHollywoodCerise`
 
-- `const ANSI_FG: &'static str`
+- <span id="lighthollywoodcerise-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lighthollywoodcerise-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lighthollywoodcerise-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lighthollywoodcerise-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightHollywoodCerise`
+##### `impl OwoColorize for LightHollywoodCerise`
 
 ### `PurplePizzazz`
 
@@ -4018,19 +4945,21 @@ struct LightHollywoodCerise;
 struct PurplePizzazz;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PurplePizzazz`
 
-- `const ANSI_FG: &'static str`
+- <span id="purplepizzazz-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="purplepizzazz-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="purplepizzazz-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="purplepizzazz-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PurplePizzazz`
+##### `impl OwoColorize for PurplePizzazz`
 
 ### `Fuchsia`
 
@@ -4038,19 +4967,21 @@ struct PurplePizzazz;
 struct Fuchsia;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Fuchsia`
 
-- `const ANSI_FG: &'static str`
+- <span id="fuchsia-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="fuchsia-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="fuchsia-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="fuchsia-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Fuchsia`
+##### `impl OwoColorize for Fuchsia`
 
 ### `BlazeOrange`
 
@@ -4058,19 +4989,21 @@ struct Fuchsia;
 struct BlazeOrange;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BlazeOrange`
 
-- `const ANSI_FG: &'static str`
+- <span id="blazeorange-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="blazeorange-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="blazeorange-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="blazeorange-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BlazeOrange`
+##### `impl OwoColorize for BlazeOrange`
 
 ### `BittersweetOrange`
 
@@ -4078,19 +5011,21 @@ struct BlazeOrange;
 struct BittersweetOrange;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BittersweetOrange`
 
-- `const ANSI_FG: &'static str`
+- <span id="bittersweetorange-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="bittersweetorange-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="bittersweetorange-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="bittersweetorange-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BittersweetOrange`
+##### `impl OwoColorize for BittersweetOrange`
 
 ### `WildWatermelon`
 
@@ -4098,19 +5033,21 @@ struct BittersweetOrange;
 struct WildWatermelon;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for WildWatermelon`
 
-- `const ANSI_FG: &'static str`
+- <span id="wildwatermelon-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="wildwatermelon-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="wildwatermelon-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="wildwatermelon-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for WildWatermelon`
+##### `impl OwoColorize for WildWatermelon`
 
 ### `DarkHotPink`
 
@@ -4118,19 +5055,21 @@ struct WildWatermelon;
 struct DarkHotPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkHotPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkhotpink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkhotpink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkhotpink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkhotpink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkHotPink`
+##### `impl OwoColorize for DarkHotPink`
 
 ### `HotPink`
 
@@ -4138,19 +5077,21 @@ struct DarkHotPink;
 struct HotPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for HotPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="hotpink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="hotpink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="hotpink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="hotpink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for HotPink`
+##### `impl OwoColorize for HotPink`
 
 ### `PinkFlamingo`
 
@@ -4158,19 +5099,21 @@ struct HotPink;
 struct PinkFlamingo;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PinkFlamingo`
 
-- `const ANSI_FG: &'static str`
+- <span id="pinkflamingo-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="pinkflamingo-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="pinkflamingo-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="pinkflamingo-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PinkFlamingo`
+##### `impl OwoColorize for PinkFlamingo`
 
 ### `FlushOrange`
 
@@ -4178,19 +5121,21 @@ struct PinkFlamingo;
 struct FlushOrange;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for FlushOrange`
 
-- `const ANSI_FG: &'static str`
+- <span id="flushorange-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="flushorange-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="flushorange-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="flushorange-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for FlushOrange`
+##### `impl OwoColorize for FlushOrange`
 
 ### `Salmon`
 
@@ -4198,19 +5143,21 @@ struct FlushOrange;
 struct Salmon;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Salmon`
 
-- `const ANSI_FG: &'static str`
+- <span id="salmon-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="salmon-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="salmon-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="salmon-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Salmon`
+##### `impl OwoColorize for Salmon`
 
 ### `VividTangerine`
 
@@ -4218,19 +5165,21 @@ struct Salmon;
 struct VividTangerine;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for VividTangerine`
 
-- `const ANSI_FG: &'static str`
+- <span id="vividtangerine-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="vividtangerine-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="vividtangerine-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="vividtangerine-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for VividTangerine`
+##### `impl OwoColorize for VividTangerine`
 
 ### `PinkSalmon`
 
@@ -4238,19 +5187,21 @@ struct VividTangerine;
 struct PinkSalmon;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PinkSalmon`
 
-- `const ANSI_FG: &'static str`
+- <span id="pinksalmon-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="pinksalmon-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="pinksalmon-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="pinksalmon-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PinkSalmon`
+##### `impl OwoColorize for PinkSalmon`
 
 ### `DarkLavenderRose`
 
@@ -4258,19 +5209,21 @@ struct PinkSalmon;
 struct DarkLavenderRose;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkLavenderRose`
 
-- `const ANSI_FG: &'static str`
+- <span id="darklavenderrose-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darklavenderrose-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darklavenderrose-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darklavenderrose-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkLavenderRose`
+##### `impl OwoColorize for DarkLavenderRose`
 
 ### `BlushPink`
 
@@ -4278,19 +5231,21 @@ struct DarkLavenderRose;
 struct BlushPink;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for BlushPink`
 
-- `const ANSI_FG: &'static str`
+- <span id="blushpink-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="blushpink-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="blushpink-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="blushpink-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for BlushPink`
+##### `impl OwoColorize for BlushPink`
 
 ### `YellowSea`
 
@@ -4298,19 +5253,21 @@ struct BlushPink;
 struct YellowSea;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for YellowSea`
 
-- `const ANSI_FG: &'static str`
+- <span id="yellowsea-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="yellowsea-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="yellowsea-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="yellowsea-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for YellowSea`
+##### `impl OwoColorize for YellowSea`
 
 ### `TexasRose`
 
@@ -4318,19 +5275,21 @@ struct YellowSea;
 struct TexasRose;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for TexasRose`
 
-- `const ANSI_FG: &'static str`
+- <span id="texasrose-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="texasrose-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="texasrose-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="texasrose-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for TexasRose`
+##### `impl OwoColorize for TexasRose`
 
 ### `Tacao`
 
@@ -4338,19 +5297,21 @@ struct TexasRose;
 struct Tacao;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Tacao`
 
-- `const ANSI_FG: &'static str`
+- <span id="tacao-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="tacao-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="tacao-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="tacao-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Tacao`
+##### `impl OwoColorize for Tacao`
 
 ### `Sundown`
 
@@ -4358,19 +5319,21 @@ struct Tacao;
 struct Sundown;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Sundown`
 
-- `const ANSI_FG: &'static str`
+- <span id="sundown-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="sundown-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="sundown-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="sundown-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Sundown`
+##### `impl OwoColorize for Sundown`
 
 ### `CottonCandy`
 
@@ -4378,19 +5341,21 @@ struct Sundown;
 struct CottonCandy;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for CottonCandy`
 
-- `const ANSI_FG: &'static str`
+- <span id="cottoncandy-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="cottoncandy-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="cottoncandy-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="cottoncandy-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for CottonCandy`
+##### `impl OwoColorize for CottonCandy`
 
 ### `LavenderRose`
 
@@ -4398,19 +5363,21 @@ struct CottonCandy;
 struct LavenderRose;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LavenderRose`
 
-- `const ANSI_FG: &'static str`
+- <span id="lavenderrose-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lavenderrose-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lavenderrose-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lavenderrose-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LavenderRose`
+##### `impl OwoColorize for LavenderRose`
 
 ### `Gold`
 
@@ -4418,19 +5385,21 @@ struct LavenderRose;
 struct Gold;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Gold`
 
-- `const ANSI_FG: &'static str`
+- <span id="gold-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="gold-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="gold-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="gold-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Gold`
+##### `impl OwoColorize for Gold`
 
 ### `Dandelion`
 
@@ -4438,19 +5407,21 @@ struct Gold;
 struct Dandelion;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Dandelion`
 
-- `const ANSI_FG: &'static str`
+- <span id="dandelion-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="dandelion-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="dandelion-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="dandelion-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Dandelion`
+##### `impl OwoColorize for Dandelion`
 
 ### `GrandisCaramel`
 
@@ -4458,19 +5429,21 @@ struct Dandelion;
 struct GrandisCaramel;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for GrandisCaramel`
 
-- `const ANSI_FG: &'static str`
+- <span id="grandiscaramel-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="grandiscaramel-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="grandiscaramel-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="grandiscaramel-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for GrandisCaramel`
+##### `impl OwoColorize for GrandisCaramel`
 
 ### `Caramel`
 
@@ -4478,19 +5451,21 @@ struct GrandisCaramel;
 struct Caramel;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Caramel`
 
-- `const ANSI_FG: &'static str`
+- <span id="caramel-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="caramel-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="caramel-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="caramel-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Caramel`
+##### `impl OwoColorize for Caramel`
 
 ### `CosmosSalmon`
 
@@ -4498,19 +5473,21 @@ struct Caramel;
 struct CosmosSalmon;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for CosmosSalmon`
 
-- `const ANSI_FG: &'static str`
+- <span id="cosmossalmon-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="cosmossalmon-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="cosmossalmon-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="cosmossalmon-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for CosmosSalmon`
+##### `impl OwoColorize for CosmosSalmon`
 
 ### `PinkLace`
 
@@ -4518,19 +5495,21 @@ struct CosmosSalmon;
 struct PinkLace;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PinkLace`
 
-- `const ANSI_FG: &'static str`
+- <span id="pinklace-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="pinklace-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="pinklace-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="pinklace-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PinkLace`
+##### `impl OwoColorize for PinkLace`
 
 ### `Yellow`
 
@@ -4538,19 +5517,21 @@ struct PinkLace;
 struct Yellow;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Yellow`
 
-- `const ANSI_FG: &'static str`
+- <span id="yellow-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="yellow-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="yellow-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="yellow-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Yellow`
+##### `impl OwoColorize for Yellow`
 
 ### `LaserLemon`
 
@@ -4558,19 +5539,21 @@ struct Yellow;
 struct LaserLemon;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LaserLemon`
 
-- `const ANSI_FG: &'static str`
+- <span id="laserlemon-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="laserlemon-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="laserlemon-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="laserlemon-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LaserLemon`
+##### `impl OwoColorize for LaserLemon`
 
 ### `DollyYellow`
 
@@ -4578,19 +5561,21 @@ struct LaserLemon;
 struct DollyYellow;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DollyYellow`
 
-- `const ANSI_FG: &'static str`
+- <span id="dollyyellow-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="dollyyellow-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="dollyyellow-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="dollyyellow-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DollyYellow`
+##### `impl OwoColorize for DollyYellow`
 
 ### `PortafinoYellow`
 
@@ -4598,19 +5583,21 @@ struct DollyYellow;
 struct PortafinoYellow;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for PortafinoYellow`
 
-- `const ANSI_FG: &'static str`
+- <span id="portafinoyellow-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="portafinoyellow-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="portafinoyellow-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="portafinoyellow-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for PortafinoYellow`
+##### `impl OwoColorize for PortafinoYellow`
 
 ### `Cumulus`
 
@@ -4618,19 +5605,21 @@ struct PortafinoYellow;
 struct Cumulus;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Cumulus`
 
-- `const ANSI_FG: &'static str`
+- <span id="cumulus-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="cumulus-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="cumulus-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="cumulus-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Cumulus`
+##### `impl OwoColorize for Cumulus`
 
 ### `White`
 
@@ -4638,19 +5627,21 @@ struct Cumulus;
 struct White;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for White`
 
-- `const ANSI_FG: &'static str`
+- <span id="white-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="white-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="white-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="white-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for White`
+##### `impl OwoColorize for White`
 
 ### `DarkCodGray`
 
@@ -4658,19 +5649,21 @@ struct White;
 struct DarkCodGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkCodGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkcodgray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkcodgray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkcodgray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkcodgray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkCodGray`
+##### `impl OwoColorize for DarkCodGray`
 
 ### `CodGray`
 
@@ -4678,19 +5671,21 @@ struct DarkCodGray;
 struct CodGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for CodGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="codgray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="codgray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="codgray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="codgray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for CodGray`
+##### `impl OwoColorize for CodGray`
 
 ### `LightCodGray`
 
@@ -4698,19 +5693,21 @@ struct CodGray;
 struct LightCodGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightCodGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightcodgray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightcodgray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightcodgray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightcodgray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightCodGray`
+##### `impl OwoColorize for LightCodGray`
 
 ### `DarkMineShaft`
 
@@ -4718,19 +5715,21 @@ struct LightCodGray;
 struct DarkMineShaft;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkMineShaft`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkmineshaft-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkmineshaft-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkmineshaft-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkmineshaft-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkMineShaft`
+##### `impl OwoColorize for DarkMineShaft`
 
 ### `MineShaft`
 
@@ -4738,19 +5737,21 @@ struct DarkMineShaft;
 struct MineShaft;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for MineShaft`
 
-- `const ANSI_FG: &'static str`
+- <span id="mineshaft-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="mineshaft-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="mineshaft-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="mineshaft-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for MineShaft`
+##### `impl OwoColorize for MineShaft`
 
 ### `LightMineShaft`
 
@@ -4758,19 +5759,21 @@ struct MineShaft;
 struct LightMineShaft;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightMineShaft`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightmineshaft-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightmineshaft-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightmineshaft-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightmineshaft-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightMineShaft`
+##### `impl OwoColorize for LightMineShaft`
 
 ### `DarkTundora`
 
@@ -4778,19 +5781,21 @@ struct LightMineShaft;
 struct DarkTundora;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkTundora`
 
-- `const ANSI_FG: &'static str`
+- <span id="darktundora-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darktundora-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darktundora-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darktundora-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkTundora`
+##### `impl OwoColorize for DarkTundora`
 
 ### `Tundora`
 
@@ -4798,19 +5803,21 @@ struct DarkTundora;
 struct Tundora;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Tundora`
 
-- `const ANSI_FG: &'static str`
+- <span id="tundora-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="tundora-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="tundora-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="tundora-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Tundora`
+##### `impl OwoColorize for Tundora`
 
 ### `ScorpionGray`
 
@@ -4818,19 +5825,21 @@ struct Tundora;
 struct ScorpionGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for ScorpionGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="scorpiongray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="scorpiongray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="scorpiongray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="scorpiongray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for ScorpionGray`
+##### `impl OwoColorize for ScorpionGray`
 
 ### `DarkDoveGray`
 
@@ -4838,19 +5847,21 @@ struct ScorpionGray;
 struct DarkDoveGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkDoveGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkdovegray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkdovegray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkdovegray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkdovegray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkDoveGray`
+##### `impl OwoColorize for DarkDoveGray`
 
 ### `DoveGray`
 
@@ -4858,19 +5869,21 @@ struct DarkDoveGray;
 struct DoveGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DoveGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="dovegray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="dovegray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="dovegray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="dovegray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DoveGray`
+##### `impl OwoColorize for DoveGray`
 
 ### `Boulder`
 
@@ -4878,19 +5891,21 @@ struct DoveGray;
 struct Boulder;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Boulder`
 
-- `const ANSI_FG: &'static str`
+- <span id="boulder-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="boulder-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="boulder-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="boulder-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Boulder`
+##### `impl OwoColorize for Boulder`
 
 ### `Gray`
 
@@ -4898,19 +5913,21 @@ struct Boulder;
 struct Gray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Gray`
 
-- `const ANSI_FG: &'static str`
+- <span id="gray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="gray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="gray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="gray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Gray`
+##### `impl OwoColorize for Gray`
 
 ### `LightGray`
 
@@ -4918,19 +5935,21 @@ struct Gray;
 struct LightGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightgray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightgray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightgray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightgray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightGray`
+##### `impl OwoColorize for LightGray`
 
 ### `DustyGray`
 
@@ -4938,19 +5957,21 @@ struct LightGray;
 struct DustyGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DustyGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="dustygray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="dustygray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="dustygray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="dustygray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DustyGray`
+##### `impl OwoColorize for DustyGray`
 
 ### `NobelGray`
 
@@ -4958,19 +5979,21 @@ struct DustyGray;
 struct NobelGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for NobelGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="nobelgray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="nobelgray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="nobelgray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="nobelgray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for NobelGray`
+##### `impl OwoColorize for NobelGray`
 
 ### `DarkSilverChalice`
 
@@ -4978,19 +6001,21 @@ struct NobelGray;
 struct DarkSilverChalice;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkSilverChalice`
 
-- `const ANSI_FG: &'static str`
+- <span id="darksilverchalice-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darksilverchalice-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darksilverchalice-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darksilverchalice-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkSilverChalice`
+##### `impl OwoColorize for DarkSilverChalice`
 
 ### `LightSilverChalice`
 
@@ -4998,19 +6023,21 @@ struct DarkSilverChalice;
 struct LightSilverChalice;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for LightSilverChalice`
 
-- `const ANSI_FG: &'static str`
+- <span id="lightsilverchalice-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="lightsilverchalice-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="lightsilverchalice-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="lightsilverchalice-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for LightSilverChalice`
+##### `impl OwoColorize for LightSilverChalice`
 
 ### `DarkSilver`
 
@@ -5018,19 +6045,21 @@ struct LightSilverChalice;
 struct DarkSilver;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkSilver`
 
-- `const ANSI_FG: &'static str`
+- <span id="darksilver-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darksilver-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darksilver-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darksilver-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkSilver`
+##### `impl OwoColorize for DarkSilver`
 
 ### `Silver`
 
@@ -5038,19 +6067,21 @@ struct DarkSilver;
 struct Silver;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Silver`
 
-- `const ANSI_FG: &'static str`
+- <span id="silver-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="silver-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="silver-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="silver-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Silver`
+##### `impl OwoColorize for Silver`
 
 ### `DarkAlto`
 
@@ -5058,19 +6089,21 @@ struct Silver;
 struct DarkAlto;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for DarkAlto`
 
-- `const ANSI_FG: &'static str`
+- <span id="darkalto-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="darkalto-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="darkalto-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="darkalto-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for DarkAlto`
+##### `impl OwoColorize for DarkAlto`
 
 ### `Alto`
 
@@ -5078,19 +6111,21 @@ struct DarkAlto;
 struct Alto;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Alto`
 
-- `const ANSI_FG: &'static str`
+- <span id="alto-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="alto-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="alto-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="alto-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Alto`
+##### `impl OwoColorize for Alto`
 
 ### `Mercury`
 
@@ -5098,19 +6133,21 @@ struct Alto;
 struct Mercury;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for Mercury`
 
-- `const ANSI_FG: &'static str`
+- <span id="mercury-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="mercury-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="mercury-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="mercury-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for Mercury`
+##### `impl OwoColorize for Mercury`
 
 ### `GalleryGray`
 
@@ -5118,21 +6155,25 @@ struct Mercury;
 struct GalleryGray;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 #### Trait Implementations
 
 ##### `impl Color for GalleryGray`
 
-- `const ANSI_FG: &'static str`
+- <span id="gallerygray-const-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="gallerygray-const-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="gallerygray-const-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="gallerygray-const-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-##### `impl<D> OwoColorize for GalleryGray`
+##### `impl OwoColorize for GalleryGray`
 
 ## Macros
 
 ### `xterm_colors!`
+
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:1-121`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L1-L121)*
 

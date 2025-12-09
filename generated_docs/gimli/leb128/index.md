@@ -50,9 +50,19 @@ assert_eq!(val, 98765);
 }
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`read`](#read) | mod | A module for reading signed and unsigned integers that have been LEB128 encoded. |
+| [`low_bits_of_byte`](#low_bits_of_byte) | fn |  |
+| [`low_bits_of_u64`](#low_bits_of_u64) | fn |  |
+| [`CONTINUATION_BIT`](#continuation_bit) | const |  |
+| [`SIGN_BIT`](#sign_bit) | const |  |
+
 ## Modules
 
-- [`read`](read/index.md) - A module for reading signed and unsigned integers that have been LEB128
+- [`read`](read/index.md) — A module for reading signed and unsigned integers that have been LEB128
 
 ## Functions
 
@@ -62,23 +72,29 @@ assert_eq!(val, 98765);
 fn low_bits_of_byte(byte: u8) -> u8
 ```
 
+*Defined in [`gimli-0.32.3/src/leb128.rs:52-54`](../../../.source_1765210505/gimli-0.32.3/src/leb128.rs#L52-L54)*
+
 ### `low_bits_of_u64`
 
 ```rust
 fn low_bits_of_u64(val: u64) -> u8
 ```
 
+*Defined in [`gimli-0.32.3/src/leb128.rs:58-61`](../../../.source_1765210505/gimli-0.32.3/src/leb128.rs#L58-L61)*
+
 ## Constants
 
 ### `CONTINUATION_BIT`
-
 ```rust
 const CONTINUATION_BIT: u8 = 128u8;
 ```
 
-### `SIGN_BIT`
+*Defined in [`gimli-0.32.3/src/leb128.rs:47`](../../../.source_1765210505/gimli-0.32.3/src/leb128.rs#L47)*
 
+### `SIGN_BIT`
 ```rust
 const SIGN_BIT: u8 = 64u8;
 ```
+
+*Defined in [`gimli-0.32.3/src/leb128.rs:49`](../../../.source_1765210505/gimli-0.32.3/src/leb128.rs#L49)*
 

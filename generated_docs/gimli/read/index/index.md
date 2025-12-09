@@ -4,6 +4,31 @@
 
 # Module `index`
 
+## Contents
+
+- [Structs](#structs)
+  - [`DebugCuIndex`](#debugcuindex)
+  - [`DebugTuIndex`](#debugtuindex)
+  - [`UnitIndex`](#unitindex)
+  - [`UnitIndexSectionIterator`](#unitindexsectioniterator)
+  - [`UnitIndexSection`](#unitindexsection)
+- [Enums](#enums)
+  - [`IndexSectionId`](#indexsectionid)
+- [Constants](#constants)
+  - [`SECTION_COUNT_MAX`](#section_count_max)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugCuIndex`](#debugcuindex) | struct | The data in the `.debug_cu_index` section of a `.dwp` file. |
+| [`DebugTuIndex`](#debugtuindex) | struct | The data in the `.debug_tu_index` section of a `.dwp` file. |
+| [`UnitIndex`](#unitindex) | struct | The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`. |
+| [`UnitIndexSectionIterator`](#unitindexsectioniterator) | struct | An iterator over the section offsets and sizes for a row in a `UnitIndex`. |
+| [`UnitIndexSection`](#unitindexsection) | struct | Information about a unit's contribution to a section in a `.dwp` file. |
+| [`IndexSectionId`](#indexsectionid) | enum | Section kinds which are permitted in a `.dwp` index. |
+| [`SECTION_COUNT_MAX`](#section_count_max) | const |  |
+
 ## Structs
 
 ### `DebugCuIndex<R>`
@@ -14,35 +39,37 @@ struct DebugCuIndex<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/index.rs:12-14`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L12-L14)*
+
 The data in the `.debug_cu_index` section of a `.dwp` file.
 
 This section contains the compilation unit index.
 
 #### Implementations
 
-- `fn index(self: Self) -> Result<UnitIndex<R>>` — [`Result`](../../index.md), [`UnitIndex`](../index.md)
+- <span id="debugcuindex-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugCuIndex<R>`
+##### `impl<R: clone::Clone> Clone for DebugCuIndex<R>`
 
-- `fn clone(self: &Self) -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md)
+- <span id="debugcuindex-clone"></span>`fn clone(&self) -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugCuIndex<R>`
+##### `impl<R: marker::Copy> Copy for DebugCuIndex<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugCuIndex<R>`
+##### `impl<R: fmt::Debug> Debug for DebugCuIndex<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugcuindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugCuIndex<R>`
+##### `impl<R: default::Default> Default for DebugCuIndex<R>`
 
-- `fn default() -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md)
+- <span id="debugcuindex-default"></span>`fn default() -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md)
 
 ##### `impl<R> Section for DebugCuIndex<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugcuindex-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugcuindex-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugTuIndex<R>`
 
@@ -52,35 +79,37 @@ struct DebugTuIndex<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/index.rs:68-70`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L68-L70)*
+
 The data in the `.debug_tu_index` section of a `.dwp` file.
 
 This section contains the type unit index.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md)
+- <span id="debugtuindex-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugTuIndex<R>`
+##### `impl<R: clone::Clone> Clone for DebugTuIndex<R>`
 
-- `fn clone(self: &Self) -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md)
+- <span id="debugtuindex-clone"></span>`fn clone(&self) -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugTuIndex<R>`
+##### `impl<R: marker::Copy> Copy for DebugTuIndex<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugTuIndex<R>`
+##### `impl<R: fmt::Debug> Debug for DebugTuIndex<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugtuindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugTuIndex<R>`
+##### `impl<R: default::Default> Default for DebugTuIndex<R>`
 
-- `fn default() -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md)
+- <span id="debugtuindex-default"></span>`fn default() -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md)
 
 ##### `impl<R> Section for DebugTuIndex<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugtuindex-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugtuindex-reader"></span>`fn reader(&self) -> &R`
 
 ### `UnitIndex<R: Reader>`
 
@@ -98,33 +127,35 @@ struct UnitIndex<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/index.rs:124-135`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L124-L135)*
+
 The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 
 #### Implementations
 
-- `fn parse(input: R) -> Result<UnitIndex<R>>` — [`Result`](../../index.md), [`UnitIndex`](../index.md)
+- <span id="unitindex-parse"></span>`fn parse(input: R) -> Result<UnitIndex<R>>` — [`Result`](../../index.md), [`UnitIndex`](../index.md)
 
-- `fn find(self: &Self, id: u64) -> Option<u32>`
+- <span id="unitindex-find"></span>`fn find(&self, id: u64) -> Option<u32>`
 
-- `fn sections(self: &Self, row: u32) -> Result<UnitIndexSectionIterator<'_, R>>` — [`Result`](../../index.md), [`UnitIndexSectionIterator`](../index.md)
+- <span id="unitindex-sections"></span>`fn sections(&self, row: u32) -> Result<UnitIndexSectionIterator<'_, R>>` — [`Result`](../../index.md), [`UnitIndexSectionIterator`](../index.md)
 
-- `fn version(self: &Self) -> u16`
+- <span id="unitindex-version"></span>`fn version(&self) -> u16`
 
-- `fn section_count(self: &Self) -> u32`
+- <span id="unitindex-section-count"></span>`fn section_count(&self) -> u32`
 
-- `fn unit_count(self: &Self) -> u32`
+- <span id="unitindex-unit-count"></span>`fn unit_count(&self) -> u32`
 
-- `fn slot_count(self: &Self) -> u32`
+- <span id="unitindex-slot-count"></span>`fn slot_count(&self) -> u32`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for UnitIndex<R>`
+##### `impl<R: clone::Clone + Reader> Clone for UnitIndex<R>`
 
-- `fn clone(self: &Self) -> UnitIndex<R>` — [`UnitIndex`](../index.md)
+- <span id="unitindex-clone"></span>`fn clone(&self) -> UnitIndex<R>` — [`UnitIndex`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for UnitIndex<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for UnitIndex<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `UnitIndexSectionIterator<'index, R: Reader>`
 
@@ -136,31 +167,33 @@ struct UnitIndexSectionIterator<'index, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/index.rs:307-311`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L307-L311)*
+
 An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
 #### Trait Implementations
 
-##### `impl<'index, R: $crate::clone::Clone + Reader> Clone for UnitIndexSectionIterator<'index, R>`
+##### `impl<'index, R: clone::Clone + Reader> Clone for UnitIndexSectionIterator<'index, R>`
 
-- `fn clone(self: &Self) -> UnitIndexSectionIterator<'index, R>` — [`UnitIndexSectionIterator`](../index.md)
+- <span id="unitindexsectioniterator-clone"></span>`fn clone(&self) -> UnitIndexSectionIterator<'index, R>` — [`UnitIndexSectionIterator`](../index.md)
 
-##### `impl<'index, R: $crate::fmt::Debug + Reader> Debug for UnitIndexSectionIterator<'index, R>`
+##### `impl<'index, R: fmt::Debug + Reader> Debug for UnitIndexSectionIterator<'index, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitindexsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for UnitIndexSectionIterator<'index, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="unitindexsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="unitindexsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="unitindexsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'index, R: Reader> Iterator for UnitIndexSectionIterator<'index, R>`
 
-- `type Item = UnitIndexSection`
+- <span id="unitindexsectioniterator-type-item"></span>`type Item = UnitIndexSection`
 
-- `fn next(self: &mut Self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](../index.md)
+- <span id="unitindexsectioniterator-next"></span>`fn next(&mut self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](../index.md)
 
 ### `UnitIndexSection`
 
@@ -171,6 +204,8 @@ struct UnitIndexSection {
     pub size: u32,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/index.rs:331-338`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L331-L338)*
 
 Information about a unit's contribution to a section in a `.dwp` file.
 
@@ -192,19 +227,19 @@ Information about a unit's contribution to a section in a `.dwp` file.
 
 ##### `impl Clone for UnitIndexSection`
 
-- `fn clone(self: &Self) -> UnitIndexSection` — [`UnitIndexSection`](../index.md)
+- <span id="unitindexsection-clone"></span>`fn clone(&self) -> UnitIndexSection` — [`UnitIndexSection`](../index.md)
 
 ##### `impl Copy for UnitIndexSection`
 
 ##### `impl Debug for UnitIndexSection`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitindexsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for UnitIndexSection`
 
 ##### `impl PartialEq for UnitIndexSection`
 
-- `fn eq(self: &Self, other: &UnitIndexSection) -> bool` — [`UnitIndexSection`](../index.md)
+- <span id="unitindexsection-eq"></span>`fn eq(&self, other: &UnitIndexSection) -> bool` — [`UnitIndexSection`](../index.md)
 
 ##### `impl StructuralPartialEq for UnitIndexSection`
 
@@ -226,6 +261,8 @@ enum IndexSectionId {
     DebugTypes,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/index.rs:342-363`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L342-L363)*
 
 Section kinds which are permitted in a `.dwp` index.
 
@@ -273,35 +310,36 @@ Section kinds which are permitted in a `.dwp` index.
 
 #### Implementations
 
-- `fn section_id(self: Self) -> SectionId` — [`SectionId`](../../index.md)
+- <span id="indexsectionid-section-id"></span>`fn section_id(self) -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn dwo_name(self: Self) -> &'static str`
+- <span id="indexsectionid-dwo-name"></span>`fn dwo_name(self) -> &'static str`
 
 #### Trait Implementations
 
 ##### `impl Clone for IndexSectionId`
 
-- `fn clone(self: &Self) -> IndexSectionId` — [`IndexSectionId`](../index.md)
+- <span id="indexsectionid-clone"></span>`fn clone(&self) -> IndexSectionId` — [`IndexSectionId`](../index.md)
 
 ##### `impl Copy for IndexSectionId`
 
 ##### `impl Debug for IndexSectionId`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="indexsectionid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for IndexSectionId`
 
 ##### `impl PartialEq for IndexSectionId`
 
-- `fn eq(self: &Self, other: &IndexSectionId) -> bool` — [`IndexSectionId`](../index.md)
+- <span id="indexsectionid-eq"></span>`fn eq(&self, other: &IndexSectionId) -> bool` — [`IndexSectionId`](../index.md)
 
 ##### `impl StructuralPartialEq for IndexSectionId`
 
 ## Constants
 
 ### `SECTION_COUNT_MAX`
-
 ```rust
 const SECTION_COUNT_MAX: u8 = 8u8;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/index.rs:120`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L120)*
 

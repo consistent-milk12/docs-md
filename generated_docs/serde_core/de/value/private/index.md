@@ -4,6 +4,36 @@
 
 # Module `private`
 
+## Contents
+
+- [Structs](#structs)
+  - [`UnitOnly`](#unitonly)
+  - [`MapAsEnum`](#mapasenum)
+  - [`SeedTupleVariant`](#seedtuplevariant)
+  - [`SeedStructVariant`](#seedstructvariant)
+- [Traits](#traits)
+  - [`Pair`](#pair)
+- [Functions](#functions)
+  - [`unit_only`](#unit_only)
+  - [`map_as_enum`](#map_as_enum)
+- [Type Aliases](#type-aliases)
+  - [`First`](#first)
+  - [`Second`](#second)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`UnitOnly`](#unitonly) | struct |  |
+| [`MapAsEnum`](#mapasenum) | struct |  |
+| [`SeedTupleVariant`](#seedtuplevariant) | struct |  |
+| [`SeedStructVariant`](#seedstructvariant) | struct |  |
+| [`Pair`](#pair) | trait | Avoid having to restate the generic types on `MapDeserializer`. |
+| [`unit_only`](#unit_only) | fn |  |
+| [`map_as_enum`](#map_as_enum) | fn |  |
+| [`First`](#first) | type |  |
+| [`Second`](#second) | type |  |
+
 ## Structs
 
 ### `UnitOnly<E>`
@@ -14,19 +44,21 @@ struct UnitOnly<E> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1738-1740`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1738-L1740)*
+
 #### Trait Implementations
 
 ##### `impl<'de, E> VariantAccess for UnitOnly<E>`
 
-- `type Error = E`
+- <span id="unitonly-type-error"></span>`type Error = E`
 
-- `fn unit_variant(self: Self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md)
+- <span id="unitonly-unit-variant"></span>`fn unit_variant(self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md)
 
-- `fn newtype_variant_seed<T>(self: Self, _seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md)
+- <span id="unitonly-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, _seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md)
 
-- `fn tuple_variant<V>(self: Self, _len: usize, _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
+- <span id="unitonly-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
 
-- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
+- <span id="unitonly-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
 
 ### `MapAsEnum<A>`
 
@@ -36,19 +68,21 @@ struct MapAsEnum<A> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1796-1798`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1796-L1798)*
+
 #### Trait Implementations
 
 ##### `impl<'de, A> VariantAccess for MapAsEnum<A>`
 
-- `type Error = <A as MapAccess>::Error`
+- <span id="mapasenum-type-error"></span>`type Error = <A as MapAccess>::Error`
 
-- `fn unit_variant(self: Self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md)
+- <span id="mapasenum-unit-variant"></span>`fn unit_variant(self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md)
 
-- `fn newtype_variant_seed<T>(self: Self, seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md)
+- <span id="mapasenum-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md)
 
-- `fn tuple_variant<V>(self: Self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
+- <span id="mapasenum-tuple-variant"></span>`fn tuple_variant<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
 
-- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
+- <span id="mapasenum-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
 
 ### `SeedTupleVariant<V>`
 
@@ -59,13 +93,15 @@ struct SeedTupleVariant<V> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1840-1843`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1840-L1843)*
+
 #### Trait Implementations
 
 ##### `impl<'de, V> DeserializeSeed for SeedTupleVariant<V>`
 
-- `type Value = <V as Visitor>::Value`
+- <span id="seedtuplevariant-type-value"></span>`type Value = <V as Visitor>::Value`
 
-- `fn deserialize<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md)
+- <span id="seedtuplevariant-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md)
 
 ### `SeedStructVariant<V>`
 
@@ -75,13 +111,15 @@ struct SeedStructVariant<V> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1859-1861`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1859-L1861)*
+
 #### Trait Implementations
 
 ##### `impl<'de, V> DeserializeSeed for SeedStructVariant<V>`
 
-- `type Value = <V as Visitor>::Value`
+- <span id="seedstructvariant-type-value"></span>`type Value = <V as Visitor>::Value`
 
-- `fn deserialize<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md)
+- <span id="seedstructvariant-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md)
 
 ## Traits
 
@@ -91,16 +129,24 @@ struct SeedStructVariant<V> {
 trait Pair { ... }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1879-1883`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1879-L1883)*
+
 Avoid having to restate the generic types on `MapDeserializer`. The
 `Iterator::Item` contains enough information to figure out K and V.
 
-#### Required Methods
+#### Associated Types
 
 - `type First`
 
 - `type Second`
 
-- `fn split(self: Self) -> (<Self as >::First, <Self as >::Second)`
+#### Required Methods
+
+- `fn split(self) -> (<Self as >::First, <Self as >::Second)`
+
+#### Implementors
+
+- `(A, B)`
 
 ## Functions
 
@@ -110,11 +156,15 @@ Avoid having to restate the generic types on `MapDeserializer`. The
 fn unit_only<T, E>(t: T) -> (T, UnitOnly<E>)
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1742-1749`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1742-L1749)*
+
 ### `map_as_enum`
 
 ```rust
 fn map_as_enum<A>(map: A) -> MapAsEnum<A>
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1800-1802`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1800-L1802)*
 
 ## Type Aliases
 
@@ -124,9 +174,13 @@ fn map_as_enum<A>(map: A) -> MapAsEnum<A>
 type First<T> = <T as Pair>::First;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1893`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1893)*
+
 ### `Second<T>`
 
 ```rust
 type Second<T> = <T as Pair>::Second;
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/value.rs:1894`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/value.rs#L1894)*
 

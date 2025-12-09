@@ -6,6 +6,13 @@
 
 The `Pid` type.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Pid`](#pid) | struct | `pid_t`—A non-zero Unix process ID. |
+| [`RawPid`](#rawpid) | type | A process identifier as a raw integer. |
+
 ## Structs
 
 ### `Pid`
@@ -13,6 +20,8 @@ The `Pid` type.
 ```rust
 struct Pid(core::num::NonZeroI32);
 ```
+
+*Defined in [`rustix-1.1.2/src/pid.rs:19`](../../../.source_1765210505/rustix-1.1.2/src/pid.rs#L19)*
 
 `pid_t`—A non-zero Unix process ID.
 
@@ -24,77 +33,77 @@ On Linux, `Pid` values are also used to identify threads.
 
 #### Implementations
 
-- `const INIT: Self`
+- <span id="pid-const-init"></span>`const INIT: Self`
 
-- `const fn from_raw(raw: i32) -> Option<Self>`
+- <span id="pid-from-raw"></span>`const fn from_raw(raw: i32) -> Option<Self>`
 
-- `const unsafe fn from_raw_unchecked(raw: i32) -> Self`
+- <span id="pid-from-raw-unchecked"></span>`const unsafe fn from_raw_unchecked(raw: i32) -> Self`
 
-- `fn from_child(child: &std::process::Child) -> Self`
+- <span id="pid-from-child"></span>`fn from_child(child: &std::process::Child) -> Self`
 
-- `const fn as_raw_nonzero(self: Self) -> NonZeroI32`
+- <span id="pid-as-raw-nonzero"></span>`const fn as_raw_nonzero(self) -> NonZeroI32`
 
-- `const fn as_raw_pid(self: Self) -> i32`
+- <span id="pid-as-raw-pid"></span>`const fn as_raw_pid(self) -> i32`
 
-- `const fn as_raw(pid: Option<Self>) -> i32`
+- <span id="pid-as-raw"></span>`const fn as_raw(pid: Option<Self>) -> i32`
 
-- `const fn is_init(self: Self) -> bool`
+- <span id="pid-is-init"></span>`const fn is_init(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Binary for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Clone for Pid`
 
-- `fn clone(self: &Self) -> Pid` — [`Pid`](#pid)
+- <span id="pid-clone"></span>`fn clone(&self) -> Pid` — [`Pid`](#pid)
 
 ##### `impl Copy for Pid`
 
 ##### `impl Debug for Pid`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Pid`
 
 ##### `impl Hash for Pid`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="pid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl LowerExp for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl LowerHex for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Octal for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for Pid`
 
-- `fn eq(self: &Self, other: &Pid) -> bool` — [`Pid`](#pid)
+- <span id="pid-eq"></span>`fn eq(&self, other: &Pid) -> bool` — [`Pid`](#pid)
 
 ##### `impl StructuralPartialEq for Pid`
 
-##### `impl<T> ToString for Pid`
+##### `impl ToString for Pid`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="pid-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl UpperExp for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Type Aliases
 
@@ -103,6 +112,8 @@ On Linux, `Pid` values are also used to identify threads.
 ```rust
 type RawPid = i32;
 ```
+
+*Defined in [`rustix-1.1.2/src/pid.rs:8`](../../../.source_1765210505/rustix-1.1.2/src/pid.rs#L8)*
 
 A process identifier as a raw integer.
 

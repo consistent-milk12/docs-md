@@ -4,6 +4,12 @@
 
 # Module `either`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Either`](#either) | enum | A simple binary sum type. |
+
 ## Enums
 
 ### `Either<Left, Right>`
@@ -15,25 +21,27 @@ enum Either<Left, Right> {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/either.rs:5-8`](../../../.source_1765210505/regex-syntax-0.8.8/src/either.rs#L5-L8)*
+
 A simple binary sum type.
 
 This is occasionally useful in an ad hoc fashion.
 
 #### Trait Implementations
 
-##### `impl<Left: $crate::clone::Clone, Right: $crate::clone::Clone> Clone for Either<Left, Right>`
+##### `impl<Left: clone::Clone, Right: clone::Clone> Clone for Either<Left, Right>`
 
-- `fn clone(self: &Self) -> Either<Left, Right>` — [`Either`](#either)
+- <span id="either-clone"></span>`fn clone(&self) -> Either<Left, Right>` — [`Either`](#either)
 
-##### `impl<Left: $crate::fmt::Debug, Right: $crate::fmt::Debug> Debug for Either<Left, Right>`
+##### `impl<Left: fmt::Debug, Right: fmt::Debug> Debug for Either<Left, Right>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="either-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<Left: $crate::cmp::Eq, Right: $crate::cmp::Eq> Eq for Either<Left, Right>`
+##### `impl<Left: cmp::Eq, Right: cmp::Eq> Eq for Either<Left, Right>`
 
-##### `impl<Left: $crate::cmp::PartialEq, Right: $crate::cmp::PartialEq> PartialEq for Either<Left, Right>`
+##### `impl<Left: cmp::PartialEq, Right: cmp::PartialEq> PartialEq for Either<Left, Right>`
 
-- `fn eq(self: &Self, other: &Either<Left, Right>) -> bool` — [`Either`](#either)
+- <span id="either-eq"></span>`fn eq(&self, other: &Either<Left, Right>) -> bool` — [`Either`](#either)
 
 ##### `impl<Left, Right> StructuralPartialEq for Either<Left, Right>`
 

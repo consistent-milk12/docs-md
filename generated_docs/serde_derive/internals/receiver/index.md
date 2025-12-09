@@ -4,6 +4,13 @@
 
 # Module `receiver`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ReplaceReceiver`](#replacereceiver) | struct |  |
+| [`replace_receiver`](#replace_receiver) | fn |  |
+
 ## Structs
 
 ### `ReplaceReceiver<'a>`
@@ -12,13 +19,15 @@
 struct ReplaceReceiver<'a>(&'a syn::TypePath);
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:21`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/receiver.rs#L21)*
+
 #### Implementations
 
-- `fn self_ty(self: &Self, span: Span) -> TypePath`
+- <span id="replacereceiver-self-ty"></span>`fn self_ty(&self, span: Span) -> TypePath`
 
-- `fn self_to_qself(self: &Self, qself: &mut Option<QSelf>, path: &mut Path)`
+- <span id="replacereceiver-self-to-qself"></span>`fn self_to_qself(&self, qself: &mut Option<QSelf>, path: &mut Path)`
 
-- `fn self_to_expr_path(self: &Self, path: &mut Path)`
+- <span id="replacereceiver-self-to-expr-path"></span>`fn self_to_expr_path(&self, path: &mut Path)`
 
 ## Functions
 
@@ -27,4 +36,6 @@ struct ReplaceReceiver<'a>(&'a syn::TypePath);
 ```rust
 fn replace_receiver(input: &mut syn::DeriveInput)
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:10-19`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/receiver.rs#L10-L19)*
 

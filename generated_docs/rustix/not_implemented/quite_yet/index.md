@@ -14,6 +14,19 @@ See [#1314] for more information, and please leave comments if there are
 specific functions you're interested in.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`_exit`](#_exit) | fn | See the [module comment](self). |
+| [`_Exit`](#_exit) | fn | See the [module comment](self). |
+| [`exit_group`](#exit_group) | fn | See the [module comment](self). |
+| [`sigpending`](#sigpending) | fn | See the [module comment](self). |
+| [`sigsuspend`](#sigsuspend) | fn | See the [module comment](self). |
+| [`execveat`](#execveat) | fn | See the [module comment](self). |
+| [`execve`](#execve) | fn | See the [module comment](self). |
+| [`gethostname`](#gethostname) | fn | For now, use `rustix::process::uname().nodename()` instead. |
+
 ## Functions
 
 ### `_exit`
@@ -21,6 +34,8 @@ specific functions you're interested in.
 ```rust
 fn _exit()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:334`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L334)*
 
 See the [module comment](self).
 
@@ -30,6 +45,8 @@ See the [module comment](self).
 fn _Exit()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:335`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L335)*
+
 See the [module comment](self).
 
 ### `exit_group`
@@ -37,6 +54,8 @@ See the [module comment](self).
 ```rust
 fn exit_group()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:336`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L336)*
 
 See the [module comment](self).
 
@@ -46,6 +65,8 @@ See the [module comment](self).
 fn sigpending()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:337`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L337)*
+
 See the [module comment](self).
 
 ### `sigsuspend`
@@ -53,6 +74,8 @@ See the [module comment](self).
 ```rust
 fn sigsuspend()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:338`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L338)*
 
 See the [module comment](self).
 
@@ -62,6 +85,8 @@ See the [module comment](self).
 fn execveat()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:339`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L339)*
+
 See the [module comment](self).
 
 ### `execve`
@@ -70,6 +95,8 @@ See the [module comment](self).
 fn execve()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:340`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L340)*
+
 See the [module comment](self).
 
 ### `gethostname`
@@ -77,6 +104,8 @@ See the [module comment](self).
 ```rust
 fn gethostname()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:345-347`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L345-L347)*
 
 For now, use `rustix::process::uname().nodename()` instead.
 

@@ -6,10 +6,38 @@ Used a rust back-end for the
 [flate2](https://github.com/alexcrichton/flate2-rs) crate.
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`inflate`](#inflate)
+  - [`shared`](#shared)
+- [Structs](#structs)
+  - [`StreamResult`](#streamresult)
+- [Enums](#enums)
+  - [`MZFlush`](#mzflush)
+  - [`MZStatus`](#mzstatus)
+  - [`MZError`](#mzerror)
+  - [`DataFormat`](#dataformat)
+- [Type Aliases](#type-aliases)
+  - [`MZResult`](#mzresult)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`inflate`](#inflate) | mod | This module contains functionality for decompression. |
+| [`shared`](#shared) | mod |  |
+| [`StreamResult`](#streamresult) | struct | A structure containing the result of a call to the inflate or deflate streaming functions. |
+| [`MZFlush`](#mzflush) | enum | A list of flush types. |
+| [`MZStatus`](#mzstatus) | enum | A list of miniz successful status codes. |
+| [`MZError`](#mzerror) | enum | A list of miniz failed status codes. |
+| [`DataFormat`](#dataformat) | enum | How compressed data is wrapped. |
+| [`MZResult`](#mzresult) | type | `Result` alias for all miniz status codes both successful and failed. |
+
 ## Modules
 
-- [`inflate`](inflate/index.md) - This module contains functionality for decompression.
-- [`shared`](shared/index.md) - 
+- [`inflate`](inflate/index.md) — This module contains functionality for decompression.
+- [`shared`](shared/index.md)
 
 ## Structs
 
@@ -22,6 +50,8 @@ struct StreamResult {
     pub status: MZResult,
 }
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:189-196`](../../.source_1765210505/miniz_oxide-0.8.9/src/lib.rs#L189-L196)*
 
 A structure containing the result of a call to the inflate or deflate streaming functions.
 
@@ -41,29 +71,29 @@ A structure containing the result of a call to the inflate or deflate streaming 
 
 #### Implementations
 
-- `const fn error(error: MZError) -> StreamResult` — [`MZError`](#mzerror), [`StreamResult`](#streamresult)
+- <span id="streamresult-error"></span>`const fn error(error: MZError) -> StreamResult` — [`MZError`](#mzerror), [`StreamResult`](#streamresult)
 
 #### Trait Implementations
 
 ##### `impl Clone for StreamResult`
 
-- `fn clone(self: &Self) -> StreamResult` — [`StreamResult`](#streamresult)
+- <span id="streamresult-clone"></span>`fn clone(&self) -> StreamResult` — [`StreamResult`](#streamresult)
 
 ##### `impl Copy for StreamResult`
 
 ##### `impl Debug for StreamResult`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="streamresult-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for StreamResult`
 
 ##### `impl Hash for StreamResult`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="streamresult-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for StreamResult`
 
-- `fn eq(self: &Self, other: &StreamResult) -> bool` — [`StreamResult`](#streamresult)
+- <span id="streamresult-eq"></span>`fn eq(&self, other: &StreamResult) -> bool` — [`StreamResult`](#streamresult)
 
 ##### `impl StructuralPartialEq for StreamResult`
 
@@ -81,6 +111,8 @@ enum MZFlush {
     Block,
 }
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:47-66`](../../.source_1765210505/miniz_oxide-0.8.9/src/lib.rs#L47-L66)*
 
 A list of flush types.
 
@@ -120,29 +152,29 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 
 #### Implementations
 
-- `fn new(flush: i32) -> Result<Self, MZError>` — [`MZError`](#mzerror)
+- <span id="mzflush-new"></span>`fn new(flush: i32) -> Result<Self, MZError>` — [`MZError`](#mzerror)
 
 #### Trait Implementations
 
 ##### `impl Clone for MZFlush`
 
-- `fn clone(self: &Self) -> MZFlush` — [`MZFlush`](#mzflush)
+- <span id="mzflush-clone"></span>`fn clone(&self) -> MZFlush` — [`MZFlush`](#mzflush)
 
 ##### `impl Copy for MZFlush`
 
 ##### `impl Debug for MZFlush`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mzflush-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MZFlush`
 
 ##### `impl Hash for MZFlush`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="mzflush-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for MZFlush`
 
-- `fn eq(self: &Self, other: &MZFlush) -> bool` — [`MZFlush`](#mzflush)
+- <span id="mzflush-eq"></span>`fn eq(&self, other: &MZFlush) -> bool` — [`MZFlush`](#mzflush)
 
 ##### `impl StructuralPartialEq for MZFlush`
 
@@ -155,6 +187,8 @@ enum MZStatus {
     NeedDict,
 }
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:90-106`](../../.source_1765210505/miniz_oxide-0.8.9/src/lib.rs#L90-L106)*
 
 A list of miniz successful status codes.
 
@@ -186,23 +220,23 @@ These are emitted as the [`Ok`](#ok) side of a [`MZResult`](#mzresult) in the [`
 
 ##### `impl Clone for MZStatus`
 
-- `fn clone(self: &Self) -> MZStatus` — [`MZStatus`](#mzstatus)
+- <span id="mzstatus-clone"></span>`fn clone(&self) -> MZStatus` — [`MZStatus`](#mzstatus)
 
 ##### `impl Copy for MZStatus`
 
 ##### `impl Debug for MZStatus`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mzstatus-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MZStatus`
 
 ##### `impl Hash for MZStatus`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="mzstatus-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for MZStatus`
 
-- `fn eq(self: &Self, other: &MZStatus) -> bool` — [`MZStatus`](#mzstatus)
+- <span id="mzstatus-eq"></span>`fn eq(&self, other: &MZStatus) -> bool` — [`MZStatus`](#mzstatus)
 
 ##### `impl StructuralPartialEq for MZStatus`
 
@@ -219,6 +253,8 @@ enum MZError {
     Param,
 }
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:115-149`](../../.source_1765210505/miniz_oxide-0.8.9/src/lib.rs#L115-L149)*
 
 A list of miniz failed status codes.
 
@@ -272,23 +308,23 @@ These are emitted as the `Err` side of a [`MZResult`](#mzresult) in the [`Stream
 
 ##### `impl Clone for MZError`
 
-- `fn clone(self: &Self) -> MZError` — [`MZError`](#mzerror)
+- <span id="mzerror-clone"></span>`fn clone(&self) -> MZError` — [`MZError`](#mzerror)
 
 ##### `impl Copy for MZError`
 
 ##### `impl Debug for MZError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mzerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MZError`
 
 ##### `impl Hash for MZError`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="mzerror-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for MZError`
 
-- `fn eq(self: &Self, other: &MZError) -> bool` — [`MZError`](#mzerror)
+- <span id="mzerror-eq"></span>`fn eq(&self, other: &MZError) -> bool` — [`MZError`](#mzerror)
 
 ##### `impl StructuralPartialEq for MZError`
 
@@ -301,6 +337,8 @@ enum DataFormat {
     Raw,
 }
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:155-163`](../../.source_1765210505/miniz_oxide-0.8.9/src/lib.rs#L155-L163)*
 
 How compressed data is wrapped.
 
@@ -321,31 +359,31 @@ How compressed data is wrapped.
 
 #### Implementations
 
-- `fn from_window_bits(window_bits: i32) -> DataFormat` — [`DataFormat`](#dataformat)
+- <span id="dataformat-from-window-bits"></span>`fn from_window_bits(window_bits: i32) -> DataFormat` — [`DataFormat`](#dataformat)
 
-- `fn to_window_bits(self: Self) -> i32`
+- <span id="dataformat-to-window-bits"></span>`fn to_window_bits(self) -> i32`
 
 #### Trait Implementations
 
 ##### `impl Clone for DataFormat`
 
-- `fn clone(self: &Self) -> DataFormat` — [`DataFormat`](#dataformat)
+- <span id="dataformat-clone"></span>`fn clone(&self) -> DataFormat` — [`DataFormat`](#dataformat)
 
 ##### `impl Copy for DataFormat`
 
 ##### `impl Debug for DataFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dataformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DataFormat`
 
 ##### `impl Hash for DataFormat`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dataformat-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for DataFormat`
 
-- `fn eq(self: &Self, other: &DataFormat) -> bool` — [`DataFormat`](#dataformat)
+- <span id="dataformat-eq"></span>`fn eq(&self, other: &DataFormat) -> bool` — [`DataFormat`](#dataformat)
 
 ##### `impl StructuralPartialEq for DataFormat`
 
@@ -356,6 +394,8 @@ How compressed data is wrapped.
 ```rust
 type MZResult = Result<MZStatus, MZError>;
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/lib.rs:184`](../../.source_1765210505/miniz_oxide-0.8.9/src/lib.rs#L184)*
 
 `Result` alias for all miniz status codes both successful and failed.
 

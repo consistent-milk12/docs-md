@@ -4,17 +4,17 @@ Rayon-core houses the core stable APIs of Rayon.
 
 These APIs have been mirrored in the Rayon crate and it is recommended to use these from there.
 
-[`join()`](#join) is used to take two closures and potentially run them in parallel.
+[`join()`](join/index.md) is used to take two closures and potentially run them in parallel.
   - It will run in parallel if task B gets stolen before task A can finish.
   - It will run sequentially if task A finishes before task B is stolen and can continue on task B.
 
-[`scope()`](#scope) creates a scope in which you can run any number of parallel tasks.
+[`scope()`](scope/index.md) creates a scope in which you can run any number of parallel tasks.
 These tasks can spawn nested tasks and scopes, but given the nature of work stealing, the order of execution can not be guaranteed.
 The scope will exist until all tasks spawned within the scope have been completed.
 
-[`spawn()`](#spawn) add a task into the 'static' or 'global' scope, or a local scope created by the [`scope()`](#scope) function.
+[`spawn()`](spawn/index.md) add a task into the 'static' or 'global' scope, or a local scope created by the [`scope()`](scope/index.md) function.
 
-[`ThreadPool`](#threadpool) can be used to create your own thread pools (using [`ThreadPoolBuilder`](#threadpoolbuilder)) or to customize the global one.
+[`ThreadPool`](thread_pool/index.md) can be used to create your own thread pools (using [`ThreadPoolBuilder`](#threadpoolbuilder)) or to customize the global one.
 Tasks spawned within the pool (using [`install()`][tpinstall], [`join()`][tpjoin], etc.) will be added to a deque,
 where it becomes available for work stealing from other threads in the local thread pool.
 
@@ -54,20 +54,124 @@ restrictive tilde or inequality requirements for `rayon-core`.  The
 conflicting requirements will need to be resolved before the build will
 succeed.
 
+## Contents
+
+- [Modules](#modules)
+  - [`private`](#private)
+  - [`broadcast`](#broadcast)
+  - [`job`](#job)
+  - [`join`](#join)
+  - [`latch`](#latch)
+  - [`registry`](#registry)
+  - [`scope`](#scope)
+  - [`sleep`](#sleep)
+  - [`spawn`](#spawn)
+  - [`thread_pool`](#thread_pool)
+  - [`unwind`](#unwind)
+  - [`compile_fail`](#compile_fail)
+- [Structs](#structs)
+  - [`BroadcastContext`](#broadcastcontext)
+  - [`ThreadBuilder`](#threadbuilder)
+  - [`Scope`](#scope)
+  - [`ScopeFifo`](#scopefifo)
+  - [`ThreadPool`](#threadpool)
+  - [`ThreadPoolBuildError`](#threadpoolbuilderror)
+  - [`ThreadPoolBuilder`](#threadpoolbuilder)
+  - [`Configuration`](#configuration)
+  - [`FnContext`](#fncontext)
+- [Enums](#enums)
+  - [`Yield`](#yield)
+  - [`ErrorKind`](#errorkind)
+- [Functions](#functions)
+  - [`broadcast`](#broadcast)
+  - [`spawn_broadcast`](#spawn_broadcast)
+  - [`join`](#join)
+  - [`join_context`](#join_context)
+  - [`in_place_scope`](#in_place_scope)
+  - [`scope`](#scope)
+  - [`in_place_scope_fifo`](#in_place_scope_fifo)
+  - [`scope_fifo`](#scope_fifo)
+  - [`spawn`](#spawn)
+  - [`spawn_fifo`](#spawn_fifo)
+  - [`current_thread_has_pending_tasks`](#current_thread_has_pending_tasks)
+  - [`current_thread_index`](#current_thread_index)
+  - [`yield_local`](#yield_local)
+  - [`yield_now`](#yield_now)
+  - [`max_num_threads`](#max_num_threads)
+  - [`current_num_threads`](#current_num_threads)
+  - [`initialize`](#initialize)
+- [Type Aliases](#type-aliases)
+  - [`PanicHandler`](#panichandler)
+  - [`StartHandler`](#starthandler)
+  - [`ExitHandler`](#exithandler)
+- [Constants](#constants)
+  - [`GLOBAL_POOL_ALREADY_INITIALIZED`](#global_pool_already_initialized)
+  - [`CURRENT_THREAD_ALREADY_IN_POOL`](#current_thread_already_in_pool)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod | The public parts of this private module are used to create traits that cannot be implemented outside of our own crate. |
+| [`broadcast`](#broadcast) | mod |  |
+| [`job`](#job) | mod |  |
+| [`join`](#join) | mod |  |
+| [`latch`](#latch) | mod |  |
+| [`registry`](#registry) | mod |  |
+| [`scope`](#scope) | mod | Methods for custom fork-join scopes, created by the [`scope()`] and [`in_place_scope()`] functions. |
+| [`sleep`](#sleep) | mod | Code that decides when workers should go to sleep. |
+| [`spawn`](#spawn) | mod |  |
+| [`thread_pool`](#thread_pool) | mod | Contains support for user-managed thread pools, represented by the the [`ThreadPool`] type (see that struct for details). |
+| [`unwind`](#unwind) | mod | Package up unwind recovery. |
+| [`compile_fail`](#compile_fail) | mod |  |
+| [`BroadcastContext`](#broadcastcontext) | struct |  |
+| [`ThreadBuilder`](#threadbuilder) | struct |  |
+| [`Scope`](#scope) | struct |  |
+| [`ScopeFifo`](#scopefifo) | struct |  |
+| [`ThreadPool`](#threadpool) | struct |  |
+| [`ThreadPoolBuildError`](#threadpoolbuilderror) | struct | Error when initializing a thread pool. |
+| [`ThreadPoolBuilder`](#threadpoolbuilder) | struct | Used to create a new [`ThreadPool`] or to configure the global rayon thread pool. |
+| [`Configuration`](#configuration) | struct | Contains the rayon thread pool configuration. |
+| [`FnContext`](#fncontext) | struct | Provides the calling context to a closure called by `join_context`. |
+| [`Yield`](#yield) | enum |  |
+| [`ErrorKind`](#errorkind) | enum |  |
+| [`broadcast`](#broadcast) | fn |  |
+| [`spawn_broadcast`](#spawn_broadcast) | fn |  |
+| [`join`](#join) | fn |  |
+| [`join_context`](#join_context) | fn |  |
+| [`in_place_scope`](#in_place_scope) | fn |  |
+| [`scope`](#scope) | fn |  |
+| [`in_place_scope_fifo`](#in_place_scope_fifo) | fn |  |
+| [`scope_fifo`](#scope_fifo) | fn |  |
+| [`spawn`](#spawn) | fn |  |
+| [`spawn_fifo`](#spawn_fifo) | fn |  |
+| [`current_thread_has_pending_tasks`](#current_thread_has_pending_tasks) | fn |  |
+| [`current_thread_index`](#current_thread_index) | fn |  |
+| [`yield_local`](#yield_local) | fn |  |
+| [`yield_now`](#yield_now) | fn |  |
+| [`max_num_threads`](#max_num_threads) | fn | Returns the maximum number of threads that Rayon supports in a single thread pool. |
+| [`current_num_threads`](#current_num_threads) | fn | Returns the number of threads in the current registry. |
+| [`initialize`](#initialize) | fn | Deprecated in favor of `ThreadPoolBuilder::build_global`. |
+| [`PanicHandler`](#panichandler) | type | The type for a panic-handling closure. |
+| [`StartHandler`](#starthandler) | type | The type for a closure that gets invoked when a thread starts. |
+| [`ExitHandler`](#exithandler) | type | The type for a closure that gets invoked when a thread exits. |
+| [`GLOBAL_POOL_ALREADY_INITIALIZED`](#global_pool_already_initialized) | const |  |
+| [`CURRENT_THREAD_ALREADY_IN_POOL`](#current_thread_already_in_pool) | const |  |
+
 ## Modules
 
-- [`private`](private/index.md) - The public parts of this private module are used to create traits
-- [`broadcast`](broadcast/index.md) - 
-- [`job`](job/index.md) - 
-- [`join`](join/index.md) - 
-- [`latch`](latch/index.md) - 
-- [`registry`](registry/index.md) - 
-- [`scope`](scope/index.md) - Methods for custom fork-join scopes, created by the [`scope()`]
-- [`sleep`](sleep/index.md) - Code that decides when workers should go to sleep. See README.md
-- [`spawn`](spawn/index.md) - 
-- [`thread_pool`](thread_pool/index.md) - Contains support for user-managed thread pools, represented by the
-- [`unwind`](unwind/index.md) - Package up unwind recovery. Note that if you are in some sensitive
-- [`compile_fail`](compile_fail/index.md) - 
+- [`private`](private/index.md) — The public parts of this private module are used to create traits
+- [`broadcast`](broadcast/index.md)
+- [`job`](job/index.md)
+- [`join`](join/index.md)
+- [`latch`](latch/index.md)
+- [`registry`](registry/index.md)
+- [`scope`](scope/index.md) — Methods for custom fork-join scopes, created by the [`scope()`]
+- [`sleep`](sleep/index.md) — Code that decides when workers should go to sleep. See README.md
+- [`spawn`](spawn/index.md)
+- [`thread_pool`](thread_pool/index.md) — Contains support for user-managed thread pools, represented by the
+- [`unwind`](unwind/index.md) — Package up unwind recovery. Note that if you are in some sensitive
+- [`compile_fail`](compile_fail/index.md)
 
 ## Structs
 
@@ -80,6 +184,8 @@ struct BroadcastContext<'a> {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/broadcast/mod.rs:45-50`](../../.source_1765210505/rayon-core-1.13.0/src/broadcast/mod.rs#L45-L50)*
+
 Provides context to a closure called by `broadcast`.
 
 #### Fields
@@ -90,31 +196,31 @@ Provides context to a closure called by `broadcast`.
 
 #### Implementations
 
-- `fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](#broadcastcontext)
+- <span id="broadcastcontext-with"></span>`fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](broadcast/index.md)
 
-- `fn index(self: &Self) -> usize`
+- <span id="broadcastcontext-index"></span>`fn index(&self) -> usize`
 
-- `fn num_threads(self: &Self) -> usize`
+- <span id="broadcastcontext-num-threads"></span>`fn num_threads(&self) -> usize`
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for BroadcastContext<'a>`
+##### `impl Debug for BroadcastContext<'a>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="broadcastcontext-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for BroadcastContext<'a>`
+##### `impl Pointable for BroadcastContext<'a>`
 
-- `const ALIGN: usize`
+- <span id="broadcastcontext-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="broadcastcontext-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="broadcastcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="broadcastcontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="broadcastcontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="broadcastcontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ThreadBuilder`
 
@@ -129,37 +235,39 @@ struct ThreadBuilder {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L22-L29)*
+
 Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
 #### Implementations
 
-- `fn index(self: &Self) -> usize`
+- <span id="threadbuilder-index"></span>`fn index(&self) -> usize`
 
-- `fn name(self: &Self) -> Option<&str>`
+- <span id="threadbuilder-name"></span>`fn name(&self) -> Option<&str>`
 
-- `fn stack_size(self: &Self) -> Option<usize>`
+- <span id="threadbuilder-stack-size"></span>`fn stack_size(&self) -> Option<usize>`
 
-- `fn run(self: Self)`
+- <span id="threadbuilder-run"></span>`fn run(self)`
 
 #### Trait Implementations
 
 ##### `impl Debug for ThreadBuilder`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for ThreadBuilder`
+##### `impl Pointable for ThreadBuilder`
 
-- `const ALIGN: usize`
+- <span id="threadbuilder-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="threadbuilder-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadbuilder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadbuilder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="threadbuilder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Scope<'scope>`
 
@@ -169,36 +277,38 @@ struct Scope<'scope> {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:24-26`](../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L24-L26)*
+
 Represents a fork-join scope which can be used to spawn any number of tasks.
-See [`scope()`](#scope) for more information.
+See [`scope()`](scope/index.md) for more information.
 
 #### Implementations
 
-- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
+- <span id="scope-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
 
-- `fn spawn<BODY>(self: &Self, body: BODY)`
+- <span id="scope-spawn"></span>`fn spawn<BODY>(&self, body: BODY)`
 
-- `fn spawn_broadcast<BODY>(self: &Self, body: BODY)`
+- <span id="scope-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
 
 #### Trait Implementations
 
-##### `impl<'scope> Debug for Scope<'scope>`
+##### `impl Debug for Scope<'scope>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scope-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for Scope<'scope>`
+##### `impl Pointable for Scope<'scope>`
 
-- `const ALIGN: usize`
+- <span id="scope-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="scope-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scope-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scope-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scope-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="scope-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ScopeFifo<'scope>`
 
@@ -209,37 +319,39 @@ struct ScopeFifo<'scope> {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:31-34`](../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L31-L34)*
+
 Represents a fork-join scope which can be used to spawn any number of tasks.
 Those spawned from the same thread are prioritized in relative FIFO order.
-See [`scope_fifo()`](#scope-fifo) for more information.
+See [`scope_fifo()`](scope/index.md) for more information.
 
 #### Implementations
 
-- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
+- <span id="scopefifo-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
 
-- `fn spawn_fifo<BODY>(self: &Self, body: BODY)`
+- <span id="scopefifo-spawn-fifo"></span>`fn spawn_fifo<BODY>(&self, body: BODY)`
 
-- `fn spawn_broadcast<BODY>(self: &Self, body: BODY)`
+- <span id="scopefifo-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
 
 #### Trait Implementations
 
-##### `impl<'scope> Debug for ScopeFifo<'scope>`
+##### `impl Debug for ScopeFifo<'scope>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scopefifo-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for ScopeFifo<'scope>`
+##### `impl Pointable for ScopeFifo<'scope>`
 
-- `const ALIGN: usize`
+- <span id="scopefifo-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="scopefifo-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scopefifo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scopefifo-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scopefifo-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="scopefifo-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ThreadPool`
 
@@ -249,11 +361,13 @@ struct ThreadPool {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:46-48`](../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L46-L48)*
+
 Represents a user-created [thread pool].
 
 Use a [`ThreadPoolBuilder`](#threadpoolbuilder) to specify the number and/or names of threads
 in the pool. After calling `ThreadPoolBuilder::build()`, you can then
-execute functions explicitly within this [`ThreadPool`](#threadpool) using
+execute functions explicitly within this [`ThreadPool`](thread_pool/index.md) using
 `ThreadPool::install()`. By contrast, top-level rayon functions
 (like `join()`) will execute implicitly within the current thread pool.
 
@@ -278,63 +392,63 @@ terminate.
 
 #### Implementations
 
-- `fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](#configuration), [`ThreadPool`](#threadpool)
+- <span id="threadpool-new"></span>`fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](#configuration), [`ThreadPool`](thread_pool/index.md)
 
-- `fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- <span id="threadpool-build"></span>`fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`ThreadPool`](thread_pool/index.md), [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
-- `fn install<OP, R>(self: &Self, op: OP) -> R`
+- <span id="threadpool-install"></span>`fn install<OP, R>(&self, op: OP) -> R`
 
-- `fn broadcast<OP, R>(self: &Self, op: OP) -> Vec<R>`
+- <span id="threadpool-broadcast"></span>`fn broadcast<OP, R>(&self, op: OP) -> Vec<R>`
 
-- `fn current_num_threads(self: &Self) -> usize`
+- <span id="threadpool-current-num-threads"></span>`fn current_num_threads(&self) -> usize`
 
-- `fn current_thread_index(self: &Self) -> Option<usize>`
+- <span id="threadpool-current-thread-index"></span>`fn current_thread_index(&self) -> Option<usize>`
 
-- `fn current_thread_has_pending_tasks(self: &Self) -> Option<bool>`
+- <span id="threadpool-current-thread-has-pending-tasks"></span>`fn current_thread_has_pending_tasks(&self) -> Option<bool>`
 
-- `fn join<A, B, RA, RB>(self: &Self, oper_a: A, oper_b: B) -> (RA, RB)`
+- <span id="threadpool-join"></span>`fn join<A, B, RA, RB>(&self, oper_a: A, oper_b: B) -> (RA, RB)`
 
-- `fn scope<'scope, OP, R>(self: &Self, op: OP) -> R`
+- <span id="threadpool-scope"></span>`fn scope<'scope, OP, R>(&self, op: OP) -> R`
 
-- `fn scope_fifo<'scope, OP, R>(self: &Self, op: OP) -> R`
+- <span id="threadpool-scope-fifo"></span>`fn scope_fifo<'scope, OP, R>(&self, op: OP) -> R`
 
-- `fn in_place_scope<'scope, OP, R>(self: &Self, op: OP) -> R`
+- <span id="threadpool-in-place-scope"></span>`fn in_place_scope<'scope, OP, R>(&self, op: OP) -> R`
 
-- `fn in_place_scope_fifo<'scope, OP, R>(self: &Self, op: OP) -> R`
+- <span id="threadpool-in-place-scope-fifo"></span>`fn in_place_scope_fifo<'scope, OP, R>(&self, op: OP) -> R`
 
-- `fn spawn<OP>(self: &Self, op: OP)`
+- <span id="threadpool-spawn"></span>`fn spawn<OP>(&self, op: OP)`
 
-- `fn spawn_fifo<OP>(self: &Self, op: OP)`
+- <span id="threadpool-spawn-fifo"></span>`fn spawn_fifo<OP>(&self, op: OP)`
 
-- `fn spawn_broadcast<OP>(self: &Self, op: OP)`
+- <span id="threadpool-spawn-broadcast"></span>`fn spawn_broadcast<OP>(&self, op: OP)`
 
-- `fn yield_now(self: &Self) -> Option<Yield>` — [`Yield`](#yield)
+- <span id="threadpool-yield-now"></span>`fn yield_now(&self) -> Option<Yield>` — [`Yield`](thread_pool/index.md)
 
-- `fn yield_local(self: &Self) -> Option<Yield>` — [`Yield`](#yield)
+- <span id="threadpool-yield-local"></span>`fn yield_local(&self) -> Option<Yield>` — [`Yield`](thread_pool/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for ThreadPool`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadpool-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for ThreadPool`
 
-- `fn drop(self: &mut Self)`
+- <span id="threadpool-drop"></span>`fn drop(&mut self)`
 
-##### `impl<T> Pointable for ThreadPool`
+##### `impl Pointable for ThreadPool`
 
-- `const ALIGN: usize`
+- <span id="threadpool-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="threadpool-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadpool-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadpool-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadpool-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="threadpool-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ThreadPoolBuildError`
 
@@ -344,47 +458,49 @@ struct ThreadPoolBuildError {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/lib.rs:142-144`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L142-L144)*
+
 Error when initializing a thread pool.
 
 #### Implementations
 
-- `fn new(kind: ErrorKind) -> ThreadPoolBuildError` — [`ErrorKind`](#errorkind), [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- <span id="threadpoolbuilderror-new"></span>`fn new(kind: ErrorKind) -> ThreadPoolBuildError` — [`ErrorKind`](#errorkind), [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
-- `fn is_unsupported(self: &Self) -> bool`
+- <span id="threadpoolbuilderror-is-unsupported"></span>`fn is_unsupported(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for ThreadPoolBuildError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="threadpoolbuilderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ThreadPoolBuildError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadpoolbuilderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for ThreadPoolBuildError`
 
-- `fn description(self: &Self) -> &str`
+- <span id="threadpoolbuilderror-description"></span>`fn description(&self) -> &str`
 
-- `fn source(self: &Self) -> Option<&dyn Error>`
+- <span id="threadpoolbuilderror-source"></span>`fn source(&self) -> Option<&dyn Error>`
 
-##### `impl<T> Pointable for ThreadPoolBuildError`
+##### `impl Pointable for ThreadPoolBuildError`
 
-- `const ALIGN: usize`
+- <span id="threadpoolbuilderror-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="threadpoolbuilderror-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadpoolbuilderror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadpoolbuilderror-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadpoolbuilderror-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="threadpoolbuilderror-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> ToString for ThreadPoolBuildError`
+##### `impl ToString for ThreadPoolBuildError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="threadpoolbuilderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ThreadPoolBuilder<S>`
 
@@ -402,7 +518,9 @@ struct ThreadPoolBuilder<S> {
 }
 ```
 
-Used to create a new [`ThreadPool`](#threadpool) or to configure the global rayon thread pool.
+*Defined in [`rayon-core-1.13.0/src/lib.rs:170-202`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L170-L202)*
+
+Used to create a new [`ThreadPool`](thread_pool/index.md) or to configure the global rayon thread pool.
 ## Creating a ThreadPool
 The following creates a thread pool with 22 threads.
 
@@ -464,33 +582,31 @@ rayon::ThreadPoolBuilder::new().num_threads(22).build_global().unwrap();
 
 #### Implementations
 
-- `fn build(self: Self) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](#threadpoolbuilderror)
-
-- `fn build_global(self: Self) -> Result<(), ThreadPoolBuildError>` — [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- <span id="threadpoolbuilder-new"></span>`fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl<S> Debug for ThreadPoolBuilder<S>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadpoolbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ThreadPoolBuilder`
 
-- `fn default() -> Self`
+- <span id="threadpoolbuilder-default"></span>`fn default() -> Self`
 
 ##### `impl<T> Pointable for ThreadPoolBuilder<S>`
 
-- `const ALIGN: usize`
+- <span id="threadpoolbuilder-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="threadpoolbuilder-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadpoolbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadpoolbuilder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadpoolbuilder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="threadpoolbuilder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Configuration`
 
@@ -500,53 +616,55 @@ struct Configuration {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/lib.rs:207-209`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L207-L209)*
+
 Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadpoolbuilder) instead.
 
 #### Implementations
 
-- `fn new() -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-new"></span>`fn new() -> Configuration` — [`Configuration`](#configuration)
 
-- `fn build(self: Self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](#threadpool)
+- <span id="configuration-build"></span>`fn build(self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](thread_pool/index.md)
 
-- `fn thread_name<F>(self: Self, closure: F) -> Self`
+- <span id="configuration-thread-name"></span>`fn thread_name<F>(self, closure: F) -> Self`
 
-- `fn num_threads(self: Self, num_threads: usize) -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-num-threads"></span>`fn num_threads(self, num_threads: usize) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn panic_handler<H>(self: Self, panic_handler: H) -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-panic-handler"></span>`fn panic_handler<H>(self, panic_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn stack_size(self: Self, stack_size: usize) -> Self`
+- <span id="configuration-stack-size"></span>`fn stack_size(self, stack_size: usize) -> Self`
 
-- `fn breadth_first(self: Self) -> Self`
+- <span id="configuration-breadth-first"></span>`fn breadth_first(self) -> Self`
 
-- `fn start_handler<H>(self: Self, start_handler: H) -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-start-handler"></span>`fn start_handler<H>(self, start_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn exit_handler<H>(self: Self, exit_handler: H) -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-exit-handler"></span>`fn exit_handler<H>(self, exit_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn into_builder(self: Self) -> ThreadPoolBuilder` — [`ThreadPoolBuilder`](#threadpoolbuilder)
+- <span id="configuration-into-builder"></span>`fn into_builder(self) -> ThreadPoolBuilder` — [`ThreadPoolBuilder`](#threadpoolbuilder)
 
 #### Trait Implementations
 
 ##### `impl Debug for Configuration`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="configuration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Configuration`
 
-- `fn default() -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-default"></span>`fn default() -> Configuration` — [`Configuration`](#configuration)
 
-##### `impl<T> Pointable for Configuration`
+##### `impl Pointable for Configuration`
 
-- `const ALIGN: usize`
+- <span id="configuration-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="configuration-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="configuration-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="configuration-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="configuration-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="configuration-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `FnContext`
 
@@ -556,6 +674,8 @@ struct FnContext {
     _marker: std::marker::PhantomData<*mut ()>,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:840-845`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L840-L845)*
 
 Provides the calling context to a closure called by `join_context`.
 
@@ -567,27 +687,27 @@ Provides the calling context to a closure called by `join_context`.
 
 #### Implementations
 
-- `fn migrated(self: &Self) -> bool`
+- <span id="fncontext-new"></span>`fn new(migrated: bool) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Debug for FnContext`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fncontext-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for FnContext`
+##### `impl Pointable for FnContext`
 
-- `const ALIGN: usize`
+- <span id="fncontext-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="fncontext-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="fncontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="fncontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="fncontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="fncontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Enums
 
@@ -600,7 +720,9 @@ enum Yield {
 }
 ```
 
-Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:497-502`](../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L497-L502)*
+
+Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool/index.md).
 
 #### Variants
 
@@ -616,33 +738,33 @@ Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 
 ##### `impl Clone for Yield`
 
-- `fn clone(self: &Self) -> Yield` — [`Yield`](#yield)
+- <span id="yield-clone"></span>`fn clone(&self) -> Yield` — [`Yield`](thread_pool/index.md)
 
 ##### `impl Copy for Yield`
 
 ##### `impl Debug for Yield`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="yield-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Yield`
 
 ##### `impl PartialEq for Yield`
 
-- `fn eq(self: &Self, other: &Yield) -> bool` — [`Yield`](#yield)
+- <span id="yield-eq"></span>`fn eq(&self, other: &Yield) -> bool` — [`Yield`](thread_pool/index.md)
 
-##### `impl<T> Pointable for Yield`
+##### `impl Pointable for Yield`
 
-- `const ALIGN: usize`
+- <span id="yield-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="yield-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="yield-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="yield-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="yield-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="yield-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for Yield`
 
@@ -656,33 +778,65 @@ enum ErrorKind {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/lib.rs:147-151`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L147-L151)*
+
 #### Trait Implementations
 
 ##### `impl Debug for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for ErrorKind`
+##### `impl Pointable for ErrorKind`
 
-- `const ALIGN: usize`
+- <span id="errorkind-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="errorkind-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="errorkind-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="errorkind-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="errorkind-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="errorkind-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:88`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L88)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:88`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L88)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:89`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L89)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:89`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L89)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:91`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L91)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:91`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L91)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:92`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L92)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:92`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L92)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:93`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L93)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:93`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L93)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:94`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L94)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:95`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L95)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:97`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L97)*
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:97`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L97)*
 
 ### `max_num_threads`
 
 ```rust
 fn max_num_threads() -> usize
 ```
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:113-116`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L113-L116)*
 
 Returns the maximum number of threads that Rayon supports in a single thread pool.
 
@@ -696,6 +850,8 @@ The value may vary between different targets, and is subject to change in new Ra
 ```rust
 fn current_num_threads() -> usize
 ```
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:136-138`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L136-L138)*
 
 Returns the number of threads in the current registry. If this
 code is executing within a Rayon thread pool, then this will be
@@ -721,6 +877,8 @@ number may vary over time in future versions (see [the
 fn initialize(config: Configuration) -> Result<(), Box<dyn Error>>
 ```
 
+*Defined in [`rayon-core-1.13.0/src/lib.rs:787-789`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L787-L789)*
+
 Deprecated in favor of `ThreadPoolBuilder::build_global`.
 
 ## Type Aliases
@@ -731,6 +889,8 @@ Deprecated in favor of `ThreadPoolBuilder::build_global`.
 type PanicHandler = dyn Fn(Box<dyn Any + Send>) + Send + Sync;
 ```
 
+*Defined in [`rayon-core-1.13.0/src/lib.rs:213`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L213)*
+
 The type for a panic-handling closure. Note that this same closure
 may be invoked multiple times in parallel.
 
@@ -739,6 +899,8 @@ may be invoked multiple times in parallel.
 ```rust
 type StartHandler = dyn Fn(usize) + Send + Sync;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:218`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L218)*
 
 The type for a closure that gets invoked when a thread starts. The
 closure is passed the index of the thread on which it is invoked.
@@ -750,6 +912,8 @@ Note that this same closure may be invoked multiple times in parallel.
 type ExitHandler = dyn Fn(usize) + Send + Sync;
 ```
 
+*Defined in [`rayon-core-1.13.0/src/lib.rs:223`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L223)*
+
 The type for a closure that gets invoked when a thread exits. The
 closure is passed the index of the thread on which it is invoked.
 Note that this same closure may be invoked multiple times in parallel.
@@ -757,14 +921,16 @@ Note that this same closure may be invoked multiple times in parallel.
 ## Constants
 
 ### `GLOBAL_POOL_ALREADY_INITIALIZED`
-
 ```rust
 const GLOBAL_POOL_ALREADY_INITIALIZED: &str;
 ```
 
-### `CURRENT_THREAD_ALREADY_IN_POOL`
+*Defined in [`rayon-core-1.13.0/src/lib.rs:750-751`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L750-L751)*
 
+### `CURRENT_THREAD_ALREADY_IN_POOL`
 ```rust
 const CURRENT_THREAD_ALREADY_IN_POOL: &str;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/lib.rs:753-754`](../../.source_1765210505/rayon-core-1.13.0/src/lib.rs#L753-L754)*
 

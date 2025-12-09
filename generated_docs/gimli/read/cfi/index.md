@@ -4,6 +4,93 @@
 
 # Module `cfi`
 
+## Contents
+
+- [Structs](#structs)
+  - [`DebugFrame`](#debugframe)
+  - [`EhFrameHdr`](#ehframehdr)
+  - [`ParsedEhFrameHdr`](#parsedehframehdr)
+  - [`EhHdrTableIter`](#ehhdrtableiter)
+  - [`EhHdrTable`](#ehhdrtable)
+  - [`EhFrame`](#ehframe)
+  - [`BaseAddresses`](#baseaddresses)
+  - [`SectionBaseAddresses`](#sectionbaseaddresses)
+  - [`CfiEntriesIter`](#cfientriesiter)
+  - [`Augmentation`](#augmentation)
+  - [`AugmentationData`](#augmentationdata)
+  - [`CommonInformationEntry`](#commoninformationentry)
+  - [`PartialFrameDescriptionEntry`](#partialframedescriptionentry)
+  - [`FrameDescriptionEntry`](#framedescriptionentry)
+  - [`UnwindContext`](#unwindcontext)
+  - [`UnwindTable`](#unwindtable)
+  - [`RegisterRuleMap`](#registerrulemap)
+  - [`RegisterRuleIter`](#registerruleiter)
+  - [`UnwindTableRow`](#unwindtablerow)
+  - [`CallFrameInstructionIter`](#callframeinstructioniter)
+  - [`UnwindExpression`](#unwindexpression)
+  - [`PointerEncodingParameters`](#pointerencodingparameters)
+- [Enums](#enums)
+  - [`CieOrFde`](#cieorfde)
+  - [`CfaRule`](#cfarule)
+  - [`RegisterRule`](#registerrule)
+  - [`CallFrameInstruction`](#callframeinstruction)
+  - [`Pointer`](#pointer)
+- [Traits](#traits)
+  - [`UnwindOffset`](#unwindoffset)
+  - [`UnwindSection`](#unwindsection)
+  - [`UnwindContextStorage`](#unwindcontextstorage)
+- [Functions](#functions)
+  - [`parse_cfi_entry`](#parse_cfi_entry)
+  - [`parse_encoded_pointer`](#parse_encoded_pointer)
+  - [`parse_encoded_value`](#parse_encoded_value)
+- [Constants](#constants)
+  - [`MAX_RULES`](#max_rules)
+  - [`MAX_UNWIND_STACK_DEPTH`](#max_unwind_stack_depth)
+  - [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi_instruction_high_bits_mask)
+  - [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi_instruction_low_bits_mask)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugFrame`](#debugframe) | struct | `DebugFrame` contains the `.debug_frame` section's frame unwinding information required to unwind to and recover registers from older frames on the stack. |
+| [`EhFrameHdr`](#ehframehdr) | struct | `EhFrameHdr` contains the information about the `.eh_frame_hdr` section. |
+| [`ParsedEhFrameHdr`](#parsedehframehdr) | struct | `ParsedEhFrameHdr` contains the parsed information from the `.eh_frame_hdr` section. |
+| [`EhHdrTableIter`](#ehhdrtableiter) | struct | An iterator for `.eh_frame_hdr` section's binary search table. |
+| [`EhHdrTable`](#ehhdrtable) | struct | The CFI binary search table that is an optional part of the `.eh_frame_hdr` section. |
+| [`EhFrame`](#ehframe) | struct | `EhFrame` contains the frame unwinding information needed during exception handling found in the `.eh_frame` section. |
+| [`BaseAddresses`](#baseaddresses) | struct | Optional base addresses for the relative `DW_EH_PE_*` encoded pointers. |
+| [`SectionBaseAddresses`](#sectionbaseaddresses) | struct | Optional base addresses for the relative `DW_EH_PE_*` encoded pointers in a particular section. |
+| [`CfiEntriesIter`](#cfientriesiter) | struct | An iterator over CIE and FDE entries in a `.debug_frame` or `.eh_frame` section. |
+| [`Augmentation`](#augmentation) | struct | We support the z-style augmentation [defined by `.eh_frame`][ehframe]. |
+| [`AugmentationData`](#augmentationdata) | struct | Parsed augmentation data for a `FrameDescriptEntry`. |
+| [`CommonInformationEntry`](#commoninformationentry) | struct | > A Common Information Entry holds information that is shared among many > Frame Description Entries. |
+| [`PartialFrameDescriptionEntry`](#partialframedescriptionentry) | struct | A partially parsed `FrameDescriptionEntry`. |
+| [`FrameDescriptionEntry`](#framedescriptionentry) | struct | A `FrameDescriptionEntry` is a set of CFA instructions for an address range. |
+| [`UnwindContext`](#unwindcontext) | struct | Common context needed when evaluating the call frame unwinding information. |
+| [`UnwindTable`](#unwindtable) | struct | The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s `CallFrameInstruction` program, yielding the each row one at a time. |
+| [`RegisterRuleMap`](#registerrulemap) | struct |  |
+| [`RegisterRuleIter`](#registerruleiter) | struct | An unordered iterator for register rules. |
+| [`UnwindTableRow`](#unwindtablerow) | struct | A row in the virtual unwind table that describes how to find the values of the registers in the *previous* frame for a range of PC addresses. |
+| [`CallFrameInstructionIter`](#callframeinstructioniter) | struct | A lazy iterator parsing call frame instructions. |
+| [`UnwindExpression`](#unwindexpression) | struct | The location of a DWARF expression within an unwind section. |
+| [`PointerEncodingParameters`](#pointerencodingparameters) | struct |  |
+| [`CieOrFde`](#cieorfde) | enum | Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE). |
+| [`CfaRule`](#cfarule) | enum | The canonical frame address (CFA) recovery rules. |
+| [`RegisterRule`](#registerrule) | enum | An entry in the abstract CFI table that describes how to find the value of a register. |
+| [`CallFrameInstruction`](#callframeinstruction) | enum | A parsed call frame instruction. |
+| [`Pointer`](#pointer) | enum | A decoded pointer. |
+| [`UnwindOffset`](#unwindoffset) | trait | An offset into an `UnwindSection`. |
+| [`UnwindSection`](#unwindsection) | trait | A section holding unwind information: either `.debug_frame` or `.eh_frame`. |
+| [`UnwindContextStorage`](#unwindcontextstorage) | trait | Specification of what storage should be used for [`UnwindContext`]. |
+| [`parse_cfi_entry`](#parse_cfi_entry) | fn |  |
+| [`parse_encoded_pointer`](#parse_encoded_pointer) | fn |  |
+| [`parse_encoded_value`](#parse_encoded_value) | fn |  |
+| [`MAX_RULES`](#max_rules) | const |  |
+| [`MAX_UNWIND_STACK_DEPTH`](#max_unwind_stack_depth) | const |  |
+| [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi_instruction_high_bits_mask) | const |  |
+| [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi_instruction_low_bits_mask) | const |  |
+
 ## Structs
 
 ### `DebugFrame<R: Reader>`
@@ -15,6 +102,8 @@ struct DebugFrame<R: Reader> {
     vendor: crate::common::Vendor,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:36-40`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L36-L40)*
 
 `DebugFrame` contains the `.debug_frame` section's frame unwinding
 information required to unwind to and recover registers from older frames on
@@ -33,45 +122,47 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 #### Implementations
 
-- `fn set_address_size(self: &mut Self, address_size: u8)`
+- <span id="debugframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
 
-- `fn set_vendor(self: &mut Self, vendor: Vendor)` — [`Vendor`](../../index.md)
+- <span id="debugframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for DebugFrame<R>`
+##### `impl<R: clone::Clone + Reader> Clone for DebugFrame<R>`
 
-- `fn clone(self: &Self) -> DebugFrame<R>` — [`DebugFrame`](../index.md)
+- <span id="debugframe-clone"></span>`fn clone(&self) -> DebugFrame<R>` — [`DebugFrame`](../index.md)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for DebugFrame<R>`
+##### `impl<R: marker::Copy + Reader> Copy for DebugFrame<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for DebugFrame<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for DebugFrame<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugframe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for DebugFrame<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for DebugFrame<R>`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for DebugFrame<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for DebugFrame<R>`
 
-- `fn eq(self: &Self, other: &DebugFrame<R>) -> bool` — [`DebugFrame`](../index.md)
+- <span id="debugframe-eq"></span>`fn eq(&self, other: &DebugFrame<R>) -> bool` — [`DebugFrame`](../index.md)
 
 ##### `impl<R: Reader> Section for DebugFrame<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugframe-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugframe-reader"></span>`fn reader(&self) -> &R`
 
 ##### `impl<R: Reader> StructuralPartialEq for DebugFrame<R>`
 
 ##### `impl<R: Reader> UnwindSection for DebugFrame<R>`
 
-- `type Offset = DebugFrameOffset<<R as Reader>::Offset>`
+- <span id="debugframe-type-offset"></span>`type Offset = DebugFrameOffset<<R as Reader>::Offset>`
 
 ### `EhFrameHdr<R: Reader>`
 
 ```rust
 struct EhFrameHdr<R: Reader>(R);
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:109`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L109)*
 
 `EhFrameHdr` contains the information about the `.eh_frame_hdr` section.
 
@@ -80,31 +171,31 @@ search table of pointers to the `.eh_frame` records that are found in this secti
 
 #### Implementations
 
-- `fn parse(self: &Self, bases: &BaseAddresses, address_size: u8) -> Result<ParsedEhFrameHdr<R>>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`ParsedEhFrameHdr`](../index.md)
+- <span id="ehframehdr-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for EhFrameHdr<R>`
+##### `impl<R: clone::Clone + Reader> Clone for EhFrameHdr<R>`
 
-- `fn clone(self: &Self) -> EhFrameHdr<R>` — [`EhFrameHdr`](../index.md)
+- <span id="ehframehdr-clone"></span>`fn clone(&self) -> EhFrameHdr<R>` — [`EhFrameHdr`](../index.md)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for EhFrameHdr<R>`
+##### `impl<R: marker::Copy + Reader> Copy for EhFrameHdr<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for EhFrameHdr<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EhFrameHdr<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ehframehdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for EhFrameHdr<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for EhFrameHdr<R>`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for EhFrameHdr<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrameHdr<R>`
 
-- `fn eq(self: &Self, other: &EhFrameHdr<R>) -> bool` — [`EhFrameHdr`](../index.md)
+- <span id="ehframehdr-eq"></span>`fn eq(&self, other: &EhFrameHdr<R>) -> bool` — [`EhFrameHdr`](../index.md)
 
 ##### `impl<R: Reader> Section for EhFrameHdr<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="ehframehdr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="ehframehdr-reader"></span>`fn reader(&self) -> &R`
 
 ##### `impl<R: Reader> StructuralPartialEq for EhFrameHdr<R>`
 
@@ -121,23 +212,25 @@ struct ParsedEhFrameHdr<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:113-121`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L113-L121)*
+
 `ParsedEhFrameHdr` contains the parsed information from the `.eh_frame_hdr` section.
 
 #### Implementations
 
-- `fn eh_frame_ptr(self: &Self) -> Pointer` — [`Pointer`](../index.md)
+- <span id="parsedehframehdr-eh-frame-ptr"></span>`fn eh_frame_ptr(&self) -> Pointer` — [`Pointer`](../index.md)
 
-- `fn table(self: &Self) -> Option<EhHdrTable<'_, R>>` — [`EhHdrTable`](../index.md)
+- <span id="parsedehframehdr-table"></span>`fn table(&self) -> Option<EhHdrTable<'_, R>>` — [`EhHdrTable`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for ParsedEhFrameHdr<R>`
+##### `impl<R: clone::Clone + Reader> Clone for ParsedEhFrameHdr<R>`
 
-- `fn clone(self: &Self) -> ParsedEhFrameHdr<R>` — [`ParsedEhFrameHdr`](../index.md)
+- <span id="parsedehframehdr-clone"></span>`fn clone(&self) -> ParsedEhFrameHdr<R>` — [`ParsedEhFrameHdr`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for ParsedEhFrameHdr<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for ParsedEhFrameHdr<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parsedehframehdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EhHdrTableIter<'a, 'bases, R: Reader>`
 
@@ -150,6 +243,8 @@ struct EhHdrTableIter<'a, 'bases, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:229-234`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L229-L234)*
+
 An iterator for `.eh_frame_hdr` section's binary search table.
 
 Each table entry consists of a tuple containing an  `initial_location` and `address`.
@@ -159,15 +254,15 @@ The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../../index.md), [`Pointer`](../index.md)
+- <span id="ehhdrtableiter-next"></span>`fn next(&mut self) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../../index.md), [`Pointer`](../index.md)
 
-- `fn nth(self: &mut Self, n: usize) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../../index.md), [`Pointer`](../index.md)
+- <span id="ehhdrtableiter-nth"></span>`fn nth(&mut self, n: usize) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../../index.md), [`Pointer`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'a, 'bases, R: $crate::fmt::Debug + Reader> Debug for EhHdrTableIter<'a, 'bases, R>`
+##### `impl<'a, 'bases, R: fmt::Debug + Reader> Debug for EhHdrTableIter<'a, 'bases, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ehhdrtableiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EhHdrTable<'a, R: Reader>`
 
@@ -177,29 +272,31 @@ struct EhHdrTable<'a, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:299-301`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L299-L301)*
+
 The CFI binary search table that is an optional part of the `.eh_frame_hdr` section.
 
 #### Implementations
 
-- `fn iter<'bases>(self: &Self, bases: &'bases BaseAddresses) -> EhHdrTableIter<'_, 'bases, R>` — [`BaseAddresses`](../index.md), [`EhHdrTableIter`](../index.md)
+- <span id="ehhdrtable-iter"></span>`fn iter<'bases>(&self, bases: &'bases BaseAddresses) -> EhHdrTableIter<'_, 'bases, R>` — [`BaseAddresses`](../index.md), [`EhHdrTableIter`](../index.md)
 
-- `fn lookup(self: &Self, address: u64, bases: &BaseAddresses) -> Result<Pointer>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`Pointer`](../index.md)
+- <span id="ehhdrtable-lookup"></span>`fn lookup(&self, address: u64, bases: &BaseAddresses) -> Result<Pointer>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`Pointer`](../index.md)
 
-- `fn pointer_to_offset(self: &Self, ptr: Pointer) -> Result<EhFrameOffset<<R as >::Offset>>` — [`Pointer`](../index.md), [`Result`](../../index.md), [`EhFrameOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="ehhdrtable-pointer-to-offset"></span>`fn pointer_to_offset(&self, ptr: Pointer) -> Result<EhFrameOffset<<R as >::Offset>>` — [`Pointer`](../index.md), [`Result`](../../index.md), [`EhFrameOffset`](../../index.md), [`Reader`](../index.md)
 
-- `fn fde_for_address<F>(self: &Self, frame: &EhFrame<R>, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`EhFrame`](../index.md), [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`FrameDescriptionEntry`](../index.md)
+- <span id="ehhdrtable-fde-for-address"></span>`fn fde_for_address<F>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`EhFrame`](../index.md), [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`FrameDescriptionEntry`](../index.md)
 
-- `fn unwind_info_for_address<'ctx, F, S>(self: &Self, frame: &EhFrame<R>, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`EhFrame`](../index.md), [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTableRow`](../index.md)
+- <span id="ehhdrtable-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, F, S>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`EhFrame`](../index.md), [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTableRow`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'a, R: $crate::clone::Clone + Reader> Clone for EhHdrTable<'a, R>`
+##### `impl<'a, R: clone::Clone + Reader> Clone for EhHdrTable<'a, R>`
 
-- `fn clone(self: &Self) -> EhHdrTable<'a, R>` — [`EhHdrTable`](../index.md)
+- <span id="ehhdrtable-clone"></span>`fn clone(&self) -> EhHdrTable<'a, R>` — [`EhHdrTable`](../index.md)
 
-##### `impl<'a, R: $crate::fmt::Debug + Reader> Debug for EhHdrTable<'a, R>`
+##### `impl<'a, R: fmt::Debug + Reader> Debug for EhHdrTable<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ehhdrtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EhFrame<R: Reader>`
 
@@ -210,6 +307,8 @@ struct EhFrame<R: Reader> {
     vendor: crate::common::Vendor,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:488-492`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L488-L492)*
 
 `EhFrame` contains the frame unwinding information needed during exception
 handling found in the `.eh_frame` section.
@@ -224,37 +323,39 @@ for some discussion on the differences between `.debug_frame` and
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- <span id="ehframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
+
+- <span id="ehframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for EhFrame<R>`
+##### `impl<R: clone::Clone + Reader> Clone for EhFrame<R>`
 
-- `fn clone(self: &Self) -> EhFrame<R>` — [`EhFrame`](../index.md)
+- <span id="ehframe-clone"></span>`fn clone(&self) -> EhFrame<R>` — [`EhFrame`](../index.md)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for EhFrame<R>`
+##### `impl<R: marker::Copy + Reader> Copy for EhFrame<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for EhFrame<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EhFrame<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ehframe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for EhFrame<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for EhFrame<R>`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for EhFrame<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrame<R>`
 
-- `fn eq(self: &Self, other: &EhFrame<R>) -> bool` — [`EhFrame`](../index.md)
+- <span id="ehframe-eq"></span>`fn eq(&self, other: &EhFrame<R>) -> bool` — [`EhFrame`](../index.md)
 
 ##### `impl<R: Reader> Section for EhFrame<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="ehframe-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="ehframe-reader"></span>`fn reader(&self) -> &R`
 
 ##### `impl<R: Reader> StructuralPartialEq for EhFrame<R>`
 
 ##### `impl<R: Reader> UnwindSection for EhFrame<R>`
 
-- `type Offset = EhFrameOffset<<R as Reader>::Offset>`
+- <span id="ehframe-type-offset"></span>`type Offset = EhFrameOffset<<R as Reader>::Offset>`
 
 ### `BaseAddresses`
 
@@ -264,6 +365,8 @@ struct BaseAddresses {
     pub eh_frame: SectionBaseAddresses,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:895-901`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L895-L901)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers.
 
@@ -300,33 +403,33 @@ let _ = bases;
 
 #### Implementations
 
-- `fn set_eh_frame_hdr(self: Self, addr: u64) -> Self`
+- <span id="baseaddresses-set-eh-frame-hdr"></span>`fn set_eh_frame_hdr(self, addr: u64) -> Self`
 
-- `fn set_eh_frame(self: Self, addr: u64) -> Self`
+- <span id="baseaddresses-set-eh-frame"></span>`fn set_eh_frame(self, addr: u64) -> Self`
 
-- `fn set_text(self: Self, addr: u64) -> Self`
+- <span id="baseaddresses-set-text"></span>`fn set_text(self, addr: u64) -> Self`
 
-- `fn set_got(self: Self, addr: u64) -> Self`
+- <span id="baseaddresses-set-got"></span>`fn set_got(self, addr: u64) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for BaseAddresses`
 
-- `fn clone(self: &Self) -> BaseAddresses` — [`BaseAddresses`](../index.md)
+- <span id="baseaddresses-clone"></span>`fn clone(&self) -> BaseAddresses` — [`BaseAddresses`](../index.md)
 
 ##### `impl Debug for BaseAddresses`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="baseaddresses-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BaseAddresses`
 
-- `fn default() -> BaseAddresses` — [`BaseAddresses`](../index.md)
+- <span id="baseaddresses-default"></span>`fn default() -> BaseAddresses` — [`BaseAddresses`](../index.md)
 
 ##### `impl Eq for BaseAddresses`
 
 ##### `impl PartialEq for BaseAddresses`
 
-- `fn eq(self: &Self, other: &BaseAddresses) -> bool` — [`BaseAddresses`](../index.md)
+- <span id="baseaddresses-eq"></span>`fn eq(&self, other: &BaseAddresses) -> bool` — [`BaseAddresses`](../index.md)
 
 ##### `impl StructuralPartialEq for BaseAddresses`
 
@@ -339,6 +442,8 @@ struct SectionBaseAddresses {
     pub data: Option<u64>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:908-924`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L908-L924)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers
 in a particular section.
@@ -370,21 +475,21 @@ See `BaseAddresses` for methods that are helpful in setting these addresses.
 
 ##### `impl Clone for SectionBaseAddresses`
 
-- `fn clone(self: &Self) -> SectionBaseAddresses` — [`SectionBaseAddresses`](../index.md)
+- <span id="sectionbaseaddresses-clone"></span>`fn clone(&self) -> SectionBaseAddresses` — [`SectionBaseAddresses`](../index.md)
 
 ##### `impl Debug for SectionBaseAddresses`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectionbaseaddresses-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SectionBaseAddresses`
 
-- `fn default() -> SectionBaseAddresses` — [`SectionBaseAddresses`](../index.md)
+- <span id="sectionbaseaddresses-default"></span>`fn default() -> SectionBaseAddresses` — [`SectionBaseAddresses`](../index.md)
 
 ##### `impl Eq for SectionBaseAddresses`
 
 ##### `impl PartialEq for SectionBaseAddresses`
 
-- `fn eq(self: &Self, other: &SectionBaseAddresses) -> bool` — [`SectionBaseAddresses`](../index.md)
+- <span id="sectionbaseaddresses-eq"></span>`fn eq(&self, other: &SectionBaseAddresses) -> bool` — [`SectionBaseAddresses`](../index.md)
 
 ##### `impl StructuralPartialEq for SectionBaseAddresses`
 
@@ -400,6 +505,8 @@ where
     input: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:998-1006`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L998-L1006)*
 
 An iterator over CIE and FDE entries in a `.debug_frame` or `.eh_frame`
 section.
@@ -443,17 +550,17 @@ unreachable!()
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<CieOrFde<'bases, Section, R>>>` — [`Result`](../../index.md), [`CieOrFde`](../index.md)
+- <span id="cfientriesiter-next"></span>`fn next(&mut self) -> Result<Option<CieOrFde<'bases, Section, R>>>` — [`Result`](../../index.md), [`CieOrFde`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'bases, Section, R> Clone for CfiEntriesIter<'bases, Section, R>`
 
-- `fn clone(self: &Self) -> CfiEntriesIter<'bases, Section, R>` — [`CfiEntriesIter`](../index.md)
+- <span id="cfientriesiter-clone"></span>`fn clone(&self) -> CfiEntriesIter<'bases, Section, R>` — [`CfiEntriesIter`](../index.md)
 
 ##### `impl<'bases, Section, R> Debug for CfiEntriesIter<'bases, Section, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cfientriesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Augmentation`
 
@@ -465,6 +572,8 @@ struct Augmentation {
     is_signal_trampoline: bool,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1122-1152`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1122-L1152)*
 
 We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
@@ -507,29 +616,29 @@ We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
 #### Implementations
 
-- `fn parse<Section, R>(augmentation_str: &mut R, bases: &BaseAddresses, address_size: u8, section: &Section, input: &mut R) -> Result<Augmentation>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`Augmentation`](../index.md)
+- <span id="augmentation-parse"></span>`fn parse<Section, R>(augmentation_str: &mut R, bases: &BaseAddresses, address_size: u8, section: &Section, input: &mut R) -> Result<Augmentation>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`Augmentation`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Augmentation`
 
-- `fn clone(self: &Self) -> Augmentation` — [`Augmentation`](../index.md)
+- <span id="augmentation-clone"></span>`fn clone(&self) -> Augmentation` — [`Augmentation`](../index.md)
 
 ##### `impl Copy for Augmentation`
 
 ##### `impl Debug for Augmentation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="augmentation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Augmentation`
 
-- `fn default() -> Augmentation` — [`Augmentation`](../index.md)
+- <span id="augmentation-default"></span>`fn default() -> Augmentation` — [`Augmentation`](../index.md)
 
 ##### `impl Eq for Augmentation`
 
 ##### `impl PartialEq for Augmentation`
 
-- `fn eq(self: &Self, other: &Augmentation) -> bool` — [`Augmentation`](../index.md)
+- <span id="augmentation-eq"></span>`fn eq(&self, other: &Augmentation) -> bool` — [`Augmentation`](../index.md)
 
 ##### `impl StructuralPartialEq for Augmentation`
 
@@ -541,31 +650,33 @@ struct AugmentationData {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1223-1225`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1223-L1225)*
+
 Parsed augmentation data for a `FrameDescriptEntry`.
 
 #### Implementations
 
-- `fn parse<R: Reader>(augmentation: &Augmentation, encoding_parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> Result<AugmentationData>` — [`Augmentation`](../index.md), [`PointerEncodingParameters`](#pointerencodingparameters), [`Result`](../../index.md), [`AugmentationData`](#augmentationdata)
+- <span id="augmentationdata-parse"></span>`fn parse<R: Reader>(augmentation: &Augmentation, encoding_parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> Result<AugmentationData>` — [`Augmentation`](../index.md), [`PointerEncodingParameters`](#pointerencodingparameters), [`Result`](../../index.md), [`AugmentationData`](#augmentationdata)
 
 #### Trait Implementations
 
 ##### `impl Clone for AugmentationData`
 
-- `fn clone(self: &Self) -> AugmentationData` — [`AugmentationData`](#augmentationdata)
+- <span id="augmentationdata-clone"></span>`fn clone(&self) -> AugmentationData` — [`AugmentationData`](#augmentationdata)
 
 ##### `impl Debug for AugmentationData`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="augmentationdata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AugmentationData`
 
-- `fn default() -> AugmentationData` — [`AugmentationData`](#augmentationdata)
+- <span id="augmentationdata-default"></span>`fn default() -> AugmentationData` — [`AugmentationData`](#augmentationdata)
 
 ##### `impl Eq for AugmentationData`
 
 ##### `impl PartialEq for AugmentationData`
 
-- `fn eq(self: &Self, other: &AugmentationData) -> bool` — [`AugmentationData`](#augmentationdata)
+- <span id="augmentationdata-eq"></span>`fn eq(&self, other: &AugmentationData) -> bool` — [`AugmentationData`](#augmentationdata)
 
 ##### `impl StructuralPartialEq for AugmentationData`
 
@@ -588,6 +699,8 @@ where
     initial_instructions: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1254-1306`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1254-L1306)*
 
 > A Common Information Entry holds information that is shared among many
 > Frame Description Entries. There is at least one CIE in every non-empty
@@ -652,53 +765,25 @@ where
 
 #### Implementations
 
-- `fn offset(self: &Self) -> <R as >::Offset` — [`Reader`](../index.md)
+- <span id="commoninformationentry-parse"></span>`fn parse<Section: UnwindSection<R>>(bases: &BaseAddresses, section: &Section, input: &mut R) -> Result<CommonInformationEntry<R>>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`CommonInformationEntry`](../index.md)
 
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../../index.md)
-
-- `fn address_size(self: &Self) -> u8`
-
-- `fn instructions<'a, Section>(self: &Self, section: &'a Section, bases: &'a BaseAddresses) -> CallFrameInstructionIter<'a, R>` — [`BaseAddresses`](../index.md), [`CallFrameInstructionIter`](../index.md)
-
-- `fn entry_len(self: &Self) -> <R as >::Offset` — [`Reader`](../index.md)
-
-- `fn version(self: &Self) -> u8`
-
-- `fn augmentation(self: &Self) -> Option<&Augmentation>` — [`Augmentation`](../index.md)
-
-- `fn has_lsda(self: &Self) -> bool`
-
-- `fn lsda_encoding(self: &Self) -> Option<constants::DwEhPe>` — [`DwEhPe`](../../index.md)
-
-- `fn personality_with_encoding(self: &Self) -> Option<(constants::DwEhPe, Pointer)>` — [`DwEhPe`](../../index.md), [`Pointer`](../index.md)
-
-- `fn personality(self: &Self) -> Option<Pointer>` — [`Pointer`](../index.md)
-
-- `fn fde_address_encoding(self: &Self) -> Option<constants::DwEhPe>` — [`DwEhPe`](../../index.md)
-
-- `fn is_signal_trampoline(self: &Self) -> bool`
-
-- `fn code_alignment_factor(self: &Self) -> u64`
-
-- `fn data_alignment_factor(self: &Self) -> i64`
-
-- `fn return_address_register(self: &Self) -> Register` — [`Register`](../../index.md)
+- <span id="commoninformationentry-parse-rest"></span>`fn parse_rest<Section: UnwindSection<R>>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, bases: &BaseAddresses, section: &Section, rest: R) -> Result<CommonInformationEntry<R>>` — [`Reader`](../index.md), [`Format`](../../index.md), [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`CommonInformationEntry`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for CommonInformationEntry<R, Offset>`
 
-- `fn clone(self: &Self) -> CommonInformationEntry<R, Offset>` — [`CommonInformationEntry`](../index.md)
+- <span id="commoninformationentry-clone"></span>`fn clone(&self) -> CommonInformationEntry<R, Offset>` — [`CommonInformationEntry`](../index.md)
 
 ##### `impl<R, Offset> Debug for CommonInformationEntry<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="commoninformationentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for CommonInformationEntry<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for CommonInformationEntry<R, Offset>`
 
-- `fn eq(self: &Self, other: &CommonInformationEntry<R, Offset>) -> bool` — [`CommonInformationEntry`](../index.md)
+- <span id="commoninformationentry-eq"></span>`fn eq(&self, other: &CommonInformationEntry<R, Offset>) -> bool` — [`CommonInformationEntry`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for CommonInformationEntry<R, Offset>`
 
@@ -719,37 +804,39 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1520-1532`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1520-L1532)*
+
 A partially parsed `FrameDescriptionEntry`.
 
 Fully parsing this FDE requires first parsing its CIE.
 
 #### Implementations
 
-- `fn parse_partial(section: &Section, bases: &'bases BaseAddresses, input: &mut R) -> Result<PartialFrameDescriptionEntry<'bases, Section, R>>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`PartialFrameDescriptionEntry`](../index.md)
+- <span id="partialframedescriptionentry-parse-partial"></span>`fn parse_partial(section: &Section, bases: &'bases BaseAddresses, input: &mut R) -> Result<PartialFrameDescriptionEntry<'bases, Section, R>>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`PartialFrameDescriptionEntry`](../index.md)
 
-- `fn parse<F>(self: &Self, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Result`](../../index.md), [`FrameDescriptionEntry`](../index.md)
+- <span id="partialframedescriptionentry-parse"></span>`fn parse<F>(&self, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Result`](../../index.md), [`FrameDescriptionEntry`](../index.md)
 
-- `fn offset(self: &Self) -> <R as >::Offset` — [`Reader`](../index.md)
+- <span id="partialframedescriptionentry-offset"></span>`fn offset(&self) -> <R as >::Offset` — [`Reader`](../index.md)
 
-- `fn cie_offset(self: &Self) -> <Section as >::Offset` — [`UnwindSection`](../index.md)
+- <span id="partialframedescriptionentry-cie-offset"></span>`fn cie_offset(&self) -> <Section as >::Offset` — [`UnwindSection`](../index.md)
 
-- `fn entry_len(self: &Self) -> <R as >::Offset` — [`Reader`](../index.md)
+- <span id="partialframedescriptionentry-entry-len"></span>`fn entry_len(&self) -> <R as >::Offset` — [`Reader`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'bases, Section, R> Clone for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-- `fn clone(self: &Self) -> PartialFrameDescriptionEntry<'bases, Section, R>` — [`PartialFrameDescriptionEntry`](../index.md)
+- <span id="partialframedescriptionentry-clone"></span>`fn clone(&self) -> PartialFrameDescriptionEntry<'bases, Section, R>` — [`PartialFrameDescriptionEntry`](../index.md)
 
 ##### `impl<'bases, Section, R> Debug for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="partialframedescriptionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'bases, Section, R> Eq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 ##### `impl<'bases, Section, R> PartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-- `fn eq(self: &Self, other: &PartialFrameDescriptionEntry<'bases, Section, R>) -> bool` — [`PartialFrameDescriptionEntry`](../index.md)
+- <span id="partialframedescriptionentry-eq"></span>`fn eq(&self, other: &PartialFrameDescriptionEntry<'bases, Section, R>) -> bool` — [`PartialFrameDescriptionEntry`](../index.md)
 
 ##### `impl<'bases, Section, R> StructuralPartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
@@ -770,6 +857,8 @@ where
     instructions: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1593-1631`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1593-L1631)*
 
 A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
@@ -816,29 +905,29 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
 #### Implementations
 
-- `fn parse_rest<Section, F>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, cie_pointer: <Section as >::Offset, rest: R, section: &Section, bases: &BaseAddresses, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Reader`](../index.md), [`Format`](../../index.md), [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`FrameDescriptionEntry`](../index.md)
+- <span id="framedescriptionentry-parse-rest"></span>`fn parse_rest<Section, F>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, cie_pointer: <Section as >::Offset, rest: R, section: &Section, bases: &BaseAddresses, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Reader`](../index.md), [`Format`](../../index.md), [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`FrameDescriptionEntry`](../index.md)
 
-- `fn parse_addresses(input: &mut R, cie: &CommonInformationEntry<R>, parameters: &PointerEncodingParameters<'_, R>) -> Result<(u64, u64)>` — [`CommonInformationEntry`](../index.md), [`PointerEncodingParameters`](#pointerencodingparameters), [`Result`](../../index.md)
+- <span id="framedescriptionentry-parse-addresses"></span>`fn parse_addresses(input: &mut R, cie: &CommonInformationEntry<R>, parameters: &PointerEncodingParameters<'_, R>) -> Result<(u64, u64)>` — [`CommonInformationEntry`](../index.md), [`PointerEncodingParameters`](#pointerencodingparameters), [`Result`](../../index.md)
 
-- `fn rows<'a, 'ctx, Section, S>(self: &Self, section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>) -> Result<UnwindTable<'a, 'ctx, R, S>>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTable`](../index.md)
+- <span id="framedescriptionentry-rows"></span>`fn rows<'a, 'ctx, Section, S>(&self, section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>) -> Result<UnwindTable<'a, 'ctx, R, S>>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTable`](../index.md)
 
-- `fn unwind_info_for_address<'ctx, Section, S>(self: &Self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTableRow`](../index.md)
+- <span id="framedescriptionentry-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, Section, S>(&self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTableRow`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for FrameDescriptionEntry<R, Offset>`
 
-- `fn clone(self: &Self) -> FrameDescriptionEntry<R, Offset>` — [`FrameDescriptionEntry`](../index.md)
+- <span id="framedescriptionentry-clone"></span>`fn clone(&self) -> FrameDescriptionEntry<R, Offset>` — [`FrameDescriptionEntry`](../index.md)
 
 ##### `impl<R, Offset> Debug for FrameDescriptionEntry<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="framedescriptionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for FrameDescriptionEntry<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for FrameDescriptionEntry<R, Offset>`
 
-- `fn eq(self: &Self, other: &FrameDescriptionEntry<R, Offset>) -> bool` — [`FrameDescriptionEntry`](../index.md)
+- <span id="framedescriptionentry-eq"></span>`fn eq(&self, other: &FrameDescriptionEntry<R, Offset>) -> bool` — [`FrameDescriptionEntry`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for FrameDescriptionEntry<R, Offset>`
 
@@ -854,6 +943,8 @@ where
     is_initialized: bool,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1951-1972`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1951-L1972)*
 
 Common context needed when evaluating the call frame unwinding information.
 
@@ -891,53 +982,27 @@ unreachable!()
 
 #### Implementations
 
-- `fn new_in() -> Self`
-
-- `fn initialize<Section, R>(self: &mut Self, section: &Section, bases: &BaseAddresses, cie: &CommonInformationEntry<R>) -> Result<()>` — [`BaseAddresses`](../index.md), [`CommonInformationEntry`](../index.md), [`Result`](../../index.md)
-
-- `fn reset(self: &mut Self)`
-
-- `fn row(self: &Self) -> &UnwindTableRow<T, S>` — [`UnwindTableRow`](../index.md)
-
-- `fn row_mut(self: &mut Self) -> &mut UnwindTableRow<T, S>` — [`UnwindTableRow`](../index.md)
-
-- `fn save_initial_rules(self: &mut Self) -> Result<()>` — [`Result`](../../index.md)
-
-- `fn start_address(self: &Self) -> u64`
-
-- `fn set_start_address(self: &mut Self, start_address: u64)`
-
-- `fn set_register_rule(self: &mut Self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../../index.md), [`RegisterRule`](../index.md), [`Result`](../../index.md)
-
-- `fn get_initial_rule(self: &Self, register: Register) -> Option<RegisterRule<T>>` — [`Register`](../../index.md), [`RegisterRule`](../index.md)
-
-- `fn set_cfa(self: &mut Self, cfa: CfaRule<T>)` — [`CfaRule`](../index.md)
-
-- `fn cfa_mut(self: &mut Self) -> &mut CfaRule<T>` — [`CfaRule`](../index.md)
-
-- `fn push_row(self: &mut Self) -> Result<()>` — [`Result`](../../index.md)
-
-- `fn pop_row(self: &mut Self) -> Result<()>` — [`Result`](../../index.md)
+- <span id="unwindcontext-new"></span>`fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T, S> Clone for UnwindContext<T, S>`
 
-- `fn clone(self: &Self) -> UnwindContext<T, S>` — [`UnwindContext`](../index.md)
+- <span id="unwindcontext-clone"></span>`fn clone(&self) -> UnwindContext<T, S>` — [`UnwindContext`](../index.md)
 
 ##### `impl<T, S> Debug for UnwindContext<T, S>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unwindcontext-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S> Default for UnwindContext<T, S>`
 
-- `fn default() -> Self`
+- <span id="unwindcontext-default"></span>`fn default() -> Self`
 
 ##### `impl<T, S> Eq for UnwindContext<T, S>`
 
 ##### `impl<T, S> PartialEq for UnwindContext<T, S>`
 
-- `fn eq(self: &Self, other: &UnwindContext<T, S>) -> bool` — [`UnwindContext`](../index.md)
+- <span id="unwindcontext-eq"></span>`fn eq(&self, other: &UnwindContext<T, S>) -> bool` — [`UnwindContext`](../index.md)
 
 ##### `impl<T, S> StructuralPartialEq for UnwindContext<T, S>`
 
@@ -959,6 +1024,8 @@ where
     ctx: &'ctx mut UnwindContext<<R as >::Offset, S>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2193-2207`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2193-L2207)*
 
 The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 `CallFrameInstruction` program, yielding the each row one at a time.
@@ -1019,23 +1086,23 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 
 #### Implementations
 
-- `fn new<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Result<Self>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`FrameDescriptionEntry`](../index.md), [`Result`](../../index.md)
+- <span id="unwindtable-new"></span>`fn new<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Result<Self>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`FrameDescriptionEntry`](../index.md), [`Result`](../../index.md)
 
-- `fn new_for_fde<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Self` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`FrameDescriptionEntry`](../index.md)
+- <span id="unwindtable-new-for-fde"></span>`fn new_for_fde<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Self` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`FrameDescriptionEntry`](../index.md)
 
-- `fn new_for_cie<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, cie: &CommonInformationEntry<R>) -> Self` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`CommonInformationEntry`](../index.md)
+- <span id="unwindtable-new-for-cie"></span>`fn new_for_cie<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, cie: &CommonInformationEntry<R>) -> Self` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`CommonInformationEntry`](../index.md)
 
-- `fn next_row(self: &mut Self) -> Result<Option<&UnwindTableRow<<R as >::Offset, S>>>` — [`Result`](../../index.md), [`UnwindTableRow`](../index.md), [`Reader`](../index.md)
+- <span id="unwindtable-next-row"></span>`fn next_row(&mut self) -> Result<Option<&UnwindTableRow<<R as >::Offset, S>>>` — [`Result`](../../index.md), [`UnwindTableRow`](../index.md), [`Reader`](../index.md)
 
-- `fn into_current_row(self: Self) -> Option<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`UnwindTableRow`](../index.md), [`Reader`](../index.md)
+- <span id="unwindtable-into-current-row"></span>`fn into_current_row(self) -> Option<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`UnwindTableRow`](../index.md), [`Reader`](../index.md)
 
-- `fn evaluate(self: &mut Self, instruction: CallFrameInstruction<<R as >::Offset>) -> Result<bool>` — [`CallFrameInstruction`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="unwindtable-evaluate"></span>`fn evaluate(&mut self, instruction: CallFrameInstruction<<R as >::Offset>) -> Result<bool>` — [`CallFrameInstruction`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a, 'ctx, R, S> Debug for UnwindTable<'a, 'ctx, R, S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unwindtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RegisterRuleMap<T, S>`
 
@@ -1048,39 +1115,41 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2530-2536`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2530-L2536)*
+
 #### Implementations
 
-- `fn is_default(self: &Self) -> bool`
+- <span id="registerrulemap-is-default"></span>`fn is_default(&self) -> bool`
 
-- `fn get(self: &Self, register: Register) -> RegisterRule<T>` — [`Register`](../../index.md), [`RegisterRule`](../index.md)
+- <span id="registerrulemap-get"></span>`fn get(&self, register: Register) -> RegisterRule<T>` — [`Register`](../../index.md), [`RegisterRule`](../index.md)
 
-- `fn set(self: &mut Self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../../index.md), [`RegisterRule`](../index.md), [`Result`](../../index.md)
+- <span id="registerrulemap-set"></span>`fn set(&mut self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../../index.md), [`RegisterRule`](../index.md), [`Result`](../../index.md)
 
-- `fn iter(self: &Self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](../index.md)
+- <span id="registerrulemap-iter"></span>`fn iter(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T, S> Clone for RegisterRuleMap<T, S>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="registerrulemap-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, S> Debug for RegisterRuleMap<T, S>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="registerrulemap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S> Default for RegisterRuleMap<T, S>`
 
-- `fn default() -> Self`
+- <span id="registerrulemap-default"></span>`fn default() -> Self`
 
 ##### `impl<T, S> Eq for RegisterRuleMap<T, S>`
 
 ##### `impl<'a, R, S> FromIterator for RegisterRuleMap<R, S>`
 
-- `fn from_iter<T>(iter: T) -> Self`
+- <span id="registerrulemap-from-iter"></span>`fn from_iter<T>(iter: T) -> Self`
 
 ##### `impl<T, S> PartialEq for RegisterRuleMap<T, S>`
 
-- `fn eq(self: &Self, rhs: &Self) -> bool`
+- <span id="registerrulemap-eq"></span>`fn eq(&self, rhs: &Self) -> bool`
 
 ### `RegisterRuleIter<'iter, T>`
 
@@ -1090,31 +1159,33 @@ where
     T: ReaderOffset;
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2684-2686`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2684-L2686)*
+
 An unordered iterator for register rules.
 
 #### Trait Implementations
 
 ##### `impl<'iter, T> Clone for RegisterRuleIter<'iter, T>`
 
-- `fn clone(self: &Self) -> RegisterRuleIter<'iter, T>` — [`RegisterRuleIter`](../index.md)
+- <span id="registerruleiter-clone"></span>`fn clone(&self) -> RegisterRuleIter<'iter, T>` — [`RegisterRuleIter`](../index.md)
 
 ##### `impl<'iter, T> Debug for RegisterRuleIter<'iter, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="registerruleiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for RegisterRuleIter<'iter, T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="registerruleiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="registerruleiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="registerruleiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'iter, T: ReaderOffset> Iterator for RegisterRuleIter<'iter, T>`
 
-- `type Item = &'iter (Register, RegisterRule<T>)`
+- <span id="registerruleiter-type-item"></span>`type Item = &'iter (Register, RegisterRule<T>)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="registerruleiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `UnwindTableRow<T, S>`
 
@@ -1131,46 +1202,48 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2699-2709`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2699-L2709)*
+
 A row in the virtual unwind table that describes how to find the values of
 the registers in the *previous* frame for a range of PC addresses.
 
 #### Implementations
 
-- `fn is_default(self: &Self) -> bool`
+- <span id="unwindtablerow-is-default"></span>`fn is_default(&self) -> bool`
 
-- `fn start_address(self: &Self) -> u64`
+- <span id="unwindtablerow-start-address"></span>`fn start_address(&self) -> u64`
 
-- `fn end_address(self: &Self) -> u64`
+- <span id="unwindtablerow-end-address"></span>`fn end_address(&self) -> u64`
 
-- `fn contains(self: &Self, address: u64) -> bool`
+- <span id="unwindtablerow-contains"></span>`fn contains(&self, address: u64) -> bool`
 
-- `fn saved_args_size(self: &Self) -> u64`
+- <span id="unwindtablerow-saved-args-size"></span>`fn saved_args_size(&self) -> u64`
 
-- `fn cfa(self: &Self) -> &CfaRule<T>` — [`CfaRule`](../index.md)
+- <span id="unwindtablerow-cfa"></span>`fn cfa(&self) -> &CfaRule<T>` — [`CfaRule`](../index.md)
 
-- `fn register(self: &Self, register: Register) -> RegisterRule<T>` — [`Register`](../../index.md), [`RegisterRule`](../index.md)
+- <span id="unwindtablerow-register"></span>`fn register(&self, register: Register) -> RegisterRule<T>` — [`Register`](../../index.md), [`RegisterRule`](../index.md)
 
-- `fn registers(self: &Self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](../index.md)
+- <span id="unwindtablerow-registers"></span>`fn registers(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T, S> Clone for UnwindTableRow<T, S>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="unwindtablerow-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, S> Debug for UnwindTableRow<T, S>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unwindtablerow-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S> Default for UnwindTableRow<T, S>`
 
-- `fn default() -> Self`
+- <span id="unwindtablerow-default"></span>`fn default() -> Self`
 
 ##### `impl<T, S> Eq for UnwindTableRow<T, S>`
 
 ##### `impl<T, S> PartialEq for UnwindTableRow<T, S>`
 
-- `fn eq(self: &Self, other: &UnwindTableRow<T, S>) -> bool` — [`UnwindTableRow`](../index.md)
+- <span id="unwindtablerow-eq"></span>`fn eq(&self, other: &UnwindTableRow<T, S>) -> bool` — [`UnwindTableRow`](../index.md)
 
 ##### `impl<T, S> StructuralPartialEq for UnwindTableRow<T, S>`
 
@@ -1185,6 +1258,8 @@ struct CallFrameInstructionIter<'a, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3471-3476`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3471-L3476)*
+
 A lazy iterator parsing call frame instructions.
 
 Can be [used with
@@ -1192,17 +1267,17 @@ Can be [used with
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<CallFrameInstruction<<R as >::Offset>>>` — [`Result`](../../index.md), [`CallFrameInstruction`](../index.md), [`Reader`](../index.md)
+- <span id="callframeinstructioniter-next"></span>`fn next(&mut self) -> Result<Option<CallFrameInstruction<<R as >::Offset>>>` — [`Result`](../../index.md), [`CallFrameInstruction`](../index.md), [`Reader`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'a, R: $crate::clone::Clone + Reader> Clone for CallFrameInstructionIter<'a, R>`
+##### `impl<'a, R: clone::Clone + Reader> Clone for CallFrameInstructionIter<'a, R>`
 
-- `fn clone(self: &Self) -> CallFrameInstructionIter<'a, R>` — [`CallFrameInstructionIter`](../index.md)
+- <span id="callframeinstructioniter-clone"></span>`fn clone(&self) -> CallFrameInstructionIter<'a, R>` — [`CallFrameInstructionIter`](../index.md)
 
-##### `impl<'a, R: $crate::fmt::Debug + Reader> Debug for CallFrameInstructionIter<'a, R>`
+##### `impl<'a, R: fmt::Debug + Reader> Debug for CallFrameInstructionIter<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="callframeinstructioniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `UnwindExpression<T: ReaderOffset>`
 
@@ -1212,6 +1287,8 @@ struct UnwindExpression<T: ReaderOffset> {
     pub length: T,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3537-3542`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3537-L3542)*
 
 The location of a DWARF expression within an unwind section.
 
@@ -1252,25 +1329,25 @@ Ok(())
 
 #### Implementations
 
-- `fn get<R, S>(self: &Self, section: &S) -> Result<Expression<R>>` — [`Result`](../../index.md), [`Expression`](../index.md)
+- <span id="unwindexpression-get"></span>`fn get<R, S>(&self, section: &S) -> Result<Expression<R>>` — [`Result`](../../index.md), [`Expression`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + ReaderOffset> Clone for UnwindExpression<T>`
+##### `impl<T: clone::Clone + ReaderOffset> Clone for UnwindExpression<T>`
 
-- `fn clone(self: &Self) -> UnwindExpression<T>` — [`UnwindExpression`](../index.md)
+- <span id="unwindexpression-clone"></span>`fn clone(&self) -> UnwindExpression<T>` — [`UnwindExpression`](../index.md)
 
-##### `impl<T: $crate::marker::Copy + ReaderOffset> Copy for UnwindExpression<T>`
+##### `impl<T: marker::Copy + ReaderOffset> Copy for UnwindExpression<T>`
 
-##### `impl<T: $crate::fmt::Debug + ReaderOffset> Debug for UnwindExpression<T>`
+##### `impl<T: fmt::Debug + ReaderOffset> Debug for UnwindExpression<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unwindexpression-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq + ReaderOffset> Eq for UnwindExpression<T>`
+##### `impl<T: cmp::Eq + ReaderOffset> Eq for UnwindExpression<T>`
 
-##### `impl<T: $crate::cmp::PartialEq + ReaderOffset> PartialEq for UnwindExpression<T>`
+##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for UnwindExpression<T>`
 
-- `fn eq(self: &Self, other: &UnwindExpression<T>) -> bool` — [`UnwindExpression`](../index.md)
+- <span id="unwindexpression-eq"></span>`fn eq(&self, other: &UnwindExpression<T>) -> bool` — [`UnwindExpression`](../index.md)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for UnwindExpression<T>`
 
@@ -1285,15 +1362,17 @@ struct PointerEncodingParameters<'a, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3626-3631`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3626-L3631)*
+
 #### Trait Implementations
 
-##### `impl<'a, R: $crate::clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
+##### `impl<'a, R: clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
 
-- `fn clone(self: &Self) -> PointerEncodingParameters<'a, R>` — [`PointerEncodingParameters`](#pointerencodingparameters)
+- <span id="pointerencodingparameters-clone"></span>`fn clone(&self) -> PointerEncodingParameters<'a, R>` — [`PointerEncodingParameters`](#pointerencodingparameters)
 
-##### `impl<'a, R: $crate::fmt::Debug + Reader> Debug for PointerEncodingParameters<'a, R>`
+##### `impl<'a, R: fmt::Debug + Reader> Debug for PointerEncodingParameters<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pointerencodingparameters-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -1308,6 +1387,8 @@ where
     Fde(PartialFrameDescriptionEntry<'bases, Section, R>),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1059-1070`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1059-L1070)*
 
 Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
@@ -1327,17 +1408,17 @@ Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
 ##### `impl<'bases, Section, R> Clone for CieOrFde<'bases, Section, R>`
 
-- `fn clone(self: &Self) -> CieOrFde<'bases, Section, R>` — [`CieOrFde`](../index.md)
+- <span id="cieorfde-clone"></span>`fn clone(&self) -> CieOrFde<'bases, Section, R>` — [`CieOrFde`](../index.md)
 
 ##### `impl<'bases, Section, R> Debug for CieOrFde<'bases, Section, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cieorfde-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'bases, Section, R> Eq for CieOrFde<'bases, Section, R>`
 
 ##### `impl<'bases, Section, R> PartialEq for CieOrFde<'bases, Section, R>`
 
-- `fn eq(self: &Self, other: &CieOrFde<'bases, Section, R>) -> bool` — [`CieOrFde`](../index.md)
+- <span id="cieorfde-eq"></span>`fn eq(&self, other: &CieOrFde<'bases, Section, R>) -> bool` — [`CieOrFde`](../index.md)
 
 ##### `impl<'bases, Section, R> StructuralPartialEq for CieOrFde<'bases, Section, R>`
 
@@ -1353,6 +1434,8 @@ enum CfaRule<T: ReaderOffset> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2876-2886`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2876-L2886)*
+
 The canonical frame address (CFA) recovery rules.
 
 #### Variants
@@ -1367,27 +1450,27 @@ The canonical frame address (CFA) recovery rules.
 
 #### Implementations
 
-- `fn is_default(self: &Self) -> bool`
+- <span id="cfarule-is-default"></span>`fn is_default(&self) -> bool`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + ReaderOffset> Clone for CfaRule<T>`
+##### `impl<T: clone::Clone + ReaderOffset> Clone for CfaRule<T>`
 
-- `fn clone(self: &Self) -> CfaRule<T>` — [`CfaRule`](../index.md)
+- <span id="cfarule-clone"></span>`fn clone(&self) -> CfaRule<T>` — [`CfaRule`](../index.md)
 
-##### `impl<T: $crate::fmt::Debug + ReaderOffset> Debug for CfaRule<T>`
+##### `impl<T: fmt::Debug + ReaderOffset> Debug for CfaRule<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cfarule-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ReaderOffset> Default for CfaRule<T>`
 
-- `fn default() -> Self`
+- <span id="cfarule-default"></span>`fn default() -> Self`
 
-##### `impl<T: $crate::cmp::Eq + ReaderOffset> Eq for CfaRule<T>`
+##### `impl<T: cmp::Eq + ReaderOffset> Eq for CfaRule<T>`
 
-##### `impl<T: $crate::cmp::PartialEq + ReaderOffset> PartialEq for CfaRule<T>`
+##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CfaRule<T>`
 
-- `fn eq(self: &Self, other: &CfaRule<T>) -> bool` — [`CfaRule`](../index.md)
+- <span id="cfarule-eq"></span>`fn eq(&self, other: &CfaRule<T>) -> bool` — [`CfaRule`](../index.md)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for CfaRule<T>`
 
@@ -1406,6 +1489,8 @@ enum RegisterRule<T: ReaderOffset> {
     Constant(u64),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2916-2951`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2916-L2951)*
 
 An entry in the abstract CFI table that describes how to find the value of a
 register.
@@ -1462,23 +1547,23 @@ previous frame."
 
 #### Implementations
 
-- `fn is_defined(self: &Self) -> bool`
+- <span id="registerrule-is-defined"></span>`fn is_defined(&self) -> bool`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + ReaderOffset> Clone for RegisterRule<T>`
+##### `impl<T: clone::Clone + ReaderOffset> Clone for RegisterRule<T>`
 
-- `fn clone(self: &Self) -> RegisterRule<T>` — [`RegisterRule`](../index.md)
+- <span id="registerrule-clone"></span>`fn clone(&self) -> RegisterRule<T>` — [`RegisterRule`](../index.md)
 
-##### `impl<T: $crate::fmt::Debug + ReaderOffset> Debug for RegisterRule<T>`
+##### `impl<T: fmt::Debug + ReaderOffset> Debug for RegisterRule<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="registerrule-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq + ReaderOffset> Eq for RegisterRule<T>`
+##### `impl<T: cmp::Eq + ReaderOffset> Eq for RegisterRule<T>`
 
-##### `impl<T: $crate::cmp::PartialEq + ReaderOffset> PartialEq for RegisterRule<T>`
+##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for RegisterRule<T>`
 
-- `fn eq(self: &Self, other: &RegisterRule<T>) -> bool` — [`RegisterRule`](../index.md)
+- <span id="registerrule-eq"></span>`fn eq(&self, other: &RegisterRule<T>) -> bool` — [`RegisterRule`](../index.md)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for RegisterRule<T>`
 
@@ -1558,6 +1643,8 @@ enum CallFrameInstruction<T: ReaderOffset> {
     Nop,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2961-3255`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2961-L3255)*
 
 A parsed call frame instruction.
 
@@ -1801,23 +1888,23 @@ A parsed call frame instruction.
 
 #### Implementations
 
-- `fn parse<R: Reader<Offset = T>>(input: &mut R, address_encoding: Option<DwEhPe>, parameters: &PointerEncodingParameters<'_, R>, vendor: Vendor) -> Result<CallFrameInstruction<T>>` — [`DwEhPe`](../../index.md), [`PointerEncodingParameters`](#pointerencodingparameters), [`Vendor`](../../index.md), [`Result`](../../index.md), [`CallFrameInstruction`](../index.md)
+- <span id="callframeinstruction-parse"></span>`fn parse<R: Reader<Offset = T>>(input: &mut R, address_encoding: Option<DwEhPe>, parameters: &PointerEncodingParameters<'_, R>, vendor: Vendor) -> Result<CallFrameInstruction<T>>` — [`DwEhPe`](../../index.md), [`PointerEncodingParameters`](#pointerencodingparameters), [`Vendor`](../../index.md), [`Result`](../../index.md), [`CallFrameInstruction`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + ReaderOffset> Clone for CallFrameInstruction<T>`
+##### `impl<T: clone::Clone + ReaderOffset> Clone for CallFrameInstruction<T>`
 
-- `fn clone(self: &Self) -> CallFrameInstruction<T>` — [`CallFrameInstruction`](../index.md)
+- <span id="callframeinstruction-clone"></span>`fn clone(&self) -> CallFrameInstruction<T>` — [`CallFrameInstruction`](../index.md)
 
-##### `impl<T: $crate::fmt::Debug + ReaderOffset> Debug for CallFrameInstruction<T>`
+##### `impl<T: fmt::Debug + ReaderOffset> Debug for CallFrameInstruction<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="callframeinstruction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq + ReaderOffset> Eq for CallFrameInstruction<T>`
+##### `impl<T: cmp::Eq + ReaderOffset> Eq for CallFrameInstruction<T>`
 
-##### `impl<T: $crate::cmp::PartialEq + ReaderOffset> PartialEq for CallFrameInstruction<T>`
+##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CallFrameInstruction<T>`
 
-- `fn eq(self: &Self, other: &CallFrameInstruction<T>) -> bool` — [`CallFrameInstruction`](../index.md)
+- <span id="callframeinstruction-eq"></span>`fn eq(&self, other: &CallFrameInstruction<T>) -> bool` — [`CallFrameInstruction`](../index.md)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for CallFrameInstruction<T>`
 
@@ -1829,6 +1916,8 @@ enum Pointer {
     Indirect(u64),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3577-3588`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3577-L3588)*
 
 A decoded pointer.
 
@@ -1849,33 +1938,33 @@ A decoded pointer.
 
 #### Implementations
 
-- `fn new(encoding: constants::DwEhPe, address: u64) -> Pointer` — [`DwEhPe`](../../index.md), [`Pointer`](../index.md)
+- <span id="pointer-new"></span>`fn new(encoding: constants::DwEhPe, address: u64) -> Pointer` — [`DwEhPe`](../../index.md), [`Pointer`](../index.md)
 
-- `fn direct(self: Self) -> Result<u64>` — [`Result`](../../index.md)
+- <span id="pointer-direct"></span>`fn direct(self) -> Result<u64>` — [`Result`](../../index.md)
 
-- `fn pointer(self: Self) -> u64`
+- <span id="pointer-pointer"></span>`fn pointer(self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl Clone for Pointer`
 
-- `fn clone(self: &Self) -> Pointer` — [`Pointer`](../index.md)
+- <span id="pointer-clone"></span>`fn clone(&self) -> Pointer` — [`Pointer`](../index.md)
 
 ##### `impl Copy for Pointer`
 
 ##### `impl Debug for Pointer`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Pointer`
 
-- `fn default() -> Self`
+- <span id="pointer-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Pointer`
 
 ##### `impl PartialEq for Pointer`
 
-- `fn eq(self: &Self, other: &Pointer) -> bool` — [`Pointer`](../index.md)
+- <span id="pointer-eq"></span>`fn eq(&self, other: &Pointer) -> bool` — [`Pointer`](../index.md)
 
 ##### `impl StructuralPartialEq for Pointer`
 
@@ -1889,13 +1978,20 @@ where
     T: ReaderOffset { ... }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:568-574`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L568-L574)*
+
 An offset into an `UnwindSection`.
 
 #### Required Methods
 
-- `fn into(self: Self) -> T`
+- `fn into(self) -> T`
 
   Convert an `UnwindOffset<T>` into a `T`.
+
+#### Implementors
+
+- [`DebugFrameOffset`](../../index.md)
+- [`EhFrameOffset`](../../index.md)
 
 ### `UnwindSection<R: Reader>`
 
@@ -1903,43 +1999,54 @@ An offset into an `UnwindSection`.
 trait UnwindSection<R: Reader>: Clone + Debug + _UnwindSectionPrivate<R> { ... }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:635-786`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L635-L786)*
+
 A section holding unwind information: either `.debug_frame` or
 `.eh_frame`. See [`DebugFrame`](./struct.DebugFrame.html) and
 [`EhFrame`](./struct.EhFrame.html) respectively.
 
-#### Required Methods
+#### Associated Types
 
 - `type Offset: 1`
 
-- `fn entries<'bases>(self: &Self, bases: &'bases BaseAddresses) -> CfiEntriesIter<'bases, Self, R>`
+#### Provided Methods
+
+- `fn entries<'bases>(&self, bases: &'bases BaseAddresses) -> CfiEntriesIter<'bases, Self, R>`
 
   Iterate over the `CommonInformationEntry`s and `FrameDescriptionEntry`s
 
-- `fn cie_from_offset(self: &Self, bases: &BaseAddresses, offset: <Self as >::Offset) -> Result<CommonInformationEntry<R>>`
+- `fn cie_from_offset(&self, bases: &BaseAddresses, offset: <Self as >::Offset) -> Result<CommonInformationEntry<R>>`
 
   Parse the `CommonInformationEntry` at the given offset.
 
-- `fn partial_fde_from_offset<'bases>(self: &Self, bases: &'bases BaseAddresses, offset: <Self as >::Offset) -> Result<PartialFrameDescriptionEntry<'bases, Self, R>>`
+- `fn partial_fde_from_offset<'bases>(&self, bases: &'bases BaseAddresses, offset: <Self as >::Offset) -> Result<PartialFrameDescriptionEntry<'bases, Self, R>>`
 
   Parse the `PartialFrameDescriptionEntry` at the given offset.
 
-- `fn fde_from_offset<F>(self: &Self, bases: &BaseAddresses, offset: <Self as >::Offset, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
+- `fn fde_from_offset<F>(&self, bases: &BaseAddresses, offset: <Self as >::Offset, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
 
   Parse the `FrameDescriptionEntry` at the given offset.
 
-- `fn fde_for_address<F>(self: &Self, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
+- `fn fde_for_address<F>(&self, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
 
   Find the `FrameDescriptionEntry` for the given address.
 
-- `fn unwind_info_for_address<'ctx, F, S>(self: &Self, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>`
+- `fn unwind_info_for_address<'ctx, F, S>(&self, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>`
 
   Find the frame unwind information for the given address.
+
+#### Implementors
+
+- [`DebugFrame`](../index.md)
+- [`EhFrame`](../index.md)
 
 ### `UnwindContextStorage<T: ReaderOffset>`
 
 ```rust
 trait UnwindContextStorage<T: ReaderOffset>: Sized { ... }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1896-1904`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1896-L1904)*
 
 Specification of what storage should be used for [`UnwindContext`](../index.md).
 
@@ -1987,11 +2094,15 @@ unreachable!()
 }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Rules: 1`
 
 - `type Stack: 1`
+
+#### Implementors
+
+- [`StoreOnHeap`](../../index.md)
 
 ## Functions
 
@@ -2004,11 +2115,15 @@ where
     Section: UnwindSection<R>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1072-1116`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1072-L1116)*
+
 ### `parse_encoded_pointer`
 
 ```rust
 fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<Pointer>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3633-3688`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3633-L3688)*
 
 ### `parse_encoded_value`
 
@@ -2016,29 +2131,35 @@ fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &Po
 fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<u64>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3690-3715`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3690-L3715)*
+
 ## Constants
 
 ### `MAX_RULES`
-
 ```rust
 const MAX_RULES: usize = 192usize;
 ```
 
-### `MAX_UNWIND_STACK_DEPTH`
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1907`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1907)*
 
+### `MAX_UNWIND_STACK_DEPTH`
 ```rust
 const MAX_UNWIND_STACK_DEPTH: usize = 4usize;
 ```
 
-### `CFI_INSTRUCTION_HIGH_BITS_MASK`
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1909`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1909)*
 
+### `CFI_INSTRUCTION_HIGH_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_HIGH_BITS_MASK: u8 = 192u8;
 ```
 
-### `CFI_INSTRUCTION_LOW_BITS_MASK`
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3257`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3257)*
 
+### `CFI_INSTRUCTION_LOW_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_LOW_BITS_MASK: u8 = 63u8;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3258`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3258)*
 

@@ -4,6 +4,12 @@
 
 # Module `into_iter`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IntoIter`](#intoiter) | struct | An iterator that moves out of a vector. |
+
 ## Structs
 
 ### `IntoIter<T, A: Allocator>`
@@ -19,6 +25,8 @@ struct IntoIter<T, A: Allocator> {
 }
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
+
 An iterator that moves out of a vector.
 
 This `struct` is created by the `into_iter` method on [`Vec`](super::Vec)
@@ -33,35 +41,35 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
 #### Implementations
 
-- `fn as_slice(self: &Self) -> &[T]`
+- <span id="intoiter-as-slice"></span>`fn as_slice(&self) -> &[T]`
 
-- `fn as_mut_slice(self: &mut Self) -> &mut [T]`
+- <span id="intoiter-as-mut-slice"></span>`fn as_mut_slice(&mut self) -> &mut [T]`
 
-- `fn allocator(self: &Self) -> &A`
+- <span id="intoiter-allocator"></span>`fn allocator(&self) -> &A`
 
-- `fn as_raw_mut_slice(self: &mut Self) -> *mut [T]`
+- <span id="intoiter-as-raw-mut-slice"></span>`fn as_raw_mut_slice(&mut self) -> *mut [T]`
 
 #### Trait Implementations
 
 ##### `impl<T, A: Allocator> AsRef for IntoIter<T, A>`
 
-- `fn as_ref(self: &Self) -> &[T]`
+- <span id="intoiter-as-ref"></span>`fn as_ref(&self) -> &[T]`
 
 ##### `impl<T: Clone, A: Allocator + Clone> Clone for IntoIter<T, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="intoiter-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: fmt::Debug, A: Allocator> Debug for IntoIter<T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A: Allocator> DoubleEndedIterator for IntoIter<T, A>`
 
-- `fn next_back(self: &mut Self) -> Option<T>`
+- <span id="intoiter-next-back"></span>`fn next_back(&mut self) -> Option<T>`
 
 ##### `impl<T, A: Allocator> Drop for IntoIter<T, A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="intoiter-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T, A: Allocator> ExactSizeIterator for IntoIter<T, A>`
 
@@ -69,21 +77,21 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
 ##### `impl<I> IntoIterator for IntoIter<T, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for IntoIter<T, A>`
 
-- `type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
-- `fn next(self: &mut Self) -> Option<T>`
+- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<T>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="intoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn count(self: Self) -> usize`
+- <span id="intoiter-count"></span>`fn count(self) -> usize`
 
 ##### `impl<T: Send, A: Allocator + Send> Send for IntoIter<T, A>`
 

@@ -19,6 +19,16 @@ for small needles in small haystacks, as it might finish its search before a
 beefier algorithm (like Two-Way) even starts.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Finder`](#finder) | struct | A forward substring searcher using the Rabin-Karp algorithm. |
+| [`FinderRev`](#finderrev) | struct | A reverse substring searcher using the Rabin-Karp algorithm. |
+| [`Hash`](#hash) | struct | A Rabin-Karp hash. |
+| [`is_fast`](#is_fast) | fn | Whether RK is believed to be very fast for the given needle/haystack. |
+| [`is_equal_raw`](#is_equal_raw) | fn | Returns true when `x[i] == y[i]` for all `0 <= i < n`. |
+
 ## Structs
 
 ### `Finder`
@@ -29,6 +39,8 @@ struct Finder {
     hash_2pow: u32,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/rabinkarp.rs:69-77`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/rabinkarp.rs#L69-L77)*
 
 A forward substring searcher using the Rabin-Karp algorithm.
 
@@ -56,21 +68,21 @@ substring search algorithms.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Finder` — [`Finder`](#finder)
+- <span id="finder-new"></span>`fn new(needle: &[u8]) -> Finder` — [`Finder`](#finder)
 
-- `fn find(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
+- <span id="finder-find"></span>`fn find(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
-- `unsafe fn find_raw(self: &Self, hstart: *const u8, hend: *const u8, nstart: *const u8, nend: *const u8) -> Option<*const u8>`
+- <span id="finder-find-raw"></span>`unsafe fn find_raw(&self, hstart: *const u8, hend: *const u8, nstart: *const u8, nend: *const u8) -> Option<*const u8>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Finder`
 
-- `fn clone(self: &Self) -> Finder` — [`Finder`](#finder)
+- <span id="finder-clone"></span>`fn clone(&self) -> Finder` — [`Finder`](#finder)
 
 ##### `impl Debug for Finder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FinderRev`
 
@@ -78,25 +90,27 @@ substring search algorithms.
 struct FinderRev(Finder);
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/rabinkarp.rs:180`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/rabinkarp.rs#L180)*
+
 A reverse substring searcher using the Rabin-Karp algorithm.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](#finderrev)
+- <span id="finderrev-new"></span>`fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](#finderrev)
 
-- `fn rfind(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
+- <span id="finderrev-rfind"></span>`fn rfind(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
-- `unsafe fn rfind_raw(self: &Self, hstart: *const u8, hend: *const u8, nstart: *const u8, nend: *const u8) -> Option<*const u8>`
+- <span id="finderrev-rfind-raw"></span>`unsafe fn rfind_raw(&self, hstart: *const u8, hend: *const u8, nstart: *const u8, nend: *const u8) -> Option<*const u8>`
 
 #### Trait Implementations
 
 ##### `impl Clone for FinderRev`
 
-- `fn clone(self: &Self) -> FinderRev` — [`FinderRev`](#finderrev)
+- <span id="finderrev-clone"></span>`fn clone(&self) -> FinderRev` — [`FinderRev`](#finderrev)
 
 ##### `impl Debug for FinderRev`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finderrev-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Hash`
 
@@ -104,44 +118,46 @@ A reverse substring searcher using the Rabin-Karp algorithm.
 struct Hash(u32);
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/rabinkarp.rs:285`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/rabinkarp.rs#L285)*
+
 A Rabin-Karp hash. This might represent the hash of a needle, or the hash
 of a rolling window in the haystack.
 
 #### Implementations
 
-- `fn new() -> Hash` — [`Hash`](#hash)
+- <span id="hash-new"></span>`fn new() -> Hash` — [`Hash`](#hash)
 
-- `unsafe fn forward(start: *const u8, end: *const u8) -> Hash` — [`Hash`](#hash)
+- <span id="hash-forward"></span>`unsafe fn forward(start: *const u8, end: *const u8) -> Hash` — [`Hash`](#hash)
 
-- `unsafe fn reverse(start: *const u8, end: *const u8) -> Hash` — [`Hash`](#hash)
+- <span id="hash-reverse"></span>`unsafe fn reverse(start: *const u8, end: *const u8) -> Hash` — [`Hash`](#hash)
 
-- `fn roll(self: &mut Self, finder: &Finder, old: u8, new: u8)` — [`Finder`](#finder)
+- <span id="hash-roll"></span>`fn roll(&mut self, finder: &Finder, old: u8, new: u8)` — [`Finder`](#finder)
 
-- `fn add(self: &mut Self, byte: u8)`
+- <span id="hash-add"></span>`fn add(&mut self, byte: u8)`
 
-- `fn del(self: &mut Self, finder: &Finder, byte: u8)` — [`Finder`](#finder)
+- <span id="hash-del"></span>`fn del(&mut self, finder: &Finder, byte: u8)` — [`Finder`](#finder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Hash`
 
-- `fn clone(self: &Self) -> Hash` — [`Hash`](#hash)
+- <span id="hash-clone"></span>`fn clone(&self) -> Hash` — [`Hash`](#hash)
 
 ##### `impl Copy for Hash`
 
 ##### `impl Debug for Hash`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="hash-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Hash`
 
-- `fn default() -> Hash` — [`Hash`](#hash)
+- <span id="hash-default"></span>`fn default() -> Hash` — [`Hash`](#hash)
 
 ##### `impl Eq for Hash`
 
 ##### `impl PartialEq for Hash`
 
-- `fn eq(self: &Self, other: &Hash) -> bool` — [`Hash`](#hash)
+- <span id="hash-eq"></span>`fn eq(&self, other: &Hash) -> bool` — [`Hash`](#hash)
 
 ##### `impl StructuralPartialEq for Hash`
 
@@ -153,6 +169,8 @@ of a rolling window in the haystack.
 fn is_fast(haystack: &[u8], _needle: &[u8]) -> bool
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/rabinkarp.rs:278-280`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/rabinkarp.rs#L278-L280)*
+
 Whether RK is believed to be very fast for the given needle/haystack.
 
 ### `is_equal_raw`
@@ -160,6 +178,8 @@ Whether RK is believed to be very fast for the given needle/haystack.
 ```rust
 unsafe fn is_equal_raw(x: *const u8, y: *const u8, n: usize) -> bool
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/rabinkarp.rs:362-364`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/rabinkarp.rs#L362-L364)*
 
 Returns true when `x[i] == y[i]` for all `0 <= i < n`.
 

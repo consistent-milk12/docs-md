@@ -4,6 +4,14 @@
 
 # Module `pubnames`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PubNamesEntry`](#pubnamesentry) | struct | A single parsed pubname. |
+| [`DebugPubNames`](#debugpubnames) | struct | The `DebugPubNames` struct represents the DWARF public names information found in the `.debug_pubnames` section. |
+| [`PubNamesEntryIter`](#pubnamesentryiter) | struct | An iterator over the pubnames from a `.debug_pubnames` section. |
+
 ## Structs
 
 ### `PubNamesEntry<R: Reader>`
@@ -16,29 +24,31 @@ struct PubNamesEntry<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:8-12`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubnames.rs#L8-L12)*
+
 A single parsed pubname.
 
 #### Implementations
 
-- `fn name(self: &Self) -> &R`
+- <span id="pubnamesentry-name"></span>`fn name(&self) -> &R`
 
-- `fn unit_header_offset(self: &Self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="pubnamesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../../index.md), [`Reader`](../index.md)
 
-- `fn die_offset(self: &Self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="pubnamesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for PubNamesEntry<R>`
+##### `impl<R: clone::Clone + Reader> Clone for PubNamesEntry<R>`
 
-- `fn clone(self: &Self) -> PubNamesEntry<R>` — [`PubNamesEntry`](../index.md)
+- <span id="pubnamesentry-clone"></span>`fn clone(&self) -> PubNamesEntry<R>` — [`PubNamesEntry`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for PubNamesEntry<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for PubNamesEntry<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubnamesentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: Reader> PubStuffEntry for PubNamesEntry<R>`
 
-- `fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`DebugInfoOffset`](../../index.md)
+- <span id="pubnamesentry-new"></span>`fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`DebugInfoOffset`](../../index.md)
 
 ### `DebugPubNames<R: Reader>`
 
@@ -46,34 +56,38 @@ A single parsed pubname.
 struct DebugPubNames<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubNamesEntry<R>>>);
 ```
 
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:50`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubnames.rs#L50)*
+
 The `DebugPubNames` struct represents the DWARF public names information
 found in the `.debug_pubnames` section.
 
 #### Implementations
 
-- `fn items(self: &Self) -> PubNamesEntryIter<R>` — [`PubNamesEntryIter`](../index.md)
+- <span id="debugpubnames-new"></span>`fn new(debug_pubnames_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for DebugPubNames<R>`
+##### `impl<R: clone::Clone + Reader> Clone for DebugPubNames<R>`
 
-- `fn clone(self: &Self) -> DebugPubNames<R>` — [`DebugPubNames`](../index.md)
+- <span id="debugpubnames-clone"></span>`fn clone(&self) -> DebugPubNames<R>` — [`DebugPubNames`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for DebugPubNames<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for DebugPubNames<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugpubnames-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: Reader> Section for DebugPubNames<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugpubnames-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugpubnames-reader"></span>`fn reader(&self) -> &R`
 
 ### `PubNamesEntryIter<R: Reader>`
 
 ```rust
 struct PubNamesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubNamesEntry<R>>>);
 ```
+
+*Defined in [`gimli-0.32.3/src/read/pubnames.rs:118`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubnames.rs#L118)*
 
 An iterator over the pubnames from a `.debug_pubnames` section.
 
@@ -82,15 +96,15 @@ Can be [used with
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<PubNamesEntry<R>>>` — [`Result`](../../index.md), [`PubNamesEntry`](../index.md)
+- <span id="pubnamesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubNamesEntry<R>>>` — [`Result`](../../index.md), [`PubNamesEntry`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for PubNamesEntryIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for PubNamesEntryIter<R>`
 
-- `fn clone(self: &Self) -> PubNamesEntryIter<R>` — [`PubNamesEntryIter`](../index.md)
+- <span id="pubnamesentryiter-clone"></span>`fn clone(&self) -> PubNamesEntryIter<R>` — [`PubNamesEntryIter`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for PubNamesEntryIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for PubNamesEntryIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubnamesentryiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

@@ -4,7 +4,13 @@
 
 # Module `features`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`suggestions`](#suggestions) | mod |  |
+
 ## Modules
 
-- [`suggestions`](suggestions/index.md) - 
+- [`suggestions`](suggestions/index.md)
 

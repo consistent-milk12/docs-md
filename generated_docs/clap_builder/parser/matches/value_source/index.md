@@ -4,6 +4,12 @@
 
 # Module `value_source`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ValueSource`](#valuesource) | enum | Origin of the argument's value |
+
 ## Enums
 
 ### `ValueSource`
@@ -15,6 +21,8 @@ enum ValueSource {
     CommandLine,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/value_source.rs:4-11`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/value_source.rs#L4-L11)*
 
 Origin of the argument's value
 
@@ -34,33 +42,33 @@ Origin of the argument's value
 
 #### Implementations
 
-- `fn is_explicit(self: Self) -> bool`
+- <span id="valuesource-is-explicit"></span>`fn is_explicit(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for ValueSource`
 
-- `fn clone(self: &Self) -> ValueSource` — [`ValueSource`](../../index.md)
+- <span id="valuesource-clone"></span>`fn clone(&self) -> ValueSource` — [`ValueSource`](#valuesource)
 
 ##### `impl Copy for ValueSource`
 
 ##### `impl Debug for ValueSource`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="valuesource-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ValueSource`
 
 ##### `impl Ord for ValueSource`
 
-- `fn cmp(self: &Self, other: &ValueSource) -> $crate::cmp::Ordering` — [`ValueSource`](../../index.md)
+- <span id="valuesource-cmp"></span>`fn cmp(&self, other: &ValueSource) -> cmp::Ordering` — [`ValueSource`](#valuesource)
 
 ##### `impl PartialEq for ValueSource`
 
-- `fn eq(self: &Self, other: &ValueSource) -> bool` — [`ValueSource`](../../index.md)
+- <span id="valuesource-eq"></span>`fn eq(&self, other: &ValueSource) -> bool` — [`ValueSource`](#valuesource)
 
 ##### `impl PartialOrd for ValueSource`
 
-- `fn partial_cmp(self: &Self, other: &ValueSource) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ValueSource`](../../index.md)
+- <span id="valuesource-partial-cmp"></span>`fn partial_cmp(&self, other: &ValueSource) -> option::Option<cmp::Ordering>` — [`ValueSource`](#valuesource)
 
 ##### `impl StructuralPartialEq for ValueSource`
 

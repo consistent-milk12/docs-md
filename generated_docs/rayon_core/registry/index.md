@@ -4,6 +4,52 @@
 
 # Module `registry`
 
+## Contents
+
+- [Structs](#structs)
+  - [`ThreadBuilder`](#threadbuilder)
+  - [`DefaultSpawn`](#defaultspawn)
+  - [`CustomSpawn`](#customspawn)
+  - [`Registry`](#registry)
+  - [`Terminator`](#terminator)
+  - [`RegistryId`](#registryid)
+  - [`ThreadInfo`](#threadinfo)
+  - [`WorkerThread`](#workerthread)
+  - [`XorShift64Star`](#xorshift64star)
+- [Traits](#traits)
+  - [`ThreadSpawn`](#threadspawn)
+- [Functions](#functions)
+  - [`global_registry`](#global_registry)
+  - [`init_global_registry`](#init_global_registry)
+  - [`set_global_registry`](#set_global_registry)
+  - [`default_global_registry`](#default_global_registry)
+  - [`main_loop`](#main_loop)
+  - [`in_worker`](#in_worker)
+- [Constants](#constants)
+  - [`WORKER_THREAD_STATE`](#worker_thread_state)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ThreadBuilder`](#threadbuilder) | struct | Thread builder used for customization via [`ThreadPoolBuilder::spawn_handler()`]. |
+| [`DefaultSpawn`](#defaultspawn) | struct | Spawns a thread in the "normal" way with `std::thread::Builder`. |
+| [`CustomSpawn`](#customspawn) | struct | Spawns a thread with a user's custom callback. |
+| [`Registry`](#registry) | struct |  |
+| [`Terminator`](#terminator) | struct |  |
+| [`RegistryId`](#registryid) | struct |  |
+| [`ThreadInfo`](#threadinfo) | struct |  |
+| [`WorkerThread`](#workerthread) | struct |  |
+| [`XorShift64Star`](#xorshift64star) | struct | [xorshift*] is a fast pseudorandom number generator which will even tolerate weak seeding, as long as it's not zero. |
+| [`ThreadSpawn`](#threadspawn) | trait | Generalized trait for spawning a thread in the `Registry`. |
+| [`global_registry`](#global_registry) | fn | Starts the worker threads (if that has not already happened). |
+| [`init_global_registry`](#init_global_registry) | fn | Starts the worker threads (if that has not already happened) with the given builder. |
+| [`set_global_registry`](#set_global_registry) | fn | Starts the worker threads (if that has not already happened) by creating a registry with the given callback. |
+| [`default_global_registry`](#default_global_registry) | fn |  |
+| [`main_loop`](#main_loop) | fn |  |
+| [`in_worker`](#in_worker) | fn | If already in a worker-thread, just execute `op`. |
+| [`WORKER_THREAD_STATE`](#worker_thread_state) | const |  |
+
 ## Structs
 
 ### `ThreadBuilder`
@@ -19,43 +65,47 @@ struct ThreadBuilder {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L22-L29)*
+
 Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
 #### Implementations
 
-- `fn index(self: &Self) -> usize`
+- <span id="threadbuilder-index"></span>`fn index(&self) -> usize`
 
-- `fn name(self: &Self) -> Option<&str>`
+- <span id="threadbuilder-name"></span>`fn name(&self) -> Option<&str>`
 
-- `fn stack_size(self: &Self) -> Option<usize>`
+- <span id="threadbuilder-stack-size"></span>`fn stack_size(&self) -> Option<usize>`
 
-- `fn run(self: Self)`
+- <span id="threadbuilder-run"></span>`fn run(self)`
 
 #### Trait Implementations
 
 ##### `impl Debug for ThreadBuilder`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for ThreadBuilder`
+##### `impl Pointable for ThreadBuilder`
 
-- `const ALIGN: usize`
+- <span id="threadbuilder-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="threadbuilder-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadbuilder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadbuilder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="threadbuilder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `DefaultSpawn`
 
 ```rust
 struct DefaultSpawn;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:82`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L82)*
 
 Spawns a thread in the "normal" way with `std::thread::Builder`.
 
@@ -66,35 +116,37 @@ but we don't actually want to expose these details in the API.
 
 ##### `impl Debug for DefaultSpawn`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="defaultspawn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DefaultSpawn`
 
-- `fn default() -> DefaultSpawn` — [`DefaultSpawn`](#defaultspawn)
+- <span id="defaultspawn-default"></span>`fn default() -> DefaultSpawn` — [`DefaultSpawn`](#defaultspawn)
 
-##### `impl<T> Pointable for DefaultSpawn`
+##### `impl Pointable for DefaultSpawn`
 
-- `const ALIGN: usize`
+- <span id="defaultspawn-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="defaultspawn-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="defaultspawn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="defaultspawn-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="defaultspawn-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="defaultspawn-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl ThreadSpawn for DefaultSpawn`
 
-- `fn spawn(self: &mut Self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](../index.md)
+- <span id="defaultspawn-spawn"></span>`fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](#threadbuilder)
 
 ### `CustomSpawn<F>`
 
 ```rust
 struct CustomSpawn<F>(F);
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:105`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L105)*
 
 Spawns a thread with a user's custom callback.
 
@@ -103,31 +155,31 @@ but we don't actually want to expose these details in the API.
 
 #### Implementations
 
-- `fn new(spawn: F) -> Self`
+- <span id="customspawn-new"></span>`fn new(spawn: F) -> Self`
 
 #### Trait Implementations
 
-##### `impl<F: $crate::fmt::Debug> Debug for CustomSpawn<F>`
+##### `impl<F: fmt::Debug> Debug for CustomSpawn<F>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="customspawn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for CustomSpawn<F>`
 
-- `const ALIGN: usize`
+- <span id="customspawn-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="customspawn-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="customspawn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="customspawn-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="customspawn-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="customspawn-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<F> ThreadSpawn for CustomSpawn<F>`
 
-- `fn spawn(self: &mut Self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](../index.md)
+- <span id="customspawn-spawn"></span>`fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](#threadbuilder)
 
 ### `Registry`
 
@@ -144,61 +196,63 @@ struct Registry {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:128-151`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L128-L151)*
+
 #### Implementations
 
-- `fn new<S>(builder: ThreadPoolBuilder<S>) -> Result<Arc<Self>, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md), [`ThreadPoolBuildError`](../index.md)
+- <span id="registry-new"></span>`fn new<S>(builder: ThreadPoolBuilder<S>) -> Result<Arc<Self>, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md), [`ThreadPoolBuildError`](../index.md)
 
-- `fn current() -> Arc<Registry>` — [`Registry`](#registry)
+- <span id="registry-current"></span>`fn current() -> Arc<Registry>` — [`Registry`](#registry)
 
-- `fn current_num_threads() -> usize`
+- <span id="registry-current-num-threads"></span>`fn current_num_threads() -> usize`
 
-- `fn current_thread(self: &Self) -> Option<&WorkerThread>` — [`WorkerThread`](#workerthread)
+- <span id="registry-current-thread"></span>`fn current_thread(&self) -> Option<&WorkerThread>` — [`WorkerThread`](#workerthread)
 
-- `fn id(self: &Self) -> RegistryId` — [`RegistryId`](#registryid)
+- <span id="registry-id"></span>`fn id(&self) -> RegistryId` — [`RegistryId`](#registryid)
 
-- `fn num_threads(self: &Self) -> usize`
+- <span id="registry-num-threads"></span>`fn num_threads(&self) -> usize`
 
-- `fn catch_unwind(self: &Self, f: impl FnOnce())`
+- <span id="registry-catch-unwind"></span>`fn catch_unwind(&self, f: impl FnOnce())`
 
-- `fn wait_until_primed(self: &Self)`
+- <span id="registry-wait-until-primed"></span>`fn wait_until_primed(&self)`
 
-- `fn inject_or_push(self: &Self, job_ref: JobRef)` — [`JobRef`](../job/index.md)
+- <span id="registry-inject-or-push"></span>`fn inject_or_push(&self, job_ref: JobRef)` — [`JobRef`](../job/index.md)
 
-- `fn inject(self: &Self, injected_job: JobRef)` — [`JobRef`](../job/index.md)
+- <span id="registry-inject"></span>`fn inject(&self, injected_job: JobRef)` — [`JobRef`](../job/index.md)
 
-- `fn has_injected_job(self: &Self) -> bool`
+- <span id="registry-has-injected-job"></span>`fn has_injected_job(&self) -> bool`
 
-- `fn pop_injected_job(self: &Self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
+- <span id="registry-pop-injected-job"></span>`fn pop_injected_job(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
 
-- `fn inject_broadcast(self: &Self, injected_jobs: impl ExactSizeIterator<Item = JobRef>)` — [`JobRef`](../job/index.md)
+- <span id="registry-inject-broadcast"></span>`fn inject_broadcast(&self, injected_jobs: impl ExactSizeIterator<Item = JobRef>)` — [`JobRef`](../job/index.md)
 
-- `fn in_worker<OP, R>(self: &Self, op: OP) -> R`
+- <span id="registry-in-worker"></span>`fn in_worker<OP, R>(&self, op: OP) -> R`
 
-- `unsafe fn in_worker_cold<OP, R>(self: &Self, op: OP) -> R`
+- <span id="registry-in-worker-cold"></span>`unsafe fn in_worker_cold<OP, R>(&self, op: OP) -> R`
 
-- `unsafe fn in_worker_cross<OP, R>(self: &Self, current_thread: &WorkerThread, op: OP) -> R` — [`WorkerThread`](#workerthread)
+- <span id="registry-in-worker-cross"></span>`unsafe fn in_worker_cross<OP, R>(&self, current_thread: &WorkerThread, op: OP) -> R` — [`WorkerThread`](#workerthread)
 
-- `fn increment_terminate_count(self: &Self)`
+- <span id="registry-increment-terminate-count"></span>`fn increment_terminate_count(&self)`
 
-- `fn terminate(self: &Self)`
+- <span id="registry-terminate"></span>`fn terminate(&self)`
 
-- `fn notify_worker_latch_is_set(self: &Self, target_worker_index: usize)`
+- <span id="registry-notify-worker-latch-is-set"></span>`fn notify_worker_latch_is_set(&self, target_worker_index: usize)`
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for Registry`
+##### `impl Pointable for Registry`
 
-- `const ALIGN: usize`
+- <span id="registry-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="registry-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="registry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="registry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="registry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="registry-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Terminator<'a>`
 
@@ -206,25 +260,27 @@ struct Registry {
 struct Terminator<'a>(&'a std::sync::Arc<Registry>);
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:230`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L230)*
+
 #### Trait Implementations
 
-##### `impl<'a> Drop for Terminator<'a>`
+##### `impl Drop for Terminator<'a>`
 
-- `fn drop(self: &mut Self)`
+- <span id="terminator-drop"></span>`fn drop(&mut self)`
 
-##### `impl<T> Pointable for Terminator<'a>`
+##### `impl Pointable for Terminator<'a>`
 
-- `const ALIGN: usize`
+- <span id="terminator-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="terminator-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="terminator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="terminator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="terminator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="terminator-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `RegistryId`
 
@@ -234,45 +290,47 @@ struct RegistryId {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:609-611`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L609-L611)*
+
 #### Trait Implementations
 
 ##### `impl Clone for RegistryId`
 
-- `fn clone(self: &Self) -> RegistryId` — [`RegistryId`](#registryid)
+- <span id="registryid-clone"></span>`fn clone(&self) -> RegistryId` — [`RegistryId`](#registryid)
 
 ##### `impl Copy for RegistryId`
 
 ##### `impl Debug for RegistryId`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="registryid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RegistryId`
 
 ##### `impl Ord for RegistryId`
 
-- `fn cmp(self: &Self, other: &RegistryId) -> $crate::cmp::Ordering` — [`RegistryId`](#registryid)
+- <span id="registryid-cmp"></span>`fn cmp(&self, other: &RegistryId) -> cmp::Ordering` — [`RegistryId`](#registryid)
 
 ##### `impl PartialEq for RegistryId`
 
-- `fn eq(self: &Self, other: &RegistryId) -> bool` — [`RegistryId`](#registryid)
+- <span id="registryid-eq"></span>`fn eq(&self, other: &RegistryId) -> bool` — [`RegistryId`](#registryid)
 
 ##### `impl PartialOrd for RegistryId`
 
-- `fn partial_cmp(self: &Self, other: &RegistryId) -> $crate::option::Option<$crate::cmp::Ordering>` — [`RegistryId`](#registryid)
+- <span id="registryid-partial-cmp"></span>`fn partial_cmp(&self, other: &RegistryId) -> option::Option<cmp::Ordering>` — [`RegistryId`](#registryid)
 
-##### `impl<T> Pointable for RegistryId`
+##### `impl Pointable for RegistryId`
 
-- `const ALIGN: usize`
+- <span id="registryid-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="registryid-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="registryid-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="registryid-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="registryid-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="registryid-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for RegistryId`
 
@@ -286,6 +344,8 @@ struct ThreadInfo {
     stealer: crossbeam_deque::Stealer<crate::job::JobRef>,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:613-631`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L613-L631)*
 
 #### Fields
 
@@ -313,23 +373,23 @@ struct ThreadInfo {
 
 #### Implementations
 
-- `fn new(stealer: Stealer<JobRef>) -> ThreadInfo` — [`JobRef`](../job/index.md), [`ThreadInfo`](#threadinfo)
+- <span id="threadinfo-new"></span>`fn new(stealer: Stealer<JobRef>) -> ThreadInfo` — [`JobRef`](../job/index.md), [`ThreadInfo`](#threadinfo)
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for ThreadInfo`
+##### `impl Pointable for ThreadInfo`
 
-- `const ALIGN: usize`
+- <span id="threadinfo-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="threadinfo-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadinfo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadinfo-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadinfo-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="threadinfo-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `WorkerThread`
 
@@ -343,6 +403,8 @@ struct WorkerThread {
     registry: std::sync::Arc<Registry>,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:647-663`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L647-L663)*
 
 #### Fields
 
@@ -364,59 +426,59 @@ struct WorkerThread {
 
 #### Implementations
 
-- `fn current() -> *const WorkerThread` — [`WorkerThread`](#workerthread)
+- <span id="workerthread-current"></span>`fn current() -> *const WorkerThread` — [`WorkerThread`](#workerthread)
 
-- `unsafe fn set_current(thread: *const WorkerThread)` — [`WorkerThread`](#workerthread)
+- <span id="workerthread-set-current"></span>`unsafe fn set_current(thread: *const WorkerThread)` — [`WorkerThread`](#workerthread)
 
-- `fn registry(self: &Self) -> &Arc<Registry>` — [`Registry`](#registry)
+- <span id="workerthread-registry"></span>`fn registry(&self) -> &Arc<Registry>` — [`Registry`](#registry)
 
-- `fn index(self: &Self) -> usize`
+- <span id="workerthread-index"></span>`fn index(&self) -> usize`
 
-- `unsafe fn push(self: &Self, job: JobRef)` — [`JobRef`](../job/index.md)
+- <span id="workerthread-push"></span>`unsafe fn push(&self, job: JobRef)` — [`JobRef`](../job/index.md)
 
-- `unsafe fn push_fifo(self: &Self, job: JobRef)` — [`JobRef`](../job/index.md)
+- <span id="workerthread-push-fifo"></span>`unsafe fn push_fifo(&self, job: JobRef)` — [`JobRef`](../job/index.md)
 
-- `fn local_deque_is_empty(self: &Self) -> bool`
+- <span id="workerthread-local-deque-is-empty"></span>`fn local_deque_is_empty(&self) -> bool`
 
-- `fn take_local_job(self: &Self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
+- <span id="workerthread-take-local-job"></span>`fn take_local_job(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
 
-- `fn has_injected_job(self: &Self) -> bool`
+- <span id="workerthread-has-injected-job"></span>`fn has_injected_job(&self) -> bool`
 
-- `unsafe fn wait_until<L: AsCoreLatch + ?Sized>(self: &Self, latch: &L)`
+- <span id="workerthread-wait-until"></span>`unsafe fn wait_until<L: AsCoreLatch + ?Sized>(&self, latch: &L)`
 
-- `unsafe fn wait_until_cold(self: &Self, latch: &CoreLatch)` — [`CoreLatch`](../latch/index.md)
+- <span id="workerthread-wait-until-cold"></span>`unsafe fn wait_until_cold(&self, latch: &CoreLatch)` — [`CoreLatch`](../latch/index.md)
 
-- `unsafe fn wait_until_out_of_work(self: &Self)`
+- <span id="workerthread-wait-until-out-of-work"></span>`unsafe fn wait_until_out_of_work(&self)`
 
-- `fn find_work(self: &Self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
+- <span id="workerthread-find-work"></span>`fn find_work(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
 
-- `fn yield_now(self: &Self) -> Yield` — [`Yield`](../index.md)
+- <span id="workerthread-yield-now"></span>`fn yield_now(&self) -> Yield` — [`Yield`](../thread_pool/index.md)
 
-- `fn yield_local(self: &Self) -> Yield` — [`Yield`](../index.md)
+- <span id="workerthread-yield-local"></span>`fn yield_local(&self) -> Yield` — [`Yield`](../thread_pool/index.md)
 
-- `unsafe fn execute(self: &Self, job: JobRef)` — [`JobRef`](../job/index.md)
+- <span id="workerthread-execute"></span>`unsafe fn execute(&self, job: JobRef)` — [`JobRef`](../job/index.md)
 
-- `fn steal(self: &Self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
+- <span id="workerthread-steal"></span>`fn steal(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
 
 #### Trait Implementations
 
 ##### `impl Drop for WorkerThread`
 
-- `fn drop(self: &mut Self)`
+- <span id="workerthread-drop"></span>`fn drop(&mut self)`
 
-##### `impl<T> Pointable for WorkerThread`
+##### `impl Pointable for WorkerThread`
 
-- `const ALIGN: usize`
+- <span id="workerthread-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="workerthread-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="workerthread-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="workerthread-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="workerthread-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="workerthread-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `XorShift64Star`
 
@@ -426,33 +488,35 @@ struct XorShift64Star {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:968-970`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L968-L970)*
+
 [xorshift*] is a fast pseudorandom number generator which will
 even tolerate weak seeding, as long as it's not zero.
 
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="xorshift64star-new"></span>`fn new() -> Self`
 
-- `fn next(self: &Self) -> u64`
+- <span id="xorshift64star-next"></span>`fn next(&self) -> u64`
 
-- `fn next_usize(self: &Self, n: usize) -> usize`
+- <span id="xorshift64star-next-usize"></span>`fn next_usize(&self, n: usize) -> usize`
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for XorShift64Star`
+##### `impl Pointable for XorShift64Star`
 
-- `const ALIGN: usize`
+- <span id="xorshift64star-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="xorshift64star-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="xorshift64star-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="xorshift64star-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="xorshift64star-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="xorshift64star-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Traits
 
@@ -462,6 +526,8 @@ even tolerate weak seeding, as long as it's not zero.
 trait ThreadSpawn { ... }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:69-75`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L69-L75)*
+
 Generalized trait for spawning a thread in the `Registry`.
 
 This trait is pub-in-private -- E0445 forces us to make it public,
@@ -469,9 +535,14 @@ but we don't actually want to expose these details in the API.
 
 #### Required Methods
 
-- `fn spawn(self: &mut Self, thread: ThreadBuilder) -> io::Result<()>`
+- `fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>`
 
   Spawn a thread with the `ThreadBuilder` parameters, and then
+
+#### Implementors
+
+- [`CustomSpawn`](#customspawn)
+- [`DefaultSpawn`](#defaultspawn)
 
 ## Functions
 
@@ -480,6 +551,8 @@ but we don't actually want to expose these details in the API.
 ```rust
 fn global_registry() -> &'static std::sync::Arc<Registry>
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:162-172`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L162-L172)*
 
 Starts the worker threads (if that has not already happened). If
 initialization has not already occurred, use the default
@@ -493,6 +566,8 @@ where
     S: ThreadSpawn
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:176-183`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L176-L183)*
+
 Starts the worker threads (if that has not already happened) with
 the given builder.
 
@@ -504,6 +579,8 @@ where
     F: FnOnce() -> Result<std::sync::Arc<Registry>, crate::ThreadPoolBuildError>
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:187-207`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L187-L207)*
+
 Starts the worker threads (if that has not already happened)
 by creating a registry with the given callback.
 
@@ -513,11 +590,15 @@ by creating a registry with the given callback.
 fn default_global_registry() -> Result<std::sync::Arc<Registry>, crate::ThreadPoolBuildError>
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:209-228`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L209-L228)*
+
 ### `main_loop`
 
 ```rust
 unsafe fn main_loop(thread: ThreadBuilder)
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:910-939`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L910-L939)*
 
 ### `in_worker`
 
@@ -528,6 +609,8 @@ where
     R: Send
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:946-962`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L946-L962)*
+
 If already in a worker-thread, just execute `op`.  Otherwise,
 execute `op` in the default thread pool. Either way, block until
 `op` completes and return its return value. If `op` panics, that
@@ -537,8 +620,9 @@ panic will be propagated as well.  The second argument indicates
 ## Constants
 
 ### `WORKER_THREAD_STATE`
-
 ```rust
-const WORKER_THREAD_STATE: $crate::thread::LocalKey<std::cell::Cell<*const WorkerThread>>;
+const WORKER_THREAD_STATE: thread::LocalKey<std::cell::Cell<*const WorkerThread>>;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:670-672`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L670-L672)*
 

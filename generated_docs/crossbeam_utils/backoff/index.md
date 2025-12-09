@@ -4,6 +4,14 @@
 
 # Module `backoff`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Backoff`](#backoff) | struct | Performs exponential backoff in spin loops. |
+| [`SPIN_LIMIT`](#spin_limit) | const |  |
+| [`YIELD_LIMIT`](#yield_limit) | const |  |
+
 ## Structs
 
 ### `Backoff`
@@ -13,6 +21,8 @@ struct Backoff {
     step: core::cell::Cell<u32>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:80-82`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/backoff.rs#L80-L82)*
 
 Performs exponential backoff in spin loops.
 
@@ -86,37 +96,39 @@ fn blocking_wait(ready: &AtomicBool) {
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="backoff-new"></span>`fn new() -> Self`
 
-- `fn reset(self: &Self)`
+- <span id="backoff-reset"></span>`fn reset(&self)`
 
-- `fn spin(self: &Self)`
+- <span id="backoff-spin"></span>`fn spin(&self)`
 
-- `fn snooze(self: &Self)`
+- <span id="backoff-snooze"></span>`fn snooze(&self)`
 
-- `fn is_completed(self: &Self) -> bool`
+- <span id="backoff-is-completed"></span>`fn is_completed(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for Backoff`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="backoff-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Backoff`
 
-- `fn default() -> Backoff` — [`Backoff`](../index.md)
+- <span id="backoff-default"></span>`fn default() -> Backoff` — [`Backoff`](#backoff)
 
 ## Constants
 
 ### `SPIN_LIMIT`
-
 ```rust
 const SPIN_LIMIT: u32 = 6u32;
 ```
 
-### `YIELD_LIMIT`
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:5`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/backoff.rs#L5)*
 
+### `YIELD_LIMIT`
 ```rust
 const YIELD_LIMIT: u32 = 10u32;
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:6`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/backoff.rs#L6)*
 

@@ -4,6 +4,14 @@
 
 # Module `deferred`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Deferred`](#deferred) | struct | A `FnOnce()` that is stored inline if small, or otherwise boxed on the heap. |
+| [`Data`](#data) | type | Some space to keep a `FnOnce()` object on the stack. |
+| [`DATA_WORDS`](#data_words) | const | Number of words a piece of `Data` can hold. |
+
 ## Structs
 
 ### `Deferred`
@@ -16,37 +24,39 @@ struct Deferred {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:19-23`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/deferred.rs#L19-L23)*
+
 A `FnOnce()` that is stored inline if small, or otherwise boxed on the heap.
 
 This is a handy way of keeping an unsized `FnOnce()` within a sized structure.
 
 #### Implementations
 
-- `const NO_OP: Self`
+- <span id="deferred-const-no-op"></span>`const NO_OP: Self`
 
-- `fn new<F: FnOnce()>(f: F) -> Self`
+- <span id="deferred-new"></span>`fn new<F: FnOnce()>(f: F) -> Self`
 
-- `fn call(self: Self)`
+- <span id="deferred-call"></span>`fn call(self)`
 
 #### Trait Implementations
 
 ##### `impl Debug for Deferred`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="deferred-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl<T> Pointable for Deferred`
+##### `impl Pointable for Deferred`
 
-- `const ALIGN: usize`
+- <span id="deferred-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="deferred-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="deferred-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="deferred-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="deferred-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="deferred-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Type Aliases
 
@@ -56,15 +66,18 @@ This is a handy way of keeping an unsized `FnOnce()` within a sized structure.
 type Data = [usize; 3];
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:14`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/deferred.rs#L14)*
+
 Some space to keep a `FnOnce()` object on the stack.
 
 ## Constants
 
 ### `DATA_WORDS`
-
 ```rust
 const DATA_WORDS: usize = 3usize;
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:11`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/deferred.rs#L11)*
 
 Number of words a piece of `Data` can hold.
 

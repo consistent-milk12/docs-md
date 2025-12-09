@@ -6,6 +6,15 @@
 
 Working with byte slices that have an associated endianity.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`EndianSlice`](#endianslice) | struct | A `&[u8]` slice with endianity metadata. |
+| [`DebugBytes`](#debugbytes) | struct |  |
+| [`DebugByte`](#debugbyte) | struct |  |
+| [`DebugLen`](#debuglen) | struct |  |
+
 ## Structs
 
 ### `EndianSlice<'input, Endian>`
@@ -19,89 +28,101 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:18-24`](../../../../.source_1765210505/gimli-0.32.3/src/read/endian_slice.rs#L18-L24)*
+
 A `&[u8]` slice with endianity metadata.
 
 This implements the `Reader` trait, which is used for all reading of DWARF sections.
 
 #### Implementations
 
-- `fn range(self: &Self, idx: Range<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
+- <span id="endianslice-new"></span>`fn new(slice: &'input [u8], endian: Endian) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
 
-- `fn range_from(self: &Self, idx: RangeFrom<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
+- <span id="endianslice-slice"></span>`fn slice(&self) -> &'input [u8]`
 
-- `fn range_to(self: &Self, idx: RangeTo<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
+- <span id="endianslice-split-at"></span>`fn split_at(&self, idx: usize) -> (EndianSlice<'input, Endian>, EndianSlice<'input, Endian>)` — [`EndianSlice`](../index.md)
+
+- <span id="endianslice-find"></span>`fn find(&self, byte: u8) -> Option<usize>`
+
+- <span id="endianslice-offset-from"></span>`fn offset_from(&self, base: EndianSlice<'input, Endian>) -> usize` — [`EndianSlice`](../index.md)
+
+- <span id="endianslice-to-string"></span>`fn to_string(&self) -> Result<&'input str>` — [`Result`](../../index.md)
+
+- <span id="endianslice-to-string-lossy"></span>`fn to_string_lossy(&self) -> Cow<'input, str>`
+
+- <span id="endianslice-read-slice"></span>`fn read_slice(&mut self, len: usize) -> Result<&'input [u8]>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'input, Endian> Clone for EndianSlice<'input, Endian>`
 
-- `fn clone(self: &Self) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
+- <span id="endianslice-clone"></span>`fn clone(&self) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
 
 ##### `impl<'input, Endian> Copy for EndianSlice<'input, Endian>`
 
 ##### `impl<'input, Endian: Endianity> Debug for EndianSlice<'input, Endian>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
+- <span id="endianslice-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
 
 ##### `impl<'input, Endian> Default for EndianSlice<'input, Endian>`
 
-- `fn default() -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
+- <span id="endianslice-default"></span>`fn default() -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
 
 ##### `impl<'input, Endian> Deref for EndianSlice<'input, Endian>`
 
-- `type Target = [u8]`
+- <span id="endianslice-type-target"></span>`type Target = [u8]`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="endianslice-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<'input, Endian> Eq for EndianSlice<'input, Endian>`
 
 ##### `impl<'input, Endian> Hash for EndianSlice<'input, Endian>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="endianslice-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<'input, Endian> PartialEq for EndianSlice<'input, Endian>`
 
-- `fn eq(self: &Self, other: &EndianSlice<'input, Endian>) -> bool` — [`EndianSlice`](../index.md)
+- <span id="endianslice-eq"></span>`fn eq(&self, other: &EndianSlice<'input, Endian>) -> bool` — [`EndianSlice`](../index.md)
 
 ##### `impl<'input, Endian> Reader for EndianSlice<'input, Endian>`
 
-- `type Endian = Endian`
+- <span id="endianslice-type-endian"></span>`type Endian = Endian`
 
-- `type Offset = usize`
+- <span id="endianslice-type-offset"></span>`type Offset = usize`
 
-- `fn endian(self: &Self) -> Endian`
+- <span id="endianslice-endian"></span>`fn endian(&self) -> Endian`
 
-- `fn len(self: &Self) -> usize`
+- <span id="endianslice-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="endianslice-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn empty(self: &mut Self)`
+- <span id="endianslice-empty"></span>`fn empty(&mut self)`
 
-- `fn truncate(self: &mut Self, len: usize) -> Result<()>` — [`Result`](../../index.md)
+- <span id="endianslice-truncate"></span>`fn truncate(&mut self, len: usize) -> Result<()>` — [`Result`](../../index.md)
 
-- `fn offset_from(self: &Self, base: &Self) -> usize`
+- <span id="endianslice-offset-from"></span>`fn offset_from(&self, base: &Self) -> usize`
 
-- `fn offset_id(self: &Self) -> ReaderOffsetId` — [`ReaderOffsetId`](../index.md)
+- <span id="endianslice-offset-id"></span>`fn offset_id(&self) -> ReaderOffsetId` — [`ReaderOffsetId`](../index.md)
 
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<<Self as >::Offset>` — [`ReaderOffsetId`](../index.md), [`Reader`](../index.md)
+- <span id="endianslice-lookup-offset-id"></span>`fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>` — [`ReaderOffsetId`](../index.md), [`Reader`](../index.md)
 
-- `fn find(self: &Self, byte: u8) -> Result<usize>` — [`Result`](../../index.md)
+- <span id="endianslice-find"></span>`fn find(&self, byte: u8) -> Result<usize>` — [`Result`](../../index.md)
 
-- `fn skip(self: &mut Self, len: usize) -> Result<()>` — [`Result`](../../index.md)
+- <span id="endianslice-skip"></span>`fn skip(&mut self, len: usize) -> Result<()>` — [`Result`](../../index.md)
 
-- `fn split(self: &mut Self, len: usize) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="endianslice-split"></span>`fn split(&mut self, len: usize) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn to_slice(self: &Self) -> Result<Cow<'_, [u8]>>` — [`Result`](../../index.md)
+- <span id="endianslice-to-slice"></span>`fn to_slice(&self) -> Result<Cow<'_, [u8]>>` — [`Result`](../../index.md)
 
-- `fn to_string(self: &Self) -> Result<Cow<'_, str>>` — [`Result`](../../index.md)
+- <span id="endianslice-to-string"></span>`fn to_string(&self) -> Result<Cow<'_, str>>` — [`Result`](../../index.md)
 
-- `fn to_string_lossy(self: &Self) -> Result<Cow<'_, str>>` — [`Result`](../../index.md)
+- <span id="endianslice-to-string-lossy"></span>`fn to_string_lossy(&self) -> Result<Cow<'_, str>>` — [`Result`](../../index.md)
 
-- `fn read_slice(self: &mut Self, buf: &mut [u8]) -> Result<()>` — [`Result`](../../index.md)
+- <span id="endianslice-read-slice"></span>`fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>` — [`Result`](../../index.md)
 
 ##### `impl<P, T> Receiver for EndianSlice<'input, Endian>`
 
-- `type Target = T`
+- <span id="endianslice-type-target"></span>`type Target = T`
 
 ##### `impl<'input, Endian> StructuralPartialEq for EndianSlice<'input, Endian>`
 
@@ -111,11 +132,13 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 struct DebugBytes<'input>(&'input [u8]);
 ```
 
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:190`](../../../../.source_1765210505/gimli-0.32.3/src/read/endian_slice.rs#L190)*
+
 #### Trait Implementations
 
-##### `impl<'input> Debug for DebugBytes<'input>`
+##### `impl Debug for DebugBytes<'input>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
+- <span id="debugbytes-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
 
 ### `DebugByte`
 
@@ -123,11 +146,13 @@ struct DebugBytes<'input>(&'input [u8]);
 struct DebugByte(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:203`](../../../../.source_1765210505/gimli-0.32.3/src/read/endian_slice.rs#L203)*
+
 #### Trait Implementations
 
 ##### `impl Debug for DebugByte`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugbyte-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DebugLen`
 
@@ -135,9 +160,11 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:211`](../../../../.source_1765210505/gimli-0.32.3/src/read/endian_slice.rs#L211)*
+
 #### Trait Implementations
 
 ##### `impl Debug for DebugLen`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debuglen-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 

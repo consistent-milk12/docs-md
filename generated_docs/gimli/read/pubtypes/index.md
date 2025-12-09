@@ -4,6 +4,14 @@
 
 # Module `pubtypes`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PubTypesEntry`](#pubtypesentry) | struct | A single parsed pubtype. |
+| [`DebugPubTypes`](#debugpubtypes) | struct | The `DebugPubTypes` struct represents the DWARF public types information found in the `.debug_info` section. |
+| [`PubTypesEntryIter`](#pubtypesentryiter) | struct | An iterator over the pubtypes from a `.debug_pubtypes` section. |
+
 ## Structs
 
 ### `PubTypesEntry<R: Reader>`
@@ -16,29 +24,31 @@ struct PubTypesEntry<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:8-12`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubtypes.rs#L8-L12)*
+
 A single parsed pubtype.
 
 #### Implementations
 
-- `fn name(self: &Self) -> &R`
+- <span id="pubtypesentry-name"></span>`fn name(&self) -> &R`
 
-- `fn unit_header_offset(self: &Self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="pubtypesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../../index.md), [`Reader`](../index.md)
 
-- `fn die_offset(self: &Self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md)
+- <span id="pubtypesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../../index.md), [`Reader`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for PubTypesEntry<R>`
+##### `impl<R: clone::Clone + Reader> Clone for PubTypesEntry<R>`
 
-- `fn clone(self: &Self) -> PubTypesEntry<R>` — [`PubTypesEntry`](../index.md)
+- <span id="pubtypesentry-clone"></span>`fn clone(&self) -> PubTypesEntry<R>` — [`PubTypesEntry`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for PubTypesEntry<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for PubTypesEntry<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubtypesentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: Reader> PubStuffEntry for PubTypesEntry<R>`
 
-- `fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`DebugInfoOffset`](../../index.md)
+- <span id="pubtypesentry-new"></span>`fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../../index.md), [`Reader`](../index.md), [`DebugInfoOffset`](../../index.md)
 
 ### `DebugPubTypes<R: Reader>`
 
@@ -46,34 +56,38 @@ A single parsed pubtype.
 struct DebugPubTypes<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
 
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:50`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubtypes.rs#L50)*
+
 The `DebugPubTypes` struct represents the DWARF public types information
 found in the `.debug_info` section.
 
 #### Implementations
 
-- `fn items(self: &Self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](../index.md)
+- <span id="debugpubtypes-new"></span>`fn new(debug_pubtypes_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for DebugPubTypes<R>`
+##### `impl<R: clone::Clone + Reader> Clone for DebugPubTypes<R>`
 
-- `fn clone(self: &Self) -> DebugPubTypes<R>` — [`DebugPubTypes`](../index.md)
+- <span id="debugpubtypes-clone"></span>`fn clone(&self) -> DebugPubTypes<R>` — [`DebugPubTypes`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for DebugPubTypes<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for DebugPubTypes<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugpubtypes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: Reader> Section for DebugPubTypes<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugpubtypes-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugpubtypes-reader"></span>`fn reader(&self) -> &R`
 
 ### `PubTypesEntryIter<R: Reader>`
 
 ```rust
 struct PubTypesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
+
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:118`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubtypes.rs#L118)*
 
 An iterator over the pubtypes from a `.debug_pubtypes` section.
 
@@ -82,15 +96,15 @@ Can be [used with
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<PubTypesEntry<R>>>` — [`Result`](../../index.md), [`PubTypesEntry`](../index.md)
+- <span id="pubtypesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubTypesEntry<R>>>` — [`Result`](../../index.md), [`PubTypesEntry`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for PubTypesEntryIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for PubTypesEntryIter<R>`
 
-- `fn clone(self: &Self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](../index.md)
+- <span id="pubtypesentryiter-clone"></span>`fn clone(&self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for PubTypesEntryIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for PubTypesEntryIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubtypesentryiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

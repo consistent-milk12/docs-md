@@ -4,6 +4,13 @@
 
 # Module `dent`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DirEntry`](#direntry) | struct | A directory entry. |
+| [`DirEntryExt`](#direntryext) | trait | Unix-specific extension methods for `walkdir::DirEntry` |
+
 ## Structs
 
 ### `DirEntry`
@@ -18,12 +25,14 @@ struct DirEntry {
 }
 ```
 
+*Defined in [`walkdir-2.5.0/src/dent.rs:35-59`](../../../.source_1765210505/walkdir-2.5.0/src/dent.rs#L35-L59)*
+
 A directory entry.
 
 This is the type of value that is yielded from the iterators defined in
 this crate.
 
-On Unix systems, this type implements the [`DirEntryExt`](../index.md) trait, which
+On Unix systems, this type implements the [`DirEntryExt`](#direntryext) trait, which
 provides efficient access to the inode number of the directory entry.
 
 # Differences with `std::fs::DirEntry`
@@ -71,41 +80,41 @@ operations operate on the symbolic link.
 
 #### Implementations
 
-- `fn path(self: &Self) -> &Path`
+- <span id="direntry-path"></span>`fn path(&self) -> &Path`
 
-- `fn into_path(self: Self) -> PathBuf`
+- <span id="direntry-into-path"></span>`fn into_path(self) -> PathBuf`
 
-- `fn path_is_symlink(self: &Self) -> bool`
+- <span id="direntry-path-is-symlink"></span>`fn path_is_symlink(&self) -> bool`
 
-- `fn metadata(self: &Self) -> Result<fs::Metadata>` — [`Result`](../index.md)
+- <span id="direntry-metadata"></span>`fn metadata(&self) -> Result<fs::Metadata>` — [`Result`](../index.md)
 
-- `fn metadata_internal(self: &Self) -> Result<fs::Metadata>` — [`Result`](../index.md)
+- <span id="direntry-metadata-internal"></span>`fn metadata_internal(&self) -> Result<fs::Metadata>` — [`Result`](../index.md)
 
-- `fn file_type(self: &Self) -> fs::FileType`
+- <span id="direntry-file-type"></span>`fn file_type(&self) -> fs::FileType`
 
-- `fn file_name(self: &Self) -> &OsStr`
+- <span id="direntry-file-name"></span>`fn file_name(&self) -> &OsStr`
 
-- `fn depth(self: &Self) -> usize`
+- <span id="direntry-depth"></span>`fn depth(&self) -> usize`
 
-- `fn is_dir(self: &Self) -> bool`
+- <span id="direntry-is-dir"></span>`fn is_dir(&self) -> bool`
 
-- `fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](../index.md)
+- <span id="direntry-from-entry"></span>`fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](../index.md)
 
-- `fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](../index.md), [`DirEntry`](../index.md)
+- <span id="direntry-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](../index.md), [`DirEntry`](#direntry)
 
 #### Trait Implementations
 
 ##### `impl Clone for DirEntry`
 
-- `fn clone(self: &Self) -> DirEntry` — [`DirEntry`](../index.md)
+- <span id="direntry-clone"></span>`fn clone(&self) -> DirEntry` — [`DirEntry`](#direntry)
 
 ##### `impl Debug for DirEntry`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="direntry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DirEntryExt for DirEntry`
 
-- `fn ino(self: &Self) -> u64`
+- <span id="direntry-ino"></span>`fn ino(&self) -> u64`
 
 ## Traits
 
@@ -115,11 +124,17 @@ operations operate on the symbolic link.
 trait DirEntryExt { ... }
 ```
 
+*Defined in [`walkdir-2.5.0/src/dent.rs:339-343`](../../../.source_1765210505/walkdir-2.5.0/src/dent.rs#L339-L343)*
+
 Unix-specific extension methods for `walkdir::DirEntry`
 
 #### Required Methods
 
-- `fn ino(self: &Self) -> u64`
+- `fn ino(&self) -> u64`
 
   Returns the underlying `d_ino` field in the contained `dirent`
+
+#### Implementors
+
+- [`DirEntry`](#direntry)
 

@@ -4,6 +4,17 @@
 
 # Module `parker`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Parker`](#parker) | struct | A thread parking primitive. |
+| [`Unparker`](#unparker) | struct | Unparks a thread parked by the associated [`Parker`]. |
+| [`Inner`](#inner) | struct |  |
+| [`EMPTY`](#empty) | const |  |
+| [`PARKED`](#parked) | const |  |
+| [`NOTIFIED`](#notified) | const |  |
+
 ## Structs
 
 ### `Parker`
@@ -14,6 +25,8 @@ struct Parker {
     _marker: std::marker::PhantomData<*const ()>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
 
 A thread parking primitive.
 
@@ -63,29 +76,29 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- `fn new() -> Parker` — [`Parker`](../index.md)
+- <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](#parker)
 
-- `fn park(self: &Self)`
+- <span id="parker-park"></span>`fn park(&self)`
 
-- `fn park_timeout(self: &Self, timeout: Duration)`
+- <span id="parker-park-timeout"></span>`fn park_timeout(&self, timeout: Duration)`
 
-- `fn park_deadline(self: &Self, deadline: Instant)`
+- <span id="parker-park-deadline"></span>`fn park_deadline(&self, deadline: Instant)`
 
-- `fn unparker(self: &Self) -> &Unparker` — [`Unparker`](../index.md)
+- <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](#unparker)
 
-- `fn into_raw(this: Parker) -> *const ()` — [`Parker`](../index.md)
+- <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](#parker)
 
-- `unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](../index.md)
+- <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](#parker)
 
 #### Trait Implementations
 
 ##### `impl Debug for Parker`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Parker`
 
-- `fn default() -> Self`
+- <span id="parker-default"></span>`fn default() -> Self`
 
 ##### `impl Send for Parker`
 
@@ -97,25 +110,27 @@ struct Unparker {
 }
 ```
 
-Unparks a thread parked by the associated [`Parker`](../index.md).
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
+
+Unparks a thread parked by the associated [`Parker`](#parker).
 
 #### Implementations
 
-- `fn unpark(self: &Self)`
+- <span id="unparker-unpark"></span>`fn unpark(&self)`
 
-- `fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](../index.md)
+- <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](#unparker)
 
-- `unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](../index.md)
+- <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](#unparker)
 
 #### Trait Implementations
 
 ##### `impl Clone for Unparker`
 
-- `fn clone(self: &Self) -> Unparker` — [`Unparker`](../index.md)
+- <span id="unparker-clone"></span>`fn clone(&self) -> Unparker` — [`Unparker`](#unparker)
 
 ##### `impl Debug for Unparker`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unparker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Send for Unparker`
 
@@ -131,29 +146,34 @@ struct Inner {
 }
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:314-318`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L314-L318)*
+
 #### Implementations
 
-- `fn park(self: &Self, deadline: Option<Instant>)`
+- <span id="inner-park"></span>`fn park(&self, deadline: Option<Instant>)`
 
-- `fn unpark(self: &Self)`
+- <span id="inner-unpark"></span>`fn unpark(&self)`
 
 ## Constants
 
 ### `EMPTY`
-
 ```rust
 const EMPTY: usize = 0usize;
 ```
 
-### `PARKED`
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:310`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L310)*
 
+### `PARKED`
 ```rust
 const PARKED: usize = 1usize;
 ```
 
-### `NOTIFIED`
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:311`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L311)*
 
+### `NOTIFIED`
 ```rust
 const NOTIFIED: usize = 2usize;
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:312`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L312)*
 

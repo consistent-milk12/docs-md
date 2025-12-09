@@ -9,6 +9,17 @@ Utilities for dealing with UTF-8.
 This module provides some UTF-8 related helper routines, including an
 incremental decoder.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`is_word_byte`](#is_word_byte) | fn | Returns true if and only if the given byte is considered a word character. |
+| [`decode`](#decode) | fn | Decodes the next UTF-8 encoded codepoint from the given byte slice. |
+| [`decode_last`](#decode_last) | fn | Decodes the last UTF-8 encoded codepoint from the given byte slice. |
+| [`len`](#len) | fn | Given a UTF-8 leading byte, this returns the total number of code units in the following encoded codepoint. |
+| [`is_boundary`](#is_boundary) | fn | Returns true if and only if the given offset in the given bytes falls on a valid UTF-8 encoded codepoint boundary. |
+| [`is_leading_or_invalid_byte`](#is_leading_or_invalid_byte) | fn | Returns true if and only if the given byte is either a valid leading UTF-8 byte, or is otherwise an invalid byte that can never appear anywhere in a valid UTF-8 sequence. |
+
 ## Functions
 
 ### `is_word_byte`
@@ -16,6 +27,8 @@ incremental decoder.
 ```rust
 fn is_word_byte(b: u8) -> bool
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:16-41`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/utf8.rs#L16-L41)*
 
 Returns true if and only if the given byte is considered a word character.
 This only applies to ASCII.
@@ -30,6 +43,8 @@ hazard here.
 ```rust
 fn decode(bytes: &[u8]) -> Option<Result<char, u8>>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:56-70`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/utf8.rs#L56-L70)*
 
 Decodes the next UTF-8 encoded codepoint from the given byte slice.
 
@@ -50,6 +65,8 @@ crate, then please file an issue and discuss your use case.
 fn decode_last(bytes: &[u8]) -> Option<Result<char, u8>>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:79-93`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/utf8.rs#L79-L93)*
+
 Decodes the last UTF-8 encoded codepoint from the given byte slice.
 
 If no valid encoding of a codepoint exists at the end of the given byte
@@ -63,6 +80,8 @@ This returns `None` if and only if `bytes` is empty.
 fn len(byte: u8) -> Option<usize>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:101-110`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/utf8.rs#L101-L110)*
+
 Given a UTF-8 leading byte, this returns the total number of code units
 in the following encoded codepoint.
 
@@ -75,6 +94,8 @@ If the given byte is not a valid UTF-8 leading byte, then this returns
 fn is_boundary(bytes: &[u8], i: usize) -> bool
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:118-132`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/utf8.rs#L118-L132)*
+
 Returns true if and only if the given offset in the given bytes falls on a
 valid UTF-8 encoded codepoint boundary.
 
@@ -86,6 +107,8 @@ unspecified.
 ```rust
 fn is_leading_or_invalid_byte(b: u8) -> bool
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/utf8.rs:138-159`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/utf8.rs#L138-L159)*
 
 Returns true if and only if the given byte is either a valid leading UTF-8
 byte, or is otherwise an invalid byte that can never appear anywhere in a

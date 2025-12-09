@@ -41,8 +41,15 @@ internal limit on the total number of NFA states it can represent. But you
 would likely need to have hundreds of thousands or even millions of patterns
 before you hit this limit.)
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`contiguous`](#contiguous) | mod | Provides a contiguous NFA implementation of Aho-Corasick. |
+| [`noncontiguous`](#noncontiguous) | mod | Provides a noncontiguous NFA implementation of Aho-Corasick. |
+
 ## Modules
 
-- [`contiguous`](contiguous/index.md) - Provides a contiguous NFA implementation of Aho-Corasick.
-- [`noncontiguous`](noncontiguous/index.md) - Provides a noncontiguous NFA implementation of Aho-Corasick.
+- [`contiguous`](contiguous/index.md) — Provides a contiguous NFA implementation of Aho-Corasick.
+- [`noncontiguous`](noncontiguous/index.md) — Provides a noncontiguous NFA implementation of Aho-Corasick.
 

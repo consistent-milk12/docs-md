@@ -4,10 +4,20 @@
 
 # Module `vector`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`x86sse2`](#x86sse2) | mod |  |
+| [`x86avx2`](#x86avx2) | mod |  |
+| [`SensibleMoveMask`](#sensiblemovemask) | struct | This is a "sensible" movemask implementation where each bit represents whether the most significant bit is set in each corresponding lane of a vector. |
+| [`Vector`](#vector) | trait | A trait for describing vector operations used by vectorized searchers. |
+| [`MoveMask`](#movemask) | trait | A trait that abstracts over a vector-to-scalar operation called "move mask." |
+
 ## Modules
 
-- [`x86sse2`](x86sse2/index.md) - 
-- [`x86avx2`](x86avx2/index.md) - 
+- [`x86sse2`](x86sse2/index.md)
+- [`x86avx2`](x86avx2/index.md)
 
 ## Structs
 
@@ -16,6 +26,8 @@
 ```rust
 struct SensibleMoveMask(u32);
 ```
+
+*Defined in [`memchr-2.7.6/src/vector.rs:118`](../../../.source_1765210505/memchr-2.7.6/src/vector.rs#L118)*
 
 This is a "sensible" movemask implementation where each bit represents
 whether the most significant bit is set in each corresponding lane of a
@@ -27,37 +39,37 @@ movemask instructions. But neon has no such native equivalent.
 
 #### Implementations
 
-- `fn get_for_offset(self: Self) -> u32`
+- <span id="sensiblemovemask-get-for-offset"></span>`fn get_for_offset(self) -> u32`
 
 #### Trait Implementations
 
 ##### `impl Clone for SensibleMoveMask`
 
-- `fn clone(self: &Self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-clone"></span>`fn clone(&self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
 ##### `impl Copy for SensibleMoveMask`
 
 ##### `impl Debug for SensibleMoveMask`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sensiblemovemask-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl MoveMask for SensibleMoveMask`
 
-- `fn all_zeros_except_least_significant(n: usize) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-all-zeros-except-least-significant"></span>`fn all_zeros_except_least_significant(n: usize) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- `fn has_non_zero(self: Self) -> bool`
+- <span id="sensiblemovemask-has-non-zero"></span>`fn has_non_zero(self) -> bool`
 
-- `fn count_ones(self: Self) -> usize`
+- <span id="sensiblemovemask-count-ones"></span>`fn count_ones(self) -> usize`
 
-- `fn and(self: Self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-and"></span>`fn and(self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- `fn or(self: Self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-or"></span>`fn or(self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- `fn clear_least_significant_bit(self: Self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-clear-least-significant-bit"></span>`fn clear_least_significant_bit(self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- `fn first_offset(self: Self) -> usize`
+- <span id="sensiblemovemask-first-offset"></span>`fn first_offset(self) -> usize`
 
-- `fn last_offset(self: Self) -> usize`
+- <span id="sensiblemovemask-last-offset"></span>`fn last_offset(self) -> usize`
 
 ## Traits
 
@@ -66,6 +78,8 @@ movemask instructions. But neon has no such native equivalent.
 ```rust
 trait Vector: Copy + core::fmt::Debug { ... }
 ```
+
+*Defined in [`memchr-2.7.6/src/vector.rs:17-66`](../../../.source_1765210505/memchr-2.7.6/src/vector.rs#L17-L66)*
 
 A trait for describing vector operations used by vectorized searchers.
 
@@ -84,13 +98,17 @@ routines with #[target_feature] and instead mark them as #[inline(always)]
 to ensure they get appropriately inlined. (inline(always) cannot be used
 with target_feature.)
 
-#### Required Methods
+#### Associated Types
+
+- `type Mask: 1`
+
+#### Associated Constants
 
 - `const BYTES: usize`
 
 - `const ALIGN: usize`
 
-- `type Mask: 1`
+#### Required Methods
 
 - `fn splat(byte: u8) -> Self`
 
@@ -104,31 +122,40 @@ with target_feature.)
 
   Read a vector-size number of bytes from the given pointer. The pointer
 
-- `fn movemask(self: Self) -> <Self as >::Mask`
+- `fn movemask(self) -> <Self as >::Mask`
 
   _mm_movemask_epi8 or _mm256_movemask_epi8
 
-- `fn cmpeq(self: Self, vector2: Self) -> Self`
+- `fn cmpeq(self, vector2: Self) -> Self`
 
   _mm_cmpeq_epi8 or _mm256_cmpeq_epi8
 
-- `fn and(self: Self, vector2: Self) -> Self`
+- `fn and(self, vector2: Self) -> Self`
 
   _mm_and_si128 or _mm256_and_si256
 
-- `fn or(self: Self, vector2: Self) -> Self`
+- `fn or(self, vector2: Self) -> Self`
 
   _mm_or or _mm256_or_si256
 
-- `fn movemask_will_have_non_zero(self: Self) -> bool`
+#### Provided Methods
+
+- `fn movemask_will_have_non_zero(self) -> bool`
 
   Returns true if and only if `Self::movemask` would return a mask that
+
+#### Implementors
+
+- `__m128i`
+- `__m256i`
 
 ### `MoveMask`
 
 ```rust
 trait MoveMask: Copy + core::fmt::Debug { ... }
 ```
+
+*Defined in [`memchr-2.7.6/src/vector.rs:82-108`](../../../.source_1765210505/memchr-2.7.6/src/vector.rs#L82-L108)*
 
 A trait that abstracts over a vector-to-scalar operation called
 "move mask."
@@ -151,31 +178,35 @@ representation with this trait and define the operations we actually need.
 
   Return a mask that is all zeros except for the least significant `n`
 
-- `fn has_non_zero(self: Self) -> bool`
+- `fn has_non_zero(self) -> bool`
 
   Returns true if and only if this mask has a a non-zero bit anywhere.
 
-- `fn count_ones(self: Self) -> usize`
+- `fn count_ones(self) -> usize`
 
   Returns the number of bits set to 1 in this mask.
 
-- `fn and(self: Self, other: Self) -> Self`
+- `fn and(self, other: Self) -> Self`
 
   Does a bitwise `and` operation between `self` and `other`.
 
-- `fn or(self: Self, other: Self) -> Self`
+- `fn or(self, other: Self) -> Self`
 
   Does a bitwise `or` operation between `self` and `other`.
 
-- `fn clear_least_significant_bit(self: Self) -> Self`
+- `fn clear_least_significant_bit(self) -> Self`
 
   Returns a mask that is equivalent to `self` but with the least
 
-- `fn first_offset(self: Self) -> usize`
+- `fn first_offset(self) -> usize`
 
   Returns the offset of the first non-zero lane this mask represents.
 
-- `fn last_offset(self: Self) -> usize`
+- `fn last_offset(self) -> usize`
 
   Returns the offset of the last non-zero lane this mask represents.
+
+#### Implementors
+
+- [`SensibleMoveMask`](#sensiblemovemask)
 

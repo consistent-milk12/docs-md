@@ -4,6 +4,32 @@
 
 # Module `lookahead`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Lookahead1`](#lookahead1)
+  - [`CommaSeparated`](#commaseparated)
+  - [`End`](#end)
+- [Enums](#enums)
+  - [`TokenMarker`](#tokenmarker)
+- [Traits](#traits)
+  - [`Peek`](#peek)
+- [Functions](#functions)
+  - [`new`](#new)
+  - [`peek_impl`](#peek_impl)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Lookahead1`](#lookahead1) | struct | Support for checking the next token in a stream to decide how to parse. |
+| [`CommaSeparated`](#commaseparated) | struct |  |
+| [`End`](#end) | struct | Pseudo-token used for peeking the end of a parse stream. |
+| [`TokenMarker`](#tokenmarker) | enum |  |
+| [`Peek`](#peek) | trait | Types that can be parsed by looking at just one token. |
+| [`new`](#new) | fn |  |
+| [`peek_impl`](#peek_impl) | fn |  |
+
 ## Structs
 
 ### `Lookahead1<'a>`
@@ -15,6 +41,8 @@ struct Lookahead1<'a> {
     comparisons: std::cell::RefCell<Vec<&'static str>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lookahead.rs:63-67`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L63-L67)*
 
 Support for checking the next token in a stream to decide how to parse.
 
@@ -70,9 +98,9 @@ impl Parse for GenericParam {
 
 #### Implementations
 
-- `fn peek<T: Peek>(self: &Self, token: T) -> bool`
+- <span id="lookahead1-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
-- `fn error(self: Self) -> Error` — [`Error`](../index.md)
+- <span id="lookahead1-error"></span>`fn error(self) -> Error` — [`Error`](../error/index.md)
 
 ### `CommaSeparated<'a>`
 
@@ -80,21 +108,25 @@ impl Parse for GenericParam {
 struct CommaSeparated<'a>(&'a [&'a str]);
 ```
 
+*Defined in [`syn-2.0.111/src/lookahead.rs:150`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L150)*
+
 #### Trait Implementations
 
-##### `impl<'a> Display for CommaSeparated<'a>`
+##### `impl Display for CommaSeparated<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="commaseparated-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for CommaSeparated<'a>`
+##### `impl ToString for CommaSeparated<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="commaseparated-to-string"></span>`fn to_string(&self) -> String`
 
 ### `End`
 
 ```rust
 struct End;
 ```
+
+*Defined in [`syn-2.0.111/src/lookahead.rs:310`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L310)*
 
 Pseudo-token used for peeking the end of a parse stream.
 
@@ -231,19 +263,19 @@ Ok(())
 
 ##### `impl Clone for End`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="end-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for End`
 
 ##### `impl Peek for End`
 
-##### `impl<T> Sealed for End`
+##### `impl Sealed for End`
 
-##### `impl<T> Token for End`
+##### `impl Token for End`
 
-- `fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md)
+- <span id="end-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md)
 
-- `fn display() -> &'static str`
+- <span id="end-display"></span>`fn display() -> &'static str`
 
 ## Enums
 
@@ -254,6 +286,8 @@ enum TokenMarker {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lookahead.rs:338`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L338)*
+
 ## Traits
 
 ### `Peek`
@@ -261,6 +295,8 @@ enum TokenMarker {
 ```rust
 trait Peek: Sealed { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/lookahead.rs:174-178`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L174-L178)*
 
 Types that can be parsed by looking at just one token.
 
@@ -270,6 +306,12 @@ without consuming it from the stream.
 This trait is sealed and cannot be implemented for types outside of Syn.
 
 
+#### Implementors
+
+- [`End`](#end)
+- [`PeekFn`](../ext/private/index.md)
+- `F`
+
 ## Functions
 
 ### `new`
@@ -278,9 +320,13 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 fn new(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>) -> Lookahead1<'_>
 ```
 
+*Defined in [`syn-2.0.111/src/lookahead.rs:69-75`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L69-L75)*
+
 ### `peek_impl`
 
 ```rust
 fn peek_impl(lookahead: &Lookahead1<'_>, peek: fn(crate::buffer::Cursor<'_>) -> bool, display: fn() -> &'static str) -> bool
 ```
+
+*Defined in [`syn-2.0.111/src/lookahead.rs:77-87`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L77-L87)*
 

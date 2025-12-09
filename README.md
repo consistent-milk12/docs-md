@@ -17,6 +17,7 @@ By default, all items (including private ones) are documented. Use `--exclude-pr
 - Generates mdBook-compatible `SUMMARY.md` files
 - Produces a `search_index.json` for client-side search (only includes rendered items)
 - Includes all items by default—use `--exclude-private` to limit to public items only (affects links, search index, and SUMMARY.md)
+- Source location links: Shows where each item is defined with clickable links to source files (requires `source-parsing` feature)
 
 **Example output:** The [`generated_docs/`](generated_docs/) directory in this repository contains generated documentation for this tool's own dependencies, demonstrating multi-crate output with cross-crate linking.
 
@@ -107,58 +108,99 @@ cargo docs-md --dir target/doc/ -o generated_docs/ --mdbook --primary-crate my_c
 
 ### Development Scripts
 
-For development, you can use either `just` or `make`:
+For development, use `just` (install with `cargo install just`):
 
 ```bash
-# Using just
-just          # Full rebuild: clean + build + rustdoc + generate
-just quick    # Quick rebuild (skip cargo clean)
-just help     # Show all available commands
+# Documentation
+just docs         # Full docs (clean + build + rustdoc + generate)
+just regen        # Regenerate generated_docs/ (quick, no cargo clean)
+just quick        # Quick rebuild docs/ for mdbook
 
-# Using make
-make          # Full rebuild: clean + build + rustdoc + generate
-make quick    # Quick rebuild (skip cargo clean)
-make help     # Show all available commands
+# Testing
+just test         # Run all tests
+just test-lib     # Run unit tests only
+just test-int     # Run integration tests only
+just test-filter PATTERN  # Run tests matching pattern
+
+# Development
+just build        # Build debug binary (with source-parsing feature)
+just release      # Build release binary
+just check        # Quick cargo check
+just lint         # Run clippy (pedantic + nursery)
+just errors       # Build and show only errors/warnings
+just bench        # Run benchmarks
+just clean        # Remove docs/ and cargo clean
+
+just help         # Show all available commands
 ```
 
-Both scripts include helpful error messages if the nightly toolchain is missing.
+The scripts include helpful error messages if the nightly toolchain is missing.
 
-### Output Structure
+### Python Utility Scripts
 
-**Flat format:**
+The `scripts/` directory contains Python utilities for debugging and inspecting rustdoc JSON and generated output:
 
 ```bash
-generated_docs/
-├── index.md           # Crate root
-├── module_a.md
-├── module_a__submodule.md   # Double underscore = nesting
-└── module_b.md
+# List all available scripts with descriptions
+python3 scripts/index.py
+
+# Get help for a specific script
+python3 scripts/index.py <script_name>
+
+# Run a script directly
+python3 scripts/<script_name>.py --help
 ```
 
-**Nested format:**
+**Available scripts:**
+
+| Script                    | Description                                                           |
+| ------------------------- | --------------------------------------------------------------------- |
+| `inspect_impl.py`         | Inspect impl blocks for a specific type in rustdoc JSON               |
+| `find_blanket_impls.py`   | Find blanket impls (`impl<T> Trait for T`) in rustdoc JSON            |
+| `dump_type_info.py`       | Dump detailed type information from rustdoc JSON                      |
+| `check_generated_docs.py` | Check generated markdown for issues (duplicate anchors, broken links) |
+
+**Examples:**
 
 ```bash
-generated_docs/
-├── index.md
-├── module_a/
-│   ├── index.md
-│   └── submodule/
-│       └── index.md
-└── module_b/
-    └── index.md
+# Inspect all impls for a type
+python3 scripts/inspect_impl.py target/doc/my_crate.json MyStruct
+
+# Filter by trait name
+python3 scripts/inspect_impl.py target/doc/my_crate.json MyStruct --trait Clone -v
+
+# Check generated docs for problems
+python3 scripts/check_generated_docs.py generated_docs/
+python3 scripts/check_generated_docs.py generated_docs/ --file my_crate/module/index.md
+
+# Find blanket impls in a crate
+python3 scripts/find_blanket_impls.py target/doc/my_crate.json --limit 50
 ```
 
-**Multi-crate:**
+### Source Location Links
 
-```bash
-generated_docs/
-├── my_crate/
-│   └── index.md
-├── dependency_a/
-│   └── index.md
-├── SUMMARY.md          # mdBook table of contents
-└── search_index.json   # For client-side search
+When built with the `source-parsing` feature, each item shows a "Defined in" link pointing to the source file and line numbers:
+
+```markdown
+_Defined in [`serde-1.0.228/src/lib.rs:10-25`](../../.source_xxx/serde-1.0.228/src/lib.rs#L10-L25)_
 ```
+
+**Setup:**
+
+1. First, collect dependency sources to a local directory:
+
+   ```bash
+   cargo docs-md collect-sources
+   ```
+
+   This creates a `.source_{timestamp}/` directory with copies of all dependency source files.
+
+2. Generate docs (the tool auto-detects the `.source_*` directory):
+   ```bash
+   cargo docs-md docs
+   ```
+
+The links are relative to the generated markdown files and use GitHub-compatible line number fragments (`#L10-L25`). This keeps your home directory path private while providing clickable source navigation.
 
 ## How It Works
 
@@ -171,52 +213,9 @@ The tool reads rustdoc's JSON format (defined by the `rustdoc-types` crate) and 
 
 For multi-crate mode, there's a `UnifiedLinkRegistry` that tracks items across all crates and resolves cross-crate references. When there's ambiguity (multiple crates have an item with the same name), it prefers: local crate → primary crate (if specified) → modules over other items → first match.
 
-### Architecture
-
-Single-crate and multi-crate modes share the same rendering code through a trait-based abstraction:
-
-- **`RenderContext`** - A trait composed of `ItemAccess`, `ItemFilter`, and `LinkResolver` sub-traits
-- **`GeneratorContext`** - Implements `RenderContext` for single-crate mode
-- **`SingleCrateView`** - Adapter that implements `RenderContext` for multi-crate mode, allowing existing renderers to work transparently with multi-crate data
-
-This design eliminates code duplication and ensures consistent output regardless of mode.
-
-### Key Components
-
-- **`Parser`** - Reads and deserializes rustdoc JSON
-- **`LinkRegistry`** - Maps item IDs to file paths for single-crate linking
-- **`UnifiedLinkRegistry`** - Cross-crate linking with zero-allocation lookups (hashbrown raw_entry API)
-- **`ModuleRenderer`** - Generates markdown for a single module (works with any `RenderContext`)
-- **`DocLinkProcessor`** - Converts rustdoc's intra-doc links to markdown links
-- **`TypeRenderer`** - Formats type signatures with `Cow<str>` optimization (borrowed for simple types, owned for complex)
-
-### Performance
-
-Actually, I need help with this. I have tried the tricks that I know of, please let me know if you have better ideas. Especially related to improving parsing and generating the markdown content.
-
-- **Parallel generation** - Multi-crate mode uses rayon for 2-4x speedup on multi-core systems
-- **Zero-allocation lookups** - Registry queries use hashbrown's raw_entry API (~4x faster than standard HashMap)
-- **ASCII fast path** - Anchor slugification skips unicode normalization for pure ASCII names (~18x faster)
-- **Inline strings** - `CompactString` stores short identifiers without heap allocation
-
-## Current Limitations
-
-To be honest, it's currently good enough for my use cases. There are some
-formatting issues here and there. I haven't tested it out on any EXTREMELY LARGE
-repo yet - should probably be fine though.
-
-- **External re-exports** - Re-exported items now link to their original definitions when all relevant crates are included. If a dependency's JSON isn't available, the re-export will link to the re-exporting module instead. Workaround: include all dependency JSON files in `--dir`.
-- **Duplicate headings** - Some crates start their docs with `# Crate Name`, which duplicates our generated heading. Basic mitigation exists for exact matches, but edge cases remain.
-- **No incremental builds** - Regenerates everything every time. Fine for most crates, slow for huge workspaces. Use `just quick` to skip cargo clean.
-- **Reference link conversion** - Markdown reference links like `[text][ref]` may get incorrectly processed in rare cases.
-- **Cross-crate impl lookup** - When rendering re-exported types, impl blocks from the source crate might not be found in edge cases.
-
 ## What's In Development
 
-- **Crate graph visualization** - Show dependency relationships between crates
-- Incremental generation
-
-## Dependencies
+Lots of boilerplate AI generated code was added in the last two commits. This will probably take a lot of time to clean up than manually writing on my own, but I don't really have enough time on hand to work on so many of these types on my own.
 
 The heavy lifting is done by:
 

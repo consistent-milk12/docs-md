@@ -4,6 +4,12 @@
 
 # Module `take`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Take`](#take) | struct | `Take` is an iterator that iterates over the first `n` elements. |
+
 ## Structs
 
 ### `Take<I>`
@@ -15,61 +21,63 @@ struct Take<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../../.source_1765210505/rayon-1.11.0/src/iter/take.rs#L10-L13)*
+
 `Take` is an iterator that iterates over the first `n` elements.
-This struct is created by the `take()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `take()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
 
-- `fn new(base: I, n: usize) -> Self`
+- <span id="take-new"></span>`fn new(base: I, n: usize) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for Take<I>`
+##### `impl<I: clone::Clone> Clone for Take<I>`
 
-- `fn clone(self: &Self) -> Take<I>` — [`Take`](../index.md)
+- <span id="take-clone"></span>`fn clone(&self) -> Take<I>` — [`Take`](#take)
 
-##### `impl<I: $crate::fmt::Debug> Debug for Take<I>`
+##### `impl<I: fmt::Debug> Debug for Take<I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="take-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IndexedParallelIterator for Take<I>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="take-len"></span>`fn len(&self) -> usize`
 
-- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="take-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="take-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for Take<I>`
 
 ##### `impl<T> IntoParallelIterator for Take<I>`
 
-- `type Iter = T`
+- <span id="take-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="take-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="take-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Take<I>`
 
-- `type Item = <I as ParallelIterator>::Item`
+- <span id="take-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="take-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="take-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Take<I>`
 
-- `const ALIGN: usize`
+- <span id="take-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="take-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="take-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="take-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="take-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="take-drop"></span>`unsafe fn drop(ptr: usize)`
 

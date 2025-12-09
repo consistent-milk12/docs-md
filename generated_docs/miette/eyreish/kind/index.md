@@ -4,6 +4,17 @@
 
 # Module `kind`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Adhoc`](#adhoc) | struct |  |
+| [`Trait`](#trait) | struct |  |
+| [`Boxed`](#boxed) | struct |  |
+| [`AdhocKind`](#adhockind) | trait |  |
+| [`TraitKind`](#traitkind) | trait |  |
+| [`BoxedKind`](#boxedkind) | trait |  |
+
 ## Structs
 
 ### `Adhoc`
@@ -12,13 +23,15 @@
 struct Adhoc;
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:53`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L53)*
+
 #### Implementations
 
-- `fn new<M>(self: Self, message: M) -> Report` — [`Report`](../../index.md)
+- <span id="adhoc-new"></span>`fn new<M>(self, message: M) -> Report` — [`Report`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for Adhoc`
+##### `impl OwoColorize for Adhoc`
 
 ### `Trait`
 
@@ -26,13 +39,15 @@ struct Adhoc;
 struct Trait;
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:75`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L75)*
+
 #### Implementations
 
-- `fn new<E>(self: Self, error: E) -> Report` — [`Report`](../../index.md)
+- <span id="trait-new"></span>`fn new<E>(self, error: E) -> Report` — [`Report`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for Trait`
+##### `impl OwoColorize for Trait`
 
 ### `Boxed`
 
@@ -40,13 +55,15 @@ struct Trait;
 struct Boxed;
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:97`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L97)*
+
 #### Implementations
 
-- `fn new(self: Self, error: Box<dyn Diagnostic + Send + Sync>) -> Report` — [`Diagnostic`](../../index.md), [`Report`](../../index.md)
+- <span id="boxed-new"></span>`fn new(self, error: Box<dyn Diagnostic + Send + Sync>) -> Report` — [`Diagnostic`](../../index.md), [`Report`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for Boxed`
+##### `impl OwoColorize for Boxed`
 
 ## Traits
 
@@ -56,9 +73,15 @@ struct Boxed;
 trait AdhocKind: Sized { ... }
 ```
 
-#### Required Methods
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:55-60`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L55-L60)*
 
-- `fn miette_kind(self: &Self) -> Adhoc`
+#### Provided Methods
+
+- `fn miette_kind(&self) -> Adhoc`
+
+#### Implementors
+
+- `&T`
 
 ### `TraitKind`
 
@@ -66,9 +89,15 @@ trait AdhocKind: Sized { ... }
 trait TraitKind: Sized { ... }
 ```
 
-#### Required Methods
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:77-82`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L77-L82)*
 
-- `fn miette_kind(self: &Self) -> Trait`
+#### Provided Methods
+
+- `fn miette_kind(&self) -> Trait`
+
+#### Implementors
+
+- `E`
 
 ### `BoxedKind`
 
@@ -76,7 +105,13 @@ trait TraitKind: Sized { ... }
 trait BoxedKind: Sized { ... }
 ```
 
-#### Required Methods
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:99-104`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L99-L104)*
 
-- `fn miette_kind(self: &Self) -> Boxed`
+#### Provided Methods
+
+- `fn miette_kind(&self) -> Boxed`
+
+#### Implementors
+
+- `Box<dyn Diagnostic + Send + Sync>`
 

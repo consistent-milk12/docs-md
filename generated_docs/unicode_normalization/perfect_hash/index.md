@@ -6,6 +6,13 @@
 
 Support for lookups based on minimal perfect hashing.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`my_hash`](#my_hash) | fn |  |
+| [`mph_lookup`](#mph_lookup) | fn | Do a lookup using minimal perfect hashing. |
+
 ## Functions
 
 ### `my_hash`
@@ -13,6 +20,8 @@ Support for lookups based on minimal perfect hashing.
 ```rust
 fn my_hash(key: u32, salt: u32, n: usize) -> usize
 ```
+
+*Defined in [`unicode-normalization-0.1.25/src/perfect_hash.rs:16-20`](../../../.source_1765210505/unicode-normalization-0.1.25/src/perfect_hash.rs#L16-L20)*
 
 ### `mph_lookup`
 
@@ -23,6 +32,8 @@ where
     FK: Fn(KV) -> u32,
     FV: Fn(KV) -> V
 ```
+
+*Defined in [`unicode-normalization-0.1.25/src/perfect_hash.rs:30-50`](../../../.source_1765210505/unicode-normalization-0.1.25/src/perfect_hash.rs#L30-L50)*
 
 Do a lookup using minimal perfect hashing.
 

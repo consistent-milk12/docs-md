@@ -10,9 +10,17 @@ This implementation features:
 - Decent performance (3-4 GB/s).
 - `#![no_std]` support (with `default-features = false`).
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`algo`](#algo) | mod |  |
+| [`Adler32`](#adler32) | struct | Adler-32 checksum calculator. |
+| [`adler32_slice`](#adler32_slice) | fn | Calculates the Adler-32 checksum of a byte slice. |
+
 ## Modules
 
-- [`algo`](algo/index.md) - 
+- [`algo`](algo/index.md)
 
 ## Structs
 
@@ -24,6 +32,8 @@ struct Adler32 {
     b: u16,
 }
 ```
+
+*Defined in [`adler2-2.0.1/src/lib.rs:87-90`](../../.source_1765210505/adler2-2.0.1/src/lib.rs#L87-L90)*
 
 Adler-32 checksum calculator.
 
@@ -84,29 +94,29 @@ if cfg!(target_endian = "big") {
 
 #### Implementations
 
-- `fn compute(self: &mut Self, bytes: &[u8])`
+- <span id="crateadler32-compute"></span>`fn compute(&mut self, bytes: &[u8])`
 
 #### Trait Implementations
 
 ##### `impl Clone for Adler32`
 
-- `fn clone(self: &Self) -> Adler32` — [`Adler32`](#adler32)
+- <span id="adler32-clone"></span>`fn clone(&self) -> Adler32` — [`Adler32`](#adler32)
 
 ##### `impl Copy for Adler32`
 
 ##### `impl Debug for Adler32`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="adler32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Adler32`
 
-- `fn default() -> Self`
+- <span id="adler32-default"></span>`fn default() -> Self`
 
 ##### `impl Hasher for Adler32`
 
-- `fn finish(self: &Self) -> u64`
+- <span id="adler32-finish"></span>`fn finish(&self) -> u64`
 
-- `fn write(self: &mut Self, bytes: &[u8])`
+- <span id="adler32-write"></span>`fn write(&mut self, bytes: &[u8])`
 
 ## Functions
 
@@ -115,6 +125,8 @@ if cfg!(target_endian = "big") {
 ```rust
 fn adler32_slice(data: &[u8]) -> u32
 ```
+
+*Defined in [`adler2-2.0.1/src/lib.rs:170-174`](../../.source_1765210505/adler2-2.0.1/src/lib.rs#L170-L174)*
 
 Calculates the Adler-32 checksum of a byte slice.
 

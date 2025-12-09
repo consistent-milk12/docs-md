@@ -4,6 +4,13 @@
 
 # Module `style`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Style`](#style) | struct | ANSI Text styling |
+| [`StyleDisplay`](#styledisplay) | struct |  |
+
 ## Structs
 
 ### `Style`
@@ -16,6 +23,8 @@ struct Style {
     effects: crate::Effects,
 }
 ```
+
+*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../../.source_1765210505/anstyle-1.0.13/src/style.rs#L18-L23)*
 
 ANSI Text styling
 
@@ -34,89 +43,89 @@ println!("{style}{value}{style:#}");
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="style-new"></span>`const fn new() -> Self`
 
-- `const fn fg_color(self: Self, fg: Option<crate::Color>) -> Self` — [`Color`](../index.md)
+- <span id="style-fg-color"></span>`const fn fg_color(self, fg: Option<crate::Color>) -> Self` — [`Color`](../index.md)
 
-- `const fn bg_color(self: Self, bg: Option<crate::Color>) -> Self` — [`Color`](../index.md)
+- <span id="style-bg-color"></span>`const fn bg_color(self, bg: Option<crate::Color>) -> Self` — [`Color`](../index.md)
 
-- `const fn underline_color(self: Self, underline: Option<crate::Color>) -> Self` — [`Color`](../index.md)
+- <span id="style-underline-color"></span>`const fn underline_color(self, underline: Option<crate::Color>) -> Self` — [`Color`](../index.md)
 
-- `const fn effects(self: Self, effects: crate::Effects) -> Self` — [`Effects`](../index.md)
+- <span id="style-effects"></span>`const fn effects(self, effects: crate::Effects) -> Self` — [`Effects`](../index.md)
 
-- `fn render(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="style-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
-- `fn fmt_to(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="style-fmt-to"></span>`fn fmt_to(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-- `fn write_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="style-write-to"></span>`fn write_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
-- `fn render_reset(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="style-render-reset"></span>`fn render_reset(self) -> impl core::fmt::Display + Copy`
 
-- `fn write_reset_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- <span id="style-write-reset-to"></span>`fn write_reset_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl BitOr for Style`
 
-- `type Output = Style`
+- <span id="style-type-output"></span>`type Output = Style`
 
-- `fn bitor(self: Self, rhs: crate::Effects) -> Self` — [`Effects`](../index.md)
+- <span id="style-bitor"></span>`fn bitor(self, rhs: crate::Effects) -> Self` — [`Effects`](../index.md)
 
 ##### `impl BitOrAssign for Style`
 
-- `fn bitor_assign(self: &mut Self, other: crate::Effects)` — [`Effects`](../index.md)
+- <span id="style-bitor-assign"></span>`fn bitor_assign(&mut self, other: crate::Effects)` — [`Effects`](../index.md)
 
 ##### `impl Clone for Style`
 
-- `fn clone(self: &Self) -> Style` — [`Style`](../index.md)
+- <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](../index.md)
 
 ##### `impl Copy for Style`
 
 ##### `impl Debug for Style`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="style-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Style`
 
-- `fn default() -> Style` — [`Style`](../index.md)
+- <span id="style-default"></span>`fn default() -> Style` — [`Style`](../index.md)
 
 ##### `impl Display for Style`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="style-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Style`
 
 ##### `impl Hash for Style`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="style-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Style`
 
-- `fn cmp(self: &Self, other: &Style) -> $crate::cmp::Ordering` — [`Style`](../index.md)
+- <span id="style-cmp"></span>`fn cmp(&self, other: &Style) -> cmp::Ordering` — [`Style`](../index.md)
 
 ##### `impl PartialEq for Style`
 
-- `fn eq(self: &Self, other: &Style) -> bool` — [`Style`](../index.md)
+- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](../index.md)
 
 ##### `impl PartialOrd for Style`
 
-- `fn partial_cmp(self: &Self, other: &Style) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Style`](../index.md)
+- <span id="style-partial-cmp"></span>`fn partial_cmp(&self, other: &Style) -> option::Option<cmp::Ordering>` — [`Style`](../index.md)
 
 ##### `impl StructuralPartialEq for Style`
 
 ##### `impl Sub for Style`
 
-- `type Output = Style`
+- <span id="style-type-output"></span>`type Output = Style`
 
-- `fn sub(self: Self, other: crate::Effects) -> Self` — [`Effects`](../index.md)
+- <span id="style-sub"></span>`fn sub(self, other: crate::Effects) -> Self` — [`Effects`](../index.md)
 
 ##### `impl SubAssign for Style`
 
-- `fn sub_assign(self: &mut Self, other: crate::Effects)` — [`Effects`](../index.md)
+- <span id="style-sub-assign"></span>`fn sub_assign(&mut self, other: crate::Effects)` — [`Effects`](../index.md)
 
-##### `impl<T> ToString for Style`
+##### `impl ToString for Style`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="style-to-string"></span>`fn to_string(&self) -> String`
 
 ### `StyleDisplay`
 
@@ -124,27 +133,29 @@ println!("{style}{value}{style:#}");
 struct StyleDisplay(Style);
 ```
 
+*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../../.source_1765210505/anstyle-1.0.13/src/style.rs#L423)*
+
 #### Trait Implementations
 
 ##### `impl Clone for StyleDisplay`
 
-- `fn clone(self: &Self) -> StyleDisplay` — [`StyleDisplay`](#styledisplay)
+- <span id="styledisplay-clone"></span>`fn clone(&self) -> StyleDisplay` — [`StyleDisplay`](#styledisplay)
 
 ##### `impl Copy for StyleDisplay`
 
 ##### `impl Debug for StyleDisplay`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="styledisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StyleDisplay`
 
-- `fn default() -> StyleDisplay` — [`StyleDisplay`](#styledisplay)
+- <span id="styledisplay-default"></span>`fn default() -> StyleDisplay` — [`StyleDisplay`](#styledisplay)
 
 ##### `impl Display for StyleDisplay`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="styledisplay-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for StyleDisplay`
+##### `impl ToString for StyleDisplay`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="styledisplay-to-string"></span>`fn to_string(&self) -> String`
 

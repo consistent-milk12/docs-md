@@ -229,9 +229,18 @@ necessitate raising the size of the trie's first level.
 In contrast to binary search or the `ucd-trie` crate, performing lookups in
 this data structure is straight-line code with no need for branching.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`tables`](#tables) | mod |  |
+| [`is_xid_start`](#is_xid_start) | fn | Whether the character has the Unicode property XID\_Start. |
+| [`is_xid_continue`](#is_xid_continue) | fn | Whether the character has the Unicode property XID\_Continue. |
+| [`UNICODE_VERSION`](#unicode_version) | const |  |
+
 ## Modules
 
-- [`tables`](tables/index.md) - 
+- [`tables`](tables/index.md)
 
 ## Functions
 
@@ -241,6 +250,8 @@ this data structure is straight-line code with no need for branching.
 fn is_xid_start(ch: char) -> bool
 ```
 
+*Defined in [`unicode-ident-1.0.22/src/lib.rs:261-268`](../../.source_1765210505/unicode-ident-1.0.22/src/lib.rs#L261-L268)*
+
 Whether the character has the Unicode property XID\_Start.
 
 ### `is_xid_continue`
@@ -249,7 +260,11 @@ Whether the character has the Unicode property XID\_Start.
 fn is_xid_continue(ch: char) -> bool
 ```
 
+*Defined in [`unicode-ident-1.0.22/src/lib.rs:271-281`](../../.source_1765210505/unicode-ident-1.0.22/src/lib.rs#L271-L281)*
+
 Whether the character has the Unicode property XID\_Continue.
 
 ## Constants
+
+*Defined in [`unicode-ident-1.0.22/src/lib.rs:255`](../../.source_1765210505/unicode-ident-1.0.22/src/lib.rs#L255)*
 

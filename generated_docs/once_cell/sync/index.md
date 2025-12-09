@@ -6,6 +6,14 @@
 
 Thread-safe, blocking version of `OnceCell`.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`OnceCell`](#oncecell) | struct | A thread-safe cell which can be written to only once. |
+| [`Lazy`](#lazy) | struct | A value which is initialized on the first access. |
+| [`_dummy`](#_dummy) | fn | ```compile_fail struct S(*mut ()); unsafe impl Sync for S {} |
+
 ## Structs
 
 ### `OnceCell<T>`
@@ -13,6 +21,8 @@ Thread-safe, blocking version of `OnceCell`.
 ```rust
 struct OnceCell<T>(super::imp::OnceCell<T>);
 ```
+
+*Defined in [`once_cell-1.21.3/src/lib.rs:901`](../../../.source_1765210505/once_cell-1.21.3/src/lib.rs#L901)*
 
 A thread-safe cell which can be written to only once.
 
@@ -45,51 +55,51 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
 #### Implementations
 
-- `const fn new() -> OnceCell<T>` — [`OnceCell`](#oncecell)
+- <span id="oncecell-new"></span>`const fn new() -> OnceCell<T>` — [`OnceCell`](#oncecell)
 
-- `const fn with_value(value: T) -> OnceCell<T>` — [`OnceCell`](#oncecell)
+- <span id="oncecell-with-value"></span>`const fn with_value(value: T) -> OnceCell<T>` — [`OnceCell`](#oncecell)
 
-- `fn get(self: &Self) -> Option<&T>`
+- <span id="oncecell-get"></span>`fn get(&self) -> Option<&T>`
 
-- `fn wait(self: &Self) -> &T`
+- <span id="oncecell-wait"></span>`fn wait(&self) -> &T`
 
-- `fn get_mut(self: &mut Self) -> Option<&mut T>`
+- <span id="oncecell-get-mut"></span>`fn get_mut(&mut self) -> Option<&mut T>`
 
-- `unsafe fn get_unchecked(self: &Self) -> &T`
+- <span id="oncecell-get-unchecked"></span>`unsafe fn get_unchecked(&self) -> &T`
 
-- `fn set(self: &Self, value: T) -> Result<(), T>`
+- <span id="oncecell-set"></span>`fn set(&self, value: T) -> Result<(), T>`
 
-- `fn try_insert(self: &Self, value: T) -> Result<&T, (&T, T)>`
+- <span id="oncecell-try-insert"></span>`fn try_insert(&self, value: T) -> Result<&T, (&T, T)>`
 
-- `fn get_or_init<F>(self: &Self, f: F) -> &T`
+- <span id="oncecell-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> &T`
 
-- `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<&T, E>`
+- <span id="oncecell-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<&T, E>`
 
-- `fn take(self: &mut Self) -> Option<T>`
+- <span id="oncecell-take"></span>`fn take(&mut self) -> Option<T>`
 
-- `fn into_inner(self: Self) -> Option<T>`
+- <span id="oncecell-into-inner"></span>`fn into_inner(self) -> Option<T>`
 
 #### Trait Implementations
 
 ##### `impl<T: Clone> Clone for OnceCell<T>`
 
-- `fn clone(self: &Self) -> OnceCell<T>` — [`OnceCell`](#oncecell)
+- <span id="oncecell-clone"></span>`fn clone(&self) -> OnceCell<T>` — [`OnceCell`](#oncecell)
 
-- `fn clone_from(self: &mut Self, source: &Self)`
+- <span id="oncecell-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
 ##### `impl<T: fmt::Debug> Debug for OnceCell<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="oncecell-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for OnceCell<T>`
 
-- `fn default() -> OnceCell<T>` — [`OnceCell`](#oncecell)
+- <span id="oncecell-default"></span>`fn default() -> OnceCell<T>` — [`OnceCell`](#oncecell)
 
 ##### `impl<T: Eq> Eq for OnceCell<T>`
 
 ##### `impl<T: PartialEq> PartialEq for OnceCell<T>`
 
-- `fn eq(self: &Self, other: &OnceCell<T>) -> bool` — [`OnceCell`](#oncecell)
+- <span id="oncecell-eq"></span>`fn eq(&self, other: &OnceCell<T>) -> bool` — [`OnceCell`](#oncecell)
 
 ### `Lazy<T, F>`
 
@@ -99,6 +109,8 @@ struct Lazy<T, F> {
     init: core::cell::Cell<Option<F>>,
 }
 ```
+
+*Defined in [`once_cell-1.21.3/src/lib.rs:1255-1258`](../../../.source_1765210505/once_cell-1.21.3/src/lib.rs#L1255-L1258)*
 
 A value which is initialized on the first access.
 
@@ -136,37 +148,33 @@ fn main() {
 
 #### Implementations
 
-- `fn force(this: &Lazy<T, F>) -> &T` — [`Lazy`](#lazy)
+- <span id="lazy-new"></span>`const fn new(f: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
-- `fn force_mut(this: &mut Lazy<T, F>) -> &mut T` — [`Lazy`](#lazy)
-
-- `fn get(this: &Lazy<T, F>) -> Option<&T>` — [`Lazy`](#lazy)
-
-- `fn get_mut(this: &mut Lazy<T, F>) -> Option<&mut T>` — [`Lazy`](#lazy)
+- <span id="lazy-into-value"></span>`fn into_value(this: Lazy<T, F>) -> Result<T, F>` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, F> Debug for Lazy<T, F>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lazy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Default> Default for Lazy<T>`
 
-- `fn default() -> Lazy<T>` — [`Lazy`](#lazy)
+- <span id="lazy-default"></span>`fn default() -> Lazy<T>` — [`Lazy`](#lazy)
 
 ##### `impl<T, F: FnOnce() -> T> Deref for Lazy<T, F>`
 
-- `type Target = T`
+- <span id="lazy-type-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="lazy-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T, F: FnOnce() -> T> DerefMut for Lazy<T, F>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="lazy-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<P, T> Receiver for Lazy<T, F>`
 
-- `type Target = T`
+- <span id="lazy-type-target"></span>`type Target = T`
 
 ##### `impl<T, F: RefUnwindSafe> RefUnwindSafe for Lazy<T, F>`
 
@@ -179,6 +187,8 @@ fn main() {
 ```rust
 fn _dummy()
 ```
+
+*Defined in [`once_cell-1.21.3/src/lib.rs:1408`](../../../.source_1765210505/once_cell-1.21.3/src/lib.rs#L1408)*
 
 ```compile_fail
 struct S(*mut ());

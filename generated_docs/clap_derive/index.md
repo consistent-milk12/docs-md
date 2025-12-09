@@ -24,14 +24,26 @@ conditions.
 
 See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`macros`](#macros) | mod |  |
+| [`attr`](#attr) | mod |  |
+| [`derives`](#derives) | mod |  |
+| [`dummies`](#dummies) | mod | Dummy implementations that we emit along with an error. |
+| [`item`](#item) | mod |  |
+| [`utils`](#utils) | mod |  |
+| [`to_compile_error`](#to_compile_error) | fn |  |
+
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`attr`](attr/index.md) - 
-- [`derives`](derives/index.md) - 
-- [`dummies`](dummies/index.md) - Dummy implementations that we emit along with an error.
-- [`item`](item/index.md) - 
-- [`utils`](utils/index.md) - 
+- [`macros`](macros/index.md)
+- [`attr`](attr/index.md)
+- [`derives`](derives/index.md)
+- [`dummies`](dummies/index.md) — Dummy implementations that we emit along with an error.
+- [`item`](item/index.md)
+- [`utils`](utils/index.md)
 
 ## Functions
 
@@ -40,4 +52,6 @@ See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 ```rust
 fn to_compile_error(error: syn::Error, dummy: proc_macro2::TokenStream) -> proc_macro2::TokenStream
 ```
+
+*Defined in [`clap_derive-4.5.49/src/lib.rs:109-118`](../../.source_1765210505/clap_derive-4.5.49/src/lib.rs#L109-L118)*
 

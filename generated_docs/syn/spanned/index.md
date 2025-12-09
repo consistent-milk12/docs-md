@@ -82,9 +82,16 @@ able to span the error correctly under the complete syntax tree node without
 needing the unstable `join`.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`Spanned`](#spanned) | trait | A trait that can provide the `Span` of the complete contents of a syntax tree node. |
+
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Traits
 
@@ -93,6 +100,8 @@ needing the unstable `join`.
 ```rust
 trait Spanned: private::Sealed { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/spanned.rs:96-102`](../../../.source_1765210505/syn-2.0.111/src/spanned.rs#L96-L102)*
 
 A trait that can provide the `Span` of the complete contents of a syntax
 tree node.
@@ -105,7 +114,12 @@ See the [module documentation] for an example.
 
 #### Required Methods
 
-- `fn span(self: &Self) -> Span`
+- `fn span(&self) -> Span`
 
   Returns a `Span` covering the complete contents of this syntax tree
+
+#### Implementors
+
+- [`QSelf`](../path/index.md)
+- `T`
 

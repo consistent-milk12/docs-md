@@ -4,6 +4,17 @@
 
 # Module `search`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Input`](#input) | struct | The configuration and the haystack to use for an Aho-Corasick search. |
+| [`Span`](#span) | struct | A representation of a range in a haystack. |
+| [`Match`](#match) | struct | A representation of a match reported by an Aho-Corasick searcher. |
+| [`Anchored`](#anchored) | enum | The type of anchored search to perform. |
+| [`MatchKind`](#matchkind) | enum | A knob for controlling the match semantics of an Aho-Corasick automaton. |
+| [`StartKind`](#startkind) | enum | The kind of anchored starting configurations to support in an Aho-Corasick searcher. |
+
 ## Structs
 
 ### `Input<'h>`
@@ -16,6 +27,8 @@ struct Input<'h> {
     earliest: bool,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
 
 The configuration and the haystack to use for an Aho-Corasick search.
 
@@ -32,7 +45,7 @@ start of the search) or anchored (matches can only occur beginning at
 the start of the search) search. Unanchored search is the default. This is
 configured via `Input::anchored`.
 * Whether to quit the search as soon as a match has been found, regardless
-of the [`MatchKind`](../../index.md) that the searcher was built with. This is configured
+of the [`MatchKind`](#matchkind) that the searcher was built with. This is configured
 via `Input::earliest`.
 
 For most cases, the defaults for all optional parameters are appropriate.
@@ -97,53 +110,53 @@ assert_eq!(
 
 #### Implementations
 
-- `fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-new"></span>`fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](#input)
 
-- `fn span<S: Into<Span>>(self: Self, span: S) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](#input)
 
-- `fn range<R: RangeBounds<usize>>(self: Self, range: R) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](#input)
 
-- `fn anchored(self: Self, mode: Anchored) -> Input<'h>` — [`Anchored`](../../index.md), [`Input`](../../index.md)
+- <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](#anchored), [`Input`](#input)
 
-- `fn earliest(self: Self, yes: bool) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](#input)
 
-- `fn set_span<S: Into<Span>>(self: &mut Self, span: S)`
+- <span id="input-set-span"></span>`fn set_span<S: Into<Span>>(&mut self, span: S)`
 
-- `fn set_range<R: RangeBounds<usize>>(self: &mut Self, range: R)`
+- <span id="input-set-range"></span>`fn set_range<R: RangeBounds<usize>>(&mut self, range: R)`
 
-- `fn set_start(self: &mut Self, start: usize)`
+- <span id="input-set-start"></span>`fn set_start(&mut self, start: usize)`
 
-- `fn set_end(self: &mut Self, end: usize)`
+- <span id="input-set-end"></span>`fn set_end(&mut self, end: usize)`
 
-- `fn set_anchored(self: &mut Self, mode: Anchored)` — [`Anchored`](../../index.md)
+- <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](#anchored)
 
-- `fn set_earliest(self: &mut Self, yes: bool)`
+- <span id="input-set-earliest"></span>`fn set_earliest(&mut self, yes: bool)`
 
-- `fn haystack(self: &Self) -> &[u8]`
+- <span id="input-haystack"></span>`fn haystack(&self) -> &[u8]`
 
-- `fn start(self: &Self) -> usize`
+- <span id="input-start"></span>`fn start(&self) -> usize`
 
-- `fn end(self: &Self) -> usize`
+- <span id="input-end"></span>`fn end(&self) -> usize`
 
-- `fn get_span(self: &Self) -> Span` — [`Span`](../../index.md)
+- <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](#span)
 
-- `fn get_range(self: &Self) -> Range<usize>`
+- <span id="input-get-range"></span>`fn get_range(&self) -> Range<usize>`
 
-- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](../../index.md)
+- <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](#anchored)
 
-- `fn get_earliest(self: &Self) -> bool`
+- <span id="input-get-earliest"></span>`fn get_earliest(&self) -> bool`
 
-- `fn is_done(self: &Self) -> bool`
+- <span id="input-is-done"></span>`fn is_done(&self) -> bool`
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Input<'h>`
+##### `impl Clone for Input<'h>`
 
-- `fn clone(self: &Self) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-clone"></span>`fn clone(&self) -> Input<'h>` — [`Input`](#input)
 
-##### `impl<'h> Debug for Input<'h>`
+##### `impl Debug for Input<'h>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="input-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Span`
 
@@ -153,6 +166,8 @@ struct Span {
     pub end: usize,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
 
 A representation of a range in a haystack.
 
@@ -186,37 +201,47 @@ to create a span where `start > end`.
 
 #### Implementations
 
-- `fn range(self: &Self) -> Range<usize>`
+- <span id="span-range"></span>`fn range(&self) -> Range<usize>`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="span-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="span-len"></span>`fn len(&self) -> usize`
 
-- `fn contains(self: &Self, offset: usize) -> bool`
+- <span id="span-contains"></span>`fn contains(&self, offset: usize) -> bool`
 
-- `fn offset(self: &Self, offset: usize) -> Span` — [`Span`](../../index.md)
+- <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](#span)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](../../index.md)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](#span)
 
 ##### `impl Copy for Span`
 
 ##### `impl Debug for Span`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="span-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Span`
 
 ##### `impl Hash for Span`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="span-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+
+##### `impl Index for [u8]`
+
+- <span id="u8-type-output"></span>`type Output = [u8]`
+
+- <span id="u8-index"></span>`fn index(&self, index: Span) -> &[u8]` — [`Span`](#span)
+
+##### `impl IndexMut for [u8]`
+
+- <span id="u8-index-mut"></span>`fn index_mut(&mut self, index: Span) -> &mut [u8]` — [`Span`](#span)
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](../../index.md)
+- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
 
 ##### `impl StructuralPartialEq for Span`
 
@@ -229,10 +254,12 @@ struct Match {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
+
 A representation of a match reported by an Aho-Corasick searcher.
 
-A match has two essential pieces of information: the [`PatternID`](../../index.md) that
-matches, and the [`Span`](../../index.md) of the match in a haystack.
+A match has two essential pieces of information: the [`PatternID`](../primitives/index.md) that
+matches, and the [`Span`](#span) of the match in a haystack.
 
 The pattern is identified by an ID, which corresponds to its position
 (starting from `0`) relative to other patterns used to construct the
@@ -254,47 +281,47 @@ offset as less than or equal to its end offset.
 
 #### Implementations
 
-- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../../index.md), [`Match`](../../index.md)
+- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../primitives/index.md), [`Match`](#match)
 
-- `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](../../index.md)
+- <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](#match)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../primitives/index.md)
 
-- `fn start(self: &Self) -> usize`
+- <span id="match-start"></span>`fn start(&self) -> usize`
 
-- `fn end(self: &Self) -> usize`
+- <span id="match-end"></span>`fn end(&self) -> usize`
 
-- `fn range(self: &Self) -> core::ops::Range<usize>`
+- <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
 
-- `fn span(self: &Self) -> Span` — [`Span`](../../index.md)
+- <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](#span)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="match-len"></span>`fn len(&self) -> usize`
 
-- `fn offset(self: &Self, offset: usize) -> Match` — [`Match`](../../index.md)
+- <span id="match-offset"></span>`fn offset(&self, offset: usize) -> Match` — [`Match`](#match)
 
 #### Trait Implementations
 
 ##### `impl Clone for Match`
 
-- `fn clone(self: &Self) -> Match` — [`Match`](../../index.md)
+- <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](#match)
 
 ##### `impl Copy for Match`
 
 ##### `impl Debug for Match`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="match-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Match`
 
 ##### `impl Hash for Match`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="match-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Match`
 
-- `fn eq(self: &Self, other: &Match) -> bool` — [`Match`](../../index.md)
+- <span id="match-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](#match)
 
 ##### `impl StructuralPartialEq for Match`
 
@@ -308,6 +335,8 @@ enum Anchored {
     Yes,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
 
 The type of anchored search to perform.
 
@@ -330,25 +359,25 @@ fallible or an infallible routine was called.
 
 #### Implementations
 
-- `fn is_anchored(self: &Self) -> bool`
+- <span id="anchored-is-anchored"></span>`fn is_anchored(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Anchored`
 
-- `fn clone(self: &Self) -> Anchored` — [`Anchored`](../../index.md)
+- <span id="anchored-clone"></span>`fn clone(&self) -> Anchored` — [`Anchored`](#anchored)
 
 ##### `impl Copy for Anchored`
 
 ##### `impl Debug for Anchored`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="anchored-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Anchored`
 
 ##### `impl PartialEq for Anchored`
 
-- `fn eq(self: &Self, other: &Anchored) -> bool` — [`Anchored`](../../index.md)
+- <span id="anchored-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](#anchored)
 
 ##### `impl StructuralPartialEq for Anchored`
 
@@ -361,6 +390,8 @@ enum MatchKind {
     LeftmostLongest,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
 
 A knob for controlling the match semantics of an Aho-Corasick automaton.
 
@@ -478,35 +509,35 @@ POSIX regex alternations.
 
 #### Implementations
 
-- `fn is_standard(self: &Self) -> bool`
+- <span id="matchkind-is-standard"></span>`fn is_standard(&self) -> bool`
 
-- `fn is_leftmost(self: &Self) -> bool`
+- <span id="matchkind-is-leftmost"></span>`fn is_leftmost(&self) -> bool`
 
-- `fn is_leftmost_first(self: &Self) -> bool`
+- <span id="matchkind-is-leftmost-first"></span>`fn is_leftmost_first(&self) -> bool`
 
-- `fn as_packed(self: &Self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](../../packed/index.md)
+- <span id="matchkind-as-packed"></span>`fn as_packed(&self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](../../packed/api/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchKind`
 
-- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Copy for MatchKind`
 
 ##### `impl Debug for MatchKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matchkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MatchKind`
 
-- `fn default() -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](../../index.md)
+- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
 
 ##### `impl StructuralPartialEq for MatchKind`
 
@@ -519,6 +550,8 @@ enum StartKind {
     Anchored,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
 
 The kind of anchored starting configurations to support in an Aho-Corasick
 searcher.
@@ -557,23 +590,23 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 ##### `impl Clone for StartKind`
 
-- `fn clone(self: &Self) -> StartKind` — [`StartKind`](../../index.md)
+- <span id="startkind-clone"></span>`fn clone(&self) -> StartKind` — [`StartKind`](#startkind)
 
 ##### `impl Copy for StartKind`
 
 ##### `impl Debug for StartKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="startkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StartKind`
 
-- `fn default() -> StartKind` — [`StartKind`](../../index.md)
+- <span id="startkind-default"></span>`fn default() -> StartKind` — [`StartKind`](#startkind)
 
 ##### `impl Eq for StartKind`
 
 ##### `impl PartialEq for StartKind`
 
-- `fn eq(self: &Self, other: &StartKind) -> bool` — [`StartKind`](../../index.md)
+- <span id="startkind-eq"></span>`fn eq(&self, other: &StartKind) -> bool` — [`StartKind`](#startkind)
 
 ##### `impl StructuralPartialEq for StartKind`
 

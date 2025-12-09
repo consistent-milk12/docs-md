@@ -4,7 +4,13 @@
 
 # Module `sync`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`atomic`](#atomic) | mod |  |
+
 ## Modules
 
-- [`atomic`](atomic/index.md) - 
+- [`atomic`](atomic/index.md)
 

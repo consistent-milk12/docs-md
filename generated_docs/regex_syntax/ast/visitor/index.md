@@ -4,6 +4,30 @@
 
 # Module `visitor`
 
+## Contents
+
+- [Structs](#structs)
+  - [`HeapVisitor`](#heapvisitor)
+- [Enums](#enums)
+  - [`Frame`](#frame)
+  - [`ClassFrame`](#classframe)
+  - [`ClassInduct`](#classinduct)
+- [Traits](#traits)
+  - [`Visitor`](#visitor)
+- [Functions](#functions)
+  - [`visit`](#visit)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`HeapVisitor`](#heapvisitor) | struct | HeapVisitor visits every item in an `Ast` recursively using constant stack size and a heap size proportional to the size of the `Ast`. |
+| [`Frame`](#frame) | enum | Represents a single stack frame while performing structural induction over an `Ast`. |
+| [`ClassFrame`](#classframe) | enum | Represents a single stack frame while performing structural induction over a character class. |
+| [`ClassInduct`](#classinduct) | enum | A representation of the inductive step when performing structural induction over a character class. |
+| [`Visitor`](#visitor) | trait | A trait for visiting an abstract syntax tree (AST) in depth first order. |
+| [`visit`](#visit) | fn | Executes an implementation of `Visitor` in constant stack space. |
+
 ## Structs
 
 ### `HeapVisitor<'a>`
@@ -14,6 +38,8 @@ struct HeapVisitor<'a> {
     stack_class: alloc::vec::Vec<(ClassInduct<'a>, ClassFrame<'a>)>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:124-132`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L124-L132)*
 
 HeapVisitor visits every item in an `Ast` recursively using constant stack
 size and a heap size proportional to the size of the `Ast`.
@@ -33,23 +59,23 @@ size and a heap size proportional to the size of the `Ast`.
 
 #### Implementations
 
-- `fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
+- <span id="heapvisitor-new"></span>`fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
 
-- `fn visit<V: Visitor>(self: &mut Self, ast: &'a Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Ast`](../index.md), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, ast: &'a Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Ast`](../index.md), [`Visitor`](#visitor)
 
-- `fn induct<V: Visitor>(self: &mut Self, ast: &'a Ast, visitor: &mut V) -> Result<Option<Frame<'a>>, <V as >::Err>` — [`Ast`](../index.md), [`Frame`](#frame), [`Visitor`](../index.md)
+- <span id="heapvisitor-induct"></span>`fn induct<V: Visitor>(&mut self, ast: &'a Ast, visitor: &mut V) -> Result<Option<Frame<'a>>, <V as >::Err>` — [`Ast`](../index.md), [`Frame`](#frame), [`Visitor`](#visitor)
 
-- `fn pop(self: &Self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
+- <span id="heapvisitor-pop"></span>`fn pop(&self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
 
-- `fn visit_class<V: Visitor>(self: &mut Self, ast: &'a ast::ClassBracketed, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassBracketed`](../index.md), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit-class"></span>`fn visit_class<V: Visitor>(&mut self, ast: &'a ast::ClassBracketed, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassBracketed`](../index.md), [`Visitor`](#visitor)
 
-- `fn visit_class_pre<V: Visitor>(self: &Self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit-class-pre"></span>`fn visit_class_pre<V: Visitor>(&self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](#visitor)
 
-- `fn visit_class_post<V: Visitor>(self: &Self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit-class-post"></span>`fn visit_class_post<V: Visitor>(&self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](#visitor)
 
-- `fn induct_class(self: &Self, ast: &ClassInduct<'a>) -> Option<ClassFrame<'a>>` — [`ClassInduct`](#classinduct), [`ClassFrame`](#classframe)
+- <span id="heapvisitor-induct-class"></span>`fn induct_class(&self, ast: &ClassInduct<'a>) -> Option<ClassFrame<'a>>` — [`ClassInduct`](#classinduct), [`ClassFrame`](#classframe)
 
-- `fn pop_class(self: &Self, induct: ClassFrame<'a>) -> Option<ClassFrame<'a>>` — [`ClassFrame`](#classframe)
+- <span id="heapvisitor-pop-class"></span>`fn pop_class(&self, induct: ClassFrame<'a>) -> Option<ClassFrame<'a>>` — [`ClassFrame`](#classframe)
 
 ## Enums
 
@@ -69,6 +95,8 @@ enum Frame<'a> {
     },
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:136-159`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L136-L159)*
 
 Represents a single stack frame while performing structural induction over
 an `Ast`.
@@ -97,7 +125,7 @@ an `Ast`.
 
 #### Implementations
 
-- `fn child(self: &Self) -> &'a Ast` — [`Ast`](../index.md)
+- <span id="frame-child"></span>`fn child(&self) -> &'a Ast` — [`Ast`](../index.md)
 
 ### `ClassFrame<'a>`
 
@@ -121,6 +149,8 @@ enum ClassFrame<'a> {
     },
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:163-184`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L163-L184)*
 
 Represents a single stack frame while performing structural induction over
 a character class.
@@ -148,13 +178,13 @@ a character class.
 
 #### Implementations
 
-- `fn child(self: &Self) -> ClassInduct<'a>` — [`ClassInduct`](#classinduct)
+- <span id="classframe-child"></span>`fn child(&self) -> ClassInduct<'a>` — [`ClassInduct`](#classinduct)
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ClassFrame<'a>`
+##### `impl Debug for ClassFrame<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="classframe-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `ClassInduct<'a>`
 
@@ -164,6 +194,8 @@ enum ClassInduct<'a> {
     BinaryOp(&'a ast::ClassSetBinaryOp),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:195-198`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L195-L198)*
 
 A representation of the inductive step when performing structural induction
 over a character class.
@@ -177,15 +209,15 @@ syntax, which is not possible.)
 
 #### Implementations
 
-- `fn from_bracketed(ast: &'a ast::ClassBracketed) -> ClassInduct<'a>` — [`ClassBracketed`](../index.md), [`ClassInduct`](#classinduct)
+- <span id="classinduct-from-bracketed"></span>`fn from_bracketed(ast: &'a ast::ClassBracketed) -> ClassInduct<'a>` — [`ClassBracketed`](../index.md), [`ClassInduct`](#classinduct)
 
-- `fn from_set(ast: &'a ast::ClassSet) -> ClassInduct<'a>` — [`ClassSet`](../index.md), [`ClassInduct`](#classinduct)
+- <span id="classinduct-from-set"></span>`fn from_set(ast: &'a ast::ClassSet) -> ClassInduct<'a>` — [`ClassSet`](../index.md), [`ClassInduct`](#classinduct)
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ClassInduct<'a>`
+##### `impl Debug for ClassInduct<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="classinduct-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ## Traits
 
@@ -194,6 +226,8 @@ syntax, which is not possible.)
 ```rust
 trait Visitor { ... }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
 
 A trait for visiting an abstract syntax tree (AST) in depth first order.
 
@@ -204,62 +238,72 @@ usage, which can be important since the size of an abstract syntax tree
 may be proportional to end user input.
 
 Typical usage of this trait involves providing an implementation and then
-running it using the [`visit`](../index.md) function.
+running it using the [`visit`](#visit) function.
 
 Note that the abstract syntax tree for a regular expression is quite
 complex. Unless you specifically need it, you might be able to use the much
 simpler [high-level intermediate representation](crate::hir::Hir) and its
 [corresponding `Visitor` trait](crate::hir::Visitor) instead.
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
 
 - `type Err`
 
-- `fn finish(self: Self) -> Result<<Self as >::Output, <Self as >::Err>`
+#### Required Methods
+
+- `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
 
-- `fn start(self: &mut Self)`
+#### Provided Methods
+
+- `fn start(&mut self)`
 
   This method is called before beginning traversal of the AST.
 
-- `fn visit_pre(self: &mut Self, _ast: &Ast) -> Result<(), <Self as >::Err>`
+- `fn visit_pre(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Ast` before descending into child `Ast`
 
-- `fn visit_post(self: &mut Self, _ast: &Ast) -> Result<(), <Self as >::Err>`
+- `fn visit_post(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Ast` after descending all of its child
 
-- `fn visit_alternation_in(self: &mut Self) -> Result<(), <Self as >::Err>`
+- `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of an
 
-- `fn visit_concat_in(self: &mut Self) -> Result<(), <Self as >::Err>`
+- `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of a concatenation.
 
-- `fn visit_class_set_item_pre(self: &mut Self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
+- `fn visit_class_set_item_pre(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
 
   This method is called on every [`ClassSetItem`](ast::ClassSetItem)
 
-- `fn visit_class_set_item_post(self: &mut Self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
+- `fn visit_class_set_item_post(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
 
   This method is called on every [`ClassSetItem`](ast::ClassSetItem)
 
-- `fn visit_class_set_binary_op_pre(self: &mut Self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+- `fn visit_class_set_binary_op_pre(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called on every
 
-- `fn visit_class_set_binary_op_post(self: &mut Self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+- `fn visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called on every
 
-- `fn visit_class_set_binary_op_in(self: &mut Self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+- `fn visit_class_set_binary_op_in(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called between the left hand and right hand child nodes
+
+#### Implementors
+
+- [`NestLimiter`](../parse/index.md)
+- [`TranslatorI`](../../hir/translate/index.md)
+- [`Writer`](../print/index.md)
 
 ## Functions
 
@@ -269,10 +313,12 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 fn visit<V: Visitor>(ast: &crate::ast::Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
+
 Executes an implementation of `Visitor` in constant stack space.
 
 This function will visit every node in the given `Ast` while calling the
-appropriate methods provided by the [`Visitor`](../index.md) trait.
+appropriate methods provided by the [`Visitor`](#visitor) trait.
 
 The primary use case for this method is when one wants to perform case
 analysis over an `Ast` without using a stack size proportional to the depth

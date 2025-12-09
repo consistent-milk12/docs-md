@@ -4,6 +4,15 @@
 
 # Module `relocation`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`XcoffRelocationIterator`](#xcoffrelocationiterator) | struct | An iterator for the relocations in an [`XcoffSection`](super::XcoffSection). |
+| [`Rel`](#rel) | trait | A trait for generic access to [`xcoff::Rel32`] and [`xcoff::Rel64`]. |
+| [`XcoffRelocationIterator32`](#xcoffrelocationiterator32) | type | An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32). |
+| [`XcoffRelocationIterator64`](#xcoffrelocationiterator64) | type | An iterator for the relocations in an [`XcoffSection64`](super::XcoffSection64). |
+
 ## Structs
 
 ### `XcoffRelocationIterator<'data, 'file, Xcoff, R>`
@@ -18,27 +27,29 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:23-32`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L23-L32)*
+
 An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="xcoffrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="xcoffrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="xcoffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="xcoffrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="xcoffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Traits
 
@@ -48,21 +59,32 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 trait Rel: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:88-98`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L88-L98)*
+
 A trait for generic access to [`xcoff::Rel32`](../../../xcoff/index.md) and [`xcoff::Rel64`](../../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
-- `fn r_vaddr(self: &Self) -> <Self as >::Word`
+#### Required Methods
 
-- `fn r_symndx(self: &Self) -> u32`
+- `fn r_vaddr(&self) -> <Self as >::Word`
 
-- `fn r_rsize(self: &Self) -> u8`
+- `fn r_symndx(&self) -> u32`
 
-- `fn r_rtype(self: &Self) -> u8`
+- `fn r_rsize(&self) -> u8`
 
-- `fn symbol(self: &Self) -> SymbolIndex`
+- `fn r_rtype(&self) -> u8`
+
+#### Provided Methods
+
+- `fn symbol(&self) -> SymbolIndex`
+
+#### Implementors
+
+- [`Rel32`](../../../xcoff/index.md)
+- [`Rel64`](../../../xcoff/index.md)
 
 ## Type Aliases
 
@@ -72,6 +94,8 @@ A trait for generic access to [`xcoff::Rel32`](../../../xcoff/index.md) and [`xc
 type XcoffRelocationIterator32<'data, 'file, R> = XcoffRelocationIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:16-17`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L16-L17)*
+
 An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32).
 
 ### `XcoffRelocationIterator64<'data, 'file, R>`
@@ -79,6 +103,8 @@ An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32).
 ```rust
 type XcoffRelocationIterator64<'data, 'file, R> = XcoffRelocationIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:19-20`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L19-L20)*
 
 An iterator for the relocations in an [`XcoffSection64`](super::XcoffSection64).
 

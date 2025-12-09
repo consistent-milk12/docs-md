@@ -12,13 +12,13 @@ a `&str` but represented internally as an array index) to a [`Value`](../index.m
 
 # `Value`s and `Subscriber`s
 
-`Subscriber`s consume `Value`s as fields attached to [`span`](../span/index.md)s or [`Event`](../../tracing_core/index.md)s.
-The set of field keys on a given span or event is defined on its [`Metadata`](../../tracing_core/index.md).
+`Subscriber`s consume `Value`s as fields attached to [`span`](../span/index.md)s or [`Event`](../../tracing_core/event/index.md)s.
+The set of field keys on a given span or event is defined on its [`Metadata`](../../tracing_core/metadata/index.md).
 When a span is created, it provides [`Attributes`](../../tracing_core/span/index.md) to the `Subscriber`'s
 `new_span` method, containing any fields whose values were provided when
 the span was created; and may call the `Subscriber`'s `record` method
 with additional [`Record`](../../tracing_core/span/index.md)s if values are added for more of its fields.
-Similarly, the [`Event`](../../tracing_core/index.md) type passed to the subscriber's [`event`](../index.md) method
+Similarly, the [`Event`](../../tracing_core/event/index.md) type passed to the subscriber's [`event`](../index.md) method
 will contain any fields attached to each event.
 
 `tracing` represents values as either one of a set of Rust primitives
@@ -48,7 +48,7 @@ To address `Value`'s limitations, `tracing` offers experimental support for
 the `valuable` crate, which provides object-safe inspection of structured
 values. User-defined types can implement the `valuable::Valuable` trait,
 and be recorded as a `tracing` field by calling their `as_value` method.
-If the [`Subscriber`](../../tracing_core/index.md) also supports the `valuable` crate, it can
+If the [`Subscriber`](../../tracing_core/subscriber/index.md) also supports the `valuable` crate, it can
 then visit those types fields as structured values using `valuable`.
 
 <pre class="ignore" style="white-space:normal;font:inherit;">
@@ -117,6 +117,12 @@ be forwarded to the visitor's `record_debug` method.
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AsField`](#asfield) | trait | Trait implemented to allow a type to be used as a field key. |
+
 ## Traits
 
 ### `AsField`
@@ -124,6 +130,8 @@ be forwarded to the visitor's `record_debug` method.
 ```rust
 trait AsField: crate::sealed::Sealed { ... }
 ```
+
+*Defined in [`tracing-0.1.43/src/field.rs:129-135`](../../../.source_1765210505/tracing-0.1.43/src/field.rs#L129-L135)*
 
 Trait implemented to allow a type to be used as a field key.
 
@@ -139,7 +147,13 @@ should be used whenever possible.
 
 #### Required Methods
 
-- `fn as_field(self: &Self, metadata: &Metadata<'_>) -> Option<Field>`
+- `fn as_field(&self, metadata: &Metadata<'_>) -> Option<Field>`
 
   Attempts to convert `&self` into a `Field` with the specified `metadata`.
+
+#### Implementors
+
+- `&Field`
+- `Field`
+- `str`
 

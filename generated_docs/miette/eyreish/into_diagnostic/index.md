@@ -4,6 +4,13 @@
 
 # Module `into_diagnostic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DiagnosticError`](#diagnosticerror) | struct | Convenience [`Diagnostic`] that can be used as an "anonymous" wrapper for Errors. |
+| [`IntoDiagnostic`](#intodiagnostic) | trait | Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing [`std::error::Error`] to a [`Result<T, Report>`]. |
+
 ## Structs
 
 ### `DiagnosticError`
@@ -12,6 +19,8 @@
 struct DiagnosticError(Box<dyn std::error::Error + Send + Sync>);
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:8`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/into_diagnostic.rs#L8)*
+
 Convenience [`Diagnostic`](../../index.md) that can be used as an "anonymous" wrapper for
 Errors. This is intended to be paired with [`IntoDiagnostic`](../index.md).
 
@@ -19,29 +28,29 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](../index.md).
 
 ##### `impl Debug for DiagnosticError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="diagnosticerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for DiagnosticError`
+##### `impl Diag for DiagnosticError`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="diagnosticerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
 
 ##### `impl Diagnostic for DiagnosticError`
 
 ##### `impl Display for DiagnosticError`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="diagnosticerror-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Error for DiagnosticError`
 
-- `fn source(self: &Self) -> Option<&dyn Error>`
+- <span id="diagnosticerror-source"></span>`fn source(&self) -> Option<&dyn Error>`
 
-##### `impl<D> OwoColorize for DiagnosticError`
+##### `impl OwoColorize for DiagnosticError`
 
-##### `impl<T> ToString for DiagnosticError`
+##### `impl ToString for DiagnosticError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="diagnosticerror-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for DiagnosticError`
+##### `impl TraitKind for DiagnosticError`
 
 ## Traits
 
@@ -51,19 +60,25 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](../index.md).
 trait IntoDiagnostic<T, E> { ... }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
+
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
-[`std::error::Error`](../../../docs_md/error/index.md) to a [`Result<T, Report>`](../../../clap_builder/error/index.md).
+[`std::error::Error`](../../../addr2line/index.md) to a [`Result<T, Report>`](../../../clap_builder/error/index.md).
 
 ## Warning
 
 Calling this on a type implementing [`Diagnostic`](../../index.md) will reduce it to the common denominator of
-[`std::error::Error`](../../../docs_md/error/index.md). Meaning all extra information provided by [`Diagnostic`](../../index.md) will be
+[`std::error::Error`](../../../addr2line/index.md). Meaning all extra information provided by [`Diagnostic`](../../index.md) will be
 inaccessible. If you have a type implementing [`Diagnostic`](../../index.md) consider simply returning it or using
 `Into` or the [`Try`](std::ops::Try) operator (`?`).
 
 #### Required Methods
 
-- `fn into_diagnostic(self: Self) -> Result<T, Report>`
+- `fn into_diagnostic(self) -> Result<T, Report>`
 
-  Converts [`Result`](../../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../../docs_md/error/index.md)s
+  Converts [`Result`](../../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../../addr2line/index.md)s
+
+#### Implementors
+
+- `Result<T, E>`
 

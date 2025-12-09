@@ -4,6 +4,14 @@
 
 # Module `unix`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`terminal_size`](#terminal_size) | fn | Returns the size of the terminal. |
+| [`terminal_size_of`](#terminal_size_of) | fn | Returns the size of the terminal using the given file descriptor, if available. |
+| [`terminal_size_using_fd`](#terminal_size_using_fd) | fn | Returns the size of the terminal using the given raw file descriptor, if available. |
+
 ## Functions
 
 ### `terminal_size`
@@ -11,6 +19,8 @@
 ```rust
 fn terminal_size() -> Option<(super::Width, super::Height)>
 ```
+
+*Defined in [`terminal_size-0.4.3/src/unix.rs:9-19`](../../../.source_1765210505/terminal_size-0.4.3/src/unix.rs#L9-L19)*
 
 Returns the size of the terminal.
 
@@ -24,6 +34,8 @@ is a TTY, then `None` is returned.
 fn terminal_size_of<Fd: AsFd>(fd: Fd) -> Option<(super::Width, super::Height)>
 ```
 
+*Defined in [`terminal_size-0.4.3/src/unix.rs:24-41`](../../../.source_1765210505/terminal_size-0.4.3/src/unix.rs#L24-L41)*
+
 Returns the size of the terminal using the given file descriptor, if available.
 
 If the given file descriptor is not a tty, returns `None`
@@ -33,6 +45,8 @@ If the given file descriptor is not a tty, returns `None`
 ```rust
 unsafe fn terminal_size_using_fd(fd: std::os::unix::io::RawFd) -> Option<(super::Width, super::Height)>
 ```
+
+*Defined in [`terminal_size-0.4.3/src/unix.rs:54-56`](../../../.source_1765210505/terminal_size-0.4.3/src/unix.rs#L54-L56)*
 
 Returns the size of the terminal using the given raw file descriptor, if available.
 

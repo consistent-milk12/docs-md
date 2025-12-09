@@ -4,6 +4,14 @@
 
 # Module `load_command`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`LoadCommandIterator`](#loadcommanditerator) | struct | An iterator for the load commands from a [`MachHeader`]. |
+| [`LoadCommandData`](#loadcommanddata) | struct | The data for a [`macho::LoadCommand`]. |
+| [`LoadCommandVariant`](#loadcommandvariant) | enum | A [`macho::LoadCommand`] that has been interpreted according to its `cmd` field. |
+
 ## Structs
 
 ### `LoadCommandIterator<'data, E: Endian>`
@@ -16,45 +24,47 @@ struct LoadCommandIterator<'data, E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:12-16`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/load_command.rs#L12-L16)*
+
 An iterator for the load commands from a [`MachHeader`](../index.md).
 
 #### Implementations
 
-- `fn new(endian: E, data: &'data [u8], ncmds: u32) -> Self`
+- <span id="loadcommanditerator-new"></span>`fn new(endian: E, data: &'data [u8], ncmds: u32) -> Self`
 
-- `fn next(self: &mut Self) -> Result<Option<LoadCommandData<'data, E>>>` — [`Result`](../../../index.md), [`LoadCommandData`](../index.md)
+- <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Result<Option<LoadCommandData<'data, E>>>` — [`Result`](../../../index.md), [`LoadCommandData`](../index.md)
 
-- `fn parse(self: &mut Self) -> Result<LoadCommandData<'data, E>>` — [`Result`](../../../index.md), [`LoadCommandData`](../index.md)
+- <span id="loadcommanditerator-parse"></span>`fn parse(&mut self) -> Result<LoadCommandData<'data, E>>` — [`Result`](../../../index.md), [`LoadCommandData`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, E: $crate::clone::Clone + Endian> Clone for LoadCommandIterator<'data, E>`
+##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandIterator<'data, E>`
 
-- `fn clone(self: &Self) -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md)
+- <span id="loadcommanditerator-clone"></span>`fn clone(&self) -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md)
 
-##### `impl<'data, E: $crate::marker::Copy + Endian> Copy for LoadCommandIterator<'data, E>`
+##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandIterator<'data, E>`
 
-##### `impl<'data, E: $crate::fmt::Debug + Endian> Debug for LoadCommandIterator<'data, E>`
+##### `impl<'data, E: fmt::Debug + Endian> Debug for LoadCommandIterator<'data, E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="loadcommanditerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data, E: $crate::default::Default + Endian> Default for LoadCommandIterator<'data, E>`
+##### `impl<'data, E: default::Default + Endian> Default for LoadCommandIterator<'data, E>`
 
-- `fn default() -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md)
+- <span id="loadcommanditerator-default"></span>`fn default() -> LoadCommandIterator<'data, E>` — [`LoadCommandIterator`](../index.md)
 
 ##### `impl<I> IntoIterator for LoadCommandIterator<'data, E>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="loadcommanditerator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="loadcommanditerator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="loadcommanditerator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, E: Endian> Iterator for LoadCommandIterator<'data, E>`
 
-- `type Item = Result<LoadCommandData<'data, E>, Error>`
+- <span id="loadcommanditerator-type-item"></span>`type Item = Result<LoadCommandData<'data, E>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `LoadCommandData<'data, E: Endian>`
 
@@ -66,51 +76,53 @@ struct LoadCommandData<'data, E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:74-79`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/load_command.rs#L74-L79)*
+
 The data for a [`macho::LoadCommand`](../../../macho/index.md).
 
 #### Implementations
 
-- `fn cmd(self: &Self) -> u32`
+- <span id="loadcommanddata-cmd"></span>`fn cmd(&self) -> u32`
 
-- `fn cmdsize(self: &Self) -> u32`
+- <span id="loadcommanddata-cmdsize"></span>`fn cmdsize(&self) -> u32`
 
-- `fn data<T: Pod>(self: &Self) -> Result<&'data T>` — [`Result`](../../../index.md)
+- <span id="loadcommanddata-data"></span>`fn data<T: Pod>(&self) -> Result<&'data T>` — [`Result`](../../../index.md)
 
-- `fn raw_data(self: &Self) -> &'data [u8]`
+- <span id="loadcommanddata-raw-data"></span>`fn raw_data(&self) -> &'data [u8]`
 
-- `fn string(self: &Self, endian: E, s: macho::LcStr<E>) -> Result<&'data [u8]>` — [`LcStr`](../../../macho/index.md), [`Result`](../../../index.md)
+- <span id="loadcommanddata-string"></span>`fn string(&self, endian: E, s: macho::LcStr<E>) -> Result<&'data [u8]>` — [`LcStr`](../../../macho/index.md), [`Result`](../../../index.md)
 
-- `fn variant(self: &Self) -> Result<LoadCommandVariant<'data, E>>` — [`Result`](../../../index.md), [`LoadCommandVariant`](../index.md)
+- <span id="loadcommanddata-variant"></span>`fn variant(&self) -> Result<LoadCommandVariant<'data, E>>` — [`Result`](../../../index.md), [`LoadCommandVariant`](../index.md)
 
-- `fn segment_32(self: Self) -> Result<Option<(&'data macho::SegmentCommand32<E>, &'data [u8])>>` — [`Result`](../../../index.md), [`SegmentCommand32`](../../../macho/index.md)
+- <span id="loadcommanddata-segment-32"></span>`fn segment_32(self) -> Result<Option<(&'data macho::SegmentCommand32<E>, &'data [u8])>>` — [`Result`](../../../index.md), [`SegmentCommand32`](../../../macho/index.md)
 
-- `fn symtab(self: Self) -> Result<Option<&'data macho::SymtabCommand<E>>>` — [`Result`](../../../index.md), [`SymtabCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-symtab"></span>`fn symtab(self) -> Result<Option<&'data macho::SymtabCommand<E>>>` — [`Result`](../../../index.md), [`SymtabCommand`](../../../macho/index.md)
 
-- `fn dysymtab(self: Self) -> Result<Option<&'data macho::DysymtabCommand<E>>>` — [`Result`](../../../index.md), [`DysymtabCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-dysymtab"></span>`fn dysymtab(self) -> Result<Option<&'data macho::DysymtabCommand<E>>>` — [`Result`](../../../index.md), [`DysymtabCommand`](../../../macho/index.md)
 
-- `fn dylib(self: Self) -> Result<Option<&'data macho::DylibCommand<E>>>` — [`Result`](../../../index.md), [`DylibCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-dylib"></span>`fn dylib(self) -> Result<Option<&'data macho::DylibCommand<E>>>` — [`Result`](../../../index.md), [`DylibCommand`](../../../macho/index.md)
 
-- `fn uuid(self: Self) -> Result<Option<&'data macho::UuidCommand<E>>>` — [`Result`](../../../index.md), [`UuidCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-uuid"></span>`fn uuid(self) -> Result<Option<&'data macho::UuidCommand<E>>>` — [`Result`](../../../index.md), [`UuidCommand`](../../../macho/index.md)
 
-- `fn segment_64(self: Self) -> Result<Option<(&'data macho::SegmentCommand64<E>, &'data [u8])>>` — [`Result`](../../../index.md), [`SegmentCommand64`](../../../macho/index.md)
+- <span id="loadcommanddata-segment-64"></span>`fn segment_64(self) -> Result<Option<(&'data macho::SegmentCommand64<E>, &'data [u8])>>` — [`Result`](../../../index.md), [`SegmentCommand64`](../../../macho/index.md)
 
-- `fn dyld_info(self: Self) -> Result<Option<&'data macho::DyldInfoCommand<E>>>` — [`Result`](../../../index.md), [`DyldInfoCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-dyld-info"></span>`fn dyld_info(self) -> Result<Option<&'data macho::DyldInfoCommand<E>>>` — [`Result`](../../../index.md), [`DyldInfoCommand`](../../../macho/index.md)
 
-- `fn entry_point(self: Self) -> Result<Option<&'data macho::EntryPointCommand<E>>>` — [`Result`](../../../index.md), [`EntryPointCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-entry-point"></span>`fn entry_point(self) -> Result<Option<&'data macho::EntryPointCommand<E>>>` — [`Result`](../../../index.md), [`EntryPointCommand`](../../../macho/index.md)
 
-- `fn build_version(self: Self) -> Result<Option<&'data macho::BuildVersionCommand<E>>>` — [`Result`](../../../index.md), [`BuildVersionCommand`](../../../macho/index.md)
+- <span id="loadcommanddata-build-version"></span>`fn build_version(self) -> Result<Option<&'data macho::BuildVersionCommand<E>>>` — [`Result`](../../../index.md), [`BuildVersionCommand`](../../../macho/index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, E: $crate::clone::Clone + Endian> Clone for LoadCommandData<'data, E>`
+##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandData<'data, E>`
 
-- `fn clone(self: &Self) -> LoadCommandData<'data, E>` — [`LoadCommandData`](../index.md)
+- <span id="loadcommanddata-clone"></span>`fn clone(&self) -> LoadCommandData<'data, E>` — [`LoadCommandData`](../index.md)
 
-##### `impl<'data, E: $crate::marker::Copy + Endian> Copy for LoadCommandData<'data, E>`
+##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandData<'data, E>`
 
-##### `impl<'data, E: $crate::fmt::Debug + Endian> Debug for LoadCommandData<'data, E>`
+##### `impl<'data, E: fmt::Debug + Endian> Debug for LoadCommandData<'data, E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="loadcommanddata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -153,6 +165,8 @@ enum LoadCommandVariant<'data, E: Endian> {
     Other,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:280-360`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/load_command.rs#L280-L360)*
 
 A [`macho::LoadCommand`](../../../macho/index.md) that has been interpreted according to its `cmd` field.
 
@@ -296,13 +310,13 @@ A [`macho::LoadCommand`](../../../macho/index.md) that has been interpreted acco
 
 #### Trait Implementations
 
-##### `impl<'data, E: $crate::clone::Clone + Endian> Clone for LoadCommandVariant<'data, E>`
+##### `impl<'data, E: clone::Clone + Endian> Clone for LoadCommandVariant<'data, E>`
 
-- `fn clone(self: &Self) -> LoadCommandVariant<'data, E>` — [`LoadCommandVariant`](../index.md)
+- <span id="loadcommandvariant-clone"></span>`fn clone(&self) -> LoadCommandVariant<'data, E>` — [`LoadCommandVariant`](../index.md)
 
-##### `impl<'data, E: $crate::marker::Copy + Endian> Copy for LoadCommandVariant<'data, E>`
+##### `impl<'data, E: marker::Copy + Endian> Copy for LoadCommandVariant<'data, E>`
 
-##### `impl<'data, E: $crate::fmt::Debug + Endian> Debug for LoadCommandVariant<'data, E>`
+##### `impl<'data, E: fmt::Debug + Endian> Debug for LoadCommandVariant<'data, E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="loadcommandvariant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

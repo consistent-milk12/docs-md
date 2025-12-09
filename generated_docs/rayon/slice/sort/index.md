@@ -20,6 +20,67 @@ stable sorting implementation.
 In addition it also contains the core logic of the stable sort used by `slice::sort` based on
 TimSort.
 
+## Contents
+
+- [Structs](#structs)
+  - [`InsertionHole`](#insertionhole)
+  - [`MergeHole`](#mergehole)
+  - [`TimSortRun`](#timsortrun)
+- [Enums](#enums)
+  - [`MergeSortResult`](#mergesortresult)
+- [Functions](#functions)
+  - [`insert_tail`](#insert_tail)
+  - [`insert_head`](#insert_head)
+  - [`insertion_sort_shift_left`](#insertion_sort_shift_left)
+  - [`insertion_sort_shift_right`](#insertion_sort_shift_right)
+  - [`partial_insertion_sort`](#partial_insertion_sort)
+  - [`heapsort`](#heapsort)
+  - [`partition_in_blocks`](#partition_in_blocks)
+  - [`partition`](#partition)
+  - [`partition_equal`](#partition_equal)
+  - [`break_patterns`](#break_patterns)
+  - [`choose_pivot`](#choose_pivot)
+  - [`recurse`](#recurse)
+  - [`par_quicksort`](#par_quicksort)
+  - [`merge`](#merge)
+  - [`merge_sort`](#merge_sort)
+  - [`provide_sorted_batch`](#provide_sorted_batch)
+  - [`find_streak`](#find_streak)
+  - [`split_for_merge`](#split_for_merge)
+  - [`par_merge`](#par_merge)
+  - [`merge_recurse`](#merge_recurse)
+  - [`par_mergesort`](#par_mergesort)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`InsertionHole`](#insertionhole) | struct |  |
+| [`MergeHole`](#mergehole) | struct |  |
+| [`TimSortRun`](#timsortrun) | struct | Internal type used by merge_sort. |
+| [`MergeSortResult`](#mergesortresult) | enum | The result of merge sort. |
+| [`insert_tail`](#insert_tail) | fn | Inserts `v[v.len() - 1]` into pre-sorted sequence `v[..v.len() - 1]` so that whole `v[..]` becomes sorted. |
+| [`insert_head`](#insert_head) | fn | Inserts `v[0]` into pre-sorted sequence `v[1..]` so that whole `v[..]` becomes sorted. |
+| [`insertion_sort_shift_left`](#insertion_sort_shift_left) | fn | Sort `v` assuming `v[..offset]` is already sorted. |
+| [`insertion_sort_shift_right`](#insertion_sort_shift_right) | fn | Sort `v` assuming `v[offset..]` is already sorted. |
+| [`partial_insertion_sort`](#partial_insertion_sort) | fn | Partially sorts a slice by shifting several out-of-order elements around. |
+| [`heapsort`](#heapsort) | fn | Sorts `v` using heapsort, which guarantees *O*(*n* \* log(*n*)) worst-case. |
+| [`partition_in_blocks`](#partition_in_blocks) | fn | Partitions `v` into elements smaller than `pivot`, followed by elements greater than or equal to `pivot`. |
+| [`partition`](#partition) | fn | Partitions `v` into elements smaller than `v[pivot]`, followed by elements greater than or equal to `v[pivot]`. |
+| [`partition_equal`](#partition_equal) | fn | Partitions `v` into elements equal to `v[pivot]` followed by elements greater than `v[pivot]`. |
+| [`break_patterns`](#break_patterns) | fn | Scatters some elements around in an attempt to break patterns that might cause imbalanced partitions in quicksort. |
+| [`choose_pivot`](#choose_pivot) | fn | Chooses a pivot in `v` and returns the index and `true` if the slice is likely already sorted. |
+| [`recurse`](#recurse) | fn | Sorts `v` recursively. |
+| [`par_quicksort`](#par_quicksort) | fn | Sorts `v` using pattern-defeating quicksort in parallel. |
+| [`merge`](#merge) | fn | Merges non-decreasing runs `v[..mid]` and `v[mid..]` using `buf` as temporary storage, and stores the result into `v[..]`. |
+| [`merge_sort`](#merge_sort) | fn | This merge sort borrows some (but not all) ideas from TimSort, which used to be described in detail [here](https://github.com/python/cpython/blob/main/Objects/listsort.txt). |
+| [`provide_sorted_batch`](#provide_sorted_batch) | fn | Takes a range as denoted by start and end, that is already sorted and extends it to the right if necessary with sorts optimized for smaller ranges such as insertion sort. |
+| [`find_streak`](#find_streak) | fn | Finds a streak of presorted elements starting at the beginning of the slice. |
+| [`split_for_merge`](#split_for_merge) | fn | Splits two sorted slices so that they can be merged in parallel. |
+| [`par_merge`](#par_merge) | fn | Merges slices `left` and `right` in parallel and stores the result into `dest`. |
+| [`merge_recurse`](#merge_recurse) | fn | Recursively merges pre-sorted chunks inside `v`. |
+| [`par_mergesort`](#par_mergesort) | fn | Sorts `v` using merge sort in parallel. |
+
 ## Structs
 
 ### `InsertionHole<T>`
@@ -31,27 +92,29 @@ struct InsertionHole<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:27-30`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L27-L30)*
+
 #### Trait Implementations
 
 ##### `impl<T> Drop for InsertionHole<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="insertionhole-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> IntoEither for InsertionHole<T>`
 
 ##### `impl<T> Pointable for InsertionHole<T>`
 
-- `const ALIGN: usize`
+- <span id="insertionhole-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="insertionhole-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="insertionhole-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="insertionhole-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="insertionhole-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="insertionhole-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `MergeHole<T>`
 
@@ -63,27 +126,29 @@ struct MergeHole<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1055-1059`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L1055-L1059)*
+
 #### Trait Implementations
 
 ##### `impl<T> Drop for MergeHole<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="mergehole-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> IntoEither for MergeHole<T>`
 
 ##### `impl<T> Pointable for MergeHole<T>`
 
-- `const ALIGN: usize`
+- <span id="mergehole-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mergehole-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mergehole-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mergehole-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mergehole-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mergehole-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `TimSortRun`
 
@@ -94,35 +159,37 @@ struct TimSortRun {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1202-1205`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L1202-L1205)*
+
 Internal type used by merge_sort.
 
 #### Trait Implementations
 
 ##### `impl Clone for TimSortRun`
 
-- `fn clone(self: &Self) -> TimSortRun` — [`TimSortRun`](#timsortrun)
+- <span id="timsortrun-clone"></span>`fn clone(&self) -> TimSortRun` — [`TimSortRun`](#timsortrun)
 
 ##### `impl Copy for TimSortRun`
 
 ##### `impl Debug for TimSortRun`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="timsortrun-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> IntoEither for TimSortRun`
+##### `impl IntoEither for TimSortRun`
 
-##### `impl<T> Pointable for TimSortRun`
+##### `impl Pointable for TimSortRun`
 
-- `const ALIGN: usize`
+- <span id="timsortrun-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="timsortrun-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="timsortrun-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="timsortrun-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="timsortrun-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="timsortrun-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Enums
 
@@ -135,6 +202,8 @@ enum MergeSortResult {
     Sorted,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1074-1081`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L1074-L1081)*
 
 The result of merge sort.
 
@@ -156,31 +225,31 @@ The result of merge sort.
 
 ##### `impl Clone for MergeSortResult`
 
-- `fn clone(self: &Self) -> MergeSortResult` — [`MergeSortResult`](#mergesortresult)
+- <span id="mergesortresult-clone"></span>`fn clone(&self) -> MergeSortResult` — [`MergeSortResult`](#mergesortresult)
 
 ##### `impl Copy for MergeSortResult`
 
 ##### `impl Eq for MergeSortResult`
 
-##### `impl<T> IntoEither for MergeSortResult`
+##### `impl IntoEither for MergeSortResult`
 
 ##### `impl PartialEq for MergeSortResult`
 
-- `fn eq(self: &Self, other: &MergeSortResult) -> bool` — [`MergeSortResult`](#mergesortresult)
+- <span id="mergesortresult-eq"></span>`fn eq(&self, other: &MergeSortResult) -> bool` — [`MergeSortResult`](#mergesortresult)
 
-##### `impl<T> Pointable for MergeSortResult`
+##### `impl Pointable for MergeSortResult`
 
-- `const ALIGN: usize`
+- <span id="mergesortresult-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mergesortresult-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mergesortresult-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mergesortresult-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mergesortresult-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mergesortresult-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for MergeSortResult`
 
@@ -194,6 +263,8 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:45-96`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L45-L96)*
+
 Inserts `v[v.len() - 1]` into pre-sorted sequence `v[..v.len() - 1]` so that whole `v[..]`
 becomes sorted.
 
@@ -204,6 +275,8 @@ unsafe fn insert_head<T, F>(v: &mut [T], is_less: &F)
 where
     F: Fn(&T, &T) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:101-157`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L101-L157)*
 
 Inserts `v[0]` into pre-sorted sequence `v[1..]` so that whole `v[..]` becomes sorted.
 
@@ -216,6 +289,8 @@ fn insertion_sort_shift_left<T, F>(v: &mut [T], offset: usize, is_less: &F)
 where
     F: Fn(&T, &T) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:164-182`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L164-L182)*
 
 Sort `v` assuming `v[..offset]` is already sorted.
 
@@ -230,6 +305,8 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:189-208`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L189-L208)*
+
 Sort `v` assuming `v[offset..]` is already sorted.
 
 Never inline this function to avoid code bloat. It still optimizes nicely and has practically no
@@ -243,6 +320,8 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:214-260`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L214-L260)*
+
 Partially sorts a slice by shifting several out-of-order elements around.
 
 Returns `true` if the slice is sorted at the end. This function is *O*(*n*) worst-case.
@@ -255,6 +334,8 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:264-306`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L264-L306)*
+
 Sorts `v` using heapsort, which guarantees *O*(*n* \* log(*n*)) worst-case.
 
 ### `partition_in_blocks`
@@ -264,6 +345,8 @@ fn partition_in_blocks<T, F>(v: &mut [T], pivot: &T, is_less: &F) -> usize
 where
     F: Fn(&T, &T) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:317-566`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L317-L566)*
 
 Partitions `v` into elements smaller than `pivot`, followed by elements greater than or equal
 to `pivot`.
@@ -282,6 +365,8 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:575-630`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L575-L630)*
+
 Partitions `v` into elements smaller than `v[pivot]`, followed by elements greater than or
 equal to `v[pivot]`.
 
@@ -298,6 +383,8 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:636-699`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L636-L699)*
+
 Partitions `v` into elements equal to `v[pivot]` followed by elements greater than `v[pivot]`.
 
 Returns the number of elements equal to the pivot. It is assumed that `v` does not contain
@@ -309,6 +396,8 @@ elements smaller than the pivot.
 fn break_patterns<T>(v: &mut [T])
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:704-748`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L704-L748)*
+
 Scatters some elements around in an attempt to break patterns that might cause imbalanced
 partitions in quicksort.
 
@@ -319,6 +408,8 @@ fn choose_pivot<T, F>(v: &mut [T], is_less: &F) -> (usize, bool)
 where
     F: Fn(&T, &T) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:753-821`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L753-L821)*
 
 Chooses a pivot in `v` and returns the index and `true` if the slice is likely already sorted.
 
@@ -332,6 +423,8 @@ where
     T: Send,
     F: Fn(&T, &T) -> bool + Sync
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:829-928`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L829-L928)*
 
 Sorts `v` recursively.
 
@@ -349,6 +442,8 @@ where
     F: Fn(&T, &T) -> bool + Sync
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:933-947`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L933-L947)*
+
 Sorts `v` using pattern-defeating quicksort in parallel.
 
 The algorithm is unstable, in-place, and *O*(*n* \* log(*n*)) worst-case.
@@ -360,6 +455,8 @@ unsafe fn merge<T, F>(v: &mut [T], mid: usize, buf: *mut T, is_less: &F)
 where
     F: Fn(&T, &T) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:956-1052`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L956-L1052)*
 
 Merges non-decreasing runs `v[..mid]` and `v[mid..]` using `buf` as temporary storage, and
 stores the result into `v[..]`.
@@ -376,6 +473,8 @@ unsafe fn merge_sort<T, CmpF>(v: &mut [T], buf_ptr: *mut T, is_less: &CmpF) -> M
 where
     CmpF: Fn(&T, &T) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1100-1198`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L1100-L1198)*
 
 This merge sort borrows some (but not all) ideas from TimSort, which used to be described in
 detail [here](https://github.com/python/cpython/blob/main/Objects/listsort.txt). However Python
@@ -403,6 +502,8 @@ where
     F: Fn(&T, &T) -> bool
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1209-1235`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L1209-L1235)*
+
 Takes a range as denoted by start and end, that is already sorted and extends it to the right if
 necessary with sorts optimized for smaller ranges such as insertion sort.
 
@@ -413,6 +514,8 @@ fn find_streak<T, F>(v: &[T], is_less: &F) -> (usize, bool)
 where
     F: Fn(&T, &T) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1240-1272`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L1240-L1272)*
 
 Finds a streak of presorted elements starting at the beginning of the slice. Returns the first
 value that is not part of said streak, and a bool denoting whether the streak was reversed.
@@ -425,6 +528,8 @@ fn split_for_merge<T, F>(left: &[T], right: &[T], is_less: &F) -> (usize, usize)
 where
     F: Fn(&T, &T) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1283-1323`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L1283-L1323)*
 
 Splits two sorted slices so that they can be merged in parallel.
 
@@ -439,6 +544,8 @@ where
     T: Send,
     F: Fn(&T, &T) -> bool + Sync
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1333-1421`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L1333-L1421)*
 
 Merges slices `left` and `right` in parallel and stores the result into `dest`.
 
@@ -457,6 +564,8 @@ where
     T: Send,
     F: Fn(&T, &T) -> bool + Sync
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1435-1504`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L1435-L1504)*
 
 Recursively merges pre-sorted chunks inside `v`.
 
@@ -479,6 +588,8 @@ where
     T: Send,
     F: Fn(&T, &T) -> bool + Sync
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/sort.rs:1510-1608`](../../../../.source_1765210505/rayon-1.11.0/src/slice/sort.rs#L1510-L1608)*
 
 Sorts `v` using merge sort in parallel.
 

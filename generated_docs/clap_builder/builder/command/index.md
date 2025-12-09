@@ -4,6 +4,17 @@
 
 # Module `command`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Command`](#command) | struct | Build a command-line interface. |
+| [`TermWidth`](#termwidth) | struct |  |
+| [`MaxTermWidth`](#maxtermwidth) | struct |  |
+| [`Captures`](#captures) | trait | A workaround: <https://github.com/rust-lang/rust/issues/34511#issuecomment-373423999> |
+| [`AppExt`](#appext) | trait |  |
+| [`two_elements_of`](#two_elements_of) | fn | Returns the first two elements of an iterator as an `Option<(T, T)>`. |
+
 ## Structs
 
 ### `Command`
@@ -48,6 +59,8 @@ struct Command {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
+
 Build a command-line interface.
 
 This includes defining arguments, subcommands, parser behavior, and help output.
@@ -88,81 +101,95 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- `fn name(self: Self, name: impl Into<Str>) -> Self` — [`Str`](../index.md)
+- <span id="command-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](../str/index.md)
 
-- `fn bin_name(self: Self, name: impl IntoResettable<String>) -> Self` — [`IntoResettable`](../index.md)
+- <span id="command-arg"></span>`fn arg(self, a: impl Into<Arg>) -> Self` — [`Arg`](../arg/index.md)
 
-- `fn display_name(self: Self, name: impl IntoResettable<String>) -> Self` — [`IntoResettable`](../index.md)
+- <span id="command-arg-internal"></span>`fn arg_internal(&mut self, arg: Arg)` — [`Arg`](../arg/index.md)
 
-- `fn author(self: Self, author: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../index.md), [`Str`](../index.md)
+- <span id="command-args"></span>`fn args(self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](../arg/index.md)
 
-- `fn about(self: Self, about: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="command-mut-arg"></span>`fn mut_arg<F>(self, arg_id: impl AsRef<str>, f: F) -> Self`
 
-- `fn long_about(self: Self, long_about: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="command-mut-args"></span>`fn mut_args<F>(self, f: F) -> Self`
 
-- `fn after_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="command-mut-group"></span>`fn mut_group<F>(self, arg_id: impl AsRef<str>, f: F) -> Self`
 
-- `fn after_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="command-mut-subcommand"></span>`fn mut_subcommand<F>(self, name: impl AsRef<str>, f: F) -> Self`
 
-- `fn before_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="command-mut-subcommands"></span>`fn mut_subcommands<F>(self, f: F) -> Self`
 
-- `fn before_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="command-group"></span>`fn group(self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](../arg_group/index.md)
 
-- `fn version(self: Self, ver: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../index.md), [`Str`](../index.md)
+- <span id="command-groups"></span>`fn groups(self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](../arg_group/index.md)
 
-- `fn long_version(self: Self, ver: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../index.md), [`Str`](../index.md)
+- <span id="command-subcommand"></span>`fn subcommand(self, subcmd: impl Into<Command>) -> Self` — [`Command`](#command)
 
-- `fn override_usage(self: Self, usage: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="command-subcommand-internal"></span>`fn subcommand_internal(self, subcmd: Self) -> Self`
 
-- `fn override_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="command-subcommands"></span>`fn subcommands(self, subcmds: impl IntoIterator<Item = impl Into<Self>>) -> Self`
 
-- `fn help_template(self: Self, s: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="command-defer"></span>`fn defer(self, deferred: fn(Command) -> Command) -> Self` — [`Command`](#command)
 
-- `fn setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](../app_settings/index.md)
+- <span id="command-debug-assert"></span>`fn debug_assert(self)`
 
-- `fn unset_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](../app_settings/index.md)
+- <span id="command-error"></span>`fn error(&mut self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](../../error/kind/index.md), [`Error`](../../index.md)
 
-- `fn global_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](../app_settings/index.md)
+- <span id="command-get-matches"></span>`fn get_matches(self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
 
-- `fn unset_global_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](../app_settings/index.md)
+- <span id="command-get-matches-mut"></span>`fn get_matches_mut(&mut self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
 
-- `fn flatten_help(self: Self, yes: bool) -> Self`
+- <span id="command-try-get-matches"></span>`fn try_get_matches(self) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
 
-- `fn next_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../index.md), [`Str`](../index.md)
+- <span id="command-get-matches-from"></span>`fn get_matches_from<I, T>(self, itr: I) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
 
-- `fn next_display_order(self: Self, disp_ord: impl IntoResettable<usize>) -> Self` — [`IntoResettable`](../index.md)
+- <span id="command-try-get-matches-from"></span>`fn try_get_matches_from<I, T>(self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
 
-- `fn arg_required_else_help(self: Self, yes: bool) -> Self`
+- <span id="command-try-get-matches-from-mut"></span>`fn try_get_matches_from_mut<I, T>(&mut self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
 
-- `fn allow_missing_positional(self: Self, yes: bool) -> Self`
+- <span id="command-print-help"></span>`fn print_help(&mut self) -> io::Result<()>`
+
+- <span id="command-print-long-help"></span>`fn print_long_help(&mut self) -> io::Result<()>`
+
+- <span id="command-render-help"></span>`fn render_help(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
+
+- <span id="command-render-long-help"></span>`fn render_long_help(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
+
+- <span id="command-render-version"></span>`fn render_version(&self) -> String`
+
+- <span id="command-render-long-version"></span>`fn render_long_version(&self) -> String`
+
+- <span id="command-render-usage"></span>`fn render_usage(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
+
+- <span id="command-render-usage"></span>`fn render_usage_(&mut self) -> Option<StyledStr>` — [`StyledStr`](../styled_str/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Command`
 
-- `fn clone(self: &Self) -> Command` — [`Command`](../../index.md)
+- <span id="command-clone"></span>`fn clone(&self) -> Command` — [`Command`](#command)
 
 ##### `impl Debug for Command`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="command-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Command`
 
-- `fn default() -> Self`
+- <span id="command-default"></span>`fn default() -> Self`
 
 ##### `impl Display for Command`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="command-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Index for Command`
 
-- `type Output = Arg`
+- <span id="command-type-output"></span>`type Output = Arg`
 
-- `fn index(self: &Self, key: &Id) -> &<Self as >::Output` — [`Id`](../../index.md)
+- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](../../util/id/index.md)
 
-##### `impl<T> ToString for Command`
+##### `impl ToString for Command`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="command-to-string"></span>`fn to_string(&self) -> String`
 
 ### `TermWidth`
 
@@ -170,23 +197,25 @@ let m = Command::new("My Program")
 struct TermWidth(usize);
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5260`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L5260)*
+
 #### Trait Implementations
 
 ##### `impl AppExt for TermWidth`
 
 ##### `impl Clone for TermWidth`
 
-- `fn clone(self: &Self) -> TermWidth` — [`TermWidth`](#termwidth)
+- <span id="termwidth-clone"></span>`fn clone(&self) -> TermWidth` — [`TermWidth`](#termwidth)
 
 ##### `impl Copy for TermWidth`
 
 ##### `impl Debug for TermWidth`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="termwidth-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for TermWidth`
 
-- `fn default() -> TermWidth` — [`TermWidth`](#termwidth)
+- <span id="termwidth-default"></span>`fn default() -> TermWidth` — [`TermWidth`](#termwidth)
 
 ### `MaxTermWidth`
 
@@ -194,23 +223,25 @@ struct TermWidth(usize);
 struct MaxTermWidth(usize);
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5266`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L5266)*
+
 #### Trait Implementations
 
 ##### `impl AppExt for MaxTermWidth`
 
 ##### `impl Clone for MaxTermWidth`
 
-- `fn clone(self: &Self) -> MaxTermWidth` — [`MaxTermWidth`](#maxtermwidth)
+- <span id="maxtermwidth-clone"></span>`fn clone(&self) -> MaxTermWidth` — [`MaxTermWidth`](#maxtermwidth)
 
 ##### `impl Copy for MaxTermWidth`
 
 ##### `impl Debug for MaxTermWidth`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="maxtermwidth-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MaxTermWidth`
 
-- `fn default() -> MaxTermWidth` — [`MaxTermWidth`](#maxtermwidth)
+- <span id="maxtermwidth-default"></span>`fn default() -> MaxTermWidth` — [`MaxTermWidth`](#maxtermwidth)
 
 ## Traits
 
@@ -220,14 +251,28 @@ struct MaxTermWidth(usize);
 trait Captures<'a> { ... }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:4933`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L4933)*
+
 A workaround:
 <https://github.com/rust-lang/rust/issues/34511#issuecomment-373423999>
+
+#### Implementors
+
+- `T`
 
 ### `AppExt`
 
 ```rust
 trait AppExt: Extension { ... }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5256`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L5256)*
+
+#### Implementors
+
+- [`MaxTermWidth`](#maxtermwidth)
+- [`Styles`](../styling/index.md)
+- [`TermWidth`](#termwidth)
 
 ## Functions
 
@@ -238,6 +283,8 @@ fn two_elements_of<I, T>(iter: I) -> Option<(T, T)>
 where
     I: Iterator<Item = T>
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5273-5284`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L5273-L5284)*
 
 Returns the first two elements of an iterator as an `Option<(T, T)>`.
 

@@ -4,6 +4,13 @@
 
 # Module `builder`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Builder`](#builder) | struct | An abstraction for building Thompson NFAs by hand. |
+| [`State`](#state) | enum | An intermediate NFA state used during construction. |
+
 ## Structs
 
 ### `Builder`
@@ -22,11 +29,13 @@ struct Builder {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:313-357`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L313-L357)*
+
 An abstraction for building Thompson NFAs by hand.
 
 A builder is what a [`thompson::Compiler`](crate::nfa::thompson::Compiler)
 uses internally to translate a regex's high-level intermediate
-representation into an [`NFA`](../index.md).
+representation into an [`NFA`](../nfa/index.md).
 
 The primary function of this builder is to abstract away the internal
 representation of an NFA and make it difficult to produce NFAs are that
@@ -229,77 +238,77 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](../index.md)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn clear(self: &mut Self)`
+- <span id="builder-clear"></span>`fn clear(&mut self)`
 
-- `fn build(self: &Self, start_anchored: StateID, start_unanchored: StateID) -> Result<NFA, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`NFA`](../index.md), [`BuildError`](../index.md)
+- <span id="builder-build"></span>`fn build(&self, start_anchored: StateID, start_unanchored: StateID) -> Result<NFA, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`NFA`](../nfa/index.md), [`BuildError`](../error/index.md)
 
-- `fn start_pattern(self: &mut Self) -> Result<PatternID, BuildError>` — [`PatternID`](../../../index.md), [`BuildError`](../index.md)
+- <span id="builder-start-pattern"></span>`fn start_pattern(&mut self) -> Result<PatternID, BuildError>` — [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn finish_pattern(self: &mut Self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../index.md), [`BuildError`](../index.md)
+- <span id="builder-finish-pattern"></span>`fn finish_pattern(&mut self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn current_pattern_id(self: &Self) -> PatternID` — [`PatternID`](../../../index.md)
+- <span id="builder-current-pattern-id"></span>`fn current_pattern_id(&self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
 
-- `fn pattern_len(self: &Self) -> usize`
+- <span id="builder-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
-- `fn add_empty(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-add-empty"></span>`fn add_empty(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn add_union(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-add-union"></span>`fn add_union(&mut self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn add_union_reverse(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-add-union-reverse"></span>`fn add_union_reverse(&mut self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn add_range(self: &mut Self, trans: Transition) -> Result<StateID, BuildError>` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-add-range"></span>`fn add_range(&mut self, trans: Transition) -> Result<StateID, BuildError>` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn add_sparse(self: &mut Self, transitions: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-add-sparse"></span>`fn add_sparse(&mut self, transitions: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn add_look(self: &mut Self, next: StateID, look: Look) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`Look`](../../../util/look/index.md), [`BuildError`](../index.md)
+- <span id="builder-add-look"></span>`fn add_look(&mut self, next: StateID, look: Look) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`Look`](../../../util/look/index.md), [`BuildError`](../error/index.md)
 
-- `fn add_capture_start(self: &mut Self, next: StateID, group_index: u32, name: Option<Arc<str>>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-add-capture-start"></span>`fn add_capture_start(&mut self, next: StateID, group_index: u32, name: Option<Arc<str>>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn add_capture_end(self: &mut Self, next: StateID, group_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-add-capture-end"></span>`fn add_capture_end(&mut self, next: StateID, group_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn add_fail(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-add-fail"></span>`fn add_fail(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn add_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-add-match"></span>`fn add_match(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn add(self: &mut Self, state: State) -> Result<StateID, BuildError>` — [`State`](#state), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-add"></span>`fn add(&mut self, state: State) -> Result<StateID, BuildError>` — [`State`](#state), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn patch(self: &mut Self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="builder-patch"></span>`fn patch(&mut self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- `fn set_utf8(self: &mut Self, yes: bool)`
+- <span id="builder-set-utf8"></span>`fn set_utf8(&mut self, yes: bool)`
 
-- `fn get_utf8(self: &Self) -> bool`
+- <span id="builder-get-utf8"></span>`fn get_utf8(&self) -> bool`
 
-- `fn set_reverse(self: &mut Self, yes: bool)`
+- <span id="builder-set-reverse"></span>`fn set_reverse(&mut self, yes: bool)`
 
-- `fn get_reverse(self: &Self) -> bool`
+- <span id="builder-get-reverse"></span>`fn get_reverse(&self) -> bool`
 
-- `fn set_look_matcher(self: &mut Self, m: LookMatcher)` — [`LookMatcher`](../../../util/look/index.md)
+- <span id="builder-set-look-matcher"></span>`fn set_look_matcher(&mut self, m: LookMatcher)` — [`LookMatcher`](../../../util/look/index.md)
 
-- `fn get_look_matcher(self: &Self) -> &LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
+- <span id="builder-get-look-matcher"></span>`fn get_look_matcher(&self) -> &LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
 
-- `fn set_size_limit(self: &mut Self, limit: Option<usize>) -> Result<(), BuildError>` — [`BuildError`](../index.md)
+- <span id="builder-set-size-limit"></span>`fn set_size_limit(&mut self, limit: Option<usize>) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
 
-- `fn get_size_limit(self: &Self) -> Option<usize>`
+- <span id="builder-get-size-limit"></span>`fn get_size_limit(&self) -> Option<usize>`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="builder-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn check_size_limit(self: &Self) -> Result<(), BuildError>` — [`BuildError`](../index.md)
+- <span id="builder-check-size-limit"></span>`fn check_size_limit(&self) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](../index.md)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](../index.md)
+- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
 
 ## Enums
 
@@ -342,6 +351,8 @@ enum State {
     },
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:28-128`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L28-L128)*
 
 An intermediate NFA state used during construction.
 
@@ -453,25 +464,25 @@ of states are completely removed (such as [`State::Empty`](../../../index.md)).
 
 #### Implementations
 
-- `fn goto(self: &Self) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+- <span id="state-goto"></span>`fn goto(&self) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="state-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](#state)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
 ##### `impl Debug for State`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
 

@@ -4,6 +4,13 @@
 
 # Module `context`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ContextKind`](#contextkind) | enum | Semantics for a piece of error information |
+| [`ContextValue`](#contextvalue) | enum | A piece of error information |
+
 ## Enums
 
 ### `ContextKind`
@@ -29,6 +36,8 @@ enum ContextKind {
     Custom,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:5-40`](../../../../.source_1765210505/clap_builder-4.5.53/src/error/context.rs#L5-L40)*
 
 Semantics for a piece of error information
 
@@ -104,39 +113,39 @@ Semantics for a piece of error information
 
 #### Implementations
 
-- `fn as_str(self: Self) -> Option<&'static str>`
+- <span id="contextkind-as-str"></span>`fn as_str(self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for ContextKind`
 
-- `fn clone(self: &Self) -> ContextKind` — [`ContextKind`](../index.md)
+- <span id="contextkind-clone"></span>`fn clone(&self) -> ContextKind` — [`ContextKind`](#contextkind)
 
 ##### `impl Copy for ContextKind`
 
 ##### `impl Debug for ContextKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="contextkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ContextKind`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="contextkind-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for ContextKind`
 
 ##### `impl Hash for ContextKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="contextkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ContextKind`
 
-- `fn eq(self: &Self, other: &ContextKind) -> bool` — [`ContextKind`](../index.md)
+- <span id="contextkind-eq"></span>`fn eq(&self, other: &ContextKind) -> bool` — [`ContextKind`](#contextkind)
 
 ##### `impl StructuralPartialEq for ContextKind`
 
-##### `impl<T> ToString for ContextKind`
+##### `impl ToString for ContextKind`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="contextkind-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ContextValue`
 
@@ -152,13 +161,15 @@ enum ContextValue {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:77-92`](../../../../.source_1765210505/clap_builder-4.5.53/src/error/context.rs#L77-L92)*
+
 A piece of error information
 
 #### Variants
 
 - **`None`**
 
-  [`ContextKind`](../index.md) is self-sufficient, no additional information needed
+  [`ContextKind`](#contextkind) is self-sufficient, no additional information needed
 
 - **`Bool`**
 
@@ -188,25 +199,25 @@ A piece of error information
 
 ##### `impl Clone for ContextValue`
 
-- `fn clone(self: &Self) -> ContextValue` — [`ContextValue`](../index.md)
+- <span id="contextvalue-clone"></span>`fn clone(&self) -> ContextValue` — [`ContextValue`](#contextvalue)
 
 ##### `impl Debug for ContextValue`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="contextvalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ContextValue`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="contextvalue-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for ContextValue`
 
 ##### `impl PartialEq for ContextValue`
 
-- `fn eq(self: &Self, other: &ContextValue) -> bool` — [`ContextValue`](../index.md)
+- <span id="contextvalue-eq"></span>`fn eq(&self, other: &ContextValue) -> bool` — [`ContextValue`](#contextvalue)
 
 ##### `impl StructuralPartialEq for ContextValue`
 
-##### `impl<T> ToString for ContextValue`
+##### `impl ToString for ContextValue`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="contextvalue-to-string"></span>`fn to_string(&self) -> String`
 

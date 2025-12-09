@@ -4,6 +4,14 @@
 
 # Module `flat_map`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FlatMap`](#flatmap) | struct | `FlatMap` maps each element to a parallel iterator, then flattens these iterators together. |
+| [`FlatMapConsumer`](#flatmapconsumer) | struct |  |
+| [`FlatMapFolder`](#flatmapfolder) | struct |  |
+
 ## Structs
 
 ### `FlatMap<I, F>`
@@ -15,53 +23,55 @@ struct FlatMap<I, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:12-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flat_map.rs#L12-L15)*
+
 `FlatMap` maps each element to a parallel iterator, then flattens these iterators together.
-This struct is created by the `flat_map()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `flat_map()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
 
-- `fn new(base: I, map_op: F) -> Self`
+- <span id="flatmap-new"></span>`fn new(base: I, map_op: F) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FlatMap<I, F>`
+##### `impl<I: clone::Clone, F: clone::Clone> Clone for FlatMap<I, F>`
 
-- `fn clone(self: &Self) -> FlatMap<I, F>` — [`FlatMap`](../index.md)
+- <span id="flatmap-clone"></span>`fn clone(&self) -> FlatMap<I, F>` — [`FlatMap`](#flatmap)
 
 ##### `impl<I: Debug, F> Debug for FlatMap<I, F>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="flatmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for FlatMap<I, F>`
 
 ##### `impl<T> IntoParallelIterator for FlatMap<I, F>`
 
-- `type Iter = T`
+- <span id="flatmap-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="flatmap-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="flatmap-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F, PI> ParallelIterator for FlatMap<I, F>`
 
-- `type Item = <PI as IntoParallelIterator>::Item`
+- <span id="flatmap-type-item"></span>`type Item = <PI as IntoParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="flatmap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for FlatMap<I, F>`
 
-- `const ALIGN: usize`
+- <span id="flatmap-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="flatmap-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatmap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatmap-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatmap-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="flatmap-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `FlatMapConsumer<'f, C, F>`
 
@@ -72,47 +82,49 @@ struct FlatMapConsumer<'f, C, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:50-53`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flat_map.rs#L50-L53)*
+
 #### Implementations
 
-- `fn new(base: C, map_op: &'f F) -> Self`
+- <span id="flatmapconsumer-new"></span>`fn new(base: C, map_op: &'f F) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<'f, T, U, C, F> Consumer for FlatMapConsumer<'f, C, F>`
 
-- `type Folder = FlatMapFolder<'f, C, F, <C as Consumer>::Result>`
+- <span id="flatmapconsumer-type-folder"></span>`type Folder = FlatMapFolder<'f, C, F, <C as Consumer>::Result>`
 
-- `type Reducer = <C as Consumer>::Reducer`
+- <span id="flatmapconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- `type Result = <C as Consumer>::Result`
+- <span id="flatmapconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="flatmapconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="flatmapconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="flatmapconsumer-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for FlatMapConsumer<'f, C, F>`
 
 ##### `impl<T> Pointable for FlatMapConsumer<'f, C, F>`
 
-- `const ALIGN: usize`
+- <span id="flatmapconsumer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="flatmapconsumer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatmapconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatmapconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatmapconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="flatmapconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'f, T, U, C, F> UnindexedConsumer for FlatMapConsumer<'f, C, F>`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="flatmapconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="flatmapconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `FlatMapFolder<'f, C, F, R>`
 
@@ -124,31 +136,33 @@ struct FlatMapFolder<'f, C, F, R> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:108-112`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flat_map.rs#L108-L112)*
+
 #### Trait Implementations
 
 ##### `impl<'f, T, U, C, F> Folder for FlatMapFolder<'f, C, F, <C as >::Result>`
 
-- `type Result = <C as Consumer>::Result`
+- <span id="flatmapfolder-type-result"></span>`type Result = <C as Consumer>::Result`
 
-- `fn consume(self: Self, item: T) -> Self`
+- <span id="flatmapfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- `fn complete(self: Self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="flatmapfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="flatmapfolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for FlatMapFolder<'f, C, F, R>`
 
 ##### `impl<T> Pointable for FlatMapFolder<'f, C, F, R>`
 
-- `const ALIGN: usize`
+- <span id="flatmapfolder-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="flatmapfolder-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatmapfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatmapfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatmapfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="flatmapfolder-drop"></span>`unsafe fn drop(ptr: usize)`
 

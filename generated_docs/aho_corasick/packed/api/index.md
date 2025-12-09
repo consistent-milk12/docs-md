@@ -4,6 +4,33 @@
 
 # Module `api`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Config`](#config)
+  - [`Builder`](#builder)
+  - [`Searcher`](#searcher)
+  - [`FindIter`](#finditer)
+- [Enums](#enums)
+  - [`MatchKind`](#matchkind)
+  - [`ForceAlgorithm`](#forcealgorithm)
+  - [`SearchKind`](#searchkind)
+- [Constants](#constants)
+  - [`PATTERN_LIMIT`](#pattern_limit)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Config`](#config) | struct | The configuration for a packed multiple pattern searcher. |
+| [`Builder`](#builder) | struct | A builder for constructing a packed searcher from a collection of patterns. |
+| [`Searcher`](#searcher) | struct | A packed searcher for quickly finding occurrences of multiple patterns. |
+| [`FindIter`](#finditer) | struct | An iterator over non-overlapping matches from a packed searcher. |
+| [`MatchKind`](#matchkind) | enum | A knob for controlling the match semantics of a packed multiple string searcher. |
+| [`ForceAlgorithm`](#forcealgorithm) | enum | An internal option for forcing the use of a particular packed algorithm. |
+| [`SearchKind`](#searchkind) | enum |  |
+| [`PATTERN_LIMIT`](#pattern_limit) | const | This is a limit placed on the total number of patterns we're willing to try and match at once. |
+
 ## Structs
 
 ### `Config`
@@ -17,6 +44,8 @@ struct Config {
     heuristic_pattern_limits: bool,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:87-93`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/api.rs#L87-L93)*
 
 The configuration for a packed multiple pattern searcher.
 
@@ -59,27 +88,27 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](../index.md)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- `fn builder(self: &Self) -> Builder` — [`Builder`](../index.md)
+- <span id="config-builder"></span>`fn builder(&self) -> Builder` — [`Builder`](#builder)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Config` — [`MatchKind`](../index.md), [`Config`](../index.md)
+- <span id="config-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Config` — [`MatchKind`](#matchkind), [`Config`](#config)
 
-- `fn heuristic_pattern_limits(self: &mut Self, yes: bool) -> &mut Config` — [`Config`](../index.md)
+- <span id="config-heuristic-pattern-limits"></span>`fn heuristic_pattern_limits(&mut self, yes: bool) -> &mut Config` — [`Config`](#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](../index.md)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
 ##### `impl Debug for Config`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](../index.md)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
 
 ### `Builder`
 
@@ -90,6 +119,8 @@ struct Builder {
     patterns: crate::packed::pattern::Patterns,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:232-239`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/api.rs#L232-L239)*
 
 A builder for constructing a packed searcher from a collection of patterns.
 
@@ -137,35 +168,35 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](../index.md)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn from_config(config: Config) -> Builder` — [`Config`](../index.md), [`Builder`](../index.md)
+- <span id="builder-from-config"></span>`fn from_config(config: Config) -> Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn build(self: &Self) -> Option<Searcher>` — [`Searcher`](../index.md)
+- <span id="builder-build"></span>`fn build(&self) -> Option<Searcher>` — [`Searcher`](#searcher)
 
-- `fn build_teddy(self: &Self, patterns: Arc<Patterns>) -> Option<self::builder::Searcher>` — [`Patterns`](../pattern/index.md), [`Searcher`](../teddy/builder/index.md)
+- <span id="builder-build-teddy"></span>`fn build_teddy(&self, patterns: Arc<Patterns>) -> Option<self::builder::Searcher>` — [`Patterns`](../pattern/index.md), [`Searcher`](../teddy/builder/index.md)
 
-- `fn add<P: AsRef<[u8]>>(self: &mut Self, pattern: P) -> &mut Builder` — [`Builder`](../index.md)
+- <span id="builder-add"></span>`fn add<P: AsRef<[u8]>>(&mut self, pattern: P) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn extend<I, P>(self: &mut Self, patterns: I) -> &mut Builder` — [`Builder`](../index.md)
+- <span id="builder-extend"></span>`fn extend<I, P>(&mut self, patterns: I) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn len(self: &Self) -> usize`
+- <span id="builder-len"></span>`fn len(&self) -> usize`
 
-- `fn minimum_len(self: &Self) -> usize`
+- <span id="builder-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](../index.md)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](../index.md)
+- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
 
 ### `Searcher`
 
@@ -178,11 +209,13 @@ struct Searcher {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:396-401`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/api.rs#L396-L401)*
+
 A packed searcher for quickly finding occurrences of multiple patterns.
 
 If callers need more flexible construction, or if one wants to change the
 match semantics (either leftmost-first or leftmost-longest), then one can
-use the [`Config`](../index.md) and/or [`Builder`](../index.md) types for more fine grained control.
+use the [`Config`](#config) and/or [`Builder`](#builder) types for more fine grained control.
 
 # Example
 
@@ -211,35 +244,35 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new<I, P>(patterns: I) -> Option<Searcher>` — [`Searcher`](../index.md)
+- <span id="searcher-new"></span>`fn new<I, P>(patterns: I) -> Option<Searcher>` — [`Searcher`](#searcher)
 
-- `fn config() -> Config` — [`Config`](../index.md)
+- <span id="searcher-config"></span>`fn config() -> Config` — [`Config`](#config)
 
-- `fn builder() -> Builder` — [`Builder`](../index.md)
+- <span id="searcher-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
-- `fn find<B: AsRef<[u8]>>(self: &Self, haystack: B) -> Option<Match>` — [`Match`](../../index.md)
+- <span id="searcher-find"></span>`fn find<B: AsRef<[u8]>>(&self, haystack: B) -> Option<Match>` — [`Match`](../../util/search/index.md)
 
-- `fn find_in<B: AsRef<[u8]>>(self: &Self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../../index.md), [`Match`](../../index.md)
+- <span id="searcher-find-in"></span>`fn find_in<B: AsRef<[u8]>>(&self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../../util/search/index.md), [`Match`](../../util/search/index.md)
 
-- `fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>` — [`FindIter`](../index.md)
+- <span id="searcher-find-iter"></span>`fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>` — [`FindIter`](#finditer)
 
-- `fn match_kind(self: &Self) -> &MatchKind` — [`MatchKind`](../index.md)
+- <span id="searcher-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`MatchKind`](#matchkind)
 
-- `fn minimum_len(self: &Self) -> usize`
+- <span id="searcher-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="searcher-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn find_in_slow(self: &Self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../../index.md), [`Match`](../../index.md)
+- <span id="searcher-find-in-slow"></span>`fn find_in_slow(&self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../../util/search/index.md), [`Match`](../../util/search/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Searcher`
 
-- `fn clone(self: &Self) -> Searcher` — [`Searcher`](../index.md)
+- <span id="searcher-clone"></span>`fn clone(&self) -> Searcher` — [`Searcher`](#searcher)
 
 ##### `impl Debug for Searcher`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="searcher-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FindIter<'s, 'h>`
 
@@ -251,31 +284,33 @@ struct FindIter<'s, 'h> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:666-670`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/api.rs#L666-L670)*
+
 An iterator over non-overlapping matches from a packed searcher.
 
-The lifetime `'s` refers to the lifetime of the underlying [`Searcher`](../index.md),
+The lifetime `'s` refers to the lifetime of the underlying [`Searcher`](#searcher),
 while the lifetime `'h` refers to the lifetime of the haystack being
 searched.
 
 #### Trait Implementations
 
-##### `impl<'s, 'h> Debug for FindIter<'s, 'h>`
+##### `impl Debug for FindIter<'s, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindIter<'s, 'h>`
+##### `impl IntoIterator for FindIter<'s, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="finditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="finditer-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'s, 'h> Iterator for FindIter<'s, 'h>`
+##### `impl Iterator for FindIter<'s, 'h>`
 
-- `type Item = Match`
+- <span id="finditer-type-item"></span>`type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../index.md)
+- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../util/search/index.md)
 
 ## Enums
 
@@ -287,6 +322,8 @@ enum MatchKind {
     LeftmostLongest,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:28-40`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/api.rs#L28-L40)*
 
 A knob for controlling the match semantics of a packed multiple string
 searcher.
@@ -323,23 +360,23 @@ type are leftmost-first.
 
 ##### `impl Clone for MatchKind`
 
-- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](../index.md)
+- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Copy for MatchKind`
 
 ##### `impl Debug for MatchKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matchkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MatchKind`
 
-- `fn default() -> MatchKind` — [`MatchKind`](../index.md)
+- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](../index.md)
+- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
 
 ##### `impl StructuralPartialEq for MatchKind`
 
@@ -352,6 +389,8 @@ enum ForceAlgorithm {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:101-104`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/api.rs#L101-L104)*
+
 An internal option for forcing the use of a particular packed algorithm.
 
 When an algorithm is forced, if a searcher could not be constructed for it,
@@ -362,11 +401,11 @@ work.
 
 ##### `impl Clone for ForceAlgorithm`
 
-- `fn clone(self: &Self) -> ForceAlgorithm` — [`ForceAlgorithm`](#forcealgorithm)
+- <span id="forcealgorithm-clone"></span>`fn clone(&self) -> ForceAlgorithm` — [`ForceAlgorithm`](#forcealgorithm)
 
 ##### `impl Debug for ForceAlgorithm`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="forcealgorithm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SearchKind`
 
@@ -377,27 +416,30 @@ enum SearchKind {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:404-407`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/api.rs#L404-L407)*
+
 #### Implementations
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="searchkind-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for SearchKind`
 
-- `fn clone(self: &Self) -> SearchKind` — [`SearchKind`](#searchkind)
+- <span id="searchkind-clone"></span>`fn clone(&self) -> SearchKind` — [`SearchKind`](#searchkind)
 
 ##### `impl Debug for SearchKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="searchkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Constants
 
 ### `PATTERN_LIMIT`
-
 ```rust
 const PATTERN_LIMIT: usize = 128usize;
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/api.rs:11`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/api.rs#L11)*
 
 This is a limit placed on the total number of patterns we're willing to try
 and match at once. As more sophisticated algorithms are added, this number

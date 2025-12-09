@@ -36,6 +36,15 @@ And if it can find one, it looks for literals in each of the direct child
 sub-expressions of that concatenation. If some good ones are found, we return
 those and a concatenation of the Hir expressions seen up to that point.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`extract`](#extract) | fn | Attempts to extract an "inner" prefilter from the given HIR expressions. |
+| [`prefilter`](#prefilter) | fn | Attempt to extract a prefilter from an HIR expression. |
+| [`top_concat`](#top_concat) | fn | Looks for a "top level" HirKind::Concat item in the given HIR. |
+| [`flatten`](#flatten) | fn | Returns a copy of the given HIR but with all capturing groups removed. |
+
 ## Functions
 
 ### `extract`
@@ -43,6 +52,8 @@ those and a concatenation of the Hir expressions seen up to that point.
 ```rust
 fn extract(hirs: &[&regex_syntax::hir::Hir]) -> Option<(regex_syntax::hir::Hir, crate::util::prefilter::Prefilter)>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/reverse_inner.rs:53-116`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/reverse_inner.rs#L53-L116)*
 
 Attempts to extract an "inner" prefilter from the given HIR expressions. If
 one was found, then a concatenation of the HIR expressions that precede it
@@ -63,6 +74,8 @@ not call this otherwise.
 fn prefilter(hir: &regex_syntax::hir::Hir) -> Option<crate::util::prefilter::Prefilter>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/reverse_inner.rs:127-154`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/reverse_inner.rs#L127-L154)*
+
 Attempt to extract a prefilter from an HIR expression.
 
 We do a little massaging here to do our best that the prefilter we get out
@@ -78,6 +91,8 @@ not call this otherwise.
 ```rust
 fn top_concat(hir: &regex_syntax::hir::Hir) -> Option<alloc::vec::Vec<regex_syntax::hir::Hir>>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/reverse_inner.rs:166-200`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/reverse_inner.rs#L166-L200)*
 
 Looks for a "top level" HirKind::Concat item in the given HIR. This will
 try to return one even if it's embedded in a capturing group, but is
@@ -95,6 +110,8 @@ doing the reverse inner search to find the start of the match.
 ```rust
 fn flatten(hir: &regex_syntax::hir::Hir) -> regex_syntax::hir::Hir
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/reverse_inner.rs:203-220`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/reverse_inner.rs#L203-L220)*
 
 Returns a copy of the given HIR but with all capturing groups removed.
 

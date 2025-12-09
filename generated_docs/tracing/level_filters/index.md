@@ -56,6 +56,13 @@ max level features][`log` crate].
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`get_max_level_inner`](#get_max_level_inner) | fn |  |
+| [`STATIC_MAX_LEVEL`](#static_max_level) | const | The statically configured maximum trace level. |
+
 ## Functions
 
 ### `get_max_level_inner`
@@ -64,13 +71,16 @@ max level features][`log` crate].
 const fn get_max_level_inner() -> LevelFilter
 ```
 
+*Defined in [`tracing-0.1.43/src/level_filters.rs:68-113`](../../../.source_1765210505/tracing-0.1.43/src/level_filters.rs#L68-L113)*
+
 ## Constants
 
 ### `STATIC_MAX_LEVEL`
-
 ```rust
 const STATIC_MAX_LEVEL: LevelFilter;
 ```
+
+*Defined in [`tracing-0.1.43/src/level_filters.rs:66`](../../../.source_1765210505/tracing-0.1.43/src/level_filters.rs#L66)*
 
 The statically configured maximum trace level.
 

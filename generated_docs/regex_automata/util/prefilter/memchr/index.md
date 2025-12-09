@@ -4,6 +4,14 @@
 
 # Module `memchr`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Memchr`](#memchr) | struct |  |
+| [`Memchr2`](#memchr2) | struct |  |
+| [`Memchr3`](#memchr3) | struct |  |
+
 ## Structs
 
 ### `Memchr`
@@ -12,29 +20,31 @@
 struct Memchr(u8);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/memchr.rs:7`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/memchr.rs#L7)*
+
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr>` — [`MatchKind`](../../../index.md), [`Memchr`](#memchr)
+- <span id="memchr-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr>` — [`MatchKind`](../../../index.md), [`Memchr`](#memchr)
 
 #### Trait Implementations
 
 ##### `impl Clone for Memchr`
 
-- `fn clone(self: &Self) -> Memchr` — [`Memchr`](#memchr)
+- <span id="memchr-clone"></span>`fn clone(&self) -> Memchr` — [`Memchr`](#memchr)
 
 ##### `impl Debug for Memchr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="memchr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for Memchr`
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="memchr-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn is_fast(self: &Self) -> bool`
+- <span id="memchr-is-fast"></span>`fn is_fast(&self) -> bool`
 
 ### `Memchr2`
 
@@ -42,29 +52,31 @@ struct Memchr(u8);
 struct Memchr2(u8, u8);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/memchr.rs:66`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/memchr.rs#L66)*
+
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr2>` — [`MatchKind`](../../../index.md), [`Memchr2`](#memchr2)
+- <span id="memchr2-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr2>` — [`MatchKind`](../../../index.md), [`Memchr2`](#memchr2)
 
 #### Trait Implementations
 
 ##### `impl Clone for Memchr2`
 
-- `fn clone(self: &Self) -> Memchr2` — [`Memchr2`](#memchr2)
+- <span id="memchr2-clone"></span>`fn clone(&self) -> Memchr2` — [`Memchr2`](#memchr2)
 
 ##### `impl Debug for Memchr2`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="memchr2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for Memchr2`
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr2-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr2-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="memchr2-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn is_fast(self: &Self) -> bool`
+- <span id="memchr2-is-fast"></span>`fn is_fast(&self) -> bool`
 
 ### `Memchr3`
 
@@ -72,27 +84,29 @@ struct Memchr2(u8, u8);
 struct Memchr3(u8, u8, u8);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/memchr.rs:127`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/memchr.rs#L127)*
+
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr3>` — [`MatchKind`](../../../index.md), [`Memchr3`](#memchr3)
+- <span id="memchr3-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr3>` — [`MatchKind`](../../../index.md), [`Memchr3`](#memchr3)
 
 #### Trait Implementations
 
 ##### `impl Clone for Memchr3`
 
-- `fn clone(self: &Self) -> Memchr3` — [`Memchr3`](#memchr3)
+- <span id="memchr3-clone"></span>`fn clone(&self) -> Memchr3` — [`Memchr3`](#memchr3)
 
 ##### `impl Debug for Memchr3`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="memchr3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for Memchr3`
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr3-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memchr3-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="memchr3-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn is_fast(self: &Self) -> bool`
+- <span id="memchr3-is-fast"></span>`fn is_fast(&self) -> bool`
 

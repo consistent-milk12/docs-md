@@ -4,6 +4,14 @@
 
 # Module `iter`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IterImpl`](#iterimpl) | struct |  |
+| [`new`](#new) | fn |  |
+| [`Iter`](#iter) | type |  |
+
 ## Structs
 
 ### `IterImpl`
@@ -15,25 +23,27 @@ struct IterImpl {
 }
 ```
 
+*Defined in [`rustversion-1.0.22/src/iter.rs:5-8`](../../../.source_1765210505/rustversion-1.0.22/src/iter.rs#L5-L8)*
+
 #### Implementations
 
-- `fn peek(self: &mut Self) -> Option<&TokenTree>`
+- <span id="iterimpl-peek"></span>`fn peek(&mut self) -> Option<&TokenTree>`
 
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for IterImpl`
+##### `impl IntoIterator for IterImpl`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iterimpl-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iterimpl-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iterimpl-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IterImpl`
 
-- `type Item = TokenTree`
+- <span id="iterimpl-type-item"></span>`type Item = TokenTree`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iterimpl-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Functions
 
@@ -43,6 +53,8 @@ struct IterImpl {
 fn new(tokens: proc_macro::TokenStream) -> IterImpl
 ```
 
+*Defined in [`rustversion-1.0.22/src/iter.rs:10-15`](../../../.source_1765210505/rustversion-1.0.22/src/iter.rs#L10-L15)*
+
 ## Type Aliases
 
 ### `Iter<'a>`
@@ -50,4 +62,6 @@ fn new(tokens: proc_macro::TokenStream) -> IterImpl
 ```rust
 type Iter<'a> = &'a mut IterImpl;
 ```
+
+*Defined in [`rustversion-1.0.22/src/iter.rs:3`](../../../.source_1765210505/rustversion-1.0.22/src/iter.rs#L3)*
 

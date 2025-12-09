@@ -6,10 +6,21 @@
 
 Memory allocation APIs
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`global`](#global) | mod |  |
+| [`Layout`](#layout) | mod |  |
+| [`GlobalAlloc`](#globalalloc) | struct |  |
+| [`Global`](#global) | struct |  |
+| [`AllocError`](#allocerror) | struct | The `AllocError` error indicates an allocation failure that may be due to resource exhaustion or to something wrong when combining the given input arguments with this allocator. |
+| [`Allocator`](#allocator) | trait | An implementation of `Allocator` can allocate, grow, shrink, and deallocate arbitrary blocks of data described via [`Layout`][]. |
+
 ## Modules
 
-- [`global`](global/index.md) - 
-- [`Layout`](Layout/index.md) - 
+- [`global`](global/index.md)
+- [`Layout`](Layout/index.md)
 
 ## Structs
 
@@ -25,17 +36,21 @@ struct GlobalAlloc<R: gimli::Reader> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/function.rs:83-89`](../../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L83-L89)*
+
 *Re-exported from `addr2line`*
 
 #### Implementations
 
-- `fn parse(state: &mut InlinedState<'_, R>, dw_die_offset: gimli::UnitOffset<<R as >::Offset>, abbrev: &gimli::Abbreviation, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`LayoutError`](#layouterror)
+- <span id="inlinedfunction-parse"></span>`fn parse(state: &mut InlinedState<'_, R>, dw_die_offset: gimli::UnitOffset<<R as >::Offset>, abbrev: &gimli::Abbreviation, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`LayoutError`](#layouterror)
 
 ### `Global`
 
 ```rust
 struct Global;
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
 
 The global memory allocator.
 
@@ -48,45 +63,47 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 #### Implementations
 
-- `fn alloc_impl(self: &Self, layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-alloc-impl"></span>`fn alloc_impl(&self, layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- `unsafe fn grow_impl(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-grow-impl"></span>`unsafe fn grow_impl(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
 #### Trait Implementations
 
 ##### `impl Allocator for Global`
 
-- `fn allocate(self: &Self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-allocate"></span>`fn allocate(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- `fn allocate_zeroed(self: &Self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-allocate-zeroed"></span>`fn allocate_zeroed(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- `unsafe fn deallocate(self: &Self, ptr: NonNull<u8>, layout: Layout)` — [`Layout`](#layout)
+- <span id="global-deallocate"></span>`unsafe fn deallocate(&self, ptr: NonNull<u8>, layout: Layout)` — [`Layout`](#layout)
 
-- `unsafe fn grow(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-grow"></span>`unsafe fn grow(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- `unsafe fn grow_zeroed(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-grow-zeroed"></span>`unsafe fn grow_zeroed(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- `unsafe fn shrink(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
+- <span id="global-shrink"></span>`unsafe fn shrink(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
 ##### `impl Clone for Global`
 
-- `fn clone(self: &Self) -> Global` — [`Global`](#global)
+- <span id="global-clone"></span>`fn clone(&self) -> Global` — [`Global`](global/index.md)
 
 ##### `impl Copy for Global`
 
 ##### `impl Debug for Global`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="global-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Global`
 
-- `fn default() -> Global` — [`Global`](#global)
+- <span id="global-default"></span>`fn default() -> Global` — [`Global`](global/index.md)
 
 ### `AllocError`
 
 ```rust
 struct AllocError;
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:33`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L33)*
 
 The `AllocError` error indicates an allocation failure
 that may be due to resource exhaustion or to
@@ -97,29 +114,29 @@ allocator.
 
 ##### `impl Clone for AllocError`
 
-- `fn clone(self: &Self) -> AllocError` — [`AllocError`](#allocerror)
+- <span id="allocerror-clone"></span>`fn clone(&self) -> AllocError` — [`AllocError`](#allocerror)
 
 ##### `impl Copy for AllocError`
 
 ##### `impl Debug for AllocError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="allocerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for AllocError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="allocerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AllocError`
 
 ##### `impl PartialEq for AllocError`
 
-- `fn eq(self: &Self, other: &AllocError) -> bool` — [`AllocError`](#allocerror)
+- <span id="allocerror-eq"></span>`fn eq(&self, other: &AllocError) -> bool` — [`AllocError`](#allocerror)
 
 ##### `impl StructuralPartialEq for AllocError`
 
-##### `impl<T> ToString for AllocError`
+##### `impl ToString for AllocError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="allocerror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 
@@ -128,6 +145,8 @@ allocator.
 ```rust
 trait Allocator { ... }
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:101-362`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L101-L362)*
 
 An implementation of `Allocator` can allocate, grow, shrink, and deallocate arbitrary blocks of
 data described via [`Layout`][].
@@ -183,31 +202,38 @@ following conditions must hold:
 
 #### Required Methods
 
-- `fn allocate(self: &Self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+- `fn allocate(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Attempts to allocate a block of memory.
 
-- `fn allocate_zeroed(self: &Self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
-
-  Behaves like `allocate`, but also ensures that the returned memory is zero-initialized.
-
-- `fn deallocate(self: &Self, ptr: NonNull<u8>, layout: Layout)`
+- `fn deallocate(&self, ptr: NonNull<u8>, layout: Layout)`
 
   Deallocates the memory referenced by `ptr`.
 
-- `fn grow(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+#### Provided Methods
+
+- `fn allocate_zeroed(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+
+  Behaves like `allocate`, but also ensures that the returned memory is zero-initialized.
+
+- `fn grow(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Attempts to extend the memory block.
 
-- `fn grow_zeroed(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+- `fn grow_zeroed(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Behaves like `grow`, but also ensures that the new contents are set to zero before being
 
-- `fn shrink(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+- `fn shrink(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
   Attempts to shrink the memory block.
 
-- `fn by_ref(self: &Self) -> &Self`
+- `fn by_ref(&self) -> &Self`
 
   Creates a "by reference" adapter for this instance of `Allocator`.
+
+#### Implementors
+
+- [`Global`](global/index.md)
+- `&A`
 

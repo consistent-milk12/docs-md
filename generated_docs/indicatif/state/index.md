@@ -4,6 +4,46 @@
 
 # Module `state`
 
+## Contents
+
+- [Structs](#structs)
+  - [`BarState`](#barstate)
+  - [`ProgressState`](#progressstate)
+  - [`Estimator`](#estimator)
+  - [`AtomicPosition`](#atomicposition)
+- [Enums](#enums)
+  - [`Reset`](#reset)
+  - [`TabExpandedString`](#tabexpandedstring)
+  - [`ProgressFinish`](#progressfinish)
+  - [`Status`](#status)
+- [Functions](#functions)
+  - [`estimator_weight`](#estimator_weight)
+  - [`duration_to_secs`](#duration_to_secs)
+  - [`secs_to_duration`](#secs_to_duration)
+- [Constants](#constants)
+  - [`INTERVAL`](#interval)
+  - [`MAX_BURST`](#max_burst)
+  - [`DEFAULT_TAB_WIDTH`](#default_tab_width)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BarState`](#barstate) | struct |  |
+| [`ProgressState`](#progressstate) | struct | The state of a progress bar at a moment in time. |
+| [`Estimator`](#estimator) | struct | Double-smoothed exponentially weighted estimator |
+| [`AtomicPosition`](#atomicposition) | struct |  |
+| [`Reset`](#reset) | enum |  |
+| [`TabExpandedString`](#tabexpandedstring) | enum |  |
+| [`ProgressFinish`](#progressfinish) | enum | Behavior of a progress bar when it is finished |
+| [`Status`](#status) | enum |  |
+| [`estimator_weight`](#estimator_weight) | fn | Get the appropriate dilution weight for Estimator data given the data's age (in seconds) |
+| [`duration_to_secs`](#duration_to_secs) | fn |  |
+| [`secs_to_duration`](#secs_to_duration) | fn |  |
+| [`INTERVAL`](#interval) | const |  |
+| [`MAX_BURST`](#max_burst) | const |  |
+| [`DEFAULT_TAB_WIDTH`](#default_tab_width) | const |  |
+
 ## Structs
 
 ### `BarState`
@@ -18,43 +58,45 @@ struct BarState {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:15-21`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L15-L21)*
+
 #### Implementations
 
-- `fn new(len: Option<u64>, draw_target: ProgressDrawTarget, pos: Arc<AtomicPosition>) -> Self` — [`ProgressDrawTarget`](../index.md), [`AtomicPosition`](#atomicposition)
+- <span id="barstate-new"></span>`fn new(len: Option<u64>, draw_target: ProgressDrawTarget, pos: Arc<AtomicPosition>) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md), [`AtomicPosition`](#atomicposition)
 
-- `fn finish_using_style(self: &mut Self, now: Instant, finish: ProgressFinish)` — [`ProgressFinish`](../index.md)
+- <span id="barstate-finish-using-style"></span>`fn finish_using_style(&mut self, now: Instant, finish: ProgressFinish)` — [`ProgressFinish`](#progressfinish)
 
-- `fn reset(self: &mut Self, now: Instant, mode: Reset)` — [`Reset`](#reset)
+- <span id="barstate-reset"></span>`fn reset(&mut self, now: Instant, mode: Reset)` — [`Reset`](#reset)
 
-- `fn update(self: &mut Self, now: Instant, f: impl FnOnce(&mut ProgressState), tick: bool)` — [`ProgressState`](../index.md)
+- <span id="barstate-update"></span>`fn update(&mut self, now: Instant, f: impl FnOnce(&mut ProgressState), tick: bool)` — [`ProgressState`](#progressstate)
 
-- `fn unset_length(self: &mut Self, now: Instant)`
+- <span id="barstate-unset-length"></span>`fn unset_length(&mut self, now: Instant)`
 
-- `fn set_length(self: &mut Self, now: Instant, len: u64)`
+- <span id="barstate-set-length"></span>`fn set_length(&mut self, now: Instant, len: u64)`
 
-- `fn inc_length(self: &mut Self, now: Instant, delta: u64)`
+- <span id="barstate-inc-length"></span>`fn inc_length(&mut self, now: Instant, delta: u64)`
 
-- `fn dec_length(self: &mut Self, now: Instant, delta: u64)`
+- <span id="barstate-dec-length"></span>`fn dec_length(&mut self, now: Instant, delta: u64)`
 
-- `fn set_tab_width(self: &mut Self, tab_width: usize)`
+- <span id="barstate-set-tab-width"></span>`fn set_tab_width(&mut self, tab_width: usize)`
 
-- `fn set_style(self: &mut Self, style: ProgressStyle)` — [`ProgressStyle`](../index.md)
+- <span id="barstate-set-style"></span>`fn set_style(&mut self, style: ProgressStyle)` — [`ProgressStyle`](../style/index.md)
 
-- `fn tick(self: &mut Self, now: Instant)`
+- <span id="barstate-tick"></span>`fn tick(&mut self, now: Instant)`
 
-- `fn update_estimate_and_draw(self: &mut Self, now: Instant)`
+- <span id="barstate-update-estimate-and-draw"></span>`fn update_estimate_and_draw(&mut self, now: Instant)`
 
-- `fn println(self: &mut Self, now: Instant, msg: &str)`
+- <span id="barstate-println"></span>`fn println(&mut self, now: Instant, msg: &str)`
 
-- `fn suspend<F: FnOnce() -> R, R>(self: &mut Self, now: Instant, f: F) -> R`
+- <span id="barstate-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&mut self, now: Instant, f: F) -> R`
 
-- `fn draw(self: &mut Self, force_draw: bool, now: Instant) -> io::Result<()>`
+- <span id="barstate-draw"></span>`fn draw(&mut self, force_draw: bool, now: Instant) -> io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl Drop for BarState`
 
-- `fn drop(self: &mut Self)`
+- <span id="barstate-drop"></span>`fn drop(&mut self)`
 
 ### `ProgressState`
 
@@ -71,31 +113,33 @@ struct ProgressState {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L242-L251)*
+
 The state of a progress bar at a moment in time.
 
 #### Implementations
 
-- `fn new(len: Option<u64>, pos: Arc<AtomicPosition>) -> Self` — [`AtomicPosition`](#atomicposition)
+- <span id="progressstate-new"></span>`fn new(len: Option<u64>, pos: Arc<AtomicPosition>) -> Self` — [`AtomicPosition`](#atomicposition)
 
-- `fn is_finished(self: &Self) -> bool`
+- <span id="progressstate-is-finished"></span>`fn is_finished(&self) -> bool`
 
-- `fn fraction(self: &Self) -> f32`
+- <span id="progressstate-fraction"></span>`fn fraction(&self) -> f32`
 
-- `fn eta(self: &Self) -> Duration`
+- <span id="progressstate-eta"></span>`fn eta(&self) -> Duration`
 
-- `fn duration(self: &Self) -> Duration`
+- <span id="progressstate-duration"></span>`fn duration(&self) -> Duration`
 
-- `fn per_sec(self: &Self) -> f64`
+- <span id="progressstate-per-sec"></span>`fn per_sec(&self) -> f64`
 
-- `fn elapsed(self: &Self) -> Duration`
+- <span id="progressstate-elapsed"></span>`fn elapsed(&self) -> Duration`
 
-- `fn pos(self: &Self) -> u64`
+- <span id="progressstate-pos"></span>`fn pos(&self) -> u64`
 
-- `fn set_pos(self: &mut Self, pos: u64)`
+- <span id="progressstate-set-pos"></span>`fn set_pos(&mut self, pos: u64)`
 
-- `fn len(self: &Self) -> Option<u64>`
+- <span id="progressstate-len"></span>`fn len(&self) -> Option<u64>`
 
-- `fn set_len(self: &mut Self, len: u64)`
+- <span id="progressstate-set-len"></span>`fn set_len(&mut self, len: u64)`
 
 ### `Estimator`
 
@@ -108,6 +152,8 @@ struct Estimator {
     start_time: std::time::Instant,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:421-427`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L421-L427)*
 
 Double-smoothed exponentially weighted estimator
 
@@ -128,19 +174,19 @@ slow asymptotic approach to zero (until the next spike).
 
 #### Implementations
 
-- `fn new(now: Instant) -> Self`
+- <span id="estimator-new"></span>`fn new(now: Instant) -> Self`
 
-- `fn record(self: &mut Self, new_steps: u64, now: Instant)`
+- <span id="estimator-record"></span>`fn record(&mut self, new_steps: u64, now: Instant)`
 
-- `fn reset(self: &mut Self, now: Instant)`
+- <span id="estimator-reset"></span>`fn reset(&mut self, now: Instant)`
 
-- `fn steps_per_second(self: &Self, now: Instant) -> f64`
+- <span id="estimator-steps-per-second"></span>`fn steps_per_second(&self, now: Instant) -> f64`
 
 #### Trait Implementations
 
 ##### `impl Debug for Estimator`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="estimator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AtomicPosition`
 
@@ -153,19 +199,21 @@ struct AtomicPosition {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:532-537`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L532-L537)*
+
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="atomicposition-new"></span>`fn new() -> Self`
 
-- `fn allow(self: &Self, now: Instant) -> bool`
+- <span id="atomicposition-allow"></span>`fn allow(&self, now: Instant) -> bool`
 
-- `fn reset(self: &Self, now: Instant)`
+- <span id="atomicposition-reset"></span>`fn reset(&self, now: Instant)`
 
-- `fn inc(self: &Self, delta: u64)`
+- <span id="atomicposition-inc"></span>`fn inc(&self, delta: u64)`
 
-- `fn dec(self: &Self, delta: u64)`
+- <span id="atomicposition-dec"></span>`fn dec(&self, delta: u64)`
 
-- `fn set(self: &Self, pos: u64)`
+- <span id="atomicposition-set"></span>`fn set(&self, pos: u64)`
 
 ## Enums
 
@@ -178,6 +226,8 @@ enum Reset {
     All,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:234-238`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L234-L238)*
 
 ### `TabExpandedString`
 
@@ -192,29 +242,31 @@ enum TabExpandedString {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:353-360`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L353-L360)*
+
 #### Implementations
 
-- `fn new(s: Cow<'static, str>, tab_width: usize) -> Self`
+- <span id="tabexpandedstring-new"></span>`fn new(s: Cow<'static, str>, tab_width: usize) -> Self`
 
-- `fn expanded(self: &Self) -> &str`
+- <span id="tabexpandedstring-expanded"></span>`fn expanded(&self) -> &str`
 
-- `fn set_tab_width(self: &mut Self, new_tab_width: usize)`
+- <span id="tabexpandedstring-set-tab-width"></span>`fn set_tab_width(&mut self, new_tab_width: usize)`
 
 #### Trait Implementations
 
 ##### `impl Clone for TabExpandedString`
 
-- `fn clone(self: &Self) -> TabExpandedString` — [`TabExpandedString`](#tabexpandedstring)
+- <span id="tabexpandedstring-clone"></span>`fn clone(&self) -> TabExpandedString` — [`TabExpandedString`](#tabexpandedstring)
 
 ##### `impl Debug for TabExpandedString`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tabexpandedstring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TabExpandedString`
 
 ##### `impl PartialEq for TabExpandedString`
 
-- `fn eq(self: &Self, other: &TabExpandedString) -> bool` — [`TabExpandedString`](#tabexpandedstring)
+- <span id="tabexpandedstring-eq"></span>`fn eq(&self, other: &TabExpandedString) -> bool` — [`TabExpandedString`](#tabexpandedstring)
 
 ##### `impl StructuralPartialEq for TabExpandedString`
 
@@ -230,9 +282,11 @@ enum ProgressFinish {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L615-L637)*
+
 Behavior of a progress bar when it is finished
 
-This is invoked when a [`ProgressBar`](../index.md) or [`ProgressBarIter`](../index.md) completes and
+This is invoked when a [`ProgressBar`](../progress_bar/index.md) or [`ProgressBarIter`](../iter/index.md) completes and
 `ProgressBar::is_finished` is false.
 
 
@@ -274,15 +328,15 @@ This is invoked when a [`ProgressBar`](../index.md) or [`ProgressBarIter`](../in
 
 ##### `impl Clone for ProgressFinish`
 
-- `fn clone(self: &Self) -> ProgressFinish` — [`ProgressFinish`](../index.md)
+- <span id="progressfinish-clone"></span>`fn clone(&self) -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
 
 ##### `impl Debug for ProgressFinish`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="progressfinish-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ProgressFinish`
 
-- `fn default() -> ProgressFinish` — [`ProgressFinish`](../index.md)
+- <span id="progressfinish-default"></span>`fn default() -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
 
 ### `Status`
 
@@ -294,11 +348,13 @@ enum Status {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:679-683`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L679-L683)*
+
 #### Trait Implementations
 
 ##### `impl Debug for Status`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="status-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 
@@ -307,6 +363,8 @@ enum Status {
 ```rust
 fn estimator_weight(age: f64) -> f64
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:663-666`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L663-L666)*
 
 Get the appropriate dilution weight for Estimator data given the data's age (in seconds)
 
@@ -339,29 +397,36 @@ samples, a very useful feature.
 fn duration_to_secs(d: std::time::Duration) -> f64
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:668-670`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L668-L670)*
+
 ### `secs_to_duration`
 
 ```rust
 fn secs_to_duration(s: f64) -> std::time::Duration
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:672-676`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L672-L676)*
+
 ## Constants
 
 ### `INTERVAL`
-
 ```rust
 const INTERVAL: u64 = 1_000_000u64;
 ```
 
-### `MAX_BURST`
+*Defined in [`indicatif-0.18.3/src/state.rs:603`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L603)*
 
+### `MAX_BURST`
 ```rust
 const MAX_BURST: u8 = 10u8;
 ```
 
-### `DEFAULT_TAB_WIDTH`
+*Defined in [`indicatif-0.18.3/src/state.rs:604`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L604)*
 
+### `DEFAULT_TAB_WIDTH`
 ```rust
 const DEFAULT_TAB_WIDTH: usize = 8usize;
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:685`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L685)*
 

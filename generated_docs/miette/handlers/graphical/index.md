@@ -4,6 +4,17 @@
 
 # Module `graphical`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`GraphicalReportHandler`](#graphicalreporthandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a quasi-graphical way, using terminal colors, unicode drawing characters, and other such things. |
+| [`Line`](#line) | struct |  |
+| [`FancySpan`](#fancyspan) | struct |  |
+| [`LinkStyle`](#linkstyle) | enum |  |
+| [`LabelRenderMode`](#labelrendermode) | enum |  |
+| [`split_label`](#split_label) | fn |  |
+
 ## Structs
 
 ### `GraphicalReportHandler`
@@ -28,6 +39,8 @@ struct GraphicalReportHandler {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
+
 A [`ReportHandler`](../../index.md) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
 other such things.
@@ -42,67 +55,67 @@ printer.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="graphicalreporthandler-new"></span>`fn new() -> Self`
 
-- `fn new_themed(theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../index.md)
+- <span id="graphicalreporthandler-new-themed"></span>`fn new_themed(theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../index.md)
 
-- `fn tab_width(self: Self, width: usize) -> Self`
+- <span id="graphicalreporthandler-tab-width"></span>`fn tab_width(self, width: usize) -> Self`
 
-- `fn with_links(self: Self, links: bool) -> Self`
+- <span id="graphicalreporthandler-with-links"></span>`fn with_links(self, links: bool) -> Self`
 
-- `fn with_cause_chain(self: Self) -> Self`
+- <span id="graphicalreporthandler-with-cause-chain"></span>`fn with_cause_chain(self) -> Self`
 
-- `fn without_cause_chain(self: Self) -> Self`
+- <span id="graphicalreporthandler-without-cause-chain"></span>`fn without_cause_chain(self) -> Self`
 
-- `fn with_primary_span_start(self: Self) -> Self`
+- <span id="graphicalreporthandler-with-primary-span-start"></span>`fn with_primary_span_start(self) -> Self`
 
-- `fn without_primary_span_start(self: Self) -> Self`
+- <span id="graphicalreporthandler-without-primary-span-start"></span>`fn without_primary_span_start(self) -> Self`
 
-- `fn with_urls(self: Self, urls: bool) -> Self`
+- <span id="graphicalreporthandler-with-urls"></span>`fn with_urls(self, urls: bool) -> Self`
 
-- `fn with_theme(self: Self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../index.md)
+- <span id="graphicalreporthandler-with-theme"></span>`fn with_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../index.md)
 
-- `fn with_width(self: Self, width: usize) -> Self`
+- <span id="graphicalreporthandler-with-width"></span>`fn with_width(self, width: usize) -> Self`
 
-- `fn with_wrap_lines(self: Self, wrap_lines: bool) -> Self`
+- <span id="graphicalreporthandler-with-wrap-lines"></span>`fn with_wrap_lines(self, wrap_lines: bool) -> Self`
 
-- `fn with_break_words(self: Self, break_words: bool) -> Self`
+- <span id="graphicalreporthandler-with-break-words"></span>`fn with_break_words(self, break_words: bool) -> Self`
 
-- `fn with_word_separator(self: Self, word_separator: textwrap::WordSeparator) -> Self`
+- <span id="graphicalreporthandler-with-word-separator"></span>`fn with_word_separator(self, word_separator: textwrap::WordSeparator) -> Self`
 
-- `fn with_word_splitter(self: Self, word_splitter: textwrap::WordSplitter) -> Self`
+- <span id="graphicalreporthandler-with-word-splitter"></span>`fn with_word_splitter(self, word_splitter: textwrap::WordSplitter) -> Self`
 
-- `fn with_footer(self: Self, footer: String) -> Self`
+- <span id="graphicalreporthandler-with-footer"></span>`fn with_footer(self, footer: String) -> Self`
 
-- `fn with_context_lines(self: Self, lines: usize) -> Self`
+- <span id="graphicalreporthandler-with-context-lines"></span>`fn with_context_lines(self, lines: usize) -> Self`
 
-- `fn with_show_related_as_nested(self: Self, show_related_as_nested: bool) -> Self`
+- <span id="graphicalreporthandler-with-show-related-as-nested"></span>`fn with_show_related_as_nested(self, show_related_as_nested: bool) -> Self`
 
-- `fn with_syntax_highlighting(self: Self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../../highlighters/index.md)
+- <span id="graphicalreporthandler-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../../highlighters/index.md)
 
-- `fn without_syntax_highlighting(self: Self) -> Self`
+- <span id="graphicalreporthandler-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
-- `fn with_link_display_text(self: Self, text: impl Into<String>) -> Self`
+- <span id="graphicalreporthandler-with-link-display-text"></span>`fn with_link_display_text(self, text: impl Into<String>) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for GraphicalReportHandler`
 
-- `fn clone(self: &Self) -> GraphicalReportHandler` — [`GraphicalReportHandler`](../index.md)
+- <span id="graphicalreporthandler-clone"></span>`fn clone(&self) -> GraphicalReportHandler` — [`GraphicalReportHandler`](../index.md)
 
 ##### `impl Debug for GraphicalReportHandler`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="graphicalreporthandler-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for GraphicalReportHandler`
 
-- `fn default() -> Self`
+- <span id="graphicalreporthandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for GraphicalReportHandler`
+##### `impl OwoColorize for GraphicalReportHandler`
 
 ##### `impl ReportHandler for GraphicalReportHandler`
 
-- `fn debug(self: &Self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md)
+- <span id="graphicalreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../../index.md)
 
 ### `Line`
 
@@ -115,27 +128,29 @@ struct Line {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
+
 #### Implementations
 
-- `fn span_line_only(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
+- <span id="line-span-line-only"></span>`fn span_line_only(&self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
 
-- `fn span_applies(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
+- <span id="line-span-applies"></span>`fn span_applies(&self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
 
-- `fn span_applies_gutter(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
+- <span id="line-span-applies-gutter"></span>`fn span_applies_gutter(&self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
 
-- `fn span_flyby(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
+- <span id="line-span-flyby"></span>`fn span_flyby(&self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
 
-- `fn span_starts(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
+- <span id="line-span-starts"></span>`fn span_starts(&self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
 
-- `fn span_ends(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
+- <span id="line-span-ends"></span>`fn span_ends(&self, span: &FancySpan) -> bool` — [`FancySpan`](#fancyspan)
 
 #### Trait Implementations
 
 ##### `impl Debug for Line`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="line-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for Line`
+##### `impl OwoColorize for Line`
 
 ### `FancySpan`
 
@@ -147,6 +162,8 @@ struct FancySpan {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
+
 #### Fields
 
 - **`label`**: `Option<Vec<String>>`
@@ -157,33 +174,33 @@ struct FancySpan {
 
 #### Implementations
 
-- `fn new(label: Option<String>, span: SourceSpan, style: Style) -> Self` — [`SourceSpan`](../../index.md)
+- <span id="fancyspan-new"></span>`fn new(label: Option<String>, span: SourceSpan, style: Style) -> Self` — [`SourceSpan`](../../index.md)
 
-- `fn style(self: &Self) -> Style`
+- <span id="fancyspan-style"></span>`fn style(&self) -> Style`
 
-- `fn label(self: &Self) -> Option<String>`
+- <span id="fancyspan-label"></span>`fn label(&self) -> Option<String>`
 
-- `fn label_parts(self: &Self) -> Option<Vec<String>>`
+- <span id="fancyspan-label-parts"></span>`fn label_parts(&self) -> Option<Vec<String>>`
 
-- `fn offset(self: &Self) -> usize`
+- <span id="fancyspan-offset"></span>`fn offset(&self) -> usize`
 
-- `fn len(self: &Self) -> usize`
+- <span id="fancyspan-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for FancySpan`
 
-- `fn clone(self: &Self) -> FancySpan` — [`FancySpan`](#fancyspan)
+- <span id="fancyspan-clone"></span>`fn clone(&self) -> FancySpan` — [`FancySpan`](#fancyspan)
 
 ##### `impl Debug for FancySpan`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fancyspan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for FancySpan`
+##### `impl OwoColorize for FancySpan`
 
 ##### `impl PartialEq for FancySpan`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="fancyspan-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ## Enums
 
@@ -197,25 +214,27 @@ enum LinkStyle {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
+
 #### Trait Implementations
 
 ##### `impl Clone for LinkStyle`
 
-- `fn clone(self: &Self) -> LinkStyle` — [`LinkStyle`](#linkstyle)
+- <span id="linkstyle-clone"></span>`fn clone(&self) -> LinkStyle` — [`LinkStyle`](#linkstyle)
 
 ##### `impl Copy for LinkStyle`
 
 ##### `impl Debug for LinkStyle`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linkstyle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LinkStyle`
 
-##### `impl<D> OwoColorize for LinkStyle`
+##### `impl OwoColorize for LinkStyle`
 
 ##### `impl PartialEq for LinkStyle`
 
-- `fn eq(self: &Self, other: &LinkStyle) -> bool` — [`LinkStyle`](#linkstyle)
+- <span id="linkstyle-eq"></span>`fn eq(&self, other: &LinkStyle) -> bool` — [`LinkStyle`](#linkstyle)
 
 ##### `impl StructuralPartialEq for LinkStyle`
 
@@ -228,6 +247,8 @@ enum LabelRenderMode {
     MultiLineRest,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
 
 #### Variants
 
@@ -247,13 +268,13 @@ enum LabelRenderMode {
 
 ##### `impl Debug for LabelRenderMode`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="labelrendermode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for LabelRenderMode`
+##### `impl OwoColorize for LabelRenderMode`
 
 ##### `impl PartialEq for LabelRenderMode`
 
-- `fn eq(self: &Self, other: &LabelRenderMode) -> bool` — [`LabelRenderMode`](#labelrendermode)
+- <span id="labelrendermode-eq"></span>`fn eq(&self, other: &LabelRenderMode) -> bool` — [`LabelRenderMode`](#labelrendermode)
 
 ##### `impl StructuralPartialEq for LabelRenderMode`
 
@@ -264,4 +285,6 @@ enum LabelRenderMode {
 ```rust
 fn split_label(v: String) -> Vec<String>
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
 

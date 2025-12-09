@@ -4,6 +4,14 @@
 
 # Module `upper_camel`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AsUpperCamelCase`](#asuppercamelcase) | struct | This wrapper performs a upper camel case conversion in [`fmt::Display`]. |
+| [`ToUpperCamelCase`](#touppercamelcase) | trait | This trait defines an upper camel case conversion. |
+| [`ToPascalCase`](#topascalcase) | trait | `ToPascalCase` is an alias for [`ToUpperCamelCase`]. |
+
 ## Structs
 
 ### `AsUpperCamelCase<T: AsRef<str>>`
@@ -12,7 +20,9 @@
 struct AsUpperCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../../miette_derive/index.md).
+*Defined in [`heck-0.5.0/src/upper_camel.rs:57`](../../../.source_1765210505/heck-0.5.0/src/upper_camel.rs#L57)*
+
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -27,11 +37,11 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 
 ##### `impl<T: AsRef<str>> Display for AsUpperCamelCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asuppercamelcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsUpperCamelCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="asuppercamelcase-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 
@@ -40,6 +50,8 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 ```rust
 trait ToUpperCamelCase: ToOwned { ... }
 ```
+
+*Defined in [`heck-0.5.0/src/upper_camel.rs:23-26`](../../../.source_1765210505/heck-0.5.0/src/upper_camel.rs#L23-L26)*
 
 This trait defines an upper camel case conversion.
 
@@ -57,9 +69,13 @@ assert_eq!(sentence.to_upper_camel_case(), "WeAreNotInTheLeastAfraidOfRuins");
 
 #### Required Methods
 
-- `fn to_upper_camel_case(self: &Self) -> <Self as >::Owned`
+- `fn to_upper_camel_case(&self) -> <Self as >::Owned`
 
   Convert this type to upper camel case.
+
+#### Implementors
+
+- `str`
 
 ### `ToPascalCase`
 
@@ -67,12 +83,18 @@ assert_eq!(sentence.to_upper_camel_case(), "WeAreNotInTheLeastAfraidOfRuins");
 trait ToPascalCase: ToOwned { ... }
 ```
 
-`ToPascalCase` is an alias for [`ToUpperCamelCase`](../index.md). See ToUpperCamelCase for more
+*Defined in [`heck-0.5.0/src/upper_camel.rs:36-39`](../../../.source_1765210505/heck-0.5.0/src/upper_camel.rs#L36-L39)*
+
+`ToPascalCase` is an alias for [`ToUpperCamelCase`](#touppercamelcase). See ToUpperCamelCase for more
 documentation.
 
 #### Required Methods
 
-- `fn to_pascal_case(self: &Self) -> <Self as >::Owned`
+- `fn to_pascal_case(&self) -> <Self as >::Owned`
 
   Convert this type to upper camel case.
+
+#### Implementors
+
+- `T`
 

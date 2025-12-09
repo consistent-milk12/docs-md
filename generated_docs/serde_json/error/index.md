@@ -6,6 +6,36 @@
 
 When serializing or deserializing JSON goes wrong.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Error`](#error)
+  - [`ErrorImpl`](#errorimpl)
+  - [`JsonUnexpected`](#jsonunexpected)
+- [Enums](#enums)
+  - [`Category`](#category)
+  - [`ErrorCode`](#errorcode)
+- [Functions](#functions)
+  - [`make_error`](#make_error)
+  - [`parse_line_col`](#parse_line_col)
+  - [`starts_with_digit`](#starts_with_digit)
+- [Type Aliases](#type-aliases)
+  - [`Result`](#result)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Error`](#error) | struct | This type represents all possible errors that can occur when serializing or deserializing JSON data. |
+| [`ErrorImpl`](#errorimpl) | struct |  |
+| [`JsonUnexpected`](#jsonunexpected) | struct |  |
+| [`Category`](#category) | enum | Categorizes the cause of a `serde_json::Error`. |
+| [`ErrorCode`](#errorcode) | enum |  |
+| [`make_error`](#make_error) | fn |  |
+| [`parse_line_col`](#parse_line_col) | fn |  |
+| [`starts_with_digit`](#starts_with_digit) | fn |  |
+| [`Result`](#result) | type | Alias for a `Result` with the error type `serde_json::Error`. |
+
 ## Structs
 
 ### `Error`
@@ -15,6 +45,8 @@ struct Error {
     err: alloc::boxed::Box<ErrorImpl>,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:17-22`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L17-L22)*
 
 This type represents all possible errors that can occur when serializing or
 deserializing JSON data.
@@ -29,39 +61,45 @@ deserializing JSON data.
 
 #### Implementations
 
-- `fn line(self: &Self) -> usize`
+- <span id="error-line"></span>`fn line(&self) -> usize`
 
-- `fn column(self: &Self) -> usize`
+- <span id="error-column"></span>`fn column(&self) -> usize`
 
-- `fn classify(self: &Self) -> Category` — [`Category`](#category)
+- <span id="error-classify"></span>`fn classify(&self) -> Category` — [`Category`](#category)
 
-- `fn is_io(self: &Self) -> bool`
+- <span id="error-is-io"></span>`fn is_io(&self) -> bool`
 
-- `fn is_syntax(self: &Self) -> bool`
+- <span id="error-is-syntax"></span>`fn is_syntax(&self) -> bool`
 
-- `fn is_data(self: &Self) -> bool`
+- <span id="error-is-data"></span>`fn is_data(&self) -> bool`
 
-- `fn is_eof(self: &Self) -> bool`
+- <span id="error-is-eof"></span>`fn is_eof(&self) -> bool`
 
-- `fn io_error_kind(self: &Self) -> Option<ErrorKind>` — [`ErrorKind`](../io/index.md)
+- <span id="error-io-error-kind"></span>`fn io_error_kind(&self) -> Option<ErrorKind>` — [`ErrorKind`](../io/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
-- `fn source(self: &Self) -> Option<&dyn error::Error>`
+- <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
 
-##### `impl<T> ToString for Error`
+##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
+
+- <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
+
+##### `impl ToString for Error`
+
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ErrorImpl`
 
@@ -73,15 +111,17 @@ struct ErrorImpl {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/error.rs:230-234`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L230-L234)*
+
 #### Trait Implementations
 
 ##### `impl Display for ErrorImpl`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorimpl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for ErrorImpl`
+##### `impl ToString for ErrorImpl`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errorimpl-to-string"></span>`fn to_string(&self) -> String`
 
 ### `JsonUnexpected<'a>`
 
@@ -89,15 +129,17 @@ struct ErrorImpl {
 struct JsonUnexpected<'a>(de::Unexpected<'a>);
 ```
 
+*Defined in [`serde_json-1.0.145/src/error.rs:465`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L465)*
+
 #### Trait Implementations
 
-##### `impl<'a> Display for JsonUnexpected<'a>`
+##### `impl Display for JsonUnexpected<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="jsonunexpected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for JsonUnexpected<'a>`
+##### `impl ToString for JsonUnexpected<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="jsonunexpected-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -111,6 +153,8 @@ enum Category {
     Eof,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:166-185`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L166-L185)*
 
 Categorizes the cause of a `serde_json::Error`.
 
@@ -143,19 +187,19 @@ Categorizes the cause of a `serde_json::Error`.
 
 ##### `impl Clone for Category`
 
-- `fn clone(self: &Self) -> Category` — [`Category`](#category)
+- <span id="category-clone"></span>`fn clone(&self) -> Category` — [`Category`](#category)
 
 ##### `impl Copy for Category`
 
 ##### `impl Debug for Category`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="category-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Category`
 
 ##### `impl PartialEq for Category`
 
-- `fn eq(self: &Self, other: &Category) -> bool` — [`Category`](#category)
+- <span id="category-eq"></span>`fn eq(&self, other: &Category) -> bool` — [`Category`](#category)
 
 ##### `impl StructuralPartialEq for Category`
 
@@ -190,6 +234,8 @@ enum ErrorCode {
     RecursionLimitExceeded,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:236-311`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L236-L311)*
 
 #### Variants
 
@@ -297,11 +343,11 @@ enum ErrorCode {
 
 ##### `impl Display for ErrorCode`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorcode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for ErrorCode`
+##### `impl ToString for ErrorCode`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errorcode-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
 
@@ -311,17 +357,23 @@ enum ErrorCode {
 fn make_error(msg: alloc::string::String) -> Error
 ```
 
+*Defined in [`serde_json-1.0.145/src/error.rs:483-492`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L483-L492)*
+
 ### `parse_line_col`
 
 ```rust
 fn parse_line_col(msg: &mut alloc::string::String) -> Option<(usize, usize)>
 ```
 
+*Defined in [`serde_json-1.0.145/src/error.rs:494-534`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L494-L534)*
+
 ### `starts_with_digit`
 
 ```rust
 fn starts_with_digit(slice: &str) -> bool
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:536-541`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L536-L541)*
 
 ## Type Aliases
 
@@ -330,6 +382,8 @@ fn starts_with_digit(slice: &str) -> bool
 ```rust
 type Result<T> = result::Result<T, Error>;
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:25`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L25)*
 
 Alias for a `Result` with the error type `serde_json::Error`.
 

@@ -4,7 +4,7 @@
 
 *A portmanteau of "ansi stream"*
 
-[`AutoStream`](#autostream) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
+[`AutoStream`](auto/index.md) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
 [adapting to the user's terminal's capabilities][AutoStream].
 
 Benefits
@@ -33,14 +33,61 @@ println!("My number is not {}!", 4.on_red());
 
 And this will correctly handle piping to a file, etc
 
+## Contents
+
+- [Modules](#modules)
+  - [`adapter`](#adapter)
+  - [`stream`](#stream)
+  - [`auto`](#auto)
+  - [`buffer`](#buffer)
+  - [`fmt`](#fmt)
+  - [`strip`](#strip)
+- [Structs](#structs)
+  - [`AutoStream`](#autostream)
+  - [`StripStream`](#stripstream)
+- [Functions](#functions)
+  - [`stdout`](#stdout)
+  - [`stderr`](#stderr)
+- [Type Aliases](#type-aliases)
+  - [`Stdout`](#stdout)
+  - [`Stderr`](#stderr)
+- [Macros](#macros)
+  - [`print!`](#print)
+  - [`println!`](#println)
+  - [`eprint!`](#eprint)
+  - [`eprintln!`](#eprintln)
+  - [`panic!`](#panic)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`adapter`](#adapter) | mod | Gracefully degrade styled output |
+| [`stream`](#stream) | mod | Higher-level traits to describe writeable streams |
+| [`auto`](#auto) | mod |  |
+| [`buffer`](#buffer) | mod |  |
+| [`fmt`](#fmt) | mod |  |
+| [`strip`](#strip) | mod |  |
+| [`AutoStream`](#autostream) | struct |  |
+| [`StripStream`](#stripstream) | struct |  |
+| [`stdout`](#stdout) | fn | Create an ANSI escape code compatible stdout |
+| [`stderr`](#stderr) | fn | Create an ANSI escape code compatible stderr |
+| [`Stdout`](#stdout) | type | An adaptive wrapper around the global standard output stream of the current process |
+| [`Stderr`](#stderr) | type | An adaptive wrapper around the global standard error stream of the current process |
+| [`print!`](#print) | macro | Prints to [`stdout`][crate::stdout]. |
+| [`println!`](#println) | macro | Prints to [`stdout`][crate::stdout], with a newline. |
+| [`eprint!`](#eprint) | macro | Prints to [`stderr`][crate::stderr]. |
+| [`eprintln!`](#eprintln) | macro | Prints to [`stderr`][crate::stderr], with a newline. |
+| [`panic!`](#panic) | macro | Panics the current thread. |
+
 ## Modules
 
-- [`adapter`](adapter/index.md) - Gracefully degrade styled output
-- [`stream`](stream/index.md) - Higher-level traits to describe writeable streams
-- [`auto`](auto/index.md) - 
-- [`buffer`](buffer/index.md) - 
-- [`fmt`](fmt/index.md) - 
-- [`strip`](strip/index.md) - 
+- [`adapter`](adapter/index.md) — Gracefully degrade styled output
+- [`stream`](stream/index.md) — Higher-level traits to describe writeable streams
+- [`auto`](auto/index.md)
+- [`buffer`](buffer/index.md)
+- [`fmt`](fmt/index.md)
+- [`strip`](strip/index.md)
 
 ## Structs
 
@@ -51,6 +98,8 @@ struct AutoStream<S: RawStream> {
     inner: StreamInner<S>,
 }
 ```
+
+*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../.source_1765210505/anstream-0.6.21/src/auto.rs#L19-L21)*
 
 [`std::io::Write`](../fs_err/index.md) that adapts ANSI escape codes to the underlying `Write`s capabilities
 
@@ -65,25 +114,47 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 #### Implementations
 
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>` — [`AutoStream`](#autostream)
+- <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](#colorchoice)
+
+- <span id="autostream-auto"></span>`fn auto(raw: S) -> Self`
+
+- <span id="autostream-choice"></span>`fn choice(raw: &S) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+
+- <span id="autostream-always-ansi"></span>`fn always_ansi(raw: S) -> Self`
+
+- <span id="autostream-always-ansi"></span>`fn always_ansi_(raw: S) -> Self`
+
+- <span id="autostream-always"></span>`fn always(raw: S) -> Self`
+
+- <span id="autostream-never"></span>`fn never(raw: S) -> Self`
+
+- <span id="autostream-wincon"></span>`fn wincon(raw: S) -> Result<Self, S>`
+
+- <span id="autostream-into-inner"></span>`fn into_inner(self) -> S`
+
+- <span id="autostream-as-inner"></span>`fn as_inner(&self) -> &S`
+
+- <span id="autostream-is-terminal"></span>`fn is_terminal(&self) -> bool`
+
+- <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 #### Trait Implementations
 
-##### `impl<S: $crate::fmt::Debug + RawStream> Debug for AutoStream<S>`
+##### `impl<S: fmt::Debug + RawStream> Debug for AutoStream<S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="autostream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<S> Write for AutoStream<S>`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
+- <span id="autostream-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- `fn write_vectored(self: &mut Self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="autostream-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> std::io::Result<()>`
+- <span id="autostream-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
-- `fn write_all(self: &mut Self, buf: &[u8]) -> std::io::Result<()>`
+- <span id="autostream-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> std::io::Result<()>`
 
-- `fn write_fmt(self: &mut Self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
+- <span id="autostream-write-fmt"></span>`fn write_fmt(&mut self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
 
 ### `StripStream<S>`
 
@@ -96,29 +167,35 @@ where
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/strip.rs:7-13`](../../.source_1765210505/anstream-0.6.21/src/strip.rs#L7-L13)*
+
 Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- `fn is_terminal(self: &Self) -> bool`
+- <span id="stripstream-new"></span>`fn new(raw: S) -> Self`
+
+- <span id="stripstream-into-inner"></span>`fn into_inner(self) -> S`
+
+- <span id="stripstream-as-inner"></span>`fn as_inner(&self) -> &S`
 
 #### Trait Implementations
 
 ##### `impl<S> Debug for StripStream<S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stripstream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<S> Write for StripStream<S>`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
+- <span id="stripstream-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- `fn write_vectored(self: &mut Self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="stripstream-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> std::io::Result<()>`
+- <span id="stripstream-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
-- `fn write_all(self: &mut Self, buf: &[u8]) -> std::io::Result<()>`
+- <span id="stripstream-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> std::io::Result<()>`
 
-- `fn write_fmt(self: &mut Self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
+- <span id="stripstream-write-fmt"></span>`fn write_fmt(&mut self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
 
 ## Functions
 
@@ -127,6 +204,8 @@ Only pass printable data to the inner `Write`
 ```rust
 fn stdout() -> Stdout
 ```
+
+*Defined in [`anstream-0.6.21/src/lib.rs:70-73`](../../.source_1765210505/anstream-0.6.21/src/lib.rs#L70-L73)*
 
 Create an ANSI escape code compatible stdout
 
@@ -138,6 +217,8 @@ from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
 ```rust
 fn stderr() -> Stderr
 ```
+
+*Defined in [`anstream-0.6.21/src/lib.rs:80-83`](../../.source_1765210505/anstream-0.6.21/src/lib.rs#L80-L83)*
 
 Create an ANSI escape code compatible stderr
 
@@ -152,6 +233,8 @@ from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
 type Stdout = AutoStream<std::io::Stdout>;
 ```
 
+*Defined in [`anstream-0.6.21/src/lib.rs:61`](../../.source_1765210505/anstream-0.6.21/src/lib.rs#L61)*
+
 An adaptive wrapper around the global standard output stream of the current process
 
 ### `Stderr`
@@ -160,11 +243,15 @@ An adaptive wrapper around the global standard output stream of the current proc
 type Stderr = AutoStream<std::io::Stderr>;
 ```
 
+*Defined in [`anstream-0.6.21/src/lib.rs:63`](../../.source_1765210505/anstream-0.6.21/src/lib.rs#L63)*
+
 An adaptive wrapper around the global standard error stream of the current process
 
 ## Macros
 
 ### `print!`
+
+*Defined in [`anstream-0.6.21/src/_macros.rs:61-79`](../../.source_1765210505/anstream-0.6.21/src/_macros.rs#L61-L79)*
 
 Prints to `stdout`.
 
@@ -227,6 +314,8 @@ stdout().flush().unwrap();
 
 ### `println!`
 
+*Defined in [`anstream-0.6.21/src/_macros.rs:130-151`](../../.source_1765210505/anstream-0.6.21/src/_macros.rs#L130-L151)*
+
 Prints to `stdout`, with a newline.
 
 On all platforms, the newline is the LINE FEED character (`\n`/`U+000A`) alone
@@ -277,6 +366,8 @@ println!("format {local_variable} arguments");
 
 ### `eprint!`
 
+*Defined in [`anstream-0.6.21/src/_macros.rs:184-202`](../../.source_1765210505/anstream-0.6.21/src/_macros.rs#L184-L202)*
+
 Prints to `stderr`.
 
 Equivalent to the [`print!`](#print) macro, except that output goes to
@@ -309,6 +400,8 @@ eprint!("Error: Could not complete task");
 
 ### `eprintln!`
 
+*Defined in [`anstream-0.6.21/src/_macros.rs:235-256`](../../.source_1765210505/anstream-0.6.21/src/_macros.rs#L235-L256)*
+
 Prints to `stderr`, with a newline.
 
 Equivalent to the [`println!`](#println) macro, except that output goes to
@@ -340,6 +433,8 @@ eprintln!("Error: Could not complete task");
 ```
 
 ### `panic!`
+
+*Defined in [`anstream-0.6.21/src/_macros.rs:334-343`](../../.source_1765210505/anstream-0.6.21/src/_macros.rs#L334-L343)*
 
 Panics the current thread.
 

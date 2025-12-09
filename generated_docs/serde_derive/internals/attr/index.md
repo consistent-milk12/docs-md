@@ -4,6 +4,96 @@
 
 # Module `attr`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Attr`](#attr)
+  - [`BoolAttr`](#boolattr)
+  - [`VecAttr`](#vecattr)
+  - [`RenameAllRules`](#renameallrules)
+  - [`Container`](#container)
+  - [`Variant`](#variant)
+  - [`BorrowAttribute`](#borrowattribute)
+  - [`Field`](#field)
+- [Enums](#enums)
+  - [`RenameRule`](#renamerule)
+  - [`TagType`](#tagtype)
+  - [`Identifier`](#identifier)
+  - [`Default`](#default)
+- [Functions](#functions)
+  - [`unraw`](#unraw)
+  - [`decide_tag`](#decide_tag)
+  - [`decide_identifier`](#decide_identifier)
+  - [`get_ser_and_de`](#get_ser_and_de)
+  - [`get_renames`](#get_renames)
+  - [`get_multiple_renames`](#get_multiple_renames)
+  - [`get_where_predicates`](#get_where_predicates)
+  - [`get_lit_str`](#get_lit_str)
+  - [`get_lit_str2`](#get_lit_str2)
+  - [`parse_lit_into_path`](#parse_lit_into_path)
+  - [`parse_lit_into_expr_path`](#parse_lit_into_expr_path)
+  - [`parse_lit_into_where`](#parse_lit_into_where)
+  - [`parse_lit_into_ty`](#parse_lit_into_ty)
+  - [`parse_lit_into_lifetimes`](#parse_lit_into_lifetimes)
+  - [`is_implicitly_borrowed`](#is_implicitly_borrowed)
+  - [`is_implicitly_borrowed_reference`](#is_implicitly_borrowed_reference)
+  - [`is_cow`](#is_cow)
+  - [`is_option`](#is_option)
+  - [`is_reference`](#is_reference)
+  - [`is_str`](#is_str)
+  - [`is_slice_u8`](#is_slice_u8)
+  - [`is_primitive_type`](#is_primitive_type)
+  - [`is_primitive_path`](#is_primitive_path)
+  - [`borrowable_lifetimes`](#borrowable_lifetimes)
+  - [`collect_lifetimes`](#collect_lifetimes)
+  - [`collect_lifetimes_from_tokens`](#collect_lifetimes_from_tokens)
+- [Type Aliases](#type-aliases)
+  - [`SerAndDe`](#serandde)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Attr`](#attr) | struct |  |
+| [`BoolAttr`](#boolattr) | struct |  |
+| [`VecAttr`](#vecattr) | struct |  |
+| [`RenameAllRules`](#renameallrules) | struct |  |
+| [`Container`](#container) | struct | Represents struct or enum attribute information. |
+| [`Variant`](#variant) | struct | Represents variant attribute information |
+| [`BorrowAttribute`](#borrowattribute) | struct |  |
+| [`Field`](#field) | struct | Represents field attribute information |
+| [`RenameRule`](#renamerule) | enum |  |
+| [`TagType`](#tagtype) | enum | Styles of representing an enum. |
+| [`Identifier`](#identifier) | enum | Whether this enum represents the fields of a struct or the variants of an enum. |
+| [`Default`](#default) | enum | Represents the default to use for a field when deserializing. |
+| [`unraw`](#unraw) | fn |  |
+| [`decide_tag`](#decide_tag) | fn |  |
+| [`decide_identifier`](#decide_identifier) | fn |  |
+| [`get_ser_and_de`](#get_ser_and_de) | fn |  |
+| [`get_renames`](#get_renames) | fn |  |
+| [`get_multiple_renames`](#get_multiple_renames) | fn |  |
+| [`get_where_predicates`](#get_where_predicates) | fn |  |
+| [`get_lit_str`](#get_lit_str) | fn |  |
+| [`get_lit_str2`](#get_lit_str2) | fn |  |
+| [`parse_lit_into_path`](#parse_lit_into_path) | fn |  |
+| [`parse_lit_into_expr_path`](#parse_lit_into_expr_path) | fn |  |
+| [`parse_lit_into_where`](#parse_lit_into_where) | fn |  |
+| [`parse_lit_into_ty`](#parse_lit_into_ty) | fn |  |
+| [`parse_lit_into_lifetimes`](#parse_lit_into_lifetimes) | fn |  |
+| [`is_implicitly_borrowed`](#is_implicitly_borrowed) | fn |  |
+| [`is_implicitly_borrowed_reference`](#is_implicitly_borrowed_reference) | fn |  |
+| [`is_cow`](#is_cow) | fn |  |
+| [`is_option`](#is_option) | fn |  |
+| [`is_reference`](#is_reference) | fn |  |
+| [`is_str`](#is_str) | fn |  |
+| [`is_slice_u8`](#is_slice_u8) | fn |  |
+| [`is_primitive_type`](#is_primitive_type) | fn |  |
+| [`is_primitive_path`](#is_primitive_path) | fn |  |
+| [`borrowable_lifetimes`](#borrowable_lifetimes) | fn |  |
+| [`collect_lifetimes`](#collect_lifetimes) | fn |  |
+| [`collect_lifetimes_from_tokens`](#collect_lifetimes_from_tokens) | fn |  |
+| [`SerAndDe`](#serandde) | type |  |
+
 ## Structs
 
 ### `Attr<'c, T>`
@@ -17,19 +107,21 @@ struct Attr<'c, T> {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:24-29`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L24-L29)*
+
 #### Implementations
 
-- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
+- <span id="attr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md), [`Symbol`](../symbol/index.md)
 
-- `fn set<A: ToTokens>(self: &mut Self, obj: A, value: T)`
+- <span id="attr-set"></span>`fn set<A: ToTokens>(&mut self, obj: A, value: T)`
 
-- `fn set_opt<A: ToTokens>(self: &mut Self, obj: A, value: Option<T>)`
+- <span id="attr-set-opt"></span>`fn set_opt<A: ToTokens>(&mut self, obj: A, value: Option<T>)`
 
-- `fn set_if_none(self: &mut Self, value: T)`
+- <span id="attr-set-if-none"></span>`fn set_if_none(&mut self, value: T)`
 
-- `fn get(self: Self) -> Option<T>`
+- <span id="attr-get"></span>`fn get(self) -> Option<T>`
 
-- `fn get_with_tokens(self: Self) -> Option<(TokenStream, T)>`
+- <span id="attr-get-with-tokens"></span>`fn get_with_tokens(self) -> Option<(TokenStream, T)>`
 
 ### `BoolAttr<'c>`
 
@@ -37,13 +129,15 @@ struct Attr<'c, T> {
 struct BoolAttr<'c>(Attr<'c, ()>);
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:77`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L77)*
+
 #### Implementations
 
-- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
+- <span id="boolattr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md), [`Symbol`](../symbol/index.md)
 
-- `fn set_true<A: ToTokens>(self: &mut Self, obj: A)`
+- <span id="boolattr-set-true"></span>`fn set_true<A: ToTokens>(&mut self, obj: A)`
 
-- `fn get(self: &Self) -> bool`
+- <span id="boolattr-get"></span>`fn get(&self) -> bool`
 
 ### `VecAttr<'c, T>`
 
@@ -56,15 +150,17 @@ struct VecAttr<'c, T> {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:93-98`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L93-L98)*
+
 #### Implementations
 
-- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
+- <span id="vecattr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md), [`Symbol`](../symbol/index.md)
 
-- `fn insert<A: ToTokens>(self: &mut Self, obj: A, value: T)`
+- <span id="vecattr-insert"></span>`fn insert<A: ToTokens>(&mut self, obj: A, value: T)`
 
-- `fn at_most_one(self: Self) -> Option<T>`
+- <span id="vecattr-at-most-one"></span>`fn at_most_one(self) -> Option<T>`
 
-- `fn get(self: Self) -> Vec<T>`
+- <span id="vecattr-get"></span>`fn get(self) -> Vec<T>`
 
 ### `RenameAllRules`
 
@@ -75,15 +171,17 @@ struct RenameAllRules {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:138-141`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L138-L141)*
+
 #### Implementations
 
-- `fn or(self: Self, other_rules: Self) -> Self`
+- <span id="renameallrules-or"></span>`fn or(self, other_rules: Self) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for RenameAllRules`
 
-- `fn clone(self: &Self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
+- <span id="renameallrules-clone"></span>`fn clone(&self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
 
 ##### `impl Copy for RenameAllRules`
 
@@ -112,6 +210,8 @@ struct Container {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:155-175`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L155-L175)*
+
 Represents struct or enum attribute information.
 
 #### Fields
@@ -122,43 +222,43 @@ Represents struct or enum attribute information.
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, item: &syn::DeriveInput) -> Self` — [`Ctxt`](../index.md)
+- <span id="container-from-ast"></span>`fn from_ast(cx: &Ctxt, item: &syn::DeriveInput) -> Self` — [`Ctxt`](../ctxt/index.md)
 
-- `fn name(self: &Self) -> &MultiName` — [`MultiName`](../name/index.md)
+- <span id="container-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md)
 
-- `fn rename_all_rules(self: &Self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
+- <span id="container-rename-all-rules"></span>`fn rename_all_rules(&self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
 
-- `fn rename_all_fields_rules(self: &Self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
+- <span id="container-rename-all-fields-rules"></span>`fn rename_all_fields_rules(&self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
 
-- `fn transparent(self: &Self) -> bool`
+- <span id="container-transparent"></span>`fn transparent(&self) -> bool`
 
-- `fn deny_unknown_fields(self: &Self) -> bool`
+- <span id="container-deny-unknown-fields"></span>`fn deny_unknown_fields(&self) -> bool`
 
-- `fn default(self: &Self) -> &Default` — [`Default`](#default)
+- <span id="container-default"></span>`fn default(&self) -> &Default` — [`Default`](#default)
 
-- `fn ser_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="container-ser-bound"></span>`fn ser_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn de_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="container-de-bound"></span>`fn de_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn tag(self: &Self) -> &TagType` — [`TagType`](#tagtype)
+- <span id="container-tag"></span>`fn tag(&self) -> &TagType` — [`TagType`](#tagtype)
 
-- `fn type_from(self: &Self) -> Option<&syn::Type>`
+- <span id="container-type-from"></span>`fn type_from(&self) -> Option<&syn::Type>`
 
-- `fn type_try_from(self: &Self) -> Option<&syn::Type>`
+- <span id="container-type-try-from"></span>`fn type_try_from(&self) -> Option<&syn::Type>`
 
-- `fn type_into(self: &Self) -> Option<&syn::Type>`
+- <span id="container-type-into"></span>`fn type_into(&self) -> Option<&syn::Type>`
 
-- `fn remote(self: &Self) -> Option<&syn::Path>`
+- <span id="container-remote"></span>`fn remote(&self) -> Option<&syn::Path>`
 
-- `fn is_packed(self: &Self) -> bool`
+- <span id="container-is-packed"></span>`fn is_packed(&self) -> bool`
 
-- `fn identifier(self: &Self) -> Identifier` — [`Identifier`](#identifier)
+- <span id="container-identifier"></span>`fn identifier(&self) -> Identifier` — [`Identifier`](#identifier)
 
-- `fn custom_serde_path(self: &Self) -> Option<&syn::Path>`
+- <span id="container-custom-serde-path"></span>`fn custom_serde_path(&self) -> Option<&syn::Path>`
 
-- `fn expecting(self: &Self) -> Option<&str>`
+- <span id="container-expecting"></span>`fn expecting(&self) -> Option<&str>`
 
-- `fn non_exhaustive(self: &Self) -> bool`
+- <span id="container-non-exhaustive"></span>`fn non_exhaustive(&self) -> bool`
 
 ### `Variant`
 
@@ -178,35 +278,37 @@ struct Variant {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:728-740`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L728-L740)*
+
 Represents variant attribute information
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, variant: &syn::Variant) -> Self` — [`Ctxt`](../index.md)
+- <span id="variant-from-ast"></span>`fn from_ast(cx: &Ctxt, variant: &syn::Variant) -> Self` — [`Ctxt`](../ctxt/index.md)
 
-- `fn name(self: &Self) -> &MultiName` — [`MultiName`](../name/index.md)
+- <span id="variant-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md)
 
-- `fn aliases(self: &Self) -> &BTreeSet<Name>` — [`Name`](../name/index.md)
+- <span id="variant-aliases"></span>`fn aliases(&self) -> &BTreeSet<Name>` — [`Name`](../name/index.md)
 
-- `fn rename_by_rules(self: &mut Self, rules: RenameAllRules)` — [`RenameAllRules`](#renameallrules)
+- <span id="variant-rename-by-rules"></span>`fn rename_by_rules(&mut self, rules: RenameAllRules)` — [`RenameAllRules`](#renameallrules)
 
-- `fn rename_all_rules(self: &Self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
+- <span id="variant-rename-all-rules"></span>`fn rename_all_rules(&self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
 
-- `fn ser_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="variant-ser-bound"></span>`fn ser_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn de_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="variant-de-bound"></span>`fn de_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn skip_deserializing(self: &Self) -> bool`
+- <span id="variant-skip-deserializing"></span>`fn skip_deserializing(&self) -> bool`
 
-- `fn skip_serializing(self: &Self) -> bool`
+- <span id="variant-skip-serializing"></span>`fn skip_serializing(&self) -> bool`
 
-- `fn other(self: &Self) -> bool`
+- <span id="variant-other"></span>`fn other(&self) -> bool`
 
-- `fn serialize_with(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="variant-serialize-with"></span>`fn serialize_with(&self) -> Option<&syn::ExprPath>`
 
-- `fn deserialize_with(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="variant-deserialize-with"></span>`fn deserialize_with(&self) -> Option<&syn::ExprPath>`
 
-- `fn untagged(self: &Self) -> bool`
+- <span id="variant-untagged"></span>`fn untagged(&self) -> bool`
 
 ### `BorrowAttribute`
 
@@ -216,6 +318,8 @@ struct BorrowAttribute {
     lifetimes: Option<std::collections::BTreeSet<syn::Lifetime>>,
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:742-745`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L742-L745)*
 
 ### `Field`
 
@@ -237,43 +341,45 @@ struct Field {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:978-992`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L978-L992)*
+
 Represents field attribute information
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, index: usize, field: &syn::Field, attrs: Option<&Variant>, container_default: &Default, private: &Ident) -> Self` — [`Ctxt`](../index.md), [`Variant`](#variant), [`Default`](#default)
+- <span id="field-from-ast"></span>`fn from_ast(cx: &Ctxt, index: usize, field: &syn::Field, attrs: Option<&Variant>, container_default: &Default, private: &Ident) -> Self` — [`Ctxt`](../ctxt/index.md), [`Variant`](#variant), [`Default`](#default)
 
-- `fn name(self: &Self) -> &MultiName` — [`MultiName`](../name/index.md)
+- <span id="field-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md)
 
-- `fn aliases(self: &Self) -> &BTreeSet<Name>` — [`Name`](../name/index.md)
+- <span id="field-aliases"></span>`fn aliases(&self) -> &BTreeSet<Name>` — [`Name`](../name/index.md)
 
-- `fn rename_by_rules(self: &mut Self, rules: RenameAllRules)` — [`RenameAllRules`](#renameallrules)
+- <span id="field-rename-by-rules"></span>`fn rename_by_rules(&mut self, rules: RenameAllRules)` — [`RenameAllRules`](#renameallrules)
 
-- `fn skip_serializing(self: &Self) -> bool`
+- <span id="field-skip-serializing"></span>`fn skip_serializing(&self) -> bool`
 
-- `fn skip_deserializing(self: &Self) -> bool`
+- <span id="field-skip-deserializing"></span>`fn skip_deserializing(&self) -> bool`
 
-- `fn skip_serializing_if(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="field-skip-serializing-if"></span>`fn skip_serializing_if(&self) -> Option<&syn::ExprPath>`
 
-- `fn default(self: &Self) -> &Default` — [`Default`](#default)
+- <span id="field-default"></span>`fn default(&self) -> &Default` — [`Default`](#default)
 
-- `fn serialize_with(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="field-serialize-with"></span>`fn serialize_with(&self) -> Option<&syn::ExprPath>`
 
-- `fn deserialize_with(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="field-deserialize-with"></span>`fn deserialize_with(&self) -> Option<&syn::ExprPath>`
 
-- `fn ser_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="field-ser-bound"></span>`fn ser_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn de_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="field-de-bound"></span>`fn de_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn borrowed_lifetimes(self: &Self) -> &BTreeSet<syn::Lifetime>`
+- <span id="field-borrowed-lifetimes"></span>`fn borrowed_lifetimes(&self) -> &BTreeSet<syn::Lifetime>`
 
-- `fn getter(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="field-getter"></span>`fn getter(&self) -> Option<&syn::ExprPath>`
 
-- `fn flatten(self: &Self) -> bool`
+- <span id="field-flatten"></span>`fn flatten(&self) -> bool`
 
-- `fn transparent(self: &Self) -> bool`
+- <span id="field-transparent"></span>`fn transparent(&self) -> bool`
 
-- `fn mark_transparent(self: &mut Self)`
+- <span id="field-mark-transparent"></span>`fn mark_transparent(&mut self)`
 
 ## Enums
 
@@ -292,6 +398,8 @@ enum RenameRule {
     ScreamingKebabCase,
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/case.rs:9-31`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/case.rs#L9-L31)*
 
 The different possible ways to change case of fields in a struct, or variants in an enum.
 
@@ -338,25 +446,25 @@ The different possible ways to change case of fields in a struct, or variants in
 
 #### Implementations
 
-- `fn from_str(rename_all_str: &str) -> Result<Self, ParseError<'_>>` — [`ParseError`](../case/index.md)
+- <span id="renamerule-from-str"></span>`fn from_str(rename_all_str: &str) -> Result<Self, ParseError<'_>>` — [`ParseError`](../case/index.md)
 
-- `fn apply_to_variant(self: Self, variant: &str) -> String`
+- <span id="renamerule-apply-to-variant"></span>`fn apply_to_variant(self, variant: &str) -> String`
 
-- `fn apply_to_field(self: Self, field: &str) -> String`
+- <span id="renamerule-apply-to-field"></span>`fn apply_to_field(self, field: &str) -> String`
 
-- `fn or(self: Self, rule_b: Self) -> Self`
+- <span id="renamerule-or"></span>`fn or(self, rule_b: Self) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for RenameRule`
 
-- `fn clone(self: &Self) -> RenameRule` — [`RenameRule`](../case/index.md)
+- <span id="renamerule-clone"></span>`fn clone(&self) -> RenameRule` — [`RenameRule`](../case/index.md)
 
 ##### `impl Copy for RenameRule`
 
 ##### `impl PartialEq for RenameRule`
 
-- `fn eq(self: &Self, other: &RenameRule) -> bool` — [`RenameRule`](../case/index.md)
+- <span id="renamerule-eq"></span>`fn eq(&self, other: &RenameRule) -> bool` — [`RenameRule`](../case/index.md)
 
 ##### `impl StructuralPartialEq for RenameRule`
 
@@ -375,6 +483,8 @@ enum TagType {
     None,
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:178-206`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L178-L206)*
 
 Styles of representing an enum.
 
@@ -422,6 +532,8 @@ enum Identifier {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:211-223`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L211-L223)*
+
 Whether this enum represents the fields of a struct or the variants of an
 enum.
 
@@ -446,7 +558,7 @@ enum.
 
 ##### `impl Clone for Identifier`
 
-- `fn clone(self: &Self) -> Identifier` — [`Identifier`](#identifier)
+- <span id="identifier-clone"></span>`fn clone(&self) -> Identifier` — [`Identifier`](#identifier)
 
 ##### `impl Copy for Identifier`
 
@@ -459,6 +571,8 @@ enum Default {
     Path(syn::ExprPath),
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:995-1002`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L995-L1002)*
 
 Represents the default to use for a field when deserializing.
 
@@ -478,7 +592,7 @@ Represents the default to use for a field when deserializing.
 
 #### Implementations
 
-- `fn is_none(self: &Self) -> bool`
+- <span id="default-is-none"></span>`fn is_none(&self) -> bool`
 
 ## Functions
 
@@ -488,17 +602,23 @@ Represents the default to use for a field when deserializing.
 fn unraw(ident: &syn::Ident) -> syn::Ident
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:133-135`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L133-L135)*
+
 ### `decide_tag`
 
 ```rust
 fn decide_tag(cx: &crate::internals::Ctxt, item: &syn::DeriveInput, untagged: BoolAttr<'_>, internal_tag: Attr<'_, String>, content: Attr<'_, String>) -> TagType
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:622-681`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L622-L681)*
+
 ### `decide_identifier`
 
 ```rust
 fn decide_identifier(cx: &crate::internals::Ctxt, item: &syn::DeriveInput, field_identifier: BoolAttr<'_>, variant_identifier: BoolAttr<'_>) -> Identifier
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:683-725`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L683-L725)*
 
 ### `get_ser_and_de`
 
@@ -510,11 +630,15 @@ where
     R: Into<Option<T>>
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1343-1386`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1343-L1386)*
+
 ### `get_renames`
 
 ```rust
 fn get_renames(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<(Option<syn::LitStr>, Option<syn::LitStr>)>
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1388-1395`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1388-L1395)*
 
 ### `get_multiple_renames`
 
@@ -522,11 +646,15 @@ fn get_renames(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta:
 fn get_multiple_renames(cx: &crate::internals::Ctxt, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<(Option<syn::LitStr>, Vec<syn::LitStr>)>
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1397-1403`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1397-L1403)*
+
 ### `get_where_predicates`
 
 ```rust
 fn get_where_predicates(cx: &crate::internals::Ctxt, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<(Option<Vec<syn::WherePredicate>>, Option<Vec<syn::WherePredicate>>)>
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1405-1411`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1405-L1411)*
 
 ### `get_lit_str`
 
@@ -534,11 +662,15 @@ fn get_where_predicates(cx: &crate::internals::Ctxt, meta: &syn::meta::ParseNest
 fn get_lit_str(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Option<syn::LitStr>>
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1413-1419`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1413-L1419)*
+
 ### `get_lit_str2`
 
 ```rust
 fn get_lit_str2(cx: &crate::internals::Ctxt, attr_name: Symbol, meta_item_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Option<syn::LitStr>>
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1421-1455`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1421-L1455)*
 
 ### `parse_lit_into_path`
 
@@ -546,11 +678,15 @@ fn get_lit_str2(cx: &crate::internals::Ctxt, attr_name: Symbol, meta_item_name: 
 fn parse_lit_into_path(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Option<syn::Path>>
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1457-1477`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1457-L1477)*
+
 ### `parse_lit_into_expr_path`
 
 ```rust
 fn parse_lit_into_expr_path(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Option<syn::ExprPath>>
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1479-1499`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1479-L1499)*
 
 ### `parse_lit_into_where`
 
@@ -558,11 +694,15 @@ fn parse_lit_into_expr_path(cx: &crate::internals::Ctxt, attr_name: Symbol, meta
 fn parse_lit_into_where(cx: &crate::internals::Ctxt, attr_name: Symbol, meta_item_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Vec<syn::WherePredicate>>
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1501-1521`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1501-L1521)*
+
 ### `parse_lit_into_ty`
 
 ```rust
 fn parse_lit_into_ty(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<Option<syn::Type>>
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1523-1543`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1523-L1543)*
 
 ### `parse_lit_into_lifetimes`
 
@@ -570,11 +710,15 @@ fn parse_lit_into_ty(cx: &crate::internals::Ctxt, attr_name: Symbol, meta: &syn:
 fn parse_lit_into_lifetimes(cx: &crate::internals::Ctxt, meta: &syn::meta::ParseNestedMeta<'_>) -> syn::Result<std::collections::BTreeSet<syn::Lifetime>>
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1547-1584`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1547-L1584)*
+
 ### `is_implicitly_borrowed`
 
 ```rust
 fn is_implicitly_borrowed(ty: &syn::Type) -> bool
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1586-1588`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1586-L1588)*
 
 ### `is_implicitly_borrowed_reference`
 
@@ -582,11 +726,15 @@ fn is_implicitly_borrowed(ty: &syn::Type) -> bool
 fn is_implicitly_borrowed_reference(ty: &syn::Type) -> bool
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1590-1592`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1590-L1592)*
+
 ### `is_cow`
 
 ```rust
 fn is_cow(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1616-1641`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1616-L1641)*
 
 ### `is_option`
 
@@ -594,11 +742,15 @@ fn is_cow(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 fn is_option(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1643-1668`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1643-L1668)*
+
 ### `is_reference`
 
 ```rust
 fn is_reference(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1690-1695`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1690-L1695)*
 
 ### `is_str`
 
@@ -606,11 +758,15 @@ fn is_reference(ty: &syn::Type, elem: fn(&syn::Type) -> bool) -> bool
 fn is_str(ty: &syn::Type) -> bool
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1697-1699`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1697-L1699)*
+
 ### `is_slice_u8`
 
 ```rust
 fn is_slice_u8(ty: &syn::Type) -> bool
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1701-1706`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1701-L1706)*
 
 ### `is_primitive_type`
 
@@ -618,11 +774,15 @@ fn is_slice_u8(ty: &syn::Type) -> bool
 fn is_primitive_type(ty: &syn::Type, primitive: &str) -> bool
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1708-1713`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1708-L1713)*
+
 ### `is_primitive_path`
 
 ```rust
 fn is_primitive_path(path: &syn::Path, primitive: &str) -> bool
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1715-1720`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1715-L1720)*
 
 ### `borrowable_lifetimes`
 
@@ -630,17 +790,23 @@ fn is_primitive_path(path: &syn::Path, primitive: &str) -> bool
 fn borrowable_lifetimes(cx: &crate::internals::Ctxt, name: &crate::internals::name::Name, field: &syn::Field) -> Result<std::collections::BTreeSet<syn::Lifetime>, ()>
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1729-1743`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1729-L1743)*
+
 ### `collect_lifetimes`
 
 ```rust
 fn collect_lifetimes(ty: &syn::Type, out: &mut std::collections::BTreeSet<syn::Lifetime>)
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1745-1810`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1745-L1810)*
+
 ### `collect_lifetimes_from_tokens`
 
 ```rust
 fn collect_lifetimes_from_tokens(tokens: proc_macro2::TokenStream, out: &mut std::collections::BTreeSet<syn::Lifetime>)
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1812-1831`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1812-L1831)*
 
 ## Type Aliases
 
@@ -649,4 +815,6 @@ fn collect_lifetimes_from_tokens(tokens: proc_macro2::TokenStream, out: &mut std
 ```rust
 type SerAndDe<T> = (Option<T>, Option<T>);
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/attr.rs:1341`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/attr.rs#L1341)*
 

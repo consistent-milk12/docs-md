@@ -6,11 +6,116 @@
 
 Defines an abstract syntax for regular expressions.
 
+## Contents
+
+- [Modules](#modules)
+  - [`parse`](#parse)
+  - [`print`](#print)
+  - [`visitor`](#visitor)
+- [Structs](#structs)
+  - [`Error`](#error)
+  - [`Span`](#span)
+  - [`Position`](#position)
+  - [`WithComments`](#withcomments)
+  - [`Comment`](#comment)
+  - [`Alternation`](#alternation)
+  - [`Concat`](#concat)
+  - [`Literal`](#literal)
+  - [`ClassPerl`](#classperl)
+  - [`ClassAscii`](#classascii)
+  - [`ClassUnicode`](#classunicode)
+  - [`ClassBracketed`](#classbracketed)
+  - [`ClassSetRange`](#classsetrange)
+  - [`ClassSetUnion`](#classsetunion)
+  - [`ClassSetBinaryOp`](#classsetbinaryop)
+  - [`Assertion`](#assertion)
+  - [`Repetition`](#repetition)
+  - [`RepetitionOp`](#repetitionop)
+  - [`Group`](#group)
+  - [`CaptureName`](#capturename)
+  - [`SetFlags`](#setflags)
+  - [`Flags`](#flags)
+  - [`FlagsItem`](#flagsitem)
+- [Enums](#enums)
+  - [`ErrorKind`](#errorkind)
+  - [`Ast`](#ast)
+  - [`LiteralKind`](#literalkind)
+  - [`SpecialLiteralKind`](#specialliteralkind)
+  - [`HexLiteralKind`](#hexliteralkind)
+  - [`ClassPerlKind`](#classperlkind)
+  - [`ClassAsciiKind`](#classasciikind)
+  - [`ClassUnicodeKind`](#classunicodekind)
+  - [`ClassUnicodeOpKind`](#classunicodeopkind)
+  - [`ClassSet`](#classset)
+  - [`ClassSetItem`](#classsetitem)
+  - [`ClassSetBinaryOpKind`](#classsetbinaryopkind)
+  - [`AssertionKind`](#assertionkind)
+  - [`RepetitionKind`](#repetitionkind)
+  - [`RepetitionRange`](#repetitionrange)
+  - [`GroupKind`](#groupkind)
+  - [`FlagsItemKind`](#flagsitemkind)
+  - [`Flag`](#flag)
+- [Traits](#traits)
+  - [`Visitor`](#visitor)
+- [Functions](#functions)
+  - [`visit`](#visit)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parse`](#parse) | mod | This module provides a regular expression parser. |
+| [`print`](#print) | mod | This module provides a regular expression printer for `Ast`. |
+| [`visitor`](#visitor) | mod |  |
+| [`Error`](#error) | struct | An error that occurred while parsing a regular expression into an abstract syntax tree. |
+| [`Span`](#span) | struct | Span represents the position information of a single AST item. |
+| [`Position`](#position) | struct | A single position in a regular expression. |
+| [`WithComments`](#withcomments) | struct | An abstract syntax tree for a singular expression along with comments found. |
+| [`Comment`](#comment) | struct | A comment from a regular expression with an associated span. |
+| [`Alternation`](#alternation) | struct | An alternation of regular expressions. |
+| [`Concat`](#concat) | struct | A concatenation of regular expressions. |
+| [`Literal`](#literal) | struct | A single literal expression. |
+| [`ClassPerl`](#classperl) | struct | A Perl character class. |
+| [`ClassAscii`](#classascii) | struct | An ASCII character class. |
+| [`ClassUnicode`](#classunicode) | struct | A Unicode character class. |
+| [`ClassBracketed`](#classbracketed) | struct | A bracketed character class, e.g., `[a-z0-9]`. |
+| [`ClassSetRange`](#classsetrange) | struct | A single character class range in a set. |
+| [`ClassSetUnion`](#classsetunion) | struct | A union of items inside a character class set. |
+| [`ClassSetBinaryOp`](#classsetbinaryop) | struct | A Unicode character class set operation. |
+| [`Assertion`](#assertion) | struct | A single zero-width assertion. |
+| [`Repetition`](#repetition) | struct | A repetition operation applied to a regular expression. |
+| [`RepetitionOp`](#repetitionop) | struct | The repetition operator itself. |
+| [`Group`](#group) | struct | A grouped regular expression. |
+| [`CaptureName`](#capturename) | struct | A capture name. |
+| [`SetFlags`](#setflags) | struct | A group of flags that is not applied to a particular regular expression. |
+| [`Flags`](#flags) | struct | A group of flags. |
+| [`FlagsItem`](#flagsitem) | struct | A single item in a group of flags. |
+| [`ErrorKind`](#errorkind) | enum | The type of an error that occurred while building an AST. |
+| [`Ast`](#ast) | enum | An abstract syntax tree for a single regular expression. |
+| [`LiteralKind`](#literalkind) | enum | The kind of a single literal expression. |
+| [`SpecialLiteralKind`](#specialliteralkind) | enum | The type of a special literal. |
+| [`HexLiteralKind`](#hexliteralkind) | enum | The type of a Unicode hex literal. |
+| [`ClassPerlKind`](#classperlkind) | enum | The available Perl character classes. |
+| [`ClassAsciiKind`](#classasciikind) | enum | The available ASCII character classes. |
+| [`ClassUnicodeKind`](#classunicodekind) | enum | The available forms of Unicode character classes. |
+| [`ClassUnicodeOpKind`](#classunicodeopkind) | enum | The type of op used in a Unicode character class. |
+| [`ClassSet`](#classset) | enum | A character class set. |
+| [`ClassSetItem`](#classsetitem) | enum | A single component of a character class set. |
+| [`ClassSetBinaryOpKind`](#classsetbinaryopkind) | enum | The type of a Unicode character class set operation. |
+| [`AssertionKind`](#assertionkind) | enum | An assertion kind. |
+| [`RepetitionKind`](#repetitionkind) | enum | The kind of a repetition operator. |
+| [`RepetitionRange`](#repetitionrange) | enum | A range repetition operator. |
+| [`GroupKind`](#groupkind) | enum | The kind of a group. |
+| [`FlagsItemKind`](#flagsitemkind) | enum | The kind of an item in a group of flags. |
+| [`Flag`](#flag) | enum | A single flag. |
+| [`Visitor`](#visitor) | trait |  |
+| [`visit`](#visit) | fn |  |
+
 ## Modules
 
-- [`parse`](parse/index.md) - This module provides a regular expression parser.
-- [`print`](print/index.md) - This module provides a regular expression printer for `Ast`.
-- [`visitor`](visitor/index.md) - 
+- [`parse`](parse/index.md) — This module provides a regular expression parser.
+- [`print`](print/index.md) — This module provides a regular expression printer for `Ast`.
+- [`visitor`](visitor/index.md)
 
 ## Structs
 
@@ -23,6 +128,8 @@ struct Error {
     span: Span,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:24-32`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L24-L32)*
 
 An error that occurred while parsing a regular expression into an abstract
 syntax tree.
@@ -49,27 +156,27 @@ translating an AST to the high-level intermediate representation (`HIR`).
 
 #### Implementations
 
-- `fn kind(self: &Self) -> &ErrorKind` — [`ErrorKind`](#errorkind)
+- <span id="error-kind"></span>`fn kind(&self) -> &ErrorKind` — [`ErrorKind`](#errorkind)
 
-- `fn pattern(self: &Self) -> &str`
+- <span id="error-pattern"></span>`fn pattern(&self) -> &str`
 
-- `fn span(self: &Self) -> &Span` — [`Span`](#span)
+- <span id="error-span"></span>`fn span(&self) -> &Span` — [`Span`](#span)
 
-- `fn auxiliary_span(self: &Self) -> Option<&Span>` — [`Span`](#span)
+- <span id="error-auxiliary-span"></span>`fn auxiliary_span(&self) -> Option<&Span>` — [`Span`](#span)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](#error)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](#error)
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Error`
 
@@ -77,13 +184,13 @@ translating an AST to the high-level intermediate representation (`HIR`).
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Span`
 
@@ -93,6 +200,8 @@ struct Span {
     pub end: Position,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:319-324`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L319-L324)*
 
 Span represents the position information of a single AST item.
 
@@ -111,43 +220,43 @@ original regular expression that was parsed.
 
 #### Implementations
 
-- `fn new(start: Position, end: Position) -> Span` — [`Position`](#position), [`Span`](#span)
+- <span id="span-new"></span>`fn new(start: Position, end: Position) -> Span` — [`Position`](#position), [`Span`](#span)
 
-- `fn splat(pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
+- <span id="span-splat"></span>`fn splat(pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
 
-- `fn with_start(self: Self, pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
+- <span id="span-with-start"></span>`fn with_start(self, pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
 
-- `fn with_end(self: Self, pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
+- <span id="span-with-end"></span>`fn with_end(self, pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
 
-- `fn is_one_line(self: &Self) -> bool`
+- <span id="span-is-one-line"></span>`fn is_one_line(&self) -> bool`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="span-is-empty"></span>`fn is_empty(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](#span)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](#span)
 
 ##### `impl Copy for Span`
 
 ##### `impl Debug for Span`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="span-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Span`
 
 ##### `impl Ord for Span`
 
-- `fn cmp(self: &Self, other: &Span) -> Ordering` — [`Span`](#span)
+- <span id="span-cmp"></span>`fn cmp(&self, other: &Span) -> Ordering` — [`Span`](#span)
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](#span)
+- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
 
 ##### `impl PartialOrd for Span`
 
-- `fn partial_cmp(self: &Self, other: &Span) -> Option<Ordering>` — [`Span`](#span)
+- <span id="span-partial-cmp"></span>`fn partial_cmp(&self, other: &Span) -> Option<Ordering>` — [`Span`](#span)
 
 ##### `impl StructuralPartialEq for Span`
 
@@ -160,6 +269,8 @@ struct Position {
     pub column: usize,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:350-358`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L350-L358)*
 
 A single position in a regular expression.
 
@@ -183,33 +294,33 @@ number and column number.
 
 #### Implementations
 
-- `fn new(offset: usize, line: usize, column: usize) -> Position` — [`Position`](#position)
+- <span id="position-new"></span>`fn new(offset: usize, line: usize, column: usize) -> Position` — [`Position`](#position)
 
 #### Trait Implementations
 
 ##### `impl Clone for Position`
 
-- `fn clone(self: &Self) -> Position` — [`Position`](#position)
+- <span id="position-clone"></span>`fn clone(&self) -> Position` — [`Position`](#position)
 
 ##### `impl Copy for Position`
 
 ##### `impl Debug for Position`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="position-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Position`
 
 ##### `impl Ord for Position`
 
-- `fn cmp(self: &Self, other: &Position) -> Ordering` — [`Position`](#position)
+- <span id="position-cmp"></span>`fn cmp(&self, other: &Position) -> Ordering` — [`Position`](#position)
 
 ##### `impl PartialEq for Position`
 
-- `fn eq(self: &Self, other: &Position) -> bool` — [`Position`](#position)
+- <span id="position-eq"></span>`fn eq(&self, other: &Position) -> bool` — [`Position`](#position)
 
 ##### `impl PartialOrd for Position`
 
-- `fn partial_cmp(self: &Self, other: &Position) -> Option<Ordering>` — [`Position`](#position)
+- <span id="position-partial-cmp"></span>`fn partial_cmp(&self, other: &Position) -> Option<Ordering>` — [`Position`](#position)
 
 ##### `impl StructuralPartialEq for Position`
 
@@ -221,6 +332,8 @@ struct WithComments {
     pub comments: alloc::vec::Vec<Comment>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:439-444`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L439-L444)*
 
 An abstract syntax tree for a singular expression along with comments
 found.
@@ -243,17 +356,17 @@ regular expression.
 
 ##### `impl Clone for WithComments`
 
-- `fn clone(self: &Self) -> WithComments` — [`WithComments`](#withcomments)
+- <span id="withcomments-clone"></span>`fn clone(&self) -> WithComments` — [`WithComments`](#withcomments)
 
 ##### `impl Debug for WithComments`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="withcomments-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for WithComments`
 
 ##### `impl PartialEq for WithComments`
 
-- `fn eq(self: &Self, other: &WithComments) -> bool` — [`WithComments`](#withcomments)
+- <span id="withcomments-eq"></span>`fn eq(&self, other: &WithComments) -> bool` — [`WithComments`](#withcomments)
 
 ##### `impl StructuralPartialEq for WithComments`
 
@@ -265,6 +378,8 @@ struct Comment {
     pub comment: alloc::string::String,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:452-458`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L452-L458)*
 
 A comment from a regular expression with an associated span.
 
@@ -286,17 +401,17 @@ enabled.
 
 ##### `impl Clone for Comment`
 
-- `fn clone(self: &Self) -> Comment` — [`Comment`](#comment)
+- <span id="comment-clone"></span>`fn clone(&self) -> Comment` — [`Comment`](#comment)
 
 ##### `impl Debug for Comment`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="comment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Comment`
 
 ##### `impl PartialEq for Comment`
 
-- `fn eq(self: &Self, other: &Comment) -> bool` — [`Comment`](#comment)
+- <span id="comment-eq"></span>`fn eq(&self, other: &Comment) -> bool` — [`Comment`](#comment)
 
 ##### `impl StructuralPartialEq for Comment`
 
@@ -308,6 +423,8 @@ struct Alternation {
     pub asts: alloc::vec::Vec<Ast>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:623-628`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L623-L628)*
 
 An alternation of regular expressions.
 
@@ -323,23 +440,23 @@ An alternation of regular expressions.
 
 #### Implementations
 
-- `fn into_ast(self: Self) -> Ast` — [`Ast`](#ast)
+- <span id="alternation-into-ast"></span>`fn into_ast(self) -> Ast` — [`Ast`](#ast)
 
 #### Trait Implementations
 
 ##### `impl Clone for Alternation`
 
-- `fn clone(self: &Self) -> Alternation` — [`Alternation`](#alternation)
+- <span id="alternation-clone"></span>`fn clone(&self) -> Alternation` — [`Alternation`](#alternation)
 
 ##### `impl Debug for Alternation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="alternation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Alternation`
 
 ##### `impl PartialEq for Alternation`
 
-- `fn eq(self: &Self, other: &Alternation) -> bool` — [`Alternation`](#alternation)
+- <span id="alternation-eq"></span>`fn eq(&self, other: &Alternation) -> bool` — [`Alternation`](#alternation)
 
 ##### `impl StructuralPartialEq for Alternation`
 
@@ -351,6 +468,8 @@ struct Concat {
     pub asts: alloc::vec::Vec<Ast>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:648-653`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L648-L653)*
 
 A concatenation of regular expressions.
 
@@ -366,23 +485,23 @@ A concatenation of regular expressions.
 
 #### Implementations
 
-- `fn into_ast(self: Self) -> Ast` — [`Ast`](#ast)
+- <span id="concat-into-ast"></span>`fn into_ast(self) -> Ast` — [`Ast`](#ast)
 
 #### Trait Implementations
 
 ##### `impl Clone for Concat`
 
-- `fn clone(self: &Self) -> Concat` — [`Concat`](#concat)
+- <span id="concat-clone"></span>`fn clone(&self) -> Concat` — [`Concat`](#concat)
 
 ##### `impl Debug for Concat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="concat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Concat`
 
 ##### `impl PartialEq for Concat`
 
-- `fn eq(self: &Self, other: &Concat) -> bool` — [`Concat`](#concat)
+- <span id="concat-eq"></span>`fn eq(&self, other: &Concat) -> bool` — [`Concat`](#concat)
 
 ##### `impl StructuralPartialEq for Concat`
 
@@ -395,6 +514,8 @@ struct Literal {
     pub c: char,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:677-684`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L677-L684)*
 
 A single literal expression.
 
@@ -418,23 +539,23 @@ e.g., `\x61`.
 
 #### Implementations
 
-- `fn byte(self: &Self) -> Option<u8>`
+- <span id="literal-byte"></span>`fn byte(&self) -> Option<u8>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Literal`
 
-- `fn clone(self: &Self) -> Literal` — [`Literal`](#literal)
+- <span id="literal-clone"></span>`fn clone(&self) -> Literal` — [`Literal`](#literal)
 
 ##### `impl Debug for Literal`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="literal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Literal`
 
 ##### `impl PartialEq for Literal`
 
-- `fn eq(self: &Self, other: &Literal) -> bool` — [`Literal`](#literal)
+- <span id="literal-eq"></span>`fn eq(&self, other: &Literal) -> bool` — [`Literal`](#literal)
 
 ##### `impl StructuralPartialEq for Literal`
 
@@ -447,6 +568,8 @@ struct ClassPerl {
     pub negated: bool,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:785-793`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L785-L793)*
 
 A Perl character class.
 
@@ -469,17 +592,17 @@ A Perl character class.
 
 ##### `impl Clone for ClassPerl`
 
-- `fn clone(self: &Self) -> ClassPerl` — [`ClassPerl`](#classperl)
+- <span id="classperl-clone"></span>`fn clone(&self) -> ClassPerl` — [`ClassPerl`](#classperl)
 
 ##### `impl Debug for ClassPerl`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classperl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassPerl`
 
 ##### `impl PartialEq for ClassPerl`
 
-- `fn eq(self: &Self, other: &ClassPerl) -> bool` — [`ClassPerl`](#classperl)
+- <span id="classperl-eq"></span>`fn eq(&self, other: &ClassPerl) -> bool` — [`ClassPerl`](#classperl)
 
 ##### `impl StructuralPartialEq for ClassPerl`
 
@@ -492,6 +615,8 @@ struct ClassAscii {
     pub negated: bool,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:810-818`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L810-L818)*
 
 An ASCII character class.
 
@@ -514,17 +639,17 @@ An ASCII character class.
 
 ##### `impl Clone for ClassAscii`
 
-- `fn clone(self: &Self) -> ClassAscii` — [`ClassAscii`](#classascii)
+- <span id="classascii-clone"></span>`fn clone(&self) -> ClassAscii` — [`ClassAscii`](#classascii)
 
 ##### `impl Debug for ClassAscii`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classascii-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassAscii`
 
 ##### `impl PartialEq for ClassAscii`
 
-- `fn eq(self: &Self, other: &ClassAscii) -> bool` — [`ClassAscii`](#classascii)
+- <span id="classascii-eq"></span>`fn eq(&self, other: &ClassAscii) -> bool` — [`ClassAscii`](#classascii)
 
 ##### `impl StructuralPartialEq for ClassAscii`
 
@@ -537,6 +662,8 @@ struct ClassUnicode {
     pub kind: ClassUnicodeKind,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:887-902`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L887-L902)*
 
 A Unicode character class.
 
@@ -564,23 +691,23 @@ A Unicode character class.
 
 #### Implementations
 
-- `fn is_negated(self: &Self) -> bool`
+- <span id="classunicode-is-negated"></span>`fn is_negated(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassUnicode`
 
-- `fn clone(self: &Self) -> ClassUnicode` — [`ClassUnicode`](#classunicode)
+- <span id="classunicode-clone"></span>`fn clone(&self) -> ClassUnicode` — [`ClassUnicode`](#classunicode)
 
 ##### `impl Debug for ClassUnicode`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classunicode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassUnicode`
 
 ##### `impl PartialEq for ClassUnicode`
 
-- `fn eq(self: &Self, other: &ClassUnicode) -> bool` — [`ClassUnicode`](#classunicode)
+- <span id="classunicode-eq"></span>`fn eq(&self, other: &ClassUnicode) -> bool` — [`ClassUnicode`](#classunicode)
 
 ##### `impl StructuralPartialEq for ClassUnicode`
 
@@ -593,6 +720,8 @@ struct ClassBracketed {
     pub kind: ClassSet,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1112-1121`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1112-L1121)*
 
 A bracketed character class, e.g., `[a-z0-9]`.
 
@@ -616,17 +745,17 @@ A bracketed character class, e.g., `[a-z0-9]`.
 
 ##### `impl Clone for ClassBracketed`
 
-- `fn clone(self: &Self) -> ClassBracketed` — [`ClassBracketed`](#classbracketed)
+- <span id="classbracketed-clone"></span>`fn clone(&self) -> ClassBracketed` — [`ClassBracketed`](#classbracketed)
 
 ##### `impl Debug for ClassBracketed`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classbracketed-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassBracketed`
 
 ##### `impl PartialEq for ClassBracketed`
 
-- `fn eq(self: &Self, other: &ClassBracketed) -> bool` — [`ClassBracketed`](#classbracketed)
+- <span id="classbracketed-eq"></span>`fn eq(&self, other: &ClassBracketed) -> bool` — [`ClassBracketed`](#classbracketed)
 
 ##### `impl StructuralPartialEq for ClassBracketed`
 
@@ -639,6 +768,8 @@ struct ClassSetRange {
     pub end: Literal,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1209-1216`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1209-L1216)*
 
 A single character class range in a set.
 
@@ -658,23 +789,23 @@ A single character class range in a set.
 
 #### Implementations
 
-- `fn is_valid(self: &Self) -> bool`
+- <span id="classsetrange-is-valid"></span>`fn is_valid(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassSetRange`
 
-- `fn clone(self: &Self) -> ClassSetRange` — [`ClassSetRange`](#classsetrange)
+- <span id="classsetrange-clone"></span>`fn clone(&self) -> ClassSetRange` — [`ClassSetRange`](#classsetrange)
 
 ##### `impl Debug for ClassSetRange`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classsetrange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassSetRange`
 
 ##### `impl PartialEq for ClassSetRange`
 
-- `fn eq(self: &Self, other: &ClassSetRange) -> bool` — [`ClassSetRange`](#classsetrange)
+- <span id="classsetrange-eq"></span>`fn eq(&self, other: &ClassSetRange) -> bool` — [`ClassSetRange`](#classsetrange)
 
 ##### `impl StructuralPartialEq for ClassSetRange`
 
@@ -686,6 +817,8 @@ struct ClassSetUnion {
     pub items: alloc::vec::Vec<ClassSetItem>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1231-1237`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1231-L1237)*
 
 A union of items inside a character class set.
 
@@ -702,25 +835,25 @@ A union of items inside a character class set.
 
 #### Implementations
 
-- `fn push(self: &mut Self, item: ClassSetItem)` — [`ClassSetItem`](#classsetitem)
+- <span id="classsetunion-push"></span>`fn push(&mut self, item: ClassSetItem)` — [`ClassSetItem`](#classsetitem)
 
-- `fn into_item(self: Self) -> ClassSetItem` — [`ClassSetItem`](#classsetitem)
+- <span id="classsetunion-into-item"></span>`fn into_item(self) -> ClassSetItem` — [`ClassSetItem`](#classsetitem)
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassSetUnion`
 
-- `fn clone(self: &Self) -> ClassSetUnion` — [`ClassSetUnion`](#classsetunion)
+- <span id="classsetunion-clone"></span>`fn clone(&self) -> ClassSetUnion` — [`ClassSetUnion`](#classsetunion)
 
 ##### `impl Debug for ClassSetUnion`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classsetunion-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassSetUnion`
 
 ##### `impl PartialEq for ClassSetUnion`
 
-- `fn eq(self: &Self, other: &ClassSetUnion) -> bool` — [`ClassSetUnion`](#classsetunion)
+- <span id="classsetunion-eq"></span>`fn eq(&self, other: &ClassSetUnion) -> bool` — [`ClassSetUnion`](#classsetunion)
 
 ##### `impl StructuralPartialEq for ClassSetUnion`
 
@@ -734,6 +867,8 @@ struct ClassSetBinaryOp {
     pub rhs: alloc::boxed::Box<ClassSet>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1276-1285`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1276-L1285)*
 
 A Unicode character class set operation.
 
@@ -759,17 +894,17 @@ A Unicode character class set operation.
 
 ##### `impl Clone for ClassSetBinaryOp`
 
-- `fn clone(self: &Self) -> ClassSetBinaryOp` — [`ClassSetBinaryOp`](#classsetbinaryop)
+- <span id="classsetbinaryop-clone"></span>`fn clone(&self) -> ClassSetBinaryOp` — [`ClassSetBinaryOp`](#classsetbinaryop)
 
 ##### `impl Debug for ClassSetBinaryOp`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classsetbinaryop-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassSetBinaryOp`
 
 ##### `impl PartialEq for ClassSetBinaryOp`
 
-- `fn eq(self: &Self, other: &ClassSetBinaryOp) -> bool` — [`ClassSetBinaryOp`](#classsetbinaryop)
+- <span id="classsetbinaryop-eq"></span>`fn eq(&self, other: &ClassSetBinaryOp) -> bool` — [`ClassSetBinaryOp`](#classsetbinaryop)
 
 ##### `impl StructuralPartialEq for ClassSetBinaryOp`
 
@@ -781,6 +916,8 @@ struct Assertion {
     pub kind: AssertionKind,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1308-1313`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1308-L1313)*
 
 A single zero-width assertion.
 
@@ -798,17 +935,17 @@ A single zero-width assertion.
 
 ##### `impl Clone for Assertion`
 
-- `fn clone(self: &Self) -> Assertion` — [`Assertion`](#assertion)
+- <span id="assertion-clone"></span>`fn clone(&self) -> Assertion` — [`Assertion`](#assertion)
 
 ##### `impl Debug for Assertion`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="assertion-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Assertion`
 
 ##### `impl PartialEq for Assertion`
 
-- `fn eq(self: &Self, other: &Assertion) -> bool` — [`Assertion`](#assertion)
+- <span id="assertion-eq"></span>`fn eq(&self, other: &Assertion) -> bool` — [`Assertion`](#assertion)
 
 ##### `impl StructuralPartialEq for Assertion`
 
@@ -822,6 +959,8 @@ struct Repetition {
     pub ast: alloc::boxed::Box<Ast>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1348-1357`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1348-L1357)*
 
 A repetition operation applied to a regular expression.
 
@@ -847,17 +986,17 @@ A repetition operation applied to a regular expression.
 
 ##### `impl Clone for Repetition`
 
-- `fn clone(self: &Self) -> Repetition` — [`Repetition`](#repetition)
+- <span id="repetition-clone"></span>`fn clone(&self) -> Repetition` — [`Repetition`](#repetition)
 
 ##### `impl Debug for Repetition`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="repetition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Repetition`
 
 ##### `impl PartialEq for Repetition`
 
-- `fn eq(self: &Self, other: &Repetition) -> bool` — [`Repetition`](#repetition)
+- <span id="repetition-eq"></span>`fn eq(&self, other: &Repetition) -> bool` — [`Repetition`](#repetition)
 
 ##### `impl StructuralPartialEq for Repetition`
 
@@ -869,6 +1008,8 @@ struct RepetitionOp {
     pub kind: RepetitionKind,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1362-1368`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1362-L1368)*
 
 The repetition operator itself.
 
@@ -887,17 +1028,17 @@ The repetition operator itself.
 
 ##### `impl Clone for RepetitionOp`
 
-- `fn clone(self: &Self) -> RepetitionOp` — [`RepetitionOp`](#repetitionop)
+- <span id="repetitionop-clone"></span>`fn clone(&self) -> RepetitionOp` — [`RepetitionOp`](#repetitionop)
 
 ##### `impl Debug for RepetitionOp`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="repetitionop-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RepetitionOp`
 
 ##### `impl PartialEq for RepetitionOp`
 
-- `fn eq(self: &Self, other: &RepetitionOp) -> bool` — [`RepetitionOp`](#repetitionop)
+- <span id="repetitionop-eq"></span>`fn eq(&self, other: &RepetitionOp) -> bool` — [`RepetitionOp`](#repetitionop)
 
 ##### `impl StructuralPartialEq for RepetitionOp`
 
@@ -910,6 +1051,8 @@ struct Group {
     pub ast: alloc::boxed::Box<Ast>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1417-1424`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1417-L1424)*
 
 A grouped regular expression.
 
@@ -934,27 +1077,27 @@ contains a sub-expression, e.g., `(a)`, `(?P<name>a)`, `(?:a)` and
 
 #### Implementations
 
-- `fn flags(self: &Self) -> Option<&Flags>` — [`Flags`](#flags)
+- <span id="group-flags"></span>`fn flags(&self) -> Option<&Flags>` — [`Flags`](#flags)
 
-- `fn is_capturing(self: &Self) -> bool`
+- <span id="group-is-capturing"></span>`fn is_capturing(&self) -> bool`
 
-- `fn capture_index(self: &Self) -> Option<u32>`
+- <span id="group-capture-index"></span>`fn capture_index(&self) -> Option<u32>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Group`
 
-- `fn clone(self: &Self) -> Group` — [`Group`](#group)
+- <span id="group-clone"></span>`fn clone(&self) -> Group` — [`Group`](#group)
 
 ##### `impl Debug for Group`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="group-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Group`
 
 ##### `impl PartialEq for Group`
 
-- `fn eq(self: &Self, other: &Group) -> bool` — [`Group`](#group)
+- <span id="group-eq"></span>`fn eq(&self, other: &Group) -> bool` — [`Group`](#group)
 
 ##### `impl StructuralPartialEq for Group`
 
@@ -967,6 +1110,8 @@ struct CaptureName {
     pub index: u32,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1478-1485`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1478-L1485)*
 
 A capture name.
 
@@ -991,17 +1136,17 @@ This corresponds to the name itself between the angle brackets in, e.g.,
 
 ##### `impl Clone for CaptureName`
 
-- `fn clone(self: &Self) -> CaptureName` — [`CaptureName`](#capturename)
+- <span id="capturename-clone"></span>`fn clone(&self) -> CaptureName` — [`CaptureName`](#capturename)
 
 ##### `impl Debug for CaptureName`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="capturename-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CaptureName`
 
 ##### `impl PartialEq for CaptureName`
 
-- `fn eq(self: &Self, other: &CaptureName) -> bool` — [`CaptureName`](#capturename)
+- <span id="capturename-eq"></span>`fn eq(&self, other: &CaptureName) -> bool` — [`CaptureName`](#capturename)
 
 ##### `impl StructuralPartialEq for CaptureName`
 
@@ -1013,6 +1158,8 @@ struct SetFlags {
     pub flags: Flags,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1519-1524`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1519-L1524)*
 
 A group of flags that is not applied to a particular regular expression.
 
@@ -1030,17 +1177,17 @@ A group of flags that is not applied to a particular regular expression.
 
 ##### `impl Clone for SetFlags`
 
-- `fn clone(self: &Self) -> SetFlags` — [`SetFlags`](#setflags)
+- <span id="setflags-clone"></span>`fn clone(&self) -> SetFlags` — [`SetFlags`](#setflags)
 
 ##### `impl Debug for SetFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="setflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SetFlags`
 
 ##### `impl PartialEq for SetFlags`
 
-- `fn eq(self: &Self, other: &SetFlags) -> bool` — [`SetFlags`](#setflags)
+- <span id="setflags-eq"></span>`fn eq(&self, other: &SetFlags) -> bool` — [`SetFlags`](#setflags)
 
 ##### `impl StructuralPartialEq for SetFlags`
 
@@ -1052,6 +1199,8 @@ struct Flags {
     pub items: alloc::vec::Vec<FlagsItem>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1531-1537`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1531-L1537)*
 
 A group of flags.
 
@@ -1070,25 +1219,25 @@ This corresponds only to the sequence of flags themselves, e.g., `is-u`.
 
 #### Implementations
 
-- `fn add_item(self: &mut Self, item: FlagsItem) -> Option<usize>` — [`FlagsItem`](#flagsitem)
+- <span id="flags-add-item"></span>`fn add_item(&mut self, item: FlagsItem) -> Option<usize>` — [`FlagsItem`](#flagsitem)
 
-- `fn flag_state(self: &Self, flag: Flag) -> Option<bool>` — [`Flag`](#flag)
+- <span id="flags-flag-state"></span>`fn flag_state(&self, flag: Flag) -> Option<bool>` — [`Flag`](#flag)
 
 #### Trait Implementations
 
 ##### `impl Clone for Flags`
 
-- `fn clone(self: &Self) -> Flags` — [`Flags`](#flags)
+- <span id="flags-clone"></span>`fn clone(&self) -> Flags` — [`Flags`](#flags)
 
 ##### `impl Debug for Flags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Flags`
 
 ##### `impl PartialEq for Flags`
 
-- `fn eq(self: &Self, other: &Flags) -> bool` — [`Flags`](#flags)
+- <span id="flags-eq"></span>`fn eq(&self, other: &Flags) -> bool` — [`Flags`](#flags)
 
 ##### `impl StructuralPartialEq for Flags`
 
@@ -1100,6 +1249,8 @@ struct FlagsItem {
     pub kind: FlagsItemKind,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1584-1589`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1584-L1589)*
 
 A single item in a group of flags.
 
@@ -1117,17 +1268,17 @@ A single item in a group of flags.
 
 ##### `impl Clone for FlagsItem`
 
-- `fn clone(self: &Self) -> FlagsItem` — [`FlagsItem`](#flagsitem)
+- <span id="flagsitem-clone"></span>`fn clone(&self) -> FlagsItem` — [`FlagsItem`](#flagsitem)
 
 ##### `impl Debug for FlagsItem`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flagsitem-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FlagsItem`
 
 ##### `impl PartialEq for FlagsItem`
 
-- `fn eq(self: &Self, other: &FlagsItem) -> bool` — [`FlagsItem`](#flagsitem)
+- <span id="flagsitem-eq"></span>`fn eq(&self, other: &FlagsItem) -> bool` — [`FlagsItem`](#flagsitem)
 
 ##### `impl StructuralPartialEq for FlagsItem`
 
@@ -1179,6 +1330,8 @@ enum ErrorKind {
     UnsupportedLookAround,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:75-190`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L75-L190)*
 
 The type of an error that occurred while building an AST.
 
@@ -1361,27 +1514,27 @@ new variant is not considered a breaking change.
 
 ##### `impl Clone for ErrorKind`
 
-- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](#errorkind)
 
 ##### `impl Debug for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for ErrorKind`
 
 ##### `impl PartialEq for ErrorKind`
 
-- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
 
 ##### `impl StructuralPartialEq for ErrorKind`
 
-##### `impl<T> ToString for ErrorKind`
+##### `impl ToString for ErrorKind`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errorkind-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Ast`
 
@@ -1401,6 +1554,8 @@ enum Ast {
     Concat(alloc::boxed::Box<Concat>),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:469-496`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L469-L496)*
 
 An abstract syntax tree for a single regular expression.
 
@@ -1464,65 +1619,65 @@ heap space proportional to the size of the `Ast`.
 
 #### Implementations
 
-- `fn empty(span: Span) -> Ast` — [`Span`](#span), [`Ast`](#ast)
+- <span id="ast-empty"></span>`fn empty(span: Span) -> Ast` — [`Span`](#span), [`Ast`](#ast)
 
-- `fn flags(e: SetFlags) -> Ast` — [`SetFlags`](#setflags), [`Ast`](#ast)
+- <span id="ast-flags"></span>`fn flags(e: SetFlags) -> Ast` — [`SetFlags`](#setflags), [`Ast`](#ast)
 
-- `fn literal(e: Literal) -> Ast` — [`Literal`](#literal), [`Ast`](#ast)
+- <span id="ast-literal"></span>`fn literal(e: Literal) -> Ast` — [`Literal`](#literal), [`Ast`](#ast)
 
-- `fn dot(span: Span) -> Ast` — [`Span`](#span), [`Ast`](#ast)
+- <span id="ast-dot"></span>`fn dot(span: Span) -> Ast` — [`Span`](#span), [`Ast`](#ast)
 
-- `fn assertion(e: Assertion) -> Ast` — [`Assertion`](#assertion), [`Ast`](#ast)
+- <span id="ast-assertion"></span>`fn assertion(e: Assertion) -> Ast` — [`Assertion`](#assertion), [`Ast`](#ast)
 
-- `fn class_unicode(e: ClassUnicode) -> Ast` — [`ClassUnicode`](#classunicode), [`Ast`](#ast)
+- <span id="ast-class-unicode"></span>`fn class_unicode(e: ClassUnicode) -> Ast` — [`ClassUnicode`](#classunicode), [`Ast`](#ast)
 
-- `fn class_perl(e: ClassPerl) -> Ast` — [`ClassPerl`](#classperl), [`Ast`](#ast)
+- <span id="ast-class-perl"></span>`fn class_perl(e: ClassPerl) -> Ast` — [`ClassPerl`](#classperl), [`Ast`](#ast)
 
-- `fn class_bracketed(e: ClassBracketed) -> Ast` — [`ClassBracketed`](#classbracketed), [`Ast`](#ast)
+- <span id="ast-class-bracketed"></span>`fn class_bracketed(e: ClassBracketed) -> Ast` — [`ClassBracketed`](#classbracketed), [`Ast`](#ast)
 
-- `fn repetition(e: Repetition) -> Ast` — [`Repetition`](#repetition), [`Ast`](#ast)
+- <span id="ast-repetition"></span>`fn repetition(e: Repetition) -> Ast` — [`Repetition`](#repetition), [`Ast`](#ast)
 
-- `fn group(e: Group) -> Ast` — [`Group`](#group), [`Ast`](#ast)
+- <span id="ast-group"></span>`fn group(e: Group) -> Ast` — [`Group`](#group), [`Ast`](#ast)
 
-- `fn alternation(e: Alternation) -> Ast` — [`Alternation`](#alternation), [`Ast`](#ast)
+- <span id="ast-alternation"></span>`fn alternation(e: Alternation) -> Ast` — [`Alternation`](#alternation), [`Ast`](#ast)
 
-- `fn concat(e: Concat) -> Ast` — [`Concat`](#concat), [`Ast`](#ast)
+- <span id="ast-concat"></span>`fn concat(e: Concat) -> Ast` — [`Concat`](#concat), [`Ast`](#ast)
 
-- `fn span(self: &Self) -> &Span` — [`Span`](#span)
+- <span id="ast-span"></span>`fn span(&self) -> &Span` — [`Span`](#span)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="ast-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn has_subexprs(self: &Self) -> bool`
+- <span id="ast-has-subexprs"></span>`fn has_subexprs(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Ast`
 
-- `fn clone(self: &Self) -> Ast` — [`Ast`](#ast)
+- <span id="ast-clone"></span>`fn clone(&self) -> Ast` — [`Ast`](#ast)
 
 ##### `impl Debug for Ast`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ast-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Ast`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="ast-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Drop for Ast`
 
-- `fn drop(self: &mut Self)`
+- <span id="ast-drop"></span>`fn drop(&mut self)`
 
 ##### `impl Eq for Ast`
 
 ##### `impl PartialEq for Ast`
 
-- `fn eq(self: &Self, other: &Ast) -> bool` — [`Ast`](#ast)
+- <span id="ast-eq"></span>`fn eq(&self, other: &Ast) -> bool` — [`Ast`](#ast)
 
 ##### `impl StructuralPartialEq for Ast`
 
-##### `impl<T> ToString for Ast`
+##### `impl ToString for Ast`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="ast-to-string"></span>`fn to_string(&self) -> String`
 
 ### `LiteralKind`
 
@@ -1537,6 +1692,8 @@ enum LiteralKind {
     Special(SpecialLiteralKind),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:702-724`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L702-L724)*
 
 The kind of a single literal expression.
 
@@ -1581,17 +1738,17 @@ The kind of a single literal expression.
 
 ##### `impl Clone for LiteralKind`
 
-- `fn clone(self: &Self) -> LiteralKind` — [`LiteralKind`](#literalkind)
+- <span id="literalkind-clone"></span>`fn clone(&self) -> LiteralKind` — [`LiteralKind`](#literalkind)
 
 ##### `impl Debug for LiteralKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="literalkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LiteralKind`
 
 ##### `impl PartialEq for LiteralKind`
 
-- `fn eq(self: &Self, other: &LiteralKind) -> bool` — [`LiteralKind`](#literalkind)
+- <span id="literalkind-eq"></span>`fn eq(&self, other: &LiteralKind) -> bool` — [`LiteralKind`](#literalkind)
 
 ##### `impl StructuralPartialEq for LiteralKind`
 
@@ -1608,6 +1765,8 @@ enum SpecialLiteralKind {
     Space,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:732-748`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L732-L748)*
 
 The type of a special literal.
 
@@ -1649,17 +1808,17 @@ parser, e.g., `\f` or `\n`.
 
 ##### `impl Clone for SpecialLiteralKind`
 
-- `fn clone(self: &Self) -> SpecialLiteralKind` — [`SpecialLiteralKind`](#specialliteralkind)
+- <span id="specialliteralkind-clone"></span>`fn clone(&self) -> SpecialLiteralKind` — [`SpecialLiteralKind`](#specialliteralkind)
 
 ##### `impl Debug for SpecialLiteralKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="specialliteralkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SpecialLiteralKind`
 
 ##### `impl PartialEq for SpecialLiteralKind`
 
-- `fn eq(self: &Self, other: &SpecialLiteralKind) -> bool` — [`SpecialLiteralKind`](#specialliteralkind)
+- <span id="specialliteralkind-eq"></span>`fn eq(&self, other: &SpecialLiteralKind) -> bool` — [`SpecialLiteralKind`](#specialliteralkind)
 
 ##### `impl StructuralPartialEq for SpecialLiteralKind`
 
@@ -1672,6 +1831,8 @@ enum HexLiteralKind {
     UnicodeLong,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:757-767`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L757-L767)*
 
 The type of a Unicode hex literal.
 
@@ -1698,23 +1859,23 @@ follow.
 
 #### Implementations
 
-- `fn digits(self: &Self) -> u32`
+- <span id="hexliteralkind-digits"></span>`fn digits(&self) -> u32`
 
 #### Trait Implementations
 
 ##### `impl Clone for HexLiteralKind`
 
-- `fn clone(self: &Self) -> HexLiteralKind` — [`HexLiteralKind`](#hexliteralkind)
+- <span id="hexliteralkind-clone"></span>`fn clone(&self) -> HexLiteralKind` — [`HexLiteralKind`](#hexliteralkind)
 
 ##### `impl Debug for HexLiteralKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="hexliteralkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for HexLiteralKind`
 
 ##### `impl PartialEq for HexLiteralKind`
 
-- `fn eq(self: &Self, other: &HexLiteralKind) -> bool` — [`HexLiteralKind`](#hexliteralkind)
+- <span id="hexliteralkind-eq"></span>`fn eq(&self, other: &HexLiteralKind) -> bool` — [`HexLiteralKind`](#hexliteralkind)
 
 ##### `impl StructuralPartialEq for HexLiteralKind`
 
@@ -1727,6 +1888,8 @@ enum ClassPerlKind {
     Word,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:798-805`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L798-L805)*
 
 The available Perl character classes.
 
@@ -1748,17 +1911,17 @@ The available Perl character classes.
 
 ##### `impl Clone for ClassPerlKind`
 
-- `fn clone(self: &Self) -> ClassPerlKind` — [`ClassPerlKind`](#classperlkind)
+- <span id="classperlkind-clone"></span>`fn clone(&self) -> ClassPerlKind` — [`ClassPerlKind`](#classperlkind)
 
 ##### `impl Debug for ClassPerlKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classperlkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassPerlKind`
 
 ##### `impl PartialEq for ClassPerlKind`
 
-- `fn eq(self: &Self, other: &ClassPerlKind) -> bool` — [`ClassPerlKind`](#classperlkind)
+- <span id="classperlkind-eq"></span>`fn eq(&self, other: &ClassPerlKind) -> bool` — [`ClassPerlKind`](#classperlkind)
 
 ##### `impl StructuralPartialEq for ClassPerlKind`
 
@@ -1782,6 +1945,8 @@ enum ClassAsciiKind {
     Xdigit,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:823-852`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L823-L852)*
 
 The available ASCII character classes.
 
@@ -1845,23 +2010,23 @@ The available ASCII character classes.
 
 #### Implementations
 
-- `fn from_name(name: &str) -> Option<ClassAsciiKind>` — [`ClassAsciiKind`](#classasciikind)
+- <span id="classasciikind-from-name"></span>`fn from_name(name: &str) -> Option<ClassAsciiKind>` — [`ClassAsciiKind`](#classasciikind)
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassAsciiKind`
 
-- `fn clone(self: &Self) -> ClassAsciiKind` — [`ClassAsciiKind`](#classasciikind)
+- <span id="classasciikind-clone"></span>`fn clone(&self) -> ClassAsciiKind` — [`ClassAsciiKind`](#classasciikind)
 
 ##### `impl Debug for ClassAsciiKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classasciikind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassAsciiKind`
 
 ##### `impl PartialEq for ClassAsciiKind`
 
-- `fn eq(self: &Self, other: &ClassAsciiKind) -> bool` — [`ClassAsciiKind`](#classasciikind)
+- <span id="classasciikind-eq"></span>`fn eq(&self, other: &ClassAsciiKind) -> bool` — [`ClassAsciiKind`](#classasciikind)
 
 ##### `impl StructuralPartialEq for ClassAsciiKind`
 
@@ -1878,6 +2043,8 @@ enum ClassUnicodeKind {
     },
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:922-937`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L922-L937)*
 
 The available forms of Unicode character classes.
 
@@ -1900,17 +2067,17 @@ The available forms of Unicode character classes.
 
 ##### `impl Clone for ClassUnicodeKind`
 
-- `fn clone(self: &Self) -> ClassUnicodeKind` — [`ClassUnicodeKind`](#classunicodekind)
+- <span id="classunicodekind-clone"></span>`fn clone(&self) -> ClassUnicodeKind` — [`ClassUnicodeKind`](#classunicodekind)
 
 ##### `impl Debug for ClassUnicodeKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classunicodekind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassUnicodeKind`
 
 ##### `impl PartialEq for ClassUnicodeKind`
 
-- `fn eq(self: &Self, other: &ClassUnicodeKind) -> bool` — [`ClassUnicodeKind`](#classunicodekind)
+- <span id="classunicodekind-eq"></span>`fn eq(&self, other: &ClassUnicodeKind) -> bool` — [`ClassUnicodeKind`](#classunicodekind)
 
 ##### `impl StructuralPartialEq for ClassUnicodeKind`
 
@@ -1923,6 +2090,8 @@ enum ClassUnicodeOpKind {
     NotEqual,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1089-1097`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1089-L1097)*
 
 The type of op used in a Unicode character class.
 
@@ -1943,23 +2112,23 @@ The type of op used in a Unicode character class.
 
 #### Implementations
 
-- `fn is_equal(self: &Self) -> bool`
+- <span id="classunicodeopkind-is-equal"></span>`fn is_equal(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassUnicodeOpKind`
 
-- `fn clone(self: &Self) -> ClassUnicodeOpKind` — [`ClassUnicodeOpKind`](#classunicodeopkind)
+- <span id="classunicodeopkind-clone"></span>`fn clone(&self) -> ClassUnicodeOpKind` — [`ClassUnicodeOpKind`](#classunicodeopkind)
 
 ##### `impl Debug for ClassUnicodeOpKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classunicodeopkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassUnicodeOpKind`
 
 ##### `impl PartialEq for ClassUnicodeOpKind`
 
-- `fn eq(self: &Self, other: &ClassUnicodeOpKind) -> bool` — [`ClassUnicodeOpKind`](#classunicodeopkind)
+- <span id="classunicodeopkind-eq"></span>`fn eq(&self, other: &ClassUnicodeOpKind) -> bool` — [`ClassUnicodeOpKind`](#classunicodeopkind)
 
 ##### `impl StructuralPartialEq for ClassUnicodeOpKind`
 
@@ -1971,6 +2140,8 @@ enum ClassSet {
     BinaryOp(ClassSetBinaryOp),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1131-1137`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1131-L1137)*
 
 A character class set.
 
@@ -1992,31 +2163,31 @@ operations.
 
 #### Implementations
 
-- `fn union(ast: ClassSetUnion) -> ClassSet` — [`ClassSetUnion`](#classsetunion), [`ClassSet`](#classset)
+- <span id="classset-union"></span>`fn union(ast: ClassSetUnion) -> ClassSet` — [`ClassSetUnion`](#classsetunion), [`ClassSet`](#classset)
 
-- `fn span(self: &Self) -> &Span` — [`Span`](#span)
+- <span id="classset-span"></span>`fn span(&self) -> &Span` — [`Span`](#span)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="classset-is-empty"></span>`fn is_empty(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassSet`
 
-- `fn clone(self: &Self) -> ClassSet` — [`ClassSet`](#classset)
+- <span id="classset-clone"></span>`fn clone(&self) -> ClassSet` — [`ClassSet`](#classset)
 
 ##### `impl Debug for ClassSet`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for ClassSet`
 
-- `fn drop(self: &mut Self)`
+- <span id="classset-drop"></span>`fn drop(&mut self)`
 
 ##### `impl Eq for ClassSet`
 
 ##### `impl PartialEq for ClassSet`
 
-- `fn eq(self: &Self, other: &ClassSet) -> bool` — [`ClassSet`](#classset)
+- <span id="classset-eq"></span>`fn eq(&self, other: &ClassSet) -> bool` — [`ClassSet`](#classset)
 
 ##### `impl StructuralPartialEq for ClassSet`
 
@@ -2034,6 +2205,8 @@ enum ClassSetItem {
     Union(ClassSetUnion),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1165-1188`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1165-L1188)*
 
 A single component of a character class set.
 
@@ -2079,23 +2252,23 @@ A single component of a character class set.
 
 #### Implementations
 
-- `fn span(self: &Self) -> &Span` — [`Span`](#span)
+- <span id="classsetitem-span"></span>`fn span(&self) -> &Span` — [`Span`](#span)
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassSetItem`
 
-- `fn clone(self: &Self) -> ClassSetItem` — [`ClassSetItem`](#classsetitem)
+- <span id="classsetitem-clone"></span>`fn clone(&self) -> ClassSetItem` — [`ClassSetItem`](#classsetitem)
 
 ##### `impl Debug for ClassSetItem`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classsetitem-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassSetItem`
 
 ##### `impl PartialEq for ClassSetItem`
 
-- `fn eq(self: &Self, other: &ClassSetItem) -> bool` — [`ClassSetItem`](#classsetitem)
+- <span id="classsetitem-eq"></span>`fn eq(&self, other: &ClassSetItem) -> bool` — [`ClassSetItem`](#classsetitem)
 
 ##### `impl StructuralPartialEq for ClassSetItem`
 
@@ -2108,6 +2281,8 @@ enum ClassSetBinaryOpKind {
     SymmetricDifference,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1294-1303`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1294-L1303)*
 
 The type of a Unicode character class set operation.
 
@@ -2135,19 +2310,19 @@ to the union operation.
 
 ##### `impl Clone for ClassSetBinaryOpKind`
 
-- `fn clone(self: &Self) -> ClassSetBinaryOpKind` — [`ClassSetBinaryOpKind`](#classsetbinaryopkind)
+- <span id="classsetbinaryopkind-clone"></span>`fn clone(&self) -> ClassSetBinaryOpKind` — [`ClassSetBinaryOpKind`](#classsetbinaryopkind)
 
 ##### `impl Copy for ClassSetBinaryOpKind`
 
 ##### `impl Debug for ClassSetBinaryOpKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classsetbinaryopkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassSetBinaryOpKind`
 
 ##### `impl PartialEq for ClassSetBinaryOpKind`
 
-- `fn eq(self: &Self, other: &ClassSetBinaryOpKind) -> bool` — [`ClassSetBinaryOpKind`](#classsetbinaryopkind)
+- <span id="classsetbinaryopkind-eq"></span>`fn eq(&self, other: &ClassSetBinaryOpKind) -> bool` — [`ClassSetBinaryOpKind`](#classsetbinaryopkind)
 
 ##### `impl StructuralPartialEq for ClassSetBinaryOpKind`
 
@@ -2169,6 +2344,8 @@ enum AssertionKind {
     WordBoundaryEndHalf,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1318-1343`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1318-L1343)*
 
 An assertion kind.
 
@@ -2226,17 +2403,17 @@ An assertion kind.
 
 ##### `impl Clone for AssertionKind`
 
-- `fn clone(self: &Self) -> AssertionKind` — [`AssertionKind`](#assertionkind)
+- <span id="assertionkind-clone"></span>`fn clone(&self) -> AssertionKind` — [`AssertionKind`](#assertionkind)
 
 ##### `impl Debug for AssertionKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="assertionkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AssertionKind`
 
 ##### `impl PartialEq for AssertionKind`
 
-- `fn eq(self: &Self, other: &AssertionKind) -> bool` — [`AssertionKind`](#assertionkind)
+- <span id="assertionkind-eq"></span>`fn eq(&self, other: &AssertionKind) -> bool` — [`AssertionKind`](#assertionkind)
 
 ##### `impl StructuralPartialEq for AssertionKind`
 
@@ -2250,6 +2427,8 @@ enum RepetitionKind {
     Range(RepetitionRange),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1373-1382`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1373-L1382)*
 
 The kind of a repetition operator.
 
@@ -2275,17 +2454,17 @@ The kind of a repetition operator.
 
 ##### `impl Clone for RepetitionKind`
 
-- `fn clone(self: &Self) -> RepetitionKind` — [`RepetitionKind`](#repetitionkind)
+- <span id="repetitionkind-clone"></span>`fn clone(&self) -> RepetitionKind` — [`RepetitionKind`](#repetitionkind)
 
 ##### `impl Debug for RepetitionKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="repetitionkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RepetitionKind`
 
 ##### `impl PartialEq for RepetitionKind`
 
-- `fn eq(self: &Self, other: &RepetitionKind) -> bool` — [`RepetitionKind`](#repetitionkind)
+- <span id="repetitionkind-eq"></span>`fn eq(&self, other: &RepetitionKind) -> bool` — [`RepetitionKind`](#repetitionkind)
 
 ##### `impl StructuralPartialEq for RepetitionKind`
 
@@ -2298,6 +2477,8 @@ enum RepetitionRange {
     Bounded(u32, u32),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1387-1394`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1387-L1394)*
 
 A range repetition operator.
 
@@ -2317,23 +2498,23 @@ A range repetition operator.
 
 #### Implementations
 
-- `fn is_valid(self: &Self) -> bool`
+- <span id="repetitionrange-is-valid"></span>`fn is_valid(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for RepetitionRange`
 
-- `fn clone(self: &Self) -> RepetitionRange` — [`RepetitionRange`](#repetitionrange)
+- <span id="repetitionrange-clone"></span>`fn clone(&self) -> RepetitionRange` — [`RepetitionRange`](#repetitionrange)
 
 ##### `impl Debug for RepetitionRange`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="repetitionrange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RepetitionRange`
 
 ##### `impl PartialEq for RepetitionRange`
 
-- `fn eq(self: &Self, other: &RepetitionRange) -> bool` — [`RepetitionRange`](#repetitionrange)
+- <span id="repetitionrange-eq"></span>`fn eq(&self, other: &RepetitionRange) -> bool` — [`RepetitionRange`](#repetitionrange)
 
 ##### `impl StructuralPartialEq for RepetitionRange`
 
@@ -2349,6 +2530,8 @@ enum GroupKind {
     NonCapturing(Flags),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1459-1471`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1459-L1471)*
 
 The kind of a group.
 
@@ -2370,17 +2553,17 @@ The kind of a group.
 
 ##### `impl Clone for GroupKind`
 
-- `fn clone(self: &Self) -> GroupKind` — [`GroupKind`](#groupkind)
+- <span id="groupkind-clone"></span>`fn clone(&self) -> GroupKind` — [`GroupKind`](#groupkind)
 
 ##### `impl Debug for GroupKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="groupkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for GroupKind`
 
 ##### `impl PartialEq for GroupKind`
 
-- `fn eq(self: &Self, other: &GroupKind) -> bool` — [`GroupKind`](#groupkind)
+- <span id="groupkind-eq"></span>`fn eq(&self, other: &GroupKind) -> bool` — [`GroupKind`](#groupkind)
 
 ##### `impl StructuralPartialEq for GroupKind`
 
@@ -2392,6 +2575,8 @@ enum FlagsItemKind {
     Flag(Flag),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1594-1600`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1594-L1600)*
 
 The kind of an item in a group of flags.
 
@@ -2408,23 +2593,23 @@ The kind of an item in a group of flags.
 
 #### Implementations
 
-- `fn is_negation(self: &Self) -> bool`
+- <span id="flagsitemkind-is-negation"></span>`fn is_negation(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for FlagsItemKind`
 
-- `fn clone(self: &Self) -> FlagsItemKind` — [`FlagsItemKind`](#flagsitemkind)
+- <span id="flagsitemkind-clone"></span>`fn clone(&self) -> FlagsItemKind` — [`FlagsItemKind`](#flagsitemkind)
 
 ##### `impl Debug for FlagsItemKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flagsitemkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FlagsItemKind`
 
 ##### `impl PartialEq for FlagsItemKind`
 
-- `fn eq(self: &Self, other: &FlagsItemKind) -> bool` — [`FlagsItemKind`](#flagsitemkind)
+- <span id="flagsitemkind-eq"></span>`fn eq(&self, other: &FlagsItemKind) -> bool` — [`FlagsItemKind`](#flagsitemkind)
 
 ##### `impl StructuralPartialEq for FlagsItemKind`
 
@@ -2441,6 +2626,8 @@ enum Flag {
     IgnoreWhitespace,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:1615-1630`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L1615-L1630)*
 
 A single flag.
 
@@ -2478,23 +2665,109 @@ A single flag.
 
 ##### `impl Clone for Flag`
 
-- `fn clone(self: &Self) -> Flag` — [`Flag`](#flag)
+- <span id="flag-clone"></span>`fn clone(&self) -> Flag` — [`Flag`](#flag)
 
 ##### `impl Copy for Flag`
 
 ##### `impl Debug for Flag`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Flag`
 
 ##### `impl PartialEq for Flag`
 
-- `fn eq(self: &Self, other: &Flag) -> bool` — [`Flag`](#flag)
+- <span id="flag-eq"></span>`fn eq(&self, other: &Flag) -> bool` — [`Flag`](#flag)
 
 ##### `impl StructuralPartialEq for Flag`
 
 ## Traits
 
+### `Visitor`
+
+```rust
+trait Visitor { ... }
+```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
+
+A trait for visiting an abstract syntax tree (AST) in depth first order.
+
+The principle aim of this trait is to enable callers to perform case
+analysis on an abstract syntax tree without necessarily using recursion.
+In particular, this permits callers to do case analysis with constant stack
+usage, which can be important since the size of an abstract syntax tree
+may be proportional to end user input.
+
+Typical usage of this trait involves providing an implementation and then
+running it using the [`visit`](visitor/index.md) function.
+
+Note that the abstract syntax tree for a regular expression is quite
+complex. Unless you specifically need it, you might be able to use the much
+simpler [high-level intermediate representation](crate::hir::Hir) and its
+[corresponding `Visitor` trait](crate::hir::Visitor) instead.
+
+#### Associated Types
+
+- `type Output`
+
+- `type Err`
+
+#### Required Methods
+
+- `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
+
+  All implementors of `Visitor` must provide a `finish` method, which
+
+#### Provided Methods
+
+- `fn start(&mut self)`
+
+  This method is called before beginning traversal of the AST.
+
+- `fn visit_pre(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
+
+  This method is called on an `Ast` before descending into child `Ast`
+
+- `fn visit_post(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
+
+  This method is called on an `Ast` after descending all of its child
+
+- `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
+
+  This method is called between child nodes of an
+
+- `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
+
+  This method is called between child nodes of a concatenation.
+
+- `fn visit_class_set_item_pre(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
+
+  This method is called on every [`ClassSetItem`](ast::ClassSetItem)
+
+- `fn visit_class_set_item_post(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
+
+  This method is called on every [`ClassSetItem`](ast::ClassSetItem)
+
+- `fn visit_class_set_binary_op_pre(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+
+  This method is called on every
+
+- `fn visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+
+  This method is called on every
+
+- `fn visit_class_set_binary_op_in(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+
+  This method is called between the left hand and right hand child nodes
+
+#### Implementors
+
+- [`NestLimiter`](parse/index.md)
+- [`TranslatorI`](../hir/translate/index.md)
+- [`Writer`](print/index.md)
+
 ## Functions
+
+*Defined in [`regex-syntax-0.8.8/src/ast/mod.rs:9`](../../../.source_1765210505/regex-syntax-0.8.8/src/ast/mod.rs#L9)*
 

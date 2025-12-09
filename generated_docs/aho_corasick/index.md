@@ -15,17 +15,17 @@ Finally, unlike most other Aho-Corasick implementations, this one
 supports enabling [leftmost-first](MatchKind::LeftmostFirst) or
 [leftmost-longest](MatchKind::LeftmostLongest) match semantics, using a
 (seemingly) novel alternative construction algorithm. For more details on what
-match semantics means, see the [`MatchKind`](#matchkind) type.
+match semantics means, see the [`MatchKind`](util/search/index.md) type.
 
 # Overview
 
 This section gives a brief overview of the primary types in this crate:
 
-* [`AhoCorasick`](#ahocorasick) is the primary type and represents an Aho-Corasick automaton.
+* [`AhoCorasick`](ahocorasick/index.md) is the primary type and represents an Aho-Corasick automaton.
 This is the type you use to execute searches.
-* [`AhoCorasickBuilder`](#ahocorasickbuilder) can be used to build an Aho-Corasick automaton, and
+* [`AhoCorasickBuilder`](ahocorasick/index.md) can be used to build an Aho-Corasick automaton, and
 supports configuring a number of options.
-* [`Match`](#match) represents a single match reported by an Aho-Corasick automaton.
+* [`Match`](util/search/index.md) represents a single match reported by an Aho-Corasick automaton.
 Each match has two pieces of information: the pattern that matched and the
 start and end byte offsets corresponding to the position in the haystack at
 which it matched.
@@ -154,7 +154,7 @@ assert_eq!("Samwise", &haystack[mat.start()..mat.end()]);
 
 In addition to leftmost-first semantics, this library also supports
 leftmost-longest semantics, which match the POSIX behavior of a regular
-expression alternation. See [`MatchKind`](#matchkind) for more details.
+expression alternation. See [`MatchKind`](util/search/index.md) for more details.
 
 # Prefilters
 
@@ -175,7 +175,7 @@ disabled via `AhoCorasickBuilder::prefilter`.
 # Lower level APIs
 
 This crate also provides several sub-modules that collectively expose many of
-the implementation details of the main [`AhoCorasick`](#ahocorasick) type. Most users of this
+the implementation details of the main [`AhoCorasick`](ahocorasick/index.md) type. Most users of this
 library can completely ignore the submodules and their contents, but if you
 needed finer grained control, some parts of them may be useful to you. Here is
 a brief overview of each and why you might want to use them:
@@ -197,7 +197,7 @@ trait. (The top-level `AhoCorasick` type does not implement the `Automaton`
 trait.)
 
 As mentioned above, if you aren't sure whether you need these sub-modules,
-you should be able to safely ignore them and just focus on the [`AhoCorasick`](#ahocorasick)
+you should be able to safely ignore them and just focus on the [`AhoCorasick`](ahocorasick/index.md)
 type.
 
 # Crate features
@@ -224,15 +224,74 @@ this crate can be used without the standard library.
   Enables a dependency on the `log` crate and emits messages to aide in
   diagnostics. This feature is disabled by default.
 
+## Contents
+
+- [Modules](#modules)
+  - [`macros`](#macros)
+  - [`ahocorasick`](#ahocorasick)
+  - [`automaton`](#automaton)
+  - [`dfa`](#dfa)
+  - [`nfa`](#nfa)
+  - [`packed`](#packed)
+  - [`util`](#util)
+- [Structs](#structs)
+  - [`StreamFindIter`](#streamfinditer)
+  - [`AhoCorasick`](#ahocorasick)
+  - [`AhoCorasickBuilder`](#ahocorasickbuilder)
+  - [`FindIter`](#finditer)
+  - [`FindOverlappingIter`](#findoverlappingiter)
+  - [`BuildError`](#builderror)
+  - [`MatchError`](#matcherror)
+  - [`PatternID`](#patternid)
+  - [`PatternIDError`](#patterniderror)
+  - [`Input`](#input)
+  - [`Match`](#match)
+  - [`Span`](#span)
+- [Enums](#enums)
+  - [`AhoCorasickKind`](#ahocorasickkind)
+  - [`MatchErrorKind`](#matcherrorkind)
+  - [`Anchored`](#anchored)
+  - [`MatchKind`](#matchkind)
+  - [`StartKind`](#startkind)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`macros`](#macros) | mod |  |
+| [`ahocorasick`](#ahocorasick) | mod |  |
+| [`automaton`](#automaton) | mod | Provides [`Automaton`] trait for abstracting over Aho-Corasick automata. |
+| [`dfa`](#dfa) | mod | Provides direct access to a DFA implementation of Aho-Corasick. |
+| [`nfa`](#nfa) | mod | Provides direct access to NFA implementations of Aho-Corasick. |
+| [`packed`](#packed) | mod | Provides packed multiple substring search, principally for a small number of patterns. |
+| [`util`](#util) | mod |  |
+| [`StreamFindIter`](#streamfinditer) | struct |  |
+| [`AhoCorasick`](#ahocorasick) | struct |  |
+| [`AhoCorasickBuilder`](#ahocorasickbuilder) | struct |  |
+| [`FindIter`](#finditer) | struct |  |
+| [`FindOverlappingIter`](#findoverlappingiter) | struct |  |
+| [`BuildError`](#builderror) | struct |  |
+| [`MatchError`](#matcherror) | struct |  |
+| [`PatternID`](#patternid) | struct |  |
+| [`PatternIDError`](#patterniderror) | struct |  |
+| [`Input`](#input) | struct |  |
+| [`Match`](#match) | struct |  |
+| [`Span`](#span) | struct |  |
+| [`AhoCorasickKind`](#ahocorasickkind) | enum |  |
+| [`MatchErrorKind`](#matcherrorkind) | enum |  |
+| [`Anchored`](#anchored) | enum |  |
+| [`MatchKind`](#matchkind) | enum |  |
+| [`StartKind`](#startkind) | enum |  |
+
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`ahocorasick`](ahocorasick/index.md) - 
-- [`automaton`](automaton/index.md) - Provides [`Automaton`] trait for abstracting over Aho-Corasick automata.
-- [`dfa`](dfa/index.md) - Provides direct access to a DFA implementation of Aho-Corasick.
-- [`nfa`](nfa/index.md) - Provides direct access to NFA implementations of Aho-Corasick.
-- [`packed`](packed/index.md) - Provides packed multiple substring search, principally for a small number of
-- [`util`](util/index.md) - 
+- [`macros`](macros/index.md)
+- [`ahocorasick`](ahocorasick/index.md)
+- [`automaton`](automaton/index.md) — Provides [`Automaton`] trait for abstracting over Aho-Corasick automata.
+- [`dfa`](dfa/index.md) — Provides direct access to a DFA implementation of Aho-Corasick.
+- [`nfa`](nfa/index.md) — Provides direct access to NFA implementations of Aho-Corasick.
+- [`packed`](packed/index.md) — Provides packed multiple substring search, principally for a small number of
+- [`util`](util/index.md)
 
 ## Structs
 
@@ -241,6 +300,8 @@ this crate can be used without the standard library.
 ```rust
 struct StreamFindIter<'a, R>(automaton::StreamFindIter<'a, alloc::sync::Arc<dyn AcAutomaton>, R>);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2100-2102`](../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2100-L2102)*
 
 An iterator that reports Aho-Corasick matches in a stream.
 
@@ -256,27 +317,27 @@ The type variable `R` refers to the `io::Read` stream that is being read
 from.
 
 The lifetime `'a` refers to the lifetime of the corresponding
-[`AhoCorasick`](#ahocorasick) searcher.
+[`AhoCorasick`](ahocorasick/index.md) searcher.
 
 #### Trait Implementations
 
-##### `impl<'a, R: $crate::fmt::Debug> Debug for StreamFindIter<'a, R>`
+##### `impl<'a, R: fmt::Debug> Debug for StreamFindIter<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="streamfinditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for StreamFindIter<'a, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="streamfinditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="streamfinditer-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="streamfinditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, R: std::io::Read> Iterator for StreamFindIter<'a, R>`
 
-- `type Item = Result<Match, Error>`
+- <span id="streamfinditer-type-item"></span>`type Item = Result<Match, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<Match, std::io::Error>>` — [`Match`](#match)
+- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<Result<Match, std::io::Error>>` — [`Match`](util/search/index.md)
 
 ### `AhoCorasick`
 
@@ -288,12 +349,14 @@ struct AhoCorasick {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:177-214`](../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L177-L214)*
+
 An automaton for searching multiple strings in linear time.
 
 The `AhoCorasick` type supports a few basic ways of constructing an
 automaton, with the default being `AhoCorasick::new`. However, there
 are a fair number of configurable options that can be set by using
-[`AhoCorasickBuilder`](#ahocorasickbuilder) instead. Such options include, but are not limited
+[`AhoCorasickBuilder`](ahocorasick/index.md) instead. Such options include, but are not limited
 to, how matches are determined, simple case insensitivity, whether to use a
 DFA or not and various knobs for controlling the space-vs-time trade offs
 taken when building the automaton.
@@ -329,7 +392,7 @@ This experiment very strongly argues that a contiguous NFA is often the
 best balance in terms of resource usage. It takes a little longer to build,
 but its memory usage is quite small. Its search speed (not listed) is
 also often faster than a noncontiguous NFA, but a little slower than a
-DFA. Indeed, when no specific [`AhoCorasickKind`](#ahocorasickkind) is used (which is the
+DFA. Indeed, when no specific [`AhoCorasickKind`](ahocorasick/index.md) is used (which is the
 default), a contiguous NFA is used in most cases.
 
 The only "catch" to using a contiguous NFA is that, because of its variety
@@ -348,7 +411,7 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](#input). This includes `&[u8]`, `&str` and `Input` itself.
+to an [`Input`](util/search/index.md). This includes `&[u8]`, `&str` and `Input` itself.
 
 # Construction failure
 
@@ -491,19 +554,19 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
-- `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](#ahocorasick), [`BuildError`](#builderror)
+- <span id="ahocorasick-new"></span>`fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](ahocorasick/index.md), [`BuildError`](util/error/index.md)
 
-- `fn builder() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasick-builder"></span>`fn builder() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for AhoCorasick`
 
-- `fn clone(self: &Self) -> AhoCorasick` — [`AhoCorasick`](#ahocorasick)
+- <span id="ahocorasick-clone"></span>`fn clone(&self) -> AhoCorasick` — [`AhoCorasick`](ahocorasick/index.md)
 
 ##### `impl Debug for AhoCorasick`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="ahocorasick-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `AhoCorasickBuilder`
 
@@ -516,6 +579,8 @@ struct AhoCorasickBuilder {
     start_kind: crate::util::search::StartKind,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2135-2141`](../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2135-L2141)*
 
 A builder for configuring an Aho-Corasick automaton.
 
@@ -541,39 +606,39 @@ usage.
 
 #### Implementations
 
-- `fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasickbuilder-new"></span>`fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](#ahocorasick), [`BuildError`](#builderror)
+- <span id="ahocorasickbuilder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](ahocorasick/index.md), [`BuildError`](util/error/index.md)
 
-- `fn build_auto(self: &Self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](nfa/noncontiguous/index.md), [`AcAutomaton`](ahocorasick/index.md), [`AhoCorasickKind`](#ahocorasickkind)
+- <span id="ahocorasickbuilder-build-auto"></span>`fn build_auto(&self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](nfa/noncontiguous/index.md), [`AcAutomaton`](ahocorasick/index.md), [`AhoCorasickKind`](ahocorasick/index.md)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](#matchkind), [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasickbuilder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](util/search/index.md), [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn start_kind(self: &mut Self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](#startkind), [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasickbuilder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](util/search/index.md), [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasickbuilder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn kind(self: &mut Self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](#ahocorasickkind), [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasickbuilder-kind"></span>`fn kind(&mut self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](ahocorasick/index.md), [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn prefilter(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasickbuilder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn dense_depth(self: &mut Self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasickbuilder-dense-depth"></span>`fn dense_depth(&mut self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn byte_classes(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasickbuilder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for AhoCorasickBuilder`
 
-- `fn clone(self: &Self) -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasickbuilder-clone"></span>`fn clone(&self) -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
 ##### `impl Debug for AhoCorasickBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ahocorasickbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AhoCorasickBuilder`
 
-- `fn default() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- <span id="ahocorasickbuilder-default"></span>`fn default() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
 ### `FindIter<'a, 'h>`
 
@@ -581,9 +646,11 @@ usage.
 struct FindIter<'a, 'h>(automaton::FindIter<'a, 'h, alloc::sync::Arc<dyn AcAutomaton>>);
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2047`](../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2047)*
+
 An iterator of non-overlapping matches in a particular haystack.
 
-This iterator yields matches according to the [`MatchKind`](#matchkind) used by this
+This iterator yields matches according to the [`MatchKind`](util/search/index.md) used by this
 automaton.
 
 This iterator is constructed via the `AhoCorasick::find_iter` and
@@ -595,29 +662,31 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl<'a, 'h> Debug for FindIter<'a, 'h>`
+##### `impl Debug for FindIter<'a, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindIter<'a, 'h>`
+##### `impl IntoIterator for FindIter<'a, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="finditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="finditer-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h> Iterator for FindIter<'a, 'h>`
+##### `impl Iterator for FindIter<'a, 'h>`
 
-- `type Item = Match`
+- <span id="finditer-type-item"></span>`type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](#match)
+- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](util/search/index.md)
 
 ### `FindOverlappingIter<'a, 'h>`
 
 ```rust
 struct FindOverlappingIter<'a, 'h>(automaton::FindOverlappingIter<'a, 'h, alloc::sync::Arc<dyn AcAutomaton>>);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2070-2072`](../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2070-L2072)*
 
 An iterator of overlapping matches in a particular haystack.
 
@@ -633,23 +702,23 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl<'a, 'h> Debug for FindOverlappingIter<'a, 'h>`
+##### `impl Debug for FindOverlappingIter<'a, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="findoverlappingiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindOverlappingIter<'a, 'h>`
+##### `impl IntoIterator for FindOverlappingIter<'a, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="findoverlappingiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="findoverlappingiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="findoverlappingiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h> Iterator for FindOverlappingIter<'a, 'h>`
+##### `impl Iterator for FindOverlappingIter<'a, 'h>`
 
-- `type Item = Match`
+- <span id="findoverlappingiter-type-item"></span>`type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](#match)
+- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](util/search/index.md)
 
 ### `BuildError`
 
@@ -658,6 +727,8 @@ struct BuildError {
     kind: ErrorKind,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:17-19`](../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L17-L19)*
 
 An error that occurred during the construction of an Aho-Corasick
 automaton.
@@ -672,37 +743,39 @@ trait.
 
 #### Implementations
 
-- `fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-state-id-overflow"></span>`fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](util/error/index.md)
 
-- `fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-pattern-id-overflow"></span>`fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](util/error/index.md)
 
-- `fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](#patternid), [`BuildError`](#builderror)
+- <span id="builderror-pattern-too-long"></span>`fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](util/primitives/index.md), [`BuildError`](util/error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](util/error/index.md)
 
 ##### `impl Debug for BuildError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-##### `impl<T> ToString for BuildError`
+##### `impl ToString for BuildError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `MatchError`
 
 ```rust
 struct MatchError(alloc::boxed::Box<MatchErrorKind>);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:130`](../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L130)*
 
 An error that occurred during an Aho-Corasick search.
 
@@ -724,33 +797,33 @@ trait.
 
 #### Implementations
 
-- `fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](#matcherrorkind), [`MatchError`](#matcherror)
+- <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](util/error/index.md), [`MatchError`](util/error/index.md)
 
-- `fn kind(self: &Self) -> &MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
+- <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](util/error/index.md)
 
-- `fn invalid_input_anchored() -> MatchError` — [`MatchError`](#matcherror)
+- <span id="matcherror-invalid-input-anchored"></span>`fn invalid_input_anchored() -> MatchError` — [`MatchError`](util/error/index.md)
 
-- `fn invalid_input_unanchored() -> MatchError` — [`MatchError`](#matcherror)
+- <span id="matcherror-invalid-input-unanchored"></span>`fn invalid_input_unanchored() -> MatchError` — [`MatchError`](util/error/index.md)
 
-- `fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](#matchkind), [`MatchError`](#matcherror)
+- <span id="matcherror-unsupported-stream"></span>`fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](util/search/index.md), [`MatchError`](util/error/index.md)
 
-- `fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](#matchkind), [`MatchError`](#matcherror)
+- <span id="matcherror-unsupported-overlapping"></span>`fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](util/search/index.md), [`MatchError`](util/error/index.md)
 
-- `fn unsupported_empty() -> MatchError` — [`MatchError`](#matcherror)
+- <span id="matcherror-unsupported-empty"></span>`fn unsupported_empty() -> MatchError` — [`MatchError`](util/error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchError`
 
-- `fn clone(self: &Self) -> MatchError` — [`MatchError`](#matcherror)
+- <span id="matcherror-clone"></span>`fn clone(&self) -> MatchError` — [`MatchError`](util/error/index.md)
 
 ##### `impl Debug for MatchError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for MatchError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for MatchError`
 
@@ -758,19 +831,21 @@ trait.
 
 ##### `impl PartialEq for MatchError`
 
-- `fn eq(self: &Self, other: &MatchError) -> bool` — [`MatchError`](#matcherror)
+- <span id="matcherror-eq"></span>`fn eq(&self, other: &MatchError) -> bool` — [`MatchError`](util/error/index.md)
 
 ##### `impl StructuralPartialEq for MatchError`
 
-##### `impl<T> ToString for MatchError`
+##### `impl ToString for MatchError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="matcherror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `PatternID`
 
 ```rust
 struct PatternID(SmallIndex);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:713`](../../.source_1765210505/aho-corasick-1.1.4/src/util/primitives.rs#L713)*
 
 The identifier of a pattern in an Aho-Corasick automaton.
 
@@ -792,73 +867,83 @@ panics or silent logical errors.
 
 #### Implementations
 
-- `const MAX: PatternID`
+- <span id="patternid-const-max"></span>`const MAX: PatternID`
 
-- `const LIMIT: usize`
+- <span id="patternid-const-limit"></span>`const LIMIT: usize`
 
-- `const ZERO: PatternID`
+- <span id="patternid-const-zero"></span>`const ZERO: PatternID`
 
-- `const SIZE: usize`
+- <span id="patternid-const-size"></span>`const SIZE: usize`
 
-- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
+- <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
 
-- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
-- `const fn from_u32_unchecked(index: u32) -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-from-u32-unchecked"></span>`const fn from_u32_unchecked(index: u32) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
-- `fn must(value: usize) -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
-- `const fn as_usize(self: &Self) -> usize`
+- <span id="patternid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
-- `const fn as_u64(self: &Self) -> u64`
+- <span id="patternid-as-u64"></span>`const fn as_u64(&self) -> u64`
 
-- `const fn as_u32(self: &Self) -> u32`
+- <span id="patternid-as-u32"></span>`const fn as_u32(&self) -> u32`
 
-- `const fn as_i32(self: &Self) -> i32`
+- <span id="patternid-as-i32"></span>`const fn as_i32(&self) -> i32`
 
-- `fn one_more(self: &Self) -> usize`
+- <span id="patternid-one-more"></span>`fn one_more(&self) -> usize`
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
+- <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
-- `fn to_ne_bytes(self: &Self) -> [u8; 4]`
+- <span id="patternid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
-- `fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](util/primitives/index.md)
+- <span id="patternid-iter"></span>`fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for PatternID`
 
-- `fn clone(self: &Self) -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-clone"></span>`fn clone(&self) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl Copy for PatternID`
 
 ##### `impl Debug for PatternID`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="patternid-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for PatternID`
 
-- `fn default() -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-default"></span>`fn default() -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl Eq for PatternID`
 
 ##### `impl Hash for PatternID`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="patternid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+
+##### `impl<T> Index for [T]`
+
+- <span id="t-type-output"></span>`type Output = T`
+
+- <span id="t-index"></span>`fn index(&self, index: PatternID) -> &T` — [`PatternID`](util/primitives/index.md)
+
+##### `impl<T> IndexMut for [T]`
+
+- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: PatternID) -> &mut T` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl Ord for PatternID`
 
-- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](#patternid)
+- <span id="patternid-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl PartialEq for PatternID`
 
-- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](#patternid)
+- <span id="patternid-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl PartialOrd for PatternID`
 
-- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](#patternid)
+- <span id="patternid-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl StructuralPartialEq for PatternID`
 
@@ -867,6 +952,8 @@ panics or silent logical errors.
 ```rust
 struct PatternIDError(SmallIndexError);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:736`](../../.source_1765210505/aho-corasick-1.1.4/src/util/primitives.rs#L736)*
 
 This error occurs when an ID could not be constructed.
 
@@ -878,21 +965,21 @@ trait.
 
 #### Implementations
 
-- `fn attempted(self: &Self) -> u64`
+- <span id="patterniderror-attempted"></span>`fn attempted(&self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl Clone for PatternIDError`
 
-- `fn clone(self: &Self) -> PatternIDError` — [`PatternIDError`](#patterniderror)
+- <span id="patterniderror-clone"></span>`fn clone(&self) -> PatternIDError` — [`PatternIDError`](util/primitives/index.md)
 
 ##### `impl Debug for PatternIDError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="patterniderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for PatternIDError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="patterniderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for PatternIDError`
 
@@ -900,13 +987,13 @@ trait.
 
 ##### `impl PartialEq for PatternIDError`
 
-- `fn eq(self: &Self, other: &PatternIDError) -> bool` — [`PatternIDError`](#patterniderror)
+- <span id="patterniderror-eq"></span>`fn eq(&self, other: &PatternIDError) -> bool` — [`PatternIDError`](util/primitives/index.md)
 
 ##### `impl StructuralPartialEq for PatternIDError`
 
-##### `impl<T> ToString for PatternIDError`
+##### `impl ToString for PatternIDError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="patterniderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Input<'h>`
 
@@ -918,6 +1005,8 @@ struct Input<'h> {
     earliest: bool,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
 
 The configuration and the haystack to use for an Aho-Corasick search.
 
@@ -934,7 +1023,7 @@ start of the search) or anchored (matches can only occur beginning at
 the start of the search) search. Unanchored search is the default. This is
 configured via `Input::anchored`.
 * Whether to quit the search as soon as a match has been found, regardless
-of the [`MatchKind`](#matchkind) that the searcher was built with. This is configured
+of the [`MatchKind`](util/search/index.md) that the searcher was built with. This is configured
 via `Input::earliest`.
 
 For most cases, the defaults for all optional parameters are appropriate.
@@ -999,53 +1088,53 @@ assert_eq!(
 
 #### Implementations
 
-- `fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](#input)
+- <span id="input-new"></span>`fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](util/search/index.md)
 
-- `fn span<S: Into<Span>>(self: Self, span: S) -> Input<'h>` — [`Input`](#input)
+- <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](util/search/index.md)
 
-- `fn range<R: RangeBounds<usize>>(self: Self, range: R) -> Input<'h>` — [`Input`](#input)
+- <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](util/search/index.md)
 
-- `fn anchored(self: Self, mode: Anchored) -> Input<'h>` — [`Anchored`](#anchored), [`Input`](#input)
+- <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](util/search/index.md), [`Input`](util/search/index.md)
 
-- `fn earliest(self: Self, yes: bool) -> Input<'h>` — [`Input`](#input)
+- <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](util/search/index.md)
 
-- `fn set_span<S: Into<Span>>(self: &mut Self, span: S)`
+- <span id="input-set-span"></span>`fn set_span<S: Into<Span>>(&mut self, span: S)`
 
-- `fn set_range<R: RangeBounds<usize>>(self: &mut Self, range: R)`
+- <span id="input-set-range"></span>`fn set_range<R: RangeBounds<usize>>(&mut self, range: R)`
 
-- `fn set_start(self: &mut Self, start: usize)`
+- <span id="input-set-start"></span>`fn set_start(&mut self, start: usize)`
 
-- `fn set_end(self: &mut Self, end: usize)`
+- <span id="input-set-end"></span>`fn set_end(&mut self, end: usize)`
 
-- `fn set_anchored(self: &mut Self, mode: Anchored)` — [`Anchored`](#anchored)
+- <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](util/search/index.md)
 
-- `fn set_earliest(self: &mut Self, yes: bool)`
+- <span id="input-set-earliest"></span>`fn set_earliest(&mut self, yes: bool)`
 
-- `fn haystack(self: &Self) -> &[u8]`
+- <span id="input-haystack"></span>`fn haystack(&self) -> &[u8]`
 
-- `fn start(self: &Self) -> usize`
+- <span id="input-start"></span>`fn start(&self) -> usize`
 
-- `fn end(self: &Self) -> usize`
+- <span id="input-end"></span>`fn end(&self) -> usize`
 
-- `fn get_span(self: &Self) -> Span` — [`Span`](#span)
+- <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](util/search/index.md)
 
-- `fn get_range(self: &Self) -> Range<usize>`
+- <span id="input-get-range"></span>`fn get_range(&self) -> Range<usize>`
 
-- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](#anchored)
+- <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](util/search/index.md)
 
-- `fn get_earliest(self: &Self) -> bool`
+- <span id="input-get-earliest"></span>`fn get_earliest(&self) -> bool`
 
-- `fn is_done(self: &Self) -> bool`
+- <span id="input-is-done"></span>`fn is_done(&self) -> bool`
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Input<'h>`
+##### `impl Clone for Input<'h>`
 
-- `fn clone(self: &Self) -> Input<'h>` — [`Input`](#input)
+- <span id="input-clone"></span>`fn clone(&self) -> Input<'h>` — [`Input`](util/search/index.md)
 
-##### `impl<'h> Debug for Input<'h>`
+##### `impl Debug for Input<'h>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="input-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Match`
 
@@ -1056,10 +1145,12 @@ struct Match {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
+
 A representation of a match reported by an Aho-Corasick searcher.
 
-A match has two essential pieces of information: the [`PatternID`](#patternid) that
-matches, and the [`Span`](#span) of the match in a haystack.
+A match has two essential pieces of information: the [`PatternID`](util/primitives/index.md) that
+matches, and the [`Span`](util/search/index.md) of the match in a haystack.
 
 The pattern is identified by an ID, which corresponds to its position
 (starting from `0`) relative to other patterns used to construct the
@@ -1081,47 +1172,47 @@ offset as less than or equal to its end offset.
 
 #### Implementations
 
-- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](#patternid), [`Match`](#match)
+- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](util/primitives/index.md), [`Match`](util/search/index.md)
 
-- `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](#match)
+- <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](util/search/index.md)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](#patternid)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
-- `fn start(self: &Self) -> usize`
+- <span id="match-start"></span>`fn start(&self) -> usize`
 
-- `fn end(self: &Self) -> usize`
+- <span id="match-end"></span>`fn end(&self) -> usize`
 
-- `fn range(self: &Self) -> core::ops::Range<usize>`
+- <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
 
-- `fn span(self: &Self) -> Span` — [`Span`](#span)
+- <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](util/search/index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="match-len"></span>`fn len(&self) -> usize`
 
-- `fn offset(self: &Self, offset: usize) -> Match` — [`Match`](#match)
+- <span id="match-offset"></span>`fn offset(&self, offset: usize) -> Match` — [`Match`](util/search/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Match`
 
-- `fn clone(self: &Self) -> Match` — [`Match`](#match)
+- <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](util/search/index.md)
 
 ##### `impl Copy for Match`
 
 ##### `impl Debug for Match`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="match-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Match`
 
 ##### `impl Hash for Match`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="match-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Match`
 
-- `fn eq(self: &Self, other: &Match) -> bool` — [`Match`](#match)
+- <span id="match-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](util/search/index.md)
 
 ##### `impl StructuralPartialEq for Match`
 
@@ -1133,6 +1224,8 @@ struct Span {
     pub end: usize,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
 
 A representation of a range in a haystack.
 
@@ -1166,37 +1259,47 @@ to create a span where `start > end`.
 
 #### Implementations
 
-- `fn range(self: &Self) -> Range<usize>`
+- <span id="span-range"></span>`fn range(&self) -> Range<usize>`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="span-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="span-len"></span>`fn len(&self) -> usize`
 
-- `fn contains(self: &Self, offset: usize) -> bool`
+- <span id="span-contains"></span>`fn contains(&self, offset: usize) -> bool`
 
-- `fn offset(self: &Self, offset: usize) -> Span` — [`Span`](#span)
+- <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](util/search/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](#span)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](util/search/index.md)
 
 ##### `impl Copy for Span`
 
 ##### `impl Debug for Span`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="span-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Span`
 
 ##### `impl Hash for Span`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="span-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+
+##### `impl Index for [u8]`
+
+- <span id="u8-type-output"></span>`type Output = [u8]`
+
+- <span id="u8-index"></span>`fn index(&self, index: Span) -> &[u8]` — [`Span`](util/search/index.md)
+
+##### `impl IndexMut for [u8]`
+
+- <span id="u8-index-mut"></span>`fn index_mut(&mut self, index: Span) -> &mut [u8]` — [`Span`](util/search/index.md)
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](#span)
+- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](util/search/index.md)
 
 ##### `impl StructuralPartialEq for Span`
 
@@ -1212,7 +1315,9 @@ enum AhoCorasickKind {
 }
 ```
 
-The type of Aho-Corasick implementation to use in an [`AhoCorasick`](#ahocorasick)
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2627-2634`](../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2627-L2634)*
+
+The type of Aho-Corasick implementation to use in an [`AhoCorasick`](ahocorasick/index.md)
 searcher.
 
 This is principally used as an input to the
@@ -1237,19 +1342,19 @@ detail about each choice.
 
 ##### `impl Clone for AhoCorasickKind`
 
-- `fn clone(self: &Self) -> AhoCorasickKind` — [`AhoCorasickKind`](#ahocorasickkind)
+- <span id="ahocorasickkind-clone"></span>`fn clone(&self) -> AhoCorasickKind` — [`AhoCorasickKind`](ahocorasick/index.md)
 
 ##### `impl Copy for AhoCorasickKind`
 
 ##### `impl Debug for AhoCorasickKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ahocorasickkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AhoCorasickKind`
 
 ##### `impl PartialEq for AhoCorasickKind`
 
-- `fn eq(self: &Self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](#ahocorasickkind)
+- <span id="ahocorasickkind-eq"></span>`fn eq(&self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](ahocorasick/index.md)
 
 ##### `impl StructuralPartialEq for AhoCorasickKind`
 
@@ -1269,7 +1374,9 @@ enum MatchErrorKind {
 }
 ```
 
-The underlying kind of a [`MatchError`](#matcherror).
+*Defined in [`aho-corasick-1.1.4/src/util/error.rs:200-222`](../../.source_1765210505/aho-corasick-1.1.4/src/util/error.rs#L200-L222)*
+
+The underlying kind of a [`MatchError`](util/error/index.md).
 
 This is a **non-exhaustive** enum. That means new variants may be added in
 a semver-compatible release.
@@ -1305,17 +1412,17 @@ a semver-compatible release.
 
 ##### `impl Clone for MatchErrorKind`
 
-- `fn clone(self: &Self) -> MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
+- <span id="matcherrorkind-clone"></span>`fn clone(&self) -> MatchErrorKind` — [`MatchErrorKind`](util/error/index.md)
 
 ##### `impl Debug for MatchErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matcherrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MatchErrorKind`
 
 ##### `impl PartialEq for MatchErrorKind`
 
-- `fn eq(self: &Self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](#matcherrorkind)
+- <span id="matcherrorkind-eq"></span>`fn eq(&self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](util/error/index.md)
 
 ##### `impl StructuralPartialEq for MatchErrorKind`
 
@@ -1327,6 +1434,8 @@ enum Anchored {
     Yes,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
 
 The type of anchored search to perform.
 
@@ -1349,25 +1458,25 @@ fallible or an infallible routine was called.
 
 #### Implementations
 
-- `fn is_anchored(self: &Self) -> bool`
+- <span id="anchored-is-anchored"></span>`fn is_anchored(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Anchored`
 
-- `fn clone(self: &Self) -> Anchored` — [`Anchored`](#anchored)
+- <span id="anchored-clone"></span>`fn clone(&self) -> Anchored` — [`Anchored`](util/search/index.md)
 
 ##### `impl Copy for Anchored`
 
 ##### `impl Debug for Anchored`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="anchored-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Anchored`
 
 ##### `impl PartialEq for Anchored`
 
-- `fn eq(self: &Self, other: &Anchored) -> bool` — [`Anchored`](#anchored)
+- <span id="anchored-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](util/search/index.md)
 
 ##### `impl StructuralPartialEq for Anchored`
 
@@ -1380,6 +1489,8 @@ enum MatchKind {
     LeftmostLongest,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
 
 A knob for controlling the match semantics of an Aho-Corasick automaton.
 
@@ -1497,35 +1608,35 @@ POSIX regex alternations.
 
 #### Implementations
 
-- `fn is_standard(self: &Self) -> bool`
+- <span id="matchkind-is-standard"></span>`fn is_standard(&self) -> bool`
 
-- `fn is_leftmost(self: &Self) -> bool`
+- <span id="matchkind-is-leftmost"></span>`fn is_leftmost(&self) -> bool`
 
-- `fn is_leftmost_first(self: &Self) -> bool`
+- <span id="matchkind-is-leftmost-first"></span>`fn is_leftmost_first(&self) -> bool`
 
-- `fn as_packed(self: &Self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](packed/index.md)
+- <span id="matchkind-as-packed"></span>`fn as_packed(&self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](packed/api/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchKind`
 
-- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](#matchkind)
+- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](util/search/index.md)
 
 ##### `impl Copy for MatchKind`
 
 ##### `impl Debug for MatchKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matchkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MatchKind`
 
-- `fn default() -> MatchKind` — [`MatchKind`](#matchkind)
+- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](util/search/index.md)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
+- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](util/search/index.md)
 
 ##### `impl StructuralPartialEq for MatchKind`
 
@@ -1538,6 +1649,8 @@ enum StartKind {
     Anchored,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
 
 The kind of anchored starting configurations to support in an Aho-Corasick
 searcher.
@@ -1576,23 +1689,23 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 ##### `impl Clone for StartKind`
 
-- `fn clone(self: &Self) -> StartKind` — [`StartKind`](#startkind)
+- <span id="startkind-clone"></span>`fn clone(&self) -> StartKind` — [`StartKind`](util/search/index.md)
 
 ##### `impl Copy for StartKind`
 
 ##### `impl Debug for StartKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="startkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StartKind`
 
-- `fn default() -> StartKind` — [`StartKind`](#startkind)
+- <span id="startkind-default"></span>`fn default() -> StartKind` — [`StartKind`](util/search/index.md)
 
 ##### `impl Eq for StartKind`
 
 ##### `impl PartialEq for StartKind`
 
-- `fn eq(self: &Self, other: &StartKind) -> bool` — [`StartKind`](#startkind)
+- <span id="startkind-eq"></span>`fn eq(&self, other: &StartKind) -> bool` — [`StartKind`](util/search/index.md)
 
 ##### `impl StructuralPartialEq for StartKind`
 

@@ -4,6 +4,12 @@
 
 # Module `arg_group`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ArgGroup`](#arggroup) | struct | Specifies a logical group of [arguments] |
+
 ## Structs
 
 ### `ArgGroup`
@@ -18,6 +24,8 @@ struct ArgGroup {
     multiple: bool,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
 
 Specifies a logical group of [arguments]
 
@@ -84,49 +92,49 @@ assert_eq!(matches
 
 #### Implementations
 
-- `fn new(id: impl Into<Id>) -> Self` — [`Id`](../../index.md)
+- <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](../../util/id/index.md)
 
-- `fn id(self: Self, id: impl Into<Id>) -> Self` — [`Id`](../../index.md)
+- <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](../../util/id/index.md)
 
-- `fn arg(self: Self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
+- <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Id`](../../util/id/index.md)
 
-- `fn args(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
+- <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../util/id/index.md)
 
-- `fn get_args(self: &Self) -> impl Iterator<Item = &Id>` — [`Id`](../../index.md)
+- <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](../../util/id/index.md)
 
-- `fn multiple(self: Self, yes: bool) -> Self`
+- <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
 
-- `fn is_multiple(self: &mut Self) -> bool`
+- <span id="arggroup-is-multiple"></span>`fn is_multiple(&mut self) -> bool`
 
-- `fn required(self: Self, yes: bool) -> Self`
+- <span id="arggroup-required"></span>`fn required(self, yes: bool) -> Self`
 
-- `fn requires(self: Self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
+- <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Id`](../../util/id/index.md)
 
-- `fn requires_all(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
+- <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../util/id/index.md)
 
-- `fn conflicts_with(self: Self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
+- <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Id`](../../util/id/index.md)
 
-- `fn conflicts_with_all(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
+- <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../util/id/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgGroup`
 
-- `fn clone(self: &Self) -> ArgGroup` — [`ArgGroup`](../../index.md)
+- <span id="arggroup-clone"></span>`fn clone(&self) -> ArgGroup` — [`ArgGroup`](#arggroup)
 
 ##### `impl Debug for ArgGroup`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arggroup-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ArgGroup`
 
-- `fn default() -> ArgGroup` — [`ArgGroup`](../../index.md)
+- <span id="arggroup-default"></span>`fn default() -> ArgGroup` — [`ArgGroup`](#arggroup)
 
 ##### `impl Eq for ArgGroup`
 
 ##### `impl PartialEq for ArgGroup`
 
-- `fn eq(self: &Self, other: &ArgGroup) -> bool` — [`ArgGroup`](../../index.md)
+- <span id="arggroup-eq"></span>`fn eq(&self, other: &ArgGroup) -> bool` — [`ArgGroup`](#arggroup)
 
 ##### `impl StructuralPartialEq for ArgGroup`
 

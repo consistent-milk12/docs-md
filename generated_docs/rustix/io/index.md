@@ -10,14 +10,86 @@ If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`close`](#close)
+  - [`dup`](#dup)
+  - [`errno`](#errno)
+  - [`fcntl`](#fcntl)
+  - [`ioctl`](#ioctl)
+  - [`read_write`](#read_write)
+- [Structs](#structs)
+  - [`Errno`](#errno)
+- [Functions](#functions)
+  - [`retry_on_intr`](#retry_on_intr)
+  - [`close`](#close)
+  - [`dup`](#dup)
+  - [`dup2`](#dup2)
+  - [`dup3`](#dup3)
+  - [`fcntl_getfd`](#fcntl_getfd)
+  - [`fcntl_setfd`](#fcntl_setfd)
+  - [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec)
+  - [`ioctl_fioclex`](#ioctl_fioclex)
+  - [`ioctl_fionclex`](#ioctl_fionclex)
+  - [`ioctl_fionbio`](#ioctl_fionbio)
+  - [`ioctl_fionread`](#ioctl_fionread)
+  - [`read`](#read)
+  - [`write`](#write)
+  - [`pread`](#pread)
+  - [`pwrite`](#pwrite)
+  - [`readv`](#readv)
+  - [`writev`](#writev)
+  - [`preadv`](#preadv)
+  - [`pwritev`](#pwritev)
+  - [`preadv2`](#preadv2)
+  - [`pwritev2`](#pwritev2)
+- [Type Aliases](#type-aliases)
+  - [`Result`](#result)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`close`](#close) | mod | The unsafe `close` for raw file descriptors. |
+| [`dup`](#dup) | mod | Functions which duplicate file descriptors. |
+| [`errno`](#errno) | mod | The `Errno` type, which is a minimal wrapper around an error code. |
+| [`fcntl`](#fcntl) | mod | The Unix `fcntl` function is effectively lots of different functions hidden behind a single dynamic dispatch interface. |
+| [`ioctl`](#ioctl) | mod | The Unix `ioctl` function is effectively lots of different functions hidden behind a single dynamic dispatch interface. |
+| [`read_write`](#read_write) | mod | `read` and `write`, optionally positioned, optionally vectored. |
+| [`Errno`](#errno) | struct |  |
+| [`retry_on_intr`](#retry_on_intr) | fn |  |
+| [`close`](#close) | fn | `close(raw_fd)`—Closes a `RawFd` directly. |
+| [`dup`](#dup) | fn | `dup(fd)`—Creates a new `OwnedFd` instance that shares the same underlying [file description] as `fd`. |
+| [`dup2`](#dup2) | fn | `dup2(fd, new)`—Changes the [file description] of a file descriptor. |
+| [`dup3`](#dup3) | fn | `dup3(fd, new, flags)`—Changes the [file description] of a file descriptor, with flags. |
+| [`fcntl_getfd`](#fcntl_getfd) | fn | `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags. |
+| [`fcntl_setfd`](#fcntl_setfd) | fn | `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags. |
+| [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec) | fn | `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value at least `min`, that has `O_CLOEXEC` set and that shares the same underlying [file description] as `fd`. |
+| [`ioctl_fioclex`](#ioctl_fioclex) | fn | `ioctl(fd, FIOCLEX, NULL)`—Set the close-on-exec flag. |
+| [`ioctl_fionclex`](#ioctl_fionclex) | fn | `ioctl(fd, FIONCLEX, NULL)`—Remove the close-on-exec flag. |
+| [`ioctl_fionbio`](#ioctl_fionbio) | fn | `ioctl(fd, FIONBIO, &value)`—Enables or disables non-blocking mode. |
+| [`ioctl_fionread`](#ioctl_fionread) | fn | `ioctl(fd, FIONREAD)`—Returns the number of bytes ready to be read. |
+| [`read`](#read) | fn | `read(fd, buf)`—Reads from a stream. |
+| [`write`](#write) | fn | `write(fd, buf)`—Writes to a stream. |
+| [`pread`](#pread) | fn | `pread(fd, buf, offset)`—Reads from a file at a given position. |
+| [`pwrite`](#pwrite) | fn | `pwrite(fd, bufs)`—Writes to a file at a given position. |
+| [`readv`](#readv) | fn | `readv(fd, bufs)`—Reads from a stream into multiple buffers. |
+| [`writev`](#writev) | fn | `writev(fd, bufs)`—Writes to a stream from multiple buffers. |
+| [`preadv`](#preadv) | fn | `preadv(fd, bufs, offset)`—Reads from a file at a given position into multiple buffers. |
+| [`pwritev`](#pwritev) | fn | `pwritev(fd, bufs, offset)`—Writes to a file at a given position from multiple buffers. |
+| [`preadv2`](#preadv2) | fn | `preadv2(fd, bufs, offset, flags)`—Reads data, with several options. |
+| [`pwritev2`](#pwritev2) | fn | `pwritev2(fd, bufs, offset, flags)`—Writes data, with several options. |
+| [`Result`](#result) | type |  |
+
 ## Modules
 
-- [`close`](close/index.md) - The unsafe `close` for raw file descriptors.
-- [`dup`](dup/index.md) - Functions which duplicate file descriptors.
-- [`errno`](errno/index.md) - The `Errno` type, which is a minimal wrapper around an error code.
-- [`fcntl`](fcntl/index.md) - The Unix `fcntl` function is effectively lots of different functions hidden
-- [`ioctl`](ioctl/index.md) - The Unix `ioctl` function is effectively lots of different functions hidden
-- [`read_write`](read_write/index.md) - `read` and `write`, optionally positioned, optionally vectored.
+- [`close`](close/index.md) — The unsafe `close` for raw file descriptors.
+- [`dup`](dup/index.md) — Functions which duplicate file descriptors.
+- [`errno`](errno/index.md) — The `Errno` type, which is a minimal wrapper around an error code.
+- [`fcntl`](fcntl/index.md) — The Unix `fcntl` function is effectively lots of different functions hidden
+- [`ioctl`](ioctl/index.md) — The Unix `ioctl` function is effectively lots of different functions hidden
+- [`read_write`](read_write/index.md) — `read` and `write`, optionally positioned, optionally vectored.
 
 ## Structs
 
@@ -27,9 +99,11 @@ If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
 struct Errno(u16);
 ```
 
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:51`](../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L51)*
+
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../docs_md/error/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../addr2line/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References
@@ -54,289 +128,29 @@ but only holds an OS error code, and no extra error value.
 
 #### Implementations
 
-- `const ACCESS: Self`
+- <span id="errno-from-io-error"></span>`fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
 
-- `const ADDRINUSE: Self`
+- <span id="errno-raw-os-error"></span>`const fn raw_os_error(self) -> i32`
 
-- `const ADDRNOTAVAIL: Self`
+- <span id="errno-from-raw-os-error"></span>`const fn from_raw_os_error(raw: i32) -> Self`
 
-- `const ADV: Self`
-
-- `const AFNOSUPPORT: Self`
-
-- `const AGAIN: Self`
-
-- `const ALREADY: Self`
-
-- `const BADE: Self`
-
-- `const BADF: Self`
-
-- `const BADFD: Self`
-
-- `const BADMSG: Self`
-
-- `const BADR: Self`
-
-- `const BADRQC: Self`
-
-- `const BADSLT: Self`
-
-- `const BFONT: Self`
-
-- `const BUSY: Self`
-
-- `const CANCELED: Self`
-
-- `const CHILD: Self`
-
-- `const CHRNG: Self`
-
-- `const COMM: Self`
-
-- `const CONNABORTED: Self`
-
-- `const CONNREFUSED: Self`
-
-- `const CONNRESET: Self`
-
-- `const DEADLK: Self`
-
-- `const DEADLOCK: Self`
-
-- `const DESTADDRREQ: Self`
-
-- `const DOM: Self`
-
-- `const DOTDOT: Self`
-
-- `const DQUOT: Self`
-
-- `const EXIST: Self`
-
-- `const FAULT: Self`
-
-- `const FBIG: Self`
-
-- `const HOSTDOWN: Self`
-
-- `const HOSTUNREACH: Self`
-
-- `const HWPOISON: Self`
-
-- `const IDRM: Self`
-
-- `const ILSEQ: Self`
-
-- `const INPROGRESS: Self`
-
-- `const INTR: Self`
-
-- `const INVAL: Self`
-
-- `const IO: Self`
-
-- `const ISCONN: Self`
-
-- `const ISDIR: Self`
-
-- `const ISNAM: Self`
-
-- `const KEYEXPIRED: Self`
-
-- `const KEYREJECTED: Self`
-
-- `const KEYREVOKED: Self`
-
-- `const L2HLT: Self`
-
-- `const L2NSYNC: Self`
-
-- `const L3HLT: Self`
-
-- `const L3RST: Self`
-
-- `const LIBACC: Self`
-
-- `const LIBBAD: Self`
-
-- `const LIBEXEC: Self`
-
-- `const LIBMAX: Self`
-
-- `const LIBSCN: Self`
-
-- `const LNRNG: Self`
-
-- `const LOOP: Self`
-
-- `const MEDIUMTYPE: Self`
-
-- `const MFILE: Self`
-
-- `const MLINK: Self`
-
-- `const MSGSIZE: Self`
-
-- `const MULTIHOP: Self`
-
-- `const NAMETOOLONG: Self`
-
-- `const NAVAIL: Self`
-
-- `const NETDOWN: Self`
-
-- `const NETRESET: Self`
-
-- `const NETUNREACH: Self`
-
-- `const NFILE: Self`
-
-- `const NOANO: Self`
-
-- `const NOBUFS: Self`
-
-- `const NOCSI: Self`
-
-- `const NODATA: Self`
-
-- `const NODEV: Self`
-
-- `const NOENT: Self`
-
-- `const NOEXEC: Self`
-
-- `const NOKEY: Self`
-
-- `const NOLCK: Self`
-
-- `const NOLINK: Self`
-
-- `const NOMEDIUM: Self`
-
-- `const NOMEM: Self`
-
-- `const NOMSG: Self`
-
-- `const NONET: Self`
-
-- `const NOPKG: Self`
-
-- `const NOPROTOOPT: Self`
-
-- `const NOSPC: Self`
-
-- `const NOSR: Self`
-
-- `const NOSTR: Self`
-
-- `const NOSYS: Self`
-
-- `const NOTBLK: Self`
-
-- `const NOTCONN: Self`
-
-- `const NOTDIR: Self`
-
-- `const NOTEMPTY: Self`
-
-- `const NOTNAM: Self`
-
-- `const NOTRECOVERABLE: Self`
-
-- `const NOTSOCK: Self`
-
-- `const NOTSUP: Self`
-
-- `const NOTTY: Self`
-
-- `const NOTUNIQ: Self`
-
-- `const NXIO: Self`
-
-- `const OPNOTSUPP: Self`
-
-- `const OVERFLOW: Self`
-
-- `const OWNERDEAD: Self`
-
-- `const PERM: Self`
-
-- `const PFNOSUPPORT: Self`
-
-- `const PIPE: Self`
-
-- `const PROTO: Self`
-
-- `const PROTONOSUPPORT: Self`
-
-- `const PROTOTYPE: Self`
-
-- `const RANGE: Self`
-
-- `const REMCHG: Self`
-
-- `const REMOTE: Self`
-
-- `const REMOTEIO: Self`
-
-- `const RESTART: Self`
-
-- `const RFKILL: Self`
-
-- `const ROFS: Self`
-
-- `const SHUTDOWN: Self`
-
-- `const SOCKTNOSUPPORT: Self`
-
-- `const SPIPE: Self`
-
-- `const SRCH: Self`
-
-- `const SRMNT: Self`
-
-- `const STALE: Self`
-
-- `const STRPIPE: Self`
-
-- `const TIME: Self`
-
-- `const TIMEDOUT: Self`
-
-- `const TOOBIG: Self`
-
-- `const TOOMANYREFS: Self`
-
-- `const TXTBSY: Self`
-
-- `const UCLEAN: Self`
-
-- `const UNATCH: Self`
-
-- `const USERS: Self`
-
-- `const WOULDBLOCK: Self`
-
-- `const XDEV: Self`
-
-- `const XFULL: Self`
+- <span id="errno-from-errno"></span>`const fn from_errno(raw: u32) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for Errno`
 
-- `fn clone(self: &Self) -> Errno` — [`Errno`](#errno)
+- <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](../backend/io/errno/index.md)
 
 ##### `impl Copy for Errno`
 
 ##### `impl Debug for Errno`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errno-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Errno`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errno-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Errno`
 
@@ -344,25 +158,29 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl Hash for Errno`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="errno-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Errno`
 
-- `fn eq(self: &Self, other: &Errno) -> bool` — [`Errno`](#errno)
+- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../backend/io/errno/index.md)
 
 ##### `impl StructuralPartialEq for Errno`
 
-##### `impl<T> ToString for Errno`
+##### `impl ToString for Errno`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errno-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
+
+*Defined in [`rustix-1.1.2/src/io/mod.rs:20`](../../../.source_1765210505/rustix-1.1.2/src/io/mod.rs#L20)*
 
 ### `close`
 
 ```rust
 unsafe fn close(raw_fd: backend::fd::RawFd)
 ```
+
+*Defined in [`rustix-1.1.2/src/io/close.rs:54-56`](../../../.source_1765210505/rustix-1.1.2/src/io/close.rs#L54-L56)*
 
 `close(raw_fd)`—Closes a `RawFd` directly.
 
@@ -409,11 +227,13 @@ not valid after the call.
 fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/dup.rs:44-46`](../../../.source_1765210505/rustix-1.1.2/src/io/dup.rs#L44-L46)*
+
 `dup(fd)`—Creates a new `OwnedFd` instance that shares the same
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -447,6 +267,8 @@ be unexpectedly allocated on other threads or in libraries.
 fn dup2<Fd: AsFd>(fd: Fd, new: &mut crate::fd::OwnedFd) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/dup.rs:89-91`](../../../.source_1765210505/rustix-1.1.2/src/io/dup.rs#L89-L91)*
+
 `dup2(fd, new)`—Changes the [file description] of a file descriptor.
 
 `dup2` conceptually closes `new` and then sets the file description for
@@ -456,7 +278,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](#dup3) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
+support it, or [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.
@@ -492,6 +314,8 @@ For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 fn dup3<Fd: AsFd>(fd: Fd, new: &mut crate::fd::OwnedFd, flags: DupFlags) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/dup.rs:123-125`](../../../.source_1765210505/rustix-1.1.2/src/io/dup.rs#L123-L125)*
+
 `dup3(fd, new, flags)`—Changes the [file description] of a file
 descriptor, with flags.
 
@@ -518,6 +342,8 @@ This additional difference is the reason this function isn't named
 ```rust
 fn fcntl_getfd<Fd: AsFd>(fd: Fd) -> io::Result<FdFlags>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:40-42`](../../../.source_1765210505/rustix-1.1.2/src/io/fcntl.rs#L40-L42)*
 
 `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags.
 
@@ -547,6 +373,8 @@ fn fcntl_getfd<Fd: AsFd>(fd: Fd) -> io::Result<FdFlags>
 fn fcntl_setfd<Fd: AsFd>(fd: Fd, flags: FdFlags) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:68-70`](../../../.source_1765210505/rustix-1.1.2/src/io/fcntl.rs#L68-L70)*
+
 `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags.
 
 # References
@@ -574,6 +402,8 @@ fn fcntl_setfd<Fd: AsFd>(fd: Fd, flags: FdFlags) -> io::Result<()>
 ```rust
 fn fcntl_dupfd_cloexec<Fd: AsFd>(fd: Fd, min: backend::fd::RawFd) -> io::Result<backend::fd::OwnedFd>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:105-107`](../../../.source_1765210505/rustix-1.1.2/src/io/fcntl.rs#L105-L107)*
 
 `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value
 at least `min`, that has `O_CLOEXEC` set and that shares the same
@@ -611,6 +441,8 @@ threads or in libraries.
 fn ioctl_fioclex<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:26-32`](../../../.source_1765210505/rustix-1.1.2/src/io/ioctl.rs#L26-L32)*
+
 `ioctl(fd, FIOCLEX, NULL)`—Set the close-on-exec flag.
 
 This is similar to `fcntl(fd, F_SETFD, FD_CLOEXEC)`, except that it avoids
@@ -625,6 +457,8 @@ descriptors.
 fn ioctl_fionclex<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:44-50`](../../../.source_1765210505/rustix-1.1.2/src/io/ioctl.rs#L44-L50)*
+
 `ioctl(fd, FIONCLEX, NULL)`—Remove the close-on-exec flag.
 
 This is similar to `fcntl_setfd(fd, FdFlags::empty())`, except that it avoids
@@ -638,6 +472,8 @@ descriptors.
 ```rust
 fn ioctl_fionbio<Fd: AsFd>(fd: Fd, value: bool) -> io::Result<()>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:64-70`](../../../.source_1765210505/rustix-1.1.2/src/io/ioctl.rs#L64-L70)*
 
 `ioctl(fd, FIONBIO, &value)`—Enables or disables non-blocking mode.
 
@@ -654,6 +490,8 @@ fn ioctl_fionbio<Fd: AsFd>(fd: Fd, value: bool) -> io::Result<()>
 ```rust
 fn ioctl_fionread<Fd: AsFd>(fd: Fd) -> io::Result<u64>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/ioctl.rs:92-98`](../../../.source_1765210505/rustix-1.1.2/src/io/ioctl.rs#L92-L98)*
 
 `ioctl(fd, FIONREAD)`—Returns the number of bytes ready to be read.
 
@@ -677,6 +515,8 @@ so it may contain a wrapped value.
 ```rust
 fn read<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf) -> io::Result<<Buf as >::Output>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:39-44`](../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L39-L44)*
 
 `read(fd, buf)`—Reads from a stream.
 
@@ -706,6 +546,8 @@ fn read<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf) -> io::Result<<Buf as >::Ou
 fn write<Fd: AsFd>(fd: Fd, buf: &[u8]) -> io::Result<usize>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:69-71`](../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L69-L71)*
+
 `write(fd, buf)`—Writes to a stream.
 
 # References
@@ -734,6 +576,8 @@ fn write<Fd: AsFd>(fd: Fd, buf: &[u8]) -> io::Result<usize>
 fn pread<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf, offset: u64) -> io::Result<<Buf as >::Output>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:97-106`](../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L97-L106)*
+
 `pread(fd, buf, offset)`—Reads from a file at a given position.
 
 # References
@@ -761,6 +605,8 @@ fn pread<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf, offset: u64) -> io::Result
 ```rust
 fn pwrite<Fd: AsFd>(fd: Fd, buf: &[u8], offset: u64) -> io::Result<usize>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:136-138`](../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L136-L138)*
 
 `pwrite(fd, bufs)`—Writes to a file at a given position.
 
@@ -794,6 +640,8 @@ data to the end of the file.
 fn readv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:164-166`](../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L164-L166)*
+
 `readv(fd, bufs)`—Reads from a stream into multiple buffers.
 
 # References
@@ -821,6 +669,8 @@ fn readv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>
 ```rust
 fn writev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>]) -> io::Result<usize>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:192-194`](../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L192-L194)*
 
 `writev(fd, bufs)`—Writes to a stream from multiple buffers.
 
@@ -850,6 +700,8 @@ fn writev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>]) -> io::Result<usize>
 fn preadv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>], offset: u64) -> io::Result<usize>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:227-229`](../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L227-L229)*
+
 `preadv(fd, bufs, offset)`—Reads from a file at a given position into
 multiple buffers.
 
@@ -874,6 +726,8 @@ multiple buffers.
 ```rust
 fn pwritev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>], offset: u64) -> io::Result<usize>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:266-268`](../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L266-L268)*
 
 `pwritev(fd, bufs, offset)`—Writes to a file at a given position from
 multiple buffers.
@@ -904,6 +758,8 @@ data to the end of the file.
 fn preadv2<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>], offset: u64, flags: ReadWriteFlags) -> io::Result<usize>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:282-289`](../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L282-L289)*
+
 `preadv2(fd, bufs, offset, flags)`—Reads data, with several options.
 
 An `offset` of `u64::MAX` means to use and update the current file offset.
@@ -920,6 +776,8 @@ An `offset` of `u64::MAX` means to use and update the current file offset.
 fn pwritev2<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>], offset: u64, flags: ReadWriteFlags) -> io::Result<usize>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:303-310`](../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L303-L310)*
+
 `pwritev2(fd, bufs, offset, flags)`—Writes data, with several options.
 
 An `offset` of `u64::MAX` means to use and update the current file offset.
@@ -931,4 +789,6 @@ An `offset` of `u64::MAX` means to use and update the current file offset.
 
 
 ## Type Aliases
+
+*Defined in [`rustix-1.1.2/src/io/mod.rs:20`](../../../.source_1765210505/rustix-1.1.2/src/io/mod.rs#L20)*
 

@@ -4,10 +4,18 @@
 
 # Module `builders`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`string`](#string) | mod |  |
+| [`bytes`](#bytes) | mod |  |
+| [`Builder`](#builder) | struct | A builder for constructing a `Regex`, `bytes::Regex`, `RegexSet` or a `bytes::RegexSet`. |
+
 ## Modules
 
-- [`string`](string/index.md) - 
-- [`bytes`](bytes/index.md) - 
+- [`string`](string/index.md)
+- [`bytes`](bytes/index.md)
 
 ## Structs
 
@@ -21,6 +29,8 @@ struct Builder {
 }
 ```
 
+*Defined in [`regex-1.12.2/src/builders.rs:44-48`](../../../.source_1765210505/regex-1.12.2/src/builders.rs#L44-L48)*
+
 A builder for constructing a `Regex`, `bytes::Regex`, `RegexSet` or a
 `bytes::RegexSet`.
 
@@ -30,51 +40,51 @@ and `bytes::RegexSetBuilder`.
 
 #### Implementations
 
-- `fn new<I, S>(patterns: I) -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new<I, S>(patterns: I) -> Builder` — [`Builder`](#builder)
 
-- `fn build_one_string(self: &Self) -> Result<crate::Regex, Error>` — [`Regex`](../index.md), [`Error`](../index.md)
+- <span id="builder-build-one-string"></span>`fn build_one_string(&self) -> Result<crate::Regex, Error>` — [`Regex`](../index.md), [`Error`](../error/index.md)
 
-- `fn build_one_bytes(self: &Self) -> Result<crate::bytes::Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../index.md)
+- <span id="builder-build-one-bytes"></span>`fn build_one_bytes(&self) -> Result<crate::bytes::Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../error/index.md)
 
-- `fn build_many_string(self: &Self) -> Result<crate::RegexSet, Error>` — [`RegexSet`](../index.md), [`Error`](../index.md)
+- <span id="builder-build-many-string"></span>`fn build_many_string(&self) -> Result<crate::RegexSet, Error>` — [`RegexSet`](../index.md), [`Error`](../error/index.md)
 
-- `fn build_many_bytes(self: &Self) -> Result<crate::bytes::RegexSet, Error>` — [`RegexSet`](../regexset/bytes/index.md), [`Error`](../index.md)
+- <span id="builder-build-many-bytes"></span>`fn build_many_bytes(&self) -> Result<crate::bytes::RegexSet, Error>` — [`RegexSet`](../regexset/bytes/index.md), [`Error`](../error/index.md)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn size_limit(self: &mut Self, limit: usize) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-size-limit"></span>`fn size_limit(&mut self, limit: usize) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn dfa_size_limit(self: &mut Self, limit: usize) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-dfa-size-limit"></span>`fn dfa_size_limit(&mut self, limit: usize) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](#builder)
+- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
 

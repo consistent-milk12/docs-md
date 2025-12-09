@@ -15,9 +15,19 @@ good of a job keeping the search for candidates inside a SIMD hot path. It
 however can be good enough in many circumstances.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`default_rank`](#default_rank) | mod |  |
+| [`Finder`](#finder) | struct | An architecture independent "packed pair" finder. |
+| [`Pair`](#pair) | struct | A pair of byte offsets into a needle to use as a predicate. |
+| [`DefaultFrequencyRank`](#defaultfrequencyrank) | struct | The default byte frequency heuristic that is good for most haystacks. |
+| [`HeuristicFrequencyRank`](#heuristicfrequencyrank) | trait | This trait allows the user to customize the heuristic used to determine the relative frequency of a given byte in the dataset being searched. |
+
 ## Modules
 
-- [`default_rank`](default_rank/index.md) - 
+- [`default_rank`](default_rank/index.md)
 
 ## Structs
 
@@ -30,6 +40,8 @@ struct Finder {
     byte2: u8,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:35-39`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L35-L39)*
 
 An architecture independent "packed pair" finder.
 
@@ -49,25 +61,25 @@ architecture independent routines are unavailable.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
+- <span id="finder-new"></span>`fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
 
-- `fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](#pair), [`Finder`](#finder)
+- <span id="finder-with-pair"></span>`fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](#pair), [`Finder`](#finder)
 
-- `fn find_prefilter(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="finder-find-prefilter"></span>`fn find_prefilter(&self, haystack: &[u8]) -> Option<usize>`
 
-- `fn pair(self: &Self) -> &Pair` — [`Pair`](#pair)
+- <span id="finder-pair"></span>`fn pair(&self) -> &Pair` — [`Pair`](#pair)
 
 #### Trait Implementations
 
 ##### `impl Clone for Finder`
 
-- `fn clone(self: &Self) -> Finder` — [`Finder`](#finder)
+- <span id="finder-clone"></span>`fn clone(&self) -> Finder` — [`Finder`](#finder)
 
 ##### `impl Copy for Finder`
 
 ##### `impl Debug for Finder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Pair`
 
@@ -77,6 +89,8 @@ struct Pair {
     index2: u8,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:135-138`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L135-L138)*
 
 A pair of byte offsets into a needle to use as a predicate.
 
@@ -103,27 +117,27 @@ needles with length at least 2.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Option<Pair>` — [`Pair`](#pair)
+- <span id="pair-new"></span>`fn new(needle: &[u8]) -> Option<Pair>` — [`Pair`](#pair)
 
-- `fn with_ranker<R: HeuristicFrequencyRank>(needle: &[u8], ranker: R) -> Option<Pair>` — [`Pair`](#pair)
+- <span id="pair-with-ranker"></span>`fn with_ranker<R: HeuristicFrequencyRank>(needle: &[u8], ranker: R) -> Option<Pair>` — [`Pair`](#pair)
 
-- `fn with_indices(needle: &[u8], index1: u8, index2: u8) -> Option<Pair>` — [`Pair`](#pair)
+- <span id="pair-with-indices"></span>`fn with_indices(needle: &[u8], index1: u8, index2: u8) -> Option<Pair>` — [`Pair`](#pair)
 
-- `fn index1(self: &Self) -> u8`
+- <span id="pair-index1"></span>`fn index1(&self) -> u8`
 
-- `fn index2(self: &Self) -> u8`
+- <span id="pair-index2"></span>`fn index2(&self) -> u8`
 
 #### Trait Implementations
 
 ##### `impl Clone for Pair`
 
-- `fn clone(self: &Self) -> Pair` — [`Pair`](#pair)
+- <span id="pair-clone"></span>`fn clone(&self) -> Pair` — [`Pair`](#pair)
 
 ##### `impl Copy for Pair`
 
 ##### `impl Debug for Pair`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pair-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DefaultFrequencyRank`
 
@@ -131,13 +145,15 @@ needles with length at least 2.
 struct DefaultFrequencyRank;
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:321`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L321)*
+
 The default byte frequency heuristic that is good for most haystacks.
 
 #### Trait Implementations
 
 ##### `impl HeuristicFrequencyRank for DefaultFrequencyRank`
 
-- `fn rank(self: &Self, byte: u8) -> u8`
+- <span id="defaultfrequencyrank-rank"></span>`fn rank(&self, byte: u8) -> u8`
 
 ## Traits
 
@@ -147,12 +163,14 @@ The default byte frequency heuristic that is good for most haystacks.
 trait HeuristicFrequencyRank { ... }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:309-318`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L309-L318)*
+
 This trait allows the user to customize the heuristic used to determine the
 relative frequency of a given byte in the dataset being searched.
 
 The use of this trait can have a dramatic impact on performance depending
 on the type of data being searched. The details of why are explained in the
-docs of [`crate::memmem::Prefilter`](../../../memmem/index.md). To summarize, the core algorithm uses
+docs of [`crate::memmem::Prefilter`](../../../memmem/searcher/index.md). To summarize, the core algorithm uses
 a prefilter to quickly identify candidate matches that are later verified
 more slowly. This prefilter is implemented in terms of trying to find
 `rare` bytes at specific offsets that will occur less frequently in the
@@ -210,7 +228,12 @@ assert!(finder.find(b"\x00\x00\x00\xdd\xdd").is_some());
 
 #### Required Methods
 
-- `fn rank(self: &Self, byte: u8) -> u8`
+- `fn rank(&self, byte: u8) -> u8`
 
   Return the heuristic frequency rank of the given byte. A lower rank
+
+#### Implementors
+
+- [`DefaultFrequencyRank`](#defaultfrequencyrank)
+- `&'a R`
 

@@ -85,22 +85,203 @@ file, consider having the code generator pass the tokens through
 code it is convenient for a human to read and debug.
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`ext`](#ext)
+  - [`format`](#format)
+  - [`ident_fragment`](#ident_fragment)
+  - [`to_tokens`](#to_tokens)
+- [Traits](#traits)
+  - [`TokenStreamExt`](#tokenstreamext)
+  - [`IdentFragment`](#identfragment)
+  - [`ToTokens`](#totokens)
+- [Macros](#macros)
+  - [`__quote!`](#__quote)
+  - [`__quote_spanned!`](#__quote_spanned)
+  - [`format_ident!`](#format_ident)
+  - [`quote!`](#quote)
+  - [`quote_spanned!`](#quote_spanned)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ext`](#ext) | mod |  |
+| [`format`](#format) | mod |  |
+| [`ident_fragment`](#ident_fragment) | mod |  |
+| [`to_tokens`](#to_tokens) | mod |  |
+| [`TokenStreamExt`](#tokenstreamext) | trait |  |
+| [`IdentFragment`](#identfragment) | trait |  |
+| [`ToTokens`](#totokens) | trait |  |
+| [`__quote!`](#__quote) | macro |  |
+| [`__quote_spanned!`](#__quote_spanned) | macro |  |
+| [`format_ident!`](#format_ident) | macro | Formatting macro for constructing `Ident`s. |
+| [`quote!`](#quote) | macro | The whole point. |
+| [`quote_spanned!`](#quote_spanned) | macro | Same as `quote!`, but applies a given span to all tokens originating within the macro invocation. |
+
 ## Modules
 
-- [`ext`](ext/index.md) - 
-- [`format`](format/index.md) - 
-- [`ident_fragment`](ident_fragment/index.md) - 
-- [`to_tokens`](to_tokens/index.md) - 
+- [`ext`](ext/index.md)
+- [`format`](format/index.md)
+- [`ident_fragment`](ident_fragment/index.md)
+- [`to_tokens`](to_tokens/index.md)
 
 ## Traits
+
+### `TokenStreamExt`
+
+```rust
+trait TokenStreamExt: private::Sealed { ... }
+```
+
+*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../.source_1765210505/quote-1.0.42/src/ext.rs#L8-L57)*
+
+TokenStream extension trait with methods for appending tokens.
+
+This trait is sealed and cannot be implemented outside of the `quote` crate.
+
+#### Required Methods
+
+- `fn append<U>(&mut self, token: U)`
+
+  For use by `ToTokens` implementations.
+
+- `fn append_all<I>(&mut self, iter: I)`
+
+  For use by `ToTokens` implementations.
+
+- `fn append_separated<I, U>(&mut self, iter: I, op: U)`
+
+  For use by `ToTokens` implementations.
+
+- `fn append_terminated<I, U>(&mut self, iter: I, term: U)`
+
+  For use by `ToTokens` implementations.
+
+#### Implementors
+
+- `proc_macro2::TokenStream`
+
+### `IdentFragment`
+
+```rust
+trait IdentFragment { ... }
+```
+
+*Defined in [`quote-1.0.42/src/ident_fragment.rs:13-23`](../../.source_1765210505/quote-1.0.42/src/ident_fragment.rs#L13-L23)*
+
+Specialized formatting trait used by `format_ident!`.
+
+[`Ident`](../proc_macro2/imp/index.md) arguments formatted using this trait will have their `r#` prefix
+stripped, if present.
+
+See `format_ident!` for more information.
+
+
+#### Required Methods
+
+- `fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+  Format this value as an identifier fragment.
+
+#### Provided Methods
+
+- `fn span(&self) -> Option<Span>`
+
+  Span associated with this `IdentFragment`.
+
+#### Implementors
+
+- `&T`
+- `&mut T`
+- `String`
+- `alloc::borrow::Cow<'_, T>`
+- `bool`
+- `char`
+- `proc_macro2::Ident`
+- `str`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
+### `ToTokens`
+
+```rust
+trait ToTokens { ... }
+```
+
+*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../.source_1765210505/quote-1.0.42/src/to_tokens.rs#L9-L72)*
+
+Types that can be interpolated inside a `quote!` invocation.
+
+#### Required Methods
+
+- `fn to_tokens(&self, tokens: &mut TokenStream)`
+
+  Write `self` to the given `TokenStream`.
+
+#### Provided Methods
+
+- `fn to_token_stream(&self) -> TokenStream`
+
+  Convert `self` directly into a `TokenStream` object.
+
+- `fn into_token_stream(self) -> TokenStream`
+
+  Convert `self` directly into a `TokenStream` object.
+
+#### Implementors
+
+- `&T`
+- `&mut T`
+- `Box<T>`
+- `Option<T>`
+- `String`
+- `alloc::borrow::Cow<'a, T>`
+- `alloc::rc::Rc<T>`
+- `bool`
+- `char`
+- `f32`
+- `f64`
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `proc_macro2::Group`
+- `proc_macro2::Ident`
+- `proc_macro2::Literal`
+- `proc_macro2::Punct`
+- `proc_macro2::TokenStream`
+- `proc_macro2::TokenTree`
+- `std::ffi::CStr`
+- `std::ffi::CString`
+- `str`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ## Macros
 
 ### `__quote!`
 
+*Defined in [`quote-1.0.42/src/lib.rs:128-478`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L128-L478)*
+
 ### `__quote_spanned!`
 
+*Defined in [`quote-1.0.42/src/lib.rs:527-625`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L527-L625)*
+
 ### `format_ident!`
+
+*Defined in [`quote-1.0.42/src/format.rs:111-125`](../../.source_1765210505/quote-1.0.42/src/format.rs#L111-L125)*
 
 Formatting macro for constructing `Ident`s.
 
@@ -114,7 +295,7 @@ named arguments.
 Only a limited set of formatting traits are supported. The current mapping
 of format types to traits is:
 
-* `{}` ⇒ [`IdentFragment`](#identfragment)
+* `{}` ⇒ [`IdentFragment`](ident_fragment/index.md)
 * `{:o}` ⇒ [`Octal`](std::fmt::Octal)
 * `{:x}` ⇒ [`LowerHex`](std::fmt::LowerHex)
 * `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
@@ -126,7 +307,7 @@ See [`std::fmt`](../anstream/fmt/index.md) for more information.
 
 # IdentFragment
 
-Unlike `format!`, this macro uses the [`IdentFragment`](#identfragment) formatting trait by
+Unlike `format!`, this macro uses the [`IdentFragment`](ident_fragment/index.md) formatting trait by
 default. This trait is like `Display`, with a few differences:
 
 * `IdentFragment` is only implemented for a limited set of types, such as
@@ -210,6 +391,8 @@ assert_eq!(upper_hex, "Id_A");
 
 ### `quote!`
 
+*Defined in [`quote-1.0.42/src/lib.rs:483-487`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L483-L487)*
+
 The whole point.
 
 Performs variable interpolation against the input and produces it as
@@ -225,7 +408,7 @@ Note: for returning tokens to the compiler in a procedural macro, use
 Variable interpolation is done with `#var` (similar to `$var` in
 `macro_rules!` macros). This grabs the `var` variable that is currently in
 scope and inserts it in that location in the output tokens. Any type
-implementing the [`ToTokens`](#totokens) trait can be interpolated. This includes most
+implementing the [`ToTokens`](to_tokens/index.md) trait can be interpolated. This includes most
 Rust primitive types as well as most of the syntax tree types from the [Syn]
 crate.
 
@@ -550,6 +733,8 @@ quote! {
 ```
 
 ### `quote_spanned!`
+
+*Defined in [`quote-1.0.42/src/lib.rs:630-634`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L630-L634)*
 
 Same as `quote!`, but applies a given span to all tokens originating within
 the macro invocation.

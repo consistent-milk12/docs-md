@@ -4,6 +4,12 @@
 
 # Module `iter`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`LineColIterator`](#linecoliterator) | struct |  |
+
 ## Structs
 
 ### `LineColIterator<I>`
@@ -16,6 +22,8 @@ struct LineColIterator<I> {
     start_of_line: usize,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/iter.rs:3-20`](../../../.source_1765210505/serde_json-1.0.145/src/iter.rs#L3-L20)*
 
 #### Fields
 
@@ -39,27 +47,27 @@ struct LineColIterator<I> {
 
 #### Implementations
 
-- `fn new(iter: I) -> LineColIterator<I>` — [`LineColIterator`](#linecoliterator)
+- <span id="linecoliterator-new"></span>`fn new(iter: I) -> LineColIterator<I>` — [`LineColIterator`](#linecoliterator)
 
-- `fn line(self: &Self) -> usize`
+- <span id="linecoliterator-line"></span>`fn line(&self) -> usize`
 
-- `fn col(self: &Self) -> usize`
+- <span id="linecoliterator-col"></span>`fn col(&self) -> usize`
 
-- `fn byte_offset(self: &Self) -> usize`
+- <span id="linecoliterator-byte-offset"></span>`fn byte_offset(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<I> IntoIterator for LineColIterator<I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="linecoliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="linecoliterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="linecoliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I> Iterator for LineColIterator<I>`
 
-- `type Item = Result<u8, Error>`
+- <span id="linecoliterator-type-item"></span>`type Item = Result<u8, Error>`
 
-- `fn next(self: &mut Self) -> Option<io::Result<u8>>` — [`Result`](../io/index.md)
+- <span id="linecoliterator-next"></span>`fn next(&mut self) -> Option<io::Result<u8>>` — [`Result`](../io/index.md)
 

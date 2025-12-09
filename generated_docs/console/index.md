@@ -78,14 +78,88 @@ By default all features are enabled.  The following features exist:
   for stripping and taking ansi escape codes into account for length
   calculations).
 
+## Contents
+
+- [Modules](#modules)
+  - [`common_term`](#common_term)
+  - [`kb`](#kb)
+  - [`term`](#term)
+  - [`unix_term`](#unix_term)
+  - [`utils`](#utils)
+  - [`ansi`](#ansi)
+- [Structs](#structs)
+  - [`Term`](#term)
+  - [`TermFeatures`](#termfeatures)
+  - [`Emoji`](#emoji)
+  - [`Style`](#style)
+  - [`StyledObject`](#styledobject)
+  - [`AnsiCodeIterator`](#ansicodeiterator)
+  - [`WithoutAnsi`](#withoutansi)
+- [Enums](#enums)
+  - [`Key`](#key)
+  - [`TermFamily`](#termfamily)
+  - [`TermTarget`](#termtarget)
+  - [`Alignment`](#alignment)
+  - [`Attribute`](#attribute)
+  - [`Color`](#color)
+- [Functions](#functions)
+  - [`user_attended`](#user_attended)
+  - [`user_attended_stderr`](#user_attended_stderr)
+  - [`colors_enabled`](#colors_enabled)
+  - [`colors_enabled_stderr`](#colors_enabled_stderr)
+  - [`measure_text_width`](#measure_text_width)
+  - [`pad_str`](#pad_str)
+  - [`pad_str_with`](#pad_str_with)
+  - [`set_colors_enabled`](#set_colors_enabled)
+  - [`set_colors_enabled_stderr`](#set_colors_enabled_stderr)
+  - [`style`](#style)
+  - [`truncate_str`](#truncate_str)
+  - [`strip_ansi_codes`](#strip_ansi_codes)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`common_term`](#common_term) | mod |  |
+| [`kb`](#kb) | mod |  |
+| [`term`](#term) | mod |  |
+| [`unix_term`](#unix_term) | mod |  |
+| [`utils`](#utils) | mod |  |
+| [`ansi`](#ansi) | mod |  |
+| [`Term`](#term) | struct |  |
+| [`TermFeatures`](#termfeatures) | struct |  |
+| [`Emoji`](#emoji) | struct |  |
+| [`Style`](#style) | struct |  |
+| [`StyledObject`](#styledobject) | struct |  |
+| [`AnsiCodeIterator`](#ansicodeiterator) | struct |  |
+| [`WithoutAnsi`](#withoutansi) | struct |  |
+| [`Key`](#key) | enum |  |
+| [`TermFamily`](#termfamily) | enum |  |
+| [`TermTarget`](#termtarget) | enum |  |
+| [`Alignment`](#alignment) | enum |  |
+| [`Attribute`](#attribute) | enum |  |
+| [`Color`](#color) | enum |  |
+| [`user_attended`](#user_attended) | fn |  |
+| [`user_attended_stderr`](#user_attended_stderr) | fn |  |
+| [`colors_enabled`](#colors_enabled) | fn |  |
+| [`colors_enabled_stderr`](#colors_enabled_stderr) | fn |  |
+| [`measure_text_width`](#measure_text_width) | fn |  |
+| [`pad_str`](#pad_str) | fn |  |
+| [`pad_str_with`](#pad_str_with) | fn |  |
+| [`set_colors_enabled`](#set_colors_enabled) | fn |  |
+| [`set_colors_enabled_stderr`](#set_colors_enabled_stderr) | fn |  |
+| [`style`](#style) | fn |  |
+| [`truncate_str`](#truncate_str) | fn |  |
+| [`strip_ansi_codes`](#strip_ansi_codes) | fn |  |
+
 ## Modules
 
-- [`common_term`](common_term/index.md) - 
-- [`kb`](kb/index.md) - 
-- [`term`](term/index.md) - 
-- [`unix_term`](unix_term/index.md) - 
-- [`utils`](utils/index.md) - 
-- [`ansi`](ansi/index.md) - 
+- [`common_term`](common_term/index.md)
+- [`kb`](kb/index.md)
+- [`term`](term/index.md)
+- [`unix_term`](unix_term/index.md)
+- [`utils`](utils/index.md)
+- [`ansi`](ansi/index.md)
 
 ## Structs
 
@@ -99,6 +173,8 @@ struct Term {
 }
 ```
 
+*Defined in [`console-0.16.1/src/term.rs:129-133`](../../.source_1765210505/console-0.16.1/src/term.rs#L129-L133)*
+
 Abstraction around a terminal.
 
 A terminal can be cloned.  If a buffer is used it's shared across all
@@ -106,103 +182,103 @@ clones which means it largely acts as a handle.
 
 #### Implementations
 
-- `fn with_inner(inner: TermInner) -> Term` — [`TermInner`](term/index.md), [`Term`](#term)
+- <span id="term-with-inner"></span>`fn with_inner(inner: TermInner) -> Term` — [`TermInner`](term/index.md), [`Term`](term/index.md)
 
-- `fn stdout() -> Term` — [`Term`](#term)
+- <span id="term-stdout"></span>`fn stdout() -> Term` — [`Term`](term/index.md)
 
-- `fn stderr() -> Term` — [`Term`](#term)
+- <span id="term-stderr"></span>`fn stderr() -> Term` — [`Term`](term/index.md)
 
-- `fn buffered_stdout() -> Term` — [`Term`](#term)
+- <span id="term-buffered-stdout"></span>`fn buffered_stdout() -> Term` — [`Term`](term/index.md)
 
-- `fn buffered_stderr() -> Term` — [`Term`](#term)
+- <span id="term-buffered-stderr"></span>`fn buffered_stderr() -> Term` — [`Term`](term/index.md)
 
-- `fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](#term)
+- <span id="term-read-write-pair"></span>`fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](term/index.md)
 
-- `fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](#style), [`Term`](#term)
+- <span id="term-read-write-pair-with-style"></span>`fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](utils/index.md), [`Term`](term/index.md)
 
-- `fn style(self: &Self) -> Style` — [`Style`](#style)
+- <span id="term-style"></span>`fn style(&self) -> Style` — [`Style`](utils/index.md)
 
-- `fn target(self: &Self) -> TermTarget` — [`TermTarget`](#termtarget)
+- <span id="term-target"></span>`fn target(&self) -> TermTarget` — [`TermTarget`](term/index.md)
 
-- `fn write_line(self: &Self, s: &str) -> io::Result<()>`
+- <span id="term-write-line"></span>`fn write_line(&self, s: &str) -> io::Result<()>`
 
-- `fn read_char(self: &Self) -> io::Result<char>`
+- <span id="term-read-char"></span>`fn read_char(&self) -> io::Result<char>`
 
-- `fn read_key(self: &Self) -> io::Result<Key>` — [`Key`](#key)
+- <span id="term-read-key"></span>`fn read_key(&self) -> io::Result<Key>` — [`Key`](kb/index.md)
 
-- `fn read_key_raw(self: &Self) -> io::Result<Key>` — [`Key`](#key)
+- <span id="term-read-key-raw"></span>`fn read_key_raw(&self) -> io::Result<Key>` — [`Key`](kb/index.md)
 
-- `fn read_line(self: &Self) -> io::Result<String>`
+- <span id="term-read-line"></span>`fn read_line(&self) -> io::Result<String>`
 
-- `fn read_line_initial_text(self: &Self, initial: &str) -> io::Result<String>`
+- <span id="term-read-line-initial-text"></span>`fn read_line_initial_text(&self, initial: &str) -> io::Result<String>`
 
-- `fn read_secure_line(self: &Self) -> io::Result<String>`
+- <span id="term-read-secure-line"></span>`fn read_secure_line(&self) -> io::Result<String>`
 
-- `fn flush(self: &Self) -> io::Result<()>`
+- <span id="term-flush"></span>`fn flush(&self) -> io::Result<()>`
 
-- `fn is_term(self: &Self) -> bool`
+- <span id="term-is-term"></span>`fn is_term(&self) -> bool`
 
-- `fn features(self: &Self) -> TermFeatures<'_>` — [`TermFeatures`](#termfeatures)
+- <span id="term-features"></span>`fn features(&self) -> TermFeatures<'_>` — [`TermFeatures`](term/index.md)
 
-- `fn size(self: &Self) -> (u16, u16)`
+- <span id="term-size"></span>`fn size(&self) -> (u16, u16)`
 
-- `fn size_checked(self: &Self) -> Option<(u16, u16)>`
+- <span id="term-size-checked"></span>`fn size_checked(&self) -> Option<(u16, u16)>`
 
-- `fn move_cursor_to(self: &Self, x: usize, y: usize) -> io::Result<()>`
+- <span id="term-move-cursor-to"></span>`fn move_cursor_to(&self, x: usize, y: usize) -> io::Result<()>`
 
-- `fn move_cursor_up(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-move-cursor-up"></span>`fn move_cursor_up(&self, n: usize) -> io::Result<()>`
 
-- `fn move_cursor_down(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-move-cursor-down"></span>`fn move_cursor_down(&self, n: usize) -> io::Result<()>`
 
-- `fn move_cursor_left(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-move-cursor-left"></span>`fn move_cursor_left(&self, n: usize) -> io::Result<()>`
 
-- `fn move_cursor_right(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-move-cursor-right"></span>`fn move_cursor_right(&self, n: usize) -> io::Result<()>`
 
-- `fn clear_line(self: &Self) -> io::Result<()>`
+- <span id="term-clear-line"></span>`fn clear_line(&self) -> io::Result<()>`
 
-- `fn clear_last_lines(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-clear-last-lines"></span>`fn clear_last_lines(&self, n: usize) -> io::Result<()>`
 
-- `fn clear_screen(self: &Self) -> io::Result<()>`
+- <span id="term-clear-screen"></span>`fn clear_screen(&self) -> io::Result<()>`
 
-- `fn clear_to_end_of_screen(self: &Self) -> io::Result<()>`
+- <span id="term-clear-to-end-of-screen"></span>`fn clear_to_end_of_screen(&self) -> io::Result<()>`
 
-- `fn clear_chars(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-clear-chars"></span>`fn clear_chars(&self, n: usize) -> io::Result<()>`
 
-- `fn set_title<T: Display>(self: &Self, title: T)`
+- <span id="term-set-title"></span>`fn set_title<T: Display>(&self, title: T)`
 
-- `fn show_cursor(self: &Self) -> io::Result<()>`
+- <span id="term-show-cursor"></span>`fn show_cursor(&self) -> io::Result<()>`
 
-- `fn hide_cursor(self: &Self) -> io::Result<()>`
+- <span id="term-hide-cursor"></span>`fn hide_cursor(&self) -> io::Result<()>`
 
-- `fn write_through(self: &Self, bytes: &[u8]) -> io::Result<()>`
+- <span id="term-write-through"></span>`fn write_through(&self, bytes: &[u8]) -> io::Result<()>`
 
-- `fn write_through_common(self: &Self, bytes: &[u8]) -> io::Result<()>`
+- <span id="term-write-through-common"></span>`fn write_through_common(&self, bytes: &[u8]) -> io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl AsRawFd for Term`
 
-- `fn as_raw_fd(self: &Self) -> RawFd`
+- <span id="term-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
 
 ##### `impl Clone for Term`
 
-- `fn clone(self: &Self) -> Term` — [`Term`](#term)
+- <span id="term-clone"></span>`fn clone(&self) -> Term` — [`Term`](term/index.md)
 
 ##### `impl Debug for Term`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="term-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Read for Term`
 
-- `fn read(self: &mut Self, buf: &mut [u8]) -> io::Result<usize>`
+- <span id="term-read"></span>`fn read(&mut self, buf: &mut [u8]) -> io::Result<usize>`
 
 ##### `impl TermLike for console::Term`
 
 ##### `impl Write for Term`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> io::Result<usize>`
+- <span id="term-write"></span>`fn write(&mut self, buf: &[u8]) -> io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> io::Result<()>`
+- <span id="term-flush"></span>`fn flush(&mut self) -> io::Result<()>`
 
 ### `TermFeatures<'a>`
 
@@ -210,35 +286,39 @@ clones which means it largely acts as a handle.
 struct TermFeatures<'a>(&'a Term);
 ```
 
+*Defined in [`console-0.16.1/src/term.rs:63`](../../.source_1765210505/console-0.16.1/src/term.rs#L63)*
+
 Gives access to the terminal features.
 
 #### Implementations
 
-- `fn is_attended(self: &Self) -> bool`
+- <span id="termfeatures-is-attended"></span>`fn is_attended(&self) -> bool`
 
-- `fn colors_supported(self: &Self) -> bool`
+- <span id="termfeatures-colors-supported"></span>`fn colors_supported(&self) -> bool`
 
-- `fn is_msys_tty(self: &Self) -> bool`
+- <span id="termfeatures-is-msys-tty"></span>`fn is_msys_tty(&self) -> bool`
 
-- `fn wants_emoji(self: &Self) -> bool`
+- <span id="termfeatures-wants-emoji"></span>`fn wants_emoji(&self) -> bool`
 
-- `fn family(self: &Self) -> TermFamily` — [`TermFamily`](#termfamily)
+- <span id="termfeatures-family"></span>`fn family(&self) -> TermFamily` — [`TermFamily`](term/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for TermFeatures<'a>`
+##### `impl Clone for TermFeatures<'a>`
 
-- `fn clone(self: &Self) -> TermFeatures<'a>` — [`TermFeatures`](#termfeatures)
+- <span id="termfeatures-clone"></span>`fn clone(&self) -> TermFeatures<'a>` — [`TermFeatures`](term/index.md)
 
-##### `impl<'a> Debug for TermFeatures<'a>`
+##### `impl Debug for TermFeatures<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="termfeatures-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Emoji<'a, 'b>`
 
 ```rust
 struct Emoji<'a, 'b>(&'a str, &'b str);
 ```
+
+*Defined in [`console-0.16.1/src/utils.rs:762`](../../.source_1765210505/console-0.16.1/src/utils.rs#L762)*
 
 "Intelligent" emoji formatter.
 
@@ -255,23 +335,23 @@ println!("[4/4] {} Done!", Emoji("✨", ":-)"));
 
 #### Implementations
 
-- `fn new(emoji: &'a str, fallback: &'b str) -> Emoji<'a, 'b>` — [`Emoji`](#emoji)
+- <span id="emoji-new"></span>`fn new(emoji: &'a str, fallback: &'b str) -> Emoji<'a, 'b>` — [`Emoji`](utils/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a, 'b> Clone for Emoji<'a, 'b>`
+##### `impl Clone for Emoji<'a, 'b>`
 
-- `fn clone(self: &Self) -> Emoji<'a, 'b>` — [`Emoji`](#emoji)
+- <span id="emoji-clone"></span>`fn clone(&self) -> Emoji<'a, 'b>` — [`Emoji`](utils/index.md)
 
-##### `impl<'a, 'b> Copy for Emoji<'a, 'b>`
+##### `impl Copy for Emoji<'a, 'b>`
 
 ##### `impl Display for Emoji<'_, '_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="emoji-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for Emoji<'a, 'b>`
+##### `impl ToString for Emoji<'a, 'b>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="emoji-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Style`
 
@@ -287,105 +367,107 @@ struct Style {
 }
 ```
 
+*Defined in [`console-0.16.1/src/utils.rs:229-237`](../../.source_1765210505/console-0.16.1/src/utils.rs#L229-L237)*
+
 A stored style that can be applied.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="style-new"></span>`const fn new() -> Self`
 
-- `fn from_dotted_str(s: &str) -> Self`
+- <span id="style-from-dotted-str"></span>`fn from_dotted_str(s: &str) -> Self`
 
-- `fn apply_to<D>(self: &Self, val: D) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="style-apply-to"></span>`fn apply_to<D>(&self, val: D) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn force_styling(self: Self, value: bool) -> Self`
+- <span id="style-force-styling"></span>`const fn force_styling(self, value: bool) -> Self`
 
-- `const fn for_stderr(self: Self) -> Self`
+- <span id="style-for-stderr"></span>`const fn for_stderr(self) -> Self`
 
-- `const fn for_stdout(self: Self) -> Self`
+- <span id="style-for-stdout"></span>`const fn for_stdout(self) -> Self`
 
-- `const fn fg(self: Self, color: Color) -> Self` — [`Color`](#color)
+- <span id="style-fg"></span>`const fn fg(self, color: Color) -> Self` — [`Color`](utils/index.md)
 
-- `const fn bg(self: Self, color: Color) -> Self` — [`Color`](#color)
+- <span id="style-bg"></span>`const fn bg(self, color: Color) -> Self` — [`Color`](utils/index.md)
 
-- `const fn attr(self: Self, attr: Attribute) -> Self` — [`Attribute`](#attribute)
+- <span id="style-attr"></span>`const fn attr(self, attr: Attribute) -> Self` — [`Attribute`](utils/index.md)
 
-- `const fn black(self: Self) -> Self`
+- <span id="style-black"></span>`const fn black(self) -> Self`
 
-- `const fn red(self: Self) -> Self`
+- <span id="style-red"></span>`const fn red(self) -> Self`
 
-- `const fn green(self: Self) -> Self`
+- <span id="style-green"></span>`const fn green(self) -> Self`
 
-- `const fn yellow(self: Self) -> Self`
+- <span id="style-yellow"></span>`const fn yellow(self) -> Self`
 
-- `const fn blue(self: Self) -> Self`
+- <span id="style-blue"></span>`const fn blue(self) -> Self`
 
-- `const fn magenta(self: Self) -> Self`
+- <span id="style-magenta"></span>`const fn magenta(self) -> Self`
 
-- `const fn cyan(self: Self) -> Self`
+- <span id="style-cyan"></span>`const fn cyan(self) -> Self`
 
-- `const fn white(self: Self) -> Self`
+- <span id="style-white"></span>`const fn white(self) -> Self`
 
-- `const fn color256(self: Self, color: u8) -> Self`
+- <span id="style-color256"></span>`const fn color256(self, color: u8) -> Self`
 
-- `const fn bright(self: Self) -> Self`
+- <span id="style-bright"></span>`const fn bright(self) -> Self`
 
-- `const fn on_black(self: Self) -> Self`
+- <span id="style-on-black"></span>`const fn on_black(self) -> Self`
 
-- `const fn on_red(self: Self) -> Self`
+- <span id="style-on-red"></span>`const fn on_red(self) -> Self`
 
-- `const fn on_green(self: Self) -> Self`
+- <span id="style-on-green"></span>`const fn on_green(self) -> Self`
 
-- `const fn on_yellow(self: Self) -> Self`
+- <span id="style-on-yellow"></span>`const fn on_yellow(self) -> Self`
 
-- `const fn on_blue(self: Self) -> Self`
+- <span id="style-on-blue"></span>`const fn on_blue(self) -> Self`
 
-- `const fn on_magenta(self: Self) -> Self`
+- <span id="style-on-magenta"></span>`const fn on_magenta(self) -> Self`
 
-- `const fn on_cyan(self: Self) -> Self`
+- <span id="style-on-cyan"></span>`const fn on_cyan(self) -> Self`
 
-- `const fn on_white(self: Self) -> Self`
+- <span id="style-on-white"></span>`const fn on_white(self) -> Self`
 
-- `const fn on_color256(self: Self, color: u8) -> Self`
+- <span id="style-on-color256"></span>`const fn on_color256(self, color: u8) -> Self`
 
-- `const fn on_bright(self: Self) -> Self`
+- <span id="style-on-bright"></span>`const fn on_bright(self) -> Self`
 
-- `const fn bold(self: Self) -> Self`
+- <span id="style-bold"></span>`const fn bold(self) -> Self`
 
-- `const fn dim(self: Self) -> Self`
+- <span id="style-dim"></span>`const fn dim(self) -> Self`
 
-- `const fn italic(self: Self) -> Self`
+- <span id="style-italic"></span>`const fn italic(self) -> Self`
 
-- `const fn underlined(self: Self) -> Self`
+- <span id="style-underlined"></span>`const fn underlined(self) -> Self`
 
-- `const fn blink(self: Self) -> Self`
+- <span id="style-blink"></span>`const fn blink(self) -> Self`
 
-- `const fn blink_fast(self: Self) -> Self`
+- <span id="style-blink-fast"></span>`const fn blink_fast(self) -> Self`
 
-- `const fn reverse(self: Self) -> Self`
+- <span id="style-reverse"></span>`const fn reverse(self) -> Self`
 
-- `const fn hidden(self: Self) -> Self`
+- <span id="style-hidden"></span>`const fn hidden(self) -> Self`
 
-- `const fn strikethrough(self: Self) -> Self`
+- <span id="style-strikethrough"></span>`const fn strikethrough(self) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for Style`
 
-- `fn clone(self: &Self) -> Style` — [`Style`](#style)
+- <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](utils/index.md)
 
 ##### `impl Debug for Style`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="style-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Style`
 
-- `fn default() -> Self`
+- <span id="style-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Style`
 
 ##### `impl PartialEq for Style`
 
-- `fn eq(self: &Self, other: &Style) -> bool` — [`Style`](#style)
+- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](utils/index.md)
 
 ##### `impl StructuralPartialEq for Style`
 
@@ -398,125 +480,127 @@ struct StyledObject<D> {
 }
 ```
 
+*Defined in [`console-0.16.1/src/utils.rs:515-518`](../../.source_1765210505/console-0.16.1/src/utils.rs#L515-L518)*
+
 A formatting wrapper that can be styled for a terminal.
 
 #### Implementations
 
-- `fn force_styling(self: Self, value: bool) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-force-styling"></span>`fn force_styling(self, value: bool) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `fn for_stderr(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-for-stderr"></span>`fn for_stderr(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn for_stdout(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-for-stdout"></span>`const fn for_stdout(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn fg(self: Self, color: Color) -> StyledObject<D>` — [`Color`](#color), [`StyledObject`](#styledobject)
+- <span id="styledobject-fg"></span>`const fn fg(self, color: Color) -> StyledObject<D>` — [`Color`](utils/index.md), [`StyledObject`](utils/index.md)
 
-- `const fn bg(self: Self, color: Color) -> StyledObject<D>` — [`Color`](#color), [`StyledObject`](#styledobject)
+- <span id="styledobject-bg"></span>`const fn bg(self, color: Color) -> StyledObject<D>` — [`Color`](utils/index.md), [`StyledObject`](utils/index.md)
 
-- `const fn attr(self: Self, attr: Attribute) -> StyledObject<D>` — [`Attribute`](#attribute), [`StyledObject`](#styledobject)
+- <span id="styledobject-attr"></span>`const fn attr(self, attr: Attribute) -> StyledObject<D>` — [`Attribute`](utils/index.md), [`StyledObject`](utils/index.md)
 
-- `const fn black(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-black"></span>`const fn black(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn red(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-red"></span>`const fn red(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn green(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-green"></span>`const fn green(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn yellow(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-yellow"></span>`const fn yellow(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn blue(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-blue"></span>`const fn blue(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn magenta(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-magenta"></span>`const fn magenta(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn cyan(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-cyan"></span>`const fn cyan(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn white(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-white"></span>`const fn white(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn color256(self: Self, color: u8) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-color256"></span>`const fn color256(self, color: u8) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn bright(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-bright"></span>`const fn bright(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn on_black(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-on-black"></span>`const fn on_black(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn on_red(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-on-red"></span>`const fn on_red(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn on_green(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-on-green"></span>`const fn on_green(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn on_yellow(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-on-yellow"></span>`const fn on_yellow(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn on_blue(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-on-blue"></span>`const fn on_blue(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn on_magenta(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-on-magenta"></span>`const fn on_magenta(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn on_cyan(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-on-cyan"></span>`const fn on_cyan(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn on_white(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-on-white"></span>`const fn on_white(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn on_color256(self: Self, color: u8) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-on-color256"></span>`const fn on_color256(self, color: u8) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn on_bright(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-on-bright"></span>`const fn on_bright(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn bold(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-bold"></span>`const fn bold(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn dim(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-dim"></span>`const fn dim(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn italic(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-italic"></span>`const fn italic(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn underlined(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-underlined"></span>`const fn underlined(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn blink(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-blink"></span>`const fn blink(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn blink_fast(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-blink-fast"></span>`const fn blink_fast(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn reverse(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-reverse"></span>`const fn reverse(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn hidden(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-hidden"></span>`const fn hidden(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
-- `const fn strikethrough(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-strikethrough"></span>`const fn strikethrough(self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
 #### Trait Implementations
 
 ##### `impl<D: fmt::Binary> Binary for StyledObject<D>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D: $crate::clone::Clone> Clone for StyledObject<D>`
+##### `impl<D: clone::Clone> Clone for StyledObject<D>`
 
-- `fn clone(self: &Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
+- <span id="styledobject-clone"></span>`fn clone(&self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
 
 ##### `impl<D: fmt::Debug> Debug for StyledObject<D>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::Display> Display for StyledObject<D>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::LowerExp> LowerExp for StyledObject<D>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::LowerHex> LowerHex for StyledObject<D>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::Octal> Octal for StyledObject<D>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::Pointer> Pointer for StyledObject<D>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for StyledObject<D>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="styledobject-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<D: fmt::UpperExp> UpperExp for StyledObject<D>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D: fmt::UpperHex> UpperHex for StyledObject<D>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledobject-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AnsiCodeIterator<'a>`
 
@@ -530,6 +614,8 @@ struct AnsiCodeIterator<'a> {
 }
 ```
 
+*Defined in [`console-0.16.1/src/ansi.rs:233-239`](../../.source_1765210505/console-0.16.1/src/ansi.rs#L233-L239)*
+
 An iterator over ansi codes in a string.
 
 This type can be used to scan over ansi codes in a string.
@@ -539,29 +625,29 @@ ansi codes or string values.
 
 #### Implementations
 
-- `fn new(s: &'a str) -> AnsiCodeIterator<'a>` — [`AnsiCodeIterator`](#ansicodeiterator)
+- <span id="ansicodeiterator-new"></span>`fn new(s: &'a str) -> AnsiCodeIterator<'a>` — [`AnsiCodeIterator`](ansi/index.md)
 
-- `fn current_slice(self: &Self) -> &str`
+- <span id="ansicodeiterator-current-slice"></span>`fn current_slice(&self) -> &str`
 
-- `fn rest_slice(self: &Self) -> &str`
+- <span id="ansicodeiterator-rest-slice"></span>`fn rest_slice(&self) -> &str`
 
 #### Trait Implementations
 
 ##### `impl FusedIterator for AnsiCodeIterator<'_>`
 
-##### `impl<I> IntoIterator for AnsiCodeIterator<'a>`
+##### `impl IntoIterator for AnsiCodeIterator<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="ansicodeiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="ansicodeiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="ansicodeiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for AnsiCodeIterator<'a>`
+##### `impl Iterator for AnsiCodeIterator<'a>`
 
-- `type Item = (&'a str, bool)`
+- <span id="ansicodeiterator-type-item"></span>`type Item = (&'a str, bool)`
 
-- `fn next(self: &mut Self) -> Option<(&'a str, bool)>`
+- <span id="ansicodeiterator-next"></span>`fn next(&mut self) -> Option<(&'a str, bool)>`
 
 ### `WithoutAnsi<'a>`
 
@@ -571,21 +657,23 @@ struct WithoutAnsi<'a> {
 }
 ```
 
-A wrapper struct that implements [`core::fmt::Display`](../miette_derive/index.md), only displaying non-ansi parts.
+*Defined in [`console-0.16.1/src/ansi.rs:206-208`](../../.source_1765210505/console-0.16.1/src/ansi.rs#L206-L208)*
+
+A wrapper struct that implements [`core::fmt::Display`](../miette_derive/fmt/index.md), only displaying non-ansi parts.
 
 #### Implementations
 
-- `fn new(str: &'a str) -> Self`
+- <span id="withoutansi-new"></span>`fn new(str: &'a str) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Display for WithoutAnsi<'_>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="withoutansi-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for WithoutAnsi<'a>`
+##### `impl ToString for WithoutAnsi<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="withoutansi-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -617,6 +705,8 @@ enum Key {
 }
 ```
 
+*Defined in [`console-0.16.1/src/kb.rs:9-32`](../../.source_1765210505/console-0.16.1/src/kb.rs#L9-L32)*
+
 Key mapping
 
 This is an incomplete mapping of keys that are supported for reading
@@ -632,21 +722,21 @@ from the keyboard.
 
 ##### `impl Clone for Key`
 
-- `fn clone(self: &Self) -> Key` — [`Key`](#key)
+- <span id="key-clone"></span>`fn clone(&self) -> Key` — [`Key`](kb/index.md)
 
 ##### `impl Debug for Key`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="key-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Key`
 
 ##### `impl Hash for Key`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="key-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Key`
 
-- `fn eq(self: &Self, other: &Key) -> bool` — [`Key`](#key)
+- <span id="key-eq"></span>`fn eq(&self, other: &Key) -> bool` — [`Key`](kb/index.md)
 
 ##### `impl StructuralPartialEq for Key`
 
@@ -660,6 +750,8 @@ enum TermFamily {
     Dummy,
 }
 ```
+
+*Defined in [`console-0.16.1/src/term.rs:50-59`](../../.source_1765210505/console-0.16.1/src/term.rs#L50-L59)*
 
 The family of the terminal.
 
@@ -685,19 +777,19 @@ The family of the terminal.
 
 ##### `impl Clone for TermFamily`
 
-- `fn clone(self: &Self) -> TermFamily` — [`TermFamily`](#termfamily)
+- <span id="termfamily-clone"></span>`fn clone(&self) -> TermFamily` — [`TermFamily`](term/index.md)
 
 ##### `impl Copy for TermFamily`
 
 ##### `impl Debug for TermFamily`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="termfamily-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TermFamily`
 
 ##### `impl PartialEq for TermFamily`
 
-- `fn eq(self: &Self, other: &TermFamily) -> bool` — [`TermFamily`](#termfamily)
+- <span id="termfamily-eq"></span>`fn eq(&self, other: &TermFamily) -> bool` — [`TermFamily`](term/index.md)
 
 ##### `impl StructuralPartialEq for TermFamily`
 
@@ -711,17 +803,19 @@ enum TermTarget {
 }
 ```
 
+*Defined in [`console-0.16.1/src/term.rs:33-38`](../../.source_1765210505/console-0.16.1/src/term.rs#L33-L38)*
+
 Where the term is writing.
 
 #### Trait Implementations
 
 ##### `impl Clone for TermTarget`
 
-- `fn clone(self: &Self) -> TermTarget` — [`TermTarget`](#termtarget)
+- <span id="termtarget-clone"></span>`fn clone(&self) -> TermTarget` — [`TermTarget`](term/index.md)
 
 ##### `impl Debug for TermTarget`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="termtarget-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Alignment`
 
@@ -733,25 +827,27 @@ enum Alignment {
 }
 ```
 
+*Defined in [`console-0.16.1/src/utils.rs:221-225`](../../.source_1765210505/console-0.16.1/src/utils.rs#L221-L225)*
+
 Defines the alignment for padding operations.
 
 #### Trait Implementations
 
 ##### `impl Clone for Alignment`
 
-- `fn clone(self: &Self) -> Alignment` — [`Alignment`](#alignment)
+- <span id="alignment-clone"></span>`fn clone(&self) -> Alignment` — [`Alignment`](utils/index.md)
 
 ##### `impl Copy for Alignment`
 
 ##### `impl Debug for Alignment`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="alignment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Alignment`
 
 ##### `impl PartialEq for Alignment`
 
-- `fn eq(self: &Self, other: &Alignment) -> bool` — [`Alignment`](#alignment)
+- <span id="alignment-eq"></span>`fn eq(&self, other: &Alignment) -> bool` — [`Alignment`](utils/index.md)
 
 ##### `impl StructuralPartialEq for Alignment`
 
@@ -771,37 +867,39 @@ enum Attribute {
 }
 ```
 
+*Defined in [`console-0.16.1/src/utils.rs:128-140`](../../.source_1765210505/console-0.16.1/src/utils.rs#L128-L140)*
+
 A terminal style attribute.
 
 #### Implementations
 
-- `const MAP: [Attribute; 9]`
+- <span id="attribute-const-map"></span>`const MAP: [Attribute; 9]`
 
 #### Trait Implementations
 
 ##### `impl Clone for Attribute`
 
-- `fn clone(self: &Self) -> Attribute` — [`Attribute`](#attribute)
+- <span id="attribute-clone"></span>`fn clone(&self) -> Attribute` — [`Attribute`](utils/index.md)
 
 ##### `impl Copy for Attribute`
 
 ##### `impl Debug for Attribute`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attribute-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Attribute`
 
 ##### `impl Ord for Attribute`
 
-- `fn cmp(self: &Self, other: &Attribute) -> $crate::cmp::Ordering` — [`Attribute`](#attribute)
+- <span id="attribute-cmp"></span>`fn cmp(&self, other: &Attribute) -> cmp::Ordering` — [`Attribute`](utils/index.md)
 
 ##### `impl PartialEq for Attribute`
 
-- `fn eq(self: &Self, other: &Attribute) -> bool` — [`Attribute`](#attribute)
+- <span id="attribute-eq"></span>`fn eq(&self, other: &Attribute) -> bool` — [`Attribute`](utils/index.md)
 
 ##### `impl PartialOrd for Attribute`
 
-- `fn partial_cmp(self: &Self, other: &Attribute) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Attribute`](#attribute)
+- <span id="attribute-partial-cmp"></span>`fn partial_cmp(&self, other: &Attribute) -> option::Option<cmp::Ordering>` — [`Attribute`](utils/index.md)
 
 ##### `impl StructuralPartialEq for Attribute`
 
@@ -821,33 +919,59 @@ enum Color {
 }
 ```
 
+*Defined in [`console-0.16.1/src/utils.rs:87-97`](../../.source_1765210505/console-0.16.1/src/utils.rs#L87-L97)*
+
 A terminal color.
 
 #### Implementations
 
-- `fn ansi_num(self: Self) -> usize`
+- <span id="color-ansi-num"></span>`fn ansi_num(self) -> usize`
 
-- `fn is_color256(self: Self) -> bool`
+- <span id="color-is-color256"></span>`fn is_color256(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Color`
 
-- `fn clone(self: &Self) -> Color` — [`Color`](#color)
+- <span id="color-clone"></span>`fn clone(&self) -> Color` — [`Color`](utils/index.md)
 
 ##### `impl Copy for Color`
 
 ##### `impl Debug for Color`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="color-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Color`
 
 ##### `impl PartialEq for Color`
 
-- `fn eq(self: &Self, other: &Color) -> bool` — [`Color`](#color)
+- <span id="color-eq"></span>`fn eq(&self, other: &Color) -> bool` — [`Color`](utils/index.md)
 
 ##### `impl StructuralPartialEq for Color`
 
 ## Functions
+
+*Defined in [`console-0.16.1/src/lib.rs:92`](../../.source_1765210505/console-0.16.1/src/lib.rs#L92)*
+
+*Defined in [`console-0.16.1/src/lib.rs:92`](../../.source_1765210505/console-0.16.1/src/lib.rs#L92)*
+
+*Defined in [`console-0.16.1/src/lib.rs:96`](../../.source_1765210505/console-0.16.1/src/lib.rs#L96)*
+
+*Defined in [`console-0.16.1/src/lib.rs:96`](../../.source_1765210505/console-0.16.1/src/lib.rs#L96)*
+
+*Defined in [`console-0.16.1/src/lib.rs:96`](../../.source_1765210505/console-0.16.1/src/lib.rs#L96)*
+
+*Defined in [`console-0.16.1/src/lib.rs:96`](../../.source_1765210505/console-0.16.1/src/lib.rs#L96)*
+
+*Defined in [`console-0.16.1/src/lib.rs:96`](../../.source_1765210505/console-0.16.1/src/lib.rs#L96)*
+
+*Defined in [`console-0.16.1/src/lib.rs:97`](../../.source_1765210505/console-0.16.1/src/lib.rs#L97)*
+
+*Defined in [`console-0.16.1/src/lib.rs:97`](../../.source_1765210505/console-0.16.1/src/lib.rs#L97)*
+
+*Defined in [`console-0.16.1/src/lib.rs:97`](../../.source_1765210505/console-0.16.1/src/lib.rs#L97)*
+
+*Defined in [`console-0.16.1/src/lib.rs:97`](../../.source_1765210505/console-0.16.1/src/lib.rs#L97)*
+
+*Defined in [`console-0.16.1/src/lib.rs:102`](../../.source_1765210505/console-0.16.1/src/lib.rs#L102)*
 

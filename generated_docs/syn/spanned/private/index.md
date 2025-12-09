@@ -4,6 +4,12 @@
 
 # Module `private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Sealed`](#sealed) | trait |  |
+
 ## Traits
 
 ### `Sealed`
@@ -11,4 +17,11 @@
 ```rust
 trait Sealed { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/spanned.rs:113`](../../../../.source_1765210505/syn-2.0.111/src/spanned.rs#L113)*
+
+#### Implementors
+
+- [`QSelf`](../../path/index.md)
+- `T`
 

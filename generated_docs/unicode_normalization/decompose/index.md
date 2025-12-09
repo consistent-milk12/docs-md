@@ -4,6 +4,13 @@
 
 # Module `decompose`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Decompositions`](#decompositions) | struct | External iterator for a string decomposition's characters. |
+| [`DecompositionType`](#decompositiontype) | enum |  |
+
 ## Structs
 
 ### `Decompositions<I>`
@@ -17,59 +24,61 @@ struct Decompositions<I> {
 }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:23-37`](../../../.source_1765210505/unicode-normalization-0.1.25/src/decompose.rs#L23-L37)*
+
 External iterator for a string decomposition's characters.
 
 #### Implementations
 
-- `fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="decompositions-new-canonical"></span>`fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
-- `fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="decompositions-new-compatible"></span>`fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for Decompositions<I>`
+##### `impl<I: clone::Clone> Clone for Decompositions<I>`
 
-- `fn clone(self: &Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="decompositions-clone"></span>`fn clone(&self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Decompositions<I>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="decompositions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for Decompositions<I>`
 
 ##### `impl<I> IntoIterator for Decompositions<I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="decompositions-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="decompositions-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="decompositions-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Decompositions<I>`
 
-- `type Item = char`
+- <span id="decompositions-type-item"></span>`type Item = char`
 
-- `fn next(self: &mut Self) -> Option<char>`
+- <span id="decompositions-next"></span>`fn next(&mut self) -> Option<char>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="decompositions-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T> ToString for Decompositions<I>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="decompositions-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<I> UnicodeNormalization for Decompositions<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="decompositions-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="decompositions-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="decompositions-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="decompositions-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../index.md)
+- <span id="decompositions-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
+- <span id="decompositions-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](../stream_safe/index.md)
 
 ## Enums
 
@@ -82,9 +91,11 @@ enum DecompositionType {
 }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:16-19`](../../../.source_1765210505/unicode-normalization-0.1.25/src/decompose.rs#L16-L19)*
+
 #### Trait Implementations
 
 ##### `impl Clone for DecompositionType`
 
-- `fn clone(self: &Self) -> DecompositionType` — [`DecompositionType`](#decompositiontype)
+- <span id="decompositiontype-clone"></span>`fn clone(&self) -> DecompositionType` — [`DecompositionType`](#decompositiontype)
 

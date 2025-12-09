@@ -4,6 +4,12 @@
 
 # Module `parent`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Parent`](#parent) | enum |  |
+
 ## Enums
 
 ### `Parent`
@@ -15,6 +21,8 @@ enum Parent {
     Explicit(crate::span::Id),
 }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/parent.rs:4-11`](../../../.source_1765210505/tracing-core-0.1.35/src/parent.rs#L4-L11)*
 
 #### Variants
 
@@ -34,5 +42,5 @@ enum Parent {
 
 ##### `impl Debug for Parent`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

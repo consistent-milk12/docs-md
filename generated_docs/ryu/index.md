@@ -78,18 +78,53 @@ examples:
 Both libraries print short decimals such as 0.0000123 without scientific
 notation.
 
+## Contents
+
+- [Modules](#modules)
+  - [`buffer`](#buffer)
+  - [`common`](#common)
+  - [`d2s`](#d2s)
+  - [`d2s_full_table`](#d2s_full_table)
+  - [`d2s_intrinsics`](#d2s_intrinsics)
+  - [`digit_table`](#digit_table)
+  - [`f2s`](#f2s)
+  - [`f2s_intrinsics`](#f2s_intrinsics)
+  - [`pretty`](#pretty)
+  - [`raw`](#raw)
+- [Structs](#structs)
+  - [`Buffer`](#buffer)
+- [Traits](#traits)
+  - [`Float`](#float)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`buffer`](#buffer) | mod |  |
+| [`common`](#common) | mod |  |
+| [`d2s`](#d2s) | mod |  |
+| [`d2s_full_table`](#d2s_full_table) | mod |  |
+| [`d2s_intrinsics`](#d2s_intrinsics) | mod |  |
+| [`digit_table`](#digit_table) | mod |  |
+| [`f2s`](#f2s) | mod |  |
+| [`f2s_intrinsics`](#f2s_intrinsics) | mod |  |
+| [`pretty`](#pretty) | mod |  |
+| [`raw`](#raw) | mod | Unsafe functions that mirror the API of the C implementation of Ryū. |
+| [`Buffer`](#buffer) | struct |  |
+| [`Float`](#float) | trait |  |
+
 ## Modules
 
-- [`buffer`](buffer/index.md) - 
-- [`common`](common/index.md) - 
-- [`d2s`](d2s/index.md) - 
-- [`d2s_full_table`](d2s_full_table/index.md) - 
-- [`d2s_intrinsics`](d2s_intrinsics/index.md) - 
-- [`digit_table`](digit_table/index.md) - 
-- [`f2s`](f2s/index.md) - 
-- [`f2s_intrinsics`](f2s_intrinsics/index.md) - 
-- [`pretty`](pretty/index.md) - 
-- [`raw`](raw/index.md) - Unsafe functions that mirror the API of the C implementation of Ryū.
+- [`buffer`](buffer/index.md)
+- [`common`](common/index.md)
+- [`d2s`](d2s/index.md)
+- [`d2s_full_table`](d2s_full_table/index.md)
+- [`d2s_intrinsics`](d2s_intrinsics/index.md)
+- [`digit_table`](digit_table/index.md)
+- [`f2s`](f2s/index.md)
+- [`f2s_intrinsics`](f2s_intrinsics/index.md)
+- [`pretty`](pretty/index.md)
+- [`raw`](raw/index.md) — Unsafe functions that mirror the API of the C implementation of Ryū.
 
 ## Structs
 
@@ -100,6 +135,8 @@ struct Buffer {
     bytes: [core::mem::MaybeUninit<u8>; 24],
 }
 ```
+
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:20-22`](../../.source_1765210505/ryu-1.0.20/src/buffer/mod.rs#L20-L22)*
 
 Safe API for formatting floating point numbers to text.
 
@@ -113,23 +150,42 @@ assert_eq!(printed, "1.234");
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="buffer-new"></span>`fn new() -> Self`
 
-- `fn format<F: Float>(self: &mut Self, f: F) -> &str`
+- <span id="buffer-format"></span>`fn format<F: Float>(&mut self, f: F) -> &str`
 
-- `fn format_finite<F: Float>(self: &mut Self, f: F) -> &str`
+- <span id="buffer-format-finite"></span>`fn format_finite<F: Float>(&mut self, f: F) -> &str`
 
 #### Trait Implementations
 
 ##### `impl Clone for Buffer`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="buffer-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Buffer`
 
 ##### `impl Default for Buffer`
 
-- `fn default() -> Self`
+- <span id="buffer-default"></span>`fn default() -> Self`
 
 ## Traits
+
+### `Float`
+
+```rust
+trait Float: Sealed { ... }
+```
+
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:105`](../../.source_1765210505/ryu-1.0.20/src/buffer/mod.rs#L105)*
+
+A floating point number, f32 or f64, that can be written into a
+[`ryu::Buffer`][Buffer].
+
+This trait is sealed and cannot be implemented for types outside of the
+`ryu` crate.
+
+#### Implementors
+
+- `f32`
+- `f64`
 

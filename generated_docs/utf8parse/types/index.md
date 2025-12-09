@@ -6,6 +6,13 @@
 
 Types supporting the UTF-8 parser
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Action`](#action) | enum | Action to take when receiving a byte |
+| [`State`](#state) | enum | States the parser can be in. |
+
 ## Enums
 
 ### `Action`
@@ -22,6 +29,8 @@ enum Action {
     SetByte4,
 }
 ```
+
+*Defined in [`utf8parse-0.2.2/src/types.rs:5-22`](../../../.source_1765210505/utf8parse-0.2.2/src/types.rs#L5-L22)*
 
 Action to take when receiving a byte
 
@@ -63,13 +72,13 @@ Action to take when receiving a byte
 
 ##### `impl Clone for Action`
 
-- `fn clone(self: &Self) -> Action` — [`Action`](#action)
+- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](#action)
 
 ##### `impl Copy for Action`
 
 ##### `impl Debug for Action`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="action-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `State`
 
@@ -85,6 +94,8 @@ enum State {
     Utf8_4_3_f4,
 }
 ```
+
+*Defined in [`utf8parse-0.2.2/src/types.rs:30-48`](../../../.source_1765210505/utf8parse-0.2.2/src/types.rs#L30-L48)*
 
 States the parser can be in.
 
@@ -127,29 +138,29 @@ the following bytes are subject to different conditions than a tail byte.
 
 #### Implementations
 
-- `fn advance(self: Self, byte: u8) -> (State, Action)` — [`State`](#state), [`Action`](#action)
+- <span id="state-advance"></span>`fn advance(self, byte: u8) -> (State, Action)` — [`State`](#state), [`Action`](#action)
 
 #### Trait Implementations
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](#state)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
 ##### `impl Copy for State`
 
 ##### `impl Debug for State`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for State`
 
-- `fn default() -> State` — [`State`](#state)
+- <span id="state-default"></span>`fn default() -> State` — [`State`](#state)
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
 

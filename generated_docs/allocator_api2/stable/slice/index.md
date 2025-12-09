@@ -4,6 +4,12 @@
 
 # Module `slice`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SliceExt`](#sliceext) | trait | Slice methods that use `Box` and `Vec` from this crate. |
+
 ## Traits
 
 ### `SliceExt<T>`
@@ -12,19 +18,27 @@
 trait SliceExt<T> { ... }
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/slice.rs:7-67`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/slice.rs#L7-L67)*
+
 Slice methods that use `Box` and `Vec` from this crate.
 
 #### Required Methods
 
-- `fn to_vec(self: &Self) -> Vec<T, Global>`
-
-  Copies `self` into a new `Vec`.
-
-- `fn to_vec_in<A: Allocator>(self: &Self, alloc: A) -> Vec<T, A>`
+- `fn to_vec_in<A: Allocator>(&self, alloc: A) -> Vec<T, A>`
 
   Copies `self` into a new `Vec` with an allocator.
 
-- `fn repeat(self: &Self, n: usize) -> Vec<T, Global>`
+- `fn repeat(&self, n: usize) -> Vec<T, Global>`
 
   Creates a vector by copying a slice `n` times.
+
+#### Provided Methods
+
+- `fn to_vec(&self) -> Vec<T, Global>`
+
+  Copies `self` into a new `Vec`.
+
+#### Implementors
+
+- `[T]`
 

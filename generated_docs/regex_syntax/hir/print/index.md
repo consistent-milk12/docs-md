@@ -6,6 +6,14 @@
 
 This module provides a regular expression printer for `Hir`.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PrinterBuilder`](#printerbuilder) | struct | A builder for constructing a printer. |
+| [`Printer`](#printer) | struct | A printer for a regular expression's high-level intermediate representation. |
+| [`Writer`](#writer) | struct |  |
+
 ## Structs
 
 ### `PrinterBuilder`
@@ -16,6 +24,8 @@ struct PrinterBuilder {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/print.rs:21-23`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/print.rs#L21-L23)*
+
 A builder for constructing a printer.
 
 Note that since a printer doesn't have any configuration knobs, this type
@@ -23,23 +33,23 @@ remains unexported.
 
 #### Implementations
 
-- `fn new() -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
+- <span id="printerbuilder-new"></span>`fn new() -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
 
-- `fn build(self: &Self) -> Printer` — [`Printer`](#printer)
+- <span id="printerbuilder-build"></span>`fn build(&self) -> Printer` — [`Printer`](#printer)
 
 #### Trait Implementations
 
 ##### `impl Clone for PrinterBuilder`
 
-- `fn clone(self: &Self) -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
+- <span id="printerbuilder-clone"></span>`fn clone(&self) -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
 
 ##### `impl Debug for PrinterBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="printerbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PrinterBuilder`
 
-- `fn default() -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
+- <span id="printerbuilder-default"></span>`fn default() -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
 
 ### `Printer`
 
@@ -48,6 +58,8 @@ struct Printer {
     _priv: (),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/print.rs:58-60`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/print.rs#L58-L60)*
 
 A printer for a regular expression's high-level intermediate
 representation.
@@ -68,15 +80,15 @@ specific HIR representation.)
 
 #### Implementations
 
-- `fn new() -> Printer` — [`Printer`](#printer)
+- <span id="printer-new"></span>`fn new() -> Printer` — [`Printer`](#printer)
 
-- `fn print<W: fmt::Write>(self: &mut Self, hir: &Hir, wtr: W) -> fmt::Result` — [`Hir`](../index.md)
+- <span id="printer-print"></span>`fn print<W: fmt::Write>(&mut self, hir: &Hir, wtr: W) -> fmt::Result` — [`Hir`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for Printer`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="printer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Writer<W>`
 
@@ -86,31 +98,33 @@ struct Writer<W> {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/print.rs:78-80`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/print.rs#L78-L80)*
+
 #### Implementations
 
-- `fn write_literal_char(self: &mut Self, c: char) -> fmt::Result`
+- <span id="writer-write-literal-char"></span>`fn write_literal_char(&mut self, c: char) -> fmt::Result`
 
-- `fn write_literal_byte(self: &mut Self, b: u8) -> fmt::Result`
+- <span id="writer-write-literal-byte"></span>`fn write_literal_byte(&mut self, b: u8) -> fmt::Result`
 
-- `fn write_literal_class_byte(self: &mut Self, b: u8) -> fmt::Result`
+- <span id="writer-write-literal-class-byte"></span>`fn write_literal_class_byte(&mut self, b: u8) -> fmt::Result`
 
 #### Trait Implementations
 
-##### `impl<W: $crate::fmt::Debug> Debug for Writer<W>`
+##### `impl<W: fmt::Debug> Debug for Writer<W>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="writer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<W: fmt::Write> Visitor for Writer<W>`
 
-- `type Output = ()`
+- <span id="writer-type-output"></span>`type Output = ()`
 
-- `type Err = Error`
+- <span id="writer-type-err"></span>`type Err = Error`
 
-- `fn finish(self: Self) -> fmt::Result`
+- <span id="writer-finish"></span>`fn finish(self) -> fmt::Result`
 
-- `fn visit_pre(self: &mut Self, hir: &Hir) -> fmt::Result` — [`Hir`](../index.md)
+- <span id="writer-visit-pre"></span>`fn visit_pre(&mut self, hir: &Hir) -> fmt::Result` — [`Hir`](../index.md)
 
-- `fn visit_post(self: &mut Self, hir: &Hir) -> fmt::Result` — [`Hir`](../index.md)
+- <span id="writer-visit-post"></span>`fn visit_post(&mut self, hir: &Hir) -> fmt::Result` — [`Hir`](../index.md)
 
-- `fn visit_alternation_in(self: &mut Self) -> fmt::Result`
+- <span id="writer-visit-alternation-in"></span>`fn visit_alternation_in(&mut self) -> fmt::Result`
 

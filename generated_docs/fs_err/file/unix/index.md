@@ -4,7 +4,13 @@
 
 # Module `unix`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`io_safety`](#io_safety) | mod |  |
+
 ## Modules
 
-- [`io_safety`](io_safety/index.md) - 
+- [`io_safety`](io_safety/index.md)
 

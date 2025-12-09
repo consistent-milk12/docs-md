@@ -11,6 +11,18 @@ circumstances. When possible, prefer using [`AhoCorasick`](crate::AhoCorasick)
 instead of a noncontiguous NFA directly. Using an `NFA` directly is typically
 only necessary when one needs access to the [`Automaton`](../../automaton/index.md) trait implementation.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NFA`](#nfa) | struct | A noncontiguous NFA implementation of Aho-Corasick. |
+| [`State`](#state) | struct | A representation of a sparse NFA state for an Aho-Corasick automaton. |
+| [`Transition`](#transition) | struct | A single transition in a non-contiguous NFA. |
+| [`Match`](#match) | struct | A single match in a non-contiguous NFA. |
+| [`Builder`](#builder) | struct | A builder for configuring an Aho-Corasick noncontiguous NFA. |
+| [`Compiler`](#compiler) | struct | A compiler uses a builder configuration and builds up the NFA formulation of an Aho-Corasick automaton. |
+| [`QueuedSet`](#queuedset) | struct | A set of state identifiers used to avoid revisiting the same state multiple times when filling in failure transitions. |
+
 ## Structs
 
 ### `NFA`
@@ -30,6 +42,8 @@ struct NFA {
     special: crate::util::special::Special,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:82-175`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L82-L175)*
 
 A noncontiguous NFA implementation of Aho-Corasick.
 
@@ -200,97 +214,59 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- `const DEAD: StateID`
+- <span id="nfa-new"></span>`fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
 
-- `const FAIL: StateID`
-
-- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
-
-- `fn pattern_lens_raw(self: &Self) -> &[SmallIndex]` — [`SmallIndex`](../../util/primitives/index.md)
-
-- `fn states(self: &Self) -> &[State]` — [`State`](#state)
-
-- `fn special(self: &Self) -> &Special` — [`Special`](../../util/special/index.md)
-
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
-
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
-
-- `fn iter_trans(self: &Self, sid: StateID) -> impl Iterator<Item = Transition> + '_` — [`StateID`](../../util/primitives/index.md), [`Transition`](#transition)
-
-- `fn iter_matches(self: &Self, sid: StateID) -> impl Iterator<Item = PatternID> + '_` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md)
-
-- `fn next_link(self: &Self, sid: StateID, prev: Option<StateID>) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
-
-- `fn follow_transition(self: &Self, sid: StateID, byte: u8) -> StateID` — [`StateID`](../../util/primitives/index.md)
-
-- `fn follow_transition_sparse(self: &Self, sid: StateID, byte: u8) -> StateID` — [`StateID`](../../util/primitives/index.md)
-
-- `fn add_transition(self: &mut Self, prev: StateID, byte: u8, next: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn init_full_state(self: &mut Self, prev: StateID, next: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn add_match(self: &mut Self, sid: StateID, pid: PatternID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md), [`BuildError`](../../index.md)
-
-- `fn copy_matches(self: &mut Self, src: StateID, dst: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn alloc_transition(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn alloc_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn alloc_dense_state(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn alloc_state(self: &mut Self, depth: usize) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
+- <span id="nfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Automaton for NFA`
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
+- <span id="nfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../util/error/index.md)
 
-- `fn next_state(self: &Self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-next-state"></span>`fn next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md)
 
-- `fn is_special(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_dead(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_match(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_start(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="nfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../../util/search/index.md)
 
-- `fn patterns_len(self: &Self) -> usize`
+- <span id="nfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
+- <span id="nfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../util/primitives/index.md)
 
-- `fn min_pattern_len(self: &Self) -> usize`
+- <span id="nfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
-- `fn max_pattern_len(self: &Self) -> usize`
+- <span id="nfa-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
 
-- `fn match_len(self: &Self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="nfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="nfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
+- <span id="nfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
 
 ##### `impl Clone for NFA`
 
-- `fn clone(self: &Self) -> NFA` — [`NFA`](#nfa)
+- <span id="nfa-clone"></span>`fn clone(&self) -> NFA` — [`NFA`](#nfa)
 
 ##### `impl Debug for NFA`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="nfa-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Remappable for noncontiguous::NFA`
 
-- `fn state_len(self: &Self) -> usize`
+- <span id="noncontiguousnfa-state-len"></span>`fn state_len(&self) -> usize`
 
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
+- <span id="noncontiguousnfa-swap-states"></span>`fn swap_states(&mut self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
 
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
+- <span id="noncontiguousnfa-remap"></span>`fn remap(&mut self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
 
 ##### `impl Sealed for crate::nfa::noncontiguous::NFA`
 
@@ -305,6 +281,8 @@ struct State {
     depth: crate::util::primitives::SmallIndex,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:710-748`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L710-L748)*
 
 A representation of a sparse NFA state for an Aho-Corasick automaton.
 
@@ -363,21 +341,21 @@ and the matches implied by visiting this state (if any).
 
 #### Implementations
 
-- `fn is_match(self: &Self) -> bool`
+- <span id="state-is-match"></span>`fn is_match(&self) -> bool`
 
-- `fn fail(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- <span id="state-fail"></span>`fn fail(&self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `fn depth(self: &Self) -> SmallIndex` — [`SmallIndex`](../../util/primitives/index.md)
+- <span id="state-depth"></span>`fn depth(&self) -> SmallIndex` — [`SmallIndex`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](#state)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
 ##### `impl Debug for State`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Transition`
 
@@ -389,31 +367,33 @@ struct Transition {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:771-775`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L771-L775)*
+
 A single transition in a non-contiguous NFA.
 
 #### Implementations
 
-- `fn byte(self: &Self) -> u8`
+- <span id="transition-byte"></span>`fn byte(&self) -> u8`
 
-- `fn next(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- <span id="transition-next"></span>`fn next(&self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `fn link(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- <span id="transition-link"></span>`fn link(&self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Transition`
 
-- `fn clone(self: &Self) -> Transition` — [`Transition`](#transition)
+- <span id="transition-clone"></span>`fn clone(&self) -> Transition` — [`Transition`](#transition)
 
 ##### `impl Copy for Transition`
 
 ##### `impl Debug for Transition`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="transition-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for Transition`
 
-- `fn default() -> Transition` — [`Transition`](#transition)
+- <span id="transition-default"></span>`fn default() -> Transition` — [`Transition`](#transition)
 
 ### `Match`
 
@@ -424,29 +404,31 @@ struct Match {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:808-811`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L808-L811)*
+
 A single match in a non-contiguous NFA.
 
 #### Implementations
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
 
-- `fn link(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- <span id="match-link"></span>`fn link(&self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Match`
 
-- `fn clone(self: &Self) -> Match` — [`Match`](#match)
+- <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](#match)
 
 ##### `impl Copy for Match`
 
 ##### `impl Debug for Match`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="match-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for Match`
 
-- `fn default() -> Match` — [`Match`](#match)
+- <span id="match-default"></span>`fn default() -> Match` — [`Match`](#match)
 
 ### `Builder`
 
@@ -459,6 +441,8 @@ struct Builder {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:842-847`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L842-L847)*
+
 A builder for configuring an Aho-Corasick noncontiguous NFA.
 
 This builder has a subset of the options available to a
@@ -467,31 +451,31 @@ their behavior is identical.
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
+- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../index.md), [`Builder`](#builder)
+- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../util/search/index.md), [`Builder`](#builder)
 
-- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn dense_depth(self: &mut Self, depth: usize) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-dense-depth"></span>`fn dense_depth(&mut self, depth: usize) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn prefilter(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](#builder)
+- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
 
 ### `Compiler<'a>`
 
@@ -504,6 +488,8 @@ struct Compiler<'a> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:932-937`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L932-L937)*
+
 A compiler uses a builder configuration and builds up the NFA formulation
 of an Aho-Corasick automaton. This roughly corresponds to the standard
 formulation described in textbooks, with some tweaks to support leftmost
@@ -511,35 +497,35 @@ searching.
 
 #### Implementations
 
-- `fn new(builder: &'a Builder) -> Result<Compiler<'a>, BuildError>` — [`Builder`](#builder), [`Compiler`](#compiler), [`BuildError`](../../index.md)
+- <span id="compiler-new"></span>`fn new(builder: &'a Builder) -> Result<Compiler<'a>, BuildError>` — [`Builder`](#builder), [`Compiler`](#compiler), [`BuildError`](../../util/error/index.md)
 
-- `fn compile<I, P>(self: Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
+- <span id="compiler-compile"></span>`fn compile<I, P>(self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
 
-- `fn build_trie<I, P>(self: &mut Self, patterns: I) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-build-trie"></span>`fn build_trie<I, P>(&mut self, patterns: I) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
-- `fn fill_failure_transitions(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-fill-failure-transitions"></span>`fn fill_failure_transitions(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
-- `fn shuffle(self: &mut Self)`
+- <span id="compiler-shuffle"></span>`fn shuffle(&mut self)`
 
-- `fn densify(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-densify"></span>`fn densify(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
-- `fn queued_set(self: &Self) -> QueuedSet` — [`QueuedSet`](#queuedset)
+- <span id="compiler-queued-set"></span>`fn queued_set(&self) -> QueuedSet` — [`QueuedSet`](#queuedset)
 
-- `fn init_unanchored_start_state(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-init-unanchored-start-state"></span>`fn init_unanchored_start_state(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
-- `fn set_anchored_start_state(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-set-anchored-start-state"></span>`fn set_anchored_start_state(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
-- `fn add_unanchored_start_state_loop(self: &mut Self)`
+- <span id="compiler-add-unanchored-start-state-loop"></span>`fn add_unanchored_start_state_loop(&mut self)`
 
-- `fn close_start_state_loop_for_leftmost(self: &mut Self)`
+- <span id="compiler-close-start-state-loop-for-leftmost"></span>`fn close_start_state_loop_for_leftmost(&mut self)`
 
-- `fn add_dead_state_loop(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-add-dead-state-loop"></span>`fn add_dead_state_loop(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Compiler<'a>`
+##### `impl Debug for Compiler<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="compiler-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `QueuedSet`
 
@@ -548,6 +534,8 @@ struct QueuedSet {
     set: Option<alloc::collections::BTreeSet<crate::util::primitives::StateID>>,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:1657-1659`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L1657-L1659)*
 
 A set of state identifiers used to avoid revisiting the same state multiple
 times when filling in failure transitions.
@@ -559,17 +547,17 @@ set when it is not needed.
 
 #### Implementations
 
-- `fn inert() -> QueuedSet` — [`QueuedSet`](#queuedset)
+- <span id="queuedset-inert"></span>`fn inert() -> QueuedSet` — [`QueuedSet`](#queuedset)
 
-- `fn active() -> QueuedSet` — [`QueuedSet`](#queuedset)
+- <span id="queuedset-active"></span>`fn active() -> QueuedSet` — [`QueuedSet`](#queuedset)
 
-- `fn insert(self: &mut Self, state_id: StateID)` — [`StateID`](../../util/primitives/index.md)
+- <span id="queuedset-insert"></span>`fn insert(&mut self, state_id: StateID)` — [`StateID`](../../util/primitives/index.md)
 
-- `fn contains(self: &Self, state_id: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="queuedset-contains"></span>`fn contains(&self, state_id: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for QueuedSet`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="queuedset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

@@ -7,7 +7,7 @@
 <br>
 
 This crate provides macros for conditional compilation according to rustc
-compiler version, analogous to [`#[cfg(...)]`][`cfg`](expand/index.md) and
+compiler version, analogous to [`#[cfg(...)]`][cfg](#cfg) and
 [`#[cfg_attr(...)]`][cfg_attr].
 
 
@@ -104,7 +104,7 @@ compiler version, analogous to [`#[cfg(...)]`][`cfg`](expand/index.md) and
 
 Providing additional trait impls as types are stabilized in the standard library
 without breaking compatibility with older compilers; in this case Pin\<P\>
-stabilized in [Rust 1.33][`pin`](../crossbeam_epoch/index.md):
+stabilized in [Rust 1.33][`pin`](../crossbeam_epoch/default/index.md):
 
 ```rust
 trait MyTrait {}
@@ -169,26 +169,63 @@ extern crate alloc;
 
 <br>
 
+## Contents
+
+- [Modules](#modules)
+  - [`attr`](#attr)
+  - [`bound`](#bound)
+  - [`constfn`](#constfn)
+  - [`date`](#date)
+  - [`error`](#error)
+  - [`expand`](#expand)
+  - [`expr`](#expr)
+  - [`iter`](#iter)
+  - [`release`](#release)
+  - [`time`](#time)
+  - [`token`](#token)
+  - [`version`](#version)
+- [Constants](#constants)
+  - [`RUSTVERSION`](#rustversion)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`attr`](#attr) | mod |  |
+| [`bound`](#bound) | mod |  |
+| [`constfn`](#constfn) | mod |  |
+| [`date`](#date) | mod |  |
+| [`error`](#error) | mod |  |
+| [`expand`](#expand) | mod |  |
+| [`expr`](#expr) | mod |  |
+| [`iter`](#iter) | mod |  |
+| [`release`](#release) | mod |  |
+| [`time`](#time) | mod |  |
+| [`token`](#token) | mod |  |
+| [`version`](#version) | mod |  |
+| [`RUSTVERSION`](#rustversion) | const |  |
+
 ## Modules
 
-- [`attr`](attr/index.md) - 
-- [`bound`](bound/index.md) - 
-- [`constfn`](constfn/index.md) - 
-- [`date`](date/index.md) - 
-- [`error`](error/index.md) - 
-- [`expand`](expand/index.md) - 
-- [`expr`](expr/index.md) - 
-- [`iter`](iter/index.md) - 
-- [`release`](release/index.md) - 
-- [`time`](time/index.md) - 
-- [`token`](token/index.md) - 
-- [`version`](version/index.md) - 
+- [`attr`](attr/index.md)
+- [`bound`](bound/index.md)
+- [`constfn`](constfn/index.md)
+- [`date`](date/index.md)
+- [`error`](error/index.md)
+- [`expand`](expand/index.md)
+- [`expr`](expr/index.md)
+- [`iter`](iter/index.md)
+- [`release`](release/index.md)
+- [`time`](time/index.md)
+- [`token`](token/index.md)
+- [`version`](version/index.md)
 
 ## Constants
 
 ### `RUSTVERSION`
-
 ```rust
 const RUSTVERSION: crate::version::Version;
 ```
+
+*Defined in [`rustversion-1.0.22/src/lib.rs:217`](../../.source_1765210505/rustversion-1.0.22/src/lib.rs#L217)*
 

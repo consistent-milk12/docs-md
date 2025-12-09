@@ -21,13 +21,92 @@ its concrete syntax. Namely, while an `Hir` value can be converted back to an
 equivalent regex pattern string, it is unlikely to look like the original due
 to its simplified structure.
 
+## Contents
+
+- [Modules](#modules)
+  - [`interval`](#interval)
+  - [`literal`](#literal)
+  - [`print`](#print)
+  - [`translate`](#translate)
+  - [`visitor`](#visitor)
+- [Structs](#structs)
+  - [`CaseFoldError`](#casefolderror)
+  - [`Error`](#error)
+  - [`Hir`](#hir)
+  - [`Literal`](#literal)
+  - [`ClassUnicode`](#classunicode)
+  - [`ClassUnicodeIter`](#classunicodeiter)
+  - [`ClassUnicodeRange`](#classunicoderange)
+  - [`ClassBytes`](#classbytes)
+  - [`ClassBytesIter`](#classbytesiter)
+  - [`ClassBytesRange`](#classbytesrange)
+  - [`Capture`](#capture)
+  - [`Repetition`](#repetition)
+  - [`Properties`](#properties)
+  - [`PropertiesI`](#propertiesi)
+  - [`LookSet`](#lookset)
+  - [`LookSetIter`](#looksetiter)
+- [Enums](#enums)
+  - [`ErrorKind`](#errorkind)
+  - [`HirKind`](#hirkind)
+  - [`Class`](#class)
+  - [`Look`](#look)
+  - [`Dot`](#dot)
+- [Traits](#traits)
+  - [`Visitor`](#visitor)
+- [Functions](#functions)
+  - [`visit`](#visit)
+  - [`class_chars`](#class_chars)
+  - [`class_bytes`](#class_bytes)
+  - [`singleton_chars`](#singleton_chars)
+  - [`singleton_bytes`](#singleton_bytes)
+  - [`lift_common_prefix`](#lift_common_prefix)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`interval`](#interval) | mod |  |
+| [`literal`](#literal) | mod | Provides literal extraction from `Hir` expressions. |
+| [`print`](#print) | mod | This module provides a regular expression printer for `Hir`. |
+| [`translate`](#translate) | mod | Defines a translator that converts an `Ast` to an `Hir`. |
+| [`visitor`](#visitor) | mod |  |
+| [`CaseFoldError`](#casefolderror) | struct |  |
+| [`Error`](#error) | struct | An error that can occur while translating an `Ast` to a `Hir`. |
+| [`Hir`](#hir) | struct | A high-level intermediate representation (HIR) for a regular expression. |
+| [`Literal`](#literal) | struct | The high-level intermediate representation of a literal. |
+| [`ClassUnicode`](#classunicode) | struct | A set of characters represented by Unicode scalar values. |
+| [`ClassUnicodeIter`](#classunicodeiter) | struct | An iterator over all ranges in a Unicode character class. |
+| [`ClassUnicodeRange`](#classunicoderange) | struct | A single range of characters represented by Unicode scalar values. |
+| [`ClassBytes`](#classbytes) | struct | A set of characters represented by arbitrary bytes. |
+| [`ClassBytesIter`](#classbytesiter) | struct | An iterator over all ranges in a byte character class. |
+| [`ClassBytesRange`](#classbytesrange) | struct | A single range of characters represented by arbitrary bytes. |
+| [`Capture`](#capture) | struct | The high-level intermediate representation for a capturing group. |
+| [`Repetition`](#repetition) | struct | The high-level intermediate representation of a repetition operator. |
+| [`Properties`](#properties) | struct | A type that collects various properties of an HIR value. |
+| [`PropertiesI`](#propertiesi) | struct | The property definition. |
+| [`LookSet`](#lookset) | struct | A set of look-around assertions. |
+| [`LookSetIter`](#looksetiter) | struct | An iterator over all look-around assertions in a [`LookSet`]. |
+| [`ErrorKind`](#errorkind) | enum | The type of an error that occurred while building an `Hir`. |
+| [`HirKind`](#hirkind) | enum | The underlying kind of an arbitrary [`Hir`] expression. |
+| [`Class`](#class) | enum | The high-level intermediate representation of a character class. |
+| [`Look`](#look) | enum | The high-level intermediate representation for a look-around assertion. |
+| [`Dot`](#dot) | enum | A type describing the different flavors of `.`. |
+| [`Visitor`](#visitor) | trait |  |
+| [`visit`](#visit) | fn |  |
+| [`class_chars`](#class_chars) | fn | Given a sequence of HIR values where each value corresponds to a Unicode class (or an all-ASCII byte class), return a single Unicode class corresponding to the union of the classes found. |
+| [`class_bytes`](#class_bytes) | fn | Given a sequence of HIR values where each value corresponds to a byte class (or an all-ASCII Unicode class), return a single byte class corresponding to the union of the classes found. |
+| [`singleton_chars`](#singleton_chars) | fn | Given a sequence of HIR values where each value corresponds to a literal that is a single `char`, return that sequence of `char`s. |
+| [`singleton_bytes`](#singleton_bytes) | fn | Given a sequence of HIR values where each value corresponds to a literal that is a single byte, return that sequence of bytes. |
+| [`lift_common_prefix`](#lift_common_prefix) | fn | Looks for a common prefix in the list of alternation branches given. |
+
 ## Modules
 
-- [`interval`](interval/index.md) - 
-- [`literal`](literal/index.md) - Provides literal extraction from `Hir` expressions.
-- [`print`](print/index.md) - This module provides a regular expression printer for `Hir`.
-- [`translate`](translate/index.md) - Defines a translator that converts an `Ast` to an `Hir`.
-- [`visitor`](visitor/index.md) - 
+- [`interval`](interval/index.md)
+- [`literal`](literal/index.md) — Provides literal extraction from `Hir` expressions.
+- [`print`](print/index.md) — This module provides a regular expression printer for `Hir`.
+- [`translate`](translate/index.md) — Defines a translator that converts an `Ast` to an `Hir`.
+- [`visitor`](visitor/index.md)
 
 ## Structs
 
@@ -36,6 +115,8 @@ to its simplified structure.
 ```rust
 struct CaseFoldError(());
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/unicode.rs:31`](../../../.source_1765210505/regex-syntax-0.8.8/src/unicode.rs#L31)*
 
 An error that occurs when Unicode-aware simple case folding fails.
 
@@ -47,17 +128,17 @@ aware case folding are unavailable. This only occurs when the
 
 ##### `impl Debug for CaseFoldError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="casefolderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for CaseFoldError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="casefolderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for CaseFoldError`
 
-##### `impl<T> ToString for CaseFoldError`
+##### `impl ToString for CaseFoldError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="casefolderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Error`
 
@@ -68,6 +149,8 @@ struct Error {
     span: crate::ast::Span,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:49-57`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L49-L57)*
 
 An error that can occur while translating an `Ast` to a `Hir`.
 
@@ -88,25 +171,25 @@ An error that can occur while translating an `Ast` to a `Hir`.
 
 #### Implementations
 
-- `fn kind(self: &Self) -> &ErrorKind` — [`ErrorKind`](#errorkind)
+- <span id="error-kind"></span>`fn kind(&self) -> &ErrorKind` — [`ErrorKind`](#errorkind)
 
-- `fn pattern(self: &Self) -> &str`
+- <span id="error-pattern"></span>`fn pattern(&self) -> &str`
 
-- `fn span(self: &Self) -> &Span` — [`Span`](../ast/index.md)
+- <span id="error-span"></span>`fn span(&self) -> &Span` — [`Span`](../ast/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](#error)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](#error)
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Error`
 
@@ -114,13 +197,13 @@ An error that can occur while translating an `Ast` to a `Hir`.
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Hir`
 
@@ -130,6 +213,8 @@ struct Hir {
     props: Properties,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:205-210`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L205-L210)*
 
 A high-level intermediate representation (HIR) for a regular expression.
 
@@ -206,49 +291,51 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 
 #### Implementations
 
-- `fn kind(self: &Self) -> &HirKind` — [`HirKind`](#hirkind)
+- <span id="hir-kind"></span>`fn kind(&self) -> &HirKind` — [`HirKind`](#hirkind)
 
-- `fn into_kind(self: Self) -> HirKind` — [`HirKind`](#hirkind)
+- <span id="hir-into-kind"></span>`fn into_kind(self) -> HirKind` — [`HirKind`](#hirkind)
 
-- `fn properties(self: &Self) -> &Properties` — [`Properties`](#properties)
+- <span id="hir-properties"></span>`fn properties(&self) -> &Properties` — [`Properties`](#properties)
 
-- `fn into_parts(self: Self) -> (HirKind, Properties)` — [`HirKind`](#hirkind), [`Properties`](#properties)
+- <span id="hir-into-parts"></span>`fn into_parts(self) -> (HirKind, Properties)` — [`HirKind`](#hirkind), [`Properties`](#properties)
 
 #### Trait Implementations
 
 ##### `impl Clone for Hir`
 
-- `fn clone(self: &Self) -> Hir` — [`Hir`](#hir)
+- <span id="hir-clone"></span>`fn clone(&self) -> Hir` — [`Hir`](#hir)
 
 ##### `impl Debug for Hir`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="hir-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Display for Hir`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="hir-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Drop for Hir`
 
-- `fn drop(self: &mut Self)`
+- <span id="hir-drop"></span>`fn drop(&mut self)`
 
 ##### `impl Eq for Hir`
 
 ##### `impl PartialEq for Hir`
 
-- `fn eq(self: &Self, other: &Hir) -> bool` — [`Hir`](#hir)
+- <span id="hir-eq"></span>`fn eq(&self, other: &Hir) -> bool` — [`Hir`](#hir)
 
 ##### `impl StructuralPartialEq for Hir`
 
-##### `impl<T> ToString for Hir`
+##### `impl ToString for Hir`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="hir-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Literal`
 
 ```rust
 struct Literal(alloc::boxed::Box<[u8]>);
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:801`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L801)*
 
 The high-level intermediate representation of a literal.
 
@@ -265,17 +352,17 @@ is, not a sequence of decimal numbers.)
 
 ##### `impl Clone for Literal`
 
-- `fn clone(self: &Self) -> Literal` — [`Literal`](#literal)
+- <span id="literal-clone"></span>`fn clone(&self) -> Literal` — [`Literal`](#literal)
 
 ##### `impl Debug for Literal`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="literal-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Literal`
 
 ##### `impl PartialEq for Literal`
 
-- `fn eq(self: &Self, other: &Literal) -> bool` — [`Literal`](#literal)
+- <span id="literal-eq"></span>`fn eq(&self, other: &Literal) -> bool` — [`Literal`](#literal)
 
 ##### `impl StructuralPartialEq for Literal`
 
@@ -287,59 +374,61 @@ struct ClassUnicode {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1051-1053`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1051-L1053)*
+
 A set of characters represented by Unicode scalar values.
 
 #### Implementations
 
-- `fn new<I>(ranges: I) -> ClassUnicode` — [`ClassUnicode`](#classunicode)
+- <span id="classunicode-new"></span>`fn new<I>(ranges: I) -> ClassUnicode` — [`ClassUnicode`](#classunicode)
 
-- `fn empty() -> ClassUnicode` — [`ClassUnicode`](#classunicode)
+- <span id="classunicode-empty"></span>`fn empty() -> ClassUnicode` — [`ClassUnicode`](#classunicode)
 
-- `fn push(self: &mut Self, range: ClassUnicodeRange)` — [`ClassUnicodeRange`](#classunicoderange)
+- <span id="classunicode-push"></span>`fn push(&mut self, range: ClassUnicodeRange)` — [`ClassUnicodeRange`](#classunicoderange)
 
-- `fn iter(self: &Self) -> ClassUnicodeIter<'_>` — [`ClassUnicodeIter`](#classunicodeiter)
+- <span id="classunicode-iter"></span>`fn iter(&self) -> ClassUnicodeIter<'_>` — [`ClassUnicodeIter`](#classunicodeiter)
 
-- `fn ranges(self: &Self) -> &[ClassUnicodeRange]` — [`ClassUnicodeRange`](#classunicoderange)
+- <span id="classunicode-ranges"></span>`fn ranges(&self) -> &[ClassUnicodeRange]` — [`ClassUnicodeRange`](#classunicoderange)
 
-- `fn case_fold_simple(self: &mut Self)`
+- <span id="classunicode-case-fold-simple"></span>`fn case_fold_simple(&mut self)`
 
-- `fn try_case_fold_simple(self: &mut Self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md)
+- <span id="classunicode-try-case-fold-simple"></span>`fn try_case_fold_simple(&mut self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md)
 
-- `fn negate(self: &mut Self)`
+- <span id="classunicode-negate"></span>`fn negate(&mut self)`
 
-- `fn union(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
+- <span id="classunicode-union"></span>`fn union(&mut self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
 
-- `fn intersect(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
+- <span id="classunicode-intersect"></span>`fn intersect(&mut self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
 
-- `fn difference(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
+- <span id="classunicode-difference"></span>`fn difference(&mut self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
 
-- `fn symmetric_difference(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
+- <span id="classunicode-symmetric-difference"></span>`fn symmetric_difference(&mut self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
 
-- `fn is_ascii(self: &Self) -> bool`
+- <span id="classunicode-is-ascii"></span>`fn is_ascii(&self) -> bool`
 
-- `fn minimum_len(self: &Self) -> Option<usize>`
+- <span id="classunicode-minimum-len"></span>`fn minimum_len(&self) -> Option<usize>`
 
-- `fn maximum_len(self: &Self) -> Option<usize>`
+- <span id="classunicode-maximum-len"></span>`fn maximum_len(&self) -> Option<usize>`
 
-- `fn literal(self: &Self) -> Option<Vec<u8>>`
+- <span id="classunicode-literal"></span>`fn literal(&self) -> Option<Vec<u8>>`
 
-- `fn to_byte_class(self: &Self) -> Option<ClassBytes>` — [`ClassBytes`](#classbytes)
+- <span id="classunicode-to-byte-class"></span>`fn to_byte_class(&self) -> Option<ClassBytes>` — [`ClassBytes`](#classbytes)
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassUnicode`
 
-- `fn clone(self: &Self) -> ClassUnicode` — [`ClassUnicode`](#classunicode)
+- <span id="classunicode-clone"></span>`fn clone(&self) -> ClassUnicode` — [`ClassUnicode`](#classunicode)
 
 ##### `impl Debug for ClassUnicode`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classunicode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassUnicode`
 
 ##### `impl PartialEq for ClassUnicode`
 
-- `fn eq(self: &Self, other: &ClassUnicode) -> bool` — [`ClassUnicode`](#classunicode)
+- <span id="classunicode-eq"></span>`fn eq(&self, other: &ClassUnicode) -> bool` — [`ClassUnicode`](#classunicode)
 
 ##### `impl StructuralPartialEq for ClassUnicode`
 
@@ -349,29 +438,31 @@ A set of characters represented by Unicode scalar values.
 struct ClassUnicodeIter<'a>(crate::hir::interval::IntervalSetIter<'a, ClassUnicodeRange>);
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1226`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1226)*
+
 An iterator over all ranges in a Unicode character class.
 
 The lifetime `'a` refers to the lifetime of the underlying class.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ClassUnicodeIter<'a>`
+##### `impl Debug for ClassUnicodeIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classunicodeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ClassUnicodeIter<'a>`
+##### `impl IntoIterator for ClassUnicodeIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="classunicodeiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="classunicodeiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="classunicodeiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ClassUnicodeIter<'a>`
+##### `impl Iterator for ClassUnicodeIter<'a>`
 
-- `type Item = &'a ClassUnicodeRange`
+- <span id="classunicodeiter-type-item"></span>`type Item = &'a ClassUnicodeRange`
 
-- `fn next(self: &mut Self) -> Option<&'a ClassUnicodeRange>` — [`ClassUnicodeRange`](#classunicoderange)
+- <span id="classunicodeiter-next"></span>`fn next(&mut self) -> Option<&'a ClassUnicodeRange>` — [`ClassUnicodeRange`](#classunicoderange)
 
 ### `ClassUnicodeRange`
 
@@ -382,6 +473,8 @@ struct ClassUnicodeRange {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1241-1244`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1241-L1244)*
+
 A single range of characters represented by Unicode scalar values.
 
 The range is closed. That is, the start and end of the range are included
@@ -389,57 +482,57 @@ in the range.
 
 #### Implementations
 
-- `fn new(start: char, end: char) -> ClassUnicodeRange` — [`ClassUnicodeRange`](#classunicoderange)
+- <span id="classunicoderange-new"></span>`fn new(start: char, end: char) -> ClassUnicodeRange` — [`ClassUnicodeRange`](#classunicoderange)
 
-- `fn start(self: &Self) -> char`
+- <span id="classunicoderange-start"></span>`fn start(&self) -> char`
 
-- `fn end(self: &Self) -> char`
+- <span id="classunicoderange-end"></span>`fn end(&self) -> char`
 
-- `fn len(self: &Self) -> usize`
+- <span id="classunicoderange-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassUnicodeRange`
 
-- `fn clone(self: &Self) -> ClassUnicodeRange` — [`ClassUnicodeRange`](#classunicoderange)
+- <span id="classunicoderange-clone"></span>`fn clone(&self) -> ClassUnicodeRange` — [`ClassUnicodeRange`](#classunicoderange)
 
 ##### `impl Copy for ClassUnicodeRange`
 
 ##### `impl Debug for ClassUnicodeRange`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="classunicoderange-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for ClassUnicodeRange`
 
-- `fn default() -> ClassUnicodeRange` — [`ClassUnicodeRange`](#classunicoderange)
+- <span id="classunicoderange-default"></span>`fn default() -> ClassUnicodeRange` — [`ClassUnicodeRange`](#classunicoderange)
 
 ##### `impl Eq for ClassUnicodeRange`
 
 ##### `impl Interval for ClassUnicodeRange`
 
-- `type Bound = char`
+- <span id="classunicoderange-type-bound"></span>`type Bound = char`
 
-- `fn lower(self: &Self) -> char`
+- <span id="classunicoderange-lower"></span>`fn lower(&self) -> char`
 
-- `fn upper(self: &Self) -> char`
+- <span id="classunicoderange-upper"></span>`fn upper(&self) -> char`
 
-- `fn set_lower(self: &mut Self, bound: char)`
+- <span id="classunicoderange-set-lower"></span>`fn set_lower(&mut self, bound: char)`
 
-- `fn set_upper(self: &mut Self, bound: char)`
+- <span id="classunicoderange-set-upper"></span>`fn set_upper(&mut self, bound: char)`
 
-- `fn case_fold_simple(self: &Self, ranges: &mut Vec<ClassUnicodeRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassUnicodeRange`](#classunicoderange), [`CaseFoldError`](../unicode/index.md)
+- <span id="classunicoderange-case-fold-simple"></span>`fn case_fold_simple(&self, ranges: &mut Vec<ClassUnicodeRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassUnicodeRange`](#classunicoderange), [`CaseFoldError`](../unicode/index.md)
 
 ##### `impl Ord for ClassUnicodeRange`
 
-- `fn cmp(self: &Self, other: &ClassUnicodeRange) -> $crate::cmp::Ordering` — [`ClassUnicodeRange`](#classunicoderange)
+- <span id="classunicoderange-cmp"></span>`fn cmp(&self, other: &ClassUnicodeRange) -> cmp::Ordering` — [`ClassUnicodeRange`](#classunicoderange)
 
 ##### `impl PartialEq for ClassUnicodeRange`
 
-- `fn eq(self: &Self, other: &ClassUnicodeRange) -> bool` — [`ClassUnicodeRange`](#classunicoderange)
+- <span id="classunicoderange-eq"></span>`fn eq(&self, other: &ClassUnicodeRange) -> bool` — [`ClassUnicodeRange`](#classunicoderange)
 
 ##### `impl PartialOrd for ClassUnicodeRange`
 
-- `fn partial_cmp(self: &Self, other: &ClassUnicodeRange) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ClassUnicodeRange`](#classunicoderange)
+- <span id="classunicoderange-partial-cmp"></span>`fn partial_cmp(&self, other: &ClassUnicodeRange) -> option::Option<cmp::Ordering>` — [`ClassUnicodeRange`](#classunicoderange)
 
 ##### `impl StructuralPartialEq for ClassUnicodeRange`
 
@@ -451,59 +544,61 @@ struct ClassBytes {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1350-1352`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1350-L1352)*
+
 A set of characters represented by arbitrary bytes.
 
 Each byte corresponds to one character.
 
 #### Implementations
 
-- `fn new<I>(ranges: I) -> ClassBytes` — [`ClassBytes`](#classbytes)
+- <span id="classbytes-new"></span>`fn new<I>(ranges: I) -> ClassBytes` — [`ClassBytes`](#classbytes)
 
-- `fn empty() -> ClassBytes` — [`ClassBytes`](#classbytes)
+- <span id="classbytes-empty"></span>`fn empty() -> ClassBytes` — [`ClassBytes`](#classbytes)
 
-- `fn push(self: &mut Self, range: ClassBytesRange)` — [`ClassBytesRange`](#classbytesrange)
+- <span id="classbytes-push"></span>`fn push(&mut self, range: ClassBytesRange)` — [`ClassBytesRange`](#classbytesrange)
 
-- `fn iter(self: &Self) -> ClassBytesIter<'_>` — [`ClassBytesIter`](#classbytesiter)
+- <span id="classbytes-iter"></span>`fn iter(&self) -> ClassBytesIter<'_>` — [`ClassBytesIter`](#classbytesiter)
 
-- `fn ranges(self: &Self) -> &[ClassBytesRange]` — [`ClassBytesRange`](#classbytesrange)
+- <span id="classbytes-ranges"></span>`fn ranges(&self) -> &[ClassBytesRange]` — [`ClassBytesRange`](#classbytesrange)
 
-- `fn case_fold_simple(self: &mut Self)`
+- <span id="classbytes-case-fold-simple"></span>`fn case_fold_simple(&mut self)`
 
-- `fn negate(self: &mut Self)`
+- <span id="classbytes-negate"></span>`fn negate(&mut self)`
 
-- `fn union(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
+- <span id="classbytes-union"></span>`fn union(&mut self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
 
-- `fn intersect(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
+- <span id="classbytes-intersect"></span>`fn intersect(&mut self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
 
-- `fn difference(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
+- <span id="classbytes-difference"></span>`fn difference(&mut self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
 
-- `fn symmetric_difference(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
+- <span id="classbytes-symmetric-difference"></span>`fn symmetric_difference(&mut self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
 
-- `fn is_ascii(self: &Self) -> bool`
+- <span id="classbytes-is-ascii"></span>`fn is_ascii(&self) -> bool`
 
-- `fn minimum_len(self: &Self) -> Option<usize>`
+- <span id="classbytes-minimum-len"></span>`fn minimum_len(&self) -> Option<usize>`
 
-- `fn maximum_len(self: &Self) -> Option<usize>`
+- <span id="classbytes-maximum-len"></span>`fn maximum_len(&self) -> Option<usize>`
 
-- `fn literal(self: &Self) -> Option<Vec<u8>>`
+- <span id="classbytes-literal"></span>`fn literal(&self) -> Option<Vec<u8>>`
 
-- `fn to_unicode_class(self: &Self) -> Option<ClassUnicode>` — [`ClassUnicode`](#classunicode)
+- <span id="classbytes-to-unicode-class"></span>`fn to_unicode_class(&self) -> Option<ClassUnicode>` — [`ClassUnicode`](#classunicode)
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassBytes`
 
-- `fn clone(self: &Self) -> ClassBytes` — [`ClassBytes`](#classbytes)
+- <span id="classbytes-clone"></span>`fn clone(&self) -> ClassBytes` — [`ClassBytes`](#classbytes)
 
 ##### `impl Debug for ClassBytes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ClassBytes`
 
 ##### `impl PartialEq for ClassBytes`
 
-- `fn eq(self: &Self, other: &ClassBytes) -> bool` — [`ClassBytes`](#classbytes)
+- <span id="classbytes-eq"></span>`fn eq(&self, other: &ClassBytes) -> bool` — [`ClassBytes`](#classbytes)
 
 ##### `impl StructuralPartialEq for ClassBytes`
 
@@ -513,29 +608,31 @@ Each byte corresponds to one character.
 struct ClassBytesIter<'a>(crate::hir::interval::IntervalSetIter<'a, ClassBytesRange>);
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1504`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1504)*
+
 An iterator over all ranges in a byte character class.
 
 The lifetime `'a` refers to the lifetime of the underlying class.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ClassBytesIter<'a>`
+##### `impl Debug for ClassBytesIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classbytesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ClassBytesIter<'a>`
+##### `impl IntoIterator for ClassBytesIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="classbytesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="classbytesiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="classbytesiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ClassBytesIter<'a>`
+##### `impl Iterator for ClassBytesIter<'a>`
 
-- `type Item = &'a ClassBytesRange`
+- <span id="classbytesiter-type-item"></span>`type Item = &'a ClassBytesRange`
 
-- `fn next(self: &mut Self) -> Option<&'a ClassBytesRange>` — [`ClassBytesRange`](#classbytesrange)
+- <span id="classbytesiter-next"></span>`fn next(&mut self) -> Option<&'a ClassBytesRange>` — [`ClassBytesRange`](#classbytesrange)
 
 ### `ClassBytesRange`
 
@@ -546,6 +643,8 @@ struct ClassBytesRange {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1519-1522`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1519-L1522)*
+
 A single range of characters represented by arbitrary bytes.
 
 The range is closed. That is, the start and end of the range are included
@@ -553,57 +652,57 @@ in the range.
 
 #### Implementations
 
-- `fn new(start: u8, end: u8) -> ClassBytesRange` — [`ClassBytesRange`](#classbytesrange)
+- <span id="classbytesrange-new"></span>`fn new(start: u8, end: u8) -> ClassBytesRange` — [`ClassBytesRange`](#classbytesrange)
 
-- `fn start(self: &Self) -> u8`
+- <span id="classbytesrange-start"></span>`fn start(&self) -> u8`
 
-- `fn end(self: &Self) -> u8`
+- <span id="classbytesrange-end"></span>`fn end(&self) -> u8`
 
-- `fn len(self: &Self) -> usize`
+- <span id="classbytesrange-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for ClassBytesRange`
 
-- `fn clone(self: &Self) -> ClassBytesRange` — [`ClassBytesRange`](#classbytesrange)
+- <span id="classbytesrange-clone"></span>`fn clone(&self) -> ClassBytesRange` — [`ClassBytesRange`](#classbytesrange)
 
 ##### `impl Copy for ClassBytesRange`
 
 ##### `impl Debug for ClassBytesRange`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="classbytesrange-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for ClassBytesRange`
 
-- `fn default() -> ClassBytesRange` — [`ClassBytesRange`](#classbytesrange)
+- <span id="classbytesrange-default"></span>`fn default() -> ClassBytesRange` — [`ClassBytesRange`](#classbytesrange)
 
 ##### `impl Eq for ClassBytesRange`
 
 ##### `impl Interval for ClassBytesRange`
 
-- `type Bound = u8`
+- <span id="classbytesrange-type-bound"></span>`type Bound = u8`
 
-- `fn lower(self: &Self) -> u8`
+- <span id="classbytesrange-lower"></span>`fn lower(&self) -> u8`
 
-- `fn upper(self: &Self) -> u8`
+- <span id="classbytesrange-upper"></span>`fn upper(&self) -> u8`
 
-- `fn set_lower(self: &mut Self, bound: u8)`
+- <span id="classbytesrange-set-lower"></span>`fn set_lower(&mut self, bound: u8)`
 
-- `fn set_upper(self: &mut Self, bound: u8)`
+- <span id="classbytesrange-set-upper"></span>`fn set_upper(&mut self, bound: u8)`
 
-- `fn case_fold_simple(self: &Self, ranges: &mut Vec<ClassBytesRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassBytesRange`](#classbytesrange), [`CaseFoldError`](../unicode/index.md)
+- <span id="classbytesrange-case-fold-simple"></span>`fn case_fold_simple(&self, ranges: &mut Vec<ClassBytesRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassBytesRange`](#classbytesrange), [`CaseFoldError`](../unicode/index.md)
 
 ##### `impl Ord for ClassBytesRange`
 
-- `fn cmp(self: &Self, other: &ClassBytesRange) -> $crate::cmp::Ordering` — [`ClassBytesRange`](#classbytesrange)
+- <span id="classbytesrange-cmp"></span>`fn cmp(&self, other: &ClassBytesRange) -> cmp::Ordering` — [`ClassBytesRange`](#classbytesrange)
 
 ##### `impl PartialEq for ClassBytesRange`
 
-- `fn eq(self: &Self, other: &ClassBytesRange) -> bool` — [`ClassBytesRange`](#classbytesrange)
+- <span id="classbytesrange-eq"></span>`fn eq(&self, other: &ClassBytesRange) -> bool` — [`ClassBytesRange`](#classbytesrange)
 
 ##### `impl PartialOrd for ClassBytesRange`
 
-- `fn partial_cmp(self: &Self, other: &ClassBytesRange) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ClassBytesRange`](#classbytesrange)
+- <span id="classbytesrange-partial-cmp"></span>`fn partial_cmp(&self, other: &ClassBytesRange) -> option::Option<cmp::Ordering>` — [`ClassBytesRange`](#classbytesrange)
 
 ##### `impl StructuralPartialEq for ClassBytesRange`
 
@@ -616,6 +715,8 @@ struct Capture {
     pub sub: alloc::boxed::Box<Hir>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1799-1806`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1799-L1806)*
 
 The high-level intermediate representation for a capturing group.
 
@@ -645,17 +746,17 @@ the recursive structure of the `Hir` itself.
 
 ##### `impl Clone for Capture`
 
-- `fn clone(self: &Self) -> Capture` — [`Capture`](#capture)
+- <span id="capture-clone"></span>`fn clone(&self) -> Capture` — [`Capture`](#capture)
 
 ##### `impl Debug for Capture`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="capture-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Capture`
 
 ##### `impl PartialEq for Capture`
 
-- `fn eq(self: &Self, other: &Capture) -> bool` — [`Capture`](#capture)
+- <span id="capture-eq"></span>`fn eq(&self, other: &Capture) -> bool` — [`Capture`](#capture)
 
 ##### `impl StructuralPartialEq for Capture`
 
@@ -669,6 +770,8 @@ struct Repetition {
     pub sub: alloc::boxed::Box<Hir>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1813-1839`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1813-L1839)*
 
 The high-level intermediate representation of a repetition operator.
 
@@ -712,23 +815,23 @@ sub-expression.
 
 #### Implementations
 
-- `fn with(self: &Self, sub: Hir) -> Repetition` — [`Hir`](#hir), [`Repetition`](#repetition)
+- <span id="repetition-with"></span>`fn with(&self, sub: Hir) -> Repetition` — [`Hir`](#hir), [`Repetition`](#repetition)
 
 #### Trait Implementations
 
 ##### `impl Clone for Repetition`
 
-- `fn clone(self: &Self) -> Repetition` — [`Repetition`](#repetition)
+- <span id="repetition-clone"></span>`fn clone(&self) -> Repetition` — [`Repetition`](#repetition)
 
 ##### `impl Debug for Repetition`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="repetition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Repetition`
 
 ##### `impl PartialEq for Repetition`
 
-- `fn eq(self: &Self, other: &Repetition) -> bool` — [`Repetition`](#repetition)
+- <span id="repetition-eq"></span>`fn eq(&self, other: &Repetition) -> bool` — [`Repetition`](#repetition)
 
 ##### `impl StructuralPartialEq for Repetition`
 
@@ -737,6 +840,8 @@ sub-expression.
 ```rust
 struct Properties(alloc::boxed::Box<PropertiesI>);
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1964`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1964)*
 
 A type that collects various properties of an HIR value.
 
@@ -749,37 +854,49 @@ be cheap to call.
 
 #### Implementations
 
-- `fn empty() -> Properties` — [`Properties`](#properties)
+- <span id="properties-minimum-len"></span>`fn minimum_len(&self) -> Option<usize>`
 
-- `fn literal(lit: &Literal) -> Properties` — [`Literal`](#literal), [`Properties`](#properties)
+- <span id="properties-maximum-len"></span>`fn maximum_len(&self) -> Option<usize>`
 
-- `fn class(class: &Class) -> Properties` — [`Class`](#class), [`Properties`](#properties)
+- <span id="properties-look-set"></span>`fn look_set(&self) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn look(look: Look) -> Properties` — [`Look`](#look), [`Properties`](#properties)
+- <span id="properties-look-set-prefix"></span>`fn look_set_prefix(&self) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn repetition(rep: &Repetition) -> Properties` — [`Repetition`](#repetition), [`Properties`](#properties)
+- <span id="properties-look-set-prefix-any"></span>`fn look_set_prefix_any(&self) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn capture(capture: &Capture) -> Properties` — [`Capture`](#capture), [`Properties`](#properties)
+- <span id="properties-look-set-suffix"></span>`fn look_set_suffix(&self) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn concat(concat: &[Hir]) -> Properties` — [`Hir`](#hir), [`Properties`](#properties)
+- <span id="properties-look-set-suffix-any"></span>`fn look_set_suffix_any(&self) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn alternation(alts: &[Hir]) -> Properties` — [`Hir`](#hir), [`Properties`](#properties)
+- <span id="properties-is-utf8"></span>`fn is_utf8(&self) -> bool`
+
+- <span id="properties-explicit-captures-len"></span>`fn explicit_captures_len(&self) -> usize`
+
+- <span id="properties-static-explicit-captures-len"></span>`fn static_explicit_captures_len(&self) -> Option<usize>`
+
+- <span id="properties-is-literal"></span>`fn is_literal(&self) -> bool`
+
+- <span id="properties-is-alternation-literal"></span>`fn is_alternation_literal(&self) -> bool`
+
+- <span id="properties-memory-usage"></span>`fn memory_usage(&self) -> usize`
+
+- <span id="properties-union"></span>`fn union<I, P>(props: I) -> Properties` — [`Properties`](#properties)
 
 #### Trait Implementations
 
 ##### `impl Clone for Properties`
 
-- `fn clone(self: &Self) -> Properties` — [`Properties`](#properties)
+- <span id="properties-clone"></span>`fn clone(&self) -> Properties` — [`Properties`](#properties)
 
 ##### `impl Debug for Properties`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="properties-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Properties`
 
 ##### `impl PartialEq for Properties`
 
-- `fn eq(self: &Self, other: &Properties) -> bool` — [`Properties`](#properties)
+- <span id="properties-eq"></span>`fn eq(&self, other: &Properties) -> bool` — [`Properties`](#properties)
 
 ##### `impl StructuralPartialEq for Properties`
 
@@ -802,6 +919,8 @@ struct PropertiesI {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1974-1987`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1974-L1987)*
+
 The property definition. It is split out so that we can box it, and
 there by make `Properties` use less stack size. This is kind-of important
 because every HIR value has a `Properties` attached to it.
@@ -814,17 +933,17 @@ true anyway (for pretty much all HirKinds except for look-arounds).
 
 ##### `impl Clone for PropertiesI`
 
-- `fn clone(self: &Self) -> PropertiesI` — [`PropertiesI`](#propertiesi)
+- <span id="propertiesi-clone"></span>`fn clone(&self) -> PropertiesI` — [`PropertiesI`](#propertiesi)
 
 ##### `impl Debug for PropertiesI`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="propertiesi-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for PropertiesI`
 
 ##### `impl PartialEq for PropertiesI`
 
-- `fn eq(self: &Self, other: &PropertiesI) -> bool` — [`PropertiesI`](#propertiesi)
+- <span id="propertiesi-eq"></span>`fn eq(&self, other: &PropertiesI) -> bool` — [`PropertiesI`](#propertiesi)
 
 ##### `impl StructuralPartialEq for PropertiesI`
 
@@ -835,6 +954,8 @@ struct LookSet {
     pub bits: u32,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2665-2676`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L2665-L2676)*
 
 A set of look-around assertions.
 
@@ -857,81 +978,81 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 
 #### Implementations
 
-- `fn empty() -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-empty"></span>`fn empty() -> LookSet` — [`LookSet`](#lookset)
 
-- `fn full() -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-full"></span>`fn full() -> LookSet` — [`LookSet`](#lookset)
 
-- `fn singleton(look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
+- <span id="lookset-singleton"></span>`fn singleton(look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
-- `fn len(self: Self) -> usize`
+- <span id="lookset-len"></span>`fn len(self) -> usize`
 
-- `fn is_empty(self: Self) -> bool`
+- <span id="lookset-is-empty"></span>`fn is_empty(self) -> bool`
 
-- `fn contains(self: Self, look: Look) -> bool` — [`Look`](#look)
+- <span id="lookset-contains"></span>`fn contains(self, look: Look) -> bool` — [`Look`](#look)
 
-- `fn contains_anchor(self: &Self) -> bool`
+- <span id="lookset-contains-anchor"></span>`fn contains_anchor(&self) -> bool`
 
-- `fn contains_anchor_haystack(self: &Self) -> bool`
+- <span id="lookset-contains-anchor-haystack"></span>`fn contains_anchor_haystack(&self) -> bool`
 
-- `fn contains_anchor_line(self: &Self) -> bool`
+- <span id="lookset-contains-anchor-line"></span>`fn contains_anchor_line(&self) -> bool`
 
-- `fn contains_anchor_lf(self: &Self) -> bool`
+- <span id="lookset-contains-anchor-lf"></span>`fn contains_anchor_lf(&self) -> bool`
 
-- `fn contains_anchor_crlf(self: &Self) -> bool`
+- <span id="lookset-contains-anchor-crlf"></span>`fn contains_anchor_crlf(&self) -> bool`
 
-- `fn contains_word(self: Self) -> bool`
+- <span id="lookset-contains-word"></span>`fn contains_word(self) -> bool`
 
-- `fn contains_word_unicode(self: Self) -> bool`
+- <span id="lookset-contains-word-unicode"></span>`fn contains_word_unicode(self) -> bool`
 
-- `fn contains_word_ascii(self: Self) -> bool`
+- <span id="lookset-contains-word-ascii"></span>`fn contains_word_ascii(self) -> bool`
 
-- `fn iter(self: Self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
+- <span id="lookset-iter"></span>`fn iter(self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
 
-- `fn insert(self: Self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
+- <span id="lookset-insert"></span>`fn insert(self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
-- `fn set_insert(self: &mut Self, look: Look)` — [`Look`](#look)
+- <span id="lookset-set-insert"></span>`fn set_insert(&mut self, look: Look)` — [`Look`](#look)
 
-- `fn remove(self: Self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
+- <span id="lookset-remove"></span>`fn remove(self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
-- `fn set_remove(self: &mut Self, look: Look)` — [`Look`](#look)
+- <span id="lookset-set-remove"></span>`fn set_remove(&mut self, look: Look)` — [`Look`](#look)
 
-- `fn subtract(self: Self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-subtract"></span>`fn subtract(self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn set_subtract(self: &mut Self, other: LookSet)` — [`LookSet`](#lookset)
+- <span id="lookset-set-subtract"></span>`fn set_subtract(&mut self, other: LookSet)` — [`LookSet`](#lookset)
 
-- `fn union(self: Self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-union"></span>`fn union(self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn set_union(self: &mut Self, other: LookSet)` — [`LookSet`](#lookset)
+- <span id="lookset-set-union"></span>`fn set_union(&mut self, other: LookSet)` — [`LookSet`](#lookset)
 
-- `fn intersect(self: Self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-intersect"></span>`fn intersect(self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn set_intersect(self: &mut Self, other: LookSet)` — [`LookSet`](#lookset)
+- <span id="lookset-set-intersect"></span>`fn set_intersect(&mut self, other: LookSet)` — [`LookSet`](#lookset)
 
-- `fn read_repr(slice: &[u8]) -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-read-repr"></span>`fn read_repr(slice: &[u8]) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn write_repr(self: Self, slice: &mut [u8])`
+- <span id="lookset-write-repr"></span>`fn write_repr(self, slice: &mut [u8])`
 
 #### Trait Implementations
 
 ##### `impl Clone for LookSet`
 
-- `fn clone(self: &Self) -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-clone"></span>`fn clone(&self) -> LookSet` — [`LookSet`](#lookset)
 
 ##### `impl Copy for LookSet`
 
 ##### `impl Debug for LookSet`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="lookset-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for LookSet`
 
-- `fn default() -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-default"></span>`fn default() -> LookSet` — [`LookSet`](#lookset)
 
 ##### `impl Eq for LookSet`
 
 ##### `impl PartialEq for LookSet`
 
-- `fn eq(self: &Self, other: &LookSet) -> bool` — [`LookSet`](#lookset)
+- <span id="lookset-eq"></span>`fn eq(&self, other: &LookSet) -> bool` — [`LookSet`](#lookset)
 
 ##### `impl StructuralPartialEq for LookSet`
 
@@ -943,6 +1064,8 @@ struct LookSetIter {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2916-2918`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L2916-L2918)*
+
 An iterator over all look-around assertions in a [`LookSet`](#lookset).
 
 This iterator is created by `LookSet::iter`.
@@ -951,25 +1074,25 @@ This iterator is created by `LookSet::iter`.
 
 ##### `impl Clone for LookSetIter`
 
-- `fn clone(self: &Self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
+- <span id="looksetiter-clone"></span>`fn clone(&self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
 
 ##### `impl Debug for LookSetIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="looksetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for LookSetIter`
+##### `impl IntoIterator for LookSetIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="looksetiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="looksetiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="looksetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for LookSetIter`
 
-- `type Item = Look`
+- <span id="looksetiter-type-item"></span>`type Item = Look`
 
-- `fn next(self: &mut Self) -> Option<Look>` — [`Look`](#look)
+- <span id="looksetiter-next"></span>`fn next(&mut self) -> Option<Look>` — [`Look`](#look)
 
 ## Enums
 
@@ -986,6 +1109,8 @@ enum ErrorKind {
     UnicodeCaseUnavailable,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:84-108`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L84-L108)*
 
 The type of an error that occurred while building an `Hir`.
 
@@ -1035,27 +1160,27 @@ new variant is not considered a breaking change.
 
 ##### `impl Clone for ErrorKind`
 
-- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](#errorkind)
 
 ##### `impl Debug for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for ErrorKind`
 
 ##### `impl PartialEq for ErrorKind`
 
-- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
 
 ##### `impl StructuralPartialEq for ErrorKind`
 
-##### `impl<T> ToString for ErrorKind`
+##### `impl ToString for ErrorKind`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errorkind-to-string"></span>`fn to_string(&self) -> String`
 
 ### `HirKind`
 
@@ -1071,6 +1196,8 @@ enum HirKind {
     Alternation(alloc::vec::Vec<Hir>),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:717-752`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L717-L752)*
 
 The underlying kind of an arbitrary [`Hir`](#hir) expression.
 
@@ -1134,23 +1261,23 @@ not expose any way of building an `Hir` directly from an `HirKind`.
 
 #### Implementations
 
-- `fn subs(self: &Self) -> &[Hir]` — [`Hir`](#hir)
+- <span id="hirkind-subs"></span>`fn subs(&self) -> &[Hir]` — [`Hir`](#hir)
 
 #### Trait Implementations
 
 ##### `impl Clone for HirKind`
 
-- `fn clone(self: &Self) -> HirKind` — [`HirKind`](#hirkind)
+- <span id="hirkind-clone"></span>`fn clone(&self) -> HirKind` — [`HirKind`](#hirkind)
 
 ##### `impl Debug for HirKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="hirkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for HirKind`
 
 ##### `impl PartialEq for HirKind`
 
-- `fn eq(self: &Self, other: &HirKind) -> bool` — [`HirKind`](#hirkind)
+- <span id="hirkind-eq"></span>`fn eq(&self, other: &HirKind) -> bool` — [`HirKind`](#hirkind)
 
 ##### `impl StructuralPartialEq for HirKind`
 
@@ -1162,6 +1289,8 @@ enum Class {
     Bytes(ClassBytes),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:830-836`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L830-L836)*
 
 The high-level intermediate representation of a character class.
 
@@ -1197,37 +1326,37 @@ and `(?i-u)k` will not match the same set of strings.
 
 #### Implementations
 
-- `fn case_fold_simple(self: &mut Self)`
+- <span id="class-case-fold-simple"></span>`fn case_fold_simple(&mut self)`
 
-- `fn try_case_fold_simple(self: &mut Self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md)
+- <span id="class-try-case-fold-simple"></span>`fn try_case_fold_simple(&mut self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md)
 
-- `fn negate(self: &mut Self)`
+- <span id="class-negate"></span>`fn negate(&mut self)`
 
-- `fn is_utf8(self: &Self) -> bool`
+- <span id="class-is-utf8"></span>`fn is_utf8(&self) -> bool`
 
-- `fn minimum_len(self: &Self) -> Option<usize>`
+- <span id="class-minimum-len"></span>`fn minimum_len(&self) -> Option<usize>`
 
-- `fn maximum_len(self: &Self) -> Option<usize>`
+- <span id="class-maximum-len"></span>`fn maximum_len(&self) -> Option<usize>`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="class-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn literal(self: &Self) -> Option<Vec<u8>>`
+- <span id="class-literal"></span>`fn literal(&self) -> Option<Vec<u8>>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Class`
 
-- `fn clone(self: &Self) -> Class` — [`Class`](#class)
+- <span id="class-clone"></span>`fn clone(&self) -> Class` — [`Class`](#class)
 
 ##### `impl Debug for Class`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="class-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Class`
 
 ##### `impl PartialEq for Class`
 
-- `fn eq(self: &Self, other: &Class) -> bool` — [`Class`](#class)
+- <span id="class-eq"></span>`fn eq(&self, other: &Class) -> bool` — [`Class`](#class)
 
 ##### `impl StructuralPartialEq for Class`
 
@@ -1255,6 +1384,8 @@ enum Look {
     WordEndHalfUnicode,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1613-1686`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1613-L1686)*
 
 The high-level intermediate representation for a look-around assertion.
 
@@ -1372,31 +1503,31 @@ An assertion match is always zero-length. Also called an "empty match."
 
 #### Implementations
 
-- `const fn reversed(self: Self) -> Look` — [`Look`](#look)
+- <span id="look-reversed"></span>`const fn reversed(self) -> Look` — [`Look`](#look)
 
-- `const fn as_repr(self: Self) -> u32`
+- <span id="look-as-repr"></span>`const fn as_repr(self) -> u32`
 
-- `const fn from_repr(repr: u32) -> Option<Look>` — [`Look`](#look)
+- <span id="look-from-repr"></span>`const fn from_repr(repr: u32) -> Option<Look>` — [`Look`](#look)
 
-- `const fn as_char(self: Self) -> char`
+- <span id="look-as-char"></span>`const fn as_char(self) -> char`
 
 #### Trait Implementations
 
 ##### `impl Clone for Look`
 
-- `fn clone(self: &Self) -> Look` — [`Look`](#look)
+- <span id="look-clone"></span>`fn clone(&self) -> Look` — [`Look`](#look)
 
 ##### `impl Copy for Look`
 
 ##### `impl Debug for Look`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="look-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Look`
 
 ##### `impl PartialEq for Look`
 
-- `fn eq(self: &Self, other: &Look) -> bool` — [`Look`](#look)
+- <span id="look-eq"></span>`fn eq(&self, other: &Look) -> bool` — [`Look`](#look)
 
 ##### `impl StructuralPartialEq for Look`
 
@@ -1414,6 +1545,8 @@ enum Dot {
     AnyByteExceptCRLF,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:1860-1909`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L1860-L1909)*
 
 A type describing the different flavors of `.`.
 
@@ -1490,31 +1623,92 @@ routine for building HIR values derived from the `.` regex.
 
 ##### `impl Clone for Dot`
 
-- `fn clone(self: &Self) -> Dot` — [`Dot`](#dot)
+- <span id="dot-clone"></span>`fn clone(&self) -> Dot` — [`Dot`](#dot)
 
 ##### `impl Copy for Dot`
 
 ##### `impl Debug for Dot`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dot-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Dot`
 
 ##### `impl PartialEq for Dot`
 
-- `fn eq(self: &Self, other: &Dot) -> bool` — [`Dot`](#dot)
+- <span id="dot-eq"></span>`fn eq(&self, other: &Dot) -> bool` — [`Dot`](#dot)
 
 ##### `impl StructuralPartialEq for Dot`
 
 ## Traits
 
+### `Visitor`
+
+```rust
+trait Visitor { ... }
+```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
+
+A trait for visiting the high-level IR (HIR) in depth first order.
+
+The principle aim of this trait is to enable callers to perform case
+analysis on a high-level intermediate representation of a regular
+expression without necessarily using recursion. In particular, this permits
+callers to do case analysis with constant stack usage, which can be
+important since the size of an HIR may be proportional to end user input.
+
+Typical usage of this trait involves providing an implementation and then
+running it using the [`visit`](visitor/index.md) function.
+
+#### Associated Types
+
+- `type Output`
+
+- `type Err`
+
+#### Required Methods
+
+- `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
+
+  All implementors of `Visitor` must provide a `finish` method, which
+
+#### Provided Methods
+
+- `fn start(&mut self)`
+
+  This method is called before beginning traversal of the HIR.
+
+- `fn visit_pre(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+
+  This method is called on an `Hir` before descending into child `Hir`
+
+- `fn visit_post(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+
+  This method is called on an `Hir` after descending all of its child
+
+- `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
+
+  This method is called between child nodes of an alternation.
+
+- `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
+
+  This method is called between child nodes of a concatenation.
+
+#### Implementors
+
+- [`Writer`](print/index.md)
+
 ## Functions
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:37`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L37)*
 
 ### `class_chars`
 
 ```rust
 fn class_chars(hirs: &[Hir]) -> Option<Class>
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2940-2954`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L2940-L2954)*
 
 Given a sequence of HIR values where each value corresponds to a Unicode
 class (or an all-ASCII byte class), return a single Unicode class
@@ -1526,6 +1720,8 @@ corresponding to the union of the classes found.
 fn class_bytes(hirs: &[Hir]) -> Option<Class>
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2959-2973`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L2959-L2973)*
+
 Given a sequence of HIR values where each value corresponds to a byte class
 (or an all-ASCII Unicode class), return a single byte class corresponding
 to the union of the classes found.
@@ -1535,6 +1731,8 @@ to the union of the classes found.
 ```rust
 fn singleton_chars(hirs: &[Hir]) -> Option<alloc::vec::Vec<char>>
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:2978-2996`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L2978-L2996)*
 
 Given a sequence of HIR values where each value corresponds to a literal
 that is a single `char`, return that sequence of `char`s. Otherwise return
@@ -1546,6 +1744,8 @@ None. No deduplication is done.
 fn singleton_bytes(hirs: &[Hir]) -> Option<alloc::vec::Vec<u8>>
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:3001-3014`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L3001-L3014)*
+
 Given a sequence of HIR values where each value corresponds to a literal
 that is a single byte, return that sequence of bytes. Otherwise return
 None. No deduplication is done.
@@ -1555,6 +1755,8 @@ None. No deduplication is done.
 ```rust
 fn lift_common_prefix(hirs: alloc::vec::Vec<Hir>) -> Result<Hir, alloc::vec::Vec<Hir>>
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/mod.rs:3027-3073`](../../../.source_1765210505/regex-syntax-0.8.8/src/hir/mod.rs#L3027-L3073)*
 
 Looks for a common prefix in the list of alternation branches given. If one
 is found, then an equivalent but (hopefully) simplified Hir is returned.

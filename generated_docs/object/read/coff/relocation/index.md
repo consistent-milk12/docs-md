@@ -4,6 +4,13 @@
 
 # Module `relocation`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CoffRelocationIterator`](#coffrelocationiterator) | struct | An iterator for the relocations in a [`CoffSection`](super::CoffSection). |
+| [`CoffBigRelocationIterator`](#coffbigrelocationiterator) | type | An iterator for the relocations in a [`CoffBigSection`](super::CoffBigSection). |
+
 ## Structs
 
 ### `CoffRelocationIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
@@ -15,27 +22,29 @@ struct CoffRelocationIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/relocation.rs:18-26`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/relocation.rs#L18-L26)*
+
 An iterator for the relocations in a [`CoffSection`](super::CoffSection).
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Debug for CoffRelocationIterator<'data, 'file, R, Coff>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="coffrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for CoffRelocationIterator<'data, 'file, R, Coff>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="coffrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="coffrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="coffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffRelocationIterator<'data, 'file, R, Coff>`
 
-- `type Item = (u64, Relocation)`
+- <span id="coffrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="coffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Type Aliases
 
@@ -44,6 +53,8 @@ An iterator for the relocations in a [`CoffSection`](super::CoffSection).
 ```rust
 type CoffBigRelocationIterator<'data, 'file, R> = CoffRelocationIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/relocation.rs:14-15`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/relocation.rs#L14-L15)*
 
 An iterator for the relocations in a [`CoffBigSection`](super::CoffBigSection).
 

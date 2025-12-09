@@ -4,10 +4,37 @@
 
 # Module `data`
 
+## Contents
+
+- [Modules](#modules)
+  - [`parsing`](#parsing)
+  - [`printing`](#printing)
+- [Structs](#structs)
+  - [`Variant`](#variant)
+  - [`FieldsNamed`](#fieldsnamed)
+  - [`FieldsUnnamed`](#fieldsunnamed)
+  - [`Field`](#field)
+  - [`Members`](#members)
+- [Enums](#enums)
+  - [`Fields`](#fields)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`Variant`](#variant) | struct | An enum variant. |
+| [`FieldsNamed`](#fieldsnamed) | struct | Named fields of a struct or struct variant such as `Point { x: f64, y: f64 }`. |
+| [`FieldsUnnamed`](#fieldsunnamed) | struct | Unnamed fields of a tuple struct or tuple variant such as `Some(T)`. |
+| [`Field`](#field) | struct | A field of a struct or enum variant. |
+| [`Members`](#members) | struct |  |
+| [`Fields`](#fields) | enum | Data stored within an enum variant or struct. |
+
 ## Modules
 
-- [`parsing`](parsing/index.md) - 
-- [`printing`](printing/index.md) - 
+- [`parsing`](parsing/index.md)
+- [`printing`](printing/index.md)
 
 ## Structs
 
@@ -18,9 +45,11 @@ struct Variant {
     pub attrs: Vec<crate::attr::Attribute>,
     pub ident: crate::ident::Ident,
     pub fields: Fields,
-    pub discriminant: Option<($crate::token::Eq, crate::expr::Expr)>,
+    pub discriminant: Option<(token::Eq, crate::expr::Expr)>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L9-L24)*
 
 An enum variant.
 
@@ -34,7 +63,7 @@ An enum variant.
 
   Content stored in the variant.
 
-- **`discriminant`**: `Option<($crate::token::Eq, crate::expr::Expr)>`
+- **`discriminant`**: `Option<(token::Eq, crate::expr::Expr)>`
 
   Explicit discriminant: `Variant = 1`
 
@@ -42,134 +71,138 @@ An enum variant.
 
 ##### `impl Clone for crate::Variant`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratevariant-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Variant`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratevariant-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Variant`
 
 ##### `impl Hash for crate::Variant`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratevariant-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::data::Variant`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratedatavariant-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Variant`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratevariant-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Variant`
+##### `impl Sealed for Variant`
 
-##### `impl<T> Spanned for Variant`
+##### `impl Spanned for Variant`
 
-- `fn span(self: &Self) -> Span`
+- <span id="variant-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::data::Variant`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratedatavariant-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FieldsNamed`
 
 ```rust
 struct FieldsNamed {
     pub brace_token: token::Brace,
-    pub named: crate::punctuated::Punctuated<Field, $crate::token::Comma>,
+    pub named: crate::punctuated::Punctuated<Field, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L48-L56)*
 
 Named fields of a struct or struct variant such as `Point { x: f64,
 y: f64 }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratefieldsnamed-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::FieldsNamed`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefieldsnamed-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::FieldsNamed`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefieldsnamed-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FieldsNamed`
 
 ##### `impl Hash for crate::FieldsNamed`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefieldsnamed-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::data::FieldsNamed`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratedatafieldsnamed-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::FieldsNamed`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefieldsnamed-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for FieldsNamed`
+##### `impl Sealed for FieldsNamed`
 
-##### `impl<T> Spanned for FieldsNamed`
+##### `impl Spanned for FieldsNamed`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fieldsnamed-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::data::FieldsNamed`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratedatafieldsnamed-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FieldsUnnamed`
 
 ```rust
 struct FieldsUnnamed {
     pub paren_token: token::Paren,
-    pub unnamed: crate::punctuated::Punctuated<Field, $crate::token::Comma>,
+    pub unnamed: crate::punctuated::Punctuated<Field, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L58-L65)*
 
 Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratefieldsunnamed-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::FieldsUnnamed`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefieldsunnamed-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::FieldsUnnamed`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefieldsunnamed-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FieldsUnnamed`
 
 ##### `impl Hash for crate::FieldsUnnamed`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefieldsunnamed-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::data::FieldsUnnamed`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratedatafieldsunnamed-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::FieldsUnnamed`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefieldsunnamed-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for FieldsUnnamed`
+##### `impl Sealed for FieldsUnnamed`
 
-##### `impl<T> Spanned for FieldsUnnamed`
+##### `impl Spanned for FieldsUnnamed`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fieldsunnamed-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::data::FieldsUnnamed`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratedatafieldsunnamed-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Field`
 
@@ -179,10 +212,12 @@ struct Field {
     pub vis: crate::restriction::Visibility,
     pub mutability: crate::restriction::FieldMutability,
     pub ident: Option<crate::ident::Ident>,
-    pub colon_token: Option<$crate::token::Colon>,
+    pub colon_token: Option<token::Colon>,
     pub ty: crate::ty::Type,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L181-L200)*
 
 A field of a struct or enum variant.
 
@@ -196,39 +231,39 @@ A field of a struct or enum variant.
 
 #### Implementations
 
-- `fn parse_named(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratedatafield-parse-named"></span>`fn parse_named(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-- `fn parse_unnamed(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratedatafield-parse-unnamed"></span>`fn parse_unnamed(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Field`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefield-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Field`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefield-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Field`
 
 ##### `impl Hash for crate::Field`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefield-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Field`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefield-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Field`
+##### `impl Sealed for Field`
 
-##### `impl<T> Spanned for Field`
+##### `impl Spanned for Field`
 
-- `fn span(self: &Self) -> Span`
+- <span id="field-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::data::Field`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratedatafield-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Members<'a>`
 
@@ -239,25 +274,27 @@ struct Members<'a> {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/data.rs:202-205`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L202-L205)*
+
 #### Trait Implementations
 
-##### `impl<'a> Clone for Members<'a>`
+##### `impl Clone for Members<'a>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="members-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<I> IntoIterator for Members<'a>`
+##### `impl IntoIterator for Members<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="members-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="members-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="members-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Members<'a>`
+##### `impl Iterator for Members<'a>`
 
-- `type Item = Member`
+- <span id="members-type-item"></span>`type Item = Member`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="members-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Enums
 
@@ -270,6 +307,8 @@ enum Fields {
     Unit,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L26-L46)*
 
 Data stored within an enum variant or struct.
 
@@ -295,51 +334,51 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn iter(self: &Self) -> punctuated::Iter<'_, Field>` — [`Iter`](../punctuated/index.md), [`Field`](../index.md)
+- <span id="fields-iter"></span>`fn iter(&self) -> punctuated::Iter<'_, Field>` — [`Iter`](../punctuated/index.md), [`Field`](#field)
 
-- `fn iter_mut(self: &mut Self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](../punctuated/index.md), [`Field`](../index.md)
+- <span id="fields-iter-mut"></span>`fn iter_mut(&mut self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](../punctuated/index.md), [`Field`](#field)
 
-- `fn len(self: &Self) -> usize`
+- <span id="fields-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="fields-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn members(self: &Self) -> Members<'_>` — [`Members`](#members)
+- <span id="fields-members"></span>`fn members(&self) -> Members<'_>` — [`Members`](#members)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Fields`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefields-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Fields`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefields-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Fields`
 
 ##### `impl Hash for crate::Fields`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefields-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl IntoIterator for Fields`
 
-- `type Item = Field`
+- <span id="fields-type-item"></span>`type Item = Field`
 
-- `type IntoIter = IntoIter<Field>`
+- <span id="fields-type-intoiter"></span>`type IntoIter = IntoIter<Field>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="fields-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl PartialEq for crate::Fields`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefields-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Fields`
+##### `impl Sealed for Fields`
 
-##### `impl<T> Spanned for Fields`
+##### `impl Spanned for Fields`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fields-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Fields`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="fields-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 

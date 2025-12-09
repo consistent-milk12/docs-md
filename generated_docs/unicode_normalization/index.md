@@ -29,18 +29,90 @@ to your `Cargo.toml`:
 unicode-normalization = "0.1.20"
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`decompose`](#decompose)
+  - [`lookups`](#lookups)
+  - [`normalize`](#normalize)
+  - [`perfect_hash`](#perfect_hash)
+  - [`quick_check`](#quick_check)
+  - [`recompose`](#recompose)
+  - [`replace`](#replace)
+  - [`stream_safe`](#stream_safe)
+  - [`tables`](#tables)
+  - [`char`](#char)
+- [Structs](#structs)
+  - [`Decompositions`](#decompositions)
+  - [`Recompositions`](#recompositions)
+  - [`Replacements`](#replacements)
+  - [`StreamSafe`](#streamsafe)
+- [Enums](#enums)
+  - [`IsNormalized`](#isnormalized)
+- [Traits](#traits)
+  - [`UnicodeNormalization`](#unicodenormalization)
+- [Functions](#functions)
+  - [`is_nfc`](#is_nfc)
+  - [`is_nfc_quick`](#is_nfc_quick)
+  - [`is_nfc_stream_safe`](#is_nfc_stream_safe)
+  - [`is_nfc_stream_safe_quick`](#is_nfc_stream_safe_quick)
+  - [`is_nfd`](#is_nfd)
+  - [`is_nfd_quick`](#is_nfd_quick)
+  - [`is_nfd_stream_safe`](#is_nfd_stream_safe)
+  - [`is_nfd_stream_safe_quick`](#is_nfd_stream_safe_quick)
+  - [`is_nfkc`](#is_nfkc)
+  - [`is_nfkc_quick`](#is_nfkc_quick)
+  - [`is_nfkd`](#is_nfkd)
+  - [`is_nfkd_quick`](#is_nfkd_quick)
+- [Constants](#constants)
+  - [`UNICODE_VERSION`](#unicode_version)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`decompose`](#decompose) | mod |  |
+| [`lookups`](#lookups) | mod | Lookups of unicode properties using minimal perfect hashing. |
+| [`normalize`](#normalize) | mod | Functions for computing canonical and compatible decompositions for Unicode characters. |
+| [`perfect_hash`](#perfect_hash) | mod | Support for lookups based on minimal perfect hashing. |
+| [`quick_check`](#quick_check) | mod |  |
+| [`recompose`](#recompose) | mod |  |
+| [`replace`](#replace) | mod |  |
+| [`stream_safe`](#stream_safe) | mod |  |
+| [`tables`](#tables) | mod |  |
+| [`char`](#char) | mod | Methods for composing and decomposing characters. |
+| [`Decompositions`](#decompositions) | struct |  |
+| [`Recompositions`](#recompositions) | struct |  |
+| [`Replacements`](#replacements) | struct |  |
+| [`StreamSafe`](#streamsafe) | struct |  |
+| [`IsNormalized`](#isnormalized) | enum |  |
+| [`UnicodeNormalization`](#unicodenormalization) | trait | Methods for iterating over strings while applying Unicode normalizations as described in [Unicode Standard Annex #15](http://www.unicode.org/reports/tr15/). |
+| [`is_nfc`](#is_nfc) | fn |  |
+| [`is_nfc_quick`](#is_nfc_quick) | fn |  |
+| [`is_nfc_stream_safe`](#is_nfc_stream_safe) | fn |  |
+| [`is_nfc_stream_safe_quick`](#is_nfc_stream_safe_quick) | fn |  |
+| [`is_nfd`](#is_nfd) | fn |  |
+| [`is_nfd_quick`](#is_nfd_quick) | fn |  |
+| [`is_nfd_stream_safe`](#is_nfd_stream_safe) | fn |  |
+| [`is_nfd_stream_safe_quick`](#is_nfd_stream_safe_quick) | fn |  |
+| [`is_nfkc`](#is_nfkc) | fn |  |
+| [`is_nfkc_quick`](#is_nfkc_quick) | fn |  |
+| [`is_nfkd`](#is_nfkd) | fn |  |
+| [`is_nfkd_quick`](#is_nfkd_quick) | fn |  |
+| [`UNICODE_VERSION`](#unicode_version) | const |  |
+
 ## Modules
 
-- [`decompose`](decompose/index.md) - 
-- [`lookups`](lookups/index.md) - Lookups of unicode properties using minimal perfect hashing.
-- [`normalize`](normalize/index.md) - Functions for computing canonical and compatible decompositions for Unicode characters.
-- [`perfect_hash`](perfect_hash/index.md) - Support for lookups based on minimal perfect hashing.
-- [`quick_check`](quick_check/index.md) - 
-- [`recompose`](recompose/index.md) - 
-- [`replace`](replace/index.md) - 
-- [`stream_safe`](stream_safe/index.md) - 
-- [`tables`](tables/index.md) - 
-- [`char`](char/index.md) - Methods for composing and decomposing characters.
+- [`decompose`](decompose/index.md)
+- [`lookups`](lookups/index.md) — Lookups of unicode properties using minimal perfect hashing.
+- [`normalize`](normalize/index.md) — Functions for computing canonical and compatible decompositions for Unicode characters.
+- [`perfect_hash`](perfect_hash/index.md) — Support for lookups based on minimal perfect hashing.
+- [`quick_check`](quick_check/index.md)
+- [`recompose`](recompose/index.md)
+- [`replace`](replace/index.md)
+- [`stream_safe`](stream_safe/index.md)
+- [`tables`](tables/index.md)
+- [`char`](char/index.md) — Methods for composing and decomposing characters.
 
 ## Structs
 
@@ -55,59 +127,61 @@ struct Decompositions<I> {
 }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:23-37`](../../.source_1765210505/unicode-normalization-0.1.25/src/decompose.rs#L23-L37)*
+
 External iterator for a string decomposition's characters.
 
 #### Implementations
 
-- `fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="decompositions-new-canonical"></span>`fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="decompositions-new-compatible"></span>`fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for Decompositions<I>`
+##### `impl<I: clone::Clone> Clone for Decompositions<I>`
 
-- `fn clone(self: &Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="decompositions-clone"></span>`fn clone(&self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Decompositions<I>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="decompositions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for Decompositions<I>`
 
 ##### `impl<I> IntoIterator for Decompositions<I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="decompositions-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="decompositions-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="decompositions-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Decompositions<I>`
 
-- `type Item = char`
+- <span id="decompositions-type-item"></span>`type Item = char`
 
-- `fn next(self: &mut Self) -> Option<char>`
+- <span id="decompositions-next"></span>`fn next(&mut self) -> Option<char>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="decompositions-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T> ToString for Decompositions<I>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="decompositions-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<I> UnicodeNormalization for Decompositions<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="decompositions-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="decompositions-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- <span id="decompositions-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- <span id="decompositions-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](#replacements)
+- <span id="decompositions-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](#streamsafe)
+- <span id="decompositions-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
 
 ### `Recompositions<I>`
 
@@ -121,57 +195,59 @@ struct Recompositions<I> {
 }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/recompose.rs:27-33`](../../.source_1765210505/unicode-normalization-0.1.25/src/recompose.rs#L27-L33)*
+
 External iterator for a string recomposition's characters.
 
 #### Implementations
 
-- `fn new_canonical(iter: I) -> Self`
+- <span id="recompositions-new-canonical"></span>`fn new_canonical(iter: I) -> Self`
 
-- `fn new_compatible(iter: I) -> Self`
+- <span id="recompositions-new-compatible"></span>`fn new_compatible(iter: I) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for Recompositions<I>`
+##### `impl<I: clone::Clone> Clone for Recompositions<I>`
 
-- `fn clone(self: &Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- <span id="recompositions-clone"></span>`fn clone(&self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Recompositions<I>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="recompositions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for Recompositions<I>`
 
 ##### `impl<I> IntoIterator for Recompositions<I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="recompositions-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="recompositions-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="recompositions-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Recompositions<I>`
 
-- `type Item = char`
+- <span id="recompositions-type-item"></span>`type Item = char`
 
-- `fn next(self: &mut Self) -> Option<char>`
+- <span id="recompositions-next"></span>`fn next(&mut self) -> Option<char>`
 
 ##### `impl<T> ToString for Recompositions<I>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="recompositions-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<I> UnicodeNormalization for Recompositions<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="recompositions-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="recompositions-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- <span id="recompositions-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- <span id="recompositions-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](#replacements)
+- <span id="recompositions-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](#streamsafe)
+- <span id="recompositions-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
 
 ### `Replacements<I>`
 
@@ -182,57 +258,59 @@ struct Replacements<I> {
 }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/replace.rs:18-23`](../../.source_1765210505/unicode-normalization-0.1.25/src/replace.rs#L18-L23)*
+
 External iterator for replacements for a string's characters.
 
 #### Implementations
 
-- `fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](#replacements)
+- <span id="replacements-new-cjk-compat-variants"></span>`fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for Replacements<I>`
+##### `impl<I: clone::Clone> Clone for Replacements<I>`
 
-- `fn clone(self: &Self) -> Replacements<I>` — [`Replacements`](#replacements)
+- <span id="replacements-clone"></span>`fn clone(&self) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Replacements<I>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="replacements-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for Replacements<I>`
 
 ##### `impl<I> IntoIterator for Replacements<I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="replacements-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="replacements-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="replacements-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Replacements<I>`
 
-- `type Item = char`
+- <span id="replacements-type-item"></span>`type Item = char`
 
-- `fn next(self: &mut Self) -> Option<char>`
+- <span id="replacements-next"></span>`fn next(&mut self) -> Option<char>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="replacements-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T> ToString for Replacements<I>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="replacements-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<I> UnicodeNormalization for Replacements<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="replacements-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="replacements-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- <span id="replacements-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- <span id="replacements-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](#replacements)
+- <span id="replacements-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](#streamsafe)
+- <span id="replacements-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
 
 ### `StreamSafe<I>`
 
@@ -244,6 +322,8 @@ struct StreamSafe<I> {
 }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/stream_safe.rs:18-22`](../../.source_1765210505/unicode-normalization-0.1.25/src/stream_safe.rs#L18-L22)*
+
 [UAX15-D4]: This iterator keeps track of how many non-starters there have been
 since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 (U+034F) if the count exceeds 30.
@@ -251,7 +331,7 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 #### Implementations
 
-- `fn new(iter: I) -> Self`
+- <span id="streamsafe-new"></span>`fn new(iter: I) -> Self`
 
 #### Trait Implementations
 
@@ -259,31 +339,31 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 ##### `impl<I> IntoIterator for StreamSafe<I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="streamsafe-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="streamsafe-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="streamsafe-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for StreamSafe<I>`
 
-- `type Item = char`
+- <span id="streamsafe-type-item"></span>`type Item = char`
 
-- `fn next(self: &mut Self) -> Option<char>`
+- <span id="streamsafe-next"></span>`fn next(&mut self) -> Option<char>`
 
 ##### `impl<I> UnicodeNormalization for StreamSafe<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="streamsafe-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- <span id="streamsafe-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- <span id="streamsafe-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- <span id="streamsafe-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](#replacements)
+- <span id="streamsafe-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](#streamsafe)
+- <span id="streamsafe-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
 
 ## Enums
 
@@ -296,6 +376,8 @@ enum IsNormalized {
     Maybe,
 }
 ```
+
+*Defined in [`unicode-normalization-0.1.25/src/quick_check.rs:13-20`](../../.source_1765210505/unicode-normalization-0.1.25/src/quick_check.rs#L13-L20)*
 
 QuickCheck quickly determines if a string is normalized, it can return
 `Maybe`
@@ -322,13 +404,13 @@ return `Maybe` when a full decomposition and recomposition is necessary.
 
 ##### `impl Debug for IsNormalized`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="isnormalized-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for IsNormalized`
 
 ##### `impl PartialEq for IsNormalized`
 
-- `fn eq(self: &Self, other: &IsNormalized) -> bool` — [`IsNormalized`](#isnormalized)
+- <span id="isnormalized-eq"></span>`fn eq(&self, other: &IsNormalized) -> bool` — [`IsNormalized`](quick_check/index.md)
 
 ##### `impl StructuralPartialEq for IsNormalized`
 
@@ -340,37 +422,71 @@ return `Maybe` when a full decomposition and recomposition is necessary.
 trait UnicodeNormalization<I: Iterator<Item = char>> { ... }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:99-136`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L99-L136)*
+
 Methods for iterating over strings while applying Unicode normalizations
 as described in
 [Unicode Standard Annex #15](http://www.unicode.org/reports/tr15/).
 
 #### Required Methods
 
-- `fn nfd(self: Self) -> Decompositions<I>`
+- `fn nfd(self) -> Decompositions<I>`
 
   Returns an iterator over the string in Unicode Normalization Form D
 
-- `fn nfkd(self: Self) -> Decompositions<I>`
+- `fn nfkd(self) -> Decompositions<I>`
 
   Returns an iterator over the string in Unicode Normalization Form KD
 
-- `fn nfc(self: Self) -> Recompositions<I>`
+- `fn nfc(self) -> Recompositions<I>`
 
   An Iterator over the string in Unicode Normalization Form C
 
-- `fn nfkc(self: Self) -> Recompositions<I>`
+- `fn nfkc(self) -> Recompositions<I>`
 
   An Iterator over the string in Unicode Normalization Form KC
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>`
+- `fn cjk_compat_variants(self) -> Replacements<I>`
 
   A transformation which replaces [CJK Compatibility Ideograph] codepoints
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>`
+- `fn stream_safe(self) -> StreamSafe<I>`
 
   An Iterator over the string with Conjoining Grapheme Joiner characters
 
+#### Implementors
+
+- `&'a str`
+- `I`
+- `char`
+
 ## Functions
 
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:57`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L57)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:58`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L58)*
+
 ## Constants
+
+*Defined in [`unicode-normalization-0.1.25/src/lib.rs:64`](../../.source_1765210505/unicode-normalization-0.1.25/src/lib.rs#L64)*
 

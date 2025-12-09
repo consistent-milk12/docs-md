@@ -8,13 +8,24 @@ Flags to [`decompress()`](../index.md) to control how inflation works.
 
 These define bits for a bitmask argument.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`TINFL_FLAG_PARSE_ZLIB_HEADER`](#tinfl_flag_parse_zlib_header) | const | Should we try to parse a zlib header? |
+| [`TINFL_FLAG_HAS_MORE_INPUT`](#tinfl_flag_has_more_input) | const | There will be more input that hasn't been given to the decompressor yet. |
+| [`TINFL_FLAG_USING_NON_WRAPPING_OUTPUT_BUF`](#tinfl_flag_using_non_wrapping_output_buf) | const | The output buffer should not wrap around. |
+| [`TINFL_FLAG_COMPUTE_ADLER32`](#tinfl_flag_compute_adler32) | const | Calculate the adler32 checksum of the output data even if we're not inflating a zlib stream. |
+| [`TINFL_FLAG_IGNORE_ADLER32`](#tinfl_flag_ignore_adler32) | const | Ignore adler32 checksum even if we are inflating a zlib stream. |
+
 ## Constants
 
 ### `TINFL_FLAG_PARSE_ZLIB_HEADER`
-
 ```rust
 const TINFL_FLAG_PARSE_ZLIB_HEADER: u32 = 1u32;
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:127`](../../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/core.rs#L127)*
 
 Should we try to parse a zlib header?
 
@@ -22,10 +33,11 @@ If unset, the function will expect an RFC1951 deflate stream.  If set, it will e
 RFC1950 zlib wrapper around the deflate stream.
 
 ### `TINFL_FLAG_HAS_MORE_INPUT`
-
 ```rust
 const TINFL_FLAG_HAS_MORE_INPUT: u32 = 2u32;
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:139`](../../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/core.rs#L139)*
 
 There will be more input that hasn't been given to the decompressor yet.
 
@@ -39,18 +51,20 @@ indicating that you should get more data before calling again.  If not set, it w
 suggesting the stream is corrupt, since you claimed it was all there.
 
 ### `TINFL_FLAG_USING_NON_WRAPPING_OUTPUT_BUF`
-
 ```rust
 const TINFL_FLAG_USING_NON_WRAPPING_OUTPUT_BUF: u32 = 4u32;
 ```
 
+*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:142`](../../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/core.rs#L142)*
+
 The output buffer should not wrap around.
 
 ### `TINFL_FLAG_COMPUTE_ADLER32`
-
 ```rust
 const TINFL_FLAG_COMPUTE_ADLER32: u32 = 8u32;
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:150`](../../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/core.rs#L150)*
 
 Calculate the adler32 checksum of the output data even if we're not inflating a zlib stream.
 
@@ -60,10 +74,11 @@ NOTE: Enabling/disabling this between calls to decompress will result in an inco
 checksum.
 
 ### `TINFL_FLAG_IGNORE_ADLER32`
-
 ```rust
 const TINFL_FLAG_IGNORE_ADLER32: u32 = 64u32;
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/inflate/core.rs:162`](../../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/core.rs#L162)*
 
 Ignore adler32 checksum even if we are inflating a zlib stream.
 

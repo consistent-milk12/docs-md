@@ -4,6 +4,15 @@
 
 # Module `visitor`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`HeapVisitor`](#heapvisitor) | struct | HeapVisitor visits every item in an `Hir` recursively using constant stack size and a heap size proportional to the size of the `Hir`. |
+| [`Frame`](#frame) | enum | Represents a single stack frame while performing structural induction over an `Hir`. |
+| [`Visitor`](#visitor) | trait | A trait for visiting the high-level IR (HIR) in depth first order. |
+| [`visit`](#visit) | fn | Executes an implementation of `Visitor` in constant stack space. |
+
 ## Structs
 
 ### `HeapVisitor<'a>`
@@ -13,6 +22,8 @@ struct HeapVisitor<'a> {
     stack: alloc::vec::Vec<(&'a crate::hir::Hir, Frame<'a>)>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:71-75`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L71-L75)*
 
 HeapVisitor visits every item in an `Hir` recursively using constant stack
 size and a heap size proportional to the size of the `Hir`.
@@ -26,13 +37,13 @@ size and a heap size proportional to the size of the `Hir`.
 
 #### Implementations
 
-- `fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
+- <span id="heapvisitor-new"></span>`fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
 
-- `fn visit<V: Visitor>(self: &mut Self, hir: &'a Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Hir`](../index.md), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, hir: &'a Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Hir`](../index.md), [`Visitor`](#visitor)
 
-- `fn induct(self: &mut Self, hir: &'a Hir) -> Option<Frame<'a>>` — [`Hir`](../index.md), [`Frame`](#frame)
+- <span id="heapvisitor-induct"></span>`fn induct(&mut self, hir: &'a Hir) -> Option<Frame<'a>>` — [`Hir`](../index.md), [`Frame`](#frame)
 
-- `fn pop(self: &Self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
+- <span id="heapvisitor-pop"></span>`fn pop(&self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
 
 ## Enums
 
@@ -52,6 +63,8 @@ enum Frame<'a> {
     },
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:79-102`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L79-L102)*
 
 Represents a single stack frame while performing structural induction over
 an `Hir`.
@@ -80,7 +93,7 @@ an `Hir`.
 
 #### Implementations
 
-- `fn child(self: &Self) -> &'a Hir` — [`Hir`](../index.md)
+- <span id="frame-child"></span>`fn child(&self) -> &'a Hir` — [`Hir`](../index.md)
 
 ## Traits
 
@@ -89,6 +102,8 @@ an `Hir`.
 ```rust
 trait Visitor { ... }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
 
 A trait for visiting the high-level IR (HIR) in depth first order.
 
@@ -99,37 +114,45 @@ callers to do case analysis with constant stack usage, which can be
 important since the size of an HIR may be proportional to end user input.
 
 Typical usage of this trait involves providing an implementation and then
-running it using the [`visit`](../index.md) function.
+running it using the [`visit`](#visit) function.
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
 
 - `type Err`
 
-- `fn finish(self: Self) -> Result<<Self as >::Output, <Self as >::Err>`
+#### Required Methods
+
+- `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
 
-- `fn start(self: &mut Self)`
+#### Provided Methods
+
+- `fn start(&mut self)`
 
   This method is called before beginning traversal of the HIR.
 
-- `fn visit_pre(self: &mut Self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+- `fn visit_pre(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` before descending into child `Hir`
 
-- `fn visit_post(self: &mut Self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+- `fn visit_post(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` after descending all of its child
 
-- `fn visit_alternation_in(self: &mut Self) -> Result<(), <Self as >::Err>`
+- `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of an alternation.
 
-- `fn visit_concat_in(self: &mut Self) -> Result<(), <Self as >::Err>`
+- `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of a concatenation.
+
+#### Implementors
+
+- [`Writer`](../print/index.md)
 
 ## Functions
 
@@ -139,10 +162,12 @@ running it using the [`visit`](../index.md) function.
 fn visit<V: Visitor>(hir: &crate::hir::Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
+
 Executes an implementation of `Visitor` in constant stack space.
 
 This function will visit every node in the given `Hir` while calling
-appropriate methods provided by the [`Visitor`](../index.md) trait.
+appropriate methods provided by the [`Visitor`](#visitor) trait.
 
 The primary use case for this method is when one wants to perform case
 analysis over an `Hir` without using a stack size proportional to the depth

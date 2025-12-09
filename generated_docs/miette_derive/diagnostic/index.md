@@ -4,6 +4,15 @@
 
 # Module `diagnostic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DiagnosticDef`](#diagnosticdef) | struct |  |
+| [`DiagnosticConcreteArgs`](#diagnosticconcreteargs) | struct |  |
+| [`Diagnostic`](#diagnostic) | enum |  |
+| [`DiagnosticDefArgs`](#diagnosticdefargs) | enum |  |
+
 ## Structs
 
 ### `DiagnosticDef`
@@ -15,6 +24,8 @@ struct DiagnosticDef {
     pub args: DiagnosticDefArgs,
 }
 ```
+
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:30-34`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L30-L34)*
 
 ### `DiagnosticConcreteArgs`
 
@@ -32,17 +43,19 @@ struct DiagnosticConcreteArgs {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:61-71`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L61-L71)*
+
 #### Implementations
 
-- `fn for_fields(fields: &syn::Fields) -> Result<Self, syn::Error>`
+- <span id="diagnosticconcreteargs-for-fields"></span>`fn for_fields(fields: &syn::Fields) -> Result<Self, syn::Error>`
 
-- `fn add_args(self: &mut Self, attr: &syn::Attribute, args: impl Iterator<Item = DiagnosticArg>, errors: &mut Vec<syn::Error>)` — [`DiagnosticArg`](../diagnostic_arg/index.md)
+- <span id="diagnosticconcreteargs-add-args"></span>`fn add_args(&mut self, attr: &syn::Attribute, args: impl Iterator<Item = DiagnosticArg>, errors: &mut Vec<syn::Error>)` — [`DiagnosticArg`](../diagnostic_arg/index.md)
 
 #### Trait Implementations
 
 ##### `impl Default for DiagnosticConcreteArgs`
 
-- `fn default() -> DiagnosticConcreteArgs` — [`DiagnosticConcreteArgs`](#diagnosticconcreteargs)
+- <span id="diagnosticconcreteargs-default"></span>`fn default() -> DiagnosticConcreteArgs` — [`DiagnosticConcreteArgs`](#diagnosticconcreteargs)
 
 ## Enums
 
@@ -64,11 +77,13 @@ enum Diagnostic {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:16-28`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L16-L28)*
+
 #### Implementations
 
-- `fn from_derive_input(input: DeriveInput) -> Result<Self, syn::Error>`
+- <span id="diagnostic-from-derive-input"></span>`fn from_derive_input(input: DeriveInput) -> Result<Self, syn::Error>`
 
-- `fn gen(self: &Self) -> TokenStream`
+- <span id="diagnostic-gen"></span>`fn gen(&self) -> TokenStream`
 
 ### `DiagnosticDefArgs`
 
@@ -79,7 +94,9 @@ enum DiagnosticDefArgs {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:36-39`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L36-L39)*
+
 #### Implementations
 
-- `fn forward_or_override_enum(self: &Self, variant: &syn::Ident, which_fn: WhichFn, f: impl FnMut(&DiagnosticConcreteArgs) -> Option<TokenStream>) -> Option<TokenStream>` — [`WhichFn`](../forward/index.md), [`DiagnosticConcreteArgs`](#diagnosticconcreteargs)
+- <span id="diagnosticdefargs-forward-or-override-enum"></span>`fn forward_or_override_enum(&self, variant: &syn::Ident, which_fn: WhichFn, f: impl FnMut(&DiagnosticConcreteArgs) -> Option<TokenStream>) -> Option<TokenStream>` — [`WhichFn`](../forward/index.md), [`DiagnosticConcreteArgs`](#diagnosticconcreteargs)
 

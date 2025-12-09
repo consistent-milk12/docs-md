@@ -20,9 +20,20 @@ if let Some((Width(w), Height(h))) = size {
 ```
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unix`](#unix) | mod |  |
+| [`Width`](#width) | struct |  |
+| [`Height`](#height) | struct |  |
+| [`terminal_size`](#terminal_size) | fn |  |
+| [`terminal_size_of`](#terminal_size_of) | fn |  |
+| [`terminal_size_using_fd`](#terminal_size_using_fd) | fn |  |
+
 ## Modules
 
-- [`unix`](unix/index.md) - 
+- [`unix`](unix/index.md)
 
 ## Structs
 
@@ -32,31 +43,33 @@ if let Some((Width(w), Height(h))) = size {
 struct Width(u16);
 ```
 
+*Defined in [`terminal_size-0.4.3/src/lib.rs:22`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L22)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Width`
 
-- `fn clone(self: &Self) -> Width` — [`Width`](#width)
+- <span id="width-clone"></span>`fn clone(&self) -> Width` — [`Width`](#width)
 
 ##### `impl Copy for Width`
 
 ##### `impl Debug for Width`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="width-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Width`
 
 ##### `impl Ord for Width`
 
-- `fn cmp(self: &Self, other: &Width) -> $crate::cmp::Ordering` — [`Width`](#width)
+- <span id="width-cmp"></span>`fn cmp(&self, other: &Width) -> cmp::Ordering` — [`Width`](#width)
 
 ##### `impl PartialEq for Width`
 
-- `fn eq(self: &Self, other: &Width) -> bool` — [`Width`](#width)
+- <span id="width-eq"></span>`fn eq(&self, other: &Width) -> bool` — [`Width`](#width)
 
 ##### `impl PartialOrd for Width`
 
-- `fn partial_cmp(self: &Self, other: &Width) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Width`](#width)
+- <span id="width-partial-cmp"></span>`fn partial_cmp(&self, other: &Width) -> option::Option<cmp::Ordering>` — [`Width`](#width)
 
 ##### `impl StructuralPartialEq for Width`
 
@@ -66,33 +79,41 @@ struct Width(u16);
 struct Height(u16);
 ```
 
+*Defined in [`terminal_size-0.4.3/src/lib.rs:24`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L24)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Height`
 
-- `fn clone(self: &Self) -> Height` — [`Height`](#height)
+- <span id="height-clone"></span>`fn clone(&self) -> Height` — [`Height`](#height)
 
 ##### `impl Copy for Height`
 
 ##### `impl Debug for Height`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="height-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Height`
 
 ##### `impl Ord for Height`
 
-- `fn cmp(self: &Self, other: &Height) -> $crate::cmp::Ordering` — [`Height`](#height)
+- <span id="height-cmp"></span>`fn cmp(&self, other: &Height) -> cmp::Ordering` — [`Height`](#height)
 
 ##### `impl PartialEq for Height`
 
-- `fn eq(self: &Self, other: &Height) -> bool` — [`Height`](#height)
+- <span id="height-eq"></span>`fn eq(&self, other: &Height) -> bool` — [`Height`](#height)
 
 ##### `impl PartialOrd for Height`
 
-- `fn partial_cmp(self: &Self, other: &Height) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Height`](#height)
+- <span id="height-partial-cmp"></span>`fn partial_cmp(&self, other: &Height) -> option::Option<cmp::Ordering>` — [`Height`](#height)
 
 ##### `impl StructuralPartialEq for Height`
 
 ## Functions
+
+*Defined in [`terminal_size-0.4.3/src/lib.rs:30`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L30)*
+
+*Defined in [`terminal_size-0.4.3/src/lib.rs:30`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L30)*
+
+*Defined in [`terminal_size-0.4.3/src/lib.rs:30`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L30)*
 

@@ -4,10 +4,19 @@
 
 # Module `pretty`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`exponent`](#exponent) | mod |  |
+| [`mantissa`](#mantissa) | mod |  |
+| [`format64`](#format64) | fn | Print f64 to the given buffer and return number of bytes written. |
+| [`format32`](#format32) | fn | Print f32 to the given buffer and return number of bytes written. |
+
 ## Modules
 
-- [`exponent`](exponent/index.md) - 
-- [`mantissa`](mantissa/index.md) - 
+- [`exponent`](exponent/index.md)
+- [`mantissa`](mantissa/index.md)
 
 ## Functions
 
@@ -16,6 +25,8 @@
 ```rust
 unsafe fn format64(f: f64, result: *mut u8) -> usize
 ```
+
+*Defined in [`ryu-1.0.20/src/pretty/mod.rs:52-118`](../../../.source_1765210505/ryu-1.0.20/src/pretty/mod.rs#L52-L118)*
 
 Print f64 to the given buffer and return number of bytes written.
 
@@ -58,6 +69,8 @@ unsafe {
 ```rust
 unsafe fn format32(f: f32, result: *mut u8) -> usize
 ```
+
+*Defined in [`ryu-1.0.20/src/pretty/mod.rs:159-224`](../../../.source_1765210505/ryu-1.0.20/src/pretty/mod.rs#L159-L224)*
 
 Print f32 to the given buffer and return number of bytes written.
 

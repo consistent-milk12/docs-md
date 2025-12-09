@@ -4,6 +4,14 @@
 
 # Module `chain`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Chain`](#chain) | struct | `Chain` is an iterator that joins `b` after `a` in one continuous iterator. |
+| [`ChainProducer`](#chainproducer) | struct |  |
+| [`ChainSeq`](#chainseq) | struct | Wrapper for `Chain` to implement `ExactSizeIterator` |
+
 ## Structs
 
 ### `Chain<A, B>`
@@ -15,63 +23,65 @@ struct Chain<A, B> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
+
 `Chain` is an iterator that joins `b` after `a` in one continuous iterator.
-This struct is created by the `chain()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `chain()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
 
-- `fn new(a: A, b: B) -> Self`
+- <span id="chain-new"></span>`fn new(a: A, b: B) -> Self`
 
 #### Trait Implementations
 
-##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for Chain<A, B>`
+##### `impl<A: clone::Clone, B: clone::Clone> Clone for Chain<A, B>`
 
-- `fn clone(self: &Self) -> Chain<A, B>` — [`Chain`](../index.md)
+- <span id="chain-clone"></span>`fn clone(&self) -> Chain<A, B>` — [`Chain`](#chain)
 
-##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for Chain<A, B>`
+##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for Chain<A, B>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="chain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<A, B> IndexedParallelIterator for Chain<A, B>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="chain-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="chain-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="chain-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for Chain<A, B>`
 
 ##### `impl<T> IntoParallelIterator for Chain<A, B>`
 
-- `type Iter = T`
+- <span id="chain-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="chain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="chain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Chain<A, B>`
 
-- `type Item = <A as ParallelIterator>::Item`
+- <span id="chain-type-item"></span>`type Item = <A as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="chain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="chain-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Chain<A, B>`
 
-- `const ALIGN: usize`
+- <span id="chain-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chain-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chain-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chain-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chain-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ChainProducer<A, B>`
 
@@ -86,9 +96,11 @@ where
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:138-146`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chain.rs#L138-L146)*
+
 #### Implementations
 
-- `fn new(a_len: usize, a: A, b: B) -> Self`
+- <span id="chainproducer-new"></span>`fn new(a_len: usize, a: A, b: B) -> Self`
 
 #### Trait Implementations
 
@@ -96,33 +108,33 @@ where
 
 ##### `impl<T> Pointable for ChainProducer<A, B>`
 
-- `const ALIGN: usize`
+- <span id="chainproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chainproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chainproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chainproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chainproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chainproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<A, B> Producer for ChainProducer<A, B>`
 
-- `type Item = <A as Producer>::Item`
+- <span id="chainproducer-type-item"></span>`type Item = <A as Producer>::Item`
 
-- `type IntoIter = ChainSeq<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
+- <span id="chainproducer-type-intoiter"></span>`type IntoIter = ChainSeq<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="chainproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
-- `fn min_len(self: &Self) -> usize`
+- <span id="chainproducer-min-len"></span>`fn min_len(&self) -> usize`
 
-- `fn max_len(self: &Self) -> usize`
+- <span id="chainproducer-max-len"></span>`fn max_len(&self) -> usize`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="chainproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="chainproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `ChainSeq<A, B>`
 
@@ -132,17 +144,19 @@ struct ChainSeq<A, B> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:213-215`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chain.rs#L213-L215)*
+
 Wrapper for `Chain` to implement `ExactSizeIterator`
 
 #### Implementations
 
-- `fn new(a: A, b: B) -> ChainSeq<A, B>` — [`ChainSeq`](#chainseq)
+- <span id="chainseq-new"></span>`fn new(a: A, b: B) -> ChainSeq<A, B>` — [`ChainSeq`](#chainseq)
 
 #### Trait Implementations
 
 ##### `impl<A, B> DoubleEndedIterator for ChainSeq<A, B>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="chainseq-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<A, B> ExactSizeIterator for ChainSeq<A, B>`
 
@@ -150,31 +164,31 @@ Wrapper for `Chain` to implement `ExactSizeIterator`
 
 ##### `impl<I> IntoIterator for ChainSeq<A, B>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="chainseq-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="chainseq-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="chainseq-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A, B> Iterator for ChainSeq<A, B>`
 
-- `type Item = <A as Iterator>::Item`
+- <span id="chainseq-type-item"></span>`type Item = <A as Iterator>::Item`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="chainseq-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="chainseq-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T> Pointable for ChainSeq<A, B>`
 
-- `const ALIGN: usize`
+- <span id="chainseq-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chainseq-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chainseq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chainseq-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chainseq-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chainseq-drop"></span>`unsafe fn drop(ptr: usize)`
 

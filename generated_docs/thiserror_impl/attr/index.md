@@ -4,6 +4,37 @@
 
 # Module `attr`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Attrs`](#attrs)
+  - [`Display`](#display)
+  - [`Source`](#source)
+  - [`From`](#from)
+  - [`Transparent`](#transparent)
+  - [`Fmt`](#fmt)
+- [Enums](#enums)
+  - [`Trait`](#trait)
+- [Functions](#functions)
+  - [`get`](#get)
+  - [`parse_error_attribute`](#parse_error_attribute)
+  - [`parse_token_expr`](#parse_token_expr)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Attrs`](#attrs) | struct |  |
+| [`Display`](#display) | struct |  |
+| [`Source`](#source) | struct |  |
+| [`From`](#from) | struct |  |
+| [`Transparent`](#transparent) | struct |  |
+| [`Fmt`](#fmt) | struct |  |
+| [`Trait`](#trait) | enum |  |
+| [`get`](#get) | fn |  |
+| [`parse_error_attribute`](#parse_error_attribute) | fn |  |
+| [`parse_token_expr`](#parse_token_expr) | fn |  |
+
 ## Structs
 
 ### `Attrs<'a>`
@@ -18,6 +49,8 @@ struct Attrs<'a> {
     pub fmt: Option<Fmt<'a>>,
 }
 ```
+
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:11-18`](../../../.source_1765210505/thiserror-impl-2.0.17/src/attr.rs#L11-L18)*
 
 ### `Display<'a>`
 
@@ -34,23 +67,25 @@ struct Display<'a> {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:21-30`](../../../.source_1765210505/thiserror-impl-2.0.17/src/attr.rs#L21-L30)*
+
 #### Implementations
 
-- `fn expand_shorthand(self: &mut Self, fields: &[Field<'_>], container: ContainerKind) -> Result<()>` — [`Field`](../ast/index.md), [`ContainerKind`](../ast/index.md)
+- <span id="crateattrdisplay-expand-shorthand"></span>`fn expand_shorthand(&mut self, fields: &[Field<'_>], container: ContainerKind) -> Result<()>` — [`Field`](../ast/index.md), [`ContainerKind`](../ast/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Display<'a>`
+##### `impl Clone for Display<'a>`
 
-- `fn clone(self: &Self) -> Display<'a>` — [`Display`](#display)
+- <span id="display-clone"></span>`fn clone(&self) -> Display<'a>` — [`Display`](#display)
 
-##### `impl<T> Spanned for Display<'a>`
+##### `impl Spanned for Display<'a>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="display-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Display<'_>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="display-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Source<'a>`
 
@@ -61,13 +96,15 @@ struct Source<'a> {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:33-36`](../../../.source_1765210505/thiserror-impl-2.0.17/src/attr.rs#L33-L36)*
+
 #### Trait Implementations
 
-##### `impl<'a> Clone for Source<'a>`
+##### `impl Clone for Source<'a>`
 
-- `fn clone(self: &Self) -> Source<'a>` — [`Source`](#source)
+- <span id="source-clone"></span>`fn clone(&self) -> Source<'a>` — [`Source`](#source)
 
-##### `impl<'a> Copy for Source<'a>`
+##### `impl Copy for Source<'a>`
 
 ### `From<'a>`
 
@@ -78,13 +115,15 @@ struct From<'a> {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:39-42`](../../../.source_1765210505/thiserror-impl-2.0.17/src/attr.rs#L39-L42)*
+
 #### Trait Implementations
 
-##### `impl<'a> Clone for From<'a>`
+##### `impl Clone for From<'a>`
 
-- `fn clone(self: &Self) -> From<'a>` — [`From`](#from)
+- <span id="from-clone"></span>`fn clone(&self) -> From<'a>` — [`From`](#from)
 
-##### `impl<'a> Copy for From<'a>`
+##### `impl Copy for From<'a>`
 
 ### `Transparent<'a>`
 
@@ -95,13 +134,15 @@ struct Transparent<'a> {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:45-48`](../../../.source_1765210505/thiserror-impl-2.0.17/src/attr.rs#L45-L48)*
+
 #### Trait Implementations
 
-##### `impl<'a> Clone for Transparent<'a>`
+##### `impl Clone for Transparent<'a>`
 
-- `fn clone(self: &Self) -> Transparent<'a>` — [`Transparent`](#transparent)
+- <span id="transparent-clone"></span>`fn clone(&self) -> Transparent<'a>` — [`Transparent`](#transparent)
 
-##### `impl<'a> Copy for Transparent<'a>`
+##### `impl Copy for Transparent<'a>`
 
 ### `Fmt<'a>`
 
@@ -112,11 +153,13 @@ struct Fmt<'a> {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:51-54`](../../../.source_1765210505/thiserror-impl-2.0.17/src/attr.rs#L51-L54)*
+
 #### Trait Implementations
 
-##### `impl<'a> Clone for Fmt<'a>`
+##### `impl Clone for Fmt<'a>`
 
-- `fn clone(self: &Self) -> Fmt<'a>` — [`Fmt`](#fmt)
+- <span id="fmt-clone"></span>`fn clone(&self) -> Fmt<'a>` — [`Fmt`](#fmt)
 
 ## Enums
 
@@ -136,41 +179,43 @@ enum Trait {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:57-67`](../../../.source_1765210505/thiserror-impl-2.0.17/src/attr.rs#L57-L67)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Trait`
 
-- `fn clone(self: &Self) -> Trait` — [`Trait`](#trait)
+- <span id="trait-clone"></span>`fn clone(&self) -> Trait` — [`Trait`](#trait)
 
 ##### `impl Copy for Trait`
 
 ##### `impl Debug for Trait`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="trait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Trait`
 
 ##### `impl Ord for Trait`
 
-- `fn cmp(self: &Self, other: &Trait) -> $crate::cmp::Ordering` — [`Trait`](#trait)
+- <span id="trait-cmp"></span>`fn cmp(&self, other: &Trait) -> cmp::Ordering` — [`Trait`](#trait)
 
 ##### `impl PartialEq for Trait`
 
-- `fn eq(self: &Self, other: &Trait) -> bool` — [`Trait`](#trait)
+- <span id="trait-eq"></span>`fn eq(&self, other: &Trait) -> bool` — [`Trait`](#trait)
 
 ##### `impl PartialOrd for Trait`
 
-- `fn partial_cmp(self: &Self, other: &Trait) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Trait`](#trait)
+- <span id="trait-partial-cmp"></span>`fn partial_cmp(&self, other: &Trait) -> option::Option<cmp::Ordering>` — [`Trait`](#trait)
 
-##### `impl<T> Spanned for Trait`
+##### `impl Spanned for Trait`
 
-- `fn span(self: &Self) -> Span`
+- <span id="trait-span"></span>`fn span(&self) -> Span`
 
 ##### `impl StructuralPartialEq for Trait`
 
 ##### `impl ToTokens for Trait`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="trait-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Functions
 
@@ -180,15 +225,21 @@ enum Trait {
 fn get(input: &[syn::Attribute]) -> syn::Result<Attrs<'_>>
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:69-122`](../../../.source_1765210505/thiserror-impl-2.0.17/src/attr.rs#L69-L122)*
+
 ### `parse_error_attribute`
 
 ```rust
 fn parse_error_attribute<'a>(attrs: &mut Attrs<'a>, attr: &'a syn::Attribute) -> syn::Result<()>
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:124-194`](../../../.source_1765210505/thiserror-impl-2.0.17/src/attr.rs#L124-L194)*
+
 ### `parse_token_expr`
 
 ```rust
 fn parse_token_expr(input: syn::parse::ParseStream<'_>, begin_expr: bool) -> syn::Result<proc_macro2::TokenStream>
 ```
+
+*Defined in [`thiserror-impl-2.0.17/src/attr.rs:196-300`](../../../.source_1765210505/thiserror-impl-2.0.17/src/attr.rs#L196-L300)*
 

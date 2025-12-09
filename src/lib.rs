@@ -19,9 +19,11 @@ pub mod linker;
 pub mod logger;
 pub mod multi_crate;
 pub mod parser;
+#[cfg(feature = "source-parsing")]
+pub mod source;
 pub mod types;
 
-pub use crate::generator::{Generator, MarkdownCapture};
+pub use crate::generator::{Generator, MarkdownCapture, RenderConfig, SourceConfig};
 pub use crate::linker::{LinkRegistry, slugify_anchor};
 #[cfg(feature = "trace")]
 use crate::logger::LogLevel;
@@ -105,6 +107,15 @@ pub enum Command {
     ///
     /// Example: `cargo docs-md docs --primary-crate my_crate`
     Docs(DocsArgs),
+
+    /// Collect dependency sources to a local directory.
+    ///
+    /// Copies source code from `~/.cargo/registry/src/` into a local
+    /// `.source_{timestamp}/` directory for parsing and documentation.
+    ///
+    /// Example: `cargo docs-md collect-sources --include-dev`
+    #[cfg(feature = "source-parsing")]
+    CollectSources(CollectSourcesArgs),
 }
 
 /// Arguments for the `docs` subcommand (build + generate).
@@ -158,6 +169,31 @@ pub struct DocsArgs {
     /// Example: `docs-md docs -- --all-features`
     #[arg(last = true)]
     pub cargo_args: Vec<String>,
+}
+
+/// Arguments for the `collect-sources` subcommand.
+#[cfg(feature = "source-parsing")]
+#[derive(Parser, Debug)]
+pub struct CollectSourcesArgs {
+    /// Output directory for collected sources.
+    ///
+    /// If not specified, creates `.source_{timestamp}/` in the workspace root.
+    #[arg(short, long)]
+    pub output: Option<PathBuf>,
+
+    /// Include dev-dependencies in collection.
+    ///
+    /// By default, only regular dependencies are collected.
+    #[arg(long, default_value_t = false)]
+    pub include_dev: bool,
+
+    /// Dry run - show what would be collected without copying.
+    #[arg(long, default_value_t = false)]
+    pub dry_run: bool,
+
+    /// Path to Cargo.toml (defaults to current directory).
+    #[arg(long)]
+    pub manifest_path: Option<PathBuf>,
 }
 
 /// Command-line arguments for direct generation (no subcommand).

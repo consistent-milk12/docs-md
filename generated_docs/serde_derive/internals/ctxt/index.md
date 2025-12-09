@@ -4,6 +4,12 @@
 
 # Module `ctxt`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Ctxt`](#ctxt) | struct | A type to collect errors together and format them. |
+
 ## Structs
 
 ### `Ctxt`
@@ -14,6 +20,8 @@ struct Ctxt {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/ctxt.rs:12-16`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/ctxt.rs#L12-L16)*
+
 A type to collect errors together and format them.
 
 Dropping this object will cause a panic. It must be consumed using `check`.
@@ -22,21 +30,21 @@ References can be shared since this type uses run-time exclusive mut checking.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="ctxt-new"></span>`fn new() -> Self`
 
-- `fn error_spanned_by<A: ToTokens, T: Display>(self: &Self, obj: A, msg: T)`
+- <span id="ctxt-error-spanned-by"></span>`fn error_spanned_by<A: ToTokens, T: Display>(&self, obj: A, msg: T)`
 
-- `fn syn_error(self: &Self, err: syn::Error)`
+- <span id="ctxt-syn-error"></span>`fn syn_error(&self, err: syn::Error)`
 
-- `fn check(self: Self) -> syn::Result<()>`
+- <span id="ctxt-check"></span>`fn check(self) -> syn::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl Default for Ctxt`
 
-- `fn default() -> Ctxt` — [`Ctxt`](../index.md)
+- <span id="ctxt-default"></span>`fn default() -> Ctxt` — [`Ctxt`](#ctxt)
 
 ##### `impl Drop for Ctxt`
 
-- `fn drop(self: &mut Self)`
+- <span id="ctxt-drop"></span>`fn drop(&mut self)`
 

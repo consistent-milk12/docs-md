@@ -4,6 +4,12 @@
 
 # Module `arg_predicate`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ArgPredicate`](#argpredicate) | enum | Operations to perform on argument values |
+
 ## Enums
 
 ### `ArgPredicate`
@@ -14,6 +20,8 @@ enum ArgPredicate {
     Equals(crate::builder::OsStr),
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
 
 Operations to perform on argument values
 
@@ -33,17 +41,17 @@ These do not apply to `ValueSource::DefaultValue`
 
 ##### `impl Clone for ArgPredicate`
 
-- `fn clone(self: &Self) -> ArgPredicate` — [`ArgPredicate`](../index.md)
+- <span id="argpredicate-clone"></span>`fn clone(&self) -> ArgPredicate` — [`ArgPredicate`](#argpredicate)
 
 ##### `impl Debug for ArgPredicate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="argpredicate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ArgPredicate`
 
 ##### `impl PartialEq for ArgPredicate`
 
-- `fn eq(self: &Self, other: &ArgPredicate) -> bool` — [`ArgPredicate`](../index.md)
+- <span id="argpredicate-eq"></span>`fn eq(&self, other: &ArgPredicate) -> bool` — [`ArgPredicate`](#argpredicate)
 
 ##### `impl StructuralPartialEq for ArgPredicate`
 

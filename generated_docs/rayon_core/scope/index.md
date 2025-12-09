@@ -4,9 +4,41 @@
 
 # Module `scope`
 
-Methods for custom fork-join scopes, created by the [`scope()`](../index.md)
-and [`in_place_scope()`](../index.md) functions. These are a more flexible alternative to `join()`.
+Methods for custom fork-join scopes, created by the [`scope()`](#scope)
+and [`in_place_scope()`](#in-place-scope) functions. These are a more flexible alternative to `join()`.
 
+
+## Contents
+
+- [Structs](#structs)
+  - [`Scope`](#scope)
+  - [`ScopeFifo`](#scopefifo)
+  - [`ScopeBase`](#scopebase)
+  - [`ScopePtr`](#scopeptr)
+- [Functions](#functions)
+  - [`scope`](#scope)
+  - [`scope_fifo`](#scope_fifo)
+  - [`in_place_scope`](#in_place_scope)
+  - [`do_in_place_scope`](#do_in_place_scope)
+  - [`get_in_place_thread_registry`](#get_in_place_thread_registry)
+  - [`in_place_scope_fifo`](#in_place_scope_fifo)
+  - [`do_in_place_scope_fifo`](#do_in_place_scope_fifo)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Scope`](#scope) | struct | Represents a fork-join scope which can be used to spawn any number of tasks. |
+| [`ScopeFifo`](#scopefifo) | struct | Represents a fork-join scope which can be used to spawn any number of tasks. |
+| [`ScopeBase`](#scopebase) | struct |  |
+| [`ScopePtr`](#scopeptr) | struct | Used to capture a scope `&Self` pointer in jobs, without faking a lifetime. |
+| [`scope`](#scope) | fn | Creates a "fork-join" scope `s` and invokes the closure with a reference to `s`. |
+| [`scope_fifo`](#scope_fifo) | fn | Creates a "fork-join" scope `s` with FIFO order, and invokes the closure with a reference to `s`. |
+| [`in_place_scope`](#in_place_scope) | fn | Creates a "fork-join" scope `s` and invokes the closure with a reference to `s`. |
+| [`do_in_place_scope`](#do_in_place_scope) | fn |  |
+| [`get_in_place_thread_registry`](#get_in_place_thread_registry) | fn |  |
+| [`in_place_scope_fifo`](#in_place_scope_fifo) | fn | Creates a "fork-join" scope `s` with FIFO order, and invokes the closure with a reference to `s`. |
+| [`do_in_place_scope_fifo`](#do_in_place_scope_fifo) | fn |  |
 
 ## Structs
 
@@ -18,36 +50,38 @@ struct Scope<'scope> {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:24-26`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L24-L26)*
+
 Represents a fork-join scope which can be used to spawn any number of tasks.
-See [`scope()`](../index.md) for more information.
+See [`scope()`](#scope) for more information.
 
 #### Implementations
 
-- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
+- <span id="scope-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
 
-- `fn spawn<BODY>(self: &Self, body: BODY)`
+- <span id="scope-spawn"></span>`fn spawn<BODY>(&self, body: BODY)`
 
-- `fn spawn_broadcast<BODY>(self: &Self, body: BODY)`
+- <span id="scope-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
 
 #### Trait Implementations
 
-##### `impl<'scope> Debug for Scope<'scope>`
+##### `impl Debug for Scope<'scope>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scope-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for Scope<'scope>`
+##### `impl Pointable for Scope<'scope>`
 
-- `const ALIGN: usize`
+- <span id="scope-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="scope-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scope-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scope-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scope-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="scope-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ScopeFifo<'scope>`
 
@@ -58,37 +92,39 @@ struct ScopeFifo<'scope> {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:31-34`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L31-L34)*
+
 Represents a fork-join scope which can be used to spawn any number of tasks.
 Those spawned from the same thread are prioritized in relative FIFO order.
-See [`scope_fifo()`](../index.md) for more information.
+See [`scope_fifo()`](#scope-fifo) for more information.
 
 #### Implementations
 
-- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
+- <span id="scopefifo-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
 
-- `fn spawn_fifo<BODY>(self: &Self, body: BODY)`
+- <span id="scopefifo-spawn-fifo"></span>`fn spawn_fifo<BODY>(&self, body: BODY)`
 
-- `fn spawn_broadcast<BODY>(self: &Self, body: BODY)`
+- <span id="scopefifo-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
 
 #### Trait Implementations
 
-##### `impl<'scope> Debug for ScopeFifo<'scope>`
+##### `impl Debug for ScopeFifo<'scope>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scopefifo-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for ScopeFifo<'scope>`
+##### `impl Pointable for ScopeFifo<'scope>`
 
-- `const ALIGN: usize`
+- <span id="scopefifo-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="scopefifo-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scopefifo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scopefifo-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scopefifo-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="scopefifo-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ScopeBase<'scope>`
 
@@ -100,6 +136,8 @@ struct ScopeBase<'scope> {
     marker: std::marker::PhantomData<Box<dyn FnOnce(&Scope<'scope>) + Send + Sync>>,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:36-54`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L36-L54)*
 
 #### Fields
 
@@ -126,43 +164,45 @@ struct ScopeBase<'scope> {
 
 #### Implementations
 
-- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
+- <span id="scopebase-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
 
-- `fn heap_job_ref<FUNC>(self: &Self, job: Box<HeapJob<FUNC>>) -> JobRef` — [`HeapJob`](../job/index.md), [`JobRef`](../job/index.md)
+- <span id="scopebase-heap-job-ref"></span>`fn heap_job_ref<FUNC>(&self, job: Box<HeapJob<FUNC>>) -> JobRef` — [`HeapJob`](../job/index.md), [`JobRef`](../job/index.md)
 
-- `fn inject_broadcast<FUNC>(self: &Self, job: Arc<ArcJob<FUNC>>)` — [`ArcJob`](../job/index.md)
+- <span id="scopebase-inject-broadcast"></span>`fn inject_broadcast<FUNC>(&self, job: Arc<ArcJob<FUNC>>)` — [`ArcJob`](../job/index.md)
 
-- `fn complete<FUNC, R>(self: &Self, owner: Option<&WorkerThread>, func: FUNC) -> R` — [`WorkerThread`](../registry/index.md)
+- <span id="scopebase-complete"></span>`fn complete<FUNC, R>(&self, owner: Option<&WorkerThread>, func: FUNC) -> R` — [`WorkerThread`](../registry/index.md)
 
-- `unsafe fn execute_job<FUNC>(this: *const Self, func: FUNC)`
+- <span id="scopebase-execute-job"></span>`unsafe fn execute_job<FUNC>(this: *const Self, func: FUNC)`
 
-- `unsafe fn execute_job_closure<FUNC, R>(this: *const Self, func: FUNC) -> Option<R>`
+- <span id="scopebase-execute-job-closure"></span>`unsafe fn execute_job_closure<FUNC, R>(this: *const Self, func: FUNC) -> Option<R>`
 
-- `fn job_panicked(self: &Self, err: Box<dyn Any + Send>)`
+- <span id="scopebase-job-panicked"></span>`fn job_panicked(&self, err: Box<dyn Any + Send>)`
 
-- `fn maybe_propagate_panic(self: &Self)`
+- <span id="scopebase-maybe-propagate-panic"></span>`fn maybe_propagate_panic(&self)`
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for ScopeBase<'scope>`
+##### `impl Pointable for ScopeBase<'scope>`
 
-- `const ALIGN: usize`
+- <span id="scopebase-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="scopebase-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scopebase-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scopebase-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scopebase-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="scopebase-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ScopePtr<T>`
 
 ```rust
 struct ScopePtr<T>(*const T);
 ```
+
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:760`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L760)*
 
 Used to capture a scope `&Self` pointer in jobs, without faking a lifetime.
 
@@ -171,23 +211,23 @@ scope jobs that are guaranteed to execute before the scope ends.
 
 #### Implementations
 
-- `unsafe fn as_ref(self: &Self) -> &T`
+- <span id="scopeptr-as-ref"></span>`unsafe fn as_ref(&self) -> &T`
 
 #### Trait Implementations
 
 ##### `impl<T> Pointable for ScopePtr<T>`
 
-- `const ALIGN: usize`
+- <span id="scopeptr-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="scopeptr-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scopeptr-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scopeptr-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scopeptr-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="scopeptr-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Sync> Send for ScopePtr<T>`
 
@@ -203,6 +243,8 @@ where
     OP: FnOnce(&Scope<'scope>) -> R + Send,
     R: Send
 ```
+
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:277-286`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L277-L286)*
 
 Creates a "fork-join" scope `s` and invokes the closure with a
 reference to `s`. This closure can then spawn asynchronous tasks
@@ -323,7 +365,7 @@ threads always steal from the other end of the deque, like FIFO
 order.  The idea is that "recent" tasks are most likely to be fresh
 in the local CPU's cache, while other threads can steal older
 "stale" tasks.  For an alternate approach, consider
-[`scope_fifo()`](../index.md) instead.
+[`scope_fifo()`](#scope-fifo) instead.
 
 # Accessing stack data
 
@@ -435,6 +477,8 @@ where
     R: Send
 ```
 
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:366-375`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L366-L375)*
+
 Creates a "fork-join" scope `s` with FIFO order, and invokes the
 closure with a reference to `s`. This closure can then spawn
 asynchronous tasks into `s`. Those tasks may run asynchronously with
@@ -444,7 +488,7 @@ that have been spawned into `s` complete.
 
 # Task execution
 
-Tasks in a `scope_fifo()` run similarly to [`scope()`](../index.md), but there's a
+Tasks in a `scope_fifo()` run similarly to [`scope()`](#scope), but there's a
 difference in the order of execution. Consider a similar example:
 
 ```rust
@@ -520,6 +564,8 @@ where
     OP: FnOnce(&Scope<'scope>) -> R
 ```
 
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:398-403`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L398-L403)*
+
 Creates a "fork-join" scope `s` and invokes the closure with a
 reference to `s`. This closure can then spawn asynchronous tasks
 into `s`. Those tasks may run asynchronously with respect to the
@@ -550,11 +596,15 @@ where
     OP: FnOnce(&Scope<'scope>) -> R
 ```
 
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:405-412`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L405-L412)*
+
 ### `get_in_place_thread_registry`
 
 ```rust
 fn get_in_place_thread_registry(registry: Option<&std::sync::Arc<crate::registry::Registry>>) -> (Option<&crate::registry::WorkerThread>, Option<&std::sync::Arc<crate::registry::Registry>>)
 ```
+
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:414-426`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L414-L426)*
 
 ### `in_place_scope_fifo`
 
@@ -563,6 +613,8 @@ fn in_place_scope_fifo<'scope, OP, R>(op: OP) -> R
 where
     OP: FnOnce(&ScopeFifo<'scope>) -> R
 ```
+
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:449-454`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L449-L454)*
 
 Creates a "fork-join" scope `s` with FIFO order, and invokes the
 closure with a reference to `s`. This closure can then spawn
@@ -593,4 +645,6 @@ fn do_in_place_scope_fifo<'scope, OP, R>(registry: Option<&std::sync::Arc<crate:
 where
     OP: FnOnce(&ScopeFifo<'scope>) -> R
 ```
+
+*Defined in [`rayon-core-1.13.0/src/scope/mod.rs:456-463`](../../../.source_1765210505/rayon-core-1.13.0/src/scope/mod.rs#L456-L463)*
 

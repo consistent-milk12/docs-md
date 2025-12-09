@@ -4,6 +4,15 @@
 
 # Module `sum`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SumConsumer`](#sumconsumer) | struct |  |
+| [`SumFolder`](#sumfolder) | struct |  |
+| [`sum`](#sum) | fn |  |
+| [`add`](#add) | fn |  |
+
 ## Structs
 
 ### `SumConsumer<S: Send>`
@@ -14,53 +23,55 @@ struct SumConsumer<S: Send> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:19-21`](../../../../.source_1765210505/rayon-1.11.0/src/iter/sum.rs#L19-L21)*
+
 #### Implementations
 
-- `fn new() -> SumConsumer<S>` — [`SumConsumer`](#sumconsumer)
+- <span id="sumconsumer-new"></span>`fn new() -> SumConsumer<S>` — [`SumConsumer`](#sumconsumer)
 
 #### Trait Implementations
 
 ##### `impl<S, T> Consumer for SumConsumer<S>`
 
-- `type Folder = SumFolder<S>`
+- <span id="sumconsumer-type-folder"></span>`type Folder = SumFolder<S>`
 
-- `type Reducer = SumConsumer<S>`
+- <span id="sumconsumer-type-reducer"></span>`type Reducer = SumConsumer<S>`
 
-- `type Result = S`
+- <span id="sumconsumer-type-result"></span>`type Result = S`
 
-- `fn split_at(self: Self, _index: usize) -> (Self, Self, Self)`
+- <span id="sumconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="sumconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="sumconsumer-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for SumConsumer<S>`
 
 ##### `impl<T> Pointable for SumConsumer<S>`
 
-- `const ALIGN: usize`
+- <span id="sumconsumer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="sumconsumer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sumconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sumconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sumconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="sumconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<S> Reducer for SumConsumer<S>`
 
-- `fn reduce(self: Self, left: S, right: S) -> S`
+- <span id="sumconsumer-reduce"></span>`fn reduce(self, left: S, right: S) -> S`
 
 ##### `impl<S: Send> Send for SumConsumer<S>`
 
 ##### `impl<S, T> UnindexedConsumer for SumConsumer<S>`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="sumconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="sumconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `SumFolder<S>`
 
@@ -70,35 +81,37 @@ struct SumFolder<S> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:78-80`](../../../../.source_1765210505/rayon-1.11.0/src/iter/sum.rs#L78-L80)*
+
 #### Trait Implementations
 
 ##### `impl<S, T> Folder for SumFolder<S>`
 
-- `type Result = S`
+- <span id="sumfolder-type-result"></span>`type Result = S`
 
-- `fn consume(self: Self, item: T) -> Self`
+- <span id="sumfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
+- <span id="sumfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- `fn complete(self: Self) -> S`
+- <span id="sumfolder-complete"></span>`fn complete(self) -> S`
 
-- `fn full(self: &Self) -> bool`
+- <span id="sumfolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for SumFolder<S>`
 
 ##### `impl<T> Pointable for SumFolder<S>`
 
-- `const ALIGN: usize`
+- <span id="sumfolder-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="sumfolder-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sumfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sumfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sumfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="sumfolder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 
@@ -111,9 +124,13 @@ where
     S: Send + Sum<<PI as >::Item> + Sum
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:7-13`](../../../../.source_1765210505/rayon-1.11.0/src/iter/sum.rs#L7-L13)*
+
 ### `add`
 
 ```rust
 fn add<T: Sum>(left: T, right: T) -> T
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:15-17`](../../../../.source_1765210505/rayon-1.11.0/src/iter/sum.rs#L15-L17)*
 

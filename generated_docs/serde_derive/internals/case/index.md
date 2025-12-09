@@ -7,6 +7,13 @@
 Code to convert the Rust-styled field/variant (e.g. `my_field`, `MyType`) to the
 case of the source (e.g. `my-field`, `MY_FIELD`).
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ParseError`](#parseerror) | struct |  |
+| [`RenameRule`](#renamerule) | enum | The different possible ways to change case of fields in a struct, or variants in an enum. |
+
 ## Structs
 
 ### `ParseError<'a>`
@@ -17,15 +24,17 @@ struct ParseError<'a> {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/case.rs:120-122`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/case.rs#L120-L122)*
+
 #### Trait Implementations
 
-##### `impl<'a> Display for ParseError<'a>`
+##### `impl Display for ParseError<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parseerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for ParseError<'a>`
+##### `impl ToString for ParseError<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="parseerror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -44,6 +53,8 @@ enum RenameRule {
     ScreamingKebabCase,
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/case.rs:9-31`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/case.rs#L9-L31)*
 
 The different possible ways to change case of fields in a struct, or variants in an enum.
 
@@ -90,25 +101,25 @@ The different possible ways to change case of fields in a struct, or variants in
 
 #### Implementations
 
-- `fn from_str(rename_all_str: &str) -> Result<Self, ParseError<'_>>` — [`ParseError`](#parseerror)
+- <span id="renamerule-from-str"></span>`fn from_str(rename_all_str: &str) -> Result<Self, ParseError<'_>>` — [`ParseError`](#parseerror)
 
-- `fn apply_to_variant(self: Self, variant: &str) -> String`
+- <span id="renamerule-apply-to-variant"></span>`fn apply_to_variant(self, variant: &str) -> String`
 
-- `fn apply_to_field(self: Self, field: &str) -> String`
+- <span id="renamerule-apply-to-field"></span>`fn apply_to_field(self, field: &str) -> String`
 
-- `fn or(self: Self, rule_b: Self) -> Self`
+- <span id="renamerule-or"></span>`fn or(self, rule_b: Self) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for RenameRule`
 
-- `fn clone(self: &Self) -> RenameRule` — [`RenameRule`](#renamerule)
+- <span id="renamerule-clone"></span>`fn clone(&self) -> RenameRule` — [`RenameRule`](#renamerule)
 
 ##### `impl Copy for RenameRule`
 
 ##### `impl PartialEq for RenameRule`
 
-- `fn eq(self: &Self, other: &RenameRule) -> bool` — [`RenameRule`](#renamerule)
+- <span id="renamerule-eq"></span>`fn eq(&self, other: &RenameRule) -> bool` — [`RenameRule`](#renamerule)
 
 ##### `impl StructuralPartialEq for RenameRule`
 

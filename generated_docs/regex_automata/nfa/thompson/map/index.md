@@ -4,6 +4,18 @@
 
 # Module `map`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Utf8BoundedMap`](#utf8boundedmap) | struct | A bounded hash map where the key is a sequence of NFA transitions and the value is a pre-existing NFA state ID. |
+| [`Utf8BoundedEntry`](#utf8boundedentry) | struct | An entry in this map. |
+| [`Utf8SuffixMap`](#utf8suffixmap) | struct | A cache of suffixes used to modestly compress UTF-8 automata for large Unicode character classes. |
+| [`Utf8SuffixKey`](#utf8suffixkey) | struct | A key that uniquely identifies an NFA state. |
+| [`Utf8SuffixEntry`](#utf8suffixentry) | struct | An entry in this map. |
+| [`PRIME`](#prime) | const |  |
+| [`INIT`](#init) | const |  |
+
 ## Structs
 
 ### `Utf8BoundedMap`
@@ -15,6 +27,8 @@ struct Utf8BoundedMap {
     map: alloc::vec::Vec<Utf8BoundedEntry>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:81-94`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L81-L94)*
 
 A bounded hash map where the key is a sequence of NFA transitions and the
 value is a pre-existing NFA state ID.
@@ -68,25 +82,25 @@ amount of extra time they cost.
 
 #### Implementations
 
-- `fn new(capacity: usize) -> Utf8BoundedMap` — [`Utf8BoundedMap`](#utf8boundedmap)
+- <span id="utf8boundedmap-new"></span>`fn new(capacity: usize) -> Utf8BoundedMap` — [`Utf8BoundedMap`](#utf8boundedmap)
 
-- `fn clear(self: &mut Self)`
+- <span id="utf8boundedmap-clear"></span>`fn clear(&mut self)`
 
-- `fn hash(self: &Self, key: &[Transition]) -> usize` — [`Transition`](../index.md)
+- <span id="utf8boundedmap-hash"></span>`fn hash(&self, key: &[Transition]) -> usize` — [`Transition`](../nfa/index.md)
 
-- `fn get(self: &mut Self, key: &[Transition], hash: usize) -> Option<StateID>` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md)
+- <span id="utf8boundedmap-get"></span>`fn get(&mut self, key: &[Transition], hash: usize) -> Option<StateID>` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md)
 
-- `fn set(self: &mut Self, key: Vec<Transition>, hash: usize, state_id: StateID)` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md)
+- <span id="utf8boundedmap-set"></span>`fn set(&mut self, key: Vec<Transition>, hash: usize, state_id: StateID)` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Utf8BoundedMap`
 
-- `fn clone(self: &Self) -> Utf8BoundedMap` — [`Utf8BoundedMap`](#utf8boundedmap)
+- <span id="utf8boundedmap-clone"></span>`fn clone(&self) -> Utf8BoundedMap` — [`Utf8BoundedMap`](#utf8boundedmap)
 
 ##### `impl Debug for Utf8BoundedMap`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8boundedmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Utf8BoundedEntry`
 
@@ -97,6 +111,8 @@ struct Utf8BoundedEntry {
     val: crate::util::primitives::StateID,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:98-108`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L98-L108)*
 
 An entry in this map.
 
@@ -121,15 +137,15 @@ An entry in this map.
 
 ##### `impl Clone for Utf8BoundedEntry`
 
-- `fn clone(self: &Self) -> Utf8BoundedEntry` — [`Utf8BoundedEntry`](#utf8boundedentry)
+- <span id="utf8boundedentry-clone"></span>`fn clone(&self) -> Utf8BoundedEntry` — [`Utf8BoundedEntry`](#utf8boundedentry)
 
 ##### `impl Debug for Utf8BoundedEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8boundedentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Utf8BoundedEntry`
 
-- `fn default() -> Utf8BoundedEntry` — [`Utf8BoundedEntry`](#utf8boundedentry)
+- <span id="utf8boundedentry-default"></span>`fn default() -> Utf8BoundedEntry` — [`Utf8BoundedEntry`](#utf8boundedentry)
 
 ### `Utf8SuffixMap`
 
@@ -140,6 +156,8 @@ struct Utf8SuffixMap {
     map: alloc::vec::Vec<Utf8SuffixEntry>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:190-200`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L190-L200)*
 
 A cache of suffixes used to modestly compress UTF-8 automata for large
 Unicode character classes.
@@ -163,25 +181,25 @@ Unicode character classes.
 
 #### Implementations
 
-- `fn new(capacity: usize) -> Utf8SuffixMap` — [`Utf8SuffixMap`](#utf8suffixmap)
+- <span id="utf8suffixmap-new"></span>`fn new(capacity: usize) -> Utf8SuffixMap` — [`Utf8SuffixMap`](#utf8suffixmap)
 
-- `fn clear(self: &mut Self)`
+- <span id="utf8suffixmap-clear"></span>`fn clear(&mut self)`
 
-- `fn hash(self: &Self, key: &Utf8SuffixKey) -> usize` — [`Utf8SuffixKey`](#utf8suffixkey)
+- <span id="utf8suffixmap-hash"></span>`fn hash(&self, key: &Utf8SuffixKey) -> usize` — [`Utf8SuffixKey`](#utf8suffixkey)
 
-- `fn get(self: &mut Self, key: &Utf8SuffixKey, hash: usize) -> Option<StateID>` — [`Utf8SuffixKey`](#utf8suffixkey), [`StateID`](../../../util/primitives/index.md)
+- <span id="utf8suffixmap-get"></span>`fn get(&mut self, key: &Utf8SuffixKey, hash: usize) -> Option<StateID>` — [`Utf8SuffixKey`](#utf8suffixkey), [`StateID`](../../../util/primitives/index.md)
 
-- `fn set(self: &mut Self, key: Utf8SuffixKey, hash: usize, state_id: StateID)` — [`Utf8SuffixKey`](#utf8suffixkey), [`StateID`](../../../util/primitives/index.md)
+- <span id="utf8suffixmap-set"></span>`fn set(&mut self, key: Utf8SuffixKey, hash: usize, state_id: StateID)` — [`Utf8SuffixKey`](#utf8suffixkey), [`StateID`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Utf8SuffixMap`
 
-- `fn clone(self: &Self) -> Utf8SuffixMap` — [`Utf8SuffixMap`](#utf8suffixmap)
+- <span id="utf8suffixmap-clone"></span>`fn clone(&self) -> Utf8SuffixMap` — [`Utf8SuffixMap`](#utf8suffixmap)
 
 ##### `impl Debug for Utf8SuffixMap`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8suffixmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Utf8SuffixKey`
 
@@ -193,6 +211,8 @@ struct Utf8SuffixKey {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:205-209`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L205-L209)*
+
 A key that uniquely identifies an NFA state. It is a triple that represents
 a transition from one state for a particular byte range.
 
@@ -200,21 +220,21 @@ a transition from one state for a particular byte range.
 
 ##### `impl Clone for Utf8SuffixKey`
 
-- `fn clone(self: &Self) -> Utf8SuffixKey` — [`Utf8SuffixKey`](#utf8suffixkey)
+- <span id="utf8suffixkey-clone"></span>`fn clone(&self) -> Utf8SuffixKey` — [`Utf8SuffixKey`](#utf8suffixkey)
 
 ##### `impl Debug for Utf8SuffixKey`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8suffixkey-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Utf8SuffixKey`
 
-- `fn default() -> Utf8SuffixKey` — [`Utf8SuffixKey`](#utf8suffixkey)
+- <span id="utf8suffixkey-default"></span>`fn default() -> Utf8SuffixKey` — [`Utf8SuffixKey`](#utf8suffixkey)
 
 ##### `impl Eq for Utf8SuffixKey`
 
 ##### `impl PartialEq for Utf8SuffixKey`
 
-- `fn eq(self: &Self, other: &Utf8SuffixKey) -> bool` — [`Utf8SuffixKey`](#utf8suffixkey)
+- <span id="utf8suffixkey-eq"></span>`fn eq(&self, other: &Utf8SuffixKey) -> bool` — [`Utf8SuffixKey`](#utf8suffixkey)
 
 ##### `impl StructuralPartialEq for Utf8SuffixKey`
 
@@ -227,6 +247,8 @@ struct Utf8SuffixEntry {
     val: crate::util::primitives::StateID,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:213-222`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L213-L222)*
 
 An entry in this map.
 
@@ -250,27 +272,29 @@ An entry in this map.
 
 ##### `impl Clone for Utf8SuffixEntry`
 
-- `fn clone(self: &Self) -> Utf8SuffixEntry` — [`Utf8SuffixEntry`](#utf8suffixentry)
+- <span id="utf8suffixentry-clone"></span>`fn clone(&self) -> Utf8SuffixEntry` — [`Utf8SuffixEntry`](#utf8suffixentry)
 
 ##### `impl Debug for Utf8SuffixEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8suffixentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Utf8SuffixEntry`
 
-- `fn default() -> Utf8SuffixEntry` — [`Utf8SuffixEntry`](#utf8suffixentry)
+- <span id="utf8suffixentry-default"></span>`fn default() -> Utf8SuffixEntry` — [`Utf8SuffixEntry`](#utf8suffixentry)
 
 ## Constants
 
 ### `PRIME`
-
 ```rust
 const PRIME: u64 = 1_099_511_628_211u64;
 ```
 
-### `INIT`
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:48`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L48)*
 
+### `INIT`
 ```rust
 const INIT: u64 = 14_695_981_039_346_656_037u64;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:49`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L49)*
 

@@ -7,7 +7,7 @@
 <br>
 
 This library provides a convenient derive macro for the standard library's
-[`std::error::Error`](../docs_md/error/index.md) trait.
+[`std::error::Error`](../addr2line/index.md) trait.
 
 <br>
 
@@ -39,7 +39,7 @@ pub enum DataStoreError {
 
 - Thiserror deliberately does not appear in your public API. You get the
   same thing as if you had written an implementation of
-  [`std::error::Error`](../docs_md/error/index.md) by hand, and switching from handwritten impls to
+  [`std::error::Error`](../addr2line/index.md) by hand, and switching from handwritten impls to
   thiserror or vice versa is not a breaking change.
 
 - Errors may be enums, structs with named fields, tuple structs, or unit
@@ -158,7 +158,7 @@ pub enum DataStoreError {
 
 - The Error trait's `provide()` method is implemented to provide whichever
   field has a type named `Backtrace`, if any, as a
-  [`std::backtrace::Backtrace`](../backtrace/index.md). Using `Backtrace` in errors requires a
+  [`std::backtrace::Backtrace`](../backtrace/capture/index.md). Using `Backtrace` in errors requires a
   nightly compiler with Rust version 1.73 or newer.
 
   ```rust
@@ -258,11 +258,21 @@ pub enum DataStoreError {
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`aserror`](#aserror) | mod |  |
+| [`display`](#display) | mod |  |
+| [`provide`](#provide) | mod |  |
+| [`var`](#var) | mod |  |
+| [`private`](#private) | mod |  |
+
 ## Modules
 
-- [`aserror`](aserror/index.md) - 
-- [`display`](display/index.md) - 
-- [`provide`](provide/index.md) - 
-- [`var`](var/index.md) - 
-- [`private`](private/index.md) - 
+- [`aserror`](aserror/index.md)
+- [`display`](display/index.md)
+- [`provide`](provide/index.md)
+- [`var`](var/index.md)
+- [`private`](private/index.md)
 

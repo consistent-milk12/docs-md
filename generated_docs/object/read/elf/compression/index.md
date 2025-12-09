@@ -4,6 +4,12 @@
 
 # Module `compression`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CompressionHeader`](#compressionheader) | trait | A trait for generic access to [`elf::CompressionHeader32`] and [`elf::CompressionHeader64`]. |
+
 ## Traits
 
 ### `CompressionHeader`
@@ -12,17 +18,26 @@
 trait CompressionHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/compression.rs:9-16`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/compression.rs#L9-L16)*
+
 A trait for generic access to [`elf::CompressionHeader32`](../../../elf/index.md) and [`elf::CompressionHeader64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
-- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32`
+#### Required Methods
 
-- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ch_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+- `fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Implementors
+
+- [`CompressionHeader32`](../../../elf/index.md)
+- [`CompressionHeader64`](../../../elf/index.md)
 

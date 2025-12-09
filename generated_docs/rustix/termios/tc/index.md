@@ -4,6 +4,40 @@
 
 # Module `tc`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Pid`](#pid)
+- [Functions](#functions)
+  - [`tcgetattr`](#tcgetattr)
+  - [`tcgetwinsize`](#tcgetwinsize)
+  - [`tcgetpgrp`](#tcgetpgrp)
+  - [`tcsetpgrp`](#tcsetpgrp)
+  - [`tcsetattr`](#tcsetattr)
+  - [`tcsendbreak`](#tcsendbreak)
+  - [`tcdrain`](#tcdrain)
+  - [`tcflush`](#tcflush)
+  - [`tcflow`](#tcflow)
+  - [`tcgetsid`](#tcgetsid)
+  - [`tcsetwinsize`](#tcsetwinsize)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Pid`](#pid) | struct |  |
+| [`tcgetattr`](#tcgetattr) | fn | `tcgetattr(fd)`—Get terminal attributes. |
+| [`tcgetwinsize`](#tcgetwinsize) | fn | `tcgetwinsize(fd)`—Get the current terminal window size. |
+| [`tcgetpgrp`](#tcgetpgrp) | fn | `tcgetpgrp(fd)`—Get the terminal foreground process group. |
+| [`tcsetpgrp`](#tcsetpgrp) | fn | `tcsetpgrp(fd, pid)`—Set the terminal foreground process group. |
+| [`tcsetattr`](#tcsetattr) | fn | `tcsetattr(fd)`—Set terminal attributes. |
+| [`tcsendbreak`](#tcsendbreak) | fn | `tcsendbreak(fd, 0)`—Transmit zero-valued bits. |
+| [`tcdrain`](#tcdrain) | fn | `tcdrain(fd, duration)`—Wait until all pending output has been written. |
+| [`tcflush`](#tcflush) | fn | `tcflush(fd, queue_selector)`—Wait until all pending output has been written. |
+| [`tcflow`](#tcflow) | fn | `tcflow(fd, action)`—Suspend or resume transmission or reception. |
+| [`tcgetsid`](#tcgetsid) | fn | `tcgetsid(fd)`—Return the session ID of the current session with `fd` as its controlling terminal. |
+| [`tcsetwinsize`](#tcsetwinsize) | fn | `tcsetwinsize(fd)`—Set the current terminal window size. |
+
 ## Structs
 
 ### `Pid`
@@ -11,6 +45,8 @@
 ```rust
 struct Pid(core::num::NonZeroI32);
 ```
+
+*Defined in [`rustix-1.1.2/src/pid.rs:19`](../../../../.source_1765210505/rustix-1.1.2/src/pid.rs#L19)*
 
 `pid_t`—A non-zero Unix process ID.
 
@@ -22,77 +58,77 @@ On Linux, `Pid` values are also used to identify threads.
 
 #### Implementations
 
-- `const INIT: Self`
+- <span id="pid-const-init"></span>`const INIT: Self`
 
-- `const fn from_raw(raw: i32) -> Option<Self>`
+- <span id="pid-from-raw"></span>`const fn from_raw(raw: i32) -> Option<Self>`
 
-- `const unsafe fn from_raw_unchecked(raw: i32) -> Self`
+- <span id="pid-from-raw-unchecked"></span>`const unsafe fn from_raw_unchecked(raw: i32) -> Self`
 
-- `fn from_child(child: &std::process::Child) -> Self`
+- <span id="pid-from-child"></span>`fn from_child(child: &std::process::Child) -> Self`
 
-- `const fn as_raw_nonzero(self: Self) -> NonZeroI32`
+- <span id="pid-as-raw-nonzero"></span>`const fn as_raw_nonzero(self) -> NonZeroI32`
 
-- `const fn as_raw_pid(self: Self) -> i32`
+- <span id="pid-as-raw-pid"></span>`const fn as_raw_pid(self) -> i32`
 
-- `const fn as_raw(pid: Option<Self>) -> i32`
+- <span id="pid-as-raw"></span>`const fn as_raw(pid: Option<Self>) -> i32`
 
-- `const fn is_init(self: Self) -> bool`
+- <span id="pid-is-init"></span>`const fn is_init(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Binary for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Clone for Pid`
 
-- `fn clone(self: &Self) -> Pid` — [`Pid`](../../pid/index.md)
+- <span id="pid-clone"></span>`fn clone(&self) -> Pid` — [`Pid`](../../pid/index.md)
 
 ##### `impl Copy for Pid`
 
 ##### `impl Debug for Pid`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Pid`
 
 ##### `impl Hash for Pid`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="pid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl LowerExp for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl LowerHex for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Octal for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for Pid`
 
-- `fn eq(self: &Self, other: &Pid) -> bool` — [`Pid`](../../pid/index.md)
+- <span id="pid-eq"></span>`fn eq(&self, other: &Pid) -> bool` — [`Pid`](../../pid/index.md)
 
 ##### `impl StructuralPartialEq for Pid`
 
-##### `impl<T> ToString for Pid`
+##### `impl ToString for Pid`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="pid-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl UpperExp for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 
@@ -101,6 +137,8 @@ On Linux, `Pid` values are also used to identify threads.
 ```rust
 fn tcgetattr<Fd: AsFd>(fd: Fd) -> io::Result<crate::termios::Termios>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:30-32`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L30-L32)*
 
 `tcgetattr(fd)`—Get terminal attributes.
 
@@ -125,6 +163,8 @@ initializes the fields that `TCGETS` doesn't initialize, and fails with
 fn tcgetwinsize<Fd: AsFd>(fd: Fd) -> io::Result<crate::termios::Winsize>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:50-52`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L50-L52)*
+
 `tcgetwinsize(fd)`—Get the current terminal window size.
 
 Also known as the `TIOCGWINSZ` operation with `ioctl`.
@@ -138,6 +178,8 @@ Also known as the `TIOCGWINSZ` operation with `ioctl`.
 ```rust
 fn tcgetpgrp<Fd: AsFd>(fd: Fd) -> io::Result<Pid>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:72-74`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L72-L74)*
 
 `tcgetpgrp(fd)`—Get the terminal foreground process group.
 
@@ -160,6 +202,8 @@ pid is 0.
 fn tcsetpgrp<Fd: AsFd>(fd: Fd, pid: Pid) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:89-91`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L89-L91)*
+
 `tcsetpgrp(fd, pid)`—Set the terminal foreground process group.
 
 Also known as the `TIOCSPGRP` operation with `ioctl`.
@@ -175,6 +219,8 @@ Also known as the `TIOCSPGRP` operation with `ioctl`.
 ```rust
 fn tcsetattr<Fd: AsFd>(fd: Fd, optional_actions: crate::termios::OptionalActions, termios: &crate::termios::Termios) -> io::Result<()>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:114-120`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L114-L120)*
 
 `tcsetattr(fd)`—Set terminal attributes.
 
@@ -197,6 +243,8 @@ with `io::Errno::RANGE` if the input or output speeds cannot be supported.
 ```rust
 fn tcsendbreak<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:142-144`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L142-L144)*
 
 `tcsendbreak(fd, 0)`—Transmit zero-valued bits.
 
@@ -222,6 +270,8 @@ parameter of 0.
 fn tcdrain<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:158-160`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L158-L160)*
+
 `tcdrain(fd, duration)`—Wait until all pending output has been written.
 
 # References
@@ -237,6 +287,8 @@ fn tcdrain<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```rust
 fn tcflush<Fd: AsFd>(fd: Fd, queue_selector: crate::termios::QueueSelector) -> io::Result<()>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:176-178`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L176-L178)*
 
 `tcflush(fd, queue_selector)`—Wait until all pending output has been
 written.
@@ -255,6 +307,8 @@ written.
 fn tcflow<Fd: AsFd>(fd: Fd, action: crate::termios::Action) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:193-195`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L193-L195)*
+
 `tcflow(fd, action)`—Suspend or resume transmission or reception.
 
 # References
@@ -271,6 +325,8 @@ fn tcflow<Fd: AsFd>(fd: Fd, action: crate::termios::Action) -> io::Result<()>
 fn tcgetsid<Fd: AsFd>(fd: Fd) -> io::Result<Pid>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:208-210`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L208-L210)*
+
 `tcgetsid(fd)`—Return the session ID of the current session with `fd` as
 its controlling terminal.
 
@@ -285,6 +341,8 @@ its controlling terminal.
 ```rust
 fn tcsetwinsize<Fd: AsFd>(fd: Fd, winsize: crate::termios::Winsize) -> io::Result<()>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:223-225`](../../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L223-L225)*
 
 `tcsetwinsize(fd)`—Set the current terminal window size.
 

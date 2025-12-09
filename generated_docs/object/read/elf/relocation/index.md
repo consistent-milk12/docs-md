@@ -4,6 +4,53 @@
 
 # Module `relocation`
 
+## Contents
+
+- [Structs](#structs)
+  - [`RelocationSections`](#relocationsections)
+  - [`ElfDynamicRelocationIterator`](#elfdynamicrelocationiterator)
+  - [`ElfSectionRelocationIterator`](#elfsectionrelocationiterator)
+  - [`RelrIterator`](#relriterator)
+  - [`Crel`](#crel)
+  - [`CrelIteratorHeader`](#creliteratorheader)
+  - [`CrelIteratorState`](#creliteratorstate)
+  - [`CrelIterator`](#creliterator)
+- [Enums](#enums)
+  - [`ElfRelocationIterator`](#elfrelocationiterator)
+- [Traits](#traits)
+  - [`Rel`](#rel)
+  - [`Rela`](#rela)
+  - [`Relr`](#relr)
+- [Functions](#functions)
+  - [`parse_relocation`](#parse_relocation)
+- [Type Aliases](#type-aliases)
+  - [`ElfDynamicRelocationIterator32`](#elfdynamicrelocationiterator32)
+  - [`ElfDynamicRelocationIterator64`](#elfdynamicrelocationiterator64)
+  - [`ElfSectionRelocationIterator32`](#elfsectionrelocationiterator32)
+  - [`ElfSectionRelocationIterator64`](#elfsectionrelocationiterator64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RelocationSections`](#relocationsections) | struct | A mapping from section index to associated relocation sections. |
+| [`ElfDynamicRelocationIterator`](#elfdynamicrelocationiterator) | struct | An iterator for the dynamic relocations in an [`ElfFile`]. |
+| [`ElfSectionRelocationIterator`](#elfsectionrelocationiterator) | struct | An iterator for the relocations for an [`ElfSection`](super::ElfSection). |
+| [`RelrIterator`](#relriterator) | struct | An iterator over the relative relocations in an ELF `SHT_RELR` section. |
+| [`Crel`](#crel) | struct | Compact relocation |
+| [`CrelIteratorHeader`](#creliteratorheader) | struct |  |
+| [`CrelIteratorState`](#creliteratorstate) | struct |  |
+| [`CrelIterator`](#creliterator) | struct | Compact relocation iterator. |
+| [`ElfRelocationIterator`](#elfrelocationiterator) | enum |  |
+| [`Rel`](#rel) | trait | A trait for generic access to [`elf::Rel32`] and [`elf::Rel64`]. |
+| [`Rela`](#rela) | trait | A trait for generic access to [`elf::Rela32`] and [`elf::Rela64`]. |
+| [`Relr`](#relr) | trait | A trait for generic access to [`elf::Relr32`] and [`elf::Relr64`]. |
+| [`parse_relocation`](#parse_relocation) | fn |  |
+| [`ElfDynamicRelocationIterator32`](#elfdynamicrelocationiterator32) | type | An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfDynamicRelocationIterator64`](#elfdynamicrelocationiterator64) | type | An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfSectionRelocationIterator32`](#elfsectionrelocationiterator32) | type | An iterator for the relocations for an [`ElfSection32`](super::ElfSection32). |
+| [`ElfSectionRelocationIterator64`](#elfsectionrelocationiterator64) | type | An iterator for the relocations for an [`ElfSection64`](super::ElfSection64). |
+
 ## Structs
 
 ### `RelocationSections`
@@ -14,23 +61,25 @@ struct RelocationSections {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:18-20`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L18-L20)*
+
 A mapping from section index to associated relocation sections.
 
 #### Implementations
 
-- `fn parse<'data, Elf: FileHeader, R: ReadRef<'data>>(endian: <Elf as >::Endian, sections: &SectionTable<'data, Elf, R>, symbol_section: SectionIndex) -> read::Result<Self>` — [`FileHeader`](../index.md), [`SectionTable`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md)
+- <span id="relocationsections-parse"></span>`fn parse<'data, Elf: FileHeader, R: ReadRef<'data>>(endian: <Elf as >::Endian, sections: &SectionTable<'data, Elf, R>, symbol_section: SectionIndex) -> read::Result<Self>` — [`FileHeader`](../index.md), [`SectionTable`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md)
 
-- `fn get(self: &Self, index: SectionIndex) -> Option<SectionIndex>` — [`SectionIndex`](../../../index.md)
+- <span id="relocationsections-get"></span>`fn get(&self, index: SectionIndex) -> Option<SectionIndex>` — [`SectionIndex`](../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for RelocationSections`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationsections-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RelocationSections`
 
-- `fn default() -> RelocationSections` — [`RelocationSections`](../index.md)
+- <span id="relocationsections-default"></span>`fn default() -> RelocationSections` — [`RelocationSections`](../index.md)
 
 ### `ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
@@ -45,6 +94,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:123-132`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L123-L132)*
+
 An iterator for the dynamic relocations in an [`ElfFile`](../index.md).
 
 #### Fields
@@ -57,21 +108,21 @@ An iterator for the dynamic relocations in an [`ElfFile`](../index.md).
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfdynamicrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfdynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfdynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfdynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="elfdynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfdynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
@@ -86,6 +137,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:207-216`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L207-L216)*
+
 An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
 #### Fields
@@ -98,21 +151,21 @@ An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="elfsectionrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfsectionrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfsectionrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfsectionrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="elfsectionrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfsectionrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `RelrIterator<'data, Elf: FileHeader>`
 
@@ -126,33 +179,35 @@ struct RelrIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:681-687`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L681-L687)*
+
 An iterator over the relative relocations in an ELF `SHT_RELR` section.
 
 Returned by [`SectionHeader::relr`](super::SectionHeader::relr).
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, data: &'data [<Elf as >::Relr]) -> Self` — [`FileHeader`](../index.md)
+- <span id="relriterator-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [<Elf as >::Relr]) -> Self` — [`FileHeader`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for RelrIterator<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for RelrIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relriterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for RelrIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="relriterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="relriterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="relriterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for RelrIterator<'data, Elf>`
 
-- `type Item = <Elf as FileHeader>::Word`
+- <span id="relriterator-type-item"></span>`type Item = <Elf as FileHeader>::Word`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="relriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `Crel`
 
@@ -164,6 +219,8 @@ struct Crel {
     pub r_addend: i64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:792-803`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L792-L803)*
 
 Compact relocation
 
@@ -191,23 +248,23 @@ The specification has been submited here: <https://groups.google.com/g/generic-a
 
 #### Implementations
 
-- `fn symbol(self: &Self) -> Option<SymbolIndex>` — [`SymbolIndex`](../../../index.md)
+- <span id="crel-symbol"></span>`fn symbol(&self) -> Option<SymbolIndex>` — [`SymbolIndex`](../../../index.md)
 
-- `fn from_rel<R: Rel>(r: &R, endian: <R as >::Endian) -> Crel` — [`Rel`](../index.md), [`Crel`](../index.md)
+- <span id="crel-from-rel"></span>`fn from_rel<R: Rel>(r: &R, endian: <R as >::Endian) -> Crel` — [`Rel`](../index.md), [`Crel`](../index.md)
 
-- `fn from_rela<R: Rela>(r: &R, endian: <R as >::Endian, is_mips64el: bool) -> Crel` — [`Rela`](../index.md), [`Crel`](../index.md)
+- <span id="crel-from-rela"></span>`fn from_rela<R: Rela>(r: &R, endian: <R as >::Endian, is_mips64el: bool) -> Crel` — [`Rela`](../index.md), [`Crel`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Crel`
 
-- `fn clone(self: &Self) -> Crel` — [`Crel`](../index.md)
+- <span id="crel-clone"></span>`fn clone(&self) -> Crel` — [`Crel`](../index.md)
 
 ##### `impl Copy for Crel`
 
 ##### `impl Debug for Crel`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="crel-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `CrelIteratorHeader`
 
@@ -219,6 +276,8 @@ struct CrelIteratorHeader {
     is_rela: bool,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:839-848`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L839-L848)*
 
 #### Fields
 
@@ -242,11 +301,11 @@ struct CrelIteratorHeader {
 
 ##### `impl Clone for CrelIteratorHeader`
 
-- `fn clone(self: &Self) -> CrelIteratorHeader` — [`CrelIteratorHeader`](#creliteratorheader)
+- <span id="creliteratorheader-clone"></span>`fn clone(&self) -> CrelIteratorHeader` — [`CrelIteratorHeader`](#creliteratorheader)
 
 ##### `impl Debug for CrelIteratorHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="creliteratorheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `CrelIteratorState`
 
@@ -259,6 +318,8 @@ struct CrelIteratorState {
     typ: u32,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:851-862`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L851-L862)*
 
 #### Fields
 
@@ -286,15 +347,15 @@ struct CrelIteratorState {
 
 ##### `impl Clone for CrelIteratorState`
 
-- `fn clone(self: &Self) -> CrelIteratorState` — [`CrelIteratorState`](#creliteratorstate)
+- <span id="creliteratorstate-clone"></span>`fn clone(&self) -> CrelIteratorState` — [`CrelIteratorState`](#creliteratorstate)
 
 ##### `impl Debug for CrelIteratorState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="creliteratorstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CrelIteratorState`
 
-- `fn default() -> CrelIteratorState` — [`CrelIteratorState`](#creliteratorstate)
+- <span id="creliteratorstate-default"></span>`fn default() -> CrelIteratorState` — [`CrelIteratorState`](#creliteratorstate)
 
 ### `CrelIterator<'data>`
 
@@ -305,6 +366,8 @@ struct CrelIterator<'data> {
     state: CrelIteratorState,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:866-873`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L866-L873)*
 
 Compact relocation iterator.
 
@@ -324,41 +387,41 @@ Compact relocation iterator.
 
 #### Implementations
 
-- `fn new(data: &'data [u8]) -> Result<Self, Error>` — [`Error`](../../../index.md)
+- <span id="creliterator-new"></span>`fn new(data: &'data [u8]) -> Result<Self, Error>` — [`Error`](../../../index.md)
 
-- `fn is_rela(self: &Self) -> bool`
+- <span id="creliterator-is-rela"></span>`fn is_rela(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="creliterator-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="creliterator-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn parse(self: &mut Self) -> read::Result<Crel>` — [`Result`](../../../index.md), [`Crel`](../index.md)
+- <span id="creliterator-parse"></span>`fn parse(&mut self) -> read::Result<Crel>` — [`Result`](../../../index.md), [`Crel`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for CrelIterator<'data>`
+##### `impl Clone for CrelIterator<'data>`
 
-- `fn clone(self: &Self) -> CrelIterator<'data>` — [`CrelIterator`](../index.md)
+- <span id="creliterator-clone"></span>`fn clone(&self) -> CrelIterator<'data>` — [`CrelIterator`](../index.md)
 
-##### `impl<'data> Debug for CrelIterator<'data>`
+##### `impl Debug for CrelIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="creliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for CrelIterator<'data>`
+##### `impl IntoIterator for CrelIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="creliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="creliterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="creliterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data> Iterator for CrelIterator<'data>`
+##### `impl Iterator for CrelIterator<'data>`
 
-- `type Item = Result<Crel, Error>`
+- <span id="creliterator-type-item"></span>`type Item = Result<Crel, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="creliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="creliterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ## Enums
 
@@ -372,25 +435,27 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:83-87`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L83-L87)*
+
 #### Implementations
 
-- `fn is_rel(self: &Self) -> bool`
+- <span id="elfrelocationiterator-is-rel"></span>`fn is_rel(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl<I> IntoIterator for ElfRelocationIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for ElfRelocationIterator<'data, Elf>`
 
-- `type Item = Crel`
+- <span id="elfrelocationiterator-type-item"></span>`type Item = Crel`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Traits
 
@@ -400,9 +465,11 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 trait Rel: Debug + Pod + Clone { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:514-535`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L514-L535)*
+
 A trait for generic access to [`elf::Rel32`](../../../elf/index.md) and [`elf::Rel64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
@@ -410,17 +477,26 @@ A trait for generic access to [`elf::Rel32`](../../../elf/index.md) and [`elf::R
 
 - `type Endian: 1`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+#### Required Methods
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn r_info(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn r_sym(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn symbol(self: &Self, endian: <Self as >::Endian) -> Option<SymbolIndex>`
+- `fn r_type(&self, endian: <Self as >::Endian) -> u32`
+
+#### Provided Methods
+
+- `fn symbol(&self, endian: <Self as >::Endian) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
+
+#### Implementors
+
+- [`Rel32`](../../../elf/index.md)
+- [`Rel64`](../../../elf/index.md)
 
 ### `Rela`
 
@@ -428,9 +504,11 @@ A trait for generic access to [`elf::Rel32`](../../../elf/index.md) and [`elf::R
 trait Rela: Debug + Pod + Clone { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:591-613`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L591-L613)*
+
 A trait for generic access to [`elf::Rela32`](../../../elf/index.md) and [`elf::Rela64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
@@ -438,19 +516,28 @@ A trait for generic access to [`elf::Rela32`](../../../elf/index.md) and [`elf::
 
 - `type Endian: 1`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+#### Required Methods
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word`
+- `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn r_addend(self: &Self, endian: <Self as >::Endian) -> <Self as >::Sword`
+- `fn r_info(&self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word`
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+- `fn r_addend(&self, endian: <Self as >::Endian) -> <Self as >::Sword`
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+- `fn r_sym(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
 
-- `fn symbol(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> Option<SymbolIndex>`
+- `fn r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+
+#### Provided Methods
+
+- `fn symbol(&self, endian: <Self as >::Endian, is_mips64el: bool) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
+
+#### Implementors
+
+- [`Rela32`](../../../elf/index.md)
+- [`Rela64`](../../../elf/index.md)
 
 ### `Relr`
 
@@ -458,23 +545,34 @@ A trait for generic access to [`elf::Rela32`](../../../elf/index.md) and [`elf::
 trait Relr: Debug + Pod + Clone { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:727-746`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L727-L746)*
+
 A trait for generic access to [`elf::Relr32`](../../../elf/index.md) and [`elf::Relr64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
+#### Associated Constants
+
 - `const COUNT: u8`
 
-- `fn get(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+#### Required Methods
+
+- `fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
   Get the relocation entry.
 
 - `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>`
 
   Return the offset corresponding to the next bit in the bit mask.
+
+#### Implementors
+
+- [`Relr32`](../../../elf/index.md)
+- [`Relr64`](../../../elf/index.md)
 
 ## Functions
 
@@ -484,6 +582,8 @@ A trait for generic access to [`elf::Relr32`](../../../elf/index.md) and [`elf::
 fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, reloc: Crel, implicit_addend: bool) -> crate::read::Relocation
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:278-510`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L278-L510)*
+
 ## Type Aliases
 
 ### `ElfDynamicRelocationIterator32<'data, 'file, Endian, R>`
@@ -491,6 +591,8 @@ fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, re
 ```rust
 type ElfDynamicRelocationIterator32<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:116-117`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L116-L117)*
 
 An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 
@@ -500,6 +602,8 @@ An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 type ElfDynamicRelocationIterator64<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:119-120`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L119-L120)*
+
 An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 
 ### `ElfSectionRelocationIterator32<'data, 'file, Endian, R>`
@@ -508,6 +612,8 @@ An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 type ElfSectionRelocationIterator32<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:200-201`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L200-L201)*
+
 An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 
 ### `ElfSectionRelocationIterator64<'data, 'file, Endian, R>`
@@ -515,6 +621,8 @@ An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 ```rust
 type ElfSectionRelocationIterator64<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:203-204`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L203-L204)*
 
 An iterator for the relocations for an [`ElfSection64`](super::ElfSection64).
 

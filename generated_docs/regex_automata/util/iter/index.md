@@ -14,6 +14,18 @@ bit more about why these different APIs exist.
 Currently, this module supports iteration over any regex engine that works
 with the [`HalfMatch`](../../index.md), [`Match`](../../index.md) or [`Captures`](../captures/index.md) types.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Searcher`](#searcher) | struct | A searcher for creating iterators and performing lower level iteration. |
+| [`TryHalfMatchesIter`](#tryhalfmatchesiter) | struct | An iterator over all non-overlapping half matches for a fallible search. |
+| [`HalfMatchesIter`](#halfmatchesiter) | struct | An iterator over all non-overlapping half matches for an infallible search. |
+| [`TryMatchesIter`](#trymatchesiter) | struct | An iterator over all non-overlapping matches for a fallible search. |
+| [`MatchesIter`](#matchesiter) | struct | An iterator over all non-overlapping matches for an infallible search. |
+| [`TryCapturesIter`](#trycapturesiter) | struct | An iterator over all non-overlapping captures for a fallible search. |
+| [`CapturesIter`](#capturesiter) | struct | An iterator over all non-overlapping captures for an infallible search. |
+
 ## Structs
 
 ### `Searcher<'h>`
@@ -24,6 +36,8 @@ struct Searcher<'h> {
     last_match_end: Option<usize>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:147-156`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L147-L156)*
 
 A searcher for creating iterators and performing lower level iteration.
 
@@ -171,37 +185,37 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(input: Input<'h>) -> Searcher<'h>` — [`Input`](../../index.md), [`Searcher`](#searcher)
+- <span id="searcher-new"></span>`fn new(input: Input<'h>) -> Searcher<'h>` — [`Input`](../../index.md), [`Searcher`](#searcher)
 
-- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md)
+- <span id="searcher-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md)
 
-- `fn advance_half<F>(self: &mut Self, finder: F) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
+- <span id="searcher-advance-half"></span>`fn advance_half<F>(&mut self, finder: F) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
 
-- `fn advance<F>(self: &mut Self, finder: F) -> Option<Match>` — [`Match`](../../index.md)
+- <span id="searcher-advance"></span>`fn advance<F>(&mut self, finder: F) -> Option<Match>` — [`Match`](../../index.md)
 
-- `fn try_advance_half<F>(self: &mut Self, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
+- <span id="searcher-try-advance-half"></span>`fn try_advance_half<F>(&mut self, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn try_advance<F>(self: &mut Self, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
+- <span id="searcher-try-advance"></span>`fn try_advance<F>(&mut self, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn into_half_matches_iter<F>(self: Self, finder: F) -> TryHalfMatchesIter<'h, F>` — [`TryHalfMatchesIter`](#tryhalfmatchesiter)
+- <span id="searcher-into-half-matches-iter"></span>`fn into_half_matches_iter<F>(self, finder: F) -> TryHalfMatchesIter<'h, F>` — [`TryHalfMatchesIter`](#tryhalfmatchesiter)
 
-- `fn into_matches_iter<F>(self: Self, finder: F) -> TryMatchesIter<'h, F>` — [`TryMatchesIter`](#trymatchesiter)
+- <span id="searcher-into-matches-iter"></span>`fn into_matches_iter<F>(self, finder: F) -> TryMatchesIter<'h, F>` — [`TryMatchesIter`](#trymatchesiter)
 
-- `fn into_captures_iter<F>(self: Self, caps: Captures, finder: F) -> TryCapturesIter<'h, F>` — [`Captures`](../captures/index.md), [`TryCapturesIter`](#trycapturesiter)
+- <span id="searcher-into-captures-iter"></span>`fn into_captures_iter<F>(self, caps: Captures, finder: F) -> TryCapturesIter<'h, F>` — [`Captures`](../captures/index.md), [`TryCapturesIter`](#trycapturesiter)
 
-- `fn handle_overlapping_empty_half_match<F>(self: &mut Self, _: HalfMatch, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
+- <span id="searcher-handle-overlapping-empty-half-match"></span>`fn handle_overlapping_empty_half_match<F>(&mut self, _: HalfMatch, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn handle_overlapping_empty_match<F>(self: &mut Self, m: Match, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
+- <span id="searcher-handle-overlapping-empty-match"></span>`fn handle_overlapping_empty_match<F>(&mut self, m: Match, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Searcher<'h>`
+##### `impl Clone for Searcher<'h>`
 
-- `fn clone(self: &Self) -> Searcher<'h>` — [`Searcher`](#searcher)
+- <span id="searcher-clone"></span>`fn clone(&self) -> Searcher<'h>` — [`Searcher`](#searcher)
 
-##### `impl<'h> Debug for Searcher<'h>`
+##### `impl Debug for Searcher<'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="searcher-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `TryHalfMatchesIter<'h, F>`
 
@@ -211,6 +225,8 @@ struct TryHalfMatchesIter<'h, F> {
     finder: F,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:699-702`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L699-L702)*
 
 An iterator over all non-overlapping half matches for a fallible search.
 
@@ -233,35 +249,37 @@ This iterator is created by `Searcher::into_half_matches_iter`.
 
 #### Implementations
 
-- `fn infallible(self: Self) -> HalfMatchesIter<'h, F>` — [`HalfMatchesIter`](#halfmatchesiter)
+- <span id="tryhalfmatchesiter-infallible"></span>`fn infallible(self) -> HalfMatchesIter<'h, F>` — [`HalfMatchesIter`](#halfmatchesiter)
 
-- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
+- <span id="tryhalfmatchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'h, F> Debug for TryHalfMatchesIter<'h, F>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="tryhalfmatchesiter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<I> IntoIterator for TryHalfMatchesIter<'h, F>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="tryhalfmatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="tryhalfmatchesiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="tryhalfmatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for TryHalfMatchesIter<'h, F>`
 
-- `type Item = Result<HalfMatch, MatchError>`
+- <span id="tryhalfmatchesiter-type-item"></span>`type Item = Result<HalfMatch, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<HalfMatch, MatchError>>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
+- <span id="tryhalfmatchesiter-next"></span>`fn next(&mut self) -> Option<Result<HalfMatch, MatchError>>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
 
 ### `HalfMatchesIter<'h, F>`
 
 ```rust
 struct HalfMatchesIter<'h, F>(TryHalfMatchesIter<'h, F>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:765`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L765)*
 
 An iterator over all non-overlapping half matches for an infallible search.
 
@@ -285,27 +303,27 @@ then calling `TryHalfMatchesIter::infallible`.
 
 #### Implementations
 
-- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
+- <span id="halfmatchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'h, F: $crate::fmt::Debug> Debug for HalfMatchesIter<'h, F>`
+##### `impl<'h, F: fmt::Debug> Debug for HalfMatchesIter<'h, F>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="halfmatchesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for HalfMatchesIter<'h, F>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="halfmatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="halfmatchesiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="halfmatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for HalfMatchesIter<'h, F>`
 
-- `type Item = HalfMatch`
+- <span id="halfmatchesiter-type-item"></span>`type Item = HalfMatch`
 
-- `fn next(self: &mut Self) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
+- <span id="halfmatchesiter-next"></span>`fn next(&mut self) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
 
 ### `TryMatchesIter<'h, F>`
 
@@ -315,6 +333,8 @@ struct TryMatchesIter<'h, F> {
     finder: F,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:814-817`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L814-L817)*
 
 An iterator over all non-overlapping matches for a fallible search.
 
@@ -337,35 +357,37 @@ This iterator is created by `Searcher::into_matches_iter`.
 
 #### Implementations
 
-- `fn infallible(self: Self) -> MatchesIter<'h, F>` — [`MatchesIter`](#matchesiter)
+- <span id="trymatchesiter-infallible"></span>`fn infallible(self) -> MatchesIter<'h, F>` — [`MatchesIter`](#matchesiter)
 
-- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
+- <span id="trymatchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'h, F> Debug for TryMatchesIter<'h, F>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="trymatchesiter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<I> IntoIterator for TryMatchesIter<'h, F>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="trymatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="trymatchesiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="trymatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for TryMatchesIter<'h, F>`
 
-- `type Item = Result<Match, MatchError>`
+- <span id="trymatchesiter-type-item"></span>`type Item = Result<Match, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<Match, MatchError>>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
+- <span id="trymatchesiter-next"></span>`fn next(&mut self) -> Option<Result<Match, MatchError>>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
 
 ### `MatchesIter<'h, F>`
 
 ```rust
 struct MatchesIter<'h, F>(TryMatchesIter<'h, F>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:879`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L879)*
 
 An iterator over all non-overlapping matches for an infallible search.
 
@@ -388,27 +410,27 @@ then calling `TryMatchesIter::infallible`.
 
 #### Implementations
 
-- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
+- <span id="matchesiter-input"></span>`fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'h, F: $crate::fmt::Debug> Debug for MatchesIter<'h, F>`
+##### `impl<'h, F: fmt::Debug> Debug for MatchesIter<'h, F>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matchesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for MatchesIter<'h, F>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="matchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="matchesiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="matchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for MatchesIter<'h, F>`
 
-- `type Item = Match`
+- <span id="matchesiter-type-item"></span>`type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../index.md)
+- <span id="matchesiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md)
 
 ### `TryCapturesIter<'h, F>`
 
@@ -419,6 +441,8 @@ struct TryCapturesIter<'h, F> {
     finder: F,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:929-933`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L929-L933)*
 
 An iterator over all non-overlapping captures for a fallible search.
 
@@ -441,33 +465,35 @@ This iterator is created by `Searcher::into_captures_iter`.
 
 #### Implementations
 
-- `fn infallible(self: Self) -> CapturesIter<'h, F>` — [`CapturesIter`](#capturesiter)
+- <span id="trycapturesiter-infallible"></span>`fn infallible(self) -> CapturesIter<'h, F>` — [`CapturesIter`](#capturesiter)
 
 #### Trait Implementations
 
 ##### `impl<'h, F> Debug for TryCapturesIter<'h, F>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="trycapturesiter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<I> IntoIterator for TryCapturesIter<'h, F>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="trycapturesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="trycapturesiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="trycapturesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for TryCapturesIter<'h, F>`
 
-- `type Item = Result<Captures, MatchError>`
+- <span id="trycapturesiter-type-item"></span>`type Item = Result<Captures, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../captures/index.md), [`MatchError`](../../index.md)
+- <span id="trycapturesiter-next"></span>`fn next(&mut self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../captures/index.md), [`MatchError`](../../index.md)
 
 ### `CapturesIter<'h, F>`
 
 ```rust
 struct CapturesIter<'h, F>(TryCapturesIter<'h, F>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:1003`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L1003)*
 
 An iterator over all non-overlapping captures for an infallible search.
 
@@ -491,21 +517,21 @@ calling `TryCapturesIter::infallible`.
 
 #### Trait Implementations
 
-##### `impl<'h, F: $crate::fmt::Debug> Debug for CapturesIter<'h, F>`
+##### `impl<'h, F: fmt::Debug> Debug for CapturesIter<'h, F>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="capturesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for CapturesIter<'h, F>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="capturesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="capturesiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="capturesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for CapturesIter<'h, F>`
 
-- `type Item = Captures`
+- <span id="capturesiter-type-item"></span>`type Item = Captures`
 
-- `fn next(self: &mut Self) -> Option<Captures>` — [`Captures`](../captures/index.md)
+- <span id="capturesiter-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../captures/index.md)
 

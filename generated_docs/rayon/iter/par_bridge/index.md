@@ -4,6 +4,14 @@
 
 # Module `par_bridge`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IterBridge`](#iterbridge) | struct | `IterBridge` is a parallel iterator that wraps a sequential iterator. |
+| [`IterParallelProducer`](#iterparallelproducer) | struct |  |
+| [`ParallelBridge`](#parallelbridge) | trait | Conversion trait to convert an `Iterator` to a `ParallelIterator`. |
+
 ## Structs
 
 ### `IterBridge<Iter>`
@@ -14,50 +22,52 @@ struct IterBridge<Iter> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:72-74`](../../../../.source_1765210505/rayon-1.11.0/src/iter/par_bridge.rs#L72-L74)*
+
 `IterBridge` is a parallel iterator that wraps a sequential iterator.
 
 This type is created when using the `par_bridge` method on `ParallelBridge`. See the
-[`ParallelBridge`](../../prelude/index.md) documentation for details.
+[`ParallelBridge`](#parallelbridge) documentation for details.
 
 #### Trait Implementations
 
-##### `impl<Iter: $crate::clone::Clone> Clone for IterBridge<Iter>`
+##### `impl<Iter: clone::Clone> Clone for IterBridge<Iter>`
 
-- `fn clone(self: &Self) -> IterBridge<Iter>` — [`IterBridge`](../index.md)
+- <span id="iterbridge-clone"></span>`fn clone(&self) -> IterBridge<Iter>` — [`IterBridge`](#iterbridge)
 
-##### `impl<Iter: $crate::fmt::Debug> Debug for IterBridge<Iter>`
+##### `impl<Iter: fmt::Debug> Debug for IterBridge<Iter>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="iterbridge-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for IterBridge<Iter>`
 
 ##### `impl<T> IntoParallelIterator for IterBridge<Iter>`
 
-- `type Iter = T`
+- <span id="iterbridge-type-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="iterbridge-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="iterbridge-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<Iter> ParallelIterator for IterBridge<Iter>`
 
-- `type Item = <Iter as Iterator>::Item`
+- <span id="iterbridge-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for IterBridge<Iter>`
 
-- `const ALIGN: usize`
+- <span id="iterbridge-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="iterbridge-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="iterbridge-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="iterbridge-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="iterbridge-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="iterbridge-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `IterParallelProducer<'a, Iter>`
 
@@ -69,23 +79,33 @@ struct IterParallelProducer<'a, Iter> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:100-104`](../../../../.source_1765210505/rayon-1.11.0/src/iter/par_bridge.rs#L100-L104)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for IterParallelProducer<'a, Iter>`
 
 ##### `impl<T> Pointable for IterParallelProducer<'a, Iter>`
 
-- `const ALIGN: usize`
+- <span id="iterparallelproducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="iterparallelproducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="iterparallelproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="iterparallelproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="iterparallelproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="iterparallelproducer-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<Iter: Iterator + Send> UnindexedProducer for &IterParallelProducer<'_, Iter>`
+
+- <span id="iterparallelproducer-type-item"></span>`type Item = <Iter as Iterator>::Item`
+
+- <span id="iterparallelproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+
+- <span id="iterparallelproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ## Traits
 
@@ -94,6 +114,8 @@ struct IterParallelProducer<'a, Iter> {
 ```rust
 trait ParallelBridge: Sized { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:53-56`](../../../../.source_1765210505/rayon-1.11.0/src/iter/par_bridge.rs#L53-L56)*
 
 Conversion trait to convert an `Iterator` to a `ParallelIterator`.
 
@@ -138,7 +160,11 @@ assert_eq!(&*output, &["one!", "three!", "two!"]);
 
 #### Required Methods
 
-- `fn par_bridge(self: Self) -> IterBridge<Self>`
+- `fn par_bridge(self) -> IterBridge<Self>`
 
   Creates a bridge from this type to a `ParallelIterator`.
+
+#### Implementors
+
+- `T`
 

@@ -4,6 +4,14 @@
 
 # Module `private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PeekFn`](#peekfn) | struct |  |
+| [`IdentAny`](#identany) | struct |  |
+| [`Sealed`](#sealed) | trait |  |
+
 ## Structs
 
 ### `PeekFn`
@@ -12,11 +20,13 @@
 struct PeekFn;
 ```
 
+*Defined in [`syn-2.0.111/src/ext.rs:165`](../../../../.source_1765210505/syn-2.0.111/src/ext.rs#L165)*
+
 #### Trait Implementations
 
 ##### `impl Clone for PeekFn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="peekfn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for PeekFn`
 
@@ -30,15 +40,17 @@ struct PeekFn;
 struct IdentAny;
 ```
 
+*Defined in [`syn-2.0.111/src/ext.rs:168`](../../../../.source_1765210505/syn-2.0.111/src/ext.rs#L168)*
+
 #### Trait Implementations
 
-##### `impl<T> Sealed for IdentAny`
+##### `impl Sealed for IdentAny`
 
-##### `impl<T> Token for IdentAny`
+##### `impl Token for IdentAny`
 
-- `fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../../buffer/index.md)
+- <span id="identany-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../../buffer/index.md)
 
-- `fn display() -> &'static str`
+- <span id="identany-display"></span>`fn display() -> &'static str`
 
 ## Traits
 
@@ -47,4 +59,10 @@ struct IdentAny;
 ```rust
 trait Sealed { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/ext.rs:160`](../../../../.source_1765210505/syn-2.0.111/src/ext.rs#L160)*
+
+#### Implementors
+
+- [`Ident`](../../ident/index.md)
 

@@ -12,6 +12,13 @@ representations quite difficult. This module provides types that show `&[u8]`
 as if it were a string, with invalid UTF-8 escaped into its byte-by-byte hex
 representation.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugByte`](#debugbyte) | struct | Provides a convenient `Debug` implementation for a `u8`. |
+| [`DebugHaystack`](#debughaystack) | struct | Provides a convenient `Debug` implementation for `&[u8]`. |
+
 ## Structs
 
 ### `DebugByte`
@@ -19,6 +26,8 @@ representation.
 ```rust
 struct DebugByte(u8);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/escape.rs:19`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/escape.rs#L19)*
 
 Provides a convenient `Debug` implementation for a `u8`.
 
@@ -30,19 +39,21 @@ escape sequence.
 
 ##### `impl Clone for DebugByte`
 
-- `fn clone(self: &Self) -> DebugByte` — [`DebugByte`](#debugbyte)
+- <span id="debugbyte-clone"></span>`fn clone(&self) -> DebugByte` — [`DebugByte`](#debugbyte)
 
 ##### `impl Copy for DebugByte`
 
 ##### `impl Debug for DebugByte`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="debugbyte-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `DebugHaystack<'a>`
 
 ```rust
 struct DebugHaystack<'a>(&'a [u8]);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/escape.rs:49`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/escape.rs#L49)*
 
 Provides a convenient `Debug` implementation for `&[u8]`.
 
@@ -52,7 +63,7 @@ emitted as hex escape sequences.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for DebugHaystack<'a>`
+##### `impl Debug for DebugHaystack<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="debughaystack-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 

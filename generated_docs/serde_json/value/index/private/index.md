@@ -4,6 +4,12 @@
 
 # Module `private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Sealed`](#sealed) | trait |  |
+
 ## Traits
 
 ### `Sealed`
@@ -11,4 +17,13 @@
 ```rust
 trait Sealed { ... }
 ```
+
+*Defined in [`serde_json-1.0.145/src/value/index.rs:136`](../../../../../.source_1765210505/serde_json-1.0.145/src/value/index.rs#L136)*
+
+#### Implementors
+
+- `&T`
+- `alloc::string::String`
+- `str`
+- `usize`
 

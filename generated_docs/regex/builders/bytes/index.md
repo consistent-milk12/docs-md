@@ -4,6 +4,13 @@
 
 # Module `bytes`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RegexBuilder`](#regexbuilder) | struct | A configurable builder for a [`Regex`]. |
+| [`RegexSetBuilder`](#regexsetbuilder) | struct | A configurable builder for a [`RegexSet`]. |
+
 ## Structs
 
 ### `RegexBuilder`
@@ -14,6 +21,8 @@ struct RegexBuilder {
 }
 ```
 
+*Defined in [`regex-1.12.2/src/builders.rs:1372-1374`](../../../../.source_1765210505/regex-1.12.2/src/builders.rs#L1372-L1374)*
+
 A configurable builder for a [`Regex`](../../regex/bytes/index.md).
 
 This builder can be used to programmatically set flags such as `i`
@@ -23,43 +32,43 @@ the compiled regular expression.
 
 #### Implementations
 
-- `fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-new"></span>`fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn build(self: &Self) -> Result<Regex, Error>` — [`Regex`](../../regex/bytes/index.md), [`Error`](../../index.md)
+- <span id="regexbuilder-build"></span>`fn build(&self) -> Result<Regex, Error>` — [`Regex`](../../regex/bytes/index.md), [`Error`](../../error/index.md)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn size_limit(self: &mut Self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-size-limit"></span>`fn size_limit(&mut self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn dfa_size_limit(self: &mut Self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-dfa-size-limit"></span>`fn dfa_size_limit(&mut self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for RegexBuilder`
 
-- `fn clone(self: &Self) -> RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
+- <span id="regexbuilder-clone"></span>`fn clone(&self) -> RegexBuilder` — [`RegexBuilder`](../../bytes/index.md)
 
 ##### `impl Debug for RegexBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="regexbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RegexSetBuilder`
 
@@ -68,6 +77,8 @@ struct RegexSetBuilder {
     builder: super::Builder,
 }
 ```
+
+*Defined in [`regex-1.12.2/src/builders.rs:1966-1968`](../../../../.source_1765210505/regex-1.12.2/src/builders.rs#L1966-L1968)*
 
 A configurable builder for a [`RegexSet`](../../regexset/bytes/index.md).
 
@@ -78,41 +89,41 @@ the compiled regular expression.
 
 #### Implementations
 
-- `fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-new"></span>`fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn build(self: &Self) -> Result<RegexSet, Error>` — [`RegexSet`](../../regexset/bytes/index.md), [`Error`](../../index.md)
+- <span id="regexsetbuilder-build"></span>`fn build(&self) -> Result<RegexSet, Error>` — [`RegexSet`](../../regexset/bytes/index.md), [`Error`](../../error/index.md)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn size_limit(self: &mut Self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-size-limit"></span>`fn size_limit(&mut self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn dfa_size_limit(self: &mut Self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-dfa-size-limit"></span>`fn dfa_size_limit(&mut self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for RegexSetBuilder`
 
-- `fn clone(self: &Self) -> RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
+- <span id="regexsetbuilder-clone"></span>`fn clone(&self) -> RegexSetBuilder` — [`RegexSetBuilder`](../../bytes/index.md)
 
 ##### `impl Debug for RegexSetBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="regexsetbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

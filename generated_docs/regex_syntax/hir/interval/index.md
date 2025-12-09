@@ -4,6 +4,15 @@
 
 # Module `interval`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IntervalSet`](#intervalset) | struct |  |
+| [`IntervalSetIter`](#intervalsetiter) | struct | An iterator over intervals. |
+| [`Interval`](#interval) | trait |  |
+| [`Bound`](#bound) | trait |  |
+
 ## Structs
 
 ### `IntervalSet<I>`
@@ -14,6 +23,8 @@ struct IntervalSet<I> {
     folded: bool,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:34-54`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L34-L54)*
 
 #### Fields
 
@@ -42,45 +53,45 @@ struct IntervalSet<I> {
 
 #### Implementations
 
-- `fn new<T: IntoIterator<Item = I>>(intervals: T) -> IntervalSet<I>` — [`IntervalSet`](#intervalset)
+- <span id="intervalset-new"></span>`fn new<T: IntoIterator<Item = I>>(intervals: T) -> IntervalSet<I>` — [`IntervalSet`](#intervalset)
 
-- `fn push(self: &mut Self, interval: I)`
+- <span id="intervalset-push"></span>`fn push(&mut self, interval: I)`
 
-- `fn iter(self: &Self) -> IntervalSetIter<'_, I>` — [`IntervalSetIter`](#intervalsetiter)
+- <span id="intervalset-iter"></span>`fn iter(&self) -> IntervalSetIter<'_, I>` — [`IntervalSetIter`](#intervalsetiter)
 
-- `fn intervals(self: &Self) -> &[I]`
+- <span id="intervalset-intervals"></span>`fn intervals(&self) -> &[I]`
 
-- `fn case_fold_simple(self: &mut Self) -> Result<(), unicode::CaseFoldError>` — [`CaseFoldError`](../../unicode/index.md)
+- <span id="intervalset-case-fold-simple"></span>`fn case_fold_simple(&mut self) -> Result<(), unicode::CaseFoldError>` — [`CaseFoldError`](../../unicode/index.md)
 
-- `fn union(self: &mut Self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
+- <span id="intervalset-union"></span>`fn union(&mut self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
 
-- `fn intersect(self: &mut Self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
+- <span id="intervalset-intersect"></span>`fn intersect(&mut self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
 
-- `fn difference(self: &mut Self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
+- <span id="intervalset-difference"></span>`fn difference(&mut self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
 
-- `fn symmetric_difference(self: &mut Self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
+- <span id="intervalset-symmetric-difference"></span>`fn symmetric_difference(&mut self, other: &IntervalSet<I>)` — [`IntervalSet`](#intervalset)
 
-- `fn negate(self: &mut Self)`
+- <span id="intervalset-negate"></span>`fn negate(&mut self)`
 
-- `fn canonicalize(self: &mut Self)`
+- <span id="intervalset-canonicalize"></span>`fn canonicalize(&mut self)`
 
-- `fn is_canonical(self: &Self) -> bool`
+- <span id="intervalset-is-canonical"></span>`fn is_canonical(&self) -> bool`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for IntervalSet<I>`
+##### `impl<I: clone::Clone> Clone for IntervalSet<I>`
 
-- `fn clone(self: &Self) -> IntervalSet<I>` — [`IntervalSet`](#intervalset)
+- <span id="intervalset-clone"></span>`fn clone(&self) -> IntervalSet<I>` — [`IntervalSet`](#intervalset)
 
-##### `impl<I: $crate::fmt::Debug> Debug for IntervalSet<I>`
+##### `impl<I: fmt::Debug> Debug for IntervalSet<I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="intervalset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I: Interval> Eq for IntervalSet<I>`
 
 ##### `impl<I: Interval> PartialEq for IntervalSet<I>`
 
-- `fn eq(self: &Self, other: &IntervalSet<I>) -> bool` — [`IntervalSet`](#intervalset)
+- <span id="intervalset-eq"></span>`fn eq(&self, other: &IntervalSet<I>) -> bool` — [`IntervalSet`](#intervalset)
 
 ### `IntervalSetIter<'a, I>`
 
@@ -88,27 +99,29 @@ struct IntervalSet<I> {
 struct IntervalSetIter<'a, I>(slice::Iter<'a, I>);
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:386`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L386)*
+
 An iterator over intervals.
 
 #### Trait Implementations
 
-##### `impl<'a, I: $crate::fmt::Debug> Debug for IntervalSetIter<'a, I>`
+##### `impl<'a, I: fmt::Debug> Debug for IntervalSetIter<'a, I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="intervalsetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for IntervalSetIter<'a, I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intervalsetiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intervalsetiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intervalsetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, I> Iterator for IntervalSetIter<'a, I>`
 
-- `type Item = &'a I`
+- <span id="intervalsetiter-type-item"></span>`type Item = &'a I`
 
-- `fn next(self: &mut Self) -> Option<&'a I>`
+- <span id="intervalsetiter-next"></span>`fn next(&mut self) -> Option<&'a I>`
 
 ## Traits
 
@@ -118,47 +131,58 @@ An iterator over intervals.
 trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
 
-#### Required Methods
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:396-508`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L396-L508)*
+
+#### Associated Types
 
 - `type Bound: 1`
 
-- `fn lower(self: &Self) -> <Self as >::Bound`
+#### Required Methods
 
-- `fn upper(self: &Self) -> <Self as >::Bound`
+- `fn lower(&self) -> <Self as >::Bound`
 
-- `fn set_lower(self: &mut Self, bound: <Self as >::Bound)`
+- `fn upper(&self) -> <Self as >::Bound`
 
-- `fn set_upper(self: &mut Self, bound: <Self as >::Bound)`
+- `fn set_lower(&mut self, bound: <Self as >::Bound)`
 
-- `fn case_fold_simple(self: &Self, intervals: &mut Vec<Self>) -> Result<(), unicode::CaseFoldError>`
+- `fn set_upper(&mut self, bound: <Self as >::Bound)`
+
+- `fn case_fold_simple(&self, intervals: &mut Vec<Self>) -> Result<(), unicode::CaseFoldError>`
+
+#### Provided Methods
 
 - `fn create(lower: <Self as >::Bound, upper: <Self as >::Bound) -> Self`
 
   Create a new interval.
 
-- `fn union(self: &Self, other: &Self) -> Option<Self>`
+- `fn union(&self, other: &Self) -> Option<Self>`
 
   Union the given overlapping range into this range.
 
-- `fn intersect(self: &Self, other: &Self) -> Option<Self>`
+- `fn intersect(&self, other: &Self) -> Option<Self>`
 
   Intersect this range with the given range and return the result.
 
-- `fn difference(self: &Self, other: &Self) -> (Option<Self>, Option<Self>)`
+- `fn difference(&self, other: &Self) -> (Option<Self>, Option<Self>)`
 
   Subtract the given range from this range and return the resulting
 
-- `fn is_contiguous(self: &Self, other: &Self) -> bool`
+- `fn is_contiguous(&self, other: &Self) -> bool`
 
   Returns true if and only if the two ranges are contiguous. Two ranges
 
-- `fn is_intersection_empty(self: &Self, other: &Self) -> bool`
+- `fn is_intersection_empty(&self, other: &Self) -> bool`
 
   Returns true if and only if the intersection of this range and the
 
-- `fn is_subset(self: &Self, other: &Self) -> bool`
+- `fn is_subset(&self, other: &Self) -> bool`
 
   Returns true if and only if this range is a subset of the other range.
+
+#### Implementors
+
+- [`ClassBytesRange`](../index.md)
+- [`ClassUnicodeRange`](../index.md)
 
 ### `Bound`
 
@@ -166,15 +190,22 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
 trait Bound: Copy + Clone + Debug + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:510-518`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L510-L518)*
+
 #### Required Methods
 
 - `fn min_value() -> Self`
 
 - `fn max_value() -> Self`
 
-- `fn as_u32(self: Self) -> u32`
+- `fn as_u32(self) -> u32`
 
-- `fn increment(self: Self) -> Self`
+- `fn increment(self) -> Self`
 
-- `fn decrement(self: Self) -> Self`
+- `fn decrement(self) -> Self`
+
+#### Implementors
+
+- `char`
+- `u8`
 

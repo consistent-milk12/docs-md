@@ -45,6 +45,18 @@ NOTE: this module isn't an exhaustive API. For example, we still use things
 like `u64::from` where possible, or even `usize::try_from()` for when we do
 explicitly want to panic or when we want to return an error for overflow.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`U8`](#u8) | trait |  |
+| [`U16`](#u16) | trait |  |
+| [`U32`](#u32) | trait |  |
+| [`U64`](#u64) | trait |  |
+| [`I32`](#i32) | trait |  |
+| [`Usize`](#usize) | trait |  |
+| [`Pointer`](#pointer) | trait |  |
+
 ## Traits
 
 ### `U8`
@@ -53,9 +65,15 @@ explicitly want to panic or when we want to return an error for overflow.
 trait U8 { ... }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:48-50`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L48-L50)*
+
 #### Required Methods
 
-- `fn as_usize(self: Self) -> usize`
+- `fn as_usize(self) -> usize`
+
+#### Implementors
+
+- `u8`
 
 ### `U16`
 
@@ -63,13 +81,19 @@ trait U8 { ... }
 trait U16 { ... }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:58-62`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L58-L62)*
+
 #### Required Methods
 
-- `fn as_usize(self: Self) -> usize`
+- `fn as_usize(self) -> usize`
 
-- `fn low_u8(self: Self) -> u8`
+- `fn low_u8(self) -> u8`
 
-- `fn high_u8(self: Self) -> u8`
+- `fn high_u8(self) -> u8`
+
+#### Implementors
+
+- `u16`
 
 ### `U32`
 
@@ -77,15 +101,21 @@ trait U16 { ... }
 trait U32 { ... }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:78-83`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L78-L83)*
+
 #### Required Methods
 
-- `fn as_usize(self: Self) -> usize`
+- `fn as_usize(self) -> usize`
 
-- `fn low_u8(self: Self) -> u8`
+- `fn low_u8(self) -> u8`
 
-- `fn low_u16(self: Self) -> u16`
+- `fn low_u16(self) -> u16`
 
-- `fn high_u16(self: Self) -> u16`
+- `fn high_u16(self) -> u16`
+
+#### Implementors
+
+- `u32`
 
 ### `U64`
 
@@ -93,17 +123,23 @@ trait U32 { ... }
 trait U64 { ... }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:110-116`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L110-L116)*
+
 #### Required Methods
 
-- `fn as_usize(self: Self) -> usize`
+- `fn as_usize(self) -> usize`
 
-- `fn low_u8(self: Self) -> u8`
+- `fn low_u8(self) -> u8`
 
-- `fn low_u16(self: Self) -> u16`
+- `fn low_u16(self) -> u16`
 
-- `fn low_u32(self: Self) -> u32`
+- `fn low_u32(self) -> u32`
 
-- `fn high_u32(self: Self) -> u32`
+- `fn high_u32(self) -> u32`
+
+#### Implementors
+
+- `u64`
 
 ### `I32`
 
@@ -111,13 +147,19 @@ trait U64 { ... }
 trait I32 { ... }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:147-151`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L147-L151)*
+
 #### Required Methods
 
-- `fn as_usize(self: Self) -> usize`
+- `fn as_usize(self) -> usize`
 
-- `fn to_bits(self: Self) -> u32`
+- `fn to_bits(self) -> u32`
 
 - `fn from_bits(n: u32) -> i32`
+
+#### Implementors
+
+- `i32`
 
 ### `Usize`
 
@@ -125,15 +167,21 @@ trait I32 { ... }
 trait Usize { ... }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:174-179`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L174-L179)*
+
 #### Required Methods
 
-- `fn as_u8(self: Self) -> u8`
+- `fn as_u8(self) -> u8`
 
-- `fn as_u16(self: Self) -> u16`
+- `fn as_u16(self) -> u16`
 
-- `fn as_u32(self: Self) -> u32`
+- `fn as_u32(self) -> u32`
 
-- `fn as_u64(self: Self) -> u64`
+- `fn as_u64(self) -> u64`
+
+#### Implementors
+
+- `usize`
 
 ### `Pointer`
 
@@ -141,7 +189,13 @@ trait Usize { ... }
 trait Pointer { ... }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:238-240`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L238-L240)*
+
 #### Required Methods
 
-- `fn as_usize(self: Self) -> usize`
+- `fn as_usize(self) -> usize`
+
+#### Implementors
+
+- `*const T`
 

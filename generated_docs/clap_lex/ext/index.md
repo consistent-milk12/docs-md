@@ -4,9 +4,18 @@
 
 # Module `ext`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`Split`](#split) | struct |  |
+| [`OsStrExt`](#osstrext) | trait | String-like methods for [`OsStr`] |
+| [`split_at`](#split_at) | fn | Split an `OsStr` |
+
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -19,21 +28,23 @@ struct Split<'s, 'n> {
 }
 ```
 
+*Defined in [`clap_lex-0.7.6/src/ext.rs:247-250`](../../../.source_1765210505/clap_lex-0.7.6/src/ext.rs#L247-L250)*
+
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for Split<'s, 'n>`
+##### `impl IntoIterator for Split<'s, 'n>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="split-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="split-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="split-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'s> Iterator for Split<'s, '_>`
+##### `impl Iterator for Split<'s, '_>`
 
-- `type Item = &'s OsStr`
+- <span id="split-type-item"></span>`type Item = &'s OsStr`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="split-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Traits
 
@@ -43,27 +54,29 @@ struct Split<'s, 'n> {
 trait OsStrExt: private::Sealed { ... }
 ```
 
-String-like methods for [`OsStr`](../../clap_builder/builder/index.md)
+*Defined in [`clap_lex-0.7.6/src/ext.rs:4-183`](../../../.source_1765210505/clap_lex-0.7.6/src/ext.rs#L4-L183)*
+
+String-like methods for [`OsStr`](../../clap_builder/builder/os_str/index.md)
 
 #### Required Methods
 
-- `fn try_str(self: &Self) -> Result<&str, std::str::Utf8Error>`
+- `fn try_str(&self) -> Result<&str, std::str::Utf8Error>`
 
   Converts to a string slice.
 
-- `fn contains(self: &Self, needle: &str) -> bool`
+- `fn contains(&self, needle: &str) -> bool`
 
   Returns `true` if the given pattern matches a sub-slice of
 
-- `fn find(self: &Self, needle: &str) -> Option<usize>`
+- `fn find(&self, needle: &str) -> Option<usize>`
 
   Returns the byte index of the first character of this string slice that
 
-- `fn strip_prefix(self: &Self, prefix: &str) -> Option<&OsStr>`
+- `fn strip_prefix(&self, prefix: &str) -> Option<&OsStr>`
 
   Returns a string slice with the prefix removed.
 
-- `fn starts_with(self: &Self, prefix: &str) -> bool`
+- `fn starts_with(&self, prefix: &str) -> bool`
 
   Returns `true` if the given pattern matches a prefix of this
 
@@ -71,9 +84,13 @@ String-like methods for [`OsStr`](../../clap_builder/builder/index.md)
 
   An iterator over substrings of this string slice, separated by
 
-- `fn split_once(self: &Self, needle: &str) -> Option<(&OsStr, &OsStr)>`
+- `fn split_once(&self, needle: &str) -> Option<(&OsStr, &OsStr)>`
 
   Splits the string on the first occurrence of the specified delimiter and
+
+#### Implementors
+
+- `std::ffi::OsStr`
 
 ## Functions
 
@@ -82,6 +99,8 @@ String-like methods for [`OsStr`](../../clap_builder/builder/index.md)
 ```rust
 unsafe fn split_at(os: &std::ffi::OsStr, index: usize) -> (&std::ffi::OsStr, &std::ffi::OsStr)
 ```
+
+*Defined in [`clap_lex-0.7.6/src/ext.rs:275-284`](../../../.source_1765210505/clap_lex-0.7.6/src/ext.rs#L275-L284)*
 
 Split an `OsStr`
 

@@ -11,6 +11,1851 @@ The DWARF spec's `DW_AT_*` type is represented as `struct DwAt(u16)`,
 
 There are also exported const definitions for each constant.
 
+## Contents
+
+- [Structs](#structs)
+  - [`DwSect`](#dwsect)
+  - [`DwSectV2`](#dwsectv2)
+  - [`DwUt`](#dwut)
+  - [`DwCfa`](#dwcfa)
+  - [`DwChildren`](#dwchildren)
+  - [`DwTag`](#dwtag)
+  - [`DwAt`](#dwat)
+  - [`DwForm`](#dwform)
+  - [`DwAte`](#dwate)
+  - [`DwLle`](#dwlle)
+  - [`DwDs`](#dwds)
+  - [`DwEnd`](#dwend)
+  - [`DwAccess`](#dwaccess)
+  - [`DwVis`](#dwvis)
+  - [`DwVirtuality`](#dwvirtuality)
+  - [`DwLang`](#dwlang)
+  - [`DwAddr`](#dwaddr)
+  - [`DwId`](#dwid)
+  - [`DwCc`](#dwcc)
+  - [`DwInl`](#dwinl)
+  - [`DwOrd`](#dword)
+  - [`DwDsc`](#dwdsc)
+  - [`DwIdx`](#dwidx)
+  - [`DwDefaulted`](#dwdefaulted)
+  - [`DwLns`](#dwlns)
+  - [`DwLne`](#dwlne)
+  - [`DwLnct`](#dwlnct)
+  - [`DwMacinfo`](#dwmacinfo)
+  - [`DwMacro`](#dwmacro)
+  - [`DwRle`](#dwrle)
+  - [`DwOp`](#dwop)
+  - [`DwEhPe`](#dwehpe)
+- [Constants](#constants)
+  - [`DW_SECT_INFO`](#dw_sect_info)
+  - [`DW_SECT_ABBREV`](#dw_sect_abbrev)
+  - [`DW_SECT_LINE`](#dw_sect_line)
+  - [`DW_SECT_LOCLISTS`](#dw_sect_loclists)
+  - [`DW_SECT_STR_OFFSETS`](#dw_sect_str_offsets)
+  - [`DW_SECT_MACRO`](#dw_sect_macro)
+  - [`DW_SECT_RNGLISTS`](#dw_sect_rnglists)
+  - [`DW_SECT_V2_INFO`](#dw_sect_v2_info)
+  - [`DW_SECT_V2_TYPES`](#dw_sect_v2_types)
+  - [`DW_SECT_V2_ABBREV`](#dw_sect_v2_abbrev)
+  - [`DW_SECT_V2_LINE`](#dw_sect_v2_line)
+  - [`DW_SECT_V2_LOC`](#dw_sect_v2_loc)
+  - [`DW_SECT_V2_STR_OFFSETS`](#dw_sect_v2_str_offsets)
+  - [`DW_SECT_V2_MACINFO`](#dw_sect_v2_macinfo)
+  - [`DW_SECT_V2_MACRO`](#dw_sect_v2_macro)
+  - [`DW_UT_compile`](#dw_ut_compile)
+  - [`DW_UT_type`](#dw_ut_type)
+  - [`DW_UT_partial`](#dw_ut_partial)
+  - [`DW_UT_skeleton`](#dw_ut_skeleton)
+  - [`DW_UT_split_compile`](#dw_ut_split_compile)
+  - [`DW_UT_split_type`](#dw_ut_split_type)
+  - [`DW_UT_lo_user`](#dw_ut_lo_user)
+  - [`DW_UT_hi_user`](#dw_ut_hi_user)
+  - [`DW_CFA_advance_loc`](#dw_cfa_advance_loc)
+  - [`DW_CFA_offset`](#dw_cfa_offset)
+  - [`DW_CFA_restore`](#dw_cfa_restore)
+  - [`DW_CFA_nop`](#dw_cfa_nop)
+  - [`DW_CFA_set_loc`](#dw_cfa_set_loc)
+  - [`DW_CFA_advance_loc1`](#dw_cfa_advance_loc1)
+  - [`DW_CFA_advance_loc2`](#dw_cfa_advance_loc2)
+  - [`DW_CFA_advance_loc4`](#dw_cfa_advance_loc4)
+  - [`DW_CFA_offset_extended`](#dw_cfa_offset_extended)
+  - [`DW_CFA_restore_extended`](#dw_cfa_restore_extended)
+  - [`DW_CFA_undefined`](#dw_cfa_undefined)
+  - [`DW_CFA_same_value`](#dw_cfa_same_value)
+  - [`DW_CFA_register`](#dw_cfa_register)
+  - [`DW_CFA_remember_state`](#dw_cfa_remember_state)
+  - [`DW_CFA_restore_state`](#dw_cfa_restore_state)
+  - [`DW_CFA_def_cfa`](#dw_cfa_def_cfa)
+  - [`DW_CFA_def_cfa_register`](#dw_cfa_def_cfa_register)
+  - [`DW_CFA_def_cfa_offset`](#dw_cfa_def_cfa_offset)
+  - [`DW_CFA_def_cfa_expression`](#dw_cfa_def_cfa_expression)
+  - [`DW_CFA_expression`](#dw_cfa_expression)
+  - [`DW_CFA_offset_extended_sf`](#dw_cfa_offset_extended_sf)
+  - [`DW_CFA_def_cfa_sf`](#dw_cfa_def_cfa_sf)
+  - [`DW_CFA_def_cfa_offset_sf`](#dw_cfa_def_cfa_offset_sf)
+  - [`DW_CFA_val_offset`](#dw_cfa_val_offset)
+  - [`DW_CFA_val_offset_sf`](#dw_cfa_val_offset_sf)
+  - [`DW_CFA_val_expression`](#dw_cfa_val_expression)
+  - [`DW_CFA_lo_user`](#dw_cfa_lo_user)
+  - [`DW_CFA_hi_user`](#dw_cfa_hi_user)
+  - [`DW_CFA_MIPS_advance_loc8`](#dw_cfa_mips_advance_loc8)
+  - [`DW_CFA_GNU_window_save`](#dw_cfa_gnu_window_save)
+  - [`DW_CFA_GNU_args_size`](#dw_cfa_gnu_args_size)
+  - [`DW_CFA_GNU_negative_offset_extended`](#dw_cfa_gnu_negative_offset_extended)
+  - [`DW_CFA_AARCH64_negate_ra_state`](#dw_cfa_aarch64_negate_ra_state)
+  - [`DW_CHILDREN_no`](#dw_children_no)
+  - [`DW_CHILDREN_yes`](#dw_children_yes)
+  - [`DW_TAG_null`](#dw_tag_null)
+  - [`DW_TAG_global_subroutine`](#dw_tag_global_subroutine)
+  - [`DW_TAG_global_variable`](#dw_tag_global_variable)
+  - [`DW_TAG_local_variable`](#dw_tag_local_variable)
+  - [`DW_TAG_subroutine`](#dw_tag_subroutine)
+  - [`DW_TAG_array_type`](#dw_tag_array_type)
+  - [`DW_TAG_class_type`](#dw_tag_class_type)
+  - [`DW_TAG_entry_point`](#dw_tag_entry_point)
+  - [`DW_TAG_enumeration_type`](#dw_tag_enumeration_type)
+  - [`DW_TAG_formal_parameter`](#dw_tag_formal_parameter)
+  - [`DW_TAG_imported_declaration`](#dw_tag_imported_declaration)
+  - [`DW_TAG_label`](#dw_tag_label)
+  - [`DW_TAG_lexical_block`](#dw_tag_lexical_block)
+  - [`DW_TAG_member`](#dw_tag_member)
+  - [`DW_TAG_pointer_type`](#dw_tag_pointer_type)
+  - [`DW_TAG_reference_type`](#dw_tag_reference_type)
+  - [`DW_TAG_compile_unit`](#dw_tag_compile_unit)
+  - [`DW_TAG_string_type`](#dw_tag_string_type)
+  - [`DW_TAG_structure_type`](#dw_tag_structure_type)
+  - [`DW_TAG_subroutine_type`](#dw_tag_subroutine_type)
+  - [`DW_TAG_typedef`](#dw_tag_typedef)
+  - [`DW_TAG_union_type`](#dw_tag_union_type)
+  - [`DW_TAG_unspecified_parameters`](#dw_tag_unspecified_parameters)
+  - [`DW_TAG_variant`](#dw_tag_variant)
+  - [`DW_TAG_common_block`](#dw_tag_common_block)
+  - [`DW_TAG_common_inclusion`](#dw_tag_common_inclusion)
+  - [`DW_TAG_inheritance`](#dw_tag_inheritance)
+  - [`DW_TAG_inlined_subroutine`](#dw_tag_inlined_subroutine)
+  - [`DW_TAG_module`](#dw_tag_module)
+  - [`DW_TAG_ptr_to_member_type`](#dw_tag_ptr_to_member_type)
+  - [`DW_TAG_set_type`](#dw_tag_set_type)
+  - [`DW_TAG_subrange_type`](#dw_tag_subrange_type)
+  - [`DW_TAG_with_stmt`](#dw_tag_with_stmt)
+  - [`DW_TAG_access_declaration`](#dw_tag_access_declaration)
+  - [`DW_TAG_base_type`](#dw_tag_base_type)
+  - [`DW_TAG_catch_block`](#dw_tag_catch_block)
+  - [`DW_TAG_const_type`](#dw_tag_const_type)
+  - [`DW_TAG_constant`](#dw_tag_constant)
+  - [`DW_TAG_enumerator`](#dw_tag_enumerator)
+  - [`DW_TAG_file_type`](#dw_tag_file_type)
+  - [`DW_TAG_friend`](#dw_tag_friend)
+  - [`DW_TAG_namelist`](#dw_tag_namelist)
+  - [`DW_TAG_namelist_item`](#dw_tag_namelist_item)
+  - [`DW_TAG_packed_type`](#dw_tag_packed_type)
+  - [`DW_TAG_subprogram`](#dw_tag_subprogram)
+  - [`DW_TAG_template_type_parameter`](#dw_tag_template_type_parameter)
+  - [`DW_TAG_template_value_parameter`](#dw_tag_template_value_parameter)
+  - [`DW_TAG_thrown_type`](#dw_tag_thrown_type)
+  - [`DW_TAG_try_block`](#dw_tag_try_block)
+  - [`DW_TAG_variant_part`](#dw_tag_variant_part)
+  - [`DW_TAG_variable`](#dw_tag_variable)
+  - [`DW_TAG_volatile_type`](#dw_tag_volatile_type)
+  - [`DW_TAG_dwarf_procedure`](#dw_tag_dwarf_procedure)
+  - [`DW_TAG_restrict_type`](#dw_tag_restrict_type)
+  - [`DW_TAG_interface_type`](#dw_tag_interface_type)
+  - [`DW_TAG_namespace`](#dw_tag_namespace)
+  - [`DW_TAG_imported_module`](#dw_tag_imported_module)
+  - [`DW_TAG_unspecified_type`](#dw_tag_unspecified_type)
+  - [`DW_TAG_partial_unit`](#dw_tag_partial_unit)
+  - [`DW_TAG_imported_unit`](#dw_tag_imported_unit)
+  - [`DW_TAG_condition`](#dw_tag_condition)
+  - [`DW_TAG_shared_type`](#dw_tag_shared_type)
+  - [`DW_TAG_type_unit`](#dw_tag_type_unit)
+  - [`DW_TAG_rvalue_reference_type`](#dw_tag_rvalue_reference_type)
+  - [`DW_TAG_template_alias`](#dw_tag_template_alias)
+  - [`DW_TAG_coarray_type`](#dw_tag_coarray_type)
+  - [`DW_TAG_generic_subrange`](#dw_tag_generic_subrange)
+  - [`DW_TAG_dynamic_type`](#dw_tag_dynamic_type)
+  - [`DW_TAG_atomic_type`](#dw_tag_atomic_type)
+  - [`DW_TAG_call_site`](#dw_tag_call_site)
+  - [`DW_TAG_call_site_parameter`](#dw_tag_call_site_parameter)
+  - [`DW_TAG_skeleton_unit`](#dw_tag_skeleton_unit)
+  - [`DW_TAG_immutable_type`](#dw_tag_immutable_type)
+  - [`DW_TAG_lo_user`](#dw_tag_lo_user)
+  - [`DW_TAG_hi_user`](#dw_tag_hi_user)
+  - [`DW_TAG_MIPS_loop`](#dw_tag_mips_loop)
+  - [`DW_TAG_HP_array_descriptor`](#dw_tag_hp_array_descriptor)
+  - [`DW_TAG_HP_Bliss_field`](#dw_tag_hp_bliss_field)
+  - [`DW_TAG_HP_Bliss_field_set`](#dw_tag_hp_bliss_field_set)
+  - [`DW_TAG_format_label`](#dw_tag_format_label)
+  - [`DW_TAG_function_template`](#dw_tag_function_template)
+  - [`DW_TAG_class_template`](#dw_tag_class_template)
+  - [`DW_TAG_GNU_BINCL`](#dw_tag_gnu_bincl)
+  - [`DW_TAG_GNU_EINCL`](#dw_tag_gnu_eincl)
+  - [`DW_TAG_GNU_template_template_param`](#dw_tag_gnu_template_template_param)
+  - [`DW_TAG_GNU_template_parameter_pack`](#dw_tag_gnu_template_parameter_pack)
+  - [`DW_TAG_GNU_formal_parameter_pack`](#dw_tag_gnu_formal_parameter_pack)
+  - [`DW_TAG_GNU_call_site`](#dw_tag_gnu_call_site)
+  - [`DW_TAG_GNU_call_site_parameter`](#dw_tag_gnu_call_site_parameter)
+  - [`DW_TAG_APPLE_property`](#dw_tag_apple_property)
+  - [`DW_TAG_SUN_function_template`](#dw_tag_sun_function_template)
+  - [`DW_TAG_SUN_class_template`](#dw_tag_sun_class_template)
+  - [`DW_TAG_SUN_struct_template`](#dw_tag_sun_struct_template)
+  - [`DW_TAG_SUN_union_template`](#dw_tag_sun_union_template)
+  - [`DW_TAG_SUN_indirect_inheritance`](#dw_tag_sun_indirect_inheritance)
+  - [`DW_TAG_SUN_codeflags`](#dw_tag_sun_codeflags)
+  - [`DW_TAG_SUN_memop_info`](#dw_tag_sun_memop_info)
+  - [`DW_TAG_SUN_omp_child_func`](#dw_tag_sun_omp_child_func)
+  - [`DW_TAG_SUN_rtti_descriptor`](#dw_tag_sun_rtti_descriptor)
+  - [`DW_TAG_SUN_dtor_info`](#dw_tag_sun_dtor_info)
+  - [`DW_TAG_SUN_dtor`](#dw_tag_sun_dtor)
+  - [`DW_TAG_SUN_f90_interface`](#dw_tag_sun_f90_interface)
+  - [`DW_TAG_SUN_fortran_vax_structure`](#dw_tag_sun_fortran_vax_structure)
+  - [`DW_TAG_ALTIUM_circ_type`](#dw_tag_altium_circ_type)
+  - [`DW_TAG_ALTIUM_mwa_circ_type`](#dw_tag_altium_mwa_circ_type)
+  - [`DW_TAG_ALTIUM_rev_carry_type`](#dw_tag_altium_rev_carry_type)
+  - [`DW_TAG_ALTIUM_rom`](#dw_tag_altium_rom)
+  - [`DW_TAG_upc_shared_type`](#dw_tag_upc_shared_type)
+  - [`DW_TAG_upc_strict_type`](#dw_tag_upc_strict_type)
+  - [`DW_TAG_upc_relaxed_type`](#dw_tag_upc_relaxed_type)
+  - [`DW_TAG_PGI_kanji_type`](#dw_tag_pgi_kanji_type)
+  - [`DW_TAG_PGI_interface_block`](#dw_tag_pgi_interface_block)
+  - [`DW_TAG_BORLAND_property`](#dw_tag_borland_property)
+  - [`DW_TAG_BORLAND_Delphi_string`](#dw_tag_borland_delphi_string)
+  - [`DW_TAG_BORLAND_Delphi_dynamic_array`](#dw_tag_borland_delphi_dynamic_array)
+  - [`DW_TAG_BORLAND_Delphi_set`](#dw_tag_borland_delphi_set)
+  - [`DW_TAG_BORLAND_Delphi_variant`](#dw_tag_borland_delphi_variant)
+  - [`DW_AT_null`](#dw_at_null)
+  - [`DW_AT_fund_type`](#dw_at_fund_type)
+  - [`DW_AT_mod_fund_type`](#dw_at_mod_fund_type)
+  - [`DW_AT_user_def_type`](#dw_at_user_def_type)
+  - [`DW_AT_mod_u_d_type`](#dw_at_mod_u_d_type)
+  - [`DW_AT_subscr_data`](#dw_at_subscr_data)
+  - [`DW_AT_element_list`](#dw_at_element_list)
+  - [`DW_AT_member`](#dw_at_member)
+  - [`DW_AT_friends`](#dw_at_friends)
+  - [`DW_AT_program`](#dw_at_program)
+  - [`DW_AT_private`](#dw_at_private)
+  - [`DW_AT_protected`](#dw_at_protected)
+  - [`DW_AT_public`](#dw_at_public)
+  - [`DW_AT_pure_virtual`](#dw_at_pure_virtual)
+  - [`DW_AT_virtual`](#dw_at_virtual)
+  - [`DW_AT_specification_v1`](#dw_at_specification_v1)
+  - [`DW_AT_sibling`](#dw_at_sibling)
+  - [`DW_AT_location`](#dw_at_location)
+  - [`DW_AT_name`](#dw_at_name)
+  - [`DW_AT_ordering`](#dw_at_ordering)
+  - [`DW_AT_byte_size`](#dw_at_byte_size)
+  - [`DW_AT_bit_offset`](#dw_at_bit_offset)
+  - [`DW_AT_bit_size`](#dw_at_bit_size)
+  - [`DW_AT_stmt_list`](#dw_at_stmt_list)
+  - [`DW_AT_low_pc`](#dw_at_low_pc)
+  - [`DW_AT_high_pc`](#dw_at_high_pc)
+  - [`DW_AT_language`](#dw_at_language)
+  - [`DW_AT_discr`](#dw_at_discr)
+  - [`DW_AT_discr_value`](#dw_at_discr_value)
+  - [`DW_AT_visibility`](#dw_at_visibility)
+  - [`DW_AT_import`](#dw_at_import)
+  - [`DW_AT_string_length`](#dw_at_string_length)
+  - [`DW_AT_common_reference`](#dw_at_common_reference)
+  - [`DW_AT_comp_dir`](#dw_at_comp_dir)
+  - [`DW_AT_const_value`](#dw_at_const_value)
+  - [`DW_AT_containing_type`](#dw_at_containing_type)
+  - [`DW_AT_default_value`](#dw_at_default_value)
+  - [`DW_AT_inline`](#dw_at_inline)
+  - [`DW_AT_is_optional`](#dw_at_is_optional)
+  - [`DW_AT_lower_bound`](#dw_at_lower_bound)
+  - [`DW_AT_producer`](#dw_at_producer)
+  - [`DW_AT_prototyped`](#dw_at_prototyped)
+  - [`DW_AT_return_addr`](#dw_at_return_addr)
+  - [`DW_AT_start_scope`](#dw_at_start_scope)
+  - [`DW_AT_bit_stride`](#dw_at_bit_stride)
+  - [`DW_AT_upper_bound`](#dw_at_upper_bound)
+  - [`DW_AT_abstract_origin`](#dw_at_abstract_origin)
+  - [`DW_AT_accessibility`](#dw_at_accessibility)
+  - [`DW_AT_address_class`](#dw_at_address_class)
+  - [`DW_AT_artificial`](#dw_at_artificial)
+  - [`DW_AT_base_types`](#dw_at_base_types)
+  - [`DW_AT_calling_convention`](#dw_at_calling_convention)
+  - [`DW_AT_count`](#dw_at_count)
+  - [`DW_AT_data_member_location`](#dw_at_data_member_location)
+  - [`DW_AT_decl_column`](#dw_at_decl_column)
+  - [`DW_AT_decl_file`](#dw_at_decl_file)
+  - [`DW_AT_decl_line`](#dw_at_decl_line)
+  - [`DW_AT_declaration`](#dw_at_declaration)
+  - [`DW_AT_discr_list`](#dw_at_discr_list)
+  - [`DW_AT_encoding`](#dw_at_encoding)
+  - [`DW_AT_external`](#dw_at_external)
+  - [`DW_AT_frame_base`](#dw_at_frame_base)
+  - [`DW_AT_friend`](#dw_at_friend)
+  - [`DW_AT_identifier_case`](#dw_at_identifier_case)
+  - [`DW_AT_macro_info`](#dw_at_macro_info)
+  - [`DW_AT_namelist_item`](#dw_at_namelist_item)
+  - [`DW_AT_priority`](#dw_at_priority)
+  - [`DW_AT_segment`](#dw_at_segment)
+  - [`DW_AT_specification`](#dw_at_specification)
+  - [`DW_AT_static_link`](#dw_at_static_link)
+  - [`DW_AT_type`](#dw_at_type)
+  - [`DW_AT_use_location`](#dw_at_use_location)
+  - [`DW_AT_variable_parameter`](#dw_at_variable_parameter)
+  - [`DW_AT_virtuality`](#dw_at_virtuality)
+  - [`DW_AT_vtable_elem_location`](#dw_at_vtable_elem_location)
+  - [`DW_AT_allocated`](#dw_at_allocated)
+  - [`DW_AT_associated`](#dw_at_associated)
+  - [`DW_AT_data_location`](#dw_at_data_location)
+  - [`DW_AT_byte_stride`](#dw_at_byte_stride)
+  - [`DW_AT_entry_pc`](#dw_at_entry_pc)
+  - [`DW_AT_use_UTF8`](#dw_at_use_utf8)
+  - [`DW_AT_extension`](#dw_at_extension)
+  - [`DW_AT_ranges`](#dw_at_ranges)
+  - [`DW_AT_trampoline`](#dw_at_trampoline)
+  - [`DW_AT_call_column`](#dw_at_call_column)
+  - [`DW_AT_call_file`](#dw_at_call_file)
+  - [`DW_AT_call_line`](#dw_at_call_line)
+  - [`DW_AT_description`](#dw_at_description)
+  - [`DW_AT_binary_scale`](#dw_at_binary_scale)
+  - [`DW_AT_decimal_scale`](#dw_at_decimal_scale)
+  - [`DW_AT_small`](#dw_at_small)
+  - [`DW_AT_decimal_sign`](#dw_at_decimal_sign)
+  - [`DW_AT_digit_count`](#dw_at_digit_count)
+  - [`DW_AT_picture_string`](#dw_at_picture_string)
+  - [`DW_AT_mutable`](#dw_at_mutable)
+  - [`DW_AT_threads_scaled`](#dw_at_threads_scaled)
+  - [`DW_AT_explicit`](#dw_at_explicit)
+  - [`DW_AT_object_pointer`](#dw_at_object_pointer)
+  - [`DW_AT_endianity`](#dw_at_endianity)
+  - [`DW_AT_elemental`](#dw_at_elemental)
+  - [`DW_AT_pure`](#dw_at_pure)
+  - [`DW_AT_recursive`](#dw_at_recursive)
+  - [`DW_AT_signature`](#dw_at_signature)
+  - [`DW_AT_main_subprogram`](#dw_at_main_subprogram)
+  - [`DW_AT_data_bit_offset`](#dw_at_data_bit_offset)
+  - [`DW_AT_const_expr`](#dw_at_const_expr)
+  - [`DW_AT_enum_class`](#dw_at_enum_class)
+  - [`DW_AT_linkage_name`](#dw_at_linkage_name)
+  - [`DW_AT_string_length_bit_size`](#dw_at_string_length_bit_size)
+  - [`DW_AT_string_length_byte_size`](#dw_at_string_length_byte_size)
+  - [`DW_AT_rank`](#dw_at_rank)
+  - [`DW_AT_str_offsets_base`](#dw_at_str_offsets_base)
+  - [`DW_AT_addr_base`](#dw_at_addr_base)
+  - [`DW_AT_rnglists_base`](#dw_at_rnglists_base)
+  - [`DW_AT_dwo_name`](#dw_at_dwo_name)
+  - [`DW_AT_reference`](#dw_at_reference)
+  - [`DW_AT_rvalue_reference`](#dw_at_rvalue_reference)
+  - [`DW_AT_macros`](#dw_at_macros)
+  - [`DW_AT_call_all_calls`](#dw_at_call_all_calls)
+  - [`DW_AT_call_all_source_calls`](#dw_at_call_all_source_calls)
+  - [`DW_AT_call_all_tail_calls`](#dw_at_call_all_tail_calls)
+  - [`DW_AT_call_return_pc`](#dw_at_call_return_pc)
+  - [`DW_AT_call_value`](#dw_at_call_value)
+  - [`DW_AT_call_origin`](#dw_at_call_origin)
+  - [`DW_AT_call_parameter`](#dw_at_call_parameter)
+  - [`DW_AT_call_pc`](#dw_at_call_pc)
+  - [`DW_AT_call_tail_call`](#dw_at_call_tail_call)
+  - [`DW_AT_call_target`](#dw_at_call_target)
+  - [`DW_AT_call_target_clobbered`](#dw_at_call_target_clobbered)
+  - [`DW_AT_call_data_location`](#dw_at_call_data_location)
+  - [`DW_AT_call_data_value`](#dw_at_call_data_value)
+  - [`DW_AT_noreturn`](#dw_at_noreturn)
+  - [`DW_AT_alignment`](#dw_at_alignment)
+  - [`DW_AT_export_symbols`](#dw_at_export_symbols)
+  - [`DW_AT_deleted`](#dw_at_deleted)
+  - [`DW_AT_defaulted`](#dw_at_defaulted)
+  - [`DW_AT_loclists_base`](#dw_at_loclists_base)
+  - [`DW_AT_lo_user`](#dw_at_lo_user)
+  - [`DW_AT_hi_user`](#dw_at_hi_user)
+  - [`DW_AT_MIPS_fde`](#dw_at_mips_fde)
+  - [`DW_AT_MIPS_loop_begin`](#dw_at_mips_loop_begin)
+  - [`DW_AT_MIPS_tail_loop_begin`](#dw_at_mips_tail_loop_begin)
+  - [`DW_AT_MIPS_epilog_begin`](#dw_at_mips_epilog_begin)
+  - [`DW_AT_MIPS_loop_unroll_factor`](#dw_at_mips_loop_unroll_factor)
+  - [`DW_AT_MIPS_software_pipeline_depth`](#dw_at_mips_software_pipeline_depth)
+  - [`DW_AT_MIPS_linkage_name`](#dw_at_mips_linkage_name)
+  - [`DW_AT_MIPS_stride`](#dw_at_mips_stride)
+  - [`DW_AT_MIPS_abstract_name`](#dw_at_mips_abstract_name)
+  - [`DW_AT_MIPS_clone_origin`](#dw_at_mips_clone_origin)
+  - [`DW_AT_MIPS_has_inlines`](#dw_at_mips_has_inlines)
+  - [`DW_AT_MIPS_stride_byte`](#dw_at_mips_stride_byte)
+  - [`DW_AT_MIPS_stride_elem`](#dw_at_mips_stride_elem)
+  - [`DW_AT_MIPS_ptr_dopetype`](#dw_at_mips_ptr_dopetype)
+  - [`DW_AT_MIPS_allocatable_dopetype`](#dw_at_mips_allocatable_dopetype)
+  - [`DW_AT_MIPS_assumed_shape_dopetype`](#dw_at_mips_assumed_shape_dopetype)
+  - [`DW_AT_MIPS_assumed_size`](#dw_at_mips_assumed_size)
+  - [`DW_AT_INTEL_other_endian`](#dw_at_intel_other_endian)
+  - [`DW_AT_sf_names`](#dw_at_sf_names)
+  - [`DW_AT_src_info`](#dw_at_src_info)
+  - [`DW_AT_mac_info`](#dw_at_mac_info)
+  - [`DW_AT_src_coords`](#dw_at_src_coords)
+  - [`DW_AT_body_begin`](#dw_at_body_begin)
+  - [`DW_AT_body_end`](#dw_at_body_end)
+  - [`DW_AT_GNU_vector`](#dw_at_gnu_vector)
+  - [`DW_AT_GNU_guarded_by`](#dw_at_gnu_guarded_by)
+  - [`DW_AT_GNU_pt_guarded_by`](#dw_at_gnu_pt_guarded_by)
+  - [`DW_AT_GNU_guarded`](#dw_at_gnu_guarded)
+  - [`DW_AT_GNU_pt_guarded`](#dw_at_gnu_pt_guarded)
+  - [`DW_AT_GNU_locks_excluded`](#dw_at_gnu_locks_excluded)
+  - [`DW_AT_GNU_exclusive_locks_required`](#dw_at_gnu_exclusive_locks_required)
+  - [`DW_AT_GNU_shared_locks_required`](#dw_at_gnu_shared_locks_required)
+  - [`DW_AT_GNU_odr_signature`](#dw_at_gnu_odr_signature)
+  - [`DW_AT_GNU_template_name`](#dw_at_gnu_template_name)
+  - [`DW_AT_GNU_call_site_value`](#dw_at_gnu_call_site_value)
+  - [`DW_AT_GNU_call_site_data_value`](#dw_at_gnu_call_site_data_value)
+  - [`DW_AT_GNU_call_site_target`](#dw_at_gnu_call_site_target)
+  - [`DW_AT_GNU_call_site_target_clobbered`](#dw_at_gnu_call_site_target_clobbered)
+  - [`DW_AT_GNU_tail_call`](#dw_at_gnu_tail_call)
+  - [`DW_AT_GNU_all_tail_call_sites`](#dw_at_gnu_all_tail_call_sites)
+  - [`DW_AT_GNU_all_call_sites`](#dw_at_gnu_all_call_sites)
+  - [`DW_AT_GNU_all_source_call_sites`](#dw_at_gnu_all_source_call_sites)
+  - [`DW_AT_GNU_macros`](#dw_at_gnu_macros)
+  - [`DW_AT_GNU_deleted`](#dw_at_gnu_deleted)
+  - [`DW_AT_GNU_dwo_name`](#dw_at_gnu_dwo_name)
+  - [`DW_AT_GNU_dwo_id`](#dw_at_gnu_dwo_id)
+  - [`DW_AT_GNU_ranges_base`](#dw_at_gnu_ranges_base)
+  - [`DW_AT_GNU_addr_base`](#dw_at_gnu_addr_base)
+  - [`DW_AT_GNU_pubnames`](#dw_at_gnu_pubnames)
+  - [`DW_AT_GNU_pubtypes`](#dw_at_gnu_pubtypes)
+  - [`DW_AT_GNU_discriminator`](#dw_at_gnu_discriminator)
+  - [`DW_AT_GNU_locviews`](#dw_at_gnu_locviews)
+  - [`DW_AT_GNU_entry_view`](#dw_at_gnu_entry_view)
+  - [`DW_AT_SUN_template`](#dw_at_sun_template)
+  - [`DW_AT_SUN_alignment`](#dw_at_sun_alignment)
+  - [`DW_AT_SUN_vtable`](#dw_at_sun_vtable)
+  - [`DW_AT_SUN_count_guarantee`](#dw_at_sun_count_guarantee)
+  - [`DW_AT_SUN_command_line`](#dw_at_sun_command_line)
+  - [`DW_AT_SUN_vbase`](#dw_at_sun_vbase)
+  - [`DW_AT_SUN_compile_options`](#dw_at_sun_compile_options)
+  - [`DW_AT_SUN_language`](#dw_at_sun_language)
+  - [`DW_AT_SUN_browser_file`](#dw_at_sun_browser_file)
+  - [`DW_AT_SUN_vtable_abi`](#dw_at_sun_vtable_abi)
+  - [`DW_AT_SUN_func_offsets`](#dw_at_sun_func_offsets)
+  - [`DW_AT_SUN_cf_kind`](#dw_at_sun_cf_kind)
+  - [`DW_AT_SUN_vtable_index`](#dw_at_sun_vtable_index)
+  - [`DW_AT_SUN_omp_tpriv_addr`](#dw_at_sun_omp_tpriv_addr)
+  - [`DW_AT_SUN_omp_child_func`](#dw_at_sun_omp_child_func)
+  - [`DW_AT_SUN_func_offset`](#dw_at_sun_func_offset)
+  - [`DW_AT_SUN_memop_type_ref`](#dw_at_sun_memop_type_ref)
+  - [`DW_AT_SUN_profile_id`](#dw_at_sun_profile_id)
+  - [`DW_AT_SUN_memop_signature`](#dw_at_sun_memop_signature)
+  - [`DW_AT_SUN_obj_dir`](#dw_at_sun_obj_dir)
+  - [`DW_AT_SUN_obj_file`](#dw_at_sun_obj_file)
+  - [`DW_AT_SUN_original_name`](#dw_at_sun_original_name)
+  - [`DW_AT_SUN_hwcprof_signature`](#dw_at_sun_hwcprof_signature)
+  - [`DW_AT_SUN_amd64_parmdump`](#dw_at_sun_amd64_parmdump)
+  - [`DW_AT_SUN_part_link_name`](#dw_at_sun_part_link_name)
+  - [`DW_AT_SUN_link_name`](#dw_at_sun_link_name)
+  - [`DW_AT_SUN_pass_with_const`](#dw_at_sun_pass_with_const)
+  - [`DW_AT_SUN_return_with_const`](#dw_at_sun_return_with_const)
+  - [`DW_AT_SUN_import_by_name`](#dw_at_sun_import_by_name)
+  - [`DW_AT_SUN_f90_pointer`](#dw_at_sun_f90_pointer)
+  - [`DW_AT_SUN_pass_by_ref`](#dw_at_sun_pass_by_ref)
+  - [`DW_AT_SUN_f90_allocatable`](#dw_at_sun_f90_allocatable)
+  - [`DW_AT_SUN_f90_assumed_shape_array`](#dw_at_sun_f90_assumed_shape_array)
+  - [`DW_AT_SUN_c_vla`](#dw_at_sun_c_vla)
+  - [`DW_AT_SUN_return_value_ptr`](#dw_at_sun_return_value_ptr)
+  - [`DW_AT_SUN_dtor_start`](#dw_at_sun_dtor_start)
+  - [`DW_AT_SUN_dtor_length`](#dw_at_sun_dtor_length)
+  - [`DW_AT_SUN_dtor_state_initial`](#dw_at_sun_dtor_state_initial)
+  - [`DW_AT_SUN_dtor_state_final`](#dw_at_sun_dtor_state_final)
+  - [`DW_AT_SUN_dtor_state_deltas`](#dw_at_sun_dtor_state_deltas)
+  - [`DW_AT_SUN_import_by_lname`](#dw_at_sun_import_by_lname)
+  - [`DW_AT_SUN_f90_use_only`](#dw_at_sun_f90_use_only)
+  - [`DW_AT_SUN_namelist_spec`](#dw_at_sun_namelist_spec)
+  - [`DW_AT_SUN_is_omp_child_func`](#dw_at_sun_is_omp_child_func)
+  - [`DW_AT_SUN_fortran_main_alias`](#dw_at_sun_fortran_main_alias)
+  - [`DW_AT_SUN_fortran_based`](#dw_at_sun_fortran_based)
+  - [`DW_AT_ALTIUM_loclist`](#dw_at_altium_loclist)
+  - [`DW_AT_use_GNAT_descriptive_type`](#dw_at_use_gnat_descriptive_type)
+  - [`DW_AT_GNAT_descriptive_type`](#dw_at_gnat_descriptive_type)
+  - [`DW_AT_GNU_numerator`](#dw_at_gnu_numerator)
+  - [`DW_AT_GNU_denominator`](#dw_at_gnu_denominator)
+  - [`DW_AT_GNU_bias`](#dw_at_gnu_bias)
+  - [`DW_AT_upc_threads_scaled`](#dw_at_upc_threads_scaled)
+  - [`DW_AT_PGI_lbase`](#dw_at_pgi_lbase)
+  - [`DW_AT_PGI_soffset`](#dw_at_pgi_soffset)
+  - [`DW_AT_PGI_lstride`](#dw_at_pgi_lstride)
+  - [`DW_AT_BORLAND_property_read`](#dw_at_borland_property_read)
+  - [`DW_AT_BORLAND_property_write`](#dw_at_borland_property_write)
+  - [`DW_AT_BORLAND_property_implements`](#dw_at_borland_property_implements)
+  - [`DW_AT_BORLAND_property_index`](#dw_at_borland_property_index)
+  - [`DW_AT_BORLAND_property_default`](#dw_at_borland_property_default)
+  - [`DW_AT_BORLAND_Delphi_unit`](#dw_at_borland_delphi_unit)
+  - [`DW_AT_BORLAND_Delphi_class`](#dw_at_borland_delphi_class)
+  - [`DW_AT_BORLAND_Delphi_record`](#dw_at_borland_delphi_record)
+  - [`DW_AT_BORLAND_Delphi_metaclass`](#dw_at_borland_delphi_metaclass)
+  - [`DW_AT_BORLAND_Delphi_constructor`](#dw_at_borland_delphi_constructor)
+  - [`DW_AT_BORLAND_Delphi_destructor`](#dw_at_borland_delphi_destructor)
+  - [`DW_AT_BORLAND_Delphi_anonymous_method`](#dw_at_borland_delphi_anonymous_method)
+  - [`DW_AT_BORLAND_Delphi_interface`](#dw_at_borland_delphi_interface)
+  - [`DW_AT_BORLAND_Delphi_ABI`](#dw_at_borland_delphi_abi)
+  - [`DW_AT_BORLAND_Delphi_return`](#dw_at_borland_delphi_return)
+  - [`DW_AT_BORLAND_Delphi_frameptr`](#dw_at_borland_delphi_frameptr)
+  - [`DW_AT_BORLAND_closure`](#dw_at_borland_closure)
+  - [`DW_AT_LLVM_include_path`](#dw_at_llvm_include_path)
+  - [`DW_AT_LLVM_config_macros`](#dw_at_llvm_config_macros)
+  - [`DW_AT_LLVM_isysroot`](#dw_at_llvm_isysroot)
+  - [`DW_AT_APPLE_optimized`](#dw_at_apple_optimized)
+  - [`DW_AT_APPLE_flags`](#dw_at_apple_flags)
+  - [`DW_AT_APPLE_isa`](#dw_at_apple_isa)
+  - [`DW_AT_APPLE_block`](#dw_at_apple_block)
+  - [`DW_AT_APPLE_major_runtime_vers`](#dw_at_apple_major_runtime_vers)
+  - [`DW_AT_APPLE_runtime_class`](#dw_at_apple_runtime_class)
+  - [`DW_AT_APPLE_omit_frame_ptr`](#dw_at_apple_omit_frame_ptr)
+  - [`DW_AT_APPLE_property_name`](#dw_at_apple_property_name)
+  - [`DW_AT_APPLE_property_getter`](#dw_at_apple_property_getter)
+  - [`DW_AT_APPLE_property_setter`](#dw_at_apple_property_setter)
+  - [`DW_AT_APPLE_property_attribute`](#dw_at_apple_property_attribute)
+  - [`DW_AT_APPLE_objc_complete_type`](#dw_at_apple_objc_complete_type)
+  - [`DW_AT_APPLE_property`](#dw_at_apple_property)
+  - [`DW_FORM_null`](#dw_form_null)
+  - [`DW_FORM_ref`](#dw_form_ref)
+  - [`DW_FORM_addr`](#dw_form_addr)
+  - [`DW_FORM_block2`](#dw_form_block2)
+  - [`DW_FORM_block4`](#dw_form_block4)
+  - [`DW_FORM_data2`](#dw_form_data2)
+  - [`DW_FORM_data4`](#dw_form_data4)
+  - [`DW_FORM_data8`](#dw_form_data8)
+  - [`DW_FORM_string`](#dw_form_string)
+  - [`DW_FORM_block`](#dw_form_block)
+  - [`DW_FORM_block1`](#dw_form_block1)
+  - [`DW_FORM_data1`](#dw_form_data1)
+  - [`DW_FORM_flag`](#dw_form_flag)
+  - [`DW_FORM_sdata`](#dw_form_sdata)
+  - [`DW_FORM_strp`](#dw_form_strp)
+  - [`DW_FORM_udata`](#dw_form_udata)
+  - [`DW_FORM_ref_addr`](#dw_form_ref_addr)
+  - [`DW_FORM_ref1`](#dw_form_ref1)
+  - [`DW_FORM_ref2`](#dw_form_ref2)
+  - [`DW_FORM_ref4`](#dw_form_ref4)
+  - [`DW_FORM_ref8`](#dw_form_ref8)
+  - [`DW_FORM_ref_udata`](#dw_form_ref_udata)
+  - [`DW_FORM_indirect`](#dw_form_indirect)
+  - [`DW_FORM_sec_offset`](#dw_form_sec_offset)
+  - [`DW_FORM_exprloc`](#dw_form_exprloc)
+  - [`DW_FORM_flag_present`](#dw_form_flag_present)
+  - [`DW_FORM_ref_sig8`](#dw_form_ref_sig8)
+  - [`DW_FORM_strx`](#dw_form_strx)
+  - [`DW_FORM_addrx`](#dw_form_addrx)
+  - [`DW_FORM_ref_sup4`](#dw_form_ref_sup4)
+  - [`DW_FORM_strp_sup`](#dw_form_strp_sup)
+  - [`DW_FORM_data16`](#dw_form_data16)
+  - [`DW_FORM_line_strp`](#dw_form_line_strp)
+  - [`DW_FORM_implicit_const`](#dw_form_implicit_const)
+  - [`DW_FORM_loclistx`](#dw_form_loclistx)
+  - [`DW_FORM_rnglistx`](#dw_form_rnglistx)
+  - [`DW_FORM_ref_sup8`](#dw_form_ref_sup8)
+  - [`DW_FORM_strx1`](#dw_form_strx1)
+  - [`DW_FORM_strx2`](#dw_form_strx2)
+  - [`DW_FORM_strx3`](#dw_form_strx3)
+  - [`DW_FORM_strx4`](#dw_form_strx4)
+  - [`DW_FORM_addrx1`](#dw_form_addrx1)
+  - [`DW_FORM_addrx2`](#dw_form_addrx2)
+  - [`DW_FORM_addrx3`](#dw_form_addrx3)
+  - [`DW_FORM_addrx4`](#dw_form_addrx4)
+  - [`DW_FORM_GNU_addr_index`](#dw_form_gnu_addr_index)
+  - [`DW_FORM_GNU_str_index`](#dw_form_gnu_str_index)
+  - [`DW_FORM_GNU_ref_alt`](#dw_form_gnu_ref_alt)
+  - [`DW_FORM_GNU_strp_alt`](#dw_form_gnu_strp_alt)
+  - [`DW_ATE_address`](#dw_ate_address)
+  - [`DW_ATE_boolean`](#dw_ate_boolean)
+  - [`DW_ATE_complex_float`](#dw_ate_complex_float)
+  - [`DW_ATE_float`](#dw_ate_float)
+  - [`DW_ATE_signed`](#dw_ate_signed)
+  - [`DW_ATE_signed_char`](#dw_ate_signed_char)
+  - [`DW_ATE_unsigned`](#dw_ate_unsigned)
+  - [`DW_ATE_unsigned_char`](#dw_ate_unsigned_char)
+  - [`DW_ATE_imaginary_float`](#dw_ate_imaginary_float)
+  - [`DW_ATE_packed_decimal`](#dw_ate_packed_decimal)
+  - [`DW_ATE_numeric_string`](#dw_ate_numeric_string)
+  - [`DW_ATE_edited`](#dw_ate_edited)
+  - [`DW_ATE_signed_fixed`](#dw_ate_signed_fixed)
+  - [`DW_ATE_unsigned_fixed`](#dw_ate_unsigned_fixed)
+  - [`DW_ATE_decimal_float`](#dw_ate_decimal_float)
+  - [`DW_ATE_UTF`](#dw_ate_utf)
+  - [`DW_ATE_UCS`](#dw_ate_ucs)
+  - [`DW_ATE_ASCII`](#dw_ate_ascii)
+  - [`DW_ATE_lo_user`](#dw_ate_lo_user)
+  - [`DW_ATE_hi_user`](#dw_ate_hi_user)
+  - [`DW_LLE_end_of_list`](#dw_lle_end_of_list)
+  - [`DW_LLE_base_addressx`](#dw_lle_base_addressx)
+  - [`DW_LLE_startx_endx`](#dw_lle_startx_endx)
+  - [`DW_LLE_startx_length`](#dw_lle_startx_length)
+  - [`DW_LLE_offset_pair`](#dw_lle_offset_pair)
+  - [`DW_LLE_default_location`](#dw_lle_default_location)
+  - [`DW_LLE_base_address`](#dw_lle_base_address)
+  - [`DW_LLE_start_end`](#dw_lle_start_end)
+  - [`DW_LLE_start_length`](#dw_lle_start_length)
+  - [`DW_LLE_GNU_view_pair`](#dw_lle_gnu_view_pair)
+  - [`DW_DS_unsigned`](#dw_ds_unsigned)
+  - [`DW_DS_leading_overpunch`](#dw_ds_leading_overpunch)
+  - [`DW_DS_trailing_overpunch`](#dw_ds_trailing_overpunch)
+  - [`DW_DS_leading_separate`](#dw_ds_leading_separate)
+  - [`DW_DS_trailing_separate`](#dw_ds_trailing_separate)
+  - [`DW_END_default`](#dw_end_default)
+  - [`DW_END_big`](#dw_end_big)
+  - [`DW_END_little`](#dw_end_little)
+  - [`DW_END_lo_user`](#dw_end_lo_user)
+  - [`DW_END_hi_user`](#dw_end_hi_user)
+  - [`DW_ACCESS_public`](#dw_access_public)
+  - [`DW_ACCESS_protected`](#dw_access_protected)
+  - [`DW_ACCESS_private`](#dw_access_private)
+  - [`DW_VIS_local`](#dw_vis_local)
+  - [`DW_VIS_exported`](#dw_vis_exported)
+  - [`DW_VIS_qualified`](#dw_vis_qualified)
+  - [`DW_VIRTUALITY_none`](#dw_virtuality_none)
+  - [`DW_VIRTUALITY_virtual`](#dw_virtuality_virtual)
+  - [`DW_VIRTUALITY_pure_virtual`](#dw_virtuality_pure_virtual)
+  - [`DW_LANG_C89`](#dw_lang_c89)
+  - [`DW_LANG_C`](#dw_lang_c)
+  - [`DW_LANG_Ada83`](#dw_lang_ada83)
+  - [`DW_LANG_C_plus_plus`](#dw_lang_c_plus_plus)
+  - [`DW_LANG_Cobol74`](#dw_lang_cobol74)
+  - [`DW_LANG_Cobol85`](#dw_lang_cobol85)
+  - [`DW_LANG_Fortran77`](#dw_lang_fortran77)
+  - [`DW_LANG_Fortran90`](#dw_lang_fortran90)
+  - [`DW_LANG_Pascal83`](#dw_lang_pascal83)
+  - [`DW_LANG_Modula2`](#dw_lang_modula2)
+  - [`DW_LANG_Java`](#dw_lang_java)
+  - [`DW_LANG_C99`](#dw_lang_c99)
+  - [`DW_LANG_Ada95`](#dw_lang_ada95)
+  - [`DW_LANG_Fortran95`](#dw_lang_fortran95)
+  - [`DW_LANG_PLI`](#dw_lang_pli)
+  - [`DW_LANG_ObjC`](#dw_lang_objc)
+  - [`DW_LANG_ObjC_plus_plus`](#dw_lang_objc_plus_plus)
+  - [`DW_LANG_UPC`](#dw_lang_upc)
+  - [`DW_LANG_D`](#dw_lang_d)
+  - [`DW_LANG_Python`](#dw_lang_python)
+  - [`DW_LANG_OpenCL`](#dw_lang_opencl)
+  - [`DW_LANG_Go`](#dw_lang_go)
+  - [`DW_LANG_Modula3`](#dw_lang_modula3)
+  - [`DW_LANG_Haskell`](#dw_lang_haskell)
+  - [`DW_LANG_C_plus_plus_03`](#dw_lang_c_plus_plus_03)
+  - [`DW_LANG_C_plus_plus_11`](#dw_lang_c_plus_plus_11)
+  - [`DW_LANG_OCaml`](#dw_lang_ocaml)
+  - [`DW_LANG_Rust`](#dw_lang_rust)
+  - [`DW_LANG_C11`](#dw_lang_c11)
+  - [`DW_LANG_Swift`](#dw_lang_swift)
+  - [`DW_LANG_Julia`](#dw_lang_julia)
+  - [`DW_LANG_Dylan`](#dw_lang_dylan)
+  - [`DW_LANG_C_plus_plus_14`](#dw_lang_c_plus_plus_14)
+  - [`DW_LANG_Fortran03`](#dw_lang_fortran03)
+  - [`DW_LANG_Fortran08`](#dw_lang_fortran08)
+  - [`DW_LANG_RenderScript`](#dw_lang_renderscript)
+  - [`DW_LANG_BLISS`](#dw_lang_bliss)
+  - [`DW_LANG_Kotlin`](#dw_lang_kotlin)
+  - [`DW_LANG_Zig`](#dw_lang_zig)
+  - [`DW_LANG_Crystal`](#dw_lang_crystal)
+  - [`DW_LANG_C_plus_plus_17`](#dw_lang_c_plus_plus_17)
+  - [`DW_LANG_C_plus_plus_20`](#dw_lang_c_plus_plus_20)
+  - [`DW_LANG_C17`](#dw_lang_c17)
+  - [`DW_LANG_Fortran18`](#dw_lang_fortran18)
+  - [`DW_LANG_Ada2005`](#dw_lang_ada2005)
+  - [`DW_LANG_Ada2012`](#dw_lang_ada2012)
+  - [`DW_LANG_lo_user`](#dw_lang_lo_user)
+  - [`DW_LANG_hi_user`](#dw_lang_hi_user)
+  - [`DW_LANG_Mips_Assembler`](#dw_lang_mips_assembler)
+  - [`DW_LANG_GOOGLE_RenderScript`](#dw_lang_google_renderscript)
+  - [`DW_LANG_SUN_Assembler`](#dw_lang_sun_assembler)
+  - [`DW_LANG_ALTIUM_Assembler`](#dw_lang_altium_assembler)
+  - [`DW_LANG_BORLAND_Delphi`](#dw_lang_borland_delphi)
+  - [`DW_ADDR_none`](#dw_addr_none)
+  - [`DW_ID_case_sensitive`](#dw_id_case_sensitive)
+  - [`DW_ID_up_case`](#dw_id_up_case)
+  - [`DW_ID_down_case`](#dw_id_down_case)
+  - [`DW_ID_case_insensitive`](#dw_id_case_insensitive)
+  - [`DW_CC_normal`](#dw_cc_normal)
+  - [`DW_CC_program`](#dw_cc_program)
+  - [`DW_CC_nocall`](#dw_cc_nocall)
+  - [`DW_CC_pass_by_reference`](#dw_cc_pass_by_reference)
+  - [`DW_CC_pass_by_value`](#dw_cc_pass_by_value)
+  - [`DW_CC_lo_user`](#dw_cc_lo_user)
+  - [`DW_CC_hi_user`](#dw_cc_hi_user)
+  - [`DW_INL_not_inlined`](#dw_inl_not_inlined)
+  - [`DW_INL_inlined`](#dw_inl_inlined)
+  - [`DW_INL_declared_not_inlined`](#dw_inl_declared_not_inlined)
+  - [`DW_INL_declared_inlined`](#dw_inl_declared_inlined)
+  - [`DW_ORD_row_major`](#dw_ord_row_major)
+  - [`DW_ORD_col_major`](#dw_ord_col_major)
+  - [`DW_DSC_label`](#dw_dsc_label)
+  - [`DW_DSC_range`](#dw_dsc_range)
+  - [`DW_IDX_compile_unit`](#dw_idx_compile_unit)
+  - [`DW_IDX_type_unit`](#dw_idx_type_unit)
+  - [`DW_IDX_die_offset`](#dw_idx_die_offset)
+  - [`DW_IDX_parent`](#dw_idx_parent)
+  - [`DW_IDX_type_hash`](#dw_idx_type_hash)
+  - [`DW_IDX_lo_user`](#dw_idx_lo_user)
+  - [`DW_IDX_hi_user`](#dw_idx_hi_user)
+  - [`DW_DEFAULTED_no`](#dw_defaulted_no)
+  - [`DW_DEFAULTED_in_class`](#dw_defaulted_in_class)
+  - [`DW_DEFAULTED_out_of_class`](#dw_defaulted_out_of_class)
+  - [`DW_LNS_copy`](#dw_lns_copy)
+  - [`DW_LNS_advance_pc`](#dw_lns_advance_pc)
+  - [`DW_LNS_advance_line`](#dw_lns_advance_line)
+  - [`DW_LNS_set_file`](#dw_lns_set_file)
+  - [`DW_LNS_set_column`](#dw_lns_set_column)
+  - [`DW_LNS_negate_stmt`](#dw_lns_negate_stmt)
+  - [`DW_LNS_set_basic_block`](#dw_lns_set_basic_block)
+  - [`DW_LNS_const_add_pc`](#dw_lns_const_add_pc)
+  - [`DW_LNS_fixed_advance_pc`](#dw_lns_fixed_advance_pc)
+  - [`DW_LNS_set_prologue_end`](#dw_lns_set_prologue_end)
+  - [`DW_LNS_set_epilogue_begin`](#dw_lns_set_epilogue_begin)
+  - [`DW_LNS_set_isa`](#dw_lns_set_isa)
+  - [`DW_LNE_end_sequence`](#dw_lne_end_sequence)
+  - [`DW_LNE_set_address`](#dw_lne_set_address)
+  - [`DW_LNE_define_file`](#dw_lne_define_file)
+  - [`DW_LNE_set_discriminator`](#dw_lne_set_discriminator)
+  - [`DW_LNE_lo_user`](#dw_lne_lo_user)
+  - [`DW_LNE_hi_user`](#dw_lne_hi_user)
+  - [`DW_LNCT_path`](#dw_lnct_path)
+  - [`DW_LNCT_directory_index`](#dw_lnct_directory_index)
+  - [`DW_LNCT_timestamp`](#dw_lnct_timestamp)
+  - [`DW_LNCT_size`](#dw_lnct_size)
+  - [`DW_LNCT_MD5`](#dw_lnct_md5)
+  - [`DW_LNCT_lo_user`](#dw_lnct_lo_user)
+  - [`DW_LNCT_LLVM_source`](#dw_lnct_llvm_source)
+  - [`DW_LNCT_hi_user`](#dw_lnct_hi_user)
+  - [`DW_MACINFO_define`](#dw_macinfo_define)
+  - [`DW_MACINFO_undef`](#dw_macinfo_undef)
+  - [`DW_MACINFO_start_file`](#dw_macinfo_start_file)
+  - [`DW_MACINFO_end_file`](#dw_macinfo_end_file)
+  - [`DW_MACINFO_vendor_ext`](#dw_macinfo_vendor_ext)
+  - [`DW_MACRO_define`](#dw_macro_define)
+  - [`DW_MACRO_undef`](#dw_macro_undef)
+  - [`DW_MACRO_start_file`](#dw_macro_start_file)
+  - [`DW_MACRO_end_file`](#dw_macro_end_file)
+  - [`DW_MACRO_define_strp`](#dw_macro_define_strp)
+  - [`DW_MACRO_undef_strp`](#dw_macro_undef_strp)
+  - [`DW_MACRO_import`](#dw_macro_import)
+  - [`DW_MACRO_define_sup`](#dw_macro_define_sup)
+  - [`DW_MACRO_undef_sup`](#dw_macro_undef_sup)
+  - [`DW_MACRO_import_sup`](#dw_macro_import_sup)
+  - [`DW_MACRO_define_strx`](#dw_macro_define_strx)
+  - [`DW_MACRO_undef_strx`](#dw_macro_undef_strx)
+  - [`DW_MACRO_lo_user`](#dw_macro_lo_user)
+  - [`DW_MACRO_hi_user`](#dw_macro_hi_user)
+  - [`DW_RLE_end_of_list`](#dw_rle_end_of_list)
+  - [`DW_RLE_base_addressx`](#dw_rle_base_addressx)
+  - [`DW_RLE_startx_endx`](#dw_rle_startx_endx)
+  - [`DW_RLE_startx_length`](#dw_rle_startx_length)
+  - [`DW_RLE_offset_pair`](#dw_rle_offset_pair)
+  - [`DW_RLE_base_address`](#dw_rle_base_address)
+  - [`DW_RLE_start_end`](#dw_rle_start_end)
+  - [`DW_RLE_start_length`](#dw_rle_start_length)
+  - [`DW_OP_addr`](#dw_op_addr)
+  - [`DW_OP_deref`](#dw_op_deref)
+  - [`DW_OP_const1u`](#dw_op_const1u)
+  - [`DW_OP_const1s`](#dw_op_const1s)
+  - [`DW_OP_const2u`](#dw_op_const2u)
+  - [`DW_OP_const2s`](#dw_op_const2s)
+  - [`DW_OP_const4u`](#dw_op_const4u)
+  - [`DW_OP_const4s`](#dw_op_const4s)
+  - [`DW_OP_const8u`](#dw_op_const8u)
+  - [`DW_OP_const8s`](#dw_op_const8s)
+  - [`DW_OP_constu`](#dw_op_constu)
+  - [`DW_OP_consts`](#dw_op_consts)
+  - [`DW_OP_dup`](#dw_op_dup)
+  - [`DW_OP_drop`](#dw_op_drop)
+  - [`DW_OP_over`](#dw_op_over)
+  - [`DW_OP_pick`](#dw_op_pick)
+  - [`DW_OP_swap`](#dw_op_swap)
+  - [`DW_OP_rot`](#dw_op_rot)
+  - [`DW_OP_xderef`](#dw_op_xderef)
+  - [`DW_OP_abs`](#dw_op_abs)
+  - [`DW_OP_and`](#dw_op_and)
+  - [`DW_OP_div`](#dw_op_div)
+  - [`DW_OP_minus`](#dw_op_minus)
+  - [`DW_OP_mod`](#dw_op_mod)
+  - [`DW_OP_mul`](#dw_op_mul)
+  - [`DW_OP_neg`](#dw_op_neg)
+  - [`DW_OP_not`](#dw_op_not)
+  - [`DW_OP_or`](#dw_op_or)
+  - [`DW_OP_plus`](#dw_op_plus)
+  - [`DW_OP_plus_uconst`](#dw_op_plus_uconst)
+  - [`DW_OP_shl`](#dw_op_shl)
+  - [`DW_OP_shr`](#dw_op_shr)
+  - [`DW_OP_shra`](#dw_op_shra)
+  - [`DW_OP_xor`](#dw_op_xor)
+  - [`DW_OP_bra`](#dw_op_bra)
+  - [`DW_OP_eq`](#dw_op_eq)
+  - [`DW_OP_ge`](#dw_op_ge)
+  - [`DW_OP_gt`](#dw_op_gt)
+  - [`DW_OP_le`](#dw_op_le)
+  - [`DW_OP_lt`](#dw_op_lt)
+  - [`DW_OP_ne`](#dw_op_ne)
+  - [`DW_OP_skip`](#dw_op_skip)
+  - [`DW_OP_lit0`](#dw_op_lit0)
+  - [`DW_OP_lit1`](#dw_op_lit1)
+  - [`DW_OP_lit2`](#dw_op_lit2)
+  - [`DW_OP_lit3`](#dw_op_lit3)
+  - [`DW_OP_lit4`](#dw_op_lit4)
+  - [`DW_OP_lit5`](#dw_op_lit5)
+  - [`DW_OP_lit6`](#dw_op_lit6)
+  - [`DW_OP_lit7`](#dw_op_lit7)
+  - [`DW_OP_lit8`](#dw_op_lit8)
+  - [`DW_OP_lit9`](#dw_op_lit9)
+  - [`DW_OP_lit10`](#dw_op_lit10)
+  - [`DW_OP_lit11`](#dw_op_lit11)
+  - [`DW_OP_lit12`](#dw_op_lit12)
+  - [`DW_OP_lit13`](#dw_op_lit13)
+  - [`DW_OP_lit14`](#dw_op_lit14)
+  - [`DW_OP_lit15`](#dw_op_lit15)
+  - [`DW_OP_lit16`](#dw_op_lit16)
+  - [`DW_OP_lit17`](#dw_op_lit17)
+  - [`DW_OP_lit18`](#dw_op_lit18)
+  - [`DW_OP_lit19`](#dw_op_lit19)
+  - [`DW_OP_lit20`](#dw_op_lit20)
+  - [`DW_OP_lit21`](#dw_op_lit21)
+  - [`DW_OP_lit22`](#dw_op_lit22)
+  - [`DW_OP_lit23`](#dw_op_lit23)
+  - [`DW_OP_lit24`](#dw_op_lit24)
+  - [`DW_OP_lit25`](#dw_op_lit25)
+  - [`DW_OP_lit26`](#dw_op_lit26)
+  - [`DW_OP_lit27`](#dw_op_lit27)
+  - [`DW_OP_lit28`](#dw_op_lit28)
+  - [`DW_OP_lit29`](#dw_op_lit29)
+  - [`DW_OP_lit30`](#dw_op_lit30)
+  - [`DW_OP_lit31`](#dw_op_lit31)
+  - [`DW_OP_reg0`](#dw_op_reg0)
+  - [`DW_OP_reg1`](#dw_op_reg1)
+  - [`DW_OP_reg2`](#dw_op_reg2)
+  - [`DW_OP_reg3`](#dw_op_reg3)
+  - [`DW_OP_reg4`](#dw_op_reg4)
+  - [`DW_OP_reg5`](#dw_op_reg5)
+  - [`DW_OP_reg6`](#dw_op_reg6)
+  - [`DW_OP_reg7`](#dw_op_reg7)
+  - [`DW_OP_reg8`](#dw_op_reg8)
+  - [`DW_OP_reg9`](#dw_op_reg9)
+  - [`DW_OP_reg10`](#dw_op_reg10)
+  - [`DW_OP_reg11`](#dw_op_reg11)
+  - [`DW_OP_reg12`](#dw_op_reg12)
+  - [`DW_OP_reg13`](#dw_op_reg13)
+  - [`DW_OP_reg14`](#dw_op_reg14)
+  - [`DW_OP_reg15`](#dw_op_reg15)
+  - [`DW_OP_reg16`](#dw_op_reg16)
+  - [`DW_OP_reg17`](#dw_op_reg17)
+  - [`DW_OP_reg18`](#dw_op_reg18)
+  - [`DW_OP_reg19`](#dw_op_reg19)
+  - [`DW_OP_reg20`](#dw_op_reg20)
+  - [`DW_OP_reg21`](#dw_op_reg21)
+  - [`DW_OP_reg22`](#dw_op_reg22)
+  - [`DW_OP_reg23`](#dw_op_reg23)
+  - [`DW_OP_reg24`](#dw_op_reg24)
+  - [`DW_OP_reg25`](#dw_op_reg25)
+  - [`DW_OP_reg26`](#dw_op_reg26)
+  - [`DW_OP_reg27`](#dw_op_reg27)
+  - [`DW_OP_reg28`](#dw_op_reg28)
+  - [`DW_OP_reg29`](#dw_op_reg29)
+  - [`DW_OP_reg30`](#dw_op_reg30)
+  - [`DW_OP_reg31`](#dw_op_reg31)
+  - [`DW_OP_breg0`](#dw_op_breg0)
+  - [`DW_OP_breg1`](#dw_op_breg1)
+  - [`DW_OP_breg2`](#dw_op_breg2)
+  - [`DW_OP_breg3`](#dw_op_breg3)
+  - [`DW_OP_breg4`](#dw_op_breg4)
+  - [`DW_OP_breg5`](#dw_op_breg5)
+  - [`DW_OP_breg6`](#dw_op_breg6)
+  - [`DW_OP_breg7`](#dw_op_breg7)
+  - [`DW_OP_breg8`](#dw_op_breg8)
+  - [`DW_OP_breg9`](#dw_op_breg9)
+  - [`DW_OP_breg10`](#dw_op_breg10)
+  - [`DW_OP_breg11`](#dw_op_breg11)
+  - [`DW_OP_breg12`](#dw_op_breg12)
+  - [`DW_OP_breg13`](#dw_op_breg13)
+  - [`DW_OP_breg14`](#dw_op_breg14)
+  - [`DW_OP_breg15`](#dw_op_breg15)
+  - [`DW_OP_breg16`](#dw_op_breg16)
+  - [`DW_OP_breg17`](#dw_op_breg17)
+  - [`DW_OP_breg18`](#dw_op_breg18)
+  - [`DW_OP_breg19`](#dw_op_breg19)
+  - [`DW_OP_breg20`](#dw_op_breg20)
+  - [`DW_OP_breg21`](#dw_op_breg21)
+  - [`DW_OP_breg22`](#dw_op_breg22)
+  - [`DW_OP_breg23`](#dw_op_breg23)
+  - [`DW_OP_breg24`](#dw_op_breg24)
+  - [`DW_OP_breg25`](#dw_op_breg25)
+  - [`DW_OP_breg26`](#dw_op_breg26)
+  - [`DW_OP_breg27`](#dw_op_breg27)
+  - [`DW_OP_breg28`](#dw_op_breg28)
+  - [`DW_OP_breg29`](#dw_op_breg29)
+  - [`DW_OP_breg30`](#dw_op_breg30)
+  - [`DW_OP_breg31`](#dw_op_breg31)
+  - [`DW_OP_regx`](#dw_op_regx)
+  - [`DW_OP_fbreg`](#dw_op_fbreg)
+  - [`DW_OP_bregx`](#dw_op_bregx)
+  - [`DW_OP_piece`](#dw_op_piece)
+  - [`DW_OP_deref_size`](#dw_op_deref_size)
+  - [`DW_OP_xderef_size`](#dw_op_xderef_size)
+  - [`DW_OP_nop`](#dw_op_nop)
+  - [`DW_OP_push_object_address`](#dw_op_push_object_address)
+  - [`DW_OP_call2`](#dw_op_call2)
+  - [`DW_OP_call4`](#dw_op_call4)
+  - [`DW_OP_call_ref`](#dw_op_call_ref)
+  - [`DW_OP_form_tls_address`](#dw_op_form_tls_address)
+  - [`DW_OP_call_frame_cfa`](#dw_op_call_frame_cfa)
+  - [`DW_OP_bit_piece`](#dw_op_bit_piece)
+  - [`DW_OP_implicit_value`](#dw_op_implicit_value)
+  - [`DW_OP_stack_value`](#dw_op_stack_value)
+  - [`DW_OP_implicit_pointer`](#dw_op_implicit_pointer)
+  - [`DW_OP_addrx`](#dw_op_addrx)
+  - [`DW_OP_constx`](#dw_op_constx)
+  - [`DW_OP_entry_value`](#dw_op_entry_value)
+  - [`DW_OP_const_type`](#dw_op_const_type)
+  - [`DW_OP_regval_type`](#dw_op_regval_type)
+  - [`DW_OP_deref_type`](#dw_op_deref_type)
+  - [`DW_OP_xderef_type`](#dw_op_xderef_type)
+  - [`DW_OP_convert`](#dw_op_convert)
+  - [`DW_OP_reinterpret`](#dw_op_reinterpret)
+  - [`DW_OP_GNU_push_tls_address`](#dw_op_gnu_push_tls_address)
+  - [`DW_OP_GNU_implicit_pointer`](#dw_op_gnu_implicit_pointer)
+  - [`DW_OP_GNU_entry_value`](#dw_op_gnu_entry_value)
+  - [`DW_OP_GNU_const_type`](#dw_op_gnu_const_type)
+  - [`DW_OP_GNU_regval_type`](#dw_op_gnu_regval_type)
+  - [`DW_OP_GNU_deref_type`](#dw_op_gnu_deref_type)
+  - [`DW_OP_GNU_convert`](#dw_op_gnu_convert)
+  - [`DW_OP_GNU_reinterpret`](#dw_op_gnu_reinterpret)
+  - [`DW_OP_GNU_parameter_ref`](#dw_op_gnu_parameter_ref)
+  - [`DW_OP_GNU_addr_index`](#dw_op_gnu_addr_index)
+  - [`DW_OP_GNU_const_index`](#dw_op_gnu_const_index)
+  - [`DW_OP_WASM_location`](#dw_op_wasm_location)
+  - [`DW_EH_PE_uleb128`](#dw_eh_pe_uleb128)
+  - [`DW_EH_PE_udata2`](#dw_eh_pe_udata2)
+  - [`DW_EH_PE_udata4`](#dw_eh_pe_udata4)
+  - [`DW_EH_PE_udata8`](#dw_eh_pe_udata8)
+  - [`DW_EH_PE_sleb128`](#dw_eh_pe_sleb128)
+  - [`DW_EH_PE_sdata2`](#dw_eh_pe_sdata2)
+  - [`DW_EH_PE_sdata4`](#dw_eh_pe_sdata4)
+  - [`DW_EH_PE_sdata8`](#dw_eh_pe_sdata8)
+  - [`DW_EH_PE_pcrel`](#dw_eh_pe_pcrel)
+  - [`DW_EH_PE_textrel`](#dw_eh_pe_textrel)
+  - [`DW_EH_PE_datarel`](#dw_eh_pe_datarel)
+  - [`DW_EH_PE_funcrel`](#dw_eh_pe_funcrel)
+  - [`DW_EH_PE_aligned`](#dw_eh_pe_aligned)
+  - [`DW_EH_PE_indirect`](#dw_eh_pe_indirect)
+  - [`DW_EH_PE_absptr`](#dw_eh_pe_absptr)
+  - [`DW_EH_PE_omit`](#dw_eh_pe_omit)
+  - [`DW_EH_PE_FORMAT_MASK`](#dw_eh_pe_format_mask)
+  - [`DW_EH_PE_APPLICATION_MASK`](#dw_eh_pe_application_mask)
+- [Macros](#macros)
+  - [`dw!`](#dw)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DwSect`](#dwsect) | struct | The section type field in a `.dwp` unit index. |
+| [`DwSectV2`](#dwsectv2) | struct | The section type field in a `.dwp` unit index with version 2. |
+| [`DwUt`](#dwut) | struct | The unit type field in a unit header. |
+| [`DwCfa`](#dwcfa) | struct | The opcode for a call frame instruction. |
+| [`DwChildren`](#dwchildren) | struct | The child determination encodings for DIE attributes. |
+| [`DwTag`](#dwtag) | struct | The tag encodings for DIE attributes. |
+| [`DwAt`](#dwat) | struct | The attribute encodings for DIE attributes. |
+| [`DwForm`](#dwform) | struct | The attribute form encodings for DIE attributes. |
+| [`DwAte`](#dwate) | struct | The encodings of the constants used in the `DW_AT_encoding` attribute. |
+| [`DwLle`](#dwlle) | struct | The encodings of the constants used in location list entries. |
+| [`DwDs`](#dwds) | struct | The encodings of the constants used in the `DW_AT_decimal_sign` attribute. |
+| [`DwEnd`](#dwend) | struct | The encodings of the constants used in the `DW_AT_endianity` attribute. |
+| [`DwAccess`](#dwaccess) | struct | The encodings of the constants used in the `DW_AT_accessibility` attribute. |
+| [`DwVis`](#dwvis) | struct | The encodings of the constants used in the `DW_AT_visibility` attribute. |
+| [`DwVirtuality`](#dwvirtuality) | struct | The encodings of the constants used in the `DW_AT_virtuality` attribute. |
+| [`DwLang`](#dwlang) | struct | The encodings of the constants used in the `DW_AT_language` attribute. |
+| [`DwAddr`](#dwaddr) | struct | The encodings of the constants used in the `DW_AT_address_class` attribute. |
+| [`DwId`](#dwid) | struct | The encodings of the constants used in the `DW_AT_identifier_case` attribute. |
+| [`DwCc`](#dwcc) | struct | The encodings of the constants used in the `DW_AT_calling_convention` attribute. |
+| [`DwInl`](#dwinl) | struct | The encodings of the constants used in the `DW_AT_inline` attribute. |
+| [`DwOrd`](#dword) | struct | The encodings of the constants used in the `DW_AT_ordering` attribute. |
+| [`DwDsc`](#dwdsc) | struct | The encodings of the constants used in the `DW_AT_discr_list` attribute. |
+| [`DwIdx`](#dwidx) | struct | Name index attribute encodings. |
+| [`DwDefaulted`](#dwdefaulted) | struct | The encodings of the constants used in the `DW_AT_defaulted` attribute. |
+| [`DwLns`](#dwlns) | struct | The encodings for the standard opcodes for line number information. |
+| [`DwLne`](#dwlne) | struct | The encodings for the extended opcodes for line number information. |
+| [`DwLnct`](#dwlnct) | struct | The encodings for the line number header entry formats. |
+| [`DwMacinfo`](#dwmacinfo) | struct | Type codes for macro definitions in the `.debug_macinfo` section. |
+| [`DwMacro`](#dwmacro) | struct | The encodings for macro information entry types. |
+| [`DwRle`](#dwrle) | struct | Range list entry encoding values. |
+| [`DwOp`](#dwop) | struct | The encodings for DWARF expression operations. |
+| [`DwEhPe`](#dwehpe) | struct | Pointer encoding used by `.eh_frame`. |
+| [`DW_SECT_INFO`](#dw_sect_info) | const |  |
+| [`DW_SECT_ABBREV`](#dw_sect_abbrev) | const |  |
+| [`DW_SECT_LINE`](#dw_sect_line) | const |  |
+| [`DW_SECT_LOCLISTS`](#dw_sect_loclists) | const |  |
+| [`DW_SECT_STR_OFFSETS`](#dw_sect_str_offsets) | const |  |
+| [`DW_SECT_MACRO`](#dw_sect_macro) | const |  |
+| [`DW_SECT_RNGLISTS`](#dw_sect_rnglists) | const |  |
+| [`DW_SECT_V2_INFO`](#dw_sect_v2_info) | const |  |
+| [`DW_SECT_V2_TYPES`](#dw_sect_v2_types) | const |  |
+| [`DW_SECT_V2_ABBREV`](#dw_sect_v2_abbrev) | const |  |
+| [`DW_SECT_V2_LINE`](#dw_sect_v2_line) | const |  |
+| [`DW_SECT_V2_LOC`](#dw_sect_v2_loc) | const |  |
+| [`DW_SECT_V2_STR_OFFSETS`](#dw_sect_v2_str_offsets) | const |  |
+| [`DW_SECT_V2_MACINFO`](#dw_sect_v2_macinfo) | const |  |
+| [`DW_SECT_V2_MACRO`](#dw_sect_v2_macro) | const |  |
+| [`DW_UT_compile`](#dw_ut_compile) | const |  |
+| [`DW_UT_type`](#dw_ut_type) | const |  |
+| [`DW_UT_partial`](#dw_ut_partial) | const |  |
+| [`DW_UT_skeleton`](#dw_ut_skeleton) | const |  |
+| [`DW_UT_split_compile`](#dw_ut_split_compile) | const |  |
+| [`DW_UT_split_type`](#dw_ut_split_type) | const |  |
+| [`DW_UT_lo_user`](#dw_ut_lo_user) | const |  |
+| [`DW_UT_hi_user`](#dw_ut_hi_user) | const |  |
+| [`DW_CFA_advance_loc`](#dw_cfa_advance_loc) | const |  |
+| [`DW_CFA_offset`](#dw_cfa_offset) | const |  |
+| [`DW_CFA_restore`](#dw_cfa_restore) | const |  |
+| [`DW_CFA_nop`](#dw_cfa_nop) | const |  |
+| [`DW_CFA_set_loc`](#dw_cfa_set_loc) | const |  |
+| [`DW_CFA_advance_loc1`](#dw_cfa_advance_loc1) | const |  |
+| [`DW_CFA_advance_loc2`](#dw_cfa_advance_loc2) | const |  |
+| [`DW_CFA_advance_loc4`](#dw_cfa_advance_loc4) | const |  |
+| [`DW_CFA_offset_extended`](#dw_cfa_offset_extended) | const |  |
+| [`DW_CFA_restore_extended`](#dw_cfa_restore_extended) | const |  |
+| [`DW_CFA_undefined`](#dw_cfa_undefined) | const |  |
+| [`DW_CFA_same_value`](#dw_cfa_same_value) | const |  |
+| [`DW_CFA_register`](#dw_cfa_register) | const |  |
+| [`DW_CFA_remember_state`](#dw_cfa_remember_state) | const |  |
+| [`DW_CFA_restore_state`](#dw_cfa_restore_state) | const |  |
+| [`DW_CFA_def_cfa`](#dw_cfa_def_cfa) | const |  |
+| [`DW_CFA_def_cfa_register`](#dw_cfa_def_cfa_register) | const |  |
+| [`DW_CFA_def_cfa_offset`](#dw_cfa_def_cfa_offset) | const |  |
+| [`DW_CFA_def_cfa_expression`](#dw_cfa_def_cfa_expression) | const |  |
+| [`DW_CFA_expression`](#dw_cfa_expression) | const |  |
+| [`DW_CFA_offset_extended_sf`](#dw_cfa_offset_extended_sf) | const |  |
+| [`DW_CFA_def_cfa_sf`](#dw_cfa_def_cfa_sf) | const |  |
+| [`DW_CFA_def_cfa_offset_sf`](#dw_cfa_def_cfa_offset_sf) | const |  |
+| [`DW_CFA_val_offset`](#dw_cfa_val_offset) | const |  |
+| [`DW_CFA_val_offset_sf`](#dw_cfa_val_offset_sf) | const |  |
+| [`DW_CFA_val_expression`](#dw_cfa_val_expression) | const |  |
+| [`DW_CFA_lo_user`](#dw_cfa_lo_user) | const |  |
+| [`DW_CFA_hi_user`](#dw_cfa_hi_user) | const |  |
+| [`DW_CFA_MIPS_advance_loc8`](#dw_cfa_mips_advance_loc8) | const |  |
+| [`DW_CFA_GNU_window_save`](#dw_cfa_gnu_window_save) | const |  |
+| [`DW_CFA_GNU_args_size`](#dw_cfa_gnu_args_size) | const |  |
+| [`DW_CFA_GNU_negative_offset_extended`](#dw_cfa_gnu_negative_offset_extended) | const |  |
+| [`DW_CFA_AARCH64_negate_ra_state`](#dw_cfa_aarch64_negate_ra_state) | const |  |
+| [`DW_CHILDREN_no`](#dw_children_no) | const |  |
+| [`DW_CHILDREN_yes`](#dw_children_yes) | const |  |
+| [`DW_TAG_null`](#dw_tag_null) | const |  |
+| [`DW_TAG_global_subroutine`](#dw_tag_global_subroutine) | const |  |
+| [`DW_TAG_global_variable`](#dw_tag_global_variable) | const |  |
+| [`DW_TAG_local_variable`](#dw_tag_local_variable) | const |  |
+| [`DW_TAG_subroutine`](#dw_tag_subroutine) | const |  |
+| [`DW_TAG_array_type`](#dw_tag_array_type) | const |  |
+| [`DW_TAG_class_type`](#dw_tag_class_type) | const |  |
+| [`DW_TAG_entry_point`](#dw_tag_entry_point) | const |  |
+| [`DW_TAG_enumeration_type`](#dw_tag_enumeration_type) | const |  |
+| [`DW_TAG_formal_parameter`](#dw_tag_formal_parameter) | const |  |
+| [`DW_TAG_imported_declaration`](#dw_tag_imported_declaration) | const |  |
+| [`DW_TAG_label`](#dw_tag_label) | const |  |
+| [`DW_TAG_lexical_block`](#dw_tag_lexical_block) | const |  |
+| [`DW_TAG_member`](#dw_tag_member) | const |  |
+| [`DW_TAG_pointer_type`](#dw_tag_pointer_type) | const |  |
+| [`DW_TAG_reference_type`](#dw_tag_reference_type) | const |  |
+| [`DW_TAG_compile_unit`](#dw_tag_compile_unit) | const |  |
+| [`DW_TAG_string_type`](#dw_tag_string_type) | const |  |
+| [`DW_TAG_structure_type`](#dw_tag_structure_type) | const |  |
+| [`DW_TAG_subroutine_type`](#dw_tag_subroutine_type) | const |  |
+| [`DW_TAG_typedef`](#dw_tag_typedef) | const |  |
+| [`DW_TAG_union_type`](#dw_tag_union_type) | const |  |
+| [`DW_TAG_unspecified_parameters`](#dw_tag_unspecified_parameters) | const |  |
+| [`DW_TAG_variant`](#dw_tag_variant) | const |  |
+| [`DW_TAG_common_block`](#dw_tag_common_block) | const |  |
+| [`DW_TAG_common_inclusion`](#dw_tag_common_inclusion) | const |  |
+| [`DW_TAG_inheritance`](#dw_tag_inheritance) | const |  |
+| [`DW_TAG_inlined_subroutine`](#dw_tag_inlined_subroutine) | const |  |
+| [`DW_TAG_module`](#dw_tag_module) | const |  |
+| [`DW_TAG_ptr_to_member_type`](#dw_tag_ptr_to_member_type) | const |  |
+| [`DW_TAG_set_type`](#dw_tag_set_type) | const |  |
+| [`DW_TAG_subrange_type`](#dw_tag_subrange_type) | const |  |
+| [`DW_TAG_with_stmt`](#dw_tag_with_stmt) | const |  |
+| [`DW_TAG_access_declaration`](#dw_tag_access_declaration) | const |  |
+| [`DW_TAG_base_type`](#dw_tag_base_type) | const |  |
+| [`DW_TAG_catch_block`](#dw_tag_catch_block) | const |  |
+| [`DW_TAG_const_type`](#dw_tag_const_type) | const |  |
+| [`DW_TAG_constant`](#dw_tag_constant) | const |  |
+| [`DW_TAG_enumerator`](#dw_tag_enumerator) | const |  |
+| [`DW_TAG_file_type`](#dw_tag_file_type) | const |  |
+| [`DW_TAG_friend`](#dw_tag_friend) | const |  |
+| [`DW_TAG_namelist`](#dw_tag_namelist) | const |  |
+| [`DW_TAG_namelist_item`](#dw_tag_namelist_item) | const |  |
+| [`DW_TAG_packed_type`](#dw_tag_packed_type) | const |  |
+| [`DW_TAG_subprogram`](#dw_tag_subprogram) | const |  |
+| [`DW_TAG_template_type_parameter`](#dw_tag_template_type_parameter) | const |  |
+| [`DW_TAG_template_value_parameter`](#dw_tag_template_value_parameter) | const |  |
+| [`DW_TAG_thrown_type`](#dw_tag_thrown_type) | const |  |
+| [`DW_TAG_try_block`](#dw_tag_try_block) | const |  |
+| [`DW_TAG_variant_part`](#dw_tag_variant_part) | const |  |
+| [`DW_TAG_variable`](#dw_tag_variable) | const |  |
+| [`DW_TAG_volatile_type`](#dw_tag_volatile_type) | const |  |
+| [`DW_TAG_dwarf_procedure`](#dw_tag_dwarf_procedure) | const |  |
+| [`DW_TAG_restrict_type`](#dw_tag_restrict_type) | const |  |
+| [`DW_TAG_interface_type`](#dw_tag_interface_type) | const |  |
+| [`DW_TAG_namespace`](#dw_tag_namespace) | const |  |
+| [`DW_TAG_imported_module`](#dw_tag_imported_module) | const |  |
+| [`DW_TAG_unspecified_type`](#dw_tag_unspecified_type) | const |  |
+| [`DW_TAG_partial_unit`](#dw_tag_partial_unit) | const |  |
+| [`DW_TAG_imported_unit`](#dw_tag_imported_unit) | const |  |
+| [`DW_TAG_condition`](#dw_tag_condition) | const |  |
+| [`DW_TAG_shared_type`](#dw_tag_shared_type) | const |  |
+| [`DW_TAG_type_unit`](#dw_tag_type_unit) | const |  |
+| [`DW_TAG_rvalue_reference_type`](#dw_tag_rvalue_reference_type) | const |  |
+| [`DW_TAG_template_alias`](#dw_tag_template_alias) | const |  |
+| [`DW_TAG_coarray_type`](#dw_tag_coarray_type) | const |  |
+| [`DW_TAG_generic_subrange`](#dw_tag_generic_subrange) | const |  |
+| [`DW_TAG_dynamic_type`](#dw_tag_dynamic_type) | const |  |
+| [`DW_TAG_atomic_type`](#dw_tag_atomic_type) | const |  |
+| [`DW_TAG_call_site`](#dw_tag_call_site) | const |  |
+| [`DW_TAG_call_site_parameter`](#dw_tag_call_site_parameter) | const |  |
+| [`DW_TAG_skeleton_unit`](#dw_tag_skeleton_unit) | const |  |
+| [`DW_TAG_immutable_type`](#dw_tag_immutable_type) | const |  |
+| [`DW_TAG_lo_user`](#dw_tag_lo_user) | const |  |
+| [`DW_TAG_hi_user`](#dw_tag_hi_user) | const |  |
+| [`DW_TAG_MIPS_loop`](#dw_tag_mips_loop) | const |  |
+| [`DW_TAG_HP_array_descriptor`](#dw_tag_hp_array_descriptor) | const |  |
+| [`DW_TAG_HP_Bliss_field`](#dw_tag_hp_bliss_field) | const |  |
+| [`DW_TAG_HP_Bliss_field_set`](#dw_tag_hp_bliss_field_set) | const |  |
+| [`DW_TAG_format_label`](#dw_tag_format_label) | const |  |
+| [`DW_TAG_function_template`](#dw_tag_function_template) | const |  |
+| [`DW_TAG_class_template`](#dw_tag_class_template) | const |  |
+| [`DW_TAG_GNU_BINCL`](#dw_tag_gnu_bincl) | const |  |
+| [`DW_TAG_GNU_EINCL`](#dw_tag_gnu_eincl) | const |  |
+| [`DW_TAG_GNU_template_template_param`](#dw_tag_gnu_template_template_param) | const |  |
+| [`DW_TAG_GNU_template_parameter_pack`](#dw_tag_gnu_template_parameter_pack) | const |  |
+| [`DW_TAG_GNU_formal_parameter_pack`](#dw_tag_gnu_formal_parameter_pack) | const |  |
+| [`DW_TAG_GNU_call_site`](#dw_tag_gnu_call_site) | const |  |
+| [`DW_TAG_GNU_call_site_parameter`](#dw_tag_gnu_call_site_parameter) | const |  |
+| [`DW_TAG_APPLE_property`](#dw_tag_apple_property) | const |  |
+| [`DW_TAG_SUN_function_template`](#dw_tag_sun_function_template) | const |  |
+| [`DW_TAG_SUN_class_template`](#dw_tag_sun_class_template) | const |  |
+| [`DW_TAG_SUN_struct_template`](#dw_tag_sun_struct_template) | const |  |
+| [`DW_TAG_SUN_union_template`](#dw_tag_sun_union_template) | const |  |
+| [`DW_TAG_SUN_indirect_inheritance`](#dw_tag_sun_indirect_inheritance) | const |  |
+| [`DW_TAG_SUN_codeflags`](#dw_tag_sun_codeflags) | const |  |
+| [`DW_TAG_SUN_memop_info`](#dw_tag_sun_memop_info) | const |  |
+| [`DW_TAG_SUN_omp_child_func`](#dw_tag_sun_omp_child_func) | const |  |
+| [`DW_TAG_SUN_rtti_descriptor`](#dw_tag_sun_rtti_descriptor) | const |  |
+| [`DW_TAG_SUN_dtor_info`](#dw_tag_sun_dtor_info) | const |  |
+| [`DW_TAG_SUN_dtor`](#dw_tag_sun_dtor) | const |  |
+| [`DW_TAG_SUN_f90_interface`](#dw_tag_sun_f90_interface) | const |  |
+| [`DW_TAG_SUN_fortran_vax_structure`](#dw_tag_sun_fortran_vax_structure) | const |  |
+| [`DW_TAG_ALTIUM_circ_type`](#dw_tag_altium_circ_type) | const |  |
+| [`DW_TAG_ALTIUM_mwa_circ_type`](#dw_tag_altium_mwa_circ_type) | const |  |
+| [`DW_TAG_ALTIUM_rev_carry_type`](#dw_tag_altium_rev_carry_type) | const |  |
+| [`DW_TAG_ALTIUM_rom`](#dw_tag_altium_rom) | const |  |
+| [`DW_TAG_upc_shared_type`](#dw_tag_upc_shared_type) | const |  |
+| [`DW_TAG_upc_strict_type`](#dw_tag_upc_strict_type) | const |  |
+| [`DW_TAG_upc_relaxed_type`](#dw_tag_upc_relaxed_type) | const |  |
+| [`DW_TAG_PGI_kanji_type`](#dw_tag_pgi_kanji_type) | const |  |
+| [`DW_TAG_PGI_interface_block`](#dw_tag_pgi_interface_block) | const |  |
+| [`DW_TAG_BORLAND_property`](#dw_tag_borland_property) | const |  |
+| [`DW_TAG_BORLAND_Delphi_string`](#dw_tag_borland_delphi_string) | const |  |
+| [`DW_TAG_BORLAND_Delphi_dynamic_array`](#dw_tag_borland_delphi_dynamic_array) | const |  |
+| [`DW_TAG_BORLAND_Delphi_set`](#dw_tag_borland_delphi_set) | const |  |
+| [`DW_TAG_BORLAND_Delphi_variant`](#dw_tag_borland_delphi_variant) | const |  |
+| [`DW_AT_null`](#dw_at_null) | const |  |
+| [`DW_AT_fund_type`](#dw_at_fund_type) | const |  |
+| [`DW_AT_mod_fund_type`](#dw_at_mod_fund_type) | const |  |
+| [`DW_AT_user_def_type`](#dw_at_user_def_type) | const |  |
+| [`DW_AT_mod_u_d_type`](#dw_at_mod_u_d_type) | const |  |
+| [`DW_AT_subscr_data`](#dw_at_subscr_data) | const |  |
+| [`DW_AT_element_list`](#dw_at_element_list) | const |  |
+| [`DW_AT_member`](#dw_at_member) | const |  |
+| [`DW_AT_friends`](#dw_at_friends) | const |  |
+| [`DW_AT_program`](#dw_at_program) | const |  |
+| [`DW_AT_private`](#dw_at_private) | const |  |
+| [`DW_AT_protected`](#dw_at_protected) | const |  |
+| [`DW_AT_public`](#dw_at_public) | const |  |
+| [`DW_AT_pure_virtual`](#dw_at_pure_virtual) | const |  |
+| [`DW_AT_virtual`](#dw_at_virtual) | const |  |
+| [`DW_AT_specification_v1`](#dw_at_specification_v1) | const |  |
+| [`DW_AT_sibling`](#dw_at_sibling) | const |  |
+| [`DW_AT_location`](#dw_at_location) | const |  |
+| [`DW_AT_name`](#dw_at_name) | const |  |
+| [`DW_AT_ordering`](#dw_at_ordering) | const |  |
+| [`DW_AT_byte_size`](#dw_at_byte_size) | const |  |
+| [`DW_AT_bit_offset`](#dw_at_bit_offset) | const |  |
+| [`DW_AT_bit_size`](#dw_at_bit_size) | const |  |
+| [`DW_AT_stmt_list`](#dw_at_stmt_list) | const |  |
+| [`DW_AT_low_pc`](#dw_at_low_pc) | const |  |
+| [`DW_AT_high_pc`](#dw_at_high_pc) | const |  |
+| [`DW_AT_language`](#dw_at_language) | const |  |
+| [`DW_AT_discr`](#dw_at_discr) | const |  |
+| [`DW_AT_discr_value`](#dw_at_discr_value) | const |  |
+| [`DW_AT_visibility`](#dw_at_visibility) | const |  |
+| [`DW_AT_import`](#dw_at_import) | const |  |
+| [`DW_AT_string_length`](#dw_at_string_length) | const |  |
+| [`DW_AT_common_reference`](#dw_at_common_reference) | const |  |
+| [`DW_AT_comp_dir`](#dw_at_comp_dir) | const |  |
+| [`DW_AT_const_value`](#dw_at_const_value) | const |  |
+| [`DW_AT_containing_type`](#dw_at_containing_type) | const |  |
+| [`DW_AT_default_value`](#dw_at_default_value) | const |  |
+| [`DW_AT_inline`](#dw_at_inline) | const |  |
+| [`DW_AT_is_optional`](#dw_at_is_optional) | const |  |
+| [`DW_AT_lower_bound`](#dw_at_lower_bound) | const |  |
+| [`DW_AT_producer`](#dw_at_producer) | const |  |
+| [`DW_AT_prototyped`](#dw_at_prototyped) | const |  |
+| [`DW_AT_return_addr`](#dw_at_return_addr) | const |  |
+| [`DW_AT_start_scope`](#dw_at_start_scope) | const |  |
+| [`DW_AT_bit_stride`](#dw_at_bit_stride) | const |  |
+| [`DW_AT_upper_bound`](#dw_at_upper_bound) | const |  |
+| [`DW_AT_abstract_origin`](#dw_at_abstract_origin) | const |  |
+| [`DW_AT_accessibility`](#dw_at_accessibility) | const |  |
+| [`DW_AT_address_class`](#dw_at_address_class) | const |  |
+| [`DW_AT_artificial`](#dw_at_artificial) | const |  |
+| [`DW_AT_base_types`](#dw_at_base_types) | const |  |
+| [`DW_AT_calling_convention`](#dw_at_calling_convention) | const |  |
+| [`DW_AT_count`](#dw_at_count) | const |  |
+| [`DW_AT_data_member_location`](#dw_at_data_member_location) | const |  |
+| [`DW_AT_decl_column`](#dw_at_decl_column) | const |  |
+| [`DW_AT_decl_file`](#dw_at_decl_file) | const |  |
+| [`DW_AT_decl_line`](#dw_at_decl_line) | const |  |
+| [`DW_AT_declaration`](#dw_at_declaration) | const |  |
+| [`DW_AT_discr_list`](#dw_at_discr_list) | const |  |
+| [`DW_AT_encoding`](#dw_at_encoding) | const |  |
+| [`DW_AT_external`](#dw_at_external) | const |  |
+| [`DW_AT_frame_base`](#dw_at_frame_base) | const |  |
+| [`DW_AT_friend`](#dw_at_friend) | const |  |
+| [`DW_AT_identifier_case`](#dw_at_identifier_case) | const |  |
+| [`DW_AT_macro_info`](#dw_at_macro_info) | const |  |
+| [`DW_AT_namelist_item`](#dw_at_namelist_item) | const |  |
+| [`DW_AT_priority`](#dw_at_priority) | const |  |
+| [`DW_AT_segment`](#dw_at_segment) | const |  |
+| [`DW_AT_specification`](#dw_at_specification) | const |  |
+| [`DW_AT_static_link`](#dw_at_static_link) | const |  |
+| [`DW_AT_type`](#dw_at_type) | const |  |
+| [`DW_AT_use_location`](#dw_at_use_location) | const |  |
+| [`DW_AT_variable_parameter`](#dw_at_variable_parameter) | const |  |
+| [`DW_AT_virtuality`](#dw_at_virtuality) | const |  |
+| [`DW_AT_vtable_elem_location`](#dw_at_vtable_elem_location) | const |  |
+| [`DW_AT_allocated`](#dw_at_allocated) | const |  |
+| [`DW_AT_associated`](#dw_at_associated) | const |  |
+| [`DW_AT_data_location`](#dw_at_data_location) | const |  |
+| [`DW_AT_byte_stride`](#dw_at_byte_stride) | const |  |
+| [`DW_AT_entry_pc`](#dw_at_entry_pc) | const |  |
+| [`DW_AT_use_UTF8`](#dw_at_use_utf8) | const |  |
+| [`DW_AT_extension`](#dw_at_extension) | const |  |
+| [`DW_AT_ranges`](#dw_at_ranges) | const |  |
+| [`DW_AT_trampoline`](#dw_at_trampoline) | const |  |
+| [`DW_AT_call_column`](#dw_at_call_column) | const |  |
+| [`DW_AT_call_file`](#dw_at_call_file) | const |  |
+| [`DW_AT_call_line`](#dw_at_call_line) | const |  |
+| [`DW_AT_description`](#dw_at_description) | const |  |
+| [`DW_AT_binary_scale`](#dw_at_binary_scale) | const |  |
+| [`DW_AT_decimal_scale`](#dw_at_decimal_scale) | const |  |
+| [`DW_AT_small`](#dw_at_small) | const |  |
+| [`DW_AT_decimal_sign`](#dw_at_decimal_sign) | const |  |
+| [`DW_AT_digit_count`](#dw_at_digit_count) | const |  |
+| [`DW_AT_picture_string`](#dw_at_picture_string) | const |  |
+| [`DW_AT_mutable`](#dw_at_mutable) | const |  |
+| [`DW_AT_threads_scaled`](#dw_at_threads_scaled) | const |  |
+| [`DW_AT_explicit`](#dw_at_explicit) | const |  |
+| [`DW_AT_object_pointer`](#dw_at_object_pointer) | const |  |
+| [`DW_AT_endianity`](#dw_at_endianity) | const |  |
+| [`DW_AT_elemental`](#dw_at_elemental) | const |  |
+| [`DW_AT_pure`](#dw_at_pure) | const |  |
+| [`DW_AT_recursive`](#dw_at_recursive) | const |  |
+| [`DW_AT_signature`](#dw_at_signature) | const |  |
+| [`DW_AT_main_subprogram`](#dw_at_main_subprogram) | const |  |
+| [`DW_AT_data_bit_offset`](#dw_at_data_bit_offset) | const |  |
+| [`DW_AT_const_expr`](#dw_at_const_expr) | const |  |
+| [`DW_AT_enum_class`](#dw_at_enum_class) | const |  |
+| [`DW_AT_linkage_name`](#dw_at_linkage_name) | const |  |
+| [`DW_AT_string_length_bit_size`](#dw_at_string_length_bit_size) | const |  |
+| [`DW_AT_string_length_byte_size`](#dw_at_string_length_byte_size) | const |  |
+| [`DW_AT_rank`](#dw_at_rank) | const |  |
+| [`DW_AT_str_offsets_base`](#dw_at_str_offsets_base) | const |  |
+| [`DW_AT_addr_base`](#dw_at_addr_base) | const |  |
+| [`DW_AT_rnglists_base`](#dw_at_rnglists_base) | const |  |
+| [`DW_AT_dwo_name`](#dw_at_dwo_name) | const |  |
+| [`DW_AT_reference`](#dw_at_reference) | const |  |
+| [`DW_AT_rvalue_reference`](#dw_at_rvalue_reference) | const |  |
+| [`DW_AT_macros`](#dw_at_macros) | const |  |
+| [`DW_AT_call_all_calls`](#dw_at_call_all_calls) | const |  |
+| [`DW_AT_call_all_source_calls`](#dw_at_call_all_source_calls) | const |  |
+| [`DW_AT_call_all_tail_calls`](#dw_at_call_all_tail_calls) | const |  |
+| [`DW_AT_call_return_pc`](#dw_at_call_return_pc) | const |  |
+| [`DW_AT_call_value`](#dw_at_call_value) | const |  |
+| [`DW_AT_call_origin`](#dw_at_call_origin) | const |  |
+| [`DW_AT_call_parameter`](#dw_at_call_parameter) | const |  |
+| [`DW_AT_call_pc`](#dw_at_call_pc) | const |  |
+| [`DW_AT_call_tail_call`](#dw_at_call_tail_call) | const |  |
+| [`DW_AT_call_target`](#dw_at_call_target) | const |  |
+| [`DW_AT_call_target_clobbered`](#dw_at_call_target_clobbered) | const |  |
+| [`DW_AT_call_data_location`](#dw_at_call_data_location) | const |  |
+| [`DW_AT_call_data_value`](#dw_at_call_data_value) | const |  |
+| [`DW_AT_noreturn`](#dw_at_noreturn) | const |  |
+| [`DW_AT_alignment`](#dw_at_alignment) | const |  |
+| [`DW_AT_export_symbols`](#dw_at_export_symbols) | const |  |
+| [`DW_AT_deleted`](#dw_at_deleted) | const |  |
+| [`DW_AT_defaulted`](#dw_at_defaulted) | const |  |
+| [`DW_AT_loclists_base`](#dw_at_loclists_base) | const |  |
+| [`DW_AT_lo_user`](#dw_at_lo_user) | const |  |
+| [`DW_AT_hi_user`](#dw_at_hi_user) | const |  |
+| [`DW_AT_MIPS_fde`](#dw_at_mips_fde) | const |  |
+| [`DW_AT_MIPS_loop_begin`](#dw_at_mips_loop_begin) | const |  |
+| [`DW_AT_MIPS_tail_loop_begin`](#dw_at_mips_tail_loop_begin) | const |  |
+| [`DW_AT_MIPS_epilog_begin`](#dw_at_mips_epilog_begin) | const |  |
+| [`DW_AT_MIPS_loop_unroll_factor`](#dw_at_mips_loop_unroll_factor) | const |  |
+| [`DW_AT_MIPS_software_pipeline_depth`](#dw_at_mips_software_pipeline_depth) | const |  |
+| [`DW_AT_MIPS_linkage_name`](#dw_at_mips_linkage_name) | const |  |
+| [`DW_AT_MIPS_stride`](#dw_at_mips_stride) | const |  |
+| [`DW_AT_MIPS_abstract_name`](#dw_at_mips_abstract_name) | const |  |
+| [`DW_AT_MIPS_clone_origin`](#dw_at_mips_clone_origin) | const |  |
+| [`DW_AT_MIPS_has_inlines`](#dw_at_mips_has_inlines) | const |  |
+| [`DW_AT_MIPS_stride_byte`](#dw_at_mips_stride_byte) | const |  |
+| [`DW_AT_MIPS_stride_elem`](#dw_at_mips_stride_elem) | const |  |
+| [`DW_AT_MIPS_ptr_dopetype`](#dw_at_mips_ptr_dopetype) | const |  |
+| [`DW_AT_MIPS_allocatable_dopetype`](#dw_at_mips_allocatable_dopetype) | const |  |
+| [`DW_AT_MIPS_assumed_shape_dopetype`](#dw_at_mips_assumed_shape_dopetype) | const |  |
+| [`DW_AT_MIPS_assumed_size`](#dw_at_mips_assumed_size) | const |  |
+| [`DW_AT_INTEL_other_endian`](#dw_at_intel_other_endian) | const |  |
+| [`DW_AT_sf_names`](#dw_at_sf_names) | const |  |
+| [`DW_AT_src_info`](#dw_at_src_info) | const |  |
+| [`DW_AT_mac_info`](#dw_at_mac_info) | const |  |
+| [`DW_AT_src_coords`](#dw_at_src_coords) | const |  |
+| [`DW_AT_body_begin`](#dw_at_body_begin) | const |  |
+| [`DW_AT_body_end`](#dw_at_body_end) | const |  |
+| [`DW_AT_GNU_vector`](#dw_at_gnu_vector) | const |  |
+| [`DW_AT_GNU_guarded_by`](#dw_at_gnu_guarded_by) | const |  |
+| [`DW_AT_GNU_pt_guarded_by`](#dw_at_gnu_pt_guarded_by) | const |  |
+| [`DW_AT_GNU_guarded`](#dw_at_gnu_guarded) | const |  |
+| [`DW_AT_GNU_pt_guarded`](#dw_at_gnu_pt_guarded) | const |  |
+| [`DW_AT_GNU_locks_excluded`](#dw_at_gnu_locks_excluded) | const |  |
+| [`DW_AT_GNU_exclusive_locks_required`](#dw_at_gnu_exclusive_locks_required) | const |  |
+| [`DW_AT_GNU_shared_locks_required`](#dw_at_gnu_shared_locks_required) | const |  |
+| [`DW_AT_GNU_odr_signature`](#dw_at_gnu_odr_signature) | const |  |
+| [`DW_AT_GNU_template_name`](#dw_at_gnu_template_name) | const |  |
+| [`DW_AT_GNU_call_site_value`](#dw_at_gnu_call_site_value) | const |  |
+| [`DW_AT_GNU_call_site_data_value`](#dw_at_gnu_call_site_data_value) | const |  |
+| [`DW_AT_GNU_call_site_target`](#dw_at_gnu_call_site_target) | const |  |
+| [`DW_AT_GNU_call_site_target_clobbered`](#dw_at_gnu_call_site_target_clobbered) | const |  |
+| [`DW_AT_GNU_tail_call`](#dw_at_gnu_tail_call) | const |  |
+| [`DW_AT_GNU_all_tail_call_sites`](#dw_at_gnu_all_tail_call_sites) | const |  |
+| [`DW_AT_GNU_all_call_sites`](#dw_at_gnu_all_call_sites) | const |  |
+| [`DW_AT_GNU_all_source_call_sites`](#dw_at_gnu_all_source_call_sites) | const |  |
+| [`DW_AT_GNU_macros`](#dw_at_gnu_macros) | const |  |
+| [`DW_AT_GNU_deleted`](#dw_at_gnu_deleted) | const |  |
+| [`DW_AT_GNU_dwo_name`](#dw_at_gnu_dwo_name) | const |  |
+| [`DW_AT_GNU_dwo_id`](#dw_at_gnu_dwo_id) | const |  |
+| [`DW_AT_GNU_ranges_base`](#dw_at_gnu_ranges_base) | const |  |
+| [`DW_AT_GNU_addr_base`](#dw_at_gnu_addr_base) | const |  |
+| [`DW_AT_GNU_pubnames`](#dw_at_gnu_pubnames) | const |  |
+| [`DW_AT_GNU_pubtypes`](#dw_at_gnu_pubtypes) | const |  |
+| [`DW_AT_GNU_discriminator`](#dw_at_gnu_discriminator) | const |  |
+| [`DW_AT_GNU_locviews`](#dw_at_gnu_locviews) | const |  |
+| [`DW_AT_GNU_entry_view`](#dw_at_gnu_entry_view) | const |  |
+| [`DW_AT_SUN_template`](#dw_at_sun_template) | const |  |
+| [`DW_AT_SUN_alignment`](#dw_at_sun_alignment) | const |  |
+| [`DW_AT_SUN_vtable`](#dw_at_sun_vtable) | const |  |
+| [`DW_AT_SUN_count_guarantee`](#dw_at_sun_count_guarantee) | const |  |
+| [`DW_AT_SUN_command_line`](#dw_at_sun_command_line) | const |  |
+| [`DW_AT_SUN_vbase`](#dw_at_sun_vbase) | const |  |
+| [`DW_AT_SUN_compile_options`](#dw_at_sun_compile_options) | const |  |
+| [`DW_AT_SUN_language`](#dw_at_sun_language) | const |  |
+| [`DW_AT_SUN_browser_file`](#dw_at_sun_browser_file) | const |  |
+| [`DW_AT_SUN_vtable_abi`](#dw_at_sun_vtable_abi) | const |  |
+| [`DW_AT_SUN_func_offsets`](#dw_at_sun_func_offsets) | const |  |
+| [`DW_AT_SUN_cf_kind`](#dw_at_sun_cf_kind) | const |  |
+| [`DW_AT_SUN_vtable_index`](#dw_at_sun_vtable_index) | const |  |
+| [`DW_AT_SUN_omp_tpriv_addr`](#dw_at_sun_omp_tpriv_addr) | const |  |
+| [`DW_AT_SUN_omp_child_func`](#dw_at_sun_omp_child_func) | const |  |
+| [`DW_AT_SUN_func_offset`](#dw_at_sun_func_offset) | const |  |
+| [`DW_AT_SUN_memop_type_ref`](#dw_at_sun_memop_type_ref) | const |  |
+| [`DW_AT_SUN_profile_id`](#dw_at_sun_profile_id) | const |  |
+| [`DW_AT_SUN_memop_signature`](#dw_at_sun_memop_signature) | const |  |
+| [`DW_AT_SUN_obj_dir`](#dw_at_sun_obj_dir) | const |  |
+| [`DW_AT_SUN_obj_file`](#dw_at_sun_obj_file) | const |  |
+| [`DW_AT_SUN_original_name`](#dw_at_sun_original_name) | const |  |
+| [`DW_AT_SUN_hwcprof_signature`](#dw_at_sun_hwcprof_signature) | const |  |
+| [`DW_AT_SUN_amd64_parmdump`](#dw_at_sun_amd64_parmdump) | const |  |
+| [`DW_AT_SUN_part_link_name`](#dw_at_sun_part_link_name) | const |  |
+| [`DW_AT_SUN_link_name`](#dw_at_sun_link_name) | const |  |
+| [`DW_AT_SUN_pass_with_const`](#dw_at_sun_pass_with_const) | const |  |
+| [`DW_AT_SUN_return_with_const`](#dw_at_sun_return_with_const) | const |  |
+| [`DW_AT_SUN_import_by_name`](#dw_at_sun_import_by_name) | const |  |
+| [`DW_AT_SUN_f90_pointer`](#dw_at_sun_f90_pointer) | const |  |
+| [`DW_AT_SUN_pass_by_ref`](#dw_at_sun_pass_by_ref) | const |  |
+| [`DW_AT_SUN_f90_allocatable`](#dw_at_sun_f90_allocatable) | const |  |
+| [`DW_AT_SUN_f90_assumed_shape_array`](#dw_at_sun_f90_assumed_shape_array) | const |  |
+| [`DW_AT_SUN_c_vla`](#dw_at_sun_c_vla) | const |  |
+| [`DW_AT_SUN_return_value_ptr`](#dw_at_sun_return_value_ptr) | const |  |
+| [`DW_AT_SUN_dtor_start`](#dw_at_sun_dtor_start) | const |  |
+| [`DW_AT_SUN_dtor_length`](#dw_at_sun_dtor_length) | const |  |
+| [`DW_AT_SUN_dtor_state_initial`](#dw_at_sun_dtor_state_initial) | const |  |
+| [`DW_AT_SUN_dtor_state_final`](#dw_at_sun_dtor_state_final) | const |  |
+| [`DW_AT_SUN_dtor_state_deltas`](#dw_at_sun_dtor_state_deltas) | const |  |
+| [`DW_AT_SUN_import_by_lname`](#dw_at_sun_import_by_lname) | const |  |
+| [`DW_AT_SUN_f90_use_only`](#dw_at_sun_f90_use_only) | const |  |
+| [`DW_AT_SUN_namelist_spec`](#dw_at_sun_namelist_spec) | const |  |
+| [`DW_AT_SUN_is_omp_child_func`](#dw_at_sun_is_omp_child_func) | const |  |
+| [`DW_AT_SUN_fortran_main_alias`](#dw_at_sun_fortran_main_alias) | const |  |
+| [`DW_AT_SUN_fortran_based`](#dw_at_sun_fortran_based) | const |  |
+| [`DW_AT_ALTIUM_loclist`](#dw_at_altium_loclist) | const |  |
+| [`DW_AT_use_GNAT_descriptive_type`](#dw_at_use_gnat_descriptive_type) | const |  |
+| [`DW_AT_GNAT_descriptive_type`](#dw_at_gnat_descriptive_type) | const |  |
+| [`DW_AT_GNU_numerator`](#dw_at_gnu_numerator) | const |  |
+| [`DW_AT_GNU_denominator`](#dw_at_gnu_denominator) | const |  |
+| [`DW_AT_GNU_bias`](#dw_at_gnu_bias) | const |  |
+| [`DW_AT_upc_threads_scaled`](#dw_at_upc_threads_scaled) | const |  |
+| [`DW_AT_PGI_lbase`](#dw_at_pgi_lbase) | const |  |
+| [`DW_AT_PGI_soffset`](#dw_at_pgi_soffset) | const |  |
+| [`DW_AT_PGI_lstride`](#dw_at_pgi_lstride) | const |  |
+| [`DW_AT_BORLAND_property_read`](#dw_at_borland_property_read) | const |  |
+| [`DW_AT_BORLAND_property_write`](#dw_at_borland_property_write) | const |  |
+| [`DW_AT_BORLAND_property_implements`](#dw_at_borland_property_implements) | const |  |
+| [`DW_AT_BORLAND_property_index`](#dw_at_borland_property_index) | const |  |
+| [`DW_AT_BORLAND_property_default`](#dw_at_borland_property_default) | const |  |
+| [`DW_AT_BORLAND_Delphi_unit`](#dw_at_borland_delphi_unit) | const |  |
+| [`DW_AT_BORLAND_Delphi_class`](#dw_at_borland_delphi_class) | const |  |
+| [`DW_AT_BORLAND_Delphi_record`](#dw_at_borland_delphi_record) | const |  |
+| [`DW_AT_BORLAND_Delphi_metaclass`](#dw_at_borland_delphi_metaclass) | const |  |
+| [`DW_AT_BORLAND_Delphi_constructor`](#dw_at_borland_delphi_constructor) | const |  |
+| [`DW_AT_BORLAND_Delphi_destructor`](#dw_at_borland_delphi_destructor) | const |  |
+| [`DW_AT_BORLAND_Delphi_anonymous_method`](#dw_at_borland_delphi_anonymous_method) | const |  |
+| [`DW_AT_BORLAND_Delphi_interface`](#dw_at_borland_delphi_interface) | const |  |
+| [`DW_AT_BORLAND_Delphi_ABI`](#dw_at_borland_delphi_abi) | const |  |
+| [`DW_AT_BORLAND_Delphi_return`](#dw_at_borland_delphi_return) | const |  |
+| [`DW_AT_BORLAND_Delphi_frameptr`](#dw_at_borland_delphi_frameptr) | const |  |
+| [`DW_AT_BORLAND_closure`](#dw_at_borland_closure) | const |  |
+| [`DW_AT_LLVM_include_path`](#dw_at_llvm_include_path) | const |  |
+| [`DW_AT_LLVM_config_macros`](#dw_at_llvm_config_macros) | const |  |
+| [`DW_AT_LLVM_isysroot`](#dw_at_llvm_isysroot) | const |  |
+| [`DW_AT_APPLE_optimized`](#dw_at_apple_optimized) | const |  |
+| [`DW_AT_APPLE_flags`](#dw_at_apple_flags) | const |  |
+| [`DW_AT_APPLE_isa`](#dw_at_apple_isa) | const |  |
+| [`DW_AT_APPLE_block`](#dw_at_apple_block) | const |  |
+| [`DW_AT_APPLE_major_runtime_vers`](#dw_at_apple_major_runtime_vers) | const |  |
+| [`DW_AT_APPLE_runtime_class`](#dw_at_apple_runtime_class) | const |  |
+| [`DW_AT_APPLE_omit_frame_ptr`](#dw_at_apple_omit_frame_ptr) | const |  |
+| [`DW_AT_APPLE_property_name`](#dw_at_apple_property_name) | const |  |
+| [`DW_AT_APPLE_property_getter`](#dw_at_apple_property_getter) | const |  |
+| [`DW_AT_APPLE_property_setter`](#dw_at_apple_property_setter) | const |  |
+| [`DW_AT_APPLE_property_attribute`](#dw_at_apple_property_attribute) | const |  |
+| [`DW_AT_APPLE_objc_complete_type`](#dw_at_apple_objc_complete_type) | const |  |
+| [`DW_AT_APPLE_property`](#dw_at_apple_property) | const |  |
+| [`DW_FORM_null`](#dw_form_null) | const |  |
+| [`DW_FORM_ref`](#dw_form_ref) | const |  |
+| [`DW_FORM_addr`](#dw_form_addr) | const |  |
+| [`DW_FORM_block2`](#dw_form_block2) | const |  |
+| [`DW_FORM_block4`](#dw_form_block4) | const |  |
+| [`DW_FORM_data2`](#dw_form_data2) | const |  |
+| [`DW_FORM_data4`](#dw_form_data4) | const |  |
+| [`DW_FORM_data8`](#dw_form_data8) | const |  |
+| [`DW_FORM_string`](#dw_form_string) | const |  |
+| [`DW_FORM_block`](#dw_form_block) | const |  |
+| [`DW_FORM_block1`](#dw_form_block1) | const |  |
+| [`DW_FORM_data1`](#dw_form_data1) | const |  |
+| [`DW_FORM_flag`](#dw_form_flag) | const |  |
+| [`DW_FORM_sdata`](#dw_form_sdata) | const |  |
+| [`DW_FORM_strp`](#dw_form_strp) | const |  |
+| [`DW_FORM_udata`](#dw_form_udata) | const |  |
+| [`DW_FORM_ref_addr`](#dw_form_ref_addr) | const |  |
+| [`DW_FORM_ref1`](#dw_form_ref1) | const |  |
+| [`DW_FORM_ref2`](#dw_form_ref2) | const |  |
+| [`DW_FORM_ref4`](#dw_form_ref4) | const |  |
+| [`DW_FORM_ref8`](#dw_form_ref8) | const |  |
+| [`DW_FORM_ref_udata`](#dw_form_ref_udata) | const |  |
+| [`DW_FORM_indirect`](#dw_form_indirect) | const |  |
+| [`DW_FORM_sec_offset`](#dw_form_sec_offset) | const |  |
+| [`DW_FORM_exprloc`](#dw_form_exprloc) | const |  |
+| [`DW_FORM_flag_present`](#dw_form_flag_present) | const |  |
+| [`DW_FORM_ref_sig8`](#dw_form_ref_sig8) | const |  |
+| [`DW_FORM_strx`](#dw_form_strx) | const |  |
+| [`DW_FORM_addrx`](#dw_form_addrx) | const |  |
+| [`DW_FORM_ref_sup4`](#dw_form_ref_sup4) | const |  |
+| [`DW_FORM_strp_sup`](#dw_form_strp_sup) | const |  |
+| [`DW_FORM_data16`](#dw_form_data16) | const |  |
+| [`DW_FORM_line_strp`](#dw_form_line_strp) | const |  |
+| [`DW_FORM_implicit_const`](#dw_form_implicit_const) | const |  |
+| [`DW_FORM_loclistx`](#dw_form_loclistx) | const |  |
+| [`DW_FORM_rnglistx`](#dw_form_rnglistx) | const |  |
+| [`DW_FORM_ref_sup8`](#dw_form_ref_sup8) | const |  |
+| [`DW_FORM_strx1`](#dw_form_strx1) | const |  |
+| [`DW_FORM_strx2`](#dw_form_strx2) | const |  |
+| [`DW_FORM_strx3`](#dw_form_strx3) | const |  |
+| [`DW_FORM_strx4`](#dw_form_strx4) | const |  |
+| [`DW_FORM_addrx1`](#dw_form_addrx1) | const |  |
+| [`DW_FORM_addrx2`](#dw_form_addrx2) | const |  |
+| [`DW_FORM_addrx3`](#dw_form_addrx3) | const |  |
+| [`DW_FORM_addrx4`](#dw_form_addrx4) | const |  |
+| [`DW_FORM_GNU_addr_index`](#dw_form_gnu_addr_index) | const |  |
+| [`DW_FORM_GNU_str_index`](#dw_form_gnu_str_index) | const |  |
+| [`DW_FORM_GNU_ref_alt`](#dw_form_gnu_ref_alt) | const |  |
+| [`DW_FORM_GNU_strp_alt`](#dw_form_gnu_strp_alt) | const |  |
+| [`DW_ATE_address`](#dw_ate_address) | const |  |
+| [`DW_ATE_boolean`](#dw_ate_boolean) | const |  |
+| [`DW_ATE_complex_float`](#dw_ate_complex_float) | const |  |
+| [`DW_ATE_float`](#dw_ate_float) | const |  |
+| [`DW_ATE_signed`](#dw_ate_signed) | const |  |
+| [`DW_ATE_signed_char`](#dw_ate_signed_char) | const |  |
+| [`DW_ATE_unsigned`](#dw_ate_unsigned) | const |  |
+| [`DW_ATE_unsigned_char`](#dw_ate_unsigned_char) | const |  |
+| [`DW_ATE_imaginary_float`](#dw_ate_imaginary_float) | const |  |
+| [`DW_ATE_packed_decimal`](#dw_ate_packed_decimal) | const |  |
+| [`DW_ATE_numeric_string`](#dw_ate_numeric_string) | const |  |
+| [`DW_ATE_edited`](#dw_ate_edited) | const |  |
+| [`DW_ATE_signed_fixed`](#dw_ate_signed_fixed) | const |  |
+| [`DW_ATE_unsigned_fixed`](#dw_ate_unsigned_fixed) | const |  |
+| [`DW_ATE_decimal_float`](#dw_ate_decimal_float) | const |  |
+| [`DW_ATE_UTF`](#dw_ate_utf) | const |  |
+| [`DW_ATE_UCS`](#dw_ate_ucs) | const |  |
+| [`DW_ATE_ASCII`](#dw_ate_ascii) | const |  |
+| [`DW_ATE_lo_user`](#dw_ate_lo_user) | const |  |
+| [`DW_ATE_hi_user`](#dw_ate_hi_user) | const |  |
+| [`DW_LLE_end_of_list`](#dw_lle_end_of_list) | const |  |
+| [`DW_LLE_base_addressx`](#dw_lle_base_addressx) | const |  |
+| [`DW_LLE_startx_endx`](#dw_lle_startx_endx) | const |  |
+| [`DW_LLE_startx_length`](#dw_lle_startx_length) | const |  |
+| [`DW_LLE_offset_pair`](#dw_lle_offset_pair) | const |  |
+| [`DW_LLE_default_location`](#dw_lle_default_location) | const |  |
+| [`DW_LLE_base_address`](#dw_lle_base_address) | const |  |
+| [`DW_LLE_start_end`](#dw_lle_start_end) | const |  |
+| [`DW_LLE_start_length`](#dw_lle_start_length) | const |  |
+| [`DW_LLE_GNU_view_pair`](#dw_lle_gnu_view_pair) | const |  |
+| [`DW_DS_unsigned`](#dw_ds_unsigned) | const |  |
+| [`DW_DS_leading_overpunch`](#dw_ds_leading_overpunch) | const |  |
+| [`DW_DS_trailing_overpunch`](#dw_ds_trailing_overpunch) | const |  |
+| [`DW_DS_leading_separate`](#dw_ds_leading_separate) | const |  |
+| [`DW_DS_trailing_separate`](#dw_ds_trailing_separate) | const |  |
+| [`DW_END_default`](#dw_end_default) | const |  |
+| [`DW_END_big`](#dw_end_big) | const |  |
+| [`DW_END_little`](#dw_end_little) | const |  |
+| [`DW_END_lo_user`](#dw_end_lo_user) | const |  |
+| [`DW_END_hi_user`](#dw_end_hi_user) | const |  |
+| [`DW_ACCESS_public`](#dw_access_public) | const |  |
+| [`DW_ACCESS_protected`](#dw_access_protected) | const |  |
+| [`DW_ACCESS_private`](#dw_access_private) | const |  |
+| [`DW_VIS_local`](#dw_vis_local) | const |  |
+| [`DW_VIS_exported`](#dw_vis_exported) | const |  |
+| [`DW_VIS_qualified`](#dw_vis_qualified) | const |  |
+| [`DW_VIRTUALITY_none`](#dw_virtuality_none) | const |  |
+| [`DW_VIRTUALITY_virtual`](#dw_virtuality_virtual) | const |  |
+| [`DW_VIRTUALITY_pure_virtual`](#dw_virtuality_pure_virtual) | const |  |
+| [`DW_LANG_C89`](#dw_lang_c89) | const |  |
+| [`DW_LANG_C`](#dw_lang_c) | const |  |
+| [`DW_LANG_Ada83`](#dw_lang_ada83) | const |  |
+| [`DW_LANG_C_plus_plus`](#dw_lang_c_plus_plus) | const |  |
+| [`DW_LANG_Cobol74`](#dw_lang_cobol74) | const |  |
+| [`DW_LANG_Cobol85`](#dw_lang_cobol85) | const |  |
+| [`DW_LANG_Fortran77`](#dw_lang_fortran77) | const |  |
+| [`DW_LANG_Fortran90`](#dw_lang_fortran90) | const |  |
+| [`DW_LANG_Pascal83`](#dw_lang_pascal83) | const |  |
+| [`DW_LANG_Modula2`](#dw_lang_modula2) | const |  |
+| [`DW_LANG_Java`](#dw_lang_java) | const |  |
+| [`DW_LANG_C99`](#dw_lang_c99) | const |  |
+| [`DW_LANG_Ada95`](#dw_lang_ada95) | const |  |
+| [`DW_LANG_Fortran95`](#dw_lang_fortran95) | const |  |
+| [`DW_LANG_PLI`](#dw_lang_pli) | const |  |
+| [`DW_LANG_ObjC`](#dw_lang_objc) | const |  |
+| [`DW_LANG_ObjC_plus_plus`](#dw_lang_objc_plus_plus) | const |  |
+| [`DW_LANG_UPC`](#dw_lang_upc) | const |  |
+| [`DW_LANG_D`](#dw_lang_d) | const |  |
+| [`DW_LANG_Python`](#dw_lang_python) | const |  |
+| [`DW_LANG_OpenCL`](#dw_lang_opencl) | const |  |
+| [`DW_LANG_Go`](#dw_lang_go) | const |  |
+| [`DW_LANG_Modula3`](#dw_lang_modula3) | const |  |
+| [`DW_LANG_Haskell`](#dw_lang_haskell) | const |  |
+| [`DW_LANG_C_plus_plus_03`](#dw_lang_c_plus_plus_03) | const |  |
+| [`DW_LANG_C_plus_plus_11`](#dw_lang_c_plus_plus_11) | const |  |
+| [`DW_LANG_OCaml`](#dw_lang_ocaml) | const |  |
+| [`DW_LANG_Rust`](#dw_lang_rust) | const |  |
+| [`DW_LANG_C11`](#dw_lang_c11) | const |  |
+| [`DW_LANG_Swift`](#dw_lang_swift) | const |  |
+| [`DW_LANG_Julia`](#dw_lang_julia) | const |  |
+| [`DW_LANG_Dylan`](#dw_lang_dylan) | const |  |
+| [`DW_LANG_C_plus_plus_14`](#dw_lang_c_plus_plus_14) | const |  |
+| [`DW_LANG_Fortran03`](#dw_lang_fortran03) | const |  |
+| [`DW_LANG_Fortran08`](#dw_lang_fortran08) | const |  |
+| [`DW_LANG_RenderScript`](#dw_lang_renderscript) | const |  |
+| [`DW_LANG_BLISS`](#dw_lang_bliss) | const |  |
+| [`DW_LANG_Kotlin`](#dw_lang_kotlin) | const |  |
+| [`DW_LANG_Zig`](#dw_lang_zig) | const |  |
+| [`DW_LANG_Crystal`](#dw_lang_crystal) | const |  |
+| [`DW_LANG_C_plus_plus_17`](#dw_lang_c_plus_plus_17) | const |  |
+| [`DW_LANG_C_plus_plus_20`](#dw_lang_c_plus_plus_20) | const |  |
+| [`DW_LANG_C17`](#dw_lang_c17) | const |  |
+| [`DW_LANG_Fortran18`](#dw_lang_fortran18) | const |  |
+| [`DW_LANG_Ada2005`](#dw_lang_ada2005) | const |  |
+| [`DW_LANG_Ada2012`](#dw_lang_ada2012) | const |  |
+| [`DW_LANG_lo_user`](#dw_lang_lo_user) | const |  |
+| [`DW_LANG_hi_user`](#dw_lang_hi_user) | const |  |
+| [`DW_LANG_Mips_Assembler`](#dw_lang_mips_assembler) | const |  |
+| [`DW_LANG_GOOGLE_RenderScript`](#dw_lang_google_renderscript) | const |  |
+| [`DW_LANG_SUN_Assembler`](#dw_lang_sun_assembler) | const |  |
+| [`DW_LANG_ALTIUM_Assembler`](#dw_lang_altium_assembler) | const |  |
+| [`DW_LANG_BORLAND_Delphi`](#dw_lang_borland_delphi) | const |  |
+| [`DW_ADDR_none`](#dw_addr_none) | const |  |
+| [`DW_ID_case_sensitive`](#dw_id_case_sensitive) | const |  |
+| [`DW_ID_up_case`](#dw_id_up_case) | const |  |
+| [`DW_ID_down_case`](#dw_id_down_case) | const |  |
+| [`DW_ID_case_insensitive`](#dw_id_case_insensitive) | const |  |
+| [`DW_CC_normal`](#dw_cc_normal) | const |  |
+| [`DW_CC_program`](#dw_cc_program) | const |  |
+| [`DW_CC_nocall`](#dw_cc_nocall) | const |  |
+| [`DW_CC_pass_by_reference`](#dw_cc_pass_by_reference) | const |  |
+| [`DW_CC_pass_by_value`](#dw_cc_pass_by_value) | const |  |
+| [`DW_CC_lo_user`](#dw_cc_lo_user) | const |  |
+| [`DW_CC_hi_user`](#dw_cc_hi_user) | const |  |
+| [`DW_INL_not_inlined`](#dw_inl_not_inlined) | const |  |
+| [`DW_INL_inlined`](#dw_inl_inlined) | const |  |
+| [`DW_INL_declared_not_inlined`](#dw_inl_declared_not_inlined) | const |  |
+| [`DW_INL_declared_inlined`](#dw_inl_declared_inlined) | const |  |
+| [`DW_ORD_row_major`](#dw_ord_row_major) | const |  |
+| [`DW_ORD_col_major`](#dw_ord_col_major) | const |  |
+| [`DW_DSC_label`](#dw_dsc_label) | const |  |
+| [`DW_DSC_range`](#dw_dsc_range) | const |  |
+| [`DW_IDX_compile_unit`](#dw_idx_compile_unit) | const |  |
+| [`DW_IDX_type_unit`](#dw_idx_type_unit) | const |  |
+| [`DW_IDX_die_offset`](#dw_idx_die_offset) | const |  |
+| [`DW_IDX_parent`](#dw_idx_parent) | const |  |
+| [`DW_IDX_type_hash`](#dw_idx_type_hash) | const |  |
+| [`DW_IDX_lo_user`](#dw_idx_lo_user) | const |  |
+| [`DW_IDX_hi_user`](#dw_idx_hi_user) | const |  |
+| [`DW_DEFAULTED_no`](#dw_defaulted_no) | const |  |
+| [`DW_DEFAULTED_in_class`](#dw_defaulted_in_class) | const |  |
+| [`DW_DEFAULTED_out_of_class`](#dw_defaulted_out_of_class) | const |  |
+| [`DW_LNS_copy`](#dw_lns_copy) | const |  |
+| [`DW_LNS_advance_pc`](#dw_lns_advance_pc) | const |  |
+| [`DW_LNS_advance_line`](#dw_lns_advance_line) | const |  |
+| [`DW_LNS_set_file`](#dw_lns_set_file) | const |  |
+| [`DW_LNS_set_column`](#dw_lns_set_column) | const |  |
+| [`DW_LNS_negate_stmt`](#dw_lns_negate_stmt) | const |  |
+| [`DW_LNS_set_basic_block`](#dw_lns_set_basic_block) | const |  |
+| [`DW_LNS_const_add_pc`](#dw_lns_const_add_pc) | const |  |
+| [`DW_LNS_fixed_advance_pc`](#dw_lns_fixed_advance_pc) | const |  |
+| [`DW_LNS_set_prologue_end`](#dw_lns_set_prologue_end) | const |  |
+| [`DW_LNS_set_epilogue_begin`](#dw_lns_set_epilogue_begin) | const |  |
+| [`DW_LNS_set_isa`](#dw_lns_set_isa) | const |  |
+| [`DW_LNE_end_sequence`](#dw_lne_end_sequence) | const |  |
+| [`DW_LNE_set_address`](#dw_lne_set_address) | const |  |
+| [`DW_LNE_define_file`](#dw_lne_define_file) | const |  |
+| [`DW_LNE_set_discriminator`](#dw_lne_set_discriminator) | const |  |
+| [`DW_LNE_lo_user`](#dw_lne_lo_user) | const |  |
+| [`DW_LNE_hi_user`](#dw_lne_hi_user) | const |  |
+| [`DW_LNCT_path`](#dw_lnct_path) | const |  |
+| [`DW_LNCT_directory_index`](#dw_lnct_directory_index) | const |  |
+| [`DW_LNCT_timestamp`](#dw_lnct_timestamp) | const |  |
+| [`DW_LNCT_size`](#dw_lnct_size) | const |  |
+| [`DW_LNCT_MD5`](#dw_lnct_md5) | const |  |
+| [`DW_LNCT_lo_user`](#dw_lnct_lo_user) | const |  |
+| [`DW_LNCT_LLVM_source`](#dw_lnct_llvm_source) | const |  |
+| [`DW_LNCT_hi_user`](#dw_lnct_hi_user) | const |  |
+| [`DW_MACINFO_define`](#dw_macinfo_define) | const |  |
+| [`DW_MACINFO_undef`](#dw_macinfo_undef) | const |  |
+| [`DW_MACINFO_start_file`](#dw_macinfo_start_file) | const |  |
+| [`DW_MACINFO_end_file`](#dw_macinfo_end_file) | const |  |
+| [`DW_MACINFO_vendor_ext`](#dw_macinfo_vendor_ext) | const |  |
+| [`DW_MACRO_define`](#dw_macro_define) | const |  |
+| [`DW_MACRO_undef`](#dw_macro_undef) | const |  |
+| [`DW_MACRO_start_file`](#dw_macro_start_file) | const |  |
+| [`DW_MACRO_end_file`](#dw_macro_end_file) | const |  |
+| [`DW_MACRO_define_strp`](#dw_macro_define_strp) | const |  |
+| [`DW_MACRO_undef_strp`](#dw_macro_undef_strp) | const |  |
+| [`DW_MACRO_import`](#dw_macro_import) | const |  |
+| [`DW_MACRO_define_sup`](#dw_macro_define_sup) | const |  |
+| [`DW_MACRO_undef_sup`](#dw_macro_undef_sup) | const |  |
+| [`DW_MACRO_import_sup`](#dw_macro_import_sup) | const |  |
+| [`DW_MACRO_define_strx`](#dw_macro_define_strx) | const |  |
+| [`DW_MACRO_undef_strx`](#dw_macro_undef_strx) | const |  |
+| [`DW_MACRO_lo_user`](#dw_macro_lo_user) | const |  |
+| [`DW_MACRO_hi_user`](#dw_macro_hi_user) | const |  |
+| [`DW_RLE_end_of_list`](#dw_rle_end_of_list) | const |  |
+| [`DW_RLE_base_addressx`](#dw_rle_base_addressx) | const |  |
+| [`DW_RLE_startx_endx`](#dw_rle_startx_endx) | const |  |
+| [`DW_RLE_startx_length`](#dw_rle_startx_length) | const |  |
+| [`DW_RLE_offset_pair`](#dw_rle_offset_pair) | const |  |
+| [`DW_RLE_base_address`](#dw_rle_base_address) | const |  |
+| [`DW_RLE_start_end`](#dw_rle_start_end) | const |  |
+| [`DW_RLE_start_length`](#dw_rle_start_length) | const |  |
+| [`DW_OP_addr`](#dw_op_addr) | const |  |
+| [`DW_OP_deref`](#dw_op_deref) | const |  |
+| [`DW_OP_const1u`](#dw_op_const1u) | const |  |
+| [`DW_OP_const1s`](#dw_op_const1s) | const |  |
+| [`DW_OP_const2u`](#dw_op_const2u) | const |  |
+| [`DW_OP_const2s`](#dw_op_const2s) | const |  |
+| [`DW_OP_const4u`](#dw_op_const4u) | const |  |
+| [`DW_OP_const4s`](#dw_op_const4s) | const |  |
+| [`DW_OP_const8u`](#dw_op_const8u) | const |  |
+| [`DW_OP_const8s`](#dw_op_const8s) | const |  |
+| [`DW_OP_constu`](#dw_op_constu) | const |  |
+| [`DW_OP_consts`](#dw_op_consts) | const |  |
+| [`DW_OP_dup`](#dw_op_dup) | const |  |
+| [`DW_OP_drop`](#dw_op_drop) | const |  |
+| [`DW_OP_over`](#dw_op_over) | const |  |
+| [`DW_OP_pick`](#dw_op_pick) | const |  |
+| [`DW_OP_swap`](#dw_op_swap) | const |  |
+| [`DW_OP_rot`](#dw_op_rot) | const |  |
+| [`DW_OP_xderef`](#dw_op_xderef) | const |  |
+| [`DW_OP_abs`](#dw_op_abs) | const |  |
+| [`DW_OP_and`](#dw_op_and) | const |  |
+| [`DW_OP_div`](#dw_op_div) | const |  |
+| [`DW_OP_minus`](#dw_op_minus) | const |  |
+| [`DW_OP_mod`](#dw_op_mod) | const |  |
+| [`DW_OP_mul`](#dw_op_mul) | const |  |
+| [`DW_OP_neg`](#dw_op_neg) | const |  |
+| [`DW_OP_not`](#dw_op_not) | const |  |
+| [`DW_OP_or`](#dw_op_or) | const |  |
+| [`DW_OP_plus`](#dw_op_plus) | const |  |
+| [`DW_OP_plus_uconst`](#dw_op_plus_uconst) | const |  |
+| [`DW_OP_shl`](#dw_op_shl) | const |  |
+| [`DW_OP_shr`](#dw_op_shr) | const |  |
+| [`DW_OP_shra`](#dw_op_shra) | const |  |
+| [`DW_OP_xor`](#dw_op_xor) | const |  |
+| [`DW_OP_bra`](#dw_op_bra) | const |  |
+| [`DW_OP_eq`](#dw_op_eq) | const |  |
+| [`DW_OP_ge`](#dw_op_ge) | const |  |
+| [`DW_OP_gt`](#dw_op_gt) | const |  |
+| [`DW_OP_le`](#dw_op_le) | const |  |
+| [`DW_OP_lt`](#dw_op_lt) | const |  |
+| [`DW_OP_ne`](#dw_op_ne) | const |  |
+| [`DW_OP_skip`](#dw_op_skip) | const |  |
+| [`DW_OP_lit0`](#dw_op_lit0) | const |  |
+| [`DW_OP_lit1`](#dw_op_lit1) | const |  |
+| [`DW_OP_lit2`](#dw_op_lit2) | const |  |
+| [`DW_OP_lit3`](#dw_op_lit3) | const |  |
+| [`DW_OP_lit4`](#dw_op_lit4) | const |  |
+| [`DW_OP_lit5`](#dw_op_lit5) | const |  |
+| [`DW_OP_lit6`](#dw_op_lit6) | const |  |
+| [`DW_OP_lit7`](#dw_op_lit7) | const |  |
+| [`DW_OP_lit8`](#dw_op_lit8) | const |  |
+| [`DW_OP_lit9`](#dw_op_lit9) | const |  |
+| [`DW_OP_lit10`](#dw_op_lit10) | const |  |
+| [`DW_OP_lit11`](#dw_op_lit11) | const |  |
+| [`DW_OP_lit12`](#dw_op_lit12) | const |  |
+| [`DW_OP_lit13`](#dw_op_lit13) | const |  |
+| [`DW_OP_lit14`](#dw_op_lit14) | const |  |
+| [`DW_OP_lit15`](#dw_op_lit15) | const |  |
+| [`DW_OP_lit16`](#dw_op_lit16) | const |  |
+| [`DW_OP_lit17`](#dw_op_lit17) | const |  |
+| [`DW_OP_lit18`](#dw_op_lit18) | const |  |
+| [`DW_OP_lit19`](#dw_op_lit19) | const |  |
+| [`DW_OP_lit20`](#dw_op_lit20) | const |  |
+| [`DW_OP_lit21`](#dw_op_lit21) | const |  |
+| [`DW_OP_lit22`](#dw_op_lit22) | const |  |
+| [`DW_OP_lit23`](#dw_op_lit23) | const |  |
+| [`DW_OP_lit24`](#dw_op_lit24) | const |  |
+| [`DW_OP_lit25`](#dw_op_lit25) | const |  |
+| [`DW_OP_lit26`](#dw_op_lit26) | const |  |
+| [`DW_OP_lit27`](#dw_op_lit27) | const |  |
+| [`DW_OP_lit28`](#dw_op_lit28) | const |  |
+| [`DW_OP_lit29`](#dw_op_lit29) | const |  |
+| [`DW_OP_lit30`](#dw_op_lit30) | const |  |
+| [`DW_OP_lit31`](#dw_op_lit31) | const |  |
+| [`DW_OP_reg0`](#dw_op_reg0) | const |  |
+| [`DW_OP_reg1`](#dw_op_reg1) | const |  |
+| [`DW_OP_reg2`](#dw_op_reg2) | const |  |
+| [`DW_OP_reg3`](#dw_op_reg3) | const |  |
+| [`DW_OP_reg4`](#dw_op_reg4) | const |  |
+| [`DW_OP_reg5`](#dw_op_reg5) | const |  |
+| [`DW_OP_reg6`](#dw_op_reg6) | const |  |
+| [`DW_OP_reg7`](#dw_op_reg7) | const |  |
+| [`DW_OP_reg8`](#dw_op_reg8) | const |  |
+| [`DW_OP_reg9`](#dw_op_reg9) | const |  |
+| [`DW_OP_reg10`](#dw_op_reg10) | const |  |
+| [`DW_OP_reg11`](#dw_op_reg11) | const |  |
+| [`DW_OP_reg12`](#dw_op_reg12) | const |  |
+| [`DW_OP_reg13`](#dw_op_reg13) | const |  |
+| [`DW_OP_reg14`](#dw_op_reg14) | const |  |
+| [`DW_OP_reg15`](#dw_op_reg15) | const |  |
+| [`DW_OP_reg16`](#dw_op_reg16) | const |  |
+| [`DW_OP_reg17`](#dw_op_reg17) | const |  |
+| [`DW_OP_reg18`](#dw_op_reg18) | const |  |
+| [`DW_OP_reg19`](#dw_op_reg19) | const |  |
+| [`DW_OP_reg20`](#dw_op_reg20) | const |  |
+| [`DW_OP_reg21`](#dw_op_reg21) | const |  |
+| [`DW_OP_reg22`](#dw_op_reg22) | const |  |
+| [`DW_OP_reg23`](#dw_op_reg23) | const |  |
+| [`DW_OP_reg24`](#dw_op_reg24) | const |  |
+| [`DW_OP_reg25`](#dw_op_reg25) | const |  |
+| [`DW_OP_reg26`](#dw_op_reg26) | const |  |
+| [`DW_OP_reg27`](#dw_op_reg27) | const |  |
+| [`DW_OP_reg28`](#dw_op_reg28) | const |  |
+| [`DW_OP_reg29`](#dw_op_reg29) | const |  |
+| [`DW_OP_reg30`](#dw_op_reg30) | const |  |
+| [`DW_OP_reg31`](#dw_op_reg31) | const |  |
+| [`DW_OP_breg0`](#dw_op_breg0) | const |  |
+| [`DW_OP_breg1`](#dw_op_breg1) | const |  |
+| [`DW_OP_breg2`](#dw_op_breg2) | const |  |
+| [`DW_OP_breg3`](#dw_op_breg3) | const |  |
+| [`DW_OP_breg4`](#dw_op_breg4) | const |  |
+| [`DW_OP_breg5`](#dw_op_breg5) | const |  |
+| [`DW_OP_breg6`](#dw_op_breg6) | const |  |
+| [`DW_OP_breg7`](#dw_op_breg7) | const |  |
+| [`DW_OP_breg8`](#dw_op_breg8) | const |  |
+| [`DW_OP_breg9`](#dw_op_breg9) | const |  |
+| [`DW_OP_breg10`](#dw_op_breg10) | const |  |
+| [`DW_OP_breg11`](#dw_op_breg11) | const |  |
+| [`DW_OP_breg12`](#dw_op_breg12) | const |  |
+| [`DW_OP_breg13`](#dw_op_breg13) | const |  |
+| [`DW_OP_breg14`](#dw_op_breg14) | const |  |
+| [`DW_OP_breg15`](#dw_op_breg15) | const |  |
+| [`DW_OP_breg16`](#dw_op_breg16) | const |  |
+| [`DW_OP_breg17`](#dw_op_breg17) | const |  |
+| [`DW_OP_breg18`](#dw_op_breg18) | const |  |
+| [`DW_OP_breg19`](#dw_op_breg19) | const |  |
+| [`DW_OP_breg20`](#dw_op_breg20) | const |  |
+| [`DW_OP_breg21`](#dw_op_breg21) | const |  |
+| [`DW_OP_breg22`](#dw_op_breg22) | const |  |
+| [`DW_OP_breg23`](#dw_op_breg23) | const |  |
+| [`DW_OP_breg24`](#dw_op_breg24) | const |  |
+| [`DW_OP_breg25`](#dw_op_breg25) | const |  |
+| [`DW_OP_breg26`](#dw_op_breg26) | const |  |
+| [`DW_OP_breg27`](#dw_op_breg27) | const |  |
+| [`DW_OP_breg28`](#dw_op_breg28) | const |  |
+| [`DW_OP_breg29`](#dw_op_breg29) | const |  |
+| [`DW_OP_breg30`](#dw_op_breg30) | const |  |
+| [`DW_OP_breg31`](#dw_op_breg31) | const |  |
+| [`DW_OP_regx`](#dw_op_regx) | const |  |
+| [`DW_OP_fbreg`](#dw_op_fbreg) | const |  |
+| [`DW_OP_bregx`](#dw_op_bregx) | const |  |
+| [`DW_OP_piece`](#dw_op_piece) | const |  |
+| [`DW_OP_deref_size`](#dw_op_deref_size) | const |  |
+| [`DW_OP_xderef_size`](#dw_op_xderef_size) | const |  |
+| [`DW_OP_nop`](#dw_op_nop) | const |  |
+| [`DW_OP_push_object_address`](#dw_op_push_object_address) | const |  |
+| [`DW_OP_call2`](#dw_op_call2) | const |  |
+| [`DW_OP_call4`](#dw_op_call4) | const |  |
+| [`DW_OP_call_ref`](#dw_op_call_ref) | const |  |
+| [`DW_OP_form_tls_address`](#dw_op_form_tls_address) | const |  |
+| [`DW_OP_call_frame_cfa`](#dw_op_call_frame_cfa) | const |  |
+| [`DW_OP_bit_piece`](#dw_op_bit_piece) | const |  |
+| [`DW_OP_implicit_value`](#dw_op_implicit_value) | const |  |
+| [`DW_OP_stack_value`](#dw_op_stack_value) | const |  |
+| [`DW_OP_implicit_pointer`](#dw_op_implicit_pointer) | const |  |
+| [`DW_OP_addrx`](#dw_op_addrx) | const |  |
+| [`DW_OP_constx`](#dw_op_constx) | const |  |
+| [`DW_OP_entry_value`](#dw_op_entry_value) | const |  |
+| [`DW_OP_const_type`](#dw_op_const_type) | const |  |
+| [`DW_OP_regval_type`](#dw_op_regval_type) | const |  |
+| [`DW_OP_deref_type`](#dw_op_deref_type) | const |  |
+| [`DW_OP_xderef_type`](#dw_op_xderef_type) | const |  |
+| [`DW_OP_convert`](#dw_op_convert) | const |  |
+| [`DW_OP_reinterpret`](#dw_op_reinterpret) | const |  |
+| [`DW_OP_GNU_push_tls_address`](#dw_op_gnu_push_tls_address) | const |  |
+| [`DW_OP_GNU_implicit_pointer`](#dw_op_gnu_implicit_pointer) | const |  |
+| [`DW_OP_GNU_entry_value`](#dw_op_gnu_entry_value) | const |  |
+| [`DW_OP_GNU_const_type`](#dw_op_gnu_const_type) | const |  |
+| [`DW_OP_GNU_regval_type`](#dw_op_gnu_regval_type) | const |  |
+| [`DW_OP_GNU_deref_type`](#dw_op_gnu_deref_type) | const |  |
+| [`DW_OP_GNU_convert`](#dw_op_gnu_convert) | const |  |
+| [`DW_OP_GNU_reinterpret`](#dw_op_gnu_reinterpret) | const |  |
+| [`DW_OP_GNU_parameter_ref`](#dw_op_gnu_parameter_ref) | const |  |
+| [`DW_OP_GNU_addr_index`](#dw_op_gnu_addr_index) | const |  |
+| [`DW_OP_GNU_const_index`](#dw_op_gnu_const_index) | const |  |
+| [`DW_OP_WASM_location`](#dw_op_wasm_location) | const |  |
+| [`DW_EH_PE_uleb128`](#dw_eh_pe_uleb128) | const |  |
+| [`DW_EH_PE_udata2`](#dw_eh_pe_udata2) | const |  |
+| [`DW_EH_PE_udata4`](#dw_eh_pe_udata4) | const |  |
+| [`DW_EH_PE_udata8`](#dw_eh_pe_udata8) | const |  |
+| [`DW_EH_PE_sleb128`](#dw_eh_pe_sleb128) | const |  |
+| [`DW_EH_PE_sdata2`](#dw_eh_pe_sdata2) | const |  |
+| [`DW_EH_PE_sdata4`](#dw_eh_pe_sdata4) | const |  |
+| [`DW_EH_PE_sdata8`](#dw_eh_pe_sdata8) | const |  |
+| [`DW_EH_PE_pcrel`](#dw_eh_pe_pcrel) | const |  |
+| [`DW_EH_PE_textrel`](#dw_eh_pe_textrel) | const |  |
+| [`DW_EH_PE_datarel`](#dw_eh_pe_datarel) | const |  |
+| [`DW_EH_PE_funcrel`](#dw_eh_pe_funcrel) | const |  |
+| [`DW_EH_PE_aligned`](#dw_eh_pe_aligned) | const |  |
+| [`DW_EH_PE_indirect`](#dw_eh_pe_indirect) | const |  |
+| [`DW_EH_PE_absptr`](#dw_eh_pe_absptr) | const |  |
+| [`DW_EH_PE_omit`](#dw_eh_pe_omit) | const |  |
+| [`DW_EH_PE_FORMAT_MASK`](#dw_eh_pe_format_mask) | const |  |
+| [`DW_EH_PE_APPLICATION_MASK`](#dw_eh_pe_application_mask) | const |  |
+| [`dw!`](#dw) | macro |  |
+
 ## Structs
 
 ### `DwSect`
@@ -18,6 +1863,8 @@ There are also exported const definitions for each constant.
 ```rust
 struct DwSect(u32);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
 The section type field in a `.dwp` unit index.
 
@@ -27,47 +1874,47 @@ See Section 7.3.5.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwsect-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwSect`
 
-- `fn clone(self: &Self) -> DwSect` — [`DwSect`](../index.md)
+- <span id="dwsect-clone"></span>`fn clone(&self) -> DwSect` — [`DwSect`](../index.md)
 
 ##### `impl Copy for DwSect`
 
 ##### `impl Debug for DwSect`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwsect-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwSect`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwsect-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwSect`
 
 ##### `impl Hash for DwSect`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwsect-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwSect`
 
-- `fn cmp(self: &Self, other: &DwSect) -> $crate::cmp::Ordering` — [`DwSect`](../index.md)
+- <span id="dwsect-cmp"></span>`fn cmp(&self, other: &DwSect) -> cmp::Ordering` — [`DwSect`](../index.md)
 
 ##### `impl PartialEq for DwSect`
 
-- `fn eq(self: &Self, other: &DwSect) -> bool` — [`DwSect`](../index.md)
+- <span id="dwsect-eq"></span>`fn eq(&self, other: &DwSect) -> bool` — [`DwSect`](../index.md)
 
 ##### `impl PartialOrd for DwSect`
 
-- `fn partial_cmp(self: &Self, other: &DwSect) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwSect`](../index.md)
+- <span id="dwsect-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSect) -> option::Option<cmp::Ordering>` — [`DwSect`](../index.md)
 
 ##### `impl StructuralPartialEq for DwSect`
 
-##### `impl<T> ToString for DwSect`
+##### `impl ToString for DwSect`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwsect-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwSectV2`
 
@@ -75,51 +1922,53 @@ See Section 7.3.5.
 struct DwSectV2(u32);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
+
 The section type field in a `.dwp` unit index with version 2.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwsectv2-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwSectV2`
 
-- `fn clone(self: &Self) -> DwSectV2` — [`DwSectV2`](../index.md)
+- <span id="dwsectv2-clone"></span>`fn clone(&self) -> DwSectV2` — [`DwSectV2`](../index.md)
 
 ##### `impl Copy for DwSectV2`
 
 ##### `impl Debug for DwSectV2`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwsectv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwSectV2`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwsectv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwSectV2`
 
 ##### `impl Hash for DwSectV2`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwsectv2-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwSectV2`
 
-- `fn cmp(self: &Self, other: &DwSectV2) -> $crate::cmp::Ordering` — [`DwSectV2`](../index.md)
+- <span id="dwsectv2-cmp"></span>`fn cmp(&self, other: &DwSectV2) -> cmp::Ordering` — [`DwSectV2`](../index.md)
 
 ##### `impl PartialEq for DwSectV2`
 
-- `fn eq(self: &Self, other: &DwSectV2) -> bool` — [`DwSectV2`](../index.md)
+- <span id="dwsectv2-eq"></span>`fn eq(&self, other: &DwSectV2) -> bool` — [`DwSectV2`](../index.md)
 
 ##### `impl PartialOrd for DwSectV2`
 
-- `fn partial_cmp(self: &Self, other: &DwSectV2) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwSectV2`](../index.md)
+- <span id="dwsectv2-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSectV2) -> option::Option<cmp::Ordering>` — [`DwSectV2`](../index.md)
 
 ##### `impl StructuralPartialEq for DwSectV2`
 
-##### `impl<T> ToString for DwSectV2`
+##### `impl ToString for DwSectV2`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwsectv2-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwUt`
 
@@ -127,59 +1976,63 @@ The section type field in a `.dwp` unit index with version 2.
 struct DwUt(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
+
 The unit type field in a unit header.
 
 See Section 7.5.1, Table 7.2.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwut-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwUt`
 
-- `fn clone(self: &Self) -> DwUt` — [`DwUt`](../index.md)
+- <span id="dwut-clone"></span>`fn clone(&self) -> DwUt` — [`DwUt`](../index.md)
 
 ##### `impl Copy for DwUt`
 
 ##### `impl Debug for DwUt`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwUt`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwUt`
 
 ##### `impl Hash for DwUt`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwut-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwUt`
 
-- `fn cmp(self: &Self, other: &DwUt) -> $crate::cmp::Ordering` — [`DwUt`](../index.md)
+- <span id="dwut-cmp"></span>`fn cmp(&self, other: &DwUt) -> cmp::Ordering` — [`DwUt`](../index.md)
 
 ##### `impl PartialEq for DwUt`
 
-- `fn eq(self: &Self, other: &DwUt) -> bool` — [`DwUt`](../index.md)
+- <span id="dwut-eq"></span>`fn eq(&self, other: &DwUt) -> bool` — [`DwUt`](../index.md)
 
 ##### `impl PartialOrd for DwUt`
 
-- `fn partial_cmp(self: &Self, other: &DwUt) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwUt`](../index.md)
+- <span id="dwut-partial-cmp"></span>`fn partial_cmp(&self, other: &DwUt) -> option::Option<cmp::Ordering>` — [`DwUt`](../index.md)
 
 ##### `impl StructuralPartialEq for DwUt`
 
-##### `impl<T> ToString for DwUt`
+##### `impl ToString for DwUt`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwut-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwCfa`
 
 ```rust
 struct DwCfa(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
 The opcode for a call frame instruction.
 
@@ -191,47 +2044,47 @@ Section 7.24:
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwcfa-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwCfa`
 
-- `fn clone(self: &Self) -> DwCfa` — [`DwCfa`](../index.md)
+- <span id="dwcfa-clone"></span>`fn clone(&self) -> DwCfa` — [`DwCfa`](../index.md)
 
 ##### `impl Copy for DwCfa`
 
 ##### `impl Debug for DwCfa`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwcfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwCfa`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwcfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwCfa`
 
 ##### `impl Hash for DwCfa`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwcfa-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwCfa`
 
-- `fn cmp(self: &Self, other: &DwCfa) -> $crate::cmp::Ordering` — [`DwCfa`](../index.md)
+- <span id="dwcfa-cmp"></span>`fn cmp(&self, other: &DwCfa) -> cmp::Ordering` — [`DwCfa`](../index.md)
 
 ##### `impl PartialEq for DwCfa`
 
-- `fn eq(self: &Self, other: &DwCfa) -> bool` — [`DwCfa`](../index.md)
+- <span id="dwcfa-eq"></span>`fn eq(&self, other: &DwCfa) -> bool` — [`DwCfa`](../index.md)
 
 ##### `impl PartialOrd for DwCfa`
 
-- `fn partial_cmp(self: &Self, other: &DwCfa) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwCfa`](../index.md)
+- <span id="dwcfa-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCfa) -> option::Option<cmp::Ordering>` — [`DwCfa`](../index.md)
 
 ##### `impl StructuralPartialEq for DwCfa`
 
-##### `impl<T> ToString for DwCfa`
+##### `impl ToString for DwCfa`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwcfa-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwChildren`
 
@@ -239,53 +2092,55 @@ Section 7.24:
 struct DwChildren(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:196-203`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L196-L203)*
+
 The child determination encodings for DIE attributes.
 
 See Section 7.5.3, Table 7.4.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwchildren-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwChildren`
 
-- `fn clone(self: &Self) -> DwChildren` — [`DwChildren`](../index.md)
+- <span id="dwchildren-clone"></span>`fn clone(&self) -> DwChildren` — [`DwChildren`](../index.md)
 
 ##### `impl Copy for DwChildren`
 
 ##### `impl Debug for DwChildren`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwchildren-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwChildren`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwchildren-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwChildren`
 
 ##### `impl Hash for DwChildren`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwchildren-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwChildren`
 
-- `fn cmp(self: &Self, other: &DwChildren) -> $crate::cmp::Ordering` — [`DwChildren`](../index.md)
+- <span id="dwchildren-cmp"></span>`fn cmp(&self, other: &DwChildren) -> cmp::Ordering` — [`DwChildren`](../index.md)
 
 ##### `impl PartialEq for DwChildren`
 
-- `fn eq(self: &Self, other: &DwChildren) -> bool` — [`DwChildren`](../index.md)
+- <span id="dwchildren-eq"></span>`fn eq(&self, other: &DwChildren) -> bool` — [`DwChildren`](../index.md)
 
 ##### `impl PartialOrd for DwChildren`
 
-- `fn partial_cmp(self: &Self, other: &DwChildren) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwChildren`](../index.md)
+- <span id="dwchildren-partial-cmp"></span>`fn partial_cmp(&self, other: &DwChildren) -> option::Option<cmp::Ordering>` — [`DwChildren`](../index.md)
 
 ##### `impl StructuralPartialEq for DwChildren`
 
-##### `impl<T> ToString for DwChildren`
+##### `impl ToString for DwChildren`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwchildren-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwTag`
 
@@ -293,53 +2148,55 @@ See Section 7.5.3, Table 7.4.
 struct DwTag(u16);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
+
 The tag encodings for DIE attributes.
 
 See Section 7.5.3, Table 7.3.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwtag-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwTag`
 
-- `fn clone(self: &Self) -> DwTag` — [`DwTag`](../index.md)
+- <span id="dwtag-clone"></span>`fn clone(&self) -> DwTag` — [`DwTag`](../index.md)
 
 ##### `impl Copy for DwTag`
 
 ##### `impl Debug for DwTag`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwtag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwTag`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwtag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwTag`
 
 ##### `impl Hash for DwTag`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwtag-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwTag`
 
-- `fn cmp(self: &Self, other: &DwTag) -> $crate::cmp::Ordering` — [`DwTag`](../index.md)
+- <span id="dwtag-cmp"></span>`fn cmp(&self, other: &DwTag) -> cmp::Ordering` — [`DwTag`](../index.md)
 
 ##### `impl PartialEq for DwTag`
 
-- `fn eq(self: &Self, other: &DwTag) -> bool` — [`DwTag`](../index.md)
+- <span id="dwtag-eq"></span>`fn eq(&self, other: &DwTag) -> bool` — [`DwTag`](../index.md)
 
 ##### `impl PartialOrd for DwTag`
 
-- `fn partial_cmp(self: &Self, other: &DwTag) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwTag`](../index.md)
+- <span id="dwtag-partial-cmp"></span>`fn partial_cmp(&self, other: &DwTag) -> option::Option<cmp::Ordering>` — [`DwTag`](../index.md)
 
 ##### `impl StructuralPartialEq for DwTag`
 
-##### `impl<T> ToString for DwTag`
+##### `impl ToString for DwTag`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwtag-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwAt`
 
@@ -347,53 +2204,55 @@ See Section 7.5.3, Table 7.3.
 struct DwAt(u16);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
+
 The attribute encodings for DIE attributes.
 
 See Section 7.5.4, Table 7.5.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwat-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwAt`
 
-- `fn clone(self: &Self) -> DwAt` — [`DwAt`](../index.md)
+- <span id="dwat-clone"></span>`fn clone(&self) -> DwAt` — [`DwAt`](../index.md)
 
 ##### `impl Copy for DwAt`
 
 ##### `impl Debug for DwAt`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAt`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAt`
 
 ##### `impl Hash for DwAt`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwat-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwAt`
 
-- `fn cmp(self: &Self, other: &DwAt) -> $crate::cmp::Ordering` — [`DwAt`](../index.md)
+- <span id="dwat-cmp"></span>`fn cmp(&self, other: &DwAt) -> cmp::Ordering` — [`DwAt`](../index.md)
 
 ##### `impl PartialEq for DwAt`
 
-- `fn eq(self: &Self, other: &DwAt) -> bool` — [`DwAt`](../index.md)
+- <span id="dwat-eq"></span>`fn eq(&self, other: &DwAt) -> bool` — [`DwAt`](../index.md)
 
 ##### `impl PartialOrd for DwAt`
 
-- `fn partial_cmp(self: &Self, other: &DwAt) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAt`](../index.md)
+- <span id="dwat-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAt) -> option::Option<cmp::Ordering>` — [`DwAt`](../index.md)
 
 ##### `impl StructuralPartialEq for DwAt`
 
-##### `impl<T> ToString for DwAt`
+##### `impl ToString for DwAt`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwat-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwForm`
 
@@ -401,53 +2260,55 @@ See Section 7.5.4, Table 7.5.
 struct DwForm(u16);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
+
 The attribute form encodings for DIE attributes.
 
 See Section 7.5.6, Table 7.6.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwform-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwForm`
 
-- `fn clone(self: &Self) -> DwForm` — [`DwForm`](../index.md)
+- <span id="dwform-clone"></span>`fn clone(&self) -> DwForm` — [`DwForm`](../index.md)
 
 ##### `impl Copy for DwForm`
 
 ##### `impl Debug for DwForm`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwform-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwForm`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwform-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwForm`
 
 ##### `impl Hash for DwForm`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwform-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwForm`
 
-- `fn cmp(self: &Self, other: &DwForm) -> $crate::cmp::Ordering` — [`DwForm`](../index.md)
+- <span id="dwform-cmp"></span>`fn cmp(&self, other: &DwForm) -> cmp::Ordering` — [`DwForm`](../index.md)
 
 ##### `impl PartialEq for DwForm`
 
-- `fn eq(self: &Self, other: &DwForm) -> bool` — [`DwForm`](../index.md)
+- <span id="dwform-eq"></span>`fn eq(&self, other: &DwForm) -> bool` — [`DwForm`](../index.md)
 
 ##### `impl PartialOrd for DwForm`
 
-- `fn partial_cmp(self: &Self, other: &DwForm) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwForm`](../index.md)
+- <span id="dwform-partial-cmp"></span>`fn partial_cmp(&self, other: &DwForm) -> option::Option<cmp::Ordering>` — [`DwForm`](../index.md)
 
 ##### `impl StructuralPartialEq for DwForm`
 
-##### `impl<T> ToString for DwForm`
+##### `impl ToString for DwForm`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwform-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwAte`
 
@@ -455,53 +2316,55 @@ See Section 7.5.6, Table 7.6.
 struct DwAte(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
+
 The encodings of the constants used in the `DW_AT_encoding` attribute.
 
 See Section 7.8, Table 7.11.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwate-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwAte`
 
-- `fn clone(self: &Self) -> DwAte` — [`DwAte`](../index.md)
+- <span id="dwate-clone"></span>`fn clone(&self) -> DwAte` — [`DwAte`](../index.md)
 
 ##### `impl Copy for DwAte`
 
 ##### `impl Debug for DwAte`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAte`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAte`
 
 ##### `impl Hash for DwAte`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwate-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwAte`
 
-- `fn cmp(self: &Self, other: &DwAte) -> $crate::cmp::Ordering` — [`DwAte`](../index.md)
+- <span id="dwate-cmp"></span>`fn cmp(&self, other: &DwAte) -> cmp::Ordering` — [`DwAte`](../index.md)
 
 ##### `impl PartialEq for DwAte`
 
-- `fn eq(self: &Self, other: &DwAte) -> bool` — [`DwAte`](../index.md)
+- <span id="dwate-eq"></span>`fn eq(&self, other: &DwAte) -> bool` — [`DwAte`](../index.md)
 
 ##### `impl PartialOrd for DwAte`
 
-- `fn partial_cmp(self: &Self, other: &DwAte) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAte`](../index.md)
+- <span id="dwate-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAte) -> option::Option<cmp::Ordering>` — [`DwAte`](../index.md)
 
 ##### `impl StructuralPartialEq for DwAte`
 
-##### `impl<T> ToString for DwAte`
+##### `impl ToString for DwAte`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwate-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwLle`
 
@@ -509,53 +2372,55 @@ See Section 7.8, Table 7.11.
 struct DwLle(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
+
 The encodings of the constants used in location list entries.
 
 See Section 7.7.3, Table 7.10.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwlle-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwLle`
 
-- `fn clone(self: &Self) -> DwLle` — [`DwLle`](../index.md)
+- <span id="dwlle-clone"></span>`fn clone(&self) -> DwLle` — [`DwLle`](../index.md)
 
 ##### `impl Copy for DwLle`
 
 ##### `impl Debug for DwLle`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwlle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLle`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLle`
 
 ##### `impl Hash for DwLle`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwlle-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwLle`
 
-- `fn cmp(self: &Self, other: &DwLle) -> $crate::cmp::Ordering` — [`DwLle`](../index.md)
+- <span id="dwlle-cmp"></span>`fn cmp(&self, other: &DwLle) -> cmp::Ordering` — [`DwLle`](../index.md)
 
 ##### `impl PartialEq for DwLle`
 
-- `fn eq(self: &Self, other: &DwLle) -> bool` — [`DwLle`](../index.md)
+- <span id="dwlle-eq"></span>`fn eq(&self, other: &DwLle) -> bool` — [`DwLle`](../index.md)
 
 ##### `impl PartialOrd for DwLle`
 
-- `fn partial_cmp(self: &Self, other: &DwLle) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLle`](../index.md)
+- <span id="dwlle-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLle) -> option::Option<cmp::Ordering>` — [`DwLle`](../index.md)
 
 ##### `impl StructuralPartialEq for DwLle`
 
-##### `impl<T> ToString for DwLle`
+##### `impl ToString for DwLle`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwlle-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwDs`
 
@@ -563,53 +2428,55 @@ See Section 7.7.3, Table 7.10.
 struct DwDs(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
+
 The encodings of the constants used in the `DW_AT_decimal_sign` attribute.
 
 See Section 7.8, Table 7.12.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwds-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwDs`
 
-- `fn clone(self: &Self) -> DwDs` — [`DwDs`](../index.md)
+- <span id="dwds-clone"></span>`fn clone(&self) -> DwDs` — [`DwDs`](../index.md)
 
 ##### `impl Copy for DwDs`
 
 ##### `impl Debug for DwDs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwDs`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwDs`
 
 ##### `impl Hash for DwDs`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwds-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwDs`
 
-- `fn cmp(self: &Self, other: &DwDs) -> $crate::cmp::Ordering` — [`DwDs`](../index.md)
+- <span id="dwds-cmp"></span>`fn cmp(&self, other: &DwDs) -> cmp::Ordering` — [`DwDs`](../index.md)
 
 ##### `impl PartialEq for DwDs`
 
-- `fn eq(self: &Self, other: &DwDs) -> bool` — [`DwDs`](../index.md)
+- <span id="dwds-eq"></span>`fn eq(&self, other: &DwDs) -> bool` — [`DwDs`](../index.md)
 
 ##### `impl PartialOrd for DwDs`
 
-- `fn partial_cmp(self: &Self, other: &DwDs) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDs`](../index.md)
+- <span id="dwds-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDs) -> option::Option<cmp::Ordering>` — [`DwDs`](../index.md)
 
 ##### `impl StructuralPartialEq for DwDs`
 
-##### `impl<T> ToString for DwDs`
+##### `impl ToString for DwDs`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwds-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwEnd`
 
@@ -617,53 +2484,55 @@ See Section 7.8, Table 7.12.
 struct DwEnd(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
+
 The encodings of the constants used in the `DW_AT_endianity` attribute.
 
 See Section 7.8, Table 7.13.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwend-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwEnd`
 
-- `fn clone(self: &Self) -> DwEnd` — [`DwEnd`](../index.md)
+- <span id="dwend-clone"></span>`fn clone(&self) -> DwEnd` — [`DwEnd`](../index.md)
 
 ##### `impl Copy for DwEnd`
 
 ##### `impl Debug for DwEnd`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwend-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwEnd`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwend-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwEnd`
 
 ##### `impl Hash for DwEnd`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwend-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwEnd`
 
-- `fn cmp(self: &Self, other: &DwEnd) -> $crate::cmp::Ordering` — [`DwEnd`](../index.md)
+- <span id="dwend-cmp"></span>`fn cmp(&self, other: &DwEnd) -> cmp::Ordering` — [`DwEnd`](../index.md)
 
 ##### `impl PartialEq for DwEnd`
 
-- `fn eq(self: &Self, other: &DwEnd) -> bool` — [`DwEnd`](../index.md)
+- <span id="dwend-eq"></span>`fn eq(&self, other: &DwEnd) -> bool` — [`DwEnd`](../index.md)
 
 ##### `impl PartialOrd for DwEnd`
 
-- `fn partial_cmp(self: &Self, other: &DwEnd) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwEnd`](../index.md)
+- <span id="dwend-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEnd) -> option::Option<cmp::Ordering>` — [`DwEnd`](../index.md)
 
 ##### `impl StructuralPartialEq for DwEnd`
 
-##### `impl<T> ToString for DwEnd`
+##### `impl ToString for DwEnd`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwend-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwAccess`
 
@@ -671,53 +2540,55 @@ See Section 7.8, Table 7.13.
 struct DwAccess(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:834-842`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L834-L842)*
+
 The encodings of the constants used in the `DW_AT_accessibility` attribute.
 
 See Section 7.9, Table 7.14.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwaccess-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwAccess`
 
-- `fn clone(self: &Self) -> DwAccess` — [`DwAccess`](../index.md)
+- <span id="dwaccess-clone"></span>`fn clone(&self) -> DwAccess` — [`DwAccess`](../index.md)
 
 ##### `impl Copy for DwAccess`
 
 ##### `impl Debug for DwAccess`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwaccess-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAccess`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwaccess-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAccess`
 
 ##### `impl Hash for DwAccess`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwaccess-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwAccess`
 
-- `fn cmp(self: &Self, other: &DwAccess) -> $crate::cmp::Ordering` — [`DwAccess`](../index.md)
+- <span id="dwaccess-cmp"></span>`fn cmp(&self, other: &DwAccess) -> cmp::Ordering` — [`DwAccess`](../index.md)
 
 ##### `impl PartialEq for DwAccess`
 
-- `fn eq(self: &Self, other: &DwAccess) -> bool` — [`DwAccess`](../index.md)
+- <span id="dwaccess-eq"></span>`fn eq(&self, other: &DwAccess) -> bool` — [`DwAccess`](../index.md)
 
 ##### `impl PartialOrd for DwAccess`
 
-- `fn partial_cmp(self: &Self, other: &DwAccess) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAccess`](../index.md)
+- <span id="dwaccess-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAccess) -> option::Option<cmp::Ordering>` — [`DwAccess`](../index.md)
 
 ##### `impl StructuralPartialEq for DwAccess`
 
-##### `impl<T> ToString for DwAccess`
+##### `impl ToString for DwAccess`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwaccess-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwVis`
 
@@ -725,53 +2596,55 @@ See Section 7.9, Table 7.14.
 struct DwVis(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:844-852`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L844-L852)*
+
 The encodings of the constants used in the `DW_AT_visibility` attribute.
 
 See Section 7.10, Table 7.15.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwvis-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwVis`
 
-- `fn clone(self: &Self) -> DwVis` — [`DwVis`](../index.md)
+- <span id="dwvis-clone"></span>`fn clone(&self) -> DwVis` — [`DwVis`](../index.md)
 
 ##### `impl Copy for DwVis`
 
 ##### `impl Debug for DwVis`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwvis-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwVis`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwvis-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwVis`
 
 ##### `impl Hash for DwVis`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwvis-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwVis`
 
-- `fn cmp(self: &Self, other: &DwVis) -> $crate::cmp::Ordering` — [`DwVis`](../index.md)
+- <span id="dwvis-cmp"></span>`fn cmp(&self, other: &DwVis) -> cmp::Ordering` — [`DwVis`](../index.md)
 
 ##### `impl PartialEq for DwVis`
 
-- `fn eq(self: &Self, other: &DwVis) -> bool` — [`DwVis`](../index.md)
+- <span id="dwvis-eq"></span>`fn eq(&self, other: &DwVis) -> bool` — [`DwVis`](../index.md)
 
 ##### `impl PartialOrd for DwVis`
 
-- `fn partial_cmp(self: &Self, other: &DwVis) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwVis`](../index.md)
+- <span id="dwvis-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVis) -> option::Option<cmp::Ordering>` — [`DwVis`](../index.md)
 
 ##### `impl StructuralPartialEq for DwVis`
 
-##### `impl<T> ToString for DwVis`
+##### `impl ToString for DwVis`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwvis-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwVirtuality`
 
@@ -779,53 +2652,55 @@ See Section 7.10, Table 7.15.
 struct DwVirtuality(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:854-862`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L854-L862)*
+
 The encodings of the constants used in the `DW_AT_virtuality` attribute.
 
 See Section 7.11, Table 7.16.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwvirtuality-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwVirtuality`
 
-- `fn clone(self: &Self) -> DwVirtuality` — [`DwVirtuality`](../index.md)
+- <span id="dwvirtuality-clone"></span>`fn clone(&self) -> DwVirtuality` — [`DwVirtuality`](../index.md)
 
 ##### `impl Copy for DwVirtuality`
 
 ##### `impl Debug for DwVirtuality`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwvirtuality-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwVirtuality`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwvirtuality-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwVirtuality`
 
 ##### `impl Hash for DwVirtuality`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwvirtuality-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwVirtuality`
 
-- `fn cmp(self: &Self, other: &DwVirtuality) -> $crate::cmp::Ordering` — [`DwVirtuality`](../index.md)
+- <span id="dwvirtuality-cmp"></span>`fn cmp(&self, other: &DwVirtuality) -> cmp::Ordering` — [`DwVirtuality`](../index.md)
 
 ##### `impl PartialEq for DwVirtuality`
 
-- `fn eq(self: &Self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](../index.md)
+- <span id="dwvirtuality-eq"></span>`fn eq(&self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](../index.md)
 
 ##### `impl PartialOrd for DwVirtuality`
 
-- `fn partial_cmp(self: &Self, other: &DwVirtuality) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwVirtuality`](../index.md)
+- <span id="dwvirtuality-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVirtuality) -> option::Option<cmp::Ordering>` — [`DwVirtuality`](../index.md)
 
 ##### `impl StructuralPartialEq for DwVirtuality`
 
-##### `impl<T> ToString for DwVirtuality`
+##### `impl ToString for DwVirtuality`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwvirtuality-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwLang`
 
@@ -833,59 +2708,63 @@ See Section 7.11, Table 7.16.
 struct DwLang(u16);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
+
 The encodings of the constants used in the `DW_AT_language` attribute.
 
 See Section 7.12, Table 7.17.
 
 #### Implementations
 
-- `fn default_lower_bound(self: Self) -> Option<usize>`
+- <span id="dwlang-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwLang`
 
-- `fn clone(self: &Self) -> DwLang` — [`DwLang`](../index.md)
+- <span id="dwlang-clone"></span>`fn clone(&self) -> DwLang` — [`DwLang`](../index.md)
 
 ##### `impl Copy for DwLang`
 
 ##### `impl Debug for DwLang`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwlang-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLang`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlang-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLang`
 
 ##### `impl Hash for DwLang`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwlang-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwLang`
 
-- `fn cmp(self: &Self, other: &DwLang) -> $crate::cmp::Ordering` — [`DwLang`](../index.md)
+- <span id="dwlang-cmp"></span>`fn cmp(&self, other: &DwLang) -> cmp::Ordering` — [`DwLang`](../index.md)
 
 ##### `impl PartialEq for DwLang`
 
-- `fn eq(self: &Self, other: &DwLang) -> bool` — [`DwLang`](../index.md)
+- <span id="dwlang-eq"></span>`fn eq(&self, other: &DwLang) -> bool` — [`DwLang`](../index.md)
 
 ##### `impl PartialOrd for DwLang`
 
-- `fn partial_cmp(self: &Self, other: &DwLang) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLang`](../index.md)
+- <span id="dwlang-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLang) -> option::Option<cmp::Ordering>` — [`DwLang`](../index.md)
 
 ##### `impl StructuralPartialEq for DwLang`
 
-##### `impl<T> ToString for DwLang`
+##### `impl ToString for DwLang`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwlang-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwAddr`
 
 ```rust
 struct DwAddr(u64);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:962-969`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L962-L969)*
 
 The encodings of the constants used in the `DW_AT_address_class` attribute.
 
@@ -894,47 +2773,47 @@ See Section 7.13.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwaddr-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwAddr`
 
-- `fn clone(self: &Self) -> DwAddr` — [`DwAddr`](../index.md)
+- <span id="dwaddr-clone"></span>`fn clone(&self) -> DwAddr` — [`DwAddr`](../index.md)
 
 ##### `impl Copy for DwAddr`
 
 ##### `impl Debug for DwAddr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwaddr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAddr`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwaddr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAddr`
 
 ##### `impl Hash for DwAddr`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwaddr-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwAddr`
 
-- `fn cmp(self: &Self, other: &DwAddr) -> $crate::cmp::Ordering` — [`DwAddr`](../index.md)
+- <span id="dwaddr-cmp"></span>`fn cmp(&self, other: &DwAddr) -> cmp::Ordering` — [`DwAddr`](../index.md)
 
 ##### `impl PartialEq for DwAddr`
 
-- `fn eq(self: &Self, other: &DwAddr) -> bool` — [`DwAddr`](../index.md)
+- <span id="dwaddr-eq"></span>`fn eq(&self, other: &DwAddr) -> bool` — [`DwAddr`](../index.md)
 
 ##### `impl PartialOrd for DwAddr`
 
-- `fn partial_cmp(self: &Self, other: &DwAddr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAddr`](../index.md)
+- <span id="dwaddr-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAddr) -> option::Option<cmp::Ordering>` — [`DwAddr`](../index.md)
 
 ##### `impl StructuralPartialEq for DwAddr`
 
-##### `impl<T> ToString for DwAddr`
+##### `impl ToString for DwAddr`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwaddr-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwId`
 
@@ -942,53 +2821,55 @@ See Section 7.13.
 struct DwId(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:971-980`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L971-L980)*
+
 The encodings of the constants used in the `DW_AT_identifier_case` attribute.
 
 See Section 7.14, Table 7.18.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwid-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwId`
 
-- `fn clone(self: &Self) -> DwId` — [`DwId`](../index.md)
+- <span id="dwid-clone"></span>`fn clone(&self) -> DwId` — [`DwId`](../index.md)
 
 ##### `impl Copy for DwId`
 
 ##### `impl Debug for DwId`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwId`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwId`
 
 ##### `impl Hash for DwId`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwId`
 
-- `fn cmp(self: &Self, other: &DwId) -> $crate::cmp::Ordering` — [`DwId`](../index.md)
+- <span id="dwid-cmp"></span>`fn cmp(&self, other: &DwId) -> cmp::Ordering` — [`DwId`](../index.md)
 
 ##### `impl PartialEq for DwId`
 
-- `fn eq(self: &Self, other: &DwId) -> bool` — [`DwId`](../index.md)
+- <span id="dwid-eq"></span>`fn eq(&self, other: &DwId) -> bool` — [`DwId`](../index.md)
 
 ##### `impl PartialOrd for DwId`
 
-- `fn partial_cmp(self: &Self, other: &DwId) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwId`](../index.md)
+- <span id="dwid-partial-cmp"></span>`fn partial_cmp(&self, other: &DwId) -> option::Option<cmp::Ordering>` — [`DwId`](../index.md)
 
 ##### `impl StructuralPartialEq for DwId`
 
-##### `impl<T> ToString for DwId`
+##### `impl ToString for DwId`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwid-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwCc`
 
@@ -996,53 +2877,55 @@ See Section 7.14, Table 7.18.
 struct DwCc(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
+
 The encodings of the constants used in the `DW_AT_calling_convention` attribute.
 
 See Section 7.15, Table 7.19.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwcc-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwCc`
 
-- `fn clone(self: &Self) -> DwCc` — [`DwCc`](../index.md)
+- <span id="dwcc-clone"></span>`fn clone(&self) -> DwCc` — [`DwCc`](../index.md)
 
 ##### `impl Copy for DwCc`
 
 ##### `impl Debug for DwCc`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwcc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwCc`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwcc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwCc`
 
 ##### `impl Hash for DwCc`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwcc-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwCc`
 
-- `fn cmp(self: &Self, other: &DwCc) -> $crate::cmp::Ordering` — [`DwCc`](../index.md)
+- <span id="dwcc-cmp"></span>`fn cmp(&self, other: &DwCc) -> cmp::Ordering` — [`DwCc`](../index.md)
 
 ##### `impl PartialEq for DwCc`
 
-- `fn eq(self: &Self, other: &DwCc) -> bool` — [`DwCc`](../index.md)
+- <span id="dwcc-eq"></span>`fn eq(&self, other: &DwCc) -> bool` — [`DwCc`](../index.md)
 
 ##### `impl PartialOrd for DwCc`
 
-- `fn partial_cmp(self: &Self, other: &DwCc) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwCc`](../index.md)
+- <span id="dwcc-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCc) -> option::Option<cmp::Ordering>` — [`DwCc`](../index.md)
 
 ##### `impl StructuralPartialEq for DwCc`
 
-##### `impl<T> ToString for DwCc`
+##### `impl ToString for DwCc`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwcc-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwInl`
 
@@ -1050,53 +2933,55 @@ See Section 7.15, Table 7.19.
 struct DwInl(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:996-1005`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L996-L1005)*
+
 The encodings of the constants used in the `DW_AT_inline` attribute.
 
 See Section 7.16, Table 7.20.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwinl-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwInl`
 
-- `fn clone(self: &Self) -> DwInl` — [`DwInl`](../index.md)
+- <span id="dwinl-clone"></span>`fn clone(&self) -> DwInl` — [`DwInl`](../index.md)
 
 ##### `impl Copy for DwInl`
 
 ##### `impl Debug for DwInl`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwinl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwInl`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwinl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwInl`
 
 ##### `impl Hash for DwInl`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwinl-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwInl`
 
-- `fn cmp(self: &Self, other: &DwInl) -> $crate::cmp::Ordering` — [`DwInl`](../index.md)
+- <span id="dwinl-cmp"></span>`fn cmp(&self, other: &DwInl) -> cmp::Ordering` — [`DwInl`](../index.md)
 
 ##### `impl PartialEq for DwInl`
 
-- `fn eq(self: &Self, other: &DwInl) -> bool` — [`DwInl`](../index.md)
+- <span id="dwinl-eq"></span>`fn eq(&self, other: &DwInl) -> bool` — [`DwInl`](../index.md)
 
 ##### `impl PartialOrd for DwInl`
 
-- `fn partial_cmp(self: &Self, other: &DwInl) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwInl`](../index.md)
+- <span id="dwinl-partial-cmp"></span>`fn partial_cmp(&self, other: &DwInl) -> option::Option<cmp::Ordering>` — [`DwInl`](../index.md)
 
 ##### `impl StructuralPartialEq for DwInl`
 
-##### `impl<T> ToString for DwInl`
+##### `impl ToString for DwInl`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwinl-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwOrd`
 
@@ -1104,53 +2989,55 @@ See Section 7.16, Table 7.20.
 struct DwOrd(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1007-1014`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1007-L1014)*
+
 The encodings of the constants used in the `DW_AT_ordering` attribute.
 
 See Section 7.17, Table 7.17.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dword-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwOrd`
 
-- `fn clone(self: &Self) -> DwOrd` — [`DwOrd`](../index.md)
+- <span id="dword-clone"></span>`fn clone(&self) -> DwOrd` — [`DwOrd`](../index.md)
 
 ##### `impl Copy for DwOrd`
 
 ##### `impl Debug for DwOrd`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dword-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwOrd`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dword-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwOrd`
 
 ##### `impl Hash for DwOrd`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dword-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwOrd`
 
-- `fn cmp(self: &Self, other: &DwOrd) -> $crate::cmp::Ordering` — [`DwOrd`](../index.md)
+- <span id="dword-cmp"></span>`fn cmp(&self, other: &DwOrd) -> cmp::Ordering` — [`DwOrd`](../index.md)
 
 ##### `impl PartialEq for DwOrd`
 
-- `fn eq(self: &Self, other: &DwOrd) -> bool` — [`DwOrd`](../index.md)
+- <span id="dword-eq"></span>`fn eq(&self, other: &DwOrd) -> bool` — [`DwOrd`](../index.md)
 
 ##### `impl PartialOrd for DwOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwOrd) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwOrd`](../index.md)
+- <span id="dword-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOrd) -> option::Option<cmp::Ordering>` — [`DwOrd`](../index.md)
 
 ##### `impl StructuralPartialEq for DwOrd`
 
-##### `impl<T> ToString for DwOrd`
+##### `impl ToString for DwOrd`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dword-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwDsc`
 
@@ -1158,53 +3045,55 @@ See Section 7.17, Table 7.17.
 struct DwDsc(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1016-1023`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1016-L1023)*
+
 The encodings of the constants used in the `DW_AT_discr_list` attribute.
 
 See Section 7.18, Table 7.22.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwdsc-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwDsc`
 
-- `fn clone(self: &Self) -> DwDsc` — [`DwDsc`](../index.md)
+- <span id="dwdsc-clone"></span>`fn clone(&self) -> DwDsc` — [`DwDsc`](../index.md)
 
 ##### `impl Copy for DwDsc`
 
 ##### `impl Debug for DwDsc`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwdsc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwDsc`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwdsc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwDsc`
 
 ##### `impl Hash for DwDsc`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwdsc-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwDsc`
 
-- `fn cmp(self: &Self, other: &DwDsc) -> $crate::cmp::Ordering` — [`DwDsc`](../index.md)
+- <span id="dwdsc-cmp"></span>`fn cmp(&self, other: &DwDsc) -> cmp::Ordering` — [`DwDsc`](../index.md)
 
 ##### `impl PartialEq for DwDsc`
 
-- `fn eq(self: &Self, other: &DwDsc) -> bool` — [`DwDsc`](../index.md)
+- <span id="dwdsc-eq"></span>`fn eq(&self, other: &DwDsc) -> bool` — [`DwDsc`](../index.md)
 
 ##### `impl PartialOrd for DwDsc`
 
-- `fn partial_cmp(self: &Self, other: &DwDsc) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDsc`](../index.md)
+- <span id="dwdsc-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDsc) -> option::Option<cmp::Ordering>` — [`DwDsc`](../index.md)
 
 ##### `impl StructuralPartialEq for DwDsc`
 
-##### `impl<T> ToString for DwDsc`
+##### `impl ToString for DwDsc`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwdsc-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwIdx`
 
@@ -1212,53 +3101,55 @@ See Section 7.18, Table 7.22.
 struct DwIdx(u16);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
+
 Name index attribute encodings.
 
 See Section 7.19, Table 7.23.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwidx-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwIdx`
 
-- `fn clone(self: &Self) -> DwIdx` — [`DwIdx`](../index.md)
+- <span id="dwidx-clone"></span>`fn clone(&self) -> DwIdx` — [`DwIdx`](../index.md)
 
 ##### `impl Copy for DwIdx`
 
 ##### `impl Debug for DwIdx`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwidx-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwIdx`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwidx-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwIdx`
 
 ##### `impl Hash for DwIdx`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwidx-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwIdx`
 
-- `fn cmp(self: &Self, other: &DwIdx) -> $crate::cmp::Ordering` — [`DwIdx`](../index.md)
+- <span id="dwidx-cmp"></span>`fn cmp(&self, other: &DwIdx) -> cmp::Ordering` — [`DwIdx`](../index.md)
 
 ##### `impl PartialEq for DwIdx`
 
-- `fn eq(self: &Self, other: &DwIdx) -> bool` — [`DwIdx`](../index.md)
+- <span id="dwidx-eq"></span>`fn eq(&self, other: &DwIdx) -> bool` — [`DwIdx`](../index.md)
 
 ##### `impl PartialOrd for DwIdx`
 
-- `fn partial_cmp(self: &Self, other: &DwIdx) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwIdx`](../index.md)
+- <span id="dwidx-partial-cmp"></span>`fn partial_cmp(&self, other: &DwIdx) -> option::Option<cmp::Ordering>` — [`DwIdx`](../index.md)
 
 ##### `impl StructuralPartialEq for DwIdx`
 
-##### `impl<T> ToString for DwIdx`
+##### `impl ToString for DwIdx`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwidx-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwDefaulted`
 
@@ -1266,53 +3157,55 @@ See Section 7.19, Table 7.23.
 struct DwDefaulted(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1039-1047`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1039-L1047)*
+
 The encodings of the constants used in the `DW_AT_defaulted` attribute.
 
 See Section 7.20, Table 7.24.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwdefaulted-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwDefaulted`
 
-- `fn clone(self: &Self) -> DwDefaulted` — [`DwDefaulted`](../index.md)
+- <span id="dwdefaulted-clone"></span>`fn clone(&self) -> DwDefaulted` — [`DwDefaulted`](../index.md)
 
 ##### `impl Copy for DwDefaulted`
 
 ##### `impl Debug for DwDefaulted`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwdefaulted-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwDefaulted`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwdefaulted-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwDefaulted`
 
 ##### `impl Hash for DwDefaulted`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwdefaulted-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwDefaulted`
 
-- `fn cmp(self: &Self, other: &DwDefaulted) -> $crate::cmp::Ordering` — [`DwDefaulted`](../index.md)
+- <span id="dwdefaulted-cmp"></span>`fn cmp(&self, other: &DwDefaulted) -> cmp::Ordering` — [`DwDefaulted`](../index.md)
 
 ##### `impl PartialEq for DwDefaulted`
 
-- `fn eq(self: &Self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](../index.md)
+- <span id="dwdefaulted-eq"></span>`fn eq(&self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](../index.md)
 
 ##### `impl PartialOrd for DwDefaulted`
 
-- `fn partial_cmp(self: &Self, other: &DwDefaulted) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDefaulted`](../index.md)
+- <span id="dwdefaulted-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDefaulted) -> option::Option<cmp::Ordering>` — [`DwDefaulted`](../index.md)
 
 ##### `impl StructuralPartialEq for DwDefaulted`
 
-##### `impl<T> ToString for DwDefaulted`
+##### `impl ToString for DwDefaulted`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwdefaulted-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwLns`
 
@@ -1320,53 +3213,55 @@ See Section 7.20, Table 7.24.
 struct DwLns(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
+
 The encodings for the standard opcodes for line number information.
 
 See Section 7.22, Table 7.25.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwlns-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwLns`
 
-- `fn clone(self: &Self) -> DwLns` — [`DwLns`](../index.md)
+- <span id="dwlns-clone"></span>`fn clone(&self) -> DwLns` — [`DwLns`](../index.md)
 
 ##### `impl Copy for DwLns`
 
 ##### `impl Debug for DwLns`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwlns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLns`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLns`
 
 ##### `impl Hash for DwLns`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwlns-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwLns`
 
-- `fn cmp(self: &Self, other: &DwLns) -> $crate::cmp::Ordering` — [`DwLns`](../index.md)
+- <span id="dwlns-cmp"></span>`fn cmp(&self, other: &DwLns) -> cmp::Ordering` — [`DwLns`](../index.md)
 
 ##### `impl PartialEq for DwLns`
 
-- `fn eq(self: &Self, other: &DwLns) -> bool` — [`DwLns`](../index.md)
+- <span id="dwlns-eq"></span>`fn eq(&self, other: &DwLns) -> bool` — [`DwLns`](../index.md)
 
 ##### `impl PartialOrd for DwLns`
 
-- `fn partial_cmp(self: &Self, other: &DwLns) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLns`](../index.md)
+- <span id="dwlns-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLns) -> option::Option<cmp::Ordering>` — [`DwLns`](../index.md)
 
 ##### `impl StructuralPartialEq for DwLns`
 
-##### `impl<T> ToString for DwLns`
+##### `impl ToString for DwLns`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwlns-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwLne`
 
@@ -1374,53 +3269,55 @@ See Section 7.22, Table 7.25.
 struct DwLne(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
+
 The encodings for the extended opcodes for line number information.
 
 See Section 7.22, Table 7.26.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwlne-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwLne`
 
-- `fn clone(self: &Self) -> DwLne` — [`DwLne`](../index.md)
+- <span id="dwlne-clone"></span>`fn clone(&self) -> DwLne` — [`DwLne`](../index.md)
 
 ##### `impl Copy for DwLne`
 
 ##### `impl Debug for DwLne`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwlne-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLne`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlne-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLne`
 
 ##### `impl Hash for DwLne`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwlne-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwLne`
 
-- `fn cmp(self: &Self, other: &DwLne) -> $crate::cmp::Ordering` — [`DwLne`](../index.md)
+- <span id="dwlne-cmp"></span>`fn cmp(&self, other: &DwLne) -> cmp::Ordering` — [`DwLne`](../index.md)
 
 ##### `impl PartialEq for DwLne`
 
-- `fn eq(self: &Self, other: &DwLne) -> bool` — [`DwLne`](../index.md)
+- <span id="dwlne-eq"></span>`fn eq(&self, other: &DwLne) -> bool` — [`DwLne`](../index.md)
 
 ##### `impl PartialOrd for DwLne`
 
-- `fn partial_cmp(self: &Self, other: &DwLne) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLne`](../index.md)
+- <span id="dwlne-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLne) -> option::Option<cmp::Ordering>` — [`DwLne`](../index.md)
 
 ##### `impl StructuralPartialEq for DwLne`
 
-##### `impl<T> ToString for DwLne`
+##### `impl ToString for DwLne`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwlne-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwLnct`
 
@@ -1428,53 +3325,55 @@ See Section 7.22, Table 7.26.
 struct DwLnct(u16);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
+
 The encodings for the line number header entry formats.
 
 See Section 7.22, Table 7.27.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwlnct-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwLnct`
 
-- `fn clone(self: &Self) -> DwLnct` — [`DwLnct`](../index.md)
+- <span id="dwlnct-clone"></span>`fn clone(&self) -> DwLnct` — [`DwLnct`](../index.md)
 
 ##### `impl Copy for DwLnct`
 
 ##### `impl Debug for DwLnct`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwlnct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLnct`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlnct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLnct`
 
 ##### `impl Hash for DwLnct`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwlnct-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwLnct`
 
-- `fn cmp(self: &Self, other: &DwLnct) -> $crate::cmp::Ordering` — [`DwLnct`](../index.md)
+- <span id="dwlnct-cmp"></span>`fn cmp(&self, other: &DwLnct) -> cmp::Ordering` — [`DwLnct`](../index.md)
 
 ##### `impl PartialEq for DwLnct`
 
-- `fn eq(self: &Self, other: &DwLnct) -> bool` — [`DwLnct`](../index.md)
+- <span id="dwlnct-eq"></span>`fn eq(&self, other: &DwLnct) -> bool` — [`DwLnct`](../index.md)
 
 ##### `impl PartialOrd for DwLnct`
 
-- `fn partial_cmp(self: &Self, other: &DwLnct) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLnct`](../index.md)
+- <span id="dwlnct-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLnct) -> option::Option<cmp::Ordering>` — [`DwLnct`](../index.md)
 
 ##### `impl StructuralPartialEq for DwLnct`
 
-##### `impl<T> ToString for DwLnct`
+##### `impl ToString for DwLnct`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwlnct-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwMacinfo`
 
@@ -1482,53 +3381,55 @@ See Section 7.22, Table 7.27.
 struct DwMacinfo(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
+
 Type codes for macro definitions in the `.debug_macinfo` section.
 
 See Section 7.22, Figure 39 for DWARF 4.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwmacinfo-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwMacinfo`
 
-- `fn clone(self: &Self) -> DwMacinfo` — [`DwMacinfo`](../index.md)
+- <span id="dwmacinfo-clone"></span>`fn clone(&self) -> DwMacinfo` — [`DwMacinfo`](../index.md)
 
 ##### `impl Copy for DwMacinfo`
 
 ##### `impl Debug for DwMacinfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwmacinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwMacinfo`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwmacinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwMacinfo`
 
 ##### `impl Hash for DwMacinfo`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwmacinfo-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwMacinfo`
 
-- `fn cmp(self: &Self, other: &DwMacinfo) -> $crate::cmp::Ordering` — [`DwMacinfo`](../index.md)
+- <span id="dwmacinfo-cmp"></span>`fn cmp(&self, other: &DwMacinfo) -> cmp::Ordering` — [`DwMacinfo`](../index.md)
 
 ##### `impl PartialEq for DwMacinfo`
 
-- `fn eq(self: &Self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](../index.md)
+- <span id="dwmacinfo-eq"></span>`fn eq(&self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](../index.md)
 
 ##### `impl PartialOrd for DwMacinfo`
 
-- `fn partial_cmp(self: &Self, other: &DwMacinfo) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwMacinfo`](../index.md)
+- <span id="dwmacinfo-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacinfo) -> option::Option<cmp::Ordering>` — [`DwMacinfo`](../index.md)
 
 ##### `impl StructuralPartialEq for DwMacinfo`
 
-##### `impl<T> ToString for DwMacinfo`
+##### `impl ToString for DwMacinfo`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwmacinfo-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwMacro`
 
@@ -1536,53 +3437,55 @@ See Section 7.22, Figure 39 for DWARF 4.
 struct DwMacro(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
+
 The encodings for macro information entry types.
 
 See Section 7.23, Table 7.28 for DWARF 5.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwmacro-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwMacro`
 
-- `fn clone(self: &Self) -> DwMacro` — [`DwMacro`](../index.md)
+- <span id="dwmacro-clone"></span>`fn clone(&self) -> DwMacro` — [`DwMacro`](../index.md)
 
 ##### `impl Copy for DwMacro`
 
 ##### `impl Debug for DwMacro`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwMacro`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwMacro`
 
 ##### `impl Hash for DwMacro`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwmacro-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwMacro`
 
-- `fn cmp(self: &Self, other: &DwMacro) -> $crate::cmp::Ordering` — [`DwMacro`](../index.md)
+- <span id="dwmacro-cmp"></span>`fn cmp(&self, other: &DwMacro) -> cmp::Ordering` — [`DwMacro`](../index.md)
 
 ##### `impl PartialEq for DwMacro`
 
-- `fn eq(self: &Self, other: &DwMacro) -> bool` — [`DwMacro`](../index.md)
+- <span id="dwmacro-eq"></span>`fn eq(&self, other: &DwMacro) -> bool` — [`DwMacro`](../index.md)
 
 ##### `impl PartialOrd for DwMacro`
 
-- `fn partial_cmp(self: &Self, other: &DwMacro) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwMacro`](../index.md)
+- <span id="dwmacro-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacro) -> option::Option<cmp::Ordering>` — [`DwMacro`](../index.md)
 
 ##### `impl StructuralPartialEq for DwMacro`
 
-##### `impl<T> ToString for DwMacro`
+##### `impl ToString for DwMacro`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwmacro-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwRle`
 
@@ -1590,53 +3493,55 @@ See Section 7.23, Table 7.28 for DWARF 5.
 struct DwRle(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
+
 Range list entry encoding values.
 
 See Section 7.25, Table 7.30.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwrle-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwRle`
 
-- `fn clone(self: &Self) -> DwRle` — [`DwRle`](../index.md)
+- <span id="dwrle-clone"></span>`fn clone(&self) -> DwRle` — [`DwRle`](../index.md)
 
 ##### `impl Copy for DwRle`
 
 ##### `impl Debug for DwRle`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwrle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwRle`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwrle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwRle`
 
 ##### `impl Hash for DwRle`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwrle-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwRle`
 
-- `fn cmp(self: &Self, other: &DwRle) -> $crate::cmp::Ordering` — [`DwRle`](../index.md)
+- <span id="dwrle-cmp"></span>`fn cmp(&self, other: &DwRle) -> cmp::Ordering` — [`DwRle`](../index.md)
 
 ##### `impl PartialEq for DwRle`
 
-- `fn eq(self: &Self, other: &DwRle) -> bool` — [`DwRle`](../index.md)
+- <span id="dwrle-eq"></span>`fn eq(&self, other: &DwRle) -> bool` — [`DwRle`](../index.md)
 
 ##### `impl PartialOrd for DwRle`
 
-- `fn partial_cmp(self: &Self, other: &DwRle) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwRle`](../index.md)
+- <span id="dwrle-partial-cmp"></span>`fn partial_cmp(&self, other: &DwRle) -> option::Option<cmp::Ordering>` — [`DwRle`](../index.md)
 
 ##### `impl StructuralPartialEq for DwRle`
 
-##### `impl<T> ToString for DwRle`
+##### `impl ToString for DwRle`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwrle-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwOp`
 
@@ -1644,59 +3549,63 @@ See Section 7.25, Table 7.30.
 struct DwOp(u8);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
+
 The encodings for DWARF expression operations.
 
 See Section 7.7.1, Table 7.9.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwop-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwOp`
 
-- `fn clone(self: &Self) -> DwOp` — [`DwOp`](../index.md)
+- <span id="dwop-clone"></span>`fn clone(&self) -> DwOp` — [`DwOp`](../index.md)
 
 ##### `impl Copy for DwOp`
 
 ##### `impl Debug for DwOp`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwop-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwOp`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwop-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwOp`
 
 ##### `impl Hash for DwOp`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwop-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwOp`
 
-- `fn cmp(self: &Self, other: &DwOp) -> $crate::cmp::Ordering` — [`DwOp`](../index.md)
+- <span id="dwop-cmp"></span>`fn cmp(&self, other: &DwOp) -> cmp::Ordering` — [`DwOp`](../index.md)
 
 ##### `impl PartialEq for DwOp`
 
-- `fn eq(self: &Self, other: &DwOp) -> bool` — [`DwOp`](../index.md)
+- <span id="dwop-eq"></span>`fn eq(&self, other: &DwOp) -> bool` — [`DwOp`](../index.md)
 
 ##### `impl PartialOrd for DwOp`
 
-- `fn partial_cmp(self: &Self, other: &DwOp) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwOp`](../index.md)
+- <span id="dwop-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOp) -> option::Option<cmp::Ordering>` — [`DwOp`](../index.md)
 
 ##### `impl StructuralPartialEq for DwOp`
 
-##### `impl<T> ToString for DwOp`
+##### `impl ToString for DwOp`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwop-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwEhPe`
 
 ```rust
 struct DwEhPe(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
 Pointer encoding used by `.eh_frame`.
 
@@ -1708,5369 +3617,6247 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 #### Implementations
 
-- `fn format(self: Self) -> DwEhPe` — [`DwEhPe`](../index.md)
-
-- `fn application(self: Self) -> DwEhPe` — [`DwEhPe`](../index.md)
-
-- `fn is_absent(self: Self) -> bool`
-
-- `fn is_indirect(self: Self) -> bool`
-
-- `fn is_valid_encoding(self: Self) -> bool`
+- <span id="dwehpe-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl BitOr for DwEhPe`
 
-- `type Output = DwEhPe`
+- <span id="dwehpe-type-output"></span>`type Output = DwEhPe`
 
-- `fn bitor(self: Self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](../index.md)
+- <span id="dwehpe-bitor"></span>`fn bitor(self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](../index.md)
 
 ##### `impl Clone for DwEhPe`
 
-- `fn clone(self: &Self) -> DwEhPe` — [`DwEhPe`](../index.md)
+- <span id="dwehpe-clone"></span>`fn clone(&self) -> DwEhPe` — [`DwEhPe`](../index.md)
 
 ##### `impl Copy for DwEhPe`
 
 ##### `impl Debug for DwEhPe`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwehpe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwEhPe`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwehpe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwEhPe`
 
 ##### `impl Hash for DwEhPe`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwehpe-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwEhPe`
 
-- `fn cmp(self: &Self, other: &DwEhPe) -> $crate::cmp::Ordering` — [`DwEhPe`](../index.md)
+- <span id="dwehpe-cmp"></span>`fn cmp(&self, other: &DwEhPe) -> cmp::Ordering` — [`DwEhPe`](../index.md)
 
 ##### `impl PartialEq for DwEhPe`
 
-- `fn eq(self: &Self, other: &DwEhPe) -> bool` — [`DwEhPe`](../index.md)
+- <span id="dwehpe-eq"></span>`fn eq(&self, other: &DwEhPe) -> bool` — [`DwEhPe`](../index.md)
 
 ##### `impl PartialOrd for DwEhPe`
 
-- `fn partial_cmp(self: &Self, other: &DwEhPe) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwEhPe`](../index.md)
+- <span id="dwehpe-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEhPe) -> option::Option<cmp::Ordering>` — [`DwEhPe`](../index.md)
 
 ##### `impl StructuralPartialEq for DwEhPe`
 
-##### `impl<T> ToString for DwEhPe`
+##### `impl ToString for DwEhPe`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwehpe-to-string"></span>`fn to_string(&self) -> String`
 
 ## Constants
 
 ### `DW_SECT_INFO`
-
 ```rust
 const DW_SECT_INFO: DwSect;
 ```
 
-### `DW_SECT_ABBREV`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_ABBREV`
 ```rust
 const DW_SECT_ABBREV: DwSect;
 ```
 
-### `DW_SECT_LINE`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_LINE`
 ```rust
 const DW_SECT_LINE: DwSect;
 ```
 
-### `DW_SECT_LOCLISTS`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_LOCLISTS`
 ```rust
 const DW_SECT_LOCLISTS: DwSect;
 ```
 
-### `DW_SECT_STR_OFFSETS`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_STR_OFFSETS`
 ```rust
 const DW_SECT_STR_OFFSETS: DwSect;
 ```
 
-### `DW_SECT_MACRO`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_MACRO`
 ```rust
 const DW_SECT_MACRO: DwSect;
 ```
 
-### `DW_SECT_RNGLISTS`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_RNGLISTS`
 ```rust
 const DW_SECT_RNGLISTS: DwSect;
 ```
 
-### `DW_SECT_V2_INFO`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_V2_INFO`
 ```rust
 const DW_SECT_V2_INFO: DwSectV2;
 ```
 
-### `DW_SECT_V2_TYPES`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_TYPES`
 ```rust
 const DW_SECT_V2_TYPES: DwSectV2;
 ```
 
-### `DW_SECT_V2_ABBREV`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_ABBREV`
 ```rust
 const DW_SECT_V2_ABBREV: DwSectV2;
 ```
 
-### `DW_SECT_V2_LINE`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_LINE`
 ```rust
 const DW_SECT_V2_LINE: DwSectV2;
 ```
 
-### `DW_SECT_V2_LOC`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_LOC`
 ```rust
 const DW_SECT_V2_LOC: DwSectV2;
 ```
 
-### `DW_SECT_V2_STR_OFFSETS`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_STR_OFFSETS`
 ```rust
 const DW_SECT_V2_STR_OFFSETS: DwSectV2;
 ```
 
-### `DW_SECT_V2_MACINFO`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_MACINFO`
 ```rust
 const DW_SECT_V2_MACINFO: DwSectV2;
 ```
 
-### `DW_SECT_V2_MACRO`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_MACRO`
 ```rust
 const DW_SECT_V2_MACRO: DwSectV2;
 ```
 
-### `DW_UT_compile`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_UT_compile`
 ```rust
 const DW_UT_compile: DwUt;
 ```
 
-### `DW_UT_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_type`
 ```rust
 const DW_UT_type: DwUt;
 ```
 
-### `DW_UT_partial`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_partial`
 ```rust
 const DW_UT_partial: DwUt;
 ```
 
-### `DW_UT_skeleton`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_skeleton`
 ```rust
 const DW_UT_skeleton: DwUt;
 ```
 
-### `DW_UT_split_compile`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_split_compile`
 ```rust
 const DW_UT_split_compile: DwUt;
 ```
 
-### `DW_UT_split_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_split_type`
 ```rust
 const DW_UT_split_type: DwUt;
 ```
 
-### `DW_UT_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_lo_user`
 ```rust
 const DW_UT_lo_user: DwUt;
 ```
 
-### `DW_UT_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_hi_user`
 ```rust
 const DW_UT_hi_user: DwUt;
 ```
 
-### `DW_CFA_advance_loc`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_CFA_advance_loc`
 ```rust
 const DW_CFA_advance_loc: DwCfa;
 ```
 
-### `DW_CFA_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_offset`
 ```rust
 const DW_CFA_offset: DwCfa;
 ```
 
-### `DW_CFA_restore`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_restore`
 ```rust
 const DW_CFA_restore: DwCfa;
 ```
 
-### `DW_CFA_nop`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_nop`
 ```rust
 const DW_CFA_nop: DwCfa;
 ```
 
-### `DW_CFA_set_loc`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_set_loc`
 ```rust
 const DW_CFA_set_loc: DwCfa;
 ```
 
-### `DW_CFA_advance_loc1`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_advance_loc1`
 ```rust
 const DW_CFA_advance_loc1: DwCfa;
 ```
 
-### `DW_CFA_advance_loc2`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_advance_loc2`
 ```rust
 const DW_CFA_advance_loc2: DwCfa;
 ```
 
-### `DW_CFA_advance_loc4`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_advance_loc4`
 ```rust
 const DW_CFA_advance_loc4: DwCfa;
 ```
 
-### `DW_CFA_offset_extended`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_offset_extended`
 ```rust
 const DW_CFA_offset_extended: DwCfa;
 ```
 
-### `DW_CFA_restore_extended`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_restore_extended`
 ```rust
 const DW_CFA_restore_extended: DwCfa;
 ```
 
-### `DW_CFA_undefined`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_undefined`
 ```rust
 const DW_CFA_undefined: DwCfa;
 ```
 
-### `DW_CFA_same_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_same_value`
 ```rust
 const DW_CFA_same_value: DwCfa;
 ```
 
-### `DW_CFA_register`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_register`
 ```rust
 const DW_CFA_register: DwCfa;
 ```
 
-### `DW_CFA_remember_state`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_remember_state`
 ```rust
 const DW_CFA_remember_state: DwCfa;
 ```
 
-### `DW_CFA_restore_state`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_restore_state`
 ```rust
 const DW_CFA_restore_state: DwCfa;
 ```
 
-### `DW_CFA_def_cfa`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa`
 ```rust
 const DW_CFA_def_cfa: DwCfa;
 ```
 
-### `DW_CFA_def_cfa_register`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa_register`
 ```rust
 const DW_CFA_def_cfa_register: DwCfa;
 ```
 
-### `DW_CFA_def_cfa_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa_offset`
 ```rust
 const DW_CFA_def_cfa_offset: DwCfa;
 ```
 
-### `DW_CFA_def_cfa_expression`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa_expression`
 ```rust
 const DW_CFA_def_cfa_expression: DwCfa;
 ```
 
-### `DW_CFA_expression`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_expression`
 ```rust
 const DW_CFA_expression: DwCfa;
 ```
 
-### `DW_CFA_offset_extended_sf`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_offset_extended_sf`
 ```rust
 const DW_CFA_offset_extended_sf: DwCfa;
 ```
 
-### `DW_CFA_def_cfa_sf`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa_sf`
 ```rust
 const DW_CFA_def_cfa_sf: DwCfa;
 ```
 
-### `DW_CFA_def_cfa_offset_sf`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa_offset_sf`
 ```rust
 const DW_CFA_def_cfa_offset_sf: DwCfa;
 ```
 
-### `DW_CFA_val_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_val_offset`
 ```rust
 const DW_CFA_val_offset: DwCfa;
 ```
 
-### `DW_CFA_val_offset_sf`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_val_offset_sf`
 ```rust
 const DW_CFA_val_offset_sf: DwCfa;
 ```
 
-### `DW_CFA_val_expression`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_val_expression`
 ```rust
 const DW_CFA_val_expression: DwCfa;
 ```
 
-### `DW_CFA_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_lo_user`
 ```rust
 const DW_CFA_lo_user: DwCfa;
 ```
 
-### `DW_CFA_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_hi_user`
 ```rust
 const DW_CFA_hi_user: DwCfa;
 ```
 
-### `DW_CFA_MIPS_advance_loc8`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_MIPS_advance_loc8`
 ```rust
 const DW_CFA_MIPS_advance_loc8: DwCfa;
 ```
 
-### `DW_CFA_GNU_window_save`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_GNU_window_save`
 ```rust
 const DW_CFA_GNU_window_save: DwCfa;
 ```
 
-### `DW_CFA_GNU_args_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_GNU_args_size`
 ```rust
 const DW_CFA_GNU_args_size: DwCfa;
 ```
 
-### `DW_CFA_GNU_negative_offset_extended`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_GNU_negative_offset_extended`
 ```rust
 const DW_CFA_GNU_negative_offset_extended: DwCfa;
 ```
 
-### `DW_CFA_AARCH64_negate_ra_state`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_AARCH64_negate_ra_state`
 ```rust
 const DW_CFA_AARCH64_negate_ra_state: DwCfa;
 ```
 
-### `DW_CHILDREN_no`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CHILDREN_no`
 ```rust
 const DW_CHILDREN_no: DwChildren;
 ```
 
-### `DW_CHILDREN_yes`
+*Defined in [`gimli-0.32.3/src/constants.rs:196-203`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L196-L203)*
 
+### `DW_CHILDREN_yes`
 ```rust
 const DW_CHILDREN_yes: DwChildren;
 ```
 
-### `DW_TAG_null`
+*Defined in [`gimli-0.32.3/src/constants.rs:196-203`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L196-L203)*
 
+### `DW_TAG_null`
 ```rust
 const DW_TAG_null: DwTag;
 ```
 
-### `DW_TAG_global_subroutine`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_global_subroutine`
 ```rust
 const DW_TAG_global_subroutine: DwTag;
 ```
 
-### `DW_TAG_global_variable`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_global_variable`
 ```rust
 const DW_TAG_global_variable: DwTag;
 ```
 
-### `DW_TAG_local_variable`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_local_variable`
 ```rust
 const DW_TAG_local_variable: DwTag;
 ```
 
-### `DW_TAG_subroutine`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_subroutine`
 ```rust
 const DW_TAG_subroutine: DwTag;
 ```
 
-### `DW_TAG_array_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_array_type`
 ```rust
 const DW_TAG_array_type: DwTag;
 ```
 
-### `DW_TAG_class_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_class_type`
 ```rust
 const DW_TAG_class_type: DwTag;
 ```
 
-### `DW_TAG_entry_point`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_entry_point`
 ```rust
 const DW_TAG_entry_point: DwTag;
 ```
 
-### `DW_TAG_enumeration_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_enumeration_type`
 ```rust
 const DW_TAG_enumeration_type: DwTag;
 ```
 
-### `DW_TAG_formal_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_formal_parameter`
 ```rust
 const DW_TAG_formal_parameter: DwTag;
 ```
 
-### `DW_TAG_imported_declaration`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_imported_declaration`
 ```rust
 const DW_TAG_imported_declaration: DwTag;
 ```
 
-### `DW_TAG_label`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_label`
 ```rust
 const DW_TAG_label: DwTag;
 ```
 
-### `DW_TAG_lexical_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_lexical_block`
 ```rust
 const DW_TAG_lexical_block: DwTag;
 ```
 
-### `DW_TAG_member`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_member`
 ```rust
 const DW_TAG_member: DwTag;
 ```
 
-### `DW_TAG_pointer_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_pointer_type`
 ```rust
 const DW_TAG_pointer_type: DwTag;
 ```
 
-### `DW_TAG_reference_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_reference_type`
 ```rust
 const DW_TAG_reference_type: DwTag;
 ```
 
-### `DW_TAG_compile_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_compile_unit`
 ```rust
 const DW_TAG_compile_unit: DwTag;
 ```
 
-### `DW_TAG_string_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_string_type`
 ```rust
 const DW_TAG_string_type: DwTag;
 ```
 
-### `DW_TAG_structure_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_structure_type`
 ```rust
 const DW_TAG_structure_type: DwTag;
 ```
 
-### `DW_TAG_subroutine_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_subroutine_type`
 ```rust
 const DW_TAG_subroutine_type: DwTag;
 ```
 
-### `DW_TAG_typedef`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_typedef`
 ```rust
 const DW_TAG_typedef: DwTag;
 ```
 
-### `DW_TAG_union_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_union_type`
 ```rust
 const DW_TAG_union_type: DwTag;
 ```
 
-### `DW_TAG_unspecified_parameters`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_unspecified_parameters`
 ```rust
 const DW_TAG_unspecified_parameters: DwTag;
 ```
 
-### `DW_TAG_variant`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_variant`
 ```rust
 const DW_TAG_variant: DwTag;
 ```
 
-### `DW_TAG_common_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_common_block`
 ```rust
 const DW_TAG_common_block: DwTag;
 ```
 
-### `DW_TAG_common_inclusion`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_common_inclusion`
 ```rust
 const DW_TAG_common_inclusion: DwTag;
 ```
 
-### `DW_TAG_inheritance`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_inheritance`
 ```rust
 const DW_TAG_inheritance: DwTag;
 ```
 
-### `DW_TAG_inlined_subroutine`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_inlined_subroutine`
 ```rust
 const DW_TAG_inlined_subroutine: DwTag;
 ```
 
-### `DW_TAG_module`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_module`
 ```rust
 const DW_TAG_module: DwTag;
 ```
 
-### `DW_TAG_ptr_to_member_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_ptr_to_member_type`
 ```rust
 const DW_TAG_ptr_to_member_type: DwTag;
 ```
 
-### `DW_TAG_set_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_set_type`
 ```rust
 const DW_TAG_set_type: DwTag;
 ```
 
-### `DW_TAG_subrange_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_subrange_type`
 ```rust
 const DW_TAG_subrange_type: DwTag;
 ```
 
-### `DW_TAG_with_stmt`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_with_stmt`
 ```rust
 const DW_TAG_with_stmt: DwTag;
 ```
 
-### `DW_TAG_access_declaration`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_access_declaration`
 ```rust
 const DW_TAG_access_declaration: DwTag;
 ```
 
-### `DW_TAG_base_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_base_type`
 ```rust
 const DW_TAG_base_type: DwTag;
 ```
 
-### `DW_TAG_catch_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_catch_block`
 ```rust
 const DW_TAG_catch_block: DwTag;
 ```
 
-### `DW_TAG_const_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_const_type`
 ```rust
 const DW_TAG_const_type: DwTag;
 ```
 
-### `DW_TAG_constant`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_constant`
 ```rust
 const DW_TAG_constant: DwTag;
 ```
 
-### `DW_TAG_enumerator`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_enumerator`
 ```rust
 const DW_TAG_enumerator: DwTag;
 ```
 
-### `DW_TAG_file_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_file_type`
 ```rust
 const DW_TAG_file_type: DwTag;
 ```
 
-### `DW_TAG_friend`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_friend`
 ```rust
 const DW_TAG_friend: DwTag;
 ```
 
-### `DW_TAG_namelist`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_namelist`
 ```rust
 const DW_TAG_namelist: DwTag;
 ```
 
-### `DW_TAG_namelist_item`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_namelist_item`
 ```rust
 const DW_TAG_namelist_item: DwTag;
 ```
 
-### `DW_TAG_packed_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_packed_type`
 ```rust
 const DW_TAG_packed_type: DwTag;
 ```
 
-### `DW_TAG_subprogram`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_subprogram`
 ```rust
 const DW_TAG_subprogram: DwTag;
 ```
 
-### `DW_TAG_template_type_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_template_type_parameter`
 ```rust
 const DW_TAG_template_type_parameter: DwTag;
 ```
 
-### `DW_TAG_template_value_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_template_value_parameter`
 ```rust
 const DW_TAG_template_value_parameter: DwTag;
 ```
 
-### `DW_TAG_thrown_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_thrown_type`
 ```rust
 const DW_TAG_thrown_type: DwTag;
 ```
 
-### `DW_TAG_try_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_try_block`
 ```rust
 const DW_TAG_try_block: DwTag;
 ```
 
-### `DW_TAG_variant_part`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_variant_part`
 ```rust
 const DW_TAG_variant_part: DwTag;
 ```
 
-### `DW_TAG_variable`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_variable`
 ```rust
 const DW_TAG_variable: DwTag;
 ```
 
-### `DW_TAG_volatile_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_volatile_type`
 ```rust
 const DW_TAG_volatile_type: DwTag;
 ```
 
-### `DW_TAG_dwarf_procedure`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_dwarf_procedure`
 ```rust
 const DW_TAG_dwarf_procedure: DwTag;
 ```
 
-### `DW_TAG_restrict_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_restrict_type`
 ```rust
 const DW_TAG_restrict_type: DwTag;
 ```
 
-### `DW_TAG_interface_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_interface_type`
 ```rust
 const DW_TAG_interface_type: DwTag;
 ```
 
-### `DW_TAG_namespace`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_namespace`
 ```rust
 const DW_TAG_namespace: DwTag;
 ```
 
-### `DW_TAG_imported_module`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_imported_module`
 ```rust
 const DW_TAG_imported_module: DwTag;
 ```
 
-### `DW_TAG_unspecified_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_unspecified_type`
 ```rust
 const DW_TAG_unspecified_type: DwTag;
 ```
 
-### `DW_TAG_partial_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_partial_unit`
 ```rust
 const DW_TAG_partial_unit: DwTag;
 ```
 
-### `DW_TAG_imported_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_imported_unit`
 ```rust
 const DW_TAG_imported_unit: DwTag;
 ```
 
-### `DW_TAG_condition`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_condition`
 ```rust
 const DW_TAG_condition: DwTag;
 ```
 
-### `DW_TAG_shared_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_shared_type`
 ```rust
 const DW_TAG_shared_type: DwTag;
 ```
 
-### `DW_TAG_type_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_type_unit`
 ```rust
 const DW_TAG_type_unit: DwTag;
 ```
 
-### `DW_TAG_rvalue_reference_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_rvalue_reference_type`
 ```rust
 const DW_TAG_rvalue_reference_type: DwTag;
 ```
 
-### `DW_TAG_template_alias`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_template_alias`
 ```rust
 const DW_TAG_template_alias: DwTag;
 ```
 
-### `DW_TAG_coarray_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_coarray_type`
 ```rust
 const DW_TAG_coarray_type: DwTag;
 ```
 
-### `DW_TAG_generic_subrange`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_generic_subrange`
 ```rust
 const DW_TAG_generic_subrange: DwTag;
 ```
 
-### `DW_TAG_dynamic_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_dynamic_type`
 ```rust
 const DW_TAG_dynamic_type: DwTag;
 ```
 
-### `DW_TAG_atomic_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_atomic_type`
 ```rust
 const DW_TAG_atomic_type: DwTag;
 ```
 
-### `DW_TAG_call_site`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_call_site`
 ```rust
 const DW_TAG_call_site: DwTag;
 ```
 
-### `DW_TAG_call_site_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_call_site_parameter`
 ```rust
 const DW_TAG_call_site_parameter: DwTag;
 ```
 
-### `DW_TAG_skeleton_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_skeleton_unit`
 ```rust
 const DW_TAG_skeleton_unit: DwTag;
 ```
 
-### `DW_TAG_immutable_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_immutable_type`
 ```rust
 const DW_TAG_immutable_type: DwTag;
 ```
 
-### `DW_TAG_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_lo_user`
 ```rust
 const DW_TAG_lo_user: DwTag;
 ```
 
-### `DW_TAG_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_hi_user`
 ```rust
 const DW_TAG_hi_user: DwTag;
 ```
 
-### `DW_TAG_MIPS_loop`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_MIPS_loop`
 ```rust
 const DW_TAG_MIPS_loop: DwTag;
 ```
 
-### `DW_TAG_HP_array_descriptor`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_HP_array_descriptor`
 ```rust
 const DW_TAG_HP_array_descriptor: DwTag;
 ```
 
-### `DW_TAG_HP_Bliss_field`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_HP_Bliss_field`
 ```rust
 const DW_TAG_HP_Bliss_field: DwTag;
 ```
 
-### `DW_TAG_HP_Bliss_field_set`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_HP_Bliss_field_set`
 ```rust
 const DW_TAG_HP_Bliss_field_set: DwTag;
 ```
 
-### `DW_TAG_format_label`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_format_label`
 ```rust
 const DW_TAG_format_label: DwTag;
 ```
 
-### `DW_TAG_function_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_function_template`
 ```rust
 const DW_TAG_function_template: DwTag;
 ```
 
-### `DW_TAG_class_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_class_template`
 ```rust
 const DW_TAG_class_template: DwTag;
 ```
 
-### `DW_TAG_GNU_BINCL`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_BINCL`
 ```rust
 const DW_TAG_GNU_BINCL: DwTag;
 ```
 
-### `DW_TAG_GNU_EINCL`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_EINCL`
 ```rust
 const DW_TAG_GNU_EINCL: DwTag;
 ```
 
-### `DW_TAG_GNU_template_template_param`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_template_template_param`
 ```rust
 const DW_TAG_GNU_template_template_param: DwTag;
 ```
 
-### `DW_TAG_GNU_template_parameter_pack`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_template_parameter_pack`
 ```rust
 const DW_TAG_GNU_template_parameter_pack: DwTag;
 ```
 
-### `DW_TAG_GNU_formal_parameter_pack`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_formal_parameter_pack`
 ```rust
 const DW_TAG_GNU_formal_parameter_pack: DwTag;
 ```
 
-### `DW_TAG_GNU_call_site`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_call_site`
 ```rust
 const DW_TAG_GNU_call_site: DwTag;
 ```
 
-### `DW_TAG_GNU_call_site_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_call_site_parameter`
 ```rust
 const DW_TAG_GNU_call_site_parameter: DwTag;
 ```
 
-### `DW_TAG_APPLE_property`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_APPLE_property`
 ```rust
 const DW_TAG_APPLE_property: DwTag;
 ```
 
-### `DW_TAG_SUN_function_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_function_template`
 ```rust
 const DW_TAG_SUN_function_template: DwTag;
 ```
 
-### `DW_TAG_SUN_class_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_class_template`
 ```rust
 const DW_TAG_SUN_class_template: DwTag;
 ```
 
-### `DW_TAG_SUN_struct_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_struct_template`
 ```rust
 const DW_TAG_SUN_struct_template: DwTag;
 ```
 
-### `DW_TAG_SUN_union_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_union_template`
 ```rust
 const DW_TAG_SUN_union_template: DwTag;
 ```
 
-### `DW_TAG_SUN_indirect_inheritance`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_indirect_inheritance`
 ```rust
 const DW_TAG_SUN_indirect_inheritance: DwTag;
 ```
 
-### `DW_TAG_SUN_codeflags`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_codeflags`
 ```rust
 const DW_TAG_SUN_codeflags: DwTag;
 ```
 
-### `DW_TAG_SUN_memop_info`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_memop_info`
 ```rust
 const DW_TAG_SUN_memop_info: DwTag;
 ```
 
-### `DW_TAG_SUN_omp_child_func`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_omp_child_func`
 ```rust
 const DW_TAG_SUN_omp_child_func: DwTag;
 ```
 
-### `DW_TAG_SUN_rtti_descriptor`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_rtti_descriptor`
 ```rust
 const DW_TAG_SUN_rtti_descriptor: DwTag;
 ```
 
-### `DW_TAG_SUN_dtor_info`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_dtor_info`
 ```rust
 const DW_TAG_SUN_dtor_info: DwTag;
 ```
 
-### `DW_TAG_SUN_dtor`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_dtor`
 ```rust
 const DW_TAG_SUN_dtor: DwTag;
 ```
 
-### `DW_TAG_SUN_f90_interface`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_f90_interface`
 ```rust
 const DW_TAG_SUN_f90_interface: DwTag;
 ```
 
-### `DW_TAG_SUN_fortran_vax_structure`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_fortran_vax_structure`
 ```rust
 const DW_TAG_SUN_fortran_vax_structure: DwTag;
 ```
 
-### `DW_TAG_ALTIUM_circ_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_ALTIUM_circ_type`
 ```rust
 const DW_TAG_ALTIUM_circ_type: DwTag;
 ```
 
-### `DW_TAG_ALTIUM_mwa_circ_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_ALTIUM_mwa_circ_type`
 ```rust
 const DW_TAG_ALTIUM_mwa_circ_type: DwTag;
 ```
 
-### `DW_TAG_ALTIUM_rev_carry_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_ALTIUM_rev_carry_type`
 ```rust
 const DW_TAG_ALTIUM_rev_carry_type: DwTag;
 ```
 
-### `DW_TAG_ALTIUM_rom`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_ALTIUM_rom`
 ```rust
 const DW_TAG_ALTIUM_rom: DwTag;
 ```
 
-### `DW_TAG_upc_shared_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_upc_shared_type`
 ```rust
 const DW_TAG_upc_shared_type: DwTag;
 ```
 
-### `DW_TAG_upc_strict_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_upc_strict_type`
 ```rust
 const DW_TAG_upc_strict_type: DwTag;
 ```
 
-### `DW_TAG_upc_relaxed_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_upc_relaxed_type`
 ```rust
 const DW_TAG_upc_relaxed_type: DwTag;
 ```
 
-### `DW_TAG_PGI_kanji_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_PGI_kanji_type`
 ```rust
 const DW_TAG_PGI_kanji_type: DwTag;
 ```
 
-### `DW_TAG_PGI_interface_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_PGI_interface_block`
 ```rust
 const DW_TAG_PGI_interface_block: DwTag;
 ```
 
-### `DW_TAG_BORLAND_property`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_BORLAND_property`
 ```rust
 const DW_TAG_BORLAND_property: DwTag;
 ```
 
-### `DW_TAG_BORLAND_Delphi_string`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_BORLAND_Delphi_string`
 ```rust
 const DW_TAG_BORLAND_Delphi_string: DwTag;
 ```
 
-### `DW_TAG_BORLAND_Delphi_dynamic_array`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_BORLAND_Delphi_dynamic_array`
 ```rust
 const DW_TAG_BORLAND_Delphi_dynamic_array: DwTag;
 ```
 
-### `DW_TAG_BORLAND_Delphi_set`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_BORLAND_Delphi_set`
 ```rust
 const DW_TAG_BORLAND_Delphi_set: DwTag;
 ```
 
-### `DW_TAG_BORLAND_Delphi_variant`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_BORLAND_Delphi_variant`
 ```rust
 const DW_TAG_BORLAND_Delphi_variant: DwTag;
 ```
 
-### `DW_AT_null`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_AT_null`
 ```rust
 const DW_AT_null: DwAt;
 ```
 
-### `DW_AT_fund_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_fund_type`
 ```rust
 const DW_AT_fund_type: DwAt;
 ```
 
-### `DW_AT_mod_fund_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_mod_fund_type`
 ```rust
 const DW_AT_mod_fund_type: DwAt;
 ```
 
-### `DW_AT_user_def_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_user_def_type`
 ```rust
 const DW_AT_user_def_type: DwAt;
 ```
 
-### `DW_AT_mod_u_d_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_mod_u_d_type`
 ```rust
 const DW_AT_mod_u_d_type: DwAt;
 ```
 
-### `DW_AT_subscr_data`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_subscr_data`
 ```rust
 const DW_AT_subscr_data: DwAt;
 ```
 
-### `DW_AT_element_list`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_element_list`
 ```rust
 const DW_AT_element_list: DwAt;
 ```
 
-### `DW_AT_member`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_member`
 ```rust
 const DW_AT_member: DwAt;
 ```
 
-### `DW_AT_friends`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_friends`
 ```rust
 const DW_AT_friends: DwAt;
 ```
 
-### `DW_AT_program`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_program`
 ```rust
 const DW_AT_program: DwAt;
 ```
 
-### `DW_AT_private`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_private`
 ```rust
 const DW_AT_private: DwAt;
 ```
 
-### `DW_AT_protected`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_protected`
 ```rust
 const DW_AT_protected: DwAt;
 ```
 
-### `DW_AT_public`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_public`
 ```rust
 const DW_AT_public: DwAt;
 ```
 
-### `DW_AT_pure_virtual`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_pure_virtual`
 ```rust
 const DW_AT_pure_virtual: DwAt;
 ```
 
-### `DW_AT_virtual`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_virtual`
 ```rust
 const DW_AT_virtual: DwAt;
 ```
 
-### `DW_AT_specification_v1`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_specification_v1`
 ```rust
 const DW_AT_specification_v1: DwAt;
 ```
 
-### `DW_AT_sibling`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_sibling`
 ```rust
 const DW_AT_sibling: DwAt;
 ```
 
-### `DW_AT_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_location`
 ```rust
 const DW_AT_location: DwAt;
 ```
 
-### `DW_AT_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_name`
 ```rust
 const DW_AT_name: DwAt;
 ```
 
-### `DW_AT_ordering`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_ordering`
 ```rust
 const DW_AT_ordering: DwAt;
 ```
 
-### `DW_AT_byte_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_byte_size`
 ```rust
 const DW_AT_byte_size: DwAt;
 ```
 
-### `DW_AT_bit_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_bit_offset`
 ```rust
 const DW_AT_bit_offset: DwAt;
 ```
 
-### `DW_AT_bit_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_bit_size`
 ```rust
 const DW_AT_bit_size: DwAt;
 ```
 
-### `DW_AT_stmt_list`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_stmt_list`
 ```rust
 const DW_AT_stmt_list: DwAt;
 ```
 
-### `DW_AT_low_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_low_pc`
 ```rust
 const DW_AT_low_pc: DwAt;
 ```
 
-### `DW_AT_high_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_high_pc`
 ```rust
 const DW_AT_high_pc: DwAt;
 ```
 
-### `DW_AT_language`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_language`
 ```rust
 const DW_AT_language: DwAt;
 ```
 
-### `DW_AT_discr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_discr`
 ```rust
 const DW_AT_discr: DwAt;
 ```
 
-### `DW_AT_discr_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_discr_value`
 ```rust
 const DW_AT_discr_value: DwAt;
 ```
 
-### `DW_AT_visibility`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_visibility`
 ```rust
 const DW_AT_visibility: DwAt;
 ```
 
-### `DW_AT_import`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_import`
 ```rust
 const DW_AT_import: DwAt;
 ```
 
-### `DW_AT_string_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_string_length`
 ```rust
 const DW_AT_string_length: DwAt;
 ```
 
-### `DW_AT_common_reference`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_common_reference`
 ```rust
 const DW_AT_common_reference: DwAt;
 ```
 
-### `DW_AT_comp_dir`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_comp_dir`
 ```rust
 const DW_AT_comp_dir: DwAt;
 ```
 
-### `DW_AT_const_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_const_value`
 ```rust
 const DW_AT_const_value: DwAt;
 ```
 
-### `DW_AT_containing_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_containing_type`
 ```rust
 const DW_AT_containing_type: DwAt;
 ```
 
-### `DW_AT_default_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_default_value`
 ```rust
 const DW_AT_default_value: DwAt;
 ```
 
-### `DW_AT_inline`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_inline`
 ```rust
 const DW_AT_inline: DwAt;
 ```
 
-### `DW_AT_is_optional`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_is_optional`
 ```rust
 const DW_AT_is_optional: DwAt;
 ```
 
-### `DW_AT_lower_bound`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_lower_bound`
 ```rust
 const DW_AT_lower_bound: DwAt;
 ```
 
-### `DW_AT_producer`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_producer`
 ```rust
 const DW_AT_producer: DwAt;
 ```
 
-### `DW_AT_prototyped`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_prototyped`
 ```rust
 const DW_AT_prototyped: DwAt;
 ```
 
-### `DW_AT_return_addr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_return_addr`
 ```rust
 const DW_AT_return_addr: DwAt;
 ```
 
-### `DW_AT_start_scope`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_start_scope`
 ```rust
 const DW_AT_start_scope: DwAt;
 ```
 
-### `DW_AT_bit_stride`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_bit_stride`
 ```rust
 const DW_AT_bit_stride: DwAt;
 ```
 
-### `DW_AT_upper_bound`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_upper_bound`
 ```rust
 const DW_AT_upper_bound: DwAt;
 ```
 
-### `DW_AT_abstract_origin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_abstract_origin`
 ```rust
 const DW_AT_abstract_origin: DwAt;
 ```
 
-### `DW_AT_accessibility`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_accessibility`
 ```rust
 const DW_AT_accessibility: DwAt;
 ```
 
-### `DW_AT_address_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_address_class`
 ```rust
 const DW_AT_address_class: DwAt;
 ```
 
-### `DW_AT_artificial`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_artificial`
 ```rust
 const DW_AT_artificial: DwAt;
 ```
 
-### `DW_AT_base_types`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_base_types`
 ```rust
 const DW_AT_base_types: DwAt;
 ```
 
-### `DW_AT_calling_convention`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_calling_convention`
 ```rust
 const DW_AT_calling_convention: DwAt;
 ```
 
-### `DW_AT_count`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_count`
 ```rust
 const DW_AT_count: DwAt;
 ```
 
-### `DW_AT_data_member_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_data_member_location`
 ```rust
 const DW_AT_data_member_location: DwAt;
 ```
 
-### `DW_AT_decl_column`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_decl_column`
 ```rust
 const DW_AT_decl_column: DwAt;
 ```
 
-### `DW_AT_decl_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_decl_file`
 ```rust
 const DW_AT_decl_file: DwAt;
 ```
 
-### `DW_AT_decl_line`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_decl_line`
 ```rust
 const DW_AT_decl_line: DwAt;
 ```
 
-### `DW_AT_declaration`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_declaration`
 ```rust
 const DW_AT_declaration: DwAt;
 ```
 
-### `DW_AT_discr_list`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_discr_list`
 ```rust
 const DW_AT_discr_list: DwAt;
 ```
 
-### `DW_AT_encoding`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_encoding`
 ```rust
 const DW_AT_encoding: DwAt;
 ```
 
-### `DW_AT_external`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_external`
 ```rust
 const DW_AT_external: DwAt;
 ```
 
-### `DW_AT_frame_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_frame_base`
 ```rust
 const DW_AT_frame_base: DwAt;
 ```
 
-### `DW_AT_friend`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_friend`
 ```rust
 const DW_AT_friend: DwAt;
 ```
 
-### `DW_AT_identifier_case`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_identifier_case`
 ```rust
 const DW_AT_identifier_case: DwAt;
 ```
 
-### `DW_AT_macro_info`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_macro_info`
 ```rust
 const DW_AT_macro_info: DwAt;
 ```
 
-### `DW_AT_namelist_item`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_namelist_item`
 ```rust
 const DW_AT_namelist_item: DwAt;
 ```
 
-### `DW_AT_priority`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_priority`
 ```rust
 const DW_AT_priority: DwAt;
 ```
 
-### `DW_AT_segment`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_segment`
 ```rust
 const DW_AT_segment: DwAt;
 ```
 
-### `DW_AT_specification`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_specification`
 ```rust
 const DW_AT_specification: DwAt;
 ```
 
-### `DW_AT_static_link`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_static_link`
 ```rust
 const DW_AT_static_link: DwAt;
 ```
 
-### `DW_AT_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_type`
 ```rust
 const DW_AT_type: DwAt;
 ```
 
-### `DW_AT_use_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_use_location`
 ```rust
 const DW_AT_use_location: DwAt;
 ```
 
-### `DW_AT_variable_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_variable_parameter`
 ```rust
 const DW_AT_variable_parameter: DwAt;
 ```
 
-### `DW_AT_virtuality`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_virtuality`
 ```rust
 const DW_AT_virtuality: DwAt;
 ```
 
-### `DW_AT_vtable_elem_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_vtable_elem_location`
 ```rust
 const DW_AT_vtable_elem_location: DwAt;
 ```
 
-### `DW_AT_allocated`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_allocated`
 ```rust
 const DW_AT_allocated: DwAt;
 ```
 
-### `DW_AT_associated`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_associated`
 ```rust
 const DW_AT_associated: DwAt;
 ```
 
-### `DW_AT_data_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_data_location`
 ```rust
 const DW_AT_data_location: DwAt;
 ```
 
-### `DW_AT_byte_stride`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_byte_stride`
 ```rust
 const DW_AT_byte_stride: DwAt;
 ```
 
-### `DW_AT_entry_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_entry_pc`
 ```rust
 const DW_AT_entry_pc: DwAt;
 ```
 
-### `DW_AT_use_UTF8`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_use_UTF8`
 ```rust
 const DW_AT_use_UTF8: DwAt;
 ```
 
-### `DW_AT_extension`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_extension`
 ```rust
 const DW_AT_extension: DwAt;
 ```
 
-### `DW_AT_ranges`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_ranges`
 ```rust
 const DW_AT_ranges: DwAt;
 ```
 
-### `DW_AT_trampoline`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_trampoline`
 ```rust
 const DW_AT_trampoline: DwAt;
 ```
 
-### `DW_AT_call_column`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_column`
 ```rust
 const DW_AT_call_column: DwAt;
 ```
 
-### `DW_AT_call_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_file`
 ```rust
 const DW_AT_call_file: DwAt;
 ```
 
-### `DW_AT_call_line`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_line`
 ```rust
 const DW_AT_call_line: DwAt;
 ```
 
-### `DW_AT_description`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_description`
 ```rust
 const DW_AT_description: DwAt;
 ```
 
-### `DW_AT_binary_scale`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_binary_scale`
 ```rust
 const DW_AT_binary_scale: DwAt;
 ```
 
-### `DW_AT_decimal_scale`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_decimal_scale`
 ```rust
 const DW_AT_decimal_scale: DwAt;
 ```
 
-### `DW_AT_small`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_small`
 ```rust
 const DW_AT_small: DwAt;
 ```
 
-### `DW_AT_decimal_sign`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_decimal_sign`
 ```rust
 const DW_AT_decimal_sign: DwAt;
 ```
 
-### `DW_AT_digit_count`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_digit_count`
 ```rust
 const DW_AT_digit_count: DwAt;
 ```
 
-### `DW_AT_picture_string`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_picture_string`
 ```rust
 const DW_AT_picture_string: DwAt;
 ```
 
-### `DW_AT_mutable`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_mutable`
 ```rust
 const DW_AT_mutable: DwAt;
 ```
 
-### `DW_AT_threads_scaled`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_threads_scaled`
 ```rust
 const DW_AT_threads_scaled: DwAt;
 ```
 
-### `DW_AT_explicit`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_explicit`
 ```rust
 const DW_AT_explicit: DwAt;
 ```
 
-### `DW_AT_object_pointer`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_object_pointer`
 ```rust
 const DW_AT_object_pointer: DwAt;
 ```
 
-### `DW_AT_endianity`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_endianity`
 ```rust
 const DW_AT_endianity: DwAt;
 ```
 
-### `DW_AT_elemental`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_elemental`
 ```rust
 const DW_AT_elemental: DwAt;
 ```
 
-### `DW_AT_pure`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_pure`
 ```rust
 const DW_AT_pure: DwAt;
 ```
 
-### `DW_AT_recursive`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_recursive`
 ```rust
 const DW_AT_recursive: DwAt;
 ```
 
-### `DW_AT_signature`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_signature`
 ```rust
 const DW_AT_signature: DwAt;
 ```
 
-### `DW_AT_main_subprogram`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_main_subprogram`
 ```rust
 const DW_AT_main_subprogram: DwAt;
 ```
 
-### `DW_AT_data_bit_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_data_bit_offset`
 ```rust
 const DW_AT_data_bit_offset: DwAt;
 ```
 
-### `DW_AT_const_expr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_const_expr`
 ```rust
 const DW_AT_const_expr: DwAt;
 ```
 
-### `DW_AT_enum_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_enum_class`
 ```rust
 const DW_AT_enum_class: DwAt;
 ```
 
-### `DW_AT_linkage_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_linkage_name`
 ```rust
 const DW_AT_linkage_name: DwAt;
 ```
 
-### `DW_AT_string_length_bit_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_string_length_bit_size`
 ```rust
 const DW_AT_string_length_bit_size: DwAt;
 ```
 
-### `DW_AT_string_length_byte_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_string_length_byte_size`
 ```rust
 const DW_AT_string_length_byte_size: DwAt;
 ```
 
-### `DW_AT_rank`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_rank`
 ```rust
 const DW_AT_rank: DwAt;
 ```
 
-### `DW_AT_str_offsets_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_str_offsets_base`
 ```rust
 const DW_AT_str_offsets_base: DwAt;
 ```
 
-### `DW_AT_addr_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_addr_base`
 ```rust
 const DW_AT_addr_base: DwAt;
 ```
 
-### `DW_AT_rnglists_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_rnglists_base`
 ```rust
 const DW_AT_rnglists_base: DwAt;
 ```
 
-### `DW_AT_dwo_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_dwo_name`
 ```rust
 const DW_AT_dwo_name: DwAt;
 ```
 
-### `DW_AT_reference`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_reference`
 ```rust
 const DW_AT_reference: DwAt;
 ```
 
-### `DW_AT_rvalue_reference`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_rvalue_reference`
 ```rust
 const DW_AT_rvalue_reference: DwAt;
 ```
 
-### `DW_AT_macros`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_macros`
 ```rust
 const DW_AT_macros: DwAt;
 ```
 
-### `DW_AT_call_all_calls`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_all_calls`
 ```rust
 const DW_AT_call_all_calls: DwAt;
 ```
 
-### `DW_AT_call_all_source_calls`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_all_source_calls`
 ```rust
 const DW_AT_call_all_source_calls: DwAt;
 ```
 
-### `DW_AT_call_all_tail_calls`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_all_tail_calls`
 ```rust
 const DW_AT_call_all_tail_calls: DwAt;
 ```
 
-### `DW_AT_call_return_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_return_pc`
 ```rust
 const DW_AT_call_return_pc: DwAt;
 ```
 
-### `DW_AT_call_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_value`
 ```rust
 const DW_AT_call_value: DwAt;
 ```
 
-### `DW_AT_call_origin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_origin`
 ```rust
 const DW_AT_call_origin: DwAt;
 ```
 
-### `DW_AT_call_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_parameter`
 ```rust
 const DW_AT_call_parameter: DwAt;
 ```
 
-### `DW_AT_call_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_pc`
 ```rust
 const DW_AT_call_pc: DwAt;
 ```
 
-### `DW_AT_call_tail_call`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_tail_call`
 ```rust
 const DW_AT_call_tail_call: DwAt;
 ```
 
-### `DW_AT_call_target`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_target`
 ```rust
 const DW_AT_call_target: DwAt;
 ```
 
-### `DW_AT_call_target_clobbered`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_target_clobbered`
 ```rust
 const DW_AT_call_target_clobbered: DwAt;
 ```
 
-### `DW_AT_call_data_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_data_location`
 ```rust
 const DW_AT_call_data_location: DwAt;
 ```
 
-### `DW_AT_call_data_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_data_value`
 ```rust
 const DW_AT_call_data_value: DwAt;
 ```
 
-### `DW_AT_noreturn`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_noreturn`
 ```rust
 const DW_AT_noreturn: DwAt;
 ```
 
-### `DW_AT_alignment`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_alignment`
 ```rust
 const DW_AT_alignment: DwAt;
 ```
 
-### `DW_AT_export_symbols`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_export_symbols`
 ```rust
 const DW_AT_export_symbols: DwAt;
 ```
 
-### `DW_AT_deleted`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_deleted`
 ```rust
 const DW_AT_deleted: DwAt;
 ```
 
-### `DW_AT_defaulted`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_defaulted`
 ```rust
 const DW_AT_defaulted: DwAt;
 ```
 
-### `DW_AT_loclists_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_loclists_base`
 ```rust
 const DW_AT_loclists_base: DwAt;
 ```
 
-### `DW_AT_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_lo_user`
 ```rust
 const DW_AT_lo_user: DwAt;
 ```
 
-### `DW_AT_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_hi_user`
 ```rust
 const DW_AT_hi_user: DwAt;
 ```
 
-### `DW_AT_MIPS_fde`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_fde`
 ```rust
 const DW_AT_MIPS_fde: DwAt;
 ```
 
-### `DW_AT_MIPS_loop_begin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_loop_begin`
 ```rust
 const DW_AT_MIPS_loop_begin: DwAt;
 ```
 
-### `DW_AT_MIPS_tail_loop_begin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_tail_loop_begin`
 ```rust
 const DW_AT_MIPS_tail_loop_begin: DwAt;
 ```
 
-### `DW_AT_MIPS_epilog_begin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_epilog_begin`
 ```rust
 const DW_AT_MIPS_epilog_begin: DwAt;
 ```
 
-### `DW_AT_MIPS_loop_unroll_factor`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_loop_unroll_factor`
 ```rust
 const DW_AT_MIPS_loop_unroll_factor: DwAt;
 ```
 
-### `DW_AT_MIPS_software_pipeline_depth`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_software_pipeline_depth`
 ```rust
 const DW_AT_MIPS_software_pipeline_depth: DwAt;
 ```
 
-### `DW_AT_MIPS_linkage_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_linkage_name`
 ```rust
 const DW_AT_MIPS_linkage_name: DwAt;
 ```
 
-### `DW_AT_MIPS_stride`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_stride`
 ```rust
 const DW_AT_MIPS_stride: DwAt;
 ```
 
-### `DW_AT_MIPS_abstract_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_abstract_name`
 ```rust
 const DW_AT_MIPS_abstract_name: DwAt;
 ```
 
-### `DW_AT_MIPS_clone_origin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_clone_origin`
 ```rust
 const DW_AT_MIPS_clone_origin: DwAt;
 ```
 
-### `DW_AT_MIPS_has_inlines`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_has_inlines`
 ```rust
 const DW_AT_MIPS_has_inlines: DwAt;
 ```
 
-### `DW_AT_MIPS_stride_byte`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_stride_byte`
 ```rust
 const DW_AT_MIPS_stride_byte: DwAt;
 ```
 
-### `DW_AT_MIPS_stride_elem`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_stride_elem`
 ```rust
 const DW_AT_MIPS_stride_elem: DwAt;
 ```
 
-### `DW_AT_MIPS_ptr_dopetype`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_ptr_dopetype`
 ```rust
 const DW_AT_MIPS_ptr_dopetype: DwAt;
 ```
 
-### `DW_AT_MIPS_allocatable_dopetype`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_allocatable_dopetype`
 ```rust
 const DW_AT_MIPS_allocatable_dopetype: DwAt;
 ```
 
-### `DW_AT_MIPS_assumed_shape_dopetype`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_assumed_shape_dopetype`
 ```rust
 const DW_AT_MIPS_assumed_shape_dopetype: DwAt;
 ```
 
-### `DW_AT_MIPS_assumed_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_assumed_size`
 ```rust
 const DW_AT_MIPS_assumed_size: DwAt;
 ```
 
-### `DW_AT_INTEL_other_endian`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_INTEL_other_endian`
 ```rust
 const DW_AT_INTEL_other_endian: DwAt;
 ```
 
-### `DW_AT_sf_names`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_sf_names`
 ```rust
 const DW_AT_sf_names: DwAt;
 ```
 
-### `DW_AT_src_info`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_src_info`
 ```rust
 const DW_AT_src_info: DwAt;
 ```
 
-### `DW_AT_mac_info`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_mac_info`
 ```rust
 const DW_AT_mac_info: DwAt;
 ```
 
-### `DW_AT_src_coords`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_src_coords`
 ```rust
 const DW_AT_src_coords: DwAt;
 ```
 
-### `DW_AT_body_begin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_body_begin`
 ```rust
 const DW_AT_body_begin: DwAt;
 ```
 
-### `DW_AT_body_end`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_body_end`
 ```rust
 const DW_AT_body_end: DwAt;
 ```
 
-### `DW_AT_GNU_vector`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_vector`
 ```rust
 const DW_AT_GNU_vector: DwAt;
 ```
 
-### `DW_AT_GNU_guarded_by`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_guarded_by`
 ```rust
 const DW_AT_GNU_guarded_by: DwAt;
 ```
 
-### `DW_AT_GNU_pt_guarded_by`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_pt_guarded_by`
 ```rust
 const DW_AT_GNU_pt_guarded_by: DwAt;
 ```
 
-### `DW_AT_GNU_guarded`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_guarded`
 ```rust
 const DW_AT_GNU_guarded: DwAt;
 ```
 
-### `DW_AT_GNU_pt_guarded`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_pt_guarded`
 ```rust
 const DW_AT_GNU_pt_guarded: DwAt;
 ```
 
-### `DW_AT_GNU_locks_excluded`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_locks_excluded`
 ```rust
 const DW_AT_GNU_locks_excluded: DwAt;
 ```
 
-### `DW_AT_GNU_exclusive_locks_required`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_exclusive_locks_required`
 ```rust
 const DW_AT_GNU_exclusive_locks_required: DwAt;
 ```
 
-### `DW_AT_GNU_shared_locks_required`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_shared_locks_required`
 ```rust
 const DW_AT_GNU_shared_locks_required: DwAt;
 ```
 
-### `DW_AT_GNU_odr_signature`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_odr_signature`
 ```rust
 const DW_AT_GNU_odr_signature: DwAt;
 ```
 
-### `DW_AT_GNU_template_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_template_name`
 ```rust
 const DW_AT_GNU_template_name: DwAt;
 ```
 
-### `DW_AT_GNU_call_site_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_call_site_value`
 ```rust
 const DW_AT_GNU_call_site_value: DwAt;
 ```
 
-### `DW_AT_GNU_call_site_data_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_call_site_data_value`
 ```rust
 const DW_AT_GNU_call_site_data_value: DwAt;
 ```
 
-### `DW_AT_GNU_call_site_target`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_call_site_target`
 ```rust
 const DW_AT_GNU_call_site_target: DwAt;
 ```
 
-### `DW_AT_GNU_call_site_target_clobbered`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_call_site_target_clobbered`
 ```rust
 const DW_AT_GNU_call_site_target_clobbered: DwAt;
 ```
 
-### `DW_AT_GNU_tail_call`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_tail_call`
 ```rust
 const DW_AT_GNU_tail_call: DwAt;
 ```
 
-### `DW_AT_GNU_all_tail_call_sites`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_all_tail_call_sites`
 ```rust
 const DW_AT_GNU_all_tail_call_sites: DwAt;
 ```
 
-### `DW_AT_GNU_all_call_sites`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_all_call_sites`
 ```rust
 const DW_AT_GNU_all_call_sites: DwAt;
 ```
 
-### `DW_AT_GNU_all_source_call_sites`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_all_source_call_sites`
 ```rust
 const DW_AT_GNU_all_source_call_sites: DwAt;
 ```
 
-### `DW_AT_GNU_macros`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_macros`
 ```rust
 const DW_AT_GNU_macros: DwAt;
 ```
 
-### `DW_AT_GNU_deleted`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_deleted`
 ```rust
 const DW_AT_GNU_deleted: DwAt;
 ```
 
-### `DW_AT_GNU_dwo_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_dwo_name`
 ```rust
 const DW_AT_GNU_dwo_name: DwAt;
 ```
 
-### `DW_AT_GNU_dwo_id`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_dwo_id`
 ```rust
 const DW_AT_GNU_dwo_id: DwAt;
 ```
 
-### `DW_AT_GNU_ranges_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_ranges_base`
 ```rust
 const DW_AT_GNU_ranges_base: DwAt;
 ```
 
-### `DW_AT_GNU_addr_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_addr_base`
 ```rust
 const DW_AT_GNU_addr_base: DwAt;
 ```
 
-### `DW_AT_GNU_pubnames`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_pubnames`
 ```rust
 const DW_AT_GNU_pubnames: DwAt;
 ```
 
-### `DW_AT_GNU_pubtypes`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_pubtypes`
 ```rust
 const DW_AT_GNU_pubtypes: DwAt;
 ```
 
-### `DW_AT_GNU_discriminator`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_discriminator`
 ```rust
 const DW_AT_GNU_discriminator: DwAt;
 ```
 
-### `DW_AT_GNU_locviews`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_locviews`
 ```rust
 const DW_AT_GNU_locviews: DwAt;
 ```
 
-### `DW_AT_GNU_entry_view`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_entry_view`
 ```rust
 const DW_AT_GNU_entry_view: DwAt;
 ```
 
-### `DW_AT_SUN_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_template`
 ```rust
 const DW_AT_SUN_template: DwAt;
 ```
 
-### `DW_AT_SUN_alignment`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_alignment`
 ```rust
 const DW_AT_SUN_alignment: DwAt;
 ```
 
-### `DW_AT_SUN_vtable`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_vtable`
 ```rust
 const DW_AT_SUN_vtable: DwAt;
 ```
 
-### `DW_AT_SUN_count_guarantee`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_count_guarantee`
 ```rust
 const DW_AT_SUN_count_guarantee: DwAt;
 ```
 
-### `DW_AT_SUN_command_line`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_command_line`
 ```rust
 const DW_AT_SUN_command_line: DwAt;
 ```
 
-### `DW_AT_SUN_vbase`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_vbase`
 ```rust
 const DW_AT_SUN_vbase: DwAt;
 ```
 
-### `DW_AT_SUN_compile_options`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_compile_options`
 ```rust
 const DW_AT_SUN_compile_options: DwAt;
 ```
 
-### `DW_AT_SUN_language`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_language`
 ```rust
 const DW_AT_SUN_language: DwAt;
 ```
 
-### `DW_AT_SUN_browser_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_browser_file`
 ```rust
 const DW_AT_SUN_browser_file: DwAt;
 ```
 
-### `DW_AT_SUN_vtable_abi`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_vtable_abi`
 ```rust
 const DW_AT_SUN_vtable_abi: DwAt;
 ```
 
-### `DW_AT_SUN_func_offsets`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_func_offsets`
 ```rust
 const DW_AT_SUN_func_offsets: DwAt;
 ```
 
-### `DW_AT_SUN_cf_kind`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_cf_kind`
 ```rust
 const DW_AT_SUN_cf_kind: DwAt;
 ```
 
-### `DW_AT_SUN_vtable_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_vtable_index`
 ```rust
 const DW_AT_SUN_vtable_index: DwAt;
 ```
 
-### `DW_AT_SUN_omp_tpriv_addr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_omp_tpriv_addr`
 ```rust
 const DW_AT_SUN_omp_tpriv_addr: DwAt;
 ```
 
-### `DW_AT_SUN_omp_child_func`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_omp_child_func`
 ```rust
 const DW_AT_SUN_omp_child_func: DwAt;
 ```
 
-### `DW_AT_SUN_func_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_func_offset`
 ```rust
 const DW_AT_SUN_func_offset: DwAt;
 ```
 
-### `DW_AT_SUN_memop_type_ref`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_memop_type_ref`
 ```rust
 const DW_AT_SUN_memop_type_ref: DwAt;
 ```
 
-### `DW_AT_SUN_profile_id`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_profile_id`
 ```rust
 const DW_AT_SUN_profile_id: DwAt;
 ```
 
-### `DW_AT_SUN_memop_signature`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_memop_signature`
 ```rust
 const DW_AT_SUN_memop_signature: DwAt;
 ```
 
-### `DW_AT_SUN_obj_dir`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_obj_dir`
 ```rust
 const DW_AT_SUN_obj_dir: DwAt;
 ```
 
-### `DW_AT_SUN_obj_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_obj_file`
 ```rust
 const DW_AT_SUN_obj_file: DwAt;
 ```
 
-### `DW_AT_SUN_original_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_original_name`
 ```rust
 const DW_AT_SUN_original_name: DwAt;
 ```
 
-### `DW_AT_SUN_hwcprof_signature`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_hwcprof_signature`
 ```rust
 const DW_AT_SUN_hwcprof_signature: DwAt;
 ```
 
-### `DW_AT_SUN_amd64_parmdump`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_amd64_parmdump`
 ```rust
 const DW_AT_SUN_amd64_parmdump: DwAt;
 ```
 
-### `DW_AT_SUN_part_link_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_part_link_name`
 ```rust
 const DW_AT_SUN_part_link_name: DwAt;
 ```
 
-### `DW_AT_SUN_link_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_link_name`
 ```rust
 const DW_AT_SUN_link_name: DwAt;
 ```
 
-### `DW_AT_SUN_pass_with_const`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_pass_with_const`
 ```rust
 const DW_AT_SUN_pass_with_const: DwAt;
 ```
 
-### `DW_AT_SUN_return_with_const`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_return_with_const`
 ```rust
 const DW_AT_SUN_return_with_const: DwAt;
 ```
 
-### `DW_AT_SUN_import_by_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_import_by_name`
 ```rust
 const DW_AT_SUN_import_by_name: DwAt;
 ```
 
-### `DW_AT_SUN_f90_pointer`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_f90_pointer`
 ```rust
 const DW_AT_SUN_f90_pointer: DwAt;
 ```
 
-### `DW_AT_SUN_pass_by_ref`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_pass_by_ref`
 ```rust
 const DW_AT_SUN_pass_by_ref: DwAt;
 ```
 
-### `DW_AT_SUN_f90_allocatable`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_f90_allocatable`
 ```rust
 const DW_AT_SUN_f90_allocatable: DwAt;
 ```
 
-### `DW_AT_SUN_f90_assumed_shape_array`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_f90_assumed_shape_array`
 ```rust
 const DW_AT_SUN_f90_assumed_shape_array: DwAt;
 ```
 
-### `DW_AT_SUN_c_vla`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_c_vla`
 ```rust
 const DW_AT_SUN_c_vla: DwAt;
 ```
 
-### `DW_AT_SUN_return_value_ptr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_return_value_ptr`
 ```rust
 const DW_AT_SUN_return_value_ptr: DwAt;
 ```
 
-### `DW_AT_SUN_dtor_start`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_dtor_start`
 ```rust
 const DW_AT_SUN_dtor_start: DwAt;
 ```
 
-### `DW_AT_SUN_dtor_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_dtor_length`
 ```rust
 const DW_AT_SUN_dtor_length: DwAt;
 ```
 
-### `DW_AT_SUN_dtor_state_initial`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_dtor_state_initial`
 ```rust
 const DW_AT_SUN_dtor_state_initial: DwAt;
 ```
 
-### `DW_AT_SUN_dtor_state_final`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_dtor_state_final`
 ```rust
 const DW_AT_SUN_dtor_state_final: DwAt;
 ```
 
-### `DW_AT_SUN_dtor_state_deltas`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_dtor_state_deltas`
 ```rust
 const DW_AT_SUN_dtor_state_deltas: DwAt;
 ```
 
-### `DW_AT_SUN_import_by_lname`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_import_by_lname`
 ```rust
 const DW_AT_SUN_import_by_lname: DwAt;
 ```
 
-### `DW_AT_SUN_f90_use_only`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_f90_use_only`
 ```rust
 const DW_AT_SUN_f90_use_only: DwAt;
 ```
 
-### `DW_AT_SUN_namelist_spec`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_namelist_spec`
 ```rust
 const DW_AT_SUN_namelist_spec: DwAt;
 ```
 
-### `DW_AT_SUN_is_omp_child_func`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_is_omp_child_func`
 ```rust
 const DW_AT_SUN_is_omp_child_func: DwAt;
 ```
 
-### `DW_AT_SUN_fortran_main_alias`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_fortran_main_alias`
 ```rust
 const DW_AT_SUN_fortran_main_alias: DwAt;
 ```
 
-### `DW_AT_SUN_fortran_based`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_fortran_based`
 ```rust
 const DW_AT_SUN_fortran_based: DwAt;
 ```
 
-### `DW_AT_ALTIUM_loclist`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_ALTIUM_loclist`
 ```rust
 const DW_AT_ALTIUM_loclist: DwAt;
 ```
 
-### `DW_AT_use_GNAT_descriptive_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_use_GNAT_descriptive_type`
 ```rust
 const DW_AT_use_GNAT_descriptive_type: DwAt;
 ```
 
-### `DW_AT_GNAT_descriptive_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNAT_descriptive_type`
 ```rust
 const DW_AT_GNAT_descriptive_type: DwAt;
 ```
 
-### `DW_AT_GNU_numerator`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_numerator`
 ```rust
 const DW_AT_GNU_numerator: DwAt;
 ```
 
-### `DW_AT_GNU_denominator`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_denominator`
 ```rust
 const DW_AT_GNU_denominator: DwAt;
 ```
 
-### `DW_AT_GNU_bias`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_bias`
 ```rust
 const DW_AT_GNU_bias: DwAt;
 ```
 
-### `DW_AT_upc_threads_scaled`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_upc_threads_scaled`
 ```rust
 const DW_AT_upc_threads_scaled: DwAt;
 ```
 
-### `DW_AT_PGI_lbase`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_PGI_lbase`
 ```rust
 const DW_AT_PGI_lbase: DwAt;
 ```
 
-### `DW_AT_PGI_soffset`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_PGI_soffset`
 ```rust
 const DW_AT_PGI_soffset: DwAt;
 ```
 
-### `DW_AT_PGI_lstride`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_PGI_lstride`
 ```rust
 const DW_AT_PGI_lstride: DwAt;
 ```
 
-### `DW_AT_BORLAND_property_read`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_property_read`
 ```rust
 const DW_AT_BORLAND_property_read: DwAt;
 ```
 
-### `DW_AT_BORLAND_property_write`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_property_write`
 ```rust
 const DW_AT_BORLAND_property_write: DwAt;
 ```
 
-### `DW_AT_BORLAND_property_implements`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_property_implements`
 ```rust
 const DW_AT_BORLAND_property_implements: DwAt;
 ```
 
-### `DW_AT_BORLAND_property_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_property_index`
 ```rust
 const DW_AT_BORLAND_property_index: DwAt;
 ```
 
-### `DW_AT_BORLAND_property_default`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_property_default`
 ```rust
 const DW_AT_BORLAND_property_default: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_unit`
 ```rust
 const DW_AT_BORLAND_Delphi_unit: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_class`
 ```rust
 const DW_AT_BORLAND_Delphi_class: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_record`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_record`
 ```rust
 const DW_AT_BORLAND_Delphi_record: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_metaclass`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_metaclass`
 ```rust
 const DW_AT_BORLAND_Delphi_metaclass: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_constructor`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_constructor`
 ```rust
 const DW_AT_BORLAND_Delphi_constructor: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_destructor`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_destructor`
 ```rust
 const DW_AT_BORLAND_Delphi_destructor: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_anonymous_method`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_anonymous_method`
 ```rust
 const DW_AT_BORLAND_Delphi_anonymous_method: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_interface`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_interface`
 ```rust
 const DW_AT_BORLAND_Delphi_interface: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_ABI`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_ABI`
 ```rust
 const DW_AT_BORLAND_Delphi_ABI: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_return`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_return`
 ```rust
 const DW_AT_BORLAND_Delphi_return: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_frameptr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_frameptr`
 ```rust
 const DW_AT_BORLAND_Delphi_frameptr: DwAt;
 ```
 
-### `DW_AT_BORLAND_closure`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_closure`
 ```rust
 const DW_AT_BORLAND_closure: DwAt;
 ```
 
-### `DW_AT_LLVM_include_path`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_LLVM_include_path`
 ```rust
 const DW_AT_LLVM_include_path: DwAt;
 ```
 
-### `DW_AT_LLVM_config_macros`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_LLVM_config_macros`
 ```rust
 const DW_AT_LLVM_config_macros: DwAt;
 ```
 
-### `DW_AT_LLVM_isysroot`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_LLVM_isysroot`
 ```rust
 const DW_AT_LLVM_isysroot: DwAt;
 ```
 
-### `DW_AT_APPLE_optimized`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_optimized`
 ```rust
 const DW_AT_APPLE_optimized: DwAt;
 ```
 
-### `DW_AT_APPLE_flags`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_flags`
 ```rust
 const DW_AT_APPLE_flags: DwAt;
 ```
 
-### `DW_AT_APPLE_isa`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_isa`
 ```rust
 const DW_AT_APPLE_isa: DwAt;
 ```
 
-### `DW_AT_APPLE_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_block`
 ```rust
 const DW_AT_APPLE_block: DwAt;
 ```
 
-### `DW_AT_APPLE_major_runtime_vers`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_major_runtime_vers`
 ```rust
 const DW_AT_APPLE_major_runtime_vers: DwAt;
 ```
 
-### `DW_AT_APPLE_runtime_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_runtime_class`
 ```rust
 const DW_AT_APPLE_runtime_class: DwAt;
 ```
 
-### `DW_AT_APPLE_omit_frame_ptr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_omit_frame_ptr`
 ```rust
 const DW_AT_APPLE_omit_frame_ptr: DwAt;
 ```
 
-### `DW_AT_APPLE_property_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_property_name`
 ```rust
 const DW_AT_APPLE_property_name: DwAt;
 ```
 
-### `DW_AT_APPLE_property_getter`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_property_getter`
 ```rust
 const DW_AT_APPLE_property_getter: DwAt;
 ```
 
-### `DW_AT_APPLE_property_setter`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_property_setter`
 ```rust
 const DW_AT_APPLE_property_setter: DwAt;
 ```
 
-### `DW_AT_APPLE_property_attribute`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_property_attribute`
 ```rust
 const DW_AT_APPLE_property_attribute: DwAt;
 ```
 
-### `DW_AT_APPLE_objc_complete_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_objc_complete_type`
 ```rust
 const DW_AT_APPLE_objc_complete_type: DwAt;
 ```
 
-### `DW_AT_APPLE_property`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_property`
 ```rust
 const DW_AT_APPLE_property: DwAt;
 ```
 
-### `DW_FORM_null`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_FORM_null`
 ```rust
 const DW_FORM_null: DwForm;
 ```
 
-### `DW_FORM_ref`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref`
 ```rust
 const DW_FORM_ref: DwForm;
 ```
 
-### `DW_FORM_addr`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addr`
 ```rust
 const DW_FORM_addr: DwForm;
 ```
 
-### `DW_FORM_block2`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_block2`
 ```rust
 const DW_FORM_block2: DwForm;
 ```
 
-### `DW_FORM_block4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_block4`
 ```rust
 const DW_FORM_block4: DwForm;
 ```
 
-### `DW_FORM_data2`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_data2`
 ```rust
 const DW_FORM_data2: DwForm;
 ```
 
-### `DW_FORM_data4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_data4`
 ```rust
 const DW_FORM_data4: DwForm;
 ```
 
-### `DW_FORM_data8`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_data8`
 ```rust
 const DW_FORM_data8: DwForm;
 ```
 
-### `DW_FORM_string`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_string`
 ```rust
 const DW_FORM_string: DwForm;
 ```
 
-### `DW_FORM_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_block`
 ```rust
 const DW_FORM_block: DwForm;
 ```
 
-### `DW_FORM_block1`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_block1`
 ```rust
 const DW_FORM_block1: DwForm;
 ```
 
-### `DW_FORM_data1`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_data1`
 ```rust
 const DW_FORM_data1: DwForm;
 ```
 
-### `DW_FORM_flag`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_flag`
 ```rust
 const DW_FORM_flag: DwForm;
 ```
 
-### `DW_FORM_sdata`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_sdata`
 ```rust
 const DW_FORM_sdata: DwForm;
 ```
 
-### `DW_FORM_strp`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strp`
 ```rust
 const DW_FORM_strp: DwForm;
 ```
 
-### `DW_FORM_udata`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_udata`
 ```rust
 const DW_FORM_udata: DwForm;
 ```
 
-### `DW_FORM_ref_addr`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref_addr`
 ```rust
 const DW_FORM_ref_addr: DwForm;
 ```
 
-### `DW_FORM_ref1`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref1`
 ```rust
 const DW_FORM_ref1: DwForm;
 ```
 
-### `DW_FORM_ref2`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref2`
 ```rust
 const DW_FORM_ref2: DwForm;
 ```
 
-### `DW_FORM_ref4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref4`
 ```rust
 const DW_FORM_ref4: DwForm;
 ```
 
-### `DW_FORM_ref8`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref8`
 ```rust
 const DW_FORM_ref8: DwForm;
 ```
 
-### `DW_FORM_ref_udata`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref_udata`
 ```rust
 const DW_FORM_ref_udata: DwForm;
 ```
 
-### `DW_FORM_indirect`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_indirect`
 ```rust
 const DW_FORM_indirect: DwForm;
 ```
 
-### `DW_FORM_sec_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_sec_offset`
 ```rust
 const DW_FORM_sec_offset: DwForm;
 ```
 
-### `DW_FORM_exprloc`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_exprloc`
 ```rust
 const DW_FORM_exprloc: DwForm;
 ```
 
-### `DW_FORM_flag_present`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_flag_present`
 ```rust
 const DW_FORM_flag_present: DwForm;
 ```
 
-### `DW_FORM_ref_sig8`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref_sig8`
 ```rust
 const DW_FORM_ref_sig8: DwForm;
 ```
 
-### `DW_FORM_strx`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strx`
 ```rust
 const DW_FORM_strx: DwForm;
 ```
 
-### `DW_FORM_addrx`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addrx`
 ```rust
 const DW_FORM_addrx: DwForm;
 ```
 
-### `DW_FORM_ref_sup4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref_sup4`
 ```rust
 const DW_FORM_ref_sup4: DwForm;
 ```
 
-### `DW_FORM_strp_sup`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strp_sup`
 ```rust
 const DW_FORM_strp_sup: DwForm;
 ```
 
-### `DW_FORM_data16`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_data16`
 ```rust
 const DW_FORM_data16: DwForm;
 ```
 
-### `DW_FORM_line_strp`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_line_strp`
 ```rust
 const DW_FORM_line_strp: DwForm;
 ```
 
-### `DW_FORM_implicit_const`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_implicit_const`
 ```rust
 const DW_FORM_implicit_const: DwForm;
 ```
 
-### `DW_FORM_loclistx`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_loclistx`
 ```rust
 const DW_FORM_loclistx: DwForm;
 ```
 
-### `DW_FORM_rnglistx`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_rnglistx`
 ```rust
 const DW_FORM_rnglistx: DwForm;
 ```
 
-### `DW_FORM_ref_sup8`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref_sup8`
 ```rust
 const DW_FORM_ref_sup8: DwForm;
 ```
 
-### `DW_FORM_strx1`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strx1`
 ```rust
 const DW_FORM_strx1: DwForm;
 ```
 
-### `DW_FORM_strx2`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strx2`
 ```rust
 const DW_FORM_strx2: DwForm;
 ```
 
-### `DW_FORM_strx3`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strx3`
 ```rust
 const DW_FORM_strx3: DwForm;
 ```
 
-### `DW_FORM_strx4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strx4`
 ```rust
 const DW_FORM_strx4: DwForm;
 ```
 
-### `DW_FORM_addrx1`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addrx1`
 ```rust
 const DW_FORM_addrx1: DwForm;
 ```
 
-### `DW_FORM_addrx2`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addrx2`
 ```rust
 const DW_FORM_addrx2: DwForm;
 ```
 
-### `DW_FORM_addrx3`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addrx3`
 ```rust
 const DW_FORM_addrx3: DwForm;
 ```
 
-### `DW_FORM_addrx4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addrx4`
 ```rust
 const DW_FORM_addrx4: DwForm;
 ```
 
-### `DW_FORM_GNU_addr_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_GNU_addr_index`
 ```rust
 const DW_FORM_GNU_addr_index: DwForm;
 ```
 
-### `DW_FORM_GNU_str_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_GNU_str_index`
 ```rust
 const DW_FORM_GNU_str_index: DwForm;
 ```
 
-### `DW_FORM_GNU_ref_alt`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_GNU_ref_alt`
 ```rust
 const DW_FORM_GNU_ref_alt: DwForm;
 ```
 
-### `DW_FORM_GNU_strp_alt`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_GNU_strp_alt`
 ```rust
 const DW_FORM_GNU_strp_alt: DwForm;
 ```
 
-### `DW_ATE_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_ATE_address`
 ```rust
 const DW_ATE_address: DwAte;
 ```
 
-### `DW_ATE_boolean`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_boolean`
 ```rust
 const DW_ATE_boolean: DwAte;
 ```
 
-### `DW_ATE_complex_float`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_complex_float`
 ```rust
 const DW_ATE_complex_float: DwAte;
 ```
 
-### `DW_ATE_float`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_float`
 ```rust
 const DW_ATE_float: DwAte;
 ```
 
-### `DW_ATE_signed`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_signed`
 ```rust
 const DW_ATE_signed: DwAte;
 ```
 
-### `DW_ATE_signed_char`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_signed_char`
 ```rust
 const DW_ATE_signed_char: DwAte;
 ```
 
-### `DW_ATE_unsigned`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_unsigned`
 ```rust
 const DW_ATE_unsigned: DwAte;
 ```
 
-### `DW_ATE_unsigned_char`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_unsigned_char`
 ```rust
 const DW_ATE_unsigned_char: DwAte;
 ```
 
-### `DW_ATE_imaginary_float`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_imaginary_float`
 ```rust
 const DW_ATE_imaginary_float: DwAte;
 ```
 
-### `DW_ATE_packed_decimal`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_packed_decimal`
 ```rust
 const DW_ATE_packed_decimal: DwAte;
 ```
 
-### `DW_ATE_numeric_string`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_numeric_string`
 ```rust
 const DW_ATE_numeric_string: DwAte;
 ```
 
-### `DW_ATE_edited`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_edited`
 ```rust
 const DW_ATE_edited: DwAte;
 ```
 
-### `DW_ATE_signed_fixed`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_signed_fixed`
 ```rust
 const DW_ATE_signed_fixed: DwAte;
 ```
 
-### `DW_ATE_unsigned_fixed`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_unsigned_fixed`
 ```rust
 const DW_ATE_unsigned_fixed: DwAte;
 ```
 
-### `DW_ATE_decimal_float`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_decimal_float`
 ```rust
 const DW_ATE_decimal_float: DwAte;
 ```
 
-### `DW_ATE_UTF`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_UTF`
 ```rust
 const DW_ATE_UTF: DwAte;
 ```
 
-### `DW_ATE_UCS`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_UCS`
 ```rust
 const DW_ATE_UCS: DwAte;
 ```
 
-### `DW_ATE_ASCII`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_ASCII`
 ```rust
 const DW_ATE_ASCII: DwAte;
 ```
 
-### `DW_ATE_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_lo_user`
 ```rust
 const DW_ATE_lo_user: DwAte;
 ```
 
-### `DW_ATE_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_hi_user`
 ```rust
 const DW_ATE_hi_user: DwAte;
 ```
 
-### `DW_LLE_end_of_list`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_LLE_end_of_list`
 ```rust
 const DW_LLE_end_of_list: DwLle;
 ```
 
-### `DW_LLE_base_addressx`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_base_addressx`
 ```rust
 const DW_LLE_base_addressx: DwLle;
 ```
 
-### `DW_LLE_startx_endx`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_startx_endx`
 ```rust
 const DW_LLE_startx_endx: DwLle;
 ```
 
-### `DW_LLE_startx_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_startx_length`
 ```rust
 const DW_LLE_startx_length: DwLle;
 ```
 
-### `DW_LLE_offset_pair`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_offset_pair`
 ```rust
 const DW_LLE_offset_pair: DwLle;
 ```
 
-### `DW_LLE_default_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_default_location`
 ```rust
 const DW_LLE_default_location: DwLle;
 ```
 
-### `DW_LLE_base_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_base_address`
 ```rust
 const DW_LLE_base_address: DwLle;
 ```
 
-### `DW_LLE_start_end`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_start_end`
 ```rust
 const DW_LLE_start_end: DwLle;
 ```
 
-### `DW_LLE_start_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_start_length`
 ```rust
 const DW_LLE_start_length: DwLle;
 ```
 
-### `DW_LLE_GNU_view_pair`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_GNU_view_pair`
 ```rust
 const DW_LLE_GNU_view_pair: DwLle;
 ```
 
-### `DW_DS_unsigned`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_DS_unsigned`
 ```rust
 const DW_DS_unsigned: DwDs;
 ```
 
-### `DW_DS_leading_overpunch`
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
+### `DW_DS_leading_overpunch`
 ```rust
 const DW_DS_leading_overpunch: DwDs;
 ```
 
-### `DW_DS_trailing_overpunch`
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
+### `DW_DS_trailing_overpunch`
 ```rust
 const DW_DS_trailing_overpunch: DwDs;
 ```
 
-### `DW_DS_leading_separate`
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
+### `DW_DS_leading_separate`
 ```rust
 const DW_DS_leading_separate: DwDs;
 ```
 
-### `DW_DS_trailing_separate`
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
+### `DW_DS_trailing_separate`
 ```rust
 const DW_DS_trailing_separate: DwDs;
 ```
 
-### `DW_END_default`
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
+### `DW_END_default`
 ```rust
 const DW_END_default: DwEnd;
 ```
 
-### `DW_END_big`
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
+### `DW_END_big`
 ```rust
 const DW_END_big: DwEnd;
 ```
 
-### `DW_END_little`
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
+### `DW_END_little`
 ```rust
 const DW_END_little: DwEnd;
 ```
 
-### `DW_END_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
+### `DW_END_lo_user`
 ```rust
 const DW_END_lo_user: DwEnd;
 ```
 
-### `DW_END_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
+### `DW_END_hi_user`
 ```rust
 const DW_END_hi_user: DwEnd;
 ```
 
-### `DW_ACCESS_public`
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
+### `DW_ACCESS_public`
 ```rust
 const DW_ACCESS_public: DwAccess;
 ```
 
-### `DW_ACCESS_protected`
+*Defined in [`gimli-0.32.3/src/constants.rs:834-842`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L834-L842)*
 
+### `DW_ACCESS_protected`
 ```rust
 const DW_ACCESS_protected: DwAccess;
 ```
 
-### `DW_ACCESS_private`
+*Defined in [`gimli-0.32.3/src/constants.rs:834-842`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L834-L842)*
 
+### `DW_ACCESS_private`
 ```rust
 const DW_ACCESS_private: DwAccess;
 ```
 
-### `DW_VIS_local`
+*Defined in [`gimli-0.32.3/src/constants.rs:834-842`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L834-L842)*
 
+### `DW_VIS_local`
 ```rust
 const DW_VIS_local: DwVis;
 ```
 
-### `DW_VIS_exported`
+*Defined in [`gimli-0.32.3/src/constants.rs:844-852`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L844-L852)*
 
+### `DW_VIS_exported`
 ```rust
 const DW_VIS_exported: DwVis;
 ```
 
-### `DW_VIS_qualified`
+*Defined in [`gimli-0.32.3/src/constants.rs:844-852`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L844-L852)*
 
+### `DW_VIS_qualified`
 ```rust
 const DW_VIS_qualified: DwVis;
 ```
 
-### `DW_VIRTUALITY_none`
+*Defined in [`gimli-0.32.3/src/constants.rs:844-852`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L844-L852)*
 
+### `DW_VIRTUALITY_none`
 ```rust
 const DW_VIRTUALITY_none: DwVirtuality;
 ```
 
-### `DW_VIRTUALITY_virtual`
+*Defined in [`gimli-0.32.3/src/constants.rs:854-862`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L854-L862)*
 
+### `DW_VIRTUALITY_virtual`
 ```rust
 const DW_VIRTUALITY_virtual: DwVirtuality;
 ```
 
-### `DW_VIRTUALITY_pure_virtual`
+*Defined in [`gimli-0.32.3/src/constants.rs:854-862`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L854-L862)*
 
+### `DW_VIRTUALITY_pure_virtual`
 ```rust
 const DW_VIRTUALITY_pure_virtual: DwVirtuality;
 ```
 
-### `DW_LANG_C89`
+*Defined in [`gimli-0.32.3/src/constants.rs:854-862`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L854-L862)*
 
+### `DW_LANG_C89`
 ```rust
 const DW_LANG_C89: DwLang;
 ```
 
-### `DW_LANG_C`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C`
 ```rust
 const DW_LANG_C: DwLang;
 ```
 
-### `DW_LANG_Ada83`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Ada83`
 ```rust
 const DW_LANG_Ada83: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus`
 ```rust
 const DW_LANG_C_plus_plus: DwLang;
 ```
 
-### `DW_LANG_Cobol74`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Cobol74`
 ```rust
 const DW_LANG_Cobol74: DwLang;
 ```
 
-### `DW_LANG_Cobol85`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Cobol85`
 ```rust
 const DW_LANG_Cobol85: DwLang;
 ```
 
-### `DW_LANG_Fortran77`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran77`
 ```rust
 const DW_LANG_Fortran77: DwLang;
 ```
 
-### `DW_LANG_Fortran90`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran90`
 ```rust
 const DW_LANG_Fortran90: DwLang;
 ```
 
-### `DW_LANG_Pascal83`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Pascal83`
 ```rust
 const DW_LANG_Pascal83: DwLang;
 ```
 
-### `DW_LANG_Modula2`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Modula2`
 ```rust
 const DW_LANG_Modula2: DwLang;
 ```
 
-### `DW_LANG_Java`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Java`
 ```rust
 const DW_LANG_Java: DwLang;
 ```
 
-### `DW_LANG_C99`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C99`
 ```rust
 const DW_LANG_C99: DwLang;
 ```
 
-### `DW_LANG_Ada95`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Ada95`
 ```rust
 const DW_LANG_Ada95: DwLang;
 ```
 
-### `DW_LANG_Fortran95`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran95`
 ```rust
 const DW_LANG_Fortran95: DwLang;
 ```
 
-### `DW_LANG_PLI`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_PLI`
 ```rust
 const DW_LANG_PLI: DwLang;
 ```
 
-### `DW_LANG_ObjC`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_ObjC`
 ```rust
 const DW_LANG_ObjC: DwLang;
 ```
 
-### `DW_LANG_ObjC_plus_plus`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_ObjC_plus_plus`
 ```rust
 const DW_LANG_ObjC_plus_plus: DwLang;
 ```
 
-### `DW_LANG_UPC`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_UPC`
 ```rust
 const DW_LANG_UPC: DwLang;
 ```
 
-### `DW_LANG_D`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_D`
 ```rust
 const DW_LANG_D: DwLang;
 ```
 
-### `DW_LANG_Python`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Python`
 ```rust
 const DW_LANG_Python: DwLang;
 ```
 
-### `DW_LANG_OpenCL`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_OpenCL`
 ```rust
 const DW_LANG_OpenCL: DwLang;
 ```
 
-### `DW_LANG_Go`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Go`
 ```rust
 const DW_LANG_Go: DwLang;
 ```
 
-### `DW_LANG_Modula3`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Modula3`
 ```rust
 const DW_LANG_Modula3: DwLang;
 ```
 
-### `DW_LANG_Haskell`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Haskell`
 ```rust
 const DW_LANG_Haskell: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus_03`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus_03`
 ```rust
 const DW_LANG_C_plus_plus_03: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus_11`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus_11`
 ```rust
 const DW_LANG_C_plus_plus_11: DwLang;
 ```
 
-### `DW_LANG_OCaml`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_OCaml`
 ```rust
 const DW_LANG_OCaml: DwLang;
 ```
 
-### `DW_LANG_Rust`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Rust`
 ```rust
 const DW_LANG_Rust: DwLang;
 ```
 
-### `DW_LANG_C11`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C11`
 ```rust
 const DW_LANG_C11: DwLang;
 ```
 
-### `DW_LANG_Swift`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Swift`
 ```rust
 const DW_LANG_Swift: DwLang;
 ```
 
-### `DW_LANG_Julia`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Julia`
 ```rust
 const DW_LANG_Julia: DwLang;
 ```
 
-### `DW_LANG_Dylan`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Dylan`
 ```rust
 const DW_LANG_Dylan: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus_14`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus_14`
 ```rust
 const DW_LANG_C_plus_plus_14: DwLang;
 ```
 
-### `DW_LANG_Fortran03`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran03`
 ```rust
 const DW_LANG_Fortran03: DwLang;
 ```
 
-### `DW_LANG_Fortran08`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran08`
 ```rust
 const DW_LANG_Fortran08: DwLang;
 ```
 
-### `DW_LANG_RenderScript`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_RenderScript`
 ```rust
 const DW_LANG_RenderScript: DwLang;
 ```
 
-### `DW_LANG_BLISS`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_BLISS`
 ```rust
 const DW_LANG_BLISS: DwLang;
 ```
 
-### `DW_LANG_Kotlin`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Kotlin`
 ```rust
 const DW_LANG_Kotlin: DwLang;
 ```
 
-### `DW_LANG_Zig`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Zig`
 ```rust
 const DW_LANG_Zig: DwLang;
 ```
 
-### `DW_LANG_Crystal`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Crystal`
 ```rust
 const DW_LANG_Crystal: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus_17`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus_17`
 ```rust
 const DW_LANG_C_plus_plus_17: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus_20`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus_20`
 ```rust
 const DW_LANG_C_plus_plus_20: DwLang;
 ```
 
-### `DW_LANG_C17`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C17`
 ```rust
 const DW_LANG_C17: DwLang;
 ```
 
-### `DW_LANG_Fortran18`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran18`
 ```rust
 const DW_LANG_Fortran18: DwLang;
 ```
 
-### `DW_LANG_Ada2005`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Ada2005`
 ```rust
 const DW_LANG_Ada2005: DwLang;
 ```
 
-### `DW_LANG_Ada2012`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Ada2012`
 ```rust
 const DW_LANG_Ada2012: DwLang;
 ```
 
-### `DW_LANG_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_lo_user`
 ```rust
 const DW_LANG_lo_user: DwLang;
 ```
 
-### `DW_LANG_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_hi_user`
 ```rust
 const DW_LANG_hi_user: DwLang;
 ```
 
-### `DW_LANG_Mips_Assembler`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Mips_Assembler`
 ```rust
 const DW_LANG_Mips_Assembler: DwLang;
 ```
 
-### `DW_LANG_GOOGLE_RenderScript`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_GOOGLE_RenderScript`
 ```rust
 const DW_LANG_GOOGLE_RenderScript: DwLang;
 ```
 
-### `DW_LANG_SUN_Assembler`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_SUN_Assembler`
 ```rust
 const DW_LANG_SUN_Assembler: DwLang;
 ```
 
-### `DW_LANG_ALTIUM_Assembler`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_ALTIUM_Assembler`
 ```rust
 const DW_LANG_ALTIUM_Assembler: DwLang;
 ```
 
-### `DW_LANG_BORLAND_Delphi`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_BORLAND_Delphi`
 ```rust
 const DW_LANG_BORLAND_Delphi: DwLang;
 ```
 
-### `DW_ADDR_none`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_ADDR_none`
 ```rust
 const DW_ADDR_none: DwAddr;
 ```
 
-### `DW_ID_case_sensitive`
+*Defined in [`gimli-0.32.3/src/constants.rs:962-969`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L962-L969)*
 
+### `DW_ID_case_sensitive`
 ```rust
 const DW_ID_case_sensitive: DwId;
 ```
 
-### `DW_ID_up_case`
+*Defined in [`gimli-0.32.3/src/constants.rs:971-980`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L971-L980)*
 
+### `DW_ID_up_case`
 ```rust
 const DW_ID_up_case: DwId;
 ```
 
-### `DW_ID_down_case`
+*Defined in [`gimli-0.32.3/src/constants.rs:971-980`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L971-L980)*
 
+### `DW_ID_down_case`
 ```rust
 const DW_ID_down_case: DwId;
 ```
 
-### `DW_ID_case_insensitive`
+*Defined in [`gimli-0.32.3/src/constants.rs:971-980`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L971-L980)*
 
+### `DW_ID_case_insensitive`
 ```rust
 const DW_ID_case_insensitive: DwId;
 ```
 
-### `DW_CC_normal`
+*Defined in [`gimli-0.32.3/src/constants.rs:971-980`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L971-L980)*
 
+### `DW_CC_normal`
 ```rust
 const DW_CC_normal: DwCc;
 ```
 
-### `DW_CC_program`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_program`
 ```rust
 const DW_CC_program: DwCc;
 ```
 
-### `DW_CC_nocall`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_nocall`
 ```rust
 const DW_CC_nocall: DwCc;
 ```
 
-### `DW_CC_pass_by_reference`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_pass_by_reference`
 ```rust
 const DW_CC_pass_by_reference: DwCc;
 ```
 
-### `DW_CC_pass_by_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_pass_by_value`
 ```rust
 const DW_CC_pass_by_value: DwCc;
 ```
 
-### `DW_CC_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_lo_user`
 ```rust
 const DW_CC_lo_user: DwCc;
 ```
 
-### `DW_CC_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_hi_user`
 ```rust
 const DW_CC_hi_user: DwCc;
 ```
 
-### `DW_INL_not_inlined`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_INL_not_inlined`
 ```rust
 const DW_INL_not_inlined: DwInl;
 ```
 
-### `DW_INL_inlined`
+*Defined in [`gimli-0.32.3/src/constants.rs:996-1005`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L996-L1005)*
 
+### `DW_INL_inlined`
 ```rust
 const DW_INL_inlined: DwInl;
 ```
 
-### `DW_INL_declared_not_inlined`
+*Defined in [`gimli-0.32.3/src/constants.rs:996-1005`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L996-L1005)*
 
+### `DW_INL_declared_not_inlined`
 ```rust
 const DW_INL_declared_not_inlined: DwInl;
 ```
 
-### `DW_INL_declared_inlined`
+*Defined in [`gimli-0.32.3/src/constants.rs:996-1005`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L996-L1005)*
 
+### `DW_INL_declared_inlined`
 ```rust
 const DW_INL_declared_inlined: DwInl;
 ```
 
-### `DW_ORD_row_major`
+*Defined in [`gimli-0.32.3/src/constants.rs:996-1005`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L996-L1005)*
 
+### `DW_ORD_row_major`
 ```rust
 const DW_ORD_row_major: DwOrd;
 ```
 
-### `DW_ORD_col_major`
+*Defined in [`gimli-0.32.3/src/constants.rs:1007-1014`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1007-L1014)*
 
+### `DW_ORD_col_major`
 ```rust
 const DW_ORD_col_major: DwOrd;
 ```
 
-### `DW_DSC_label`
+*Defined in [`gimli-0.32.3/src/constants.rs:1007-1014`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1007-L1014)*
 
+### `DW_DSC_label`
 ```rust
 const DW_DSC_label: DwDsc;
 ```
 
-### `DW_DSC_range`
+*Defined in [`gimli-0.32.3/src/constants.rs:1016-1023`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1016-L1023)*
 
+### `DW_DSC_range`
 ```rust
 const DW_DSC_range: DwDsc;
 ```
 
-### `DW_IDX_compile_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:1016-1023`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1016-L1023)*
 
+### `DW_IDX_compile_unit`
 ```rust
 const DW_IDX_compile_unit: DwIdx;
 ```
 
-### `DW_IDX_type_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_type_unit`
 ```rust
 const DW_IDX_type_unit: DwIdx;
 ```
 
-### `DW_IDX_die_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_die_offset`
 ```rust
 const DW_IDX_die_offset: DwIdx;
 ```
 
-### `DW_IDX_parent`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_parent`
 ```rust
 const DW_IDX_parent: DwIdx;
 ```
 
-### `DW_IDX_type_hash`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_type_hash`
 ```rust
 const DW_IDX_type_hash: DwIdx;
 ```
 
-### `DW_IDX_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_lo_user`
 ```rust
 const DW_IDX_lo_user: DwIdx;
 ```
 
-### `DW_IDX_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_hi_user`
 ```rust
 const DW_IDX_hi_user: DwIdx;
 ```
 
-### `DW_DEFAULTED_no`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_DEFAULTED_no`
 ```rust
 const DW_DEFAULTED_no: DwDefaulted;
 ```
 
-### `DW_DEFAULTED_in_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:1039-1047`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1039-L1047)*
 
+### `DW_DEFAULTED_in_class`
 ```rust
 const DW_DEFAULTED_in_class: DwDefaulted;
 ```
 
-### `DW_DEFAULTED_out_of_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:1039-1047`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1039-L1047)*
 
+### `DW_DEFAULTED_out_of_class`
 ```rust
 const DW_DEFAULTED_out_of_class: DwDefaulted;
 ```
 
-### `DW_LNS_copy`
+*Defined in [`gimli-0.32.3/src/constants.rs:1039-1047`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1039-L1047)*
 
+### `DW_LNS_copy`
 ```rust
 const DW_LNS_copy: DwLns;
 ```
 
-### `DW_LNS_advance_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_advance_pc`
 ```rust
 const DW_LNS_advance_pc: DwLns;
 ```
 
-### `DW_LNS_advance_line`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_advance_line`
 ```rust
 const DW_LNS_advance_line: DwLns;
 ```
 
-### `DW_LNS_set_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_file`
 ```rust
 const DW_LNS_set_file: DwLns;
 ```
 
-### `DW_LNS_set_column`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_column`
 ```rust
 const DW_LNS_set_column: DwLns;
 ```
 
-### `DW_LNS_negate_stmt`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_negate_stmt`
 ```rust
 const DW_LNS_negate_stmt: DwLns;
 ```
 
-### `DW_LNS_set_basic_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_basic_block`
 ```rust
 const DW_LNS_set_basic_block: DwLns;
 ```
 
-### `DW_LNS_const_add_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_const_add_pc`
 ```rust
 const DW_LNS_const_add_pc: DwLns;
 ```
 
-### `DW_LNS_fixed_advance_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_fixed_advance_pc`
 ```rust
 const DW_LNS_fixed_advance_pc: DwLns;
 ```
 
-### `DW_LNS_set_prologue_end`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_prologue_end`
 ```rust
 const DW_LNS_set_prologue_end: DwLns;
 ```
 
-### `DW_LNS_set_epilogue_begin`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_epilogue_begin`
 ```rust
 const DW_LNS_set_epilogue_begin: DwLns;
 ```
 
-### `DW_LNS_set_isa`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_isa`
 ```rust
 const DW_LNS_set_isa: DwLns;
 ```
 
-### `DW_LNE_end_sequence`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNE_end_sequence`
 ```rust
 const DW_LNE_end_sequence: DwLne;
 ```
 
-### `DW_LNE_set_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNE_set_address`
 ```rust
 const DW_LNE_set_address: DwLne;
 ```
 
-### `DW_LNE_define_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNE_define_file`
 ```rust
 const DW_LNE_define_file: DwLne;
 ```
 
-### `DW_LNE_set_discriminator`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNE_set_discriminator`
 ```rust
 const DW_LNE_set_discriminator: DwLne;
 ```
 
-### `DW_LNE_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNE_lo_user`
 ```rust
 const DW_LNE_lo_user: DwLne;
 ```
 
-### `DW_LNE_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNE_hi_user`
 ```rust
 const DW_LNE_hi_user: DwLne;
 ```
 
-### `DW_LNCT_path`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNCT_path`
 ```rust
 const DW_LNCT_path: DwLnct;
 ```
 
-### `DW_LNCT_directory_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_directory_index`
 ```rust
 const DW_LNCT_directory_index: DwLnct;
 ```
 
-### `DW_LNCT_timestamp`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_timestamp`
 ```rust
 const DW_LNCT_timestamp: DwLnct;
 ```
 
-### `DW_LNCT_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_size`
 ```rust
 const DW_LNCT_size: DwLnct;
 ```
 
-### `DW_LNCT_MD5`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_MD5`
 ```rust
 const DW_LNCT_MD5: DwLnct;
 ```
 
-### `DW_LNCT_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_lo_user`
 ```rust
 const DW_LNCT_lo_user: DwLnct;
 ```
 
-### `DW_LNCT_LLVM_source`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_LLVM_source`
 ```rust
 const DW_LNCT_LLVM_source: DwLnct;
 ```
 
-### `DW_LNCT_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_hi_user`
 ```rust
 const DW_LNCT_hi_user: DwLnct;
 ```
 
-### `DW_MACINFO_define`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_MACINFO_define`
 ```rust
 const DW_MACINFO_define: DwMacinfo;
 ```
 
-### `DW_MACINFO_undef`
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
+### `DW_MACINFO_undef`
 ```rust
 const DW_MACINFO_undef: DwMacinfo;
 ```
 
-### `DW_MACINFO_start_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
+### `DW_MACINFO_start_file`
 ```rust
 const DW_MACINFO_start_file: DwMacinfo;
 ```
 
-### `DW_MACINFO_end_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
+### `DW_MACINFO_end_file`
 ```rust
 const DW_MACINFO_end_file: DwMacinfo;
 ```
 
-### `DW_MACINFO_vendor_ext`
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
+### `DW_MACINFO_vendor_ext`
 ```rust
 const DW_MACINFO_vendor_ext: DwMacinfo;
 ```
 
-### `DW_MACRO_define`
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
+### `DW_MACRO_define`
 ```rust
 const DW_MACRO_define: DwMacro;
 ```
 
-### `DW_MACRO_undef`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_undef`
 ```rust
 const DW_MACRO_undef: DwMacro;
 ```
 
-### `DW_MACRO_start_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_start_file`
 ```rust
 const DW_MACRO_start_file: DwMacro;
 ```
 
-### `DW_MACRO_end_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_end_file`
 ```rust
 const DW_MACRO_end_file: DwMacro;
 ```
 
-### `DW_MACRO_define_strp`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_define_strp`
 ```rust
 const DW_MACRO_define_strp: DwMacro;
 ```
 
-### `DW_MACRO_undef_strp`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_undef_strp`
 ```rust
 const DW_MACRO_undef_strp: DwMacro;
 ```
 
-### `DW_MACRO_import`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_import`
 ```rust
 const DW_MACRO_import: DwMacro;
 ```
 
-### `DW_MACRO_define_sup`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_define_sup`
 ```rust
 const DW_MACRO_define_sup: DwMacro;
 ```
 
-### `DW_MACRO_undef_sup`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_undef_sup`
 ```rust
 const DW_MACRO_undef_sup: DwMacro;
 ```
 
-### `DW_MACRO_import_sup`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_import_sup`
 ```rust
 const DW_MACRO_import_sup: DwMacro;
 ```
 
-### `DW_MACRO_define_strx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_define_strx`
 ```rust
 const DW_MACRO_define_strx: DwMacro;
 ```
 
-### `DW_MACRO_undef_strx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_undef_strx`
 ```rust
 const DW_MACRO_undef_strx: DwMacro;
 ```
 
-### `DW_MACRO_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_lo_user`
 ```rust
 const DW_MACRO_lo_user: DwMacro;
 ```
 
-### `DW_MACRO_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_hi_user`
 ```rust
 const DW_MACRO_hi_user: DwMacro;
 ```
 
-### `DW_RLE_end_of_list`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_RLE_end_of_list`
 ```rust
 const DW_RLE_end_of_list: DwRle;
 ```
 
-### `DW_RLE_base_addressx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_base_addressx`
 ```rust
 const DW_RLE_base_addressx: DwRle;
 ```
 
-### `DW_RLE_startx_endx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_startx_endx`
 ```rust
 const DW_RLE_startx_endx: DwRle;
 ```
 
-### `DW_RLE_startx_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_startx_length`
 ```rust
 const DW_RLE_startx_length: DwRle;
 ```
 
-### `DW_RLE_offset_pair`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_offset_pair`
 ```rust
 const DW_RLE_offset_pair: DwRle;
 ```
 
-### `DW_RLE_base_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_base_address`
 ```rust
 const DW_RLE_base_address: DwRle;
 ```
 
-### `DW_RLE_start_end`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_start_end`
 ```rust
 const DW_RLE_start_end: DwRle;
 ```
 
-### `DW_RLE_start_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_start_length`
 ```rust
 const DW_RLE_start_length: DwRle;
 ```
 
-### `DW_OP_addr`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_OP_addr`
 ```rust
 const DW_OP_addr: DwOp;
 ```
 
-### `DW_OP_deref`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_deref`
 ```rust
 const DW_OP_deref: DwOp;
 ```
 
-### `DW_OP_const1u`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const1u`
 ```rust
 const DW_OP_const1u: DwOp;
 ```
 
-### `DW_OP_const1s`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const1s`
 ```rust
 const DW_OP_const1s: DwOp;
 ```
 
-### `DW_OP_const2u`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const2u`
 ```rust
 const DW_OP_const2u: DwOp;
 ```
 
-### `DW_OP_const2s`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const2s`
 ```rust
 const DW_OP_const2s: DwOp;
 ```
 
-### `DW_OP_const4u`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const4u`
 ```rust
 const DW_OP_const4u: DwOp;
 ```
 
-### `DW_OP_const4s`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const4s`
 ```rust
 const DW_OP_const4s: DwOp;
 ```
 
-### `DW_OP_const8u`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const8u`
 ```rust
 const DW_OP_const8u: DwOp;
 ```
 
-### `DW_OP_const8s`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const8s`
 ```rust
 const DW_OP_const8s: DwOp;
 ```
 
-### `DW_OP_constu`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_constu`
 ```rust
 const DW_OP_constu: DwOp;
 ```
 
-### `DW_OP_consts`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_consts`
 ```rust
 const DW_OP_consts: DwOp;
 ```
 
-### `DW_OP_dup`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_dup`
 ```rust
 const DW_OP_dup: DwOp;
 ```
 
-### `DW_OP_drop`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_drop`
 ```rust
 const DW_OP_drop: DwOp;
 ```
 
-### `DW_OP_over`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_over`
 ```rust
 const DW_OP_over: DwOp;
 ```
 
-### `DW_OP_pick`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_pick`
 ```rust
 const DW_OP_pick: DwOp;
 ```
 
-### `DW_OP_swap`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_swap`
 ```rust
 const DW_OP_swap: DwOp;
 ```
 
-### `DW_OP_rot`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_rot`
 ```rust
 const DW_OP_rot: DwOp;
 ```
 
-### `DW_OP_xderef`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_xderef`
 ```rust
 const DW_OP_xderef: DwOp;
 ```
 
-### `DW_OP_abs`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_abs`
 ```rust
 const DW_OP_abs: DwOp;
 ```
 
-### `DW_OP_and`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_and`
 ```rust
 const DW_OP_and: DwOp;
 ```
 
-### `DW_OP_div`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_div`
 ```rust
 const DW_OP_div: DwOp;
 ```
 
-### `DW_OP_minus`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_minus`
 ```rust
 const DW_OP_minus: DwOp;
 ```
 
-### `DW_OP_mod`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_mod`
 ```rust
 const DW_OP_mod: DwOp;
 ```
 
-### `DW_OP_mul`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_mul`
 ```rust
 const DW_OP_mul: DwOp;
 ```
 
-### `DW_OP_neg`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_neg`
 ```rust
 const DW_OP_neg: DwOp;
 ```
 
-### `DW_OP_not`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_not`
 ```rust
 const DW_OP_not: DwOp;
 ```
 
-### `DW_OP_or`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_or`
 ```rust
 const DW_OP_or: DwOp;
 ```
 
-### `DW_OP_plus`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_plus`
 ```rust
 const DW_OP_plus: DwOp;
 ```
 
-### `DW_OP_plus_uconst`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_plus_uconst`
 ```rust
 const DW_OP_plus_uconst: DwOp;
 ```
 
-### `DW_OP_shl`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_shl`
 ```rust
 const DW_OP_shl: DwOp;
 ```
 
-### `DW_OP_shr`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_shr`
 ```rust
 const DW_OP_shr: DwOp;
 ```
 
-### `DW_OP_shra`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_shra`
 ```rust
 const DW_OP_shra: DwOp;
 ```
 
-### `DW_OP_xor`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_xor`
 ```rust
 const DW_OP_xor: DwOp;
 ```
 
-### `DW_OP_bra`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_bra`
 ```rust
 const DW_OP_bra: DwOp;
 ```
 
-### `DW_OP_eq`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_eq`
 ```rust
 const DW_OP_eq: DwOp;
 ```
 
-### `DW_OP_ge`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_ge`
 ```rust
 const DW_OP_ge: DwOp;
 ```
 
-### `DW_OP_gt`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_gt`
 ```rust
 const DW_OP_gt: DwOp;
 ```
 
-### `DW_OP_le`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_le`
 ```rust
 const DW_OP_le: DwOp;
 ```
 
-### `DW_OP_lt`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lt`
 ```rust
 const DW_OP_lt: DwOp;
 ```
 
-### `DW_OP_ne`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_ne`
 ```rust
 const DW_OP_ne: DwOp;
 ```
 
-### `DW_OP_skip`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_skip`
 ```rust
 const DW_OP_skip: DwOp;
 ```
 
-### `DW_OP_lit0`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit0`
 ```rust
 const DW_OP_lit0: DwOp;
 ```
 
-### `DW_OP_lit1`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit1`
 ```rust
 const DW_OP_lit1: DwOp;
 ```
 
-### `DW_OP_lit2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit2`
 ```rust
 const DW_OP_lit2: DwOp;
 ```
 
-### `DW_OP_lit3`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit3`
 ```rust
 const DW_OP_lit3: DwOp;
 ```
 
-### `DW_OP_lit4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit4`
 ```rust
 const DW_OP_lit4: DwOp;
 ```
 
-### `DW_OP_lit5`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit5`
 ```rust
 const DW_OP_lit5: DwOp;
 ```
 
-### `DW_OP_lit6`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit6`
 ```rust
 const DW_OP_lit6: DwOp;
 ```
 
-### `DW_OP_lit7`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit7`
 ```rust
 const DW_OP_lit7: DwOp;
 ```
 
-### `DW_OP_lit8`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit8`
 ```rust
 const DW_OP_lit8: DwOp;
 ```
 
-### `DW_OP_lit9`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit9`
 ```rust
 const DW_OP_lit9: DwOp;
 ```
 
-### `DW_OP_lit10`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit10`
 ```rust
 const DW_OP_lit10: DwOp;
 ```
 
-### `DW_OP_lit11`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit11`
 ```rust
 const DW_OP_lit11: DwOp;
 ```
 
-### `DW_OP_lit12`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit12`
 ```rust
 const DW_OP_lit12: DwOp;
 ```
 
-### `DW_OP_lit13`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit13`
 ```rust
 const DW_OP_lit13: DwOp;
 ```
 
-### `DW_OP_lit14`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit14`
 ```rust
 const DW_OP_lit14: DwOp;
 ```
 
-### `DW_OP_lit15`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit15`
 ```rust
 const DW_OP_lit15: DwOp;
 ```
 
-### `DW_OP_lit16`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit16`
 ```rust
 const DW_OP_lit16: DwOp;
 ```
 
-### `DW_OP_lit17`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit17`
 ```rust
 const DW_OP_lit17: DwOp;
 ```
 
-### `DW_OP_lit18`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit18`
 ```rust
 const DW_OP_lit18: DwOp;
 ```
 
-### `DW_OP_lit19`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit19`
 ```rust
 const DW_OP_lit19: DwOp;
 ```
 
-### `DW_OP_lit20`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit20`
 ```rust
 const DW_OP_lit20: DwOp;
 ```
 
-### `DW_OP_lit21`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit21`
 ```rust
 const DW_OP_lit21: DwOp;
 ```
 
-### `DW_OP_lit22`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit22`
 ```rust
 const DW_OP_lit22: DwOp;
 ```
 
-### `DW_OP_lit23`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit23`
 ```rust
 const DW_OP_lit23: DwOp;
 ```
 
-### `DW_OP_lit24`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit24`
 ```rust
 const DW_OP_lit24: DwOp;
 ```
 
-### `DW_OP_lit25`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit25`
 ```rust
 const DW_OP_lit25: DwOp;
 ```
 
-### `DW_OP_lit26`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit26`
 ```rust
 const DW_OP_lit26: DwOp;
 ```
 
-### `DW_OP_lit27`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit27`
 ```rust
 const DW_OP_lit27: DwOp;
 ```
 
-### `DW_OP_lit28`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit28`
 ```rust
 const DW_OP_lit28: DwOp;
 ```
 
-### `DW_OP_lit29`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit29`
 ```rust
 const DW_OP_lit29: DwOp;
 ```
 
-### `DW_OP_lit30`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit30`
 ```rust
 const DW_OP_lit30: DwOp;
 ```
 
-### `DW_OP_lit31`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit31`
 ```rust
 const DW_OP_lit31: DwOp;
 ```
 
-### `DW_OP_reg0`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg0`
 ```rust
 const DW_OP_reg0: DwOp;
 ```
 
-### `DW_OP_reg1`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg1`
 ```rust
 const DW_OP_reg1: DwOp;
 ```
 
-### `DW_OP_reg2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg2`
 ```rust
 const DW_OP_reg2: DwOp;
 ```
 
-### `DW_OP_reg3`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg3`
 ```rust
 const DW_OP_reg3: DwOp;
 ```
 
-### `DW_OP_reg4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg4`
 ```rust
 const DW_OP_reg4: DwOp;
 ```
 
-### `DW_OP_reg5`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg5`
 ```rust
 const DW_OP_reg5: DwOp;
 ```
 
-### `DW_OP_reg6`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg6`
 ```rust
 const DW_OP_reg6: DwOp;
 ```
 
-### `DW_OP_reg7`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg7`
 ```rust
 const DW_OP_reg7: DwOp;
 ```
 
-### `DW_OP_reg8`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg8`
 ```rust
 const DW_OP_reg8: DwOp;
 ```
 
-### `DW_OP_reg9`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg9`
 ```rust
 const DW_OP_reg9: DwOp;
 ```
 
-### `DW_OP_reg10`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg10`
 ```rust
 const DW_OP_reg10: DwOp;
 ```
 
-### `DW_OP_reg11`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg11`
 ```rust
 const DW_OP_reg11: DwOp;
 ```
 
-### `DW_OP_reg12`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg12`
 ```rust
 const DW_OP_reg12: DwOp;
 ```
 
-### `DW_OP_reg13`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg13`
 ```rust
 const DW_OP_reg13: DwOp;
 ```
 
-### `DW_OP_reg14`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg14`
 ```rust
 const DW_OP_reg14: DwOp;
 ```
 
-### `DW_OP_reg15`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg15`
 ```rust
 const DW_OP_reg15: DwOp;
 ```
 
-### `DW_OP_reg16`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg16`
 ```rust
 const DW_OP_reg16: DwOp;
 ```
 
-### `DW_OP_reg17`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg17`
 ```rust
 const DW_OP_reg17: DwOp;
 ```
 
-### `DW_OP_reg18`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg18`
 ```rust
 const DW_OP_reg18: DwOp;
 ```
 
-### `DW_OP_reg19`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg19`
 ```rust
 const DW_OP_reg19: DwOp;
 ```
 
-### `DW_OP_reg20`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg20`
 ```rust
 const DW_OP_reg20: DwOp;
 ```
 
-### `DW_OP_reg21`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg21`
 ```rust
 const DW_OP_reg21: DwOp;
 ```
 
-### `DW_OP_reg22`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg22`
 ```rust
 const DW_OP_reg22: DwOp;
 ```
 
-### `DW_OP_reg23`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg23`
 ```rust
 const DW_OP_reg23: DwOp;
 ```
 
-### `DW_OP_reg24`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg24`
 ```rust
 const DW_OP_reg24: DwOp;
 ```
 
-### `DW_OP_reg25`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg25`
 ```rust
 const DW_OP_reg25: DwOp;
 ```
 
-### `DW_OP_reg26`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg26`
 ```rust
 const DW_OP_reg26: DwOp;
 ```
 
-### `DW_OP_reg27`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg27`
 ```rust
 const DW_OP_reg27: DwOp;
 ```
 
-### `DW_OP_reg28`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg28`
 ```rust
 const DW_OP_reg28: DwOp;
 ```
 
-### `DW_OP_reg29`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg29`
 ```rust
 const DW_OP_reg29: DwOp;
 ```
 
-### `DW_OP_reg30`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg30`
 ```rust
 const DW_OP_reg30: DwOp;
 ```
 
-### `DW_OP_reg31`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg31`
 ```rust
 const DW_OP_reg31: DwOp;
 ```
 
-### `DW_OP_breg0`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg0`
 ```rust
 const DW_OP_breg0: DwOp;
 ```
 
-### `DW_OP_breg1`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg1`
 ```rust
 const DW_OP_breg1: DwOp;
 ```
 
-### `DW_OP_breg2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg2`
 ```rust
 const DW_OP_breg2: DwOp;
 ```
 
-### `DW_OP_breg3`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg3`
 ```rust
 const DW_OP_breg3: DwOp;
 ```
 
-### `DW_OP_breg4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg4`
 ```rust
 const DW_OP_breg4: DwOp;
 ```
 
-### `DW_OP_breg5`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg5`
 ```rust
 const DW_OP_breg5: DwOp;
 ```
 
-### `DW_OP_breg6`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg6`
 ```rust
 const DW_OP_breg6: DwOp;
 ```
 
-### `DW_OP_breg7`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg7`
 ```rust
 const DW_OP_breg7: DwOp;
 ```
 
-### `DW_OP_breg8`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg8`
 ```rust
 const DW_OP_breg8: DwOp;
 ```
 
-### `DW_OP_breg9`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg9`
 ```rust
 const DW_OP_breg9: DwOp;
 ```
 
-### `DW_OP_breg10`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg10`
 ```rust
 const DW_OP_breg10: DwOp;
 ```
 
-### `DW_OP_breg11`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg11`
 ```rust
 const DW_OP_breg11: DwOp;
 ```
 
-### `DW_OP_breg12`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg12`
 ```rust
 const DW_OP_breg12: DwOp;
 ```
 
-### `DW_OP_breg13`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg13`
 ```rust
 const DW_OP_breg13: DwOp;
 ```
 
-### `DW_OP_breg14`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg14`
 ```rust
 const DW_OP_breg14: DwOp;
 ```
 
-### `DW_OP_breg15`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg15`
 ```rust
 const DW_OP_breg15: DwOp;
 ```
 
-### `DW_OP_breg16`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg16`
 ```rust
 const DW_OP_breg16: DwOp;
 ```
 
-### `DW_OP_breg17`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg17`
 ```rust
 const DW_OP_breg17: DwOp;
 ```
 
-### `DW_OP_breg18`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg18`
 ```rust
 const DW_OP_breg18: DwOp;
 ```
 
-### `DW_OP_breg19`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg19`
 ```rust
 const DW_OP_breg19: DwOp;
 ```
 
-### `DW_OP_breg20`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg20`
 ```rust
 const DW_OP_breg20: DwOp;
 ```
 
-### `DW_OP_breg21`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg21`
 ```rust
 const DW_OP_breg21: DwOp;
 ```
 
-### `DW_OP_breg22`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg22`
 ```rust
 const DW_OP_breg22: DwOp;
 ```
 
-### `DW_OP_breg23`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg23`
 ```rust
 const DW_OP_breg23: DwOp;
 ```
 
-### `DW_OP_breg24`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg24`
 ```rust
 const DW_OP_breg24: DwOp;
 ```
 
-### `DW_OP_breg25`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg25`
 ```rust
 const DW_OP_breg25: DwOp;
 ```
 
-### `DW_OP_breg26`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg26`
 ```rust
 const DW_OP_breg26: DwOp;
 ```
 
-### `DW_OP_breg27`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg27`
 ```rust
 const DW_OP_breg27: DwOp;
 ```
 
-### `DW_OP_breg28`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg28`
 ```rust
 const DW_OP_breg28: DwOp;
 ```
 
-### `DW_OP_breg29`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg29`
 ```rust
 const DW_OP_breg29: DwOp;
 ```
 
-### `DW_OP_breg30`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg30`
 ```rust
 const DW_OP_breg30: DwOp;
 ```
 
-### `DW_OP_breg31`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg31`
 ```rust
 const DW_OP_breg31: DwOp;
 ```
 
-### `DW_OP_regx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_regx`
 ```rust
 const DW_OP_regx: DwOp;
 ```
 
-### `DW_OP_fbreg`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_fbreg`
 ```rust
 const DW_OP_fbreg: DwOp;
 ```
 
-### `DW_OP_bregx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_bregx`
 ```rust
 const DW_OP_bregx: DwOp;
 ```
 
-### `DW_OP_piece`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_piece`
 ```rust
 const DW_OP_piece: DwOp;
 ```
 
-### `DW_OP_deref_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_deref_size`
 ```rust
 const DW_OP_deref_size: DwOp;
 ```
 
-### `DW_OP_xderef_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_xderef_size`
 ```rust
 const DW_OP_xderef_size: DwOp;
 ```
 
-### `DW_OP_nop`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_nop`
 ```rust
 const DW_OP_nop: DwOp;
 ```
 
-### `DW_OP_push_object_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_push_object_address`
 ```rust
 const DW_OP_push_object_address: DwOp;
 ```
 
-### `DW_OP_call2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_call2`
 ```rust
 const DW_OP_call2: DwOp;
 ```
 
-### `DW_OP_call4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_call4`
 ```rust
 const DW_OP_call4: DwOp;
 ```
 
-### `DW_OP_call_ref`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_call_ref`
 ```rust
 const DW_OP_call_ref: DwOp;
 ```
 
-### `DW_OP_form_tls_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_form_tls_address`
 ```rust
 const DW_OP_form_tls_address: DwOp;
 ```
 
-### `DW_OP_call_frame_cfa`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_call_frame_cfa`
 ```rust
 const DW_OP_call_frame_cfa: DwOp;
 ```
 
-### `DW_OP_bit_piece`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_bit_piece`
 ```rust
 const DW_OP_bit_piece: DwOp;
 ```
 
-### `DW_OP_implicit_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_implicit_value`
 ```rust
 const DW_OP_implicit_value: DwOp;
 ```
 
-### `DW_OP_stack_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_stack_value`
 ```rust
 const DW_OP_stack_value: DwOp;
 ```
 
-### `DW_OP_implicit_pointer`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_implicit_pointer`
 ```rust
 const DW_OP_implicit_pointer: DwOp;
 ```
 
-### `DW_OP_addrx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_addrx`
 ```rust
 const DW_OP_addrx: DwOp;
 ```
 
-### `DW_OP_constx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_constx`
 ```rust
 const DW_OP_constx: DwOp;
 ```
 
-### `DW_OP_entry_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_entry_value`
 ```rust
 const DW_OP_entry_value: DwOp;
 ```
 
-### `DW_OP_const_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const_type`
 ```rust
 const DW_OP_const_type: DwOp;
 ```
 
-### `DW_OP_regval_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_regval_type`
 ```rust
 const DW_OP_regval_type: DwOp;
 ```
 
-### `DW_OP_deref_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_deref_type`
 ```rust
 const DW_OP_deref_type: DwOp;
 ```
 
-### `DW_OP_xderef_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_xderef_type`
 ```rust
 const DW_OP_xderef_type: DwOp;
 ```
 
-### `DW_OP_convert`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_convert`
 ```rust
 const DW_OP_convert: DwOp;
 ```
 
-### `DW_OP_reinterpret`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reinterpret`
 ```rust
 const DW_OP_reinterpret: DwOp;
 ```
 
-### `DW_OP_GNU_push_tls_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_push_tls_address`
 ```rust
 const DW_OP_GNU_push_tls_address: DwOp;
 ```
 
-### `DW_OP_GNU_implicit_pointer`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_implicit_pointer`
 ```rust
 const DW_OP_GNU_implicit_pointer: DwOp;
 ```
 
-### `DW_OP_GNU_entry_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_entry_value`
 ```rust
 const DW_OP_GNU_entry_value: DwOp;
 ```
 
-### `DW_OP_GNU_const_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_const_type`
 ```rust
 const DW_OP_GNU_const_type: DwOp;
 ```
 
-### `DW_OP_GNU_regval_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_regval_type`
 ```rust
 const DW_OP_GNU_regval_type: DwOp;
 ```
 
-### `DW_OP_GNU_deref_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_deref_type`
 ```rust
 const DW_OP_GNU_deref_type: DwOp;
 ```
 
-### `DW_OP_GNU_convert`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_convert`
 ```rust
 const DW_OP_GNU_convert: DwOp;
 ```
 
-### `DW_OP_GNU_reinterpret`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_reinterpret`
 ```rust
 const DW_OP_GNU_reinterpret: DwOp;
 ```
 
-### `DW_OP_GNU_parameter_ref`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_parameter_ref`
 ```rust
 const DW_OP_GNU_parameter_ref: DwOp;
 ```
 
-### `DW_OP_GNU_addr_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_addr_index`
 ```rust
 const DW_OP_GNU_addr_index: DwOp;
 ```
 
-### `DW_OP_GNU_const_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_const_index`
 ```rust
 const DW_OP_GNU_const_index: DwOp;
 ```
 
-### `DW_OP_WASM_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_WASM_location`
 ```rust
 const DW_OP_WASM_location: DwOp;
 ```
 
-### `DW_EH_PE_uleb128`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_EH_PE_uleb128`
 ```rust
 const DW_EH_PE_uleb128: DwEhPe;
 ```
 
-### `DW_EH_PE_udata2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_udata2`
 ```rust
 const DW_EH_PE_udata2: DwEhPe;
 ```
 
-### `DW_EH_PE_udata4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_udata4`
 ```rust
 const DW_EH_PE_udata4: DwEhPe;
 ```
 
-### `DW_EH_PE_udata8`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_udata8`
 ```rust
 const DW_EH_PE_udata8: DwEhPe;
 ```
 
-### `DW_EH_PE_sleb128`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_sleb128`
 ```rust
 const DW_EH_PE_sleb128: DwEhPe;
 ```
 
-### `DW_EH_PE_sdata2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_sdata2`
 ```rust
 const DW_EH_PE_sdata2: DwEhPe;
 ```
 
-### `DW_EH_PE_sdata4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_sdata4`
 ```rust
 const DW_EH_PE_sdata4: DwEhPe;
 ```
 
-### `DW_EH_PE_sdata8`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_sdata8`
 ```rust
 const DW_EH_PE_sdata8: DwEhPe;
 ```
 
-### `DW_EH_PE_pcrel`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_pcrel`
 ```rust
 const DW_EH_PE_pcrel: DwEhPe;
 ```
 
-### `DW_EH_PE_textrel`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_textrel`
 ```rust
 const DW_EH_PE_textrel: DwEhPe;
 ```
 
-### `DW_EH_PE_datarel`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_datarel`
 ```rust
 const DW_EH_PE_datarel: DwEhPe;
 ```
 
-### `DW_EH_PE_funcrel`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_funcrel`
 ```rust
 const DW_EH_PE_funcrel: DwEhPe;
 ```
 
-### `DW_EH_PE_aligned`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_aligned`
 ```rust
 const DW_EH_PE_aligned: DwEhPe;
 ```
 
-### `DW_EH_PE_indirect`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_indirect`
 ```rust
 const DW_EH_PE_indirect: DwEhPe;
 ```
 
-### `DW_EH_PE_absptr`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_absptr`
 ```rust
 const DW_EH_PE_absptr: DwEhPe;
 ```
 
-### `DW_EH_PE_omit`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_omit`
 ```rust
 const DW_EH_PE_omit: DwEhPe;
 ```
 
-### `DW_EH_PE_FORMAT_MASK`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_FORMAT_MASK`
 ```rust
 const DW_EH_PE_FORMAT_MASK: u8 = 15u8;
 ```
 
-### `DW_EH_PE_APPLICATION_MASK`
+*Defined in [`gimli-0.32.3/src/constants.rs:1392`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1392)*
 
+### `DW_EH_PE_APPLICATION_MASK`
 ```rust
 const DW_EH_PE_APPLICATION_MASK: u8 = 112u8;
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1395`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1395)*
+
 ## Macros
 
 ### `dw!`
+
+*Defined in [`gimli-0.32.3/src/constants.rs:58-102`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L58-L102)*
 

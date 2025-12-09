@@ -4,6 +4,18 @@
 
 # Module `alphabet`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ByteClasses`](#byteclasses) | struct | A representation of byte oriented equivalence classes. |
+| [`ByteClassIter`](#byteclassiter) | struct | An iterator over each equivalence class. |
+| [`ByteClassElements`](#byteclasselements) | struct | An iterator over all elements in a specific equivalence class. |
+| [`ByteClassElementRanges`](#byteclasselementranges) | struct | An iterator over all elements in an equivalence class expressed as a sequence of contiguous ranges. |
+| [`ByteClassSet`](#byteclassset) | struct | A partitioning of bytes into equivalence classes. |
+| [`ByteSet`](#byteset) | struct | A simple set of bytes that is reasonably cheap to copy and allocation free. |
+| [`BitSet`](#bitset) | struct | The representation of a byte set. |
+
 ## Structs
 
 ### `ByteClasses`
@@ -11,6 +23,8 @@
 ```rust
 struct ByteClasses([u8; 256]);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:10`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L10)*
 
 A representation of byte oriented equivalence classes.
 
@@ -21,39 +35,39 @@ transitions that need to be visited/set.
 
 #### Implementations
 
-- `fn empty() -> ByteClasses` — [`ByteClasses`](#byteclasses)
+- <span id="byteclasses-empty"></span>`fn empty() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
-- `fn singletons() -> ByteClasses` — [`ByteClasses`](#byteclasses)
+- <span id="byteclasses-singletons"></span>`fn singletons() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
-- `fn set(self: &mut Self, byte: u8, class: u8)`
+- <span id="byteclasses-set"></span>`fn set(&mut self, byte: u8, class: u8)`
 
-- `fn get(self: &Self, byte: u8) -> u8`
+- <span id="byteclasses-get"></span>`fn get(&self, byte: u8) -> u8`
 
-- `fn alphabet_len(self: &Self) -> usize`
+- <span id="byteclasses-alphabet-len"></span>`fn alphabet_len(&self) -> usize`
 
-- `fn stride2(self: &Self) -> usize`
+- <span id="byteclasses-stride2"></span>`fn stride2(&self) -> usize`
 
-- `fn stride(self: &Self) -> usize`
+- <span id="byteclasses-stride"></span>`fn stride(&self) -> usize`
 
-- `fn is_singleton(self: &Self) -> bool`
+- <span id="byteclasses-is-singleton"></span>`fn is_singleton(&self) -> bool`
 
-- `fn iter(self: &Self) -> ByteClassIter` — [`ByteClassIter`](#byteclassiter)
+- <span id="byteclasses-iter"></span>`fn iter(&self) -> ByteClassIter` — [`ByteClassIter`](#byteclassiter)
 
-- `fn elements(self: &Self, class: u8) -> ByteClassElements<'_>` — [`ByteClassElements`](#byteclasselements)
+- <span id="byteclasses-elements"></span>`fn elements(&self, class: u8) -> ByteClassElements<'_>` — [`ByteClassElements`](#byteclasselements)
 
-- `fn element_ranges(self: &Self, class: u8) -> ByteClassElementRanges<'_>` — [`ByteClassElementRanges`](#byteclasselementranges)
+- <span id="byteclasses-element-ranges"></span>`fn element_ranges(&self, class: u8) -> ByteClassElementRanges<'_>` — [`ByteClassElementRanges`](#byteclasselementranges)
 
 #### Trait Implementations
 
 ##### `impl Clone for ByteClasses`
 
-- `fn clone(self: &Self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
+- <span id="byteclasses-clone"></span>`fn clone(&self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
 ##### `impl Copy for ByteClasses`
 
 ##### `impl Debug for ByteClasses`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="byteclasses-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `ByteClassIter`
 
@@ -63,27 +77,29 @@ struct ByteClassIter {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:125-127`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L125-L127)*
+
 An iterator over each equivalence class.
 
 #### Trait Implementations
 
 ##### `impl Debug for ByteClassIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteclassiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteClassIter`
+##### `impl IntoIterator for ByteClassIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="byteclassiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="byteclassiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="byteclassiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteClassIter`
 
-- `type Item = u8`
+- <span id="byteclassiter-type-item"></span>`type Item = u8`
 
-- `fn next(self: &mut Self) -> Option<u8>`
+- <span id="byteclassiter-next"></span>`fn next(&mut self) -> Option<u8>`
 
 ### `ByteClassElements<'a>`
 
@@ -95,27 +111,29 @@ struct ByteClassElements<'a> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:139-143`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L139-L143)*
+
 An iterator over all elements in a specific equivalence class.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ByteClassElements<'a>`
+##### `impl Debug for ByteClassElements<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteclasselements-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteClassElements<'a>`
+##### `impl IntoIterator for ByteClassElements<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="byteclasselements-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="byteclasselements-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="byteclasselements-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ByteClassElements<'a>`
+##### `impl Iterator for ByteClassElements<'a>`
 
-- `type Item = u8`
+- <span id="byteclasselements-type-item"></span>`type Item = u8`
 
-- `fn next(self: &mut Self) -> Option<u8>`
+- <span id="byteclasselements-next"></span>`fn next(&mut self) -> Option<u8>`
 
 ### `ByteClassElementRanges<'a>`
 
@@ -126,34 +144,38 @@ struct ByteClassElementRanges<'a> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:161-164`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L161-L164)*
+
 An iterator over all elements in an equivalence class expressed as a
 sequence of contiguous ranges.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ByteClassElementRanges<'a>`
+##### `impl Debug for ByteClassElementRanges<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteclasselementranges-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteClassElementRanges<'a>`
+##### `impl IntoIterator for ByteClassElementRanges<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="byteclasselementranges-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="byteclasselementranges-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="byteclasselementranges-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ByteClassElementRanges<'a>`
+##### `impl Iterator for ByteClassElementRanges<'a>`
 
-- `type Item = (u8, u8)`
+- <span id="byteclasselementranges-type-item"></span>`type Item = (u8, u8)`
 
-- `fn next(self: &mut Self) -> Option<(u8, u8)>`
+- <span id="byteclasselementranges-next"></span>`fn next(&mut self) -> Option<(u8, u8)>`
 
 ### `ByteClassSet`
 
 ```rust
 struct ByteClassSet(ByteSet);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:207`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L207)*
 
 A partitioning of bytes into equivalence classes.
 
@@ -173,25 +195,25 @@ much of a difference, and keeps the implementation simple.
 
 #### Implementations
 
-- `fn empty() -> Self`
+- <span id="byteclassset-empty"></span>`fn empty() -> Self`
 
-- `fn set_range(self: &mut Self, start: u8, end: u8)`
+- <span id="byteclassset-set-range"></span>`fn set_range(&mut self, start: u8, end: u8)`
 
-- `fn byte_classes(self: &Self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
+- <span id="byteclassset-byte-classes"></span>`fn byte_classes(&self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
 #### Trait Implementations
 
 ##### `impl Clone for ByteClassSet`
 
-- `fn clone(self: &Self) -> ByteClassSet` — [`ByteClassSet`](#byteclassset)
+- <span id="byteclassset-clone"></span>`fn clone(&self) -> ByteClassSet` — [`ByteClassSet`](#byteclassset)
 
 ##### `impl Debug for ByteClassSet`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteclassset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ByteClassSet`
 
-- `fn default() -> ByteClassSet` — [`ByteClassSet`](#byteclassset)
+- <span id="byteclassset-default"></span>`fn default() -> ByteClassSet` — [`ByteClassSet`](#byteclassset)
 
 ### `ByteSet`
 
@@ -201,37 +223,39 @@ struct ByteSet {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:255-257`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L255-L257)*
+
 A simple set of bytes that is reasonably cheap to copy and allocation free.
 
 #### Implementations
 
-- `fn empty() -> ByteSet` — [`ByteSet`](#byteset)
+- <span id="byteset-empty"></span>`fn empty() -> ByteSet` — [`ByteSet`](#byteset)
 
-- `fn add(self: &mut Self, byte: u8)`
+- <span id="byteset-add"></span>`fn add(&mut self, byte: u8)`
 
-- `fn contains(self: &Self, byte: u8) -> bool`
+- <span id="byteset-contains"></span>`fn contains(&self, byte: u8) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for ByteSet`
 
-- `fn clone(self: &Self) -> ByteSet` — [`ByteSet`](#byteset)
+- <span id="byteset-clone"></span>`fn clone(&self) -> ByteSet` — [`ByteSet`](#byteset)
 
 ##### `impl Copy for ByteSet`
 
 ##### `impl Debug for ByteSet`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ByteSet`
 
-- `fn default() -> ByteSet` — [`ByteSet`](#byteset)
+- <span id="byteset-default"></span>`fn default() -> ByteSet` — [`ByteSet`](#byteset)
 
 ##### `impl Eq for ByteSet`
 
 ##### `impl PartialEq for ByteSet`
 
-- `fn eq(self: &Self, other: &ByteSet) -> bool` — [`ByteSet`](#byteset)
+- <span id="byteset-eq"></span>`fn eq(&self, other: &ByteSet) -> bool` — [`ByteSet`](#byteset)
 
 ##### `impl StructuralPartialEq for ByteSet`
 
@@ -241,6 +265,8 @@ A simple set of bytes that is reasonably cheap to copy and allocation free.
 struct BitSet([u128; 2]);
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:262`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L262)*
+
 The representation of a byte set. Split out so that we can define a
 convenient Debug impl for it while keeping "ByteSet" in the output.
 
@@ -248,23 +274,23 @@ convenient Debug impl for it while keeping "ByteSet" in the output.
 
 ##### `impl Clone for BitSet`
 
-- `fn clone(self: &Self) -> BitSet` — [`BitSet`](#bitset)
+- <span id="bitset-clone"></span>`fn clone(&self) -> BitSet` — [`BitSet`](#bitset)
 
 ##### `impl Copy for BitSet`
 
 ##### `impl Debug for BitSet`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="bitset-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for BitSet`
 
-- `fn default() -> BitSet` — [`BitSet`](#bitset)
+- <span id="bitset-default"></span>`fn default() -> BitSet` — [`BitSet`](#bitset)
 
 ##### `impl Eq for BitSet`
 
 ##### `impl PartialEq for BitSet`
 
-- `fn eq(self: &Self, other: &BitSet) -> bool` — [`BitSet`](#bitset)
+- <span id="bitset-eq"></span>`fn eq(&self, other: &BitSet) -> bool` — [`BitSet`](#bitset)
 
 ##### `impl StructuralPartialEq for BitSet`
 

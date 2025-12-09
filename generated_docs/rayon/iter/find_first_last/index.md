@@ -4,6 +4,31 @@
 
 # Module `find_first_last`
 
+## Contents
+
+- [Structs](#structs)
+  - [`FindConsumer`](#findconsumer)
+  - [`FindFolder`](#findfolder)
+  - [`FindReducer`](#findreducer)
+- [Enums](#enums)
+  - [`MatchPosition`](#matchposition)
+- [Functions](#functions)
+  - [`better_position`](#better_position)
+  - [`find_first`](#find_first)
+  - [`find_last`](#find_last)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FindConsumer`](#findconsumer) | struct |  |
+| [`FindFolder`](#findfolder) | struct |  |
+| [`FindReducer`](#findreducer) | struct |  |
+| [`MatchPosition`](#matchposition) | enum |  |
+| [`better_position`](#better_position) | fn | Returns true if pos1 is a better match than pos2 according to MatchPosition |
+| [`find_first`](#find_first) | fn |  |
+| [`find_last`](#find_last) | fn |  |
+
 ## Structs
 
 ### `FindConsumer<'p, P>`
@@ -18,49 +43,51 @@ struct FindConsumer<'p, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/find_first_last/mod.rs:61-67`](../../../../.source_1765210505/rayon-1.11.0/src/iter/find_first_last/mod.rs#L61-L67)*
+
 #### Implementations
 
-- `fn new(find_op: &'p P, match_position: MatchPosition, best_found: &'p AtomicUsize) -> Self` — [`MatchPosition`](#matchposition)
+- <span id="findconsumer-new"></span>`fn new(find_op: &'p P, match_position: MatchPosition, best_found: &'p AtomicUsize) -> Self` — [`MatchPosition`](#matchposition)
 
-- `fn current_index(self: &Self) -> usize`
+- <span id="findconsumer-current-index"></span>`fn current_index(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<'p, T, P> Consumer for FindConsumer<'p, P>`
 
-- `type Folder = FindFolder<'p, T, P>`
+- <span id="findconsumer-type-folder"></span>`type Folder = FindFolder<'p, T, P>`
 
-- `type Reducer = FindReducer`
+- <span id="findconsumer-type-reducer"></span>`type Reducer = FindReducer`
 
-- `type Result = Option<T>`
+- <span id="findconsumer-type-result"></span>`type Result = Option<T>`
 
-- `fn split_at(self: Self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="findconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="findconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="findconsumer-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for FindConsumer<'p, P>`
 
 ##### `impl<T> Pointable for FindConsumer<'p, P>`
 
-- `const ALIGN: usize`
+- <span id="findconsumer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="findconsumer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="findconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="findconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="findconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="findconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'p, T, P> UnindexedConsumer for FindConsumer<'p, P>`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="findconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="findconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `FindFolder<'p, T, P>`
 
@@ -74,33 +101,35 @@ struct FindFolder<'p, T, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/find_first_last/mod.rs:166-172`](../../../../.source_1765210505/rayon-1.11.0/src/iter/find_first_last/mod.rs#L166-L172)*
+
 #### Trait Implementations
 
 ##### `impl<'p, P: 'p + Fn(&T) -> bool, T> Folder for FindFolder<'p, T, P>`
 
-- `type Result = Option<T>`
+- <span id="findfolder-type-result"></span>`type Result = Option<T>`
 
-- `fn consume(self: Self, item: T) -> Self`
+- <span id="findfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- `fn complete(self: Self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="findfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="findfolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for FindFolder<'p, T, P>`
 
 ##### `impl<T> Pointable for FindFolder<'p, T, P>`
 
-- `const ALIGN: usize`
+- <span id="findfolder-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="findfolder-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="findfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="findfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="findfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="findfolder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `FindReducer`
 
@@ -110,27 +139,29 @@ struct FindReducer {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/find_first_last/mod.rs:219-221`](../../../../.source_1765210505/rayon-1.11.0/src/iter/find_first_last/mod.rs#L219-L221)*
+
 #### Trait Implementations
 
-##### `impl<T> IntoEither for FindReducer`
+##### `impl IntoEither for FindReducer`
 
-##### `impl<T> Pointable for FindReducer`
+##### `impl Pointable for FindReducer`
 
-- `const ALIGN: usize`
+- <span id="findreducer-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="findreducer-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="findreducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="findreducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="findreducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="findreducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> Reducer for FindReducer`
+##### `impl Reducer for FindReducer`
 
-- `fn reduce(self: Self, left: Option<T>, right: Option<T>) -> Option<T>`
+- <span id="findreducer-reduce"></span>`fn reduce(self, left: Option<T>, right: Option<T>) -> Option<T>`
 
 ## Enums
 
@@ -143,29 +174,31 @@ enum MatchPosition {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/find_first_last/mod.rs:27-30`](../../../../.source_1765210505/rayon-1.11.0/src/iter/find_first_last/mod.rs#L27-L30)*
+
 #### Trait Implementations
 
 ##### `impl Clone for MatchPosition`
 
-- `fn clone(self: &Self) -> MatchPosition` — [`MatchPosition`](#matchposition)
+- <span id="matchposition-clone"></span>`fn clone(&self) -> MatchPosition` — [`MatchPosition`](#matchposition)
 
 ##### `impl Copy for MatchPosition`
 
-##### `impl<T> IntoEither for MatchPosition`
+##### `impl IntoEither for MatchPosition`
 
-##### `impl<T> Pointable for MatchPosition`
+##### `impl Pointable for MatchPosition`
 
-- `const ALIGN: usize`
+- <span id="matchposition-const-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="matchposition-type-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="matchposition-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="matchposition-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="matchposition-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="matchposition-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 
@@ -174,6 +207,8 @@ enum MatchPosition {
 ```rust
 fn better_position(pos1: usize, pos2: usize, mp: MatchPosition) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/find_first_last/mod.rs:34-39`](../../../../.source_1765210505/rayon-1.11.0/src/iter/find_first_last/mod.rs#L34-L39)*
 
 Returns true if pos1 is a better match than pos2 according to MatchPosition
 
@@ -186,6 +221,8 @@ where
     P: Fn(&<I as >::Item) -> bool + Sync
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/find_first_last/mod.rs:41-49`](../../../../.source_1765210505/rayon-1.11.0/src/iter/find_first_last/mod.rs#L41-L49)*
+
 ### `find_last`
 
 ```rust
@@ -194,4 +231,6 @@ where
     I: ParallelIterator,
     P: Fn(&<I as >::Item) -> bool + Sync
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/find_first_last/mod.rs:51-59`](../../../../.source_1765210505/rayon-1.11.0/src/iter/find_first_last/mod.rs#L51-L59)*
 

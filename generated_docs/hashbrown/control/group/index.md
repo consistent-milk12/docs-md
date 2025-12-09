@@ -4,7 +4,13 @@
 
 # Module `group`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`sse2`](#sse2) | mod |  |
+
 ## Modules
 
-- [`sse2`](sse2/index.md) - 
+- [`sse2`](sse2/index.md)
 

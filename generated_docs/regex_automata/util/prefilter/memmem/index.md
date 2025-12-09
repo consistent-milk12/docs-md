@@ -4,6 +4,12 @@
 
 # Module `memmem`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Memmem`](#memmem) | struct |  |
+
 ## Structs
 
 ### `Memmem`
@@ -14,27 +20,29 @@ struct Memmem {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/memmem.rs:7-12`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/memmem.rs#L7-L12)*
+
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memmem>` — [`MatchKind`](../../../index.md), [`Memmem`](#memmem)
+- <span id="memmem-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memmem>` — [`MatchKind`](../../../index.md), [`Memmem`](#memmem)
 
 #### Trait Implementations
 
 ##### `impl Clone for Memmem`
 
-- `fn clone(self: &Self) -> Memmem` — [`Memmem`](#memmem)
+- <span id="memmem-clone"></span>`fn clone(&self) -> Memmem` — [`Memmem`](#memmem)
 
 ##### `impl Debug for Memmem`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="memmem-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for Memmem`
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memmem-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="memmem-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="memmem-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn is_fast(self: &Self) -> bool`
+- <span id="memmem-is-fast"></span>`fn is_fast(&self) -> bool`
 

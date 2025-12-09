@@ -11,6 +11,62 @@ feature of serde_json to use `IndexMap` instead.
 
 
 
+## Contents
+
+- [Structs](#structs)
+  - [`Map`](#map)
+  - [`VacantEntry`](#vacantentry)
+  - [`OccupiedEntry`](#occupiedentry)
+  - [`Iter`](#iter)
+  - [`IterMut`](#itermut)
+  - [`IntoIter`](#intoiter)
+  - [`Keys`](#keys)
+  - [`Values`](#values)
+  - [`ValuesMut`](#valuesmut)
+  - [`IntoValues`](#intovalues)
+- [Enums](#enums)
+  - [`Entry`](#entry)
+- [Type Aliases](#type-aliases)
+  - [`MapImpl`](#mapimpl)
+  - [`VacantEntryImpl`](#vacantentryimpl)
+  - [`OccupiedEntryImpl`](#occupiedentryimpl)
+  - [`IterImpl`](#iterimpl)
+  - [`IterMutImpl`](#itermutimpl)
+  - [`IntoIterImpl`](#intoiterimpl)
+  - [`KeysImpl`](#keysimpl)
+  - [`ValuesImpl`](#valuesimpl)
+  - [`ValuesMutImpl`](#valuesmutimpl)
+  - [`IntoValuesImpl`](#intovaluesimpl)
+- [Macros](#macros)
+  - [`delegate_iterator!`](#delegate_iterator)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Map`](#map) | struct | Represents a JSON key/value type. |
+| [`VacantEntry`](#vacantentry) | struct | A vacant Entry. |
+| [`OccupiedEntry`](#occupiedentry) | struct | An occupied Entry. |
+| [`Iter`](#iter) | struct | An iterator over a serde_json::Map's entries. |
+| [`IterMut`](#itermut) | struct | A mutable iterator over a serde_json::Map's entries. |
+| [`IntoIter`](#intoiter) | struct | An owning iterator over a serde_json::Map's entries. |
+| [`Keys`](#keys) | struct | An iterator over a serde_json::Map's keys. |
+| [`Values`](#values) | struct | An iterator over a serde_json::Map's values. |
+| [`ValuesMut`](#valuesmut) | struct | A mutable iterator over a serde_json::Map's values. |
+| [`IntoValues`](#intovalues) | struct | An owning iterator over a serde_json::Map's values. |
+| [`Entry`](#entry) | enum | A view into a single entry in a map, which may either be vacant or occupied. |
+| [`MapImpl`](#mapimpl) | type |  |
+| [`VacantEntryImpl`](#vacantentryimpl) | type |  |
+| [`OccupiedEntryImpl`](#occupiedentryimpl) | type |  |
+| [`IterImpl`](#iterimpl) | type |  |
+| [`IterMutImpl`](#itermutimpl) | type |  |
+| [`IntoIterImpl`](#intoiterimpl) | type |  |
+| [`KeysImpl`](#keysimpl) | type |  |
+| [`ValuesImpl`](#valuesimpl) | type |  |
+| [`ValuesMutImpl`](#valuesmutimpl) | type |  |
+| [`IntoValuesImpl`](#intovaluesimpl) | type |  |
+| [`delegate_iterator!`](#delegate_iterator) | macro |  |
+
 ## Structs
 
 ### `Map<K, V>`
@@ -21,193 +77,195 @@ struct Map<K, V> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L29-L31)*
+
 Represents a JSON key/value type.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="map-new"></span>`fn new() -> Self`
 
-- `fn with_capacity(capacity: usize) -> Self`
+- <span id="map-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
-- `fn clear(self: &mut Self)`
+- <span id="map-clear"></span>`fn clear(&mut self)`
 
-- `fn get<Q>(self: &Self, key: &Q) -> Option<&Value>` — [`Value`](../index.md)
+- <span id="map-get"></span>`fn get<Q>(&self, key: &Q) -> Option<&Value>` — [`Value`](../value/index.md)
 
-- `fn contains_key<Q>(self: &Self, key: &Q) -> bool`
+- <span id="map-contains-key"></span>`fn contains_key<Q>(&self, key: &Q) -> bool`
 
-- `fn get_mut<Q>(self: &mut Self, key: &Q) -> Option<&mut Value>` — [`Value`](../index.md)
+- <span id="map-get-mut"></span>`fn get_mut<Q>(&mut self, key: &Q) -> Option<&mut Value>` — [`Value`](../value/index.md)
 
-- `fn get_key_value<Q>(self: &Self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../index.md)
+- <span id="map-get-key-value"></span>`fn get_key_value<Q>(&self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../value/index.md)
 
-- `fn insert(self: &mut Self, k: String, v: Value) -> Option<Value>` — [`Value`](../index.md)
+- <span id="map-insert"></span>`fn insert(&mut self, k: String, v: Value) -> Option<Value>` — [`Value`](../value/index.md)
 
-- `fn remove<Q>(self: &mut Self, key: &Q) -> Option<Value>` — [`Value`](../index.md)
+- <span id="map-remove"></span>`fn remove<Q>(&mut self, key: &Q) -> Option<Value>` — [`Value`](../value/index.md)
 
-- `fn remove_entry<Q>(self: &mut Self, key: &Q) -> Option<(String, Value)>` — [`Value`](../index.md)
+- <span id="map-remove-entry"></span>`fn remove_entry<Q>(&mut self, key: &Q) -> Option<(String, Value)>` — [`Value`](../value/index.md)
 
-- `fn append(self: &mut Self, other: &mut Self)`
+- <span id="map-append"></span>`fn append(&mut self, other: &mut Self)`
 
-- `fn entry<S>(self: &mut Self, key: S) -> Entry<'_>` — [`Entry`](#entry)
+- <span id="map-entry"></span>`fn entry<S>(&mut self, key: S) -> Entry<'_>` — [`Entry`](#entry)
 
-- `fn len(self: &Self) -> usize`
+- <span id="map-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="map-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn iter(self: &Self) -> Iter<'_>` — [`Iter`](#iter)
+- <span id="map-iter"></span>`fn iter(&self) -> Iter<'_>` — [`Iter`](#iter)
 
-- `fn iter_mut(self: &mut Self) -> IterMut<'_>` — [`IterMut`](#itermut)
+- <span id="map-iter-mut"></span>`fn iter_mut(&mut self) -> IterMut<'_>` — [`IterMut`](#itermut)
 
-- `fn keys(self: &Self) -> Keys<'_>` — [`Keys`](#keys)
+- <span id="map-keys"></span>`fn keys(&self) -> Keys<'_>` — [`Keys`](#keys)
 
-- `fn values(self: &Self) -> Values<'_>` — [`Values`](#values)
+- <span id="map-values"></span>`fn values(&self) -> Values<'_>` — [`Values`](#values)
 
-- `fn values_mut(self: &mut Self) -> ValuesMut<'_>` — [`ValuesMut`](#valuesmut)
+- <span id="map-values-mut"></span>`fn values_mut(&mut self) -> ValuesMut<'_>` — [`ValuesMut`](#valuesmut)
 
-- `fn into_values(self: Self) -> IntoValues` — [`IntoValues`](#intovalues)
+- <span id="map-into-values"></span>`fn into_values(self) -> IntoValues` — [`IntoValues`](#intovalues)
 
-- `fn retain<F>(self: &mut Self, f: F)`
+- <span id="map-retain"></span>`fn retain<F>(&mut self, f: F)`
 
-- `fn sort_keys(self: &mut Self)`
+- <span id="map-sort-keys"></span>`fn sort_keys(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Map<alloc::string::String, crate::value::Value>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="map-clone"></span>`fn clone(&self) -> Self`
 
-- `fn clone_from(self: &mut Self, source: &Self)`
+- <span id="map-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
 ##### `impl Debug for Map<alloc::string::String, crate::value::Value>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="map-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Default for Map<alloc::string::String, crate::value::Value>`
 
-- `fn default() -> Self`
+- <span id="map-default"></span>`fn default() -> Self`
 
-##### `impl<'de> Deserialize for Map<alloc::string::String, crate::value::Value>`
+##### `impl Deserialize for Map<alloc::string::String, crate::value::Value>`
 
-- `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
+- <span id="map-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Map<K, V>`
 
-##### `impl<'de> Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
+##### `impl Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- `type Error = Error`
+- <span id="cratemapmap-type-error"></span>`type Error = Error`
 
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- <span id="cratemapmap-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
-- `fn deserialize_enum<V>(self: Self, _name: &'static str, _variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- <span id="cratemapmap-deserialize-enum"></span>`fn deserialize_enum<V>(self, _name: &'static str, _variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
-- `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- <span id="cratemapmap-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
-- `fn deserialize_bool<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_i8<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_i16<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_i32<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_i64<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_i128<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_u8<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_u16<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_u32<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_u64<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_u128<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_f32<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_f64<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_char<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_str<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_string<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_bytes<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_byte_buf<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_option<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_unit<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_unit_struct<V>(self: Self, name: &'static str, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_newtype_struct<V>(self: Self, name: &'static str, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_seq<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_tuple<V>(self: Self, len: usize, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_tuple_struct<V>(self: Self, name: &'static str, len: usize, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_map<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_struct<V>(self: Self, name: &'static str, fields: &'static [&'static str], visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_identifier<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="cratemapmap-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
 ##### `impl Eq for Map<alloc::string::String, crate::value::Value>`
 
 ##### `impl Extend for Map<alloc::string::String, crate::value::Value>`
 
-- `fn extend<T>(self: &mut Self, iter: T)`
+- <span id="map-extend"></span>`fn extend<T>(&mut self, iter: T)`
 
 ##### `impl FromIterator for Map<alloc::string::String, crate::value::Value>`
 
-- `fn from_iter<T>(iter: T) -> Self`
+- <span id="map-from-iter"></span>`fn from_iter<T>(iter: T) -> Self`
 
 ##### `impl FromStr for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- `type Err = Error`
+- <span id="cratemapmap-type-err"></span>`type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../index.md)
+- <span id="cratemapmap-from-str"></span>`fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../error/index.md)
 
 ##### `impl Hash for Map<alloc::string::String, crate::value::Value>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="map-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<Q> Index for Map<alloc::string::String, crate::value::Value>`
+##### `impl Index for Map<alloc::string::String, crate::value::Value>`
 
-- `type Output = Value`
+- <span id="map-type-output"></span>`type Output = Value`
 
-- `fn index(self: &Self, index: &Q) -> &Value` — [`Value`](../index.md)
+- <span id="map-index"></span>`fn index(&self, index: &Q) -> &Value` — [`Value`](../value/index.md)
 
-##### `impl<Q> IndexMut for Map<alloc::string::String, crate::value::Value>`
+##### `impl IndexMut for Map<alloc::string::String, crate::value::Value>`
 
-- `fn index_mut(self: &mut Self, index: &Q) -> &mut Value` — [`Value`](../index.md)
+- <span id="map-index-mut"></span>`fn index_mut(&mut self, index: &Q) -> &mut Value` — [`Value`](../value/index.md)
 
-##### `impl<'de> IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
+##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
-- `type Deserializer = Map<String, Value>`
+- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
 
-- `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
+- <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 
-##### `impl IntoIterator for Map<alloc::string::String, crate::value::Value>`
+##### `impl IntoIterator for &'a Map<alloc::string::String, crate::value::Value>`
 
-- `type Item = (String, Value)`
+- <span id="a-map-type-item"></span>`type Item = (&'a String, &'a Value)`
 
-- `type IntoIter = IntoIter`
+- <span id="a-map-type-intoiter"></span>`type IntoIter = Iter<'a>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="a-map-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl PartialEq for Map<alloc::string::String, crate::value::Value>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="map-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Serialize for Map<alloc::string::String, crate::value::Value>`
 
-- `fn serialize<S>(self: &Self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
+- <span id="map-serialize"></span>`fn serialize<S>(&self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
 
 ### `VacantEntry<'a>`
 
@@ -217,13 +275,15 @@ struct VacantEntry<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:631-633`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L631-L633)*
+
 A vacant Entry. It is part of the [`Entry`](#entry) enum.
 
 #### Implementations
 
-- `fn key(self: &Self) -> &String`
+- <span id="vacantentry-key"></span>`fn key(&self) -> &String`
 
-- `fn insert(self: Self, value: Value) -> &'a mut Value` — [`Value`](../index.md)
+- <span id="vacantentry-insert"></span>`fn insert(self, value: Value) -> &'a mut Value` — [`Value`](../value/index.md)
 
 ### `OccupiedEntry<'a>`
 
@@ -233,23 +293,25 @@ struct OccupiedEntry<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:636-638`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L636-L638)*
+
 An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
 #### Implementations
 
-- `fn key(self: &Self) -> &String`
+- <span id="occupiedentry-key"></span>`fn key(&self) -> &String`
 
-- `fn get(self: &Self) -> &Value` — [`Value`](../index.md)
+- <span id="occupiedentry-get"></span>`fn get(&self) -> &Value` — [`Value`](../value/index.md)
 
-- `fn get_mut(self: &mut Self) -> &mut Value` — [`Value`](../index.md)
+- <span id="occupiedentry-get-mut"></span>`fn get_mut(&mut self) -> &mut Value` — [`Value`](../value/index.md)
 
-- `fn into_mut(self: Self) -> &'a mut Value` — [`Value`](../index.md)
+- <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut Value` — [`Value`](../value/index.md)
 
-- `fn insert(self: &mut Self, value: Value) -> Value` — [`Value`](../index.md)
+- <span id="occupiedentry-insert"></span>`fn insert(&mut self, value: Value) -> Value` — [`Value`](../value/index.md)
 
-- `fn remove(self: Self) -> Value` — [`Value`](../index.md)
+- <span id="occupiedentry-remove"></span>`fn remove(self) -> Value` — [`Value`](../value/index.md)
 
-- `fn remove_entry(self: Self) -> (String, Value)` — [`Value`](../index.md)
+- <span id="occupiedentry-remove-entry"></span>`fn remove_entry(self) -> (String, Value)` — [`Value`](../value/index.md)
 
 ### `Iter<'a>`
 
@@ -259,43 +321,45 @@ struct Iter<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1060-1062`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1060-L1062)*
+
 An iterator over a serde_json::Map's entries.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Iter<'a>`
+##### `impl Clone for Iter<'a>`
 
-- `fn clone(self: &Self) -> Iter<'a>` — [`Iter`](#iter)
+- <span id="iter-clone"></span>`fn clone(&self) -> Iter<'a>` — [`Iter`](#iter)
 
-##### `impl<'a> Debug for Iter<'a>`
+##### `impl Debug for Iter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for Iter<'a>`
+##### `impl DoubleEndedIterator for Iter<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iter-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a> ExactSizeIterator for Iter<'a>`
+##### `impl ExactSizeIterator for Iter<'a>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="iter-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'a> FusedIterator for Iter<'a>`
+##### `impl FusedIterator for Iter<'a>`
 
-##### `impl<I> IntoIterator for Iter<'a>`
+##### `impl IntoIterator for Iter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Iter<'a>`
+##### `impl Iterator for Iter<'a>`
 
-- `type Item = (&'a String, &'a Value)`
+- <span id="iter-type-item"></span>`type Item = (&'a String, &'a Value)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="iter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `IterMut<'a>`
 
@@ -305,39 +369,41 @@ struct IterMut<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1086-1088`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1086-L1088)*
+
 A mutable iterator over a serde_json::Map's entries.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for IterMut<'a>`
+##### `impl Debug for IterMut<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itermut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for IterMut<'a>`
+##### `impl DoubleEndedIterator for IterMut<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="itermut-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a> ExactSizeIterator for IterMut<'a>`
+##### `impl ExactSizeIterator for IterMut<'a>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="itermut-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'a> FusedIterator for IterMut<'a>`
+##### `impl FusedIterator for IterMut<'a>`
 
-##### `impl<I> IntoIterator for IterMut<'a>`
+##### `impl IntoIterator for IterMut<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for IterMut<'a>`
+##### `impl Iterator for IterMut<'a>`
 
-- `type Item = (&'a String, &'a mut Value)`
+- <span id="itermut-type-item"></span>`type Item = (&'a String, &'a mut Value)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="itermut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="itermut-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `IntoIter`
 
@@ -347,39 +413,41 @@ struct IntoIter {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1112-1114`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1112-L1114)*
+
 An owning iterator over a serde_json::Map's entries.
 
 #### Trait Implementations
 
 ##### `impl Debug for IntoIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DoubleEndedIterator for IntoIter`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="intoiter-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl ExactSizeIterator for IntoIter`
 
-- `fn len(self: &Self) -> usize`
+- <span id="intoiter-len"></span>`fn len(&self) -> usize`
 
 ##### `impl FusedIterator for IntoIter`
 
-##### `impl<I> IntoIterator for IntoIter`
+##### `impl IntoIterator for IntoIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- `type Item = (String, Value)`
+- <span id="intoiter-type-item"></span>`type Item = (String, Value)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="intoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `Keys<'a>`
 
@@ -389,43 +457,45 @@ struct Keys<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1127-1129`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1127-L1129)*
+
 An iterator over a serde_json::Map's keys.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Keys<'a>`
+##### `impl Clone for Keys<'a>`
 
-- `fn clone(self: &Self) -> Keys<'a>` — [`Keys`](#keys)
+- <span id="keys-clone"></span>`fn clone(&self) -> Keys<'a>` — [`Keys`](#keys)
 
-##### `impl<'a> Debug for Keys<'a>`
+##### `impl Debug for Keys<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="keys-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for Keys<'a>`
+##### `impl DoubleEndedIterator for Keys<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="keys-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a> ExactSizeIterator for Keys<'a>`
+##### `impl ExactSizeIterator for Keys<'a>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="keys-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'a> FusedIterator for Keys<'a>`
+##### `impl FusedIterator for Keys<'a>`
 
-##### `impl<I> IntoIterator for Keys<'a>`
+##### `impl IntoIterator for Keys<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="keys-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="keys-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="keys-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Keys<'a>`
+##### `impl Iterator for Keys<'a>`
 
-- `type Item = &'a String`
+- <span id="keys-type-item"></span>`type Item = &'a String`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="keys-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="keys-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `Values<'a>`
 
@@ -435,43 +505,45 @@ struct Values<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1142-1144`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1142-L1144)*
+
 An iterator over a serde_json::Map's values.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Values<'a>`
+##### `impl Clone for Values<'a>`
 
-- `fn clone(self: &Self) -> Values<'a>` — [`Values`](#values)
+- <span id="values-clone"></span>`fn clone(&self) -> Values<'a>` — [`Values`](#values)
 
-##### `impl<'a> Debug for Values<'a>`
+##### `impl Debug for Values<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="values-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for Values<'a>`
+##### `impl DoubleEndedIterator for Values<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="values-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a> ExactSizeIterator for Values<'a>`
+##### `impl ExactSizeIterator for Values<'a>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="values-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'a> FusedIterator for Values<'a>`
+##### `impl FusedIterator for Values<'a>`
 
-##### `impl<I> IntoIterator for Values<'a>`
+##### `impl IntoIterator for Values<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="values-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="values-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="values-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Values<'a>`
+##### `impl Iterator for Values<'a>`
 
-- `type Item = &'a Value`
+- <span id="values-type-item"></span>`type Item = &'a Value`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="values-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="values-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `ValuesMut<'a>`
 
@@ -481,39 +553,41 @@ struct ValuesMut<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1157-1159`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1157-L1159)*
+
 A mutable iterator over a serde_json::Map's values.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ValuesMut<'a>`
+##### `impl Debug for ValuesMut<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="valuesmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for ValuesMut<'a>`
+##### `impl DoubleEndedIterator for ValuesMut<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="valuesmut-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a> ExactSizeIterator for ValuesMut<'a>`
+##### `impl ExactSizeIterator for ValuesMut<'a>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="valuesmut-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'a> FusedIterator for ValuesMut<'a>`
+##### `impl FusedIterator for ValuesMut<'a>`
 
-##### `impl<I> IntoIterator for ValuesMut<'a>`
+##### `impl IntoIterator for ValuesMut<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="valuesmut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="valuesmut-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="valuesmut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ValuesMut<'a>`
+##### `impl Iterator for ValuesMut<'a>`
 
-- `type Item = &'a mut Value`
+- <span id="valuesmut-type-item"></span>`type Item = &'a mut Value`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="valuesmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="valuesmut-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `IntoValues`
 
@@ -523,39 +597,41 @@ struct IntoValues {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1172-1174`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1172-L1174)*
+
 An owning iterator over a serde_json::Map's values.
 
 #### Trait Implementations
 
 ##### `impl Debug for IntoValues`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="intovalues-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DoubleEndedIterator for IntoValues`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="intovalues-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl ExactSizeIterator for IntoValues`
 
-- `fn len(self: &Self) -> usize`
+- <span id="intovalues-len"></span>`fn len(&self) -> usize`
 
 ##### `impl FusedIterator for IntoValues`
 
-##### `impl<I> IntoIterator for IntoValues`
+##### `impl IntoIterator for IntoValues`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intovalues-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intovalues-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intovalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoValues`
 
-- `type Item = Value`
+- <span id="intovalues-type-item"></span>`type Item = Value`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="intovalues-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="intovalues-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ## Enums
 
@@ -568,8 +644,10 @@ enum Entry<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:623-628`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L623-L628)*
+
 A view into a single entry in a map, which may either be vacant or occupied.
-This enum is constructed from the `entry` method on [`Map`](../index.md).
+This enum is constructed from the `entry` method on [`Map`](#map).
 
 
 #### Variants
@@ -584,13 +662,13 @@ This enum is constructed from the `entry` method on [`Map`](../index.md).
 
 #### Implementations
 
-- `fn key(self: &Self) -> &String`
+- <span id="entry-key"></span>`fn key(&self) -> &String`
 
-- `fn or_insert(self: Self, default: Value) -> &'a mut Value` — [`Value`](../index.md)
+- <span id="entry-or-insert"></span>`fn or_insert(self, default: Value) -> &'a mut Value` — [`Value`](../value/index.md)
 
-- `fn or_insert_with<F>(self: Self, default: F) -> &'a mut Value` — [`Value`](../index.md)
+- <span id="entry-or-insert-with"></span>`fn or_insert_with<F>(self, default: F) -> &'a mut Value` — [`Value`](../value/index.md)
 
-- `fn and_modify<F>(self: Self, f: F) -> Self`
+- <span id="entry-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
 
 ## Type Aliases
 
@@ -600,11 +678,15 @@ This enum is constructed from the `entry` method on [`Map`](../index.md).
 type MapImpl<K, V> = alloc::collections::BTreeMap<K, V>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:34`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L34)*
+
 ### `VacantEntryImpl<'a>`
 
 ```rust
 type VacantEntryImpl<'a> = btree_map::VacantEntry<'a, alloc::string::String, crate::value::Value>;
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:641`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L641)*
 
 ### `OccupiedEntryImpl<'a>`
 
@@ -612,11 +694,15 @@ type VacantEntryImpl<'a> = btree_map::VacantEntry<'a, alloc::string::String, cra
 type OccupiedEntryImpl<'a> = btree_map::OccupiedEntry<'a, alloc::string::String, crate::value::Value>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:646`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L646)*
+
 ### `IterImpl<'a>`
 
 ```rust
 type IterImpl<'a> = btree_map::Iter<'a, alloc::string::String, crate::value::Value>;
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:1065`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1065)*
 
 ### `IterMutImpl<'a>`
 
@@ -624,11 +710,15 @@ type IterImpl<'a> = btree_map::Iter<'a, alloc::string::String, crate::value::Val
 type IterMutImpl<'a> = btree_map::IterMut<'a, alloc::string::String, crate::value::Value>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1091`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1091)*
+
 ### `IntoIterImpl`
 
 ```rust
 type IntoIterImpl = btree_map::IntoIter<alloc::string::String, crate::value::Value>;
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:1117`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1117)*
 
 ### `KeysImpl<'a>`
 
@@ -636,11 +726,15 @@ type IntoIterImpl = btree_map::IntoIter<alloc::string::String, crate::value::Val
 type KeysImpl<'a> = btree_map::Keys<'a, alloc::string::String, crate::value::Value>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1132`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1132)*
+
 ### `ValuesImpl<'a>`
 
 ```rust
 type ValuesImpl<'a> = btree_map::Values<'a, alloc::string::String, crate::value::Value>;
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:1147`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1147)*
 
 ### `ValuesMutImpl<'a>`
 
@@ -648,13 +742,19 @@ type ValuesImpl<'a> = btree_map::Values<'a, alloc::string::String, crate::value:
 type ValuesMutImpl<'a> = btree_map::ValuesMut<'a, alloc::string::String, crate::value::Value>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1162`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1162)*
+
 ### `IntoValuesImpl`
 
 ```rust
 type IntoValuesImpl = btree_map::IntoValues<alloc::string::String, crate::value::Value>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1177`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1177)*
+
 ## Macros
 
 ### `delegate_iterator!`
+
+*Defined in [`serde_json-1.0.145/src/map.rs:569-599`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L569-L599)*
 

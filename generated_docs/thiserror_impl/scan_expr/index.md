@@ -4,6 +4,14 @@
 
 # Module `scan_expr`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Input`](#input) | enum |  |
+| [`Action`](#action) | enum |  |
+| [`scan_expr`](#scan_expr) | fn |  |
+
 ## Enums
 
 ### `Input`
@@ -29,6 +37,8 @@ enum Input {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/scan_expr.rs:6-23`](../../../.source_1765210505/thiserror-impl-2.0.17/src/scan_expr.rs#L6-L23)*
+
 ### `Action`
 
 ```rust
@@ -40,6 +50,8 @@ enum Action {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/scan_expr.rs:25-30`](../../../.source_1765210505/thiserror-impl-2.0.17/src/scan_expr.rs#L25-L30)*
+
 ## Functions
 
 ### `scan_expr`
@@ -47,4 +59,6 @@ enum Action {
 ```rust
 fn scan_expr(input: syn::parse::ParseStream<'_>) -> syn::parse::Result<()>
 ```
+
+*Defined in [`thiserror-impl-2.0.17/src/scan_expr.rs:192-264`](../../../.source_1765210505/thiserror-impl-2.0.17/src/scan_expr.rs#L192-L264)*
 

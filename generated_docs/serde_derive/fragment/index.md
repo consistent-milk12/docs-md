@@ -4,6 +4,17 @@
 
 # Module `fragment`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Expr`](#expr) | struct | Interpolate a fragment in place of an expression. |
+| [`Stmts`](#stmts) | struct | Interpolate a fragment as the statements of a block. |
+| [`Match`](#match) | struct | Interpolate a fragment as the value part of a `match` expression. |
+| [`Fragment`](#fragment) | enum |  |
+| [`quote_expr!`](#quote_expr) | macro |  |
+| [`quote_block!`](#quote_block) | macro |  |
+
 ## Structs
 
 ### `Expr`
@@ -12,18 +23,20 @@
 struct Expr(Fragment);
 ```
 
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:27`](../../../.source_1765210505/serde_derive-1.0.228/src/fragment.rs#L27)*
+
 Interpolate a fragment in place of an expression. This involves surrounding
 Block fragments in curly braces.
 
 #### Trait Implementations
 
-##### `impl<T> Spanned for Expr`
+##### `impl Spanned for Expr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="expr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Expr`
 
-- `fn to_tokens(self: &Self, out: &mut TokenStream)`
+- <span id="expr-to-tokens"></span>`fn to_tokens(&self, out: &mut TokenStream)`
 
 ### `Stmts`
 
@@ -31,17 +44,19 @@ Block fragments in curly braces.
 struct Stmts(Fragment);
 ```
 
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:40`](../../../.source_1765210505/serde_derive-1.0.228/src/fragment.rs#L40)*
+
 Interpolate a fragment as the statements of a block.
 
 #### Trait Implementations
 
-##### `impl<T> Spanned for Stmts`
+##### `impl Spanned for Stmts`
 
-- `fn span(self: &Self) -> Span`
+- <span id="stmts-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Stmts`
 
-- `fn to_tokens(self: &Self, out: &mut TokenStream)`
+- <span id="stmts-to-tokens"></span>`fn to_tokens(&self, out: &mut TokenStream)`
 
 ### `Match`
 
@@ -49,18 +64,20 @@ Interpolate a fragment as the statements of a block.
 struct Match(Fragment);
 ```
 
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:52`](../../../.source_1765210505/serde_derive-1.0.228/src/fragment.rs#L52)*
+
 Interpolate a fragment as the value part of a `match` expression. This
 involves putting a comma after expressions and curly braces around blocks.
 
 #### Trait Implementations
 
-##### `impl<T> Spanned for Match`
+##### `impl Spanned for Match`
 
-- `fn span(self: &Self) -> Span`
+- <span id="match-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Match`
 
-- `fn to_tokens(self: &Self, out: &mut TokenStream)`
+- <span id="match-to-tokens"></span>`fn to_tokens(&self, out: &mut TokenStream)`
 
 ## Enums
 
@@ -72,6 +89,8 @@ enum Fragment {
     Block(proc_macro2::TokenStream),
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:5-11`](../../../.source_1765210505/serde_derive-1.0.228/src/fragment.rs#L5-L11)*
 
 #### Variants
 
@@ -88,11 +107,15 @@ enum Fragment {
 
 ##### `impl AsRef for Fragment`
 
-- `fn as_ref(self: &Self) -> &TokenStream`
+- <span id="fragment-as-ref"></span>`fn as_ref(&self) -> &TokenStream`
 
 ## Macros
 
 ### `quote_expr!`
 
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:13-17`](../../../.source_1765210505/serde_derive-1.0.228/src/fragment.rs#L13-L17)*
+
 ### `quote_block!`
+
+*Defined in [`serde_derive-1.0.228/src/fragment.rs:19-23`](../../../.source_1765210505/serde_derive-1.0.228/src/fragment.rs#L19-L23)*
 

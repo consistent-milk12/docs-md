@@ -4,6 +4,56 @@
 
 # Module `prefilter`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Prefilter`](#prefilter)
+  - [`Builder`](#builder)
+  - [`Packed`](#packed)
+  - [`MemmemBuilder`](#memmembuilder)
+  - [`Memmem`](#memmem)
+  - [`RareBytesBuilder`](#rarebytesbuilder)
+  - [`RareByteOffsets`](#rarebyteoffsets)
+  - [`RareByteOffset`](#rarebyteoffset)
+  - [`RareBytesOne`](#rarebytesone)
+  - [`RareBytesTwo`](#rarebytestwo)
+  - [`RareBytesThree`](#rarebytesthree)
+  - [`StartBytesBuilder`](#startbytesbuilder)
+  - [`StartBytesOne`](#startbytesone)
+  - [`StartBytesTwo`](#startbytestwo)
+  - [`StartBytesThree`](#startbytesthree)
+- [Enums](#enums)
+  - [`Candidate`](#candidate)
+- [Traits](#traits)
+  - [`PrefilterI`](#prefilteri)
+- [Functions](#functions)
+  - [`opposite_ascii_case`](#opposite_ascii_case)
+  - [`freq_rank`](#freq_rank)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Prefilter`](#prefilter) | struct | A prefilter for accelerating a search. |
+| [`Builder`](#builder) | struct | A builder for constructing the best possible prefilter. |
+| [`Packed`](#packed) | struct | A type that wraps a packed searcher and implements the `Prefilter` interface. |
+| [`MemmemBuilder`](#memmembuilder) | struct | A builder for constructing a prefilter that uses memmem. |
+| [`Memmem`](#memmem) | struct | A type that wraps a SIMD accelerated single substring search from the `memchr` crate for use as a prefilter. |
+| [`RareBytesBuilder`](#rarebytesbuilder) | struct | A builder for constructing a rare byte prefilter. |
+| [`RareByteOffsets`](#rarebyteoffsets) | struct | A set of byte offsets, keyed by byte. |
+| [`RareByteOffset`](#rarebyteoffset) | struct | Offsets associated with an occurrence of a "rare" byte in any of the patterns used to construct a single Aho-Corasick automaton. |
+| [`RareBytesOne`](#rarebytesone) | struct | A prefilter for scanning for a single "rare" byte. |
+| [`RareBytesTwo`](#rarebytestwo) | struct | A prefilter for scanning for two "rare" bytes. |
+| [`RareBytesThree`](#rarebytesthree) | struct | A prefilter for scanning for three "rare" bytes. |
+| [`StartBytesBuilder`](#startbytesbuilder) | struct | A builder for constructing a starting byte prefilter. |
+| [`StartBytesOne`](#startbytesone) | struct | A prefilter for scanning for a single starting byte. |
+| [`StartBytesTwo`](#startbytestwo) | struct | A prefilter for scanning for two starting bytes. |
+| [`StartBytesThree`](#startbytesthree) | struct | A prefilter for scanning for three starting bytes. |
+| [`Candidate`](#candidate) | enum | A candidate is the result of running a prefilter on a haystack at a particular position. |
+| [`PrefilterI`](#prefilteri) | trait | A prefilter describes the behavior of fast literal scanners for quickly skipping past bytes in the haystack that we know cannot possibly participate in a match. |
+| [`opposite_ascii_case`](#opposite_ascii_case) | fn | If the given byte is an ASCII letter, then return it in the opposite case. |
+| [`freq_rank`](#freq_rank) | fn | Return the frequency rank of the given byte. |
+
 ## Structs
 
 ### `Prefilter`
@@ -14,6 +64,8 @@ struct Prefilter {
     memory_usage: usize,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:33-36`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L33-L36)*
 
 A prefilter for accelerating a search.
 
@@ -32,19 +84,19 @@ much else. If you have a use case for more APIs, please submit an issue.
 
 #### Implementations
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
+- <span id="prefilter-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="prefilter-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for Prefilter`
 
-- `fn clone(self: &Self) -> Prefilter` — [`Prefilter`](#prefilter)
+- <span id="prefilter-clone"></span>`fn clone(&self) -> Prefilter` — [`Prefilter`](#prefilter)
 
 ##### `impl Debug for Prefilter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="prefilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Builder`
 
@@ -60,31 +112,35 @@ struct Builder {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:121-131`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L121-L131)*
+
 A builder for constructing the best possible prefilter. When constructed,
 this builder will heuristically select the best prefilter it can build,
 if any, and discard the rest.
 
 #### Implementations
 
-- `fn new(kind: MatchKind) -> Builder` — [`MatchKind`](../../index.md), [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new(kind: MatchKind) -> Builder` — [`MatchKind`](../search/index.md), [`Builder`](#builder)
 
-- `fn ascii_case_insensitive(self: Self, yes: bool) -> Builder` — [`Builder`](#builder)
+- <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(self, yes: bool) -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
+- <span id="builder-build"></span>`fn build(&self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
 
-- `fn add(self: &mut Self, bytes: &[u8])`
+- <span id="builder-add"></span>`fn add(&mut self, bytes: &[u8])`
 
 #### Trait Implementations
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Packed`
 
 ```rust
 struct Packed(packed::Searcher);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:328`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L328)*
 
 A type that wraps a packed searcher and implements the `Prefilter`
 interface.
@@ -93,15 +149,15 @@ interface.
 
 ##### `impl Clone for Packed`
 
-- `fn clone(self: &Self) -> Packed` — [`Packed`](#packed)
+- <span id="packed-clone"></span>`fn clone(&self) -> Packed` — [`Packed`](#packed)
 
 ##### `impl Debug for Packed`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="packed-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for Packed`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
+- <span id="packed-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
 
 ### `MemmemBuilder`
 
@@ -111,6 +167,8 @@ struct MemmemBuilder {
     one: Option<alloc::vec::Vec<u8>>,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:340-345`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L340-L345)*
 
 A builder for constructing a prefilter that uses memmem.
 
@@ -126,25 +184,27 @@ A builder for constructing a prefilter that uses memmem.
 
 #### Implementations
 
-- `fn build(self: &Self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
+- <span id="memmembuilder-build"></span>`fn build(&self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
 
-- `fn add(self: &mut Self, bytes: &[u8])`
+- <span id="memmembuilder-add"></span>`fn add(&mut self, bytes: &[u8])`
 
 #### Trait Implementations
 
 ##### `impl Debug for MemmemBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="memmembuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MemmemBuilder`
 
-- `fn default() -> MemmemBuilder` — [`MemmemBuilder`](#memmembuilder)
+- <span id="memmembuilder-default"></span>`fn default() -> MemmemBuilder` — [`MemmemBuilder`](#memmembuilder)
 
 ### `Memmem`
 
 ```rust
 struct Memmem(memchr::memmem::Finder<'static>);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:394`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L394)*
 
 A type that wraps a SIMD accelerated single substring search from the
 `memchr` crate for use as a prefilter.
@@ -165,15 +225,15 @@ feature detection.
 
 ##### `impl Clone for Memmem`
 
-- `fn clone(self: &Self) -> Memmem` — [`Memmem`](#memmem)
+- <span id="memmem-clone"></span>`fn clone(&self) -> Memmem` — [`Memmem`](#memmem)
 
 ##### `impl Debug for Memmem`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="memmem-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for Memmem`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
+- <span id="memmem-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
 
 ### `RareBytesBuilder`
 
@@ -187,6 +247,8 @@ struct RareBytesBuilder {
     rank_sum: u16,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:419-441`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L419-L441)*
 
 A builder for constructing a rare byte prefilter.
 
@@ -231,29 +293,29 @@ bytes.
 
 #### Implementations
 
-- `fn new() -> RareBytesBuilder` — [`RareBytesBuilder`](#rarebytesbuilder)
+- <span id="rarebytesbuilder-new"></span>`fn new() -> RareBytesBuilder` — [`RareBytesBuilder`](#rarebytesbuilder)
 
-- `fn ascii_case_insensitive(self: Self, yes: bool) -> RareBytesBuilder` — [`RareBytesBuilder`](#rarebytesbuilder)
+- <span id="rarebytesbuilder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(self, yes: bool) -> RareBytesBuilder` — [`RareBytesBuilder`](#rarebytesbuilder)
 
-- `fn build(self: &Self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
+- <span id="rarebytesbuilder-build"></span>`fn build(&self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
 
-- `fn add(self: &mut Self, bytes: &[u8])`
+- <span id="rarebytesbuilder-add"></span>`fn add(&mut self, bytes: &[u8])`
 
-- `fn set_offset(self: &mut Self, pos: usize, byte: u8)`
+- <span id="rarebytesbuilder-set-offset"></span>`fn set_offset(&mut self, pos: usize, byte: u8)`
 
-- `fn add_rare_byte(self: &mut Self, byte: u8)`
+- <span id="rarebytesbuilder-add-rare-byte"></span>`fn add_rare_byte(&mut self, byte: u8)`
 
-- `fn add_one_rare_byte(self: &mut Self, byte: u8)`
+- <span id="rarebytesbuilder-add-one-rare-byte"></span>`fn add_one_rare_byte(&mut self, byte: u8)`
 
 #### Trait Implementations
 
 ##### `impl Clone for RareBytesBuilder`
 
-- `fn clone(self: &Self) -> RareBytesBuilder` — [`RareBytesBuilder`](#rarebytesbuilder)
+- <span id="rarebytesbuilder-clone"></span>`fn clone(&self) -> RareBytesBuilder` — [`RareBytesBuilder`](#rarebytesbuilder)
 
 ##### `impl Debug for RareBytesBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rarebytesbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RareByteOffsets`
 
@@ -262,6 +324,8 @@ struct RareByteOffsets {
     set: [RareByteOffset; 256],
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:445-449`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L445-L449)*
 
 A set of byte offsets, keyed by byte.
 
@@ -274,21 +338,21 @@ A set of byte offsets, keyed by byte.
 
 #### Implementations
 
-- `fn empty() -> RareByteOffsets` — [`RareByteOffsets`](#rarebyteoffsets)
+- <span id="rarebyteoffsets-empty"></span>`fn empty() -> RareByteOffsets` — [`RareByteOffsets`](#rarebyteoffsets)
 
-- `fn set(self: &mut Self, byte: u8, off: RareByteOffset)` — [`RareByteOffset`](#rarebyteoffset)
+- <span id="rarebyteoffsets-set"></span>`fn set(&mut self, byte: u8, off: RareByteOffset)` — [`RareByteOffset`](#rarebyteoffset)
 
 #### Trait Implementations
 
 ##### `impl Clone for RareByteOffsets`
 
-- `fn clone(self: &Self) -> RareByteOffsets` — [`RareByteOffsets`](#rarebyteoffsets)
+- <span id="rarebyteoffsets-clone"></span>`fn clone(&self) -> RareByteOffsets` — [`RareByteOffsets`](#rarebyteoffsets)
 
 ##### `impl Copy for RareByteOffsets`
 
 ##### `impl Debug for RareByteOffsets`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="rarebyteoffsets-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `RareByteOffset`
 
@@ -297,6 +361,8 @@ struct RareByteOffset {
     max: u8,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:482-497`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L482-L497)*
 
 Offsets associated with an occurrence of a "rare" byte in any of the
 patterns used to construct a single Aho-Corasick automaton.
@@ -321,23 +387,23 @@ patterns used to construct a single Aho-Corasick automaton.
 
 #### Implementations
 
-- `fn new(max: usize) -> Option<RareByteOffset>` — [`RareByteOffset`](#rarebyteoffset)
+- <span id="rarebyteoffset-new"></span>`fn new(max: usize) -> Option<RareByteOffset>` — [`RareByteOffset`](#rarebyteoffset)
 
 #### Trait Implementations
 
 ##### `impl Clone for RareByteOffset`
 
-- `fn clone(self: &Self) -> RareByteOffset` — [`RareByteOffset`](#rarebyteoffset)
+- <span id="rarebyteoffset-clone"></span>`fn clone(&self) -> RareByteOffset` — [`RareByteOffset`](#rarebyteoffset)
 
 ##### `impl Copy for RareByteOffset`
 
 ##### `impl Debug for RareByteOffset`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rarebyteoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RareByteOffset`
 
-- `fn default() -> RareByteOffset` — [`RareByteOffset`](#rarebyteoffset)
+- <span id="rarebyteoffset-default"></span>`fn default() -> RareByteOffset` — [`RareByteOffset`](#rarebyteoffset)
 
 ### `RareBytesOne`
 
@@ -348,21 +414,23 @@ struct RareBytesOne {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:668-671`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L668-L671)*
+
 A prefilter for scanning for a single "rare" byte.
 
 #### Trait Implementations
 
 ##### `impl Clone for RareBytesOne`
 
-- `fn clone(self: &Self) -> RareBytesOne` — [`RareBytesOne`](#rarebytesone)
+- <span id="rarebytesone-clone"></span>`fn clone(&self) -> RareBytesOne` — [`RareBytesOne`](#rarebytesone)
 
 ##### `impl Debug for RareBytesOne`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rarebytesone-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for RareBytesOne`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
+- <span id="rarebytesone-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
 
 ### `RareBytesTwo`
 
@@ -374,21 +442,23 @@ struct RareBytesTwo {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:691-695`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L691-L695)*
+
 A prefilter for scanning for two "rare" bytes.
 
 #### Trait Implementations
 
 ##### `impl Clone for RareBytesTwo`
 
-- `fn clone(self: &Self) -> RareBytesTwo` — [`RareBytesTwo`](#rarebytestwo)
+- <span id="rarebytestwo-clone"></span>`fn clone(&self) -> RareBytesTwo` — [`RareBytesTwo`](#rarebytestwo)
 
 ##### `impl Debug for RareBytesTwo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rarebytestwo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for RareBytesTwo`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
+- <span id="rarebytestwo-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
 
 ### `RareBytesThree`
 
@@ -401,21 +471,23 @@ struct RareBytesThree {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:713-718`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L713-L718)*
+
 A prefilter for scanning for three "rare" bytes.
 
 #### Trait Implementations
 
 ##### `impl Clone for RareBytesThree`
 
-- `fn clone(self: &Self) -> RareBytesThree` — [`RareBytesThree`](#rarebytesthree)
+- <span id="rarebytesthree-clone"></span>`fn clone(&self) -> RareBytesThree` — [`RareBytesThree`](#rarebytesthree)
 
 ##### `impl Debug for RareBytesThree`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rarebytesthree-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for RareBytesThree`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
+- <span id="rarebytesthree-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
 
 ### `StartBytesBuilder`
 
@@ -427,6 +499,8 @@ struct StartBytesBuilder {
     rank_sum: u16,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:746-757`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L746-L757)*
 
 A builder for constructing a starting byte prefilter.
 
@@ -463,25 +537,25 @@ starting bytes.
 
 #### Implementations
 
-- `fn new() -> StartBytesBuilder` — [`StartBytesBuilder`](#startbytesbuilder)
+- <span id="startbytesbuilder-new"></span>`fn new() -> StartBytesBuilder` — [`StartBytesBuilder`](#startbytesbuilder)
 
-- `fn ascii_case_insensitive(self: Self, yes: bool) -> StartBytesBuilder` — [`StartBytesBuilder`](#startbytesbuilder)
+- <span id="startbytesbuilder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(self, yes: bool) -> StartBytesBuilder` — [`StartBytesBuilder`](#startbytesbuilder)
 
-- `fn build(self: &Self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
+- <span id="startbytesbuilder-build"></span>`fn build(&self) -> Option<Prefilter>` — [`Prefilter`](#prefilter)
 
-- `fn add(self: &mut Self, bytes: &[u8])`
+- <span id="startbytesbuilder-add"></span>`fn add(&mut self, bytes: &[u8])`
 
-- `fn add_one_byte(self: &mut Self, byte: u8)`
+- <span id="startbytesbuilder-add-one-byte"></span>`fn add_one_byte(&mut self, byte: u8)`
 
 #### Trait Implementations
 
 ##### `impl Clone for StartBytesBuilder`
 
-- `fn clone(self: &Self) -> StartBytesBuilder` — [`StartBytesBuilder`](#startbytesbuilder)
+- <span id="startbytesbuilder-clone"></span>`fn clone(&self) -> StartBytesBuilder` — [`StartBytesBuilder`](#startbytesbuilder)
 
 ##### `impl Debug for StartBytesBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="startbytesbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `StartBytesOne`
 
@@ -491,21 +565,23 @@ struct StartBytesOne {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:858-860`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L858-L860)*
+
 A prefilter for scanning for a single starting byte.
 
 #### Trait Implementations
 
 ##### `impl Clone for StartBytesOne`
 
-- `fn clone(self: &Self) -> StartBytesOne` — [`StartBytesOne`](#startbytesone)
+- <span id="startbytesone-clone"></span>`fn clone(&self) -> StartBytesOne` — [`StartBytesOne`](#startbytesone)
 
 ##### `impl Debug for StartBytesOne`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="startbytesone-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for StartBytesOne`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
+- <span id="startbytesone-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
 
 ### `StartBytesTwo`
 
@@ -516,21 +592,23 @@ struct StartBytesTwo {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:874-877`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L874-L877)*
+
 A prefilter for scanning for two starting bytes.
 
 #### Trait Implementations
 
 ##### `impl Clone for StartBytesTwo`
 
-- `fn clone(self: &Self) -> StartBytesTwo` — [`StartBytesTwo`](#startbytestwo)
+- <span id="startbytestwo-clone"></span>`fn clone(&self) -> StartBytesTwo` — [`StartBytesTwo`](#startbytestwo)
 
 ##### `impl Debug for StartBytesTwo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="startbytestwo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for StartBytesTwo`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
+- <span id="startbytestwo-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
 
 ### `StartBytesThree`
 
@@ -542,21 +620,23 @@ struct StartBytesThree {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:891-895`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L891-L895)*
+
 A prefilter for scanning for three starting bytes.
 
 #### Trait Implementations
 
 ##### `impl Clone for StartBytesThree`
 
-- `fn clone(self: &Self) -> StartBytesThree` — [`StartBytesThree`](#startbytesthree)
+- <span id="startbytesthree-clone"></span>`fn clone(&self) -> StartBytesThree` — [`StartBytesThree`](#startbytesthree)
 
 ##### `impl Debug for StartBytesThree`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="startbytesthree-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for StartBytesThree`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
+- <span id="startbytesthree-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
 
 ## Enums
 
@@ -569,6 +649,8 @@ enum Candidate {
     PossibleStartOfMatch(usize),
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:72-81`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L72-L81)*
 
 A candidate is the result of running a prefilter on a haystack at a
 particular position.
@@ -604,17 +686,17 @@ implementations are permitted to return false positives.
 
 #### Implementations
 
-- `fn into_option(self: Self) -> Option<usize>`
+- <span id="candidate-into-option"></span>`fn into_option(self) -> Option<usize>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Candidate`
 
-- `fn clone(self: &Self) -> Candidate` — [`Candidate`](#candidate)
+- <span id="candidate-clone"></span>`fn clone(&self) -> Candidate` — [`Candidate`](#candidate)
 
 ##### `impl Debug for Candidate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="candidate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -624,15 +706,29 @@ implementations are permitted to return false positives.
 trait PrefilterI: Send + Sync + RefUnwindSafe + UnwindSafe + Debug + 'static { ... }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:99-108`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L99-L108)*
+
 A prefilter describes the behavior of fast literal scanners for quickly
 skipping past bytes in the haystack that we know cannot possibly
 participate in a match.
 
 #### Required Methods
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate`
+- `fn find_in(&self, haystack: &[u8], span: Span) -> Candidate`
 
   Returns the next possible match candidate. This may yield false
+
+#### Implementors
+
+- [`Memmem`](#memmem)
+- [`Packed`](#packed)
+- [`RareBytesOne`](#rarebytesone)
+- [`RareBytesThree`](#rarebytesthree)
+- [`RareBytesTwo`](#rarebytestwo)
+- [`StartBytesOne`](#startbytesone)
+- [`StartBytesThree`](#startbytesthree)
+- [`StartBytesTwo`](#startbytestwo)
+- `alloc::sync::Arc<P>`
 
 ## Functions
 
@@ -641,6 +737,8 @@ participate in a match.
 ```rust
 fn opposite_ascii_case(b: u8) -> u8
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:909-917`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L909-L917)*
 
 If the given byte is an ASCII letter, then return it in the opposite case.
 e.g., Given `b'A'`, this returns `b'a'`, and given `b'a'`, this returns
@@ -651,6 +749,8 @@ e.g., Given `b'A'`, this returns `b'a'`, and given `b'a'`, this returns
 ```rust
 fn freq_rank(b: u8) -> u8
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:921-924`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L921-L924)*
 
 Return the frequency rank of the given byte. The higher the rank, the more
 common the byte (heuristically speaking).

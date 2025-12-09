@@ -4,6 +4,15 @@
 
 # Module `wrapper`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DisplayError`](#displayerror) | struct |  |
+| [`MessageError`](#messageerror) | struct |  |
+| [`BoxedError`](#boxederror) | struct |  |
+| [`WithSourceCode`](#withsourcecode) | struct |  |
+
 ## Structs
 
 ### `DisplayError<M>`
@@ -12,21 +21,23 @@
 struct DisplayError<M>(M);
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:10`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/wrapper.rs#L10)*
+
 #### Trait Implementations
 
 ##### `impl<M> Debug for DisplayError<M>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="displayerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for DisplayError<M>`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="displayerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
 
 ##### `impl<M> Diagnostic for DisplayError<M>`
 
 ##### `impl<M> Display for DisplayError<M>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="displayerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<M> Error for DisplayError<M>`
 
@@ -34,7 +45,7 @@ struct DisplayError<M>(M);
 
 ##### `impl<T> ToString for DisplayError<M>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="displayerror-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for DisplayError<M>`
 
@@ -44,21 +55,23 @@ struct DisplayError<M>(M);
 struct MessageError<M>(M);
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:34`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/wrapper.rs#L34)*
+
 #### Trait Implementations
 
 ##### `impl<M> Debug for MessageError<M>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="messageerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for MessageError<M>`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="messageerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
 
 ##### `impl<M> Diagnostic for MessageError<M>`
 
 ##### `impl<M> Display for MessageError<M>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="messageerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<M> Error for MessageError<M>`
 
@@ -66,7 +79,7 @@ struct MessageError<M>(M);
 
 ##### `impl<T> ToString for MessageError<M>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="messageerror-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for MessageError<M>`
 
@@ -76,53 +89,55 @@ struct MessageError<M>(M);
 struct BoxedError(Box<dyn Diagnostic + Send + Sync>);
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:58`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/wrapper.rs#L58)*
+
 #### Trait Implementations
 
 ##### `impl Debug for BoxedError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="boxederror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for BoxedError`
+##### `impl Diag for BoxedError`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="boxederror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
 
 ##### `impl Diagnostic for BoxedError`
 
-- `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="boxederror-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn severity(self: &Self) -> Option<miette::Severity>` — [`Severity`](../../index.md)
+- <span id="boxederror-severity"></span>`fn severity(&self) -> Option<miette::Severity>` — [`Severity`](../../index.md)
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="boxederror-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="boxederror-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md)
+- <span id="boxederror-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md)
 
-- `fn source_code(self: &Self) -> Option<&dyn miette::SourceCode>` — [`SourceCode`](../../index.md)
+- <span id="boxederror-source-code"></span>`fn source_code(&self) -> Option<&dyn miette::SourceCode>` — [`SourceCode`](../../index.md)
 
-- `fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md)
+- <span id="boxederror-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md)
 
-- `fn diagnostic_source(self: &Self) -> Option<&dyn Diagnostic>` — [`Diagnostic`](../../index.md)
+- <span id="boxederror-diagnostic-source"></span>`fn diagnostic_source(&self) -> Option<&dyn Diagnostic>` — [`Diagnostic`](../../index.md)
 
 ##### `impl Display for BoxedError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="boxederror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for BoxedError`
 
-- `fn source(self: &Self) -> Option<&dyn StdError>`
+- <span id="boxederror-source"></span>`fn source(&self) -> Option<&dyn StdError>`
 
-- `fn description(self: &Self) -> &str`
+- <span id="boxederror-description"></span>`fn description(&self) -> &str`
 
-- `fn cause(self: &Self) -> Option<&dyn StdError>`
+- <span id="boxederror-cause"></span>`fn cause(&self) -> Option<&dyn StdError>`
 
-##### `impl<D> OwoColorize for BoxedError`
+##### `impl OwoColorize for BoxedError`
 
-##### `impl<T> ToString for BoxedError`
+##### `impl ToString for BoxedError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="boxederror-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for BoxedError`
+##### `impl TraitKind for BoxedError`
 
 ### `WithSourceCode<E, C>`
 
@@ -133,47 +148,49 @@ struct WithSourceCode<E, C> {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:122-125`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/wrapper.rs#L122-L125)*
+
 #### Trait Implementations
 
 ##### `impl<E: Debug, C> Debug for WithSourceCode<E, C>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="withsourcecode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for WithSourceCode<E, C>`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="withsourcecode-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
 
 ##### `impl<E: Diagnostic, C: SourceCode> Diagnostic for WithSourceCode<E, C>`
 
-- `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="withsourcecode-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn severity(self: &Self) -> Option<miette::Severity>` — [`Severity`](../../index.md)
+- <span id="withsourcecode-severity"></span>`fn severity(&self) -> Option<miette::Severity>` — [`Severity`](../../index.md)
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="withsourcecode-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="withsourcecode-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md)
+- <span id="withsourcecode-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md)
 
-- `fn source_code(self: &Self) -> Option<&dyn miette::SourceCode>` — [`SourceCode`](../../index.md)
+- <span id="withsourcecode-source-code"></span>`fn source_code(&self) -> Option<&dyn miette::SourceCode>` — [`SourceCode`](../../index.md)
 
-- `fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md)
+- <span id="withsourcecode-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md)
 
-- `fn diagnostic_source(self: &Self) -> Option<&dyn Diagnostic>` — [`Diagnostic`](../../index.md)
+- <span id="withsourcecode-diagnostic-source"></span>`fn diagnostic_source(&self) -> Option<&dyn Diagnostic>` — [`Diagnostic`](../../index.md)
 
 ##### `impl<E: Display, C> Display for WithSourceCode<E, C>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="withsourcecode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E: StdError, C> Error for WithSourceCode<E, C>`
 
-- `fn source(self: &Self) -> Option<&dyn StdError>`
+- <span id="withsourcecode-source"></span>`fn source(&self) -> Option<&dyn StdError>`
 
 ##### `impl<D> OwoColorize for WithSourceCode<E, C>`
 
 ##### `impl<T> ToString for WithSourceCode<E, C>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="withsourcecode-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for WithSourceCode<E, C>`
 

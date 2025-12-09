@@ -6,6 +6,13 @@
 
 Public implementation details for the `TokenStream` type, such as iterators.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`TokenStream`](#tokenstream) | struct |  |
+| [`IntoIter`](#intoiter) | struct | An iterator over `TokenStream`'s `TokenTree`s. |
+
 ## Structs
 
 ### `TokenStream`
@@ -17,6 +24,8 @@ struct TokenStream {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
+
 An abstract stream of tokens, or more concretely a sequence of token trees.
 
 This type provides interfaces for iterating over token trees and for
@@ -27,71 +36,71 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 #### Implementations
 
-- `fn _new(inner: imp::TokenStream) -> Self` — [`TokenStream`](../imp/index.md)
+- <span id="tokenstream-new"></span>`fn _new(inner: imp::TokenStream) -> Self` — [`TokenStream`](../imp/index.md)
 
-- `fn _new_fallback(inner: fallback::TokenStream) -> Self`
+- <span id="tokenstream-new-fallback"></span>`fn _new_fallback(inner: fallback::TokenStream) -> Self`
 
-- `fn new() -> Self`
+- <span id="tokenstream-new"></span>`fn new() -> Self`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="tokenstream-is-empty"></span>`fn is_empty(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for TokenStream`
 
-- `fn clone(self: &Self) -> TokenStream` — [`TokenStream`](../index.md)
+- <span id="tokenstream-clone"></span>`fn clone(&self) -> TokenStream` — [`TokenStream`](../index.md)
 
 ##### `impl Debug for TokenStream`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tokenstream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for TokenStream`
 
-- `fn default() -> Self`
+- <span id="tokenstream-default"></span>`fn default() -> Self`
 
 ##### `impl Display for TokenStream`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tokenstream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Extend for TokenStream`
 
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
+- <span id="tokenstream-extend"></span>`fn extend<I: IntoIterator<Item = TokenTree>>(&mut self, streams: I)`
 
 ##### `impl FromIterator for TokenStream`
 
-- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
+- <span id="tokenstream-from-iter"></span>`fn from_iter<I: IntoIterator<Item = TokenTree>>(streams: I) -> Self`
 
 ##### `impl FromStr for TokenStream`
 
-- `type Err = LexError`
+- <span id="tokenstream-type-err"></span>`type Err = LexError`
 
-- `fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](../index.md), [`LexError`](../index.md)
+- <span id="tokenstream-from-str"></span>`fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](../index.md), [`LexError`](../index.md)
 
 ##### `impl IntoIterator for TokenStream`
 
-- `type Item = TokenTree`
+- <span id="tokenstream-type-item"></span>`type Item = TokenTree`
 
-- `type IntoIter = IntoIter`
+- <span id="tokenstream-type-intoiter"></span>`type IntoIter = IntoIter`
 
-- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](#intoiter)
+- <span id="tokenstream-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](#intoiter)
 
 ##### `impl Parse for proc_macro2::TokenStream`
 
 ##### `impl Sealed for proc_macro2::TokenStream`
 
-##### `impl<T> ToString for TokenStream`
+##### `impl ToString for TokenStream`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="tokenstream-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for proc_macro2::TokenStream`
 
-- `fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+- <span id="proc-macro2tokenstream-byte-string"></span>`fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
 
-- `fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+- <span id="proc-macro2tokenstream-cooked-byte-string"></span>`fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
 
 ##### `impl TokenStreamExt for proc_macro2::TokenStream`
 
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- <span id="proc-macro2tokenstream-borrow-mut"></span>`fn borrow_mut(&mut self) -> &mut T`
 
 ### `IntoIter`
 
@@ -102,6 +111,8 @@ struct IntoIter {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1460-1463`](../../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L1460-L1463)*
+
 An iterator over `TokenStream`'s `TokenTree`s.
 
 The iteration is "shallow", e.g. the iterator doesn't recurse into
@@ -111,25 +122,25 @@ delimited groups, and returns whole groups as token trees.
 
 ##### `impl Clone for IntoIter`
 
-- `fn clone(self: &Self) -> IntoIter` — [`IntoIter`](#intoiter)
+- <span id="intoiter-clone"></span>`fn clone(&self) -> IntoIter` — [`IntoIter`](#intoiter)
 
 ##### `impl Debug for IntoIter`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for IntoIter`
+##### `impl IntoIterator for IntoIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- `type Item = TokenTree`
+- <span id="intoiter-type-item"></span>`type Item = TokenTree`
 
-- `fn next(self: &mut Self) -> Option<TokenTree>` — [`TokenTree`](../index.md)
+- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<TokenTree>` — [`TokenTree`](../index.md)
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="intoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 

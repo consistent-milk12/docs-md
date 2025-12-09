@@ -6,138 +6,149 @@
 
 Functions which duplicate file descriptors.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DupFlags`](#dupflags) | struct |  |
+| [`dup`](#dup) | fn | `dup(fd)`—Creates a new `OwnedFd` instance that shares the same underlying [file description] as `fd`. |
+| [`dup2`](#dup2) | fn | `dup2(fd, new)`—Changes the [file description] of a file descriptor. |
+| [`dup3`](#dup3) | fn | `dup3(fd, new, flags)`—Changes the [file description] of a file descriptor, with flags. |
+
 ## Structs
 
 ### `DupFlags`
 
 ```rust
-struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
+struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 ```
+
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:44-57`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L44-L57)*
 
 `O_*` constants for use with [`dup2`](../../backend/io/syscalls/index.md).
 
 
 #### Implementations
 
-- `const CLOEXEC: Self`
+- <span id="dupflags-const-cloexec"></span>`const CLOEXEC: Self`
 
 #### Trait Implementations
 
 ##### `impl Binary for DupFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl BitAnd for DupFlags`
 
-- `type Output = DupFlags`
+- <span id="dupflags-type-output"></span>`type Output = DupFlags`
 
-- `fn bitand(self: Self, other: Self) -> Self`
+- <span id="dupflags-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
 ##### `impl BitAndAssign for DupFlags`
 
-- `fn bitand_assign(self: &mut Self, other: Self)`
+- <span id="dupflags-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
 
 ##### `impl BitOr for DupFlags`
 
-- `type Output = DupFlags`
+- <span id="dupflags-type-output"></span>`type Output = DupFlags`
 
-- `fn bitor(self: Self, other: DupFlags) -> Self` — [`DupFlags`](#dupflags)
+- <span id="dupflags-bitor"></span>`fn bitor(self, other: DupFlags) -> Self` — [`DupFlags`](../../backend/io/types/index.md)
 
 ##### `impl BitOrAssign for DupFlags`
 
-- `fn bitor_assign(self: &mut Self, other: Self)`
+- <span id="dupflags-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
 
 ##### `impl BitXor for DupFlags`
 
-- `type Output = DupFlags`
+- <span id="dupflags-type-output"></span>`type Output = DupFlags`
 
-- `fn bitxor(self: Self, other: Self) -> Self`
+- <span id="dupflags-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
 ##### `impl BitXorAssign for DupFlags`
 
-- `fn bitxor_assign(self: &mut Self, other: Self)`
+- <span id="dupflags-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
 
 ##### `impl Clone for DupFlags`
 
-- `fn clone(self: &Self) -> DupFlags` — [`DupFlags`](#dupflags)
+- <span id="dupflags-clone"></span>`fn clone(&self) -> DupFlags` — [`DupFlags`](../../backend/io/types/index.md)
 
 ##### `impl Copy for DupFlags`
 
 ##### `impl Debug for DupFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DupFlags`
 
 ##### `impl Extend for DupFlags`
 
-- `fn extend<T: $crate::__private::core::iter::IntoIterator<Item = Self>>(self: &mut Self, iterator: T)`
+- <span id="dupflags-extend"></span>`fn extend<T: __private::core::iter::IntoIterator<Item = Self>>(&mut self, iterator: T)`
 
 ##### `impl Flags for DupFlags`
 
-- `const FLAGS: &'static [$crate::Flag<DupFlags>]`
+- <span id="dupflags-const-flags"></span>`const FLAGS: &'static [Flag<DupFlags>]`
 
-- `type Bits = u32`
+- <span id="dupflags-type-bits"></span>`type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="dupflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../ffi/index.md), [`DupFlags`](#dupflags)
+- <span id="dupflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../ffi/index.md), [`DupFlags`](../../backend/io/types/index.md)
 
 ##### `impl FromIterator for DupFlags`
 
-- `fn from_iter<T: $crate::__private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+- <span id="dupflags-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
 
 ##### `impl Hash for DupFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dupflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl IntoIterator for DupFlags`
 
-- `type Item = DupFlags`
+- <span id="dupflags-type-item"></span>`type Item = DupFlags`
 
-- `type IntoIter = Iter<DupFlags>`
+- <span id="dupflags-type-intoiter"></span>`type IntoIter = Iter<DupFlags>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="dupflags-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl LowerHex for DupFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl Not for DupFlags`
 
-- `type Output = DupFlags`
+- <span id="dupflags-type-output"></span>`type Output = DupFlags`
 
-- `fn not(self: Self) -> Self`
+- <span id="dupflags-not"></span>`fn not(self) -> Self`
 
 ##### `impl Octal for DupFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl PartialEq for DupFlags`
 
-- `fn eq(self: &Self, other: &DupFlags) -> bool` — [`DupFlags`](#dupflags)
+- <span id="dupflags-eq"></span>`fn eq(&self, other: &DupFlags) -> bool` — [`DupFlags`](../../backend/io/types/index.md)
 
 ##### `impl PublicFlags for DupFlags`
 
-- `type Primitive = u32`
+- <span id="dupflags-type-primitive"></span>`type Primitive = u32`
 
-- `type Internal = InternalBitFlags`
+- <span id="dupflags-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for DupFlags`
 
 ##### `impl Sub for DupFlags`
 
-- `type Output = DupFlags`
+- <span id="dupflags-type-output"></span>`type Output = DupFlags`
 
-- `fn sub(self: Self, other: Self) -> Self`
+- <span id="dupflags-sub"></span>`fn sub(self, other: Self) -> Self`
 
 ##### `impl SubAssign for DupFlags`
 
-- `fn sub_assign(self: &mut Self, other: Self)`
+- <span id="dupflags-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
 ##### `impl UpperHex for DupFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ## Functions
 
@@ -147,11 +158,13 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/dup.rs:44-46`](../../../../.source_1765210505/rustix-1.1.2/src/io/dup.rs#L44-L46)*
+
 `dup(fd)`—Creates a new `OwnedFd` instance that shares the same
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../index.md).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -185,6 +198,8 @@ be unexpectedly allocated on other threads or in libraries.
 fn dup2<Fd: AsFd>(fd: Fd, new: &mut crate::fd::OwnedFd) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/dup.rs:89-91`](../../../../.source_1765210505/rustix-1.1.2/src/io/dup.rs#L89-L91)*
+
 `dup2(fd, new)`—Changes the [file description] of a file descriptor.
 
 `dup2` conceptually closes `new` and then sets the file description for
@@ -194,7 +209,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](../index.md) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
+support it, or [`fcntl_dupfd_cloexec`](../index.md).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.
@@ -229,6 +244,8 @@ For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 ```rust
 fn dup3<Fd: AsFd>(fd: Fd, new: &mut crate::fd::OwnedFd, flags: DupFlags) -> io::Result<()>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/dup.rs:123-125`](../../../../.source_1765210505/rustix-1.1.2/src/io/dup.rs#L123-L125)*
 
 `dup3(fd, new, flags)`—Changes the [file description] of a file
 descriptor, with flags.
