@@ -32,10 +32,10 @@ A hash table implemented with quadratic probing and SIMD lookup.
 | [`HashTable`](#hashtable) | struct | Low-level hash table with explicit hashing. |
 | [`OccupiedEntry`](#occupiedentry) | struct | A view into an occupied entry in a `HashTable`. |
 | [`VacantEntry`](#vacantentry) | struct | A view into a vacant entry in a `HashTable`. |
-| [`AbsentEntry`](#absententry) | struct | Type representing the absence of an entry, as returned by [`HashTable::find_entry`] |
+| [`AbsentEntry`](#absententry) | struct | Type representing the absence of an entry, as returned by [`HashTable::find_entry`] and [`HashTable::get_bucket_entry`]. |
 | [`Iter`](#iter) | struct | An iterator over the entries of a `HashTable` in arbitrary order. |
 | [`IterMut`](#itermut) | struct | A mutable iterator over the entries of a `HashTable` in arbitrary order. |
-| [`IterBuckets`](#iterbuckets) | struct | An iterator producing the `usize` indices of all occupied buckets |
+| [`IterBuckets`](#iterbuckets) | struct | An iterator producing the `usize` indices of all occupied buckets, within the range `0..table.num_buckets()`. |
 | [`IterHash`](#iterhash) | struct | An iterator over the entries of a `HashTable` that could match a given hash. |
 | [`IterHashMut`](#iterhashmut) | struct | A mutable iterator over the entries of a `HashTable` that could match a given hash. |
 | [`IterHashBuckets`](#iterhashbuckets) | struct | An iterator producing the `usize` indices of all buckets which may match a hash. |
@@ -56,9 +56,11 @@ where
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L48-L53)*
+
 Low-level hash table with explicit hashing.
 
-The primary use case for this type over [`HashMap`](../index.md) or [`HashSet`](../index.md) is to
+The primary use case for this type over [`HashMap`](../hash_map/index.md) or [`HashSet`](../hash_set/index.md) is to
 support types that do not implement the `Hash` and `Eq` traits, but
 instead require additional data not contained in the key itself to compute a
 hash and compare two elements for equality.
@@ -81,7 +83,7 @@ instead be wrapped in a helper type which handles the work of calculating
 hash values and comparing elements.
 
 Due to its low-level nature, this type provides fewer guarantees than
-[`HashMap`](../index.md) and [`HashSet`](../index.md). Specifically, the API allows you to shoot
+[`HashMap`](../hash_map/index.md) and [`HashSet`](../hash_set/index.md). Specifically, the API allows you to shoot
 yourself in the foot by having multiple elements with identical keys in the
 table. The table itself will still function correctly and lookups will
 arbitrarily return one of the matching elements. However you should avoid
@@ -114,9 +116,9 @@ doing this because it changes the runtime of hash table operations from
 
 ##### `impl<T, A> IntoIterator for HashTable<T, A>`
 
-- <span id="hashtable-item"></span>`type Item = T`
+- <span id="hashtable-type-item"></span>`type Item = T`
 
-- <span id="hashtable-intoiter"></span>`type IntoIter = IntoIter<T, A>`
+- <span id="hashtable-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
 - <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](#intoiter)
 
@@ -131,8 +133,10 @@ where
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:1975-1981`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L1975-L1981)*
+
 A view into an occupied entry in a `HashTable`.
-It is part of the [`Entry`](#entry) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -190,7 +194,7 @@ fn main() {
 
 - <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut T`
 
-- <span id="occupiedentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
+- <span id="occupiedentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](#hashtable)
 
 - <span id="occupiedentry-bucket-index"></span>`fn bucket_index(&self) -> usize`
 
@@ -216,8 +220,10 @@ where
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:2286-2293`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2286-L2293)*
+
 A view into a vacant entry in a `HashTable`.
-It is part of the [`Entry`](#entry) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -258,7 +264,7 @@ fn main() {
 
 - <span id="vacantentry-insert"></span>`fn insert(self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
 
-- <span id="vacantentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
+- <span id="vacantentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](#hashtable)
 
 #### Trait Implementations
 
@@ -275,6 +281,8 @@ where
     table: &'a mut HashTable<T, A>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/table.rs:2398-2403`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2398-L2403)*
 
 Type representing the absence of an entry, as returned by `HashTable::find_entry`
 and `HashTable::get_bucket_entry`.
@@ -319,7 +327,7 @@ fn main() {
 
 #### Implementations
 
-- <span id="absententry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
+- <span id="absententry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](#hashtable)
 
 #### Trait Implementations
 
@@ -336,10 +344,12 @@ struct Iter<'a, T> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:2430-2433`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2430-L2433)*
+
 An iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `&'a T`.
 
-This `struct` is created by the [`iter`](#iter) method on [`HashTable`](../index.md). See its
+This `struct` is created by the [`iter`](#iter) method on [`HashTable`](#hashtable). See its
 documentation for more.
 
 
@@ -366,15 +376,15 @@ documentation for more.
 
 ##### `impl<I> IntoIterator for Iter<'a, T>`
 
-- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-intoiter"></span>`type IntoIter = I`
+- <span id="iter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for Iter<'a, T>`
 
-- <span id="iter-item"></span>`type Item = &'a T`
+- <span id="iter-type-item"></span>`type Item = &'a T`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -391,10 +401,12 @@ struct IterMut<'a, T> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:2503-2506`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2503-L2506)*
+
 A mutable iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `&'a mut T`.
 
-This `struct` is created by the `iter_mut` method on [`HashTable`](../index.md). See its
+This `struct` is created by the `iter_mut` method on [`HashTable`](#hashtable). See its
 documentation for more.
 
 
@@ -417,15 +429,15 @@ documentation for more.
 
 ##### `impl<I> IntoIterator for IterMut<'a, T>`
 
-- <span id="itermut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itermut-intoiter"></span>`type IntoIter = I`
+- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for IterMut<'a, T>`
 
-- <span id="itermut-item"></span>`type Item = &'a mut T`
+- <span id="itermut-type-item"></span>`type Item = &'a mut T`
 
 - <span id="itermut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -441,6 +453,8 @@ struct IterBuckets<'a, T> {
     marker: core::marker::PhantomData<&'a T>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/table.rs:2572-2575`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2572-L2575)*
 
 An iterator producing the `usize` indices of all occupied buckets,
 within the range `0..table.num_buckets()`.
@@ -473,15 +487,15 @@ documentation for more.
 
 ##### `impl<I> IntoIterator for IterBuckets<'a, T>`
 
-- <span id="iterbuckets-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterbuckets-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterbuckets-intoiter"></span>`type IntoIter = I`
+- <span id="iterbuckets-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterbuckets-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for IterBuckets<'_, T>`
 
-- <span id="iterbuckets-item"></span>`type Item = usize`
+- <span id="iterbuckets-type-item"></span>`type Item = usize`
 
 - <span id="iterbuckets-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -496,10 +510,12 @@ struct IterHash<'a, T> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:2634-2637`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2634-L2637)*
+
 An iterator over the entries of a `HashTable` that could match a given hash.
 The iterator element type is `&'a T`.
 
-This `struct` is created by the `iter_hash` method on [`HashTable`](../index.md). See its
+This `struct` is created by the `iter_hash` method on [`HashTable`](#hashtable). See its
 documentation for more.
 
 
@@ -522,15 +538,15 @@ documentation for more.
 
 ##### `impl<I> IntoIterator for IterHash<'a, T>`
 
-- <span id="iterhash-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterhash-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterhash-intoiter"></span>`type IntoIter = I`
+- <span id="iterhash-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterhash-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for IterHash<'a, T>`
 
-- <span id="iterhash-item"></span>`type Item = &'a T`
+- <span id="iterhash-type-item"></span>`type Item = &'a T`
 
 - <span id="iterhash-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -545,10 +561,12 @@ struct IterHashMut<'a, T> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:2700-2703`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2700-L2703)*
+
 A mutable iterator over the entries of a `HashTable` that could match a given hash.
 The iterator element type is `&'a mut T`.
 
-This `struct` is created by the `iter_hash_mut` method on [`HashTable`](../index.md). See its
+This `struct` is created by the `iter_hash_mut` method on [`HashTable`](#hashtable). See its
 documentation for more.
 
 
@@ -567,15 +585,15 @@ documentation for more.
 
 ##### `impl<I> IntoIterator for IterHashMut<'a, T>`
 
-- <span id="iterhashmut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterhashmut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterhashmut-intoiter"></span>`type IntoIter = I`
+- <span id="iterhashmut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterhashmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for IterHashMut<'a, T>`
 
-- <span id="iterhashmut-item"></span>`type Item = &'a mut T`
+- <span id="iterhashmut-type-item"></span>`type Item = &'a mut T`
 
 - <span id="iterhashmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -589,6 +607,8 @@ struct IterHashBuckets<'a, T> {
     marker: core::marker::PhantomData<&'a T>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/table.rs:2756-2759`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2756-L2759)*
 
 An iterator producing the `usize` indices of all buckets which may match a hash.
 
@@ -613,15 +633,15 @@ documentation for more.
 
 ##### `impl<I> IntoIterator for IterHashBuckets<'a, T>`
 
-- <span id="iterhashbuckets-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterhashbuckets-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterhashbuckets-intoiter"></span>`type IntoIter = I`
+- <span id="iterhashbuckets-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterhashbuckets-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for IterHashBuckets<'_, T>`
 
-- <span id="iterhashbuckets-item"></span>`type Item = usize`
+- <span id="iterhashbuckets-type-item"></span>`type Item = usize`
 
 - <span id="iterhashbuckets-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -635,10 +655,12 @@ where
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:2808-2813`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2808-L2813)*
+
 An owning iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `T`.
 
-This `struct` is created by the `into_iter` method on [`HashTable`](../index.md)
+This `struct` is created by the `into_iter` method on [`HashTable`](#hashtable)
 (provided by the `IntoIterator` trait). See its documentation for more.
 The table cannot be used after calling that method.
 
@@ -663,15 +685,15 @@ The table cannot be used after calling that method.
 
 ##### `impl<I> IntoIterator for IntoIter<T, A>`
 
-- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A> Iterator for IntoIter<T, A>`
 
-- <span id="intoiter-item"></span>`type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -687,9 +709,11 @@ struct Drain<'a, T, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:2880-2882`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2880-L2882)*
+
 A draining iterator over the items of a `HashTable`.
 
-This `struct` is created by the `drain` method on [`HashTable`](../index.md).
+This `struct` is created by the `drain` method on [`HashTable`](#hashtable).
 See its documentation for more.
 
 
@@ -708,15 +732,15 @@ See its documentation for more.
 
 ##### `impl<I> IntoIterator for Drain<'a, T, A>`
 
-- <span id="drain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-intoiter"></span>`type IntoIter = I`
+- <span id="drain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for Drain<'_, T, A>`
 
-- <span id="drain-item"></span>`type Item = T`
+- <span id="drain-type-item"></span>`type Item = T`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -733,6 +757,8 @@ struct ExtractIf<'a, T, F, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:2928-2931`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L2928-L2931)*
+
 A draining iterator over entries of a `HashTable` which don't satisfy the predicate `f`.
 
 This `struct` is created by `HashTable::extract_if`. See its
@@ -744,15 +770,15 @@ documentation for more.
 
 ##### `impl<I> IntoIterator for ExtractIf<'a, T, F, A>`
 
-- <span id="extractif-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="extractif-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="extractif-intoiter"></span>`type IntoIter = I`
+- <span id="extractif-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="extractif-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, F, A: Allocator> Iterator for ExtractIf<'_, T, F, A>`
 
-- <span id="extractif-item"></span>`type Item = T`
+- <span id="extractif-type-item"></span>`type Item = T`
 
 - <span id="extractif-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -771,9 +797,11 @@ where
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:1676-1736`](../../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L1676-L1736)*
+
 A view into a single entry in a table, which may either be vacant or occupied.
 
-This `enum` is constructed from the `entry` method on [`HashTable`](../index.md).
+This `enum` is constructed from the `entry` method on [`HashTable`](#hashtable).
 
 
 # Examples

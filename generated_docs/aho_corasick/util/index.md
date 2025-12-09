@@ -28,7 +28,7 @@
 | [`byte_frequencies`](#byte_frequencies) | mod |  |
 | [`debug`](#debug) | mod |  |
 | [`error`](#error) | mod |  |
-| [`int`](#int) | mod | This module provides several integer oriented traits for converting between |
+| [`int`](#int) | mod | This module provides several integer oriented traits for converting between both fixed size integers and integers whose size varies based on the target (like `usize`). |
 | [`prefilter`](#prefilter) | mod |  |
 | [`primitives`](#primitives) | mod | Lower level primitive types that are useful in a variety of circumstances. |
 | [`remapper`](#remapper) | mod |  |

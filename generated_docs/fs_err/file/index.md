@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`unix`](#unix) | mod |  |
-| [`File`](#file) | struct | Wrapper around [`std::fs::File`][std::fs::File] which adds more helpful |
+| [`File`](#file) | struct | Wrapper around [`std::fs::File`][std::fs::File] which adds more helpful information to all errors. |
 | [`open`](#open) | fn |  |
 | [`create`](#create) | fn |  |
 
@@ -28,27 +28,33 @@ struct File {
 }
 ```
 
+*Defined in [`fs-err-3.2.0/src/file.rs:13-16`](../../../.source_1765210505/fs-err-3.2.0/src/file.rs#L13-L16)*
+
 Wrapper around `std::fs::File` which adds more helpful
 information to all errors.
 
 
 #### Implementations
 
-- <span id="file-from-parts"></span>`fn from_parts<P>(file: fs::File, path: P) -> Self`
+- <span id="file-open"></span>`fn open<P>(path: P) -> Result<Self, io::Error>`
 
-- <span id="file-into-parts"></span>`fn into_parts(self) -> (fs::File, PathBuf)`
+- <span id="file-create"></span>`fn create<P>(path: P) -> Result<Self, io::Error>`
 
-- <span id="file-into-file"></span>`fn into_file(self) -> fs::File`
+- <span id="file-create-new"></span>`fn create_new<P>(path: P) -> Result<Self, io::Error>`
 
-- <span id="file-into-path"></span>`fn into_path(self) -> PathBuf`
+- <span id="file-options"></span>`fn options() -> OpenOptions` — [`OpenOptions`](../open_options/index.md)
 
-- <span id="file-file"></span>`fn file(&self) -> &fs::File`
+- <span id="file-sync-all"></span>`fn sync_all(&self) -> Result<(), io::Error>`
 
-- <span id="file-file-mut"></span>`fn file_mut(&mut self) -> &mut fs::File`
+- <span id="file-sync-data"></span>`fn sync_data(&self) -> Result<(), io::Error>`
 
-- <span id="file-path"></span>`fn path(&self) -> &Path`
+- <span id="file-set-len"></span>`fn set_len(&self, size: u64) -> Result<(), io::Error>`
 
-- <span id="file-error"></span>`fn error(&self, source: io::Error, kind: ErrorKind) -> io::Error` — [`ErrorKind`](../errors/index.md)
+- <span id="file-metadata"></span>`fn metadata(&self) -> Result<fs::Metadata, io::Error>`
+
+- <span id="file-try-clone"></span>`fn try_clone(&self) -> Result<Self, io::Error>`
+
+- <span id="file-set-permissions"></span>`fn set_permissions(&self, perm: fs::Permissions) -> Result<(), io::Error>`
 
 #### Trait Implementations
 
@@ -102,9 +108,13 @@ information to all errors.
 fn open(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::PathBuf) -> io::Error>
 ```
 
+*Defined in [`fs-err-3.2.0/src/file.rs:20-22`](../../../.source_1765210505/fs-err-3.2.0/src/file.rs#L20-L22)*
+
 ### `create`
 
 ```rust
 fn create(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::PathBuf) -> io::Error>
 ```
+
+*Defined in [`fs-err-3.2.0/src/file.rs:25-27`](../../../.source_1765210505/fs-err-3.2.0/src/file.rs#L25-L27)*
 

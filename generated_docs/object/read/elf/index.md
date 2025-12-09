@@ -276,6 +276,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/file.rs:38-51`](../../../../.source_1765210505/object-0.37.3/src/read/elf/file.rs#L38-L51)*
+
 A partially parsed ELF file.
 
 Most functionality is provided by the [`Object`](../index.md) trait implementation.
@@ -316,25 +318,25 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 ##### `impl<'data, Elf, R> Object for ElfFile<'data, Elf, R>`
 
-- <span id="elffile-segment"></span>`type Segment = ElfSegment<'data, 'file, Elf, R>`
+- <span id="elffile-type-segment"></span>`type Segment = ElfSegment<'data, 'file, Elf, R>`
 
-- <span id="elffile-segmentiterator"></span>`type SegmentIterator = ElfSegmentIterator<'data, 'file, Elf, R>`
+- <span id="elffile-type-segmentiterator"></span>`type SegmentIterator = ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- <span id="elffile-section"></span>`type Section = ElfSection<'data, 'file, Elf, R>`
+- <span id="elffile-type-section"></span>`type Section = ElfSection<'data, 'file, Elf, R>`
 
-- <span id="elffile-sectioniterator"></span>`type SectionIterator = ElfSectionIterator<'data, 'file, Elf, R>`
+- <span id="elffile-type-sectioniterator"></span>`type SectionIterator = ElfSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elffile-comdat"></span>`type Comdat = ElfComdat<'data, 'file, Elf, R>`
+- <span id="elffile-type-comdat"></span>`type Comdat = ElfComdat<'data, 'file, Elf, R>`
 
-- <span id="elffile-comdatiterator"></span>`type ComdatIterator = ElfComdatIterator<'data, 'file, Elf, R>`
+- <span id="elffile-type-comdatiterator"></span>`type ComdatIterator = ElfComdatIterator<'data, 'file, Elf, R>`
 
-- <span id="elffile-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elffile-type-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
 
-- <span id="elffile-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
+- <span id="elffile-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- <span id="elffile-symboltable"></span>`type SymbolTable = ElfSymbolTable<'data, 'file, Elf, R>`
+- <span id="elffile-type-symboltable"></span>`type SymbolTable = ElfSymbolTable<'data, 'file, Elf, R>`
 
-- <span id="elffile-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
+- <span id="elffile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
 - <span id="elffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
 
@@ -398,6 +400,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:20-27`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L20-L27)*
+
 An iterator for the segments in an [`ElfFile`](#elffile).
 
 #### Trait Implementations
@@ -408,15 +412,15 @@ An iterator for the segments in an [`ElfFile`](#elffile).
 
 ##### `impl<I> IntoIterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfsegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfsegmentiterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfsegmentiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsegmentiterator-item"></span>`type Item = ElfSegment<'data, 'file, Elf, R>`
+- <span id="elfsegmentiterator-type-item"></span>`type Item = ElfSegment<'data, 'file, Elf, R>`
 
 - <span id="elfsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -431,6 +435,8 @@ where
     segment: &'data <Elf as >::ProgramHeader,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:60-67`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L60-L67)*
 
 A segment in an [`ElfFile`](#elffile).
 
@@ -482,6 +488,8 @@ where
     strings: crate::read::StringTable<'data, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/section.rs:25-31`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L25-L31)*
 
 The table of section headers in an ELF file.
 
@@ -561,6 +569,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/section.rs:358-365`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L358-L365)*
+
 An iterator for the sections in an [`ElfFile`](#elffile).
 
 #### Implementations
@@ -575,15 +585,15 @@ An iterator for the sections in an [`ElfFile`](#elffile).
 
 ##### `impl<I> IntoIterator for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsectioniterator-item"></span>`type Item = ElfSection<'data, 'file, Elf, R>`
+- <span id="elfsectioniterator-type-item"></span>`type Item = ElfSection<'data, 'file, Elf, R>`
 
 - <span id="elfsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -599,6 +609,8 @@ where
     section: &'data <Elf as >::SectionHeader,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/section.rs:406-414`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L406-L414)*
 
 A section in an [`ElfFile`](#elffile).
 
@@ -632,7 +644,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 ##### `impl<'data, 'file, Elf, R> ObjectSection for ElfSection<'data, 'file, Elf, R>`
 
-- <span id="elfsection-relocationiterator"></span>`type RelocationIterator = ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+- <span id="elfsection-type-relocationiterator"></span>`type RelocationIterator = ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
@@ -684,6 +696,8 @@ where
     shndx: &'data [crate::endian::U32<<Elf as >::Endian>],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:24-34`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L24-L34)*
 
 A table of symbol entries in an ELF file.
 
@@ -751,6 +765,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:229-236`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L229-L236)*
+
 A symbol table in an [`ElfFile`](super::ElfFile).
 
 #### Trait Implementations
@@ -767,9 +783,9 @@ A symbol table in an [`ElfFile`](super::ElfFile).
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for ElfSymbolTable<'data, 'file, Elf, R>`
 
-- <span id="elfsymboltable-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elfsymboltable-type-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
 
-- <span id="elfsymboltable-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
+- <span id="elfsymboltable-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
 
@@ -790,6 +806,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:272-280`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L272-L280)*
+
 An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
 #### Implementations
@@ -804,15 +822,15 @@ An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
 ##### `impl<I> IntoIterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsymboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfsymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfsymboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfsymboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Iterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsymboliterator-item"></span>`type Item = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elfsymboliterator-type-item"></span>`type Item = ElfSymbol<'data, 'file, Elf, R>`
 
 - <span id="elfsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -829,6 +847,8 @@ where
     symbol: &'data <Elf as >::Sym,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:333-342`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L333-L342)*
 
 A symbol in an [`ElfFile`](super::ElfFile).
 
@@ -896,6 +916,8 @@ struct RelocationSections {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:18-20`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L18-L20)*
+
 A mapping from section index to associated relocation sections.
 
 #### Implementations
@@ -927,6 +949,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:123-132`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L123-L132)*
+
 An iterator for the dynamic relocations in an [`ElfFile`](#elffile).
 
 #### Fields
@@ -943,15 +967,15 @@ An iterator for the dynamic relocations in an [`ElfFile`](#elffile).
 
 ##### `impl<I> IntoIterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfdynamicrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfdynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfdynamicrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfdynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfdynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfDynamicRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfdynamicrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="elfdynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="elfdynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -967,6 +991,8 @@ where
     relocations: Option<ElfRelocationIterator<'data, Elf>>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:207-216`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L207-L216)*
 
 An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
@@ -984,15 +1010,15 @@ An iterator for the relocations for an [`ElfSection`](super::ElfSection).
 
 ##### `impl<I> IntoIterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsectionrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfsectionrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfsectionrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfsectionrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfsectionrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsectionrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="elfsectionrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="elfsectionrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1007,6 +1033,8 @@ struct RelrIterator<'data, Elf: FileHeader> {
     endian: <Elf as >::Endian,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:681-687`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L681-L687)*
 
 An iterator over the relative relocations in an ELF `SHT_RELR` section.
 
@@ -1024,15 +1052,15 @@ Returned by [`SectionHeader::relr`](super::SectionHeader::relr).
 
 ##### `impl<I> IntoIterator for RelrIterator<'data, Elf>`
 
-- <span id="relriterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="relriterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="relriterator-intoiter"></span>`type IntoIter = I`
+- <span id="relriterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="relriterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for RelrIterator<'data, Elf>`
 
-- <span id="relriterator-item"></span>`type Item = <Elf as FileHeader>::Word`
+- <span id="relriterator-type-item"></span>`type Item = <Elf as FileHeader>::Word`
 
 - <span id="relriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1046,6 +1074,8 @@ struct Crel {
     pub r_addend: i64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:792-803`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L792-L803)*
 
 Compact relocation
 
@@ -1102,6 +1132,8 @@ struct CrelIteratorHeader {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:839-848`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L839-L848)*
+
 #### Fields
 
 - **`count`**: `usize`
@@ -1141,6 +1173,8 @@ struct CrelIteratorState {
     typ: u32,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:851-862`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L851-L862)*
 
 #### Fields
 
@@ -1188,6 +1222,8 @@ struct CrelIterator<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:866-873`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L866-L873)*
+
 Compact relocation iterator.
 
 #### Fields
@@ -1218,25 +1254,25 @@ Compact relocation iterator.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for CrelIterator<'data>`
+##### `impl Clone for CrelIterator<'data>`
 
 - <span id="creliterator-clone"></span>`fn clone(&self) -> CrelIterator<'data>` — [`CrelIterator`](#creliterator)
 
-##### `impl<'data> Debug for CrelIterator<'data>`
+##### `impl Debug for CrelIterator<'data>`
 
 - <span id="creliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for CrelIterator<'data>`
+##### `impl IntoIterator for CrelIterator<'data>`
 
-- <span id="creliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="creliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="creliterator-intoiter"></span>`type IntoIter = I`
+- <span id="creliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="creliterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data> Iterator for CrelIterator<'data>`
+##### `impl Iterator for CrelIterator<'data>`
 
-- <span id="creliterator-item"></span>`type Item = Result<Crel, Error>`
+- <span id="creliterator-type-item"></span>`type Item = Result<Crel, Error>`
 
 - <span id="creliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1254,6 +1290,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:19-26`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L19-L26)*
+
 An iterator for the COMDAT section groups in an [`ElfFile`](#elffile).
 
 #### Implementations
@@ -1268,15 +1306,15 @@ An iterator for the COMDAT section groups in an [`ElfFile`](#elffile).
 
 ##### `impl<I> IntoIterator for ElfComdatIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfcomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfcomdatiterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfcomdatiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfComdatIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatiterator-item"></span>`type Item = ElfComdat<'data, 'file, Elf, R>`
+- <span id="elfcomdatiterator-type-item"></span>`type Item = ElfComdat<'data, 'file, Elf, R>`
 
 - <span id="elfcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1292,6 +1330,8 @@ where
     sections: &'data [crate::endian::U32Bytes<<Elf as >::Endian>],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:70-78`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L70-L78)*
 
 A COMDAT section group in an [`ElfFile`](#elffile).
 
@@ -1313,7 +1353,7 @@ Most functionality is provided by the [`ObjectComdat`](../index.md) trait implem
 
 ##### `impl<'data, 'file, Elf, R> ObjectComdat for ElfComdat<'data, 'file, Elf, R>`
 
-- <span id="elfcomdat-sectioniterator"></span>`type SectionIterator = ElfComdatSectionIterator<'data, 'file, Elf, R>`
+- <span id="elfcomdat-type-sectioniterator"></span>`type SectionIterator = ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
 - <span id="elfcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md)
 
@@ -1339,6 +1379,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:166-173`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L166-L173)*
+
 An iterator for the sections in a COMDAT section group in an [`ElfFile`](#elffile).
 
 #### Trait Implementations
@@ -1349,15 +1391,15 @@ An iterator for the sections in a COMDAT section group in an [`ElfFile`](#elffil
 
 ##### `impl<I> IntoIterator for ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfcomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfcomdatsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfcomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatsectioniterator-item"></span>`type Item = SectionIndex`
+- <span id="elfcomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="elfcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1372,6 +1414,8 @@ where
     data: crate::read::Bytes<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L17-L24)*
 
 An iterator over the notes in an ELF section or segment.
 
@@ -1394,15 +1438,15 @@ and [`SectionHeader::notes`](super::SectionHeader::notes).
 
 ##### `impl<I> IntoIterator for NoteIterator<'data, Elf>`
 
-- <span id="noteiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="noteiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="noteiterator-intoiter"></span>`type IntoIter = I`
+- <span id="noteiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="noteiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for NoteIterator<'data, Elf>`
 
-- <span id="noteiterator-item"></span>`type Item = Result<Note<'data, Elf>, Error>`
+- <span id="noteiterator-type-item"></span>`type Item = Result<Note<'data, Elf>, Error>`
 
 - <span id="noteiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1417,6 +1461,8 @@ where
     desc: &'data [u8],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L109-L116)*
 
 A parsed [`NoteHeader`](#noteheader).
 
@@ -1452,6 +1498,8 @@ struct GnuPropertyIterator<'data, Endian: endian::Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L235-L239)*
+
 An iterator for the properties in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
 Returned by `Note::gnu_properties`.
@@ -1470,15 +1518,15 @@ Returned by `Note::gnu_properties`.
 
 ##### `impl<I> IntoIterator for GnuPropertyIterator<'data, Endian>`
 
-- <span id="gnupropertyiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="gnupropertyiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="gnupropertyiterator-intoiter"></span>`type IntoIter = I`
+- <span id="gnupropertyiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="gnupropertyiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Endian: endian::Endian> Iterator for GnuPropertyIterator<'data, Endian>`
 
-- <span id="gnupropertyiterator-item"></span>`type Item = Result<GnuProperty<'data>, Error>`
+- <span id="gnupropertyiterator-type-item"></span>`type Item = Result<GnuProperty<'data>, Error>`
 
 - <span id="gnupropertyiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1490,6 +1538,8 @@ struct GnuProperty<'data> {
     pr_data: &'data [u8],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L277-L280)*
 
 A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
@@ -1503,7 +1553,7 @@ A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
 #### Trait Implementations
 
-##### `impl<'data> Debug for GnuProperty<'data>`
+##### `impl Debug for GnuProperty<'data>`
 
 - <span id="gnuproperty-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -1515,6 +1565,8 @@ struct HashTable<'data, Elf: FileHeader> {
     chains: &'data [crate::endian::U32<<Elf as >::Endian>],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:13-16`](../../../../.source_1765210505/object-0.37.3/src/read/elf/hash.rs#L13-L16)*
 
 A SysV symbol hash table in an ELF file.
 
@@ -1550,6 +1602,8 @@ struct GnuHashTable<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:86-92`](../../../../.source_1765210505/object-0.37.3/src/read/elf/hash.rs#L86-L92)*
+
 A GNU symbol hash table in an ELF file.
 
 Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
@@ -1577,6 +1631,8 @@ Returned by [`SectionHeader::gnu_hash`](super::SectionHeader::gnu_hash).
 ```rust
 struct VersionIndex(u16);
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L10)*
 
 A version index.
 
@@ -1617,6 +1673,8 @@ struct Version<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L38-L44)*
+
 A version definition or requirement.
 
 This is derived from entries in the [`elf::SHT_GNU_VERDEF`](../../elf/index.md) and [`elf::SHT_GNU_VERNEED`](../../elf/index.md) sections.
@@ -1631,17 +1689,17 @@ This is derived from entries in the [`elf::SHT_GNU_VERDEF`](../../elf/index.md) 
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Version<'data>`
+##### `impl Clone for Version<'data>`
 
 - <span id="version-clone"></span>`fn clone(&self) -> Version<'data>` — [`Version`](#version)
 
-##### `impl<'data> Copy for Version<'data>`
+##### `impl Copy for Version<'data>`
 
-##### `impl<'data> Debug for Version<'data>`
+##### `impl Debug for Version<'data>`
 
 - <span id="version-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for Version<'data>`
+##### `impl Default for Version<'data>`
 
 - <span id="version-default"></span>`fn default() -> Version<'data>` — [`Version`](#version)
 
@@ -1653,6 +1711,8 @@ struct VersionTable<'data, Elf: FileHeader> {
     versions: alloc::vec::Vec<Version<'data>>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L75-L78)*
 
 A table of version definitions and requirements.
 
@@ -1698,6 +1758,8 @@ struct VerdefIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L234-L237)*
+
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md) section.
 
 #### Implementations
@@ -1720,15 +1782,15 @@ An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md
 
 ##### `impl<I> IntoIterator for VerdefIterator<'data, Elf>`
 
-- <span id="verdefiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="verdefiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="verdefiterator-intoiter"></span>`type IntoIter = I`
+- <span id="verdefiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="verdefiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VerdefIterator<'data, Elf>`
 
-- <span id="verdefiterator-item"></span>`type Item = Result<(&'data Verdef<<Elf as FileHeader>::Endian>, VerdauxIterator<'data, Elf>), Error>`
+- <span id="verdefiterator-type-item"></span>`type Item = Result<(&'data Verdef<<Elf as FileHeader>::Endian>, VerdauxIterator<'data, Elf>), Error>`
 
 - <span id="verdefiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1741,6 +1803,8 @@ struct VerdauxIterator<'data, Elf: FileHeader> {
     count: u16,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L297-L301)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md) section.
 
@@ -1764,15 +1828,15 @@ An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERD
 
 ##### `impl<I> IntoIterator for VerdauxIterator<'data, Elf>`
 
-- <span id="verdauxiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="verdauxiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="verdauxiterator-intoiter"></span>`type IntoIter = I`
+- <span id="verdauxiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="verdauxiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VerdauxIterator<'data, Elf>`
 
-- <span id="verdauxiterator-item"></span>`type Item = Result<&'data Verdaux<<Elf as FileHeader>::Endian>, Error>`
+- <span id="verdauxiterator-type-item"></span>`type Item = Result<&'data Verdaux<<Elf as FileHeader>::Endian>, Error>`
 
 - <span id="verdauxiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1784,6 +1848,8 @@ struct VerneedIterator<'data, Elf: FileHeader> {
     data: crate::read::Bytes<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L350-L353)*
 
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.md) section.
 
@@ -1807,15 +1873,15 @@ An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.m
 
 ##### `impl<I> IntoIterator for VerneedIterator<'data, Elf>`
 
-- <span id="verneediterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="verneediterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="verneediterator-intoiter"></span>`type IntoIter = I`
+- <span id="verneediterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="verneediterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VerneedIterator<'data, Elf>`
 
-- <span id="verneediterator-item"></span>`type Item = Result<(&'data Verneed<<Elf as FileHeader>::Endian>, VernauxIterator<'data, Elf>), Error>`
+- <span id="verneediterator-type-item"></span>`type Item = Result<(&'data Verneed<<Elf as FileHeader>::Endian>, VernauxIterator<'data, Elf>), Error>`
 
 - <span id="verneediterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1828,6 +1894,8 @@ struct VernauxIterator<'data, Elf: FileHeader> {
     count: u16,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L426-L430)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.md) section.
 
@@ -1851,15 +1919,15 @@ An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERN
 
 ##### `impl<I> IntoIterator for VernauxIterator<'data, Elf>`
 
-- <span id="vernauxiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="vernauxiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="vernauxiterator-intoiter"></span>`type IntoIter = I`
+- <span id="vernauxiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="vernauxiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VernauxIterator<'data, Elf>`
 
-- <span id="vernauxiterator-item"></span>`type Item = Result<&'data Vernaux<<Elf as FileHeader>::Endian>, Error>`
+- <span id="vernauxiterator-type-item"></span>`type Item = Result<&'data Vernaux<<Elf as FileHeader>::Endian>, Error>`
 
 - <span id="vernauxiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1872,6 +1940,8 @@ struct AttributesSection<'data, Elf: FileHeader> {
     data: crate::read::Bytes<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:18-22`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L18-L22)*
 
 An ELF attributes section.
 
@@ -1909,6 +1979,8 @@ struct AttributesSubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:61-64`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L61-L64)*
+
 An iterator for the subsections in an [`AttributesSection`](#attributessection).
 
 #### Implementations
@@ -1929,15 +2001,15 @@ An iterator for the subsections in an [`AttributesSection`](#attributessection).
 
 ##### `impl<I> IntoIterator for AttributesSubsectionIterator<'data, Elf>`
 
-- <span id="attributessubsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="attributessubsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="attributessubsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="attributessubsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="attributessubsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for AttributesSubsectionIterator<'data, Elf>`
 
-- <span id="attributessubsectioniterator-item"></span>`type Item = Result<AttributesSubsection<'data, Elf>, Error>`
+- <span id="attributessubsectioniterator-type-item"></span>`type Item = Result<AttributesSubsection<'data, Elf>, Error>`
 
 - <span id="attributessubsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1951,6 +2023,8 @@ struct AttributesSubsection<'data, Elf: FileHeader> {
     data: crate::read::Bytes<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:124-129`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L124-L129)*
 
 A subsection in an [`AttributesSection`](#attributessection).
 
@@ -1984,6 +2058,8 @@ struct AttributesSubsubsectionIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:153-156`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L153-L156)*
+
 An iterator for the sub-subsections in an [`AttributesSubsection`](#attributessubsection).
 
 #### Implementations
@@ -2004,15 +2080,15 @@ An iterator for the sub-subsections in an [`AttributesSubsection`](#attributessu
 
 ##### `impl<I> IntoIterator for AttributesSubsubsectionIterator<'data, Elf>`
 
-- <span id="attributessubsubsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="attributessubsubsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="attributessubsubsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="attributessubsubsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="attributessubsubsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for AttributesSubsubsectionIterator<'data, Elf>`
 
-- <span id="attributessubsubsectioniterator-item"></span>`type Item = Result<AttributesSubsubsection<'data>, Error>`
+- <span id="attributessubsubsectioniterator-type-item"></span>`type Item = Result<AttributesSubsubsection<'data>, Error>`
 
 - <span id="attributessubsubsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -2026,6 +2102,8 @@ struct AttributesSubsubsection<'data> {
     data: crate::read::Bytes<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:229-234`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L229-L234)*
 
 A sub-subsection in an [`AttributesSubsection`](#attributessubsection).
 
@@ -2048,11 +2126,11 @@ followed by a series of attributes.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for AttributesSubsubsection<'data>`
+##### `impl Clone for AttributesSubsubsection<'data>`
 
 - <span id="attributessubsubsection-clone"></span>`fn clone(&self) -> AttributesSubsubsection<'data>` — [`AttributesSubsubsection`](#attributessubsubsection)
 
-##### `impl<'data> Debug for AttributesSubsubsection<'data>`
+##### `impl Debug for AttributesSubsubsection<'data>`
 
 - <span id="attributessubsubsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -2064,6 +2142,8 @@ struct AttributeIndexIterator<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:274-276`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L274-L276)*
+
 An iterator over the indices in an [`AttributesSubsubsection`](#attributessubsubsection).
 
 #### Implementations
@@ -2074,25 +2154,25 @@ An iterator over the indices in an [`AttributesSubsubsection`](#attributessubsub
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for AttributeIndexIterator<'data>`
+##### `impl Clone for AttributeIndexIterator<'data>`
 
 - <span id="attributeindexiterator-clone"></span>`fn clone(&self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](#attributeindexiterator)
 
-##### `impl<'data> Debug for AttributeIndexIterator<'data>`
+##### `impl Debug for AttributeIndexIterator<'data>`
 
 - <span id="attributeindexiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for AttributeIndexIterator<'data>`
+##### `impl IntoIterator for AttributeIndexIterator<'data>`
 
-- <span id="attributeindexiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="attributeindexiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="attributeindexiterator-intoiter"></span>`type IntoIter = I`
+- <span id="attributeindexiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="attributeindexiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data> Iterator for AttributeIndexIterator<'data>`
+##### `impl Iterator for AttributeIndexIterator<'data>`
 
-- <span id="attributeindexiterator-item"></span>`type Item = Result<u32, Error>`
+- <span id="attributeindexiterator-type-item"></span>`type Item = Result<u32, Error>`
 
 - <span id="attributeindexiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -2103,6 +2183,8 @@ struct AttributeReader<'data> {
     data: crate::read::Bytes<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/attributes.rs:315-317`](../../../../.source_1765210505/object-0.37.3/src/read/elf/attributes.rs#L315-L317)*
 
 A parser for the attributes in an [`AttributesSubsubsection`](#attributessubsubsection).
 
@@ -2118,11 +2200,11 @@ The parser relies on the caller to know the format of the data for each attribut
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for AttributeReader<'data>`
+##### `impl Clone for AttributeReader<'data>`
 
 - <span id="attributereader-clone"></span>`fn clone(&self) -> AttributeReader<'data>` — [`AttributeReader`](#attributereader)
 
-##### `impl<'data> Debug for AttributeReader<'data>`
+##### `impl Debug for AttributeReader<'data>`
 
 - <span id="attributereader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -2138,6 +2220,8 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:83-87`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L83-L87)*
+
 #### Implementations
 
 - <span id="elfrelocationiterator-is-rel"></span>`fn is_rel(&self) -> bool`
@@ -2146,15 +2230,15 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 
 ##### `impl<I> IntoIterator for ElfRelocationIterator<'data, Elf>`
 
-- <span id="elfrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for ElfRelocationIterator<'data, Elf>`
 
-- <span id="elfrelocationiterator-item"></span>`type Item = Crel`
+- <span id="elfrelocationiterator-type-item"></span>`type Item = Crel`
 
 - <span id="elfrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -2165,6 +2249,8 @@ enum ElfRelocationIterator<'data, Elf: FileHeader> {
 ```rust
 trait FileHeader: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/file.rs:530-819`](../../../../.source_1765210505/object-0.37.3/src/read/elf/file.rs#L530-L819)*
 
 A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`elf::FileHeader64`](../../elf/index.md).
 
@@ -2303,6 +2389,8 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
 trait ProgramHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:152-273`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L152-L273)*
+
 A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [`elf::ProgramHeader64`](../../elf/index.md).
 
 #### Associated Types
@@ -2371,6 +2459,8 @@ A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [
 ```rust
 trait SectionHeader: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/section.rs:686-1170`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L686-L1170)*
 
 A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [`elf::SectionHeader64`](../../elf/index.md).
 
@@ -2521,6 +2611,8 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
 trait Sym: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:491-554`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L491-L554)*
+
 A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym64`](../../elf/index.md).
 
 #### Associated Types
@@ -2590,6 +2682,8 @@ A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym6
 trait Rel: Debug + Pod + Clone { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:514-535`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L514-L535)*
+
 A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel64`](../../elf/index.md).
 
 #### Associated Types
@@ -2626,6 +2720,8 @@ A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel6
 ```rust
 trait Rela: Debug + Pod + Clone { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:591-613`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L591-L613)*
 
 A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rela64`](../../elf/index.md).
 
@@ -2666,6 +2762,8 @@ A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rel
 trait Relr: Debug + Pod + Clone { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:727-746`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L727-L746)*
+
 A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Relr64`](../../elf/index.md).
 
 #### Associated Types
@@ -2698,6 +2796,8 @@ A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Rel
 ```rust
 trait Dyn: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/dynamic.rs:11-87`](../../../../.source_1765210505/object-0.37.3/src/read/elf/dynamic.rs#L11-L87)*
 
 A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn64`](../../elf/index.md).
 
@@ -2746,6 +2846,8 @@ A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn6
 trait CompressionHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/compression.rs:9-16`](../../../../.source_1765210505/object-0.37.3/src/read/elf/compression.rs#L9-L16)*
+
 A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) and [`elf::CompressionHeader64`](../../elf/index.md).
 
 #### Associated Types
@@ -2772,6 +2874,8 @@ A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) a
 ```rust
 trait NoteHeader: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L185-L191)*
 
 A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`elf::NoteHeader64`](../../elf/index.md).
 
@@ -2800,6 +2904,8 @@ A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`el
 fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, reloc: Crel, implicit_addend: bool) -> crate::read::Relocation
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:278-510`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L278-L510)*
+
 ## Type Aliases
 
 ### `ElfFile32<'data, Endian, R>`
@@ -2807,6 +2913,8 @@ fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, re
 ```rust
 type ElfFile32<'data, Endian, R> = ElfFile<'data, elf::FileHeader32<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/file.rs:25-26`](../../../../.source_1765210505/object-0.37.3/src/read/elf/file.rs#L25-L26)*
 
 A 32-bit ELF object file.
 
@@ -2819,6 +2927,8 @@ to [`crate::FileKind::Elf32`](../../index.md).
 type ElfFile64<'data, Endian, R> = ElfFile<'data, elf::FileHeader64<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/file.rs:31-32`](../../../../.source_1765210505/object-0.37.3/src/read/elf/file.rs#L31-L32)*
+
 A 64-bit ELF object file.
 
 This is a file that starts with [`elf::FileHeader64`](../../elf/index.md), and corresponds
@@ -2830,6 +2940,8 @@ to [`crate::FileKind::Elf64`](../../index.md).
 type ElfSegmentIterator32<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:12-13`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L12-L13)*
+
 An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSegmentIterator64<'data, 'file, Endian, R>`
@@ -2837,6 +2949,8 @@ An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSegmentIterator64<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:15-16`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L15-L16)*
 
 An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 
@@ -2846,6 +2960,8 @@ An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 type ElfSegment32<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:50-51`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L50-L51)*
+
 A segment in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSegment64<'data, 'file, Endian, R>`
@@ -2853,6 +2969,8 @@ A segment in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSegment64<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:53-54`](../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L53-L54)*
 
 A segment in an [`ElfFile64`](super::ElfFile64).
 
@@ -2862,6 +2980,8 @@ A segment in an [`ElfFile64`](super::ElfFile64).
 type ElfSectionIterator32<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/section.rs:350-351`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L350-L351)*
+
 An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSectionIterator64<'data, 'file, Endian, R>`
@@ -2869,6 +2989,8 @@ An iterator for the sections in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSectionIterator64<'data, 'file, Endian, R> = ElfSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/section.rs:353-354`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L353-L354)*
 
 An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 
@@ -2878,6 +3000,8 @@ An iterator for the sections in an [`ElfFile64`](super::ElfFile64).
 type ElfSection32<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/section.rs:396-397`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L396-L397)*
+
 A section in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSection64<'data, 'file, Endian, R>`
@@ -2885,6 +3009,8 @@ A section in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSection64<'data, 'file, Endian, R> = ElfSection<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/section.rs:399-400`](../../../../.source_1765210505/object-0.37.3/src/read/elf/section.rs#L399-L400)*
 
 A section in an [`ElfFile64`](super::ElfFile64).
 
@@ -2894,6 +3020,8 @@ A section in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbolTable32<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:221-222`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L221-L222)*
+
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbolTable64<'data, 'file, Endian, R>`
@@ -2901,6 +3029,8 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbolTable64<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:224-225`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L224-L225)*
 
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
@@ -2910,6 +3040,8 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolIterator32<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:265-266`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L265-L266)*
+
 An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbolIterator64<'data, 'file, Endian, R>`
@@ -2917,6 +3049,8 @@ An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbolIterator64<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:268-269`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L268-L269)*
 
 An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 
@@ -2926,6 +3060,8 @@ An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbol32<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:323-324`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L323-L324)*
+
 A symbol in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbol64<'data, 'file, Endian, R>`
@@ -2933,6 +3069,8 @@ A symbol in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbol64<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:326-327`](../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L326-L327)*
 
 A symbol in an [`ElfFile64`](super::ElfFile64).
 
@@ -2942,6 +3080,8 @@ A symbol in an [`ElfFile64`](super::ElfFile64).
 type ElfDynamicRelocationIterator32<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:116-117`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L116-L117)*
+
 An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfDynamicRelocationIterator64<'data, 'file, Endian, R>`
@@ -2949,6 +3089,8 @@ An iterator for the dynamic relocations in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfDynamicRelocationIterator64<'data, 'file, Endian, R> = ElfDynamicRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:119-120`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L119-L120)*
 
 An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 
@@ -2958,6 +3100,8 @@ An iterator for the dynamic relocations in an [`ElfFile64`](super::ElfFile64).
 type ElfSectionRelocationIterator32<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:200-201`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L200-L201)*
+
 An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 
 ### `ElfSectionRelocationIterator64<'data, 'file, Endian, R>`
@@ -2965,6 +3109,8 @@ An iterator for the relocations for an [`ElfSection32`](super::ElfSection32).
 ```rust
 type ElfSectionRelocationIterator64<'data, 'file, Endian, R> = ElfSectionRelocationIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/relocation.rs:203-204`](../../../../.source_1765210505/object-0.37.3/src/read/elf/relocation.rs#L203-L204)*
 
 An iterator for the relocations for an [`ElfSection64`](super::ElfSection64).
 
@@ -2974,6 +3120,8 @@ An iterator for the relocations for an [`ElfSection64`](super::ElfSection64).
 type ElfComdatIterator32<'data, 'file, Endian, R> = ElfComdatIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:11-12`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L11-L12)*
+
 An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfComdatIterator64<'data, 'file, Endian, R>`
@@ -2981,6 +3129,8 @@ An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfComdatIterator64<'data, 'file, Endian, R> = ElfComdatIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:14-15`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L14-L15)*
 
 An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64).
 
@@ -2990,6 +3140,8 @@ An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64).
 type ElfComdat32<'data, 'file, Endian, R> = ElfComdat<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:60-61`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L60-L61)*
+
 A COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfComdat64<'data, 'file, Endian, R>`
@@ -2997,6 +3149,8 @@ A COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfComdat64<'data, 'file, Endian, R> = ElfComdat<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:63-64`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L63-L64)*
 
 A COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 
@@ -3006,6 +3160,8 @@ A COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 type ElfComdatSectionIterator32<'data, 'file, Endian, R> = ElfComdatSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:158-159`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L158-L159)*
+
 An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfComdatSectionIterator64<'data, 'file, Endian, R>`
@@ -3013,6 +3169,8 @@ An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super
 ```rust
 type ElfComdatSectionIterator64<'data, 'file, Endian, R> = ElfComdatSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:161-162`](../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L161-L162)*
 
 An iterator for the sections in a COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 

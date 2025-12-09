@@ -22,6 +22,8 @@ struct OutputBuffer<'a> {
 }
 ```
 
+*Defined in [`miniz_oxide-0.8.9/src/inflate/output_buffer.rs:6-9`](../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/output_buffer.rs#L6-L9)*
+
 A wrapper for the output slice used when decompressing.
 
 Using this rather than `Cursor` lets us implement the writing methods directly on
@@ -54,6 +56,8 @@ struct InputWrapper<'a> {
 }
 ```
 
+*Defined in [`miniz_oxide-0.8.9/src/inflate/output_buffer.rs:68-70`](../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/output_buffer.rs#L68-L70)*
+
 A wrapper for the output slice used when decompressing.
 
 Using this rather than `Cursor` lets us implement the writing methods directly on
@@ -76,9 +80,9 @@ performance on 32-bit systems.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for InputWrapper<'a>`
+##### `impl Clone for InputWrapper<'a>`
 
 - <span id="inputwrapper-clone"></span>`fn clone(&self) -> InputWrapper<'a>` — [`InputWrapper`](#inputwrapper)
 
-##### `impl<'a> Copy for InputWrapper<'a>`
+##### `impl Copy for InputWrapper<'a>`
 

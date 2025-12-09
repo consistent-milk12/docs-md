@@ -47,12 +47,12 @@
 | [`wrapper`](#wrapper) | mod |  |
 | [`Error`](#error) | struct | Compatibility re-export of `Report` for interop with `anyhow` |
 | [`Report`](#report) | struct | Core Diagnostic wrapper type. |
-| [`InstallError`](#installerror) | struct | Error indicating that [`set_hook()`] was unable to install the provided |
-| [`DiagnosticError`](#diagnosticerror) | struct | Convenience [`Diagnostic`] that can be used as an "anonymous" wrapper for |
+| [`InstallError`](#installerror) | struct | Error indicating that [`set_hook()`] was unable to install the provided [`ErrorHook`]. |
+| [`DiagnosticError`](#diagnosticerror) | struct | Convenience [`Diagnostic`] that can be used as an "anonymous" wrapper for Errors. |
 | [`Context`](#context) | trait | Compatibility re-export of `WrapErr` for interop with `anyhow` |
 | [`ReportHandler`](#reporthandler) | trait | Error Report Handler trait for customizing `miette::Report` |
 | [`WrapErr`](#wraperr) | trait | Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`]. |
-| [`IntoDiagnostic`](#intodiagnostic) | trait | Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing |
+| [`IntoDiagnostic`](#intodiagnostic) | trait | Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing [`std::error::Error`] to a [`Result<T, Report>`]. |
 | [`set_hook`](#set_hook) | fn | Set the error hook. |
 | [`capture_handler`](#capture_handler) | fn |  |
 | [`get_default_printer`](#get_default_printer) | fn |  |
@@ -80,6 +80,8 @@ struct Error {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
+
 Core Diagnostic wrapper type.
 
 ## `eyre` Users
@@ -140,7 +142,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Deref for super::Report`
 
-- <span id="superreport-target"></span>`type Target = dyn Diagnostic + Send + Sync`
+- <span id="superreport-type-target"></span>`type Target = dyn Diagnostic + Send + Sync`
 
 - <span id="superreport-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -160,21 +162,21 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-drop"></span>`fn drop(&mut self)`
 
-##### `impl<D> OwoColorize for Report`
+##### `impl OwoColorize for Report`
 
-##### `impl<P, T> Receiver for Report`
+##### `impl Receiver for Report`
 
-- <span id="report-target"></span>`type Target = T`
+- <span id="report-type-target"></span>`type Target = T`
 
 ##### `impl Send for Report`
 
 ##### `impl Sync for Report`
 
-##### `impl<T> ToString for Report`
+##### `impl ToString for Report`
 
 - <span id="report-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for Report`
+##### `impl TraitKind for Report`
 
 ### `Report`
 
@@ -184,6 +186,8 @@ struct Report {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
+
 Core Diagnostic wrapper type.
 
 ## `eyre` Users
@@ -244,7 +248,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Deref for super::Report`
 
-- <span id="superreport-target"></span>`type Target = dyn Diagnostic + Send + Sync`
+- <span id="superreport-type-target"></span>`type Target = dyn Diagnostic + Send + Sync`
 
 - <span id="superreport-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -264,27 +268,29 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-drop"></span>`fn drop(&mut self)`
 
-##### `impl<D> OwoColorize for Report`
+##### `impl OwoColorize for Report`
 
-##### `impl<P, T> Receiver for Report`
+##### `impl Receiver for Report`
 
-- <span id="report-target"></span>`type Target = T`
+- <span id="report-type-target"></span>`type Target = T`
 
 ##### `impl Send for Report`
 
 ##### `impl Sync for Report`
 
-##### `impl<T> ToString for Report`
+##### `impl ToString for Report`
 
 - <span id="report-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for Report`
+##### `impl TraitKind for Report`
 
 ### `InstallError`
 
 ```rust
 struct InstallError;
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:69`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L69)*
 
 Error indicating that [`set_hook()`](../index.md) was unable to install the provided
 [`ErrorHook`](../index.md).
@@ -295,7 +301,7 @@ Error indicating that [`set_hook()`](../index.md) was unable to install the prov
 
 - <span id="installerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for InstallError`
+##### `impl Diag for InstallError`
 
 - <span id="installerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
 
@@ -307,19 +313,21 @@ Error indicating that [`set_hook()`](../index.md) was unable to install the prov
 
 ##### `impl Error for InstallError`
 
-##### `impl<D> OwoColorize for InstallError`
+##### `impl OwoColorize for InstallError`
 
-##### `impl<T> ToString for InstallError`
+##### `impl ToString for InstallError`
 
 - <span id="installerror-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for InstallError`
+##### `impl TraitKind for InstallError`
 
 ### `DiagnosticError`
 
 ```rust
 struct DiagnosticError(Box<dyn std::error::Error + Send + Sync>);
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:8`](../../../.source_1765210505/miette-7.6.0/src/eyreish/into_diagnostic.rs#L8)*
 
 Convenience [`Diagnostic`](../index.md) that can be used as an "anonymous" wrapper for
 Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
@@ -330,7 +338,7 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
 
 - <span id="diagnosticerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for DiagnosticError`
+##### `impl Diag for DiagnosticError`
 
 - <span id="diagnosticerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
 
@@ -344,13 +352,13 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
 
 - <span id="diagnosticerror-source"></span>`fn source(&self) -> Option<&dyn Error>`
 
-##### `impl<D> OwoColorize for DiagnosticError`
+##### `impl OwoColorize for DiagnosticError`
 
-##### `impl<T> ToString for DiagnosticError`
+##### `impl ToString for DiagnosticError`
 
 - <span id="diagnosticerror-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for DiagnosticError`
+##### `impl TraitKind for DiagnosticError`
 
 ## Traits
 
@@ -359,6 +367,8 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
 ```rust
 trait Context<T, E>: context::private::Sealed { ... }
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
 
 Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`](../index.md).
 
@@ -564,6 +574,8 @@ supports both of the following use cases:
 trait ReportHandler: core::any::Any + Send + Sync { ... }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:144-201`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L144-L201)*
+
 Error Report Handler trait for customizing `miette::Report`
 
 #### Required Methods
@@ -595,6 +607,8 @@ Error Report Handler trait for customizing `miette::Report`
 ```rust
 trait WrapErr<T, E>: context::private::Sealed { ... }
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
 
 Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`](../index.md).
 
@@ -800,13 +814,15 @@ supports both of the following use cases:
 trait IntoDiagnostic<T, E> { ... }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/into_diagnostic.rs:35-39`](../../../.source_1765210505/miette-7.6.0/src/eyreish/into_diagnostic.rs#L35-L39)*
+
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
-[`std::error::Error`](../../cargo_docs_md/error/index.md) to a [`Result<T, Report>`](../../clap_builder/error/index.md).
+[`std::error::Error`](../../addr2line/index.md) to a [`Result<T, Report>`](../../clap_builder/error/index.md).
 
 ## Warning
 
 Calling this on a type implementing [`Diagnostic`](../index.md) will reduce it to the common denominator of
-[`std::error::Error`](../../cargo_docs_md/error/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
+[`std::error::Error`](../../addr2line/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
 inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consider simply returning it or using
 `Into` or the [`Try`](std::ops::Try) operator (`?`).
 
@@ -814,7 +830,7 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 
 - `fn into_diagnostic(self) -> Result<T, Report>`
 
-  Converts [`Result`](../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../cargo_docs_md/error/index.md)s
+  Converts [`Result`](../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../addr2line/index.md)s
 
 #### Implementors
 
@@ -828,6 +844,8 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 fn set_hook(hook: ErrorHook) -> Result<(), InstallError>
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:83-85`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L83-L85)*
+
 Set the error hook.
 
 ### `capture_handler`
@@ -836,11 +854,15 @@ Set the error hook.
 fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:89-102`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L89-L102)*
+
 ### `get_default_printer`
 
 ```rust
 fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:104-109`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L104-L109)*
 
 ## Type Aliases
 
@@ -850,11 +872,15 @@ fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 type ErrorHook = Box<dyn Fn(&dyn Diagnostic) -> Box<dyn ReportHandler> + Sync + Send>;
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:61-62`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L61-L62)*
+
 ### `Result<T, E>`
 
 ```rust
 type Result<T, E> = core::result::Result<T, E>;
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:257`](../../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L257)*
 
 type alias for `Result<T, Report>`
 

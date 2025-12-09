@@ -6,7 +6,7 @@
 
 Crate collection for multi-crate documentation.
 
-This module provides [`CrateCollection`](../../index.md), a container for multiple parsed
+This module provides [`CrateCollection`](#cratecollection), a container for multiple parsed
 rustdoc crates that maintains a consistent processing order.
 
 ## Quick Reference
@@ -24,6 +24,8 @@ struct CrateCollection {
     crates: std::collections::HashMap<String, rustdoc_types::Crate>,
 }
 ```
+
+*Defined in `src/multi_crate/collection.rs:30-34`*
 
 Collection of parsed crates ready for documentation generation.
 
@@ -80,19 +82,19 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Default for CrateCollection`
 
-- <span id="cratecollection-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](../../index.md)
+- <span id="cratecollection-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](#cratecollection)
 
-##### `impl<T> Instrument for CrateCollection`
+##### `impl Instrument for CrateCollection`
 
-##### `impl<T> IntoEither for CrateCollection`
+##### `impl IntoEither for CrateCollection`
 
-##### `impl<D> OwoColorize for CrateCollection`
+##### `impl OwoColorize for CrateCollection`
 
-##### `impl<T> Pointable for CrateCollection`
+##### `impl Pointable for CrateCollection`
 
-- <span id="cratecollection-align"></span>`const ALIGN: usize`
+- <span id="cratecollection-const-align"></span>`const ALIGN: usize`
 
-- <span id="cratecollection-init"></span>`type Init = T`
+- <span id="cratecollection-type-init"></span>`type Init = T`
 
 - <span id="cratecollection-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -102,5 +104,5 @@ for (name, krate) in collection.iter() {
 
 - <span id="cratecollection-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for CrateCollection`
+##### `impl WithSubscriber for CrateCollection`
 

@@ -80,6 +80,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:12-23`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L12-L23)*
+
 A parsed representation of the dyld shared cache.
 
 #### Fields
@@ -126,6 +128,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:214-221`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L214-L221)*
+
 The data for one file in the cache.
 
 #### Implementations
@@ -152,6 +156,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:256-263`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L256-L263)*
+
 An iterator over all the images (dylibs) in the dyld shared cache.
 
 #### Trait Implementations
@@ -162,15 +168,15 @@ An iterator over all the images (dylibs) in the dyld shared cache.
 
 ##### `impl<I> IntoIterator for DyldCacheImageIterator<'data, 'cache, E, R>`
 
-- <span id="dyldcacheimageiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dyldcacheimageiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dyldcacheimageiterator-intoiter"></span>`type IntoIter = I`
+- <span id="dyldcacheimageiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dyldcacheimageiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'cache, E, R> Iterator for DyldCacheImageIterator<'data, 'cache, E, R>`
 
-- <span id="dyldcacheimageiterator-item"></span>`type Item = DyldCacheImage<'data, 'cache, E, R>`
+- <span id="dyldcacheimageiterator-type-item"></span>`type Item = DyldCacheImage<'data, 'cache, E, R>`
 
 - <span id="dyldcacheimageiterator-next"></span>`fn next(&mut self) -> Option<DyldCacheImage<'data, 'cache, E, R>>` — [`DyldCacheImage`](../index.md)
 
@@ -185,6 +191,8 @@ where
     image_info: &'data macho::DyldCacheImageInfo<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:283-290`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L283-L290)*
 
 One image (dylib) from inside the dyld shared cache.
 
@@ -217,6 +225,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:343-351`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L343-L351)*
+
 An iterator over all the mappings for one subcache in a dyld shared cache.
 
 #### Trait Implementations
@@ -227,15 +237,15 @@ An iterator over all the mappings for one subcache in a dyld shared cache.
 
 ##### `impl<I> IntoIterator for DyldCacheMappingIterator<'data, E, R>`
 
-- <span id="dyldcachemappingiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dyldcachemappingiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dyldcachemappingiterator-intoiter"></span>`type IntoIter = I`
+- <span id="dyldcachemappingiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dyldcachemappingiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, E, R> Iterator for DyldCacheMappingIterator<'data, E, R>`
 
-- <span id="dyldcachemappingiterator-item"></span>`type Item = DyldCacheMapping<'data, E, R>`
+- <span id="dyldcachemappingiterator-type-item"></span>`type Item = DyldCacheMapping<'data, E, R>`
 
 - <span id="dyldcachemappingiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -251,6 +261,8 @@ where
     info: DyldCacheMappingVersion<'data, E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:384-392`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L384-L392)*
 
 Information about a mapping.
 
@@ -293,6 +305,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:558-564`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L558-L564)*
+
 An iterator over relocations in a mapping
 
 #### Trait Implementations
@@ -303,15 +317,15 @@ An iterator over relocations in a mapping
 
 ##### `impl<I> IntoIterator for DyldCacheRelocationIterator<'data, E, R>`
 
-- <span id="dyldcacherelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dyldcacherelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dyldcacherelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="dyldcacherelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dyldcacherelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, E, R> Iterator for DyldCacheRelocationIterator<'data, E, R>`
 
-- <span id="dyldcacherelocationiterator-item"></span>`type Item = Result<DyldRelocation, Error>`
+- <span id="dyldcacherelocationiterator-type-item"></span>`type Item = Result<DyldRelocation, Error>`
 
 - <span id="dyldcacherelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -338,6 +352,8 @@ where
     offset: u64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:605-629`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L605-L629)*
 
 #### Fields
 
@@ -386,6 +402,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:713-730`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L713-L730)*
+
 #### Fields
 
 - **`start_index`**: `usize`
@@ -425,6 +443,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:810-827`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L810-L827)*
+
 #### Fields
 
 - **`start_index`**: `usize`
@@ -454,6 +474,8 @@ struct DyldRelocation {
     pub auth: Option<DyldRelocationAuth>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:896-906`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L896-L906)*
 
 A cache mapping relocation.
 
@@ -490,6 +512,8 @@ struct DyldRelocationAuth {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:921-928`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L921-L928)*
+
 Pointer authentication data.
 
 This is used for signing pointers for the arm64e ABI.
@@ -524,6 +548,8 @@ enum DyldSubCacheSlice<'data, E: Endian> {
     V2(&'data [macho::DyldSubCacheEntryV2<E>]),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:31-36`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L31-L36)*
 
 A slice of structs describing each subcache.
 
@@ -560,6 +586,8 @@ enum DyldCacheMappingSlice<'data, E: Endian> {
     V2(&'data [macho::DyldCacheMappingAndSlideInfo<E>]),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:331-336`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L331-L336)*
 
 The array of mappings for a single dyld cache file.
 
@@ -599,6 +627,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:354-360`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L354-L360)*
+
 #### Trait Implementations
 
 ##### `impl<'data, E> Debug for DyldCacheMappingVersionIterator<'data, E>`
@@ -615,6 +645,8 @@ where
     V2(&'data macho::DyldCacheMappingAndSlideInfo<E>),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:395-401`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L395-L401)*
 
 #### Trait Implementations
 
@@ -645,6 +677,8 @@ enum DyldCacheSlideInfo<'data, E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:539-554`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L539-L554)*
+
 The slide info for a dyld cache mapping, including variable length arrays.
 
 #### Trait Implementations
@@ -673,6 +707,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:585-594`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L585-L594)*
+
 #### Trait Implementations
 
 ##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorVersion<'data, E, R>`
@@ -689,6 +725,8 @@ enum RelocationStateV2 {
     PageExtra,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:597-602`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L597-L602)*
 
 #### Trait Implementations
 
@@ -719,6 +757,8 @@ enum RelocationStateV3 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:707-710`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L707-L710)*
+
 #### Trait Implementations
 
 ##### `impl Clone for RelocationStateV3`
@@ -748,6 +788,8 @@ enum RelocationStateV5 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:804-807`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L804-L807)*
+
 #### Trait Implementations
 
 ##### `impl Clone for RelocationStateV5`
@@ -771,20 +813,23 @@ enum RelocationStateV5 {
 ## Constants
 
 ### `MIN_HEADER_SIZE_SUBCACHES_V1`
-
 ```rust
 const MIN_HEADER_SIZE_SUBCACHES_V1: u32 = 456u32;
 ```
 
-### `MIN_HEADER_SIZE_SUBCACHES_V2`
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:39`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L39)*
 
+### `MIN_HEADER_SIZE_SUBCACHES_V2`
 ```rust
 const MIN_HEADER_SIZE_SUBCACHES_V2: u32 = 464u32;
 ```
 
-### `MIN_HEADER_SIZE_MAPPINGS_V2`
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:42`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L42)*
 
+### `MIN_HEADER_SIZE_MAPPINGS_V2`
 ```rust
 const MIN_HEADER_SIZE_MAPPINGS_V2: u32 = 320u32;
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/dyld_cache.rs:339`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/dyld_cache.rs#L339)*
 

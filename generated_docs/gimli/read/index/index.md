@@ -39,13 +39,15 @@ struct DebugCuIndex<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/index.rs:12-14`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L12-L14)*
+
 The data in the `.debug_cu_index` section of a `.dwp` file.
 
 This section contains the compilation unit index.
 
 #### Implementations
 
-- <span id="debugcuindex-index"></span>`fn index(self) -> Result<UnitIndex<R>>` — [`Result`](../../index.md), [`UnitIndex`](../index.md)
+- <span id="debugcuindex-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -76,6 +78,8 @@ struct DebugTuIndex<R> {
     section: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/index.rs:68-70`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L68-L70)*
 
 The data in the `.debug_tu_index` section of a `.dwp` file.
 
@@ -123,6 +127,8 @@ struct UnitIndex<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/index.rs:124-135`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L124-L135)*
+
 The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 
 #### Implementations
@@ -161,6 +167,8 @@ struct UnitIndexSectionIterator<'index, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/index.rs:307-311`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L307-L311)*
+
 An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
 #### Trait Implementations
@@ -175,15 +183,15 @@ An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
 ##### `impl<I> IntoIterator for UnitIndexSectionIterator<'index, R>`
 
-- <span id="unitindexsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="unitindexsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="unitindexsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="unitindexsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="unitindexsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'index, R: Reader> Iterator for UnitIndexSectionIterator<'index, R>`
 
-- <span id="unitindexsectioniterator-item"></span>`type Item = UnitIndexSection`
+- <span id="unitindexsectioniterator-type-item"></span>`type Item = UnitIndexSection`
 
 - <span id="unitindexsectioniterator-next"></span>`fn next(&mut self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](../index.md)
 
@@ -196,6 +204,8 @@ struct UnitIndexSection {
     pub size: u32,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/index.rs:331-338`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L331-L338)*
 
 Information about a unit's contribution to a section in a `.dwp` file.
 
@@ -251,6 +261,8 @@ enum IndexSectionId {
     DebugTypes,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/index.rs:342-363`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L342-L363)*
 
 Section kinds which are permitted in a `.dwp` index.
 
@@ -325,8 +337,9 @@ Section kinds which are permitted in a `.dwp` index.
 ## Constants
 
 ### `SECTION_COUNT_MAX`
-
 ```rust
 const SECTION_COUNT_MAX: u8 = 8u8;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/index.rs:120`](../../../../.source_1765210505/gimli-0.32.3/src/read/index.rs#L120)*
 

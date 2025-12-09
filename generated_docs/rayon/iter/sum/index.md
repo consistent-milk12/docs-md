@@ -23,6 +23,8 @@ struct SumConsumer<S: Send> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:19-21`](../../../../.source_1765210505/rayon-1.11.0/src/iter/sum.rs#L19-L21)*
+
 #### Implementations
 
 - <span id="sumconsumer-new"></span>`fn new() -> SumConsumer<S>` — [`SumConsumer`](#sumconsumer)
@@ -31,11 +33,11 @@ struct SumConsumer<S: Send> {
 
 ##### `impl<S, T> Consumer for SumConsumer<S>`
 
-- <span id="sumconsumer-folder"></span>`type Folder = SumFolder<S>`
+- <span id="sumconsumer-type-folder"></span>`type Folder = SumFolder<S>`
 
-- <span id="sumconsumer-reducer"></span>`type Reducer = SumConsumer<S>`
+- <span id="sumconsumer-type-reducer"></span>`type Reducer = SumConsumer<S>`
 
-- <span id="sumconsumer-result"></span>`type Result = S`
+- <span id="sumconsumer-type-result"></span>`type Result = S`
 
 - <span id="sumconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
@@ -47,9 +49,9 @@ struct SumConsumer<S: Send> {
 
 ##### `impl<T> Pointable for SumConsumer<S>`
 
-- <span id="sumconsumer-align"></span>`const ALIGN: usize`
+- <span id="sumconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="sumconsumer-init"></span>`type Init = T`
+- <span id="sumconsumer-type-init"></span>`type Init = T`
 
 - <span id="sumconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -79,11 +81,13 @@ struct SumFolder<S> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:78-80`](../../../../.source_1765210505/rayon-1.11.0/src/iter/sum.rs#L78-L80)*
+
 #### Trait Implementations
 
 ##### `impl<S, T> Folder for SumFolder<S>`
 
-- <span id="sumfolder-result"></span>`type Result = S`
+- <span id="sumfolder-type-result"></span>`type Result = S`
 
 - <span id="sumfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -97,9 +101,9 @@ struct SumFolder<S> {
 
 ##### `impl<T> Pointable for SumFolder<S>`
 
-- <span id="sumfolder-align"></span>`const ALIGN: usize`
+- <span id="sumfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="sumfolder-init"></span>`type Init = T`
+- <span id="sumfolder-type-init"></span>`type Init = T`
 
 - <span id="sumfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -120,9 +124,13 @@ where
     S: Send + Sum<<PI as >::Item> + Sum
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:7-13`](../../../../.source_1765210505/rayon-1.11.0/src/iter/sum.rs#L7-L13)*
+
 ### `add`
 
 ```rust
 fn add<T: Sum>(left: T, right: T) -> T
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/sum.rs:15-17`](../../../../.source_1765210505/rayon-1.11.0/src/iter/sum.rs#L15-L17)*
 

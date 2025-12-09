@@ -3,6 +3,25 @@
 //! This module provides [`UnifiedLinkRegistry`] which maps item IDs across
 //! multiple crates to their documentation file paths, enabling cross-crate
 //! linking in the generated markdown.
+//!
+//! # `rustdoc_types` Path Types
+//!
+//! There are two distinct path representations in `rustdoc_types`:
+//!
+//! - **[`ItemSummary`]**: Contains metadata about items without full content.
+//!   - `path: Vec<String>` - Structured path segments like `["std", "vec", "Vec"]`
+//!   - `kind: ItemKind` - The item's kind (Struct, Enum, Trait, etc.)
+//!   - Use for: kind filtering, path lookups, metadata queries
+//!
+//! - **[`Item`]**: Full item content including inner details.
+//!   - `inner: ItemEnum` - The actual item content (Struct/Enum/Trait data)
+//!   - Use for: rendering, accessing item members, documentation content
+//!
+//! **Optimization tip**: When only the item kind is needed, prefer
+//! `krate.paths.get(&id).map(|p| p.kind)` over looking up the full `Item`.
+//!
+//! [`ItemSummary`]: rustdoc_types::ItemSummary
+//! [`Item`]: rustdoc_types::Item
 
 use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
@@ -320,11 +339,19 @@ impl UnifiedLinkRegistry {
 
                     self.register_item(crate_name, item_id, export_name, &file_path, kind);
 
-                    // Also register the TARGET item's ID to this path
-                    // This ensures links using the target ID resolve to the re-export location
-                    // instead of the original (possibly private) module location
-                    if let Some(target_id) = use_item.id {
-                        self.register_item(crate_name, target_id, export_name, &file_path, kind);
+                    // Also register the TARGET item's ID to this path, but ONLY if it's not
+                    // already registered. This ensures links to items defined in submodules
+                    // (and re-exported from parent modules) resolve to the original definition
+                    // location when generating docs for that submodule, rather than the
+                    // re-export location. Without this check, `TocEntry` defined in `toc/`
+                    // and re-exported from `generator/` would always link to `generator/index.md`
+                    // even when we're generating `toc/index.md` (where it should be `#tocentry`).
+                    if let Some(target_id) = use_item.id
+                        && !self.contains(crate_name, target_id)
+                    {
+                        self.register_item(
+                            crate_name, target_id, export_name, &file_path, kind,
+                        );
                     }
 
                     // For ALL re-exports, store the source path so we can

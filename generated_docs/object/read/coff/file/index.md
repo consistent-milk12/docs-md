@@ -26,6 +26,8 @@ struct CoffCommon<'data, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/file.rs:20-24`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L20-L24)*
+
 The common parts of `PeFile` and `CoffFile`.
 
 #### Trait Implementations
@@ -44,6 +46,8 @@ struct CoffFile<'data, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/file.rs:41-46`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L41-L46)*
+
 A COFF object file.
 
 This is a file that starts with [`pe::ImageFileHeader`](../../../pe/index.md), and corresponds
@@ -57,9 +61,9 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - <span id="cofffile-coff-header"></span>`fn coff_header(&self) -> &'data Coff`
 
-- <span id="cofffile-coff-section-table"></span>`fn coff_section_table(&self) -> SectionTable<'data>` — [`SectionTable`](../../pe/index.md)
+- <span id="cofffile-coff-section-table"></span>`fn coff_section_table(&self) -> SectionTable<'data>` — [`SectionTable`](../index.md)
 
-- <span id="cofffile-coff-symbol-table"></span>`fn coff_symbol_table(&self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](../../pe/index.md)
+- <span id="cofffile-coff-symbol-table"></span>`fn coff_symbol_table(&self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](../index.md)
 
 #### Trait Implementations
 
@@ -69,25 +73,25 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 ##### `impl<'data, R, Coff> Object for CoffFile<'data, R, Coff>`
 
-- <span id="cofffile-segment"></span>`type Segment = CoffSegment<'data, 'file, R, Coff>`
+- <span id="cofffile-type-segment"></span>`type Segment = CoffSegment<'data, 'file, R, Coff>`
 
-- <span id="cofffile-segmentiterator"></span>`type SegmentIterator = CoffSegmentIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-type-segmentiterator"></span>`type SegmentIterator = CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-section"></span>`type Section = CoffSection<'data, 'file, R, Coff>`
+- <span id="cofffile-type-section"></span>`type Section = CoffSection<'data, 'file, R, Coff>`
 
-- <span id="cofffile-sectioniterator"></span>`type SectionIterator = CoffSectionIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-type-sectioniterator"></span>`type SectionIterator = CoffSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-comdat"></span>`type Comdat = CoffComdat<'data, 'file, R, Coff>`
+- <span id="cofffile-type-comdat"></span>`type Comdat = CoffComdat<'data, 'file, R, Coff>`
 
-- <span id="cofffile-comdatiterator"></span>`type ComdatIterator = CoffComdatIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-type-comdatiterator"></span>`type ComdatIterator = CoffComdatIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R, Coff>`
+- <span id="cofffile-type-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R, Coff>`
 
-- <span id="cofffile-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-type-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R, Coff>`
+- <span id="cofffile-type-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R, Coff>`
 
-- <span id="cofffile-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="cofffile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
 - <span id="cofffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md)
 
@@ -143,6 +147,8 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 trait CoffHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/file.rs:293-338`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L293-L338)*
+
 A trait for generic access to [`pe::ImageFileHeader`](../../../pe/index.md) and [`pe::AnonObjectHeaderBigobj`](../../../pe/index.md).
 
 #### Associated Types
@@ -194,6 +200,8 @@ A trait for generic access to [`pe::ImageFileHeader`](../../../pe/index.md) and 
 fn anon_object_class_id<'data, R: ReadRef<'data>>(data: R) -> crate::read::Result<pe::ClsId>
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/file.rs:284-289`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L284-L289)*
+
 Read the `class_id` field from a [`pe::AnonObjectHeader`](../../../pe/index.md).
 
 This can be used to determine the format of the header.
@@ -205,6 +213,8 @@ This can be used to determine the format of the header.
 ```rust
 type CoffBigFile<'data, R> = CoffFile<'data, R, pe::AnonObjectHeaderBigobj>;
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/file.rs:32`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L32)*
 
 A COFF bigobj object file with 32-bit section numbers.
 

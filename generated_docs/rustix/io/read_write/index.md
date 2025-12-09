@@ -35,8 +35,8 @@
 | [`pwrite`](#pwrite) | fn | `pwrite(fd, bufs)`—Writes to a file at a given position. |
 | [`readv`](#readv) | fn | `readv(fd, bufs)`—Reads from a stream into multiple buffers. |
 | [`writev`](#writev) | fn | `writev(fd, bufs)`—Writes to a stream from multiple buffers. |
-| [`preadv`](#preadv) | fn | `preadv(fd, bufs, offset)`—Reads from a file at a given position into |
-| [`pwritev`](#pwritev) | fn | `pwritev(fd, bufs, offset)`—Writes to a file at a given position from |
+| [`preadv`](#preadv) | fn | `preadv(fd, bufs, offset)`—Reads from a file at a given position into multiple buffers. |
+| [`pwritev`](#pwritev) | fn | `pwritev(fd, bufs, offset)`—Writes to a file at a given position from multiple buffers. |
 | [`preadv2`](#preadv2) | fn | `preadv2(fd, bufs, offset, flags)`—Reads data, with several options. |
 | [`pwritev2`](#pwritev2) | fn | `pwritev2(fd, bufs, offset, flags)`—Writes data, with several options. |
 
@@ -56,6 +56,8 @@ where
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:43-52`](../../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L43-L52)*
+
 *Re-exported from `addr2line`*
 
 ### `ReadWriteFlags`
@@ -64,21 +66,23 @@ where
 struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 ```
 
-`RWF_*` constants for use with [`preadv2`](../../backend/io/syscalls/index.md) and [`pwritev2`](../../backend/io/syscalls/index.md).
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:20-42`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L20-L42)*
+
+`RWF_*` constants for use with [`preadv2`](../../backend/io/syscalls/index.md) and [`pwritev2`](../index.md).
 
 
 
 #### Implementations
 
-- <span id="readwriteflags-dsync"></span>`const DSYNC: Self`
+- <span id="readwriteflags-const-dsync"></span>`const DSYNC: Self`
 
-- <span id="readwriteflags-hipri"></span>`const HIPRI: Self`
+- <span id="readwriteflags-const-hipri"></span>`const HIPRI: Self`
 
-- <span id="readwriteflags-sync"></span>`const SYNC: Self`
+- <span id="readwriteflags-const-sync"></span>`const SYNC: Self`
 
-- <span id="readwriteflags-nowait"></span>`const NOWAIT: Self`
+- <span id="readwriteflags-const-nowait"></span>`const NOWAIT: Self`
 
-- <span id="readwriteflags-append"></span>`const APPEND: Self`
+- <span id="readwriteflags-const-append"></span>`const APPEND: Self`
 
 #### Trait Implementations
 
@@ -88,7 +92,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitAnd for ReadWriteFlags`
 
-- <span id="readwriteflags-output"></span>`type Output = ReadWriteFlags`
+- <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
 
 - <span id="readwriteflags-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -98,9 +102,9 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitOr for ReadWriteFlags`
 
-- <span id="readwriteflags-output"></span>`type Output = ReadWriteFlags`
+- <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
 
-- <span id="readwriteflags-bitor"></span>`fn bitor(self, other: ReadWriteFlags) -> Self` — [`ReadWriteFlags`](#readwriteflags)
+- <span id="readwriteflags-bitor"></span>`fn bitor(self, other: ReadWriteFlags) -> Self` — [`ReadWriteFlags`](../../backend/io/types/index.md)
 
 ##### `impl BitOrAssign for ReadWriteFlags`
 
@@ -108,7 +112,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitXor for ReadWriteFlags`
 
-- <span id="readwriteflags-output"></span>`type Output = ReadWriteFlags`
+- <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
 
 - <span id="readwriteflags-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -118,7 +122,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Clone for ReadWriteFlags`
 
-- <span id="readwriteflags-clone"></span>`fn clone(&self) -> ReadWriteFlags` — [`ReadWriteFlags`](#readwriteflags)
+- <span id="readwriteflags-clone"></span>`fn clone(&self) -> ReadWriteFlags` — [`ReadWriteFlags`](../../backend/io/types/index.md)
 
 ##### `impl Copy for ReadWriteFlags`
 
@@ -134,13 +138,13 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Flags for ReadWriteFlags`
 
-- <span id="readwriteflags-flags"></span>`const FLAGS: &'static [Flag<ReadWriteFlags>]`
+- <span id="readwriteflags-const-flags"></span>`const FLAGS: &'static [Flag<ReadWriteFlags>]`
 
-- <span id="readwriteflags-bits"></span>`type Bits = u32`
+- <span id="readwriteflags-type-bits"></span>`type Bits = u32`
 
 - <span id="readwriteflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- <span id="readwriteflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ReadWriteFlags` — [`c_uint`](../../ffi/index.md), [`ReadWriteFlags`](#readwriteflags)
+- <span id="readwriteflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ReadWriteFlags` — [`c_uint`](../../ffi/index.md), [`ReadWriteFlags`](../../backend/io/types/index.md)
 
 ##### `impl FromIterator for ReadWriteFlags`
 
@@ -152,9 +156,9 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl IntoIterator for ReadWriteFlags`
 
-- <span id="readwriteflags-item"></span>`type Item = ReadWriteFlags`
+- <span id="readwriteflags-type-item"></span>`type Item = ReadWriteFlags`
 
-- <span id="readwriteflags-intoiter"></span>`type IntoIter = Iter<ReadWriteFlags>`
+- <span id="readwriteflags-type-intoiter"></span>`type IntoIter = Iter<ReadWriteFlags>`
 
 - <span id="readwriteflags-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -164,7 +168,7 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Not for ReadWriteFlags`
 
-- <span id="readwriteflags-output"></span>`type Output = ReadWriteFlags`
+- <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
 
 - <span id="readwriteflags-not"></span>`fn not(self) -> Self`
 
@@ -174,19 +178,19 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 
 ##### `impl PartialEq for ReadWriteFlags`
 
-- <span id="readwriteflags-eq"></span>`fn eq(&self, other: &ReadWriteFlags) -> bool` — [`ReadWriteFlags`](#readwriteflags)
+- <span id="readwriteflags-eq"></span>`fn eq(&self, other: &ReadWriteFlags) -> bool` — [`ReadWriteFlags`](../../backend/io/types/index.md)
 
 ##### `impl PublicFlags for ReadWriteFlags`
 
-- <span id="readwriteflags-primitive"></span>`type Primitive = u32`
+- <span id="readwriteflags-type-primitive"></span>`type Primitive = u32`
 
-- <span id="readwriteflags-internal"></span>`type Internal = InternalBitFlags`
+- <span id="readwriteflags-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for ReadWriteFlags`
 
 ##### `impl Sub for ReadWriteFlags`
 
-- <span id="readwriteflags-output"></span>`type Output = ReadWriteFlags`
+- <span id="readwriteflags-type-output"></span>`type Output = ReadWriteFlags`
 
 - <span id="readwriteflags-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -205,6 +209,8 @@ struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 ```rust
 fn read<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf) -> io::Result<<Buf as >::Output>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:39-44`](../../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L39-L44)*
 
 `read(fd, buf)`—Reads from a stream.
 
@@ -234,6 +240,8 @@ fn read<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf) -> io::Result<<Buf as >::Ou
 fn write<Fd: AsFd>(fd: Fd, buf: &[u8]) -> io::Result<usize>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:69-71`](../../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L69-L71)*
+
 `write(fd, buf)`—Writes to a stream.
 
 # References
@@ -262,6 +270,8 @@ fn write<Fd: AsFd>(fd: Fd, buf: &[u8]) -> io::Result<usize>
 fn pread<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf, offset: u64) -> io::Result<<Buf as >::Output>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:97-106`](../../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L97-L106)*
+
 `pread(fd, buf, offset)`—Reads from a file at a given position.
 
 # References
@@ -289,6 +299,8 @@ fn pread<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf, offset: u64) -> io::Result
 ```rust
 fn pwrite<Fd: AsFd>(fd: Fd, buf: &[u8], offset: u64) -> io::Result<usize>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:136-138`](../../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L136-L138)*
 
 `pwrite(fd, bufs)`—Writes to a file at a given position.
 
@@ -322,6 +334,8 @@ data to the end of the file.
 fn readv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:164-166`](../../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L164-L166)*
+
 `readv(fd, bufs)`—Reads from a stream into multiple buffers.
 
 # References
@@ -349,6 +363,8 @@ fn readv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>
 ```rust
 fn writev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>]) -> io::Result<usize>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:192-194`](../../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L192-L194)*
 
 `writev(fd, bufs)`—Writes to a stream from multiple buffers.
 
@@ -378,6 +394,8 @@ fn writev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>]) -> io::Result<usize>
 fn preadv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>], offset: u64) -> io::Result<usize>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:227-229`](../../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L227-L229)*
+
 `preadv(fd, bufs, offset)`—Reads from a file at a given position into
 multiple buffers.
 
@@ -402,6 +420,8 @@ multiple buffers.
 ```rust
 fn pwritev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>], offset: u64) -> io::Result<usize>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:266-268`](../../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L266-L268)*
 
 `pwritev(fd, bufs, offset)`—Writes to a file at a given position from
 multiple buffers.
@@ -432,6 +452,8 @@ data to the end of the file.
 fn preadv2<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>], offset: u64, flags: ReadWriteFlags) -> io::Result<usize>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:282-289`](../../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L282-L289)*
+
 `preadv2(fd, bufs, offset, flags)`—Reads data, with several options.
 
 An `offset` of `u64::MAX` means to use and update the current file offset.
@@ -447,6 +469,8 @@ An `offset` of `u64::MAX` means to use and update the current file offset.
 ```rust
 fn pwritev2<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>], offset: u64, flags: ReadWriteFlags) -> io::Result<usize>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/read_write.rs:303-310`](../../../../.source_1765210505/rustix-1.1.2/src/io/read_write.rs#L303-L310)*
 
 `pwritev2(fd, bufs, offset, flags)`—Writes data, with several options.
 

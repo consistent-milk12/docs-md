@@ -24,6 +24,8 @@ struct Style {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../../.source_1765210505/anstyle-1.0.13/src/style.rs#L18-L23)*
+
 ANSI Text styling
 
 You can print a `Style` to render the corresponding ANSI code.
@@ -41,27 +43,31 @@ println!("{style}{value}{style:#}");
 
 #### Implementations
 
-- <span id="style-bold"></span>`const fn bold(self) -> Self`
+- <span id="style-new"></span>`const fn new() -> Self`
 
-- <span id="style-dimmed"></span>`const fn dimmed(self) -> Self`
+- <span id="style-fg-color"></span>`const fn fg_color(self, fg: Option<crate::Color>) -> Self` — [`Color`](../index.md)
 
-- <span id="style-italic"></span>`const fn italic(self) -> Self`
+- <span id="style-bg-color"></span>`const fn bg_color(self, bg: Option<crate::Color>) -> Self` — [`Color`](../index.md)
 
-- <span id="style-underline"></span>`const fn underline(self) -> Self`
+- <span id="style-underline-color"></span>`const fn underline_color(self, underline: Option<crate::Color>) -> Self` — [`Color`](../index.md)
 
-- <span id="style-blink"></span>`const fn blink(self) -> Self`
+- <span id="style-effects"></span>`const fn effects(self, effects: crate::Effects) -> Self` — [`Effects`](../index.md)
 
-- <span id="style-invert"></span>`const fn invert(self) -> Self`
+- <span id="style-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
-- <span id="style-hidden"></span>`const fn hidden(self) -> Self`
+- <span id="style-fmt-to"></span>`fn fmt_to(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-- <span id="style-strikethrough"></span>`const fn strikethrough(self) -> Self`
+- <span id="style-write-to"></span>`fn write_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+
+- <span id="style-render-reset"></span>`fn render_reset(self) -> impl core::fmt::Display + Copy`
+
+- <span id="style-write-reset-to"></span>`fn write_reset_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl BitOr for Style`
 
-- <span id="style-output"></span>`type Output = Style`
+- <span id="style-type-output"></span>`type Output = Style`
 
 - <span id="style-bitor"></span>`fn bitor(self, rhs: crate::Effects) -> Self` — [`Effects`](../index.md)
 
@@ -109,7 +115,7 @@ println!("{style}{value}{style:#}");
 
 ##### `impl Sub for Style`
 
-- <span id="style-output"></span>`type Output = Style`
+- <span id="style-type-output"></span>`type Output = Style`
 
 - <span id="style-sub"></span>`fn sub(self, other: crate::Effects) -> Self` — [`Effects`](../index.md)
 
@@ -117,7 +123,7 @@ println!("{style}{value}{style:#}");
 
 - <span id="style-sub-assign"></span>`fn sub_assign(&mut self, other: crate::Effects)` — [`Effects`](../index.md)
 
-##### `impl<T> ToString for Style`
+##### `impl ToString for Style`
 
 - <span id="style-to-string"></span>`fn to_string(&self) -> String`
 
@@ -126,6 +132,8 @@ println!("{style}{value}{style:#}");
 ```rust
 struct StyleDisplay(Style);
 ```
+
+*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../../.source_1765210505/anstyle-1.0.13/src/style.rs#L423)*
 
 #### Trait Implementations
 
@@ -147,7 +155,7 @@ struct StyleDisplay(Style);
 
 - <span id="styledisplay-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for StyleDisplay`
+##### `impl ToString for StyleDisplay`
 
 - <span id="styledisplay-to-string"></span>`fn to_string(&self) -> String`
 

@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`AnsiColors`](#ansicolors) | enum | Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color) |
+| [`AnsiColors`](#ansicolors) | enum | Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color) or [`OwoColorize::on_color`](OwoColorize::on_color) |
 
 ## Enums
 
@@ -36,6 +36,8 @@ enum AnsiColors {
 }
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors.rs:108-127`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors.rs#L108-L127)*
+
 Available standard ANSI colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
 
@@ -43,7 +45,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for AnsiColors`
 
-- <span id="ansicolors-clone"></span>`fn clone(&self) -> AnsiColors` — [`AnsiColors`](../../index.md)
+- <span id="ansicolors-clone"></span>`fn clone(&self) -> AnsiColors` — [`AnsiColors`](#ansicolors)
 
 ##### `impl Copy for AnsiColors`
 
@@ -63,11 +65,11 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Eq for AnsiColors`
 
-##### `impl<D> OwoColorize for AnsiColors`
+##### `impl OwoColorize for AnsiColors`
 
 ##### `impl PartialEq for AnsiColors`
 
-- <span id="ansicolors-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](../../index.md)
+- <span id="ansicolors-eq"></span>`fn eq(&self, other: &AnsiColors) -> bool` — [`AnsiColors`](#ansicolors)
 
 ##### `impl StructuralPartialEq for AnsiColors`
 

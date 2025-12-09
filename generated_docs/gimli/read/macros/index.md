@@ -25,11 +25,13 @@ struct DebugMacinfo<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/macros.rs:11-13`](../../../../.source_1765210505/gimli-0.32.3/src/read/macros.rs#L11-L13)*
+
 The raw contents of the `.debug_macinfo` section.
 
 #### Implementations
 
-- <span id="debugmacinfo-get-macinfo"></span>`fn get_macinfo(&self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
+- <span id="debugmacinfo-new"></span>`fn new(macinfo_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -61,11 +63,13 @@ struct DebugMacro<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/macros.rs:104-106`](../../../../.source_1765210505/gimli-0.32.3/src/read/macros.rs#L104-L106)*
+
 The raw contents of the `.debug_macro` section.
 
 #### Implementations
 
-- <span id="debugmacro-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugMacro<R>` — [`DebugMacro`](../index.md)
+- <span id="debugmacro-new"></span>`fn new(macro_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -99,6 +103,8 @@ struct MacroUnitHeader<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/macros.rs:197-202`](../../../../.source_1765210505/gimli-0.32.3/src/read/macros.rs#L197-L202)*
+
 #### Fields
 
 - **`_version`**: `u16`
@@ -107,11 +113,11 @@ struct MacroUnitHeader<R: Reader> {
 
 #### Implementations
 
-- <span id="macrounitheader-offset-size-flag"></span>`const OFFSET_SIZE_FLAG: u8`
+- <span id="macrounitheader-const-offset-size-flag"></span>`const OFFSET_SIZE_FLAG: u8`
 
-- <span id="macrounitheader-debug-line-offset-flag"></span>`const DEBUG_LINE_OFFSET_FLAG: u8`
+- <span id="macrounitheader-const-debug-line-offset-flag"></span>`const DEBUG_LINE_OFFSET_FLAG: u8`
 
-- <span id="macrounitheader-opcode-operands-table-flag"></span>`const OPCODE_OPERANDS_TABLE_FLAG: u8`
+- <span id="macrounitheader-const-opcode-operands-table-flag"></span>`const OPCODE_OPERANDS_TABLE_FLAG: u8`
 
 - <span id="macrounitheader-parse"></span>`fn parse(input: &mut R) -> Result<Self>` — [`Result`](../../index.md)
 
@@ -136,6 +142,8 @@ struct MacroIter<R: Reader> {
     is_macro: bool,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/macros.rs:327-331`](../../../../.source_1765210505/gimli-0.32.3/src/read/macros.rs#L327-L331)*
 
 Iterator over the entries in the `.debug_macro` section.
 
@@ -168,6 +176,8 @@ where
     Supplementary(crate::DebugStrOffset<Offset>),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/macros.rs:244-258`](../../../../.source_1765210505/gimli-0.32.3/src/read/macros.rs#L244-L258)*
 
 A string in a macro entry.
 
@@ -244,6 +254,8 @@ where
     },
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/macros.rs:277-323`](../../../../.source_1765210505/gimli-0.32.3/src/read/macros.rs#L277-L323)*
 
 an Entry in the `.debug_macro` section.
 

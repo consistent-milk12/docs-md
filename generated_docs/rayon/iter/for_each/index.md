@@ -21,15 +21,17 @@ struct ForEachConsumer<'f, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/for_each.rs:15-17`](../../../../.source_1765210505/rayon-1.11.0/src/iter/for_each.rs#L15-L17)*
+
 #### Trait Implementations
 
 ##### `impl<'f, F, T> Consumer for ForEachConsumer<'f, F>`
 
-- <span id="foreachconsumer-folder"></span>`type Folder = ForEachConsumer<'f, F>`
+- <span id="foreachconsumer-type-folder"></span>`type Folder = ForEachConsumer<'f, F>`
 
-- <span id="foreachconsumer-reducer"></span>`type Reducer = NoopReducer`
+- <span id="foreachconsumer-type-reducer"></span>`type Reducer = NoopReducer`
 
-- <span id="foreachconsumer-result"></span>`type Result = ()`
+- <span id="foreachconsumer-type-result"></span>`type Result = ()`
 
 - <span id="foreachconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, NoopReducer)` — [`NoopReducer`](../noop/index.md)
 
@@ -39,7 +41,7 @@ struct ForEachConsumer<'f, F> {
 
 ##### `impl<'f, F, T> Folder for ForEachConsumer<'f, F>`
 
-- <span id="foreachconsumer-result"></span>`type Result = ()`
+- <span id="foreachconsumer-type-result"></span>`type Result = ()`
 
 - <span id="foreachconsumer-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -53,9 +55,9 @@ struct ForEachConsumer<'f, F> {
 
 ##### `impl<T> Pointable for ForEachConsumer<'f, F>`
 
-- <span id="foreachconsumer-align"></span>`const ALIGN: usize`
+- <span id="foreachconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="foreachconsumer-init"></span>`type Init = T`
+- <span id="foreachconsumer-type-init"></span>`type Init = T`
 
 - <span id="foreachconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -82,4 +84,6 @@ where
     F: Fn(T) + Sync,
     T: Send
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/for_each.rs:5-13`](../../../../.source_1765210505/rayon-1.11.0/src/iter/for_each.rs#L5-L13)*
 

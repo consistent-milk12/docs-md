@@ -25,6 +25,8 @@ struct Error {
 }
 ```
 
+*Defined in [`fs-err-3.2.0/src/errors.rs:49-53`](../../../.source_1765210505/fs-err-3.2.0/src/errors.rs#L49-L53)*
+
 Contains an IO error that has a file path attached.
 
 This type is never returned directly, but is instead wrapped inside yet
@@ -50,7 +52,7 @@ another IO error.
 
 - <span id="error-source"></span>`fn source(&self) -> Option<&dyn StdError>`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
@@ -64,6 +66,8 @@ struct SourceDestError {
     to_path: std::path::PathBuf,
 }
 ```
+
+*Defined in [`fs-err-3.2.0/src/errors.rs:157-162`](../../../.source_1765210505/fs-err-3.2.0/src/errors.rs#L157-L162)*
 
 Error type used by functions like `fs::copy` that holds two paths.
 
@@ -87,7 +91,7 @@ Error type used by functions like `fs::copy` that holds two paths.
 
 - <span id="sourcedesterror-source"></span>`fn source(&self) -> Option<&dyn StdError>`
 
-##### `impl<T> ToString for SourceDestError`
+##### `impl ToString for SourceDestError`
 
 - <span id="sourcedesterror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -123,6 +127,8 @@ enum ErrorKind {
 }
 ```
 
+*Defined in [`fs-err-3.2.0/src/errors.rs:9-42`](../../../.source_1765210505/fs-err-3.2.0/src/errors.rs#L9-L42)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ErrorKind`
@@ -146,6 +152,8 @@ enum SourceDestErrorKind {
     Symlink,
 }
 ```
+
+*Defined in [`fs-err-3.2.0/src/errors.rs:140-153`](../../../.source_1765210505/fs-err-3.2.0/src/errors.rs#L140-L153)*
 
 #### Trait Implementations
 

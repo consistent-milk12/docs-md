@@ -43,6 +43,8 @@ As of now this is mainly intended for use to build a higher-level wrapper.
 struct MinReset;
 ```
 
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:21`](../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/stream.rs#L21)*
+
 Resets state, without performing expensive ops (e.g. zeroing buffer)
 
 Note that not zeroing buffer can lead to security issues when dealing with untrusted input.
@@ -59,6 +61,8 @@ Note that not zeroing buffer can lead to security issues when dealing with untru
 struct ZeroReset;
 ```
 
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:35`](../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/stream.rs#L35)*
+
 Resets state and zero memory, continuing to use the same data format.
 
 #### Trait Implementations
@@ -72,6 +76,8 @@ Resets state and zero memory, continuing to use the same data format.
 ```rust
 struct FullReset(crate::DataFormat);
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:48`](../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/stream.rs#L48)*
 
 Full reset of the state, including zeroing memory.
 
@@ -97,6 +103,8 @@ struct InflateState {
     last_status: crate::inflate::TINFLStatus,
 }
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:61-83`](../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/stream.rs#L61-L83)*
 
 A struct that compbines a decompressor with extra data for streaming decompression.
 
@@ -158,6 +166,8 @@ A struct that compbines a decompressor with extra data for streaming decompressi
 trait ResetPolicy { ... }
 ```
 
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:13-16`](../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/stream.rs#L13-L16)*
+
 Tag that determines reset policy of [InflateState](#inflatestate)
 
 #### Required Methods
@@ -179,6 +189,8 @@ Tag that determines reset policy of [InflateState](#inflatestate)
 ```rust
 fn inflate(state: &mut InflateState, input: &[u8], output: &mut [u8], flush: crate::MZFlush) -> crate::StreamResult
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:186-295`](../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/stream.rs#L186-L295)*
 
 Try to decompress from `input` to `output` with the given [`InflateState`](#inflatestate)
 
@@ -210,9 +222,13 @@ decompression), or when called without [`MZFlush::Finish`](../../index.md) after
 fn inflate_loop(state: &mut InflateState, next_in: &mut &[u8], next_out: &mut &mut [u8], total_in: &mut usize, total_out: &mut usize, decomp_flags: u32, flush: crate::MZFlush) -> crate::MZResult
 ```
 
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:297-370`](../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/stream.rs#L297-L370)*
+
 ### `push_dict_out`
 
 ```rust
 fn push_dict_out(state: &mut InflateState, next_out: &mut &mut [u8]) -> usize
 ```
+
+*Defined in [`miniz_oxide-0.8.9/src/inflate/stream.rs:372-379`](../../../../.source_1765210505/miniz_oxide-0.8.9/src/inflate/stream.rs#L372-L379)*
 

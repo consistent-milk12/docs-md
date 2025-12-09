@@ -18,6 +18,8 @@
 struct U32X4([u32; 4]);
 ```
 
+*Defined in [`adler2-2.0.1/src/algo.rs:112`](../../../.source_1765210505/adler2-2.0.1/src/algo.rs#L112)*
+
 #### Implementations
 
 - <span id="u32x4-from"></span>`fn from(bytes: &[u8]) -> Self`

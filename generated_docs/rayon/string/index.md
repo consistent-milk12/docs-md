@@ -12,7 +12,7 @@ unless you have need to name one of the iterator types.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Drain`](#drain) | struct | Draining parallel iterator that moves a range of characters out of a string |
+| [`Drain`](#drain) | struct | Draining parallel iterator that moves a range of characters out of a string, but keeps the total capacity. |
 
 ## Structs
 
@@ -25,40 +25,42 @@ struct Drain<'a> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/string.rs:25-28`](../../../.source_1765210505/rayon-1.11.0/src/string.rs#L25-L28)*
+
 Draining parallel iterator that moves a range of characters out of a string,
 but keeps the total capacity.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Drain<'a>`
+##### `impl Debug for Drain<'a>`
 
 - <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Drop for Drain<'a>`
+##### `impl Drop for Drain<'a>`
 
 - <span id="drain-drop"></span>`fn drop(&mut self)`
 
-##### `impl<T> IntoEither for Drain<'a>`
+##### `impl IntoEither for Drain<'a>`
 
-##### `impl<T> IntoParallelIterator for Drain<'a>`
+##### `impl IntoParallelIterator for Drain<'a>`
 
-- <span id="drain-iter"></span>`type Iter = T`
+- <span id="drain-type-iter"></span>`type Iter = T`
 
-- <span id="drain-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="drain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="drain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<'a> ParallelIterator for Drain<'a>`
+##### `impl ParallelIterator for Drain<'a>`
 
-- <span id="drain-item"></span>`type Item = char`
+- <span id="drain-type-item"></span>`type Item = char`
 
 - <span id="drain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl<T> Pointable for Drain<'a>`
+##### `impl Pointable for Drain<'a>`
 
-- <span id="drain-align"></span>`const ALIGN: usize`
+- <span id="drain-const-align"></span>`const ALIGN: usize`
 
-- <span id="drain-init"></span>`type Init = T`
+- <span id="drain-type-init"></span>`type Init = T`
 
 - <span id="drain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -18,6 +18,8 @@
 struct StyledStr(String);
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
+
 Terminal-styling container
 
 Styling may be encoded as [ANSI Escape Code](https://en.wikipedia.org/wiki/ANSI_escape_code)
@@ -75,7 +77,7 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl Clone for StyledStr`
 
-- <span id="styledstr-clone"></span>`fn clone(&self) -> StyledStr` — [`StyledStr`](../index.md)
+- <span id="styledstr-clone"></span>`fn clone(&self) -> StyledStr` — [`StyledStr`](#styledstr)
 
 ##### `impl Debug for StyledStr`
 
@@ -83,7 +85,7 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl Default for StyledStr`
 
-- <span id="styledstr-default"></span>`fn default() -> StyledStr` — [`StyledStr`](../index.md)
+- <span id="styledstr-default"></span>`fn default() -> StyledStr` — [`StyledStr`](#styledstr)
 
 ##### `impl Display for StyledStr`
 
@@ -91,25 +93,25 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl Eq for StyledStr`
 
-##### `impl<I> IntoResettable for StyledStr`
+##### `impl IntoResettable for StyledStr`
 
-- <span id="styledstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<StyledStr>` — [`Resettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="styledstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<StyledStr>` — [`Resettable`](../resettable/index.md), [`StyledStr`](#styledstr)
 
 ##### `impl Ord for StyledStr`
 
-- <span id="styledstr-cmp"></span>`fn cmp(&self, other: &StyledStr) -> cmp::Ordering` — [`StyledStr`](../index.md)
+- <span id="styledstr-cmp"></span>`fn cmp(&self, other: &StyledStr) -> cmp::Ordering` — [`StyledStr`](#styledstr)
 
 ##### `impl PartialEq for StyledStr`
 
-- <span id="styledstr-eq"></span>`fn eq(&self, other: &StyledStr) -> bool` — [`StyledStr`](../index.md)
+- <span id="styledstr-eq"></span>`fn eq(&self, other: &StyledStr) -> bool` — [`StyledStr`](#styledstr)
 
 ##### `impl PartialOrd for StyledStr`
 
-- <span id="styledstr-partial-cmp"></span>`fn partial_cmp(&self, other: &StyledStr) -> option::Option<cmp::Ordering>` — [`StyledStr`](../index.md)
+- <span id="styledstr-partial-cmp"></span>`fn partial_cmp(&self, other: &StyledStr) -> option::Option<cmp::Ordering>` — [`StyledStr`](#styledstr)
 
 ##### `impl StructuralPartialEq for StyledStr`
 
-##### `impl<T> ToString for StyledStr`
+##### `impl ToString for StyledStr`
 
 - <span id="styledstr-to-string"></span>`fn to_string(&self) -> String`
 

@@ -65,9 +65,13 @@ how quadratic behavior is mitigated.
 fn hybrid_try_search_half_fwd(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::Input<'_>) -> Result<Result<crate::HalfMatch, usize>, crate::meta::error::RetryFailError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/stopat.rs:100-139`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/stopat.rs#L100-L139)*
+
 ### `hybrid_eoi_fwd`
 
 ```rust
 fn hybrid_eoi_fwd(dfa: &crate::hybrid::dfa::DFA, cache: &mut crate::hybrid::dfa::Cache, input: &crate::Input<'_>, sid: &mut crate::hybrid::LazyStateID, mat: &mut Option<crate::HalfMatch>) -> Result<(), crate::MatchError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/stopat.rs:178-212`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/stopat.rs#L178-L212)*
 

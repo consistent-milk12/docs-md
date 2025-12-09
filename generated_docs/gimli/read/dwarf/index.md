@@ -25,7 +25,7 @@
 | [`Dwarf`](#dwarf) | struct | All of the commonly used DWARF sections, and other common information. |
 | [`DwarfPackageSections`](#dwarfpackagesections) | struct | The sections from a `.dwp` file. |
 | [`DwarfPackage`](#dwarfpackage) | struct | The sections from a `.dwp` file, with parsed indices. |
-| [`Unit`](#unit) | struct | All of the commonly used information for a unit in the `.debug_info` or `.debug_types` |
+| [`Unit`](#unit) | struct | All of the commonly used information for a unit in the `.debug_info` or `.debug_types` sections. |
 | [`UnitRef`](#unitref) | struct | A reference to a `Unit` and its associated `Dwarf`. |
 | [`RangeIter`](#rangeiter) | struct | An iterator for the address ranges of a `DebuggingInformationEntry`. |
 | [`RangeIterInner`](#rangeiterinner) | enum |  |
@@ -53,6 +53,8 @@ struct DwarfSections<T> {
     pub debug_rnglists: crate::read::DebugRngLists<T>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:51-82`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L51-L82)*
 
 All of the commonly used DWARF sections.
 
@@ -185,6 +187,8 @@ struct Dwarf<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:170-218`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L170-L218)*
+
 All of the commonly used DWARF sections, and other common information.
 
 #### Fields
@@ -255,7 +259,17 @@ All of the commonly used DWARF sections, and other common information.
 
 #### Implementations
 
-- <span id="dwarf-make-dwo"></span>`fn make_dwo(&mut self, parent: &Dwarf<R>)` — [`Dwarf`](../index.md)
+- <span id="dwarf-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
+
+- <span id="dwarf-load-sup"></span>`fn load_sup<F, E>(&mut self, section: F) -> core::result::Result<(), E>`
+
+- <span id="dwarf-from-sections"></span>`fn from_sections(sections: DwarfSections<T>) -> Self` — [`DwarfSections`](../index.md)
+
+- <span id="dwarf-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md)
+
+- <span id="dwarf-set-sup"></span>`fn set_sup(&mut self, sup: Dwarf<T>)` — [`Dwarf`](../index.md)
+
+- <span id="dwarf-sup"></span>`fn sup(&self) -> Option<&Dwarf<T>>` — [`Dwarf`](../index.md)
 
 #### Trait Implementations
 
@@ -284,6 +298,8 @@ struct DwarfPackageSections<T> {
     pub debug_types: crate::read::DebugTypes<T>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:804-831`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L804-L831)*
 
 The sections from a `.dwp` file.
 
@@ -399,6 +415,8 @@ struct DwarfPackage<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:886-928`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L886-L928)*
+
 The sections from a `.dwp` file, with parsed indices.
 
 #### Fields
@@ -500,6 +518,8 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1133-1170`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1133-L1170)*
+
 All of the commonly used information for a unit in the `.debug_info` or `.debug_types`
 sections.
 
@@ -588,6 +608,8 @@ struct UnitRef<'a, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1389-1395`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1389-L1395)*
+
 A reference to a `Unit` and its associated `Dwarf`.
 
 These often need to be passed around together, so this struct makes that easier.
@@ -667,19 +689,21 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 
 ##### `impl<'a, R: Reader> Deref for UnitRef<'a, R>`
 
-- <span id="unitref-target"></span>`type Target = Unit<R>`
+- <span id="unitref-type-target"></span>`type Target = Unit<R>`
 
 - <span id="unitref-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<P, T> Receiver for UnitRef<'a, R>`
 
-- <span id="unitref-target"></span>`type Target = T`
+- <span id="unitref-type-target"></span>`type Target = T`
 
 ### `RangeIter<R: Reader>`
 
 ```rust
 struct RangeIter<R: Reader>(RangeIterInner<R>);
 ```
+
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1630`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1630)*
 
 An iterator for the address ranges of a `DebuggingInformationEntry`.
 
@@ -709,6 +733,8 @@ enum RangeIterInner<R: Reader> {
     List(crate::read::RngListIter<R>),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/dwarf.rs:1633-1636`](../../../../.source_1765210505/gimli-0.32.3/src/read/dwarf.rs#L1633-L1636)*
 
 #### Trait Implementations
 

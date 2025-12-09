@@ -25,6 +25,8 @@ struct Str {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/str.rs:13-15`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/str.rs#L13-L15)*
+
 A UTF-8-encoded fixed string
 
 <div class="warning">
@@ -46,11 +48,11 @@ feature
 
 ##### `impl AsRef for Str`
 
-- <span id="str-as-ref"></span>`fn as_ref(&self) -> &std::path::Path`
+- <span id="str-as-ref"></span>`fn as_ref(&self) -> &str`
 
 ##### `impl Clone for Str`
 
-- <span id="str-clone"></span>`fn clone(&self) -> Str` — [`Str`](../index.md)
+- <span id="str-clone"></span>`fn clone(&self) -> Str` — [`Str`](#str)
 
 ##### `impl Debug for Str`
 
@@ -58,11 +60,11 @@ feature
 
 ##### `impl Default for Str`
 
-- <span id="str-default"></span>`fn default() -> Str` — [`Str`](../index.md)
+- <span id="str-default"></span>`fn default() -> Str` — [`Str`](#str)
 
 ##### `impl Deref for Str`
 
-- <span id="str-target"></span>`type Target = str`
+- <span id="str-type-target"></span>`type Target = str`
 
 - <span id="str-deref"></span>`fn deref(&self) -> &str`
 
@@ -76,29 +78,29 @@ feature
 
 - <span id="str-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<I> IntoResettable for Str`
+##### `impl IntoResettable for Str`
 
-- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](../index.md), [`OsStr`](../index.md)
+- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<String>` — [`Resettable`](../resettable/index.md)
 
 ##### `impl Ord for Str`
 
-- <span id="str-cmp"></span>`fn cmp(&self, other: &Str) -> cmp::Ordering` — [`Str`](../index.md)
+- <span id="str-cmp"></span>`fn cmp(&self, other: &Str) -> cmp::Ordering` — [`Str`](#str)
 
 ##### `impl PartialEq for Str`
 
-- <span id="str-eq"></span>`fn eq(&self, other: &str) -> bool`
+- <span id="str-eq"></span>`fn eq(&self, other: &Str) -> bool` — [`Str`](#str)
 
 ##### `impl PartialOrd for Str`
 
-- <span id="str-partial-cmp"></span>`fn partial_cmp(&self, other: &Str) -> option::Option<cmp::Ordering>` — [`Str`](../index.md)
+- <span id="str-partial-cmp"></span>`fn partial_cmp(&self, other: &Str) -> option::Option<cmp::Ordering>` — [`Str`](#str)
 
-##### `impl<P, T> Receiver for Str`
+##### `impl Receiver for Str`
 
-- <span id="str-target"></span>`type Target = T`
+- <span id="str-type-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for Str`
 
-##### `impl<T> ToString for Str`
+##### `impl ToString for Str`
 
 - <span id="str-to-string"></span>`fn to_string(&self) -> String`
 

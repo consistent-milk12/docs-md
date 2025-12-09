@@ -55,6 +55,8 @@ enum BinOp {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/op.rs:1-63`](../../../.source_1765210505/syn-2.0.111/src/op.rs#L1-L63)*
+
 A binary operator: `+`, `+=`, `&`.
 
 #### Variants
@@ -191,15 +193,15 @@ A binary operator: `+`, `+=`, `&`.
 
 ##### `impl Parse for crate::op::BinOp`
 
-- <span id="crateopbinop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateopbinop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::BinOp`
 
 - <span id="cratebinop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for BinOp`
+##### `impl Sealed for BinOp`
 
-##### `impl<T> Spanned for BinOp`
+##### `impl Spanned for BinOp`
 
 - <span id="binop-span"></span>`fn span(&self) -> Span`
 
@@ -216,6 +218,8 @@ enum UnOp {
     Neg(token::Minus),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/op.rs:65-77`](../../../.source_1765210505/syn-2.0.111/src/op.rs#L65-L77)*
 
 A unary operator: `*`, `!`, `-`.
 
@@ -253,15 +257,15 @@ A unary operator: `*`, `!`, `-`.
 
 ##### `impl Parse for crate::op::UnOp`
 
-- <span id="crateopunop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateopunop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::UnOp`
 
 - <span id="crateunop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for UnOp`
+##### `impl Sealed for UnOp`
 
-##### `impl<T> Spanned for UnOp`
+##### `impl Spanned for UnOp`
 
 - <span id="unop-span"></span>`fn span(&self) -> Span`
 

@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`Split`](#split) | struct | `Split` is a parallel iterator using arbitrary data and a splitting function. |
 | [`SplitProducer`](#splitproducer) | struct |  |
-| [`split`](#split) | fn | The `split` function takes arbitrary data and a closure that knows how to |
+| [`split`](#split) | fn | The `split` function takes arbitrary data and a closure that knows how to split it, and turns this into a `ParallelIterator`. |
 
 ## Structs
 
@@ -23,14 +23,16 @@ struct Split<D, S> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:117-120`](../../../../.source_1765210505/rayon-1.11.0/src/iter/splitter.rs#L117-L120)*
+
 `Split` is a parallel iterator using arbitrary data and a splitting function.
-This struct is created by the [`split()`](../index.md) function.
+This struct is created by the [`split()`](#split) function.
 
 #### Trait Implementations
 
 ##### `impl<D: clone::Clone, S: clone::Clone> Clone for Split<D, S>`
 
-- <span id="split-clone"></span>`fn clone(&self) -> Split<D, S>` — [`Split`](../index.md)
+- <span id="split-clone"></span>`fn clone(&self) -> Split<D, S>` — [`Split`](#split)
 
 ##### `impl<D: Debug, S> Debug for Split<D, S>`
 
@@ -40,23 +42,23 @@ This struct is created by the [`split()`](../index.md) function.
 
 ##### `impl<T> IntoParallelIterator for Split<D, S>`
 
-- <span id="split-iter"></span>`type Iter = T`
+- <span id="split-type-iter"></span>`type Iter = T`
 
-- <span id="split-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="split-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<D, S> ParallelIterator for Split<D, S>`
 
-- <span id="split-item"></span>`type Item = D`
+- <span id="split-type-item"></span>`type Item = D`
 
 - <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for Split<D, S>`
 
-- <span id="split-align"></span>`const ALIGN: usize`
+- <span id="split-const-align"></span>`const ALIGN: usize`
 
-- <span id="split-init"></span>`type Init = T`
+- <span id="split-type-init"></span>`type Init = T`
 
 - <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -75,15 +77,17 @@ struct SplitProducer<'a, D, S> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:147-150`](../../../../.source_1765210505/rayon-1.11.0/src/iter/splitter.rs#L147-L150)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for SplitProducer<'a, D, S>`
 
 ##### `impl<T> Pointable for SplitProducer<'a, D, S>`
 
-- <span id="splitproducer-align"></span>`const ALIGN: usize`
+- <span id="splitproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="splitproducer-init"></span>`type Init = T`
+- <span id="splitproducer-type-init"></span>`type Init = T`
 
 - <span id="splitproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -95,7 +99,7 @@ struct SplitProducer<'a, D, S> {
 
 ##### `impl<'a, D, S> UnindexedProducer for SplitProducer<'a, D, S>`
 
-- <span id="splitproducer-item"></span>`type Item = D`
+- <span id="splitproducer-type-item"></span>`type Item = D`
 
 - <span id="splitproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
@@ -111,6 +115,8 @@ where
     D: Send,
     S: Fn(D) -> (D, Option<D>) + Sync
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:106-112`](../../../../.source_1765210505/rayon-1.11.0/src/iter/splitter.rs#L106-L112)*
 
 The `split` function takes arbitrary data and a closure that knows how to
 split it, and turns this into a `ParallelIterator`.

@@ -14,8 +14,8 @@ Memory allocation APIs
 | [`Layout`](#layout) | mod |  |
 | [`GlobalAlloc`](#globalalloc) | struct |  |
 | [`Global`](#global) | struct |  |
-| [`AllocError`](#allocerror) | struct | The `AllocError` error indicates an allocation failure |
-| [`Allocator`](#allocator) | trait | An implementation of `Allocator` can allocate, grow, shrink, and deallocate arbitrary blocks of |
+| [`AllocError`](#allocerror) | struct | The `AllocError` error indicates an allocation failure that may be due to resource exhaustion or to something wrong when combining the given input arguments with this allocator. |
+| [`Allocator`](#allocator) | trait | An implementation of `Allocator` can allocate, grow, shrink, and deallocate arbitrary blocks of data described via [`Layout`][]. |
 
 ## Modules
 
@@ -36,6 +36,8 @@ struct GlobalAlloc<R: gimli::Reader> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/function.rs:83-89`](../../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L83-L89)*
+
 *Re-exported from `addr2line`*
 
 #### Implementations
@@ -47,6 +49,8 @@ struct GlobalAlloc<R: gimli::Reader> {
 ```rust
 struct Global;
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
 
 The global memory allocator.
 
@@ -81,7 +85,7 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 ##### `impl Clone for Global`
 
-- <span id="global-clone"></span>`fn clone(&self) -> Global` — [`Global`](#global)
+- <span id="global-clone"></span>`fn clone(&self) -> Global` — [`Global`](global/index.md)
 
 ##### `impl Copy for Global`
 
@@ -91,13 +95,15 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 ##### `impl Default for Global`
 
-- <span id="global-default"></span>`fn default() -> Global` — [`Global`](#global)
+- <span id="global-default"></span>`fn default() -> Global` — [`Global`](global/index.md)
 
 ### `AllocError`
 
 ```rust
 struct AllocError;
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:33`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L33)*
 
 The `AllocError` error indicates an allocation failure
 that may be due to resource exhaustion or to
@@ -128,7 +134,7 @@ allocator.
 
 ##### `impl StructuralPartialEq for AllocError`
 
-##### `impl<T> ToString for AllocError`
+##### `impl ToString for AllocError`
 
 - <span id="allocerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -139,6 +145,8 @@ allocator.
 ```rust
 trait Allocator { ... }
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/mod.rs:101-362`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/alloc/mod.rs#L101-L362)*
 
 An implementation of `Allocator` can allocate, grow, shrink, and deallocate arbitrary blocks of
 data described via [`Layout`][].
@@ -226,6 +234,6 @@ following conditions must hold:
 
 #### Implementors
 
-- [`Global`](#global)
+- [`Global`](global/index.md)
 - `&A`
 

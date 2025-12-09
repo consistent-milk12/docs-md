@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`CssColors`](#csscolors) | enum | Available CSS colors for use with [`OwoColorize::color`](OwoColorize::color) |
+| [`CssColors`](#csscolors) | enum | Available CSS colors for use with [`OwoColorize::color`](OwoColorize::color) or [`OwoColorize::on_color`](OwoColorize::on_color) |
 
 ## Enums
 
@@ -166,6 +166,8 @@ enum CssColors {
 }
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/css.rs:84-232`](../../../../../.source_1765210505/owo-colors-4.2.3/src/colors/css.rs#L84-L232)*
+
 Available CSS colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
 
@@ -173,7 +175,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for CssColors`
 
-- <span id="csscolors-clone"></span>`fn clone(&self) -> CssColors` — [`CssColors`](../../../index.md)
+- <span id="csscolors-clone"></span>`fn clone(&self) -> CssColors` — [`CssColors`](#csscolors)
 
 ##### `impl Copy for CssColors`
 
@@ -193,11 +195,11 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Eq for CssColors`
 
-##### `impl<D> OwoColorize for CssColors`
+##### `impl OwoColorize for CssColors`
 
 ##### `impl PartialEq for CssColors`
 
-- <span id="csscolors-eq"></span>`fn eq(&self, other: &CssColors) -> bool` — [`CssColors`](../../../index.md)
+- <span id="csscolors-eq"></span>`fn eq(&self, other: &CssColors) -> bool` — [`CssColors`](#csscolors)
 
 ##### `impl StructuralPartialEq for CssColors`
 

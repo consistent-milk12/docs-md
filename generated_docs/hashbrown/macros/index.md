@@ -15,5 +15,9 @@
 
 ### `cfg_if!`
 
+*Defined in [`hashbrown-0.16.1/src/macros.rs:3-55`](../../../.source_1765210505/hashbrown-0.16.1/src/macros.rs#L3-L55)*
+
 ### `default_fn!`
+
+*Defined in [`hashbrown-0.16.1/src/macros.rs:66-70`](../../../.source_1765210505/hashbrown-0.16.1/src/macros.rs#L66-L70)*
 

@@ -63,15 +63,17 @@ struct EnumDeserializer {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:514-517`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L514-L517)*
+
 #### Trait Implementations
 
-##### `impl<'de> EnumAccess for EnumDeserializer`
+##### `impl EnumAccess for EnumDeserializer`
 
-- <span id="enumdeserializer-error"></span>`type Error = Error`
+- <span id="enumdeserializer-type-error"></span>`type Error = Error`
 
-- <span id="enumdeserializer-variant"></span>`type Variant = VariantDeserializer`
+- <span id="enumdeserializer-type-variant"></span>`type Variant = VariantDeserializer`
 
-- <span id="enumdeserializer-variant-seed"></span>`fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, VariantDeserializer), Error>` — [`VariantDeserializer`](#variantdeserializer), [`Error`](../../index.md)
+- <span id="enumdeserializer-variant-seed"></span>`fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, VariantDeserializer), Error>` — [`VariantDeserializer`](#variantdeserializer), [`Error`](../../error/index.md)
 
 ### `VariantDeserializer`
 
@@ -81,19 +83,21 @@ struct VariantDeserializer {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:549-551`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L549-L551)*
+
 #### Trait Implementations
 
-##### `impl<'de> VariantAccess for VariantDeserializer`
+##### `impl VariantAccess for VariantDeserializer`
 
-- <span id="variantdeserializer-error"></span>`type Error = Error`
+- <span id="variantdeserializer-type-error"></span>`type Error = Error`
 
-- <span id="variantdeserializer-unit-variant"></span>`fn unit_variant(self) -> Result<(), Error>` — [`Error`](../../index.md)
+- <span id="variantdeserializer-unit-variant"></span>`fn unit_variant(self) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
-- <span id="variantdeserializer-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="variantdeserializer-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="variantdeserializer-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="variantdeserializer-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="variantdeserializer-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="variantdeserializer-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
 ### `SeqDeserializer`
 
@@ -103,17 +107,19 @@ struct SeqDeserializer {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:621-623`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L621-L623)*
+
 #### Implementations
 
-- <span id="seqdeserializer-new"></span>`fn new(vec: Vec<Value>) -> Self` — [`Value`](../../index.md)
+- <span id="seqdeserializer-new"></span>`fn new(vec: Vec<Value>) -> Self` — [`Value`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'de> SeqAccess for SeqDeserializer`
+##### `impl SeqAccess for SeqDeserializer`
 
-- <span id="seqdeserializer-error"></span>`type Error = Error`
+- <span id="seqdeserializer-type-error"></span>`type Error = Error`
 
-- <span id="seqdeserializer-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../index.md)
+- <span id="seqdeserializer-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md)
 
 - <span id="seqdeserializer-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
 
@@ -126,19 +132,21 @@ struct MapDeserializer {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:654-657`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L654-L657)*
+
 #### Implementations
 
-- <span id="mapdeserializer-new"></span>`fn new(map: Map<String, Value>) -> Self` — [`Map`](../../index.md), [`Value`](../../index.md)
+- <span id="mapdeserializer-new"></span>`fn new(map: Map<String, Value>) -> Self` — [`Map`](../../map/index.md), [`Value`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'de> MapAccess for MapDeserializer`
+##### `impl MapAccess for MapDeserializer`
 
-- <span id="mapdeserializer-error"></span>`type Error = Error`
+- <span id="mapdeserializer-type-error"></span>`type Error = Error`
 
-- <span id="mapdeserializer-next-key-seed"></span>`fn next_key_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../index.md)
+- <span id="mapdeserializer-next-key-seed"></span>`fn next_key_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapdeserializer-next-value-seed"></span>`fn next_value_seed<T>(&mut self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapdeserializer-next-value-seed"></span>`fn next_value_seed<T>(&mut self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../error/index.md)
 
 - <span id="mapdeserializer-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
 
@@ -151,15 +159,17 @@ struct EnumRefDeserializer<'de> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:1040-1043`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L1040-L1043)*
+
 #### Trait Implementations
 
-##### `impl<'de> EnumAccess for EnumRefDeserializer<'de>`
+##### `impl EnumAccess for EnumRefDeserializer<'de>`
 
-- <span id="enumrefdeserializer-error"></span>`type Error = Error`
+- <span id="enumrefdeserializer-type-error"></span>`type Error = Error`
 
-- <span id="enumrefdeserializer-variant"></span>`type Variant = VariantRefDeserializer<'de>`
+- <span id="enumrefdeserializer-type-variant"></span>`type Variant = VariantRefDeserializer<'de>`
 
-- <span id="enumrefdeserializer-variant-seed"></span>`fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), Error>` — [`Error`](../../index.md)
+- <span id="enumrefdeserializer-variant-seed"></span>`fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), Error>` — [`Error`](../../error/index.md)
 
 ### `VariantRefDeserializer<'de>`
 
@@ -169,19 +179,21 @@ struct VariantRefDeserializer<'de> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:1059-1061`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L1059-L1061)*
+
 #### Trait Implementations
 
-##### `impl<'de> VariantAccess for VariantRefDeserializer<'de>`
+##### `impl VariantAccess for VariantRefDeserializer<'de>`
 
-- <span id="variantrefdeserializer-error"></span>`type Error = Error`
+- <span id="variantrefdeserializer-type-error"></span>`type Error = Error`
 
-- <span id="variantrefdeserializer-unit-variant"></span>`fn unit_variant(self) -> Result<(), Error>` — [`Error`](../../index.md)
+- <span id="variantrefdeserializer-unit-variant"></span>`fn unit_variant(self) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
-- <span id="variantrefdeserializer-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="variantrefdeserializer-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="variantrefdeserializer-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="variantrefdeserializer-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="variantrefdeserializer-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="variantrefdeserializer-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
 ### `SeqRefDeserializer<'de>`
 
@@ -191,17 +203,19 @@ struct SeqRefDeserializer<'de> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:1131-1133`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L1131-L1133)*
+
 #### Implementations
 
-- <span id="seqrefdeserializer-new"></span>`fn new(slice: &'de [Value]) -> Self` — [`Value`](../../index.md)
+- <span id="seqrefdeserializer-new"></span>`fn new(slice: &'de [Value]) -> Self` — [`Value`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'de> SeqAccess for SeqRefDeserializer<'de>`
+##### `impl SeqAccess for SeqRefDeserializer<'de>`
 
-- <span id="seqrefdeserializer-error"></span>`type Error = Error`
+- <span id="seqrefdeserializer-type-error"></span>`type Error = Error`
 
-- <span id="seqrefdeserializer-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../index.md)
+- <span id="seqrefdeserializer-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md)
 
 - <span id="seqrefdeserializer-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
 
@@ -214,19 +228,21 @@ struct MapRefDeserializer<'de> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:1162-1165`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L1162-L1165)*
+
 #### Implementations
 
-- <span id="maprefdeserializer-new"></span>`fn new(map: &'de Map<String, Value>) -> Self` — [`Map`](../../index.md), [`Value`](../../index.md)
+- <span id="maprefdeserializer-new"></span>`fn new(map: &'de Map<String, Value>) -> Self` — [`Map`](../../map/index.md), [`Value`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'de> MapAccess for MapRefDeserializer<'de>`
+##### `impl MapAccess for MapRefDeserializer<'de>`
 
-- <span id="maprefdeserializer-error"></span>`type Error = Error`
+- <span id="maprefdeserializer-type-error"></span>`type Error = Error`
 
-- <span id="maprefdeserializer-next-key-seed"></span>`fn next_key_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../index.md)
+- <span id="maprefdeserializer-next-key-seed"></span>`fn next_key_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md)
 
-- <span id="maprefdeserializer-next-value-seed"></span>`fn next_value_seed<T>(&mut self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="maprefdeserializer-next-value-seed"></span>`fn next_value_seed<T>(&mut self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../error/index.md)
 
 - <span id="maprefdeserializer-size-hint"></span>`fn size_hint(&self) -> Option<usize>`
 
@@ -238,45 +254,47 @@ struct MapKeyDeserializer<'de> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:1213-1215`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L1213-L1215)*
+
 #### Trait Implementations
 
-##### `impl<'de> Deserializer for MapKeyDeserializer<'de>`
+##### `impl Deserializer for MapKeyDeserializer<'de>`
 
-- <span id="mapkeydeserializer-error"></span>`type Error = Error`
+- <span id="mapkeydeserializer-type-error"></span>`type Error = Error`
 
-- <span id="mapkeydeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, _name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, _name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="mapkeydeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="mapkeydeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
 - <span id="mapkeydeserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
@@ -312,21 +330,23 @@ struct MapKeyDeserializer<'de> {
 struct KeyClassifier;
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:1329`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L1329)*
+
 #### Trait Implementations
 
-##### `impl<'de> DeserializeSeed for KeyClassifier`
+##### `impl DeserializeSeed for KeyClassifier`
 
-- <span id="keyclassifier-value"></span>`type Value = KeyClass`
+- <span id="keyclassifier-type-value"></span>`type Value = KeyClass`
 
 - <span id="keyclassifier-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
-##### `impl<'de, T> Expected for KeyClassifier`
+##### `impl Expected for KeyClassifier`
 
 - <span id="keyclassifier-fmt"></span>`fn fmt(&self, formatter: &mut Formatter<'_>) -> Result<(), Error>`
 
-##### `impl<'de> Visitor for KeyClassifier`
+##### `impl Visitor for KeyClassifier`
 
-- <span id="keyclassifier-value"></span>`type Value = KeyClass`
+- <span id="keyclassifier-type-value"></span>`type Value = KeyClass`
 
 - <span id="keyclassifier-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -342,19 +362,21 @@ struct BorrowedCowStrDeserializer<'de> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:1407-1409`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L1407-L1409)*
+
 #### Implementations
 
 - <span id="borrowedcowstrdeserializer-new"></span>`fn new(value: Cow<'de, str>) -> Self`
 
 #### Trait Implementations
 
-##### `impl<'de> Deserializer for BorrowedCowStrDeserializer<'de>`
+##### `impl Deserializer for BorrowedCowStrDeserializer<'de>`
 
-- <span id="borrowedcowstrdeserializer-error"></span>`type Error = Error`
+- <span id="borrowedcowstrdeserializer-type-error"></span>`type Error = Error`
 
-- <span id="borrowedcowstrdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="borrowedcowstrdeserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="borrowedcowstrdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, _name: &str, _variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="borrowedcowstrdeserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, _name: &str, _variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
 - <span id="borrowedcowstrdeserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
@@ -414,13 +436,13 @@ struct BorrowedCowStrDeserializer<'de> {
 
 - <span id="borrowedcowstrdeserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-##### `impl<'de> EnumAccess for BorrowedCowStrDeserializer<'de>`
+##### `impl EnumAccess for BorrowedCowStrDeserializer<'de>`
 
-- <span id="borrowedcowstrdeserializer-error"></span>`type Error = Error`
+- <span id="borrowedcowstrdeserializer-type-error"></span>`type Error = Error`
 
-- <span id="borrowedcowstrdeserializer-variant"></span>`type Variant = UnitOnly`
+- <span id="borrowedcowstrdeserializer-type-variant"></span>`type Variant = UnitOnly`
 
-- <span id="borrowedcowstrdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), Error>` — [`Error`](../../index.md)
+- <span id="borrowedcowstrdeserializer-variant-seed"></span>`fn variant_seed<T>(self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), Error>` — [`Error`](../../error/index.md)
 
 ### `UnitOnly`
 
@@ -428,19 +450,21 @@ struct BorrowedCowStrDeserializer<'de> {
 struct UnitOnly;
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:1465`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L1465)*
+
 #### Trait Implementations
 
-##### `impl<'de> VariantAccess for UnitOnly`
+##### `impl VariantAccess for UnitOnly`
 
-- <span id="unitonly-error"></span>`type Error = Error`
+- <span id="unitonly-type-error"></span>`type Error = Error`
 
-- <span id="unitonly-unit-variant"></span>`fn unit_variant(self) -> Result<(), Error>` — [`Error`](../../index.md)
+- <span id="unitonly-unit-variant"></span>`fn unit_variant(self) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
-- <span id="unitonly-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, _seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="unitonly-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, _seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="unitonly-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, _visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="unitonly-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, _visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
-- <span id="unitonly-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
+- <span id="unitonly-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
 
 ## Enums
 
@@ -452,6 +476,8 @@ enum KeyClass {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:1331-1337`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L1331-L1337)*
+
 ## Functions
 
 ### `visit_array`
@@ -462,6 +488,8 @@ where
     V: Visitor<'de>
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:195-211`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L195-L211)*
+
 ### `visit_array_ref`
 
 ```rust
@@ -470,11 +498,19 @@ where
     V: Visitor<'de>
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:731-747`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L731-L747)*
+
 ## Macros
 
 ### `deserialize_number!`
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:169-193`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L169-L193)*
+
 ### `deserialize_value_ref_number!`
 
+*Defined in [`serde_json-1.0.145/src/value/de.rs:705-729`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L705-L729)*
+
 ### `deserialize_numeric_key!`
+
+*Defined in [`serde_json-1.0.145/src/value/de.rs:1217-1243`](../../../../.source_1765210505/serde_json-1.0.145/src/value/de.rs#L1217-L1243)*
 

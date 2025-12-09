@@ -23,6 +23,8 @@ struct LineColIterator<I> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/iter.rs:3-20`](../../../.source_1765210505/serde_json-1.0.145/src/iter.rs#L3-L20)*
+
 #### Fields
 
 - **`line`**: `usize`
@@ -57,15 +59,15 @@ struct LineColIterator<I> {
 
 ##### `impl<I> IntoIterator for LineColIterator<I>`
 
-- <span id="linecoliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="linecoliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="linecoliterator-intoiter"></span>`type IntoIter = I`
+- <span id="linecoliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="linecoliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I> Iterator for LineColIterator<I>`
 
-- <span id="linecoliterator-item"></span>`type Item = Result<u8, Error>`
+- <span id="linecoliterator-type-item"></span>`type Item = Result<u8, Error>`
 
 - <span id="linecoliterator-next"></span>`fn next(&mut self) -> Option<io::Result<u8>>` — [`Result`](../io/index.md)
 

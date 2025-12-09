@@ -32,21 +32,23 @@ struct Queue<T> {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:22-25`](../../../../.source_1765210505/crossbeam-epoch-0.9.18/src/sync/queue.rs#L22-L25)*
+
 #### Implementations
 
 - <span id="queue-new"></span>`fn new() -> Queue<T>` — [`Queue`](#queue)
 
-- <span id="queue-push-internal"></span>`fn push_internal(&self, onto: Shared<'_, Node<T>>, new: Shared<'_, Node<T>>, guard: &Guard) -> bool` — [`Shared`](../../index.md), [`Node`](#node), [`Guard`](../../index.md)
+- <span id="queue-push-internal"></span>`fn push_internal(&self, onto: Shared<'_, Node<T>>, new: Shared<'_, Node<T>>, guard: &Guard) -> bool` — [`Shared`](../../atomic/index.md), [`Node`](#node), [`Guard`](../../guard/index.md)
 
-- <span id="queue-push"></span>`fn push(&self, t: T, guard: &Guard)` — [`Guard`](../../index.md)
+- <span id="queue-push"></span>`fn push(&self, t: T, guard: &Guard)` — [`Guard`](../../guard/index.md)
 
-- <span id="queue-pop-internal"></span>`fn pop_internal(&self, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../index.md)
+- <span id="queue-pop-internal"></span>`fn pop_internal(&self, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md)
 
-- <span id="queue-pop-if-internal"></span>`fn pop_if_internal<F>(&self, condition: F, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../index.md)
+- <span id="queue-pop-if-internal"></span>`fn pop_if_internal<F>(&self, condition: F, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md)
 
-- <span id="queue-try-pop"></span>`fn try_pop(&self, guard: &Guard) -> Option<T>` — [`Guard`](../../index.md)
+- <span id="queue-try-pop"></span>`fn try_pop(&self, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md)
 
-- <span id="queue-try-pop-if"></span>`fn try_pop_if<F>(&self, condition: F, guard: &Guard) -> Option<T>` — [`Guard`](../../index.md)
+- <span id="queue-try-pop-if"></span>`fn try_pop_if<F>(&self, condition: F, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md)
 
 #### Trait Implementations
 
@@ -60,11 +62,11 @@ struct Queue<T> {
 
 ##### `impl<T> Pointable for Queue<T>`
 
-- <span id="queue-align"></span>`const ALIGN: usize`
+- <span id="queue-const-align"></span>`const ALIGN: usize`
 
-- <span id="queue-init"></span>`type Init = T`
+- <span id="queue-type-init"></span>`type Init = T`
 
-- <span id="queue-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
+- <span id="queue-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
 
 - <span id="queue-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -85,6 +87,8 @@ struct Node<T> {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/queue.rs:27-37`](../../../../.source_1765210505/crossbeam-epoch-0.9.18/src/sync/queue.rs#L27-L37)*
+
 #### Fields
 
 - **`data`**: `core::mem::MaybeUninit<T>`
@@ -100,11 +104,11 @@ struct Node<T> {
 
 ##### `impl<T> Pointable for Node<T>`
 
-- <span id="node-align"></span>`const ALIGN: usize`
+- <span id="node-const-align"></span>`const ALIGN: usize`
 
-- <span id="node-init"></span>`type Init = T`
+- <span id="node-type-init"></span>`type Init = T`
 
-- <span id="node-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
+- <span id="node-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
 
 - <span id="node-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

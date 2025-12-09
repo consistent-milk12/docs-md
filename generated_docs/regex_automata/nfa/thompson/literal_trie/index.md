@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`LiteralTrie`](#literaltrie) | struct | A trie that preserves leftmost-first match semantics. |
-| [`Frame`](#frame) | struct | An explicit stack frame used for traversing the trie without using |
+| [`Frame`](#frame) | struct | An explicit stack frame used for traversing the trie without using recursion. |
 | [`State`](#state) | struct | A state in a trie. |
 | [`StateChunksIter`](#statechunksiter) | struct | An iterator over all of the chunks in a state, including the active chunk. |
 | [`Transition`](#transition) | struct | A single transition in a trie to another state. |
@@ -24,6 +24,8 @@ struct LiteralTrie {
     rev: bool,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:81-90`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L81-L90)*
 
 A trie that preserves leftmost-first match semantics.
 
@@ -116,11 +118,11 @@ more general composition of finite state machines.
 
 - <span id="literaltrie-reverse"></span>`fn reverse() -> LiteralTrie` — [`LiteralTrie`](#literaltrie)
 
-- <span id="literaltrie-add"></span>`fn add(&mut self, bytes: &[u8]) -> Result<(), BuildError>` — [`BuildError`](../index.md)
+- <span id="literaltrie-add"></span>`fn add(&mut self, bytes: &[u8]) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
 
-- <span id="literaltrie-get-or-add-state"></span>`fn get_or_add_state(&mut self, from: StateID, byte: u8) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
+- <span id="literaltrie-get-or-add-state"></span>`fn get_or_add_state(&mut self, from: StateID, byte: u8) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
 
-- <span id="literaltrie-compile"></span>`fn compile(&self, builder: &mut Builder) -> Result<ThompsonRef, BuildError>` — [`Builder`](../index.md), [`ThompsonRef`](../compiler/index.md), [`BuildError`](../index.md)
+- <span id="literaltrie-compile"></span>`fn compile(&self, builder: &mut Builder) -> Result<ThompsonRef, BuildError>` — [`Builder`](../builder/index.md), [`ThompsonRef`](../compiler/index.md), [`BuildError`](../error/index.md)
 
 #### Trait Implementations
 
@@ -142,6 +144,8 @@ struct Frame<'a> {
     sparse: alloc::vec::Vec<thompson::Transition>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:303-320`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L303-L320)*
 
 An explicit stack frame used for traversing the trie without using
 recursion.
@@ -189,7 +193,7 @@ subsequent chunks in the trie state, if any exist.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Frame<'a>`
+##### `impl Debug for Frame<'a>`
 
 - <span id="frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -201,6 +205,8 @@ struct State {
     chunks: alloc::vec::Vec<(usize, usize)>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:363-366`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L363-L366)*
 
 A state in a trie.
 
@@ -266,6 +272,8 @@ struct StateChunksIter<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:444-448`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L444-L448)*
+
 An iterator over all of the chunks in a state, including the active chunk.
 
 This iterator is created by `State::chunks`. We name this iterator so that
@@ -273,21 +281,21 @@ we can include it in the `Frame` type for non-recursive trie traversal.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for StateChunksIter<'a>`
+##### `impl Debug for StateChunksIter<'a>`
 
 - <span id="statechunksiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for StateChunksIter<'a>`
+##### `impl IntoIterator for StateChunksIter<'a>`
 
-- <span id="statechunksiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="statechunksiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="statechunksiter-intoiter"></span>`type IntoIter = I`
+- <span id="statechunksiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="statechunksiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for StateChunksIter<'a>`
+##### `impl Iterator for StateChunksIter<'a>`
 
-- <span id="statechunksiter-item"></span>`type Item = &'a [Transition]`
+- <span id="statechunksiter-type-item"></span>`type Item = &'a [Transition]`
 
 - <span id="statechunksiter-next"></span>`fn next(&mut self) -> Option<&'a [Transition]>` — [`Transition`](#transition)
 
@@ -299,6 +307,8 @@ struct Transition {
     next: crate::util::primitives::StateID,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs:466-469`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/literal_trie.rs#L466-L469)*
 
 A single transition in a trie to another state.
 

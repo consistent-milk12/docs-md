@@ -29,6 +29,8 @@ where
     T: Send
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:13-21`](../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/mod.rs#L13-L21)*
+
 Collects the results of the exact iterator into the specified vector.
 
 This is called by `IndexedParallelIterator::collect_into_vec`.
@@ -41,6 +43,8 @@ where
     I: ParallelIterator<Item = T>,
     T: Send
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:34-40`](../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/mod.rs#L34-L40)*
 
 Collects the results of the iterator into the specified vector.
 
@@ -64,6 +68,8 @@ where
     B: Send
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:45-65`](../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/mod.rs#L45-L65)*
+
 Unzips the results of the exact iterator into the specified vectors.
 
 This is called by `IndexedParallelIterator::unzip_into_vecs`.
@@ -76,6 +82,8 @@ where
     T: Send,
     F: FnOnce(self::consumer::CollectConsumer<'_, T>) -> self::consumer::CollectResult<'_, T>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/collect/mod.rs:75-114`](../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/mod.rs#L75-L114)*
 
 Create a consumer on the slice of memory we are collecting into.
 

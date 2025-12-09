@@ -118,6 +118,8 @@ let style = anstyle::Style::new().bold();
 struct Ansi256Color(u8);
 ```
 
+*Defined in [`anstyle-1.0.13/src/color.rs:352`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L352)*
+
 256 (8-bit) color support
 
 - `0..16` are [`AnsiColor`](#ansicolor) palette codes
@@ -184,6 +186,8 @@ struct Ansi256Color(u8);
 struct RgbColor(u8, u8, u8);
 ```
 
+*Defined in [`anstyle-1.0.13/src/color.rs:476`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L476)*
+
 24-bit ANSI RGB color codes
 
 #### Implementations
@@ -249,6 +253,8 @@ struct DisplayBuffer {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/color.rs:571-574`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L571-L574)*
+
 #### Implementations
 
 - <span id="displaybuffer-write-str"></span>`fn write_str(self, part: &'static str) -> Self`
@@ -279,7 +285,7 @@ struct DisplayBuffer {
 
 - <span id="displaybuffer-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for DisplayBuffer`
+##### `impl ToString for DisplayBuffer`
 
 - <span id="displaybuffer-to-string"></span>`fn to_string(&self) -> String`
 
@@ -288,6 +294,8 @@ struct DisplayBuffer {
 ```rust
 struct NullFormatter(&'static str);
 ```
+
+*Defined in [`anstyle-1.0.13/src/color.rs:635`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L635)*
 
 #### Trait Implementations
 
@@ -309,7 +317,7 @@ struct NullFormatter(&'static str);
 
 - <span id="nullformatter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for NullFormatter`
+##### `impl ToString for NullFormatter`
 
 - <span id="nullformatter-to-string"></span>`fn to_string(&self) -> String`
 
@@ -318,6 +326,8 @@ struct NullFormatter(&'static str);
 ```rust
 struct Effects(u16);
 ```
+
+*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L9)*
 
 A set of text effects
 
@@ -329,31 +339,31 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 #### Implementations
 
-- <span id="effects-plain"></span>`const PLAIN: Self`
+- <span id="effects-const-plain"></span>`const PLAIN: Self`
 
-- <span id="effects-bold"></span>`const BOLD: Self`
+- <span id="effects-const-bold"></span>`const BOLD: Self`
 
-- <span id="effects-dimmed"></span>`const DIMMED: Self`
+- <span id="effects-const-dimmed"></span>`const DIMMED: Self`
 
-- <span id="effects-italic"></span>`const ITALIC: Self`
+- <span id="effects-const-italic"></span>`const ITALIC: Self`
 
-- <span id="effects-underline"></span>`const UNDERLINE: Self`
+- <span id="effects-const-underline"></span>`const UNDERLINE: Self`
 
-- <span id="effects-double-underline"></span>`const DOUBLE_UNDERLINE: Self`
+- <span id="effects-const-double-underline"></span>`const DOUBLE_UNDERLINE: Self`
 
-- <span id="effects-curly-underline"></span>`const CURLY_UNDERLINE: Self`
+- <span id="effects-const-curly-underline"></span>`const CURLY_UNDERLINE: Self`
 
-- <span id="effects-dotted-underline"></span>`const DOTTED_UNDERLINE: Self`
+- <span id="effects-const-dotted-underline"></span>`const DOTTED_UNDERLINE: Self`
 
-- <span id="effects-dashed-underline"></span>`const DASHED_UNDERLINE: Self`
+- <span id="effects-const-dashed-underline"></span>`const DASHED_UNDERLINE: Self`
 
-- <span id="effects-blink"></span>`const BLINK: Self`
+- <span id="effects-const-blink"></span>`const BLINK: Self`
 
-- <span id="effects-invert"></span>`const INVERT: Self`
+- <span id="effects-const-invert"></span>`const INVERT: Self`
 
-- <span id="effects-hidden"></span>`const HIDDEN: Self`
+- <span id="effects-const-hidden"></span>`const HIDDEN: Self`
 
-- <span id="effects-strikethrough"></span>`const STRIKETHROUGH: Self`
+- <span id="effects-const-strikethrough"></span>`const STRIKETHROUGH: Self`
 
 - <span id="effects-new"></span>`const fn new() -> Self`
 
@@ -381,7 +391,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl BitOr for Effects`
 
-- <span id="effects-output"></span>`type Output = Effects`
+- <span id="effects-type-output"></span>`type Output = Effects`
 
 - <span id="effects-bitor"></span>`fn bitor(self, rhs: Self) -> Self`
 
@@ -425,7 +435,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl Sub for Effects`
 
-- <span id="effects-output"></span>`type Output = Effects`
+- <span id="effects-type-output"></span>`type Output = Effects`
 
 - <span id="effects-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -442,11 +452,15 @@ struct Metadata {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L263-L266)*
+
 ### `EffectsDisplay`
 
 ```rust
 struct EffectsDisplay(Effects);
 ```
+
+*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L320)*
 
 #### Trait Implementations
 
@@ -468,7 +482,7 @@ struct EffectsDisplay(Effects);
 
 - <span id="effectsdisplay-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for EffectsDisplay`
+##### `impl ToString for EffectsDisplay`
 
 - <span id="effectsdisplay-to-string"></span>`fn to_string(&self) -> String`
 
@@ -480,6 +494,8 @@ struct EffectIter {
     effects: Effects,
 }
 ```
+
+*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L334-L337)*
 
 Enumerate each enabled value in [`Effects`](#effects)
 
@@ -495,17 +511,17 @@ Enumerate each enabled value in [`Effects`](#effects)
 
 ##### `impl Eq for EffectIter`
 
-##### `impl<I> IntoIterator for EffectIter`
+##### `impl IntoIterator for EffectIter`
 
-- <span id="effectiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="effectiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="effectiter-intoiter"></span>`type IntoIter = I`
+- <span id="effectiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="effectiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIter`
 
-- <span id="effectiter-item"></span>`type Item = Effects`
+- <span id="effectiter-type-item"></span>`type Item = Effects`
 
 - <span id="effectiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -524,6 +540,8 @@ struct EffectIndexIter {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L358-L361)*
+
 #### Trait Implementations
 
 ##### `impl Clone for EffectIndexIter`
@@ -536,17 +554,17 @@ struct EffectIndexIter {
 
 ##### `impl Eq for EffectIndexIter`
 
-##### `impl<I> IntoIterator for EffectIndexIter`
+##### `impl IntoIterator for EffectIndexIter`
 
-- <span id="effectindexiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="effectindexiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="effectindexiter-intoiter"></span>`type IntoIter = I`
+- <span id="effectindexiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="effectindexiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIndexIter`
 
-- <span id="effectindexiter-item"></span>`type Item = usize`
+- <span id="effectindexiter-type-item"></span>`type Item = usize`
 
 - <span id="effectindexiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -561,6 +579,8 @@ struct EffectIndexIter {
 ```rust
 struct Reset;
 ```
+
+*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../.source_1765210505/anstyle-1.0.13/src/reset.rs#L4)*
 
 Reset terminal formatting
 
@@ -608,7 +628,7 @@ Reset terminal formatting
 
 ##### `impl StructuralPartialEq for Reset`
 
-##### `impl<T> ToString for Reset`
+##### `impl ToString for Reset`
 
 - <span id="reset-to-string"></span>`fn to_string(&self) -> String`
 
@@ -622,6 +642,8 @@ struct Style {
     effects: crate::Effects,
 }
 ```
+
+*Defined in [`anstyle-1.0.13/src/style.rs:18-23`](../../.source_1765210505/anstyle-1.0.13/src/style.rs#L18-L23)*
 
 ANSI Text styling
 
@@ -640,27 +662,31 @@ println!("{style}{value}{style:#}");
 
 #### Implementations
 
-- <span id="style-bold"></span>`const fn bold(self) -> Self`
+- <span id="style-new"></span>`const fn new() -> Self`
 
-- <span id="style-dimmed"></span>`const fn dimmed(self) -> Self`
+- <span id="style-fg-color"></span>`const fn fg_color(self, fg: Option<crate::Color>) -> Self` — [`Color`](#color)
 
-- <span id="style-italic"></span>`const fn italic(self) -> Self`
+- <span id="style-bg-color"></span>`const fn bg_color(self, bg: Option<crate::Color>) -> Self` — [`Color`](#color)
 
-- <span id="style-underline"></span>`const fn underline(self) -> Self`
+- <span id="style-underline-color"></span>`const fn underline_color(self, underline: Option<crate::Color>) -> Self` — [`Color`](#color)
 
-- <span id="style-blink"></span>`const fn blink(self) -> Self`
+- <span id="style-effects"></span>`const fn effects(self, effects: crate::Effects) -> Self` — [`Effects`](#effects)
 
-- <span id="style-invert"></span>`const fn invert(self) -> Self`
+- <span id="style-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
-- <span id="style-hidden"></span>`const fn hidden(self) -> Self`
+- <span id="style-fmt-to"></span>`fn fmt_to(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-- <span id="style-strikethrough"></span>`const fn strikethrough(self) -> Self`
+- <span id="style-write-to"></span>`fn write_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+
+- <span id="style-render-reset"></span>`fn render_reset(self) -> impl core::fmt::Display + Copy`
+
+- <span id="style-write-reset-to"></span>`fn write_reset_to(self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl BitOr for Style`
 
-- <span id="style-output"></span>`type Output = Style`
+- <span id="style-type-output"></span>`type Output = Style`
 
 - <span id="style-bitor"></span>`fn bitor(self, rhs: crate::Effects) -> Self` — [`Effects`](#effects)
 
@@ -708,7 +734,7 @@ println!("{style}{value}{style:#}");
 
 ##### `impl Sub for Style`
 
-- <span id="style-output"></span>`type Output = Style`
+- <span id="style-type-output"></span>`type Output = Style`
 
 - <span id="style-sub"></span>`fn sub(self, other: crate::Effects) -> Self` — [`Effects`](#effects)
 
@@ -716,7 +742,7 @@ println!("{style}{value}{style:#}");
 
 - <span id="style-sub-assign"></span>`fn sub_assign(&mut self, other: crate::Effects)` — [`Effects`](#effects)
 
-##### `impl<T> ToString for Style`
+##### `impl ToString for Style`
 
 - <span id="style-to-string"></span>`fn to_string(&self) -> String`
 
@@ -725,6 +751,8 @@ println!("{style}{value}{style:#}");
 ```rust
 struct StyleDisplay(Style);
 ```
+
+*Defined in [`anstyle-1.0.13/src/style.rs:423`](../../.source_1765210505/anstyle-1.0.13/src/style.rs#L423)*
 
 #### Trait Implementations
 
@@ -746,7 +774,7 @@ struct StyleDisplay(Style);
 
 - <span id="styledisplay-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for StyleDisplay`
+##### `impl ToString for StyleDisplay`
 
 - <span id="styledisplay-to-string"></span>`fn to_string(&self) -> String`
 
@@ -761,6 +789,8 @@ enum Color {
     Rgb(RgbColor),
 }
 ```
+
+*Defined in [`anstyle-1.0.13/src/color.rs:4-17`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L4-L17)*
 
 Any ANSI color code scheme
 
@@ -856,6 +886,8 @@ enum AnsiColor {
     BrightWhite,
 }
 ```
+
+*Defined in [`anstyle-1.0.13/src/color.rs:138-186`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L138-L186)*
 
 Available 4-bit ANSI color palette codes
 
@@ -986,20 +1018,23 @@ The user's terminal defines the meaning of the each palette code.
 ## Constants
 
 ### `DISPLAY_BUFFER_CAPACITY`
-
 ```rust
 const DISPLAY_BUFFER_CAPACITY: usize = 19usize;
 ```
 
-### `METADATA`
+*Defined in [`anstyle-1.0.13/src/color.rs:568`](../../.source_1765210505/anstyle-1.0.13/src/color.rs#L568)*
 
+### `METADATA`
 ```rust
 const METADATA: [Metadata; 12];
 ```
 
-### `RESET`
+*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L268-L317)*
 
+### `RESET`
 ```rust
 const RESET: &str;
 ```
+
+*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../.source_1765210505/anstyle-1.0.13/src/reset.rs#L22)*
 

@@ -23,6 +23,8 @@ struct ParserBuilder {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/parser.rs:25-28`](../../../.source_1765210505/regex-syntax-0.8.8/src/parser.rs#L25-L28)*
+
 A builder for a regular expression parser.
 
 This builder permits modifying configuration options for the parser.
@@ -33,37 +35,37 @@ This type combines the builder options for both the [AST
 
 #### Implementations
 
-- <span id="parserbuilder-new"></span>`fn new() -> ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-new"></span>`fn new() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-build"></span>`fn build(&self) -> Parser` — [`Parser`](../index.md)
+- <span id="parserbuilder-build"></span>`fn build(&self) -> Parser` — [`Parser`](#parser)
 
-- <span id="parserbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-utf8"></span>`fn utf8(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-utf8"></span>`fn utf8(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- <span id="parserbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for ParserBuilder`
 
-- <span id="parserbuilder-clone"></span>`fn clone(&self) -> ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-clone"></span>`fn clone(&self) -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ##### `impl Debug for ParserBuilder`
 
@@ -71,7 +73,7 @@ This type combines the builder options for both the [AST
 
 ##### `impl Default for ParserBuilder`
 
-- <span id="parserbuilder-default"></span>`fn default() -> ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-default"></span>`fn default() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ### `Parser`
 
@@ -81,6 +83,8 @@ struct Parser {
     hir: hir::translate::Translator,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/parser.rs:230-233`](../../../.source_1765210505/regex-syntax-0.8.8/src/parser.rs#L230-L233)*
 
 A convenience parser for regular expressions.
 
@@ -94,19 +98,19 @@ convenience for never having to deal with it at all.
 If callers have more fine grained use cases that need an AST, then please
 see the [`ast::parse`](../ast/parse/index.md) module.
 
-A `Parser` can be configured in more detail via a [`ParserBuilder`](../index.md).
+A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuilder).
 
 #### Implementations
 
-- <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](../index.md)
+- <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
-- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](../hir/index.md), [`Error`](../index.md)
+- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](../hir/index.md), [`Error`](../error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Parser`
 
-- <span id="parser-clone"></span>`fn clone(&self) -> Parser` — [`Parser`](../index.md)
+- <span id="parser-clone"></span>`fn clone(&self) -> Parser` — [`Parser`](#parser)
 
 ##### `impl Debug for Parser`
 
@@ -120,11 +124,13 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](../index.md)
 fn parse(pattern: &str) -> Result<hir::Hir, crate::Error>
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/parser.rs:13-15`](../../../.source_1765210505/regex-syntax-0.8.8/src/parser.rs#L13-L15)*
+
 A convenience routine for parsing a regex using default options.
 
 This is equivalent to `Parser::new().parse(pattern)`.
 
-If you need to set non-default options, then use a [`ParserBuilder`](../index.md).
+If you need to set non-default options, then use a [`ParserBuilder`](#parserbuilder).
 
 This routine returns an [`Hir`](hir::Hir) value. Namely, it automatically
 parses the pattern as an [`Ast`](ast::Ast) and then invokes the translator

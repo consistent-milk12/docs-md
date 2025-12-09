@@ -46,6 +46,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:19-26`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L19-L26)*
+
 An iterator for the COMDAT section groups in an [`ElfFile`](../index.md).
 
 #### Implementations
@@ -60,15 +62,15 @@ An iterator for the COMDAT section groups in an [`ElfFile`](../index.md).
 
 ##### `impl<I> IntoIterator for ElfComdatIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfcomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfcomdatiterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfcomdatiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfComdatIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatiterator-item"></span>`type Item = ElfComdat<'data, 'file, Elf, R>`
+- <span id="elfcomdatiterator-type-item"></span>`type Item = ElfComdat<'data, 'file, Elf, R>`
 
 - <span id="elfcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -84,6 +86,8 @@ where
     sections: &'data [crate::endian::U32Bytes<<Elf as >::Endian>],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:70-78`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L70-L78)*
 
 A COMDAT section group in an [`ElfFile`](../index.md).
 
@@ -105,7 +109,7 @@ Most functionality is provided by the [`ObjectComdat`](../../index.md) trait imp
 
 ##### `impl<'data, 'file, Elf, R> ObjectComdat for ElfComdat<'data, 'file, Elf, R>`
 
-- <span id="elfcomdat-sectioniterator"></span>`type SectionIterator = ElfComdatSectionIterator<'data, 'file, Elf, R>`
+- <span id="elfcomdat-type-sectioniterator"></span>`type SectionIterator = ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
 - <span id="elfcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md)
 
@@ -131,6 +135,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:166-173`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L166-L173)*
+
 An iterator for the sections in a COMDAT section group in an [`ElfFile`](../index.md).
 
 #### Trait Implementations
@@ -141,15 +147,15 @@ An iterator for the sections in a COMDAT section group in an [`ElfFile`](../inde
 
 ##### `impl<I> IntoIterator for ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfcomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfcomdatsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfcomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfComdatSectionIterator<'data, 'file, Elf, R>`
 
-- <span id="elfcomdatsectioniterator-item"></span>`type Item = SectionIndex`
+- <span id="elfcomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="elfcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -161,6 +167,8 @@ An iterator for the sections in a COMDAT section group in an [`ElfFile`](../inde
 type ElfComdatIterator32<'data, 'file, Endian, R> = ElfComdatIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:11-12`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L11-L12)*
+
 An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfComdatIterator64<'data, 'file, Endian, R>`
@@ -168,6 +176,8 @@ An iterator for the COMDAT section groups in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfComdatIterator64<'data, 'file, Endian, R> = ElfComdatIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:14-15`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L14-L15)*
 
 An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64).
 
@@ -177,6 +187,8 @@ An iterator for the COMDAT section groups in an [`ElfFile64`](super::ElfFile64).
 type ElfComdat32<'data, 'file, Endian, R> = ElfComdat<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:60-61`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L60-L61)*
+
 A COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfComdat64<'data, 'file, Endian, R>`
@@ -184,6 +196,8 @@ A COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfComdat64<'data, 'file, Endian, R> = ElfComdat<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:63-64`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L63-L64)*
 
 A COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 
@@ -193,6 +207,8 @@ A COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 type ElfComdatSectionIterator32<'data, 'file, Endian, R> = ElfComdatSectionIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:158-159`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L158-L159)*
+
 An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfComdatSectionIterator64<'data, 'file, Endian, R>`
@@ -200,6 +216,8 @@ An iterator for the sections in a COMDAT section group in an [`ElfFile32`](super
 ```rust
 type ElfComdatSectionIterator64<'data, 'file, Endian, R> = ElfComdatSectionIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/comdat.rs:161-162`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/comdat.rs#L161-L162)*
 
 An iterator for the sections in a COMDAT section group in an [`ElfFile64`](super::ElfFile64).
 

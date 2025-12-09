@@ -21,17 +21,19 @@ struct Replacements<I> {
 }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/replace.rs:18-23`](../../../.source_1765210505/unicode-normalization-0.1.25/src/replace.rs#L18-L23)*
+
 External iterator for replacements for a string's characters.
 
 #### Implementations
 
-- <span id="replacements-new-cjk-compat-variants"></span>`fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](../index.md)
+- <span id="replacements-new-cjk-compat-variants"></span>`fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](#replacements)
 
 #### Trait Implementations
 
 ##### `impl<I: clone::Clone> Clone for Replacements<I>`
 
-- <span id="replacements-clone"></span>`fn clone(&self) -> Replacements<I>` — [`Replacements`](../index.md)
+- <span id="replacements-clone"></span>`fn clone(&self) -> Replacements<I>` — [`Replacements`](#replacements)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Replacements<I>`
 
@@ -41,15 +43,15 @@ External iterator for replacements for a string's characters.
 
 ##### `impl<I> IntoIterator for Replacements<I>`
 
-- <span id="replacements-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="replacements-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="replacements-intoiter"></span>`type IntoIter = I`
+- <span id="replacements-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="replacements-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Replacements<I>`
 
-- <span id="replacements-item"></span>`type Item = char`
+- <span id="replacements-type-item"></span>`type Item = char`
 
 - <span id="replacements-next"></span>`fn next(&mut self) -> Option<char>`
 
@@ -61,15 +63,15 @@ External iterator for replacements for a string's characters.
 
 ##### `impl<I> UnicodeNormalization for Replacements<I>`
 
-- <span id="replacements-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="replacements-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
 
-- <span id="replacements-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="replacements-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
 
-- <span id="replacements-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="replacements-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
 
-- <span id="replacements-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="replacements-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
 
-- <span id="replacements-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](../index.md)
+- <span id="replacements-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](#replacements)
 
-- <span id="replacements-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
+- <span id="replacements-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](../stream_safe/index.md)
 

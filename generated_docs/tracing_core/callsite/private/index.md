@@ -18,5 +18,7 @@
 struct Private<T>(T);
 ```
 
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:512`](../../../../.source_1765210505/tracing-core-0.1.35/src/callsite.rs#L512)*
+
 Don't call this function, it's private.
 

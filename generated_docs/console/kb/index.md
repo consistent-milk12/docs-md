@@ -40,6 +40,8 @@ enum Key {
 }
 ```
 
+*Defined in [`console-0.16.1/src/kb.rs:9-32`](../../../.source_1765210505/console-0.16.1/src/kb.rs#L9-L32)*
+
 Key mapping
 
 This is an incomplete mapping of keys that are supported for reading
@@ -55,7 +57,7 @@ from the keyboard.
 
 ##### `impl Clone for Key`
 
-- <span id="key-clone"></span>`fn clone(&self) -> Key` — [`Key`](../index.md)
+- <span id="key-clone"></span>`fn clone(&self) -> Key` — [`Key`](#key)
 
 ##### `impl Debug for Key`
 
@@ -69,7 +71,7 @@ from the keyboard.
 
 ##### `impl PartialEq for Key`
 
-- <span id="key-eq"></span>`fn eq(&self, other: &Key) -> bool` — [`Key`](../index.md)
+- <span id="key-eq"></span>`fn eq(&self, other: &Key) -> bool` — [`Key`](#key)
 
 ##### `impl StructuralPartialEq for Key`
 

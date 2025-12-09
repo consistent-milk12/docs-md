@@ -23,6 +23,8 @@
 trait TokenStreamExt: private::Sealed { ... }
 ```
 
+*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../../.source_1765210505/quote-1.0.42/src/ext.rs#L8-L57)*
+
 TokenStream extension trait with methods for appending tokens.
 
 This trait is sealed and cannot be implemented outside of the `quote` crate.

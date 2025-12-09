@@ -45,20 +45,20 @@ Functions for parsing DWARF `.debug_info` and `.debug_types` sections.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`DebugInfo`](#debuginfo) | struct | The `DebugInfo` struct represents the DWARF debugging information found in |
+| [`DebugInfo`](#debuginfo) | struct | The `DebugInfo` struct represents the DWARF debugging information found in the `.debug_info` section. |
 | [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter) | struct | An iterator over the units of a .debug_info section. |
-| [`UnitHeader`](#unitheader) | struct | The common fields for the headers of compilation units and |
+| [`UnitHeader`](#unitheader) | struct | The common fields for the headers of compilation units and type units. |
 | [`DebuggingInformationEntry`](#debugginginformationentry) | struct | A Debugging Information Entry (DIE). |
-| [`Attribute`](#attribute) | struct | An attribute in a `DebuggingInformationEntry`, consisting of a name and |
+| [`Attribute`](#attribute) | struct | An attribute in a `DebuggingInformationEntry`, consisting of a name and associated value. |
 | [`AttrsIter`](#attrsiter) | struct | An iterator over a particular entry's attributes. |
 | [`EntriesRaw`](#entriesraw) | struct | A raw reader of the data that defines the Debugging Information Entries. |
 | [`EntriesCursor`](#entriescursor) | struct | A cursor into the Debugging Information Entries tree for a compilation unit. |
 | [`EntriesTree`](#entriestree) | struct | The state information for a tree view of the Debugging Information Entries. |
 | [`EntriesTreeNode`](#entriestreenode) | struct | A node in the Debugging Information Entry tree. |
-| [`EntriesTreeIter`](#entriestreeiter) | struct | An iterator that allows traversal of the children of an |
-| [`DebugTypes`](#debugtypes) | struct | The `DebugTypes` struct represents the DWARF type information |
+| [`EntriesTreeIter`](#entriestreeiter) | struct | An iterator that allows traversal of the children of an `EntriesTreeNode`. |
+| [`DebugTypes`](#debugtypes) | struct | The `DebugTypes` struct represents the DWARF type information found in the `.debug_types` section. |
 | [`DebugTypesUnitHeadersIter`](#debugtypesunitheadersiter) | struct | An iterator over the type-units of this `.debug_types` section. |
-| [`UnitType`](#unittype) | enum | This enum specifies the type of the unit and any type |
+| [`UnitType`](#unittype) | enum | This enum specifies the type of the unit and any type specific data carried in the header (e.g. the type signature/type offset of a type unit). |
 | [`AttributeValue`](#attributevalue) | enum | The value of an attribute in a `DebuggingInformationEntry`. |
 | [`parse_unit_type`](#parse_unit_type) | fn | Parse the unit type from the unit header. |
 | [`parse_debug_abbrev_offset`](#parse_debug_abbrev_offset) | fn | Parse the `debug_abbrev_offset` in the compilation unit header. |
@@ -85,14 +85,14 @@ struct DebugInfo<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:82-84`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L82-L84)*
+
 The `DebugInfo` struct represents the DWARF debugging information found in
 the `.debug_info` section.
 
 #### Implementations
 
-- <span id="debuginfo-units"></span>`fn units(&self) -> DebugInfoUnitHeadersIter<R>` — [`DebugInfoUnitHeadersIter`](../index.md)
-
-- <span id="debuginfo-header-from-offset"></span>`fn header_from_offset(&self, offset: DebugInfoOffset<<R as >::Offset>) -> Result<UnitHeader<R>>` — [`DebugInfoOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnitHeader`](../index.md)
+- <span id="debuginfo-new"></span>`fn new(debug_info_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -124,6 +124,8 @@ struct DebugInfoUnitHeadersIter<R: Reader> {
     offset: crate::common::DebugInfoOffset<<R as >::Offset>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:179-182`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L179-L182)*
 
 An iterator over the units of a .debug_info section.
 
@@ -160,52 +162,14 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:303-314`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L303-L314)*
+
 The common fields for the headers of compilation units and
 type units.
 
 #### Implementations
 
-- <span id="unitheader-offset"></span>`fn offset(&self) -> UnitSectionOffset<Offset>` — [`UnitSectionOffset`](../../index.md)
-
-- <span id="unitheader-size-of-header"></span>`fn size_of_header(&self) -> usize`
-
-- <span id="unitheader-unit-length"></span>`fn unit_length(&self) -> Offset`
-
-- <span id="unitheader-length-including-self"></span>`fn length_including_self(&self) -> Offset`
-
-- <span id="unitheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md)
-
-- <span id="unitheader-version"></span>`fn version(&self) -> u16`
-
-- <span id="unitheader-type"></span>`fn type_(&self) -> UnitType<Offset>` — [`UnitType`](../index.md)
-
-- <span id="unitheader-debug-abbrev-offset"></span>`fn debug_abbrev_offset(&self) -> DebugAbbrevOffset<Offset>` — [`DebugAbbrevOffset`](../../index.md)
-
-- <span id="unitheader-address-size"></span>`fn address_size(&self) -> u8`
-
-- <span id="unitheader-format"></span>`fn format(&self) -> Format` — [`Format`](../../index.md)
-
-- <span id="unitheader-header-size"></span>`fn header_size(&self) -> Offset`
-
-- <span id="unitheader-is-valid-offset"></span>`fn is_valid_offset(&self, offset: UnitOffset<Offset>) -> bool` — [`UnitOffset`](../../index.md)
-
-- <span id="unitheader-range"></span>`fn range(&self, idx: Range<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../../index.md), [`Result`](../../index.md)
-
-- <span id="unitheader-range-from"></span>`fn range_from(&self, idx: RangeFrom<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../../index.md), [`Result`](../../index.md)
-
-- <span id="unitheader-range-to"></span>`fn range_to(&self, idx: RangeTo<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../../index.md), [`Result`](../../index.md)
-
-- <span id="unitheader-entry"></span>`fn entry<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<DebuggingInformationEntry<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`DebuggingInformationEntry`](../index.md)
-
-- <span id="unitheader-entries"></span>`fn entries<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations) -> EntriesCursor<'abbrev, 'me, R>` — [`Abbreviations`](../index.md), [`EntriesCursor`](../index.md)
-
-- <span id="unitheader-entries-at-offset"></span>`fn entries_at_offset<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<EntriesCursor<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`EntriesCursor`](../index.md)
-
-- <span id="unitheader-entries-tree"></span>`fn entries_tree<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesTree<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`EntriesTree`](../index.md)
-
-- <span id="unitheader-entries-raw"></span>`fn entries_raw<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesRaw<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`EntriesRaw`](../index.md)
-
-- <span id="unitheader-abbreviations"></span>`fn abbreviations(&self, debug_abbrev: &DebugAbbrev<R>) -> Result<Abbreviations>` — [`DebugAbbrev`](../index.md), [`Result`](../../index.md), [`Abbreviations`](../index.md)
+- <span id="unitheader-new"></span>`fn new(encoding: Encoding, unit_length: Offset, unit_type: UnitType<Offset>, debug_abbrev_offset: DebugAbbrevOffset<Offset>, unit_offset: UnitSectionOffset<Offset>, entries_buf: R) -> Self` — [`Encoding`](../../index.md), [`UnitType`](../index.md), [`DebugAbbrevOffset`](../../index.md), [`UnitSectionOffset`](../../index.md)
 
 #### Trait Implementations
 
@@ -241,6 +205,8 @@ where
     unit: &'unit UnitHeader<R, Offset>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:647-657`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L647-L657)*
 
 A Debugging Information Entry (DIE).
 
@@ -290,6 +256,8 @@ struct Attribute<R: Reader> {
     value: AttributeValue<R>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1111-1114`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L1111-L1114)*
 
 An attribute in a `DebuggingInformationEntry`, consisting of a name and
 associated value.
@@ -348,6 +316,8 @@ struct AttrsIter<'abbrev, 'entry, 'unit, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2272-2276`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L2272-L2276)*
+
 An iterator over a particular entry's attributes.
 
 See [the documentation for
@@ -385,6 +355,8 @@ where
     depth: isize,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2382-2390`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L2382-L2390)*
 
 A raw reader of the data that defines the Debugging Information Entries.
 
@@ -477,6 +449,8 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2463-2472`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L2463-L2472)*
+
 A cursor into the Debugging Information Entries tree for a compilation unit.
 
 The `EntriesCursor` can traverse the DIE tree in DFS order using `next_dfs()`,
@@ -525,6 +499,8 @@ where
     depth: isize,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2847-2857`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L2847-L2857)*
 
 The state information for a tree view of the Debugging Information Entries.
 
@@ -594,6 +570,8 @@ struct EntriesTreeNode<'abbrev, 'unit, 'tree, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2979-2982`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L2979-L2982)*
+
 A node in the Debugging Information Entry tree.
 
 The root node of a tree can be obtained
@@ -623,6 +601,8 @@ struct EntriesTreeIter<'abbrev, 'unit, 'tree, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3014-3018`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L3014-L3018)*
+
 An iterator that allows traversal of the children of an
 `EntriesTreeNode`.
 
@@ -648,6 +628,8 @@ struct DebugTypes<R> {
     debug_types_section: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3061-3063`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L3061-L3063)*
 
 The `DebugTypes` struct represents the DWARF type information
 found in the `.debug_types` section.
@@ -686,6 +668,8 @@ struct DebugTypesUnitHeadersIter<R: Reader> {
     offset: crate::common::DebugTypesOffset<<R as >::Offset>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3152-3155`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L3152-L3155)*
 
 An iterator over the type-units of this `.debug_types` section.
 
@@ -729,6 +713,8 @@ where
     },
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:241-279`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L241-L279)*
 
 This enum specifies the type of the unit and any type
 specific data carried in the header (e.g. the type
@@ -851,6 +837,8 @@ where
     DwoId(crate::common::DwoId),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:933-1106`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L933-L1106)*
 
 The value of an attribute in a `DebuggingInformationEntry`.
 
@@ -1117,6 +1105,8 @@ The value of an attribute in a `DebuggingInformationEntry`.
 fn parse_unit_type<R: Reader>(input: &mut R) -> crate::read::Result<constants::DwUt>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:216-219`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L216-L219)*
+
 Parse the unit type from the unit header.
 
 ### `parse_debug_abbrev_offset`
@@ -1125,6 +1115,8 @@ Parse the unit type from the unit header.
 fn parse_debug_abbrev_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::common::DebugAbbrevOffset<<R as >::Offset>>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:222-227`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L222-L227)*
+
 Parse the `debug_abbrev_offset` in the compilation unit header.
 
 ### `parse_debug_info_offset`
@@ -1132,6 +1124,8 @@ Parse the `debug_abbrev_offset` in the compilation unit header.
 ```rust
 fn parse_debug_info_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::common::DebugInfoOffset<<R as >::Offset>>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:230-235`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L230-L235)*
 
 Parse the `debug_info_offset` in the arange header.
 
@@ -1144,6 +1138,8 @@ where
     Offset: ReaderOffset
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:558-636`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L558-L636)*
+
 Parse a unit header.
 
 ### `parse_dwo_id`
@@ -1151,6 +1147,8 @@ Parse a unit header.
 ```rust
 fn parse_dwo_id<R: Reader>(input: &mut R) -> crate::read::Result<crate::common::DwoId>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:639-641`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L639-L641)*
 
 Parse a dwo_id from a header
 
@@ -1160,11 +1158,15 @@ Parse a dwo_id from a header
 fn length_u8_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1928-1931`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L1928-L1931)*
+
 ### `length_u16_value`
 
 ```rust
 fn length_u16_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1933-1936`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L1933-L1936)*
 
 ### `length_u32_value`
 
@@ -1172,11 +1174,15 @@ fn length_u16_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn length_u32_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1938-1941`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L1938-L1941)*
+
 ### `length_uleb128_value`
 
 ```rust
 fn length_uleb128_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1943-1946`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L1943-L1946)*
 
 ### `allow_section_offset`
 
@@ -1184,11 +1190,15 @@ fn length_uleb128_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
 fn allow_section_offset(name: constants::DwAt, version: u16) -> bool
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1950-1968`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L1950-L1968)*
+
 ### `parse_attribute`
 
 ```rust
 fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, spec: crate::read::AttributeSpecification) -> crate::read::Result<Attribute<R>>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:1970-2193`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L1970-L2193)*
 
 ### `skip_attributes`
 
@@ -1196,11 +1206,15 @@ fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, 
 fn skip_attributes<R: Reader>(input: &mut R, encoding: crate::common::Encoding, specs: &[crate::read::AttributeSpecification]) -> crate::read::Result<()>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/unit.rs:2195-2261`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L2195-L2261)*
+
 ### `parse_type_signature`
 
 ```rust
 fn parse_type_signature<R: Reader>(input: &mut R) -> crate::read::Result<crate::common::DebugTypeSignature>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3049-3051`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L3049-L3051)*
 
 Parse a type unit header's unique type signature. Callers should handle
 unique-ness checking.
@@ -1210,6 +1224,8 @@ unique-ness checking.
 ```rust
 fn parse_type_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::read::UnitOffset<<R as >::Offset>>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/unit.rs:3054-3056`](../../../../.source_1765210505/gimli-0.32.3/src/read/unit.rs#L3054-L3056)*
 
 Parse a type unit header's type offset.
 

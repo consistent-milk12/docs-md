@@ -48,6 +48,8 @@
 struct NotRefUnwindSafe(core::cell::UnsafeCell<()>);
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:22`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L22)*
+
 #### Trait Implementations
 
 ##### `impl Sync for NotRefUnwindSafe`
@@ -61,23 +63,33 @@ struct AtomicPtr<T> {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:27-31`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L27-L31)*
+
 #### Implementations
 
-- <span id="atomicptr-compare-exchange"></span>`fn compare_exchange(&self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](../../index.md)
+- <span id="atomicptr-new"></span>`const fn new(v: *mut T) -> Self`
 
-- <span id="atomicptr-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](../../index.md)
+- <span id="atomicptr-is-lock-free"></span>`fn is_lock_free() -> bool`
+
+- <span id="atomicptr-const-is-always-lock-free"></span>`const IS_ALWAYS_LOCK_FREE: bool`
+
+- <span id="atomicptr-load"></span>`fn load(&self, order: Ordering) -> *mut T` — [`Ordering`](../../index.md)
+
+- <span id="atomicptr-store"></span>`fn store(&self, ptr: *mut T, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomicptr-as-ptr"></span>`const fn as_ptr(&self) -> *mut *mut T`
 
 #### Trait Implementations
 
 ##### `impl<T> Deref for AtomicPtr<T>`
 
-- <span id="atomicptr-target"></span>`type Target = AtomicPtr<T>`
+- <span id="atomicptr-type-target"></span>`type Target = AtomicPtr<T>`
 
 - <span id="atomicptr-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<P, T> Receiver for AtomicPtr<T>`
 
-- <span id="atomicptr-target"></span>`type Target = T`
+- <span id="atomicptr-type-target"></span>`type Target = T`
 
 ### `AtomicIsize`
 
@@ -88,31 +100,31 @@ struct AtomicIsize {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:398`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L398)*
+
 #### Implementations
 
-- <span id="atomicisize-new"></span>`const fn new(v: isize) -> Self`
+- <span id="atomicisize-add"></span>`fn add(&self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicisize-is-lock-free"></span>`fn is_lock_free() -> bool`
+- <span id="atomicisize-sub"></span>`fn sub(&self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicisize-is-always-lock-free"></span>`const IS_ALWAYS_LOCK_FREE: bool`
+- <span id="atomicisize-and"></span>`fn and(&self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicisize-load"></span>`fn load(&self, order: Ordering) -> isize` — [`Ordering`](../../index.md)
+- <span id="atomicisize-or"></span>`fn or(&self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicisize-store"></span>`fn store(&self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
-
-- <span id="atomicisize-as-ptr"></span>`const fn as_ptr(&self) -> *mut isize`
+- <span id="atomicisize-xor"></span>`fn xor(&self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Deref for AtomicIsize`
 
-- <span id="atomicisize-target"></span>`type Target = AtomicIsize`
+- <span id="atomicisize-type-target"></span>`type Target = AtomicIsize`
 
 - <span id="atomicisize-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicIsize`
+##### `impl Receiver for AtomicIsize`
 
-- <span id="atomicisize-target"></span>`type Target = T`
+- <span id="atomicisize-type-target"></span>`type Target = T`
 
 ### `AtomicUsize`
 
@@ -123,33 +135,31 @@ struct AtomicUsize {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:399`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L399)*
+
 #### Implementations
 
-- <span id="atomicusize-compare-exchange"></span>`fn compare_exchange(&self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>` — [`Ordering`](../../index.md)
+- <span id="atomicusize-add"></span>`fn add(&self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicusize-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>` — [`Ordering`](../../index.md)
+- <span id="atomicusize-sub"></span>`fn sub(&self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicusize-fetch-update"></span>`fn fetch_update_<F>(&self, order: Ordering, f: F) -> usize` — [`Ordering`](../../index.md)
+- <span id="atomicusize-and"></span>`fn and(&self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicusize-fetch-max"></span>`fn fetch_max(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](../../index.md)
+- <span id="atomicusize-or"></span>`fn or(&self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicusize-fetch-min"></span>`fn fetch_min(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](../../index.md)
-
-- <span id="atomicusize-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> usize` — [`Ordering`](../../index.md)
-
-- <span id="atomicusize-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> usize` — [`Ordering`](../../index.md)
+- <span id="atomicusize-xor"></span>`fn xor(&self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Deref for AtomicUsize`
 
-- <span id="atomicusize-target"></span>`type Target = AtomicUsize`
+- <span id="atomicusize-type-target"></span>`type Target = AtomicUsize`
 
 - <span id="atomicusize-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicUsize`
+##### `impl Receiver for AtomicUsize`
 
-- <span id="atomicusize-target"></span>`type Target = T`
+- <span id="atomicusize-type-target"></span>`type Target = T`
 
 ### `AtomicI8`
 
@@ -160,23 +170,31 @@ struct AtomicI8 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:401`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L401)*
+
 #### Implementations
 
-- <span id="supercore-atomicatomici8-not"></span>`fn not(&self, _order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomici8-add"></span>`fn add(&self, val: i8, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="supercore-atomicatomici8-neg"></span>`fn neg(&self, _order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomici8-sub"></span>`fn sub(&self, val: i8, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomici8-and"></span>`fn and(&self, val: i8, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomici8-or"></span>`fn or(&self, val: i8, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomici8-xor"></span>`fn xor(&self, val: i8, order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Deref for AtomicI8`
 
-- <span id="atomici8-target"></span>`type Target = AtomicI8`
+- <span id="atomici8-type-target"></span>`type Target = AtomicI8`
 
 - <span id="atomici8-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicI8`
+##### `impl Receiver for AtomicI8`
 
-- <span id="atomici8-target"></span>`type Target = T`
+- <span id="atomici8-type-target"></span>`type Target = T`
 
 ### `AtomicU8`
 
@@ -187,23 +205,31 @@ struct AtomicU8 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:403`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L403)*
+
 #### Implementations
 
-- <span id="supercore-atomicatomicu8-not"></span>`fn not(&self, _order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomicu8-add"></span>`fn add(&self, val: u8, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="supercore-atomicatomicu8-neg"></span>`fn neg(&self, _order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomicu8-sub"></span>`fn sub(&self, val: u8, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomicu8-and"></span>`fn and(&self, val: u8, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomicu8-or"></span>`fn or(&self, val: u8, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomicu8-xor"></span>`fn xor(&self, val: u8, order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Deref for AtomicU8`
 
-- <span id="atomicu8-target"></span>`type Target = AtomicU8`
+- <span id="atomicu8-type-target"></span>`type Target = AtomicU8`
 
 - <span id="atomicu8-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicU8`
+##### `impl Receiver for AtomicU8`
 
-- <span id="atomicu8-target"></span>`type Target = T`
+- <span id="atomicu8-type-target"></span>`type Target = T`
 
 ### `AtomicI16`
 
@@ -214,33 +240,31 @@ struct AtomicI16 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:405`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L405)*
+
 #### Implementations
 
-- <span id="atomici16-compare-exchange"></span>`fn compare_exchange(&self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>` — [`Ordering`](../../index.md)
+- <span id="atomici16-add"></span>`fn add(&self, val: i16, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomici16-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>` — [`Ordering`](../../index.md)
+- <span id="atomici16-sub"></span>`fn sub(&self, val: i16, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomici16-fetch-update"></span>`fn fetch_update_<F>(&self, order: Ordering, f: F) -> i16` — [`Ordering`](../../index.md)
+- <span id="atomici16-and"></span>`fn and(&self, val: i16, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomici16-fetch-max"></span>`fn fetch_max(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](../../index.md)
+- <span id="atomici16-or"></span>`fn or(&self, val: i16, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomici16-fetch-min"></span>`fn fetch_min(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](../../index.md)
-
-- <span id="atomici16-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> i16` — [`Ordering`](../../index.md)
-
-- <span id="atomici16-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> i16` — [`Ordering`](../../index.md)
+- <span id="atomici16-xor"></span>`fn xor(&self, val: i16, order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Deref for AtomicI16`
 
-- <span id="atomici16-target"></span>`type Target = AtomicI16`
+- <span id="atomici16-type-target"></span>`type Target = AtomicI16`
 
 - <span id="atomici16-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicI16`
+##### `impl Receiver for AtomicI16`
 
-- <span id="atomici16-target"></span>`type Target = T`
+- <span id="atomici16-type-target"></span>`type Target = T`
 
 ### `AtomicU16`
 
@@ -251,25 +275,31 @@ struct AtomicU16 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:407`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L407)*
+
 #### Implementations
 
-- <span id="supercore-atomicatomicu16-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
+- <span id="atomicu16-add"></span>`fn add(&self, val: u16, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="supercore-atomicatomicu16-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
+- <span id="atomicu16-sub"></span>`fn sub(&self, val: u16, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="supercore-atomicatomicu16-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
+- <span id="atomicu16-and"></span>`fn and(&self, val: u16, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomicu16-or"></span>`fn or(&self, val: u16, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomicu16-xor"></span>`fn xor(&self, val: u16, order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Deref for AtomicU16`
 
-- <span id="atomicu16-target"></span>`type Target = AtomicU16`
+- <span id="atomicu16-type-target"></span>`type Target = AtomicU16`
 
 - <span id="atomicu16-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicU16`
+##### `impl Receiver for AtomicU16`
 
-- <span id="atomicu16-target"></span>`type Target = T`
+- <span id="atomicu16-type-target"></span>`type Target = T`
 
 ### `AtomicI32`
 
@@ -280,23 +310,31 @@ struct AtomicI32 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:410`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L410)*
+
 #### Implementations
 
-- <span id="supercore-atomicatomici32-not"></span>`fn not(&self, _order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomici32-add"></span>`fn add(&self, val: i32, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="supercore-atomicatomici32-neg"></span>`fn neg(&self, _order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomici32-sub"></span>`fn sub(&self, val: i32, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomici32-and"></span>`fn and(&self, val: i32, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomici32-or"></span>`fn or(&self, val: i32, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomici32-xor"></span>`fn xor(&self, val: i32, order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Deref for AtomicI32`
 
-- <span id="atomici32-target"></span>`type Target = AtomicI32`
+- <span id="atomici32-type-target"></span>`type Target = AtomicI32`
 
 - <span id="atomici32-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicI32`
+##### `impl Receiver for AtomicI32`
 
-- <span id="atomici32-target"></span>`type Target = T`
+- <span id="atomici32-type-target"></span>`type Target = T`
 
 ### `AtomicU32`
 
@@ -307,33 +345,31 @@ struct AtomicU32 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:413`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L413)*
+
 #### Implementations
 
-- <span id="atomicu32-compare-exchange"></span>`fn compare_exchange(&self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](../../index.md)
+- <span id="atomicu32-add"></span>`fn add(&self, val: u32, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicu32-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](../../index.md)
+- <span id="atomicu32-sub"></span>`fn sub(&self, val: u32, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicu32-fetch-update"></span>`fn fetch_update_<F>(&self, order: Ordering, f: F) -> u32` — [`Ordering`](../../index.md)
+- <span id="atomicu32-and"></span>`fn and(&self, val: u32, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicu32-fetch-max"></span>`fn fetch_max(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](../../index.md)
+- <span id="atomicu32-or"></span>`fn or(&self, val: u32, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicu32-fetch-min"></span>`fn fetch_min(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](../../index.md)
-
-- <span id="atomicu32-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> u32` — [`Ordering`](../../index.md)
-
-- <span id="atomicu32-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> u32` — [`Ordering`](../../index.md)
+- <span id="atomicu32-xor"></span>`fn xor(&self, val: u32, order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Deref for AtomicU32`
 
-- <span id="atomicu32-target"></span>`type Target = AtomicU32`
+- <span id="atomicu32-type-target"></span>`type Target = AtomicU32`
 
 - <span id="atomicu32-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicU32`
+##### `impl Receiver for AtomicU32`
 
-- <span id="atomicu32-target"></span>`type Target = T`
+- <span id="atomicu32-type-target"></span>`type Target = T`
 
 ### `AtomicI64`
 
@@ -344,33 +380,31 @@ struct AtomicI64 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:422`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L422)*
+
 #### Implementations
 
-- <span id="atomici64-compare-exchange"></span>`fn compare_exchange(&self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>` — [`Ordering`](../../index.md)
+- <span id="atomici64-add"></span>`fn add(&self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomici64-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>` — [`Ordering`](../../index.md)
+- <span id="atomici64-sub"></span>`fn sub(&self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomici64-fetch-update"></span>`fn fetch_update_<F>(&self, order: Ordering, f: F) -> i64` — [`Ordering`](../../index.md)
+- <span id="atomici64-and"></span>`fn and(&self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomici64-fetch-max"></span>`fn fetch_max(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](../../index.md)
+- <span id="atomici64-or"></span>`fn or(&self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomici64-fetch-min"></span>`fn fetch_min(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](../../index.md)
-
-- <span id="atomici64-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> i64` — [`Ordering`](../../index.md)
-
-- <span id="atomici64-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> i64` — [`Ordering`](../../index.md)
+- <span id="atomici64-xor"></span>`fn xor(&self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Deref for AtomicI64`
 
-- <span id="atomici64-target"></span>`type Target = AtomicI64`
+- <span id="atomici64-type-target"></span>`type Target = AtomicI64`
 
 - <span id="atomici64-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicI64`
+##### `impl Receiver for AtomicI64`
 
-- <span id="atomici64-target"></span>`type Target = T`
+- <span id="atomici64-type-target"></span>`type Target = T`
 
 ### `AtomicU64`
 
@@ -381,27 +415,35 @@ struct AtomicU64 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:431`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L431)*
+
 #### Implementations
 
-- <span id="supercore-atomicatomicu64-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
+- <span id="atomicu64-add"></span>`fn add(&self, val: u64, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="supercore-atomicatomicu64-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
+- <span id="atomicu64-sub"></span>`fn sub(&self, val: u64, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="supercore-atomicatomicu64-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
+- <span id="atomicu64-and"></span>`fn and(&self, val: u64, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomicu64-or"></span>`fn or(&self, val: u64, order: Ordering)` — [`Ordering`](../../index.md)
+
+- <span id="atomicu64-xor"></span>`fn xor(&self, val: u64, order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Deref for AtomicU64`
 
-- <span id="atomicu64-target"></span>`type Target = AtomicU64`
+- <span id="atomicu64-type-target"></span>`type Target = AtomicU64`
 
 - <span id="atomicu64-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<P, T> Receiver for AtomicU64`
+##### `impl Receiver for AtomicU64`
 
-- <span id="atomicu64-target"></span>`type Target = T`
+- <span id="atomicu64-type-target"></span>`type Target = T`
 
 ## Macros
 
 ### `atomic_int!`
+
+*Defined in [`portable-atomic-1.11.1/src/imp/core_atomic.rs:118-396`](../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/core_atomic.rs#L118-L396)*
 

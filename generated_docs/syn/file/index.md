@@ -29,6 +29,8 @@ struct File {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/file.rs:4-84`](../../../.source_1765210505/syn-2.0.111/src/file.rs#L4-L84)*
+
 A complete file of Rust source code.
 
 Typically `File` objects are created with [`parse_file`](../index.md).
@@ -119,15 +121,15 @@ File {
 
 ##### `impl Parse for crate::file::File`
 
-- <span id="cratefilefile-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratefilefile-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::File`
 
 - <span id="cratefile-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for File`
+##### `impl Sealed for File`
 
-##### `impl<T> Spanned for File`
+##### `impl Spanned for File`
 
 - <span id="file-span"></span>`fn span(&self) -> Span`
 

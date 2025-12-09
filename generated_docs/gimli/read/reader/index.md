@@ -21,6 +21,8 @@
 struct ReaderOffsetId(u64);
 ```
 
+*Defined in [`gimli-0.32.3/src/read/reader.rs:19`](../../../../.source_1765210505/gimli-0.32.3/src/read/reader.rs#L19)*
+
 An identifier for an offset within a section reader.
 
 This is used for error reporting. The meaning of this value is specific to
@@ -54,6 +56,8 @@ all readers. If values are not unique then errors may point to the wrong reader.
 ```rust
 trait ReaderOffset: Debug + Copy + Eq + Ord + Hash + Add<Output = Self> + AddAssign + Sub<Output = Self> { ... }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/reader.rs:24-52`](../../../../.source_1765210505/gimli-0.32.3/src/read/reader.rs#L24-L52)*
 
 A trait for offsets with a DWARF section.
 
@@ -105,6 +109,8 @@ This allows consumers to choose a size that is appropriate for their address spa
 trait ReaderAddress: Sized { ... }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/reader.rs:194-230`](../../../../.source_1765210505/gimli-0.32.3/src/read/reader.rs#L194-L230)*
+
 A trait for addresses within a DWARF section.
 
 Currently this is a simple extension trait for `u64`, but it may be expanded
@@ -143,6 +149,8 @@ in the future to support user-defined address types.
 ```rust
 trait Reader: Debug + Clone { ... }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/reader.rs:285-581`](../../../../.source_1765210505/gimli-0.32.3/src/read/reader.rs#L285-L581)*
 
 A trait for reading the data from a DWARF section.
 

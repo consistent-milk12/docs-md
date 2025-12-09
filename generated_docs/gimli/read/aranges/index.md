@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`DebugAranges`](#debugaranges) | struct | The `DebugAranges` struct represents the DWARF address range information |
+| [`DebugAranges`](#debugaranges) | struct | The `DebugAranges` struct represents the DWARF address range information found in the `.debug_aranges` section. |
 | [`ArangeHeaderIter`](#arangeheaderiter) | struct | An iterator over the headers of a `.debug_aranges` section. |
 | [`ArangeHeader`](#arangeheader) | struct | A header for a set of entries in the `.debug_arange` section. |
 | [`ArangeEntryIter`](#arangeentryiter) | struct | An iterator over the aranges from a `.debug_aranges` section. |
@@ -24,14 +24,14 @@ struct DebugAranges<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:10-12`](../../../../.source_1765210505/gimli-0.32.3/src/read/aranges.rs#L10-L12)*
+
 The `DebugAranges` struct represents the DWARF address range information
 found in the `.debug_aranges` section.
 
 #### Implementations
 
-- <span id="debugaranges-headers"></span>`fn headers(&self) -> ArangeHeaderIter<R>` — [`ArangeHeaderIter`](../index.md)
-
-- <span id="debugaranges-header"></span>`fn header(&self, offset: DebugArangesOffset<<R as >::Offset>) -> Result<ArangeHeader<R>>` — [`DebugArangesOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`ArangeHeader`](../index.md)
+- <span id="debugaranges-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -64,6 +64,8 @@ struct ArangeHeaderIter<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:91-94`](../../../../.source_1765210505/gimli-0.32.3/src/read/aranges.rs#L91-L94)*
+
 An iterator over the headers of a `.debug_aranges` section.
 
 #### Implementations
@@ -94,6 +96,8 @@ where
     entries: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:131-141`](../../../../.source_1765210505/gimli-0.32.3/src/read/aranges.rs#L131-L141)*
 
 A header for a set of entries in the `.debug_arange` section.
 
@@ -140,6 +144,8 @@ struct ArangeEntryIter<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:239-242`](../../../../.source_1765210505/gimli-0.32.3/src/read/aranges.rs#L239-L242)*
+
 An iterator over the aranges from a `.debug_aranges` section.
 
 Can be [used with
@@ -169,6 +175,8 @@ struct ArangeEntry {
     length: u64,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/aranges.rs:318-321`](../../../../.source_1765210505/gimli-0.32.3/src/read/aranges.rs#L318-L321)*
 
 A single parsed arange.
 

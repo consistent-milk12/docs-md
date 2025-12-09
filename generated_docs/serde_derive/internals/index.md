@@ -31,7 +31,7 @@
 | [`ast`](#ast) | mod | A Serde ast, parsed from the Syn ast and ready to generate Rust code. |
 | [`attr`](#attr) | mod |  |
 | [`name`](#name) | mod |  |
-| [`case`](#case) | mod | Code to convert the Rust-styled field/variant (e.g. `my_field`, `MyType`) to the |
+| [`case`](#case) | mod | Code to convert the Rust-styled field/variant (e.g. `my_field`, `MyType`) to the case of the source (e.g. `my-field`, `MY_FIELD`). |
 | [`check`](#check) | mod |  |
 | [`ctxt`](#ctxt) | mod |  |
 | [`receiver`](#receiver) | mod |  |
@@ -64,6 +64,8 @@ struct Ctxt {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/ctxt.rs:12-16`](../../../.source_1765210505/serde_derive-1.0.228/src/internals/ctxt.rs#L12-L16)*
+
 A type to collect errors together and format them.
 
 Dropping this object will cause a panic. It must be consumed using `check`.
@@ -84,7 +86,7 @@ References can be shared since this type uses run-time exclusive mut checking.
 
 ##### `impl Default for Ctxt`
 
-- <span id="ctxt-default"></span>`fn default() -> Ctxt` — [`Ctxt`](#ctxt)
+- <span id="ctxt-default"></span>`fn default() -> Ctxt` — [`Ctxt`](ctxt/index.md)
 
 ##### `impl Drop for Ctxt`
 
@@ -101,6 +103,8 @@ enum Derive {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/mod.rs:18-21`](../../../.source_1765210505/serde_derive-1.0.228/src/internals/mod.rs#L18-L21)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Derive`
@@ -111,9 +115,13 @@ enum Derive {
 
 ## Functions
 
+*Defined in [`serde_derive-1.0.228/src/internals/mod.rs:15`](../../../.source_1765210505/serde_derive-1.0.228/src/internals/mod.rs#L15)*
+
 ### `ungroup`
 
 ```rust
 fn ungroup(ty: &syn::Type) -> &syn::Type
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/mod.rs:23-28`](../../../.source_1765210505/serde_derive-1.0.228/src/internals/mod.rs#L23-L28)*
 

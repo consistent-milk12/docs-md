@@ -21,6 +21,8 @@ enum Url {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/url.rs:18-21`](../../../.source_1765210505/miette-derive-7.6.0/src/url.rs#L18-L21)*
+
 #### Implementations
 
 - <span id="url-gen-enum"></span>`fn gen_enum(enum_name: &syn::Ident, variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)

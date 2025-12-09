@@ -50,7 +50,7 @@ Two-Way can be found in the `memmem` implementations in at least [GNU libc] and
 | [`TwoWay`](#twoway) | struct | An implementation of the TwoWay substring search algorithm. |
 | [`Suffix`](#suffix) | struct | A suffix extracted from a needle along with its period. |
 | [`ApproximateByteSet`](#approximatebyteset) | struct | A bitset used to track whether a particular byte exists in a needle or not. |
-| [`Shift`](#shift) | enum | A representation of the amount we're allowed to shift by during Two-Way |
+| [`Shift`](#shift) | enum | A representation of the amount we're allowed to shift by during Two-Way search. |
 | [`SuffixKind`](#suffixkind) | enum | The kind of suffix to extract. |
 | [`SuffixOrdering`](#suffixordering) | enum | The result of comparing corresponding bytes between two suffixes. |
 
@@ -61,6 +61,8 @@ Two-Way can be found in the `memmem` implementations in at least [GNU libc] and
 ```rust
 struct Finder(TwoWay);
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:37`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/twoway.rs#L37)*
 
 A forward substring searcher that uses the Two-Way algorithm.
 
@@ -93,6 +95,8 @@ A forward substring searcher that uses the Two-Way algorithm.
 ```rust
 struct FinderRev(TwoWay);
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:41`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/twoway.rs#L41)*
 
 A reverse substring searcher that uses the Two-Way algorithm.
 
@@ -127,6 +131,8 @@ struct TwoWay {
     shift: Shift,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:80-106`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/twoway.rs#L80-L106)*
 
 An implementation of the TwoWay substring search algorithm.
 
@@ -219,6 +225,8 @@ struct Suffix {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:483-497`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/twoway.rs#L483-L497)*
+
 A suffix extracted from a needle along with its period.
 
 #### Fields
@@ -257,6 +265,8 @@ A suffix extracted from a needle along with its period.
 ```rust
 struct ApproximateByteSet(u64);
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:651`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/twoway.rs#L651)*
 
 A bitset used to track whether a particular byte exists in a needle or not.
 
@@ -297,6 +307,8 @@ enum Shift {
     },
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:428-431`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/twoway.rs#L428-L431)*
 
 A representation of the amount we're allowed to shift by during Two-Way
 search.
@@ -356,6 +368,8 @@ enum SuffixKind {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:590-605`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/twoway.rs#L590-L605)*
+
 The kind of suffix to extract.
 
 #### Variants
@@ -403,6 +417,8 @@ enum SuffixOrdering {
     Push,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/twoway.rs:609-624`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/twoway.rs#L609-L624)*
 
 The result of comparing corresponding bytes between two suffixes.
 

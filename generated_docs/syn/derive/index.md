@@ -48,6 +48,8 @@ struct DeriveInput {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/derive.rs:9-19`](../../../.source_1765210505/syn-2.0.111/src/derive.rs#L9-L19)*
+
 Data structure sent to a `proc_macro_derive` macro.
 
 #### Trait Implementations
@@ -68,15 +70,15 @@ Data structure sent to a `proc_macro_derive` macro.
 
 ##### `impl Parse for crate::derive::DeriveInput`
 
-- <span id="cratederivederiveinput-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratederivederiveinput-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::DeriveInput`
 
 - <span id="cratederiveinput-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for DeriveInput`
+##### `impl Sealed for DeriveInput`
 
-##### `impl<T> Spanned for DeriveInput`
+##### `impl Spanned for DeriveInput`
 
 - <span id="deriveinput-span"></span>`fn span(&self) -> Span`
 
@@ -93,6 +95,8 @@ struct DataStruct {
     pub semi_token: Option<token::Semi>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/derive.rs:37-45`](../../../.source_1765210505/syn-2.0.111/src/derive.rs#L37-L45)*
 
 A struct input to a `proc_macro_derive` macro.
 
@@ -130,6 +134,8 @@ struct DataEnum {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/derive.rs:47-55`](../../../.source_1765210505/syn-2.0.111/src/derive.rs#L47-L55)*
+
 An enum input to a `proc_macro_derive` macro.
 
 #### Implementations
@@ -164,6 +170,8 @@ struct DataUnion {
     pub fields: crate::data::FieldsNamed,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/derive.rs:57-64`](../../../.source_1765210505/syn-2.0.111/src/derive.rs#L57-L64)*
 
 An untagged union input to a `proc_macro_derive` macro.
 
@@ -202,6 +210,8 @@ enum Data {
     Union(DataUnion),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/derive.rs:21-35`](../../../.source_1765210505/syn-2.0.111/src/derive.rs#L21-L35)*
 
 The storage of a struct, enum or union data structure.
 

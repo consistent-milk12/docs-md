@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Byte`](#byte) | struct | A type that wraps a single byte with a convenient fmt::Debug impl that |
+| [`Byte`](#byte) | struct | A type that wraps a single byte with a convenient fmt::Debug impl that escapes the byte. |
 | [`Bytes`](#bytes) | struct | A type that provides a human readable debug impl for arbitrary bytes. |
 | [`utf8_decode`](#utf8_decode) | fn | Decodes the next UTF-8 encoded codepoint from the given byte slice. |
 
@@ -19,6 +19,8 @@
 ```rust
 struct Byte(u8);
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/debug.rs:3`](../../../.source_1765210505/regex-syntax-0.8.8/src/debug.rs#L3)*
 
 A type that wraps a single byte with a convenient fmt::Debug impl that
 escapes the byte.
@@ -35,6 +37,8 @@ escapes the byte.
 struct Bytes<'a>(&'a [u8]);
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/debug.rs:34`](../../../.source_1765210505/regex-syntax-0.8.8/src/debug.rs#L34)*
+
 A type that provides a human readable debug impl for arbitrary bytes.
 
 This generally works best when the bytes are presumed to be mostly UTF-8,
@@ -44,7 +48,7 @@ N.B. This is copied nearly verbatim from regex-automata. Sigh.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Bytes<'a>`
+##### `impl Debug for Bytes<'a>`
 
 - <span id="bytes-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -55,6 +59,8 @@ N.B. This is copied nearly verbatim from regex-automata. Sigh.
 ```rust
 fn utf8_decode(bytes: &[u8]) -> Option<Result<char, u8>>
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/debug.rs:77-107`](../../../.source_1765210505/regex-syntax-0.8.8/src/debug.rs#L77-L107)*
 
 Decodes the next UTF-8 encoded codepoint from the given byte slice.
 

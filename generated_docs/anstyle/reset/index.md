@@ -19,6 +19,8 @@
 struct Reset;
 ```
 
+*Defined in [`anstyle-1.0.13/src/reset.rs:4`](../../../.source_1765210505/anstyle-1.0.13/src/reset.rs#L4)*
+
 Reset terminal formatting
 
 #### Implementations
@@ -65,15 +67,16 @@ Reset terminal formatting
 
 ##### `impl StructuralPartialEq for Reset`
 
-##### `impl<T> ToString for Reset`
+##### `impl ToString for Reset`
 
 - <span id="reset-to-string"></span>`fn to_string(&self) -> String`
 
 ## Constants
 
 ### `RESET`
-
 ```rust
 const RESET: &str;
 ```
+
+*Defined in [`anstyle-1.0.13/src/reset.rs:22`](../../../.source_1765210505/anstyle-1.0.13/src/reset.rs#L22)*
 

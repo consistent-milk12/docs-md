@@ -21,8 +21,10 @@ struct Rev<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/rev.rs:11-13`](../../../../.source_1765210505/rayon-1.11.0/src/iter/rev.rs#L11-L13)*
+
 `Rev` is an iterator that produces elements in reverse order. This struct
-is created by the `rev()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+is created by the `rev()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -33,7 +35,7 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../../prelude/in
 
 ##### `impl<I: clone::Clone> Clone for Rev<I>`
 
-- <span id="rev-clone"></span>`fn clone(&self) -> Rev<I>` — [`Rev`](../index.md)
+- <span id="rev-clone"></span>`fn clone(&self) -> Rev<I>` — [`Rev`](#rev)
 
 ##### `impl<I: fmt::Debug> Debug for Rev<I>`
 
@@ -51,15 +53,15 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../../prelude/in
 
 ##### `impl<T> IntoParallelIterator for Rev<I>`
 
-- <span id="rev-iter"></span>`type Iter = T`
+- <span id="rev-type-iter"></span>`type Iter = T`
 
-- <span id="rev-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="rev-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="rev-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Rev<I>`
 
-- <span id="rev-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="rev-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="rev-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -67,9 +69,9 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../../prelude/in
 
 ##### `impl<T> Pointable for Rev<I>`
 
-- <span id="rev-align"></span>`const ALIGN: usize`
+- <span id="rev-const-align"></span>`const ALIGN: usize`
 
-- <span id="rev-init"></span>`type Init = T`
+- <span id="rev-type-init"></span>`type Init = T`
 
 - <span id="rev-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -88,15 +90,17 @@ struct RevProducer<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/rev.rs:83-86`](../../../../.source_1765210505/rayon-1.11.0/src/iter/rev.rs#L83-L86)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for RevProducer<P>`
 
 ##### `impl<T> Pointable for RevProducer<P>`
 
-- <span id="revproducer-align"></span>`const ALIGN: usize`
+- <span id="revproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="revproducer-init"></span>`type Init = T`
+- <span id="revproducer-type-init"></span>`type Init = T`
 
 - <span id="revproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -108,9 +112,9 @@ struct RevProducer<P> {
 
 ##### `impl<P> Producer for RevProducer<P>`
 
-- <span id="revproducer-item"></span>`type Item = <P as Producer>::Item`
+- <span id="revproducer-type-item"></span>`type Item = <P as Producer>::Item`
 
-- <span id="revproducer-intoiter"></span>`type IntoIter = Rev<<P as Producer>::IntoIter>`
+- <span id="revproducer-type-intoiter"></span>`type IntoIter = Rev<<P as Producer>::IntoIter>`
 
 - <span id="revproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 

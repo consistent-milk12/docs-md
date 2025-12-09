@@ -2,15 +2,29 @@
 //!
 //! This module provides the [`ImplRenderer`] struct which handles rendering
 //! impl blocks (both inherent and trait implementations) to markdown format.
+//!
+//! # Path Types in `rustdoc_types::Impl`
+//!
+//! When working with impl blocks, there are two different path representations:
+//!
+//! - **`Impl.trait_: Option<Path>`** - The trait being implemented
+//!   - `Path.path` is a `String` like `"Clone"` or `"std::fmt::Debug"`
+//!   - Use for display/rendering in documentation output
+//!   - Extract trait name with `path.rsplit("::").next()`
+//!
+//! - **`ItemSummary.path: Vec<String>`** - Structured path from `krate.paths`
+//!   - Example: `["std", "clone", "Clone"]`
+//!   - Use for lookups and resolution via item IDs
+//!
+//! The `Path.path` string is already formatted for display, while
+//! `ItemSummary.path` is structured for programmatic manipulation.
 
 use std::borrow::Cow;
-use std::collections::HashMap;
 use std::fmt::Write;
 
-use rustdoc_types::{Id, Impl, Item};
+use rustdoc_types::{Id, Impl, Item, Type};
 
 use crate::generator::context::RenderContext;
-use crate::generator::impl_category::ImplCategory;
 use crate::generator::render_shared::{
     impl_sort_key, render_collapsible_end, render_collapsible_start, render_impl_items,
     sanitize_path,
@@ -102,7 +116,8 @@ pub fn is_trivial_derive_impl(impl_block: &Impl) -> bool {
     };
 
     // Extract the trait name (last segment of the path)
-    let trait_name = trait_ref.path.split("::").last().unwrap_or(&trait_ref.path);
+    // Using rsplit().next() is more efficient than split().last()
+    let trait_name = trait_ref.path.rsplit("::").next().unwrap_or(&trait_ref.path);
 
     TRIVIAL_DERIVE_TRAITS.contains(&trait_name)
 }
@@ -113,7 +128,8 @@ pub fn is_trivial_derive_impl(impl_block: &Impl) -> bool {
 #[must_use]
 pub fn get_trivial_derive_description(trait_name: &str) -> Option<&'static str> {
     // Extract just the trait name if it's a full path
-    let name = trait_name.split("::").last().unwrap_or(trait_name);
+    // Using rsplit().next() is more efficient than split().last()
+    let name = trait_name.rsplit("::").next().unwrap_or(trait_name);
 
     TRIVIAL_DERIVE_DESCRIPTIONS
         .iter()
@@ -132,9 +148,84 @@ pub fn is_blanket_impl(impl_block: &Impl) -> bool {
     };
 
     // Extract the trait name (last segment of the path)
-    let trait_name = trait_ref.path.split("::").last().unwrap_or(&trait_ref.path);
+    // Using rsplit().next() is more efficient than split().last()
+    let trait_name = trait_ref.path.rsplit("::").next().unwrap_or(&trait_ref.path);
 
     BLANKET_TRAITS.contains(&trait_name)
+}
+
+/// Check if a type is generic (contains a type parameter like `T`).
+///
+/// This is used to determine whether to show generic parameters in impl blocks.
+/// For blanket impls like `impl<T> Trait for T`, we only show the generics if
+/// the `for_` type is actually generic. When the impl is instantiated for a
+/// concrete type like `TocEntry`, we hide the generics.
+///
+/// # Examples
+///
+/// ```text
+/// // Generic type - returns true
+/// is_generic_type(&Type::Generic("T")) == true
+///
+/// // Concrete type - returns false
+/// is_generic_type(&Type::ResolvedPath { name: "TocEntry", .. }) == false
+///
+/// // Container with generic - returns true
+/// is_generic_type(&Type::ResolvedPath {
+///     name: "Vec",
+///     args: Some(GenericArgs::AngleBracketed { args: [Type::Generic("T")] })
+/// }) == true
+/// ```
+#[must_use]
+pub fn is_generic_type(ty: &Type) -> bool {
+    match ty {
+        // Direct generic parameter like `T`
+        Type::Generic(_) => true,
+
+        // Check nested types for generic parameters
+        Type::ResolvedPath(path) => {
+            // Check generic args of the path
+            path.args
+                .as_ref()
+                .is_some_and(|args| generic_args_contain_generic(args))
+        },
+
+        // References, raw pointers, and arrays: check the inner type
+        Type::BorrowedRef { type_, .. }
+        | Type::RawPointer { type_, .. }
+        | Type::Array { type_, .. } => is_generic_type(type_),
+
+        // Slices: check the element type
+        Type::Slice(inner) => is_generic_type(inner),
+
+        // Tuples: check all element types
+        Type::Tuple(types) => types.iter().any(is_generic_type),
+
+        // Qualified paths like `<T as Trait>::Item`
+        Type::QualifiedPath { self_type, .. } => is_generic_type(self_type),
+
+        // Primitives and other types are not generic
+        _ => false,
+    }
+}
+
+/// Check if generic args contain any generic type parameters.
+fn generic_args_contain_generic(args: &rustdoc_types::GenericArgs) -> bool {
+    match args {
+        rustdoc_types::GenericArgs::AngleBracketed { args, .. } => {
+            args.iter().any(|arg| match arg {
+                rustdoc_types::GenericArg::Type(ty) => is_generic_type(ty),
+                rustdoc_types::GenericArg::Const(_)
+                | rustdoc_types::GenericArg::Lifetime(_)
+                | rustdoc_types::GenericArg::Infer => false,
+            })
+        },
+        rustdoc_types::GenericArgs::Parenthesized { inputs, output } => {
+            inputs.iter().any(is_generic_type)
+                || output.as_ref().is_some_and(is_generic_type)
+        },
+        rustdoc_types::GenericArgs::ReturnTypeNotation => false,
+    }
 }
 
 /// Renders impl blocks to markdown.
@@ -283,7 +374,7 @@ impl<'a> ImplRenderer<'a> {
 
         for impl_block in impls {
             if let Some(trait_ref) = &impl_block.trait_ {
-                let trait_name = trait_ref.path.split("::").last().unwrap_or(&trait_ref.path);
+                let trait_name = trait_ref.path.rsplit("::").next().unwrap_or(&trait_ref.path);
                 let description =
                     get_trivial_derive_description(trait_name).unwrap_or("Derived trait");
                 _ = writeln!(md, "| `{trait_name}` | {description} |");
@@ -313,9 +404,15 @@ impl<'a> ImplRenderer<'a> {
             })
             .unwrap_or_default();
 
-        let generics = self
-            .type_renderer
-            .render_generics(&impl_block.generics.params);
+        // Only show generic parameters if the `for_` type is itself generic.
+        // For concrete types like `TocEntry`, we don't want to show `impl<T>` even
+        // if the original blanket impl was defined as `impl<T> Trait for T`.
+        let generics = if is_generic_type(&impl_block.for_) {
+            self.type_renderer
+                .render_generics(&impl_block.generics.params)
+        } else {
+            String::new()
+        };
         let for_type = self.type_renderer.render_type(&impl_block.for_);
 
         let unsafe_str = if impl_block.is_unsafe { "unsafe " } else { "" };

@@ -24,9 +24,11 @@ struct Map<I, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/map.rs:14-17`](../../../../.source_1765210505/rayon-1.11.0/src/iter/map.rs#L14-L17)*
+
 `Map` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the `map()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `map()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -37,7 +39,7 @@ This struct is created by the `map()` method on [`ParallelIterator`](../../prelu
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Map<I, F>`
 
-- <span id="map-clone"></span>`fn clone(&self) -> Map<I, F>` — [`Map`](../index.md)
+- <span id="map-clone"></span>`fn clone(&self) -> Map<I, F>` — [`Map`](#map)
 
 ##### `impl<I: Debug, F> Debug for Map<I, F>`
 
@@ -55,15 +57,15 @@ This struct is created by the `map()` method on [`ParallelIterator`](../../prelu
 
 ##### `impl<T> IntoParallelIterator for Map<I, F>`
 
-- <span id="map-iter"></span>`type Iter = T`
+- <span id="map-type-iter"></span>`type Iter = T`
 
-- <span id="map-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="map-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="map-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F, R> ParallelIterator for Map<I, F>`
 
-- <span id="map-item"></span>`type Item = <F as FnOnce>::Output`
+- <span id="map-type-item"></span>`type Item = <F as FnOnce>::Output`
 
 - <span id="map-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -71,9 +73,9 @@ This struct is created by the `map()` method on [`ParallelIterator`](../../prelu
 
 ##### `impl<T> Pointable for Map<I, F>`
 
-- <span id="map-align"></span>`const ALIGN: usize`
+- <span id="map-const-align"></span>`const ALIGN: usize`
 
-- <span id="map-init"></span>`type Init = T`
+- <span id="map-type-init"></span>`type Init = T`
 
 - <span id="map-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -92,15 +94,17 @@ struct MapProducer<'f, P, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/map.rs:109-112`](../../../../.source_1765210505/rayon-1.11.0/src/iter/map.rs#L109-L112)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for MapProducer<'f, P, F>`
 
 ##### `impl<T> Pointable for MapProducer<'f, P, F>`
 
-- <span id="mapproducer-align"></span>`const ALIGN: usize`
+- <span id="mapproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="mapproducer-init"></span>`type Init = T`
+- <span id="mapproducer-type-init"></span>`type Init = T`
 
 - <span id="mapproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -112,9 +116,9 @@ struct MapProducer<'f, P, F> {
 
 ##### `impl<'f, P, F, R> Producer for MapProducer<'f, P, F>`
 
-- <span id="mapproducer-item"></span>`type Item = <F as FnOnce>::Output`
+- <span id="mapproducer-type-item"></span>`type Item = <F as FnOnce>::Output`
 
-- <span id="mapproducer-intoiter"></span>`type IntoIter = Map<<P as Producer>::IntoIter, &'f F>`
+- <span id="mapproducer-type-intoiter"></span>`type IntoIter = Map<<P as Producer>::IntoIter, &'f F>`
 
 - <span id="mapproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
@@ -135,6 +139,8 @@ struct MapConsumer<'f, C, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/map.rs:163-166`](../../../../.source_1765210505/rayon-1.11.0/src/iter/map.rs#L163-L166)*
+
 #### Implementations
 
 - <span id="mapconsumer-new"></span>`fn new(base: C, map_op: &'f F) -> Self`
@@ -143,11 +149,11 @@ struct MapConsumer<'f, C, F> {
 
 ##### `impl<'f, T, R, C, F> Consumer for MapConsumer<'f, C, F>`
 
-- <span id="mapconsumer-folder"></span>`type Folder = MapFolder<'f, <C as Consumer>::Folder, F>`
+- <span id="mapconsumer-type-folder"></span>`type Folder = MapFolder<'f, <C as Consumer>::Folder, F>`
 
-- <span id="mapconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="mapconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="mapconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="mapconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="mapconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -159,9 +165,9 @@ struct MapConsumer<'f, C, F> {
 
 ##### `impl<T> Pointable for MapConsumer<'f, C, F>`
 
-- <span id="mapconsumer-align"></span>`const ALIGN: usize`
+- <span id="mapconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="mapconsumer-init"></span>`type Init = T`
+- <span id="mapconsumer-type-init"></span>`type Init = T`
 
 - <span id="mapconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -186,11 +192,13 @@ struct MapFolder<'f, C, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/map.rs:220-223`](../../../../.source_1765210505/rayon-1.11.0/src/iter/map.rs#L220-L223)*
+
 #### Trait Implementations
 
 ##### `impl<'f, T, R, C, F> Folder for MapFolder<'f, C, F>`
 
-- <span id="mapfolder-result"></span>`type Result = <C as Folder>::Result`
+- <span id="mapfolder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="mapfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -204,9 +212,9 @@ struct MapFolder<'f, C, F> {
 
 ##### `impl<T> Pointable for MapFolder<'f, C, F>`
 
-- <span id="mapfolder-align"></span>`const ALIGN: usize`
+- <span id="mapfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="mapfolder-init"></span>`type Init = T`
+- <span id="mapfolder-type-init"></span>`type Init = T`
 
 - <span id="mapfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

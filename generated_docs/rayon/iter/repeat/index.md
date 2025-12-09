@@ -25,9 +25,9 @@
 | [`RepeatProducer`](#repeatproducer) | struct | Unindexed producer for `Repeat`. |
 | [`RepeatN`](#repeatn) | struct | Iterator adaptor for [the `repeat_n()` function]. |
 | [`RepeatNProducer`](#repeatnproducer) | enum | Producer for `RepeatN`. |
-| [`repeat`](#repeat) | fn | Creates a parallel iterator that endlessly repeats `element` (by |
-| [`repeat_n`](#repeat_n) | fn | Creates a parallel iterator that produces `n` repeats of `element` |
-| [`repeatn`](#repeatn) | fn | Creates a parallel iterator that produces `n` repeats of `element` |
+| [`repeat`](#repeat) | fn | Creates a parallel iterator that endlessly repeats `element` (by cloning it). |
+| [`repeat_n`](#repeat_n) | fn | Creates a parallel iterator that produces `n` repeats of `element` (by cloning it). |
+| [`repeatn`](#repeatn) | fn | Creates a parallel iterator that produces `n` repeats of `element` (by cloning it). |
 
 ## Structs
 
@@ -39,20 +39,22 @@ struct Repeat<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:10-12`](../../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L10-L12)*
+
 Iterator adaptor for [the `repeat()` function].
 
 
 #### Implementations
 
-- <span id="repeat-take"></span>`fn take(self, n: usize) -> RepeatN<T>` — [`RepeatN`](../index.md)
+- <span id="repeat-take"></span>`fn take(self, n: usize) -> RepeatN<T>` — [`RepeatN`](#repeatn)
 
-- <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](../index.md), [`RepeatN`](../index.md), [`IntoParallelIterator`](../../prelude/index.md)
+- <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](../zip/index.md), [`RepeatN`](#repeatn), [`IntoParallelIterator`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for Repeat<T>`
 
-- <span id="repeat-clone"></span>`fn clone(&self) -> Repeat<T>` — [`Repeat`](../index.md)
+- <span id="repeat-clone"></span>`fn clone(&self) -> Repeat<T>` — [`Repeat`](#repeat)
 
 ##### `impl<T: fmt::Debug> Debug for Repeat<T>`
 
@@ -62,23 +64,23 @@ Iterator adaptor for [the `repeat()` function].
 
 ##### `impl<T> IntoParallelIterator for Repeat<T>`
 
-- <span id="repeat-iter"></span>`type Iter = T`
+- <span id="repeat-type-iter"></span>`type Iter = T`
 
-- <span id="repeat-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="repeat-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="repeat-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T> ParallelIterator for Repeat<T>`
 
-- <span id="repeat-item"></span>`type Item = T`
+- <span id="repeat-type-item"></span>`type Item = T`
 
 - <span id="repeat-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for Repeat<T>`
 
-- <span id="repeat-align"></span>`const ALIGN: usize`
+- <span id="repeat-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeat-init"></span>`type Init = T`
+- <span id="repeat-type-init"></span>`type Init = T`
 
 - <span id="repeat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -96,6 +98,8 @@ struct RepeatProducer<T: Clone + Send> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:81-83`](../../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L81-L83)*
+
 Unindexed producer for `Repeat`.
 
 #### Trait Implementations
@@ -104,9 +108,9 @@ Unindexed producer for `Repeat`.
 
 ##### `impl<T> Pointable for RepeatProducer<T>`
 
-- <span id="repeatproducer-align"></span>`const ALIGN: usize`
+- <span id="repeatproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeatproducer-init"></span>`type Init = T`
+- <span id="repeatproducer-type-init"></span>`type Init = T`
 
 - <span id="repeatproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -118,7 +122,7 @@ Unindexed producer for `Repeat`.
 
 ##### `impl<T: Clone + Send> UnindexedProducer for RepeatProducer<T>`
 
-- <span id="repeatproducer-item"></span>`type Item = T`
+- <span id="repeatproducer-type-item"></span>`type Item = T`
 
 - <span id="repeatproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
@@ -132,6 +136,8 @@ struct RepeatN<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:111-113`](../../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L111-L113)*
+
 Iterator adaptor for [the `repeat_n()` function].
 
 
@@ -139,7 +145,7 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T: clone::Clone> Clone for RepeatN<T>`
 
-- <span id="repeatn-clone"></span>`fn clone(&self) -> RepeatN<T>` — [`RepeatN`](../index.md)
+- <span id="repeatn-clone"></span>`fn clone(&self) -> RepeatN<T>` — [`RepeatN`](#repeatn)
 
 ##### `impl<T: fmt::Debug> Debug for RepeatN<T>`
 
@@ -157,15 +163,15 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T> IntoParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-iter"></span>`type Iter = T`
+- <span id="repeatn-type-iter"></span>`type Iter = T`
 
-- <span id="repeatn-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="repeatn-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="repeatn-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T> ParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-item"></span>`type Item = T`
+- <span id="repeatn-type-item"></span>`type Item = T`
 
 - <span id="repeatn-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -173,9 +179,9 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T> Pointable for RepeatN<T>`
 
-- <span id="repeatn-align"></span>`const ALIGN: usize`
+- <span id="repeatn-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeatn-init"></span>`type Init = T`
+- <span id="repeatn-type-init"></span>`type Init = T`
 
 - <span id="repeatn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -195,6 +201,8 @@ enum RepeatNProducer<T> {
     Empty,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:199-202`](../../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L199-L202)*
 
 Producer for `RepeatN`.
 
@@ -218,15 +226,15 @@ Producer for `RepeatN`.
 
 ##### `impl<I> IntoIterator for RepeatNProducer<T>`
 
-- <span id="repeatnproducer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="repeatnproducer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="repeatnproducer-intoiter"></span>`type IntoIter = I`
+- <span id="repeatnproducer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="repeatnproducer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T: Clone> Iterator for RepeatNProducer<T>`
 
-- <span id="repeatnproducer-item"></span>`type Item = T`
+- <span id="repeatnproducer-type-item"></span>`type Item = T`
 
 - <span id="repeatnproducer-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -236,9 +244,9 @@ Producer for `RepeatN`.
 
 ##### `impl<T> Pointable for RepeatNProducer<T>`
 
-- <span id="repeatnproducer-align"></span>`const ALIGN: usize`
+- <span id="repeatnproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeatnproducer-init"></span>`type Init = T`
+- <span id="repeatnproducer-type-init"></span>`type Init = T`
 
 - <span id="repeatnproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -250,9 +258,9 @@ Producer for `RepeatN`.
 
 ##### `impl<T: Clone + Send> Producer for RepeatNProducer<T>`
 
-- <span id="repeatnproducer-item"></span>`type Item = T`
+- <span id="repeatnproducer-type-item"></span>`type Item = T`
 
-- <span id="repeatnproducer-intoiter"></span>`type IntoIter = RepeatNProducer<T>`
+- <span id="repeatnproducer-type-intoiter"></span>`type IntoIter = RepeatNProducer<T>`
 
 - <span id="repeatnproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
@@ -265,6 +273,8 @@ Producer for `RepeatN`.
 ```rust
 fn repeat<T: Clone + Send>(element: T) -> Repeat<T>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:30-32`](../../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L30-L32)*
 
 Creates a parallel iterator that endlessly repeats `element` (by
 cloning it). Note that this iterator has "infinite" length, so
@@ -287,6 +297,8 @@ assert_eq!(x, vec![(22, 0), (22, 1), (22, 2)]);
 fn repeat_n<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:126-132`](../../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L126-L132)*
+
 Creates a parallel iterator that produces `n` repeats of `element`
 (by cloning it).
 
@@ -305,8 +317,10 @@ assert_eq!(x, vec![(22, 0), (22, 1), (22, 2)]);
 fn repeatn<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:139-141`](../../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L139-L141)*
+
 Creates a parallel iterator that produces `n` repeats of `element`
 (by cloning it).
 
-Deprecated in favor of [`repeat_n`](../index.md) for consistency with the standard library.
+Deprecated in favor of [`repeat_n`](#repeat-n) for consistency with the standard library.
 

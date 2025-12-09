@@ -6,8 +6,8 @@
 
 Multi-crate JSON parser.
 
-This module provides [`MultiCrateParser`](../../index.md) which scans a directory for
-rustdoc JSON files and parses them into a [`CrateCollection`](../../index.md).
+This module provides [`MultiCrateParser`](#multicrateparser) which scans a directory for
+rustdoc JSON files and parses them into a [`CrateCollection`](../collection/index.md).
 
 ## Quick Reference
 
@@ -23,6 +23,8 @@ rustdoc JSON files and parses them into a [`CrateCollection`](../../index.md).
 struct MultiCrateParser;
 ```
 
+*Defined in `src/multi_crate/parser.rs:26`*
+
 Parser for multiple rustdoc JSON files in a directory.
 
 Discovers JSON files and parses each one, extracting the crate name
@@ -37,23 +39,23 @@ println!("Found {} crates", crates.len());
 
 #### Implementations
 
-- <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../../index.md), [`Error`](../../error/index.md)
+- <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../collection/index.md), [`Error`](../../error/index.md)
 
 - <span id="multicrateparser-extract-crate-name"></span>`fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](../../error/index.md)
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for MultiCrateParser`
+##### `impl Instrument for MultiCrateParser`
 
-##### `impl<T> IntoEither for MultiCrateParser`
+##### `impl IntoEither for MultiCrateParser`
 
-##### `impl<D> OwoColorize for MultiCrateParser`
+##### `impl OwoColorize for MultiCrateParser`
 
-##### `impl<T> Pointable for MultiCrateParser`
+##### `impl Pointable for MultiCrateParser`
 
-- <span id="multicrateparser-align"></span>`const ALIGN: usize`
+- <span id="multicrateparser-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrateparser-init"></span>`type Init = T`
+- <span id="multicrateparser-type-init"></span>`type Init = T`
 
 - <span id="multicrateparser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -63,5 +65,5 @@ println!("Found {} crates", crates.len());
 
 - <span id="multicrateparser-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MultiCrateParser`
+##### `impl WithSubscriber for MultiCrateParser`
 

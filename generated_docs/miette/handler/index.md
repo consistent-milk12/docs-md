@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`syscall`](#syscall) | mod |  |
 | [`MietteHandlerOpts`](#miettehandleropts) | struct | Create a custom [`MietteHandler`] from options. |
-| [`MietteHandler`](#miettehandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a |
+| [`MietteHandler`](#miettehandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a quasi-graphical way, using terminal colors, unicode drawing characters, and other such things. |
 | [`RgbColors`](#rgbcolors) | enum | Settings to control the color format used for graphical rendering. |
 | [`HighlighterOption`](#highlighteroption) | enum |  |
 
@@ -44,6 +44,8 @@ struct MietteHandlerOpts {
     show_related_as_nested: Option<bool>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handler.rs:42-61`](../../../.source_1765210505/miette-7.6.0/src/handler.rs#L42-L61)*
 
 Create a custom [`MietteHandler`](../index.md) from options.
 
@@ -128,7 +130,7 @@ miette::set_hook(Box::new(|_| {
 
 - <span id="miettehandleropts-default"></span>`fn default() -> MietteHandlerOpts` — [`MietteHandlerOpts`](../index.md)
 
-##### `impl<D> OwoColorize for MietteHandlerOpts`
+##### `impl OwoColorize for MietteHandlerOpts`
 
 ### `MietteHandler`
 
@@ -137,6 +139,8 @@ struct MietteHandler {
     inner: Box<dyn ReportHandler + Send + Sync>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handler.rs:387-389`](../../../.source_1765210505/miette-7.6.0/src/handler.rs#L387-L389)*
 
 A [`ReportHandler`](../index.md) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -161,7 +165,7 @@ printer.
 
 - <span id="miettehandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for MietteHandler`
+##### `impl OwoColorize for MietteHandler`
 
 ##### `impl ReportHandler for MietteHandler`
 
@@ -178,6 +182,8 @@ enum RgbColors {
     Never,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handler.rs:15-23`](../../../.source_1765210505/miette-7.6.0/src/handler.rs#L15-L23)*
 
 Settings to control the color format used for graphical rendering.
 
@@ -213,7 +219,7 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl Eq for RgbColors`
 
-##### `impl<D> OwoColorize for RgbColors`
+##### `impl OwoColorize for RgbColors`
 
 ##### `impl PartialEq for RgbColors`
 
@@ -230,6 +236,8 @@ enum HighlighterOption {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handler.rs:414-419`](../../../.source_1765210505/miette-7.6.0/src/handler.rs#L414-L419)*
+
 #### Implementations
 
 - <span id="highlighteroption-select"></span>`fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](../highlighters/index.md), [`HighlighterOption`](#highlighteroption)
@@ -240,5 +248,5 @@ enum HighlighterOption {
 
 - <span id="highlighteroption-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for HighlighterOption`
+##### `impl OwoColorize for HighlighterOption`
 

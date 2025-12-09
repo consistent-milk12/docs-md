@@ -12,7 +12,7 @@ expands to the token type of the given token.
 
 # Example
 
-The [`ItemStatic`](../index.md) syntax tree node is defined like this.
+The [`ItemStatic`](../item/index.md) syntax tree node is defined like this.
 
 ```rust
 use syn::{Attribute, Expr, Ident, Token, Type, Visibility};
@@ -337,6 +337,8 @@ struct Underscore {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:521-523`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L521-L523)*
+
 `_`
 
 Usage:
@@ -364,7 +366,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Underscore`
 
-- <span id="underscore-target"></span>`type Target = WithSpan`
+- <span id="underscore-type-target"></span>`type Target = WithSpan`
 
 - <span id="underscore-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -380,19 +382,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Underscore`
 
-- <span id="underscore-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="underscore-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Underscore`
 
 - <span id="underscore-eq"></span>`fn eq(&self, _other: &Underscore) -> bool` — [`Underscore`](#underscore)
 
-##### `impl<P, T> Receiver for Underscore`
+##### `impl Receiver for Underscore`
 
-- <span id="underscore-target"></span>`type Target = T`
+- <span id="underscore-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Underscore`
 
-##### `impl<T> Spanned for Underscore`
+##### `impl Spanned for Underscore`
 
 - <span id="underscore-span"></span>`fn span(&self) -> Span`
 
@@ -409,6 +411,8 @@ struct Group {
     pub span: proc_macro2::Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:574-576`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L574-L576)*
 
 None-delimited group
 
@@ -454,6 +458,8 @@ struct Abstract {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
+
 `abstract`
 
 Don't try to remember the name of this type &mdash; use the
@@ -484,7 +490,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Abstract`
 
-- <span id="abstract-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="abstract-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Abstract`
 
@@ -492,7 +498,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Abstract`
 
-##### `impl<T> Spanned for Abstract`
+##### `impl Spanned for Abstract`
 
 - <span id="abstract-span"></span>`fn span(&self) -> Span`
 
@@ -509,6 +515,8 @@ struct As {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `as`
 
@@ -540,15 +548,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for As`
 
-- <span id="as-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="as-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for As`
 
 - <span id="as-eq"></span>`fn eq(&self, _other: &As) -> bool` — [`As`](#as)
 
-##### `impl<T> Sealed for As`
+##### `impl Sealed for As`
 
-##### `impl<T> Spanned for As`
+##### `impl Spanned for As`
 
 - <span id="as-span"></span>`fn span(&self) -> Span`
 
@@ -565,6 +573,8 @@ struct Async {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `async`
 
@@ -596,15 +606,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Async`
 
-- <span id="async-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="async-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Async`
 
 - <span id="async-eq"></span>`fn eq(&self, _other: &Async) -> bool` — [`Async`](#async)
 
-##### `impl<T> Sealed for Async`
+##### `impl Sealed for Async`
 
-##### `impl<T> Spanned for Async`
+##### `impl Spanned for Async`
 
 - <span id="async-span"></span>`fn span(&self) -> Span`
 
@@ -621,6 +631,8 @@ struct Auto {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `auto`
 
@@ -652,15 +664,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Auto`
 
-- <span id="auto-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="auto-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Auto`
 
 - <span id="auto-eq"></span>`fn eq(&self, _other: &Auto) -> bool` — [`Auto`](#auto)
 
-##### `impl<T> Sealed for Auto`
+##### `impl Sealed for Auto`
 
-##### `impl<T> Spanned for Auto`
+##### `impl Spanned for Auto`
 
 - <span id="auto-span"></span>`fn span(&self) -> Span`
 
@@ -677,6 +689,8 @@ struct Await {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `await`
 
@@ -708,7 +722,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Await`
 
-- <span id="await-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="await-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Await`
 
@@ -716,7 +730,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Await`
 
-##### `impl<T> Spanned for Await`
+##### `impl Spanned for Await`
 
 - <span id="await-span"></span>`fn span(&self) -> Span`
 
@@ -733,6 +747,8 @@ struct Become {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `become`
 
@@ -764,7 +780,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Become`
 
-- <span id="become-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="become-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Become`
 
@@ -772,7 +788,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Become`
 
-##### `impl<T> Spanned for Become`
+##### `impl Spanned for Become`
 
 - <span id="become-span"></span>`fn span(&self) -> Span`
 
@@ -789,6 +805,8 @@ struct Box {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `box`
 
@@ -820,7 +838,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Box`
 
-- <span id="box-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="box-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Box`
 
@@ -828,7 +846,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Box`
 
-##### `impl<T> Spanned for Box`
+##### `impl Spanned for Box`
 
 - <span id="box-span"></span>`fn span(&self) -> Span`
 
@@ -845,6 +863,8 @@ struct Break {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `break`
 
@@ -876,7 +896,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Break`
 
-- <span id="break-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="break-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Break`
 
@@ -884,7 +904,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Break`
 
-##### `impl<T> Spanned for Break`
+##### `impl Spanned for Break`
 
 - <span id="break-span"></span>`fn span(&self) -> Span`
 
@@ -901,6 +921,8 @@ struct Const {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `const`
 
@@ -932,15 +954,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Const`
 
-- <span id="const-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="const-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Const`
 
 - <span id="const-eq"></span>`fn eq(&self, _other: &Const) -> bool` — [`Const`](#const)
 
-##### `impl<T> Sealed for Const`
+##### `impl Sealed for Const`
 
-##### `impl<T> Spanned for Const`
+##### `impl Spanned for Const`
 
 - <span id="const-span"></span>`fn span(&self) -> Span`
 
@@ -957,6 +979,8 @@ struct Continue {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `continue`
 
@@ -988,15 +1012,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Continue`
 
-- <span id="continue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="continue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Continue`
 
 - <span id="continue-eq"></span>`fn eq(&self, _other: &Continue) -> bool` — [`Continue`](#continue)
 
-##### `impl<T> Sealed for Continue`
+##### `impl Sealed for Continue`
 
-##### `impl<T> Spanned for Continue`
+##### `impl Spanned for Continue`
 
 - <span id="continue-span"></span>`fn span(&self) -> Span`
 
@@ -1013,6 +1037,8 @@ struct Crate {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `crate`
 
@@ -1044,15 +1070,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Crate`
 
-- <span id="crate-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crate-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Crate`
 
 - <span id="crate-eq"></span>`fn eq(&self, _other: &Crate) -> bool` — [`Crate`](#crate)
 
-##### `impl<T> Sealed for Crate`
+##### `impl Sealed for Crate`
 
-##### `impl<T> Spanned for Crate`
+##### `impl Spanned for Crate`
 
 - <span id="crate-span"></span>`fn span(&self) -> Span`
 
@@ -1069,6 +1095,8 @@ struct Default {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `default`
 
@@ -1100,15 +1128,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Default`
 
-- <span id="default-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="default-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Default`
 
 - <span id="default-eq"></span>`fn eq(&self, _other: &Default) -> bool` — [`Default`](#default)
 
-##### `impl<T> Sealed for Default`
+##### `impl Sealed for Default`
 
-##### `impl<T> Spanned for Default`
+##### `impl Spanned for Default`
 
 - <span id="default-span"></span>`fn span(&self) -> Span`
 
@@ -1125,6 +1153,8 @@ struct Do {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `do`
 
@@ -1156,7 +1186,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Do`
 
-- <span id="do-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="do-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Do`
 
@@ -1164,7 +1194,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Do`
 
-##### `impl<T> Spanned for Do`
+##### `impl Spanned for Do`
 
 - <span id="do-span"></span>`fn span(&self) -> Span`
 
@@ -1181,6 +1211,8 @@ struct Dyn {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `dyn`
 
@@ -1212,7 +1244,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Dyn`
 
-- <span id="dyn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dyn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Dyn`
 
@@ -1220,7 +1252,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Dyn`
 
-##### `impl<T> Spanned for Dyn`
+##### `impl Spanned for Dyn`
 
 - <span id="dyn-span"></span>`fn span(&self) -> Span`
 
@@ -1237,6 +1269,8 @@ struct Else {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `else`
 
@@ -1268,15 +1302,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Else`
 
-- <span id="else-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="else-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Else`
 
 - <span id="else-eq"></span>`fn eq(&self, _other: &Else) -> bool` — [`Else`](#else)
 
-##### `impl<T> Sealed for Else`
+##### `impl Sealed for Else`
 
-##### `impl<T> Spanned for Else`
+##### `impl Spanned for Else`
 
 - <span id="else-span"></span>`fn span(&self) -> Span`
 
@@ -1293,6 +1327,8 @@ struct Enum {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `enum`
 
@@ -1324,15 +1360,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Enum`
 
-- <span id="enum-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="enum-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Enum`
 
 - <span id="enum-eq"></span>`fn eq(&self, _other: &Enum) -> bool` — [`Enum`](#enum)
 
-##### `impl<T> Sealed for Enum`
+##### `impl Sealed for Enum`
 
-##### `impl<T> Spanned for Enum`
+##### `impl Spanned for Enum`
 
 - <span id="enum-span"></span>`fn span(&self) -> Span`
 
@@ -1349,6 +1385,8 @@ struct Extern {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `extern`
 
@@ -1380,7 +1418,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Extern`
 
-- <span id="extern-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="extern-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Extern`
 
@@ -1388,7 +1426,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Extern`
 
-##### `impl<T> Spanned for Extern`
+##### `impl Spanned for Extern`
 
 - <span id="extern-span"></span>`fn span(&self) -> Span`
 
@@ -1405,6 +1443,8 @@ struct Final {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `final`
 
@@ -1436,15 +1476,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Final`
 
-- <span id="final-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="final-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Final`
 
 - <span id="final-eq"></span>`fn eq(&self, _other: &Final) -> bool` — [`Final`](#final)
 
-##### `impl<T> Sealed for Final`
+##### `impl Sealed for Final`
 
-##### `impl<T> Spanned for Final`
+##### `impl Spanned for Final`
 
 - <span id="final-span"></span>`fn span(&self) -> Span`
 
@@ -1461,6 +1501,8 @@ struct Fn {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `fn`
 
@@ -1492,15 +1534,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Fn`
 
-- <span id="fn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="fn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Fn`
 
 - <span id="fn-eq"></span>`fn eq(&self, _other: &Fn) -> bool` — [`Fn`](#fn)
 
-##### `impl<T> Sealed for Fn`
+##### `impl Sealed for Fn`
 
-##### `impl<T> Spanned for Fn`
+##### `impl Spanned for Fn`
 
 - <span id="fn-span"></span>`fn span(&self) -> Span`
 
@@ -1517,6 +1559,8 @@ struct For {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `for`
 
@@ -1548,15 +1592,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for For`
 
-- <span id="for-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="for-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for For`
 
 - <span id="for-eq"></span>`fn eq(&self, _other: &For) -> bool` — [`For`](#for)
 
-##### `impl<T> Sealed for For`
+##### `impl Sealed for For`
 
-##### `impl<T> Spanned for For`
+##### `impl Spanned for For`
 
 - <span id="for-span"></span>`fn span(&self) -> Span`
 
@@ -1573,6 +1617,8 @@ struct If {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `if`
 
@@ -1604,15 +1650,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for If`
 
-- <span id="if-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="if-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for If`
 
 - <span id="if-eq"></span>`fn eq(&self, _other: &If) -> bool` — [`If`](#if)
 
-##### `impl<T> Sealed for If`
+##### `impl Sealed for If`
 
-##### `impl<T> Spanned for If`
+##### `impl Spanned for If`
 
 - <span id="if-span"></span>`fn span(&self) -> Span`
 
@@ -1629,6 +1675,8 @@ struct Impl {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `impl`
 
@@ -1660,15 +1708,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Impl`
 
-- <span id="impl-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="impl-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Impl`
 
 - <span id="impl-eq"></span>`fn eq(&self, _other: &Impl) -> bool` — [`Impl`](#impl)
 
-##### `impl<T> Sealed for Impl`
+##### `impl Sealed for Impl`
 
-##### `impl<T> Spanned for Impl`
+##### `impl Spanned for Impl`
 
 - <span id="impl-span"></span>`fn span(&self) -> Span`
 
@@ -1685,6 +1733,8 @@ struct In {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `in`
 
@@ -1716,15 +1766,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for In`
 
-- <span id="in-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="in-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for In`
 
 - <span id="in-eq"></span>`fn eq(&self, _other: &In) -> bool` — [`In`](#in)
 
-##### `impl<T> Sealed for In`
+##### `impl Sealed for In`
 
-##### `impl<T> Spanned for In`
+##### `impl Spanned for In`
 
 - <span id="in-span"></span>`fn span(&self) -> Span`
 
@@ -1741,6 +1791,8 @@ struct Let {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `let`
 
@@ -1772,15 +1824,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Let`
 
-- <span id="let-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="let-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Let`
 
 - <span id="let-eq"></span>`fn eq(&self, _other: &Let) -> bool` — [`Let`](#let)
 
-##### `impl<T> Sealed for Let`
+##### `impl Sealed for Let`
 
-##### `impl<T> Spanned for Let`
+##### `impl Spanned for Let`
 
 - <span id="let-span"></span>`fn span(&self) -> Span`
 
@@ -1797,6 +1849,8 @@ struct Loop {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `loop`
 
@@ -1828,7 +1882,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Loop`
 
-- <span id="loop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="loop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Loop`
 
@@ -1836,7 +1890,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Loop`
 
-##### `impl<T> Spanned for Loop`
+##### `impl Spanned for Loop`
 
 - <span id="loop-span"></span>`fn span(&self) -> Span`
 
@@ -1853,6 +1907,8 @@ struct Macro {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `macro`
 
@@ -1884,7 +1940,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Macro`
 
-- <span id="macro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="macro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Macro`
 
@@ -1892,7 +1948,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Macro`
 
-##### `impl<T> Spanned for Macro`
+##### `impl Spanned for Macro`
 
 - <span id="macro-span"></span>`fn span(&self) -> Span`
 
@@ -1909,6 +1965,8 @@ struct Match {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `match`
 
@@ -1940,15 +1998,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Match`
 
-- <span id="match-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="match-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Match`
 
 - <span id="match-eq"></span>`fn eq(&self, _other: &Match) -> bool` — [`Match`](#match)
 
-##### `impl<T> Sealed for Match`
+##### `impl Sealed for Match`
 
-##### `impl<T> Spanned for Match`
+##### `impl Spanned for Match`
 
 - <span id="match-span"></span>`fn span(&self) -> Span`
 
@@ -1965,6 +2023,8 @@ struct Mod {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `mod`
 
@@ -1996,15 +2056,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Mod`
 
-- <span id="mod-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="mod-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Mod`
 
 - <span id="mod-eq"></span>`fn eq(&self, _other: &Mod) -> bool` — [`Mod`](#mod)
 
-##### `impl<T> Sealed for Mod`
+##### `impl Sealed for Mod`
 
-##### `impl<T> Spanned for Mod`
+##### `impl Spanned for Mod`
 
 - <span id="mod-span"></span>`fn span(&self) -> Span`
 
@@ -2021,6 +2081,8 @@ struct Move {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `move`
 
@@ -2052,7 +2114,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Move`
 
-- <span id="move-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="move-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Move`
 
@@ -2060,7 +2122,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Move`
 
-##### `impl<T> Spanned for Move`
+##### `impl Spanned for Move`
 
 - <span id="move-span"></span>`fn span(&self) -> Span`
 
@@ -2077,6 +2139,8 @@ struct Mut {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `mut`
 
@@ -2108,7 +2172,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Mut`
 
-- <span id="mut-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="mut-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Mut`
 
@@ -2116,7 +2180,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Mut`
 
-##### `impl<T> Spanned for Mut`
+##### `impl Spanned for Mut`
 
 - <span id="mut-span"></span>`fn span(&self) -> Span`
 
@@ -2133,6 +2197,8 @@ struct Override {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `override`
 
@@ -2164,7 +2230,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Override`
 
-- <span id="override-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="override-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Override`
 
@@ -2172,7 +2238,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Override`
 
-##### `impl<T> Spanned for Override`
+##### `impl Spanned for Override`
 
 - <span id="override-span"></span>`fn span(&self) -> Span`
 
@@ -2189,6 +2255,8 @@ struct Priv {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `priv`
 
@@ -2220,7 +2288,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Priv`
 
-- <span id="priv-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="priv-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Priv`
 
@@ -2228,7 +2296,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Priv`
 
-##### `impl<T> Spanned for Priv`
+##### `impl Spanned for Priv`
 
 - <span id="priv-span"></span>`fn span(&self) -> Span`
 
@@ -2245,6 +2313,8 @@ struct Pub {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `pub`
 
@@ -2276,15 +2346,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Pub`
 
-- <span id="pub-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="pub-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Pub`
 
 - <span id="pub-eq"></span>`fn eq(&self, _other: &Pub) -> bool` — [`Pub`](#pub)
 
-##### `impl<T> Sealed for Pub`
+##### `impl Sealed for Pub`
 
-##### `impl<T> Spanned for Pub`
+##### `impl Spanned for Pub`
 
 - <span id="pub-span"></span>`fn span(&self) -> Span`
 
@@ -2301,6 +2371,8 @@ struct Raw {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `raw`
 
@@ -2332,15 +2404,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Raw`
 
-- <span id="raw-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="raw-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Raw`
 
 - <span id="raw-eq"></span>`fn eq(&self, _other: &Raw) -> bool` — [`Raw`](#raw)
 
-##### `impl<T> Sealed for Raw`
+##### `impl Sealed for Raw`
 
-##### `impl<T> Spanned for Raw`
+##### `impl Spanned for Raw`
 
 - <span id="raw-span"></span>`fn span(&self) -> Span`
 
@@ -2357,6 +2429,8 @@ struct Ref {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `ref`
 
@@ -2388,7 +2462,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Ref`
 
-- <span id="ref-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="ref-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Ref`
 
@@ -2396,7 +2470,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Ref`
 
-##### `impl<T> Spanned for Ref`
+##### `impl Spanned for Ref`
 
 - <span id="ref-span"></span>`fn span(&self) -> Span`
 
@@ -2413,6 +2487,8 @@ struct Return {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `return`
 
@@ -2444,7 +2520,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Return`
 
-- <span id="return-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="return-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Return`
 
@@ -2452,7 +2528,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Return`
 
-##### `impl<T> Spanned for Return`
+##### `impl Spanned for Return`
 
 - <span id="return-span"></span>`fn span(&self) -> Span`
 
@@ -2469,6 +2545,8 @@ struct SelfType {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `Self`
 
@@ -2500,7 +2578,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for SelfType`
 
-- <span id="selftype-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="selftype-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for SelfType`
 
@@ -2508,7 +2586,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for SelfType`
 
-##### `impl<T> Spanned for SelfType`
+##### `impl Spanned for SelfType`
 
 - <span id="selftype-span"></span>`fn span(&self) -> Span`
 
@@ -2525,6 +2603,8 @@ struct SelfValue {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `self`
 
@@ -2556,7 +2636,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for SelfValue`
 
-- <span id="selfvalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="selfvalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for SelfValue`
 
@@ -2564,7 +2644,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for SelfValue`
 
-##### `impl<T> Spanned for SelfValue`
+##### `impl Spanned for SelfValue`
 
 - <span id="selfvalue-span"></span>`fn span(&self) -> Span`
 
@@ -2581,6 +2661,8 @@ struct Static {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `static`
 
@@ -2612,7 +2694,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Static`
 
-- <span id="static-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="static-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Static`
 
@@ -2620,7 +2702,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Static`
 
-##### `impl<T> Spanned for Static`
+##### `impl Spanned for Static`
 
 - <span id="static-span"></span>`fn span(&self) -> Span`
 
@@ -2637,6 +2719,8 @@ struct Struct {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `struct`
 
@@ -2668,15 +2752,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Struct`
 
-- <span id="struct-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="struct-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Struct`
 
 - <span id="struct-eq"></span>`fn eq(&self, _other: &Struct) -> bool` — [`Struct`](#struct)
 
-##### `impl<T> Sealed for Struct`
+##### `impl Sealed for Struct`
 
-##### `impl<T> Spanned for Struct`
+##### `impl Spanned for Struct`
 
 - <span id="struct-span"></span>`fn span(&self) -> Span`
 
@@ -2693,6 +2777,8 @@ struct Super {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `super`
 
@@ -2724,7 +2810,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Super`
 
-- <span id="super-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="super-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Super`
 
@@ -2732,7 +2818,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Super`
 
-##### `impl<T> Spanned for Super`
+##### `impl Spanned for Super`
 
 - <span id="super-span"></span>`fn span(&self) -> Span`
 
@@ -2749,6 +2835,8 @@ struct Trait {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `trait`
 
@@ -2780,15 +2868,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Trait`
 
-- <span id="trait-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="trait-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Trait`
 
 - <span id="trait-eq"></span>`fn eq(&self, _other: &Trait) -> bool` — [`Trait`](#trait)
 
-##### `impl<T> Sealed for Trait`
+##### `impl Sealed for Trait`
 
-##### `impl<T> Spanned for Trait`
+##### `impl Spanned for Trait`
 
 - <span id="trait-span"></span>`fn span(&self) -> Span`
 
@@ -2805,6 +2893,8 @@ struct Try {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `try`
 
@@ -2836,7 +2926,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Try`
 
-- <span id="try-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="try-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Try`
 
@@ -2844,7 +2934,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Try`
 
-##### `impl<T> Spanned for Try`
+##### `impl Spanned for Try`
 
 - <span id="try-span"></span>`fn span(&self) -> Span`
 
@@ -2861,6 +2951,8 @@ struct Type {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `type`
 
@@ -2892,15 +2984,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Type`
 
-- <span id="type-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="type-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Type`
 
 - <span id="type-eq"></span>`fn eq(&self, _other: &Type) -> bool` — [`Type`](#type)
 
-##### `impl<T> Sealed for Type`
+##### `impl Sealed for Type`
 
-##### `impl<T> Spanned for Type`
+##### `impl Spanned for Type`
 
 - <span id="type-span"></span>`fn span(&self) -> Span`
 
@@ -2917,6 +3009,8 @@ struct Typeof {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `typeof`
 
@@ -2948,15 +3042,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Typeof`
 
-- <span id="typeof-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="typeof-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Typeof`
 
 - <span id="typeof-eq"></span>`fn eq(&self, _other: &Typeof) -> bool` — [`Typeof`](#typeof)
 
-##### `impl<T> Sealed for Typeof`
+##### `impl Sealed for Typeof`
 
-##### `impl<T> Spanned for Typeof`
+##### `impl Spanned for Typeof`
 
 - <span id="typeof-span"></span>`fn span(&self) -> Span`
 
@@ -2973,6 +3067,8 @@ struct Union {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `union`
 
@@ -3004,15 +3100,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Union`
 
-- <span id="union-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="union-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Union`
 
 - <span id="union-eq"></span>`fn eq(&self, _other: &Union) -> bool` — [`Union`](#union)
 
-##### `impl<T> Sealed for Union`
+##### `impl Sealed for Union`
 
-##### `impl<T> Spanned for Union`
+##### `impl Spanned for Union`
 
 - <span id="union-span"></span>`fn span(&self) -> Span`
 
@@ -3029,6 +3125,8 @@ struct Unsafe {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `unsafe`
 
@@ -3060,15 +3158,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Unsafe`
 
-- <span id="unsafe-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="unsafe-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Unsafe`
 
 - <span id="unsafe-eq"></span>`fn eq(&self, _other: &Unsafe) -> bool` — [`Unsafe`](#unsafe)
 
-##### `impl<T> Sealed for Unsafe`
+##### `impl Sealed for Unsafe`
 
-##### `impl<T> Spanned for Unsafe`
+##### `impl Spanned for Unsafe`
 
 - <span id="unsafe-span"></span>`fn span(&self) -> Span`
 
@@ -3085,6 +3183,8 @@ struct Unsized {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `unsized`
 
@@ -3116,15 +3216,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Unsized`
 
-- <span id="unsized-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="unsized-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Unsized`
 
 - <span id="unsized-eq"></span>`fn eq(&self, _other: &Unsized) -> bool` — [`Unsized`](#unsized)
 
-##### `impl<T> Sealed for Unsized`
+##### `impl Sealed for Unsized`
 
-##### `impl<T> Spanned for Unsized`
+##### `impl Spanned for Unsized`
 
 - <span id="unsized-span"></span>`fn span(&self) -> Span`
 
@@ -3141,6 +3241,8 @@ struct Use {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `use`
 
@@ -3172,15 +3274,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Use`
 
-- <span id="use-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="use-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Use`
 
 - <span id="use-eq"></span>`fn eq(&self, _other: &Use) -> bool` — [`Use`](#use)
 
-##### `impl<T> Sealed for Use`
+##### `impl Sealed for Use`
 
-##### `impl<T> Spanned for Use`
+##### `impl Spanned for Use`
 
 - <span id="use-span"></span>`fn span(&self) -> Span`
 
@@ -3197,6 +3299,8 @@ struct Virtual {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `virtual`
 
@@ -3228,7 +3332,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Virtual`
 
-- <span id="virtual-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="virtual-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Virtual`
 
@@ -3236,7 +3340,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Virtual`
 
-##### `impl<T> Spanned for Virtual`
+##### `impl Spanned for Virtual`
 
 - <span id="virtual-span"></span>`fn span(&self) -> Span`
 
@@ -3253,6 +3357,8 @@ struct Where {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `where`
 
@@ -3284,15 +3390,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Where`
 
-- <span id="where-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="where-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Where`
 
 - <span id="where-eq"></span>`fn eq(&self, _other: &Where) -> bool` — [`Where`](#where)
 
-##### `impl<T> Sealed for Where`
+##### `impl Sealed for Where`
 
-##### `impl<T> Spanned for Where`
+##### `impl Spanned for Where`
 
 - <span id="where-span"></span>`fn span(&self) -> Span`
 
@@ -3309,6 +3415,8 @@ struct While {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `while`
 
@@ -3340,15 +3448,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for While`
 
-- <span id="while-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="while-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for While`
 
 - <span id="while-eq"></span>`fn eq(&self, _other: &While) -> bool` — [`While`](#while)
 
-##### `impl<T> Sealed for While`
+##### `impl Sealed for While`
 
-##### `impl<T> Spanned for While`
+##### `impl Spanned for While`
 
 - <span id="while-span"></span>`fn span(&self) -> Span`
 
@@ -3365,6 +3473,8 @@ struct Yield {
     pub span: Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:692-746`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L692-L746)*
 
 `yield`
 
@@ -3396,7 +3506,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Yield`
 
-- <span id="yield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="yield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Yield`
 
@@ -3404,7 +3514,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Yield`
 
-##### `impl<T> Spanned for Yield`
+##### `impl Spanned for Yield`
 
 - <span id="yield-span"></span>`fn span(&self) -> Span`
 
@@ -3421,6 +3531,8 @@ struct And {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&`
 
@@ -3449,7 +3561,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for And`
 
-- <span id="and-target"></span>`type Target = WithSpan`
+- <span id="and-type-target"></span>`type Target = WithSpan`
 
 - <span id="and-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -3465,19 +3577,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for And`
 
-- <span id="and-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="and-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for And`
 
 - <span id="and-eq"></span>`fn eq(&self, _other: &And) -> bool` — [`And`](#and)
 
-##### `impl<P, T> Receiver for And`
+##### `impl Receiver for And`
 
-- <span id="and-target"></span>`type Target = T`
+- <span id="and-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for And`
 
-##### `impl<T> Spanned for And`
+##### `impl Spanned for And`
 
 - <span id="and-span"></span>`fn span(&self) -> Span`
 
@@ -3494,6 +3606,8 @@ struct AndAnd {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&&`
 
@@ -3528,7 +3642,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for AndAnd`
 
-- <span id="andand-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="andand-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for AndAnd`
 
@@ -3536,7 +3650,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for AndAnd`
 
-##### `impl<T> Spanned for AndAnd`
+##### `impl Spanned for AndAnd`
 
 - <span id="andand-span"></span>`fn span(&self) -> Span`
 
@@ -3553,6 +3667,8 @@ struct AndEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `&=`
 
@@ -3587,15 +3703,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for AndEq`
 
-- <span id="andeq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="andeq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for AndEq`
 
 - <span id="andeq-eq"></span>`fn eq(&self, _other: &AndEq) -> bool` — [`AndEq`](#andeq)
 
-##### `impl<T> Sealed for AndEq`
+##### `impl Sealed for AndEq`
 
-##### `impl<T> Spanned for AndEq`
+##### `impl Spanned for AndEq`
 
 - <span id="andeq-span"></span>`fn span(&self) -> Span`
 
@@ -3612,6 +3728,8 @@ struct At {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `@`
 
@@ -3640,7 +3758,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for At`
 
-- <span id="at-target"></span>`type Target = WithSpan`
+- <span id="at-type-target"></span>`type Target = WithSpan`
 
 - <span id="at-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -3656,19 +3774,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for At`
 
-- <span id="at-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="at-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for At`
 
 - <span id="at-eq"></span>`fn eq(&self, _other: &At) -> bool` — [`At`](#at)
 
-##### `impl<P, T> Receiver for At`
+##### `impl Receiver for At`
 
-- <span id="at-target"></span>`type Target = T`
+- <span id="at-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for At`
+##### `impl Sealed for At`
 
-##### `impl<T> Spanned for At`
+##### `impl Spanned for At`
 
 - <span id="at-span"></span>`fn span(&self) -> Span`
 
@@ -3685,6 +3803,8 @@ struct Caret {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `^`
 
@@ -3713,7 +3833,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Caret`
 
-- <span id="caret-target"></span>`type Target = WithSpan`
+- <span id="caret-type-target"></span>`type Target = WithSpan`
 
 - <span id="caret-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -3729,19 +3849,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Caret`
 
-- <span id="caret-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="caret-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Caret`
 
 - <span id="caret-eq"></span>`fn eq(&self, _other: &Caret) -> bool` — [`Caret`](#caret)
 
-##### `impl<P, T> Receiver for Caret`
+##### `impl Receiver for Caret`
 
-- <span id="caret-target"></span>`type Target = T`
+- <span id="caret-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Caret`
 
-##### `impl<T> Spanned for Caret`
+##### `impl Spanned for Caret`
 
 - <span id="caret-span"></span>`fn span(&self) -> Span`
 
@@ -3758,6 +3878,8 @@ struct CaretEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `^=`
 
@@ -3792,7 +3914,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for CaretEq`
 
-- <span id="careteq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="careteq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for CaretEq`
 
@@ -3800,7 +3922,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for CaretEq`
 
-##### `impl<T> Spanned for CaretEq`
+##### `impl Spanned for CaretEq`
 
 - <span id="careteq-span"></span>`fn span(&self) -> Span`
 
@@ -3817,6 +3939,8 @@ struct Colon {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `:`
 
@@ -3845,7 +3969,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Colon`
 
-- <span id="colon-target"></span>`type Target = WithSpan`
+- <span id="colon-type-target"></span>`type Target = WithSpan`
 
 - <span id="colon-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -3861,19 +3985,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Colon`
 
-- <span id="colon-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="colon-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Colon`
 
 - <span id="colon-eq"></span>`fn eq(&self, _other: &Colon) -> bool` — [`Colon`](#colon)
 
-##### `impl<P, T> Receiver for Colon`
+##### `impl Receiver for Colon`
 
-- <span id="colon-target"></span>`type Target = T`
+- <span id="colon-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Colon`
+##### `impl Sealed for Colon`
 
-##### `impl<T> Spanned for Colon`
+##### `impl Spanned for Colon`
 
 - <span id="colon-span"></span>`fn span(&self) -> Span`
 
@@ -3890,6 +4014,8 @@ struct Comma {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `,`
 
@@ -3918,7 +4044,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Comma`
 
-- <span id="comma-target"></span>`type Target = WithSpan`
+- <span id="comma-type-target"></span>`type Target = WithSpan`
 
 - <span id="comma-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -3934,19 +4060,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Comma`
 
-- <span id="comma-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="comma-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Comma`
 
 - <span id="comma-eq"></span>`fn eq(&self, _other: &Comma) -> bool` — [`Comma`](#comma)
 
-##### `impl<P, T> Receiver for Comma`
+##### `impl Receiver for Comma`
 
-- <span id="comma-target"></span>`type Target = T`
+- <span id="comma-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Comma`
 
-##### `impl<T> Spanned for Comma`
+##### `impl Spanned for Comma`
 
 - <span id="comma-span"></span>`fn span(&self) -> Span`
 
@@ -3963,6 +4089,8 @@ struct Dollar {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `$`
 
@@ -3991,7 +4119,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Dollar`
 
-- <span id="dollar-target"></span>`type Target = WithSpan`
+- <span id="dollar-type-target"></span>`type Target = WithSpan`
 
 - <span id="dollar-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4007,19 +4135,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Dollar`
 
-- <span id="dollar-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dollar-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Dollar`
 
 - <span id="dollar-eq"></span>`fn eq(&self, _other: &Dollar) -> bool` — [`Dollar`](#dollar)
 
-##### `impl<P, T> Receiver for Dollar`
+##### `impl Receiver for Dollar`
 
-- <span id="dollar-target"></span>`type Target = T`
+- <span id="dollar-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Dollar`
+##### `impl Sealed for Dollar`
 
-##### `impl<T> Spanned for Dollar`
+##### `impl Spanned for Dollar`
 
 - <span id="dollar-span"></span>`fn span(&self) -> Span`
 
@@ -4036,6 +4164,8 @@ struct Dot {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `.`
 
@@ -4064,7 +4194,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Dot`
 
-- <span id="dot-target"></span>`type Target = WithSpan`
+- <span id="dot-type-target"></span>`type Target = WithSpan`
 
 - <span id="dot-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4080,19 +4210,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Dot`
 
-- <span id="dot-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dot-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Dot`
 
 - <span id="dot-eq"></span>`fn eq(&self, _other: &Dot) -> bool` — [`Dot`](#dot)
 
-##### `impl<P, T> Receiver for Dot`
+##### `impl Receiver for Dot`
 
-- <span id="dot-target"></span>`type Target = T`
+- <span id="dot-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Dot`
+##### `impl Sealed for Dot`
 
-##### `impl<T> Spanned for Dot`
+##### `impl Spanned for Dot`
 
 - <span id="dot-span"></span>`fn span(&self) -> Span`
 
@@ -4109,6 +4239,8 @@ struct DotDot {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `..`
 
@@ -4143,7 +4275,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for DotDot`
 
-- <span id="dotdot-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dotdot-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for DotDot`
 
@@ -4151,7 +4283,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for DotDot`
 
-##### `impl<T> Spanned for DotDot`
+##### `impl Spanned for DotDot`
 
 - <span id="dotdot-span"></span>`fn span(&self) -> Span`
 
@@ -4168,6 +4300,8 @@ struct DotDotDot {
     pub spans: [Span; 3],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `...`
 
@@ -4202,7 +4336,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for DotDotDot`
 
-- <span id="dotdotdot-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dotdotdot-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for DotDotDot`
 
@@ -4210,7 +4344,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for DotDotDot`
 
-##### `impl<T> Spanned for DotDotDot`
+##### `impl Spanned for DotDotDot`
 
 - <span id="dotdotdot-span"></span>`fn span(&self) -> Span`
 
@@ -4227,6 +4361,8 @@ struct DotDotEq {
     pub spans: [Span; 3],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `..=`
 
@@ -4261,7 +4397,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for DotDotEq`
 
-- <span id="dotdoteq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="dotdoteq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for DotDotEq`
 
@@ -4269,7 +4405,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for DotDotEq`
 
-##### `impl<T> Spanned for DotDotEq`
+##### `impl Spanned for DotDotEq`
 
 - <span id="dotdoteq-span"></span>`fn span(&self) -> Span`
 
@@ -4286,6 +4422,8 @@ struct Eq {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `=`
 
@@ -4314,7 +4452,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Eq`
 
-- <span id="eq-target"></span>`type Target = WithSpan`
+- <span id="eq-type-target"></span>`type Target = WithSpan`
 
 - <span id="eq-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4330,19 +4468,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Eq`
 
-- <span id="eq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="eq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Eq`
 
 - <span id="eq-eq"></span>`fn eq(&self, _other: &Eq) -> bool` — [`Eq`](#eq)
 
-##### `impl<P, T> Receiver for Eq`
+##### `impl Receiver for Eq`
 
-- <span id="eq-target"></span>`type Target = T`
+- <span id="eq-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Eq`
 
-##### `impl<T> Spanned for Eq`
+##### `impl Spanned for Eq`
 
 - <span id="eq-span"></span>`fn span(&self) -> Span`
 
@@ -4359,6 +4497,8 @@ struct EqEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `==`
 
@@ -4393,7 +4533,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for EqEq`
 
-- <span id="eqeq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="eqeq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for EqEq`
 
@@ -4401,7 +4541,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for EqEq`
 
-##### `impl<T> Spanned for EqEq`
+##### `impl Spanned for EqEq`
 
 - <span id="eqeq-span"></span>`fn span(&self) -> Span`
 
@@ -4418,6 +4558,8 @@ struct FatArrow {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `=>`
 
@@ -4452,7 +4594,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for FatArrow`
 
-- <span id="fatarrow-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="fatarrow-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for FatArrow`
 
@@ -4460,7 +4602,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for FatArrow`
 
-##### `impl<T> Spanned for FatArrow`
+##### `impl Spanned for FatArrow`
 
 - <span id="fatarrow-span"></span>`fn span(&self) -> Span`
 
@@ -4477,6 +4619,8 @@ struct Ge {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>=`
 
@@ -4511,15 +4655,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Ge`
 
-- <span id="ge-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="ge-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Ge`
 
 - <span id="ge-eq"></span>`fn eq(&self, _other: &Ge) -> bool` — [`Ge`](#ge)
 
-##### `impl<T> Sealed for Ge`
+##### `impl Sealed for Ge`
 
-##### `impl<T> Spanned for Ge`
+##### `impl Spanned for Ge`
 
 - <span id="ge-span"></span>`fn span(&self) -> Span`
 
@@ -4536,6 +4680,8 @@ struct Gt {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>`
 
@@ -4564,7 +4710,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Gt`
 
-- <span id="gt-target"></span>`type Target = WithSpan`
+- <span id="gt-type-target"></span>`type Target = WithSpan`
 
 - <span id="gt-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4580,19 +4726,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Gt`
 
-- <span id="gt-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="gt-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Gt`
 
 - <span id="gt-eq"></span>`fn eq(&self, _other: &Gt) -> bool` — [`Gt`](#gt)
 
-##### `impl<P, T> Receiver for Gt`
+##### `impl Receiver for Gt`
 
-- <span id="gt-target"></span>`type Target = T`
+- <span id="gt-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Gt`
+##### `impl Sealed for Gt`
 
-##### `impl<T> Spanned for Gt`
+##### `impl Spanned for Gt`
 
 - <span id="gt-span"></span>`fn span(&self) -> Span`
 
@@ -4609,6 +4755,8 @@ struct LArrow {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<-`
 
@@ -4643,15 +4791,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for LArrow`
 
-- <span id="larrow-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="larrow-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LArrow`
 
 - <span id="larrow-eq"></span>`fn eq(&self, _other: &LArrow) -> bool` — [`LArrow`](#larrow)
 
-##### `impl<T> Sealed for LArrow`
+##### `impl Sealed for LArrow`
 
-##### `impl<T> Spanned for LArrow`
+##### `impl Spanned for LArrow`
 
 - <span id="larrow-span"></span>`fn span(&self) -> Span`
 
@@ -4668,6 +4816,8 @@ struct Le {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<=`
 
@@ -4702,15 +4852,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Le`
 
-- <span id="le-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="le-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Le`
 
 - <span id="le-eq"></span>`fn eq(&self, _other: &Le) -> bool` — [`Le`](#le)
 
-##### `impl<T> Sealed for Le`
+##### `impl Sealed for Le`
 
-##### `impl<T> Spanned for Le`
+##### `impl Spanned for Le`
 
 - <span id="le-span"></span>`fn span(&self) -> Span`
 
@@ -4727,6 +4877,8 @@ struct Lt {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<`
 
@@ -4755,7 +4907,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Lt`
 
-- <span id="lt-target"></span>`type Target = WithSpan`
+- <span id="lt-type-target"></span>`type Target = WithSpan`
 
 - <span id="lt-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4771,19 +4923,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Lt`
 
-- <span id="lt-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="lt-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Lt`
 
 - <span id="lt-eq"></span>`fn eq(&self, _other: &Lt) -> bool` — [`Lt`](#lt)
 
-##### `impl<P, T> Receiver for Lt`
+##### `impl Receiver for Lt`
 
-- <span id="lt-target"></span>`type Target = T`
+- <span id="lt-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Lt`
 
-##### `impl<T> Spanned for Lt`
+##### `impl Spanned for Lt`
 
 - <span id="lt-span"></span>`fn span(&self) -> Span`
 
@@ -4800,6 +4952,8 @@ struct Minus {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `-`
 
@@ -4828,7 +4982,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Minus`
 
-- <span id="minus-target"></span>`type Target = WithSpan`
+- <span id="minus-type-target"></span>`type Target = WithSpan`
 
 - <span id="minus-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -4844,19 +4998,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Minus`
 
-- <span id="minus-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="minus-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Minus`
 
 - <span id="minus-eq"></span>`fn eq(&self, _other: &Minus) -> bool` — [`Minus`](#minus)
 
-##### `impl<P, T> Receiver for Minus`
+##### `impl Receiver for Minus`
 
-- <span id="minus-target"></span>`type Target = T`
+- <span id="minus-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Minus`
 
-##### `impl<T> Spanned for Minus`
+##### `impl Spanned for Minus`
 
 - <span id="minus-span"></span>`fn span(&self) -> Span`
 
@@ -4873,6 +5027,8 @@ struct MinusEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `-=`
 
@@ -4907,15 +5063,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for MinusEq`
 
-- <span id="minuseq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="minuseq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for MinusEq`
 
 - <span id="minuseq-eq"></span>`fn eq(&self, _other: &MinusEq) -> bool` — [`MinusEq`](#minuseq)
 
-##### `impl<T> Sealed for MinusEq`
+##### `impl Sealed for MinusEq`
 
-##### `impl<T> Spanned for MinusEq`
+##### `impl Spanned for MinusEq`
 
 - <span id="minuseq-span"></span>`fn span(&self) -> Span`
 
@@ -4932,6 +5088,8 @@ struct Ne {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `!=`
 
@@ -4966,7 +5124,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Ne`
 
-- <span id="ne-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="ne-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Ne`
 
@@ -4974,7 +5132,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Ne`
 
-##### `impl<T> Spanned for Ne`
+##### `impl Spanned for Ne`
 
 - <span id="ne-span"></span>`fn span(&self) -> Span`
 
@@ -4991,6 +5149,8 @@ struct Not {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `!`
 
@@ -5019,7 +5179,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Not`
 
-- <span id="not-target"></span>`type Target = WithSpan`
+- <span id="not-type-target"></span>`type Target = WithSpan`
 
 - <span id="not-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5035,19 +5195,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Not`
 
-- <span id="not-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="not-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Not`
 
 - <span id="not-eq"></span>`fn eq(&self, _other: &Not) -> bool` — [`Not`](#not)
 
-##### `impl<P, T> Receiver for Not`
+##### `impl Receiver for Not`
 
-- <span id="not-target"></span>`type Target = T`
+- <span id="not-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Not`
+##### `impl Sealed for Not`
 
-##### `impl<T> Spanned for Not`
+##### `impl Spanned for Not`
 
 - <span id="not-span"></span>`fn span(&self) -> Span`
 
@@ -5064,6 +5224,8 @@ struct Or {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `|`
 
@@ -5092,7 +5254,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Or`
 
-- <span id="or-target"></span>`type Target = WithSpan`
+- <span id="or-type-target"></span>`type Target = WithSpan`
 
 - <span id="or-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5108,19 +5270,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Or`
 
-- <span id="or-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="or-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Or`
 
 - <span id="or-eq"></span>`fn eq(&self, _other: &Or) -> bool` — [`Or`](#or)
 
-##### `impl<P, T> Receiver for Or`
+##### `impl Receiver for Or`
 
-- <span id="or-target"></span>`type Target = T`
+- <span id="or-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Or`
 
-##### `impl<T> Spanned for Or`
+##### `impl Spanned for Or`
 
 - <span id="or-span"></span>`fn span(&self) -> Span`
 
@@ -5137,6 +5299,8 @@ struct OrEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `|=`
 
@@ -5171,15 +5335,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for OrEq`
 
-- <span id="oreq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="oreq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for OrEq`
 
 - <span id="oreq-eq"></span>`fn eq(&self, _other: &OrEq) -> bool` — [`OrEq`](#oreq)
 
-##### `impl<T> Sealed for OrEq`
+##### `impl Sealed for OrEq`
 
-##### `impl<T> Spanned for OrEq`
+##### `impl Spanned for OrEq`
 
 - <span id="oreq-span"></span>`fn span(&self) -> Span`
 
@@ -5196,6 +5360,8 @@ struct OrOr {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `||`
 
@@ -5230,7 +5396,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for OrOr`
 
-- <span id="oror-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="oror-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for OrOr`
 
@@ -5238,7 +5404,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for OrOr`
 
-##### `impl<T> Spanned for OrOr`
+##### `impl Spanned for OrOr`
 
 - <span id="oror-span"></span>`fn span(&self) -> Span`
 
@@ -5255,6 +5421,8 @@ struct PathSep {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `::`
 
@@ -5289,15 +5457,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for PathSep`
 
-- <span id="pathsep-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="pathsep-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for PathSep`
 
 - <span id="pathsep-eq"></span>`fn eq(&self, _other: &PathSep) -> bool` — [`PathSep`](#pathsep)
 
-##### `impl<T> Sealed for PathSep`
+##### `impl Sealed for PathSep`
 
-##### `impl<T> Spanned for PathSep`
+##### `impl Spanned for PathSep`
 
 - <span id="pathsep-span"></span>`fn span(&self) -> Span`
 
@@ -5314,6 +5482,8 @@ struct Percent {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `%`
 
@@ -5342,7 +5512,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Percent`
 
-- <span id="percent-target"></span>`type Target = WithSpan`
+- <span id="percent-type-target"></span>`type Target = WithSpan`
 
 - <span id="percent-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5358,19 +5528,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Percent`
 
-- <span id="percent-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="percent-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Percent`
 
 - <span id="percent-eq"></span>`fn eq(&self, _other: &Percent) -> bool` — [`Percent`](#percent)
 
-##### `impl<P, T> Receiver for Percent`
+##### `impl Receiver for Percent`
 
-- <span id="percent-target"></span>`type Target = T`
+- <span id="percent-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Percent`
+##### `impl Sealed for Percent`
 
-##### `impl<T> Spanned for Percent`
+##### `impl Spanned for Percent`
 
 - <span id="percent-span"></span>`fn span(&self) -> Span`
 
@@ -5387,6 +5557,8 @@ struct PercentEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `%=`
 
@@ -5421,7 +5593,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for PercentEq`
 
-- <span id="percenteq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="percenteq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for PercentEq`
 
@@ -5429,7 +5601,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for PercentEq`
 
-##### `impl<T> Spanned for PercentEq`
+##### `impl Spanned for PercentEq`
 
 - <span id="percenteq-span"></span>`fn span(&self) -> Span`
 
@@ -5446,6 +5618,8 @@ struct Plus {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `+`
 
@@ -5474,7 +5648,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Plus`
 
-- <span id="plus-target"></span>`type Target = WithSpan`
+- <span id="plus-type-target"></span>`type Target = WithSpan`
 
 - <span id="plus-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5490,19 +5664,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Plus`
 
-- <span id="plus-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="plus-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Plus`
 
 - <span id="plus-eq"></span>`fn eq(&self, _other: &Plus) -> bool` — [`Plus`](#plus)
 
-##### `impl<P, T> Receiver for Plus`
+##### `impl Receiver for Plus`
 
-- <span id="plus-target"></span>`type Target = T`
+- <span id="plus-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Plus`
 
-##### `impl<T> Spanned for Plus`
+##### `impl Spanned for Plus`
 
 - <span id="plus-span"></span>`fn span(&self) -> Span`
 
@@ -5519,6 +5693,8 @@ struct PlusEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `+=`
 
@@ -5553,15 +5729,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for PlusEq`
 
-- <span id="pluseq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="pluseq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for PlusEq`
 
 - <span id="pluseq-eq"></span>`fn eq(&self, _other: &PlusEq) -> bool` — [`PlusEq`](#pluseq)
 
-##### `impl<T> Sealed for PlusEq`
+##### `impl Sealed for PlusEq`
 
-##### `impl<T> Spanned for PlusEq`
+##### `impl Spanned for PlusEq`
 
 - <span id="pluseq-span"></span>`fn span(&self) -> Span`
 
@@ -5578,6 +5754,8 @@ struct Pound {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `#`
 
@@ -5606,7 +5784,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Pound`
 
-- <span id="pound-target"></span>`type Target = WithSpan`
+- <span id="pound-type-target"></span>`type Target = WithSpan`
 
 - <span id="pound-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5622,19 +5800,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Pound`
 
-- <span id="pound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="pound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Pound`
 
 - <span id="pound-eq"></span>`fn eq(&self, _other: &Pound) -> bool` — [`Pound`](#pound)
 
-##### `impl<P, T> Receiver for Pound`
+##### `impl Receiver for Pound`
 
-- <span id="pound-target"></span>`type Target = T`
+- <span id="pound-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Pound`
 
-##### `impl<T> Spanned for Pound`
+##### `impl Spanned for Pound`
 
 - <span id="pound-span"></span>`fn span(&self) -> Span`
 
@@ -5651,6 +5829,8 @@ struct Question {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `?`
 
@@ -5679,7 +5859,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Question`
 
-- <span id="question-target"></span>`type Target = WithSpan`
+- <span id="question-type-target"></span>`type Target = WithSpan`
 
 - <span id="question-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5695,19 +5875,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Question`
 
-- <span id="question-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="question-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Question`
 
 - <span id="question-eq"></span>`fn eq(&self, _other: &Question) -> bool` — [`Question`](#question)
 
-##### `impl<P, T> Receiver for Question`
+##### `impl Receiver for Question`
 
-- <span id="question-target"></span>`type Target = T`
+- <span id="question-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Question`
 
-##### `impl<T> Spanned for Question`
+##### `impl Spanned for Question`
 
 - <span id="question-span"></span>`fn span(&self) -> Span`
 
@@ -5724,6 +5904,8 @@ struct RArrow {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `->`
 
@@ -5758,7 +5940,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for RArrow`
 
-- <span id="rarrow-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="rarrow-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for RArrow`
 
@@ -5766,7 +5948,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for RArrow`
 
-##### `impl<T> Spanned for RArrow`
+##### `impl Spanned for RArrow`
 
 - <span id="rarrow-span"></span>`fn span(&self) -> Span`
 
@@ -5783,6 +5965,8 @@ struct Semi {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `;`
 
@@ -5811,7 +5995,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Semi`
 
-- <span id="semi-target"></span>`type Target = WithSpan`
+- <span id="semi-type-target"></span>`type Target = WithSpan`
 
 - <span id="semi-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -5827,19 +6011,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Semi`
 
-- <span id="semi-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="semi-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Semi`
 
 - <span id="semi-eq"></span>`fn eq(&self, _other: &Semi) -> bool` — [`Semi`](#semi)
 
-##### `impl<P, T> Receiver for Semi`
+##### `impl Receiver for Semi`
 
-- <span id="semi-target"></span>`type Target = T`
+- <span id="semi-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Semi`
 
-##### `impl<T> Spanned for Semi`
+##### `impl Spanned for Semi`
 
 - <span id="semi-span"></span>`fn span(&self) -> Span`
 
@@ -5856,6 +6040,8 @@ struct Shl {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<<`
 
@@ -5890,7 +6076,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Shl`
 
-- <span id="shl-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="shl-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Shl`
 
@@ -5898,7 +6084,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for Shl`
 
-##### `impl<T> Spanned for Shl`
+##### `impl Spanned for Shl`
 
 - <span id="shl-span"></span>`fn span(&self) -> Span`
 
@@ -5915,6 +6101,8 @@ struct ShlEq {
     pub spans: [Span; 3],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `<<=`
 
@@ -5949,7 +6137,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for ShlEq`
 
-- <span id="shleq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="shleq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for ShlEq`
 
@@ -5957,7 +6145,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for ShlEq`
 
-##### `impl<T> Spanned for ShlEq`
+##### `impl Spanned for ShlEq`
 
 - <span id="shleq-span"></span>`fn span(&self) -> Span`
 
@@ -5974,6 +6162,8 @@ struct Shr {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>>`
 
@@ -6008,15 +6198,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Shr`
 
-- <span id="shr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="shr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Shr`
 
 - <span id="shr-eq"></span>`fn eq(&self, _other: &Shr) -> bool` — [`Shr`](#shr)
 
-##### `impl<T> Sealed for Shr`
+##### `impl Sealed for Shr`
 
-##### `impl<T> Spanned for Shr`
+##### `impl Spanned for Shr`
 
 - <span id="shr-span"></span>`fn span(&self) -> Span`
 
@@ -6033,6 +6223,8 @@ struct ShrEq {
     pub spans: [Span; 3],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `>>=`
 
@@ -6067,15 +6259,15 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for ShrEq`
 
-- <span id="shreq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="shreq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for ShrEq`
 
 - <span id="shreq-eq"></span>`fn eq(&self, _other: &ShrEq) -> bool` — [`ShrEq`](#shreq)
 
-##### `impl<T> Sealed for ShrEq`
+##### `impl Sealed for ShrEq`
 
-##### `impl<T> Spanned for ShrEq`
+##### `impl Spanned for ShrEq`
 
 - <span id="shreq-span"></span>`fn span(&self) -> Span`
 
@@ -6092,6 +6284,8 @@ struct Slash {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `/`
 
@@ -6120,7 +6314,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Slash`
 
-- <span id="slash-target"></span>`type Target = WithSpan`
+- <span id="slash-type-target"></span>`type Target = WithSpan`
 
 - <span id="slash-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -6136,19 +6330,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Slash`
 
-- <span id="slash-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="slash-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Slash`
 
 - <span id="slash-eq"></span>`fn eq(&self, _other: &Slash) -> bool` — [`Slash`](#slash)
 
-##### `impl<P, T> Receiver for Slash`
+##### `impl Receiver for Slash`
 
-- <span id="slash-target"></span>`type Target = T`
+- <span id="slash-type-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Slash`
+##### `impl Sealed for Slash`
 
-##### `impl<T> Spanned for Slash`
+##### `impl Spanned for Slash`
 
 - <span id="slash-span"></span>`fn span(&self) -> Span`
 
@@ -6165,6 +6359,8 @@ struct SlashEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `/=`
 
@@ -6199,7 +6395,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for SlashEq`
 
-- <span id="slasheq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="slasheq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for SlashEq`
 
@@ -6207,7 +6403,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for SlashEq`
 
-##### `impl<T> Spanned for SlashEq`
+##### `impl Spanned for SlashEq`
 
 - <span id="slasheq-span"></span>`fn span(&self) -> Span`
 
@@ -6224,6 +6420,8 @@ struct Star {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `*`
 
@@ -6252,7 +6450,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Star`
 
-- <span id="star-target"></span>`type Target = WithSpan`
+- <span id="star-type-target"></span>`type Target = WithSpan`
 
 - <span id="star-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -6268,19 +6466,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Star`
 
-- <span id="star-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="star-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Star`
 
 - <span id="star-eq"></span>`fn eq(&self, _other: &Star) -> bool` — [`Star`](#star)
 
-##### `impl<P, T> Receiver for Star`
+##### `impl Receiver for Star`
 
-- <span id="star-target"></span>`type Target = T`
+- <span id="star-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Star`
 
-##### `impl<T> Spanned for Star`
+##### `impl Spanned for Star`
 
 - <span id="star-span"></span>`fn span(&self) -> Span`
 
@@ -6297,6 +6495,8 @@ struct StarEq {
     pub spans: [Span; 2],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `*=`
 
@@ -6331,7 +6531,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for StarEq`
 
-- <span id="stareq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="stareq-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for StarEq`
 
@@ -6339,7 +6539,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Sealed for StarEq`
 
-##### `impl<T> Spanned for StarEq`
+##### `impl Spanned for StarEq`
 
 - <span id="stareq-span"></span>`fn span(&self) -> Span`
 
@@ -6356,6 +6556,8 @@ struct Tilde {
     pub spans: [Span; 1],
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:748-795`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L748-L795)*
 
 `~`
 
@@ -6384,7 +6586,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Deref for Tilde`
 
-- <span id="tilde-target"></span>`type Target = WithSpan`
+- <span id="tilde-type-target"></span>`type Target = WithSpan`
 
 - <span id="tilde-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -6400,19 +6602,19 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Tilde`
 
-- <span id="tilde-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="tilde-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Tilde`
 
 - <span id="tilde-eq"></span>`fn eq(&self, _other: &Tilde) -> bool` — [`Tilde`](#tilde)
 
-##### `impl<P, T> Receiver for Tilde`
+##### `impl Receiver for Tilde`
 
-- <span id="tilde-target"></span>`type Target = T`
+- <span id="tilde-type-target"></span>`type Target = T`
 
 ##### `impl Sealed for Tilde`
 
-##### `impl<T> Spanned for Tilde`
+##### `impl Spanned for Tilde`
 
 - <span id="tilde-span"></span>`fn span(&self) -> Span`
 
@@ -6429,6 +6631,8 @@ struct Brace {
     pub span: DelimSpan,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L797-L801)*
 
 `{`&hellip;`}`
 
@@ -6474,6 +6678,8 @@ struct Bracket {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L797-L801)*
+
 ``&hellip;``
 
 #### Implementations
@@ -6517,6 +6723,8 @@ struct Paren {
     pub span: DelimSpan,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:797-801`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L797-L801)*
 
 `(`&hellip;`)`
 
@@ -6562,6 +6770,8 @@ struct Paren {
 trait Token: private::Sealed { ... }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:125-133`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L125-L133)*
+
 Marker trait for types that represent single tokens.
 
 This trait is sealed and cannot be implemented for types outside of Syn.
@@ -6598,7 +6808,6 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 - [`Dot`](#dot)
 - [`Dyn`](#dyn)
 - [`Else`](#else)
-- [`End`](../parse/index.md)
 - [`Enum`](#enum)
 - [`EqEq`](#eqeq)
 - [`Eq`](#eq)
@@ -6610,24 +6819,23 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 - [`Ge`](#ge)
 - [`Group`](#group)
 - [`Gt`](#gt)
-- [`IdentAny`](../ext/private/index.md)
-- [`Ident`](../index.md)
+- [`Ident`](../ident/index.md)
 - [`If`](#if)
 - [`Impl`](#impl)
 - [`In`](#in)
 - [`LArrow`](#larrow)
 - [`Le`](#le)
 - [`Let`](#let)
-- [`Lifetime`](../index.md)
-- [`LitBool`](../index.md)
-- [`LitByteStr`](../index.md)
-- [`LitByte`](../index.md)
-- [`LitCStr`](../index.md)
-- [`LitChar`](../index.md)
-- [`LitFloat`](../index.md)
-- [`LitInt`](../index.md)
-- [`LitStr`](../index.md)
-- [`Lit`](../index.md)
+- [`Lifetime`](../lifetime/index.md)
+- [`LitBool`](../lit/index.md)
+- [`LitByteStr`](../lit/index.md)
+- [`LitByte`](../lit/index.md)
+- [`LitCStr`](../lit/index.md)
+- [`LitChar`](../lit/index.md)
+- [`LitFloat`](../lit/index.md)
+- [`LitInt`](../lit/index.md)
+- [`LitStr`](../lit/index.md)
+- [`Lit`](../lit/index.md)
 - [`Loop`](#loop)
 - [`Lt`](#lt)
 - [`Macro`](#macro)
@@ -6695,13 +6903,25 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 
 ### `impl_low_level_token!`
 
+*Defined in [`syn-2.0.111/src/token.rs:163-179`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L163-L179)*
+
 ### `define_keywords!`
+
+*Defined in [`syn-2.0.111/src/token.rs:201-301`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L201-L301)*
 
 ### `impl_deref_if_len_is_1!`
 
+*Defined in [`syn-2.0.111/src/token.rs:303-321`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L303-L321)*
+
 ### `define_punctuation_structs!`
+
+*Defined in [`syn-2.0.111/src/token.rs:323-398`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L323-L398)*
 
 ### `define_punctuation!`
 
+*Defined in [`syn-2.0.111/src/token.rs:400-440`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L400-L440)*
+
 ### `define_delimiters!`
+
+*Defined in [`syn-2.0.111/src/token.rs:442-519`](../../../.source_1765210505/syn-2.0.111/src/token.rs#L442-L519)*
 

@@ -42,6 +42,8 @@
 struct LazyFunctions<R: gimli::Reader>(core::cell::OnceCell<Result<Functions<R>, gimli::Error>>);
 ```
 
+*Defined in [`addr2line-0.25.1/src/function.rs:8`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L8)*
+
 #### Implementations
 
 - <span id="lazyfunctions-new"></span>`fn new() -> Self`
@@ -56,6 +58,8 @@ struct Functions<R: gimli::Reader> {
     addresses: alloc::boxed::Box<[FunctionAddress]>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/function.rs:23-28`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L23-L28)*
 
 #### Fields
 
@@ -84,6 +88,8 @@ struct FunctionAddress {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/function.rs:35-39`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L35-L39)*
+
 A single address range for a function.
 
 It is possible for a function to have multiple address ranges; this
@@ -105,6 +111,8 @@ struct LazyFunction<R: gimli::Reader> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/function.rs:41-44`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L41-L44)*
+
 #### Implementations
 
 - <span id="lazyfunction-new"></span>`fn new(dw_die_offset: gimli::UnitOffset<<R as >::Offset>) -> Self`
@@ -121,6 +129,8 @@ struct Function<R: gimli::Reader> {
     inlined_addresses: alloc::boxed::Box<[InlinedFunctionAddress]>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/function.rs:67-74`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L67-L74)*
 
 #### Fields
 
@@ -152,6 +162,8 @@ struct InlinedFunctionAddress {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/function.rs:76-81`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L76-L81)*
+
 #### Fields
 
 - **`function`**: `usize`
@@ -170,6 +182,8 @@ struct InlinedFunction<R: gimli::Reader> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/function.rs:83-89`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L83-L89)*
+
 #### Implementations
 
 - <span id="inlinedfunction-parse"></span>`fn parse(state: &mut InlinedState<'_, R>, dw_die_offset: gimli::UnitOffset<<R as >::Offset>, abbrev: &gimli::Abbreviation, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`InlinedState`](#inlinedstate)
@@ -187,6 +201,8 @@ struct InlinedState<'a, R: gimli::Reader> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/function.rs:463-473`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L463-L473)*
+
 ## Functions
 
 ### `name_attr`
@@ -197,6 +213,8 @@ where
     R: gimli::Reader
 ```
 
+*Defined in [`addr2line-0.25.1/src/function.rs:475-511`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L475-L511)*
+
 ### `name_entry`
 
 ```rust
@@ -204,4 +222,6 @@ fn name_entry<R>(file: crate::DebugFile, unit: gimli::UnitRef<'_, R>, offset: gi
 where
     R: gimli::Reader
 ```
+
+*Defined in [`addr2line-0.25.1/src/function.rs:513-563`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L513-L563)*
 

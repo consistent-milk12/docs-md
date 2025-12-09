@@ -30,6 +30,8 @@ struct Parser {
 }
 ```
 
+*Defined in [`utf8parse-0.2.2/src/lib.rs:29-32`](../../.source_1765210505/utf8parse-0.2.2/src/lib.rs#L29-L32)*
+
 A parser for Utf8 Characters
 
 Repeatedly call `advance` with bytes to emit Utf8 characters
@@ -72,6 +74,8 @@ Repeatedly call `advance` with bytes to emit Utf8 characters
 trait Receiver { ... }
 ```
 
+*Defined in [`utf8parse-0.2.2/src/lib.rs:17-23`](../../.source_1765210505/utf8parse-0.2.2/src/lib.rs#L17-L23)*
+
 Handles codepoint and invalid sequence events from the parser.
 
 #### Required Methods
@@ -87,10 +91,11 @@ Handles codepoint and invalid sequence events from the parser.
 ## Constants
 
 ### `CONTINUATION_MASK`
-
 ```rust
 const CONTINUATION_MASK: u8 = 63u8;
 ```
+
+*Defined in [`utf8parse-0.2.2/src/lib.rs:35`](../../.source_1765210505/utf8parse-0.2.2/src/lib.rs#L35)*
 
 Continuation bytes are masked with this value.
 

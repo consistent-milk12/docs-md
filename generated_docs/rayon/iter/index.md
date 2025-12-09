@@ -59,11 +59,11 @@ ways to create (or consume) parallel iterators:
 
 
 To see the full range of methods available on parallel iterators,
-check out the [`ParallelIterator`](../prelude/index.md) and [`IndexedParallelIterator`](../prelude/index.md)
+check out the [`ParallelIterator`](#paralleliterator) and [`IndexedParallelIterator`](#indexedparalleliterator)
 traits.
 
 If you'd like to build a custom parallel iterator, or to write your own
-combinator, then check out the [split](#split) function and the [`plumbing`](plumbing/index.md) module.
+combinator, then check out the [`split`](splitter/index.md) function and the [`plumbing`](plumbing/index.md) module.
 
 
 
@@ -278,7 +278,7 @@ because `ParallelIterator` is **not object-safe**.
 | [`while_some`](#while_some) | mod |  |
 | [`zip`](#zip) | mod |  |
 | [`zip_eq`](#zip_eq) | mod |  |
-| [`private`](#private) | mod | We hide the `Try` trait in a private module, as it's only meant to be a |
+| [`private`](#private) | mod | We hide the `Try` trait in a private module, as it's only meant to be a stable clone of the standard library's `Try` trait, as yet unstable. |
 | [`ExponentialBlocks`](#exponentialblocks) | struct |  |
 | [`UniformBlocks`](#uniformblocks) | struct |  |
 | [`Chain`](#chain) | struct |  |
@@ -333,14 +333,14 @@ because `ParallelIterator` is **not object-safe**.
 | [`ZipEq`](#zipeq) | struct |  |
 | [`ParallelBridge`](#parallelbridge) | trait |  |
 | [`IntoParallelIterator`](#intoparalleliterator) | trait | `IntoParallelIterator` implements the conversion to a [`ParallelIterator`]. |
-| [`IntoParallelRefIterator`](#intoparallelrefiterator) | trait | `IntoParallelRefIterator` implements the conversion to a |
-| [`IntoParallelRefMutIterator`](#intoparallelrefmutiterator) | trait | `IntoParallelRefMutIterator` implements the conversion to a |
+| [`IntoParallelRefIterator`](#intoparallelrefiterator) | trait | `IntoParallelRefIterator` implements the conversion to a [`ParallelIterator`], providing shared references to the data. |
+| [`IntoParallelRefMutIterator`](#intoparallelrefmutiterator) | trait | `IntoParallelRefMutIterator` implements the conversion to a [`ParallelIterator`], providing mutable references to the data. |
 | [`ParallelIterator`](#paralleliterator) | trait | Parallel version of the standard iterator trait. |
-| [`IndexedParallelIterator`](#indexedparalleliterator) | trait | An iterator that supports "random access" to its data, meaning |
-| [`FromParallelIterator`](#fromparalleliterator) | trait | `FromParallelIterator` implements the creation of a collection |
+| [`IndexedParallelIterator`](#indexedparalleliterator) | trait | An iterator that supports "random access" to its data, meaning that you can split it at arbitrary indices and draw data from those points. |
+| [`FromParallelIterator`](#fromparalleliterator) | trait | `FromParallelIterator` implements the creation of a collection from a [`ParallelIterator`]. |
 | [`ParallelExtend`](#parallelextend) | trait | `ParallelExtend` extends an existing collection with items from a [`ParallelIterator`]. |
-| [`ParallelDrainFull`](#paralleldrainfull) | trait | `ParallelDrainFull` creates a parallel iterator that moves all items |
-| [`ParallelDrainRange`](#paralleldrainrange) | trait | `ParallelDrainRange` creates a parallel iterator that moves a range of items |
+| [`ParallelDrainFull`](#paralleldrainfull) | trait | `ParallelDrainFull` creates a parallel iterator that moves all items from a collection while retaining the original capacity. |
+| [`ParallelDrainRange`](#paralleldrainrange) | trait | `ParallelDrainRange` creates a parallel iterator that moves a range of items from a collection while retaining the original capacity. |
 | [`empty`](#empty) | fn |  |
 | [`once`](#once) | fn |  |
 | [`repeat`](#repeat) | fn |  |
@@ -423,10 +423,12 @@ struct ExponentialBlocks<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:59-61`](../../../.source_1765210505/rayon-1.11.0/src/iter/blocks.rs#L59-L61)*
+
 `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of increasing sizes (exponentially).
 
-This struct is created by the `by_exponential_blocks()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `by_exponential_blocks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -437,7 +439,7 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 ##### `impl<I: clone::Clone> Clone for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-clone"></span>`fn clone(&self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](#exponentialblocks)
+- <span id="exponentialblocks-clone"></span>`fn clone(&self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](blocks/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for ExponentialBlocks<I>`
 
@@ -447,23 +449,23 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 ##### `impl<T> IntoParallelIterator for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-iter"></span>`type Iter = T`
+- <span id="exponentialblocks-type-iter"></span>`type Iter = T`
 
-- <span id="exponentialblocks-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="exponentialblocks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="exponentialblocks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="exponentialblocks-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="exponentialblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-align"></span>`const ALIGN: usize`
+- <span id="exponentialblocks-const-align"></span>`const ALIGN: usize`
 
-- <span id="exponentialblocks-init"></span>`type Init = T`
+- <span id="exponentialblocks-type-init"></span>`type Init = T`
 
 - <span id="exponentialblocks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -482,10 +484,12 @@ struct UniformBlocks<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:101-104`](../../../.source_1765210505/rayon-1.11.0/src/iter/blocks.rs#L101-L104)*
+
 `UniformBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of constant sizes.
 
-This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -496,7 +500,7 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 ##### `impl<I: clone::Clone> Clone for UniformBlocks<I>`
 
-- <span id="uniformblocks-clone"></span>`fn clone(&self) -> UniformBlocks<I>` — [`UniformBlocks`](#uniformblocks)
+- <span id="uniformblocks-clone"></span>`fn clone(&self) -> UniformBlocks<I>` — [`UniformBlocks`](blocks/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for UniformBlocks<I>`
 
@@ -506,23 +510,23 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 ##### `impl<T> IntoParallelIterator for UniformBlocks<I>`
 
-- <span id="uniformblocks-iter"></span>`type Iter = T`
+- <span id="uniformblocks-type-iter"></span>`type Iter = T`
 
-- <span id="uniformblocks-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="uniformblocks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="uniformblocks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for UniformBlocks<I>`
 
-- <span id="uniformblocks-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="uniformblocks-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="uniformblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for UniformBlocks<I>`
 
-- <span id="uniformblocks-align"></span>`const ALIGN: usize`
+- <span id="uniformblocks-const-align"></span>`const ALIGN: usize`
 
-- <span id="uniformblocks-init"></span>`type Init = T`
+- <span id="uniformblocks-type-init"></span>`type Init = T`
 
 - <span id="uniformblocks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -541,8 +545,10 @@ struct Chain<A, B> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
+
 `Chain` is an iterator that joins `b` after `a` in one continuous iterator.
-This struct is created by the `chain()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `chain()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -553,7 +559,7 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../prelud
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for Chain<A, B>`
 
-- <span id="chain-clone"></span>`fn clone(&self) -> Chain<A, B>` — [`Chain`](#chain)
+- <span id="chain-clone"></span>`fn clone(&self) -> Chain<A, B>` — [`Chain`](chain/index.md)
 
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for Chain<A, B>`
 
@@ -571,15 +577,15 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../prelud
 
 ##### `impl<T> IntoParallelIterator for Chain<A, B>`
 
-- <span id="chain-iter"></span>`type Iter = T`
+- <span id="chain-type-iter"></span>`type Iter = T`
 
-- <span id="chain-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Chain<A, B>`
 
-- <span id="chain-item"></span>`type Item = <A as ParallelIterator>::Item`
+- <span id="chain-type-item"></span>`type Item = <A as ParallelIterator>::Item`
 
 - <span id="chain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -587,9 +593,9 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../prelud
 
 ##### `impl<T> Pointable for Chain<A, B>`
 
-- <span id="chain-align"></span>`const ALIGN: usize`
+- <span id="chain-const-align"></span>`const ALIGN: usize`
 
-- <span id="chain-init"></span>`type Init = T`
+- <span id="chain-type-init"></span>`type Init = T`
 
 - <span id="chain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -608,9 +614,11 @@ struct Chunks<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chunks.rs:11-14`](../../../.source_1765210505/rayon-1.11.0/src/iter/chunks.rs#L11-L14)*
+
 `Chunks` is an iterator that groups elements of an underlying iterator.
 
-This struct is created by the `chunks()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -621,7 +629,7 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](.
 
 ##### `impl<I: clone::Clone> Clone for Chunks<I>`
 
-- <span id="chunks-clone"></span>`fn clone(&self) -> Chunks<I>` — [`Chunks`](#chunks)
+- <span id="chunks-clone"></span>`fn clone(&self) -> Chunks<I>` — [`Chunks`](chunks/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for Chunks<I>`
 
@@ -639,15 +647,15 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](.
 
 ##### `impl<T> IntoParallelIterator for Chunks<I>`
 
-- <span id="chunks-iter"></span>`type Iter = T`
+- <span id="chunks-type-iter"></span>`type Iter = T`
 
-- <span id="chunks-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Chunks<I>`
 
-- <span id="chunks-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
+- <span id="chunks-type-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
 
 - <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -655,9 +663,9 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](.
 
 ##### `impl<T> Pointable for Chunks<I>`
 
-- <span id="chunks-align"></span>`const ALIGN: usize`
+- <span id="chunks-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunks-init"></span>`type Init = T`
+- <span id="chunks-type-init"></span>`type Init = T`
 
 - <span id="chunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -675,9 +683,11 @@ struct Cloned<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:13-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/cloned.rs#L13-L15)*
+
 `Cloned` is an iterator that clones the elements of an underlying iterator.
 
-This struct is created by the `cloned()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `cloned()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -688,7 +698,7 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<I: clone::Clone> Clone for Cloned<I>`
 
-- <span id="cloned-clone"></span>`fn clone(&self) -> Cloned<I>` — [`Cloned`](#cloned)
+- <span id="cloned-clone"></span>`fn clone(&self) -> Cloned<I>` — [`Cloned`](cloned/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for Cloned<I>`
 
@@ -706,15 +716,15 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<T> IntoParallelIterator for Cloned<I>`
 
-- <span id="cloned-iter"></span>`type Iter = T`
+- <span id="cloned-type-iter"></span>`type Iter = T`
 
-- <span id="cloned-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="cloned-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="cloned-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T, I> ParallelIterator for Cloned<I>`
 
-- <span id="cloned-item"></span>`type Item = T`
+- <span id="cloned-type-item"></span>`type Item = T`
 
 - <span id="cloned-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -722,9 +732,9 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<T> Pointable for Cloned<I>`
 
-- <span id="cloned-align"></span>`const ALIGN: usize`
+- <span id="cloned-const-align"></span>`const ALIGN: usize`
 
-- <span id="cloned-init"></span>`type Init = T`
+- <span id="cloned-type-init"></span>`type Init = T`
 
 - <span id="cloned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -742,9 +752,11 @@ struct Copied<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/copied.rs:13-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/copied.rs#L13-L15)*
+
 `Copied` is an iterator that copies the elements of an underlying iterator.
 
-This struct is created by the `copied()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `copied()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -755,7 +767,7 @@ This struct is created by the `copied()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<I: clone::Clone> Clone for Copied<I>`
 
-- <span id="copied-clone"></span>`fn clone(&self) -> Copied<I>` — [`Copied`](#copied)
+- <span id="copied-clone"></span>`fn clone(&self) -> Copied<I>` — [`Copied`](copied/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for Copied<I>`
 
@@ -773,15 +785,15 @@ This struct is created by the `copied()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<T> IntoParallelIterator for Copied<I>`
 
-- <span id="copied-iter"></span>`type Iter = T`
+- <span id="copied-type-iter"></span>`type Iter = T`
 
-- <span id="copied-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="copied-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="copied-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T, I> ParallelIterator for Copied<I>`
 
-- <span id="copied-item"></span>`type Item = T`
+- <span id="copied-type-item"></span>`type Item = T`
 
 - <span id="copied-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -789,9 +801,9 @@ This struct is created by the `copied()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<T> Pointable for Copied<I>`
 
-- <span id="copied-align"></span>`const ALIGN: usize`
+- <span id="copied-const-align"></span>`const ALIGN: usize`
 
-- <span id="copied-init"></span>`type Init = T`
+- <span id="copied-type-init"></span>`type Init = T`
 
 - <span id="copied-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -808,6 +820,8 @@ struct Empty<T> {
     marker: std::marker::PhantomData<T>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:33-35`](../../../.source_1765210505/rayon-1.11.0/src/iter/empty.rs#L33-L35)*
 
 Iterator adaptor for [the `empty()` function].
 
@@ -834,15 +848,15 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T> IntoParallelIterator for Empty<T>`
 
-- <span id="empty-iter"></span>`type Iter = T`
+- <span id="empty-type-iter"></span>`type Iter = T`
 
-- <span id="empty-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="empty-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="empty-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Empty<T>`
 
-- <span id="empty-item"></span>`type Item = T`
+- <span id="empty-type-item"></span>`type Item = T`
 
 - <span id="empty-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -850,9 +864,9 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T> Pointable for Empty<T>`
 
-- <span id="empty-align"></span>`const ALIGN: usize`
+- <span id="empty-const-align"></span>`const ALIGN: usize`
 
-- <span id="empty-init"></span>`type Init = T`
+- <span id="empty-type-init"></span>`type Init = T`
 
 - <span id="empty-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -870,8 +884,10 @@ struct Enumerate<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:12-14`](../../../.source_1765210505/rayon-1.11.0/src/iter/enumerate.rs#L12-L14)*
+
 `Enumerate` is an iterator that returns the current count along with the element.
-This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -882,7 +898,7 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 ##### `impl<I: clone::Clone> Clone for Enumerate<I>`
 
-- <span id="enumerate-clone"></span>`fn clone(&self) -> Enumerate<I>` — [`Enumerate`](#enumerate)
+- <span id="enumerate-clone"></span>`fn clone(&self) -> Enumerate<I>` — [`Enumerate`](enumerate/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for Enumerate<I>`
 
@@ -900,15 +916,15 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 ##### `impl<T> IntoParallelIterator for Enumerate<I>`
 
-- <span id="enumerate-iter"></span>`type Iter = T`
+- <span id="enumerate-type-iter"></span>`type Iter = T`
 
-- <span id="enumerate-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="enumerate-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="enumerate-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Enumerate<I>`
 
-- <span id="enumerate-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
+- <span id="enumerate-type-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
 
 - <span id="enumerate-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -916,9 +932,9 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 ##### `impl<T> Pointable for Enumerate<I>`
 
-- <span id="enumerate-align"></span>`const ALIGN: usize`
+- <span id="enumerate-const-align"></span>`const ALIGN: usize`
 
-- <span id="enumerate-init"></span>`type Init = T`
+- <span id="enumerate-type-init"></span>`type Init = T`
 
 - <span id="enumerate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -937,8 +953,10 @@ struct Filter<I, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/filter.rs:12-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/filter.rs#L12-L15)*
+
 `Filter` takes a predicate `filter_op` and filters out elements that match.
-This struct is created by the `filter()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `filter()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -949,7 +967,7 @@ This struct is created by the `filter()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for Filter<I, P>`
 
-- <span id="filter-clone"></span>`fn clone(&self) -> Filter<I, P>` — [`Filter`](#filter)
+- <span id="filter-clone"></span>`fn clone(&self) -> Filter<I, P>` — [`Filter`](filter/index.md)
 
 ##### `impl<I: Debug, P> Debug for Filter<I, P>`
 
@@ -959,23 +977,23 @@ This struct is created by the `filter()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<T> IntoParallelIterator for Filter<I, P>`
 
-- <span id="filter-iter"></span>`type Iter = T`
+- <span id="filter-type-iter"></span>`type Iter = T`
 
-- <span id="filter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="filter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="filter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for Filter<I, P>`
 
-- <span id="filter-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="filter-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="filter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for Filter<I, P>`
 
-- <span id="filter-align"></span>`const ALIGN: usize`
+- <span id="filter-const-align"></span>`const ALIGN: usize`
 
-- <span id="filter-init"></span>`type Init = T`
+- <span id="filter-type-init"></span>`type Init = T`
 
 - <span id="filter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -994,8 +1012,10 @@ struct FilterMap<I, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/filter_map.rs:12-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/filter_map.rs#L12-L15)*
+
 `FilterMap` creates an iterator that uses `filter_op` to both filter and map elements.
-This struct is created by the `filter_map()` method on [`ParallelIterator`](../prelude/index.md).
+This struct is created by the `filter_map()` method on [`ParallelIterator`](#paralleliterator).
 
 
 #### Implementations
@@ -1006,7 +1026,7 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](../p
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for FilterMap<I, P>`
 
-- <span id="filtermap-clone"></span>`fn clone(&self) -> FilterMap<I, P>` — [`FilterMap`](#filtermap)
+- <span id="filtermap-clone"></span>`fn clone(&self) -> FilterMap<I, P>` — [`FilterMap`](filter_map/index.md)
 
 ##### `impl<I: Debug, P> Debug for FilterMap<I, P>`
 
@@ -1016,23 +1036,23 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](../p
 
 ##### `impl<T> IntoParallelIterator for FilterMap<I, P>`
 
-- <span id="filtermap-iter"></span>`type Iter = T`
+- <span id="filtermap-type-iter"></span>`type Iter = T`
 
-- <span id="filtermap-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="filtermap-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="filtermap-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P, R> ParallelIterator for FilterMap<I, P>`
 
-- <span id="filtermap-item"></span>`type Item = R`
+- <span id="filtermap-type-item"></span>`type Item = R`
 
 - <span id="filtermap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for FilterMap<I, P>`
 
-- <span id="filtermap-align"></span>`const ALIGN: usize`
+- <span id="filtermap-const-align"></span>`const ALIGN: usize`
 
-- <span id="filtermap-init"></span>`type Init = T`
+- <span id="filtermap-type-init"></span>`type Init = T`
 
 - <span id="filtermap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1051,8 +1071,10 @@ struct FlatMap<I, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:12-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/flat_map.rs#L12-L15)*
+
 `FlatMap` maps each element to a parallel iterator, then flattens these iterators together.
-This struct is created by the `flat_map()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `flat_map()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1063,7 +1085,7 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](../pre
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for FlatMap<I, F>`
 
-- <span id="flatmap-clone"></span>`fn clone(&self) -> FlatMap<I, F>` — [`FlatMap`](#flatmap)
+- <span id="flatmap-clone"></span>`fn clone(&self) -> FlatMap<I, F>` — [`FlatMap`](flat_map/index.md)
 
 ##### `impl<I: Debug, F> Debug for FlatMap<I, F>`
 
@@ -1073,23 +1095,23 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](../pre
 
 ##### `impl<T> IntoParallelIterator for FlatMap<I, F>`
 
-- <span id="flatmap-iter"></span>`type Iter = T`
+- <span id="flatmap-type-iter"></span>`type Iter = T`
 
-- <span id="flatmap-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatmap-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatmap-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F, PI> ParallelIterator for FlatMap<I, F>`
 
-- <span id="flatmap-item"></span>`type Item = <PI as IntoParallelIterator>::Item`
+- <span id="flatmap-type-item"></span>`type Item = <PI as IntoParallelIterator>::Item`
 
 - <span id="flatmap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for FlatMap<I, F>`
 
-- <span id="flatmap-align"></span>`const ALIGN: usize`
+- <span id="flatmap-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatmap-init"></span>`type Init = T`
+- <span id="flatmap-type-init"></span>`type Init = T`
 
 - <span id="flatmap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1108,8 +1130,10 @@ struct FlatMapIter<I, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flat_map_iter.rs:12-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/flat_map_iter.rs#L12-L15)*
+
 `FlatMapIter` maps each element to a serial iterator, then flattens these iterators together.
-This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1120,7 +1144,7 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](.
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for FlatMapIter<I, F>`
 
-- <span id="flatmapiter-clone"></span>`fn clone(&self) -> FlatMapIter<I, F>` — [`FlatMapIter`](#flatmapiter)
+- <span id="flatmapiter-clone"></span>`fn clone(&self) -> FlatMapIter<I, F>` — [`FlatMapIter`](flat_map_iter/index.md)
 
 ##### `impl<I: Debug, F> Debug for FlatMapIter<I, F>`
 
@@ -1130,23 +1154,23 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](.
 
 ##### `impl<T> IntoParallelIterator for FlatMapIter<I, F>`
 
-- <span id="flatmapiter-iter"></span>`type Iter = T`
+- <span id="flatmapiter-type-iter"></span>`type Iter = T`
 
-- <span id="flatmapiter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatmapiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatmapiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F, SI> ParallelIterator for FlatMapIter<I, F>`
 
-- <span id="flatmapiter-item"></span>`type Item = <SI as IntoIterator>::Item`
+- <span id="flatmapiter-type-item"></span>`type Item = <SI as IntoIterator>::Item`
 
 - <span id="flatmapiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for FlatMapIter<I, F>`
 
-- <span id="flatmapiter-align"></span>`const ALIGN: usize`
+- <span id="flatmapiter-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatmapiter-init"></span>`type Init = T`
+- <span id="flatmapiter-type-init"></span>`type Init = T`
 
 - <span id="flatmapiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1164,8 +1188,10 @@ struct Flatten<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flatten.rs:10-12`](../../../.source_1765210505/rayon-1.11.0/src/iter/flatten.rs#L10-L12)*
+
 `Flatten` turns each element to a parallel iterator, then flattens these iterators
-together. This struct is created by the `flatten()` method on [`ParallelIterator`](../prelude/index.md).
+together. This struct is created by the `flatten()` method on [`ParallelIterator`](#paralleliterator).
 
 
 #### Implementations
@@ -1176,7 +1202,7 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 ##### `impl<I: clone::Clone> Clone for Flatten<I>`
 
-- <span id="flatten-clone"></span>`fn clone(&self) -> Flatten<I>` — [`Flatten`](#flatten)
+- <span id="flatten-clone"></span>`fn clone(&self) -> Flatten<I>` — [`Flatten`](flatten/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for Flatten<I>`
 
@@ -1186,23 +1212,23 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 ##### `impl<T> IntoParallelIterator for Flatten<I>`
 
-- <span id="flatten-iter"></span>`type Iter = T`
+- <span id="flatten-type-iter"></span>`type Iter = T`
 
-- <span id="flatten-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatten-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatten-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Flatten<I>`
 
-- <span id="flatten-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoParallelIterator>::Item`
+- <span id="flatten-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoParallelIterator>::Item`
 
 - <span id="flatten-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for Flatten<I>`
 
-- <span id="flatten-align"></span>`const ALIGN: usize`
+- <span id="flatten-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatten-init"></span>`type Init = T`
+- <span id="flatten-type-init"></span>`type Init = T`
 
 - <span id="flatten-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1220,8 +1246,10 @@ struct FlattenIter<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:10-12`](../../../.source_1765210505/rayon-1.11.0/src/iter/flatten_iter.rs#L10-L12)*
+
 `FlattenIter` turns each element to a serial iterator, then flattens these iterators
-together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](../prelude/index.md).
+together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](#paralleliterator).
 
 
 #### Implementations
@@ -1232,7 +1260,7 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 ##### `impl<I: clone::Clone> Clone for FlattenIter<I>`
 
-- <span id="flatteniter-clone"></span>`fn clone(&self) -> FlattenIter<I>` — [`FlattenIter`](#flatteniter)
+- <span id="flatteniter-clone"></span>`fn clone(&self) -> FlattenIter<I>` — [`FlattenIter`](flatten_iter/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for FlattenIter<I>`
 
@@ -1242,23 +1270,23 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 ##### `impl<T> IntoParallelIterator for FlattenIter<I>`
 
-- <span id="flatteniter-iter"></span>`type Iter = T`
+- <span id="flatteniter-type-iter"></span>`type Iter = T`
 
-- <span id="flatteniter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatteniter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatteniter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for FlattenIter<I>`
 
-- <span id="flatteniter-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
+- <span id="flatteniter-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
 
 - <span id="flatteniter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for FlattenIter<I>`
 
-- <span id="flatteniter-align"></span>`const ALIGN: usize`
+- <span id="flatteniter-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatteniter-init"></span>`type Init = T`
+- <span id="flatteniter-type-init"></span>`type Init = T`
 
 - <span id="flatteniter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1278,8 +1306,10 @@ struct Fold<I, ID, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:22-26`](../../../.source_1765210505/rayon-1.11.0/src/iter/fold.rs#L22-L26)*
+
 `Fold` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `fold()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `fold()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1290,7 +1320,7 @@ This struct is created by the `fold()` method on [`ParallelIterator`](../prelude
 
 ##### `impl<I: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for Fold<I, ID, F>`
 
-- <span id="fold-clone"></span>`fn clone(&self) -> Fold<I, ID, F>` — [`Fold`](#fold)
+- <span id="fold-clone"></span>`fn clone(&self) -> Fold<I, ID, F>` — [`Fold`](fold/index.md)
 
 ##### `impl<I: Debug, ID, F> Debug for Fold<I, ID, F>`
 
@@ -1300,23 +1330,23 @@ This struct is created by the `fold()` method on [`ParallelIterator`](../prelude
 
 ##### `impl<T> IntoParallelIterator for Fold<I, ID, F>`
 
-- <span id="fold-iter"></span>`type Iter = T`
+- <span id="fold-type-iter"></span>`type Iter = T`
 
-- <span id="fold-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="fold-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="fold-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, ID, F> ParallelIterator for Fold<I, ID, F>`
 
-- <span id="fold-item"></span>`type Item = U`
+- <span id="fold-type-item"></span>`type Item = U`
 
 - <span id="fold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for Fold<I, ID, F>`
 
-- <span id="fold-align"></span>`const ALIGN: usize`
+- <span id="fold-const-align"></span>`const ALIGN: usize`
 
-- <span id="fold-init"></span>`type Init = T`
+- <span id="fold-type-init"></span>`type Init = T`
 
 - <span id="fold-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1336,8 +1366,10 @@ struct FoldWith<I, U, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:191-195`](../../../.source_1765210505/rayon-1.11.0/src/iter/fold.rs#L191-L195)*
+
 `FoldWith` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `fold_with()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `fold_with()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1348,7 +1380,7 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](../pr
 
 ##### `impl<I: clone::Clone, U: clone::Clone, F: clone::Clone> Clone for FoldWith<I, U, F>`
 
-- <span id="foldwith-clone"></span>`fn clone(&self) -> FoldWith<I, U, F>` — [`FoldWith`](#foldwith)
+- <span id="foldwith-clone"></span>`fn clone(&self) -> FoldWith<I, U, F>` — [`FoldWith`](fold/index.md)
 
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldWith<I, U, F>`
 
@@ -1358,23 +1390,23 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](../pr
 
 ##### `impl<T> IntoParallelIterator for FoldWith<I, U, F>`
 
-- <span id="foldwith-iter"></span>`type Iter = T`
+- <span id="foldwith-type-iter"></span>`type Iter = T`
 
-- <span id="foldwith-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldwith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, F> ParallelIterator for FoldWith<I, U, F>`
 
-- <span id="foldwith-item"></span>`type Item = U`
+- <span id="foldwith-type-item"></span>`type Item = U`
 
 - <span id="foldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for FoldWith<I, U, F>`
 
-- <span id="foldwith-align"></span>`const ALIGN: usize`
+- <span id="foldwith-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldwith-init"></span>`type Init = T`
+- <span id="foldwith-type-init"></span>`type Init = T`
 
 - <span id="foldwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1395,10 +1427,12 @@ struct FoldChunks<I, ID, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../.source_1765210505/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
+
 `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
 
-This struct is created by the `fold_chunks()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `fold_chunks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -1409,7 +1443,7 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 ##### `impl<I: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-clone"></span>`fn clone(&self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](#foldchunks)
+- <span id="foldchunks-clone"></span>`fn clone(&self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](fold_chunks/index.md)
 
 ##### `impl<I: Debug, ID, F> Debug for FoldChunks<I, ID, F>`
 
@@ -1427,15 +1461,15 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 ##### `impl<T> IntoParallelIterator for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-iter"></span>`type Iter = T`
+- <span id="foldchunks-type-iter"></span>`type Iter = T`
 
-- <span id="foldchunks-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldchunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldchunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, ID, U, F> ParallelIterator for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-item"></span>`type Item = U`
+- <span id="foldchunks-type-item"></span>`type Item = U`
 
 - <span id="foldchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1443,9 +1477,9 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 ##### `impl<T> Pointable for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-align"></span>`const ALIGN: usize`
+- <span id="foldchunks-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldchunks-init"></span>`type Init = T`
+- <span id="foldchunks-type-init"></span>`type Init = T`
 
 - <span id="foldchunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1466,10 +1500,12 @@ struct FoldChunksWith<I, U, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold_chunks_with.rs:15-20`](../../../.source_1765210505/rayon-1.11.0/src/iter/fold_chunks_with.rs#L15-L20)*
+
 `FoldChunksWith` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
 
-This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -1480,7 +1516,7 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 ##### `impl<I: clone::Clone, U: clone::Clone, F: clone::Clone> Clone for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-clone"></span>`fn clone(&self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](#foldchunkswith)
+- <span id="foldchunkswith-clone"></span>`fn clone(&self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](fold_chunks_with/index.md)
 
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldChunksWith<I, U, F>`
 
@@ -1498,15 +1534,15 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 ##### `impl<T> IntoParallelIterator for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-iter"></span>`type Iter = T`
+- <span id="foldchunkswith-type-iter"></span>`type Iter = T`
 
-- <span id="foldchunkswith-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldchunkswith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldchunkswith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, U, F> ParallelIterator for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-item"></span>`type Item = U`
+- <span id="foldchunkswith-type-item"></span>`type Item = U`
 
 - <span id="foldchunkswith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1514,9 +1550,9 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 ##### `impl<T> Pointable for FoldChunksWith<I, U, F>`
 
-- <span id="foldchunkswith-align"></span>`const ALIGN: usize`
+- <span id="foldchunkswith-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldchunkswith-init"></span>`type Init = T`
+- <span id="foldchunkswith-type-init"></span>`type Init = T`
 
 - <span id="foldchunkswith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1535,10 +1571,12 @@ struct Inspect<I, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/inspect.rs:15-18`](../../../.source_1765210505/rayon-1.11.0/src/iter/inspect.rs#L15-L18)*
+
 `Inspect` is an iterator that calls a function with a reference to each
 element before yielding it.
 
-This struct is created by the `inspect()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `inspect()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1549,7 +1587,7 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](../prel
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Inspect<I, F>`
 
-- <span id="inspect-clone"></span>`fn clone(&self) -> Inspect<I, F>` — [`Inspect`](#inspect)
+- <span id="inspect-clone"></span>`fn clone(&self) -> Inspect<I, F>` — [`Inspect`](inspect/index.md)
 
 ##### `impl<I: Debug, F> Debug for Inspect<I, F>`
 
@@ -1567,15 +1605,15 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](../prel
 
 ##### `impl<T> IntoParallelIterator for Inspect<I, F>`
 
-- <span id="inspect-iter"></span>`type Iter = T`
+- <span id="inspect-type-iter"></span>`type Iter = T`
 
-- <span id="inspect-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="inspect-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="inspect-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for Inspect<I, F>`
 
-- <span id="inspect-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="inspect-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="inspect-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1583,9 +1621,9 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](../prel
 
 ##### `impl<T> Pointable for Inspect<I, F>`
 
-- <span id="inspect-align"></span>`const ALIGN: usize`
+- <span id="inspect-const-align"></span>`const ALIGN: usize`
 
-- <span id="inspect-init"></span>`type Init = T`
+- <span id="inspect-type-init"></span>`type Init = T`
 
 - <span id="inspect-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1604,9 +1642,11 @@ struct Interleave<I, J> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/interleave.rs:12-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/interleave.rs#L12-L15)*
+
 `Interleave` is an iterator that interleaves elements of iterators
 `i` and `j` in one continuous iterator. This struct is created by
-the `interleave()` method on [`IndexedParallelIterator`](../prelude/index.md)
+the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -1617,7 +1657,7 @@ the `interleave()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 ##### `impl<I: clone::Clone, J: clone::Clone> Clone for Interleave<I, J>`
 
-- <span id="interleave-clone"></span>`fn clone(&self) -> Interleave<I, J>` — [`Interleave`](#interleave)
+- <span id="interleave-clone"></span>`fn clone(&self) -> Interleave<I, J>` — [`Interleave`](interleave/index.md)
 
 ##### `impl<I: fmt::Debug, J: fmt::Debug> Debug for Interleave<I, J>`
 
@@ -1635,15 +1675,15 @@ the `interleave()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 ##### `impl<T> IntoParallelIterator for Interleave<I, J>`
 
-- <span id="interleave-iter"></span>`type Iter = T`
+- <span id="interleave-type-iter"></span>`type Iter = T`
 
-- <span id="interleave-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="interleave-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="interleave-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, J> ParallelIterator for Interleave<I, J>`
 
-- <span id="interleave-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="interleave-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="interleave-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1651,9 +1691,9 @@ the `interleave()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 ##### `impl<T> Pointable for Interleave<I, J>`
 
-- <span id="interleave-align"></span>`const ALIGN: usize`
+- <span id="interleave-const-align"></span>`const ALIGN: usize`
 
-- <span id="interleave-init"></span>`type Init = T`
+- <span id="interleave-type-init"></span>`type Init = T`
 
 - <span id="interleave-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1671,12 +1711,14 @@ struct InterleaveShortest<I, J> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/interleave_shortest.rs:14-16`](../../../.source_1765210505/rayon-1.11.0/src/iter/interleave_shortest.rs#L14-L16)*
+
 `InterleaveShortest` is an iterator that works similarly to
 `Interleave`, but this version stops returning elements once one
 of the iterators run out.
 
 This struct is created by the `interleave_shortest()` method on
-[`IndexedParallelIterator`](../prelude/index.md).
+[`IndexedParallelIterator`](#indexedparalleliterator).
 
 
 #### Implementations
@@ -1687,7 +1729,7 @@ This struct is created by the `interleave_shortest()` method on
 
 ##### `impl<I: clone::Clone, J: clone::Clone> Clone for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-clone"></span>`fn clone(&self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](#interleaveshortest)
+- <span id="interleaveshortest-clone"></span>`fn clone(&self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](interleave_shortest/index.md)
 
 ##### `impl<I: fmt::Debug, J: fmt::Debug> Debug for InterleaveShortest<I, J>`
 
@@ -1705,15 +1747,15 @@ This struct is created by the `interleave_shortest()` method on
 
 ##### `impl<T> IntoParallelIterator for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-iter"></span>`type Iter = T`
+- <span id="interleaveshortest-type-iter"></span>`type Iter = T`
 
-- <span id="interleaveshortest-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="interleaveshortest-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="interleaveshortest-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, J> ParallelIterator for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="interleaveshortest-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="interleaveshortest-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1721,9 +1763,9 @@ This struct is created by the `interleave_shortest()` method on
 
 ##### `impl<T> Pointable for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-align"></span>`const ALIGN: usize`
+- <span id="interleaveshortest-const-align"></span>`const ALIGN: usize`
 
-- <span id="interleaveshortest-init"></span>`type Init = T`
+- <span id="interleaveshortest-type-init"></span>`type Init = T`
 
 - <span id="interleaveshortest-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1744,20 +1786,22 @@ where
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/intersperse.rs:13-19`](../../../.source_1765210505/rayon-1.11.0/src/iter/intersperse.rs#L13-L19)*
+
 `Intersperse` is an iterator that inserts a particular item between each
 item of the adapted iterator.  This struct is created by the
-`intersperse()` method on [`ParallelIterator`](../prelude/index.md)
+`intersperse()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
 
-- <span id="intersperse-new"></span>`fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](../prelude/index.md)
+- <span id="intersperse-new"></span>`fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](#paralleliterator)
 
 #### Trait Implementations
 
 ##### `impl<I> Clone for Intersperse<I>`
 
-- <span id="intersperse-clone"></span>`fn clone(&self) -> Intersperse<I>` — [`Intersperse`](#intersperse)
+- <span id="intersperse-clone"></span>`fn clone(&self) -> Intersperse<I>` — [`Intersperse`](intersperse/index.md)
 
 ##### `impl<I> Debug for Intersperse<I>`
 
@@ -1775,15 +1819,15 @@ item of the adapted iterator.  This struct is created by the
 
 ##### `impl<T> IntoParallelIterator for Intersperse<I>`
 
-- <span id="intersperse-iter"></span>`type Iter = T`
+- <span id="intersperse-type-iter"></span>`type Iter = T`
 
-- <span id="intersperse-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intersperse-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intersperse-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Intersperse<I>`
 
-- <span id="intersperse-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="intersperse-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="intersperse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1791,9 +1835,9 @@ item of the adapted iterator.  This struct is created by the
 
 ##### `impl<T> Pointable for Intersperse<I>`
 
-- <span id="intersperse-align"></span>`const ALIGN: usize`
+- <span id="intersperse-const-align"></span>`const ALIGN: usize`
 
-- <span id="intersperse-init"></span>`type Init = T`
+- <span id="intersperse-type-init"></span>`type Init = T`
 
 - <span id="intersperse-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1812,8 +1856,10 @@ struct MaxLen<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/len.rs:140-143`](../../../.source_1765210505/rayon-1.11.0/src/iter/len.rs#L140-L143)*
+
 `MaxLen` is an iterator that imposes a maximum length on iterator splits.
-This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -1824,7 +1870,7 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I: clone::Clone> Clone for MaxLen<I>`
 
-- <span id="maxlen-clone"></span>`fn clone(&self) -> MaxLen<I>` — [`MaxLen`](#maxlen)
+- <span id="maxlen-clone"></span>`fn clone(&self) -> MaxLen<I>` — [`MaxLen`](len/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for MaxLen<I>`
 
@@ -1842,15 +1888,15 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<T> IntoParallelIterator for MaxLen<I>`
 
-- <span id="maxlen-iter"></span>`type Iter = T`
+- <span id="maxlen-type-iter"></span>`type Iter = T`
 
-- <span id="maxlen-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="maxlen-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="maxlen-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for MaxLen<I>`
 
-- <span id="maxlen-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="maxlen-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="maxlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1858,9 +1904,9 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<T> Pointable for MaxLen<I>`
 
-- <span id="maxlen-align"></span>`const ALIGN: usize`
+- <span id="maxlen-const-align"></span>`const ALIGN: usize`
 
-- <span id="maxlen-init"></span>`type Init = T`
+- <span id="maxlen-type-init"></span>`type Init = T`
 
 - <span id="maxlen-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1879,8 +1925,10 @@ struct MinLen<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/len.rs:10-13`](../../../.source_1765210505/rayon-1.11.0/src/iter/len.rs#L10-L13)*
+
 `MinLen` is an iterator that imposes a minimum length on iterator splits.
-This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -1891,7 +1939,7 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I: clone::Clone> Clone for MinLen<I>`
 
-- <span id="minlen-clone"></span>`fn clone(&self) -> MinLen<I>` — [`MinLen`](#minlen)
+- <span id="minlen-clone"></span>`fn clone(&self) -> MinLen<I>` — [`MinLen`](len/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for MinLen<I>`
 
@@ -1909,15 +1957,15 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<T> IntoParallelIterator for MinLen<I>`
 
-- <span id="minlen-iter"></span>`type Iter = T`
+- <span id="minlen-type-iter"></span>`type Iter = T`
 
-- <span id="minlen-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="minlen-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="minlen-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for MinLen<I>`
 
-- <span id="minlen-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="minlen-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="minlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1925,9 +1973,9 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<T> Pointable for MinLen<I>`
 
-- <span id="minlen-align"></span>`const ALIGN: usize`
+- <span id="minlen-const-align"></span>`const ALIGN: usize`
 
-- <span id="minlen-init"></span>`type Init = T`
+- <span id="minlen-type-init"></span>`type Init = T`
 
 - <span id="minlen-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1946,9 +1994,11 @@ struct Map<I, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/map.rs:14-17`](../../../.source_1765210505/rayon-1.11.0/src/iter/map.rs#L14-L17)*
+
 `Map` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the `map()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `map()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1959,7 +2009,7 @@ This struct is created by the `map()` method on [`ParallelIterator`](../prelude/
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Map<I, F>`
 
-- <span id="map-clone"></span>`fn clone(&self) -> Map<I, F>` — [`Map`](#map)
+- <span id="map-clone"></span>`fn clone(&self) -> Map<I, F>` — [`Map`](map/index.md)
 
 ##### `impl<I: Debug, F> Debug for Map<I, F>`
 
@@ -1977,15 +2027,15 @@ This struct is created by the `map()` method on [`ParallelIterator`](../prelude/
 
 ##### `impl<T> IntoParallelIterator for Map<I, F>`
 
-- <span id="map-iter"></span>`type Iter = T`
+- <span id="map-type-iter"></span>`type Iter = T`
 
-- <span id="map-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="map-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="map-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F, R> ParallelIterator for Map<I, F>`
 
-- <span id="map-item"></span>`type Item = <F as FnOnce>::Output`
+- <span id="map-type-item"></span>`type Item = <F as FnOnce>::Output`
 
 - <span id="map-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1993,9 +2043,9 @@ This struct is created by the `map()` method on [`ParallelIterator`](../prelude/
 
 ##### `impl<T> Pointable for Map<I, F>`
 
-- <span id="map-align"></span>`const ALIGN: usize`
+- <span id="map-const-align"></span>`const ALIGN: usize`
 
-- <span id="map-init"></span>`type Init = T`
+- <span id="map-type-init"></span>`type Init = T`
 
 - <span id="map-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2015,9 +2065,11 @@ struct MapInit<I, INIT, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/map_with.rs:341-345`](../../../.source_1765210505/rayon-1.11.0/src/iter/map_with.rs#L341-L345)*
+
 `MapInit` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the `map_init()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `map_init()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2028,7 +2080,7 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](../pre
 
 ##### `impl<I: clone::Clone, INIT: clone::Clone, F: clone::Clone> Clone for MapInit<I, INIT, F>`
 
-- <span id="mapinit-clone"></span>`fn clone(&self) -> MapInit<I, INIT, F>` — [`MapInit`](#mapinit)
+- <span id="mapinit-clone"></span>`fn clone(&self) -> MapInit<I, INIT, F>` — [`MapInit`](map_with/index.md)
 
 ##### `impl<I: Debug, INIT, F> Debug for MapInit<I, INIT, F>`
 
@@ -2046,15 +2098,15 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](../pre
 
 ##### `impl<T> IntoParallelIterator for MapInit<I, INIT, F>`
 
-- <span id="mapinit-iter"></span>`type Iter = T`
+- <span id="mapinit-type-iter"></span>`type Iter = T`
 
-- <span id="mapinit-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="mapinit-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="mapinit-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, INIT, T, F, R> ParallelIterator for MapInit<I, INIT, F>`
 
-- <span id="mapinit-item"></span>`type Item = R`
+- <span id="mapinit-type-item"></span>`type Item = R`
 
 - <span id="mapinit-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2062,9 +2114,9 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](../pre
 
 ##### `impl<T> Pointable for MapInit<I, INIT, F>`
 
-- <span id="mapinit-align"></span>`const ALIGN: usize`
+- <span id="mapinit-const-align"></span>`const ALIGN: usize`
 
-- <span id="mapinit-init"></span>`type Init = T`
+- <span id="mapinit-type-init"></span>`type Init = T`
 
 - <span id="mapinit-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2084,9 +2136,11 @@ struct MapWith<I, T, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/map_with.rs:13-17`](../../../.source_1765210505/rayon-1.11.0/src/iter/map_with.rs#L13-L17)*
+
 `MapWith` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the `map_with()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `map_with()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2097,7 +2151,7 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](../pre
 
 ##### `impl<I: clone::Clone, T: clone::Clone, F: clone::Clone> Clone for MapWith<I, T, F>`
 
-- <span id="mapwith-clone"></span>`fn clone(&self) -> MapWith<I, T, F>` — [`MapWith`](#mapwith)
+- <span id="mapwith-clone"></span>`fn clone(&self) -> MapWith<I, T, F>` — [`MapWith`](map_with/index.md)
 
 ##### `impl<I: Debug, T: Debug, F> Debug for MapWith<I, T, F>`
 
@@ -2115,15 +2169,15 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](../pre
 
 ##### `impl<T> IntoParallelIterator for MapWith<I, T, F>`
 
-- <span id="mapwith-iter"></span>`type Iter = T`
+- <span id="mapwith-type-iter"></span>`type Iter = T`
 
-- <span id="mapwith-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="mapwith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="mapwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, T, F, R> ParallelIterator for MapWith<I, T, F>`
 
-- <span id="mapwith-item"></span>`type Item = R`
+- <span id="mapwith-type-item"></span>`type Item = R`
 
 - <span id="mapwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2131,9 +2185,9 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](../pre
 
 ##### `impl<T> Pointable for MapWith<I, T, F>`
 
-- <span id="mapwith-align"></span>`const ALIGN: usize`
+- <span id="mapwith-const-align"></span>`const ALIGN: usize`
 
-- <span id="mapwith-init"></span>`type Init = T`
+- <span id="mapwith-type-init"></span>`type Init = T`
 
 - <span id="mapwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2150,6 +2204,8 @@ struct MultiZip<T> {
     tuple: T,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/multizip.rs:79-81`](../../../.source_1765210505/rayon-1.11.0/src/iter/multizip.rs#L79-L81)*
 
 `MultiZip` is an iterator that zips up a tuple of parallel iterators to
 produce tuples of their items.
@@ -2230,13 +2286,13 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<T: clone::Clone> Clone for MultiZip<T>`
 
-- <span id="multizip-clone"></span>`fn clone(&self) -> MultiZip<T>` — [`MultiZip`](#multizip)
+- <span id="multizip-clone"></span>`fn clone(&self) -> MultiZip<T>` — [`MultiZip`](multizip/index.md)
 
 ##### `impl<T: fmt::Debug> Debug for MultiZip<T>`
 
 - <span id="multizip-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<A, B, C, D, E, F> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F)>`
+##### `impl<A> IndexedParallelIterator for MultiZip<(A)>`
 
 - <span id="multizip-drive"></span>`fn drive<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2248,15 +2304,15 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<T> IntoParallelIterator for MultiZip<T>`
 
-- <span id="multizip-iter"></span>`type Iter = T`
+- <span id="multizip-type-iter"></span>`type Iter = T`
 
-- <span id="multizip-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="multizip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="multizip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<A, B, C> ParallelIterator for MultiZip<(A, B, C)>`
+##### `impl<A> ParallelIterator for MultiZip<(A)>`
 
-- <span id="multizip-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item)`
+- <span id="multizip-type-item"></span>`type Item = (<A as ParallelIterator>::Item)`
 
 - <span id="multizip-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2264,9 +2320,9 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<T> Pointable for MultiZip<T>`
 
-- <span id="multizip-align"></span>`const ALIGN: usize`
+- <span id="multizip-const-align"></span>`const ALIGN: usize`
 
-- <span id="multizip-init"></span>`type Init = T`
+- <span id="multizip-type-init"></span>`type Init = T`
 
 - <span id="multizip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2284,6 +2340,8 @@ struct Once<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/once.rs:32-34`](../../../.source_1765210505/rayon-1.11.0/src/iter/once.rs#L32-L34)*
+
 Iterator adaptor for [the `once()` function].
 
 
@@ -2291,7 +2349,7 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T: clone::Clone> Clone for Once<T>`
 
-- <span id="once-clone"></span>`fn clone(&self) -> Once<T>` — [`Once`](#once)
+- <span id="once-clone"></span>`fn clone(&self) -> Once<T>` — [`Once`](once/index.md)
 
 ##### `impl<T: fmt::Debug> Debug for Once<T>`
 
@@ -2309,15 +2367,15 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T> IntoParallelIterator for Once<T>`
 
-- <span id="once-iter"></span>`type Iter = T`
+- <span id="once-type-iter"></span>`type Iter = T`
 
-- <span id="once-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="once-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="once-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Once<T>`
 
-- <span id="once-item"></span>`type Item = T`
+- <span id="once-type-item"></span>`type Item = T`
 
 - <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2325,9 +2383,9 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T> Pointable for Once<T>`
 
-- <span id="once-align"></span>`const ALIGN: usize`
+- <span id="once-const-align"></span>`const ALIGN: usize`
 
-- <span id="once-init"></span>`type Init = T`
+- <span id="once-type-init"></span>`type Init = T`
 
 - <span id="once-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2345,21 +2403,23 @@ struct PanicFuse<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/panic_fuse.rs:14-16`](../../../.source_1765210505/rayon-1.11.0/src/iter/panic_fuse.rs#L14-L16)*
+
 `PanicFuse` is an adaptor that wraps an iterator with a fuse in case
 of panics, to halt all threads as soon as possible.
 
-This struct is created by the `panic_fuse()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
 
-- <span id="panicfuse-new"></span>`fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](#panicfuse)
+- <span id="panicfuse-new"></span>`fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md)
 
 #### Trait Implementations
 
 ##### `impl<I: clone::Clone> Clone for PanicFuse<I>`
 
-- <span id="panicfuse-clone"></span>`fn clone(&self) -> PanicFuse<I>` — [`PanicFuse`](#panicfuse)
+- <span id="panicfuse-clone"></span>`fn clone(&self) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for PanicFuse<I>`
 
@@ -2377,15 +2437,15 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](../p
 
 ##### `impl<T> IntoParallelIterator for PanicFuse<I>`
 
-- <span id="panicfuse-iter"></span>`type Iter = T`
+- <span id="panicfuse-type-iter"></span>`type Iter = T`
 
-- <span id="panicfuse-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="panicfuse-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="panicfuse-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for PanicFuse<I>`
 
-- <span id="panicfuse-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="panicfuse-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="panicfuse-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2393,9 +2453,9 @@ This struct is created by the `panic_fuse()` method on [`ParallelIterator`](../p
 
 ##### `impl<T> Pointable for PanicFuse<I>`
 
-- <span id="panicfuse-align"></span>`const ALIGN: usize`
+- <span id="panicfuse-const-align"></span>`const ALIGN: usize`
 
-- <span id="panicfuse-init"></span>`type Init = T`
+- <span id="panicfuse-type-init"></span>`type Init = T`
 
 - <span id="panicfuse-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2413,16 +2473,18 @@ struct IterBridge<Iter> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:72-74`](../../../.source_1765210505/rayon-1.11.0/src/iter/par_bridge.rs#L72-L74)*
+
 `IterBridge` is a parallel iterator that wraps a sequential iterator.
 
 This type is created when using the `par_bridge` method on `ParallelBridge`. See the
-[`ParallelBridge`](../prelude/index.md) documentation for details.
+[`ParallelBridge`](par_bridge/index.md) documentation for details.
 
 #### Trait Implementations
 
 ##### `impl<Iter: clone::Clone> Clone for IterBridge<Iter>`
 
-- <span id="iterbridge-clone"></span>`fn clone(&self) -> IterBridge<Iter>` — [`IterBridge`](#iterbridge)
+- <span id="iterbridge-clone"></span>`fn clone(&self) -> IterBridge<Iter>` — [`IterBridge`](par_bridge/index.md)
 
 ##### `impl<Iter: fmt::Debug> Debug for IterBridge<Iter>`
 
@@ -2432,23 +2494,23 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 ##### `impl<T> IntoParallelIterator for IterBridge<Iter>`
 
-- <span id="iterbridge-iter"></span>`type Iter = T`
+- <span id="iterbridge-type-iter"></span>`type Iter = T`
 
-- <span id="iterbridge-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iterbridge-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iterbridge-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<Iter> ParallelIterator for IterBridge<Iter>`
 
-- <span id="iterbridge-item"></span>`type Item = <Iter as Iterator>::Item`
+- <span id="iterbridge-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
 - <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for IterBridge<Iter>`
 
-- <span id="iterbridge-align"></span>`const ALIGN: usize`
+- <span id="iterbridge-const-align"></span>`const ALIGN: usize`
 
-- <span id="iterbridge-init"></span>`type Init = T`
+- <span id="iterbridge-type-init"></span>`type Init = T`
 
 - <span id="iterbridge-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2467,10 +2529,12 @@ struct Positions<I, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/positions.rs:14-17`](../../../.source_1765210505/rayon-1.11.0/src/iter/positions.rs#L14-L17)*
+
 `Positions` takes a predicate `predicate` and filters out elements that match,
 yielding their indices.
 
-This struct is created by the `positions()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `positions()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -2481,7 +2545,7 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for Positions<I, P>`
 
-- <span id="positions-clone"></span>`fn clone(&self) -> Positions<I, P>` — [`Positions`](#positions)
+- <span id="positions-clone"></span>`fn clone(&self) -> Positions<I, P>` — [`Positions`](positions/index.md)
 
 ##### `impl<I: Debug, P> Debug for Positions<I, P>`
 
@@ -2491,23 +2555,23 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 ##### `impl<T> IntoParallelIterator for Positions<I, P>`
 
-- <span id="positions-iter"></span>`type Iter = T`
+- <span id="positions-type-iter"></span>`type Iter = T`
 
-- <span id="positions-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="positions-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="positions-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for Positions<I, P>`
 
-- <span id="positions-item"></span>`type Item = usize`
+- <span id="positions-type-item"></span>`type Item = usize`
 
 - <span id="positions-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for Positions<I, P>`
 
-- <span id="positions-align"></span>`const ALIGN: usize`
+- <span id="positions-const-align"></span>`const ALIGN: usize`
 
-- <span id="positions-init"></span>`type Init = T`
+- <span id="positions-type-init"></span>`type Init = T`
 
 - <span id="positions-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2525,20 +2589,22 @@ struct Repeat<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:10-12`](../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L10-L12)*
+
 Iterator adaptor for [the `repeat()` function].
 
 
 #### Implementations
 
-- <span id="repeat-take"></span>`fn take(self, n: usize) -> RepeatN<T>` — [`RepeatN`](#repeatn)
+- <span id="repeat-take"></span>`fn take(self, n: usize) -> RepeatN<T>` — [`RepeatN`](repeat/index.md)
 
-- <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](#zip), [`RepeatN`](#repeatn), [`IntoParallelIterator`](../prelude/index.md)
+- <span id="repeat-zip"></span>`fn zip<Z>(self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](zip/index.md), [`RepeatN`](repeat/index.md), [`IntoParallelIterator`](#intoparalleliterator)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for Repeat<T>`
 
-- <span id="repeat-clone"></span>`fn clone(&self) -> Repeat<T>` — [`Repeat`](#repeat)
+- <span id="repeat-clone"></span>`fn clone(&self) -> Repeat<T>` — [`Repeat`](repeat/index.md)
 
 ##### `impl<T: fmt::Debug> Debug for Repeat<T>`
 
@@ -2548,23 +2614,23 @@ Iterator adaptor for [the `repeat()` function].
 
 ##### `impl<T> IntoParallelIterator for Repeat<T>`
 
-- <span id="repeat-iter"></span>`type Iter = T`
+- <span id="repeat-type-iter"></span>`type Iter = T`
 
-- <span id="repeat-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="repeat-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="repeat-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T> ParallelIterator for Repeat<T>`
 
-- <span id="repeat-item"></span>`type Item = T`
+- <span id="repeat-type-item"></span>`type Item = T`
 
 - <span id="repeat-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for Repeat<T>`
 
-- <span id="repeat-align"></span>`const ALIGN: usize`
+- <span id="repeat-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeat-init"></span>`type Init = T`
+- <span id="repeat-type-init"></span>`type Init = T`
 
 - <span id="repeat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2582,6 +2648,8 @@ struct RepeatN<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/repeat.rs:111-113`](../../../.source_1765210505/rayon-1.11.0/src/iter/repeat.rs#L111-L113)*
+
 Iterator adaptor for [the `repeat_n()` function].
 
 
@@ -2589,7 +2657,7 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T: clone::Clone> Clone for RepeatN<T>`
 
-- <span id="repeatn-clone"></span>`fn clone(&self) -> RepeatN<T>` — [`RepeatN`](#repeatn)
+- <span id="repeatn-clone"></span>`fn clone(&self) -> RepeatN<T>` — [`RepeatN`](repeat/index.md)
 
 ##### `impl<T: fmt::Debug> Debug for RepeatN<T>`
 
@@ -2607,15 +2675,15 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T> IntoParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-iter"></span>`type Iter = T`
+- <span id="repeatn-type-iter"></span>`type Iter = T`
 
-- <span id="repeatn-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="repeatn-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="repeatn-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T> ParallelIterator for RepeatN<T>`
 
-- <span id="repeatn-item"></span>`type Item = T`
+- <span id="repeatn-type-item"></span>`type Item = T`
 
 - <span id="repeatn-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2623,9 +2691,9 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T> Pointable for RepeatN<T>`
 
-- <span id="repeatn-align"></span>`const ALIGN: usize`
+- <span id="repeatn-const-align"></span>`const ALIGN: usize`
 
-- <span id="repeatn-init"></span>`type Init = T`
+- <span id="repeatn-type-init"></span>`type Init = T`
 
 - <span id="repeatn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2643,8 +2711,10 @@ struct Rev<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/rev.rs:11-13`](../../../.source_1765210505/rayon-1.11.0/src/iter/rev.rs#L11-L13)*
+
 `Rev` is an iterator that produces elements in reverse order. This struct
-is created by the `rev()` method on [`IndexedParallelIterator`](../prelude/index.md)
+is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -2655,7 +2725,7 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../prelude/index
 
 ##### `impl<I: clone::Clone> Clone for Rev<I>`
 
-- <span id="rev-clone"></span>`fn clone(&self) -> Rev<I>` — [`Rev`](#rev)
+- <span id="rev-clone"></span>`fn clone(&self) -> Rev<I>` — [`Rev`](rev/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for Rev<I>`
 
@@ -2673,15 +2743,15 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../prelude/index
 
 ##### `impl<T> IntoParallelIterator for Rev<I>`
 
-- <span id="rev-iter"></span>`type Iter = T`
+- <span id="rev-type-iter"></span>`type Iter = T`
 
-- <span id="rev-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="rev-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="rev-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Rev<I>`
 
-- <span id="rev-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="rev-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="rev-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2689,9 +2759,9 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../prelude/index
 
 ##### `impl<T> Pointable for Rev<I>`
 
-- <span id="rev-align"></span>`const ALIGN: usize`
+- <span id="rev-const-align"></span>`const ALIGN: usize`
 
-- <span id="rev-init"></span>`type Init = T`
+- <span id="rev-type-init"></span>`type Init = T`
 
 - <span id="rev-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2710,8 +2780,10 @@ struct Skip<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/skip.rs:11-14`](../../../.source_1765210505/rayon-1.11.0/src/iter/skip.rs#L11-L14)*
+
 `Skip` is an iterator that skips over the first `n` elements.
-This struct is created by the `skip()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `skip()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -2722,7 +2794,7 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<I: clone::Clone> Clone for Skip<I>`
 
-- <span id="skip-clone"></span>`fn clone(&self) -> Skip<I>` — [`Skip`](#skip)
+- <span id="skip-clone"></span>`fn clone(&self) -> Skip<I>` — [`Skip`](skip/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for Skip<I>`
 
@@ -2740,15 +2812,15 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<T> IntoParallelIterator for Skip<I>`
 
-- <span id="skip-iter"></span>`type Iter = T`
+- <span id="skip-type-iter"></span>`type Iter = T`
 
-- <span id="skip-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="skip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="skip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Skip<I>`
 
-- <span id="skip-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="skip-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="skip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2756,9 +2828,9 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<T> Pointable for Skip<I>`
 
-- <span id="skip-align"></span>`const ALIGN: usize`
+- <span id="skip-const-align"></span>`const ALIGN: usize`
 
-- <span id="skip-init"></span>`type Init = T`
+- <span id="skip-type-init"></span>`type Init = T`
 
 - <span id="skip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2777,8 +2849,10 @@ struct SkipAny<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/skip_any.rs:11-14`](../../../.source_1765210505/rayon-1.11.0/src/iter/skip_any.rs#L11-L14)*
+
 `SkipAny` is an iterator that skips over `n` elements from anywhere in `I`.
-This struct is created by the `skip_any()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `skip_any()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2789,7 +2863,7 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](../pre
 
 ##### `impl<I: clone::Clone> Clone for SkipAny<I>`
 
-- <span id="skipany-clone"></span>`fn clone(&self) -> SkipAny<I>` — [`SkipAny`](#skipany)
+- <span id="skipany-clone"></span>`fn clone(&self) -> SkipAny<I>` — [`SkipAny`](skip_any/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for SkipAny<I>`
 
@@ -2799,23 +2873,23 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](../pre
 
 ##### `impl<T> IntoParallelIterator for SkipAny<I>`
 
-- <span id="skipany-iter"></span>`type Iter = T`
+- <span id="skipany-type-iter"></span>`type Iter = T`
 
-- <span id="skipany-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="skipany-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="skipany-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for SkipAny<I>`
 
-- <span id="skipany-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="skipany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="skipany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for SkipAny<I>`
 
-- <span id="skipany-align"></span>`const ALIGN: usize`
+- <span id="skipany-const-align"></span>`const ALIGN: usize`
 
-- <span id="skipany-init"></span>`type Init = T`
+- <span id="skipany-type-init"></span>`type Init = T`
 
 - <span id="skipany-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2834,9 +2908,11 @@ struct SkipAnyWhile<I, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:13-16`](../../../.source_1765210505/rayon-1.11.0/src/iter/skip_any_while.rs#L13-L16)*
+
 `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I`
 until the callback returns `false`.
-This struct is created by the `skip_any_while()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `skip_any_while()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2847,7 +2923,7 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-clone"></span>`fn clone(&self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](#skipanywhile)
+- <span id="skipanywhile-clone"></span>`fn clone(&self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](skip_any_while/index.md)
 
 ##### `impl<I: fmt::Debug, P> Debug for SkipAnyWhile<I, P>`
 
@@ -2857,23 +2933,23 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<T> IntoParallelIterator for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-iter"></span>`type Iter = T`
+- <span id="skipanywhile-type-iter"></span>`type Iter = T`
 
-- <span id="skipanywhile-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="skipanywhile-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="skipanywhile-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="skipanywhile-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="skipanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-align"></span>`const ALIGN: usize`
+- <span id="skipanywhile-const-align"></span>`const ALIGN: usize`
 
-- <span id="skipanywhile-init"></span>`type Init = T`
+- <span id="skipanywhile-type-init"></span>`type Init = T`
 
 - <span id="skipanywhile-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2892,14 +2968,16 @@ struct Split<D, S> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/splitter.rs:117-120`](../../../.source_1765210505/rayon-1.11.0/src/iter/splitter.rs#L117-L120)*
+
 `Split` is a parallel iterator using arbitrary data and a splitting function.
-This struct is created by the [`split()`](#split) function.
+This struct is created by the [`split()`](splitter/index.md) function.
 
 #### Trait Implementations
 
 ##### `impl<D: clone::Clone, S: clone::Clone> Clone for Split<D, S>`
 
-- <span id="split-clone"></span>`fn clone(&self) -> Split<D, S>` — [`Split`](#split)
+- <span id="split-clone"></span>`fn clone(&self) -> Split<D, S>` — [`Split`](splitter/index.md)
 
 ##### `impl<D: Debug, S> Debug for Split<D, S>`
 
@@ -2909,23 +2987,23 @@ This struct is created by the [`split()`](#split) function.
 
 ##### `impl<T> IntoParallelIterator for Split<D, S>`
 
-- <span id="split-iter"></span>`type Iter = T`
+- <span id="split-type-iter"></span>`type Iter = T`
 
-- <span id="split-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="split-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<D, S> ParallelIterator for Split<D, S>`
 
-- <span id="split-item"></span>`type Item = D`
+- <span id="split-type-item"></span>`type Item = D`
 
 - <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for Split<D, S>`
 
-- <span id="split-align"></span>`const ALIGN: usize`
+- <span id="split-const-align"></span>`const ALIGN: usize`
 
-- <span id="split-init"></span>`type Init = T`
+- <span id="split-type-init"></span>`type Init = T`
 
 - <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -2944,8 +3022,10 @@ struct StepBy<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/step_by.rs:11-14`](../../../.source_1765210505/rayon-1.11.0/src/iter/step_by.rs#L11-L14)*
+
 `StepBy` is an iterator that skips `n` elements between each yield, where `n` is the given step.
-This struct is created by the `step_by()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `step_by()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -2956,7 +3036,7 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<I: clone::Clone> Clone for StepBy<I>`
 
-- <span id="stepby-clone"></span>`fn clone(&self) -> StepBy<I>` — [`StepBy`](#stepby)
+- <span id="stepby-clone"></span>`fn clone(&self) -> StepBy<I>` — [`StepBy`](step_by/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for StepBy<I>`
 
@@ -2974,15 +3054,15 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<T> IntoParallelIterator for StepBy<I>`
 
-- <span id="stepby-iter"></span>`type Iter = T`
+- <span id="stepby-type-iter"></span>`type Iter = T`
 
-- <span id="stepby-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="stepby-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="stepby-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for StepBy<I>`
 
-- <span id="stepby-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="stepby-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="stepby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2990,9 +3070,9 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<T> Pointable for StepBy<I>`
 
-- <span id="stepby-align"></span>`const ALIGN: usize`
+- <span id="stepby-const-align"></span>`const ALIGN: usize`
 
-- <span id="stepby-init"></span>`type Init = T`
+- <span id="stepby-type-init"></span>`type Init = T`
 
 - <span id="stepby-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3011,8 +3091,10 @@ struct Take<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../.source_1765210505/rayon-1.11.0/src/iter/take.rs#L10-L13)*
+
 `Take` is an iterator that iterates over the first `n` elements.
-This struct is created by the `take()` method on [`IndexedParallelIterator`](../prelude/index.md)
+This struct is created by the `take()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -3023,7 +3105,7 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<I: clone::Clone> Clone for Take<I>`
 
-- <span id="take-clone"></span>`fn clone(&self) -> Take<I>` — [`Take`](#take)
+- <span id="take-clone"></span>`fn clone(&self) -> Take<I>` — [`Take`](take/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for Take<I>`
 
@@ -3041,15 +3123,15 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<T> IntoParallelIterator for Take<I>`
 
-- <span id="take-iter"></span>`type Iter = T`
+- <span id="take-type-iter"></span>`type Iter = T`
 
-- <span id="take-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="take-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="take-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Take<I>`
 
-- <span id="take-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="take-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="take-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -3057,9 +3139,9 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<T> Pointable for Take<I>`
 
-- <span id="take-align"></span>`const ALIGN: usize`
+- <span id="take-const-align"></span>`const ALIGN: usize`
 
-- <span id="take-init"></span>`type Init = T`
+- <span id="take-type-init"></span>`type Init = T`
 
 - <span id="take-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3078,8 +3160,10 @@ struct TakeAny<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/take_any.rs:11-14`](../../../.source_1765210505/rayon-1.11.0/src/iter/take_any.rs#L11-L14)*
+
 `TakeAny` is an iterator that iterates over `n` elements from anywhere in `I`.
-This struct is created by the `take_any()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `take_any()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -3090,7 +3174,7 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](../pre
 
 ##### `impl<I: clone::Clone> Clone for TakeAny<I>`
 
-- <span id="takeany-clone"></span>`fn clone(&self) -> TakeAny<I>` — [`TakeAny`](#takeany)
+- <span id="takeany-clone"></span>`fn clone(&self) -> TakeAny<I>` — [`TakeAny`](take_any/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for TakeAny<I>`
 
@@ -3100,23 +3184,23 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](../pre
 
 ##### `impl<T> IntoParallelIterator for TakeAny<I>`
 
-- <span id="takeany-iter"></span>`type Iter = T`
+- <span id="takeany-type-iter"></span>`type Iter = T`
 
-- <span id="takeany-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="takeany-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="takeany-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for TakeAny<I>`
 
-- <span id="takeany-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="takeany-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="takeany-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for TakeAny<I>`
 
-- <span id="takeany-align"></span>`const ALIGN: usize`
+- <span id="takeany-const-align"></span>`const ALIGN: usize`
 
-- <span id="takeany-init"></span>`type Init = T`
+- <span id="takeany-type-init"></span>`type Init = T`
 
 - <span id="takeany-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3135,9 +3219,11 @@ struct TakeAnyWhile<I, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/take_any_while.rs:13-16`](../../../.source_1765210505/rayon-1.11.0/src/iter/take_any_while.rs#L13-L16)*
+
 `TakeAnyWhile` is an iterator that iterates over elements from anywhere in `I`
 until the callback returns `false`.
-This struct is created by the `take_any_while()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `take_any_while()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -3148,7 +3234,7 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-clone"></span>`fn clone(&self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](#takeanywhile)
+- <span id="takeanywhile-clone"></span>`fn clone(&self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](take_any_while/index.md)
 
 ##### `impl<I: fmt::Debug, P> Debug for TakeAnyWhile<I, P>`
 
@@ -3158,23 +3244,23 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<T> IntoParallelIterator for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-iter"></span>`type Iter = T`
+- <span id="takeanywhile-type-iter"></span>`type Iter = T`
 
-- <span id="takeanywhile-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="takeanywhile-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="takeanywhile-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="takeanywhile-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="takeanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-align"></span>`const ALIGN: usize`
+- <span id="takeanywhile-const-align"></span>`const ALIGN: usize`
 
-- <span id="takeanywhile-init"></span>`type Init = T`
+- <span id="takeanywhile-type-init"></span>`type Init = T`
 
 - <span id="takeanywhile-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3195,8 +3281,10 @@ struct TryFold<I, U, ID, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:26-31`](../../../.source_1765210505/rayon-1.11.0/src/iter/try_fold.rs#L26-L31)*
+
 `TryFold` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `try_fold()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `try_fold()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -3207,7 +3295,7 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](../pre
 
 ##### `impl<I: clone::Clone, U: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-clone"></span>`fn clone(&self) -> TryFold<I, U, ID, F>` — [`TryFold`](#tryfold)
+- <span id="tryfold-clone"></span>`fn clone(&self) -> TryFold<I, U, ID, F>` — [`TryFold`](try_fold/index.md)
 
 ##### `impl<U, I: ParallelIterator + Debug, ID, F> Debug for TryFold<I, U, ID, F>`
 
@@ -3217,23 +3305,23 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](../pre
 
 ##### `impl<T> IntoParallelIterator for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-iter"></span>`type Iter = T`
+- <span id="tryfold-type-iter"></span>`type Iter = T`
 
-- <span id="tryfold-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="tryfold-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="tryfold-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, ID, F> ParallelIterator for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-item"></span>`type Item = U`
+- <span id="tryfold-type-item"></span>`type Item = U`
 
 - <span id="tryfold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-align"></span>`const ALIGN: usize`
+- <span id="tryfold-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryfold-init"></span>`type Init = T`
+- <span id="tryfold-type-init"></span>`type Init = T`
 
 - <span id="tryfold-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3253,8 +3341,10 @@ struct TryFoldWith<I, U: Try, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:180-184`](../../../.source_1765210505/rayon-1.11.0/src/iter/try_fold.rs#L180-L184)*
+
 `TryFoldWith` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `try_fold_with()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -3265,7 +3355,7 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 
 ##### `impl<I: clone::Clone, U: clone::Clone + Try, F: clone::Clone> Clone for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-clone"></span>`fn clone(&self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](#tryfoldwith)
+- <span id="tryfoldwith-clone"></span>`fn clone(&self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](try_fold/index.md)
 
 ##### `impl<I, U, F> Debug for TryFoldWith<I, U, F>`
 
@@ -3275,23 +3365,23 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 
 ##### `impl<T> IntoParallelIterator for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-iter"></span>`type Iter = T`
+- <span id="tryfoldwith-type-iter"></span>`type Iter = T`
 
-- <span id="tryfoldwith-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="tryfoldwith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="tryfoldwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, F> ParallelIterator for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-item"></span>`type Item = U`
+- <span id="tryfoldwith-type-item"></span>`type Item = U`
 
 - <span id="tryfoldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-align"></span>`const ALIGN: usize`
+- <span id="tryfoldwith-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryfoldwith-init"></span>`type Init = T`
+- <span id="tryfoldwith-type-init"></span>`type Init = T`
 
 - <span id="tryfoldwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3310,10 +3400,12 @@ struct Update<I, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/update.rs:14-17`](../../../.source_1765210505/rayon-1.11.0/src/iter/update.rs#L14-L17)*
+
 `Update` is an iterator that mutates the elements of an
 underlying iterator before they are yielded.
 
-This struct is created by the `update()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `update()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -3324,7 +3416,7 @@ This struct is created by the `update()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Update<I, F>`
 
-- <span id="update-clone"></span>`fn clone(&self) -> Update<I, F>` — [`Update`](#update)
+- <span id="update-clone"></span>`fn clone(&self) -> Update<I, F>` — [`Update`](update/index.md)
 
 ##### `impl<I: Debug, F> Debug for Update<I, F>`
 
@@ -3342,15 +3434,15 @@ This struct is created by the `update()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<T> IntoParallelIterator for Update<I, F>`
 
-- <span id="update-iter"></span>`type Iter = T`
+- <span id="update-type-iter"></span>`type Iter = T`
 
-- <span id="update-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="update-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="update-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for Update<I, F>`
 
-- <span id="update-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="update-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="update-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -3358,9 +3450,9 @@ This struct is created by the `update()` method on [`ParallelIterator`](../prelu
 
 ##### `impl<T> Pointable for Update<I, F>`
 
-- <span id="update-align"></span>`const ALIGN: usize`
+- <span id="update-const-align"></span>`const ALIGN: usize`
 
-- <span id="update-init"></span>`type Init = T`
+- <span id="update-type-init"></span>`type Init = T`
 
 - <span id="update-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3376,8 +3468,10 @@ This struct is created by the `update()` method on [`ParallelIterator`](../prelu
 struct WalkTree<S, B>(WalkTreePostfix<S, B>);
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:459`](../../../.source_1765210505/rayon-1.11.0/src/iter/walk_tree.rs#L459)*
+
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree()`](#walk-tree) function.
+Returned by the [`walk_tree()`](walk_tree/index.md) function.
 
 #### Trait Implementations
 
@@ -3389,23 +3483,23 @@ Returned by the [`walk_tree()`](#walk-tree) function.
 
 ##### `impl<T> IntoParallelIterator for WalkTree<S, B>`
 
-- <span id="walktree-iter"></span>`type Iter = T`
+- <span id="walktree-type-iter"></span>`type Iter = T`
 
-- <span id="walktree-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="walktree-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="walktree-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<S, B, I> ParallelIterator for WalkTree<S, B>`
 
-- <span id="walktree-item"></span>`type Item = S`
+- <span id="walktree-type-item"></span>`type Item = S`
 
 - <span id="walktree-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for WalkTree<S, B>`
 
-- <span id="walktree-align"></span>`const ALIGN: usize`
+- <span id="walktree-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktree-init"></span>`type Init = T`
+- <span id="walktree-type-init"></span>`type Init = T`
 
 - <span id="walktree-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3424,8 +3518,10 @@ struct WalkTreePostfix<S, B> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:302-305`](../../../.source_1765210505/rayon-1.11.0/src/iter/walk_tree.rs#L302-L305)*
+
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
+Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
 
 #### Trait Implementations
 
@@ -3437,23 +3533,23 @@ Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
 
 ##### `impl<T> IntoParallelIterator for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-iter"></span>`type Iter = T`
+- <span id="walktreepostfix-type-iter"></span>`type Iter = T`
 
-- <span id="walktreepostfix-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="walktreepostfix-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="walktreepostfix-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<S, B, I> ParallelIterator for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-item"></span>`type Item = S`
+- <span id="walktreepostfix-type-item"></span>`type Item = S`
 
 - <span id="walktreepostfix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for WalkTreePostfix<S, B>`
 
-- <span id="walktreepostfix-align"></span>`const ALIGN: usize`
+- <span id="walktreepostfix-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktreepostfix-init"></span>`type Init = T`
+- <span id="walktreepostfix-type-init"></span>`type Init = T`
 
 - <span id="walktreepostfix-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3472,8 +3568,10 @@ struct WalkTreePrefix<S, B> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/walk_tree.rs:76-79`](../../../.source_1765210505/rayon-1.11.0/src/iter/walk_tree.rs#L76-L79)*
+
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
+Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
 
 #### Trait Implementations
 
@@ -3485,23 +3583,23 @@ Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
 
 ##### `impl<T> IntoParallelIterator for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-iter"></span>`type Iter = T`
+- <span id="walktreeprefix-type-iter"></span>`type Iter = T`
 
-- <span id="walktreeprefix-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="walktreeprefix-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="walktreeprefix-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<S, B, I> ParallelIterator for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-item"></span>`type Item = S`
+- <span id="walktreeprefix-type-item"></span>`type Item = S`
 
 - <span id="walktreeprefix-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for WalkTreePrefix<S, B>`
 
-- <span id="walktreeprefix-align"></span>`const ALIGN: usize`
+- <span id="walktreeprefix-const-align"></span>`const ALIGN: usize`
 
-- <span id="walktreeprefix-init"></span>`type Init = T`
+- <span id="walktreeprefix-type-init"></span>`type Init = T`
 
 - <span id="walktreeprefix-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3519,10 +3617,12 @@ struct WhileSome<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/while_some.rs:13-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/while_some.rs#L13-L15)*
+
 `WhileSome` is an iterator that yields the `Some` elements of an iterator,
 halting as soon as any `None` is produced.
 
-This struct is created by the `while_some()` method on [`ParallelIterator`](../prelude/index.md)
+This struct is created by the `while_some()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -3533,7 +3633,7 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](../p
 
 ##### `impl<I: clone::Clone> Clone for WhileSome<I>`
 
-- <span id="whilesome-clone"></span>`fn clone(&self) -> WhileSome<I>` — [`WhileSome`](#whilesome)
+- <span id="whilesome-clone"></span>`fn clone(&self) -> WhileSome<I>` — [`WhileSome`](while_some/index.md)
 
 ##### `impl<I: fmt::Debug> Debug for WhileSome<I>`
 
@@ -3543,23 +3643,23 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](../p
 
 ##### `impl<T> IntoParallelIterator for WhileSome<I>`
 
-- <span id="whilesome-iter"></span>`type Iter = T`
+- <span id="whilesome-type-iter"></span>`type Iter = T`
 
-- <span id="whilesome-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="whilesome-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="whilesome-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, T> ParallelIterator for WhileSome<I>`
 
-- <span id="whilesome-item"></span>`type Item = T`
+- <span id="whilesome-type-item"></span>`type Item = T`
 
 - <span id="whilesome-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 ##### `impl<T> Pointable for WhileSome<I>`
 
-- <span id="whilesome-align"></span>`const ALIGN: usize`
+- <span id="whilesome-const-align"></span>`const ALIGN: usize`
 
-- <span id="whilesome-init"></span>`type Init = T`
+- <span id="whilesome-type-init"></span>`type Init = T`
 
 - <span id="whilesome-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3578,9 +3678,11 @@ struct Zip<A, B> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/zip.rs:12-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/zip.rs#L12-L15)*
+
 `Zip` is an iterator that zips up `a` and `b` into a single iterator
 of pairs. This struct is created by the `zip()` method on
-[`IndexedParallelIterator`](../prelude/index.md)
+[`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -3591,7 +3693,7 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for Zip<A, B>`
 
-- <span id="zip-clone"></span>`fn clone(&self) -> Zip<A, B>` — [`Zip`](#zip)
+- <span id="zip-clone"></span>`fn clone(&self) -> Zip<A, B>` — [`Zip`](zip/index.md)
 
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for Zip<A, B>`
 
@@ -3609,15 +3711,15 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<T> IntoParallelIterator for Zip<A, B>`
 
-- <span id="zip-iter"></span>`type Iter = T`
+- <span id="zip-type-iter"></span>`type Iter = T`
 
-- <span id="zip-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="zip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="zip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Zip<A, B>`
 
-- <span id="zip-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
+- <span id="zip-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
 - <span id="zip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -3625,9 +3727,9 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<T> Pointable for Zip<A, B>`
 
-- <span id="zip-align"></span>`const ALIGN: usize`
+- <span id="zip-const-align"></span>`const ALIGN: usize`
 
-- <span id="zip-init"></span>`type Init = T`
+- <span id="zip-type-init"></span>`type Init = T`
 
 - <span id="zip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3645,10 +3747,12 @@ struct ZipEq<A, B> {
 }
 ```
 
-An [`IndexedParallelIterator`](../prelude/index.md) that iterates over two parallel iterators of equal
+*Defined in [`rayon-1.11.0/src/iter/zip_eq.rs:13-15`](../../../.source_1765210505/rayon-1.11.0/src/iter/zip_eq.rs#L13-L15)*
+
+An [`IndexedParallelIterator`](#indexedparalleliterator) that iterates over two parallel iterators of equal
 length simultaneously.
 
-This struct is created by the [`zip_eq`](zip_eq/index.md) method on [`IndexedParallelIterator`](../prelude/index.md),
+This struct is created by the [`zip_eq`](zip_eq/index.md) method on [`IndexedParallelIterator`](#indexedparalleliterator),
 see its documentation for more information.
 
 
@@ -3660,7 +3764,7 @@ see its documentation for more information.
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for ZipEq<A, B>`
 
-- <span id="zipeq-clone"></span>`fn clone(&self) -> ZipEq<A, B>` — [`ZipEq`](#zipeq)
+- <span id="zipeq-clone"></span>`fn clone(&self) -> ZipEq<A, B>` — [`ZipEq`](zip_eq/index.md)
 
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for ZipEq<A, B>`
 
@@ -3678,15 +3782,15 @@ see its documentation for more information.
 
 ##### `impl<T> IntoParallelIterator for ZipEq<A, B>`
 
-- <span id="zipeq-iter"></span>`type Iter = T`
+- <span id="zipeq-type-iter"></span>`type Iter = T`
 
-- <span id="zipeq-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="zipeq-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="zipeq-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for ZipEq<A, B>`
 
-- <span id="zipeq-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
+- <span id="zipeq-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
 - <span id="zipeq-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -3694,9 +3798,9 @@ see its documentation for more information.
 
 ##### `impl<T> Pointable for ZipEq<A, B>`
 
-- <span id="zipeq-align"></span>`const ALIGN: usize`
+- <span id="zipeq-const-align"></span>`const ALIGN: usize`
 
-- <span id="zipeq-init"></span>`type Init = T`
+- <span id="zipeq-type-init"></span>`type Init = T`
 
 - <span id="zipeq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -3713,6 +3817,8 @@ see its documentation for more information.
 ```rust
 trait ParallelBridge: Sized { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:53-56`](../../../.source_1765210505/rayon-1.11.0/src/iter/par_bridge.rs#L53-L56)*
 
 Conversion trait to convert an `Iterator` to a `ParallelIterator`.
 
@@ -3771,7 +3877,9 @@ assert_eq!(&*output, &["one!", "three!", "two!"]);
 trait IntoParallelIterator { ... }
 ```
 
-`IntoParallelIterator` implements the conversion to a [`ParallelIterator`](../prelude/index.md).
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:219-249`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L219-L249)*
+
+`IntoParallelIterator` implements the conversion to a [`ParallelIterator`](#paralleliterator).
 
 By implementing `IntoParallelIterator` for a type, you define how it will
 transformed into an iterator. This is a parallel version of the standard
@@ -3791,123 +3899,6 @@ library's `std::iter::IntoIterator` trait.
 
 #### Implementors
 
-- [`Bytes`](../str/index.md)
-- [`Chain`](#chain)
-- [`CharIndices`](../str/index.md)
-- [`Chars`](../str/index.md)
-- [`ChunkByMut`](../slice/index.md)
-- [`ChunkBy`](../slice/index.md)
-- [`ChunksExactMut`](../slice/index.md)
-- [`ChunksExact`](../slice/index.md)
-- [`ChunksMut`](../slice/index.md)
-- [`Chunks`](#chunks)
-- [`Chunks`](../slice/index.md)
-- [`Cloned`](#cloned)
-- [`Copied`](#copied)
-- [`Drain`](../collections/binary_heap/index.md)
-- [`Drain`](../collections/hash_map/index.md)
-- [`Drain`](../collections/hash_set/index.md)
-- [`Drain`](../collections/vec_deque/index.md)
-- [`Drain`](../string/index.md)
-- [`Drain`](../vec/index.md)
-- [`Empty`](#empty)
-- [`EncodeUtf16`](../str/index.md)
-- [`Enumerate`](#enumerate)
-- [`ExponentialBlocks`](#exponentialblocks)
-- [`FilterMap`](#filtermap)
-- [`Filter`](#filter)
-- [`FlatMapIter`](#flatmapiter)
-- [`FlatMap`](#flatmap)
-- [`FlattenIter`](#flatteniter)
-- [`Flatten`](#flatten)
-- [`FoldChunksWith`](#foldchunkswith)
-- [`FoldChunks`](#foldchunks)
-- [`FoldWith`](#foldwith)
-- [`Fold`](#fold)
-- [`Inspect`](#inspect)
-- [`InterleaveShortest`](#interleaveshortest)
-- [`Interleave`](#interleave)
-- [`Intersperse`](#intersperse)
-- [`IntoIter`](../array/index.md)
-- [`IntoIter`](../collections/binary_heap/index.md)
-- [`IntoIter`](../collections/btree_map/index.md)
-- [`IntoIter`](../collections/btree_set/index.md)
-- [`IntoIter`](../collections/hash_map/index.md)
-- [`IntoIter`](../collections/hash_set/index.md)
-- [`IntoIter`](../collections/linked_list/index.md)
-- [`IntoIter`](../collections/vec_deque/index.md)
-- [`IntoIter`](../option/index.md)
-- [`IntoIter`](../result/index.md)
-- [`IntoIter`](../vec/index.md)
-- [`IterBridge`](#iterbridge)
-- [`IterMut`](../collections/btree_map/index.md)
-- [`IterMut`](../collections/hash_map/index.md)
-- [`IterMut`](../collections/linked_list/index.md)
-- [`IterMut`](../collections/vec_deque/index.md)
-- [`IterMut`](../option/index.md)
-- [`IterMut`](../result/index.md)
-- [`IterMut`](../slice/index.md)
-- [`Iter`](../collections/binary_heap/index.md)
-- [`Iter`](../collections/btree_map/index.md)
-- [`Iter`](../collections/btree_set/index.md)
-- [`Iter`](../collections/hash_map/index.md)
-- [`Iter`](../collections/hash_set/index.md)
-- [`Iter`](../collections/linked_list/index.md)
-- [`Iter`](../collections/vec_deque/index.md)
-- [`Iter`](../option/index.md)
-- [`Iter`](../range/index.md)
-- [`Iter`](../range_inclusive/index.md)
-- [`Iter`](../result/index.md)
-- [`Iter`](../slice/index.md)
-- [`Lines`](../str/index.md)
-- [`MapInit`](#mapinit)
-- [`MapWith`](#mapwith)
-- [`Map`](#map)
-- [`MatchIndices`](../str/index.md)
-- [`Matches`](../str/index.md)
-- [`MaxLen`](#maxlen)
-- [`MinLen`](#minlen)
-- [`MultiZip`](#multizip)
-- [`Once`](#once)
-- [`PanicFuse`](#panicfuse)
-- [`Positions`](#positions)
-- [`RChunksExactMut`](../slice/index.md)
-- [`RChunksExact`](../slice/index.md)
-- [`RChunksMut`](../slice/index.md)
-- [`RChunks`](../slice/index.md)
-- [`RepeatN`](#repeatn)
-- [`Repeat`](#repeat)
-- [`Rev`](#rev)
-- [`SkipAnyWhile`](#skipanywhile)
-- [`SkipAny`](#skipany)
-- [`Skip`](#skip)
-- [`SplitAsciiWhitespace`](../str/index.md)
-- [`SplitInclusiveMut`](../slice/index.md)
-- [`SplitInclusive`](../slice/index.md)
-- [`SplitInclusive`](../str/index.md)
-- [`SplitMut`](../slice/index.md)
-- [`SplitTerminator`](../str/index.md)
-- [`SplitWhitespace`](../str/index.md)
-- [`Split`](#split)
-- [`Split`](../slice/index.md)
-- [`Split`](../str/index.md)
-- [`StepBy`](#stepby)
-- [`TakeAnyWhile`](#takeanywhile)
-- [`TakeAny`](#takeany)
-- [`Take`](#take)
-- [`TryFoldWith`](#tryfoldwith)
-- [`TryFold`](#tryfold)
-- [`UniformBlocks`](#uniformblocks)
-- [`UnzipA`](unzip/index.md)
-- [`UnzipB`](unzip/index.md)
-- [`Update`](#update)
-- [`WalkTreePostfix`](#walktreepostfix)
-- [`WalkTreePrefix`](#walktreeprefix)
-- [`WalkTree`](#walktree)
-- [`WhileSome`](#whilesome)
-- [`Windows`](../slice/index.md)
-- [`ZipEq`](#zipeq)
-- [`Zip`](#zip)
 - `&'a (A)`
 - `&'a (A, B)`
 - `&'a (A, B, C)`
@@ -3989,15 +3980,17 @@ library's `std::iter::IntoIterator` trait.
 trait IntoParallelRefIterator<'data> { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:261-285`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L261-L285)*
+
 `IntoParallelRefIterator` implements the conversion to a
-[`ParallelIterator`](../prelude/index.md), providing shared references to the data.
+[`ParallelIterator`](#paralleliterator), providing shared references to the data.
 
 This is a parallel version of the `iter()` method
 defined by various collections.
 
 This trait is automatically implemented
 `for I where &I: IntoParallelIterator`. In most cases, users
-will want to implement [`IntoParallelIterator`](../prelude/index.md) rather than implement
+will want to implement [`IntoParallelIterator`](#intoparalleliterator) rather than implement
 this trait directly.
 
 #### Associated Types
@@ -4022,15 +4015,17 @@ this trait directly.
 trait IntoParallelRefMutIterator<'data> { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:309-329`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L309-L329)*
+
 `IntoParallelRefMutIterator` implements the conversion to a
-[`ParallelIterator`](../prelude/index.md), providing mutable references to the data.
+[`ParallelIterator`](#paralleliterator), providing mutable references to the data.
 
 This is a parallel version of the `iter_mut()` method
 defined by various collections.
 
 This trait is automatically implemented
 `for I where &mut I: IntoParallelIterator`. In most cases, users
-will want to implement [`IntoParallelIterator`](../prelude/index.md) rather than implement
+will want to implement [`IntoParallelIterator`](#intoparalleliterator) rather than implement
 this trait directly.
 
 #### Associated Types
@@ -4055,11 +4050,13 @@ this trait directly.
 trait ParallelIterator: Sized + Send { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:356-2421`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L356-L2421)*
+
 Parallel version of the standard iterator trait.
 
 The combinators on this trait are available on **all** parallel
 iterators.  Additional methods can be found on the
-[`IndexedParallelIterator`](../prelude/index.md) trait: those methods are only
+[`IndexedParallelIterator`](#indexedparalleliterator) trait: those methods are only
 available for parallel iterators where the number of items is
 known in advance (so, e.g., after invoking `filter`, those methods
 become unavailable).
@@ -4315,18 +4312,18 @@ For examples of using parallel iterators, see [the docs on the
 #### Implementors
 
 - [`Bytes`](../str/index.md)
-- [`Chain`](#chain)
+- [`Chain`](chain/index.md)
 - [`CharIndices`](../str/index.md)
 - [`Chars`](../str/index.md)
-- [`ChunkByMut`](../slice/index.md)
-- [`ChunkBy`](../slice/index.md)
-- [`ChunksExactMut`](../slice/index.md)
-- [`ChunksExact`](../slice/index.md)
-- [`ChunksMut`](../slice/index.md)
-- [`Chunks`](#chunks)
-- [`Chunks`](../slice/index.md)
-- [`Cloned`](#cloned)
-- [`Copied`](#copied)
+- [`ChunkByMut`](../slice/chunk_by/index.md)
+- [`ChunkBy`](../slice/chunk_by/index.md)
+- [`ChunksExactMut`](../slice/chunks/index.md)
+- [`ChunksExact`](../slice/chunks/index.md)
+- [`ChunksMut`](../slice/chunks/index.md)
+- [`Chunks`](../slice/chunks/index.md)
+- [`Chunks`](chunks/index.md)
+- [`Cloned`](cloned/index.md)
+- [`Copied`](copied/index.md)
 - [`Drain`](../collections/binary_heap/index.md)
 - [`Drain`](../collections/hash_map/index.md)
 - [`Drain`](../collections/hash_set/index.md)
@@ -4334,24 +4331,24 @@ For examples of using parallel iterators, see [the docs on the
 - [`Drain`](../string/index.md)
 - [`Drain`](../vec/index.md)
 - [`Either`](#either)
-- [`Empty`](#empty)
+- [`Empty`](empty/index.md)
 - [`EncodeUtf16`](../str/index.md)
-- [`Enumerate`](#enumerate)
-- [`ExponentialBlocks`](#exponentialblocks)
-- [`FilterMap`](#filtermap)
-- [`Filter`](#filter)
-- [`FlatMapIter`](#flatmapiter)
-- [`FlatMap`](#flatmap)
-- [`FlattenIter`](#flatteniter)
-- [`Flatten`](#flatten)
-- [`FoldChunksWith`](#foldchunkswith)
-- [`FoldChunks`](#foldchunks)
-- [`FoldWith`](#foldwith)
-- [`Fold`](#fold)
-- [`Inspect`](#inspect)
-- [`InterleaveShortest`](#interleaveshortest)
-- [`Interleave`](#interleave)
-- [`Intersperse`](#intersperse)
+- [`Enumerate`](enumerate/index.md)
+- [`ExponentialBlocks`](blocks/index.md)
+- [`FilterMap`](filter_map/index.md)
+- [`Filter`](filter/index.md)
+- [`FlatMapIter`](flat_map_iter/index.md)
+- [`FlatMap`](flat_map/index.md)
+- [`FlattenIter`](flatten_iter/index.md)
+- [`Flatten`](flatten/index.md)
+- [`FoldChunksWith`](fold_chunks_with/index.md)
+- [`FoldChunks`](fold_chunks/index.md)
+- [`FoldWith`](fold/index.md)
+- [`Fold`](fold/index.md)
+- [`Inspect`](inspect/index.md)
+- [`InterleaveShortest`](interleave_shortest/index.md)
+- [`Interleave`](interleave/index.md)
+- [`Intersperse`](intersperse/index.md)
 - [`IntoIter`](../array/index.md)
 - [`IntoIter`](../collections/binary_heap/index.md)
 - [`IntoIter`](../collections/btree_map/index.md)
@@ -4363,7 +4360,7 @@ For examples of using parallel iterators, see [the docs on the
 - [`IntoIter`](../option/index.md)
 - [`IntoIter`](../result/index.md)
 - [`IntoIter`](../vec/index.md)
-- [`IterBridge`](#iterbridge)
+- [`IterBridge`](par_bridge/index.md)
 - [`IterMut`](../collections/btree_map/index.md)
 - [`IterMut`](../collections/hash_map/index.md)
 - [`IterMut`](../collections/linked_list/index.md)
@@ -4384,27 +4381,27 @@ For examples of using parallel iterators, see [the docs on the
 - [`Iter`](../result/index.md)
 - [`Iter`](../slice/index.md)
 - [`Lines`](../str/index.md)
-- [`MapInit`](#mapinit)
-- [`MapWith`](#mapwith)
-- [`Map`](#map)
+- [`MapInit`](map_with/index.md)
+- [`MapWith`](map_with/index.md)
+- [`Map`](map/index.md)
 - [`MatchIndices`](../str/index.md)
 - [`Matches`](../str/index.md)
-- [`MaxLen`](#maxlen)
-- [`MinLen`](#minlen)
-- [`MultiZip`](#multizip)
-- [`Once`](#once)
-- [`PanicFuse`](#panicfuse)
-- [`Positions`](#positions)
-- [`RChunksExactMut`](../slice/index.md)
-- [`RChunksExact`](../slice/index.md)
-- [`RChunksMut`](../slice/index.md)
-- [`RChunks`](../slice/index.md)
-- [`RepeatN`](#repeatn)
-- [`Repeat`](#repeat)
-- [`Rev`](#rev)
-- [`SkipAnyWhile`](#skipanywhile)
-- [`SkipAny`](#skipany)
-- [`Skip`](#skip)
+- [`MaxLen`](len/index.md)
+- [`MinLen`](len/index.md)
+- [`MultiZip`](multizip/index.md)
+- [`Once`](once/index.md)
+- [`PanicFuse`](panic_fuse/index.md)
+- [`Positions`](positions/index.md)
+- [`RChunksExactMut`](../slice/rchunks/index.md)
+- [`RChunksExact`](../slice/rchunks/index.md)
+- [`RChunksMut`](../slice/rchunks/index.md)
+- [`RChunks`](../slice/rchunks/index.md)
+- [`RepeatN`](repeat/index.md)
+- [`Repeat`](repeat/index.md)
+- [`Rev`](rev/index.md)
+- [`SkipAnyWhile`](skip_any_while/index.md)
+- [`SkipAny`](skip_any/index.md)
+- [`Skip`](skip/index.md)
 - [`SplitAsciiWhitespace`](../str/index.md)
 - [`SplitInclusiveMut`](../slice/index.md)
 - [`SplitInclusive`](../slice/index.md)
@@ -4412,32 +4409,34 @@ For examples of using parallel iterators, see [the docs on the
 - [`SplitMut`](../slice/index.md)
 - [`SplitTerminator`](../str/index.md)
 - [`SplitWhitespace`](../str/index.md)
-- [`Split`](#split)
 - [`Split`](../slice/index.md)
 - [`Split`](../str/index.md)
-- [`StepBy`](#stepby)
-- [`TakeAnyWhile`](#takeanywhile)
-- [`TakeAny`](#takeany)
-- [`Take`](#take)
-- [`TryFoldWith`](#tryfoldwith)
-- [`TryFold`](#tryfold)
-- [`UniformBlocks`](#uniformblocks)
+- [`Split`](splitter/index.md)
+- [`StepBy`](step_by/index.md)
+- [`TakeAnyWhile`](take_any_while/index.md)
+- [`TakeAny`](take_any/index.md)
+- [`Take`](take/index.md)
+- [`TryFoldWith`](try_fold/index.md)
+- [`TryFold`](try_fold/index.md)
+- [`UniformBlocks`](blocks/index.md)
 - [`UnzipA`](unzip/index.md)
 - [`UnzipB`](unzip/index.md)
-- [`Update`](#update)
-- [`WalkTreePostfix`](#walktreepostfix)
-- [`WalkTreePrefix`](#walktreeprefix)
-- [`WalkTree`](#walktree)
-- [`WhileSome`](#whilesome)
+- [`Update`](update/index.md)
+- [`WalkTreePostfix`](walk_tree/index.md)
+- [`WalkTreePrefix`](walk_tree/index.md)
+- [`WalkTree`](walk_tree/index.md)
+- [`WhileSome`](while_some/index.md)
 - [`Windows`](../slice/index.md)
-- [`ZipEq`](#zipeq)
-- [`Zip`](#zip)
+- [`ZipEq`](zip_eq/index.md)
+- [`Zip`](zip/index.md)
 
 ### `IndexedParallelIterator`
 
 ```rust
 trait IndexedParallelIterator: ParallelIterator { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:2439-3244`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L2439-L3244)*
 
 An iterator that supports "random access" to its data, meaning
 that you can split it at arbitrary indices and draw data from
@@ -4583,26 +4582,26 @@ those points.
 
 #### Implementors
 
-- [`Chain`](#chain)
-- [`ChunksExactMut`](../slice/index.md)
-- [`ChunksExact`](../slice/index.md)
-- [`ChunksMut`](../slice/index.md)
-- [`Chunks`](#chunks)
-- [`Chunks`](../slice/index.md)
-- [`Cloned`](#cloned)
-- [`Copied`](#copied)
+- [`Chain`](chain/index.md)
+- [`ChunksExactMut`](../slice/chunks/index.md)
+- [`ChunksExact`](../slice/chunks/index.md)
+- [`ChunksMut`](../slice/chunks/index.md)
+- [`Chunks`](../slice/chunks/index.md)
+- [`Chunks`](chunks/index.md)
+- [`Cloned`](cloned/index.md)
+- [`Copied`](copied/index.md)
 - [`Drain`](../collections/binary_heap/index.md)
 - [`Drain`](../collections/vec_deque/index.md)
 - [`Drain`](../vec/index.md)
 - [`Either`](#either)
-- [`Empty`](#empty)
-- [`Enumerate`](#enumerate)
-- [`FoldChunksWith`](#foldchunkswith)
-- [`FoldChunks`](#foldchunks)
-- [`Inspect`](#inspect)
-- [`InterleaveShortest`](#interleaveshortest)
-- [`Interleave`](#interleave)
-- [`Intersperse`](#intersperse)
+- [`Empty`](empty/index.md)
+- [`Enumerate`](enumerate/index.md)
+- [`FoldChunksWith`](fold_chunks_with/index.md)
+- [`FoldChunks`](fold_chunks/index.md)
+- [`Inspect`](inspect/index.md)
+- [`InterleaveShortest`](interleave_shortest/index.md)
+- [`Interleave`](interleave/index.md)
+- [`Intersperse`](intersperse/index.md)
 - [`IntoIter`](../array/index.md)
 - [`IntoIter`](../collections/binary_heap/index.md)
 - [`IntoIter`](../collections/vec_deque/index.md)
@@ -4620,27 +4619,27 @@ those points.
 - [`Iter`](../range_inclusive/index.md)
 - [`Iter`](../result/index.md)
 - [`Iter`](../slice/index.md)
-- [`MapInit`](#mapinit)
-- [`MapWith`](#mapwith)
-- [`Map`](#map)
-- [`MaxLen`](#maxlen)
-- [`MinLen`](#minlen)
-- [`MultiZip`](#multizip)
-- [`Once`](#once)
-- [`PanicFuse`](#panicfuse)
-- [`RChunksExactMut`](../slice/index.md)
-- [`RChunksExact`](../slice/index.md)
-- [`RChunksMut`](../slice/index.md)
-- [`RChunks`](../slice/index.md)
-- [`RepeatN`](#repeatn)
-- [`Rev`](#rev)
-- [`Skip`](#skip)
-- [`StepBy`](#stepby)
-- [`Take`](#take)
-- [`Update`](#update)
+- [`MapInit`](map_with/index.md)
+- [`MapWith`](map_with/index.md)
+- [`Map`](map/index.md)
+- [`MaxLen`](len/index.md)
+- [`MinLen`](len/index.md)
+- [`MultiZip`](multizip/index.md)
+- [`Once`](once/index.md)
+- [`PanicFuse`](panic_fuse/index.md)
+- [`RChunksExactMut`](../slice/rchunks/index.md)
+- [`RChunksExact`](../slice/rchunks/index.md)
+- [`RChunksMut`](../slice/rchunks/index.md)
+- [`RChunks`](../slice/rchunks/index.md)
+- [`RepeatN`](repeat/index.md)
+- [`Rev`](rev/index.md)
+- [`Skip`](skip/index.md)
+- [`StepBy`](step_by/index.md)
+- [`Take`](take/index.md)
+- [`Update`](update/index.md)
 - [`Windows`](../slice/index.md)
-- [`ZipEq`](#zipeq)
-- [`Zip`](#zip)
+- [`ZipEq`](zip_eq/index.md)
+- [`Zip`](zip/index.md)
 
 ### `FromParallelIterator<T>`
 
@@ -4650,12 +4649,14 @@ where
     T: Send { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3280-3303`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L3280-L3303)*
+
 `FromParallelIterator` implements the creation of a collection
-from a [`ParallelIterator`](../prelude/index.md). By implementing
+from a [`ParallelIterator`](#paralleliterator). By implementing
 `FromParallelIterator` for a given type, you define how it will be
 created from an iterator.
 
-`FromParallelIterator` is used through [`ParallelIterator`](../prelude/index.md)'s `collect()` method.
+`FromParallelIterator` is used through [`ParallelIterator`](#paralleliterator)'s `collect()` method.
 
 # Examples
 
@@ -4720,7 +4721,9 @@ where
     T: Send { ... }
 ```
 
-`ParallelExtend` extends an existing collection with items from a [`ParallelIterator`](../prelude/index.md).
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3333-3353`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L3333-L3353)*
+
+`ParallelExtend` extends an existing collection with items from a [`ParallelIterator`](#paralleliterator).
 
 # Examples
 
@@ -4779,10 +4782,12 @@ assert_eq!(bh.mass, 4080);
 trait ParallelDrainFull { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3360-3394`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L3360-L3394)*
+
 `ParallelDrainFull` creates a parallel iterator that moves all items
 from a collection while retaining the original capacity.
 
-Types which are indexable typically implement [`ParallelDrainRange`](../prelude/index.md)
+Types which are indexable typically implement [`ParallelDrainRange`](#paralleldrainrange)
 instead, where you can drain fully with `par_drain(..)`.
 
 #### Associated Types
@@ -4809,10 +4814,12 @@ instead, where you can drain fully with `par_drain(..)`.
 trait ParallelDrainRange<Idx> { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3400-3467`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L3400-L3467)*
+
 `ParallelDrainRange` creates a parallel iterator that moves a range of items
 from a collection while retaining the original capacity.
 
-Types which are not indexable may implement [`ParallelDrainFull`](../prelude/index.md) instead.
+Types which are not indexable may implement [`ParallelDrainFull`](#paralleldrainfull) instead.
 
 #### Associated Types
 
@@ -4834,4 +4841,22 @@ Types which are not indexable may implement [`ParallelDrainFull`](../prelude/ind
 - `&'data mut Vec<T>`
 
 ## Functions
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:168`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L168)*
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:187`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L187)*
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:191`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L191)*
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:191`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L191)*
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:196`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L196)*
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:204`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L204)*
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:204`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L204)*
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:204`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L204)*
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:212`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L212)*
 

@@ -18,6 +18,8 @@
 struct InlineBuffer([u8; 24]);
 ```
 
+*Defined in [`compact_str-0.9.0/src/repr/inline.rs:8`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/inline.rs#L8)*
+
 A buffer stored on the stack whose size is equal to the stack size of `String`
 
 #### Implementations

@@ -23,27 +23,26 @@ struct Usage<'cmd> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/usage.rs:19-23`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/usage.rs#L19-L23)*
+
 #### Implementations
 
-- <span id="usage-write-help-usage"></span>`fn write_help_usage(&self, styled: &mut StyledStr)` — [`StyledStr`](../../builder/index.md)
+- <span id="usage-new"></span>`fn new(cmd: &'cmd Command) -> Self` — [`Command`](../../builder/command/index.md)
 
-- <span id="usage-write-smart-usage"></span>`fn write_smart_usage(&self, styled: &mut StyledStr, used: &[Id])` — [`StyledStr`](../../builder/index.md), [`Id`](../../index.md)
+- <span id="usage-required"></span>`fn required(self, required: &'cmd ChildGraph<Id>) -> Self` — [`ChildGraph`](../../util/graph/index.md), [`Id`](../../util/id/index.md)
 
-- <span id="usage-write-arg-usage"></span>`fn write_arg_usage(&self, styled: &mut StyledStr, used: &[Id], incl_reqs: bool)` — [`StyledStr`](../../builder/index.md), [`Id`](../../index.md)
+- <span id="usage-create-usage-with-title"></span>`fn create_usage_with_title(&self, used: &[Id]) -> Option<StyledStr>` — [`Id`](../../util/id/index.md), [`StyledStr`](../../builder/styled_str/index.md)
 
-- <span id="usage-write-subcommand-usage"></span>`fn write_subcommand_usage(&self, styled: &mut StyledStr)` — [`StyledStr`](../../builder/index.md)
+- <span id="usage-create-usage-no-title"></span>`fn create_usage_no_title(&self, used: &[Id]) -> Option<StyledStr>` — [`Id`](../../util/id/index.md), [`StyledStr`](../../builder/styled_str/index.md)
 
-- <span id="usage-needs-options-tag"></span>`fn needs_options_tag(&self) -> bool`
-
-- <span id="usage-write-args"></span>`fn write_args(&self, styled: &mut StyledStr, incls: &[Id], force_optional: bool)` — [`StyledStr`](../../builder/index.md), [`Id`](../../index.md)
-
-- <span id="usage-get-required-usage-from"></span>`fn get_required_usage_from(&self, incls: &[Id], matcher: Option<&ArgMatcher>, incl_last: bool) -> Vec<StyledStr>` — [`Id`](../../index.md), [`ArgMatcher`](../../parser/arg_matcher/index.md), [`StyledStr`](../../builder/index.md)
+- <span id="usage-write-usage-no-title"></span>`fn write_usage_no_title(&self, styled: &mut StyledStr, used: &[Id]) -> bool` — [`StyledStr`](../../builder/styled_str/index.md), [`Id`](../../util/id/index.md)
 
 ## Constants
 
 ### `USAGE_SEP`
-
 ```rust
 const USAGE_SEP: &str;
 ```
+
+*Defined in [`clap_builder-4.5.53/src/output/usage.rs:17`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/usage.rs#L17)*
 

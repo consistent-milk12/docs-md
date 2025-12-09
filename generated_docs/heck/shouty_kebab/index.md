@@ -19,7 +19,9 @@
 struct AsShoutyKebabCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/index.md).
+*Defined in [`heck-0.5.0/src/shouty_kebab.rs:41`](../../../.source_1765210505/heck-0.5.0/src/shouty_kebab.rs#L41)*
+
+This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -47,6 +49,8 @@ assert_eq!(format!("{}", AsShoutyKebabCase(sentence)), "WE-ARE-GOING-TO-INHERIT-
 ```rust
 trait ToShoutyKebabCase: ToOwned { ... }
 ```
+
+*Defined in [`heck-0.5.0/src/shouty_kebab.rs:20-23`](../../../.source_1765210505/heck-0.5.0/src/shouty_kebab.rs#L20-L23)*
 
 This trait defines a shouty kebab case conversion.
 

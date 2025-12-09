@@ -18,6 +18,8 @@
 struct Inner(&'static std::ffi::OsStr);
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:292`](../../../../../.source_1765210505/clap_builder-4.5.53/src/builder/os_str.rs#L292)*
+
 #### Implementations
 
 - <span id="inner-from-static-ref"></span>`fn from_static_ref(name: &'static std::ffi::OsStr) -> Self`

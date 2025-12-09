@@ -21,6 +21,8 @@
 struct DisplayError<M>(M);
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:10`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/wrapper.rs#L10)*
+
 #### Trait Implementations
 
 ##### `impl<M> Debug for DisplayError<M>`
@@ -52,6 +54,8 @@ struct DisplayError<M>(M);
 ```rust
 struct MessageError<M>(M);
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:34`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/wrapper.rs#L34)*
 
 #### Trait Implementations
 
@@ -85,13 +89,15 @@ struct MessageError<M>(M);
 struct BoxedError(Box<dyn Diagnostic + Send + Sync>);
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:58`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/wrapper.rs#L58)*
+
 #### Trait Implementations
 
 ##### `impl Debug for BoxedError`
 
 - <span id="boxederror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for BoxedError`
+##### `impl Diag for BoxedError`
 
 - <span id="boxederror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
 
@@ -125,13 +131,13 @@ struct BoxedError(Box<dyn Diagnostic + Send + Sync>);
 
 - <span id="boxederror-cause"></span>`fn cause(&self) -> Option<&dyn StdError>`
 
-##### `impl<D> OwoColorize for BoxedError`
+##### `impl OwoColorize for BoxedError`
 
-##### `impl<T> ToString for BoxedError`
+##### `impl ToString for BoxedError`
 
 - <span id="boxederror-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for BoxedError`
+##### `impl TraitKind for BoxedError`
 
 ### `WithSourceCode<E, C>`
 
@@ -141,6 +147,8 @@ struct WithSourceCode<E, C> {
     source_code: C,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/wrapper.rs:122-125`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/wrapper.rs#L122-L125)*
 
 #### Trait Implementations
 
@@ -152,7 +160,7 @@ struct WithSourceCode<E, C> {
 
 - <span id="withsourcecode-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
 
-##### `impl<C: SourceCode> Diagnostic for WithSourceCode<crate::Report, C>`
+##### `impl<E: Diagnostic, C: SourceCode> Diagnostic for WithSourceCode<E, C>`
 
 - <span id="withsourcecode-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
@@ -174,7 +182,7 @@ struct WithSourceCode<E, C> {
 
 - <span id="withsourcecode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<C> Error for WithSourceCode<crate::Report, C>`
+##### `impl<E: StdError, C> Error for WithSourceCode<E, C>`
 
 - <span id="withsourcecode-source"></span>`fn source(&self) -> Option<&dyn StdError>`
 

@@ -24,6 +24,8 @@ where
     Opt: Into<crate::Options<'a>>
 ```
 
+*Defined in [`textwrap-0.16.2/src/wrap.rs:180-193`](../../../.source_1765210505/textwrap-0.16.2/src/wrap.rs#L180-L193)*
+
 Wrap a line of text at a given width.
 
 The result is a vector of lines, each line is of type [`Cow<'_,
@@ -46,7 +48,7 @@ assert_eq!(lines, &[
 ]);
 ```
 
-If you need to customize the wrapping, you can pass an [`Options`](../index.md)
+If you need to customize the wrapping, you can pass an [`Options`](../options/index.md)
 instead of an `usize`:
 
 ```rust
@@ -202,11 +204,15 @@ assert_eq!(wrap("  foo bar", 4), vec!["", "foo", "bar"]);
 fn wrap_single_line<'a>(line: &'a str, options: &crate::Options<'_>, lines: &mut Vec<std::borrow::Cow<'a, str>>)
 ```
 
+*Defined in [`textwrap-0.16.2/src/wrap.rs:195-210`](../../../.source_1765210505/textwrap-0.16.2/src/wrap.rs#L195-L210)*
+
 ### `wrap_single_line_slow_path`
 
 ```rust
 fn wrap_single_line_slow_path<'a>(line: &'a str, options: &crate::Options<'_>, lines: &mut Vec<std::borrow::Cow<'a, str>>)
 ```
+
+*Defined in [`textwrap-0.16.2/src/wrap.rs:215-292`](../../../.source_1765210505/textwrap-0.16.2/src/wrap.rs#L215-L292)*
 
 Wrap a single line of text.
 

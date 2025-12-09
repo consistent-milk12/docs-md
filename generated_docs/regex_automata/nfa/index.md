@@ -59,7 +59,7 @@ But currently, this crate only provides a Thompson NFA.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`thompson`](#thompson) | mod | Defines a Thompson NFA and provides the [`PikeVM`](pikevm::PikeVM) and |
+| [`thompson`](#thompson) | mod | Defines a Thompson NFA and provides the [`PikeVM`](pikevm::PikeVM) and [`BoundedBacktracker`](backtrack::BoundedBacktracker) regex engines. |
 
 ## Modules
 

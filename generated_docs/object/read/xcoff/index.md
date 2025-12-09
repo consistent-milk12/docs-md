@@ -190,6 +190,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:35-45`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/file.rs#L35-L45)*
+
 A partially parsed XCOFF file.
 
 Most functionality is provided by the [`Object`](../index.md) trait implementation.
@@ -218,25 +220,25 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 ##### `impl<'data, Xcoff, R> Object for XcoffFile<'data, Xcoff, R>`
 
-- <span id="xcofffile-segment"></span>`type Segment = XcoffSegment<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-type-segment"></span>`type Segment = XcoffSegment<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-segmentiterator"></span>`type SegmentIterator = XcoffSegmentIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-type-segmentiterator"></span>`type SegmentIterator = XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-section"></span>`type Section = XcoffSection<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-type-section"></span>`type Section = XcoffSection<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-sectioniterator"></span>`type SectionIterator = XcoffSectionIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-type-sectioniterator"></span>`type SectionIterator = XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-comdat"></span>`type Comdat = XcoffComdat<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-type-comdat"></span>`type Comdat = XcoffComdat<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-comdatiterator"></span>`type ComdatIterator = XcoffComdatIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-type-comdatiterator"></span>`type ComdatIterator = XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-type-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-type-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-symboltable"></span>`type SymbolTable = XcoffSymbolTable<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-type-symboltable"></span>`type SymbolTable = XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-- <span id="xcofffile-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="xcofffile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
 - <span id="xcofffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
 
@@ -294,6 +296,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:23-30`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L23-L30)*
+
 An iterator for the sections in an [`XcoffFile`](#xcofffile).
 
 #### Trait Implementations
@@ -304,15 +308,15 @@ An iterator for the sections in an [`XcoffFile`](#xcofffile).
 
 ##### `impl<I> IntoIterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsectioniterator-item"></span>`type Item = XcoffSection<'data, 'file, Xcoff, R>`
+- <span id="xcoffsectioniterator-type-item"></span>`type Item = XcoffSection<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -328,6 +332,8 @@ where
     index: crate::read::SectionIndex,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:59-67`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L59-L67)*
 
 A section in an [`XcoffFile`](#xcofffile).
 
@@ -351,7 +357,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 ##### `impl<'data, 'file, Xcoff, R> ObjectSection for XcoffSection<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsection-relocationiterator"></span>`type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffsection-type-relocationiterator"></span>`type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
@@ -399,6 +405,8 @@ struct SectionTable<'data, Xcoff: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:228-230`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L228-L230)*
+
 The table of section headers in an XCOFF file.
 
 Returned by `FileHeader::sections`.
@@ -443,6 +451,8 @@ where
     header: core::marker::PhantomData<Xcoff>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:23-31`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L23-L31)*
 
 A table of symbol entries in an XCOFF file.
 
@@ -496,6 +506,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:182-189`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L182-L189)*
+
 An iterator for symbol entries in an XCOFF file.
 
 Yields the index and symbol structure for each symbol.
@@ -508,15 +520,15 @@ Yields the index and symbol structure for each symbol.
 
 ##### `impl<I> IntoIterator for SymbolIterator<'data, 'table, Xcoff, R>`
 
-- <span id="symboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="symboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="symboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="symboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'table, Xcoff: FileHeader, R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'table, Xcoff, R>`
 
-- <span id="symboliterator-item"></span>`type Item = (SymbolIndex, &'data <Xcoff as FileHeader>::Symbol)`
+- <span id="symboliterator-type-item"></span>`type Item = (SymbolIndex, &'data <Xcoff as FileHeader>::Symbol)`
 
 - <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -531,6 +543,8 @@ where
     symbols: &'file SymbolTable<'data, Xcoff, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:217-224`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L217-L224)*
 
 A symbol table in an [`XcoffFile`](#xcofffile).
 
@@ -548,9 +562,9 @@ A symbol table in an [`XcoffFile`](#xcofffile).
 
 ##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboltable-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboltable-type-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboltable-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboltable-type-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
 
@@ -570,6 +584,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:263-270`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L263-L270)*
+
 An iterator for the symbols in an [`XcoffFile`](#xcofffile).
 
 #### Trait Implementations
@@ -580,15 +596,15 @@ An iterator for the symbols in an [`XcoffFile`](#xcofffile).
 
 ##### `impl<I> IntoIterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsymboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsymboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> Iterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboliterator-item"></span>`type Item = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboliterator-type-item"></span>`type Item = XcoffSymbol<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -605,6 +621,8 @@ where
     symbol: &'data <Xcoff as >::Symbol,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:307-316`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L307-L316)*
 
 A symbol in an [`XcoffFile`](#xcofffile).
 
@@ -674,6 +692,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:23-32`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L23-L32)*
+
 An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 #### Trait Implementations
@@ -684,15 +704,15 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 ##### `impl<I> IntoIterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="xcoffrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="xcoffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -707,6 +727,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:21-28`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L21-L28)*
+
 An iterator for the COMDAT section groups in a [`XcoffFile`](#xcofffile).
 
 This is a stub that doesn't implement any functionality.
@@ -719,15 +741,15 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<I> IntoIterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffcomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffcomdatiterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffcomdatiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatiterator-item"></span>`type Item = XcoffComdat<'data, 'file, Xcoff, R>`
+- <span id="xcoffcomdatiterator-type-item"></span>`type Item = XcoffComdat<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -742,6 +764,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:55-62`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L55-L62)*
+
 A COMDAT section group in a [`XcoffFile`](#xcofffile).
 
 This is a stub that doesn't implement any functionality.
@@ -754,7 +778,7 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Xcoff, R> ObjectComdat for XcoffComdat<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdat-sectioniterator"></span>`type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffcomdat-type-sectioniterator"></span>`type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md)
 
@@ -779,6 +803,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:115-122`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L115-L122)*
+
 An iterator for the sections in a COMDAT section group in a [`XcoffFile`](#xcofffile).
 
 This is a stub that doesn't implement any functionality.
@@ -791,15 +817,15 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<I> IntoIterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffcomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffcomdatsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffcomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatsectioniterator-item"></span>`type Item = SectionIndex`
+- <span id="xcoffcomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="xcoffcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -814,6 +840,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:22-29`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L22-L29)*
+
 An iterator for the segments in an [`XcoffFile`](#xcofffile).
 
 This is a stub that doesn't implement any functionality.
@@ -826,15 +854,15 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<I> IntoIterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsegmentiterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsegmentiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsegmentiterator-item"></span>`type Item = XcoffSegment<'data, 'file, Xcoff, R>`
+- <span id="xcoffsegmentiterator-type-item"></span>`type Item = XcoffSegment<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -848,6 +876,8 @@ where
     file: &'file super::XcoffFile<'data, Xcoff, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:54-61`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L54-L61)*
 
 A loadable section in an [`XcoffFile`](#xcofffile).
 
@@ -888,6 +918,8 @@ This is a stub that doesn't implement any functionality.
 ```rust
 trait FileHeader: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:306-387`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/file.rs#L306-L387)*
 
 A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and [`xcoff::FileHeader64`](../../xcoff/index.md).
 
@@ -957,6 +989,8 @@ A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and 
 ```rust
 trait AuxHeader: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:475-508`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/file.rs#L475-L508)*
 
 A trait for generic access to [`xcoff::AuxHeader32`](../../xcoff/index.md) and [`xcoff::AuxHeader64`](../../xcoff/index.md).
 
@@ -1037,6 +1071,8 @@ A trait for generic access to [`xcoff::AuxHeader32`](../../xcoff/index.md) and [
 trait SectionHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:290-335`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L290-L335)*
+
 A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) and [`xcoff::SectionHeader64`](../../xcoff/index.md).
 
 #### Associated Types
@@ -1100,6 +1136,8 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) a
 trait Symbol: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:540-593`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L540-L593)*
+
 A trait for generic access to [`xcoff::Symbol32`](../../xcoff/index.md) and [`xcoff::Symbol64`](../../xcoff/index.md).
 
 #### Associated Types
@@ -1155,6 +1193,8 @@ A trait for generic access to [`xcoff::Symbol32`](../../xcoff/index.md) and [`xc
 trait FileAux: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:687-720`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L687-L720)*
+
 A trait for generic access to [`xcoff::FileAux32`](../../xcoff/index.md) and [`xcoff::FileAux64`](../../xcoff/index.md).
 
 #### Required Methods
@@ -1183,6 +1223,8 @@ A trait for generic access to [`xcoff::FileAux32`](../../xcoff/index.md) and [`x
 ```rust
 trait CsectAux: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:752-768`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L752-L768)*
 
 A trait for generic access to [`xcoff::CsectAux32`](../../xcoff/index.md) and [`xcoff::CsectAux64`](../../xcoff/index.md).
 
@@ -1221,6 +1263,8 @@ A trait for generic access to [`xcoff::CsectAux32`](../../xcoff/index.md) and [`
 trait Rel: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:88-98`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L88-L98)*
+
 A trait for generic access to [`xcoff::Rel32`](../../xcoff/index.md) and [`xcoff::Rel64`](../../xcoff/index.md).
 
 #### Associated Types
@@ -1254,6 +1298,8 @@ A trait for generic access to [`xcoff::Rel32`](../../xcoff/index.md) and [`xcoff
 type XcoffFile32<'data, R> = XcoffFile<'data, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:24`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/file.rs#L24)*
+
 A 32-bit XCOFF object file.
 
 This is a file that starts with [`xcoff::FileHeader32`](../../xcoff/index.md), and corresponds
@@ -1264,6 +1310,8 @@ to [`crate::FileKind::Xcoff32`](../../index.md).
 ```rust
 type XcoffFile64<'data, R> = XcoffFile<'data, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/file.rs:29`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/file.rs#L29)*
 
 A 64-bit XCOFF object file.
 
@@ -1276,6 +1324,8 @@ to [`crate::FileKind::Xcoff64`](../../index.md).
 type XcoffSectionIterator32<'data, 'file, R> = XcoffSectionIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:15-16`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L15-L16)*
+
 An iterator for the sections in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSectionIterator64<'data, 'file, R>`
@@ -1283,6 +1333,8 @@ An iterator for the sections in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSectionIterator64<'data, 'file, R> = XcoffSectionIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:18-19`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L18-L19)*
 
 An iterator for the sections in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -1292,6 +1344,8 @@ An iterator for the sections in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSection32<'data, 'file, R> = XcoffSection<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:49-50`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L49-L50)*
+
 A section in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSection64<'data, 'file, R>`
@@ -1299,6 +1353,8 @@ A section in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSection64<'data, 'file, R> = XcoffSection<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:52-53`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L52-L53)*
 
 A section in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -1308,6 +1364,8 @@ A section in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSymbolTable32<'data, 'file, R> = XcoffSymbolTable<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:209-210`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L209-L210)*
+
 A symbol table in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSymbolTable64<'data, 'file, R>`
@@ -1315,6 +1373,8 @@ A symbol table in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSymbolTable64<'data, 'file, R> = XcoffSymbolTable<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:212-213`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L212-L213)*
 
 A symbol table in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -1324,6 +1384,8 @@ A symbol table in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSymbolIterator32<'data, 'file, R> = XcoffSymbolIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:256-257`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L256-L257)*
+
 An iterator for the symbols in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSymbolIterator64<'data, 'file, R>`
@@ -1331,6 +1393,8 @@ An iterator for the symbols in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSymbolIterator64<'data, 'file, R> = XcoffSymbolIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:259-260`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L259-L260)*
 
 An iterator for the symbols in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -1340,6 +1404,8 @@ An iterator for the symbols in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSymbol32<'data, 'file, R> = XcoffSymbol<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:297-298`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L297-L298)*
+
 A symbol in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSymbol64<'data, 'file, R>`
@@ -1347,6 +1413,8 @@ A symbol in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSymbol64<'data, 'file, R> = XcoffSymbol<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:300-301`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L300-L301)*
 
 A symbol in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -1356,6 +1424,8 @@ A symbol in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffRelocationIterator32<'data, 'file, R> = XcoffRelocationIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:16-17`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L16-L17)*
+
 An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32).
 
 ### `XcoffRelocationIterator64<'data, 'file, R>`
@@ -1363,6 +1433,8 @@ An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32).
 ```rust
 type XcoffRelocationIterator64<'data, 'file, R> = XcoffRelocationIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:19-20`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L19-L20)*
 
 An iterator for the relocations in an [`XcoffSection64`](super::XcoffSection64).
 
@@ -1372,6 +1444,8 @@ An iterator for the relocations in an [`XcoffSection64`](super::XcoffSection64).
 type XcoffComdatIterator32<'data, 'file, R> = XcoffComdatIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:11-12`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L11-L12)*
+
 An iterator for the COMDAT section groups in a [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffComdatIterator64<'data, 'file, R>`
@@ -1379,6 +1453,8 @@ An iterator for the COMDAT section groups in a [`XcoffFile32`](super::XcoffFile3
 ```rust
 type XcoffComdatIterator64<'data, 'file, R> = XcoffComdatIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:14-15`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L14-L15)*
 
 An iterator for the COMDAT section groups in a [`XcoffFile64`](super::XcoffFile64).
 
@@ -1388,6 +1464,8 @@ An iterator for the COMDAT section groups in a [`XcoffFile64`](super::XcoffFile6
 type XcoffComdat32<'data, 'file, R> = XcoffComdat<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:44-45`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L44-L45)*
+
 A COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffComdat64<'data, 'file, R>`
@@ -1395,6 +1473,8 @@ A COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffComdat64<'data, 'file, R> = XcoffComdat<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:48-49`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L48-L49)*
 
 A COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 
@@ -1404,6 +1484,8 @@ A COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 type XcoffComdatSectionIterator32<'data, 'file, R> = XcoffComdatSectionIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:105-106`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L105-L106)*
+
 An iterator for the sections in a COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffComdatSectionIterator64<'data, 'file, R>`
@@ -1411,6 +1493,8 @@ An iterator for the sections in a COMDAT section group in a [`XcoffFile32`](supe
 ```rust
 type XcoffComdatSectionIterator64<'data, 'file, R> = XcoffComdatSectionIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:108-109`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L108-L109)*
 
 An iterator for the sections in a COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 
@@ -1420,6 +1504,8 @@ An iterator for the sections in a COMDAT section group in a [`XcoffFile64`](supe
 type XcoffSegmentIterator32<'data, 'file, R> = XcoffSegmentIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:12-13`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L12-L13)*
+
 An iterator for the segments in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSegmentIterator64<'data, 'file, R>`
@@ -1427,6 +1513,8 @@ An iterator for the segments in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSegmentIterator64<'data, 'file, R> = XcoffSegmentIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:15-16`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L15-L16)*
 
 An iterator for the segments in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -1436,6 +1524,8 @@ An iterator for the segments in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSegment32<'data, 'file, R> = XcoffSegment<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:44-45`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L44-L45)*
+
 A segment in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSegment64<'data, 'file, R>`
@@ -1443,6 +1533,8 @@ A segment in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSegment64<'data, 'file, R> = XcoffSegment<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:47-48`](../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L47-L48)*
 
 A segment in an [`XcoffFile64`](super::XcoffFile64).
 

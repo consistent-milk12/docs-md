@@ -18,6 +18,8 @@
 trait ToTokens { ... }
 ```
 
+*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../../.source_1765210505/quote-1.0.42/src/to_tokens.rs#L9-L72)*
+
 Types that can be interpolated inside a `quote!` invocation.
 
 #### Required Methods

@@ -9,6 +9,22 @@ Implementation block rendering for documentation generation.
 This module provides the [`ImplRenderer`](#implrenderer) struct which handles rendering
 impl blocks (both inherent and trait implementations) to markdown format.
 
+# Path Types in `rustdoc_types::Impl`
+
+When working with impl blocks, there are two different path representations:
+
+- **`Impl.trait_: Option<Path>`** - The trait being implemented
+  - `Path.path` is a `String` like `"Clone"` or `"std::fmt::Debug"`
+  - Use for display/rendering in documentation output
+  - Extract trait name with `path.rsplit("::").next()`
+
+- **`ItemSummary.path: Vec<String>`** - Structured path from `krate.paths`
+  - Example: `["std", "clone", "Clone"]`
+  - Use for lookups and resolution via item IDs
+
+The `Path.path` string is already formatted for display, while
+`ItemSummary.path` is structured for programmatic manipulation.
+
 ## Contents
 
 - [Structs](#structs)
@@ -17,6 +33,8 @@ impl blocks (both inherent and trait implementations) to markdown format.
   - [`is_trivial_derive_impl`](#is_trivial_derive_impl)
   - [`get_trivial_derive_description`](#get_trivial_derive_description)
   - [`is_blanket_impl`](#is_blanket_impl)
+  - [`is_generic_type`](#is_generic_type)
+  - [`generic_args_contain_generic`](#generic_args_contain_generic)
 - [Constants](#constants)
   - [`BLANKET_TRAITS`](#blanket_traits)
   - [`TRIVIAL_DERIVE_TRAITS`](#trivial_derive_traits)
@@ -30,6 +48,8 @@ impl blocks (both inherent and trait implementations) to markdown format.
 | [`is_trivial_derive_impl`](#is_trivial_derive_impl) | fn | Check if an impl block is for a trivial derive trait. |
 | [`get_trivial_derive_description`](#get_trivial_derive_description) | fn | Get the description for a trivial derive trait. |
 | [`is_blanket_impl`](#is_blanket_impl) | fn | Check if an impl block is for a blanket trait that should be filtered. |
+| [`is_generic_type`](#is_generic_type) | fn | Check if a type is generic (contains a type parameter like `T`). |
+| [`generic_args_contain_generic`](#generic_args_contain_generic) | fn | Check if generic args contain any generic type parameters. |
 | [`BLANKET_TRAITS`](#blanket_traits) | const | Blanket trait implementations to filter from output. |
 | [`TRIVIAL_DERIVE_TRAITS`](#trivial_derive_traits) | const | Trivial derive trait implementations that can be collapsed. |
 | [`TRIVIAL_DERIVE_DESCRIPTIONS`](#trivial_derive_descriptions) | const | Short descriptions for trivial derive traits, used in summary tables. |
@@ -46,6 +66,8 @@ struct ImplRenderer<'a> {
 }
 ```
 
+*Defined in `src/generator/impls.rs:241-250`*
+
 Renders impl blocks to markdown.
 
 This struct handles:
@@ -54,7 +76,7 @@ This struct handles:
 - Method signatures within impl blocks
 - Associated types and constants
 
-The renderer is generic over [`RenderContext`](../index.md), allowing it to work with
+The renderer is generic over [`RenderContext`](../context/index.md), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
 #### Fields
@@ -73,7 +95,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- <span id="implrenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../index.md)
+- <span id="implrenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../context/index.md)
 
 - <span id="implrenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
 
@@ -89,17 +111,17 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for ImplRenderer<'a>`
+##### `impl Instrument for ImplRenderer<'a>`
 
-##### `impl<T> IntoEither for ImplRenderer<'a>`
+##### `impl IntoEither for ImplRenderer<'a>`
 
-##### `impl<D> OwoColorize for ImplRenderer<'a>`
+##### `impl OwoColorize for ImplRenderer<'a>`
 
-##### `impl<T> Pointable for ImplRenderer<'a>`
+##### `impl Pointable for ImplRenderer<'a>`
 
-- <span id="implrenderer-align"></span>`const ALIGN: usize`
+- <span id="implrenderer-const-align"></span>`const ALIGN: usize`
 
-- <span id="implrenderer-init"></span>`type Init = T`
+- <span id="implrenderer-type-init"></span>`type Init = T`
 
 - <span id="implrenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -109,7 +131,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="implrenderer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for ImplRenderer<'a>`
+##### `impl WithSubscriber for ImplRenderer<'a>`
 
 ## Functions
 
@@ -118,6 +140,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 ```rust
 fn is_trivial_derive_impl(impl_block: &rustdoc_types::Impl) -> bool
 ```
+
+*Defined in `src/generator/impls.rs:113-123`*
 
 Check if an impl block is for a trivial derive trait.
 
@@ -138,6 +162,8 @@ use rustdoc_types::Impl;
 fn get_trivial_derive_description(trait_name: &str) -> Option<&'static str>
 ```
 
+*Defined in `src/generator/impls.rs:129-138`*
+
 Get the description for a trivial derive trait.
 
 Returns `None` if the trait is not in the trivial derives list.
@@ -148,18 +174,62 @@ Returns `None` if the trait is not in the trivial derives list.
 fn is_blanket_impl(impl_block: &rustdoc_types::Impl) -> bool
 ```
 
+*Defined in `src/generator/impls.rs:145-155`*
+
 Check if an impl block is for a blanket trait that should be filtered.
 
 Returns `true` if the impl is for one of the commonly auto-derived traits
 that add noise to documentation (From, Into, Any, Borrow, etc.).
 
+### `is_generic_type`
+
+```rust
+fn is_generic_type(ty: &rustdoc_types::Type) -> bool
+```
+
+*Defined in `src/generator/impls.rs:180-210`*
+
+Check if a type is generic (contains a type parameter like `T`).
+
+This is used to determine whether to show generic parameters in impl blocks.
+For blanket impls like `impl<T> Trait for T`, we only show the generics if
+the `for_` type is actually generic. When the impl is instantiated for a
+concrete type like `TocEntry`, we hide the generics.
+
+# Examples
+
+```text
+// Generic type - returns true
+is_generic_type(&Type::Generic("T")) == true
+
+// Concrete type - returns false
+is_generic_type(&Type::ResolvedPath { name: "TocEntry", .. }) == false
+
+// Container with generic - returns true
+is_generic_type(&Type::ResolvedPath {
+    name: "Vec",
+    args: Some(GenericArgs::AngleBracketed { args: [Type::Generic("T")] })
+}) == true
+```
+
+### `generic_args_contain_generic`
+
+```rust
+fn generic_args_contain_generic(args: &rustdoc_types::GenericArgs) -> bool
+```
+
+*Defined in `src/generator/impls.rs:213-229`*
+
+Check if generic args contain any generic type parameters.
+
 ## Constants
 
 ### `BLANKET_TRAITS`
-
 ```rust
 const BLANKET_TRAITS: &[&str];
 ```
+
+*Defined in `src/generator/impls.rs:38-52`*
 
 Blanket trait implementations to filter from output.
 
@@ -167,10 +237,11 @@ These are automatically derived by the compiler and add noise to documentation
 without providing useful information. Users who want them can use `--include-blanket-impls`.
 
 ### `TRIVIAL_DERIVE_TRAITS`
-
 ```rust
 const TRIVIAL_DERIVE_TRAITS: &[&str];
 ```
+
+*Defined in `src/generator/impls.rs:67-83`*
 
 Trivial derive trait implementations that can be collapsed.
 
@@ -187,10 +258,11 @@ The list includes:
 - **Ordering**: `PartialOrd`, `Ord`
 
 ### `TRIVIAL_DERIVE_DESCRIPTIONS`
-
 ```rust
 const TRIVIAL_DERIVE_DESCRIPTIONS: &[(&str, &str)];
 ```
+
+*Defined in `src/generator/impls.rs:88-98`*
 
 Short descriptions for trivial derive traits, used in summary tables.
 

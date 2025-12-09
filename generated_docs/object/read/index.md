@@ -195,9 +195,9 @@ fn main() -> Result<(), Box<dyn Error>> {
 | [`RelocationMapEntry`](#relocationmapentry) | struct |  |
 | [`CompressedFileRange`](#compressedfilerange) | struct | A range in a file that may be compressed. |
 | [`CompressedData`](#compresseddata) | struct | Data that may be compressed. |
-| [`ReadCache`](#readcache) | struct | An implementation of [`ReadRef`] for data in a stream that implements |
+| [`ReadCache`](#readcache) | struct | An implementation of [`ReadRef`] for data in a stream that implements `Read + Seek`. |
 | [`ReadCacheInternal`](#readcacheinternal) | struct |  |
-| [`ReadCacheRange`](#readcacherange) | struct | An implementation of [`ReadRef`] for a range of data in a stream that |
+| [`ReadCacheRange`](#readcacherange) | struct | An implementation of [`ReadRef`] for a range of data in a stream that implements `Read + Seek`. |
 | [`Bytes`](#bytes) | struct | A newtype for byte slices. |
 | [`DebugByte`](#debugbyte) | struct |  |
 | [`DebugLen`](#debuglen) | struct |  |
@@ -296,6 +296,8 @@ fn main() -> Result<(), Box<dyn Error>> {
 struct Error(&'static str);
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:116`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L116)*
+
 The error type used within the read module.
 
 #### Trait Implementations
@@ -324,7 +326,7 @@ The error type used within the read module.
 
 ##### `impl StructuralPartialEq for Error`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
@@ -333,6 +335,8 @@ The error type used within the read module.
 ```rust
 struct SectionIndex(usize);
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:389`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L389)*
 
 The index used to identify a section in a file.
 
@@ -364,7 +368,7 @@ The index used to identify a section in a file.
 
 ##### `impl StructuralPartialEq for SectionIndex`
 
-##### `impl<T> ToString for SectionIndex`
+##### `impl ToString for SectionIndex`
 
 - <span id="sectionindex-to-string"></span>`fn to_string(&self) -> String`
 
@@ -373,6 +377,8 @@ The index used to identify a section in a file.
 ```rust
 struct SymbolIndex(usize);
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:399`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L399)*
 
 The index used to identify a symbol in a symbol table.
 
@@ -404,7 +410,7 @@ The index used to identify a symbol in a symbol table.
 
 ##### `impl StructuralPartialEq for SymbolIndex`
 
-##### `impl<T> ToString for SymbolIndex`
+##### `impl ToString for SymbolIndex`
 
 - <span id="symbolindex-to-string"></span>`fn to_string(&self) -> String`
 
@@ -415,6 +421,8 @@ struct SymbolMap<T: SymbolMapEntry> {
     symbols: alloc::vec::Vec<T>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:451-453`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L451-L453)*
 
 A map from addresses to symbol information.
 
@@ -453,6 +461,8 @@ struct SymbolMapName<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:485-488`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L485-L488)*
+
 The type used for entries in a [`SymbolMap`](../index.md) that maps from addresses to names.
 
 #### Implementations
@@ -465,29 +475,29 @@ The type used for entries in a [`SymbolMap`](../index.md) that maps from address
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for SymbolMapName<'data>`
+##### `impl Clone for SymbolMapName<'data>`
 
 - <span id="symbolmapname-clone"></span>`fn clone(&self) -> SymbolMapName<'data>` — [`SymbolMapName`](../index.md)
 
-##### `impl<'data> Copy for SymbolMapName<'data>`
+##### `impl Copy for SymbolMapName<'data>`
 
-##### `impl<'data> Debug for SymbolMapName<'data>`
+##### `impl Debug for SymbolMapName<'data>`
 
 - <span id="symbolmapname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for SymbolMapName<'data>`
+##### `impl Eq for SymbolMapName<'data>`
 
-##### `impl<'data> Hash for SymbolMapName<'data>`
+##### `impl Hash for SymbolMapName<'data>`
 
 - <span id="symbolmapname-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'data> PartialEq for SymbolMapName<'data>`
+##### `impl PartialEq for SymbolMapName<'data>`
 
 - <span id="symbolmapname-eq"></span>`fn eq(&self, other: &SymbolMapName<'data>) -> bool` — [`SymbolMapName`](../index.md)
 
-##### `impl<'data> StructuralPartialEq for SymbolMapName<'data>`
+##### `impl StructuralPartialEq for SymbolMapName<'data>`
 
-##### `impl<'data> SymbolMapEntry for SymbolMapName<'data>`
+##### `impl SymbolMapEntry for SymbolMapName<'data>`
 
 - <span id="symbolmapname-address"></span>`fn address(&self) -> u64`
 
@@ -499,6 +509,8 @@ struct ObjectMap<'data> {
     objects: alloc::vec::Vec<ObjectMapFile<'data>>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:522-525`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L522-L525)*
 
 A map from addresses to symbol names and object files.
 
@@ -516,15 +528,15 @@ Returned by `Object::object_map`.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ObjectMap<'data>`
+##### `impl Clone for ObjectMap<'data>`
 
 - <span id="objectmap-clone"></span>`fn clone(&self) -> ObjectMap<'data>` — [`ObjectMap`](../index.md)
 
-##### `impl<'data> Debug for ObjectMap<'data>`
+##### `impl Debug for ObjectMap<'data>`
 
 - <span id="objectmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for ObjectMap<'data>`
+##### `impl Default for ObjectMap<'data>`
 
 - <span id="objectmap-default"></span>`fn default() -> ObjectMap<'data>` — [`ObjectMap`](../index.md)
 
@@ -538,6 +550,8 @@ struct ObjectMapEntry<'data> {
     object: usize,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:550-555`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L550-L555)*
 
 A symbol in an [`ObjectMap`](../index.md).
 
@@ -555,33 +569,33 @@ A symbol in an [`ObjectMap`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ObjectMapEntry<'data>`
+##### `impl Clone for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-clone"></span>`fn clone(&self) -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](../index.md)
 
-##### `impl<'data> Copy for ObjectMapEntry<'data>`
+##### `impl Copy for ObjectMapEntry<'data>`
 
-##### `impl<'data> Debug for ObjectMapEntry<'data>`
+##### `impl Debug for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for ObjectMapEntry<'data>`
+##### `impl Default for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-default"></span>`fn default() -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](../index.md)
 
-##### `impl<'data> Eq for ObjectMapEntry<'data>`
+##### `impl Eq for ObjectMapEntry<'data>`
 
-##### `impl<'data> Hash for ObjectMapEntry<'data>`
+##### `impl Hash for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'data> PartialEq for ObjectMapEntry<'data>`
+##### `impl PartialEq for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-eq"></span>`fn eq(&self, other: &ObjectMapEntry<'data>) -> bool` — [`ObjectMapEntry`](../index.md)
 
-##### `impl<'data> StructuralPartialEq for ObjectMapEntry<'data>`
+##### `impl StructuralPartialEq for ObjectMapEntry<'data>`
 
-##### `impl<'data> SymbolMapEntry for ObjectMapEntry<'data>`
+##### `impl SymbolMapEntry for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-address"></span>`fn address(&self) -> u64`
 
@@ -593,6 +607,8 @@ struct ObjectMapFile<'data> {
     member: Option<&'data [u8]>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:600-603`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L600-L603)*
 
 An object file name in an [`ObjectMap`](../index.md).
 
@@ -606,27 +622,27 @@ An object file name in an [`ObjectMap`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ObjectMapFile<'data>`
+##### `impl Clone for ObjectMapFile<'data>`
 
 - <span id="objectmapfile-clone"></span>`fn clone(&self) -> ObjectMapFile<'data>` — [`ObjectMapFile`](../index.md)
 
-##### `impl<'data> Copy for ObjectMapFile<'data>`
+##### `impl Copy for ObjectMapFile<'data>`
 
-##### `impl<'data> Debug for ObjectMapFile<'data>`
+##### `impl Debug for ObjectMapFile<'data>`
 
 - <span id="objectmapfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for ObjectMapFile<'data>`
+##### `impl Eq for ObjectMapFile<'data>`
 
-##### `impl<'data> Hash for ObjectMapFile<'data>`
+##### `impl Hash for ObjectMapFile<'data>`
 
 - <span id="objectmapfile-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'data> PartialEq for ObjectMapFile<'data>`
+##### `impl PartialEq for ObjectMapFile<'data>`
 
 - <span id="objectmapfile-eq"></span>`fn eq(&self, other: &ObjectMapFile<'data>) -> bool` — [`ObjectMapFile`](../index.md)
 
-##### `impl<'data> StructuralPartialEq for ObjectMapFile<'data>`
+##### `impl StructuralPartialEq for ObjectMapFile<'data>`
 
 ### `Import<'data>`
 
@@ -636,6 +652,8 @@ struct Import<'data> {
     name: ByteString<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:628-632`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L628-L632)*
 
 An imported symbol.
 
@@ -649,23 +667,23 @@ Returned by `Object::imports`.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Import<'data>`
+##### `impl Clone for Import<'data>`
 
 - <span id="import-clone"></span>`fn clone(&self) -> Import<'data>` — [`Import`](../index.md)
 
-##### `impl<'data> Copy for Import<'data>`
+##### `impl Copy for Import<'data>`
 
-##### `impl<'data> Debug for Import<'data>`
+##### `impl Debug for Import<'data>`
 
 - <span id="import-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for Import<'data>`
+##### `impl Eq for Import<'data>`
 
-##### `impl<'data> PartialEq for Import<'data>`
+##### `impl PartialEq for Import<'data>`
 
 - <span id="import-eq"></span>`fn eq(&self, other: &Import<'data>) -> bool` — [`Import`](../index.md)
 
-##### `impl<'data> StructuralPartialEq for Import<'data>`
+##### `impl StructuralPartialEq for Import<'data>`
 
 ### `Export<'data>`
 
@@ -675,6 +693,8 @@ struct Export<'data> {
     address: u64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:652-656`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L652-L656)*
 
 An exported symbol.
 
@@ -688,23 +708,23 @@ Returned by `Object::exports`.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Export<'data>`
+##### `impl Clone for Export<'data>`
 
 - <span id="export-clone"></span>`fn clone(&self) -> Export<'data>` — [`Export`](../index.md)
 
-##### `impl<'data> Copy for Export<'data>`
+##### `impl Copy for Export<'data>`
 
-##### `impl<'data> Debug for Export<'data>`
+##### `impl Debug for Export<'data>`
 
 - <span id="export-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for Export<'data>`
+##### `impl Eq for Export<'data>`
 
-##### `impl<'data> PartialEq for Export<'data>`
+##### `impl PartialEq for Export<'data>`
 
 - <span id="export-eq"></span>`fn eq(&self, other: &Export<'data>) -> bool` — [`Export`](../index.md)
 
-##### `impl<'data> StructuralPartialEq for Export<'data>`
+##### `impl StructuralPartialEq for Export<'data>`
 
 ### `CodeView<'data>`
 
@@ -715,6 +735,8 @@ struct CodeView<'data> {
     age: u32,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:674-678`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L674-L678)*
 
 PDB information from the debug directory in a PE file.
 
@@ -728,23 +750,23 @@ PDB information from the debug directory in a PE file.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for CodeView<'data>`
+##### `impl Clone for CodeView<'data>`
 
 - <span id="codeview-clone"></span>`fn clone(&self) -> CodeView<'data>` — [`CodeView`](../index.md)
 
-##### `impl<'data> Copy for CodeView<'data>`
+##### `impl Copy for CodeView<'data>`
 
-##### `impl<'data> Debug for CodeView<'data>`
+##### `impl Debug for CodeView<'data>`
 
 - <span id="codeview-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for CodeView<'data>`
+##### `impl Eq for CodeView<'data>`
 
-##### `impl<'data> PartialEq for CodeView<'data>`
+##### `impl PartialEq for CodeView<'data>`
 
 - <span id="codeview-eq"></span>`fn eq(&self, other: &CodeView<'data>) -> bool` — [`CodeView`](../index.md)
 
-##### `impl<'data> StructuralPartialEq for CodeView<'data>`
+##### `impl StructuralPartialEq for CodeView<'data>`
 
 ### `Relocation`
 
@@ -759,6 +781,8 @@ struct Relocation {
     flags: RelocationFlags,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:716-724`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L716-L724)*
 
 A relocation entry.
 
@@ -793,6 +817,8 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 ```rust
 struct RelocationMap(alloc::collections::btree_map::BTreeMap<u64, RelocationMapEntry>);
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:790`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L790)*
 
 A map from section offsets to relocation information.
 
@@ -829,6 +855,8 @@ struct RelocationMapEntry {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:871-874`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L871-L874)*
+
 #### Trait Implementations
 
 ##### `impl Clone for RelocationMapEntry`
@@ -863,6 +891,8 @@ struct CompressedFileRange {
     pub uncompressed_size: u64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:898-907`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L898-L907)*
 
 A range in a file that may be compressed.
 
@@ -926,6 +956,8 @@ struct CompressedData<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:947-954`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L947-L954)*
+
 Data that may be compressed.
 
 Returned by `ObjectSection::compressed_data`.
@@ -952,27 +984,27 @@ Returned by `ObjectSection::compressed_data`.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for CompressedData<'data>`
+##### `impl Clone for CompressedData<'data>`
 
 - <span id="compresseddata-clone"></span>`fn clone(&self) -> CompressedData<'data>` — [`CompressedData`](../index.md)
 
-##### `impl<'data> Copy for CompressedData<'data>`
+##### `impl Copy for CompressedData<'data>`
 
-##### `impl<'data> Debug for CompressedData<'data>`
+##### `impl Debug for CompressedData<'data>`
 
 - <span id="compresseddata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for CompressedData<'data>`
+##### `impl Eq for CompressedData<'data>`
 
-##### `impl<'data> Hash for CompressedData<'data>`
+##### `impl Hash for CompressedData<'data>`
 
 - <span id="compresseddata-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'data> PartialEq for CompressedData<'data>`
+##### `impl PartialEq for CompressedData<'data>`
 
 - <span id="compresseddata-eq"></span>`fn eq(&self, other: &CompressedData<'data>) -> bool` — [`CompressedData`](../index.md)
 
-##### `impl<'data> StructuralPartialEq for CompressedData<'data>`
+##### `impl StructuralPartialEq for CompressedData<'data>`
 
 ### `ReadCache<R: ReadCacheOps>`
 
@@ -981,6 +1013,8 @@ struct ReadCache<R: ReadCacheOps> {
     cache: core::cell::RefCell<ReadCacheInternal<R>>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/read_cache.rs:31-33`](../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L31-L33)*
 
 An implementation of [`ReadRef`](#readref) for data in a stream that implements
 `Read + Seek`.
@@ -1012,6 +1046,14 @@ the file size.
 
 - <span id="readcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+##### `impl<'a, R: ReadCacheOps> ReadRef for &'a ReadCache<R>`
+
+- <span id="a-readcache-len"></span>`fn len(self) -> Result<u64, ()>`
+
+- <span id="a-readcache-read-bytes-at"></span>`fn read_bytes_at(self, offset: u64, size: u64) -> Result<&'a [u8], ()>`
+
+- <span id="a-readcache-read-bytes-at-until"></span>`fn read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> Result<&'a [u8], ()>`
+
 ### `ReadCacheInternal<R: ReadCacheOps>`
 
 ```rust
@@ -1022,6 +1064,8 @@ struct ReadCacheInternal<R: ReadCacheOps> {
     len: Option<u64>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/read_cache.rs:36-41`](../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L36-L41)*
 
 #### Implementations
 
@@ -1044,6 +1088,8 @@ struct ReadCacheRange<'a, R: ReadCacheOps> {
     size: u64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/read_cache.rs:172-176`](../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L172-L176)*
 
 An implementation of [`ReadRef`](#readref) for a range of data in a stream that
 implements `Read + Seek`.
@@ -1075,6 +1121,8 @@ Shares an underlying [`ReadCache`](#readcache) with a lifetime of `'a`.
 ```rust
 struct Bytes<'data>(&'data [u8]);
 ```
+
+*Defined in [`object-0.37.3/src/read/util.rs:16`](../../../.source_1765210505/object-0.37.3/src/read/util.rs#L16)*
 
 A newtype for byte slices.
 
@@ -1113,33 +1161,35 @@ It has these important features:
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Bytes<'data>`
+##### `impl Clone for Bytes<'data>`
 
 - <span id="bytes-clone"></span>`fn clone(&self) -> Bytes<'data>` — [`Bytes`](#bytes)
 
-##### `impl<'data> Copy for Bytes<'data>`
+##### `impl Copy for Bytes<'data>`
 
-##### `impl<'data> Debug for Bytes<'data>`
+##### `impl Debug for Bytes<'data>`
 
 - <span id="bytes-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for Bytes<'data>`
+##### `impl Default for Bytes<'data>`
 
 - <span id="bytes-default"></span>`fn default() -> Bytes<'data>` — [`Bytes`](#bytes)
 
-##### `impl<'data> Eq for Bytes<'data>`
+##### `impl Eq for Bytes<'data>`
 
-##### `impl<'data> PartialEq for Bytes<'data>`
+##### `impl PartialEq for Bytes<'data>`
 
 - <span id="bytes-eq"></span>`fn eq(&self, other: &Bytes<'data>) -> bool` — [`Bytes`](#bytes)
 
-##### `impl<'data> StructuralPartialEq for Bytes<'data>`
+##### `impl StructuralPartialEq for Bytes<'data>`
 
 ### `DebugByte`
 
 ```rust
 struct DebugByte(u8);
 ```
+
+*Defined in [`object-0.37.3/src/read/util.rs:222`](../../../.source_1765210505/object-0.37.3/src/read/util.rs#L222)*
 
 #### Trait Implementations
 
@@ -1153,6 +1203,8 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
+*Defined in [`object-0.37.3/src/read/util.rs:230`](../../../.source_1765210505/object-0.37.3/src/read/util.rs#L230)*
+
 #### Trait Implementations
 
 ##### `impl Debug for DebugLen`
@@ -1165,6 +1217,8 @@ struct DebugLen(usize);
 struct ByteString<'data>(&'data [u8]);
 ```
 
+*Defined in [`object-0.37.3/src/read/util.rs:244`](../../../.source_1765210505/object-0.37.3/src/read/util.rs#L244)*
+
 A newtype for byte strings.
 
 For byte slices that are strings of an unknown encoding.
@@ -1173,27 +1227,27 @@ Provides a `Debug` implementation that interprets the bytes as UTF-8.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ByteString<'data>`
+##### `impl Clone for ByteString<'data>`
 
 - <span id="bytestring-clone"></span>`fn clone(&self) -> ByteString<'data>` — [`ByteString`](util/index.md)
 
-##### `impl<'data> Copy for ByteString<'data>`
+##### `impl Copy for ByteString<'data>`
 
-##### `impl<'data> Debug for ByteString<'data>`
+##### `impl Debug for ByteString<'data>`
 
 - <span id="bytestring-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for ByteString<'data>`
+##### `impl Default for ByteString<'data>`
 
 - <span id="bytestring-default"></span>`fn default() -> ByteString<'data>` — [`ByteString`](util/index.md)
 
-##### `impl<'data> Eq for ByteString<'data>`
+##### `impl Eq for ByteString<'data>`
 
-##### `impl<'data> PartialEq for ByteString<'data>`
+##### `impl PartialEq for ByteString<'data>`
 
 - <span id="bytestring-eq"></span>`fn eq(&self, other: &ByteString<'data>) -> bool` — [`ByteString`](util/index.md)
 
-##### `impl<'data> StructuralPartialEq for ByteString<'data>`
+##### `impl StructuralPartialEq for ByteString<'data>`
 
 ### `StringTable<'data, R>`
 
@@ -1207,6 +1261,8 @@ where
     marker: core::marker::PhantomData<&'data ()>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/util.rs:274-282`](../../../.source_1765210505/object-0.37.3/src/read/util.rs#L274-L282)*
 
 A table of zero-terminated strings.
 
@@ -1242,6 +1298,8 @@ struct SegmentIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:532-534`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L532-L534)*
+
 An iterator for the loadable segments in a [`File`](#file).
 
 #### Trait Implementations
@@ -1252,15 +1310,15 @@ An iterator for the loadable segments in a [`File`](#file).
 
 ##### `impl<I> IntoIterator for SegmentIterator<'data, 'file, R>`
 
-- <span id="segmentiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="segmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="segmentiterator-intoiter"></span>`type IntoIter = I`
+- <span id="segmentiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="segmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SegmentIterator<'data, 'file, R>`
 
-- <span id="segmentiterator-item"></span>`type Item = Segment<'data, 'file, R>`
+- <span id="segmentiterator-type-item"></span>`type Item = Segment<'data, 'file, R>`
 
 - <span id="segmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1271,6 +1329,8 @@ struct Segment<'data, 'file, R: ReadRef<'data>> {
     inner: SegmentInternal<'data, 'file, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:574-576`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L574-L576)*
 
 A loadable segment in a [`File`](#file).
 
@@ -1312,6 +1372,8 @@ struct SectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:665-667`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L665-L667)*
+
 An iterator for the sections in a [`File`](#file).
 
 #### Trait Implementations
@@ -1322,15 +1384,15 @@ An iterator for the sections in a [`File`](#file).
 
 ##### `impl<I> IntoIterator for SectionIterator<'data, 'file, R>`
 
-- <span id="sectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="sectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="sectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="sectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="sectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SectionIterator<'data, 'file, R>`
 
-- <span id="sectioniterator-item"></span>`type Item = Section<'data, 'file, R>`
+- <span id="sectioniterator-type-item"></span>`type Item = Section<'data, 'file, R>`
 
 - <span id="sectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1341,6 +1403,8 @@ struct Section<'data, 'file, R: ReadRef<'data>> {
     inner: SectionInternal<'data, 'file, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:708-710`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L708-L710)*
 
 A section in a [`File`](#file).
 
@@ -1354,7 +1418,7 @@ Most functionality is provided by the [`ObjectSection`](#objectsection) trait im
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSection for Section<'data, 'file, R>`
 
-- <span id="section-relocationiterator"></span>`type RelocationIterator = SectionRelocationIterator<'data, 'file, R>`
+- <span id="section-type-relocationiterator"></span>`type RelocationIterator = SectionRelocationIterator<'data, 'file, R>`
 
 - <span id="section-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../index.md)
 
@@ -1400,6 +1464,8 @@ struct ComdatIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:843-845`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L843-L845)*
+
 An iterator for the COMDAT section groups in a [`File`](#file).
 
 #### Trait Implementations
@@ -1410,15 +1476,15 @@ An iterator for the COMDAT section groups in a [`File`](#file).
 
 ##### `impl<I> IntoIterator for ComdatIterator<'data, 'file, R>`
 
-- <span id="comdatiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="comdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="comdatiterator-intoiter"></span>`type IntoIter = I`
+- <span id="comdatiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="comdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for ComdatIterator<'data, 'file, R>`
 
-- <span id="comdatiterator-item"></span>`type Item = Comdat<'data, 'file, R>`
+- <span id="comdatiterator-type-item"></span>`type Item = Comdat<'data, 'file, R>`
 
 - <span id="comdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1429,6 +1495,8 @@ struct Comdat<'data, 'file, R: ReadRef<'data>> {
     inner: ComdatInternal<'data, 'file, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:885-887`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L885-L887)*
 
 A COMDAT section group in a [`File`](#file).
 
@@ -1442,7 +1510,7 @@ Most functionality is provided by the [`ObjectComdat`](#objectcomdat) trait impl
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectComdat for Comdat<'data, 'file, R>`
 
-- <span id="comdat-sectioniterator"></span>`type SectionIterator = ComdatSectionIterator<'data, 'file, R>`
+- <span id="comdat-type-sectioniterator"></span>`type SectionIterator = ComdatSectionIterator<'data, 'file, R>`
 
 - <span id="comdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../index.md)
 
@@ -1464,6 +1532,8 @@ struct ComdatSectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:959-961`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L959-L961)*
+
 An iterator for the sections in a [`Comdat`](#comdat).
 
 #### Trait Implementations
@@ -1474,15 +1544,15 @@ An iterator for the sections in a [`Comdat`](#comdat).
 
 ##### `impl<I> IntoIterator for ComdatSectionIterator<'data, 'file, R>`
 
-- <span id="comdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="comdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="comdatsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="comdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="comdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for ComdatSectionIterator<'data, 'file, R>`
 
-- <span id="comdatsectioniterator-item"></span>`type Item = SectionIndex`
+- <span id="comdatsectioniterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="comdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1496,6 +1566,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1001-1006`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1001-L1006)*
+
 A symbol table in a [`File`](#file).
 
 Most functionality is provided by the [`ObjectSymbolTable`](#objectsymboltable) trait implementation.
@@ -1508,9 +1580,9 @@ Most functionality is provided by the [`ObjectSymbolTable`](#objectsymboltable) 
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSymbolTable for SymbolTable<'data, 'file, R>`
 
-- <span id="symboltable-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
+- <span id="symboltable-type-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
 
-- <span id="symboltable-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
+- <span id="symboltable-type-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
 
 - <span id="symboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](#objectsymboltable)
 
@@ -1528,6 +1600,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1085-1090`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1085-L1090)*
+
 An iterator for the symbols in a [`SymbolTable`](#symboltable).
 
 #### Trait Implementations
@@ -1538,15 +1612,15 @@ An iterator for the symbols in a [`SymbolTable`](#symboltable).
 
 ##### `impl<I> IntoIterator for SymbolIterator<'data, 'file, R>`
 
-- <span id="symboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="symboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="symboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="symboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'file, R>`
 
-- <span id="symboliterator-item"></span>`type Item = Symbol<'data, 'file, R>`
+- <span id="symboliterator-type-item"></span>`type Item = Symbol<'data, 'file, R>`
 
 - <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1559,6 +1633,8 @@ where
     inner: SymbolInternal<'data, 'file, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:1165-1170`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1165-L1170)*
 
 An symbol in a [`SymbolTable`](#symboltable).
 
@@ -1614,6 +1690,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1301-1306`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1301-L1306)*
+
 An iterator for the dynamic relocation entries in a [`File`](#file).
 
 #### Trait Implementations
@@ -1624,15 +1702,15 @@ An iterator for the dynamic relocation entries in a [`File`](#file).
 
 ##### `impl<I> IntoIterator for DynamicRelocationIterator<'data, 'file, R>`
 
-- <span id="dynamicrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dynamicrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="dynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for DynamicRelocationIterator<'data, 'file, R>`
 
-- <span id="dynamicrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="dynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="dynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1644,6 +1722,8 @@ struct SectionRelocationIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1338-1340`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1338-L1340)*
+
 An iterator for the relocation entries in a [`Section`](#section).
 
 #### Trait Implementations
@@ -1654,15 +1734,15 @@ An iterator for the relocation entries in a [`Section`](#section).
 
 ##### `impl<I> IntoIterator for SectionRelocationIterator<'data, 'file, R>`
 
-- <span id="sectionrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="sectionrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="sectionrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="sectionrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="sectionrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SectionRelocationIterator<'data, 'file, R>`
 
-- <span id="sectionrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="sectionrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="sectionrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1672,6 +1752,8 @@ An iterator for the relocation entries in a [`Section`](#section).
 struct NoDynamicRelocationIterator;
 ```
 
+*Defined in [`object-0.37.3/src/read/traits.rs:580`](../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L580)*
+
 An iterator for files that don't have dynamic relocations.
 
 #### Trait Implementations
@@ -1680,17 +1762,17 @@ An iterator for files that don't have dynamic relocations.
 
 - <span id="nodynamicrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for NoDynamicRelocationIterator`
+##### `impl IntoIterator for NoDynamicRelocationIterator`
 
-- <span id="nodynamicrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="nodynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="nodynamicrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="nodynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="nodynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for NoDynamicRelocationIterator`
 
-- <span id="nodynamicrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="nodynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="nodynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1717,6 +1799,8 @@ enum FileKind {
     Xcoff64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:198-281`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L198-L281)*
 
 A file format kind.
 
@@ -1856,6 +1940,8 @@ enum ObjectKind {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:374-385`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L374-L385)*
+
 An object kind.
 
 Returned by `Object::kind`.
@@ -1918,6 +2004,8 @@ enum SymbolSection {
     Section(SectionIndex),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:410-423`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L410-L423)*
 
 The section where an [`ObjectSymbol`](#objectsymbol) is defined.
 
@@ -1985,6 +2073,8 @@ enum RelocationTarget {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:703-710`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L703-L710)*
+
 The target referenced by a [`Relocation`](../index.md).
 
 #### Variants
@@ -2035,6 +2125,8 @@ enum CompressionFormat {
     Zstandard,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:879-892`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L879-L892)*
 
 A data compression format.
 
@@ -2127,6 +2219,8 @@ enum Architecture {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:5-45`](../../../.source_1765210505/object-0.37.3/src/common.rs#L5-L45)*
+
 A CPU architecture.
 
 #### Implementations
@@ -2166,6 +2260,8 @@ enum SubArchitecture {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:51-54`](../../../.source_1765210505/object-0.37.3/src/common.rs#L51-L54)*
+
 A CPU sub-architecture.
 
 #### Trait Implementations
@@ -2202,6 +2298,8 @@ enum AddressSize {
     U64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:109-114`](../../../.source_1765210505/object-0.37.3/src/common.rs#L109-L114)*
 
 The size of an address value for an architecture.
 
@@ -2247,6 +2345,8 @@ enum BinaryFormat {
     Xcoff,
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:128-135`](../../../.source_1765210505/object-0.37.3/src/common.rs#L128-L135)*
 
 A binary file format.
 
@@ -2303,6 +2403,8 @@ enum SectionKind {
     Elf(u32),
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:155-247`](../../../.source_1765210505/object-0.37.3/src/common.rs#L155-L247)*
 
 The kind of a section.
 
@@ -2479,6 +2581,8 @@ enum ComdatKind {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:264-291`](../../../.source_1765210505/object-0.37.3/src/common.rs#L264-L291)*
+
 The selection kind for a COMDAT section group.
 
 This determines the way in which the linker resolves multiple definitions of the COMDAT
@@ -2564,6 +2668,8 @@ enum SymbolKind {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:296-311`](../../../.source_1765210505/object-0.37.3/src/common.rs#L296-L311)*
+
 The kind of a symbol.
 
 #### Variants
@@ -2631,6 +2737,8 @@ enum SymbolScope {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:315-324`](../../../.source_1765210505/object-0.37.3/src/common.rs#L315-L324)*
+
 A symbol scope.
 
 #### Variants
@@ -2692,6 +2800,8 @@ enum RelocationKind {
     SectionIndex,
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:343-366`](../../../.source_1765210505/object-0.37.3/src/common.rs#L343-L366)*
 
 The operation used to calculate the result of the relocation.
 
@@ -2798,6 +2908,8 @@ enum RelocationEncoding {
     E2KDisp,
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:374-447`](../../../.source_1765210505/object-0.37.3/src/common.rs#L374-L447)*
 
 Information about how the result of the relocation operation is encoded in the place.
 
@@ -2942,6 +3054,8 @@ enum FileFlags {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:452-479`](../../../.source_1765210505/object-0.37.3/src/common.rs#L452-L479)*
+
 File flags that are specific to each file format.
 
 #### Variants
@@ -3009,6 +3123,8 @@ enum SegmentFlags {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:484-506`](../../../.source_1765210505/object-0.37.3/src/common.rs#L484-L506)*
+
 Segment flags that are specific to each file format.
 
 #### Variants
@@ -3072,6 +3188,8 @@ enum SectionFlags {
     },
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:511-534`](../../../.source_1765210505/object-0.37.3/src/common.rs#L511-L534)*
 
 Section flags that are specific to each file format.
 
@@ -3145,6 +3263,8 @@ enum SymbolFlags<Section, Symbol> {
     },
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:539-578`](../../../.source_1765210505/object-0.37.3/src/common.rs#L539-L578)*
 
 Symbol flags that are specific to each file format.
 
@@ -3221,6 +3341,8 @@ enum RelocationFlags {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:583-619`](../../../.source_1765210505/object-0.37.3/src/common.rs#L583-L619)*
+
 Relocation fields that are specific to each file format and architecture.
 
 #### Variants
@@ -3286,6 +3408,8 @@ enum File<'data, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:213-236`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L213-L236)*
+
 An object file that can be any supported file format.
 
 Most functionality is provided by the [`Object`](#object) trait implementation.
@@ -3306,25 +3430,25 @@ Most functionality is provided by the [`Object`](#object) trait implementation.
 
 ##### `impl<'data, R> Object for File<'data, R>`
 
-- <span id="file-segment"></span>`type Segment = Segment<'data, 'file, R>`
+- <span id="file-type-segment"></span>`type Segment = Segment<'data, 'file, R>`
 
-- <span id="file-segmentiterator"></span>`type SegmentIterator = SegmentIterator<'data, 'file, R>`
+- <span id="file-type-segmentiterator"></span>`type SegmentIterator = SegmentIterator<'data, 'file, R>`
 
-- <span id="file-section"></span>`type Section = Section<'data, 'file, R>`
+- <span id="file-type-section"></span>`type Section = Section<'data, 'file, R>`
 
-- <span id="file-sectioniterator"></span>`type SectionIterator = SectionIterator<'data, 'file, R>`
+- <span id="file-type-sectioniterator"></span>`type SectionIterator = SectionIterator<'data, 'file, R>`
 
-- <span id="file-comdat"></span>`type Comdat = Comdat<'data, 'file, R>`
+- <span id="file-type-comdat"></span>`type Comdat = Comdat<'data, 'file, R>`
 
-- <span id="file-comdatiterator"></span>`type ComdatIterator = ComdatIterator<'data, 'file, R>`
+- <span id="file-type-comdatiterator"></span>`type ComdatIterator = ComdatIterator<'data, 'file, R>`
 
-- <span id="file-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
+- <span id="file-type-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
 
-- <span id="file-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
+- <span id="file-type-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
 
-- <span id="file-symboltable"></span>`type SymbolTable = SymbolTable<'data, 'file, R>`
+- <span id="file-type-symboltable"></span>`type SymbolTable = SymbolTable<'data, 'file, R>`
 
-- <span id="file-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = DynamicRelocationIterator<'data, 'file, R>`
+- <span id="file-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = DynamicRelocationIterator<'data, 'file, R>`
 
 - <span id="file-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../index.md)
 
@@ -3403,6 +3527,8 @@ enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:537-560`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L537-L560)*
+
 #### Trait Implementations
 
 ##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SegmentIteratorInternal<'data, 'file, R>`
@@ -3425,6 +3551,8 @@ enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
     Xcoff64(xcoff::XcoffSegment64<'data, 'file, R>),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:579-602`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L579-L602)*
 
 #### Trait Implementations
 
@@ -3449,6 +3577,8 @@ enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:671-694`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L671-L694)*
+
 #### Trait Implementations
 
 ##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionIteratorInternal<'data, 'file, R>`
@@ -3472,6 +3602,8 @@ enum SectionInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:712-735`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L712-L735)*
+
 ### `ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>>`
 
 ```rust
@@ -3488,6 +3620,8 @@ enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
     Xcoff64(xcoff::XcoffComdatIterator64<'data, 'file, R>),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:848-871`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L848-L871)*
 
 #### Trait Implementations
 
@@ -3512,6 +3646,8 @@ enum ComdatInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:889-912`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L889-L912)*
+
 ### `ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>>`
 
 ```rust
@@ -3528,6 +3664,8 @@ enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
     Xcoff64(xcoff::XcoffComdatSectionIterator64<'data, 'file, R>),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:964-987`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L964-L987)*
 
 #### Trait Implementations
 
@@ -3554,6 +3692,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1009-1055`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1009-L1055)*
+
 #### Trait Implementations
 
 ##### `impl<'data, 'file, R> Debug for SymbolTableInternal<'data, 'file, R>`
@@ -3578,6 +3718,8 @@ where
     Xcoff64((xcoff::XcoffSymbolIterator64<'data, 'file, R>, core::marker::PhantomData<R>)),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:1093-1149`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1093-L1149)*
 
 #### Trait Implementations
 
@@ -3604,6 +3746,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1172-1218`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1172-L1218)*
+
 ### `DynamicRelocationIteratorInternal<'data, 'file, R>`
 
 ```rust
@@ -3615,6 +3759,8 @@ where
     None(core::marker::PhantomData<(&'data (), &'file (), R)>),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:1309-1320`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1309-L1320)*
 
 #### Trait Implementations
 
@@ -3639,6 +3785,8 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1343-1366`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1343-L1366)*
+
 #### Trait Implementations
 
 ##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIteratorInternal<'data, 'file, R>`
@@ -3652,6 +3800,8 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 ```rust
 trait ReadError<T> { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:133-135`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L133-L135)*
 
 #### Required Methods
 
@@ -3668,6 +3818,8 @@ trait ReadError<T> { ... }
 ```rust
 trait SymbolMapEntry { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:440-443`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L440-L443)*
 
 An entry in a [`SymbolMap`](../index.md).
 
@@ -3687,6 +3839,8 @@ An entry in a [`SymbolMap`](../index.md).
 ```rust
 trait ReadRef<'a>: Clone + Copy { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/read_ref.rs:49-124`](../../../.source_1765210505/object-0.37.3/src/read/read_ref.rs#L49-L124)*
 
 A trait for reading references to [`Pod`](../index.md) types from a block of data.
 
@@ -3771,6 +3925,8 @@ the size that was read.
 trait ReadCacheOps { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/read_cache.rs:222-242`](../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L222-L242)*
+
 Operations required to implement [`ReadCache`](#readcache).
 
 This is a subset of the `Read` and `Seek` traits.
@@ -3800,6 +3956,8 @@ A blanket implementation is provided for all types that implement
 ```rust
 trait Object<'data>: read::private::Sealed { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/traits.rs:15-335`](../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L15-L335)*
 
 An object file.
 
@@ -3978,6 +4136,8 @@ This is the primary trait for the unified read API.
 trait ObjectSegment<'data>: read::private::Sealed { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/traits.rs:340-374`](../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L340-L374)*
+
 A loadable segment in an [`Object`](#object).
 
 This trait is part of the unified read API.
@@ -4034,6 +4194,8 @@ This trait is part of the unified read API.
 ```rust
 trait ObjectSection<'data>: read::private::Sealed { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/traits.rs:379-462`](../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L379-L462)*
 
 A section in an [`Object`](#object).
 
@@ -4134,6 +4296,8 @@ This trait is part of the unified read API.
 trait ObjectComdat<'data>: read::private::Sealed { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/traits.rs:467-487`](../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L467-L487)*
+
 A COMDAT section group in an [`Object`](#object).
 
 This trait is part of the unified read API.
@@ -4179,6 +4343,8 @@ This trait is part of the unified read API.
 trait ObjectSymbolTable<'data>: read::private::Sealed { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/traits.rs:492-510`](../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L492-L510)*
+
 A symbol table in an [`Object`](#object).
 
 This trait is part of the unified read API.
@@ -4212,6 +4378,8 @@ This trait is part of the unified read API.
 ```rust
 trait ObjectSymbol<'data>: read::private::Sealed { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/traits.rs:515-576`](../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L515-L576)*
 
 A symbol table entry in an [`Object`](#object).
 
@@ -4301,17 +4469,23 @@ This trait is part of the unified read API.
 fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
 ```
 
+*Defined in [`object-0.37.3/src/read/util.rs:213-220`](../../../.source_1765210505/object-0.37.3/src/read/util.rs#L213-L220)*
+
 ### `align`
 
 ```rust
 fn align(offset: usize, size: usize) -> usize
 ```
 
+*Defined in [`object-0.37.3/src/read/util.rs:254-256`](../../../.source_1765210505/object-0.37.3/src/read/util.rs#L254-L256)*
+
 ### `data_range`
 
 ```rust
 fn data_range(data: &[u8], data_address: u64, range_address: u64, size: u64) -> Option<&[u8]>
 ```
+
+*Defined in [`object-0.37.3/src/read/util.rs:259-268`](../../../.source_1765210505/object-0.37.3/src/read/util.rs#L259-L268)*
 
 ## Type Aliases
 
@@ -4321,6 +4495,8 @@ fn data_range(data: &[u8], data_address: u64, range_address: u64, size: u64) -> 
 type Result<T> = result::Result<T, Error>;
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:131`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L131)*
+
 The result type used within the read module.
 
 ### `NativeFile<'data, R>`
@@ -4328,6 +4504,8 @@ The result type used within the read module.
 ```rust
 type NativeFile<'data, R> = elf::ElfFile64<'data, crate::endian::Endianness, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:171`](../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L171)*
 
 The native executable file for the target platform.
 
@@ -4337,9 +4515,13 @@ The native executable file for the target platform.
 type Result<T> = result::Result<T, ()>;
 ```
 
+*Defined in [`object-0.37.3/src/read/read_ref.rs:9`](../../../.source_1765210505/object-0.37.3/src/read/read_ref.rs#L9)*
+
 ## Macros
 
 ### `with_inner!`
+
+*Defined in [`object-0.37.3/src/read/any.rs:30-57`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L30-L57)*
 
 Evaluate an expression on the contents of a file format enum.
 
@@ -4347,17 +4529,27 @@ This is a hack to avoid virtual calls.
 
 ### `with_inner_mut!`
 
+*Defined in [`object-0.37.3/src/read/any.rs:59-86`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L59-L86)*
+
 ### `map_inner!`
+
+*Defined in [`object-0.37.3/src/read/any.rs:89-116`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L89-L116)*
 
 Like `with_inner!`, but wraps the result in another enum.
 
 ### `map_inner_option!`
 
+*Defined in [`object-0.37.3/src/read/any.rs:119-146`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L119-L146)*
+
 Like `map_inner!`, but the result is a Result or Option.
 
 ### `map_inner_option_mut!`
 
+*Defined in [`object-0.37.3/src/read/any.rs:148-175`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L148-L175)*
+
 ### `next_inner!`
+
+*Defined in [`object-0.37.3/src/read/any.rs:178-205`](../../../.source_1765210505/object-0.37.3/src/read/any.rs#L178-L205)*
 
 Call `next` for a file format iterator.
 

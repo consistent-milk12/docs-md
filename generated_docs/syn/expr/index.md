@@ -71,13 +71,13 @@
 | [`ExprAwait`](#exprawait) | struct | An await expression: `fut.await`. |
 | [`ExprBinary`](#exprbinary) | struct | A binary operation: `a + b`, `a += b`. |
 | [`ExprBlock`](#exprblock) | struct | A blocked scope: `{ ... |
-| [`ExprBreak`](#exprbreak) | struct | A `break`, with an optional label to break and an optional |
+| [`ExprBreak`](#exprbreak) | struct | A `break`, with an optional label to break and an optional expression. |
 | [`ExprCall`](#exprcall) | struct | A function call expression: `invoke(a, b)`. |
 | [`ExprCast`](#exprcast) | struct | A cast expression: `foo as f64`. |
 | [`ExprClosure`](#exprclosure) | struct | A closure expression: `\|a, b\| a + b`. |
 | [`ExprConst`](#exprconst) | struct | A const block: `const { ... |
 | [`ExprContinue`](#exprcontinue) | struct | A `continue`, with an optional label. |
-| [`ExprField`](#exprfield) | struct | Access of a named struct field (`obj.k`) or unnamed tuple struct |
+| [`ExprField`](#exprfield) | struct | Access of a named struct field (`obj.k`) or unnamed tuple struct field (`obj.0`). |
 | [`ExprForLoop`](#exprforloop) | struct | A for loop: `for pat in expr { ... |
 | [`ExprGroup`](#exprgroup) | struct | An expression contained within invisible delimiters. |
 | [`ExprIf`](#exprif) | struct | An `if` expression with an optional `else` block: `if expr { ... |
@@ -90,7 +90,7 @@
 | [`ExprMatch`](#exprmatch) | struct | A `match` expression: `match n { Some(n) => {}, None => {} }`. |
 | [`ExprMethodCall`](#exprmethodcall) | struct | A method call expression: `x.foo::<T>(a, b)`. |
 | [`ExprParen`](#exprparen) | struct | A parenthesized expression: `(a + b)`. |
-| [`ExprPath`](#exprpath) | struct | A path like `std::mem::replace` possibly containing generic |
+| [`ExprPath`](#exprpath) | struct | A path like `std::mem::replace` possibly containing generic parameters and a qualified self-type. |
 | [`ExprRange`](#exprrange) | struct | A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`. |
 | [`ExprRawAddr`](#exprrawaddr) | struct | Address-of operation: `&raw const place` or `&raw mut place`. |
 | [`ExprReference`](#exprreference) | struct | A referencing operation: `&a` or `&mut a`. |
@@ -109,9 +109,9 @@
 | [`Label`](#label) | struct | A lifetime labeling a `for`, `while`, or `loop`. |
 | [`Arm`](#arm) | struct | One arm of a `match` expression: `0..=10 => { return true; }`. |
 | [`Expr`](#expr) | enum | A Rust expression. |
-| [`Member`](#member) | enum | A struct or tuple struct field accessed in a struct literal or field |
+| [`Member`](#member) | enum | A struct or tuple struct field accessed in a struct literal or field expression. |
 | [`RangeLimits`](#rangelimits) | enum | Limit types of a range, inclusive or exclusive. |
-| [`PointerMutability`](#pointermutability) | enum | Mutability of a raw pointer (`*const T`, `*mut T`), in which non-mutable |
+| [`PointerMutability`](#pointermutability) | enum | Mutability of a raw pointer (`*const T`, `*mut T`), in which non-mutable isn't the implicit default. |
 
 ## Modules
 
@@ -129,6 +129,8 @@ struct ExprArray {
     pub elems: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:269-277`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L269-L277)*
 
 A slice literal expression: `[a, b, c, d]`.
 
@@ -154,15 +156,15 @@ A slice literal expression: `[a, b, c, d]`.
 
 ##### `impl Parse for crate::expr::ExprArray`
 
-- <span id="crateexprexprarray-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprarray-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprArray`
 
 - <span id="crateexprarray-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprArray`
+##### `impl Sealed for ExprArray`
 
-##### `impl<T> Spanned for ExprArray`
+##### `impl Spanned for ExprArray`
 
 - <span id="exprarray-span"></span>`fn span(&self) -> Span`
 
@@ -180,6 +182,8 @@ struct ExprAssign {
     pub right: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:279-288`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L279-L288)*
 
 An assignment expression: `a = compute()`.
 
@@ -205,15 +209,15 @@ An assignment expression: `a = compute()`.
 
 ##### `impl Parse for crate::expr::ExprAssign`
 
-- <span id="crateexprexprassign-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprassign-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprAssign`
 
 - <span id="crateexprassign-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprAssign`
+##### `impl Sealed for ExprAssign`
 
-##### `impl<T> Spanned for ExprAssign`
+##### `impl Spanned for ExprAssign`
 
 - <span id="exprassign-span"></span>`fn span(&self) -> Span`
 
@@ -231,6 +235,8 @@ struct ExprAsync {
     pub block: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:290-299`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L290-L299)*
 
 An async block: `async { ... }`.
 
@@ -256,15 +262,15 @@ An async block: `async { ... }`.
 
 ##### `impl Parse for crate::expr::ExprAsync`
 
-- <span id="crateexprexprasync-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprasync-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprAsync`
 
 - <span id="crateexprasync-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprAsync`
+##### `impl Sealed for ExprAsync`
 
-##### `impl<T> Spanned for ExprAsync`
+##### `impl Spanned for ExprAsync`
 
 - <span id="exprasync-span"></span>`fn span(&self) -> Span`
 
@@ -282,6 +288,8 @@ struct ExprAwait {
     pub await_token: token::Await,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:301-310`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L301-L310)*
 
 An await expression: `fut.await`.
 
@@ -307,15 +315,15 @@ An await expression: `fut.await`.
 
 ##### `impl Parse for crate::expr::ExprAwait`
 
-- <span id="crateexprexprawait-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprawait-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprAwait`
 
 - <span id="crateexprawait-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprAwait`
+##### `impl Sealed for ExprAwait`
 
-##### `impl<T> Spanned for ExprAwait`
+##### `impl Spanned for ExprAwait`
 
 - <span id="exprawait-span"></span>`fn span(&self) -> Span`
 
@@ -333,6 +341,8 @@ struct ExprBinary {
     pub right: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:312-321`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L312-L321)*
 
 A binary operation: `a + b`, `a += b`.
 
@@ -358,15 +368,15 @@ A binary operation: `a + b`, `a += b`.
 
 ##### `impl Parse for crate::expr::ExprBinary`
 
-- <span id="crateexprexprbinary-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprbinary-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprBinary`
 
 - <span id="crateexprbinary-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprBinary`
+##### `impl Sealed for ExprBinary`
 
-##### `impl<T> Spanned for ExprBinary`
+##### `impl Spanned for ExprBinary`
 
 - <span id="exprbinary-span"></span>`fn span(&self) -> Span`
 
@@ -383,6 +393,8 @@ struct ExprBlock {
     pub block: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:323-331`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L323-L331)*
 
 A blocked scope: `{ ... }`.
 
@@ -408,15 +420,15 @@ A blocked scope: `{ ... }`.
 
 ##### `impl Parse for crate::expr::ExprBlock`
 
-- <span id="crateexprexprblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprBlock`
 
 - <span id="crateexprblock-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprBlock`
+##### `impl Sealed for ExprBlock`
 
-##### `impl<T> Spanned for ExprBlock`
+##### `impl Spanned for ExprBlock`
 
 - <span id="exprblock-span"></span>`fn span(&self) -> Span`
 
@@ -434,6 +446,8 @@ struct ExprBreak {
     pub expr: Option<Box<Expr>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:333-343`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L333-L343)*
 
 A `break`, with an optional label to break and an optional
 expression.
@@ -460,15 +474,15 @@ expression.
 
 ##### `impl Parse for crate::expr::ExprBreak`
 
-- <span id="crateexprexprbreak-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprbreak-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprBreak`
 
 - <span id="crateexprbreak-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprBreak`
+##### `impl Sealed for ExprBreak`
 
-##### `impl<T> Spanned for ExprBreak`
+##### `impl Spanned for ExprBreak`
 
 - <span id="exprbreak-span"></span>`fn span(&self) -> Span`
 
@@ -486,6 +500,8 @@ struct ExprCall {
     pub args: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:345-354`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L345-L354)*
 
 A function call expression: `invoke(a, b)`.
 
@@ -511,15 +527,15 @@ A function call expression: `invoke(a, b)`.
 
 ##### `impl Parse for crate::expr::ExprCall`
 
-- <span id="crateexprexprcall-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprcall-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprCall`
 
 - <span id="crateexprcall-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprCall`
+##### `impl Sealed for ExprCall`
 
-##### `impl<T> Spanned for ExprCall`
+##### `impl Spanned for ExprCall`
 
 - <span id="exprcall-span"></span>`fn span(&self) -> Span`
 
@@ -537,6 +553,8 @@ struct ExprCast {
     pub ty: Box<crate::ty::Type>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:356-365`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L356-L365)*
 
 A cast expression: `foo as f64`.
 
@@ -562,15 +580,15 @@ A cast expression: `foo as f64`.
 
 ##### `impl Parse for crate::expr::ExprCast`
 
-- <span id="crateexprexprcast-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprcast-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprCast`
 
 - <span id="crateexprcast-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprCast`
+##### `impl Sealed for ExprCast`
 
-##### `impl<T> Spanned for ExprCast`
+##### `impl Spanned for ExprCast`
 
 - <span id="exprcast-span"></span>`fn span(&self) -> Span`
 
@@ -596,6 +614,8 @@ struct ExprClosure {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:367-383`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L367-L383)*
+
 A closure expression: `|a, b| a + b`.
 
 #### Implementations
@@ -620,15 +640,15 @@ A closure expression: `|a, b| a + b`.
 
 ##### `impl Parse for crate::expr::ExprClosure`
 
-- <span id="crateexprexprclosure-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprclosure-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprClosure`
 
 - <span id="crateexprclosure-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprClosure`
+##### `impl Sealed for ExprClosure`
 
-##### `impl<T> Spanned for ExprClosure`
+##### `impl Spanned for ExprClosure`
 
 - <span id="exprclosure-span"></span>`fn span(&self) -> Span`
 
@@ -645,6 +665,8 @@ struct ExprConst {
     pub block: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:385-393`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L385-L393)*
 
 A const block: `const { ... }`.
 
@@ -670,15 +692,15 @@ A const block: `const { ... }`.
 
 ##### `impl Parse for crate::expr::ExprConst`
 
-- <span id="crateexprexprconst-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprconst-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprConst`
 
 - <span id="crateexprconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprConst`
+##### `impl Sealed for ExprConst`
 
-##### `impl<T> Spanned for ExprConst`
+##### `impl Spanned for ExprConst`
 
 - <span id="exprconst-span"></span>`fn span(&self) -> Span`
 
@@ -695,6 +717,8 @@ struct ExprContinue {
     pub label: Option<crate::lifetime::Lifetime>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:395-403`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L395-L403)*
 
 A `continue`, with an optional label.
 
@@ -720,15 +744,15 @@ A `continue`, with an optional label.
 
 ##### `impl Parse for crate::expr::ExprContinue`
 
-- <span id="crateexprexprcontinue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprcontinue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprContinue`
 
 - <span id="crateexprcontinue-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprContinue`
+##### `impl Sealed for ExprContinue`
 
-##### `impl<T> Spanned for ExprContinue`
+##### `impl Spanned for ExprContinue`
 
 - <span id="exprcontinue-span"></span>`fn span(&self) -> Span`
 
@@ -746,6 +770,8 @@ struct ExprField {
     pub member: Member,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:405-415`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L405-L415)*
 
 Access of a named struct field (`obj.k`) or unnamed tuple struct
 field (`obj.0`).
@@ -772,15 +798,15 @@ field (`obj.0`).
 
 ##### `impl Parse for crate::expr::ExprField`
 
-- <span id="crateexprexprfield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprfield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprField`
 
 - <span id="crateexprfield-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprField`
+##### `impl Sealed for ExprField`
 
-##### `impl<T> Spanned for ExprField`
+##### `impl Spanned for ExprField`
 
 - <span id="exprfield-span"></span>`fn span(&self) -> Span`
 
@@ -801,6 +827,8 @@ struct ExprForLoop {
     pub body: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:417-429`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L417-L429)*
 
 A for loop: `for pat in expr { ... }`.
 
@@ -826,15 +854,15 @@ A for loop: `for pat in expr { ... }`.
 
 ##### `impl Parse for crate::expr::ExprForLoop`
 
-- <span id="crateexprexprforloop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprforloop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprForLoop`
 
 - <span id="crateexprforloop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprForLoop`
+##### `impl Sealed for ExprForLoop`
 
-##### `impl<T> Spanned for ExprForLoop`
+##### `impl Spanned for ExprForLoop`
 
 - <span id="exprforloop-span"></span>`fn span(&self) -> Span`
 
@@ -851,6 +879,8 @@ struct ExprGroup {
     pub expr: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:431-443`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L431-L443)*
 
 An expression contained within invisible delimiters.
 
@@ -882,9 +912,9 @@ of expressions and is related to `None`-delimited spans in a
 
 - <span id="crateexprgroup-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprGroup`
+##### `impl Sealed for ExprGroup`
 
-##### `impl<T> Spanned for ExprGroup`
+##### `impl Spanned for ExprGroup`
 
 - <span id="exprgroup-span"></span>`fn span(&self) -> Span`
 
@@ -903,6 +933,8 @@ struct ExprIf {
     pub else_branch: Option<(token::Else, Box<Expr>)>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:445-459`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L445-L459)*
 
 An `if` expression with an optional `else` block: `if expr { ... }
 else { ... }`.
@@ -932,15 +964,15 @@ expression, not any of the other types of expression.
 
 ##### `impl Parse for crate::expr::ExprIf`
 
-- <span id="crateexprexprif-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprif-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprIf`
 
 - <span id="crateexprif-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprIf`
+##### `impl Sealed for ExprIf`
 
-##### `impl<T> Spanned for ExprIf`
+##### `impl Spanned for ExprIf`
 
 - <span id="exprif-span"></span>`fn span(&self) -> Span`
 
@@ -958,6 +990,8 @@ struct ExprIndex {
     pub index: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:461-470`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L461-L470)*
 
 A square bracketed indexing expression: `vector[2]`.
 
@@ -983,15 +1017,15 @@ A square bracketed indexing expression: `vector[2]`.
 
 ##### `impl Parse for crate::expr::ExprIndex`
 
-- <span id="crateexprexprindex-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprindex-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprIndex`
 
 - <span id="crateexprindex-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprIndex`
+##### `impl Sealed for ExprIndex`
 
-##### `impl<T> Spanned for ExprIndex`
+##### `impl Spanned for ExprIndex`
 
 - <span id="exprindex-span"></span>`fn span(&self) -> Span`
 
@@ -1007,6 +1041,8 @@ struct ExprInfer {
     pub underscore_token: token::Underscore,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:472-479`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L472-L479)*
 
 The inferred value of a const generic argument, denoted `_`.
 
@@ -1032,15 +1068,15 @@ The inferred value of a const generic argument, denoted `_`.
 
 ##### `impl Parse for crate::expr::ExprInfer`
 
-- <span id="crateexprexprinfer-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprinfer-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprInfer`
 
 - <span id="crateexprinfer-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprInfer`
+##### `impl Sealed for ExprInfer`
 
-##### `impl<T> Spanned for ExprInfer`
+##### `impl Spanned for ExprInfer`
 
 - <span id="exprinfer-span"></span>`fn span(&self) -> Span`
 
@@ -1059,6 +1095,8 @@ struct ExprLet {
     pub expr: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:481-491`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L481-L491)*
 
 A `let` guard: `let Some(x) = opt`.
 
@@ -1084,15 +1122,15 @@ A `let` guard: `let Some(x) = opt`.
 
 ##### `impl Parse for crate::expr::ExprLet`
 
-- <span id="crateexprexprlet-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprlet-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprLet`
 
 - <span id="crateexprlet-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprLet`
+##### `impl Sealed for ExprLet`
 
-##### `impl<T> Spanned for ExprLet`
+##### `impl Spanned for ExprLet`
 
 - <span id="exprlet-span"></span>`fn span(&self) -> Span`
 
@@ -1108,6 +1146,8 @@ struct ExprLit {
     pub lit: crate::lit::Lit,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:493-500`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L493-L500)*
 
 A literal in place of an expression: `1`, `"foo"`.
 
@@ -1133,15 +1173,15 @@ A literal in place of an expression: `1`, `"foo"`.
 
 ##### `impl Parse for crate::expr::ExprLit`
 
-- <span id="crateexprexprlit-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprlit-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprLit`
 
 - <span id="crateexprlit-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprLit`
+##### `impl Sealed for ExprLit`
 
-##### `impl<T> Spanned for ExprLit`
+##### `impl Spanned for ExprLit`
 
 - <span id="exprlit-span"></span>`fn span(&self) -> Span`
 
@@ -1159,6 +1199,8 @@ struct ExprLoop {
     pub body: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:502-511`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L502-L511)*
 
 Conditionless loop: `loop { ... }`.
 
@@ -1184,15 +1226,15 @@ Conditionless loop: `loop { ... }`.
 
 ##### `impl Parse for crate::expr::ExprLoop`
 
-- <span id="crateexprexprloop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprloop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprLoop`
 
 - <span id="crateexprloop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprLoop`
+##### `impl Sealed for ExprLoop`
 
-##### `impl<T> Spanned for ExprLoop`
+##### `impl Spanned for ExprLoop`
 
 - <span id="exprloop-span"></span>`fn span(&self) -> Span`
 
@@ -1208,6 +1250,8 @@ struct ExprMacro {
     pub mac: crate::mac::Macro,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:513-520`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L513-L520)*
 
 A macro invocation expression: `format!("{}", q)`.
 
@@ -1233,15 +1277,15 @@ A macro invocation expression: `format!("{}", q)`.
 
 ##### `impl Parse for crate::expr::ExprMacro`
 
-- <span id="crateexprexprmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprMacro`
 
 - <span id="crateexprmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprMacro`
+##### `impl Sealed for ExprMacro`
 
-##### `impl<T> Spanned for ExprMacro`
+##### `impl Spanned for ExprMacro`
 
 - <span id="exprmacro-span"></span>`fn span(&self) -> Span`
 
@@ -1260,6 +1304,8 @@ struct ExprMatch {
     pub arms: Vec<Arm>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:522-532`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L522-L532)*
 
 A `match` expression: `match n { Some(n) => {}, None => {} }`.
 
@@ -1285,15 +1331,15 @@ A `match` expression: `match n { Some(n) => {}, None => {} }`.
 
 ##### `impl Parse for crate::expr::ExprMatch`
 
-- <span id="crateexprexprmatch-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprmatch-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprMatch`
 
 - <span id="crateexprmatch-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprMatch`
+##### `impl Sealed for ExprMatch`
 
-##### `impl<T> Spanned for ExprMatch`
+##### `impl Spanned for ExprMatch`
 
 - <span id="exprmatch-span"></span>`fn span(&self) -> Span`
 
@@ -1314,6 +1360,8 @@ struct ExprMethodCall {
     pub args: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:534-546`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L534-L546)*
 
 A method call expression: `x.foo::<T>(a, b)`.
 
@@ -1339,15 +1387,15 @@ A method call expression: `x.foo::<T>(a, b)`.
 
 ##### `impl Parse for crate::expr::ExprMethodCall`
 
-- <span id="crateexprexprmethodcall-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprmethodcall-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprMethodCall`
 
 - <span id="crateexprmethodcall-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprMethodCall`
+##### `impl Sealed for ExprMethodCall`
 
-##### `impl<T> Spanned for ExprMethodCall`
+##### `impl Spanned for ExprMethodCall`
 
 - <span id="exprmethodcall-span"></span>`fn span(&self) -> Span`
 
@@ -1364,6 +1412,8 @@ struct ExprParen {
     pub expr: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:548-556`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L548-L556)*
 
 A parenthesized expression: `(a + b)`.
 
@@ -1389,15 +1439,15 @@ A parenthesized expression: `(a + b)`.
 
 ##### `impl Parse for crate::expr::ExprParen`
 
-- <span id="crateexprexprparen-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprparen-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprParen`
 
 - <span id="crateexprparen-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprParen`
+##### `impl Sealed for ExprParen`
 
-##### `impl<T> Spanned for ExprParen`
+##### `impl Spanned for ExprParen`
 
 - <span id="exprparen-span"></span>`fn span(&self) -> Span`
 
@@ -1414,6 +1464,8 @@ struct ExprPath {
     pub path: crate::path::Path,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:558-569`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L558-L569)*
 
 A path like `std::mem::replace` possibly containing generic
 parameters and a qualified self-type.
@@ -1442,15 +1494,15 @@ A plain identifier like `x` is a path of length 1.
 
 ##### `impl Parse for crate::expr::ExprPath`
 
-- <span id="crateexprexprpath-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprpath-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprPath`
 
 - <span id="crateexprpath-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprPath`
+##### `impl Sealed for ExprPath`
 
-##### `impl<T> Spanned for ExprPath`
+##### `impl Spanned for ExprPath`
 
 - <span id="exprpath-span"></span>`fn span(&self) -> Span`
 
@@ -1468,6 +1520,8 @@ struct ExprRange {
     pub end: Option<Box<Expr>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:571-580`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L571-L580)*
 
 A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
@@ -1493,15 +1547,15 @@ A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
 ##### `impl Parse for crate::expr::ExprRange`
 
-- <span id="crateexprexprrange-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprrange-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprRange`
 
 - <span id="crateexprrange-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprRange`
+##### `impl Sealed for ExprRange`
 
-##### `impl<T> Spanned for ExprRange`
+##### `impl Spanned for ExprRange`
 
 - <span id="exprrange-span"></span>`fn span(&self) -> Span`
 
@@ -1520,6 +1574,8 @@ struct ExprRawAddr {
     pub expr: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:582-592`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L582-L592)*
 
 Address-of operation: `&raw const place` or `&raw mut place`.
 
@@ -1545,15 +1601,15 @@ Address-of operation: `&raw const place` or `&raw mut place`.
 
 ##### `impl Parse for crate::expr::ExprRawAddr`
 
-- <span id="crateexprexprrawaddr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprrawaddr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprRawAddr`
 
 - <span id="crateexprrawaddr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprRawAddr`
+##### `impl Sealed for ExprRawAddr`
 
-##### `impl<T> Spanned for ExprRawAddr`
+##### `impl Spanned for ExprRawAddr`
 
 - <span id="exprrawaddr-span"></span>`fn span(&self) -> Span`
 
@@ -1571,6 +1627,8 @@ struct ExprReference {
     pub expr: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:594-603`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L594-L603)*
 
 A referencing operation: `&a` or `&mut a`.
 
@@ -1596,15 +1654,15 @@ A referencing operation: `&a` or `&mut a`.
 
 ##### `impl Parse for crate::expr::ExprReference`
 
-- <span id="crateexprexprreference-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprreference-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprReference`
 
 - <span id="crateexprreference-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprReference`
+##### `impl Sealed for ExprReference`
 
-##### `impl<T> Spanned for ExprReference`
+##### `impl Spanned for ExprReference`
 
 - <span id="exprreference-span"></span>`fn span(&self) -> Span`
 
@@ -1623,6 +1681,8 @@ struct ExprRepeat {
     pub len: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:605-615`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L605-L615)*
 
 An array literal constructed from one repeated element: `[0u8; N]`.
 
@@ -1648,15 +1708,15 @@ An array literal constructed from one repeated element: `[0u8; N]`.
 
 ##### `impl Parse for crate::expr::ExprRepeat`
 
-- <span id="crateexprexprrepeat-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprrepeat-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprRepeat`
 
 - <span id="crateexprrepeat-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprRepeat`
+##### `impl Sealed for ExprRepeat`
 
-##### `impl<T> Spanned for ExprRepeat`
+##### `impl Spanned for ExprRepeat`
 
 - <span id="exprrepeat-span"></span>`fn span(&self) -> Span`
 
@@ -1673,6 +1733,8 @@ struct ExprReturn {
     pub expr: Option<Box<Expr>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:617-625`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L617-L625)*
 
 A `return`, with an optional value to be returned.
 
@@ -1698,15 +1760,15 @@ A `return`, with an optional value to be returned.
 
 ##### `impl Parse for crate::expr::ExprReturn`
 
-- <span id="crateexprexprreturn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprreturn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprReturn`
 
 - <span id="crateexprreturn-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprReturn`
+##### `impl Sealed for ExprReturn`
 
-##### `impl<T> Spanned for ExprReturn`
+##### `impl Spanned for ExprReturn`
 
 - <span id="exprreturn-span"></span>`fn span(&self) -> Span`
 
@@ -1727,6 +1789,8 @@ struct ExprStruct {
     pub rest: Option<Box<Expr>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:627-642`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L627-L642)*
 
 A struct literal expression: `Point { x: 1, y: 1 }`.
 
@@ -1755,15 +1819,15 @@ The `rest` provides the value of the remaining fields as in `S { a:
 
 ##### `impl Parse for crate::expr::ExprStruct`
 
-- <span id="crateexprexprstruct-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprstruct-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprStruct`
 
 - <span id="crateexprstruct-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprStruct`
+##### `impl Sealed for ExprStruct`
 
-##### `impl<T> Spanned for ExprStruct`
+##### `impl Spanned for ExprStruct`
 
 - <span id="exprstruct-span"></span>`fn span(&self) -> Span`
 
@@ -1780,6 +1844,8 @@ struct ExprTry {
     pub question_token: token::Question,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:644-652`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L644-L652)*
 
 A try-expression: `expr?`.
 
@@ -1805,15 +1871,15 @@ A try-expression: `expr?`.
 
 ##### `impl Parse for crate::expr::ExprTry`
 
-- <span id="crateexprexprtry-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprtry-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprTry`
 
 - <span id="crateexprtry-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprTry`
+##### `impl Sealed for ExprTry`
 
-##### `impl<T> Spanned for ExprTry`
+##### `impl Spanned for ExprTry`
 
 - <span id="exprtry-span"></span>`fn span(&self) -> Span`
 
@@ -1830,6 +1896,8 @@ struct ExprTryBlock {
     pub block: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:654-662`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L654-L662)*
 
 A try block: `try { ... }`.
 
@@ -1855,15 +1923,15 @@ A try block: `try { ... }`.
 
 ##### `impl Parse for crate::expr::ExprTryBlock`
 
-- <span id="crateexprexprtryblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprtryblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprTryBlock`
 
 - <span id="crateexprtryblock-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprTryBlock`
+##### `impl Sealed for ExprTryBlock`
 
-##### `impl<T> Spanned for ExprTryBlock`
+##### `impl Spanned for ExprTryBlock`
 
 - <span id="exprtryblock-span"></span>`fn span(&self) -> Span`
 
@@ -1880,6 +1948,8 @@ struct ExprTuple {
     pub elems: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:664-672`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L664-L672)*
 
 A tuple expression: `(a, b, c, d)`.
 
@@ -1905,15 +1975,15 @@ A tuple expression: `(a, b, c, d)`.
 
 ##### `impl Parse for crate::expr::ExprTuple`
 
-- <span id="crateexprexprtuple-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprtuple-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprTuple`
 
 - <span id="crateexprtuple-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprTuple`
+##### `impl Sealed for ExprTuple`
 
-##### `impl<T> Spanned for ExprTuple`
+##### `impl Spanned for ExprTuple`
 
 - <span id="exprtuple-span"></span>`fn span(&self) -> Span`
 
@@ -1930,6 +2000,8 @@ struct ExprUnary {
     pub expr: Box<Expr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:674-682`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L674-L682)*
 
 A unary operation: `!x`, `*x`.
 
@@ -1955,15 +2027,15 @@ A unary operation: `!x`, `*x`.
 
 ##### `impl Parse for crate::expr::ExprUnary`
 
-- <span id="crateexprexprunary-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprunary-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprUnary`
 
 - <span id="crateexprunary-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprUnary`
+##### `impl Sealed for ExprUnary`
 
-##### `impl<T> Spanned for ExprUnary`
+##### `impl Spanned for ExprUnary`
 
 - <span id="exprunary-span"></span>`fn span(&self) -> Span`
 
@@ -1980,6 +2052,8 @@ struct ExprUnsafe {
     pub block: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:684-692`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L684-L692)*
 
 An unsafe block: `unsafe { ... }`.
 
@@ -2005,15 +2079,15 @@ An unsafe block: `unsafe { ... }`.
 
 ##### `impl Parse for crate::expr::ExprUnsafe`
 
-- <span id="crateexprexprunsafe-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprunsafe-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprUnsafe`
 
 - <span id="crateexprunsafe-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprUnsafe`
+##### `impl Sealed for ExprUnsafe`
 
-##### `impl<T> Spanned for ExprUnsafe`
+##### `impl Spanned for ExprUnsafe`
 
 - <span id="exprunsafe-span"></span>`fn span(&self) -> Span`
 
@@ -2032,6 +2106,8 @@ struct ExprWhile {
     pub body: crate::stmt::Block,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:694-704`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L694-L704)*
 
 A while loop: `while expr { ... }`.
 
@@ -2057,15 +2133,15 @@ A while loop: `while expr { ... }`.
 
 ##### `impl Parse for crate::expr::ExprWhile`
 
-- <span id="crateexprexprwhile-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprwhile-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprWhile`
 
 - <span id="crateexprwhile-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprWhile`
+##### `impl Sealed for ExprWhile`
 
-##### `impl<T> Spanned for ExprWhile`
+##### `impl Spanned for ExprWhile`
 
 - <span id="exprwhile-span"></span>`fn span(&self) -> Span`
 
@@ -2082,6 +2158,8 @@ struct ExprYield {
     pub expr: Option<Box<Expr>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:706-714`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L706-L714)*
 
 A yield expression: `yield expr`.
 
@@ -2107,15 +2185,15 @@ A yield expression: `yield expr`.
 
 ##### `impl Parse for crate::expr::ExprYield`
 
-- <span id="crateexprexpryield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexpryield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ExprYield`
 
 - <span id="crateexpryield-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ExprYield`
+##### `impl Sealed for ExprYield`
 
-##### `impl<T> Spanned for ExprYield`
+##### `impl Spanned for ExprYield`
 
 - <span id="expryield-span"></span>`fn span(&self) -> Span`
 
@@ -2131,6 +2209,8 @@ struct Index {
     pub span: proc_macro2::Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:1049-1056`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L1049-L1056)*
 
 The index of an unnamed tuple struct field.
 
@@ -2158,15 +2238,15 @@ The index of an unnamed tuple struct field.
 
 ##### `impl Parse for crate::expr::Index`
 
-- <span id="crateexprindex-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprindex-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Index`
 
 - <span id="index-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Index`
+##### `impl Sealed for Index`
 
-##### `impl<T> Spanned for Index`
+##### `impl Spanned for Index`
 
 - <span id="index-span"></span>`fn span(&self) -> Span`
 
@@ -2184,6 +2264,8 @@ struct FieldValue {
     pub expr: Expr,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:1093-1106`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L1093-L1106)*
 
 A field-value pair in a struct literal.
 
@@ -2212,15 +2294,15 @@ A field-value pair in a struct literal.
 
 ##### `impl Parse for crate::expr::FieldValue`
 
-- <span id="crateexprfieldvalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprfieldvalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::FieldValue`
 
 - <span id="cratefieldvalue-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for FieldValue`
+##### `impl Sealed for FieldValue`
 
-##### `impl<T> Spanned for FieldValue`
+##### `impl Spanned for FieldValue`
 
 - <span id="fieldvalue-span"></span>`fn span(&self) -> Span`
 
@@ -2236,6 +2318,8 @@ struct Label {
     pub colon_token: token::Colon,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:1109-1116`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L1109-L1116)*
 
 A lifetime labeling a `for`, `while`, or `loop`.
 
@@ -2257,15 +2341,15 @@ A lifetime labeling a `for`, `while`, or `loop`.
 
 ##### `impl Parse for crate::expr::Label`
 
-- <span id="crateexprlabel-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprlabel-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Label`
 
 - <span id="cratelabel-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Label`
+##### `impl Sealed for Label`
 
-##### `impl<T> Spanned for Label`
+##### `impl Spanned for Label`
 
 - <span id="label-span"></span>`fn span(&self) -> Span`
 
@@ -2285,6 +2369,8 @@ struct Arm {
     pub comma: Option<token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:1119-1146`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L1119-L1146)*
 
 One arm of a `match` expression: `0..=10 => { return true; }`.
 
@@ -2306,7 +2392,7 @@ match n {
 
 #### Implementations
 
-- <span id="crateexprarm-parse-multiple"></span>`fn parse_multiple(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprarm-parse-multiple"></span>`fn parse_multiple(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
@@ -2326,15 +2412,15 @@ match n {
 
 ##### `impl Parse for crate::expr::Arm`
 
-- <span id="crateexprarm-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Arm>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Arm`](../index.md)
+- <span id="crateexprarm-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Arm>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Arm`](#arm)
 
 ##### `impl PartialEq for crate::Arm`
 
 - <span id="cratearm-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Arm`
+##### `impl Sealed for Arm`
 
-##### `impl<T> Spanned for Arm`
+##### `impl Spanned for Arm`
 
 - <span id="arm-span"></span>`fn span(&self) -> Span`
 
@@ -2390,6 +2476,8 @@ enum Expr {
     Yield(ExprYield),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:35-267`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L35-L267)*
 
 A Rust expression.
 
@@ -2646,15 +2734,15 @@ see names getting repeated in your code, like accessing
 
 #### Implementations
 
-- <span id="expr-placeholder"></span>`const PLACEHOLDER: Self`
+- <span id="expr-const-placeholder"></span>`const PLACEHOLDER: Self`
 
-- <span id="expr-parse-without-eager-brace"></span>`fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Expr`](../index.md)
+- <span id="expr-parse-without-eager-brace"></span>`fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Expr`](#expr)
 
-- <span id="expr-parse-with-earlier-boundary-rule"></span>`fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Expr`](../index.md)
+- <span id="expr-parse-with-earlier-boundary-rule"></span>`fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Expr`](#expr)
 
 - <span id="expr-peek"></span>`fn peek(input: ParseStream<'_>) -> bool` — [`ParseStream`](../parse/index.md)
 
-- <span id="expr-replace-attrs"></span>`fn replace_attrs(&mut self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../index.md)
+- <span id="expr-replace-attrs"></span>`fn replace_attrs(&mut self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../attr/index.md)
 
 #### Trait Implementations
 
@@ -2674,15 +2762,15 @@ see names getting repeated in your code, like accessing
 
 ##### `impl Parse for crate::expr::Expr`
 
-- <span id="crateexprexpr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexpr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Expr`
 
 - <span id="crateexpr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Expr`
+##### `impl Sealed for Expr`
 
-##### `impl<T> Spanned for Expr`
+##### `impl Spanned for Expr`
 
 - <span id="expr-span"></span>`fn span(&self) -> Span`
 
@@ -2698,6 +2786,8 @@ enum Member {
     Unnamed(Index),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:971-981`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L971-L981)*
 
 A struct or tuple struct field accessed in a struct literal or field
 expression.
@@ -2740,15 +2830,15 @@ expression.
 
 ##### `impl Parse for crate::expr::Member`
 
-- <span id="crateexprmember-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprmember-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Member`
 
 - <span id="member-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Member`
+##### `impl Sealed for Member`
 
-##### `impl<T> Spanned for Member`
+##### `impl Spanned for Member`
 
 - <span id="member-span"></span>`fn span(&self) -> Span`
 
@@ -2765,6 +2855,8 @@ enum RangeLimits {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/expr.rs:1149-1158`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L1149-L1158)*
+
 Limit types of a range, inclusive or exclusive.
 
 #### Variants
@@ -2779,7 +2871,7 @@ Limit types of a range, inclusive or exclusive.
 
 #### Implementations
 
-- <span id="crateexprrangelimits-parse-obsolete"></span>`fn parse_obsolete(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprrangelimits-parse-obsolete"></span>`fn parse_obsolete(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
@@ -2801,15 +2893,15 @@ Limit types of a range, inclusive or exclusive.
 
 ##### `impl Parse for crate::expr::RangeLimits`
 
-- <span id="crateexprrangelimits-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprrangelimits-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::RangeLimits`
 
 - <span id="craterangelimits-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for RangeLimits`
+##### `impl Sealed for RangeLimits`
 
-##### `impl<T> Spanned for RangeLimits`
+##### `impl Spanned for RangeLimits`
 
 - <span id="rangelimits-span"></span>`fn span(&self) -> Span`
 
@@ -2825,6 +2917,8 @@ enum PointerMutability {
     Mut(token::Mut),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/expr.rs:1161-1169`](../../../.source_1765210505/syn-2.0.111/src/expr.rs#L1161-L1169)*
 
 Mutability of a raw pointer (`*const T`, `*mut T`), in which non-mutable
 isn't the implicit default.
@@ -2847,15 +2941,15 @@ isn't the implicit default.
 
 ##### `impl Parse for crate::expr::PointerMutability`
 
-- <span id="crateexprpointermutability-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprpointermutability-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::PointerMutability`
 
 - <span id="cratepointermutability-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PointerMutability`
+##### `impl Sealed for PointerMutability`
 
-##### `impl<T> Spanned for PointerMutability`
+##### `impl Spanned for PointerMutability`
 
 - <span id="pointermutability-span"></span>`fn span(&self) -> Span`
 

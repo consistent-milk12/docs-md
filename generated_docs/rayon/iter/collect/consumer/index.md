@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`CollectConsumer`](#collectconsumer) | struct |  |
 | [`CollectResult`](#collectresult) | struct | CollectResult represents an initialized part of the target slice. |
-| [`CollectReducer`](#collectreducer) | struct | CollectReducer combines adjacent chunks; the result must always |
+| [`CollectReducer`](#collectreducer) | struct | CollectReducer combines adjacent chunks; the result must always be contiguous so that it is one combined slice. |
 
 ## Structs
 
@@ -24,6 +24,8 @@ struct CollectConsumer<'c, T: Send> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:7-12`](../../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/consumer.rs#L7-L12)*
+
 #### Fields
 
 - **`start`**: `crate::SendPtr<T>`
@@ -32,17 +34,17 @@ struct CollectConsumer<'c, T: Send> {
 
 #### Implementations
 
-- <span id="collectconsumer-new"></span>`unsafe fn new(start: *mut T, len: usize) -> Self`
+- <span id="collectconsumer-appender"></span>`fn appender(vec: &mut Vec<T>, len: usize) -> CollectConsumer<'_, T>` — [`CollectConsumer`](#collectconsumer)
 
 #### Trait Implementations
 
 ##### `impl<'c, T: Send + 'c> Consumer for CollectConsumer<'c, T>`
 
-- <span id="collectconsumer-folder"></span>`type Folder = CollectResult<'c, T>`
+- <span id="collectconsumer-type-folder"></span>`type Folder = CollectResult<'c, T>`
 
-- <span id="collectconsumer-reducer"></span>`type Reducer = CollectReducer`
+- <span id="collectconsumer-type-reducer"></span>`type Reducer = CollectReducer`
 
-- <span id="collectconsumer-result"></span>`type Result = CollectResult<'c, T>`
+- <span id="collectconsumer-type-result"></span>`type Result = CollectResult<'c, T>`
 
 - <span id="collectconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, CollectReducer)` — [`CollectReducer`](#collectreducer)
 
@@ -54,9 +56,9 @@ struct CollectConsumer<'c, T: Send> {
 
 ##### `impl<T> Pointable for CollectConsumer<'c, T>`
 
-- <span id="collectconsumer-align"></span>`const ALIGN: usize`
+- <span id="collectconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="collectconsumer-init"></span>`type Init = T`
+- <span id="collectconsumer-type-init"></span>`type Init = T`
 
 - <span id="collectconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -82,6 +84,8 @@ struct CollectResult<'c, T> {
     invariant_lifetime: std::marker::PhantomData<&'c mut &'c mut [T]>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:44-55`](../../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/consumer.rs#L44-L55)*
 
 CollectResult represents an initialized part of the target slice.
 
@@ -119,7 +123,7 @@ the elements will be dropped, unless its ownership is released before then.
 
 ##### `impl<'c, T: Send + 'c> Folder for CollectResult<'c, T>`
 
-- <span id="collectresult-result"></span>`type Result = CollectResult<'c, T>`
+- <span id="collectresult-type-result"></span>`type Result = CollectResult<'c, T>`
 
 - <span id="collectresult-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -131,9 +135,9 @@ the elements will be dropped, unless its ownership is released before then.
 
 ##### `impl<T> Pointable for CollectResult<'c, T>`
 
-- <span id="collectresult-align"></span>`const ALIGN: usize`
+- <span id="collectresult-const-align"></span>`const ALIGN: usize`
 
-- <span id="collectresult-init"></span>`type Init = T`
+- <span id="collectresult-type-init"></span>`type Init = T`
 
 - <span id="collectresult-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -143,6 +147,10 @@ the elements will be dropped, unless its ownership is released before then.
 
 - <span id="collectresult-drop"></span>`unsafe fn drop(ptr: usize)`
 
+##### `impl Reducer for CollectReducer`
+
+- <span id="collectreducer-reduce"></span>`fn reduce(self, left: CollectResult<'c, T>, right: CollectResult<'c, T>) -> CollectResult<'c, T>` — [`CollectResult`](#collectresult)
+
 ##### `impl<'c, T> Send for CollectResult<'c, T>`
 
 ### `CollectReducer`
@@ -151,18 +159,20 @@ the elements will be dropped, unless its ownership is released before then.
 struct CollectReducer;
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/collect/consumer.rs:166`](../../../../../.source_1765210505/rayon-1.11.0/src/iter/collect/consumer.rs#L166)*
+
 CollectReducer combines adjacent chunks; the result must always
 be contiguous so that it is one combined slice.
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for CollectReducer`
+##### `impl IntoEither for CollectReducer`
 
-##### `impl<T> Pointable for CollectReducer`
+##### `impl Pointable for CollectReducer`
 
-- <span id="collectreducer-align"></span>`const ALIGN: usize`
+- <span id="collectreducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="collectreducer-init"></span>`type Init = T`
+- <span id="collectreducer-type-init"></span>`type Init = T`
 
 - <span id="collectreducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -172,7 +182,7 @@ be contiguous so that it is one combined slice.
 
 - <span id="collectreducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'c, T> Reducer for CollectReducer`
+##### `impl Reducer for CollectReducer`
 
 - <span id="collectreducer-reduce"></span>`fn reduce(self, left: CollectResult<'c, T>, right: CollectResult<'c, T>) -> CollectResult<'c, T>` — [`CollectResult`](#collectresult)
 

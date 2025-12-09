@@ -38,16 +38,16 @@ sum type with two cases.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`iterator`](#iterator) | mod |  |
-| [`into_either`](#into_either) | mod | The trait [`IntoEither`] provides methods for converting a type `Self`, whose |
+| [`into_either`](#into_either) | mod | The trait [`IntoEither`] provides methods for converting a type `Self`, whose size is constant and known at compile-time, into an [`Either`] variant. |
 | [`IterEither`](#itereither) | struct |  |
-| [`Either`](#either) | enum | The enum `Either` with variants `Left` and `Right` is a general purpose |
+| [`Either`](#either) | enum | The enum `Either` with variants `Left` and `Right` is a general purpose sum type with two cases. |
 | [`IntoEither`](#intoeither) | trait |  |
 | [`_unsized_ref_propagation`](#_unsized_ref_propagation) | fn |  |
 | [`map_either!`](#map_either) | macro |  |
 | [`impl_specific_ref_and_mut!`](#impl_specific_ref_and_mut) | macro |  |
 | [`check_t!`](#check_t) | macro | A helper macro to check if AsRef and AsMut are implemented for a given type. |
 | [`for_both!`](#for_both) | macro | Evaluate the provided expression for both [`Either::Left`] and [`Either::Right`]. |
-| [`try_left!`](#try_left) | macro | Macro for unwrapping the left side of an [`Either`], which fails early |
+| [`try_left!`](#try_left) | macro | Macro for unwrapping the left side of an [`Either`], which fails early with the opposite side. |
 | [`try_right!`](#try_right) | macro | Dual to [`try_left!`], see its documentation for more information. |
 
 ## Modules
@@ -65,6 +65,8 @@ struct IterEither<L, R> {
 }
 ```
 
+*Defined in [`either-1.15.0/src/iterator.rs:19-21`](../../.source_1765210505/either-1.15.0/src/iterator.rs#L19-L21)*
+
 Iterator that maps left or right iterators to corresponding `Either`-wrapped items.
 
 This struct is created by the `Either::factor_into_iter`,
@@ -79,7 +81,7 @@ and `factor_iter_mut` methods.
 
 ##### `impl<L: clone::Clone, R: clone::Clone> Clone for IterEither<L, R>`
 
-- <span id="itereither-clone"></span>`fn clone(&self) -> IterEither<L, R>` — [`IterEither`](#itereither)
+- <span id="itereither-clone"></span>`fn clone(&self) -> IterEither<L, R>` — [`IterEither`](iterator/index.md)
 
 ##### `impl<L: fmt::Debug, R: fmt::Debug> Debug for IterEither<L, R>`
 
@@ -105,15 +107,15 @@ and `factor_iter_mut` methods.
 
 ##### `impl<I> IntoIterator for IterEither<L, R>`
 
-- <span id="itereither-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itereither-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itereither-intoiter"></span>`type IntoIter = I`
+- <span id="itereither-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itereither-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<L, R> Iterator for IterEither<L, R>`
 
-- <span id="itereither-item"></span>`type Item = Either<<L as Iterator>::Item, <R as Iterator>::Item>`
+- <span id="itereither-type-item"></span>`type Item = Either<<L as Iterator>::Item, <R as Iterator>::Item>`
 
 - <span id="itereither-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -154,6 +156,8 @@ enum Either<L, R> {
 }
 ```
 
+*Defined in [`either-1.15.0/src/lib.rs:49-54`](../../.source_1765210505/either-1.15.0/src/lib.rs#L49-L54)*
+
 The enum `Either` with variants `Left` and `Right` is a general purpose
 sum type with two cases.
 
@@ -173,15 +177,79 @@ preference.
 
 #### Implementations
 
-- <span id="either-cloned"></span>`fn cloned(self) -> Either<L, R>` — [`Either`](#either)
+- <span id="either-is-left"></span>`fn is_left(&self) -> bool`
 
-- <span id="either-copied"></span>`fn copied(self) -> Either<L, R>` — [`Either`](#either)
+- <span id="either-is-right"></span>`fn is_right(&self) -> bool`
+
+- <span id="either-left"></span>`fn left(self) -> Option<L>`
+
+- <span id="either-right"></span>`fn right(self) -> Option<R>`
+
+- <span id="either-as-ref"></span>`fn as_ref(&self) -> Either<&L, &R>` — [`Either`](#either)
+
+- <span id="either-as-mut"></span>`fn as_mut(&mut self) -> Either<&mut L, &mut R>` — [`Either`](#either)
+
+- <span id="either-as-pin-ref"></span>`fn as_pin_ref(self: Pin<&Self>) -> Either<Pin<&L>, Pin<&R>>` — [`Either`](#either)
+
+- <span id="either-as-pin-mut"></span>`fn as_pin_mut(self: Pin<&mut Self>) -> Either<Pin<&mut L>, Pin<&mut R>>` — [`Either`](#either)
+
+- <span id="either-flip"></span>`fn flip(self) -> Either<R, L>` — [`Either`](#either)
+
+- <span id="either-map-left"></span>`fn map_left<F, M>(self, f: F) -> Either<M, R>` — [`Either`](#either)
+
+- <span id="either-map-right"></span>`fn map_right<F, S>(self, f: F) -> Either<L, S>` — [`Either`](#either)
+
+- <span id="either-map-either"></span>`fn map_either<F, G, M, S>(self, f: F, g: G) -> Either<M, S>` — [`Either`](#either)
+
+- <span id="either-map-either-with"></span>`fn map_either_with<Ctx, F, G, M, S>(self, ctx: Ctx, f: F, g: G) -> Either<M, S>` — [`Either`](#either)
+
+- <span id="either-either"></span>`fn either<F, G, T>(self, f: F, g: G) -> T`
+
+- <span id="either-either-with"></span>`fn either_with<Ctx, F, G, T>(self, ctx: Ctx, f: F, g: G) -> T`
+
+- <span id="either-left-and-then"></span>`fn left_and_then<F, S>(self, f: F) -> Either<S, R>` — [`Either`](#either)
+
+- <span id="either-right-and-then"></span>`fn right_and_then<F, S>(self, f: F) -> Either<L, S>` — [`Either`](#either)
+
+- <span id="either-into-iter"></span>`fn into_iter(self) -> Either<<L as >::IntoIter, <R as >::IntoIter>` — [`Either`](#either)
+
+- <span id="either-iter"></span>`fn iter(&self) -> Either<<&L as IntoIterator>::IntoIter, <&R as IntoIterator>::IntoIter>` — [`Either`](#either)
+
+- <span id="either-iter-mut"></span>`fn iter_mut(&mut self) -> Either<<&mut L as IntoIterator>::IntoIter, <&mut R as IntoIterator>::IntoIter>` — [`Either`](#either)
+
+- <span id="either-factor-into-iter"></span>`fn factor_into_iter(self) -> IterEither<<L as >::IntoIter, <R as >::IntoIter>` — [`IterEither`](iterator/index.md)
+
+- <span id="either-factor-iter"></span>`fn factor_iter(&self) -> IterEither<<&L as IntoIterator>::IntoIter, <&R as IntoIterator>::IntoIter>` — [`IterEither`](iterator/index.md)
+
+- <span id="either-factor-iter-mut"></span>`fn factor_iter_mut(&mut self) -> IterEither<<&mut L as IntoIterator>::IntoIter, <&mut R as IntoIterator>::IntoIter>` — [`IterEither`](iterator/index.md)
+
+- <span id="either-left-or"></span>`fn left_or(self, other: L) -> L`
+
+- <span id="either-left-or-default"></span>`fn left_or_default(self) -> L`
+
+- <span id="either-left-or-else"></span>`fn left_or_else<F>(self, f: F) -> L`
+
+- <span id="either-right-or"></span>`fn right_or(self, other: R) -> R`
+
+- <span id="either-right-or-default"></span>`fn right_or_default(self) -> R`
+
+- <span id="either-right-or-else"></span>`fn right_or_else<F>(self, f: F) -> R`
+
+- <span id="either-unwrap-left"></span>`fn unwrap_left(self) -> L`
+
+- <span id="either-unwrap-right"></span>`fn unwrap_right(self) -> R`
+
+- <span id="either-expect-left"></span>`fn expect_left(self, msg: &str) -> L`
+
+- <span id="either-expect-right"></span>`fn expect_right(self, msg: &str) -> R`
+
+- <span id="either-either-into"></span>`fn either_into<T>(self) -> T`
 
 #### Trait Implementations
 
-##### `impl<L, R, Target> AsMut for Either<L, R>`
+##### `impl<L, R> AsMut for Either<L, R>`
 
-- <span id="either-as-mut"></span>`fn as_mut(&mut self) -> &mut Target`
+- <span id="either-as-mut"></span>`fn as_mut(&mut self) -> &mut str`
 
 ##### `impl<L, R, Target> AsRef for Either<L, R>`
 
@@ -201,7 +269,7 @@ preference.
 
 ##### `impl<L, R> Deref for Either<L, R>`
 
-- <span id="either-target"></span>`type Target = <L as Deref>::Target`
+- <span id="either-type-target"></span>`type Target = <L as Deref>::Target`
 
 - <span id="either-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -237,7 +305,7 @@ preference.
 
 ##### `impl<L, R> Future for Either<L, R>`
 
-- <span id="either-output"></span>`type Output = <L as Future>::Output`
+- <span id="either-type-output"></span>`type Output = <L as Future>::Output`
 
 - <span id="either-poll"></span>`fn poll(self: Pin<&mut Self>, cx: &mut core::task::Context<'_>) -> core::task::Poll<<Self as >::Output>`
 
@@ -249,23 +317,23 @@ preference.
 
 ##### `impl<F> IntoFuture for Either<L, R>`
 
-- <span id="either-output"></span>`type Output = <F as Future>::Output`
+- <span id="either-type-output"></span>`type Output = <F as Future>::Output`
 
-- <span id="either-intofuture"></span>`type IntoFuture = F`
+- <span id="either-type-intofuture"></span>`type IntoFuture = F`
 
 - <span id="either-into-future"></span>`fn into_future(self) -> <F as IntoFuture>::IntoFuture`
 
 ##### `impl<I> IntoIterator for Either<L, R>`
 
-- <span id="either-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="either-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="either-intoiter"></span>`type IntoIter = I`
+- <span id="either-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="either-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<L, R> Iterator for super::Either<L, R>`
 
-- <span id="supereither-item"></span>`type Item = <L as Iterator>::Item`
+- <span id="supereither-type-item"></span>`type Item = <L as Iterator>::Item`
 
 - <span id="supereither-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -309,7 +377,7 @@ preference.
 
 ##### `impl<P, T> Receiver for Either<L, R>`
 
-- <span id="either-target"></span>`type Target = T`
+- <span id="either-type-target"></span>`type Target = T`
 
 ##### `impl<L, R> StructuralPartialEq for Either<L, R>`
 
@@ -328,6 +396,8 @@ preference.
 ```rust
 trait IntoEither: Sized { ... }
 ```
+
+*Defined in [`either-1.15.0/src/into_either.rs:14-62`](../../.source_1765210505/either-1.15.0/src/into_either.rs#L14-L62)*
 
 Provides methods for converting a type `Self` into either a [`Left`](#left) or [`Right`](#right)
 variant of [`Either<Self, Self>`](Either).
@@ -350,8 +420,6 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
 
 #### Implementors
 
-- [`Either`](#either)
-- [`IterEither`](#itereither)
 - `T`
 
 ## Functions
@@ -362,17 +430,27 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
 fn _unsized_ref_propagation()
 ```
 
+*Defined in [`either-1.15.0/src/lib.rs:1540-1553`](../../.source_1765210505/either-1.15.0/src/lib.rs#L1540-L1553)*
+
 ## Macros
 
 ### `map_either!`
 
+*Defined in [`either-1.15.0/src/lib.rs:133-140`](../../.source_1765210505/either-1.15.0/src/lib.rs#L133-L140)*
+
 ### `impl_specific_ref_and_mut!`
 
+*Defined in [`either-1.15.0/src/lib.rs:1257-1277`](../../.source_1765210505/either-1.15.0/src/lib.rs#L1257-L1277)*
+
 ### `check_t!`
+
+*Defined in [`either-1.15.0/src/lib.rs:1526-1537`](../../.source_1765210505/either-1.15.0/src/lib.rs#L1526-L1537)*
 
 A helper macro to check if AsRef and AsMut are implemented for a given type.
 
 ### `for_both!`
+
+*Defined in [`either-1.15.0/src/lib.rs:81-88`](../../.source_1765210505/either-1.15.0/src/lib.rs#L81-L88)*
 
 Evaluate the provided expression for both [`Either::Left`](#eitherleft) and [`Either::Right`](#eitherright).
 
@@ -401,6 +479,8 @@ fn main() {
 
 ### `try_left!`
 
+*Defined in [`either-1.15.0/src/lib.rs:113-120`](../../.source_1765210505/either-1.15.0/src/lib.rs#L113-L120)*
+
 Macro for unwrapping the left side of an [`Either`](#either), which fails early
 with the opposite side. Can only be used in functions that return
 `Either` because of the early return of `Right` that it provides.
@@ -425,6 +505,8 @@ fn main() {
 ```
 
 ### `try_right!`
+
+*Defined in [`either-1.15.0/src/lib.rs:124-131`](../../.source_1765210505/either-1.15.0/src/lib.rs#L124-L131)*
 
 Dual to [`try_left!`](#try-left), see its documentation for more information.
 

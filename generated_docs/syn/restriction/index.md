@@ -10,8 +10,8 @@
 |------|------|-------------|
 | [`parsing`](#parsing) | mod |  |
 | [`printing`](#printing) | mod |  |
-| [`VisRestricted`](#visrestricted) | struct | A visibility level restricted to some path: `pub(self)` or |
-| [`Visibility`](#visibility) | enum | The visibility level of an item: inherited or `pub` or |
+| [`VisRestricted`](#visrestricted) | struct | A visibility level restricted to some path: `pub(self)` or `pub(super)` or `pub(crate)` or `pub(in some::module)`. |
+| [`Visibility`](#visibility) | enum | The visibility level of an item: inherited or `pub` or `pub(restricted)`. |
 | [`FieldMutability`](#fieldmutability) | enum | Unused, but reserved for RFC 3323 restrictions. |
 
 ## Modules
@@ -31,6 +31,8 @@ struct VisRestricted {
     pub path: Box<crate::path::Path>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/restriction.rs:27-37`](../../../.source_1765210505/syn-2.0.111/src/restriction.rs#L27-L37)*
 
 A visibility level restricted to some path: `pub(self)` or
 `pub(super)` or `pub(crate)` or `pub(in some::module)`.
@@ -59,9 +61,9 @@ A visibility level restricted to some path: `pub(self)` or
 
 - <span id="cratevisrestricted-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for VisRestricted`
+##### `impl Sealed for VisRestricted`
 
-##### `impl<T> Spanned for VisRestricted`
+##### `impl Spanned for VisRestricted`
 
 - <span id="visrestricted-span"></span>`fn span(&self) -> Span`
 
@@ -80,6 +82,8 @@ enum Visibility {
     Inherited,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/restriction.rs:4-25`](../../../.source_1765210505/syn-2.0.111/src/restriction.rs#L4-L25)*
 
 The visibility level of an item: inherited or `pub` or
 `pub(restricted)`.
@@ -126,15 +130,15 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::restriction::Visibility`
 
-- <span id="craterestrictionvisibility-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="craterestrictionvisibility-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Visibility`
 
 - <span id="cratevisibility-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Visibility`
+##### `impl Sealed for Visibility`
 
-##### `impl<T> Spanned for Visibility`
+##### `impl Spanned for Visibility`
 
 - <span id="visibility-span"></span>`fn span(&self) -> Span`
 
@@ -149,6 +153,8 @@ enum FieldMutability {
     None,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/restriction.rs:39-57`](../../../.source_1765210505/syn-2.0.111/src/restriction.rs#L39-L57)*
 
 Unused, but reserved for RFC 3323 restrictions.
 

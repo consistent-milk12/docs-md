@@ -22,6 +22,8 @@ struct AutoStream<S: RawStream> {
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../../.source_1765210505/anstream-0.6.21/src/auto.rs#L19-L21)*
+
 [`std::io::Write`](../../fs_err/index.md) that adapts ANSI escape codes to the underlying `Write`s capabilities
 
 This includes
@@ -35,7 +37,29 @@ to get a [`ColorChoice`](../index.md) and then calling `AutoStream::new(stream, 
 
 #### Implementations
 
-- <span id="autostream-lock"></span>`fn lock(self) -> AutoStream<std::io::StderrLock<'static>>` — [`AutoStream`](../index.md)
+- <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](../index.md)
+
+- <span id="autostream-auto"></span>`fn auto(raw: S) -> Self`
+
+- <span id="autostream-choice"></span>`fn choice(raw: &S) -> ColorChoice` — [`ColorChoice`](../index.md)
+
+- <span id="autostream-always-ansi"></span>`fn always_ansi(raw: S) -> Self`
+
+- <span id="autostream-always-ansi"></span>`fn always_ansi_(raw: S) -> Self`
+
+- <span id="autostream-always"></span>`fn always(raw: S) -> Self`
+
+- <span id="autostream-never"></span>`fn never(raw: S) -> Self`
+
+- <span id="autostream-wincon"></span>`fn wincon(raw: S) -> Result<Self, S>`
+
+- <span id="autostream-into-inner"></span>`fn into_inner(self) -> S`
+
+- <span id="autostream-as-inner"></span>`fn as_inner(&self) -> &S`
+
+- <span id="autostream-is-terminal"></span>`fn is_terminal(&self) -> bool`
+
+- <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](../index.md)
 
 #### Trait Implementations
 
@@ -66,6 +90,8 @@ enum StreamInner<S: RawStream> {
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/auto.rs:24-29`](../../../.source_1765210505/anstream-0.6.21/src/auto.rs#L24-L29)*
+
 #### Trait Implementations
 
 ##### `impl<S: fmt::Debug + RawStream> Debug for StreamInner<S>`
@@ -79,4 +105,6 @@ enum StreamInner<S: RawStream> {
 ```rust
 fn choice(raw: &dyn RawStream) -> crate::ColorChoice
 ```
+
+*Defined in [`anstream-0.6.21/src/auto.rs:198-223`](../../../.source_1765210505/anstream-0.6.21/src/auto.rs#L198-L223)*
 

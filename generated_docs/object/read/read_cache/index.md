@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`ReadCache`](#readcache) | struct | An implementation of [`ReadRef`] for data in a stream that implements |
+| [`ReadCache`](#readcache) | struct | An implementation of [`ReadRef`] for data in a stream that implements `Read + Seek`. |
 | [`ReadCacheInternal`](#readcacheinternal) | struct |  |
-| [`ReadCacheRange`](#readcacherange) | struct | An implementation of [`ReadRef`] for a range of data in a stream that |
+| [`ReadCacheRange`](#readcacherange) | struct | An implementation of [`ReadRef`] for a range of data in a stream that implements `Read + Seek`. |
 | [`ReadCacheOps`](#readcacheops) | trait | Operations required to implement [`ReadCache`]. |
 
 ## Structs
@@ -22,6 +22,8 @@ struct ReadCache<R: ReadCacheOps> {
     cache: core::cell::RefCell<ReadCacheInternal<R>>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/read_cache.rs:31-33`](../../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L31-L33)*
 
 An implementation of [`ReadRef`](../index.md) for data in a stream that implements
 `Read + Seek`.
@@ -53,6 +55,14 @@ the file size.
 
 - <span id="readcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+##### `impl<'a, R: ReadCacheOps> ReadRef for &'a ReadCache<R>`
+
+- <span id="a-readcache-len"></span>`fn len(self) -> Result<u64, ()>`
+
+- <span id="a-readcache-read-bytes-at"></span>`fn read_bytes_at(self, offset: u64, size: u64) -> Result<&'a [u8], ()>`
+
+- <span id="a-readcache-read-bytes-at-until"></span>`fn read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> Result<&'a [u8], ()>`
+
 ### `ReadCacheInternal<R: ReadCacheOps>`
 
 ```rust
@@ -63,6 +73,8 @@ struct ReadCacheInternal<R: ReadCacheOps> {
     len: Option<u64>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/read_cache.rs:36-41`](../../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L36-L41)*
 
 #### Implementations
 
@@ -85,6 +97,8 @@ struct ReadCacheRange<'a, R: ReadCacheOps> {
     size: u64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/read_cache.rs:172-176`](../../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L172-L176)*
 
 An implementation of [`ReadRef`](../index.md) for a range of data in a stream that
 implements `Read + Seek`.
@@ -118,6 +132,8 @@ Shares an underlying [`ReadCache`](../index.md) with a lifetime of `'a`.
 ```rust
 trait ReadCacheOps { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/read_cache.rs:222-242`](../../../../.source_1765210505/object-0.37.3/src/read/read_cache.rs#L222-L242)*
 
 Operations required to implement [`ReadCache`](../index.md).
 

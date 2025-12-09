@@ -23,6 +23,8 @@ struct OnceCell<T> {
 }
 ```
 
+*Defined in [`once_cell-1.21.3/src/lib.rs:411-414`](../../../.source_1765210505/once_cell-1.21.3/src/lib.rs#L411-L414)*
+
 A cell which can be written to only once. It is not thread safe.
 
 Unlike `std::cell::RefCell`, a `OnceCell` provides simple `&`
@@ -99,6 +101,8 @@ struct Lazy<T, F> {
 }
 ```
 
+*Defined in [`once_cell-1.21.3/src/lib.rs:714-717`](../../../.source_1765210505/once_cell-1.21.3/src/lib.rs#L714-L717)*
+
 A value which is initialized on the first access.
 
 # Example
@@ -122,13 +126,9 @@ println!("{}", *lazy);
 
 #### Implementations
 
-- <span id="lazy-force"></span>`fn force(this: &Lazy<T, F>) -> &T` — [`Lazy`](#lazy)
+- <span id="lazy-new"></span>`const fn new(init: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
-- <span id="lazy-force-mut"></span>`fn force_mut(this: &mut Lazy<T, F>) -> &mut T` — [`Lazy`](#lazy)
-
-- <span id="lazy-get"></span>`fn get(this: &Lazy<T, F>) -> Option<&T>` — [`Lazy`](#lazy)
-
-- <span id="lazy-get-mut"></span>`fn get_mut(this: &mut Lazy<T, F>) -> Option<&mut T>` — [`Lazy`](#lazy)
+- <span id="lazy-into-value"></span>`fn into_value(this: Lazy<T, F>) -> Result<T, F>` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 
@@ -142,7 +142,7 @@ println!("{}", *lazy);
 
 ##### `impl<T, F: FnOnce() -> T> Deref for Lazy<T, F>`
 
-- <span id="lazy-target"></span>`type Target = T`
+- <span id="lazy-type-target"></span>`type Target = T`
 
 - <span id="lazy-deref"></span>`fn deref(&self) -> &T`
 
@@ -152,7 +152,7 @@ println!("{}", *lazy);
 
 ##### `impl<P, T> Receiver for Lazy<T, F>`
 
-- <span id="lazy-target"></span>`type Target = T`
+- <span id="lazy-type-target"></span>`type Target = T`
 
 ##### `impl<T, F: RefUnwindSafe> RefUnwindSafe for Lazy<T, F>`
 

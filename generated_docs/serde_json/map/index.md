@@ -77,6 +77,8 @@ struct Map<K, V> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L29-L31)*
+
 Represents a JSON key/value type.
 
 #### Implementations
@@ -87,19 +89,19 @@ Represents a JSON key/value type.
 
 - <span id="map-clear"></span>`fn clear(&mut self)`
 
-- <span id="map-get"></span>`fn get<Q>(&self, key: &Q) -> Option<&Value>` — [`Value`](../index.md)
+- <span id="map-get"></span>`fn get<Q>(&self, key: &Q) -> Option<&Value>` — [`Value`](../value/index.md)
 
 - <span id="map-contains-key"></span>`fn contains_key<Q>(&self, key: &Q) -> bool`
 
-- <span id="map-get-mut"></span>`fn get_mut<Q>(&mut self, key: &Q) -> Option<&mut Value>` — [`Value`](../index.md)
+- <span id="map-get-mut"></span>`fn get_mut<Q>(&mut self, key: &Q) -> Option<&mut Value>` — [`Value`](../value/index.md)
 
-- <span id="map-get-key-value"></span>`fn get_key_value<Q>(&self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../index.md)
+- <span id="map-get-key-value"></span>`fn get_key_value<Q>(&self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../value/index.md)
 
-- <span id="map-insert"></span>`fn insert(&mut self, k: String, v: Value) -> Option<Value>` — [`Value`](../index.md)
+- <span id="map-insert"></span>`fn insert(&mut self, k: String, v: Value) -> Option<Value>` — [`Value`](../value/index.md)
 
-- <span id="map-remove"></span>`fn remove<Q>(&mut self, key: &Q) -> Option<Value>` — [`Value`](../index.md)
+- <span id="map-remove"></span>`fn remove<Q>(&mut self, key: &Q) -> Option<Value>` — [`Value`](../value/index.md)
 
-- <span id="map-remove-entry"></span>`fn remove_entry<Q>(&mut self, key: &Q) -> Option<(String, Value)>` — [`Value`](../index.md)
+- <span id="map-remove-entry"></span>`fn remove_entry<Q>(&mut self, key: &Q) -> Option<(String, Value)>` — [`Value`](../value/index.md)
 
 - <span id="map-append"></span>`fn append(&mut self, other: &mut Self)`
 
@@ -141,15 +143,15 @@ Represents a JSON key/value type.
 
 - <span id="map-default"></span>`fn default() -> Self`
 
-##### `impl<'de> Deserialize for Map<alloc::string::String, crate::value::Value>`
+##### `impl Deserialize for Map<alloc::string::String, crate::value::Value>`
 
 - <span id="map-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Map<K, V>`
 
-##### `impl<'de> Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
+##### `impl Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- <span id="cratemapmap-error"></span>`type Error = Error`
+- <span id="cratemapmap-type-error"></span>`type Error = Error`
 
 - <span id="cratemapmap-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -225,37 +227,37 @@ Represents a JSON key/value type.
 
 ##### `impl FromStr for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- <span id="cratemapmap-err"></span>`type Err = Error`
+- <span id="cratemapmap-type-err"></span>`type Err = Error`
 
-- <span id="cratemapmap-from-str"></span>`fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../index.md)
+- <span id="cratemapmap-from-str"></span>`fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../error/index.md)
 
 ##### `impl Hash for Map<alloc::string::String, crate::value::Value>`
 
 - <span id="map-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<Q> Index for Map<alloc::string::String, crate::value::Value>`
+##### `impl Index for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-output"></span>`type Output = Value`
+- <span id="map-type-output"></span>`type Output = Value`
 
-- <span id="map-index"></span>`fn index(&self, index: &Q) -> &Value` — [`Value`](../index.md)
+- <span id="map-index"></span>`fn index(&self, index: &Q) -> &Value` — [`Value`](../value/index.md)
 
-##### `impl<Q> IndexMut for Map<alloc::string::String, crate::value::Value>`
+##### `impl IndexMut for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-index-mut"></span>`fn index_mut(&mut self, index: &Q) -> &mut Value` — [`Value`](../index.md)
+- <span id="map-index-mut"></span>`fn index_mut(&mut self, index: &Q) -> &mut Value` — [`Value`](../value/index.md)
 
-##### `impl<'de> IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
+##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-deserializer"></span>`type Deserializer = Map<String, Value>`
+- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
 
 - <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 
-##### `impl IntoIterator for Map<alloc::string::String, crate::value::Value>`
+##### `impl IntoIterator for &'a Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-item"></span>`type Item = (String, Value)`
+- <span id="a-map-type-item"></span>`type Item = (&'a String, &'a Value)`
 
-- <span id="map-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="a-map-type-intoiter"></span>`type IntoIter = Iter<'a>`
 
-- <span id="map-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="a-map-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl PartialEq for Map<alloc::string::String, crate::value::Value>`
 
@@ -273,13 +275,15 @@ struct VacantEntry<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:631-633`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L631-L633)*
+
 A vacant Entry. It is part of the [`Entry`](#entry) enum.
 
 #### Implementations
 
 - <span id="vacantentry-key"></span>`fn key(&self) -> &String`
 
-- <span id="vacantentry-insert"></span>`fn insert(self, value: Value) -> &'a mut Value` — [`Value`](../index.md)
+- <span id="vacantentry-insert"></span>`fn insert(self, value: Value) -> &'a mut Value` — [`Value`](../value/index.md)
 
 ### `OccupiedEntry<'a>`
 
@@ -289,23 +293,25 @@ struct OccupiedEntry<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:636-638`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L636-L638)*
+
 An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
 #### Implementations
 
 - <span id="occupiedentry-key"></span>`fn key(&self) -> &String`
 
-- <span id="occupiedentry-get"></span>`fn get(&self) -> &Value` — [`Value`](../index.md)
+- <span id="occupiedentry-get"></span>`fn get(&self) -> &Value` — [`Value`](../value/index.md)
 
-- <span id="occupiedentry-get-mut"></span>`fn get_mut(&mut self) -> &mut Value` — [`Value`](../index.md)
+- <span id="occupiedentry-get-mut"></span>`fn get_mut(&mut self) -> &mut Value` — [`Value`](../value/index.md)
 
-- <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut Value` — [`Value`](../index.md)
+- <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut Value` — [`Value`](../value/index.md)
 
-- <span id="occupiedentry-insert"></span>`fn insert(&mut self, value: Value) -> Value` — [`Value`](../index.md)
+- <span id="occupiedentry-insert"></span>`fn insert(&mut self, value: Value) -> Value` — [`Value`](../value/index.md)
 
-- <span id="occupiedentry-remove"></span>`fn remove(self) -> Value` — [`Value`](../index.md)
+- <span id="occupiedentry-remove"></span>`fn remove(self) -> Value` — [`Value`](../value/index.md)
 
-- <span id="occupiedentry-remove-entry"></span>`fn remove_entry(self) -> (String, Value)` — [`Value`](../index.md)
+- <span id="occupiedentry-remove-entry"></span>`fn remove_entry(self) -> (String, Value)` — [`Value`](../value/index.md)
 
 ### `Iter<'a>`
 
@@ -315,39 +321,41 @@ struct Iter<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1060-1062`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1060-L1062)*
+
 An iterator over a serde_json::Map's entries.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Iter<'a>`
+##### `impl Clone for Iter<'a>`
 
 - <span id="iter-clone"></span>`fn clone(&self) -> Iter<'a>` — [`Iter`](#iter)
 
-##### `impl<'a> Debug for Iter<'a>`
+##### `impl Debug for Iter<'a>`
 
 - <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for Iter<'a>`
+##### `impl DoubleEndedIterator for Iter<'a>`
 
 - <span id="iter-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a> ExactSizeIterator for Iter<'a>`
+##### `impl ExactSizeIterator for Iter<'a>`
 
 - <span id="iter-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'a> FusedIterator for Iter<'a>`
+##### `impl FusedIterator for Iter<'a>`
 
-##### `impl<I> IntoIterator for Iter<'a>`
+##### `impl IntoIterator for Iter<'a>`
 
-- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-intoiter"></span>`type IntoIter = I`
+- <span id="iter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Iter<'a>`
+##### `impl Iterator for Iter<'a>`
 
-- <span id="iter-item"></span>`type Item = (&'a String, &'a Value)`
+- <span id="iter-type-item"></span>`type Item = (&'a String, &'a Value)`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -361,35 +369,37 @@ struct IterMut<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1086-1088`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1086-L1088)*
+
 A mutable iterator over a serde_json::Map's entries.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for IterMut<'a>`
+##### `impl Debug for IterMut<'a>`
 
 - <span id="itermut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for IterMut<'a>`
+##### `impl DoubleEndedIterator for IterMut<'a>`
 
 - <span id="itermut-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a> ExactSizeIterator for IterMut<'a>`
+##### `impl ExactSizeIterator for IterMut<'a>`
 
 - <span id="itermut-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'a> FusedIterator for IterMut<'a>`
+##### `impl FusedIterator for IterMut<'a>`
 
-##### `impl<I> IntoIterator for IterMut<'a>`
+##### `impl IntoIterator for IterMut<'a>`
 
-- <span id="itermut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itermut-intoiter"></span>`type IntoIter = I`
+- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for IterMut<'a>`
+##### `impl Iterator for IterMut<'a>`
 
-- <span id="itermut-item"></span>`type Item = (&'a String, &'a mut Value)`
+- <span id="itermut-type-item"></span>`type Item = (&'a String, &'a mut Value)`
 
 - <span id="itermut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -402,6 +412,8 @@ struct IntoIter {
     iter: btree_map::IntoIter<alloc::string::String, crate::value::Value>,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:1112-1114`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1112-L1114)*
 
 An owning iterator over a serde_json::Map's entries.
 
@@ -421,17 +433,17 @@ An owning iterator over a serde_json::Map's entries.
 
 ##### `impl FusedIterator for IntoIter`
 
-##### `impl<I> IntoIterator for IntoIter`
+##### `impl IntoIterator for IntoIter`
 
-- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- <span id="intoiter-item"></span>`type Item = (String, Value)`
+- <span id="intoiter-type-item"></span>`type Item = (String, Value)`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -445,39 +457,41 @@ struct Keys<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1127-1129`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1127-L1129)*
+
 An iterator over a serde_json::Map's keys.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Keys<'a>`
+##### `impl Clone for Keys<'a>`
 
 - <span id="keys-clone"></span>`fn clone(&self) -> Keys<'a>` — [`Keys`](#keys)
 
-##### `impl<'a> Debug for Keys<'a>`
+##### `impl Debug for Keys<'a>`
 
 - <span id="keys-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for Keys<'a>`
+##### `impl DoubleEndedIterator for Keys<'a>`
 
 - <span id="keys-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a> ExactSizeIterator for Keys<'a>`
+##### `impl ExactSizeIterator for Keys<'a>`
 
 - <span id="keys-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'a> FusedIterator for Keys<'a>`
+##### `impl FusedIterator for Keys<'a>`
 
-##### `impl<I> IntoIterator for Keys<'a>`
+##### `impl IntoIterator for Keys<'a>`
 
-- <span id="keys-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="keys-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="keys-intoiter"></span>`type IntoIter = I`
+- <span id="keys-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="keys-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Keys<'a>`
+##### `impl Iterator for Keys<'a>`
 
-- <span id="keys-item"></span>`type Item = &'a String`
+- <span id="keys-type-item"></span>`type Item = &'a String`
 
 - <span id="keys-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -491,39 +505,41 @@ struct Values<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1142-1144`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1142-L1144)*
+
 An iterator over a serde_json::Map's values.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Values<'a>`
+##### `impl Clone for Values<'a>`
 
 - <span id="values-clone"></span>`fn clone(&self) -> Values<'a>` — [`Values`](#values)
 
-##### `impl<'a> Debug for Values<'a>`
+##### `impl Debug for Values<'a>`
 
 - <span id="values-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for Values<'a>`
+##### `impl DoubleEndedIterator for Values<'a>`
 
 - <span id="values-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a> ExactSizeIterator for Values<'a>`
+##### `impl ExactSizeIterator for Values<'a>`
 
 - <span id="values-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'a> FusedIterator for Values<'a>`
+##### `impl FusedIterator for Values<'a>`
 
-##### `impl<I> IntoIterator for Values<'a>`
+##### `impl IntoIterator for Values<'a>`
 
-- <span id="values-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="values-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="values-intoiter"></span>`type IntoIter = I`
+- <span id="values-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="values-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Values<'a>`
+##### `impl Iterator for Values<'a>`
 
-- <span id="values-item"></span>`type Item = &'a Value`
+- <span id="values-type-item"></span>`type Item = &'a Value`
 
 - <span id="values-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -537,35 +553,37 @@ struct ValuesMut<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1157-1159`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1157-L1159)*
+
 A mutable iterator over a serde_json::Map's values.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ValuesMut<'a>`
+##### `impl Debug for ValuesMut<'a>`
 
 - <span id="valuesmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for ValuesMut<'a>`
+##### `impl DoubleEndedIterator for ValuesMut<'a>`
 
 - <span id="valuesmut-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'a> ExactSizeIterator for ValuesMut<'a>`
+##### `impl ExactSizeIterator for ValuesMut<'a>`
 
 - <span id="valuesmut-len"></span>`fn len(&self) -> usize`
 
-##### `impl<'a> FusedIterator for ValuesMut<'a>`
+##### `impl FusedIterator for ValuesMut<'a>`
 
-##### `impl<I> IntoIterator for ValuesMut<'a>`
+##### `impl IntoIterator for ValuesMut<'a>`
 
-- <span id="valuesmut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="valuesmut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="valuesmut-intoiter"></span>`type IntoIter = I`
+- <span id="valuesmut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="valuesmut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ValuesMut<'a>`
+##### `impl Iterator for ValuesMut<'a>`
 
-- <span id="valuesmut-item"></span>`type Item = &'a mut Value`
+- <span id="valuesmut-type-item"></span>`type Item = &'a mut Value`
 
 - <span id="valuesmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -578,6 +596,8 @@ struct IntoValues {
     iter: btree_map::IntoValues<alloc::string::String, crate::value::Value>,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:1172-1174`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1172-L1174)*
 
 An owning iterator over a serde_json::Map's values.
 
@@ -597,17 +617,17 @@ An owning iterator over a serde_json::Map's values.
 
 ##### `impl FusedIterator for IntoValues`
 
-##### `impl<I> IntoIterator for IntoValues`
+##### `impl IntoIterator for IntoValues`
 
-- <span id="intovalues-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intovalues-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intovalues-intoiter"></span>`type IntoIter = I`
+- <span id="intovalues-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intovalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoValues`
 
-- <span id="intovalues-item"></span>`type Item = Value`
+- <span id="intovalues-type-item"></span>`type Item = Value`
 
 - <span id="intovalues-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -624,8 +644,10 @@ enum Entry<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:623-628`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L623-L628)*
+
 A view into a single entry in a map, which may either be vacant or occupied.
-This enum is constructed from the `entry` method on [`Map`](../index.md).
+This enum is constructed from the `entry` method on [`Map`](#map).
 
 
 #### Variants
@@ -642,9 +664,9 @@ This enum is constructed from the `entry` method on [`Map`](../index.md).
 
 - <span id="entry-key"></span>`fn key(&self) -> &String`
 
-- <span id="entry-or-insert"></span>`fn or_insert(self, default: Value) -> &'a mut Value` — [`Value`](../index.md)
+- <span id="entry-or-insert"></span>`fn or_insert(self, default: Value) -> &'a mut Value` — [`Value`](../value/index.md)
 
-- <span id="entry-or-insert-with"></span>`fn or_insert_with<F>(self, default: F) -> &'a mut Value` — [`Value`](../index.md)
+- <span id="entry-or-insert-with"></span>`fn or_insert_with<F>(self, default: F) -> &'a mut Value` — [`Value`](../value/index.md)
 
 - <span id="entry-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
 
@@ -656,11 +678,15 @@ This enum is constructed from the `entry` method on [`Map`](../index.md).
 type MapImpl<K, V> = alloc::collections::BTreeMap<K, V>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:34`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L34)*
+
 ### `VacantEntryImpl<'a>`
 
 ```rust
 type VacantEntryImpl<'a> = btree_map::VacantEntry<'a, alloc::string::String, crate::value::Value>;
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:641`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L641)*
 
 ### `OccupiedEntryImpl<'a>`
 
@@ -668,11 +694,15 @@ type VacantEntryImpl<'a> = btree_map::VacantEntry<'a, alloc::string::String, cra
 type OccupiedEntryImpl<'a> = btree_map::OccupiedEntry<'a, alloc::string::String, crate::value::Value>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:646`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L646)*
+
 ### `IterImpl<'a>`
 
 ```rust
 type IterImpl<'a> = btree_map::Iter<'a, alloc::string::String, crate::value::Value>;
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:1065`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1065)*
 
 ### `IterMutImpl<'a>`
 
@@ -680,11 +710,15 @@ type IterImpl<'a> = btree_map::Iter<'a, alloc::string::String, crate::value::Val
 type IterMutImpl<'a> = btree_map::IterMut<'a, alloc::string::String, crate::value::Value>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1091`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1091)*
+
 ### `IntoIterImpl`
 
 ```rust
 type IntoIterImpl = btree_map::IntoIter<alloc::string::String, crate::value::Value>;
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:1117`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1117)*
 
 ### `KeysImpl<'a>`
 
@@ -692,11 +726,15 @@ type IntoIterImpl = btree_map::IntoIter<alloc::string::String, crate::value::Val
 type KeysImpl<'a> = btree_map::Keys<'a, alloc::string::String, crate::value::Value>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1132`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1132)*
+
 ### `ValuesImpl<'a>`
 
 ```rust
 type ValuesImpl<'a> = btree_map::Values<'a, alloc::string::String, crate::value::Value>;
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:1147`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1147)*
 
 ### `ValuesMutImpl<'a>`
 
@@ -704,13 +742,19 @@ type ValuesImpl<'a> = btree_map::Values<'a, alloc::string::String, crate::value:
 type ValuesMutImpl<'a> = btree_map::ValuesMut<'a, alloc::string::String, crate::value::Value>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1162`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1162)*
+
 ### `IntoValuesImpl`
 
 ```rust
 type IntoValuesImpl = btree_map::IntoValues<alloc::string::String, crate::value::Value>;
 ```
 
+*Defined in [`serde_json-1.0.145/src/map.rs:1177`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L1177)*
+
 ## Macros
 
 ### `delegate_iterator!`
+
+*Defined in [`serde_json-1.0.145/src/map.rs:569-599`](../../../.source_1765210505/serde_json-1.0.145/src/map.rs#L569-L599)*
 

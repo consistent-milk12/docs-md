@@ -45,7 +45,7 @@
 | [`ProgressTracker`](#progresstracker) | trait | Trait for defining stateful or stateless formatters |
 | [`segment`](#segment) | fn |  |
 | [`measure`](#measure) | fn |  |
-| [`width`](#width) | fn | finds the unicode-aware width of the passed grapheme cluters |
+| [`width`](#width) | fn | finds the unicode-aware width of the passed grapheme cluters panics on an empty parameter, or if the characters are not equal-width |
 | [`write_ansi_range`](#write_ansi_range) | fn | Write the visible text between start and end. |
 
 ## Structs
@@ -62,6 +62,8 @@ struct ProgressStyle {
     format_map: std::collections::HashMap<&'static str, Box<dyn ProgressTracker>>,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/style.rs:23-31`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L23-L31)*
 
 #### Implementations
 
@@ -87,7 +89,7 @@ struct ProgressStyle {
 
 - <span id="progressstyle-template"></span>`fn template(self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](#templateerror)
 
-- <span id="progressstyle-current-tick-str"></span>`fn current_tick_str(&self, state: &ProgressState) -> &str` — [`ProgressState`](../index.md)
+- <span id="progressstyle-current-tick-str"></span>`fn current_tick_str(&self, state: &ProgressState) -> &str` — [`ProgressState`](../state/index.md)
 
 - <span id="progressstyle-get-tick-str"></span>`fn get_tick_str(&self, idx: u64) -> &str`
 
@@ -95,21 +97,23 @@ struct ProgressStyle {
 
 - <span id="progressstyle-format-bar"></span>`fn format_bar(&self, fract: f32, width: usize, alt_style: Option<&Style>) -> BarDisplay<'_>` — [`BarDisplay`](#bardisplay)
 
-- <span id="progressstyle-format-state"></span>`fn format_state(&self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](../index.md), [`LineType`](../draw_target/index.md)
+- <span id="progressstyle-format-state"></span>`fn format_state(&self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](../state/index.md), [`LineType`](../draw_target/index.md)
 
-- <span id="progressstyle-push-line"></span>`fn push_line(&self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](../draw_target/index.md), [`ProgressState`](../index.md), [`WideElement`](#wideelement)
+- <span id="progressstyle-push-line"></span>`fn push_line(&self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](../draw_target/index.md), [`ProgressState`](../state/index.md), [`WideElement`](#wideelement)
 
 #### Trait Implementations
 
 ##### `impl Clone for ProgressStyle`
 
-- <span id="progressstyle-clone"></span>`fn clone(&self) -> ProgressStyle` — [`ProgressStyle`](../index.md)
+- <span id="progressstyle-clone"></span>`fn clone(&self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
 
 ### `TabRewriter<'a>`
 
 ```rust
 struct TabRewriter<'a>(&'a mut dyn fmt::Write, usize);
 ```
+
+*Defined in [`indicatif-0.18.3/src/style.rs:444`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L444)*
 
 #### Trait Implementations
 
@@ -124,6 +128,8 @@ struct Template {
     parts: Vec<TemplatePart>,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/style.rs:506-508`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L506-L508)*
 
 #### Implementations
 
@@ -152,6 +158,8 @@ struct TemplateError {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/style.rs:656-659`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L656-L659)*
+
 #### Trait Implementations
 
 ##### `impl Debug for TemplateError`
@@ -164,7 +172,7 @@ struct TemplateError {
 
 ##### `impl Error for TemplateError`
 
-##### `impl<T> ToString for TemplateError`
+##### `impl ToString for TemplateError`
 
 - <span id="templateerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -179,13 +187,15 @@ struct BarDisplay<'a> {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/style.rs:699-704`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L699-L704)*
+
 #### Trait Implementations
 
 ##### `impl Display for BarDisplay<'_>`
 
 - <span id="bardisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for BarDisplay<'a>`
+##### `impl ToString for BarDisplay<'a>`
 
 - <span id="bardisplay-to-string"></span>`fn to_string(&self) -> String`
 
@@ -198,13 +208,15 @@ struct RepeatedStringDisplay<'a> {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/style.rs:718-721`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L718-L721)*
+
 #### Trait Implementations
 
 ##### `impl Display for RepeatedStringDisplay<'_>`
 
 - <span id="repeatedstringdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for RepeatedStringDisplay<'a>`
+##### `impl ToString for RepeatedStringDisplay<'a>`
 
 - <span id="repeatedstringdisplay-to-string"></span>`fn to_string(&self) -> String`
 
@@ -219,13 +231,15 @@ struct PaddedStringDisplay<'a> {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/style.rs:732-737`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L732-L737)*
+
 #### Trait Implementations
 
 ##### `impl Display for PaddedStringDisplay<'_>`
 
 - <span id="paddedstringdisplay-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for PaddedStringDisplay<'a>`
+##### `impl ToString for PaddedStringDisplay<'a>`
 
 - <span id="paddedstringdisplay-to-string"></span>`fn to_string(&self) -> String`
 
@@ -244,17 +258,19 @@ enum WideElement<'a> {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/style.rs:454-457`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L454-L457)*
+
 #### Implementations
 
-- <span id="wideelement-expand"></span>`fn expand(self, cur: String, style: &ProgressStyle, state: &ProgressState, buf: &mut String, width: u16) -> String` — [`ProgressStyle`](../index.md), [`ProgressState`](../index.md)
+- <span id="wideelement-expand"></span>`fn expand(self, cur: String, style: &ProgressStyle, state: &ProgressState, buf: &mut String, width: u16) -> String` — [`ProgressStyle`](#progressstyle), [`ProgressState`](../state/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for WideElement<'a>`
+##### `impl Clone for WideElement<'a>`
 
 - <span id="wideelement-clone"></span>`fn clone(&self) -> WideElement<'a>` — [`WideElement`](#wideelement)
 
-##### `impl<'a> Copy for WideElement<'a>`
+##### `impl Copy for WideElement<'a>`
 
 ### `TemplatePart`
 
@@ -272,6 +288,8 @@ enum TemplatePart {
     NewLine,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/style.rs:674-685`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L674-L685)*
 
 #### Trait Implementations
 
@@ -306,6 +324,8 @@ enum State {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/style.rs:688-697`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L688-L697)*
+
 #### Trait Implementations
 
 ##### `impl Clone for State`
@@ -336,6 +356,8 @@ enum Alignment {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/style.rs:808-812`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L808-L812)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Alignment`
@@ -363,6 +385,8 @@ enum Alignment {
 ```rust
 trait ProgressTracker: Send + Sync { ... }
 ```
+
+*Defined in [`indicatif-0.18.3/src/style.rs:815-824`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L815-L824)*
 
 Trait for defining stateful or stateless formatters
 
@@ -396,17 +420,23 @@ Trait for defining stateful or stateless formatters
 fn segment(s: &str) -> Vec<Box<str>>
 ```
 
+*Defined in [`indicatif-0.18.3/src/style.rs:41-43`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L41-L43)*
+
 ### `measure`
 
 ```rust
 fn measure(s: &str) -> usize
 ```
 
+*Defined in [`indicatif-0.18.3/src/style.rs:46-48`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L46-L48)*
+
 ### `width`
 
 ```rust
 fn width(c: &[Box<str>]) -> usize
 ```
+
+*Defined in [`indicatif-0.18.3/src/style.rs:57-68`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L57-L68)*
 
 finds the unicode-aware width of the passed grapheme cluters
 panics on an empty parameter, or if the characters are not equal-width
@@ -416,6 +446,8 @@ panics on an empty parameter, or if the characters are not equal-width
 ```rust
 fn write_ansi_range(formatter: &mut std::fmt::Formatter<'_>, text: &str, start: usize, end: usize) -> fmt::Result
 ```
+
+*Defined in [`indicatif-0.18.3/src/style.rs:774-805`](../../../.source_1765210505/indicatif-0.18.3/src/style.rs#L774-L805)*
 
 Write the visible text between start and end. The ansi escape
 sequences are written unchanged.

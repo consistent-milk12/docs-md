@@ -27,19 +27,21 @@ macros in `clap_derive`.
 trait Parser: FromArgMatches + CommandFactory + Sized { ... }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/derive.rs:29-111`](../../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L29-L111)*
+
 Parse command-line arguments into `Self`.
 
 The primary one-stop-shop trait used to create an instance of a `clap`
-[`Command`](../index.md), conduct the parsing, and turn the resulting [`ArgMatches`](../index.md) back
+[`Command`](../builder/command/index.md), conduct the parsing, and turn the resulting [`ArgMatches`](../parser/matches/arg_matches/index.md) back
 into concrete instance of the user struct.
 
-This trait is primarily a convenience on top of [`FromArgMatches`](../index.md) +
-[`CommandFactory`](../index.md) which uses those two underlying traits to build the two
+This trait is primarily a convenience on top of [`FromArgMatches`](#fromargmatches) +
+[`CommandFactory`](#commandfactory) which uses those two underlying traits to build the two
 fundamental functions `parse` which uses the `std::env::args_os` iterator,
 and `parse_from` which allows the consumer to supply the iterator (along
 with fallible options for each).
 
-See also [`Subcommand`](../index.md) and [`Args`](../index.md).
+See also [`Subcommand`](#subcommand) and [`Args`](#args).
 
 <div class="warning">
 
@@ -83,19 +85,21 @@ See also [`Subcommand`](../index.md) and [`Args`](../index.md).
 trait CommandFactory: Sized { ... }
 ```
 
-Create a [`Command`](../index.md) relevant for a user-defined container.
+*Defined in [`clap_builder-4.5.53/src/derive.rs:116-125`](../../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L116-L125)*
 
-Derived as part of [`Parser`](../index.md).
+Create a [`Command`](../builder/command/index.md) relevant for a user-defined container.
+
+Derived as part of [`Parser`](#parser).
 
 #### Required Methods
 
 - `fn command() -> Command`
 
-  Build a [`Command`](../index.md) that can instantiate `Self`.
+  Build a [`Command`](../builder/command/index.md) that can instantiate `Self`.
 
 - `fn command_for_update() -> Command`
 
-  Build a [`Command`](../index.md) that can update `self`.
+  Build a [`Command`](../builder/command/index.md) that can update `self`.
 
 #### Implementors
 
@@ -107,15 +111,17 @@ Derived as part of [`Parser`](../index.md).
 trait FromArgMatches: Sized { ... }
 ```
 
-Converts an instance of [`ArgMatches`](../index.md) to a user-defined container.
+*Defined in [`clap_builder-4.5.53/src/derive.rs:130-212`](../../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L130-L212)*
 
-Derived as part of [`Parser`](../index.md), [`Args`](../index.md), and [`Subcommand`](../index.md).
+Converts an instance of [`ArgMatches`](../parser/matches/arg_matches/index.md) to a user-defined container.
+
+Derived as part of [`Parser`](#parser), [`Args`](#args), and [`Subcommand`](#subcommand).
 
 #### Required Methods
 
 - `fn from_arg_matches(matches: &ArgMatches) -> Result<Self, Error>`
 
-  Instantiate `Self` from [`ArgMatches`](../index.md), parsing the arguments as needed.
+  Instantiate `Self` from [`ArgMatches`](../parser/matches/arg_matches/index.md), parsing the arguments as needed.
 
 - `fn update_from_arg_matches(&mut self, matches: &ArgMatches) -> Result<(), Error>`
 
@@ -125,7 +131,7 @@ Derived as part of [`Parser`](../index.md), [`Args`](../index.md), and [`Subcomm
 
 - `fn from_arg_matches_mut(matches: &mut ArgMatches) -> Result<Self, Error>`
 
-  Instantiate `Self` from [`ArgMatches`](../index.md), parsing the arguments as needed.
+  Instantiate `Self` from [`ArgMatches`](../parser/matches/arg_matches/index.md), parsing the arguments as needed.
 
 - `fn update_from_arg_matches_mut(&mut self, matches: &mut ArgMatches) -> Result<(), Error>`
 
@@ -142,6 +148,8 @@ Derived as part of [`Parser`](../index.md), [`Args`](../index.md), and [`Subcomm
 ```rust
 trait Args: FromArgMatches + Sized { ... }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/derive.rs:227-246`](../../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L227-L246)*
 
 Parse a set of arguments into a user-defined container.
 
@@ -161,11 +169,11 @@ with:
 
 - `fn augment_args(cmd: Command) -> Command`
 
-  Append to [`Command`](../index.md) so it can instantiate `Self` via
+  Append to [`Command`](../builder/command/index.md) so it can instantiate `Self` via
 
 - `fn augment_args_for_update(cmd: Command) -> Command`
 
-  Append to [`Command`](../index.md) so it can instantiate `self` via
+  Append to [`Command`](../builder/command/index.md) so it can instantiate `self` via
 
 #### Provided Methods
 
@@ -183,6 +191,8 @@ with:
 ```rust
 trait Subcommand: FromArgMatches + Sized { ... }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/derive.rs:262-279`](../../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L262-L279)*
 
 Parse a sub-command into a user-defined enum.
 
@@ -203,11 +213,11 @@ with:
 
 - `fn augment_subcommands(cmd: Command) -> Command`
 
-  Append to [`Command`](../index.md) so it can instantiate `Self` via
+  Append to [`Command`](../builder/command/index.md) so it can instantiate `Self` via
 
 - `fn augment_subcommands_for_update(cmd: Command) -> Command`
 
-  Append to [`Command`](../index.md) so it can instantiate `self` via
+  Append to [`Command`](../builder/command/index.md) so it can instantiate `self` via
 
 - `fn has_subcommand(name: &str) -> bool`
 
@@ -225,9 +235,11 @@ with:
 trait ValueEnum: Sized + Clone { ... }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/derive.rs:293-314`](../../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L293-L314)*
+
 Parse arguments into enums.
 
-When deriving [`Parser`](../index.md), a field whose type implements `ValueEnum` can have the attribute
+When deriving [`Parser`](#parser), a field whose type implements `ValueEnum` can have the attribute
 `#[arg(value_enum)]` which will
 - Call `EnumValueParser`
 - Allowing using the `#[arg(default_value_t)]` attribute without implementing `Display`.
@@ -256,7 +268,7 @@ When deriving [`Parser`](../index.md), a field whose type implements `ValueEnum`
 
 #### Implementors
 
-- [`ColorChoice`](../index.md)
+- [`ColorChoice`](../util/color/index.md)
 
 ## Functions
 
@@ -265,4 +277,6 @@ When deriving [`Parser`](../index.md), a field whose type implements `ValueEnum`
 ```rust
 fn format_error<I: CommandFactory>(err: crate::Error) -> crate::Error
 ```
+
+*Defined in [`clap_builder-4.5.53/src/derive.rs:387-390`](../../../.source_1765210505/clap_builder-4.5.53/src/derive.rs#L387-L390)*
 

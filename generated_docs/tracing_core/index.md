@@ -10,17 +10,17 @@ This crate provides:
 
 * [`span::Id`](span/index.md) identifies a span within the execution of a program.
 
-* [`Event`](#event) represents a single event within a trace.
+* [`Event`](event/index.md) represents a single event within a trace.
 
-* [`Subscriber`](#subscriber), the trait implemented to collect trace data.
+* [`Subscriber`](subscriber/index.md), the trait implemented to collect trace data.
 
-* [`Metadata`](#metadata) and [`Callsite`](#callsite) provide information describing spans and
+* [`Metadata`](metadata/index.md) and [`Callsite`](callsite/index.md) provide information describing spans and
   `Event`s.
 
-* [`Field`](#field), [`FieldSet`](field/index.md), [`Value`](field/index.md), and [`ValueSet`](field/index.md) represent the
+* [`Field`](field/index.md), [`FieldSet`](field/index.md), [`Value`](field/index.md), and [`ValueSet`](field/index.md) represent the
   structured data attached to a span.
 
-* [`Dispatch`](#dispatch) allows spans and events to be dispatched to `Subscriber`s.
+* [`Dispatch`](dispatcher/index.md) allows spans and events to be dispatched to `Subscriber`s.
 
 In addition, it defines the global callsite registry and per-thread current
 dispatcher which other components of the tracing system rely on.
@@ -147,7 +147,7 @@ long as doing so complies with this policy.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`lazy`](#lazy) | mod |  |
-| [`callsite`](#callsite) | mod | Callsites represent the source locations from which spans or events |
+| [`callsite`](#callsite) | mod | Callsites represent the source locations from which spans or events originate. |
 | [`dispatcher`](#dispatcher) | mod | Dispatches trace events to [`Subscriber`]s. |
 | [`event`](#event) | mod | Events represent single points in time during the execution of a program. |
 | [`field`](#field) | mod | `Span` and `Event` key-value data. |
@@ -192,7 +192,9 @@ struct Dispatch {
 }
 ```
 
-`Dispatch` trace data to a [`Subscriber`](#subscriber).
+*Defined in [`tracing-core-0.1.35/src/dispatcher.rs:149-151`](../../.source_1765210505/tracing-core-0.1.35/src/dispatcher.rs#L149-L151)*
+
+`Dispatch` trace data to a [`Subscriber`](subscriber/index.md).
 
 #### Implementations
 
@@ -204,11 +206,11 @@ struct Dispatch {
 
 - <span id="dispatch-downgrade"></span>`fn downgrade(&self) -> WeakDispatch` — [`WeakDispatch`](dispatcher/index.md)
 
-- <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](#subscriber)
+- <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](subscriber/index.md)
 
-- <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](#metadata), [`Interest`](#interest)
+- <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](metadata/index.md), [`Interest`](subscriber/index.md)
 
-- <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](#levelfilter)
+- <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](metadata/index.md)
 
 - <span id="dispatch-new-span"></span>`fn new_span(&self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](span/index.md), [`Id`](span/index.md)
 
@@ -216,9 +218,9 @@ struct Dispatch {
 
 - <span id="dispatch-record-follows-from"></span>`fn record_follows_from(&self, span: &span::Id, follows: &span::Id)` — [`Id`](span/index.md)
 
-- <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](#metadata)
+- <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](metadata/index.md)
 
-- <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](#event)
+- <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](event/index.md)
 
 - <span id="dispatch-enter"></span>`fn enter(&self, span: &span::Id)` — [`Id`](span/index.md)
 
@@ -240,7 +242,7 @@ struct Dispatch {
 
 ##### `impl Clone for Dispatch`
 
-- <span id="dispatch-clone"></span>`fn clone(&self) -> Dispatch` — [`Dispatch`](#dispatch)
+- <span id="dispatch-clone"></span>`fn clone(&self) -> Dispatch` — [`Dispatch`](dispatcher/index.md)
 
 ##### `impl Debug for Dispatch`
 
@@ -260,6 +262,8 @@ struct Event<'a> {
 }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/event.rs:23-27`](../../.source_1765210505/tracing-core-0.1.35/src/event.rs#L23-L27)*
+
 `Event`s represent single points in time where something occurred during the
 execution of a program.
 
@@ -278,19 +282,19 @@ two key differences:
 
 #### Implementations
 
-- <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](#metadata), [`ValueSet`](field/index.md)
+- <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
 
-- <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](#metadata), [`ValueSet`](field/index.md)
+- <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
 
-- <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](span/index.md), [`Metadata`](#metadata), [`ValueSet`](field/index.md)
+- <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](span/index.md), [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
 
-- <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](span/index.md), [`Metadata`](#metadata), [`ValueSet`](field/index.md)
+- <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](span/index.md), [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
 
 - <span id="event-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](field/index.md)
 
 - <span id="event-fields"></span>`fn fields(&self) -> field::Iter` — [`Iter`](field/index.md)
 
-- <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](#metadata)
+- <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](metadata/index.md)
 
 - <span id="event-is-root"></span>`fn is_root(&self) -> bool`
 
@@ -300,7 +304,7 @@ two key differences:
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Event<'a>`
+##### `impl Debug for Event<'a>`
 
 - <span id="event-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -312,6 +316,8 @@ struct Field {
     fields: FieldSet,
 }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L134-L137)*
 
 An opaque key allowing _O_(1) access to a field in a `Span`'s key-value
 data.
@@ -358,7 +364,7 @@ and use the key for that name for all other accesses.
 
 - <span id="field-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> ToString for Field`
+##### `impl ToString for Field`
 
 - <span id="field-to-string"></span>`fn to_string(&self) -> String`
 
@@ -367,6 +373,8 @@ and use the key for that name for all other accesses.
 ```rust
 struct Level(LevelInner);
 ```
+
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:221`](../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L221)*
 
 Describes the level of verbosity of a span or event.
 
@@ -400,10 +408,10 @@ Applications using those libraries typically chose to ignore those traces. Howev
 debugging an issue involving said libraries, it may be useful to temporarily
 enable the more verbose traces.
 
-The [`LevelFilter`](#levelfilter) type is provided to enable filtering traces by
-verbosity. `Level`s can be compared against [`LevelFilter`](#levelfilter)s, and
-[`LevelFilter`](#levelfilter) has a variant for each `Level`, which compares analogously
-to that level. In addition, [`LevelFilter`](#levelfilter) adds a `LevelFilter::OFF`
+The [`LevelFilter`](metadata/index.md) type is provided to enable filtering traces by
+verbosity. `Level`s can be compared against [`LevelFilter`](metadata/index.md)s, and
+[`LevelFilter`](metadata/index.md) has a variant for each `Level`, which compares analogously
+to that level. In addition, [`LevelFilter`](metadata/index.md) adds a `LevelFilter::OFF`
 variant, which is considered "less verbose" than every other `Level`. This is
 intended to allow filters to completely disable tracing in a particular context.
 
@@ -420,9 +428,9 @@ assert!(LevelFilter::INFO >= Level::INFO);
 
 ## Examples
 
-Below is a simple example of how a [`Subscriber`](#subscriber) could implement filtering through
-a [`LevelFilter`](#levelfilter). When a span or event is recorded, the `Subscriber::enabled` method
-compares the span or event's `Level` against the configured [`LevelFilter`](#levelfilter).
+Below is a simple example of how a [`Subscriber`](subscriber/index.md) could implement filtering through
+a [`LevelFilter`](metadata/index.md). When a span or event is recorded, the `Subscriber::enabled` method
+compares the span or event's `Level` against the configured [`LevelFilter`](metadata/index.md).
 The optional `Subscriber::max_level_hint` method can also be implemented to allow spans
 and events above a maximum verbosity level to be skipped more efficiently,
 often improving performance in short-lived programs.
@@ -498,15 +506,15 @@ recorded in.
 
 #### Implementations
 
-- <span id="level-error"></span>`const ERROR: Level`
+- <span id="level-const-error"></span>`const ERROR: Level`
 
-- <span id="level-warn"></span>`const WARN: Level`
+- <span id="level-const-warn"></span>`const WARN: Level`
 
-- <span id="level-info"></span>`const INFO: Level`
+- <span id="level-const-info"></span>`const INFO: Level`
 
-- <span id="level-debug"></span>`const DEBUG: Level`
+- <span id="level-const-debug"></span>`const DEBUG: Level`
 
-- <span id="level-trace"></span>`const TRACE: Level`
+- <span id="level-const-trace"></span>`const TRACE: Level`
 
 - <span id="level-as-str"></span>`fn as_str(&self) -> &'static str`
 
@@ -514,7 +522,7 @@ recorded in.
 
 ##### `impl Clone for Level`
 
-- <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](#level)
+- <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](metadata/index.md)
 
 ##### `impl Copy for Level`
 
@@ -530,7 +538,7 @@ recorded in.
 
 ##### `impl FromStr for Level`
 
-- <span id="level-err"></span>`type Err = ParseLevelError`
+- <span id="level-type-err"></span>`type Err = ParseLevelError`
 
 - <span id="level-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](metadata/index.md)
 
@@ -544,23 +552,23 @@ recorded in.
 
 ##### `impl PartialEq for Level`
 
-- <span id="level-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="level-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](metadata/index.md)
 
 ##### `impl PartialOrd for Level`
 
-- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
+- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](metadata/index.md)
 
-- <span id="level-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](metadata/index.md)
 
-- <span id="level-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](metadata/index.md)
 
-- <span id="level-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](metadata/index.md)
 
-- <span id="level-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](metadata/index.md)
 
 ##### `impl StructuralPartialEq for Level`
 
-##### `impl<T> ToString for Level`
+##### `impl ToString for Level`
 
 - <span id="level-to-string"></span>`fn to_string(&self) -> String`
 
@@ -570,9 +578,11 @@ recorded in.
 struct LevelFilter(Option<Level>);
 ```
 
-A filter comparable to a verbosity [`Level`](#level).
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:239`](../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L239)*
 
-If a [`Level`](#level) is considered less than or equal to a `LevelFilter`, it
+A filter comparable to a verbosity [`Level`](metadata/index.md).
+
+If a [`Level`](metadata/index.md) is considered less than or equal to a `LevelFilter`, it
 should be considered enabled; if greater than the `LevelFilter`, that level
 is disabled. See `LevelFilter::current` for more details.
 
@@ -580,49 +590,49 @@ Note that this is essentially identical to the `Level` type, but with the
 addition of an `OFF` level that completely disables all trace
 instrumentation.
 
-See the documentation for the [`Level`](#level) type to see how `Level`s
+See the documentation for the [`Level`](metadata/index.md) type to see how `Level`s
 and `LevelFilter`s interact.
 
 
 #### Implementations
 
-- <span id="levelfilter-off"></span>`const OFF: LevelFilter`
+- <span id="levelfilter-const-off"></span>`const OFF: LevelFilter`
 
-- <span id="levelfilter-error"></span>`const ERROR: LevelFilter`
+- <span id="levelfilter-const-error"></span>`const ERROR: LevelFilter`
 
-- <span id="levelfilter-warn"></span>`const WARN: LevelFilter`
+- <span id="levelfilter-const-warn"></span>`const WARN: LevelFilter`
 
-- <span id="levelfilter-info"></span>`const INFO: LevelFilter`
+- <span id="levelfilter-const-info"></span>`const INFO: LevelFilter`
 
-- <span id="levelfilter-debug"></span>`const DEBUG: LevelFilter`
+- <span id="levelfilter-const-debug"></span>`const DEBUG: LevelFilter`
 
-- <span id="levelfilter-trace"></span>`const TRACE: LevelFilter`
+- <span id="levelfilter-const-trace"></span>`const TRACE: LevelFilter`
 
-- <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](#level)
+- <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](metadata/index.md)
 
-- <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](#level)
+- <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](metadata/index.md)
 
-- <span id="levelfilter-error-usize"></span>`const ERROR_USIZE: usize`
+- <span id="levelfilter-const-error-usize"></span>`const ERROR_USIZE: usize`
 
-- <span id="levelfilter-warn-usize"></span>`const WARN_USIZE: usize`
+- <span id="levelfilter-const-warn-usize"></span>`const WARN_USIZE: usize`
 
-- <span id="levelfilter-info-usize"></span>`const INFO_USIZE: usize`
+- <span id="levelfilter-const-info-usize"></span>`const INFO_USIZE: usize`
 
-- <span id="levelfilter-debug-usize"></span>`const DEBUG_USIZE: usize`
+- <span id="levelfilter-const-debug-usize"></span>`const DEBUG_USIZE: usize`
 
-- <span id="levelfilter-trace-usize"></span>`const TRACE_USIZE: usize`
+- <span id="levelfilter-const-trace-usize"></span>`const TRACE_USIZE: usize`
 
-- <span id="levelfilter-off-usize"></span>`const OFF_USIZE: usize`
+- <span id="levelfilter-const-off-usize"></span>`const OFF_USIZE: usize`
 
 - <span id="levelfilter-current"></span>`fn current() -> Self`
 
-- <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](#levelfilter)
+- <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](metadata/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for LevelFilter`
 
-- <span id="levelfilter-clone"></span>`fn clone(&self) -> LevelFilter` — [`LevelFilter`](#levelfilter)
+- <span id="levelfilter-clone"></span>`fn clone(&self) -> LevelFilter` — [`LevelFilter`](metadata/index.md)
 
 ##### `impl Copy for LevelFilter`
 
@@ -638,7 +648,7 @@ and `LevelFilter`s interact.
 
 ##### `impl FromStr for LevelFilter`
 
-- <span id="levelfilter-err"></span>`type Err = ParseLevelFilterError`
+- <span id="levelfilter-type-err"></span>`type Err = ParseLevelFilterError`
 
 - <span id="levelfilter-from-str"></span>`fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
 
@@ -652,23 +662,23 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq for LevelFilter`
 
-- <span id="levelfilter-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="levelfilter-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
 
-##### `impl PartialOrd for LevelFilter`
+##### `impl PartialOrd for Level`
 
-- <span id="levelfilter-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](#level)
+- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](metadata/index.md)
 
-- <span id="levelfilter-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="level-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
 
-- <span id="levelfilter-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="level-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
 
-- <span id="levelfilter-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="level-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
 
-- <span id="levelfilter-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="level-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
 
 ##### `impl StructuralPartialEq for LevelFilter`
 
-##### `impl<T> ToString for LevelFilter`
+##### `impl ToString for LevelFilter`
 
 - <span id="levelfilter-to-string"></span>`fn to_string(&self) -> String`
 
@@ -687,6 +697,8 @@ struct Metadata<'a> {
 }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:57-86`](../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L57-L86)*
+
 Metadata describing a [`span`](span/index.md) or [`event`](event/index.md).
 
 All spans and events have the following metadata:
@@ -697,7 +709,7 @@ All spans and events have the following metadata:
   overridden.
 - A [verbosity level]. This determines how verbose a given span or event
   is, and allows enabling or disabling more verbose diagnostics
-  situationally. See the documentation for the [`Level`](#level) type for details.
+  situationally. See the documentation for the [`Level`](metadata/index.md) type for details.
 - The names of the [`fields`](../tracing_attributes/attr/kw/index.md) defined by the span or event.
 - Whether the metadata corresponds to a span or event.
 
@@ -707,7 +719,7 @@ location where the span or event originated _may_ be provided:
 - The [line number]
 - The [module path]
 
-Metadata is used by [`Subscriber`](#subscriber)s when filtering spans and events, and it
+Metadata is used by [`Subscriber`](subscriber/index.md)s when filtering spans and events, and it
 may also be used as part of their data payload.
 
 When created by the `event!` or `span!` macro, the metadata describing a
@@ -776,11 +788,11 @@ of `Metadata`'s other fields is checked in debug builds.
 
 #### Implementations
 
-- <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](#level), [`FieldSet`](field/index.md), [`Kind`](#kind)
+- <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](metadata/index.md), [`FieldSet`](field/index.md), [`Kind`](metadata/index.md)
 
 - <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](field/index.md)
 
-- <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](#level)
+- <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](metadata/index.md)
 
 - <span id="metadata-name"></span>`fn name(&self) -> &'static str`
 
@@ -816,21 +828,23 @@ of `Metadata`'s other fields is checked in debug builds.
 struct Kind(u8);
 ```
 
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:90`](../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L90)*
+
 Indicates whether the callsite is a span or event.
 
 #### Implementations
 
-- <span id="kind-event-bit"></span>`const EVENT_BIT: u8`
+- <span id="kind-const-event-bit"></span>`const EVENT_BIT: u8`
 
-- <span id="kind-span-bit"></span>`const SPAN_BIT: u8`
+- <span id="kind-const-span-bit"></span>`const SPAN_BIT: u8`
 
-- <span id="kind-hint-bit"></span>`const HINT_BIT: u8`
+- <span id="kind-const-hint-bit"></span>`const HINT_BIT: u8`
 
-- <span id="kind-event"></span>`const EVENT: Kind`
+- <span id="kind-const-event"></span>`const EVENT: Kind`
 
-- <span id="kind-span"></span>`const SPAN: Kind`
+- <span id="kind-const-span"></span>`const SPAN: Kind`
 
-- <span id="kind-hint"></span>`const HINT: Kind`
+- <span id="kind-const-hint"></span>`const HINT: Kind`
 
 - <span id="kind-is-span"></span>`fn is_span(&self) -> bool`
 
@@ -844,7 +858,7 @@ Indicates whether the callsite is a span or event.
 
 ##### `impl Clone for Kind`
 
-- <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](#kind)
+- <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](metadata/index.md)
 
 ##### `impl Debug for Kind`
 
@@ -854,7 +868,7 @@ Indicates whether the callsite is a span or event.
 
 ##### `impl PartialEq for Kind`
 
-- <span id="kind-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](#kind)
+- <span id="kind-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](metadata/index.md)
 
 ##### `impl StructuralPartialEq for Kind`
 
@@ -864,7 +878,9 @@ Indicates whether the callsite is a span or event.
 struct Interest(InterestKind);
 ```
 
-Indicates a [`Subscriber`](#subscriber)'s interest in a particular callsite.
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:589`](../../.source_1765210505/tracing-core-0.1.35/src/subscriber.rs#L589)*
+
+Indicates a [`Subscriber`](subscriber/index.md)'s interest in a particular callsite.
 
 `Subscriber`s return an `Interest` from their `register_callsite` methods
 in order to determine whether that span should be enabled or disabled.
@@ -885,13 +901,13 @@ in order to determine whether that span should be enabled or disabled.
 
 - <span id="interest-is-always"></span>`fn is_always(&self) -> bool`
 
-- <span id="interest-and"></span>`fn and(self, rhs: Interest) -> Self` — [`Interest`](#interest)
+- <span id="interest-and"></span>`fn and(self, rhs: Interest) -> Self` — [`Interest`](subscriber/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Interest`
 
-- <span id="interest-clone"></span>`fn clone(&self) -> Interest` — [`Interest`](#interest)
+- <span id="interest-clone"></span>`fn clone(&self) -> Interest` — [`Interest`](subscriber/index.md)
 
 ##### `impl Debug for Interest`
 
@@ -905,6 +921,8 @@ in order to determine whether that span should be enabled or disabled.
 trait Callsite: Sync { ... }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/callsite.rs:125-170`](../../.source_1765210505/tracing-core-0.1.35/src/callsite.rs#L125-L170)*
+
 Trait implemented by callsites.
 
 These functions are only intended to be called by the callsite registry, which
@@ -917,7 +935,7 @@ callsites.
 
 - `fn set_interest(&self, interest: Interest)`
 
-  Sets the [`Interest`](#interest) for this callsite.
+  Sets the [`Interest`](subscriber/index.md) for this callsite.
 
 - `fn metadata(&self) -> &Metadata<'_>`
 
@@ -932,6 +950,8 @@ callsites.
 ```rust
 trait Subscriber: 'static { ... }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:80-499`](../../.source_1765210505/tracing-core-0.1.35/src/subscriber.rs#L80-L499)*
 
 Trait representing the functions required to collect trace data.
 
@@ -973,7 +993,7 @@ to override these default implementations.
 The following methods are likely of interest:
 
 - `register_callsite` is called once for each callsite from which a span
-  event may originate, and returns an [`Interest`](#interest) value describing whether or
+  event may originate, and returns an [`Interest`](subscriber/index.md) value describing whether or
   not the subscriber wishes to see events or spans from that callsite. By
   default, it calls `enabled`, and returns `Interest::always()` if
   `enabled` returns true, or `Interest::never()` if enabled returns false.
@@ -1026,7 +1046,7 @@ The following methods are likely of interest:
 
 - `fn event(&self, event: &Event<'_>)`
 
-  Records that an [`Event`](#event) has occurred.
+  Records that an [`Event`](event/index.md) has occurred.
 
 - `fn enter(&self, span: &span::Id)`
 
@@ -1040,7 +1060,7 @@ The following methods are likely of interest:
 
 - `fn on_register_dispatch(&self, subscriber: &Dispatch)`
 
-  Invoked when this subscriber becomes a [`Dispatch`](#dispatch).
+  Invoked when this subscriber becomes a [`Dispatch`](dispatcher/index.md).
 
 - `fn register_callsite(&self, metadata: &'static Metadata<'static>) -> Interest`
 
@@ -1052,7 +1072,7 @@ The following methods are likely of interest:
 
 - `fn event_enabled(&self, event: &Event<'_>) -> bool`
 
-  Determine if an [`Event`](#event) should be recorded.
+  Determine if an [`Event`](event/index.md) should be recorded.
 
 - `fn clone_span(&self, id: &span::Id) -> span::Id`
 
@@ -1084,7 +1104,9 @@ The following methods are likely of interest:
 
 ### `identify_callsite!`
 
-Statically constructs an [`Identifier`](callsite/index.md) for the provided [`Callsite`](#callsite).
+*Defined in [`tracing-core-0.1.35/src/lib.rs:192-196`](../../.source_1765210505/tracing-core-0.1.35/src/lib.rs#L192-L196)*
+
+Statically constructs an [`Identifier`](callsite/index.md) for the provided [`Callsite`](callsite/index.md).
 
 This may be used in contexts such as static initializers.
 
@@ -1113,6 +1135,8 @@ static CALLSITE_ID: callsite::Identifier = identify_callsite!(&CALLSITE);
 
 
 ### `metadata!`
+
+*Defined in [`tracing-core-0.1.35/src/lib.rs:230-267`](../../.source_1765210505/tracing-core-0.1.35/src/lib.rs#L230-L267)*
 
 Statically constructs new span [`metadata`](metadata/index.md).
 

@@ -21,13 +21,15 @@ struct Collector {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:22-24`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/collector.rs#L22-L24)*
+
 An epoch-based garbage collector.
 
 #### Implementations
 
 - <span id="collector-new"></span>`fn new() -> Self`
 
-- <span id="collector-register"></span>`fn register(&self) -> LocalHandle` — [`LocalHandle`](../index.md)
+- <span id="collector-register"></span>`fn register(&self) -> LocalHandle` — [`LocalHandle`](#localhandle)
 
 #### Trait Implementations
 
@@ -47,15 +49,15 @@ An epoch-based garbage collector.
 
 ##### `impl PartialEq for Collector`
 
-- <span id="collector-eq"></span>`fn eq(&self, rhs: &Collector) -> bool` — [`Collector`](../index.md)
+- <span id="collector-eq"></span>`fn eq(&self, rhs: &Collector) -> bool` — [`Collector`](#collector)
 
-##### `impl<T> Pointable for Collector`
+##### `impl Pointable for Collector`
 
-- <span id="collector-align"></span>`const ALIGN: usize`
+- <span id="collector-const-align"></span>`const ALIGN: usize`
 
-- <span id="collector-init"></span>`type Init = T`
+- <span id="collector-type-init"></span>`type Init = T`
 
-- <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
 - <span id="collector-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -75,15 +77,17 @@ struct LocalHandle {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/collector.rs:73-75`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/collector.rs#L73-L75)*
+
 A handle to a garbage collector.
 
 #### Implementations
 
-- <span id="localhandle-pin"></span>`fn pin(&self) -> Guard` — [`Guard`](../index.md)
+- <span id="localhandle-pin"></span>`fn pin(&self) -> Guard` — [`Guard`](../guard/index.md)
 
 - <span id="localhandle-is-pinned"></span>`fn is_pinned(&self) -> bool`
 
-- <span id="localhandle-collector"></span>`fn collector(&self) -> &Collector` — [`Collector`](../index.md)
+- <span id="localhandle-collector"></span>`fn collector(&self) -> &Collector` — [`Collector`](#collector)
 
 #### Trait Implementations
 
@@ -95,13 +99,13 @@ A handle to a garbage collector.
 
 - <span id="localhandle-drop"></span>`fn drop(&mut self)`
 
-##### `impl<T> Pointable for LocalHandle`
+##### `impl Pointable for LocalHandle`
 
-- <span id="localhandle-align"></span>`const ALIGN: usize`
+- <span id="localhandle-const-align"></span>`const ALIGN: usize`
 
-- <span id="localhandle-init"></span>`type Init = T`
+- <span id="localhandle-type-init"></span>`type Init = T`
 
-- <span id="localhandle-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="localhandle-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
 - <span id="localhandle-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

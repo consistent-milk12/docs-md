@@ -18,6 +18,8 @@
 struct Related(syn::Member);
 ```
 
+*Defined in [`miette-derive-7.6.0/src/related.rs:11`](../../../.source_1765210505/miette-derive-7.6.0/src/related.rs#L11)*
+
 #### Implementations
 
 - <span id="related-from-fields"></span>`fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`

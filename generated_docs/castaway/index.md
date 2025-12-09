@@ -39,6 +39,8 @@ Castaway provides the following key macros:
 trait LifetimeFree { ... }
 ```
 
+*Defined in [`castaway-0.2.4/src/lifetime_free.rs:43`](../../.source_1765210505/castaway-0.2.4/src/lifetime_free.rs#L43)*
+
 Marker trait for types that do not contain any lifetime parameters. Such
 types are safe to cast from non-static type parameters if their types are
 equal.
@@ -140,6 +142,8 @@ unsafe impl LifetimeFree for PlainOldData {}
 
 ### `cast!`
 
+*Defined in [`castaway-0.2.4/src/lib.rs:177-207`](../../.source_1765210505/castaway-0.2.4/src/lib.rs#L177-L207)*
+
 Attempt to cast the result of an expression into a given concrete type.
 
 If the expression is in fact of the given type, an [`Ok`](#ok) is returned
@@ -196,7 +200,7 @@ lifetime-free type by value or by reference, even if the generic type is not
 A type is considered lifetime-free if it contains no generic lifetime
 bounds, ensuring that all possible instantiations of the type are always
 `'static`. To mark a type as being lifetime-free and enable it to be casted
-to in this manner by this macro it must implement the [`LifetimeFree`](#lifetimefree)
+to in this manner by this macro it must implement the [`LifetimeFree`](lifetime_free/index.md)
 trait. This is implemented automatically for all primitive types and for
 several [`core`](../clap_builder/output/textwrap/core/index.md) types. If you enable the `std` crate feature, then it will
 also be implemented for several `std` types as well. If you enable the
@@ -286,6 +290,8 @@ println!("default: {}", "hello".fast_to_string());
 ```
 
 ### `match_type!`
+
+*Defined in [`castaway-0.2.4/src/lib.rs:263-285`](../../.source_1765210505/castaway-0.2.4/src/lib.rs#L263-L285)*
 
 Match the result of an expression against multiple concrete types.
 

@@ -110,7 +110,7 @@ as long as everything in this module agrees.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`State`](#state) | struct | A DFA state that, at its core, is represented by an ordered set of NFA |
+| [`State`](#state) | struct | A DFA state that, at its core, is represented by an ordered set of NFA states. |
 | [`StateBuilderEmpty`](#statebuilderempty) | struct | A state builder that represents an empty state. |
 | [`StateBuilderMatches`](#statebuildermatches) | struct | A state builder that collects assertions and pattern IDs. |
 | [`StateBuilderNFA`](#statebuildernfa) | struct | A state builder that collects some assertions and NFA state IDs. |
@@ -129,6 +129,8 @@ as long as everything in this module agrees.
 ```rust
 struct State(alloc::sync::Arc<[u8]>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:109`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L109)*
 
 A DFA state that, at its core, is represented by an ordered set of NFA
 states.
@@ -155,9 +157,9 @@ simultaneously.
 
 - <span id="state-match-len"></span>`fn match_len(&self) -> usize`
 
-- <span id="state-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../../index.md)
+- <span id="state-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../primitives/index.md)
 
-- <span id="state-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../../index.md)
+- <span id="state-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../primitives/index.md)
 
 - <span id="state-iter-nfa-state-ids"></span>`fn iter_nfa_state_ids<F: FnMut(StateID)>(&self, f: F)`
 
@@ -201,6 +203,8 @@ simultaneously.
 struct StateBuilderEmpty(alloc::vec::Vec<u8>);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:191`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L191)*
+
 A state builder that represents an empty state.
 
 This is a useful "initial condition" for state construction. It has no
@@ -234,6 +238,8 @@ builder that can capture assertions and pattern IDs.
 struct StateBuilderMatches(alloc::vec::Vec<u8>);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:218`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L218)*
+
 A state builder that collects assertions and pattern IDs.
 
 When collecting pattern IDs is finished, this can be converted into a
@@ -251,7 +257,7 @@ builder that collects NFA state IDs.
 
 - <span id="statebuildermatches-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
 
-- <span id="statebuildermatches-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../../index.md)
+- <span id="statebuildermatches-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../primitives/index.md)
 
 - <span id="statebuildermatches-repr"></span>`fn repr(&self) -> Repr<'_>` — [`Repr`](#repr)
 
@@ -275,6 +281,8 @@ struct StateBuilderNFA {
     prev_nfa_state_id: crate::util::primitives::StateID,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:274-277`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L274-L277)*
 
 A state builder that collects some assertions and NFA state IDs.
 
@@ -320,6 +328,8 @@ that it can be reused to build the next state.
 ```rust
 struct Repr<'a>(&'a [u8]);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:386`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L386)*
 
 Repr is a read-only view into the representation of a DFA state.
 
@@ -391,9 +401,9 @@ previous NFA state ID.
 
 - <span id="repr-match-len"></span>`fn match_len(&self) -> usize`
 
-- <span id="repr-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../../index.md)
+- <span id="repr-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../primitives/index.md)
 
-- <span id="repr-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../../index.md)
+- <span id="repr-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../primitives/index.md)
 
 - <span id="repr-iter-match-pattern-ids"></span>`fn iter_match_pattern_ids<F: FnMut(PatternID)>(&self, f: F)`
 
@@ -405,7 +415,7 @@ previous NFA state ID.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Repr<'a>`
+##### `impl Debug for Repr<'a>`
 
 - <span id="repr-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -414,6 +424,8 @@ previous NFA state ID.
 ```rust
 struct ReprVec<'a>(&'a mut alloc::vec::Vec<u8>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:588`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L588)*
 
 ReprVec is a write-only view into the representation of a DFA state.
 
@@ -441,7 +453,7 @@ permit valid combinations via Rust's linear typing.
 
 - <span id="reprvec-set-look-need"></span>`fn set_look_need(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
 
-- <span id="reprvec-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../../index.md)
+- <span id="reprvec-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../primitives/index.md)
 
 - <span id="reprvec-close-match-pattern-ids"></span>`fn close_match_pattern_ids(&mut self)`
 
@@ -457,6 +469,8 @@ permit valid combinations via Rust's linear typing.
 fn write_vari32(data: &mut alloc::vec::Vec<u8>, n: i32)
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:735-741`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L735-L741)*
+
 Write a signed 32-bit integer using zig-zag encoding.
 
 https://developers.google.com/protocol-buffers/docs/encoding#varints
@@ -466,6 +480,8 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 ```rust
 fn read_vari32(data: &[u8]) -> (i32, usize)
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:747-754`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L747-L754)*
 
 Read a signed 32-bit integer using zig-zag encoding. Also, return the
 number of bytes read.
@@ -477,6 +493,8 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 ```rust
 fn write_varu32(data: &mut alloc::vec::Vec<u8>, n: u32)
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:763-769`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L763-L769)*
 
 Write an unsigned 32-bit integer as a varint. In essence, `n` is written
 as a sequence of bytes where all bytes except for the last one have the
@@ -492,6 +510,8 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 fn read_varu32(data: &[u8]) -> (u32, usize)
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:774-788`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L774-L788)*
+
 Read an unsigned 32-bit varint. Also, return the number of bytes read.
 
 https://developers.google.com/protocol-buffers/docs/encoding#varints
@@ -501,6 +521,8 @@ https://developers.google.com/protocol-buffers/docs/encoding#varints
 ```rust
 fn write_u32(dst: &mut alloc::vec::Vec<u8>, n: u32)
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/determinize/state.rs:791-797`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/determinize/state.rs#L791-L797)*
 
 Push a native-endian encoded `n` on to `dst`.
 

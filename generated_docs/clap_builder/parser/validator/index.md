@@ -26,9 +26,11 @@ struct Validator<'cmd> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/validator.rs:13-16`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/validator.rs#L13-L16)*
+
 #### Implementations
 
-- <span id="validator-new"></span>`fn new(cmd: &'cmd Command) -> Self` — [`Command`](../../index.md)
+- <span id="validator-new"></span>`fn new(cmd: &'cmd Command) -> Self` — [`Command`](../../builder/command/index.md)
 
 - <span id="validator-validate"></span>`fn validate(&mut self, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
 
@@ -36,19 +38,19 @@ struct Validator<'cmd> {
 
 - <span id="validator-validate-exclusive"></span>`fn validate_exclusive(&self, matcher: &ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
 
-- <span id="validator-build-conflict-err"></span>`fn build_conflict_err(&self, name: &Id, conflict_ids: &[Id], matcher: &ArgMatcher) -> ClapResult<()>` — [`Id`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
+- <span id="validator-build-conflict-err"></span>`fn build_conflict_err(&self, name: &Id, conflict_ids: &[Id], matcher: &ArgMatcher) -> ClapResult<()>` — [`Id`](../../util/id/index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
 
-- <span id="validator-build-conflict-err-usage"></span>`fn build_conflict_err_usage(&self, matcher: &ArgMatcher, conflicting_keys: &[Id]) -> Option<StyledStr>` — [`ArgMatcher`](../arg_matcher/index.md), [`Id`](../../index.md), [`StyledStr`](../../builder/index.md)
+- <span id="validator-build-conflict-err-usage"></span>`fn build_conflict_err_usage(&self, matcher: &ArgMatcher, conflicting_keys: &[Id]) -> Option<StyledStr>` — [`ArgMatcher`](../arg_matcher/index.md), [`Id`](../../util/id/index.md), [`StyledStr`](../../builder/styled_str/index.md)
 
 - <span id="validator-gather-requires"></span>`fn gather_requires(&mut self, matcher: &ArgMatcher)` — [`ArgMatcher`](../arg_matcher/index.md)
 
 - <span id="validator-validate-required"></span>`fn validate_required(&mut self, matcher: &ArgMatcher, conflicts: &Conflicts) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Conflicts`](#conflicts), [`Result`](../../error/index.md)
 
-- <span id="validator-is-missing-required-ok"></span>`fn is_missing_required_ok(&self, a: &Arg, conflicts: &Conflicts) -> bool` — [`Arg`](../../index.md), [`Conflicts`](#conflicts)
+- <span id="validator-is-missing-required-ok"></span>`fn is_missing_required_ok(&self, a: &Arg, conflicts: &Conflicts) -> bool` — [`Arg`](../../builder/arg/index.md), [`Conflicts`](#conflicts)
 
-- <span id="validator-fails-arg-required-unless"></span>`fn fails_arg_required_unless(&self, a: &Arg, matcher: &ArgMatcher) -> bool` — [`Arg`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md)
+- <span id="validator-fails-arg-required-unless"></span>`fn fails_arg_required_unless(&self, a: &Arg, matcher: &ArgMatcher) -> bool` — [`Arg`](../../builder/arg/index.md), [`ArgMatcher`](../arg_matcher/index.md)
 
-- <span id="validator-missing-required-error"></span>`fn missing_required_error(&self, matcher: &ArgMatcher, raw_req_args: Vec<Id>) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Id`](../../index.md), [`Result`](../../error/index.md)
+- <span id="validator-missing-required-error"></span>`fn missing_required_error(&self, matcher: &ArgMatcher, raw_req_args: Vec<Id>) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Id`](../../util/id/index.md), [`Result`](../../error/index.md)
 
 ### `Conflicts`
 
@@ -58,13 +60,15 @@ struct Conflicts {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/validator.rs:437-439`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/validator.rs#L437-L439)*
+
 #### Implementations
 
-- <span id="conflicts-with-args"></span>`fn with_args(cmd: &Command, matcher: &ArgMatcher) -> Self` — [`Command`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md)
+- <span id="conflicts-with-args"></span>`fn with_args(cmd: &Command, matcher: &ArgMatcher) -> Self` — [`Command`](../../builder/command/index.md), [`ArgMatcher`](../arg_matcher/index.md)
 
-- <span id="conflicts-gather-conflicts"></span>`fn gather_conflicts(&self, cmd: &Command, arg_id: &Id) -> Vec<Id>` — [`Command`](../../index.md), [`Id`](../../index.md)
+- <span id="conflicts-gather-conflicts"></span>`fn gather_conflicts(&self, cmd: &Command, arg_id: &Id) -> Vec<Id>` — [`Command`](../../builder/command/index.md), [`Id`](../../util/id/index.md)
 
-- <span id="conflicts-get-direct-conflicts"></span>`fn get_direct_conflicts(&self, arg_id: &Id) -> Option<&[Id]>` — [`Id`](../../index.md)
+- <span id="conflicts-get-direct-conflicts"></span>`fn get_direct_conflicts(&self, arg_id: &Id) -> Option<&[Id]>` — [`Id`](../../util/id/index.md)
 
 #### Trait Implementations
 
@@ -88,11 +92,15 @@ struct Conflicts {
 fn gather_direct_conflicts(cmd: &crate::builder::Command, id: &crate::util::Id) -> Vec<crate::util::Id>
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/validator.rs:490-501`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/validator.rs#L490-L501)*
+
 ### `gather_arg_direct_conflicts`
 
 ```rust
 fn gather_arg_direct_conflicts(cmd: &crate::builder::Command, arg: &crate::builder::Arg) -> Vec<crate::util::Id>
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/validator.rs:503-521`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/validator.rs#L503-L521)*
 
 ### `gather_group_direct_conflicts`
 
@@ -100,9 +108,13 @@ fn gather_arg_direct_conflicts(cmd: &crate::builder::Command, arg: &crate::build
 fn gather_group_direct_conflicts(group: &crate::builder::ArgGroup) -> Vec<crate::util::Id>
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/validator.rs:523-525`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/validator.rs#L523-L525)*
+
 ### `get_possible_values_cli`
 
 ```rust
 fn get_possible_values_cli(a: &crate::builder::Arg) -> Vec<crate::builder::PossibleValue>
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/validator.rs:527-536`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/validator.rs#L527-L536)*
 

@@ -19,6 +19,8 @@
 struct ReplaceReceiver<'a>(&'a syn::TypePath);
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:21`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/receiver.rs#L21)*
+
 #### Implementations
 
 - <span id="replacereceiver-self-ty"></span>`fn self_ty(&self, span: Span) -> TypePath`
@@ -34,4 +36,6 @@ struct ReplaceReceiver<'a>(&'a syn::TypePath);
 ```rust
 fn replace_receiver(input: &mut syn::DeriveInput)
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/receiver.rs:10-19`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/receiver.rs#L10-L19)*
 

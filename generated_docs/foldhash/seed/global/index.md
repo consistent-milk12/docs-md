@@ -26,6 +26,8 @@ struct GlobalSeedStorage {
 }
 ```
 
+*Defined in [`foldhash-0.2.0/src/seed.rs:181-184`](../../../../.source_1765210505/foldhash-0.2.0/src/seed.rs#L181-L184)*
+
 #### Trait Implementations
 
 ##### `impl Sync for GlobalSeedStorage`
@@ -38,6 +40,8 @@ struct GlobalSeed {
 }
 ```
 
+*Defined in [`foldhash-0.2.0/src/seed.rs:205-208`](../../../../.source_1765210505/foldhash-0.2.0/src/seed.rs#L205-L208)*
+
 An object representing an initialized global seed.
 
 Does not actually store the seed inside itself, it is a zero-sized type.
@@ -49,7 +53,7 @@ This prevents inflating the RandomState size and in turn HashMap's size.
 
 - <span id="globalseed-init-slow"></span>`fn init_slow()`
 
-- <span id="globalseed-get"></span>`fn get(self) -> &'static SharedSeed` — [`SharedSeed`](../../index.md)
+- <span id="globalseed-get"></span>`fn get(self) -> &'static SharedSeed` — [`SharedSeed`](../index.md)
 
 #### Trait Implementations
 
@@ -71,23 +75,28 @@ This prevents inflating the RandomState size and in turn HashMap's size.
 fn generate_global_seed() -> SharedSeed
 ```
 
+*Defined in [`foldhash-0.2.0/src/seed.rs:140-174`](../../../../.source_1765210505/foldhash-0.2.0/src/seed.rs#L140-L174)*
+
 ## Constants
 
 ### `UNINIT`
-
 ```rust
 const UNINIT: u8 = 0u8;
 ```
 
-### `LOCKED`
+*Defined in [`foldhash-0.2.0/src/seed.rs:186`](../../../../.source_1765210505/foldhash-0.2.0/src/seed.rs#L186)*
 
+### `LOCKED`
 ```rust
 const LOCKED: u8 = 1u8;
 ```
 
-### `INIT`
+*Defined in [`foldhash-0.2.0/src/seed.rs:187`](../../../../.source_1765210505/foldhash-0.2.0/src/seed.rs#L187)*
 
+### `INIT`
 ```rust
 const INIT: u8 = 2u8;
 ```
+
+*Defined in [`foldhash-0.2.0/src/seed.rs:188`](../../../../.source_1765210505/foldhash-0.2.0/src/seed.rs#L188)*
 

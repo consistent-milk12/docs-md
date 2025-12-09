@@ -25,7 +25,7 @@
 | [`printing`](#printing) | mod |  |
 | [`Block`](#block) | struct | A braced block containing Rust statements. |
 | [`Local`](#local) | struct | A local `let` binding: `let x: u64 = s.parse()?;`. |
-| [`LocalInit`](#localinit) | struct | The expression assigned in a local `let` binding, including optional |
+| [`LocalInit`](#localinit) | struct | The expression assigned in a local `let` binding, including optional diverging `else` block. |
 | [`StmtMacro`](#stmtmacro) | struct | A macro invocation in statement position. |
 | [`Stmt`](#stmt) | enum | A statement, usually ending in a semicolon. |
 
@@ -45,6 +45,8 @@ struct Block {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/stmt.rs:8-16`](../../../.source_1765210505/syn-2.0.111/src/stmt.rs#L8-L16)*
+
 A braced block containing Rust statements.
 
 #### Fields
@@ -55,7 +57,7 @@ A braced block containing Rust statements.
 
 #### Implementations
 
-- <span id="cratestmtblock-parse-within"></span>`fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Stmt`](../index.md)
+- <span id="cratestmtblock-parse-within"></span>`fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Stmt`](#stmt)
 
 #### Trait Implementations
 
@@ -75,15 +77,15 @@ A braced block containing Rust statements.
 
 ##### `impl Parse for crate::stmt::Block`
 
-- <span id="cratestmtblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratestmtblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Block`
 
 - <span id="crateblock-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Block`
+##### `impl Sealed for Block`
 
-##### `impl<T> Spanned for Block`
+##### `impl Spanned for Block`
 
 - <span id="block-span"></span>`fn span(&self) -> Span`
 
@@ -102,6 +104,8 @@ struct Local {
     pub semi_token: token::Semi,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/stmt.rs:40-50`](../../../.source_1765210505/syn-2.0.111/src/stmt.rs#L40-L50)*
 
 A local `let` binding: `let x: u64 = s.parse()?;`.
 
@@ -129,9 +133,9 @@ A local `let` binding: `let x: u64 = s.parse()?;`.
 
 - <span id="cratelocal-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Local`
+##### `impl Sealed for Local`
 
-##### `impl<T> Spanned for Local`
+##### `impl Spanned for Local`
 
 - <span id="local-span"></span>`fn span(&self) -> Span`
 
@@ -148,6 +152,8 @@ struct LocalInit {
     pub diverge: Option<(token::Else, Box<crate::expr::Expr>)>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/stmt.rs:52-64`](../../../.source_1765210505/syn-2.0.111/src/stmt.rs#L52-L64)*
 
 The expression assigned in a local `let` binding, including optional
 diverging `else` block.
@@ -185,6 +191,8 @@ struct StmtMacro {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/stmt.rs:66-78`](../../../.source_1765210505/syn-2.0.111/src/stmt.rs#L66-L78)*
+
 A macro invocation in statement position.
 
 Syntactically it's ambiguous which other kind of statement this macro
@@ -215,9 +223,9 @@ expression.
 
 - <span id="cratestmtmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for StmtMacro`
+##### `impl Sealed for StmtMacro`
 
-##### `impl<T> Spanned for StmtMacro`
+##### `impl Spanned for StmtMacro`
 
 - <span id="stmtmacro-span"></span>`fn span(&self) -> Span`
 
@@ -237,6 +245,8 @@ enum Stmt {
     Macro(StmtMacro),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/stmt.rs:18-38`](../../../.source_1765210505/syn-2.0.111/src/stmt.rs#L18-L38)*
 
 A statement, usually ending in a semicolon.
 
@@ -280,15 +290,15 @@ A statement, usually ending in a semicolon.
 
 ##### `impl Parse for crate::stmt::Stmt`
 
-- <span id="cratestmtstmt-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratestmtstmt-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Stmt`
 
 - <span id="cratestmt-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Stmt`
+##### `impl Sealed for Stmt`
 
-##### `impl<T> Spanned for Stmt`
+##### `impl Spanned for Stmt`
 
 - <span id="stmt-span"></span>`fn span(&self) -> Span`
 

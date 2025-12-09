@@ -1864,6 +1864,8 @@ There are also exported const definitions for each constant.
 struct DwSect(u32);
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
+
 The section type field in a `.dwp` unit index.
 
 This is used for version 5 and later.
@@ -1910,7 +1912,7 @@ See Section 7.3.5.
 
 ##### `impl StructuralPartialEq for DwSect`
 
-##### `impl<T> ToString for DwSect`
+##### `impl ToString for DwSect`
 
 - <span id="dwsect-to-string"></span>`fn to_string(&self) -> String`
 
@@ -1919,6 +1921,8 @@ See Section 7.3.5.
 ```rust
 struct DwSectV2(u32);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
 The section type field in a `.dwp` unit index with version 2.
 
@@ -1962,7 +1966,7 @@ The section type field in a `.dwp` unit index with version 2.
 
 ##### `impl StructuralPartialEq for DwSectV2`
 
-##### `impl<T> ToString for DwSectV2`
+##### `impl ToString for DwSectV2`
 
 - <span id="dwsectv2-to-string"></span>`fn to_string(&self) -> String`
 
@@ -1971,6 +1975,8 @@ The section type field in a `.dwp` unit index with version 2.
 ```rust
 struct DwUt(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
 The unit type field in a unit header.
 
@@ -2016,7 +2022,7 @@ See Section 7.5.1, Table 7.2.
 
 ##### `impl StructuralPartialEq for DwUt`
 
-##### `impl<T> ToString for DwUt`
+##### `impl ToString for DwUt`
 
 - <span id="dwut-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2025,6 +2031,8 @@ See Section 7.5.1, Table 7.2.
 ```rust
 struct DwCfa(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
 The opcode for a call frame instruction.
 
@@ -2074,7 +2082,7 @@ Section 7.24:
 
 ##### `impl StructuralPartialEq for DwCfa`
 
-##### `impl<T> ToString for DwCfa`
+##### `impl ToString for DwCfa`
 
 - <span id="dwcfa-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2083,6 +2091,8 @@ Section 7.24:
 ```rust
 struct DwChildren(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:196-203`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L196-L203)*
 
 The child determination encodings for DIE attributes.
 
@@ -2128,7 +2138,7 @@ See Section 7.5.3, Table 7.4.
 
 ##### `impl StructuralPartialEq for DwChildren`
 
-##### `impl<T> ToString for DwChildren`
+##### `impl ToString for DwChildren`
 
 - <span id="dwchildren-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2137,6 +2147,8 @@ See Section 7.5.3, Table 7.4.
 ```rust
 struct DwTag(u16);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
 The tag encodings for DIE attributes.
 
@@ -2182,7 +2194,7 @@ See Section 7.5.3, Table 7.3.
 
 ##### `impl StructuralPartialEq for DwTag`
 
-##### `impl<T> ToString for DwTag`
+##### `impl ToString for DwTag`
 
 - <span id="dwtag-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2191,6 +2203,8 @@ See Section 7.5.3, Table 7.3.
 ```rust
 struct DwAt(u16);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
 The attribute encodings for DIE attributes.
 
@@ -2236,7 +2250,7 @@ See Section 7.5.4, Table 7.5.
 
 ##### `impl StructuralPartialEq for DwAt`
 
-##### `impl<T> ToString for DwAt`
+##### `impl ToString for DwAt`
 
 - <span id="dwat-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2245,6 +2259,8 @@ See Section 7.5.4, Table 7.5.
 ```rust
 struct DwForm(u16);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
 The attribute form encodings for DIE attributes.
 
@@ -2290,7 +2306,7 @@ See Section 7.5.6, Table 7.6.
 
 ##### `impl StructuralPartialEq for DwForm`
 
-##### `impl<T> ToString for DwForm`
+##### `impl ToString for DwForm`
 
 - <span id="dwform-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2299,6 +2315,8 @@ See Section 7.5.6, Table 7.6.
 ```rust
 struct DwAte(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
 The encodings of the constants used in the `DW_AT_encoding` attribute.
 
@@ -2344,7 +2362,7 @@ See Section 7.8, Table 7.11.
 
 ##### `impl StructuralPartialEq for DwAte`
 
-##### `impl<T> ToString for DwAte`
+##### `impl ToString for DwAte`
 
 - <span id="dwate-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2353,6 +2371,8 @@ See Section 7.8, Table 7.11.
 ```rust
 struct DwLle(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
 The encodings of the constants used in location list entries.
 
@@ -2398,7 +2418,7 @@ See Section 7.7.3, Table 7.10.
 
 ##### `impl StructuralPartialEq for DwLle`
 
-##### `impl<T> ToString for DwLle`
+##### `impl ToString for DwLle`
 
 - <span id="dwlle-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2407,6 +2427,8 @@ See Section 7.7.3, Table 7.10.
 ```rust
 struct DwDs(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
 The encodings of the constants used in the `DW_AT_decimal_sign` attribute.
 
@@ -2452,7 +2474,7 @@ See Section 7.8, Table 7.12.
 
 ##### `impl StructuralPartialEq for DwDs`
 
-##### `impl<T> ToString for DwDs`
+##### `impl ToString for DwDs`
 
 - <span id="dwds-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2461,6 +2483,8 @@ See Section 7.8, Table 7.12.
 ```rust
 struct DwEnd(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
 The encodings of the constants used in the `DW_AT_endianity` attribute.
 
@@ -2506,7 +2530,7 @@ See Section 7.8, Table 7.13.
 
 ##### `impl StructuralPartialEq for DwEnd`
 
-##### `impl<T> ToString for DwEnd`
+##### `impl ToString for DwEnd`
 
 - <span id="dwend-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2515,6 +2539,8 @@ See Section 7.8, Table 7.13.
 ```rust
 struct DwAccess(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:834-842`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L834-L842)*
 
 The encodings of the constants used in the `DW_AT_accessibility` attribute.
 
@@ -2560,7 +2586,7 @@ See Section 7.9, Table 7.14.
 
 ##### `impl StructuralPartialEq for DwAccess`
 
-##### `impl<T> ToString for DwAccess`
+##### `impl ToString for DwAccess`
 
 - <span id="dwaccess-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2569,6 +2595,8 @@ See Section 7.9, Table 7.14.
 ```rust
 struct DwVis(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:844-852`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L844-L852)*
 
 The encodings of the constants used in the `DW_AT_visibility` attribute.
 
@@ -2614,7 +2642,7 @@ See Section 7.10, Table 7.15.
 
 ##### `impl StructuralPartialEq for DwVis`
 
-##### `impl<T> ToString for DwVis`
+##### `impl ToString for DwVis`
 
 - <span id="dwvis-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2623,6 +2651,8 @@ See Section 7.10, Table 7.15.
 ```rust
 struct DwVirtuality(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:854-862`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L854-L862)*
 
 The encodings of the constants used in the `DW_AT_virtuality` attribute.
 
@@ -2668,7 +2698,7 @@ See Section 7.11, Table 7.16.
 
 ##### `impl StructuralPartialEq for DwVirtuality`
 
-##### `impl<T> ToString for DwVirtuality`
+##### `impl ToString for DwVirtuality`
 
 - <span id="dwvirtuality-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2677,6 +2707,8 @@ See Section 7.11, Table 7.16.
 ```rust
 struct DwLang(u16);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
 The encodings of the constants used in the `DW_AT_language` attribute.
 
@@ -2722,7 +2754,7 @@ See Section 7.12, Table 7.17.
 
 ##### `impl StructuralPartialEq for DwLang`
 
-##### `impl<T> ToString for DwLang`
+##### `impl ToString for DwLang`
 
 - <span id="dwlang-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2731,6 +2763,8 @@ See Section 7.12, Table 7.17.
 ```rust
 struct DwAddr(u64);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:962-969`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L962-L969)*
 
 The encodings of the constants used in the `DW_AT_address_class` attribute.
 
@@ -2777,7 +2811,7 @@ See Section 7.13.
 
 ##### `impl StructuralPartialEq for DwAddr`
 
-##### `impl<T> ToString for DwAddr`
+##### `impl ToString for DwAddr`
 
 - <span id="dwaddr-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2786,6 +2820,8 @@ See Section 7.13.
 ```rust
 struct DwId(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:971-980`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L971-L980)*
 
 The encodings of the constants used in the `DW_AT_identifier_case` attribute.
 
@@ -2831,7 +2867,7 @@ See Section 7.14, Table 7.18.
 
 ##### `impl StructuralPartialEq for DwId`
 
-##### `impl<T> ToString for DwId`
+##### `impl ToString for DwId`
 
 - <span id="dwid-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2840,6 +2876,8 @@ See Section 7.14, Table 7.18.
 ```rust
 struct DwCc(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
 The encodings of the constants used in the `DW_AT_calling_convention` attribute.
 
@@ -2885,7 +2923,7 @@ See Section 7.15, Table 7.19.
 
 ##### `impl StructuralPartialEq for DwCc`
 
-##### `impl<T> ToString for DwCc`
+##### `impl ToString for DwCc`
 
 - <span id="dwcc-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2894,6 +2932,8 @@ See Section 7.15, Table 7.19.
 ```rust
 struct DwInl(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:996-1005`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L996-L1005)*
 
 The encodings of the constants used in the `DW_AT_inline` attribute.
 
@@ -2939,7 +2979,7 @@ See Section 7.16, Table 7.20.
 
 ##### `impl StructuralPartialEq for DwInl`
 
-##### `impl<T> ToString for DwInl`
+##### `impl ToString for DwInl`
 
 - <span id="dwinl-to-string"></span>`fn to_string(&self) -> String`
 
@@ -2948,6 +2988,8 @@ See Section 7.16, Table 7.20.
 ```rust
 struct DwOrd(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1007-1014`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1007-L1014)*
 
 The encodings of the constants used in the `DW_AT_ordering` attribute.
 
@@ -2993,7 +3035,7 @@ See Section 7.17, Table 7.17.
 
 ##### `impl StructuralPartialEq for DwOrd`
 
-##### `impl<T> ToString for DwOrd`
+##### `impl ToString for DwOrd`
 
 - <span id="dword-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3002,6 +3044,8 @@ See Section 7.17, Table 7.17.
 ```rust
 struct DwDsc(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1016-1023`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1016-L1023)*
 
 The encodings of the constants used in the `DW_AT_discr_list` attribute.
 
@@ -3047,7 +3091,7 @@ See Section 7.18, Table 7.22.
 
 ##### `impl StructuralPartialEq for DwDsc`
 
-##### `impl<T> ToString for DwDsc`
+##### `impl ToString for DwDsc`
 
 - <span id="dwdsc-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3056,6 +3100,8 @@ See Section 7.18, Table 7.22.
 ```rust
 struct DwIdx(u16);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
 Name index attribute encodings.
 
@@ -3101,7 +3147,7 @@ See Section 7.19, Table 7.23.
 
 ##### `impl StructuralPartialEq for DwIdx`
 
-##### `impl<T> ToString for DwIdx`
+##### `impl ToString for DwIdx`
 
 - <span id="dwidx-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3110,6 +3156,8 @@ See Section 7.19, Table 7.23.
 ```rust
 struct DwDefaulted(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1039-1047`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1039-L1047)*
 
 The encodings of the constants used in the `DW_AT_defaulted` attribute.
 
@@ -3155,7 +3203,7 @@ See Section 7.20, Table 7.24.
 
 ##### `impl StructuralPartialEq for DwDefaulted`
 
-##### `impl<T> ToString for DwDefaulted`
+##### `impl ToString for DwDefaulted`
 
 - <span id="dwdefaulted-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3164,6 +3212,8 @@ See Section 7.20, Table 7.24.
 ```rust
 struct DwLns(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
 The encodings for the standard opcodes for line number information.
 
@@ -3209,7 +3259,7 @@ See Section 7.22, Table 7.25.
 
 ##### `impl StructuralPartialEq for DwLns`
 
-##### `impl<T> ToString for DwLns`
+##### `impl ToString for DwLns`
 
 - <span id="dwlns-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3218,6 +3268,8 @@ See Section 7.22, Table 7.25.
 ```rust
 struct DwLne(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
 The encodings for the extended opcodes for line number information.
 
@@ -3263,7 +3315,7 @@ See Section 7.22, Table 7.26.
 
 ##### `impl StructuralPartialEq for DwLne`
 
-##### `impl<T> ToString for DwLne`
+##### `impl ToString for DwLne`
 
 - <span id="dwlne-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3272,6 +3324,8 @@ See Section 7.22, Table 7.26.
 ```rust
 struct DwLnct(u16);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
 The encodings for the line number header entry formats.
 
@@ -3317,7 +3371,7 @@ See Section 7.22, Table 7.27.
 
 ##### `impl StructuralPartialEq for DwLnct`
 
-##### `impl<T> ToString for DwLnct`
+##### `impl ToString for DwLnct`
 
 - <span id="dwlnct-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3326,6 +3380,8 @@ See Section 7.22, Table 7.27.
 ```rust
 struct DwMacinfo(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
 Type codes for macro definitions in the `.debug_macinfo` section.
 
@@ -3371,7 +3427,7 @@ See Section 7.22, Figure 39 for DWARF 4.
 
 ##### `impl StructuralPartialEq for DwMacinfo`
 
-##### `impl<T> ToString for DwMacinfo`
+##### `impl ToString for DwMacinfo`
 
 - <span id="dwmacinfo-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3380,6 +3436,8 @@ See Section 7.22, Figure 39 for DWARF 4.
 ```rust
 struct DwMacro(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
 The encodings for macro information entry types.
 
@@ -3425,7 +3483,7 @@ See Section 7.23, Table 7.28 for DWARF 5.
 
 ##### `impl StructuralPartialEq for DwMacro`
 
-##### `impl<T> ToString for DwMacro`
+##### `impl ToString for DwMacro`
 
 - <span id="dwmacro-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3434,6 +3492,8 @@ See Section 7.23, Table 7.28 for DWARF 5.
 ```rust
 struct DwRle(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
 Range list entry encoding values.
 
@@ -3479,7 +3539,7 @@ See Section 7.25, Table 7.30.
 
 ##### `impl StructuralPartialEq for DwRle`
 
-##### `impl<T> ToString for DwRle`
+##### `impl ToString for DwRle`
 
 - <span id="dwrle-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3488,6 +3548,8 @@ See Section 7.25, Table 7.30.
 ```rust
 struct DwOp(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
 The encodings for DWARF expression operations.
 
@@ -3533,7 +3595,7 @@ See Section 7.7.1, Table 7.9.
 
 ##### `impl StructuralPartialEq for DwOp`
 
-##### `impl<T> ToString for DwOp`
+##### `impl ToString for DwOp`
 
 - <span id="dwop-to-string"></span>`fn to_string(&self) -> String`
 
@@ -3542,6 +3604,8 @@ See Section 7.7.1, Table 7.9.
 ```rust
 struct DwEhPe(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
 Pointer encoding used by `.eh_frame`.
 
@@ -3559,7 +3623,7 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 ##### `impl BitOr for DwEhPe`
 
-- <span id="dwehpe-output"></span>`type Output = DwEhPe`
+- <span id="dwehpe-type-output"></span>`type Output = DwEhPe`
 
 - <span id="dwehpe-bitor"></span>`fn bitor(self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](../index.md)
 
@@ -3597,5317 +3661,6203 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 ##### `impl StructuralPartialEq for DwEhPe`
 
-##### `impl<T> ToString for DwEhPe`
+##### `impl ToString for DwEhPe`
 
 - <span id="dwehpe-to-string"></span>`fn to_string(&self) -> String`
 
 ## Constants
 
 ### `DW_SECT_INFO`
-
 ```rust
 const DW_SECT_INFO: DwSect;
 ```
 
-### `DW_SECT_ABBREV`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_ABBREV`
 ```rust
 const DW_SECT_ABBREV: DwSect;
 ```
 
-### `DW_SECT_LINE`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_LINE`
 ```rust
 const DW_SECT_LINE: DwSect;
 ```
 
-### `DW_SECT_LOCLISTS`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_LOCLISTS`
 ```rust
 const DW_SECT_LOCLISTS: DwSect;
 ```
 
-### `DW_SECT_STR_OFFSETS`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_STR_OFFSETS`
 ```rust
 const DW_SECT_STR_OFFSETS: DwSect;
 ```
 
-### `DW_SECT_MACRO`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_MACRO`
 ```rust
 const DW_SECT_MACRO: DwSect;
 ```
 
-### `DW_SECT_RNGLISTS`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_RNGLISTS`
 ```rust
 const DW_SECT_RNGLISTS: DwSect;
 ```
 
-### `DW_SECT_V2_INFO`
+*Defined in [`gimli-0.32.3/src/constants.rs:104-118`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L104-L118)*
 
+### `DW_SECT_V2_INFO`
 ```rust
 const DW_SECT_V2_INFO: DwSectV2;
 ```
 
-### `DW_SECT_V2_TYPES`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_TYPES`
 ```rust
 const DW_SECT_V2_TYPES: DwSectV2;
 ```
 
-### `DW_SECT_V2_ABBREV`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_ABBREV`
 ```rust
 const DW_SECT_V2_ABBREV: DwSectV2;
 ```
 
-### `DW_SECT_V2_LINE`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_LINE`
 ```rust
 const DW_SECT_V2_LINE: DwSectV2;
 ```
 
-### `DW_SECT_V2_LOC`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_LOC`
 ```rust
 const DW_SECT_V2_LOC: DwSectV2;
 ```
 
-### `DW_SECT_V2_STR_OFFSETS`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_STR_OFFSETS`
 ```rust
 const DW_SECT_V2_STR_OFFSETS: DwSectV2;
 ```
 
-### `DW_SECT_V2_MACINFO`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_MACINFO`
 ```rust
 const DW_SECT_V2_MACINFO: DwSectV2;
 ```
 
-### `DW_SECT_V2_MACRO`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_SECT_V2_MACRO`
 ```rust
 const DW_SECT_V2_MACRO: DwSectV2;
 ```
 
-### `DW_UT_compile`
+*Defined in [`gimli-0.32.3/src/constants.rs:120-131`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L120-L131)*
 
+### `DW_UT_compile`
 ```rust
 const DW_UT_compile: DwUt;
 ```
 
-### `DW_UT_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_type`
 ```rust
 const DW_UT_type: DwUt;
 ```
 
-### `DW_UT_partial`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_partial`
 ```rust
 const DW_UT_partial: DwUt;
 ```
 
-### `DW_UT_skeleton`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_skeleton`
 ```rust
 const DW_UT_skeleton: DwUt;
 ```
 
-### `DW_UT_split_compile`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_split_compile`
 ```rust
 const DW_UT_split_compile: DwUt;
 ```
 
-### `DW_UT_split_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_split_type`
 ```rust
 const DW_UT_split_type: DwUt;
 ```
 
-### `DW_UT_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_lo_user`
 ```rust
 const DW_UT_lo_user: DwUt;
 ```
 
-### `DW_UT_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_UT_hi_user`
 ```rust
 const DW_UT_hi_user: DwUt;
 ```
 
-### `DW_CFA_advance_loc`
+*Defined in [`gimli-0.32.3/src/constants.rs:133-146`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L133-L146)*
 
+### `DW_CFA_advance_loc`
 ```rust
 const DW_CFA_advance_loc: DwCfa;
 ```
 
-### `DW_CFA_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_offset`
 ```rust
 const DW_CFA_offset: DwCfa;
 ```
 
-### `DW_CFA_restore`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_restore`
 ```rust
 const DW_CFA_restore: DwCfa;
 ```
 
-### `DW_CFA_nop`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_nop`
 ```rust
 const DW_CFA_nop: DwCfa;
 ```
 
-### `DW_CFA_set_loc`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_set_loc`
 ```rust
 const DW_CFA_set_loc: DwCfa;
 ```
 
-### `DW_CFA_advance_loc1`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_advance_loc1`
 ```rust
 const DW_CFA_advance_loc1: DwCfa;
 ```
 
-### `DW_CFA_advance_loc2`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_advance_loc2`
 ```rust
 const DW_CFA_advance_loc2: DwCfa;
 ```
 
-### `DW_CFA_advance_loc4`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_advance_loc4`
 ```rust
 const DW_CFA_advance_loc4: DwCfa;
 ```
 
-### `DW_CFA_offset_extended`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_offset_extended`
 ```rust
 const DW_CFA_offset_extended: DwCfa;
 ```
 
-### `DW_CFA_restore_extended`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_restore_extended`
 ```rust
 const DW_CFA_restore_extended: DwCfa;
 ```
 
-### `DW_CFA_undefined`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_undefined`
 ```rust
 const DW_CFA_undefined: DwCfa;
 ```
 
-### `DW_CFA_same_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_same_value`
 ```rust
 const DW_CFA_same_value: DwCfa;
 ```
 
-### `DW_CFA_register`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_register`
 ```rust
 const DW_CFA_register: DwCfa;
 ```
 
-### `DW_CFA_remember_state`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_remember_state`
 ```rust
 const DW_CFA_remember_state: DwCfa;
 ```
 
-### `DW_CFA_restore_state`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_restore_state`
 ```rust
 const DW_CFA_restore_state: DwCfa;
 ```
 
-### `DW_CFA_def_cfa`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa`
 ```rust
 const DW_CFA_def_cfa: DwCfa;
 ```
 
-### `DW_CFA_def_cfa_register`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa_register`
 ```rust
 const DW_CFA_def_cfa_register: DwCfa;
 ```
 
-### `DW_CFA_def_cfa_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa_offset`
 ```rust
 const DW_CFA_def_cfa_offset: DwCfa;
 ```
 
-### `DW_CFA_def_cfa_expression`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa_expression`
 ```rust
 const DW_CFA_def_cfa_expression: DwCfa;
 ```
 
-### `DW_CFA_expression`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_expression`
 ```rust
 const DW_CFA_expression: DwCfa;
 ```
 
-### `DW_CFA_offset_extended_sf`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_offset_extended_sf`
 ```rust
 const DW_CFA_offset_extended_sf: DwCfa;
 ```
 
-### `DW_CFA_def_cfa_sf`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa_sf`
 ```rust
 const DW_CFA_def_cfa_sf: DwCfa;
 ```
 
-### `DW_CFA_def_cfa_offset_sf`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_def_cfa_offset_sf`
 ```rust
 const DW_CFA_def_cfa_offset_sf: DwCfa;
 ```
 
-### `DW_CFA_val_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_val_offset`
 ```rust
 const DW_CFA_val_offset: DwCfa;
 ```
 
-### `DW_CFA_val_offset_sf`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_val_offset_sf`
 ```rust
 const DW_CFA_val_offset_sf: DwCfa;
 ```
 
-### `DW_CFA_val_expression`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_val_expression`
 ```rust
 const DW_CFA_val_expression: DwCfa;
 ```
 
-### `DW_CFA_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_lo_user`
 ```rust
 const DW_CFA_lo_user: DwCfa;
 ```
 
-### `DW_CFA_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_hi_user`
 ```rust
 const DW_CFA_hi_user: DwCfa;
 ```
 
-### `DW_CFA_MIPS_advance_loc8`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_MIPS_advance_loc8`
 ```rust
 const DW_CFA_MIPS_advance_loc8: DwCfa;
 ```
 
-### `DW_CFA_GNU_window_save`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_GNU_window_save`
 ```rust
 const DW_CFA_GNU_window_save: DwCfa;
 ```
 
-### `DW_CFA_GNU_args_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_GNU_args_size`
 ```rust
 const DW_CFA_GNU_args_size: DwCfa;
 ```
 
-### `DW_CFA_GNU_negative_offset_extended`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_GNU_negative_offset_extended`
 ```rust
 const DW_CFA_GNU_negative_offset_extended: DwCfa;
 ```
 
-### `DW_CFA_AARCH64_negate_ra_state`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CFA_AARCH64_negate_ra_state`
 ```rust
 const DW_CFA_AARCH64_negate_ra_state: DwCfa;
 ```
 
-### `DW_CHILDREN_no`
+*Defined in [`gimli-0.32.3/src/constants.rs:148-194`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L148-L194)*
 
+### `DW_CHILDREN_no`
 ```rust
 const DW_CHILDREN_no: DwChildren;
 ```
 
-### `DW_CHILDREN_yes`
+*Defined in [`gimli-0.32.3/src/constants.rs:196-203`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L196-L203)*
 
+### `DW_CHILDREN_yes`
 ```rust
 const DW_CHILDREN_yes: DwChildren;
 ```
 
-### `DW_TAG_null`
+*Defined in [`gimli-0.32.3/src/constants.rs:196-203`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L196-L203)*
 
+### `DW_TAG_null`
 ```rust
 const DW_TAG_null: DwTag;
 ```
 
-### `DW_TAG_global_subroutine`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_global_subroutine`
 ```rust
 const DW_TAG_global_subroutine: DwTag;
 ```
 
-### `DW_TAG_global_variable`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_global_variable`
 ```rust
 const DW_TAG_global_variable: DwTag;
 ```
 
-### `DW_TAG_local_variable`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_local_variable`
 ```rust
 const DW_TAG_local_variable: DwTag;
 ```
 
-### `DW_TAG_subroutine`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_subroutine`
 ```rust
 const DW_TAG_subroutine: DwTag;
 ```
 
-### `DW_TAG_array_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_array_type`
 ```rust
 const DW_TAG_array_type: DwTag;
 ```
 
-### `DW_TAG_class_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_class_type`
 ```rust
 const DW_TAG_class_type: DwTag;
 ```
 
-### `DW_TAG_entry_point`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_entry_point`
 ```rust
 const DW_TAG_entry_point: DwTag;
 ```
 
-### `DW_TAG_enumeration_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_enumeration_type`
 ```rust
 const DW_TAG_enumeration_type: DwTag;
 ```
 
-### `DW_TAG_formal_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_formal_parameter`
 ```rust
 const DW_TAG_formal_parameter: DwTag;
 ```
 
-### `DW_TAG_imported_declaration`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_imported_declaration`
 ```rust
 const DW_TAG_imported_declaration: DwTag;
 ```
 
-### `DW_TAG_label`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_label`
 ```rust
 const DW_TAG_label: DwTag;
 ```
 
-### `DW_TAG_lexical_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_lexical_block`
 ```rust
 const DW_TAG_lexical_block: DwTag;
 ```
 
-### `DW_TAG_member`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_member`
 ```rust
 const DW_TAG_member: DwTag;
 ```
 
-### `DW_TAG_pointer_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_pointer_type`
 ```rust
 const DW_TAG_pointer_type: DwTag;
 ```
 
-### `DW_TAG_reference_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_reference_type`
 ```rust
 const DW_TAG_reference_type: DwTag;
 ```
 
-### `DW_TAG_compile_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_compile_unit`
 ```rust
 const DW_TAG_compile_unit: DwTag;
 ```
 
-### `DW_TAG_string_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_string_type`
 ```rust
 const DW_TAG_string_type: DwTag;
 ```
 
-### `DW_TAG_structure_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_structure_type`
 ```rust
 const DW_TAG_structure_type: DwTag;
 ```
 
-### `DW_TAG_subroutine_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_subroutine_type`
 ```rust
 const DW_TAG_subroutine_type: DwTag;
 ```
 
-### `DW_TAG_typedef`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_typedef`
 ```rust
 const DW_TAG_typedef: DwTag;
 ```
 
-### `DW_TAG_union_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_union_type`
 ```rust
 const DW_TAG_union_type: DwTag;
 ```
 
-### `DW_TAG_unspecified_parameters`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_unspecified_parameters`
 ```rust
 const DW_TAG_unspecified_parameters: DwTag;
 ```
 
-### `DW_TAG_variant`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_variant`
 ```rust
 const DW_TAG_variant: DwTag;
 ```
 
-### `DW_TAG_common_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_common_block`
 ```rust
 const DW_TAG_common_block: DwTag;
 ```
 
-### `DW_TAG_common_inclusion`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_common_inclusion`
 ```rust
 const DW_TAG_common_inclusion: DwTag;
 ```
 
-### `DW_TAG_inheritance`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_inheritance`
 ```rust
 const DW_TAG_inheritance: DwTag;
 ```
 
-### `DW_TAG_inlined_subroutine`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_inlined_subroutine`
 ```rust
 const DW_TAG_inlined_subroutine: DwTag;
 ```
 
-### `DW_TAG_module`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_module`
 ```rust
 const DW_TAG_module: DwTag;
 ```
 
-### `DW_TAG_ptr_to_member_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_ptr_to_member_type`
 ```rust
 const DW_TAG_ptr_to_member_type: DwTag;
 ```
 
-### `DW_TAG_set_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_set_type`
 ```rust
 const DW_TAG_set_type: DwTag;
 ```
 
-### `DW_TAG_subrange_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_subrange_type`
 ```rust
 const DW_TAG_subrange_type: DwTag;
 ```
 
-### `DW_TAG_with_stmt`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_with_stmt`
 ```rust
 const DW_TAG_with_stmt: DwTag;
 ```
 
-### `DW_TAG_access_declaration`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_access_declaration`
 ```rust
 const DW_TAG_access_declaration: DwTag;
 ```
 
-### `DW_TAG_base_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_base_type`
 ```rust
 const DW_TAG_base_type: DwTag;
 ```
 
-### `DW_TAG_catch_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_catch_block`
 ```rust
 const DW_TAG_catch_block: DwTag;
 ```
 
-### `DW_TAG_const_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_const_type`
 ```rust
 const DW_TAG_const_type: DwTag;
 ```
 
-### `DW_TAG_constant`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_constant`
 ```rust
 const DW_TAG_constant: DwTag;
 ```
 
-### `DW_TAG_enumerator`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_enumerator`
 ```rust
 const DW_TAG_enumerator: DwTag;
 ```
 
-### `DW_TAG_file_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_file_type`
 ```rust
 const DW_TAG_file_type: DwTag;
 ```
 
-### `DW_TAG_friend`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_friend`
 ```rust
 const DW_TAG_friend: DwTag;
 ```
 
-### `DW_TAG_namelist`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_namelist`
 ```rust
 const DW_TAG_namelist: DwTag;
 ```
 
-### `DW_TAG_namelist_item`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_namelist_item`
 ```rust
 const DW_TAG_namelist_item: DwTag;
 ```
 
-### `DW_TAG_packed_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_packed_type`
 ```rust
 const DW_TAG_packed_type: DwTag;
 ```
 
-### `DW_TAG_subprogram`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_subprogram`
 ```rust
 const DW_TAG_subprogram: DwTag;
 ```
 
-### `DW_TAG_template_type_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_template_type_parameter`
 ```rust
 const DW_TAG_template_type_parameter: DwTag;
 ```
 
-### `DW_TAG_template_value_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_template_value_parameter`
 ```rust
 const DW_TAG_template_value_parameter: DwTag;
 ```
 
-### `DW_TAG_thrown_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_thrown_type`
 ```rust
 const DW_TAG_thrown_type: DwTag;
 ```
 
-### `DW_TAG_try_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_try_block`
 ```rust
 const DW_TAG_try_block: DwTag;
 ```
 
-### `DW_TAG_variant_part`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_variant_part`
 ```rust
 const DW_TAG_variant_part: DwTag;
 ```
 
-### `DW_TAG_variable`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_variable`
 ```rust
 const DW_TAG_variable: DwTag;
 ```
 
-### `DW_TAG_volatile_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_volatile_type`
 ```rust
 const DW_TAG_volatile_type: DwTag;
 ```
 
-### `DW_TAG_dwarf_procedure`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_dwarf_procedure`
 ```rust
 const DW_TAG_dwarf_procedure: DwTag;
 ```
 
-### `DW_TAG_restrict_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_restrict_type`
 ```rust
 const DW_TAG_restrict_type: DwTag;
 ```
 
-### `DW_TAG_interface_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_interface_type`
 ```rust
 const DW_TAG_interface_type: DwTag;
 ```
 
-### `DW_TAG_namespace`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_namespace`
 ```rust
 const DW_TAG_namespace: DwTag;
 ```
 
-### `DW_TAG_imported_module`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_imported_module`
 ```rust
 const DW_TAG_imported_module: DwTag;
 ```
 
-### `DW_TAG_unspecified_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_unspecified_type`
 ```rust
 const DW_TAG_unspecified_type: DwTag;
 ```
 
-### `DW_TAG_partial_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_partial_unit`
 ```rust
 const DW_TAG_partial_unit: DwTag;
 ```
 
-### `DW_TAG_imported_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_imported_unit`
 ```rust
 const DW_TAG_imported_unit: DwTag;
 ```
 
-### `DW_TAG_condition`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_condition`
 ```rust
 const DW_TAG_condition: DwTag;
 ```
 
-### `DW_TAG_shared_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_shared_type`
 ```rust
 const DW_TAG_shared_type: DwTag;
 ```
 
-### `DW_TAG_type_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_type_unit`
 ```rust
 const DW_TAG_type_unit: DwTag;
 ```
 
-### `DW_TAG_rvalue_reference_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_rvalue_reference_type`
 ```rust
 const DW_TAG_rvalue_reference_type: DwTag;
 ```
 
-### `DW_TAG_template_alias`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_template_alias`
 ```rust
 const DW_TAG_template_alias: DwTag;
 ```
 
-### `DW_TAG_coarray_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_coarray_type`
 ```rust
 const DW_TAG_coarray_type: DwTag;
 ```
 
-### `DW_TAG_generic_subrange`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_generic_subrange`
 ```rust
 const DW_TAG_generic_subrange: DwTag;
 ```
 
-### `DW_TAG_dynamic_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_dynamic_type`
 ```rust
 const DW_TAG_dynamic_type: DwTag;
 ```
 
-### `DW_TAG_atomic_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_atomic_type`
 ```rust
 const DW_TAG_atomic_type: DwTag;
 ```
 
-### `DW_TAG_call_site`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_call_site`
 ```rust
 const DW_TAG_call_site: DwTag;
 ```
 
-### `DW_TAG_call_site_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_call_site_parameter`
 ```rust
 const DW_TAG_call_site_parameter: DwTag;
 ```
 
-### `DW_TAG_skeleton_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_skeleton_unit`
 ```rust
 const DW_TAG_skeleton_unit: DwTag;
 ```
 
-### `DW_TAG_immutable_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_immutable_type`
 ```rust
 const DW_TAG_immutable_type: DwTag;
 ```
 
-### `DW_TAG_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_lo_user`
 ```rust
 const DW_TAG_lo_user: DwTag;
 ```
 
-### `DW_TAG_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_hi_user`
 ```rust
 const DW_TAG_hi_user: DwTag;
 ```
 
-### `DW_TAG_MIPS_loop`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_MIPS_loop`
 ```rust
 const DW_TAG_MIPS_loop: DwTag;
 ```
 
-### `DW_TAG_HP_array_descriptor`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_HP_array_descriptor`
 ```rust
 const DW_TAG_HP_array_descriptor: DwTag;
 ```
 
-### `DW_TAG_HP_Bliss_field`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_HP_Bliss_field`
 ```rust
 const DW_TAG_HP_Bliss_field: DwTag;
 ```
 
-### `DW_TAG_HP_Bliss_field_set`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_HP_Bliss_field_set`
 ```rust
 const DW_TAG_HP_Bliss_field_set: DwTag;
 ```
 
-### `DW_TAG_format_label`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_format_label`
 ```rust
 const DW_TAG_format_label: DwTag;
 ```
 
-### `DW_TAG_function_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_function_template`
 ```rust
 const DW_TAG_function_template: DwTag;
 ```
 
-### `DW_TAG_class_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_class_template`
 ```rust
 const DW_TAG_class_template: DwTag;
 ```
 
-### `DW_TAG_GNU_BINCL`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_BINCL`
 ```rust
 const DW_TAG_GNU_BINCL: DwTag;
 ```
 
-### `DW_TAG_GNU_EINCL`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_EINCL`
 ```rust
 const DW_TAG_GNU_EINCL: DwTag;
 ```
 
-### `DW_TAG_GNU_template_template_param`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_template_template_param`
 ```rust
 const DW_TAG_GNU_template_template_param: DwTag;
 ```
 
-### `DW_TAG_GNU_template_parameter_pack`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_template_parameter_pack`
 ```rust
 const DW_TAG_GNU_template_parameter_pack: DwTag;
 ```
 
-### `DW_TAG_GNU_formal_parameter_pack`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_formal_parameter_pack`
 ```rust
 const DW_TAG_GNU_formal_parameter_pack: DwTag;
 ```
 
-### `DW_TAG_GNU_call_site`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_call_site`
 ```rust
 const DW_TAG_GNU_call_site: DwTag;
 ```
 
-### `DW_TAG_GNU_call_site_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_GNU_call_site_parameter`
 ```rust
 const DW_TAG_GNU_call_site_parameter: DwTag;
 ```
 
-### `DW_TAG_APPLE_property`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_APPLE_property`
 ```rust
 const DW_TAG_APPLE_property: DwTag;
 ```
 
-### `DW_TAG_SUN_function_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_function_template`
 ```rust
 const DW_TAG_SUN_function_template: DwTag;
 ```
 
-### `DW_TAG_SUN_class_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_class_template`
 ```rust
 const DW_TAG_SUN_class_template: DwTag;
 ```
 
-### `DW_TAG_SUN_struct_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_struct_template`
 ```rust
 const DW_TAG_SUN_struct_template: DwTag;
 ```
 
-### `DW_TAG_SUN_union_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_union_template`
 ```rust
 const DW_TAG_SUN_union_template: DwTag;
 ```
 
-### `DW_TAG_SUN_indirect_inheritance`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_indirect_inheritance`
 ```rust
 const DW_TAG_SUN_indirect_inheritance: DwTag;
 ```
 
-### `DW_TAG_SUN_codeflags`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_codeflags`
 ```rust
 const DW_TAG_SUN_codeflags: DwTag;
 ```
 
-### `DW_TAG_SUN_memop_info`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_memop_info`
 ```rust
 const DW_TAG_SUN_memop_info: DwTag;
 ```
 
-### `DW_TAG_SUN_omp_child_func`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_omp_child_func`
 ```rust
 const DW_TAG_SUN_omp_child_func: DwTag;
 ```
 
-### `DW_TAG_SUN_rtti_descriptor`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_rtti_descriptor`
 ```rust
 const DW_TAG_SUN_rtti_descriptor: DwTag;
 ```
 
-### `DW_TAG_SUN_dtor_info`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_dtor_info`
 ```rust
 const DW_TAG_SUN_dtor_info: DwTag;
 ```
 
-### `DW_TAG_SUN_dtor`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_dtor`
 ```rust
 const DW_TAG_SUN_dtor: DwTag;
 ```
 
-### `DW_TAG_SUN_f90_interface`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_f90_interface`
 ```rust
 const DW_TAG_SUN_f90_interface: DwTag;
 ```
 
-### `DW_TAG_SUN_fortran_vax_structure`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_SUN_fortran_vax_structure`
 ```rust
 const DW_TAG_SUN_fortran_vax_structure: DwTag;
 ```
 
-### `DW_TAG_ALTIUM_circ_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_ALTIUM_circ_type`
 ```rust
 const DW_TAG_ALTIUM_circ_type: DwTag;
 ```
 
-### `DW_TAG_ALTIUM_mwa_circ_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_ALTIUM_mwa_circ_type`
 ```rust
 const DW_TAG_ALTIUM_mwa_circ_type: DwTag;
 ```
 
-### `DW_TAG_ALTIUM_rev_carry_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_ALTIUM_rev_carry_type`
 ```rust
 const DW_TAG_ALTIUM_rev_carry_type: DwTag;
 ```
 
-### `DW_TAG_ALTIUM_rom`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_ALTIUM_rom`
 ```rust
 const DW_TAG_ALTIUM_rom: DwTag;
 ```
 
-### `DW_TAG_upc_shared_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_upc_shared_type`
 ```rust
 const DW_TAG_upc_shared_type: DwTag;
 ```
 
-### `DW_TAG_upc_strict_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_upc_strict_type`
 ```rust
 const DW_TAG_upc_strict_type: DwTag;
 ```
 
-### `DW_TAG_upc_relaxed_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_upc_relaxed_type`
 ```rust
 const DW_TAG_upc_relaxed_type: DwTag;
 ```
 
-### `DW_TAG_PGI_kanji_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_PGI_kanji_type`
 ```rust
 const DW_TAG_PGI_kanji_type: DwTag;
 ```
 
-### `DW_TAG_PGI_interface_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_PGI_interface_block`
 ```rust
 const DW_TAG_PGI_interface_block: DwTag;
 ```
 
-### `DW_TAG_BORLAND_property`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_BORLAND_property`
 ```rust
 const DW_TAG_BORLAND_property: DwTag;
 ```
 
-### `DW_TAG_BORLAND_Delphi_string`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_BORLAND_Delphi_string`
 ```rust
 const DW_TAG_BORLAND_Delphi_string: DwTag;
 ```
 
-### `DW_TAG_BORLAND_Delphi_dynamic_array`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_BORLAND_Delphi_dynamic_array`
 ```rust
 const DW_TAG_BORLAND_Delphi_dynamic_array: DwTag;
 ```
 
-### `DW_TAG_BORLAND_Delphi_set`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_BORLAND_Delphi_set`
 ```rust
 const DW_TAG_BORLAND_Delphi_set: DwTag;
 ```
 
-### `DW_TAG_BORLAND_Delphi_variant`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_TAG_BORLAND_Delphi_variant`
 ```rust
 const DW_TAG_BORLAND_Delphi_variant: DwTag;
 ```
 
-### `DW_AT_null`
+*Defined in [`gimli-0.32.3/src/constants.rs:205-357`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L205-L357)*
 
+### `DW_AT_null`
 ```rust
 const DW_AT_null: DwAt;
 ```
 
-### `DW_AT_fund_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_fund_type`
 ```rust
 const DW_AT_fund_type: DwAt;
 ```
 
-### `DW_AT_mod_fund_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_mod_fund_type`
 ```rust
 const DW_AT_mod_fund_type: DwAt;
 ```
 
-### `DW_AT_user_def_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_user_def_type`
 ```rust
 const DW_AT_user_def_type: DwAt;
 ```
 
-### `DW_AT_mod_u_d_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_mod_u_d_type`
 ```rust
 const DW_AT_mod_u_d_type: DwAt;
 ```
 
-### `DW_AT_subscr_data`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_subscr_data`
 ```rust
 const DW_AT_subscr_data: DwAt;
 ```
 
-### `DW_AT_element_list`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_element_list`
 ```rust
 const DW_AT_element_list: DwAt;
 ```
 
-### `DW_AT_member`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_member`
 ```rust
 const DW_AT_member: DwAt;
 ```
 
-### `DW_AT_friends`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_friends`
 ```rust
 const DW_AT_friends: DwAt;
 ```
 
-### `DW_AT_program`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_program`
 ```rust
 const DW_AT_program: DwAt;
 ```
 
-### `DW_AT_private`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_private`
 ```rust
 const DW_AT_private: DwAt;
 ```
 
-### `DW_AT_protected`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_protected`
 ```rust
 const DW_AT_protected: DwAt;
 ```
 
-### `DW_AT_public`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_public`
 ```rust
 const DW_AT_public: DwAt;
 ```
 
-### `DW_AT_pure_virtual`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_pure_virtual`
 ```rust
 const DW_AT_pure_virtual: DwAt;
 ```
 
-### `DW_AT_virtual`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_virtual`
 ```rust
 const DW_AT_virtual: DwAt;
 ```
 
-### `DW_AT_specification_v1`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_specification_v1`
 ```rust
 const DW_AT_specification_v1: DwAt;
 ```
 
-### `DW_AT_sibling`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_sibling`
 ```rust
 const DW_AT_sibling: DwAt;
 ```
 
-### `DW_AT_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_location`
 ```rust
 const DW_AT_location: DwAt;
 ```
 
-### `DW_AT_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_name`
 ```rust
 const DW_AT_name: DwAt;
 ```
 
-### `DW_AT_ordering`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_ordering`
 ```rust
 const DW_AT_ordering: DwAt;
 ```
 
-### `DW_AT_byte_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_byte_size`
 ```rust
 const DW_AT_byte_size: DwAt;
 ```
 
-### `DW_AT_bit_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_bit_offset`
 ```rust
 const DW_AT_bit_offset: DwAt;
 ```
 
-### `DW_AT_bit_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_bit_size`
 ```rust
 const DW_AT_bit_size: DwAt;
 ```
 
-### `DW_AT_stmt_list`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_stmt_list`
 ```rust
 const DW_AT_stmt_list: DwAt;
 ```
 
-### `DW_AT_low_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_low_pc`
 ```rust
 const DW_AT_low_pc: DwAt;
 ```
 
-### `DW_AT_high_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_high_pc`
 ```rust
 const DW_AT_high_pc: DwAt;
 ```
 
-### `DW_AT_language`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_language`
 ```rust
 const DW_AT_language: DwAt;
 ```
 
-### `DW_AT_discr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_discr`
 ```rust
 const DW_AT_discr: DwAt;
 ```
 
-### `DW_AT_discr_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_discr_value`
 ```rust
 const DW_AT_discr_value: DwAt;
 ```
 
-### `DW_AT_visibility`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_visibility`
 ```rust
 const DW_AT_visibility: DwAt;
 ```
 
-### `DW_AT_import`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_import`
 ```rust
 const DW_AT_import: DwAt;
 ```
 
-### `DW_AT_string_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_string_length`
 ```rust
 const DW_AT_string_length: DwAt;
 ```
 
-### `DW_AT_common_reference`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_common_reference`
 ```rust
 const DW_AT_common_reference: DwAt;
 ```
 
-### `DW_AT_comp_dir`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_comp_dir`
 ```rust
 const DW_AT_comp_dir: DwAt;
 ```
 
-### `DW_AT_const_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_const_value`
 ```rust
 const DW_AT_const_value: DwAt;
 ```
 
-### `DW_AT_containing_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_containing_type`
 ```rust
 const DW_AT_containing_type: DwAt;
 ```
 
-### `DW_AT_default_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_default_value`
 ```rust
 const DW_AT_default_value: DwAt;
 ```
 
-### `DW_AT_inline`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_inline`
 ```rust
 const DW_AT_inline: DwAt;
 ```
 
-### `DW_AT_is_optional`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_is_optional`
 ```rust
 const DW_AT_is_optional: DwAt;
 ```
 
-### `DW_AT_lower_bound`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_lower_bound`
 ```rust
 const DW_AT_lower_bound: DwAt;
 ```
 
-### `DW_AT_producer`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_producer`
 ```rust
 const DW_AT_producer: DwAt;
 ```
 
-### `DW_AT_prototyped`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_prototyped`
 ```rust
 const DW_AT_prototyped: DwAt;
 ```
 
-### `DW_AT_return_addr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_return_addr`
 ```rust
 const DW_AT_return_addr: DwAt;
 ```
 
-### `DW_AT_start_scope`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_start_scope`
 ```rust
 const DW_AT_start_scope: DwAt;
 ```
 
-### `DW_AT_bit_stride`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_bit_stride`
 ```rust
 const DW_AT_bit_stride: DwAt;
 ```
 
-### `DW_AT_upper_bound`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_upper_bound`
 ```rust
 const DW_AT_upper_bound: DwAt;
 ```
 
-### `DW_AT_abstract_origin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_abstract_origin`
 ```rust
 const DW_AT_abstract_origin: DwAt;
 ```
 
-### `DW_AT_accessibility`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_accessibility`
 ```rust
 const DW_AT_accessibility: DwAt;
 ```
 
-### `DW_AT_address_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_address_class`
 ```rust
 const DW_AT_address_class: DwAt;
 ```
 
-### `DW_AT_artificial`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_artificial`
 ```rust
 const DW_AT_artificial: DwAt;
 ```
 
-### `DW_AT_base_types`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_base_types`
 ```rust
 const DW_AT_base_types: DwAt;
 ```
 
-### `DW_AT_calling_convention`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_calling_convention`
 ```rust
 const DW_AT_calling_convention: DwAt;
 ```
 
-### `DW_AT_count`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_count`
 ```rust
 const DW_AT_count: DwAt;
 ```
 
-### `DW_AT_data_member_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_data_member_location`
 ```rust
 const DW_AT_data_member_location: DwAt;
 ```
 
-### `DW_AT_decl_column`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_decl_column`
 ```rust
 const DW_AT_decl_column: DwAt;
 ```
 
-### `DW_AT_decl_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_decl_file`
 ```rust
 const DW_AT_decl_file: DwAt;
 ```
 
-### `DW_AT_decl_line`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_decl_line`
 ```rust
 const DW_AT_decl_line: DwAt;
 ```
 
-### `DW_AT_declaration`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_declaration`
 ```rust
 const DW_AT_declaration: DwAt;
 ```
 
-### `DW_AT_discr_list`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_discr_list`
 ```rust
 const DW_AT_discr_list: DwAt;
 ```
 
-### `DW_AT_encoding`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_encoding`
 ```rust
 const DW_AT_encoding: DwAt;
 ```
 
-### `DW_AT_external`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_external`
 ```rust
 const DW_AT_external: DwAt;
 ```
 
-### `DW_AT_frame_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_frame_base`
 ```rust
 const DW_AT_frame_base: DwAt;
 ```
 
-### `DW_AT_friend`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_friend`
 ```rust
 const DW_AT_friend: DwAt;
 ```
 
-### `DW_AT_identifier_case`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_identifier_case`
 ```rust
 const DW_AT_identifier_case: DwAt;
 ```
 
-### `DW_AT_macro_info`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_macro_info`
 ```rust
 const DW_AT_macro_info: DwAt;
 ```
 
-### `DW_AT_namelist_item`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_namelist_item`
 ```rust
 const DW_AT_namelist_item: DwAt;
 ```
 
-### `DW_AT_priority`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_priority`
 ```rust
 const DW_AT_priority: DwAt;
 ```
 
-### `DW_AT_segment`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_segment`
 ```rust
 const DW_AT_segment: DwAt;
 ```
 
-### `DW_AT_specification`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_specification`
 ```rust
 const DW_AT_specification: DwAt;
 ```
 
-### `DW_AT_static_link`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_static_link`
 ```rust
 const DW_AT_static_link: DwAt;
 ```
 
-### `DW_AT_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_type`
 ```rust
 const DW_AT_type: DwAt;
 ```
 
-### `DW_AT_use_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_use_location`
 ```rust
 const DW_AT_use_location: DwAt;
 ```
 
-### `DW_AT_variable_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_variable_parameter`
 ```rust
 const DW_AT_variable_parameter: DwAt;
 ```
 
-### `DW_AT_virtuality`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_virtuality`
 ```rust
 const DW_AT_virtuality: DwAt;
 ```
 
-### `DW_AT_vtable_elem_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_vtable_elem_location`
 ```rust
 const DW_AT_vtable_elem_location: DwAt;
 ```
 
-### `DW_AT_allocated`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_allocated`
 ```rust
 const DW_AT_allocated: DwAt;
 ```
 
-### `DW_AT_associated`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_associated`
 ```rust
 const DW_AT_associated: DwAt;
 ```
 
-### `DW_AT_data_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_data_location`
 ```rust
 const DW_AT_data_location: DwAt;
 ```
 
-### `DW_AT_byte_stride`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_byte_stride`
 ```rust
 const DW_AT_byte_stride: DwAt;
 ```
 
-### `DW_AT_entry_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_entry_pc`
 ```rust
 const DW_AT_entry_pc: DwAt;
 ```
 
-### `DW_AT_use_UTF8`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_use_UTF8`
 ```rust
 const DW_AT_use_UTF8: DwAt;
 ```
 
-### `DW_AT_extension`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_extension`
 ```rust
 const DW_AT_extension: DwAt;
 ```
 
-### `DW_AT_ranges`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_ranges`
 ```rust
 const DW_AT_ranges: DwAt;
 ```
 
-### `DW_AT_trampoline`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_trampoline`
 ```rust
 const DW_AT_trampoline: DwAt;
 ```
 
-### `DW_AT_call_column`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_column`
 ```rust
 const DW_AT_call_column: DwAt;
 ```
 
-### `DW_AT_call_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_file`
 ```rust
 const DW_AT_call_file: DwAt;
 ```
 
-### `DW_AT_call_line`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_line`
 ```rust
 const DW_AT_call_line: DwAt;
 ```
 
-### `DW_AT_description`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_description`
 ```rust
 const DW_AT_description: DwAt;
 ```
 
-### `DW_AT_binary_scale`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_binary_scale`
 ```rust
 const DW_AT_binary_scale: DwAt;
 ```
 
-### `DW_AT_decimal_scale`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_decimal_scale`
 ```rust
 const DW_AT_decimal_scale: DwAt;
 ```
 
-### `DW_AT_small`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_small`
 ```rust
 const DW_AT_small: DwAt;
 ```
 
-### `DW_AT_decimal_sign`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_decimal_sign`
 ```rust
 const DW_AT_decimal_sign: DwAt;
 ```
 
-### `DW_AT_digit_count`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_digit_count`
 ```rust
 const DW_AT_digit_count: DwAt;
 ```
 
-### `DW_AT_picture_string`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_picture_string`
 ```rust
 const DW_AT_picture_string: DwAt;
 ```
 
-### `DW_AT_mutable`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_mutable`
 ```rust
 const DW_AT_mutable: DwAt;
 ```
 
-### `DW_AT_threads_scaled`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_threads_scaled`
 ```rust
 const DW_AT_threads_scaled: DwAt;
 ```
 
-### `DW_AT_explicit`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_explicit`
 ```rust
 const DW_AT_explicit: DwAt;
 ```
 
-### `DW_AT_object_pointer`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_object_pointer`
 ```rust
 const DW_AT_object_pointer: DwAt;
 ```
 
-### `DW_AT_endianity`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_endianity`
 ```rust
 const DW_AT_endianity: DwAt;
 ```
 
-### `DW_AT_elemental`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_elemental`
 ```rust
 const DW_AT_elemental: DwAt;
 ```
 
-### `DW_AT_pure`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_pure`
 ```rust
 const DW_AT_pure: DwAt;
 ```
 
-### `DW_AT_recursive`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_recursive`
 ```rust
 const DW_AT_recursive: DwAt;
 ```
 
-### `DW_AT_signature`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_signature`
 ```rust
 const DW_AT_signature: DwAt;
 ```
 
-### `DW_AT_main_subprogram`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_main_subprogram`
 ```rust
 const DW_AT_main_subprogram: DwAt;
 ```
 
-### `DW_AT_data_bit_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_data_bit_offset`
 ```rust
 const DW_AT_data_bit_offset: DwAt;
 ```
 
-### `DW_AT_const_expr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_const_expr`
 ```rust
 const DW_AT_const_expr: DwAt;
 ```
 
-### `DW_AT_enum_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_enum_class`
 ```rust
 const DW_AT_enum_class: DwAt;
 ```
 
-### `DW_AT_linkage_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_linkage_name`
 ```rust
 const DW_AT_linkage_name: DwAt;
 ```
 
-### `DW_AT_string_length_bit_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_string_length_bit_size`
 ```rust
 const DW_AT_string_length_bit_size: DwAt;
 ```
 
-### `DW_AT_string_length_byte_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_string_length_byte_size`
 ```rust
 const DW_AT_string_length_byte_size: DwAt;
 ```
 
-### `DW_AT_rank`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_rank`
 ```rust
 const DW_AT_rank: DwAt;
 ```
 
-### `DW_AT_str_offsets_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_str_offsets_base`
 ```rust
 const DW_AT_str_offsets_base: DwAt;
 ```
 
-### `DW_AT_addr_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_addr_base`
 ```rust
 const DW_AT_addr_base: DwAt;
 ```
 
-### `DW_AT_rnglists_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_rnglists_base`
 ```rust
 const DW_AT_rnglists_base: DwAt;
 ```
 
-### `DW_AT_dwo_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_dwo_name`
 ```rust
 const DW_AT_dwo_name: DwAt;
 ```
 
-### `DW_AT_reference`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_reference`
 ```rust
 const DW_AT_reference: DwAt;
 ```
 
-### `DW_AT_rvalue_reference`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_rvalue_reference`
 ```rust
 const DW_AT_rvalue_reference: DwAt;
 ```
 
-### `DW_AT_macros`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_macros`
 ```rust
 const DW_AT_macros: DwAt;
 ```
 
-### `DW_AT_call_all_calls`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_all_calls`
 ```rust
 const DW_AT_call_all_calls: DwAt;
 ```
 
-### `DW_AT_call_all_source_calls`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_all_source_calls`
 ```rust
 const DW_AT_call_all_source_calls: DwAt;
 ```
 
-### `DW_AT_call_all_tail_calls`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_all_tail_calls`
 ```rust
 const DW_AT_call_all_tail_calls: DwAt;
 ```
 
-### `DW_AT_call_return_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_return_pc`
 ```rust
 const DW_AT_call_return_pc: DwAt;
 ```
 
-### `DW_AT_call_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_value`
 ```rust
 const DW_AT_call_value: DwAt;
 ```
 
-### `DW_AT_call_origin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_origin`
 ```rust
 const DW_AT_call_origin: DwAt;
 ```
 
-### `DW_AT_call_parameter`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_parameter`
 ```rust
 const DW_AT_call_parameter: DwAt;
 ```
 
-### `DW_AT_call_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_pc`
 ```rust
 const DW_AT_call_pc: DwAt;
 ```
 
-### `DW_AT_call_tail_call`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_tail_call`
 ```rust
 const DW_AT_call_tail_call: DwAt;
 ```
 
-### `DW_AT_call_target`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_target`
 ```rust
 const DW_AT_call_target: DwAt;
 ```
 
-### `DW_AT_call_target_clobbered`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_target_clobbered`
 ```rust
 const DW_AT_call_target_clobbered: DwAt;
 ```
 
-### `DW_AT_call_data_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_data_location`
 ```rust
 const DW_AT_call_data_location: DwAt;
 ```
 
-### `DW_AT_call_data_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_call_data_value`
 ```rust
 const DW_AT_call_data_value: DwAt;
 ```
 
-### `DW_AT_noreturn`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_noreturn`
 ```rust
 const DW_AT_noreturn: DwAt;
 ```
 
-### `DW_AT_alignment`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_alignment`
 ```rust
 const DW_AT_alignment: DwAt;
 ```
 
-### `DW_AT_export_symbols`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_export_symbols`
 ```rust
 const DW_AT_export_symbols: DwAt;
 ```
 
-### `DW_AT_deleted`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_deleted`
 ```rust
 const DW_AT_deleted: DwAt;
 ```
 
-### `DW_AT_defaulted`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_defaulted`
 ```rust
 const DW_AT_defaulted: DwAt;
 ```
 
-### `DW_AT_loclists_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_loclists_base`
 ```rust
 const DW_AT_loclists_base: DwAt;
 ```
 
-### `DW_AT_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_lo_user`
 ```rust
 const DW_AT_lo_user: DwAt;
 ```
 
-### `DW_AT_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_hi_user`
 ```rust
 const DW_AT_hi_user: DwAt;
 ```
 
-### `DW_AT_MIPS_fde`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_fde`
 ```rust
 const DW_AT_MIPS_fde: DwAt;
 ```
 
-### `DW_AT_MIPS_loop_begin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_loop_begin`
 ```rust
 const DW_AT_MIPS_loop_begin: DwAt;
 ```
 
-### `DW_AT_MIPS_tail_loop_begin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_tail_loop_begin`
 ```rust
 const DW_AT_MIPS_tail_loop_begin: DwAt;
 ```
 
-### `DW_AT_MIPS_epilog_begin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_epilog_begin`
 ```rust
 const DW_AT_MIPS_epilog_begin: DwAt;
 ```
 
-### `DW_AT_MIPS_loop_unroll_factor`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_loop_unroll_factor`
 ```rust
 const DW_AT_MIPS_loop_unroll_factor: DwAt;
 ```
 
-### `DW_AT_MIPS_software_pipeline_depth`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_software_pipeline_depth`
 ```rust
 const DW_AT_MIPS_software_pipeline_depth: DwAt;
 ```
 
-### `DW_AT_MIPS_linkage_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_linkage_name`
 ```rust
 const DW_AT_MIPS_linkage_name: DwAt;
 ```
 
-### `DW_AT_MIPS_stride`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_stride`
 ```rust
 const DW_AT_MIPS_stride: DwAt;
 ```
 
-### `DW_AT_MIPS_abstract_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_abstract_name`
 ```rust
 const DW_AT_MIPS_abstract_name: DwAt;
 ```
 
-### `DW_AT_MIPS_clone_origin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_clone_origin`
 ```rust
 const DW_AT_MIPS_clone_origin: DwAt;
 ```
 
-### `DW_AT_MIPS_has_inlines`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_has_inlines`
 ```rust
 const DW_AT_MIPS_has_inlines: DwAt;
 ```
 
-### `DW_AT_MIPS_stride_byte`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_stride_byte`
 ```rust
 const DW_AT_MIPS_stride_byte: DwAt;
 ```
 
-### `DW_AT_MIPS_stride_elem`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_stride_elem`
 ```rust
 const DW_AT_MIPS_stride_elem: DwAt;
 ```
 
-### `DW_AT_MIPS_ptr_dopetype`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_ptr_dopetype`
 ```rust
 const DW_AT_MIPS_ptr_dopetype: DwAt;
 ```
 
-### `DW_AT_MIPS_allocatable_dopetype`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_allocatable_dopetype`
 ```rust
 const DW_AT_MIPS_allocatable_dopetype: DwAt;
 ```
 
-### `DW_AT_MIPS_assumed_shape_dopetype`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_assumed_shape_dopetype`
 ```rust
 const DW_AT_MIPS_assumed_shape_dopetype: DwAt;
 ```
 
-### `DW_AT_MIPS_assumed_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_MIPS_assumed_size`
 ```rust
 const DW_AT_MIPS_assumed_size: DwAt;
 ```
 
-### `DW_AT_INTEL_other_endian`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_INTEL_other_endian`
 ```rust
 const DW_AT_INTEL_other_endian: DwAt;
 ```
 
-### `DW_AT_sf_names`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_sf_names`
 ```rust
 const DW_AT_sf_names: DwAt;
 ```
 
-### `DW_AT_src_info`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_src_info`
 ```rust
 const DW_AT_src_info: DwAt;
 ```
 
-### `DW_AT_mac_info`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_mac_info`
 ```rust
 const DW_AT_mac_info: DwAt;
 ```
 
-### `DW_AT_src_coords`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_src_coords`
 ```rust
 const DW_AT_src_coords: DwAt;
 ```
 
-### `DW_AT_body_begin`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_body_begin`
 ```rust
 const DW_AT_body_begin: DwAt;
 ```
 
-### `DW_AT_body_end`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_body_end`
 ```rust
 const DW_AT_body_end: DwAt;
 ```
 
-### `DW_AT_GNU_vector`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_vector`
 ```rust
 const DW_AT_GNU_vector: DwAt;
 ```
 
-### `DW_AT_GNU_guarded_by`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_guarded_by`
 ```rust
 const DW_AT_GNU_guarded_by: DwAt;
 ```
 
-### `DW_AT_GNU_pt_guarded_by`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_pt_guarded_by`
 ```rust
 const DW_AT_GNU_pt_guarded_by: DwAt;
 ```
 
-### `DW_AT_GNU_guarded`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_guarded`
 ```rust
 const DW_AT_GNU_guarded: DwAt;
 ```
 
-### `DW_AT_GNU_pt_guarded`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_pt_guarded`
 ```rust
 const DW_AT_GNU_pt_guarded: DwAt;
 ```
 
-### `DW_AT_GNU_locks_excluded`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_locks_excluded`
 ```rust
 const DW_AT_GNU_locks_excluded: DwAt;
 ```
 
-### `DW_AT_GNU_exclusive_locks_required`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_exclusive_locks_required`
 ```rust
 const DW_AT_GNU_exclusive_locks_required: DwAt;
 ```
 
-### `DW_AT_GNU_shared_locks_required`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_shared_locks_required`
 ```rust
 const DW_AT_GNU_shared_locks_required: DwAt;
 ```
 
-### `DW_AT_GNU_odr_signature`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_odr_signature`
 ```rust
 const DW_AT_GNU_odr_signature: DwAt;
 ```
 
-### `DW_AT_GNU_template_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_template_name`
 ```rust
 const DW_AT_GNU_template_name: DwAt;
 ```
 
-### `DW_AT_GNU_call_site_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_call_site_value`
 ```rust
 const DW_AT_GNU_call_site_value: DwAt;
 ```
 
-### `DW_AT_GNU_call_site_data_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_call_site_data_value`
 ```rust
 const DW_AT_GNU_call_site_data_value: DwAt;
 ```
 
-### `DW_AT_GNU_call_site_target`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_call_site_target`
 ```rust
 const DW_AT_GNU_call_site_target: DwAt;
 ```
 
-### `DW_AT_GNU_call_site_target_clobbered`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_call_site_target_clobbered`
 ```rust
 const DW_AT_GNU_call_site_target_clobbered: DwAt;
 ```
 
-### `DW_AT_GNU_tail_call`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_tail_call`
 ```rust
 const DW_AT_GNU_tail_call: DwAt;
 ```
 
-### `DW_AT_GNU_all_tail_call_sites`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_all_tail_call_sites`
 ```rust
 const DW_AT_GNU_all_tail_call_sites: DwAt;
 ```
 
-### `DW_AT_GNU_all_call_sites`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_all_call_sites`
 ```rust
 const DW_AT_GNU_all_call_sites: DwAt;
 ```
 
-### `DW_AT_GNU_all_source_call_sites`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_all_source_call_sites`
 ```rust
 const DW_AT_GNU_all_source_call_sites: DwAt;
 ```
 
-### `DW_AT_GNU_macros`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_macros`
 ```rust
 const DW_AT_GNU_macros: DwAt;
 ```
 
-### `DW_AT_GNU_deleted`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_deleted`
 ```rust
 const DW_AT_GNU_deleted: DwAt;
 ```
 
-### `DW_AT_GNU_dwo_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_dwo_name`
 ```rust
 const DW_AT_GNU_dwo_name: DwAt;
 ```
 
-### `DW_AT_GNU_dwo_id`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_dwo_id`
 ```rust
 const DW_AT_GNU_dwo_id: DwAt;
 ```
 
-### `DW_AT_GNU_ranges_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_ranges_base`
 ```rust
 const DW_AT_GNU_ranges_base: DwAt;
 ```
 
-### `DW_AT_GNU_addr_base`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_addr_base`
 ```rust
 const DW_AT_GNU_addr_base: DwAt;
 ```
 
-### `DW_AT_GNU_pubnames`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_pubnames`
 ```rust
 const DW_AT_GNU_pubnames: DwAt;
 ```
 
-### `DW_AT_GNU_pubtypes`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_pubtypes`
 ```rust
 const DW_AT_GNU_pubtypes: DwAt;
 ```
 
-### `DW_AT_GNU_discriminator`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_discriminator`
 ```rust
 const DW_AT_GNU_discriminator: DwAt;
 ```
 
-### `DW_AT_GNU_locviews`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_locviews`
 ```rust
 const DW_AT_GNU_locviews: DwAt;
 ```
 
-### `DW_AT_GNU_entry_view`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_entry_view`
 ```rust
 const DW_AT_GNU_entry_view: DwAt;
 ```
 
-### `DW_AT_SUN_template`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_template`
 ```rust
 const DW_AT_SUN_template: DwAt;
 ```
 
-### `DW_AT_SUN_alignment`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_alignment`
 ```rust
 const DW_AT_SUN_alignment: DwAt;
 ```
 
-### `DW_AT_SUN_vtable`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_vtable`
 ```rust
 const DW_AT_SUN_vtable: DwAt;
 ```
 
-### `DW_AT_SUN_count_guarantee`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_count_guarantee`
 ```rust
 const DW_AT_SUN_count_guarantee: DwAt;
 ```
 
-### `DW_AT_SUN_command_line`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_command_line`
 ```rust
 const DW_AT_SUN_command_line: DwAt;
 ```
 
-### `DW_AT_SUN_vbase`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_vbase`
 ```rust
 const DW_AT_SUN_vbase: DwAt;
 ```
 
-### `DW_AT_SUN_compile_options`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_compile_options`
 ```rust
 const DW_AT_SUN_compile_options: DwAt;
 ```
 
-### `DW_AT_SUN_language`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_language`
 ```rust
 const DW_AT_SUN_language: DwAt;
 ```
 
-### `DW_AT_SUN_browser_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_browser_file`
 ```rust
 const DW_AT_SUN_browser_file: DwAt;
 ```
 
-### `DW_AT_SUN_vtable_abi`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_vtable_abi`
 ```rust
 const DW_AT_SUN_vtable_abi: DwAt;
 ```
 
-### `DW_AT_SUN_func_offsets`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_func_offsets`
 ```rust
 const DW_AT_SUN_func_offsets: DwAt;
 ```
 
-### `DW_AT_SUN_cf_kind`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_cf_kind`
 ```rust
 const DW_AT_SUN_cf_kind: DwAt;
 ```
 
-### `DW_AT_SUN_vtable_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_vtable_index`
 ```rust
 const DW_AT_SUN_vtable_index: DwAt;
 ```
 
-### `DW_AT_SUN_omp_tpriv_addr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_omp_tpriv_addr`
 ```rust
 const DW_AT_SUN_omp_tpriv_addr: DwAt;
 ```
 
-### `DW_AT_SUN_omp_child_func`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_omp_child_func`
 ```rust
 const DW_AT_SUN_omp_child_func: DwAt;
 ```
 
-### `DW_AT_SUN_func_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_func_offset`
 ```rust
 const DW_AT_SUN_func_offset: DwAt;
 ```
 
-### `DW_AT_SUN_memop_type_ref`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_memop_type_ref`
 ```rust
 const DW_AT_SUN_memop_type_ref: DwAt;
 ```
 
-### `DW_AT_SUN_profile_id`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_profile_id`
 ```rust
 const DW_AT_SUN_profile_id: DwAt;
 ```
 
-### `DW_AT_SUN_memop_signature`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_memop_signature`
 ```rust
 const DW_AT_SUN_memop_signature: DwAt;
 ```
 
-### `DW_AT_SUN_obj_dir`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_obj_dir`
 ```rust
 const DW_AT_SUN_obj_dir: DwAt;
 ```
 
-### `DW_AT_SUN_obj_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_obj_file`
 ```rust
 const DW_AT_SUN_obj_file: DwAt;
 ```
 
-### `DW_AT_SUN_original_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_original_name`
 ```rust
 const DW_AT_SUN_original_name: DwAt;
 ```
 
-### `DW_AT_SUN_hwcprof_signature`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_hwcprof_signature`
 ```rust
 const DW_AT_SUN_hwcprof_signature: DwAt;
 ```
 
-### `DW_AT_SUN_amd64_parmdump`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_amd64_parmdump`
 ```rust
 const DW_AT_SUN_amd64_parmdump: DwAt;
 ```
 
-### `DW_AT_SUN_part_link_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_part_link_name`
 ```rust
 const DW_AT_SUN_part_link_name: DwAt;
 ```
 
-### `DW_AT_SUN_link_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_link_name`
 ```rust
 const DW_AT_SUN_link_name: DwAt;
 ```
 
-### `DW_AT_SUN_pass_with_const`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_pass_with_const`
 ```rust
 const DW_AT_SUN_pass_with_const: DwAt;
 ```
 
-### `DW_AT_SUN_return_with_const`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_return_with_const`
 ```rust
 const DW_AT_SUN_return_with_const: DwAt;
 ```
 
-### `DW_AT_SUN_import_by_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_import_by_name`
 ```rust
 const DW_AT_SUN_import_by_name: DwAt;
 ```
 
-### `DW_AT_SUN_f90_pointer`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_f90_pointer`
 ```rust
 const DW_AT_SUN_f90_pointer: DwAt;
 ```
 
-### `DW_AT_SUN_pass_by_ref`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_pass_by_ref`
 ```rust
 const DW_AT_SUN_pass_by_ref: DwAt;
 ```
 
-### `DW_AT_SUN_f90_allocatable`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_f90_allocatable`
 ```rust
 const DW_AT_SUN_f90_allocatable: DwAt;
 ```
 
-### `DW_AT_SUN_f90_assumed_shape_array`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_f90_assumed_shape_array`
 ```rust
 const DW_AT_SUN_f90_assumed_shape_array: DwAt;
 ```
 
-### `DW_AT_SUN_c_vla`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_c_vla`
 ```rust
 const DW_AT_SUN_c_vla: DwAt;
 ```
 
-### `DW_AT_SUN_return_value_ptr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_return_value_ptr`
 ```rust
 const DW_AT_SUN_return_value_ptr: DwAt;
 ```
 
-### `DW_AT_SUN_dtor_start`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_dtor_start`
 ```rust
 const DW_AT_SUN_dtor_start: DwAt;
 ```
 
-### `DW_AT_SUN_dtor_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_dtor_length`
 ```rust
 const DW_AT_SUN_dtor_length: DwAt;
 ```
 
-### `DW_AT_SUN_dtor_state_initial`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_dtor_state_initial`
 ```rust
 const DW_AT_SUN_dtor_state_initial: DwAt;
 ```
 
-### `DW_AT_SUN_dtor_state_final`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_dtor_state_final`
 ```rust
 const DW_AT_SUN_dtor_state_final: DwAt;
 ```
 
-### `DW_AT_SUN_dtor_state_deltas`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_dtor_state_deltas`
 ```rust
 const DW_AT_SUN_dtor_state_deltas: DwAt;
 ```
 
-### `DW_AT_SUN_import_by_lname`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_import_by_lname`
 ```rust
 const DW_AT_SUN_import_by_lname: DwAt;
 ```
 
-### `DW_AT_SUN_f90_use_only`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_f90_use_only`
 ```rust
 const DW_AT_SUN_f90_use_only: DwAt;
 ```
 
-### `DW_AT_SUN_namelist_spec`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_namelist_spec`
 ```rust
 const DW_AT_SUN_namelist_spec: DwAt;
 ```
 
-### `DW_AT_SUN_is_omp_child_func`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_is_omp_child_func`
 ```rust
 const DW_AT_SUN_is_omp_child_func: DwAt;
 ```
 
-### `DW_AT_SUN_fortran_main_alias`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_fortran_main_alias`
 ```rust
 const DW_AT_SUN_fortran_main_alias: DwAt;
 ```
 
-### `DW_AT_SUN_fortran_based`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_SUN_fortran_based`
 ```rust
 const DW_AT_SUN_fortran_based: DwAt;
 ```
 
-### `DW_AT_ALTIUM_loclist`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_ALTIUM_loclist`
 ```rust
 const DW_AT_ALTIUM_loclist: DwAt;
 ```
 
-### `DW_AT_use_GNAT_descriptive_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_use_GNAT_descriptive_type`
 ```rust
 const DW_AT_use_GNAT_descriptive_type: DwAt;
 ```
 
-### `DW_AT_GNAT_descriptive_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNAT_descriptive_type`
 ```rust
 const DW_AT_GNAT_descriptive_type: DwAt;
 ```
 
-### `DW_AT_GNU_numerator`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_numerator`
 ```rust
 const DW_AT_GNU_numerator: DwAt;
 ```
 
-### `DW_AT_GNU_denominator`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_denominator`
 ```rust
 const DW_AT_GNU_denominator: DwAt;
 ```
 
-### `DW_AT_GNU_bias`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_GNU_bias`
 ```rust
 const DW_AT_GNU_bias: DwAt;
 ```
 
-### `DW_AT_upc_threads_scaled`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_upc_threads_scaled`
 ```rust
 const DW_AT_upc_threads_scaled: DwAt;
 ```
 
-### `DW_AT_PGI_lbase`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_PGI_lbase`
 ```rust
 const DW_AT_PGI_lbase: DwAt;
 ```
 
-### `DW_AT_PGI_soffset`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_PGI_soffset`
 ```rust
 const DW_AT_PGI_soffset: DwAt;
 ```
 
-### `DW_AT_PGI_lstride`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_PGI_lstride`
 ```rust
 const DW_AT_PGI_lstride: DwAt;
 ```
 
-### `DW_AT_BORLAND_property_read`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_property_read`
 ```rust
 const DW_AT_BORLAND_property_read: DwAt;
 ```
 
-### `DW_AT_BORLAND_property_write`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_property_write`
 ```rust
 const DW_AT_BORLAND_property_write: DwAt;
 ```
 
-### `DW_AT_BORLAND_property_implements`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_property_implements`
 ```rust
 const DW_AT_BORLAND_property_implements: DwAt;
 ```
 
-### `DW_AT_BORLAND_property_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_property_index`
 ```rust
 const DW_AT_BORLAND_property_index: DwAt;
 ```
 
-### `DW_AT_BORLAND_property_default`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_property_default`
 ```rust
 const DW_AT_BORLAND_property_default: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_unit`
 ```rust
 const DW_AT_BORLAND_Delphi_unit: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_class`
 ```rust
 const DW_AT_BORLAND_Delphi_class: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_record`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_record`
 ```rust
 const DW_AT_BORLAND_Delphi_record: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_metaclass`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_metaclass`
 ```rust
 const DW_AT_BORLAND_Delphi_metaclass: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_constructor`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_constructor`
 ```rust
 const DW_AT_BORLAND_Delphi_constructor: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_destructor`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_destructor`
 ```rust
 const DW_AT_BORLAND_Delphi_destructor: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_anonymous_method`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_anonymous_method`
 ```rust
 const DW_AT_BORLAND_Delphi_anonymous_method: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_interface`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_interface`
 ```rust
 const DW_AT_BORLAND_Delphi_interface: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_ABI`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_ABI`
 ```rust
 const DW_AT_BORLAND_Delphi_ABI: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_return`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_return`
 ```rust
 const DW_AT_BORLAND_Delphi_return: DwAt;
 ```
 
-### `DW_AT_BORLAND_Delphi_frameptr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_Delphi_frameptr`
 ```rust
 const DW_AT_BORLAND_Delphi_frameptr: DwAt;
 ```
 
-### `DW_AT_BORLAND_closure`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_BORLAND_closure`
 ```rust
 const DW_AT_BORLAND_closure: DwAt;
 ```
 
-### `DW_AT_LLVM_include_path`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_LLVM_include_path`
 ```rust
 const DW_AT_LLVM_include_path: DwAt;
 ```
 
-### `DW_AT_LLVM_config_macros`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_LLVM_config_macros`
 ```rust
 const DW_AT_LLVM_config_macros: DwAt;
 ```
 
-### `DW_AT_LLVM_isysroot`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_LLVM_isysroot`
 ```rust
 const DW_AT_LLVM_isysroot: DwAt;
 ```
 
-### `DW_AT_APPLE_optimized`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_optimized`
 ```rust
 const DW_AT_APPLE_optimized: DwAt;
 ```
 
-### `DW_AT_APPLE_flags`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_flags`
 ```rust
 const DW_AT_APPLE_flags: DwAt;
 ```
 
-### `DW_AT_APPLE_isa`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_isa`
 ```rust
 const DW_AT_APPLE_isa: DwAt;
 ```
 
-### `DW_AT_APPLE_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_block`
 ```rust
 const DW_AT_APPLE_block: DwAt;
 ```
 
-### `DW_AT_APPLE_major_runtime_vers`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_major_runtime_vers`
 ```rust
 const DW_AT_APPLE_major_runtime_vers: DwAt;
 ```
 
-### `DW_AT_APPLE_runtime_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_runtime_class`
 ```rust
 const DW_AT_APPLE_runtime_class: DwAt;
 ```
 
-### `DW_AT_APPLE_omit_frame_ptr`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_omit_frame_ptr`
 ```rust
 const DW_AT_APPLE_omit_frame_ptr: DwAt;
 ```
 
-### `DW_AT_APPLE_property_name`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_property_name`
 ```rust
 const DW_AT_APPLE_property_name: DwAt;
 ```
 
-### `DW_AT_APPLE_property_getter`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_property_getter`
 ```rust
 const DW_AT_APPLE_property_getter: DwAt;
 ```
 
-### `DW_AT_APPLE_property_setter`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_property_setter`
 ```rust
 const DW_AT_APPLE_property_setter: DwAt;
 ```
 
-### `DW_AT_APPLE_property_attribute`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_property_attribute`
 ```rust
 const DW_AT_APPLE_property_attribute: DwAt;
 ```
 
-### `DW_AT_APPLE_objc_complete_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_objc_complete_type`
 ```rust
 const DW_AT_APPLE_objc_complete_type: DwAt;
 ```
 
-### `DW_AT_APPLE_property`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_AT_APPLE_property`
 ```rust
 const DW_AT_APPLE_property: DwAt;
 ```
 
-### `DW_FORM_null`
+*Defined in [`gimli-0.32.3/src/constants.rs:359-689`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L359-L689)*
 
+### `DW_FORM_null`
 ```rust
 const DW_FORM_null: DwForm;
 ```
 
-### `DW_FORM_ref`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref`
 ```rust
 const DW_FORM_ref: DwForm;
 ```
 
-### `DW_FORM_addr`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addr`
 ```rust
 const DW_FORM_addr: DwForm;
 ```
 
-### `DW_FORM_block2`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_block2`
 ```rust
 const DW_FORM_block2: DwForm;
 ```
 
-### `DW_FORM_block4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_block4`
 ```rust
 const DW_FORM_block4: DwForm;
 ```
 
-### `DW_FORM_data2`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_data2`
 ```rust
 const DW_FORM_data2: DwForm;
 ```
 
-### `DW_FORM_data4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_data4`
 ```rust
 const DW_FORM_data4: DwForm;
 ```
 
-### `DW_FORM_data8`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_data8`
 ```rust
 const DW_FORM_data8: DwForm;
 ```
 
-### `DW_FORM_string`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_string`
 ```rust
 const DW_FORM_string: DwForm;
 ```
 
-### `DW_FORM_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_block`
 ```rust
 const DW_FORM_block: DwForm;
 ```
 
-### `DW_FORM_block1`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_block1`
 ```rust
 const DW_FORM_block1: DwForm;
 ```
 
-### `DW_FORM_data1`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_data1`
 ```rust
 const DW_FORM_data1: DwForm;
 ```
 
-### `DW_FORM_flag`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_flag`
 ```rust
 const DW_FORM_flag: DwForm;
 ```
 
-### `DW_FORM_sdata`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_sdata`
 ```rust
 const DW_FORM_sdata: DwForm;
 ```
 
-### `DW_FORM_strp`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strp`
 ```rust
 const DW_FORM_strp: DwForm;
 ```
 
-### `DW_FORM_udata`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_udata`
 ```rust
 const DW_FORM_udata: DwForm;
 ```
 
-### `DW_FORM_ref_addr`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref_addr`
 ```rust
 const DW_FORM_ref_addr: DwForm;
 ```
 
-### `DW_FORM_ref1`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref1`
 ```rust
 const DW_FORM_ref1: DwForm;
 ```
 
-### `DW_FORM_ref2`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref2`
 ```rust
 const DW_FORM_ref2: DwForm;
 ```
 
-### `DW_FORM_ref4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref4`
 ```rust
 const DW_FORM_ref4: DwForm;
 ```
 
-### `DW_FORM_ref8`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref8`
 ```rust
 const DW_FORM_ref8: DwForm;
 ```
 
-### `DW_FORM_ref_udata`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref_udata`
 ```rust
 const DW_FORM_ref_udata: DwForm;
 ```
 
-### `DW_FORM_indirect`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_indirect`
 ```rust
 const DW_FORM_indirect: DwForm;
 ```
 
-### `DW_FORM_sec_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_sec_offset`
 ```rust
 const DW_FORM_sec_offset: DwForm;
 ```
 
-### `DW_FORM_exprloc`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_exprloc`
 ```rust
 const DW_FORM_exprloc: DwForm;
 ```
 
-### `DW_FORM_flag_present`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_flag_present`
 ```rust
 const DW_FORM_flag_present: DwForm;
 ```
 
-### `DW_FORM_ref_sig8`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref_sig8`
 ```rust
 const DW_FORM_ref_sig8: DwForm;
 ```
 
-### `DW_FORM_strx`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strx`
 ```rust
 const DW_FORM_strx: DwForm;
 ```
 
-### `DW_FORM_addrx`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addrx`
 ```rust
 const DW_FORM_addrx: DwForm;
 ```
 
-### `DW_FORM_ref_sup4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref_sup4`
 ```rust
 const DW_FORM_ref_sup4: DwForm;
 ```
 
-### `DW_FORM_strp_sup`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strp_sup`
 ```rust
 const DW_FORM_strp_sup: DwForm;
 ```
 
-### `DW_FORM_data16`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_data16`
 ```rust
 const DW_FORM_data16: DwForm;
 ```
 
-### `DW_FORM_line_strp`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_line_strp`
 ```rust
 const DW_FORM_line_strp: DwForm;
 ```
 
-### `DW_FORM_implicit_const`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_implicit_const`
 ```rust
 const DW_FORM_implicit_const: DwForm;
 ```
 
-### `DW_FORM_loclistx`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_loclistx`
 ```rust
 const DW_FORM_loclistx: DwForm;
 ```
 
-### `DW_FORM_rnglistx`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_rnglistx`
 ```rust
 const DW_FORM_rnglistx: DwForm;
 ```
 
-### `DW_FORM_ref_sup8`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_ref_sup8`
 ```rust
 const DW_FORM_ref_sup8: DwForm;
 ```
 
-### `DW_FORM_strx1`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strx1`
 ```rust
 const DW_FORM_strx1: DwForm;
 ```
 
-### `DW_FORM_strx2`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strx2`
 ```rust
 const DW_FORM_strx2: DwForm;
 ```
 
-### `DW_FORM_strx3`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strx3`
 ```rust
 const DW_FORM_strx3: DwForm;
 ```
 
-### `DW_FORM_strx4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_strx4`
 ```rust
 const DW_FORM_strx4: DwForm;
 ```
 
-### `DW_FORM_addrx1`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addrx1`
 ```rust
 const DW_FORM_addrx1: DwForm;
 ```
 
-### `DW_FORM_addrx2`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addrx2`
 ```rust
 const DW_FORM_addrx2: DwForm;
 ```
 
-### `DW_FORM_addrx3`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addrx3`
 ```rust
 const DW_FORM_addrx3: DwForm;
 ```
 
-### `DW_FORM_addrx4`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_addrx4`
 ```rust
 const DW_FORM_addrx4: DwForm;
 ```
 
-### `DW_FORM_GNU_addr_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_GNU_addr_index`
 ```rust
 const DW_FORM_GNU_addr_index: DwForm;
 ```
 
-### `DW_FORM_GNU_str_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_GNU_str_index`
 ```rust
 const DW_FORM_GNU_str_index: DwForm;
 ```
 
-### `DW_FORM_GNU_ref_alt`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_GNU_ref_alt`
 ```rust
 const DW_FORM_GNU_ref_alt: DwForm;
 ```
 
-### `DW_FORM_GNU_strp_alt`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_FORM_GNU_strp_alt`
 ```rust
 const DW_FORM_GNU_strp_alt: DwForm;
 ```
 
-### `DW_ATE_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:691-759`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L691-L759)*
 
+### `DW_ATE_address`
 ```rust
 const DW_ATE_address: DwAte;
 ```
 
-### `DW_ATE_boolean`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_boolean`
 ```rust
 const DW_ATE_boolean: DwAte;
 ```
 
-### `DW_ATE_complex_float`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_complex_float`
 ```rust
 const DW_ATE_complex_float: DwAte;
 ```
 
-### `DW_ATE_float`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_float`
 ```rust
 const DW_ATE_float: DwAte;
 ```
 
-### `DW_ATE_signed`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_signed`
 ```rust
 const DW_ATE_signed: DwAte;
 ```
 
-### `DW_ATE_signed_char`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_signed_char`
 ```rust
 const DW_ATE_signed_char: DwAte;
 ```
 
-### `DW_ATE_unsigned`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_unsigned`
 ```rust
 const DW_ATE_unsigned: DwAte;
 ```
 
-### `DW_ATE_unsigned_char`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_unsigned_char`
 ```rust
 const DW_ATE_unsigned_char: DwAte;
 ```
 
-### `DW_ATE_imaginary_float`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_imaginary_float`
 ```rust
 const DW_ATE_imaginary_float: DwAte;
 ```
 
-### `DW_ATE_packed_decimal`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_packed_decimal`
 ```rust
 const DW_ATE_packed_decimal: DwAte;
 ```
 
-### `DW_ATE_numeric_string`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_numeric_string`
 ```rust
 const DW_ATE_numeric_string: DwAte;
 ```
 
-### `DW_ATE_edited`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_edited`
 ```rust
 const DW_ATE_edited: DwAte;
 ```
 
-### `DW_ATE_signed_fixed`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_signed_fixed`
 ```rust
 const DW_ATE_signed_fixed: DwAte;
 ```
 
-### `DW_ATE_unsigned_fixed`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_unsigned_fixed`
 ```rust
 const DW_ATE_unsigned_fixed: DwAte;
 ```
 
-### `DW_ATE_decimal_float`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_decimal_float`
 ```rust
 const DW_ATE_decimal_float: DwAte;
 ```
 
-### `DW_ATE_UTF`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_UTF`
 ```rust
 const DW_ATE_UTF: DwAte;
 ```
 
-### `DW_ATE_UCS`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_UCS`
 ```rust
 const DW_ATE_UCS: DwAte;
 ```
 
-### `DW_ATE_ASCII`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_ASCII`
 ```rust
 const DW_ATE_ASCII: DwAte;
 ```
 
-### `DW_ATE_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_lo_user`
 ```rust
 const DW_ATE_lo_user: DwAte;
 ```
 
-### `DW_ATE_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_ATE_hi_user`
 ```rust
 const DW_ATE_hi_user: DwAte;
 ```
 
-### `DW_LLE_end_of_list`
+*Defined in [`gimli-0.32.3/src/constants.rs:761-791`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L761-L791)*
 
+### `DW_LLE_end_of_list`
 ```rust
 const DW_LLE_end_of_list: DwLle;
 ```
 
-### `DW_LLE_base_addressx`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_base_addressx`
 ```rust
 const DW_LLE_base_addressx: DwLle;
 ```
 
-### `DW_LLE_startx_endx`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_startx_endx`
 ```rust
 const DW_LLE_startx_endx: DwLle;
 ```
 
-### `DW_LLE_startx_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_startx_length`
 ```rust
 const DW_LLE_startx_length: DwLle;
 ```
 
-### `DW_LLE_offset_pair`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_offset_pair`
 ```rust
 const DW_LLE_offset_pair: DwLle;
 ```
 
-### `DW_LLE_default_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_default_location`
 ```rust
 const DW_LLE_default_location: DwLle;
 ```
 
-### `DW_LLE_base_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_base_address`
 ```rust
 const DW_LLE_base_address: DwLle;
 ```
 
-### `DW_LLE_start_end`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_start_end`
 ```rust
 const DW_LLE_start_end: DwLle;
 ```
 
-### `DW_LLE_start_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_start_length`
 ```rust
 const DW_LLE_start_length: DwLle;
 ```
 
-### `DW_LLE_GNU_view_pair`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_LLE_GNU_view_pair`
 ```rust
 const DW_LLE_GNU_view_pair: DwLle;
 ```
 
-### `DW_DS_unsigned`
+*Defined in [`gimli-0.32.3/src/constants.rs:793-808`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L793-L808)*
 
+### `DW_DS_unsigned`
 ```rust
 const DW_DS_unsigned: DwDs;
 ```
 
-### `DW_DS_leading_overpunch`
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
+### `DW_DS_leading_overpunch`
 ```rust
 const DW_DS_leading_overpunch: DwDs;
 ```
 
-### `DW_DS_trailing_overpunch`
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
+### `DW_DS_trailing_overpunch`
 ```rust
 const DW_DS_trailing_overpunch: DwDs;
 ```
 
-### `DW_DS_leading_separate`
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
+### `DW_DS_leading_separate`
 ```rust
 const DW_DS_leading_separate: DwDs;
 ```
 
-### `DW_DS_trailing_separate`
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
+### `DW_DS_trailing_separate`
 ```rust
 const DW_DS_trailing_separate: DwDs;
 ```
 
-### `DW_END_default`
+*Defined in [`gimli-0.32.3/src/constants.rs:810-820`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L810-L820)*
 
+### `DW_END_default`
 ```rust
 const DW_END_default: DwEnd;
 ```
 
-### `DW_END_big`
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
+### `DW_END_big`
 ```rust
 const DW_END_big: DwEnd;
 ```
 
-### `DW_END_little`
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
+### `DW_END_little`
 ```rust
 const DW_END_little: DwEnd;
 ```
 
-### `DW_END_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
+### `DW_END_lo_user`
 ```rust
 const DW_END_lo_user: DwEnd;
 ```
 
-### `DW_END_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
+### `DW_END_hi_user`
 ```rust
 const DW_END_hi_user: DwEnd;
 ```
 
-### `DW_ACCESS_public`
+*Defined in [`gimli-0.32.3/src/constants.rs:822-832`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L822-L832)*
 
+### `DW_ACCESS_public`
 ```rust
 const DW_ACCESS_public: DwAccess;
 ```
 
-### `DW_ACCESS_protected`
+*Defined in [`gimli-0.32.3/src/constants.rs:834-842`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L834-L842)*
 
+### `DW_ACCESS_protected`
 ```rust
 const DW_ACCESS_protected: DwAccess;
 ```
 
-### `DW_ACCESS_private`
+*Defined in [`gimli-0.32.3/src/constants.rs:834-842`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L834-L842)*
 
+### `DW_ACCESS_private`
 ```rust
 const DW_ACCESS_private: DwAccess;
 ```
 
-### `DW_VIS_local`
+*Defined in [`gimli-0.32.3/src/constants.rs:834-842`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L834-L842)*
 
+### `DW_VIS_local`
 ```rust
 const DW_VIS_local: DwVis;
 ```
 
-### `DW_VIS_exported`
+*Defined in [`gimli-0.32.3/src/constants.rs:844-852`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L844-L852)*
 
+### `DW_VIS_exported`
 ```rust
 const DW_VIS_exported: DwVis;
 ```
 
-### `DW_VIS_qualified`
+*Defined in [`gimli-0.32.3/src/constants.rs:844-852`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L844-L852)*
 
+### `DW_VIS_qualified`
 ```rust
 const DW_VIS_qualified: DwVis;
 ```
 
-### `DW_VIRTUALITY_none`
+*Defined in [`gimli-0.32.3/src/constants.rs:844-852`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L844-L852)*
 
+### `DW_VIRTUALITY_none`
 ```rust
 const DW_VIRTUALITY_none: DwVirtuality;
 ```
 
-### `DW_VIRTUALITY_virtual`
+*Defined in [`gimli-0.32.3/src/constants.rs:854-862`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L854-L862)*
 
+### `DW_VIRTUALITY_virtual`
 ```rust
 const DW_VIRTUALITY_virtual: DwVirtuality;
 ```
 
-### `DW_VIRTUALITY_pure_virtual`
+*Defined in [`gimli-0.32.3/src/constants.rs:854-862`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L854-L862)*
 
+### `DW_VIRTUALITY_pure_virtual`
 ```rust
 const DW_VIRTUALITY_pure_virtual: DwVirtuality;
 ```
 
-### `DW_LANG_C89`
+*Defined in [`gimli-0.32.3/src/constants.rs:854-862`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L854-L862)*
 
+### `DW_LANG_C89`
 ```rust
 const DW_LANG_C89: DwLang;
 ```
 
-### `DW_LANG_C`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C`
 ```rust
 const DW_LANG_C: DwLang;
 ```
 
-### `DW_LANG_Ada83`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Ada83`
 ```rust
 const DW_LANG_Ada83: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus`
 ```rust
 const DW_LANG_C_plus_plus: DwLang;
 ```
 
-### `DW_LANG_Cobol74`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Cobol74`
 ```rust
 const DW_LANG_Cobol74: DwLang;
 ```
 
-### `DW_LANG_Cobol85`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Cobol85`
 ```rust
 const DW_LANG_Cobol85: DwLang;
 ```
 
-### `DW_LANG_Fortran77`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran77`
 ```rust
 const DW_LANG_Fortran77: DwLang;
 ```
 
-### `DW_LANG_Fortran90`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran90`
 ```rust
 const DW_LANG_Fortran90: DwLang;
 ```
 
-### `DW_LANG_Pascal83`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Pascal83`
 ```rust
 const DW_LANG_Pascal83: DwLang;
 ```
 
-### `DW_LANG_Modula2`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Modula2`
 ```rust
 const DW_LANG_Modula2: DwLang;
 ```
 
-### `DW_LANG_Java`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Java`
 ```rust
 const DW_LANG_Java: DwLang;
 ```
 
-### `DW_LANG_C99`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C99`
 ```rust
 const DW_LANG_C99: DwLang;
 ```
 
-### `DW_LANG_Ada95`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Ada95`
 ```rust
 const DW_LANG_Ada95: DwLang;
 ```
 
-### `DW_LANG_Fortran95`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran95`
 ```rust
 const DW_LANG_Fortran95: DwLang;
 ```
 
-### `DW_LANG_PLI`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_PLI`
 ```rust
 const DW_LANG_PLI: DwLang;
 ```
 
-### `DW_LANG_ObjC`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_ObjC`
 ```rust
 const DW_LANG_ObjC: DwLang;
 ```
 
-### `DW_LANG_ObjC_plus_plus`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_ObjC_plus_plus`
 ```rust
 const DW_LANG_ObjC_plus_plus: DwLang;
 ```
 
-### `DW_LANG_UPC`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_UPC`
 ```rust
 const DW_LANG_UPC: DwLang;
 ```
 
-### `DW_LANG_D`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_D`
 ```rust
 const DW_LANG_D: DwLang;
 ```
 
-### `DW_LANG_Python`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Python`
 ```rust
 const DW_LANG_Python: DwLang;
 ```
 
-### `DW_LANG_OpenCL`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_OpenCL`
 ```rust
 const DW_LANG_OpenCL: DwLang;
 ```
 
-### `DW_LANG_Go`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Go`
 ```rust
 const DW_LANG_Go: DwLang;
 ```
 
-### `DW_LANG_Modula3`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Modula3`
 ```rust
 const DW_LANG_Modula3: DwLang;
 ```
 
-### `DW_LANG_Haskell`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Haskell`
 ```rust
 const DW_LANG_Haskell: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus_03`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus_03`
 ```rust
 const DW_LANG_C_plus_plus_03: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus_11`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus_11`
 ```rust
 const DW_LANG_C_plus_plus_11: DwLang;
 ```
 
-### `DW_LANG_OCaml`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_OCaml`
 ```rust
 const DW_LANG_OCaml: DwLang;
 ```
 
-### `DW_LANG_Rust`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Rust`
 ```rust
 const DW_LANG_Rust: DwLang;
 ```
 
-### `DW_LANG_C11`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C11`
 ```rust
 const DW_LANG_C11: DwLang;
 ```
 
-### `DW_LANG_Swift`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Swift`
 ```rust
 const DW_LANG_Swift: DwLang;
 ```
 
-### `DW_LANG_Julia`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Julia`
 ```rust
 const DW_LANG_Julia: DwLang;
 ```
 
-### `DW_LANG_Dylan`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Dylan`
 ```rust
 const DW_LANG_Dylan: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus_14`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus_14`
 ```rust
 const DW_LANG_C_plus_plus_14: DwLang;
 ```
 
-### `DW_LANG_Fortran03`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran03`
 ```rust
 const DW_LANG_Fortran03: DwLang;
 ```
 
-### `DW_LANG_Fortran08`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran08`
 ```rust
 const DW_LANG_Fortran08: DwLang;
 ```
 
-### `DW_LANG_RenderScript`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_RenderScript`
 ```rust
 const DW_LANG_RenderScript: DwLang;
 ```
 
-### `DW_LANG_BLISS`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_BLISS`
 ```rust
 const DW_LANG_BLISS: DwLang;
 ```
 
-### `DW_LANG_Kotlin`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Kotlin`
 ```rust
 const DW_LANG_Kotlin: DwLang;
 ```
 
-### `DW_LANG_Zig`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Zig`
 ```rust
 const DW_LANG_Zig: DwLang;
 ```
 
-### `DW_LANG_Crystal`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Crystal`
 ```rust
 const DW_LANG_Crystal: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus_17`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus_17`
 ```rust
 const DW_LANG_C_plus_plus_17: DwLang;
 ```
 
-### `DW_LANG_C_plus_plus_20`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C_plus_plus_20`
 ```rust
 const DW_LANG_C_plus_plus_20: DwLang;
 ```
 
-### `DW_LANG_C17`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_C17`
 ```rust
 const DW_LANG_C17: DwLang;
 ```
 
-### `DW_LANG_Fortran18`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Fortran18`
 ```rust
 const DW_LANG_Fortran18: DwLang;
 ```
 
-### `DW_LANG_Ada2005`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Ada2005`
 ```rust
 const DW_LANG_Ada2005: DwLang;
 ```
 
-### `DW_LANG_Ada2012`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Ada2012`
 ```rust
 const DW_LANG_Ada2012: DwLang;
 ```
 
-### `DW_LANG_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_lo_user`
 ```rust
 const DW_LANG_lo_user: DwLang;
 ```
 
-### `DW_LANG_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_hi_user`
 ```rust
 const DW_LANG_hi_user: DwLang;
 ```
 
-### `DW_LANG_Mips_Assembler`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_Mips_Assembler`
 ```rust
 const DW_LANG_Mips_Assembler: DwLang;
 ```
 
-### `DW_LANG_GOOGLE_RenderScript`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_GOOGLE_RenderScript`
 ```rust
 const DW_LANG_GOOGLE_RenderScript: DwLang;
 ```
 
-### `DW_LANG_SUN_Assembler`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_SUN_Assembler`
 ```rust
 const DW_LANG_SUN_Assembler: DwLang;
 ```
 
-### `DW_LANG_ALTIUM_Assembler`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_ALTIUM_Assembler`
 ```rust
 const DW_LANG_ALTIUM_Assembler: DwLang;
 ```
 
-### `DW_LANG_BORLAND_Delphi`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_LANG_BORLAND_Delphi`
 ```rust
 const DW_LANG_BORLAND_Delphi: DwLang;
 ```
 
-### `DW_ADDR_none`
+*Defined in [`gimli-0.32.3/src/constants.rs:864-924`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L864-L924)*
 
+### `DW_ADDR_none`
 ```rust
 const DW_ADDR_none: DwAddr;
 ```
 
-### `DW_ID_case_sensitive`
+*Defined in [`gimli-0.32.3/src/constants.rs:962-969`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L962-L969)*
 
+### `DW_ID_case_sensitive`
 ```rust
 const DW_ID_case_sensitive: DwId;
 ```
 
-### `DW_ID_up_case`
+*Defined in [`gimli-0.32.3/src/constants.rs:971-980`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L971-L980)*
 
+### `DW_ID_up_case`
 ```rust
 const DW_ID_up_case: DwId;
 ```
 
-### `DW_ID_down_case`
+*Defined in [`gimli-0.32.3/src/constants.rs:971-980`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L971-L980)*
 
+### `DW_ID_down_case`
 ```rust
 const DW_ID_down_case: DwId;
 ```
 
-### `DW_ID_case_insensitive`
+*Defined in [`gimli-0.32.3/src/constants.rs:971-980`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L971-L980)*
 
+### `DW_ID_case_insensitive`
 ```rust
 const DW_ID_case_insensitive: DwId;
 ```
 
-### `DW_CC_normal`
+*Defined in [`gimli-0.32.3/src/constants.rs:971-980`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L971-L980)*
 
+### `DW_CC_normal`
 ```rust
 const DW_CC_normal: DwCc;
 ```
 
-### `DW_CC_program`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_program`
 ```rust
 const DW_CC_program: DwCc;
 ```
 
-### `DW_CC_nocall`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_nocall`
 ```rust
 const DW_CC_nocall: DwCc;
 ```
 
-### `DW_CC_pass_by_reference`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_pass_by_reference`
 ```rust
 const DW_CC_pass_by_reference: DwCc;
 ```
 
-### `DW_CC_pass_by_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_pass_by_value`
 ```rust
 const DW_CC_pass_by_value: DwCc;
 ```
 
-### `DW_CC_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_lo_user`
 ```rust
 const DW_CC_lo_user: DwCc;
 ```
 
-### `DW_CC_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_CC_hi_user`
 ```rust
 const DW_CC_hi_user: DwCc;
 ```
 
-### `DW_INL_not_inlined`
+*Defined in [`gimli-0.32.3/src/constants.rs:982-994`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L982-L994)*
 
+### `DW_INL_not_inlined`
 ```rust
 const DW_INL_not_inlined: DwInl;
 ```
 
-### `DW_INL_inlined`
+*Defined in [`gimli-0.32.3/src/constants.rs:996-1005`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L996-L1005)*
 
+### `DW_INL_inlined`
 ```rust
 const DW_INL_inlined: DwInl;
 ```
 
-### `DW_INL_declared_not_inlined`
+*Defined in [`gimli-0.32.3/src/constants.rs:996-1005`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L996-L1005)*
 
+### `DW_INL_declared_not_inlined`
 ```rust
 const DW_INL_declared_not_inlined: DwInl;
 ```
 
-### `DW_INL_declared_inlined`
+*Defined in [`gimli-0.32.3/src/constants.rs:996-1005`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L996-L1005)*
 
+### `DW_INL_declared_inlined`
 ```rust
 const DW_INL_declared_inlined: DwInl;
 ```
 
-### `DW_ORD_row_major`
+*Defined in [`gimli-0.32.3/src/constants.rs:996-1005`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L996-L1005)*
 
+### `DW_ORD_row_major`
 ```rust
 const DW_ORD_row_major: DwOrd;
 ```
 
-### `DW_ORD_col_major`
+*Defined in [`gimli-0.32.3/src/constants.rs:1007-1014`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1007-L1014)*
 
+### `DW_ORD_col_major`
 ```rust
 const DW_ORD_col_major: DwOrd;
 ```
 
-### `DW_DSC_label`
+*Defined in [`gimli-0.32.3/src/constants.rs:1007-1014`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1007-L1014)*
 
+### `DW_DSC_label`
 ```rust
 const DW_DSC_label: DwDsc;
 ```
 
-### `DW_DSC_range`
+*Defined in [`gimli-0.32.3/src/constants.rs:1016-1023`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1016-L1023)*
 
+### `DW_DSC_range`
 ```rust
 const DW_DSC_range: DwDsc;
 ```
 
-### `DW_IDX_compile_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:1016-1023`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1016-L1023)*
 
+### `DW_IDX_compile_unit`
 ```rust
 const DW_IDX_compile_unit: DwIdx;
 ```
 
-### `DW_IDX_type_unit`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_type_unit`
 ```rust
 const DW_IDX_type_unit: DwIdx;
 ```
 
-### `DW_IDX_die_offset`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_die_offset`
 ```rust
 const DW_IDX_die_offset: DwIdx;
 ```
 
-### `DW_IDX_parent`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_parent`
 ```rust
 const DW_IDX_parent: DwIdx;
 ```
 
-### `DW_IDX_type_hash`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_type_hash`
 ```rust
 const DW_IDX_type_hash: DwIdx;
 ```
 
-### `DW_IDX_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_lo_user`
 ```rust
 const DW_IDX_lo_user: DwIdx;
 ```
 
-### `DW_IDX_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_IDX_hi_user`
 ```rust
 const DW_IDX_hi_user: DwIdx;
 ```
 
-### `DW_DEFAULTED_no`
+*Defined in [`gimli-0.32.3/src/constants.rs:1025-1037`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1025-L1037)*
 
+### `DW_DEFAULTED_no`
 ```rust
 const DW_DEFAULTED_no: DwDefaulted;
 ```
 
-### `DW_DEFAULTED_in_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:1039-1047`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1039-L1047)*
 
+### `DW_DEFAULTED_in_class`
 ```rust
 const DW_DEFAULTED_in_class: DwDefaulted;
 ```
 
-### `DW_DEFAULTED_out_of_class`
+*Defined in [`gimli-0.32.3/src/constants.rs:1039-1047`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1039-L1047)*
 
+### `DW_DEFAULTED_out_of_class`
 ```rust
 const DW_DEFAULTED_out_of_class: DwDefaulted;
 ```
 
-### `DW_LNS_copy`
+*Defined in [`gimli-0.32.3/src/constants.rs:1039-1047`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1039-L1047)*
 
+### `DW_LNS_copy`
 ```rust
 const DW_LNS_copy: DwLns;
 ```
 
-### `DW_LNS_advance_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_advance_pc`
 ```rust
 const DW_LNS_advance_pc: DwLns;
 ```
 
-### `DW_LNS_advance_line`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_advance_line`
 ```rust
 const DW_LNS_advance_line: DwLns;
 ```
 
-### `DW_LNS_set_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_file`
 ```rust
 const DW_LNS_set_file: DwLns;
 ```
 
-### `DW_LNS_set_column`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_column`
 ```rust
 const DW_LNS_set_column: DwLns;
 ```
 
-### `DW_LNS_negate_stmt`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_negate_stmt`
 ```rust
 const DW_LNS_negate_stmt: DwLns;
 ```
 
-### `DW_LNS_set_basic_block`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_basic_block`
 ```rust
 const DW_LNS_set_basic_block: DwLns;
 ```
 
-### `DW_LNS_const_add_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_const_add_pc`
 ```rust
 const DW_LNS_const_add_pc: DwLns;
 ```
 
-### `DW_LNS_fixed_advance_pc`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_fixed_advance_pc`
 ```rust
 const DW_LNS_fixed_advance_pc: DwLns;
 ```
 
-### `DW_LNS_set_prologue_end`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_prologue_end`
 ```rust
 const DW_LNS_set_prologue_end: DwLns;
 ```
 
-### `DW_LNS_set_epilogue_begin`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_epilogue_begin`
 ```rust
 const DW_LNS_set_epilogue_begin: DwLns;
 ```
 
-### `DW_LNS_set_isa`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNS_set_isa`
 ```rust
 const DW_LNS_set_isa: DwLns;
 ```
 
-### `DW_LNE_end_sequence`
+*Defined in [`gimli-0.32.3/src/constants.rs:1049-1066`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1049-L1066)*
 
+### `DW_LNE_end_sequence`
 ```rust
 const DW_LNE_end_sequence: DwLne;
 ```
 
-### `DW_LNE_set_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNE_set_address`
 ```rust
 const DW_LNE_set_address: DwLne;
 ```
 
-### `DW_LNE_define_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNE_define_file`
 ```rust
 const DW_LNE_define_file: DwLne;
 ```
 
-### `DW_LNE_set_discriminator`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNE_set_discriminator`
 ```rust
 const DW_LNE_set_discriminator: DwLne;
 ```
 
-### `DW_LNE_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNE_lo_user`
 ```rust
 const DW_LNE_lo_user: DwLne;
 ```
 
-### `DW_LNE_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNE_hi_user`
 ```rust
 const DW_LNE_hi_user: DwLne;
 ```
 
-### `DW_LNCT_path`
+*Defined in [`gimli-0.32.3/src/constants.rs:1068-1080`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1068-L1080)*
 
+### `DW_LNCT_path`
 ```rust
 const DW_LNCT_path: DwLnct;
 ```
 
-### `DW_LNCT_directory_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_directory_index`
 ```rust
 const DW_LNCT_directory_index: DwLnct;
 ```
 
-### `DW_LNCT_timestamp`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_timestamp`
 ```rust
 const DW_LNCT_timestamp: DwLnct;
 ```
 
-### `DW_LNCT_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_size`
 ```rust
 const DW_LNCT_size: DwLnct;
 ```
 
-### `DW_LNCT_MD5`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_MD5`
 ```rust
 const DW_LNCT_MD5: DwLnct;
 ```
 
-### `DW_LNCT_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_lo_user`
 ```rust
 const DW_LNCT_lo_user: DwLnct;
 ```
 
-### `DW_LNCT_LLVM_source`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_LLVM_source`
 ```rust
 const DW_LNCT_LLVM_source: DwLnct;
 ```
 
-### `DW_LNCT_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_LNCT_hi_user`
 ```rust
 const DW_LNCT_hi_user: DwLnct;
 ```
 
-### `DW_MACINFO_define`
+*Defined in [`gimli-0.32.3/src/constants.rs:1082-1097`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1082-L1097)*
 
+### `DW_MACINFO_define`
 ```rust
 const DW_MACINFO_define: DwMacinfo;
 ```
 
-### `DW_MACINFO_undef`
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
+### `DW_MACINFO_undef`
 ```rust
 const DW_MACINFO_undef: DwMacinfo;
 ```
 
-### `DW_MACINFO_start_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
+### `DW_MACINFO_start_file`
 ```rust
 const DW_MACINFO_start_file: DwMacinfo;
 ```
 
-### `DW_MACINFO_end_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
+### `DW_MACINFO_end_file`
 ```rust
 const DW_MACINFO_end_file: DwMacinfo;
 ```
 
-### `DW_MACINFO_vendor_ext`
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
+### `DW_MACINFO_vendor_ext`
 ```rust
 const DW_MACINFO_vendor_ext: DwMacinfo;
 ```
 
-### `DW_MACRO_define`
+*Defined in [`gimli-0.32.3/src/constants.rs:1099-1109`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1099-L1109)*
 
+### `DW_MACRO_define`
 ```rust
 const DW_MACRO_define: DwMacro;
 ```
 
-### `DW_MACRO_undef`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_undef`
 ```rust
 const DW_MACRO_undef: DwMacro;
 ```
 
-### `DW_MACRO_start_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_start_file`
 ```rust
 const DW_MACRO_start_file: DwMacro;
 ```
 
-### `DW_MACRO_end_file`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_end_file`
 ```rust
 const DW_MACRO_end_file: DwMacro;
 ```
 
-### `DW_MACRO_define_strp`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_define_strp`
 ```rust
 const DW_MACRO_define_strp: DwMacro;
 ```
 
-### `DW_MACRO_undef_strp`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_undef_strp`
 ```rust
 const DW_MACRO_undef_strp: DwMacro;
 ```
 
-### `DW_MACRO_import`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_import`
 ```rust
 const DW_MACRO_import: DwMacro;
 ```
 
-### `DW_MACRO_define_sup`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_define_sup`
 ```rust
 const DW_MACRO_define_sup: DwMacro;
 ```
 
-### `DW_MACRO_undef_sup`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_undef_sup`
 ```rust
 const DW_MACRO_undef_sup: DwMacro;
 ```
 
-### `DW_MACRO_import_sup`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_import_sup`
 ```rust
 const DW_MACRO_import_sup: DwMacro;
 ```
 
-### `DW_MACRO_define_strx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_define_strx`
 ```rust
 const DW_MACRO_define_strx: DwMacro;
 ```
 
-### `DW_MACRO_undef_strx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_undef_strx`
 ```rust
 const DW_MACRO_undef_strx: DwMacro;
 ```
 
-### `DW_MACRO_lo_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_lo_user`
 ```rust
 const DW_MACRO_lo_user: DwMacro;
 ```
 
-### `DW_MACRO_hi_user`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_MACRO_hi_user`
 ```rust
 const DW_MACRO_hi_user: DwMacro;
 ```
 
-### `DW_RLE_end_of_list`
+*Defined in [`gimli-0.32.3/src/constants.rs:1111-1130`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1111-L1130)*
 
+### `DW_RLE_end_of_list`
 ```rust
 const DW_RLE_end_of_list: DwRle;
 ```
 
-### `DW_RLE_base_addressx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_base_addressx`
 ```rust
 const DW_RLE_base_addressx: DwRle;
 ```
 
-### `DW_RLE_startx_endx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_startx_endx`
 ```rust
 const DW_RLE_startx_endx: DwRle;
 ```
 
-### `DW_RLE_startx_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_startx_length`
 ```rust
 const DW_RLE_startx_length: DwRle;
 ```
 
-### `DW_RLE_offset_pair`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_offset_pair`
 ```rust
 const DW_RLE_offset_pair: DwRle;
 ```
 
-### `DW_RLE_base_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_base_address`
 ```rust
 const DW_RLE_base_address: DwRle;
 ```
 
-### `DW_RLE_start_end`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_start_end`
 ```rust
 const DW_RLE_start_end: DwRle;
 ```
 
-### `DW_RLE_start_length`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_RLE_start_length`
 ```rust
 const DW_RLE_start_length: DwRle;
 ```
 
-### `DW_OP_addr`
+*Defined in [`gimli-0.32.3/src/constants.rs:1132-1145`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1132-L1145)*
 
+### `DW_OP_addr`
 ```rust
 const DW_OP_addr: DwOp;
 ```
 
-### `DW_OP_deref`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_deref`
 ```rust
 const DW_OP_deref: DwOp;
 ```
 
-### `DW_OP_const1u`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const1u`
 ```rust
 const DW_OP_const1u: DwOp;
 ```
 
-### `DW_OP_const1s`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const1s`
 ```rust
 const DW_OP_const1s: DwOp;
 ```
 
-### `DW_OP_const2u`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const2u`
 ```rust
 const DW_OP_const2u: DwOp;
 ```
 
-### `DW_OP_const2s`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const2s`
 ```rust
 const DW_OP_const2s: DwOp;
 ```
 
-### `DW_OP_const4u`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const4u`
 ```rust
 const DW_OP_const4u: DwOp;
 ```
 
-### `DW_OP_const4s`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const4s`
 ```rust
 const DW_OP_const4s: DwOp;
 ```
 
-### `DW_OP_const8u`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const8u`
 ```rust
 const DW_OP_const8u: DwOp;
 ```
 
-### `DW_OP_const8s`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const8s`
 ```rust
 const DW_OP_const8s: DwOp;
 ```
 
-### `DW_OP_constu`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_constu`
 ```rust
 const DW_OP_constu: DwOp;
 ```
 
-### `DW_OP_consts`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_consts`
 ```rust
 const DW_OP_consts: DwOp;
 ```
 
-### `DW_OP_dup`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_dup`
 ```rust
 const DW_OP_dup: DwOp;
 ```
 
-### `DW_OP_drop`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_drop`
 ```rust
 const DW_OP_drop: DwOp;
 ```
 
-### `DW_OP_over`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_over`
 ```rust
 const DW_OP_over: DwOp;
 ```
 
-### `DW_OP_pick`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_pick`
 ```rust
 const DW_OP_pick: DwOp;
 ```
 
-### `DW_OP_swap`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_swap`
 ```rust
 const DW_OP_swap: DwOp;
 ```
 
-### `DW_OP_rot`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_rot`
 ```rust
 const DW_OP_rot: DwOp;
 ```
 
-### `DW_OP_xderef`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_xderef`
 ```rust
 const DW_OP_xderef: DwOp;
 ```
 
-### `DW_OP_abs`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_abs`
 ```rust
 const DW_OP_abs: DwOp;
 ```
 
-### `DW_OP_and`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_and`
 ```rust
 const DW_OP_and: DwOp;
 ```
 
-### `DW_OP_div`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_div`
 ```rust
 const DW_OP_div: DwOp;
 ```
 
-### `DW_OP_minus`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_minus`
 ```rust
 const DW_OP_minus: DwOp;
 ```
 
-### `DW_OP_mod`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_mod`
 ```rust
 const DW_OP_mod: DwOp;
 ```
 
-### `DW_OP_mul`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_mul`
 ```rust
 const DW_OP_mul: DwOp;
 ```
 
-### `DW_OP_neg`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_neg`
 ```rust
 const DW_OP_neg: DwOp;
 ```
 
-### `DW_OP_not`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_not`
 ```rust
 const DW_OP_not: DwOp;
 ```
 
-### `DW_OP_or`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_or`
 ```rust
 const DW_OP_or: DwOp;
 ```
 
-### `DW_OP_plus`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_plus`
 ```rust
 const DW_OP_plus: DwOp;
 ```
 
-### `DW_OP_plus_uconst`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_plus_uconst`
 ```rust
 const DW_OP_plus_uconst: DwOp;
 ```
 
-### `DW_OP_shl`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_shl`
 ```rust
 const DW_OP_shl: DwOp;
 ```
 
-### `DW_OP_shr`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_shr`
 ```rust
 const DW_OP_shr: DwOp;
 ```
 
-### `DW_OP_shra`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_shra`
 ```rust
 const DW_OP_shra: DwOp;
 ```
 
-### `DW_OP_xor`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_xor`
 ```rust
 const DW_OP_xor: DwOp;
 ```
 
-### `DW_OP_bra`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_bra`
 ```rust
 const DW_OP_bra: DwOp;
 ```
 
-### `DW_OP_eq`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_eq`
 ```rust
 const DW_OP_eq: DwOp;
 ```
 
-### `DW_OP_ge`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_ge`
 ```rust
 const DW_OP_ge: DwOp;
 ```
 
-### `DW_OP_gt`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_gt`
 ```rust
 const DW_OP_gt: DwOp;
 ```
 
-### `DW_OP_le`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_le`
 ```rust
 const DW_OP_le: DwOp;
 ```
 
-### `DW_OP_lt`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lt`
 ```rust
 const DW_OP_lt: DwOp;
 ```
 
-### `DW_OP_ne`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_ne`
 ```rust
 const DW_OP_ne: DwOp;
 ```
 
-### `DW_OP_skip`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_skip`
 ```rust
 const DW_OP_skip: DwOp;
 ```
 
-### `DW_OP_lit0`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit0`
 ```rust
 const DW_OP_lit0: DwOp;
 ```
 
-### `DW_OP_lit1`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit1`
 ```rust
 const DW_OP_lit1: DwOp;
 ```
 
-### `DW_OP_lit2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit2`
 ```rust
 const DW_OP_lit2: DwOp;
 ```
 
-### `DW_OP_lit3`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit3`
 ```rust
 const DW_OP_lit3: DwOp;
 ```
 
-### `DW_OP_lit4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit4`
 ```rust
 const DW_OP_lit4: DwOp;
 ```
 
-### `DW_OP_lit5`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit5`
 ```rust
 const DW_OP_lit5: DwOp;
 ```
 
-### `DW_OP_lit6`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit6`
 ```rust
 const DW_OP_lit6: DwOp;
 ```
 
-### `DW_OP_lit7`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit7`
 ```rust
 const DW_OP_lit7: DwOp;
 ```
 
-### `DW_OP_lit8`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit8`
 ```rust
 const DW_OP_lit8: DwOp;
 ```
 
-### `DW_OP_lit9`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit9`
 ```rust
 const DW_OP_lit9: DwOp;
 ```
 
-### `DW_OP_lit10`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit10`
 ```rust
 const DW_OP_lit10: DwOp;
 ```
 
-### `DW_OP_lit11`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit11`
 ```rust
 const DW_OP_lit11: DwOp;
 ```
 
-### `DW_OP_lit12`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit12`
 ```rust
 const DW_OP_lit12: DwOp;
 ```
 
-### `DW_OP_lit13`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit13`
 ```rust
 const DW_OP_lit13: DwOp;
 ```
 
-### `DW_OP_lit14`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit14`
 ```rust
 const DW_OP_lit14: DwOp;
 ```
 
-### `DW_OP_lit15`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit15`
 ```rust
 const DW_OP_lit15: DwOp;
 ```
 
-### `DW_OP_lit16`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit16`
 ```rust
 const DW_OP_lit16: DwOp;
 ```
 
-### `DW_OP_lit17`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit17`
 ```rust
 const DW_OP_lit17: DwOp;
 ```
 
-### `DW_OP_lit18`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit18`
 ```rust
 const DW_OP_lit18: DwOp;
 ```
 
-### `DW_OP_lit19`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit19`
 ```rust
 const DW_OP_lit19: DwOp;
 ```
 
-### `DW_OP_lit20`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit20`
 ```rust
 const DW_OP_lit20: DwOp;
 ```
 
-### `DW_OP_lit21`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit21`
 ```rust
 const DW_OP_lit21: DwOp;
 ```
 
-### `DW_OP_lit22`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit22`
 ```rust
 const DW_OP_lit22: DwOp;
 ```
 
-### `DW_OP_lit23`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit23`
 ```rust
 const DW_OP_lit23: DwOp;
 ```
 
-### `DW_OP_lit24`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit24`
 ```rust
 const DW_OP_lit24: DwOp;
 ```
 
-### `DW_OP_lit25`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit25`
 ```rust
 const DW_OP_lit25: DwOp;
 ```
 
-### `DW_OP_lit26`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit26`
 ```rust
 const DW_OP_lit26: DwOp;
 ```
 
-### `DW_OP_lit27`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit27`
 ```rust
 const DW_OP_lit27: DwOp;
 ```
 
-### `DW_OP_lit28`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit28`
 ```rust
 const DW_OP_lit28: DwOp;
 ```
 
-### `DW_OP_lit29`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit29`
 ```rust
 const DW_OP_lit29: DwOp;
 ```
 
-### `DW_OP_lit30`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit30`
 ```rust
 const DW_OP_lit30: DwOp;
 ```
 
-### `DW_OP_lit31`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_lit31`
 ```rust
 const DW_OP_lit31: DwOp;
 ```
 
-### `DW_OP_reg0`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg0`
 ```rust
 const DW_OP_reg0: DwOp;
 ```
 
-### `DW_OP_reg1`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg1`
 ```rust
 const DW_OP_reg1: DwOp;
 ```
 
-### `DW_OP_reg2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg2`
 ```rust
 const DW_OP_reg2: DwOp;
 ```
 
-### `DW_OP_reg3`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg3`
 ```rust
 const DW_OP_reg3: DwOp;
 ```
 
-### `DW_OP_reg4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg4`
 ```rust
 const DW_OP_reg4: DwOp;
 ```
 
-### `DW_OP_reg5`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg5`
 ```rust
 const DW_OP_reg5: DwOp;
 ```
 
-### `DW_OP_reg6`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg6`
 ```rust
 const DW_OP_reg6: DwOp;
 ```
 
-### `DW_OP_reg7`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg7`
 ```rust
 const DW_OP_reg7: DwOp;
 ```
 
-### `DW_OP_reg8`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg8`
 ```rust
 const DW_OP_reg8: DwOp;
 ```
 
-### `DW_OP_reg9`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg9`
 ```rust
 const DW_OP_reg9: DwOp;
 ```
 
-### `DW_OP_reg10`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg10`
 ```rust
 const DW_OP_reg10: DwOp;
 ```
 
-### `DW_OP_reg11`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg11`
 ```rust
 const DW_OP_reg11: DwOp;
 ```
 
-### `DW_OP_reg12`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg12`
 ```rust
 const DW_OP_reg12: DwOp;
 ```
 
-### `DW_OP_reg13`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg13`
 ```rust
 const DW_OP_reg13: DwOp;
 ```
 
-### `DW_OP_reg14`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg14`
 ```rust
 const DW_OP_reg14: DwOp;
 ```
 
-### `DW_OP_reg15`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg15`
 ```rust
 const DW_OP_reg15: DwOp;
 ```
 
-### `DW_OP_reg16`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg16`
 ```rust
 const DW_OP_reg16: DwOp;
 ```
 
-### `DW_OP_reg17`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg17`
 ```rust
 const DW_OP_reg17: DwOp;
 ```
 
-### `DW_OP_reg18`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg18`
 ```rust
 const DW_OP_reg18: DwOp;
 ```
 
-### `DW_OP_reg19`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg19`
 ```rust
 const DW_OP_reg19: DwOp;
 ```
 
-### `DW_OP_reg20`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg20`
 ```rust
 const DW_OP_reg20: DwOp;
 ```
 
-### `DW_OP_reg21`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg21`
 ```rust
 const DW_OP_reg21: DwOp;
 ```
 
-### `DW_OP_reg22`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg22`
 ```rust
 const DW_OP_reg22: DwOp;
 ```
 
-### `DW_OP_reg23`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg23`
 ```rust
 const DW_OP_reg23: DwOp;
 ```
 
-### `DW_OP_reg24`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg24`
 ```rust
 const DW_OP_reg24: DwOp;
 ```
 
-### `DW_OP_reg25`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg25`
 ```rust
 const DW_OP_reg25: DwOp;
 ```
 
-### `DW_OP_reg26`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg26`
 ```rust
 const DW_OP_reg26: DwOp;
 ```
 
-### `DW_OP_reg27`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg27`
 ```rust
 const DW_OP_reg27: DwOp;
 ```
 
-### `DW_OP_reg28`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg28`
 ```rust
 const DW_OP_reg28: DwOp;
 ```
 
-### `DW_OP_reg29`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg29`
 ```rust
 const DW_OP_reg29: DwOp;
 ```
 
-### `DW_OP_reg30`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg30`
 ```rust
 const DW_OP_reg30: DwOp;
 ```
 
-### `DW_OP_reg31`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reg31`
 ```rust
 const DW_OP_reg31: DwOp;
 ```
 
-### `DW_OP_breg0`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg0`
 ```rust
 const DW_OP_breg0: DwOp;
 ```
 
-### `DW_OP_breg1`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg1`
 ```rust
 const DW_OP_breg1: DwOp;
 ```
 
-### `DW_OP_breg2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg2`
 ```rust
 const DW_OP_breg2: DwOp;
 ```
 
-### `DW_OP_breg3`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg3`
 ```rust
 const DW_OP_breg3: DwOp;
 ```
 
-### `DW_OP_breg4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg4`
 ```rust
 const DW_OP_breg4: DwOp;
 ```
 
-### `DW_OP_breg5`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg5`
 ```rust
 const DW_OP_breg5: DwOp;
 ```
 
-### `DW_OP_breg6`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg6`
 ```rust
 const DW_OP_breg6: DwOp;
 ```
 
-### `DW_OP_breg7`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg7`
 ```rust
 const DW_OP_breg7: DwOp;
 ```
 
-### `DW_OP_breg8`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg8`
 ```rust
 const DW_OP_breg8: DwOp;
 ```
 
-### `DW_OP_breg9`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg9`
 ```rust
 const DW_OP_breg9: DwOp;
 ```
 
-### `DW_OP_breg10`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg10`
 ```rust
 const DW_OP_breg10: DwOp;
 ```
 
-### `DW_OP_breg11`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg11`
 ```rust
 const DW_OP_breg11: DwOp;
 ```
 
-### `DW_OP_breg12`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg12`
 ```rust
 const DW_OP_breg12: DwOp;
 ```
 
-### `DW_OP_breg13`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg13`
 ```rust
 const DW_OP_breg13: DwOp;
 ```
 
-### `DW_OP_breg14`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg14`
 ```rust
 const DW_OP_breg14: DwOp;
 ```
 
-### `DW_OP_breg15`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg15`
 ```rust
 const DW_OP_breg15: DwOp;
 ```
 
-### `DW_OP_breg16`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg16`
 ```rust
 const DW_OP_breg16: DwOp;
 ```
 
-### `DW_OP_breg17`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg17`
 ```rust
 const DW_OP_breg17: DwOp;
 ```
 
-### `DW_OP_breg18`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg18`
 ```rust
 const DW_OP_breg18: DwOp;
 ```
 
-### `DW_OP_breg19`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg19`
 ```rust
 const DW_OP_breg19: DwOp;
 ```
 
-### `DW_OP_breg20`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg20`
 ```rust
 const DW_OP_breg20: DwOp;
 ```
 
-### `DW_OP_breg21`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg21`
 ```rust
 const DW_OP_breg21: DwOp;
 ```
 
-### `DW_OP_breg22`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg22`
 ```rust
 const DW_OP_breg22: DwOp;
 ```
 
-### `DW_OP_breg23`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg23`
 ```rust
 const DW_OP_breg23: DwOp;
 ```
 
-### `DW_OP_breg24`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg24`
 ```rust
 const DW_OP_breg24: DwOp;
 ```
 
-### `DW_OP_breg25`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg25`
 ```rust
 const DW_OP_breg25: DwOp;
 ```
 
-### `DW_OP_breg26`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg26`
 ```rust
 const DW_OP_breg26: DwOp;
 ```
 
-### `DW_OP_breg27`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg27`
 ```rust
 const DW_OP_breg27: DwOp;
 ```
 
-### `DW_OP_breg28`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg28`
 ```rust
 const DW_OP_breg28: DwOp;
 ```
 
-### `DW_OP_breg29`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg29`
 ```rust
 const DW_OP_breg29: DwOp;
 ```
 
-### `DW_OP_breg30`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg30`
 ```rust
 const DW_OP_breg30: DwOp;
 ```
 
-### `DW_OP_breg31`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_breg31`
 ```rust
 const DW_OP_breg31: DwOp;
 ```
 
-### `DW_OP_regx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_regx`
 ```rust
 const DW_OP_regx: DwOp;
 ```
 
-### `DW_OP_fbreg`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_fbreg`
 ```rust
 const DW_OP_fbreg: DwOp;
 ```
 
-### `DW_OP_bregx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_bregx`
 ```rust
 const DW_OP_bregx: DwOp;
 ```
 
-### `DW_OP_piece`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_piece`
 ```rust
 const DW_OP_piece: DwOp;
 ```
 
-### `DW_OP_deref_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_deref_size`
 ```rust
 const DW_OP_deref_size: DwOp;
 ```
 
-### `DW_OP_xderef_size`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_xderef_size`
 ```rust
 const DW_OP_xderef_size: DwOp;
 ```
 
-### `DW_OP_nop`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_nop`
 ```rust
 const DW_OP_nop: DwOp;
 ```
 
-### `DW_OP_push_object_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_push_object_address`
 ```rust
 const DW_OP_push_object_address: DwOp;
 ```
 
-### `DW_OP_call2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_call2`
 ```rust
 const DW_OP_call2: DwOp;
 ```
 
-### `DW_OP_call4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_call4`
 ```rust
 const DW_OP_call4: DwOp;
 ```
 
-### `DW_OP_call_ref`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_call_ref`
 ```rust
 const DW_OP_call_ref: DwOp;
 ```
 
-### `DW_OP_form_tls_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_form_tls_address`
 ```rust
 const DW_OP_form_tls_address: DwOp;
 ```
 
-### `DW_OP_call_frame_cfa`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_call_frame_cfa`
 ```rust
 const DW_OP_call_frame_cfa: DwOp;
 ```
 
-### `DW_OP_bit_piece`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_bit_piece`
 ```rust
 const DW_OP_bit_piece: DwOp;
 ```
 
-### `DW_OP_implicit_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_implicit_value`
 ```rust
 const DW_OP_implicit_value: DwOp;
 ```
 
-### `DW_OP_stack_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_stack_value`
 ```rust
 const DW_OP_stack_value: DwOp;
 ```
 
-### `DW_OP_implicit_pointer`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_implicit_pointer`
 ```rust
 const DW_OP_implicit_pointer: DwOp;
 ```
 
-### `DW_OP_addrx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_addrx`
 ```rust
 const DW_OP_addrx: DwOp;
 ```
 
-### `DW_OP_constx`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_constx`
 ```rust
 const DW_OP_constx: DwOp;
 ```
 
-### `DW_OP_entry_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_entry_value`
 ```rust
 const DW_OP_entry_value: DwOp;
 ```
 
-### `DW_OP_const_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_const_type`
 ```rust
 const DW_OP_const_type: DwOp;
 ```
 
-### `DW_OP_regval_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_regval_type`
 ```rust
 const DW_OP_regval_type: DwOp;
 ```
 
-### `DW_OP_deref_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_deref_type`
 ```rust
 const DW_OP_deref_type: DwOp;
 ```
 
-### `DW_OP_xderef_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_xderef_type`
 ```rust
 const DW_OP_xderef_type: DwOp;
 ```
 
-### `DW_OP_convert`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_convert`
 ```rust
 const DW_OP_convert: DwOp;
 ```
 
-### `DW_OP_reinterpret`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_reinterpret`
 ```rust
 const DW_OP_reinterpret: DwOp;
 ```
 
-### `DW_OP_GNU_push_tls_address`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_push_tls_address`
 ```rust
 const DW_OP_GNU_push_tls_address: DwOp;
 ```
 
-### `DW_OP_GNU_implicit_pointer`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_implicit_pointer`
 ```rust
 const DW_OP_GNU_implicit_pointer: DwOp;
 ```
 
-### `DW_OP_GNU_entry_value`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_entry_value`
 ```rust
 const DW_OP_GNU_entry_value: DwOp;
 ```
 
-### `DW_OP_GNU_const_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_const_type`
 ```rust
 const DW_OP_GNU_const_type: DwOp;
 ```
 
-### `DW_OP_GNU_regval_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_regval_type`
 ```rust
 const DW_OP_GNU_regval_type: DwOp;
 ```
 
-### `DW_OP_GNU_deref_type`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_deref_type`
 ```rust
 const DW_OP_GNU_deref_type: DwOp;
 ```
 
-### `DW_OP_GNU_convert`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_convert`
 ```rust
 const DW_OP_GNU_convert: DwOp;
 ```
 
-### `DW_OP_GNU_reinterpret`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_reinterpret`
 ```rust
 const DW_OP_GNU_reinterpret: DwOp;
 ```
 
-### `DW_OP_GNU_parameter_ref`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_parameter_ref`
 ```rust
 const DW_OP_GNU_parameter_ref: DwOp;
 ```
 
-### `DW_OP_GNU_addr_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_addr_index`
 ```rust
 const DW_OP_GNU_addr_index: DwOp;
 ```
 
-### `DW_OP_GNU_const_index`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_GNU_const_index`
 ```rust
 const DW_OP_GNU_const_index: DwOp;
 ```
 
-### `DW_OP_WASM_location`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_OP_WASM_location`
 ```rust
 const DW_OP_WASM_location: DwOp;
 ```
 
-### `DW_EH_PE_uleb128`
+*Defined in [`gimli-0.32.3/src/constants.rs:1147-1332`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1147-L1332)*
 
+### `DW_EH_PE_uleb128`
 ```rust
 const DW_EH_PE_uleb128: DwEhPe;
 ```
 
-### `DW_EH_PE_udata2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_udata2`
 ```rust
 const DW_EH_PE_udata2: DwEhPe;
 ```
 
-### `DW_EH_PE_udata4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_udata4`
 ```rust
 const DW_EH_PE_udata4: DwEhPe;
 ```
 
-### `DW_EH_PE_udata8`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_udata8`
 ```rust
 const DW_EH_PE_udata8: DwEhPe;
 ```
 
-### `DW_EH_PE_sleb128`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_sleb128`
 ```rust
 const DW_EH_PE_sleb128: DwEhPe;
 ```
 
-### `DW_EH_PE_sdata2`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_sdata2`
 ```rust
 const DW_EH_PE_sdata2: DwEhPe;
 ```
 
-### `DW_EH_PE_sdata4`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_sdata4`
 ```rust
 const DW_EH_PE_sdata4: DwEhPe;
 ```
 
-### `DW_EH_PE_sdata8`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_sdata8`
 ```rust
 const DW_EH_PE_sdata8: DwEhPe;
 ```
 
-### `DW_EH_PE_pcrel`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_pcrel`
 ```rust
 const DW_EH_PE_pcrel: DwEhPe;
 ```
 
-### `DW_EH_PE_textrel`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_textrel`
 ```rust
 const DW_EH_PE_textrel: DwEhPe;
 ```
 
-### `DW_EH_PE_datarel`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_datarel`
 ```rust
 const DW_EH_PE_datarel: DwEhPe;
 ```
 
-### `DW_EH_PE_funcrel`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_funcrel`
 ```rust
 const DW_EH_PE_funcrel: DwEhPe;
 ```
 
-### `DW_EH_PE_aligned`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_aligned`
 ```rust
 const DW_EH_PE_aligned: DwEhPe;
 ```
 
-### `DW_EH_PE_indirect`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_indirect`
 ```rust
 const DW_EH_PE_indirect: DwEhPe;
 ```
 
-### `DW_EH_PE_absptr`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_absptr`
 ```rust
 const DW_EH_PE_absptr: DwEhPe;
 ```
 
-### `DW_EH_PE_omit`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_omit`
 ```rust
 const DW_EH_PE_omit: DwEhPe;
 ```
 
-### `DW_EH_PE_FORMAT_MASK`
+*Defined in [`gimli-0.32.3/src/constants.rs:1334-1390`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1334-L1390)*
 
+### `DW_EH_PE_FORMAT_MASK`
 ```rust
 const DW_EH_PE_FORMAT_MASK: u8 = 15u8;
 ```
 
-### `DW_EH_PE_APPLICATION_MASK`
+*Defined in [`gimli-0.32.3/src/constants.rs:1392`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1392)*
 
+### `DW_EH_PE_APPLICATION_MASK`
 ```rust
 const DW_EH_PE_APPLICATION_MASK: u8 = 112u8;
 ```
 
+*Defined in [`gimli-0.32.3/src/constants.rs:1395`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L1395)*
+
 ## Macros
 
 ### `dw!`
+
+*Defined in [`gimli-0.32.3/src/constants.rs:58-102`](../../../.source_1765210505/gimli-0.32.3/src/constants.rs#L58-L102)*
 

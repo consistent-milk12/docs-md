@@ -75,7 +75,7 @@ implemented on [`Seq`](#seq).
 | [`Extractor`](#extractor) | struct | Extracts prefix or suffix literal sequences from [`Hir`] expressions. |
 | [`Seq`](#seq) | struct | A sequence of literals. |
 | [`Literal`](#literal) | struct | A single literal extracted from an [`Hir`] expression. |
-| [`PreferenceTrie`](#preferencetrie) | struct | A "preference" trie that rejects literals that will never match when |
+| [`PreferenceTrie`](#preferencetrie) | struct | A "preference" trie that rejects literals that will never match when executing a leftmost first or "preference" search. |
 | [`State`](#state) | struct | A single state in a trie. |
 | [`ExtractKind`](#extractkind) | enum | The kind of literals to extract from an [`Hir`] expression. |
 | [`rank`](#rank) | fn | Returns the "rank" of the given byte. |
@@ -93,6 +93,8 @@ struct Extractor {
     limit_total: usize,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:147-153`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L147-L153)*
 
 Extracts prefix or suffix literal sequences from [`Hir`](../index.md) expressions.
 
@@ -238,6 +240,8 @@ struct Seq {
     literals: Option<alloc::vec::Vec<Literal>>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:733-745`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L733-L745)*
 
 A sequence of literals.
 
@@ -417,6 +421,8 @@ struct Literal {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2049-2052`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L2049-L2052)*
+
 A single literal extracted from an [`Hir`](../index.md) expression.
 
 A literal is composed of two things:
@@ -476,6 +482,10 @@ literal extraction ignores look-around assertions.)
 
 ##### `impl Eq for Literal`
 
+##### `impl FromIterator for Seq`
+
+- <span id="seq-from-iter"></span>`fn from_iter<T: IntoIterator<Item = Literal>>(it: T) -> Seq` — [`Seq`](#seq)
+
 ##### `impl Ord for Literal`
 
 - <span id="literal-cmp"></span>`fn cmp(&self, other: &Literal) -> cmp::Ordering` — [`Literal`](#literal)
@@ -499,6 +509,8 @@ struct PreferenceTrie {
     next_literal_index: usize,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2203-2216`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L2203-L2216)*
 
 A "preference" trie that rejects literals that will never match when
 executing a leftmost first or "preference" search.
@@ -563,6 +575,8 @@ struct State {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2220-2225`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L2220-L2225)*
+
 A single state in a trie. Uses a sparse representation for its transitions.
 
 #### Fields
@@ -593,6 +607,8 @@ enum ExtractKind {
     Suffix,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:640-649`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L640-L649)*
 
 The kind of literals to extract from an [`Hir`](../index.md) expression.
 
@@ -639,6 +655,8 @@ The default extraction kind is `Prefix`.
 ```rust
 fn rank(byte: u8) -> u8
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/literal.rs:2319-2321`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/literal.rs#L2319-L2321)*
 
 Returns the "rank" of the given byte.
 

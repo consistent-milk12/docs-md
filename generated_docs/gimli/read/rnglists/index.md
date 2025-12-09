@@ -25,7 +25,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`DebugRanges`](#debugranges) | struct | The raw contents of the `.debug_ranges` section. |
-| [`DebugRngLists`](#debugrnglists) | struct | The `DebugRngLists` struct represents the contents of the |
+| [`DebugRngLists`](#debugrnglists) | struct | The `DebugRngLists` struct represents the contents of the `.debug_rnglists` section. |
 | [`RangeLists`](#rangelists) | struct | The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections. |
 | [`RawRngListIter`](#rawrnglistiter) | struct | A raw iterator over an address range list. |
 | [`RngListIter`](#rnglistiter) | struct | An iterator over an address range list. |
@@ -45,11 +45,13 @@ struct DebugRanges<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:14-16`](../../../../.source_1765210505/gimli-0.32.3/src/read/rnglists.rs#L14-L16)*
+
 The raw contents of the `.debug_ranges` section.
 
 #### Implementations
 
-- <span id="debugranges-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugRanges<R>` — [`DebugRanges`](../index.md)
+- <span id="debugranges-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -80,6 +82,8 @@ struct DebugRngLists<R> {
     section: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:74-76`](../../../../.source_1765210505/gimli-0.32.3/src/read/rnglists.rs#L74-L76)*
 
 The `DebugRngLists` struct represents the contents of the
 `.debug_rnglists` section.
@@ -119,11 +123,19 @@ struct RangeLists<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:158-161`](../../../../.source_1765210505/gimli-0.32.3/src/read/rnglists.rs#L158-L161)*
+
 The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
 #### Implementations
 
-- <span id="rangelists-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> RangeLists<R>` — [`RangeLists`](../index.md)
+- <span id="rangelists-new"></span>`fn new(debug_ranges: DebugRanges<R>, debug_rnglists: DebugRngLists<R>) -> RangeLists<R>` — [`DebugRanges`](../index.md), [`DebugRngLists`](../index.md), [`RangeLists`](../index.md)
+
+- <span id="rangelists-debug-ranges"></span>`fn debug_ranges(&self) -> &DebugRanges<R>` — [`DebugRanges`](../index.md)
+
+- <span id="rangelists-set-debug-ranges"></span>`fn set_debug_ranges(&mut self, debug_ranges: DebugRanges<R>)` — [`DebugRanges`](../index.md)
+
+- <span id="rangelists-debug-rnglists"></span>`fn debug_rnglists(&self) -> &DebugRngLists<R>` — [`DebugRngLists`](../index.md)
 
 #### Trait Implementations
 
@@ -150,6 +162,8 @@ struct RawRngListIter<R: Reader> {
     format: RangeListsFormat,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:306-310`](../../../../.source_1765210505/gimli-0.32.3/src/read/rnglists.rs#L306-L310)*
 
 A raw iterator over an address range list.
 
@@ -179,6 +193,8 @@ struct RngListIter<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:473-478`](../../../../.source_1765210505/gimli-0.32.3/src/read/rnglists.rs#L473-L478)*
+
 An iterator over an address range list.
 
 This iterator internally handles processing of base addresses and different
@@ -207,6 +223,8 @@ struct RawRange {
     pub end: u64,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:598-604`](../../../../.source_1765210505/gimli-0.32.3/src/read/rnglists.rs#L598-L604)*
 
 A raw address range from the `.debug_ranges` section.
 
@@ -260,6 +278,8 @@ struct Range {
     pub end: u64,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:634-640`](../../../../.source_1765210505/gimli-0.32.3/src/read/rnglists.rs#L634-L640)*
 
 An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges` sections.
 
@@ -319,6 +339,8 @@ enum RangeListsFormat {
     Rle,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:294-299`](../../../../.source_1765210505/gimli-0.32.3/src/read/rnglists.rs#L294-L299)*
 
 #### Variants
 
@@ -387,6 +409,8 @@ enum RawRngListEntry<T> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:314-367`](../../../../.source_1765210505/gimli-0.32.3/src/read/rnglists.rs#L314-L367)*
+
 A raw entry in .debug_rnglists
 
 #### Variants
@@ -444,4 +468,6 @@ A raw entry in .debug_rnglists
 ```rust
 type RngListsHeader = crate::read::lists::ListsHeader;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/rnglists.rs:133`](../../../../.source_1765210505/gimli-0.32.3/src/read/rnglists.rs#L133)*
 

@@ -88,6 +88,8 @@ struct DefaultHashBuilder {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
+
 Default hash builder for the `S` type parameter of
 [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
@@ -99,13 +101,13 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl BuildHasher for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-hasher"></span>`type Hasher = DefaultHasher`
+- <span id="defaulthashbuilder-type-hasher"></span>`type Hasher = DefaultHasher`
 
 - <span id="defaulthashbuilder-build-hasher"></span>`fn build_hasher(&self) -> <Self as >::Hasher`
 
 ##### `impl Clone for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-clone"></span>`fn clone(&self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
+- <span id="defaulthashbuilder-clone"></span>`fn clone(&self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](hasher/index.md)
 
 ##### `impl Debug for DefaultHashBuilder`
 
@@ -113,7 +115,7 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl Default for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-default"></span>`fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
+- <span id="defaulthashbuilder-default"></span>`fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](hasher/index.md)
 
 ### `DefaultHasher`
 
@@ -123,13 +125,15 @@ struct DefaultHasher {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
+
 Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
 #### Trait Implementations
 
 ##### `impl Clone for DefaultHasher`
 
-- <span id="defaulthasher-clone"></span>`fn clone(&self) -> DefaultHasher` — [`DefaultHasher`](#defaulthasher)
+- <span id="defaulthasher-clone"></span>`fn clone(&self) -> DefaultHasher` — [`DefaultHasher`](hasher/index.md)
 
 ##### `impl Hasher for DefaultHasher`
 
@@ -169,6 +173,8 @@ struct HashMap<K, V, S, A: Allocator> {
     table: crate::raw::RawTable<(K, V), A>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L185-L188)*
 
 A hash map implemented with quadratic probing and SIMD lookup.
 
@@ -340,9 +346,9 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- <span id="cratehashmap-raw-entry-mut"></span>`fn raw_entry_mut(&mut self) -> RawEntryBuilderMut<'_, K, V, S, A>` — [`RawEntryBuilderMut`](raw_entry/index.md)
+- <span id="hashmap-new"></span>`fn new() -> Self`
 
-- <span id="cratehashmap-raw-entry"></span>`fn raw_entry(&self) -> RawEntryBuilder<'_, K, V, S, A>` — [`RawEntryBuilder`](raw_entry/index.md)
+- <span id="hashmap-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
@@ -376,17 +382,17 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 ##### `impl<K, Q, V, S, A> Index for HashMap<K, V, S, A>`
 
-- <span id="hashmap-output"></span>`type Output = V`
+- <span id="hashmap-type-output"></span>`type Output = V`
 
 - <span id="hashmap-index"></span>`fn index(&self, key: &Q) -> &V`
 
-##### `impl<K, V, S, A: Allocator> IntoIterator for HashMap<K, V, S, A>`
+##### `impl<'a, K, V, S, A: Allocator> IntoIterator for &'a HashMap<K, V, S, A>`
 
-- <span id="hashmap-item"></span>`type Item = (K, V)`
+- <span id="a-hashmap-type-item"></span>`type Item = (&'a K, &'a V)`
 
-- <span id="hashmap-intoiter"></span>`type IntoIter = IntoIter<K, V, A>`
+- <span id="a-hashmap-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
 
-- <span id="hashmap-into-iter"></span>`fn into_iter(self) -> IntoIter<K, V, A>` — [`IntoIter`](hash_map/index.md)
+- <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](hash_map/index.md)
 
 ##### `impl<K, V, S, A> PartialEq for HashMap<K, V, S, A>`
 
@@ -400,9 +406,11 @@ struct HashSet<T, S, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/set.rs:114-116`](../../.source_1765210505/hashbrown-0.16.1/src/set.rs#L114-L116)*
+
 A hash set implemented as a `HashMap` where the value is `()`.
 
-As with the [`HashMap`](#hashmap) type, a `HashSet` requires that the elements
+As with the [`HashMap`](hash_map/index.md) type, a `HashSet` requires that the elements
 implement the `Eq` and `Hash` traits. This can frequently be achieved by
 using `#[derive(PartialEq, Eq, Hash)]`. If you implement these yourself,
 it is important that the following property holds:
@@ -497,63 +505,41 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- <span id="hashset-reserve"></span>`fn reserve(&mut self, additional: usize)`
+- <span id="hashset-new"></span>`fn new() -> Self`
 
-- <span id="hashset-try-reserve"></span>`fn try_reserve(&mut self, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](#tryreserveerror)
-
-- <span id="hashset-shrink-to-fit"></span>`fn shrink_to_fit(&mut self)`
-
-- <span id="hashset-shrink-to"></span>`fn shrink_to(&mut self, min_capacity: usize)`
-
-- <span id="hashset-difference"></span>`fn difference<'a>(self: &'a Self, other: &'a Self) -> Difference<'a, T, S, A>` — [`Difference`](hash_set/index.md)
-
-- <span id="hashset-symmetric-difference"></span>`fn symmetric_difference<'a>(self: &'a Self, other: &'a Self) -> SymmetricDifference<'a, T, S, A>` — [`SymmetricDifference`](hash_set/index.md)
-
-- <span id="hashset-intersection"></span>`fn intersection<'a>(self: &'a Self, other: &'a Self) -> Intersection<'a, T, S, A>` — [`Intersection`](hash_set/index.md)
-
-- <span id="hashset-union"></span>`fn union<'a>(self: &'a Self, other: &'a Self) -> Union<'a, T, S, A>` — [`Union`](hash_set/index.md)
-
-- <span id="hashset-contains"></span>`fn contains<Q>(&self, value: &Q) -> bool`
-
-- <span id="hashset-get"></span>`fn get<Q>(&self, value: &Q) -> Option<&T>`
-
-- <span id="hashset-get-or-insert"></span>`fn get_or_insert(&mut self, value: T) -> &T`
-
-- <span id="hashset-get-or-insert-with"></span>`fn get_or_insert_with<Q, F>(&mut self, value: &Q, f: F) -> &T`
-
-- <span id="hashset-entry"></span>`fn entry(&mut self, value: T) -> Entry<'_, T, S, A>` — [`Entry`](hash_set/index.md)
-
-- <span id="hashset-is-disjoint"></span>`fn is_disjoint(&self, other: &Self) -> bool`
-
-- <span id="hashset-is-subset"></span>`fn is_subset(&self, other: &Self) -> bool`
-
-- <span id="hashset-is-superset"></span>`fn is_superset(&self, other: &Self) -> bool`
-
-- <span id="hashset-insert"></span>`fn insert(&mut self, value: T) -> bool`
-
-- <span id="hashset-insert-unique-unchecked"></span>`unsafe fn insert_unique_unchecked(&mut self, value: T) -> &T`
-
-- <span id="hashset-replace"></span>`fn replace(&mut self, value: T) -> Option<T>`
-
-- <span id="hashset-remove"></span>`fn remove<Q>(&mut self, value: &Q) -> bool`
-
-- <span id="hashset-take"></span>`fn take<Q>(&mut self, value: &Q) -> Option<T>`
-
-- <span id="hashset-allocation-size"></span>`fn allocation_size(&self) -> usize`
+- <span id="hashset-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
+##### `impl<T, S, A> BitAnd for &HashSet<T, S, A>`
+
+- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+
+- <span id="hashset-bitand"></span>`fn bitand(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
+
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
+
+##### `impl<T, S, A> BitOr for &HashSet<T, S, A>`
+
+- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+
+- <span id="hashset-bitor"></span>`fn bitor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
 
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
+
+##### `impl<T, S, A> BitXor for &HashSet<T, S, A>`
+
+- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+
+- <span id="hashset-bitxor"></span>`fn bitxor(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
 
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
 
-- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
 
 ##### `impl<T: Clone, S: Clone, A: Allocator + Clone> Clone for HashSet<T, S, A>`
 
@@ -575,29 +561,35 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
-##### `impl<'a, T, S, A> Extend for HashSet<T, S, A>`
+##### `impl<T, S, A> Extend for HashSet<T, S, A>`
 
-- <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = &'a T>>(&mut self, iter: I)`
+- <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
 
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 
 - <span id="hashset-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
-##### `impl<T, S, A: Allocator> IntoIterator for HashSet<T, S, A>`
+##### `impl<'a, T, S, A: Allocator> IntoIterator for &'a HashSet<T, S, A>`
 
-- <span id="hashset-item"></span>`type Item = T`
+- <span id="a-hashset-type-item"></span>`type Item = &'a T`
 
-- <span id="hashset-intoiter"></span>`type IntoIter = IntoIter<T, A>`
+- <span id="a-hashset-type-intoiter"></span>`type IntoIter = Iter<'a, T>`
 
-- <span id="hashset-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](hash_set/index.md)
+- <span id="a-hashset-into-iter"></span>`fn into_iter(self) -> Iter<'a, T>` — [`Iter`](hash_set/index.md)
 
 ##### `impl<T, S, A> PartialEq for HashSet<T, S, A>`
 
 - <span id="hashset-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
+##### `impl<T, S, A> Sub for &HashSet<T, S, A>`
+
+- <span id="hashset-type-output"></span>`type Output = HashSet<T, S, A>`
+
+- <span id="hashset-sub"></span>`fn sub(self, rhs: &HashSet<T, S, A>) -> HashSet<T, S, A>` — [`HashSet`](hash_set/index.md)
+
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
 
-- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](hash_set/index.md)
 
 ### `HashTable<T, A>`
 
@@ -609,9 +601,11 @@ where
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/table.rs:48-53`](../../.source_1765210505/hashbrown-0.16.1/src/table.rs#L48-L53)*
+
 Low-level hash table with explicit hashing.
 
-The primary use case for this type over [`HashMap`](#hashmap) or [`HashSet`](#hashset) is to
+The primary use case for this type over [`HashMap`](hash_map/index.md) or [`HashSet`](hash_set/index.md) is to
 support types that do not implement the `Hash` and `Eq` traits, but
 instead require additional data not contained in the key itself to compute a
 hash and compare two elements for equality.
@@ -634,7 +628,7 @@ instead be wrapped in a helper type which handles the work of calculating
 hash values and comparing elements.
 
 Due to its low-level nature, this type provides fewer guarantees than
-[`HashMap`](#hashmap) and [`HashSet`](#hashset). Specifically, the API allows you to shoot
+[`HashMap`](hash_map/index.md) and [`HashSet`](hash_set/index.md). Specifically, the API allows you to shoot
 yourself in the foot by having multiple elements with identical keys in the
 table. The table itself will still function correctly and lookups will
 arbitrarily return one of the matching elements. However you should avoid
@@ -667,9 +661,9 @@ doing this because it changes the runtime of hash table operations from
 
 ##### `impl<T, A> IntoIterator for HashTable<T, A>`
 
-- <span id="hashtable-item"></span>`type Item = T`
+- <span id="hashtable-type-item"></span>`type Item = T`
 
-- <span id="hashtable-intoiter"></span>`type IntoIter = IntoIter<T, A>`
+- <span id="hashtable-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
 - <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](hash_table/index.md)
 
@@ -685,6 +679,8 @@ enum TryReserveError {
     },
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/lib.rs:180-190`](../../.source_1765210505/hashbrown-0.16.1/src/lib.rs#L180-L190)*
 
 The error type for `try_reserve` methods.
 
@@ -711,7 +707,7 @@ The error type for `try_reserve` methods.
 
 ##### `impl Eq for TryReserveError`
 
-##### `impl<Q, K> Equivalent for TryReserveError`
+##### `impl Equivalent for TryReserveError`
 
 - <span id="tryreserveerror-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 

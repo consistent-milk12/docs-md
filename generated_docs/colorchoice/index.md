@@ -17,6 +17,8 @@ Global override of color control
 struct AtomicChoice(core::sync::atomic::AtomicUsize);
 ```
 
+*Defined in [`colorchoice-1.0.4/src/lib.rs:49`](../../.source_1765210505/colorchoice-1.0.4/src/lib.rs#L49)*
+
 #### Implementations
 
 - <span id="atomicchoice-new"></span>`const fn new() -> Self`
@@ -51,6 +53,8 @@ enum ColorChoice {
     Never,
 }
 ```
+
+*Defined in [`colorchoice-1.0.4/src/lib.rs:14-26`](../../.source_1765210505/colorchoice-1.0.4/src/lib.rs#L14-L26)*
 
 Selection for overriding color output
 

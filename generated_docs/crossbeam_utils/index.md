@@ -4,19 +4,19 @@ Miscellaneous tools for concurrent programming.
 
 ## Atomics
 
-* [`AtomicCell`](atomic/index.md), a thread-safe mutable memory location.
-* [`AtomicConsume`](atomic/index.md), for reading from primitive atomic types with "consume" ordering.
+* [`AtomicCell`](atomic/atomic_cell/index.md), a thread-safe mutable memory location.
+* [`AtomicConsume`](atomic/consume/index.md), for reading from primitive atomic types with "consume" ordering.
 
 ## Thread synchronization
 
-* [`Parker`](sync/index.md), a thread parking primitive.
-* [`ShardedLock`](sync/index.md), a sharded reader-writer lock with fast concurrent reads.
-* [`WaitGroup`](sync/index.md), for synchronizing the beginning or end of some computation.
+* [`Parker`](sync/parker/index.md), a thread parking primitive.
+* [`ShardedLock`](sync/sharded_lock/index.md), a sharded reader-writer lock with fast concurrent reads.
+* [`WaitGroup`](sync/wait_group/index.md), for synchronizing the beginning or end of some computation.
 
 ## Utilities
 
-* [`Backoff`](#backoff), for exponential backoff in spin loops.
-* [`CachePadded`](#cachepadded), for padding and aligning a value to the length of a cache line.
+* [`Backoff`](backoff/index.md), for exponential backoff in spin loops.
+* [`CachePadded`](cache_padded/index.md), for padding and aligning a value to the length of a cache line.
 * [`scope`](thread/index.md), for spawning threads that borrow local variables from the stack.
 
 
@@ -69,6 +69,8 @@ struct CachePadded<T> {
     value: T,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/cache_padded.rs:148-150`](../../.source_1765210505/crossbeam-utils-0.8.21/src/cache_padded.rs#L148-L150)*
 
 Pads and aligns a value to the length of a cache line.
 
@@ -131,7 +133,7 @@ struct Queue<T> {
 
 #### Implementations
 
-- <span id="cachepadded-new"></span>`const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
+- <span id="cachepadded-new"></span>`const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
 
 - <span id="cachepadded-into-inner"></span>`fn into_inner(self) -> T`
 
@@ -139,7 +141,7 @@ struct Queue<T> {
 
 ##### `impl<T: clone::Clone> Clone for CachePadded<T>`
 
-- <span id="cachepadded-clone"></span>`fn clone(&self) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
+- <span id="cachepadded-clone"></span>`fn clone(&self) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
 
 ##### `impl<T: marker::Copy> Copy for CachePadded<T>`
 
@@ -149,11 +151,11 @@ struct Queue<T> {
 
 ##### `impl<T: default::Default> Default for CachePadded<T>`
 
-- <span id="cachepadded-default"></span>`fn default() -> CachePadded<T>` — [`CachePadded`](#cachepadded)
+- <span id="cachepadded-default"></span>`fn default() -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
 
 ##### `impl<T> Deref for CachePadded<T>`
 
-- <span id="cachepadded-target"></span>`type Target = T`
+- <span id="cachepadded-type-target"></span>`type Target = T`
 
 - <span id="cachepadded-deref"></span>`fn deref(&self) -> &T`
 
@@ -173,11 +175,11 @@ struct Queue<T> {
 
 ##### `impl<T: cmp::PartialEq> PartialEq for CachePadded<T>`
 
-- <span id="cachepadded-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](#cachepadded)
+- <span id="cachepadded-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](cache_padded/index.md)
 
 ##### `impl<P, T> Receiver for CachePadded<T>`
 
-- <span id="cachepadded-target"></span>`type Target = T`
+- <span id="cachepadded-type-target"></span>`type Target = T`
 
 ##### `impl<T: Send> Send for CachePadded<T>`
 
@@ -196,6 +198,8 @@ struct Backoff {
     step: core::cell::Cell<u32>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:80-82`](../../.source_1765210505/crossbeam-utils-0.8.21/src/backoff.rs#L80-L82)*
 
 Performs exponential backoff in spin loops.
 
@@ -287,5 +291,5 @@ fn blocking_wait(ready: &AtomicBool) {
 
 ##### `impl Default for Backoff`
 
-- <span id="backoff-default"></span>`fn default() -> Backoff` — [`Backoff`](#backoff)
+- <span id="backoff-default"></span>`fn default() -> Backoff` — [`Backoff`](backoff/index.md)
 

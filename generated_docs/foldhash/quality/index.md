@@ -12,7 +12,7 @@ The foldhash implementation optimized for quality.
 |------|------|-------------|
 | [`FoldHasher`](#foldhasher) | struct | A [`Hasher`] instance implementing foldhash, optimized for quality. |
 | [`RandomState`](#randomstate) | struct | A [`BuildHasher`] for [`quality::FoldHasher`](FoldHasher) that is randomly initialized. |
-| [`SeedableRandomState`](#seedablerandomstate) | struct | A [`BuildHasher`] for [`quality::FoldHasher`](FoldHasher) that is randomly |
+| [`SeedableRandomState`](#seedablerandomstate) | struct | A [`BuildHasher`] for [`quality::FoldHasher`](FoldHasher) that is randomly initialized by default, but can also be initialized with a specific seed. |
 | [`FixedState`](#fixedstate) | struct | A [`BuildHasher`] for [`quality::FoldHasher`](FoldHasher) that always has the same fixed seed. |
 
 ## Structs
@@ -25,6 +25,8 @@ struct FoldHasher<'a> {
 }
 ```
 
+*Defined in [`foldhash-0.2.0/src/quality.rs:15-17`](../../../.source_1765210505/foldhash-0.2.0/src/quality.rs#L15-L17)*
+
 A `Hasher` instance implementing foldhash, optimized for quality.
 
 While you can create one directly with `FoldHasher::with_seed`, you
@@ -33,15 +35,15 @@ most likely want to use [`RandomState`](#randomstate), [`SeedableRandomState`](#
 
 #### Implementations
 
-- <span id="foldhasher-with-seed"></span>`const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../index.md), [`FoldHasher`](#foldhasher)
+- <span id="foldhasher-with-seed"></span>`const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../seed/index.md), [`FoldHasher`](#foldhasher)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for FoldHasher<'a>`
+##### `impl Clone for FoldHasher<'a>`
 
 - <span id="foldhasher-clone"></span>`fn clone(&self) -> FoldHasher<'a>` — [`FoldHasher`](#foldhasher)
 
-##### `impl<'a> Hasher for FoldHasher<'a>`
+##### `impl Hasher for FoldHasher<'a>`
 
 - <span id="foldhasher-write"></span>`fn write(&mut self, bytes: &[u8])`
 
@@ -67,13 +69,15 @@ struct RandomState {
 }
 ```
 
+*Defined in [`foldhash-0.2.0/src/quality.rs:80-82`](../../../.source_1765210505/foldhash-0.2.0/src/quality.rs#L80-L82)*
+
 A [`BuildHasher`](../../serde_core/lib/index.md) for [`quality::FoldHasher`](FoldHasher) that is randomly initialized.
 
 #### Trait Implementations
 
 ##### `impl BuildHasher for RandomState`
 
-- <span id="randomstate-hasher"></span>`type Hasher = FoldHasher<'static>`
+- <span id="randomstate-type-hasher"></span>`type Hasher = FoldHasher<'static>`
 
 - <span id="randomstate-build-hasher"></span>`fn build_hasher(&self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
@@ -97,6 +101,8 @@ struct SeedableRandomState {
 }
 ```
 
+*Defined in [`foldhash-0.2.0/src/quality.rs:101-103`](../../../.source_1765210505/foldhash-0.2.0/src/quality.rs#L101-L103)*
+
 A [`BuildHasher`](../../serde_core/lib/index.md) for [`quality::FoldHasher`](FoldHasher) that is randomly
 initialized by default, but can also be initialized with a specific seed.
 
@@ -109,13 +115,13 @@ has a size of 16 bytes rather than the 8 bytes [`RandomState`](#randomstate) is.
 
 - <span id="seedablerandomstate-fixed"></span>`fn fixed() -> Self`
 
-- <span id="seedablerandomstate-with-seed"></span>`fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../index.md)
+- <span id="seedablerandomstate-with-seed"></span>`fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../seed/index.md)
 
 #### Trait Implementations
 
 ##### `impl BuildHasher for SeedableRandomState`
 
-- <span id="seedablerandomstate-hasher"></span>`type Hasher = FoldHasher<'static>`
+- <span id="seedablerandomstate-type-hasher"></span>`type Hasher = FoldHasher<'static>`
 
 - <span id="seedablerandomstate-build-hasher"></span>`fn build_hasher(&self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
@@ -139,6 +145,8 @@ struct FixedState {
 }
 ```
 
+*Defined in [`foldhash-0.2.0/src/quality.rs:153-155`](../../../.source_1765210505/foldhash-0.2.0/src/quality.rs#L153-L155)*
+
 A [`BuildHasher`](../../serde_core/lib/index.md) for [`quality::FoldHasher`](FoldHasher) that always has the same fixed seed.
 
 Not recommended unless you absolutely need determinism.
@@ -151,7 +159,7 @@ Not recommended unless you absolutely need determinism.
 
 ##### `impl BuildHasher for FixedState`
 
-- <span id="fixedstate-hasher"></span>`type Hasher = FoldHasher<'static>`
+- <span id="fixedstate-type-hasher"></span>`type Hasher = FoldHasher<'static>`
 
 - <span id="fixedstate-build-hasher"></span>`fn build_hasher(&self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 

@@ -28,6 +28,8 @@ struct FlatGenerator<'a> {
 }
 ```
 
+*Defined in `src/generator/flat.rs:32-41`*
+
 Generates documentation with flat file structure.
 
 All markdown files are placed in a single directory. Module hierarchy
@@ -60,7 +62,7 @@ output/
 
 #### Implementations
 
-- <span id="flatgenerator-new"></span>`const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../index.md)
+- <span id="flatgenerator-new"></span>`const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../context/index.md)
 
 - <span id="flatgenerator-generate"></span>`fn generate(&self, root: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
@@ -70,17 +72,17 @@ output/
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for FlatGenerator<'a>`
+##### `impl Instrument for FlatGenerator<'a>`
 
-##### `impl<T> IntoEither for FlatGenerator<'a>`
+##### `impl IntoEither for FlatGenerator<'a>`
 
-##### `impl<D> OwoColorize for FlatGenerator<'a>`
+##### `impl OwoColorize for FlatGenerator<'a>`
 
-##### `impl<T> Pointable for FlatGenerator<'a>`
+##### `impl Pointable for FlatGenerator<'a>`
 
-- <span id="flatgenerator-align"></span>`const ALIGN: usize`
+- <span id="flatgenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatgenerator-init"></span>`type Init = T`
+- <span id="flatgenerator-type-init"></span>`type Init = T`
 
 - <span id="flatgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -90,5 +92,5 @@ output/
 
 - <span id="flatgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for FlatGenerator<'a>`
+##### `impl WithSubscriber for FlatGenerator<'a>`
 

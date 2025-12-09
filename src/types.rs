@@ -605,7 +605,8 @@ impl<'a> TypeRenderer<'a> {
         match ty {
             Type::ResolvedPath(path) => {
                 // Extract the simple name (last segment of the path)
-                let name = path.path.split("::").last().unwrap_or(&path.path);
+                // Using rsplit().next() is more efficient than split().last()
+                let name = path.path.rsplit("::").next().unwrap_or(&path.path);
                 result.push((name.to_string(), path.id));
 
                 // Also collect from generic arguments
@@ -616,7 +617,12 @@ impl<'a> TypeRenderer<'a> {
 
             Type::DynTrait(dyn_trait) => {
                 for pt in &dyn_trait.traits {
-                    let name = pt.trait_.path.split("::").last().unwrap_or(&pt.trait_.path);
+                    let name = pt
+                        .trait_
+                        .path
+                        .rsplit("::")
+                        .next()
+                        .unwrap_or(&pt.trait_.path);
                     result.push((name.to_string(), pt.trait_.id));
 
                     if let Some(args) = &pt.trait_.args {
@@ -653,7 +659,7 @@ impl<'a> TypeRenderer<'a> {
             Type::ImplTrait(bounds) => {
                 for bound in bounds {
                     if let GenericBound::TraitBound { trait_, .. } = bound {
-                        let name = trait_.path.split("::").last().unwrap_or(&trait_.path);
+                        let name = trait_.path.rsplit("::").next().unwrap_or(&trait_.path);
                         result.push((name.to_string(), trait_.id));
 
                         if let Some(args) = &trait_.args {
@@ -668,7 +674,7 @@ impl<'a> TypeRenderer<'a> {
             } => {
                 self.collect_types_recursive(self_type, result);
                 if let Some(t) = trait_ {
-                    let name = t.path.split("::").last().unwrap_or(&t.path);
+                    let name = t.path.rsplit("::").next().unwrap_or(&t.path);
                     result.push((name.to_string(), t.id));
                 }
             },

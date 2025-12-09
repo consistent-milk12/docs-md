@@ -25,6 +25,8 @@ conservative step.
 trait Sealed { ... }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:29`](../../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L29)*
+
 #### Implementors
 
 - [`DFA`](../../dfa/index.md)

@@ -28,18 +28,18 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`CoreLatch`](#corelatch) | struct | Spin latches are the simplest, most efficient kind, but they do |
-| [`SpinLatch`](#spinlatch) | struct | Spin latches are the simplest, most efficient kind, but they do |
+| [`CoreLatch`](#corelatch) | struct | Spin latches are the simplest, most efficient kind, but they do not support a `wait()` operation. |
+| [`SpinLatch`](#spinlatch) | struct | Spin latches are the simplest, most efficient kind, but they do not support a `wait()` operation. |
 | [`LockLatch`](#locklatch) | struct | A Latch starts as false and eventually becomes true. |
-| [`OnceLatch`](#oncelatch) | struct | Once latches are used to implement one-time blocking, primarily |
+| [`OnceLatch`](#oncelatch) | struct | Once latches are used to implement one-time blocking, primarily for the termination flag of the threads in the pool. |
 | [`CountLatch`](#countlatch) | struct | Counting latches are used to implement scopes. |
 | [`LatchRef`](#latchref) | struct | `&L` without any implication of `dereferenceable` for `Latch::set` |
 | [`CountLatchKind`](#countlatchkind) | enum |  |
-| [`Latch`](#latch) | trait | We define various kinds of latches, which are all a primitive signaling |
+| [`Latch`](#latch) | trait | We define various kinds of latches, which are all a primitive signaling mechanism. |
 | [`AsCoreLatch`](#ascorelatch) | trait |  |
 | [`UNSET`](#unset) | const | Latch is not set, owning thread is awake |
-| [`SLEEPY`](#sleepy) | const | Latch is not set, owning thread is going to sleep on this latch |
-| [`SLEEPING`](#sleeping) | const | Latch is not set, owning thread is asleep on this latch and |
+| [`SLEEPY`](#sleepy) | const | Latch is not set, owning thread is going to sleep on this latch (but has not yet fallen asleep). |
+| [`SLEEPING`](#sleeping) | const | Latch is not set, owning thread is asleep on this latch and must be awoken. |
 | [`SET`](#set) | const | Latch is set. |
 
 ## Structs
@@ -51,6 +51,8 @@ struct CoreLatch {
     state: std::sync::atomic::AtomicUsize,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/latch.rs:75-77`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L75-L77)*
 
 Spin latches are the simplest, most efficient kind, but they do
 not support a `wait()` operation. They just have a boolean flag
@@ -80,11 +82,11 @@ that becomes true when `set()` is called.
 
 - <span id="corelatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for CoreLatch`
+##### `impl Pointable for CoreLatch`
 
-- <span id="corelatch-align"></span>`const ALIGN: usize`
+- <span id="corelatch-const-align"></span>`const ALIGN: usize`
 
-- <span id="corelatch-init"></span>`type Init = T`
+- <span id="corelatch-type-init"></span>`type Init = T`
 
 - <span id="corelatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -104,6 +106,8 @@ struct SpinLatch<'r> {
     cross: bool,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/latch.rs:148-153`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L148-L153)*
 
 Spin latches are the simplest, most efficient kind, but they do
 not support a `wait()` operation. They just have a boolean flag
@@ -127,11 +131,11 @@ that becomes true when `set()` is called.
 
 - <span id="spinlatch-set"></span>`unsafe fn set(this: *const Self)`
 
-##### `impl<T> Pointable for SpinLatch<'r>`
+##### `impl Pointable for SpinLatch<'r>`
 
-- <span id="spinlatch-align"></span>`const ALIGN: usize`
+- <span id="spinlatch-const-align"></span>`const ALIGN: usize`
 
-- <span id="spinlatch-init"></span>`type Init = T`
+- <span id="spinlatch-type-init"></span>`type Init = T`
 
 - <span id="spinlatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -149,6 +153,8 @@ struct LockLatch {
     v: crate::sync::Condvar,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/latch.rs:228-231`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L228-L231)*
 
 A Latch starts as false and eventually becomes true. You can block
 until it becomes true.
@@ -171,11 +177,11 @@ until it becomes true.
 
 - <span id="locklatch-set"></span>`unsafe fn set(this: *const Self)`
 
-##### `impl<T> Pointable for LockLatch`
+##### `impl Pointable for LockLatch`
 
-- <span id="locklatch-align"></span>`const ALIGN: usize`
+- <span id="locklatch-const-align"></span>`const ALIGN: usize`
 
-- <span id="locklatch-init"></span>`type Init = T`
+- <span id="locklatch-type-init"></span>`type Init = T`
 
 - <span id="locklatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -192,6 +198,8 @@ struct OnceLatch {
     core_latch: CoreLatch,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/latch.rs:282-284`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L282-L284)*
 
 Once latches are used to implement one-time blocking, primarily
 for the termination flag of the threads in the pool.
@@ -222,11 +230,11 @@ contexts).
 
 - <span id="oncelatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for OnceLatch`
+##### `impl Pointable for OnceLatch`
 
-- <span id="oncelatch-align"></span>`const ALIGN: usize`
+- <span id="oncelatch-const-align"></span>`const ALIGN: usize`
 
-- <span id="oncelatch-init"></span>`type Init = T`
+- <span id="oncelatch-type-init"></span>`type Init = T`
 
 - <span id="oncelatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -244,6 +252,8 @@ struct CountLatch {
     kind: CountLatchKind,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/latch.rs:321-324`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L321-L324)*
 
 Counting latches are used to implement scopes. They track a
 counter. Unlike other latches, calling `set()` does not
@@ -271,11 +281,11 @@ decrements the counter. The latch is only "set" (in the sense that
 
 - <span id="countlatch-set"></span>`unsafe fn set(this: *const Self)`
 
-##### `impl<T> Pointable for CountLatch`
+##### `impl Pointable for CountLatch`
 
-- <span id="countlatch-align"></span>`const ALIGN: usize`
+- <span id="countlatch-const-align"></span>`const ALIGN: usize`
 
-- <span id="countlatch-init"></span>`type Init = T`
+- <span id="countlatch-type-init"></span>`type Init = T`
 
 - <span id="countlatch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -294,6 +304,8 @@ struct LatchRef<'a, L> {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/latch.rs:427-430`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L427-L430)*
+
 `&L` without any implication of `dereferenceable` for `Latch::set`
 
 #### Implementations
@@ -304,7 +316,7 @@ struct LatchRef<'a, L> {
 
 ##### `impl<L> Deref for LatchRef<'_, L>`
 
-- <span id="latchref-target"></span>`type Target = L`
+- <span id="latchref-type-target"></span>`type Target = L`
 
 - <span id="latchref-deref"></span>`fn deref(&self) -> &L`
 
@@ -314,9 +326,9 @@ struct LatchRef<'a, L> {
 
 ##### `impl<T> Pointable for LatchRef<'a, L>`
 
-- <span id="latchref-align"></span>`const ALIGN: usize`
+- <span id="latchref-const-align"></span>`const ALIGN: usize`
 
-- <span id="latchref-init"></span>`type Init = T`
+- <span id="latchref-type-init"></span>`type Init = T`
 
 - <span id="latchref-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -328,7 +340,7 @@ struct LatchRef<'a, L> {
 
 ##### `impl<P, T> Receiver for LatchRef<'a, L>`
 
-- <span id="latchref-target"></span>`type Target = T`
+- <span id="latchref-type-target"></span>`type Target = T`
 
 ##### `impl<L: Sync> Sync for LatchRef<'_, L>`
 
@@ -349,6 +361,8 @@ enum CountLatchKind {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/latch.rs:326-344`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L326-L344)*
+
 #### Variants
 
 - **`Stealing`**
@@ -367,11 +381,11 @@ enum CountLatchKind {
 
 - <span id="countlatchkind-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-##### `impl<T> Pointable for CountLatchKind`
+##### `impl Pointable for CountLatchKind`
 
-- <span id="countlatchkind-align"></span>`const ALIGN: usize`
+- <span id="countlatchkind-const-align"></span>`const ALIGN: usize`
 
-- <span id="countlatchkind-init"></span>`type Init = T`
+- <span id="countlatchkind-type-init"></span>`type Init = T`
 
 - <span id="countlatchkind-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -388,6 +402,8 @@ enum CountLatchKind {
 ```rust
 trait Latch { ... }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/latch.rs:35-51`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L35-L51)*
 
 We define various kinds of latches, which are all a primitive signaling
 mechanism. A latch starts as false. Eventually someone calls `set()` and
@@ -435,6 +451,8 @@ Latches need to guarantee two things:
 trait AsCoreLatch { ... }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/latch.rs:53-55`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L53-L55)*
+
 #### Required Methods
 
 - `fn as_core_latch(&self) -> &CoreLatch`
@@ -448,36 +466,40 @@ trait AsCoreLatch { ... }
 ## Constants
 
 ### `UNSET`
-
 ```rust
 const UNSET: usize = 0usize;
 ```
 
+*Defined in [`rayon-core-1.13.0/src/latch.rs:58`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L58)*
+
 Latch is not set, owning thread is awake
 
 ### `SLEEPY`
-
 ```rust
 const SLEEPY: usize = 1usize;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/latch.rs:62`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L62)*
 
 Latch is not set, owning thread is going to sleep on this latch
 (but has not yet fallen asleep).
 
 ### `SLEEPING`
-
 ```rust
 const SLEEPING: usize = 2usize;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/latch.rs:66`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L66)*
 
 Latch is not set, owning thread is asleep on this latch and
 must be awoken.
 
 ### `SET`
-
 ```rust
 const SET: usize = 3usize;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/latch.rs:69`](../../../.source_1765210505/rayon-core-1.13.0/src/latch.rs#L69)*
 
 Latch is set.
 

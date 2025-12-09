@@ -53,35 +53,35 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`DebugFrame`](#debugframe) | struct | `DebugFrame` contains the `.debug_frame` section's frame unwinding |
+| [`DebugFrame`](#debugframe) | struct | `DebugFrame` contains the `.debug_frame` section's frame unwinding information required to unwind to and recover registers from older frames on the stack. |
 | [`EhFrameHdr`](#ehframehdr) | struct | `EhFrameHdr` contains the information about the `.eh_frame_hdr` section. |
 | [`ParsedEhFrameHdr`](#parsedehframehdr) | struct | `ParsedEhFrameHdr` contains the parsed information from the `.eh_frame_hdr` section. |
 | [`EhHdrTableIter`](#ehhdrtableiter) | struct | An iterator for `.eh_frame_hdr` section's binary search table. |
 | [`EhHdrTable`](#ehhdrtable) | struct | The CFI binary search table that is an optional part of the `.eh_frame_hdr` section. |
-| [`EhFrame`](#ehframe) | struct | `EhFrame` contains the frame unwinding information needed during exception |
+| [`EhFrame`](#ehframe) | struct | `EhFrame` contains the frame unwinding information needed during exception handling found in the `.eh_frame` section. |
 | [`BaseAddresses`](#baseaddresses) | struct | Optional base addresses for the relative `DW_EH_PE_*` encoded pointers. |
-| [`SectionBaseAddresses`](#sectionbaseaddresses) | struct | Optional base addresses for the relative `DW_EH_PE_*` encoded pointers |
-| [`CfiEntriesIter`](#cfientriesiter) | struct | An iterator over CIE and FDE entries in a `.debug_frame` or `.eh_frame` |
+| [`SectionBaseAddresses`](#sectionbaseaddresses) | struct | Optional base addresses for the relative `DW_EH_PE_*` encoded pointers in a particular section. |
+| [`CfiEntriesIter`](#cfientriesiter) | struct | An iterator over CIE and FDE entries in a `.debug_frame` or `.eh_frame` section. |
 | [`Augmentation`](#augmentation) | struct | We support the z-style augmentation [defined by `.eh_frame`][ehframe]. |
 | [`AugmentationData`](#augmentationdata) | struct | Parsed augmentation data for a `FrameDescriptEntry`. |
-| [`CommonInformationEntry`](#commoninformationentry) | struct | > A Common Information Entry holds information that is shared among many |
+| [`CommonInformationEntry`](#commoninformationentry) | struct | > A Common Information Entry holds information that is shared among many > Frame Description Entries. |
 | [`PartialFrameDescriptionEntry`](#partialframedescriptionentry) | struct | A partially parsed `FrameDescriptionEntry`. |
 | [`FrameDescriptionEntry`](#framedescriptionentry) | struct | A `FrameDescriptionEntry` is a set of CFA instructions for an address range. |
 | [`UnwindContext`](#unwindcontext) | struct | Common context needed when evaluating the call frame unwinding information. |
-| [`UnwindTable`](#unwindtable) | struct | The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s |
+| [`UnwindTable`](#unwindtable) | struct | The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s `CallFrameInstruction` program, yielding the each row one at a time. |
 | [`RegisterRuleMap`](#registerrulemap) | struct |  |
 | [`RegisterRuleIter`](#registerruleiter) | struct | An unordered iterator for register rules. |
-| [`UnwindTableRow`](#unwindtablerow) | struct | A row in the virtual unwind table that describes how to find the values of |
+| [`UnwindTableRow`](#unwindtablerow) | struct | A row in the virtual unwind table that describes how to find the values of the registers in the *previous* frame for a range of PC addresses. |
 | [`CallFrameInstructionIter`](#callframeinstructioniter) | struct | A lazy iterator parsing call frame instructions. |
 | [`UnwindExpression`](#unwindexpression) | struct | The location of a DWARF expression within an unwind section. |
 | [`PointerEncodingParameters`](#pointerencodingparameters) | struct |  |
 | [`CieOrFde`](#cieorfde) | enum | Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE). |
 | [`CfaRule`](#cfarule) | enum | The canonical frame address (CFA) recovery rules. |
-| [`RegisterRule`](#registerrule) | enum | An entry in the abstract CFI table that describes how to find the value of a |
+| [`RegisterRule`](#registerrule) | enum | An entry in the abstract CFI table that describes how to find the value of a register. |
 | [`CallFrameInstruction`](#callframeinstruction) | enum | A parsed call frame instruction. |
 | [`Pointer`](#pointer) | enum | A decoded pointer. |
 | [`UnwindOffset`](#unwindoffset) | trait | An offset into an `UnwindSection`. |
-| [`UnwindSection`](#unwindsection) | trait | A section holding unwind information: either `.debug_frame` or |
+| [`UnwindSection`](#unwindsection) | trait | A section holding unwind information: either `.debug_frame` or `.eh_frame`. |
 | [`UnwindContextStorage`](#unwindcontextstorage) | trait | Specification of what storage should be used for [`UnwindContext`]. |
 | [`parse_cfi_entry`](#parse_cfi_entry) | fn |  |
 | [`parse_encoded_pointer`](#parse_encoded_pointer) | fn |  |
@@ -102,6 +102,8 @@ struct DebugFrame<R: Reader> {
     vendor: crate::common::Vendor,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:36-40`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L36-L40)*
 
 `DebugFrame` contains the `.debug_frame` section's frame unwinding
 information required to unwind to and recover registers from older frames on
@@ -152,13 +154,15 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 ##### `impl<R: Reader> UnwindSection for DebugFrame<R>`
 
-- <span id="debugframe-offset"></span>`type Offset = DebugFrameOffset<<R as Reader>::Offset>`
+- <span id="debugframe-type-offset"></span>`type Offset = DebugFrameOffset<<R as Reader>::Offset>`
 
 ### `EhFrameHdr<R: Reader>`
 
 ```rust
 struct EhFrameHdr<R: Reader>(R);
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:109`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L109)*
 
 `EhFrameHdr` contains the information about the `.eh_frame_hdr` section.
 
@@ -167,7 +171,7 @@ search table of pointers to the `.eh_frame` records that are found in this secti
 
 #### Implementations
 
-- <span id="ehframehdr-parse"></span>`fn parse(&self, bases: &BaseAddresses, address_size: u8) -> Result<ParsedEhFrameHdr<R>>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`ParsedEhFrameHdr`](../index.md)
+- <span id="ehframehdr-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -208,6 +212,8 @@ struct ParsedEhFrameHdr<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:113-121`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L113-L121)*
+
 `ParsedEhFrameHdr` contains the parsed information from the `.eh_frame_hdr` section.
 
 #### Implementations
@@ -237,6 +243,8 @@ struct EhHdrTableIter<'a, 'bases, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:229-234`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L229-L234)*
+
 An iterator for `.eh_frame_hdr` section's binary search table.
 
 Each table entry consists of a tuple containing an  `initial_location` and `address`.
@@ -263,6 +271,8 @@ struct EhHdrTable<'a, R: Reader> {
     hdr: &'a ParsedEhFrameHdr<R>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:299-301`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L299-L301)*
 
 The CFI binary search table that is an optional part of the `.eh_frame_hdr` section.
 
@@ -297,6 +307,8 @@ struct EhFrame<R: Reader> {
     vendor: crate::common::Vendor,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:488-492`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L488-L492)*
 
 `EhFrame` contains the frame unwinding information needed during exception
 handling found in the `.eh_frame` section.
@@ -343,7 +355,7 @@ for some discussion on the differences between `.debug_frame` and
 
 ##### `impl<R: Reader> UnwindSection for EhFrame<R>`
 
-- <span id="ehframe-offset"></span>`type Offset = EhFrameOffset<<R as Reader>::Offset>`
+- <span id="ehframe-type-offset"></span>`type Offset = EhFrameOffset<<R as Reader>::Offset>`
 
 ### `BaseAddresses`
 
@@ -353,6 +365,8 @@ struct BaseAddresses {
     pub eh_frame: SectionBaseAddresses,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:895-901`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L895-L901)*
 
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers.
 
@@ -429,6 +443,8 @@ struct SectionBaseAddresses {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:908-924`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L908-L924)*
+
 Optional base addresses for the relative `DW_EH_PE_*` encoded pointers
 in a particular section.
 
@@ -489,6 +505,8 @@ where
     input: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:998-1006`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L998-L1006)*
 
 An iterator over CIE and FDE entries in a `.debug_frame` or `.eh_frame`
 section.
@@ -554,6 +572,8 @@ struct Augmentation {
     is_signal_trampoline: bool,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1122-1152`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1122-L1152)*
 
 We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
@@ -630,6 +650,8 @@ struct AugmentationData {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1223-1225`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1223-L1225)*
+
 Parsed augmentation data for a `FrameDescriptEntry`.
 
 #### Implementations
@@ -677,6 +699,8 @@ where
     initial_instructions: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1254-1306`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1254-L1306)*
 
 > A Common Information Entry holds information that is shared among many
 > Frame Description Entries. There is at least one CIE in every non-empty
@@ -780,6 +804,8 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1520-1532`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1520-L1532)*
+
 A partially parsed `FrameDescriptionEntry`.
 
 Fully parsing this FDE requires first parsing its CIE.
@@ -832,6 +858,8 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1593-1631`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1593-L1631)*
+
 A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
 #### Fields
@@ -877,27 +905,13 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
 #### Implementations
 
-- <span id="framedescriptionentry-offset"></span>`fn offset(&self) -> <R as >::Offset` — [`Reader`](../index.md)
+- <span id="framedescriptionentry-parse-rest"></span>`fn parse_rest<Section, F>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, cie_pointer: <Section as >::Offset, rest: R, section: &Section, bases: &BaseAddresses, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Reader`](../index.md), [`Format`](../../index.md), [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`FrameDescriptionEntry`](../index.md)
 
-- <span id="framedescriptionentry-cie"></span>`fn cie(&self) -> &CommonInformationEntry<R>` — [`CommonInformationEntry`](../index.md)
+- <span id="framedescriptionentry-parse-addresses"></span>`fn parse_addresses(input: &mut R, cie: &CommonInformationEntry<R>, parameters: &PointerEncodingParameters<'_, R>) -> Result<(u64, u64)>` — [`CommonInformationEntry`](../index.md), [`PointerEncodingParameters`](#pointerencodingparameters), [`Result`](../../index.md)
 
-- <span id="framedescriptionentry-entry-len"></span>`fn entry_len(&self) -> <R as >::Offset` — [`Reader`](../index.md)
+- <span id="framedescriptionentry-rows"></span>`fn rows<'a, 'ctx, Section, S>(&self, section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>) -> Result<UnwindTable<'a, 'ctx, R, S>>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTable`](../index.md)
 
-- <span id="framedescriptionentry-instructions"></span>`fn instructions<'a, Section>(&self, section: &'a Section, bases: &'a BaseAddresses) -> CallFrameInstructionIter<'a, R>` — [`BaseAddresses`](../index.md), [`CallFrameInstructionIter`](../index.md)
-
-- <span id="framedescriptionentry-initial-address"></span>`fn initial_address(&self) -> u64`
-
-- <span id="framedescriptionentry-end-address"></span>`fn end_address(&self) -> u64`
-
-- <span id="framedescriptionentry-len"></span>`fn len(&self) -> u64`
-
-- <span id="framedescriptionentry-contains"></span>`fn contains(&self, address: u64) -> bool`
-
-- <span id="framedescriptionentry-lsda"></span>`fn lsda(&self) -> Option<Pointer>` — [`Pointer`](../index.md)
-
-- <span id="framedescriptionentry-is-signal-trampoline"></span>`fn is_signal_trampoline(&self) -> bool`
-
-- <span id="framedescriptionentry-personality"></span>`fn personality(&self) -> Option<Pointer>` — [`Pointer`](../index.md)
+- <span id="framedescriptionentry-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, Section, S>(&self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](../index.md), [`UnwindContext`](../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`UnwindTableRow`](../index.md)
 
 #### Trait Implementations
 
@@ -929,6 +943,8 @@ where
     is_initialized: bool,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1951-1972`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1951-L1972)*
 
 Common context needed when evaluating the call frame unwinding information.
 
@@ -966,33 +982,7 @@ unreachable!()
 
 #### Implementations
 
-- <span id="unwindcontext-new-in"></span>`fn new_in() -> Self`
-
-- <span id="unwindcontext-initialize"></span>`fn initialize<Section, R>(&mut self, section: &Section, bases: &BaseAddresses, cie: &CommonInformationEntry<R>) -> Result<()>` — [`BaseAddresses`](../index.md), [`CommonInformationEntry`](../index.md), [`Result`](../../index.md)
-
-- <span id="unwindcontext-reset"></span>`fn reset(&mut self)`
-
-- <span id="unwindcontext-row"></span>`fn row(&self) -> &UnwindTableRow<T, S>` — [`UnwindTableRow`](../index.md)
-
-- <span id="unwindcontext-row-mut"></span>`fn row_mut(&mut self) -> &mut UnwindTableRow<T, S>` — [`UnwindTableRow`](../index.md)
-
-- <span id="unwindcontext-save-initial-rules"></span>`fn save_initial_rules(&mut self) -> Result<()>` — [`Result`](../../index.md)
-
-- <span id="unwindcontext-start-address"></span>`fn start_address(&self) -> u64`
-
-- <span id="unwindcontext-set-start-address"></span>`fn set_start_address(&mut self, start_address: u64)`
-
-- <span id="unwindcontext-set-register-rule"></span>`fn set_register_rule(&mut self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../../index.md), [`RegisterRule`](../index.md), [`Result`](../../index.md)
-
-- <span id="unwindcontext-get-initial-rule"></span>`fn get_initial_rule(&self, register: Register) -> Option<RegisterRule<T>>` — [`Register`](../../index.md), [`RegisterRule`](../index.md)
-
-- <span id="unwindcontext-set-cfa"></span>`fn set_cfa(&mut self, cfa: CfaRule<T>)` — [`CfaRule`](../index.md)
-
-- <span id="unwindcontext-cfa-mut"></span>`fn cfa_mut(&mut self) -> &mut CfaRule<T>` — [`CfaRule`](../index.md)
-
-- <span id="unwindcontext-push-row"></span>`fn push_row(&mut self) -> Result<()>` — [`Result`](../../index.md)
-
-- <span id="unwindcontext-pop-row"></span>`fn pop_row(&mut self) -> Result<()>` — [`Result`](../../index.md)
+- <span id="unwindcontext-new"></span>`fn new() -> Self`
 
 #### Trait Implementations
 
@@ -1034,6 +1024,8 @@ where
     ctx: &'ctx mut UnwindContext<<R as >::Offset, S>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2193-2207`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2193-L2207)*
 
 The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 `CallFrameInstruction` program, yielding the each row one at a time.
@@ -1123,6 +1115,8 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2530-2536`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2530-L2536)*
+
 #### Implementations
 
 - <span id="registerrulemap-is-default"></span>`fn is_default(&self) -> bool`
@@ -1165,6 +1159,8 @@ where
     T: ReaderOffset;
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2684-2686`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2684-L2686)*
+
 An unordered iterator for register rules.
 
 #### Trait Implementations
@@ -1179,15 +1175,15 @@ An unordered iterator for register rules.
 
 ##### `impl<I> IntoIterator for RegisterRuleIter<'iter, T>`
 
-- <span id="registerruleiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="registerruleiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="registerruleiter-intoiter"></span>`type IntoIter = I`
+- <span id="registerruleiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="registerruleiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'iter, T: ReaderOffset> Iterator for RegisterRuleIter<'iter, T>`
 
-- <span id="registerruleiter-item"></span>`type Item = &'iter (Register, RegisterRule<T>)`
+- <span id="registerruleiter-type-item"></span>`type Item = &'iter (Register, RegisterRule<T>)`
 
 - <span id="registerruleiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1205,6 +1201,8 @@ where
     registers: RegisterRuleMap<T, S>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2699-2709`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2699-L2709)*
 
 A row in the virtual unwind table that describes how to find the values of
 the registers in the *previous* frame for a range of PC addresses.
@@ -1260,6 +1258,8 @@ struct CallFrameInstructionIter<'a, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3471-3476`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3471-L3476)*
+
 A lazy iterator parsing call frame instructions.
 
 Can be [used with
@@ -1287,6 +1287,8 @@ struct UnwindExpression<T: ReaderOffset> {
     pub length: T,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3537-3542`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3537-L3542)*
 
 The location of a DWARF expression within an unwind section.
 
@@ -1360,6 +1362,8 @@ struct PointerEncodingParameters<'a, R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3626-3631`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3626-L3631)*
+
 #### Trait Implementations
 
 ##### `impl<'a, R: clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
@@ -1383,6 +1387,8 @@ where
     Fde(PartialFrameDescriptionEntry<'bases, Section, R>),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1059-1070`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1059-L1070)*
 
 Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
@@ -1427,6 +1433,8 @@ enum CfaRule<T: ReaderOffset> {
     Expression(UnwindExpression<T>),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2876-2886`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2876-L2886)*
 
 The canonical frame address (CFA) recovery rules.
 
@@ -1481,6 +1489,8 @@ enum RegisterRule<T: ReaderOffset> {
     Constant(u64),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2916-2951`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2916-L2951)*
 
 An entry in the abstract CFI table that describes how to find the value of a
 register.
@@ -1633,6 +1643,8 @@ enum CallFrameInstruction<T: ReaderOffset> {
     Nop,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:2961-3255`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L2961-L3255)*
 
 A parsed call frame instruction.
 
@@ -1905,6 +1917,8 @@ enum Pointer {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3577-3588`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3577-L3588)*
+
 A decoded pointer.
 
 #### Variants
@@ -1964,6 +1978,8 @@ where
     T: ReaderOffset { ... }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:568-574`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L568-L574)*
+
 An offset into an `UnwindSection`.
 
 #### Required Methods
@@ -1982,6 +1998,8 @@ An offset into an `UnwindSection`.
 ```rust
 trait UnwindSection<R: Reader>: Clone + Debug + _UnwindSectionPrivate<R> { ... }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:635-786`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L635-L786)*
 
 A section holding unwind information: either `.debug_frame` or
 `.eh_frame`. See [`DebugFrame`](./struct.DebugFrame.html) and
@@ -2027,6 +2045,8 @@ A section holding unwind information: either `.debug_frame` or
 ```rust
 trait UnwindContextStorage<T: ReaderOffset>: Sized { ... }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1896-1904`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1896-L1904)*
 
 Specification of what storage should be used for [`UnwindContext`](../index.md).
 
@@ -2095,11 +2115,15 @@ where
     Section: UnwindSection<R>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1072-1116`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1072-L1116)*
+
 ### `parse_encoded_pointer`
 
 ```rust
 fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<Pointer>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3633-3688`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3633-L3688)*
 
 ### `parse_encoded_value`
 
@@ -2107,29 +2131,35 @@ fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &Po
 fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<u64>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3690-3715`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3690-L3715)*
+
 ## Constants
 
 ### `MAX_RULES`
-
 ```rust
 const MAX_RULES: usize = 192usize;
 ```
 
-### `MAX_UNWIND_STACK_DEPTH`
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1907`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1907)*
 
+### `MAX_UNWIND_STACK_DEPTH`
 ```rust
 const MAX_UNWIND_STACK_DEPTH: usize = 4usize;
 ```
 
-### `CFI_INSTRUCTION_HIGH_BITS_MASK`
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:1909`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L1909)*
 
+### `CFI_INSTRUCTION_HIGH_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_HIGH_BITS_MASK: u8 = 192u8;
 ```
 
-### `CFI_INSTRUCTION_LOW_BITS_MASK`
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3257`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3257)*
 
+### `CFI_INSTRUCTION_LOW_BITS_MASK`
 ```rust
 const CFI_INSTRUCTION_LOW_BITS_MASK: u8 = 63u8;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/cfi.rs:3258`](../../../../.source_1765210505/gimli-0.32.3/src/read/cfi.rs#L3258)*
 

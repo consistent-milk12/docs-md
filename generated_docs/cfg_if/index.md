@@ -35,6 +35,8 @@ fn main() {}
 
 ### `cfg_if!`
 
+*Defined in [`cfg-if-1.0.4/src/lib.rs:34-96`](../../.source_1765210505/cfg-if-1.0.4/src/lib.rs#L34-L96)*
+
 The main macro provided by this crate. See crate documentation for more
 information.
 

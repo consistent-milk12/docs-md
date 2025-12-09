@@ -6,7 +6,7 @@
 
 Quick Reference table generation for module documentation.
 
-This module provides [`QuickRefGenerator`](../index.md) which generates a markdown table
+This module provides [`QuickRefGenerator`](#quickrefgenerator) which generates a markdown table
 summarizing all public items in a module at a glance. The table shows item name,
 kind, and first-sentence description.
 
@@ -29,7 +29,8 @@ kind, and first-sentence description.
 | [`QuickRefEntry`](#quickrefentry) | struct | An entry in the quick reference table. |
 | [`QuickRefGenerator`](#quickrefgenerator) | struct | Generator for markdown quick reference tables. |
 | [`extract_summary`](#extract_summary) | fn | Extract the first sentence from a documentation string. |
-| [`extract_first_sentence`](#extract_first_sentence) | fn | Extract the first sentence from a line of text. |
+| [`try_extract_sentence`](#try_extract_sentence) | fn | Try to extract a complete first sentence from text. |
+| [`ABBREVIATIONS`](#abbreviations) | const | Common abbreviations that shouldn't end sentences. |
 
 ## Structs
 
@@ -43,6 +44,8 @@ struct QuickRefEntry {
     pub summary: String,
 }
 ```
+
+*Defined in `src/generator/quick_ref.rs:26-38`*
 
 An entry in the quick reference table.
 
@@ -75,23 +78,23 @@ anchor link, and first-sentence summary.
 
 ##### `impl Clone for QuickRefEntry`
 
-- <span id="quickrefentry-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](../index.md)
+- <span id="quickrefentry-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](#quickrefentry)
 
 ##### `impl Debug for QuickRefEntry`
 
 - <span id="quickrefentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Instrument for QuickRefEntry`
+##### `impl Instrument for QuickRefEntry`
 
-##### `impl<T> IntoEither for QuickRefEntry`
+##### `impl IntoEither for QuickRefEntry`
 
-##### `impl<D> OwoColorize for QuickRefEntry`
+##### `impl OwoColorize for QuickRefEntry`
 
-##### `impl<T> Pointable for QuickRefEntry`
+##### `impl Pointable for QuickRefEntry`
 
-- <span id="quickrefentry-align"></span>`const ALIGN: usize`
+- <span id="quickrefentry-const-align"></span>`const ALIGN: usize`
 
-- <span id="quickrefentry-init"></span>`type Init = T`
+- <span id="quickrefentry-type-init"></span>`type Init = T`
 
 - <span id="quickrefentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -101,13 +104,15 @@ anchor link, and first-sentence summary.
 
 - <span id="quickrefentry-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for QuickRefEntry`
+##### `impl WithSubscriber for QuickRefEntry`
 
 ### `QuickRefGenerator`
 
 ```rust
 struct QuickRefGenerator;
 ```
+
+*Defined in `src/generator/quick_ref.rs:70`*
 
 Generator for markdown quick reference tables.
 
@@ -118,13 +123,13 @@ kinds, and first-sentence descriptions.
 
 - <span id="quickrefgenerator-new"></span>`const fn new() -> Self`
 
-- <span id="quickrefgenerator-generate"></span>`fn generate(&self, entries: &[QuickRefEntry]) -> String` — [`QuickRefEntry`](../index.md)
+- <span id="quickrefgenerator-generate"></span>`fn generate(&self, entries: &[QuickRefEntry]) -> String` — [`QuickRefEntry`](#quickrefentry)
 
 #### Trait Implementations
 
 ##### `impl Clone for QuickRefGenerator`
 
-- <span id="quickrefgenerator-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](../index.md)
+- <span id="quickrefgenerator-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](#quickrefgenerator)
 
 ##### `impl Debug for QuickRefGenerator`
 
@@ -132,19 +137,19 @@ kinds, and first-sentence descriptions.
 
 ##### `impl Default for QuickRefGenerator`
 
-- <span id="quickrefgenerator-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](../index.md)
+- <span id="quickrefgenerator-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](#quickrefgenerator)
 
-##### `impl<T> Instrument for QuickRefGenerator`
+##### `impl Instrument for QuickRefGenerator`
 
-##### `impl<T> IntoEither for QuickRefGenerator`
+##### `impl IntoEither for QuickRefGenerator`
 
-##### `impl<D> OwoColorize for QuickRefGenerator`
+##### `impl OwoColorize for QuickRefGenerator`
 
-##### `impl<T> Pointable for QuickRefGenerator`
+##### `impl Pointable for QuickRefGenerator`
 
-- <span id="quickrefgenerator-align"></span>`const ALIGN: usize`
+- <span id="quickrefgenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="quickrefgenerator-init"></span>`type Init = T`
+- <span id="quickrefgenerator-type-init"></span>`type Init = T`
 
 - <span id="quickrefgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -154,7 +159,7 @@ kinds, and first-sentence descriptions.
 
 - <span id="quickrefgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for QuickRefGenerator`
+##### `impl WithSubscriber for QuickRefGenerator`
 
 ## Functions
 
@@ -164,10 +169,13 @@ kinds, and first-sentence descriptions.
 fn extract_summary(docs: Option<&str>) -> String
 ```
 
+*Defined in `src/generator/quick_ref.rs:143-185`*
+
 Extract the first sentence from a documentation string.
 
-This function finds the first non-empty line and extracts the first
-sentence (text up to the first `. ` or end of line).
+This function handles sentences that span multiple lines by joining
+consecutive non-empty lines until a sentence boundary is found.
+A blank line always terminates the paragraph.
 
 # Arguments
 
@@ -180,21 +188,37 @@ The first sentence, or an empty string if no docs.
 # Examples
 
 ```ignore
-assert_eq!(extract_summary(Some("A parser. With more.")), "A parser");
+assert_eq!(extract_summary(Some("A parser. With more.")), "A parser.");
 assert_eq!(extract_summary(Some("Single sentence")), "Single sentence");
 assert_eq!(extract_summary(None), "");
+// Handles wrapped sentences:
+assert_eq!(
+    extract_summary(Some("A long sentence that\nspans multiple lines. More.")),
+    "A long sentence that spans multiple lines."
+);
 ```
 
-### `extract_first_sentence`
+### `try_extract_sentence`
 
 ```rust
-fn extract_first_sentence(text: &str) -> &str
+fn try_extract_sentence(text: &str) -> Option<String>
 ```
 
-Extract the first sentence from a line of text.
+*Defined in `src/generator/quick_ref.rs:197-229`*
 
-Handles edge cases like:
-- "e.g." and "i.e." abbreviations
-- Version numbers like "1.0"
-- URLs with dots
+Try to extract a complete first sentence from text.
+
+Returns `Some(sentence)` if a sentence boundary (`. ` not part of abbreviation
+or version number) is found, otherwise `None`.
+
+## Constants
+
+### `ABBREVIATIONS`
+```rust
+const ABBREVIATIONS: &[&str];
+```
+
+*Defined in `src/generator/quick_ref.rs:188-191`*
+
+Common abbreviations that shouldn't end sentences.
 

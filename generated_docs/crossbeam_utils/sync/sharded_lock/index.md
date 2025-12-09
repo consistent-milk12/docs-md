@@ -46,6 +46,8 @@ struct Shard {
 }
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:21-30`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L21-L30)*
+
 A shard containing a single reader-writer lock.
 
 #### Fields
@@ -69,6 +71,8 @@ struct ShardedLock<T: ?Sized> {
     value: std::cell::UnsafeCell<T>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:78-84`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L78-L84)*
 
 A sharded reader-writer lock.
 
@@ -128,7 +132,7 @@ let lock = ShardedLock::new(5);
 
 #### Implementations
 
-- <span id="shardedlock-new"></span>`fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](../index.md)
+- <span id="shardedlock-new"></span>`fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
 
 - <span id="shardedlock-into-inner"></span>`fn into_inner(self) -> LockResult<T>`
 
@@ -140,7 +144,7 @@ let lock = ShardedLock::new(5);
 
 ##### `impl<T: Default> Default for ShardedLock<T>`
 
-- <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](../index.md)
+- <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
 
@@ -160,7 +164,9 @@ struct ShardedLockReadGuard<'a, T: ?Sized> {
 }
 ```
 
-A guard used to release the shared read access of a [`ShardedLock`](../index.md) when dropped.
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:486-490`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L486-L490)*
+
+A guard used to release the shared read access of a [`ShardedLock`](#shardedlock) when dropped.
 
 #### Trait Implementations
 
@@ -170,7 +176,7 @@ A guard used to release the shared read access of a [`ShardedLock`](../index.md)
 
 ##### `impl<T: ?Sized> Deref for ShardedLockReadGuard<'_, T>`
 
-- <span id="shardedlockreadguard-target"></span>`type Target = T`
+- <span id="shardedlockreadguard-type-target"></span>`type Target = T`
 
 - <span id="shardedlockreadguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -180,7 +186,7 @@ A guard used to release the shared read access of a [`ShardedLock`](../index.md)
 
 ##### `impl<P, T> Receiver for ShardedLockReadGuard<'a, T>`
 
-- <span id="shardedlockreadguard-target"></span>`type Target = T`
+- <span id="shardedlockreadguard-type-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockReadGuard<'_, T>`
 
@@ -197,7 +203,9 @@ struct ShardedLockWriteGuard<'a, T: ?Sized> {
 }
 ```
 
-A guard used to release the exclusive write access of a [`ShardedLock`](../index.md) when dropped.
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:518-521`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L518-L521)*
+
+A guard used to release the exclusive write access of a [`ShardedLock`](#shardedlock) when dropped.
 
 #### Trait Implementations
 
@@ -207,7 +215,7 @@ A guard used to release the exclusive write access of a [`ShardedLock`](../index
 
 ##### `impl<T: ?Sized> Deref for ShardedLockWriteGuard<'_, T>`
 
-- <span id="shardedlockwriteguard-target"></span>`type Target = T`
+- <span id="shardedlockwriteguard-type-target"></span>`type Target = T`
 
 - <span id="shardedlockwriteguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -225,7 +233,7 @@ A guard used to release the exclusive write access of a [`ShardedLock`](../index
 
 ##### `impl<P, T> Receiver for ShardedLockWriteGuard<'a, T>`
 
-- <span id="shardedlockwriteguard-target"></span>`type Target = T`
+- <span id="shardedlockwriteguard-type-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockWriteGuard<'_, T>`
 
@@ -242,6 +250,8 @@ struct ThreadIndices {
     next_index: usize,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:579-588`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L579-L588)*
 
 The global registry keeping track of registered threads and indices.
 
@@ -268,6 +278,8 @@ struct Registration {
 }
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:605-608`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L605-L608)*
+
 A registration of a thread with an index.
 
 When dropped, unregisters the thread and frees the reserved index.
@@ -286,6 +298,8 @@ When dropped, unregisters the thread and frees the reserved index.
 fn current_index() -> Option<usize>
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:574-576`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L574-L576)*
+
 Returns a `usize` that identifies the current thread.
 
 Each thread is associated with an 'index'. While there are no particular guarantees, indices
@@ -300,19 +314,23 @@ tearing down.
 fn thread_indices() -> &'static std::sync::Mutex<ThreadIndices>
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:590-600`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L590-L600)*
+
 ## Constants
 
 ### `NUM_SHARDS`
-
 ```rust
 const NUM_SHARDS: usize = 8usize;
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:18`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L18)*
+
 The number of shards per sharded lock. Must be a power of two.
 
 ### `REGISTRATION`
-
 ```rust
 const REGISTRATION: thread::LocalKey<Registration>;
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:618-638`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L618-L638)*
 

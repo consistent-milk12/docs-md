@@ -24,13 +24,15 @@ struct ParseError<'a> {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/case.rs:120-122`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/case.rs#L120-L122)*
+
 #### Trait Implementations
 
-##### `impl<'a> Display for ParseError<'a>`
+##### `impl Display for ParseError<'a>`
 
 - <span id="parseerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for ParseError<'a>`
+##### `impl ToString for ParseError<'a>`
 
 - <span id="parseerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -51,6 +53,8 @@ enum RenameRule {
     ScreamingKebabCase,
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/case.rs:9-31`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/case.rs#L9-L31)*
 
 The different possible ways to change case of fields in a struct, or variants in an enum.
 

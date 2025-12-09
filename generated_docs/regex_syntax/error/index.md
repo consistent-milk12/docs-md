@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Formatter`](#formatter) | struct | A helper type for formatting nice error messages. |
-| [`Spans`](#spans) | struct | This type represents an arbitrary number of error spans in a way that makes |
+| [`Spans`](#spans) | struct | This type represents an arbitrary number of error spans in a way that makes it convenient to notate the regex pattern. |
 | [`Error`](#error) | enum | This error type encompasses any error that can be returned by this crate. |
 | [`repeat_char`](#repeat_char) | fn |  |
 
@@ -25,6 +25,8 @@ struct Formatter<'e, E> {
     aux_span: Option<&'e ast::Span>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/error.rs:55-65`](../../../.source_1765210505/regex-syntax-0.8.8/src/error.rs#L55-L65)*
 
 A helper type for formatting nice error messages.
 
@@ -75,6 +77,8 @@ struct Spans<'p> {
     multi_line: alloc::vec::Vec<ast::Span>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/error.rs:134-152`](../../../.source_1765210505/regex-syntax-0.8.8/src/error.rs#L134-L152)*
 
 This type represents an arbitrary number of error spans in a way that makes
 it convenient to notate the regex pattern. ("Notate" means "point out
@@ -137,6 +141,8 @@ enum Error {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/error.rs:16-23`](../../../.source_1765210505/regex-syntax-0.8.8/src/error.rs#L16-L23)*
+
 This error type encompasses any error that can be returned by this crate.
 
 This error type is marked as `non_exhaustive`. This means that adding a
@@ -158,7 +164,7 @@ new variant is not considered a breaking change.
 
 ##### `impl Clone for Error`
 
-- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](../index.md)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](#error)
 
 ##### `impl Debug for Error`
 
@@ -174,11 +180,11 @@ new variant is not considered a breaking change.
 
 ##### `impl PartialEq for Error`
 
-- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](../index.md)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
@@ -189,4 +195,6 @@ new variant is not considered a breaking change.
 ```rust
 fn repeat_char(c: char, count: usize) -> alloc::string::String
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/error.rs:268-270`](../../../.source_1765210505/regex-syntax-0.8.8/src/error.rs#L268-L270)*
 

@@ -9,6 +9,7 @@ use crate::source::{
 /// This trait provides access to source code details not available in
 /// rustdoc JSON, including function bodies, private items and actual
 /// constant values.
+#[expect(dead_code, reason = "TODO: Reserved for future use.")]
 pub trait SourceAccess {
     /// Get parsed source for the current crate.
     fn crate_source(&self) -> Option<&CrateSource>;

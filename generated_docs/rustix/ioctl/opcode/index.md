@@ -20,9 +20,9 @@ recommended to use these functions to compute them.
 |------|------|-------------|
 | [`from_components`](#from_components) | fn | Create a new opcode from a direction, group, number, and size. |
 | [`none`](#none) | fn | Create a new opcode from a group, a number, that uses no data. |
-| [`read`](#read) | fn | Create a new reading opcode from a group, a number and the type of |
-| [`write`](#write) | fn | Create a new writing opcode from a group, a number and the type of |
-| [`read_write`](#read_write) | fn | Create a new reading and writing opcode from a group, a number and the |
+| [`read`](#read) | fn | Create a new reading opcode from a group, a number and the type of data. |
+| [`write`](#write) | fn | Create a new writing opcode from a group, a number and the type of data. |
+| [`read_write`](#read_write) | fn | Create a new reading and writing opcode from a group, a number and the type of data. |
 
 ## Functions
 
@@ -31,6 +31,8 @@ recommended to use these functions to compute them.
 ```rust
 const fn from_components(direction: Direction, group: u8, number: u8, data_size: usize) -> Opcode
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:210-224`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L210-L224)*
 
 Create a new opcode from a direction, group, number, and size.
 
@@ -42,6 +44,8 @@ This corresponds to the C macro `_IOC(direction, group, number, size)`
 const fn none(group: u8, number: u8) -> Opcode
 ```
 
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:231-233`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L231-L233)*
+
 Create a new opcode from a group, a number, that uses no data.
 
 This corresponds to the C macro `_IO(group, number)`.
@@ -51,6 +55,8 @@ This corresponds to the C macro `_IO(group, number)`.
 ```rust
 const fn read<T>(group: u8, number: u8) -> Opcode
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:241-243`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L241-L243)*
 
 Create a new reading opcode from a group, a number and the type of
 data.
@@ -63,6 +69,8 @@ This corresponds to the C macro `_IOR(group, number, T)`.
 const fn write<T>(group: u8, number: u8) -> Opcode
 ```
 
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:251-253`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L251-L253)*
+
 Create a new writing opcode from a group, a number and the type of
 data.
 
@@ -73,6 +81,8 @@ This corresponds to the C macro `_IOW(group, number, T)`.
 ```rust
 const fn read_write<T>(group: u8, number: u8) -> Opcode
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:261-263`](../../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L261-L263)*
 
 Create a new reading and writing opcode from a group, a number and the
 type of data.

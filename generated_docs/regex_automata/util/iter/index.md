@@ -37,6 +37,8 @@ struct Searcher<'h> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:147-156`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L147-L156)*
+
 A searcher for creating iterators and performing lower level iteration.
 
 This searcher encapsulates the logic required for finding all successive
@@ -207,11 +209,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Searcher<'h>`
+##### `impl Clone for Searcher<'h>`
 
 - <span id="searcher-clone"></span>`fn clone(&self) -> Searcher<'h>` — [`Searcher`](#searcher)
 
-##### `impl<'h> Debug for Searcher<'h>`
+##### `impl Debug for Searcher<'h>`
 
 - <span id="searcher-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -223,6 +225,8 @@ struct TryHalfMatchesIter<'h, F> {
     finder: F,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:699-702`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L699-L702)*
 
 An iterator over all non-overlapping half matches for a fallible search.
 
@@ -257,15 +261,15 @@ This iterator is created by `Searcher::into_half_matches_iter`.
 
 ##### `impl<I> IntoIterator for TryHalfMatchesIter<'h, F>`
 
-- <span id="tryhalfmatchesiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tryhalfmatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tryhalfmatchesiter-intoiter"></span>`type IntoIter = I`
+- <span id="tryhalfmatchesiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tryhalfmatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for TryHalfMatchesIter<'h, F>`
 
-- <span id="tryhalfmatchesiter-item"></span>`type Item = Result<HalfMatch, MatchError>`
+- <span id="tryhalfmatchesiter-type-item"></span>`type Item = Result<HalfMatch, MatchError>`
 
 - <span id="tryhalfmatchesiter-next"></span>`fn next(&mut self) -> Option<Result<HalfMatch, MatchError>>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
 
@@ -274,6 +278,8 @@ This iterator is created by `Searcher::into_half_matches_iter`.
 ```rust
 struct HalfMatchesIter<'h, F>(TryHalfMatchesIter<'h, F>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:765`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L765)*
 
 An iterator over all non-overlapping half matches for an infallible search.
 
@@ -307,15 +313,15 @@ then calling `TryHalfMatchesIter::infallible`.
 
 ##### `impl<I> IntoIterator for HalfMatchesIter<'h, F>`
 
-- <span id="halfmatchesiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="halfmatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="halfmatchesiter-intoiter"></span>`type IntoIter = I`
+- <span id="halfmatchesiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="halfmatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for HalfMatchesIter<'h, F>`
 
-- <span id="halfmatchesiter-item"></span>`type Item = HalfMatch`
+- <span id="halfmatchesiter-type-item"></span>`type Item = HalfMatch`
 
 - <span id="halfmatchesiter-next"></span>`fn next(&mut self) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
 
@@ -327,6 +333,8 @@ struct TryMatchesIter<'h, F> {
     finder: F,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:814-817`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L814-L817)*
 
 An iterator over all non-overlapping matches for a fallible search.
 
@@ -361,15 +369,15 @@ This iterator is created by `Searcher::into_matches_iter`.
 
 ##### `impl<I> IntoIterator for TryMatchesIter<'h, F>`
 
-- <span id="trymatchesiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="trymatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="trymatchesiter-intoiter"></span>`type IntoIter = I`
+- <span id="trymatchesiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="trymatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for TryMatchesIter<'h, F>`
 
-- <span id="trymatchesiter-item"></span>`type Item = Result<Match, MatchError>`
+- <span id="trymatchesiter-type-item"></span>`type Item = Result<Match, MatchError>`
 
 - <span id="trymatchesiter-next"></span>`fn next(&mut self) -> Option<Result<Match, MatchError>>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
 
@@ -378,6 +386,8 @@ This iterator is created by `Searcher::into_matches_iter`.
 ```rust
 struct MatchesIter<'h, F>(TryMatchesIter<'h, F>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:879`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L879)*
 
 An iterator over all non-overlapping matches for an infallible search.
 
@@ -410,15 +420,15 @@ then calling `TryMatchesIter::infallible`.
 
 ##### `impl<I> IntoIterator for MatchesIter<'h, F>`
 
-- <span id="matchesiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="matchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="matchesiter-intoiter"></span>`type IntoIter = I`
+- <span id="matchesiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="matchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for MatchesIter<'h, F>`
 
-- <span id="matchesiter-item"></span>`type Item = Match`
+- <span id="matchesiter-type-item"></span>`type Item = Match`
 
 - <span id="matchesiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md)
 
@@ -431,6 +441,8 @@ struct TryCapturesIter<'h, F> {
     finder: F,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:929-933`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L929-L933)*
 
 An iterator over all non-overlapping captures for a fallible search.
 
@@ -463,15 +475,15 @@ This iterator is created by `Searcher::into_captures_iter`.
 
 ##### `impl<I> IntoIterator for TryCapturesIter<'h, F>`
 
-- <span id="trycapturesiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="trycapturesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="trycapturesiter-intoiter"></span>`type IntoIter = I`
+- <span id="trycapturesiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="trycapturesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for TryCapturesIter<'h, F>`
 
-- <span id="trycapturesiter-item"></span>`type Item = Result<Captures, MatchError>`
+- <span id="trycapturesiter-type-item"></span>`type Item = Result<Captures, MatchError>`
 
 - <span id="trycapturesiter-next"></span>`fn next(&mut self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../captures/index.md), [`MatchError`](../../index.md)
 
@@ -480,6 +492,8 @@ This iterator is created by `Searcher::into_captures_iter`.
 ```rust
 struct CapturesIter<'h, F>(TryCapturesIter<'h, F>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/iter.rs:1003`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/iter.rs#L1003)*
 
 An iterator over all non-overlapping captures for an infallible search.
 
@@ -509,15 +523,15 @@ calling `TryCapturesIter::infallible`.
 
 ##### `impl<I> IntoIterator for CapturesIter<'h, F>`
 
-- <span id="capturesiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturesiter-intoiter"></span>`type IntoIter = I`
+- <span id="capturesiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, F> Iterator for CapturesIter<'h, F>`
 
-- <span id="capturesiter-item"></span>`type Item = Captures`
+- <span id="capturesiter-type-item"></span>`type Item = Captures`
 
 - <span id="capturesiter-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../captures/index.md)
 

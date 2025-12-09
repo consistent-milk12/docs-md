@@ -27,6 +27,8 @@ representation.
 struct DebugByte(u8);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/escape.rs:19`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/escape.rs#L19)*
+
 Provides a convenient `Debug` implementation for a `u8`.
 
 The `Debug` impl treats the byte as an ASCII, and emits a human readable
@@ -51,6 +53,8 @@ escape sequence.
 struct DebugHaystack<'a>(&'a [u8]);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/escape.rs:49`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/escape.rs#L49)*
+
 Provides a convenient `Debug` implementation for `&[u8]`.
 
 This generally works best when the bytes are presumed to be mostly UTF-8,
@@ -59,7 +63,7 @@ emitted as hex escape sequences.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for DebugHaystack<'a>`
+##### `impl Debug for DebugHaystack<'a>`
 
 - <span id="debughaystack-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 

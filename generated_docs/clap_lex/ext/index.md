@@ -28,19 +28,21 @@ struct Split<'s, 'n> {
 }
 ```
 
+*Defined in [`clap_lex-0.7.6/src/ext.rs:247-250`](../../../.source_1765210505/clap_lex-0.7.6/src/ext.rs#L247-L250)*
+
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for Split<'s, 'n>`
+##### `impl IntoIterator for Split<'s, 'n>`
 
-- <span id="split-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="split-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="split-intoiter"></span>`type IntoIter = I`
+- <span id="split-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="split-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'s> Iterator for Split<'s, '_>`
+##### `impl Iterator for Split<'s, '_>`
 
-- <span id="split-item"></span>`type Item = &'s OsStr`
+- <span id="split-type-item"></span>`type Item = &'s OsStr`
 
 - <span id="split-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -52,7 +54,9 @@ struct Split<'s, 'n> {
 trait OsStrExt: private::Sealed { ... }
 ```
 
-String-like methods for [`OsStr`](../../clap_builder/builder/index.md)
+*Defined in [`clap_lex-0.7.6/src/ext.rs:4-183`](../../../.source_1765210505/clap_lex-0.7.6/src/ext.rs#L4-L183)*
+
+String-like methods for [`OsStr`](../../clap_builder/builder/os_str/index.md)
 
 #### Required Methods
 
@@ -95,6 +99,8 @@ String-like methods for [`OsStr`](../../clap_builder/builder/index.md)
 ```rust
 unsafe fn split_at(os: &std::ffi::OsStr, index: usize) -> (&std::ffi::OsStr, &std::ffi::OsStr)
 ```
+
+*Defined in [`clap_lex-0.7.6/src/ext.rs:275-284`](../../../.source_1765210505/clap_lex-0.7.6/src/ext.rs#L275-L284)*
 
 Split an `OsStr`
 

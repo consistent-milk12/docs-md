@@ -18,6 +18,8 @@
 struct TokensOrDefault<'a, T: 'a>(&'a Option<T>);
 ```
 
+*Defined in [`syn-2.0.111/src/print.rs:4`](../../../.source_1765210505/syn-2.0.111/src/print.rs#L4)*
+
 #### Trait Implementations
 
 ##### `impl<T> Sealed for TokensOrDefault<'a, T>`

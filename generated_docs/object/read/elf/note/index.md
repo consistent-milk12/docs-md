@@ -28,6 +28,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/note.rs:17-24`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L17-L24)*
+
 An iterator over the notes in an ELF section or segment.
 
 Returned [`ProgramHeader::notes`](super::ProgramHeader::notes)
@@ -49,15 +51,15 @@ and [`SectionHeader::notes`](super::SectionHeader::notes).
 
 ##### `impl<I> IntoIterator for NoteIterator<'data, Elf>`
 
-- <span id="noteiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="noteiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="noteiterator-intoiter"></span>`type IntoIter = I`
+- <span id="noteiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="noteiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for NoteIterator<'data, Elf>`
 
-- <span id="noteiterator-item"></span>`type Item = Result<Note<'data, Elf>, Error>`
+- <span id="noteiterator-type-item"></span>`type Item = Result<Note<'data, Elf>, Error>`
 
 - <span id="noteiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -72,6 +74,8 @@ where
     desc: &'data [u8],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/note.rs:109-116`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L109-L116)*
 
 A parsed [`NoteHeader`](../index.md).
 
@@ -107,6 +111,8 @@ struct GnuPropertyIterator<'data, Endian: endian::Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/note.rs:235-239`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L235-L239)*
+
 An iterator for the properties in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 
 Returned by `Note::gnu_properties`.
@@ -125,15 +131,15 @@ Returned by `Note::gnu_properties`.
 
 ##### `impl<I> IntoIterator for GnuPropertyIterator<'data, Endian>`
 
-- <span id="gnupropertyiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="gnupropertyiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="gnupropertyiterator-intoiter"></span>`type IntoIter = I`
+- <span id="gnupropertyiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="gnupropertyiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Endian: endian::Endian> Iterator for GnuPropertyIterator<'data, Endian>`
 
-- <span id="gnupropertyiterator-item"></span>`type Item = Result<GnuProperty<'data>, Error>`
+- <span id="gnupropertyiterator-type-item"></span>`type Item = Result<GnuProperty<'data>, Error>`
 
 - <span id="gnupropertyiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -145,6 +151,8 @@ struct GnuProperty<'data> {
     pr_data: &'data [u8],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/note.rs:277-280`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L277-L280)*
 
 A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 
@@ -158,7 +166,7 @@ A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 
 #### Trait Implementations
 
-##### `impl<'data> Debug for GnuProperty<'data>`
+##### `impl Debug for GnuProperty<'data>`
 
 - <span id="gnuproperty-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -169,6 +177,8 @@ A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../../elf/index.md) note.
 ```rust
 trait NoteHeader: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/note.rs:185-191`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/note.rs#L185-L191)*
 
 A trait for generic access to [`elf::NoteHeader32`](../../../elf/index.md) and [`elf::NoteHeader64`](../../../elf/index.md).
 

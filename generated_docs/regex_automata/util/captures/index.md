@@ -57,7 +57,7 @@ underlying `GroupInfo`.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Captures`](#captures) | struct | The span offsets of capturing groups after a match has been found. |
-| [`CapturesDebugMap`](#capturesdebugmap) | struct | A little helper type to provide a nice map-like debug representation for |
+| [`CapturesDebugMap`](#capturesdebugmap) | struct | A little helper type to provide a nice map-like debug representation for our capturing group spans. |
 | [`CapturesPatternIter`](#capturespatterniter) | struct | An iterator over all capturing groups in a `Captures` value. |
 | [`GroupInfo`](#groupinfo) | struct | Represents information about capturing groups in a compiled regex. |
 | [`GroupInfoInner`](#groupinfoinner) | struct | The inner guts of `GroupInfo`. |
@@ -79,12 +79,14 @@ struct Captures {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:130-173`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L130-L173)*
+
 The span offsets of capturing groups after a match has been found.
 
 This type represents the output of regex engines that can report the
 offsets at which capturing groups matches or "submatches" occur. For
 example, the [`PikeVM`](crate::nfa::thompson::pikevm::PikeVM). When a match
-occurs, it will at minimum contain the [`PatternID`](../../index.md) of the pattern that
+occurs, it will at minimum contain the [`PatternID`](../primitives/index.md) of the pattern that
 matched. Depending upon how it was constructed, it may also contain the
 start/end offsets of the entire match of the pattern and the start/end
 offsets of each capturing group that participated in the match.
@@ -216,13 +218,39 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="captures-clear"></span>`fn clear(&mut self)`
+- <span id="captures-all"></span>`fn all(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
 
-- <span id="captures-set-pattern"></span>`fn set_pattern(&mut self, pid: Option<PatternID>)` — [`PatternID`](../../index.md)
+- <span id="captures-matches"></span>`fn matches(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
 
-- <span id="captures-slots"></span>`fn slots(&self) -> &[Option<NonMaxUsize>]` — [`NonMaxUsize`](../primitives/index.md)
+- <span id="captures-empty"></span>`fn empty(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
 
-- <span id="captures-slots-mut"></span>`fn slots_mut(&mut self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../primitives/index.md)
+- <span id="captures-is-match"></span>`fn is_match(&self) -> bool`
+
+- <span id="captures-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md)
+
+- <span id="captures-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../../index.md)
+
+- <span id="captures-get-group"></span>`fn get_group(&self, index: usize) -> Option<Span>` — [`Span`](../../index.md)
+
+- <span id="captures-get-group-by-name"></span>`fn get_group_by_name(&self, name: &str) -> Option<Span>` — [`Span`](../../index.md)
+
+- <span id="captures-iter"></span>`fn iter(&self) -> CapturesPatternIter<'_>` — [`CapturesPatternIter`](#capturespatterniter)
+
+- <span id="captures-group-len"></span>`fn group_len(&self) -> usize`
+
+- <span id="captures-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](#groupinfo)
+
+- <span id="captures-interpolate-string"></span>`fn interpolate_string(&self, haystack: &str, replacement: &str) -> String`
+
+- <span id="captures-interpolate-string-into"></span>`fn interpolate_string_into(&self, haystack: &str, replacement: &str, dst: &mut String)`
+
+- <span id="captures-interpolate-bytes"></span>`fn interpolate_bytes(&self, haystack: &[u8], replacement: &[u8]) -> Vec<u8>`
+
+- <span id="captures-interpolate-bytes-into"></span>`fn interpolate_bytes_into(&self, haystack: &[u8], replacement: &[u8], dst: &mut Vec<u8>)`
+
+- <span id="captures-extract"></span>`fn extract<'h, const N: usize>(&self, haystack: &'h str) -> (&'h str, [&'h str; N])`
+
+- <span id="captures-extract-bytes"></span>`fn extract_bytes<'h, const N: usize>(&self, haystack: &'h [u8]) -> (&'h [u8], [&'h [u8]; N])`
 
 #### Trait Implementations
 
@@ -243,12 +271,14 @@ struct CapturesDebugMap<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1217-1220`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L1217-L1220)*
+
 A little helper type to provide a nice map-like debug representation for
 our capturing group spans.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for CapturesDebugMap<'a>`
+##### `impl Debug for CapturesDebugMap<'a>`
 
 - <span id="capturesdebugmap-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -261,6 +291,8 @@ struct CapturesPatternIter<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1258-1261`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L1258-L1261)*
+
 An iterator over all capturing groups in a `Captures` value.
 
 This iterator includes capturing groups that did not participate in a
@@ -272,29 +304,29 @@ The lifetime parameter `'a` refers to the lifetime of the underlying
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for CapturesPatternIter<'a>`
+##### `impl Clone for CapturesPatternIter<'a>`
 
 - <span id="capturespatterniter-clone"></span>`fn clone(&self) -> CapturesPatternIter<'a>` — [`CapturesPatternIter`](#capturespatterniter)
 
-##### `impl<'a> Debug for CapturesPatternIter<'a>`
+##### `impl Debug for CapturesPatternIter<'a>`
 
 - <span id="capturespatterniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> ExactSizeIterator for CapturesPatternIter<'a>`
+##### `impl ExactSizeIterator for CapturesPatternIter<'a>`
 
-##### `impl<'a> FusedIterator for CapturesPatternIter<'a>`
+##### `impl FusedIterator for CapturesPatternIter<'a>`
 
-##### `impl<I> IntoIterator for CapturesPatternIter<'a>`
+##### `impl IntoIterator for CapturesPatternIter<'a>`
 
-- <span id="capturespatterniter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturespatterniter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturespatterniter-intoiter"></span>`type IntoIter = I`
+- <span id="capturespatterniter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturespatterniter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for CapturesPatternIter<'a>`
+##### `impl Iterator for CapturesPatternIter<'a>`
 
-- <span id="capturespatterniter-item"></span>`type Item = Option<Span>`
+- <span id="capturespatterniter-type-item"></span>`type Item = Option<Span>`
 
 - <span id="capturespatterniter-next"></span>`fn next(&mut self) -> Option<Option<Span>>` — [`Span`](../../index.md)
 
@@ -307,6 +339,8 @@ The lifetime parameter `'a` refers to the lifetime of the underlying
 ```rust
 struct GroupInfo(alloc::sync::Arc<GroupInfoInner>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:1451`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L1451)*
 
 Represents information about capturing groups in a compiled regex.
 
@@ -482,21 +516,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="groupinfo-empty"></span>`fn empty() -> GroupInfo` — [`GroupInfo`](#groupinfo)
 
-- <span id="groupinfo-to-index"></span>`fn to_index(&self, pid: PatternID, name: &str) -> Option<usize>` — [`PatternID`](../../index.md)
+- <span id="groupinfo-to-index"></span>`fn to_index(&self, pid: PatternID, name: &str) -> Option<usize>` — [`PatternID`](../primitives/index.md)
 
-- <span id="groupinfo-to-name"></span>`fn to_name(&self, pid: PatternID, group_index: usize) -> Option<&str>` — [`PatternID`](../../index.md)
+- <span id="groupinfo-to-name"></span>`fn to_name(&self, pid: PatternID, group_index: usize) -> Option<&str>` — [`PatternID`](../primitives/index.md)
 
-- <span id="groupinfo-pattern-names"></span>`fn pattern_names(&self, pid: PatternID) -> GroupInfoPatternNames<'_>` — [`PatternID`](../../index.md), [`GroupInfoPatternNames`](#groupinfopatternnames)
+- <span id="groupinfo-pattern-names"></span>`fn pattern_names(&self, pid: PatternID) -> GroupInfoPatternNames<'_>` — [`PatternID`](../primitives/index.md), [`GroupInfoPatternNames`](#groupinfopatternnames)
 
 - <span id="groupinfo-all-names"></span>`fn all_names(&self) -> GroupInfoAllNames<'_>` — [`GroupInfoAllNames`](#groupinfoallnames)
 
-- <span id="groupinfo-slots"></span>`fn slots(&self, pid: PatternID, group_index: usize) -> Option<(usize, usize)>` — [`PatternID`](../../index.md)
+- <span id="groupinfo-slots"></span>`fn slots(&self, pid: PatternID, group_index: usize) -> Option<(usize, usize)>` — [`PatternID`](../primitives/index.md)
 
-- <span id="groupinfo-slot"></span>`fn slot(&self, pid: PatternID, group_index: usize) -> Option<usize>` — [`PatternID`](../../index.md)
+- <span id="groupinfo-slot"></span>`fn slot(&self, pid: PatternID, group_index: usize) -> Option<usize>` — [`PatternID`](../primitives/index.md)
 
 - <span id="groupinfo-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
-- <span id="groupinfo-group-len"></span>`fn group_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
+- <span id="groupinfo-group-len"></span>`fn group_len(&self, pid: PatternID) -> usize` — [`PatternID`](../primitives/index.md)
 
 - <span id="groupinfo-all-group-len"></span>`fn all_group_len(&self) -> usize`
 
@@ -533,20 +567,22 @@ struct GroupInfoInner {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2179-2184`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2179-L2184)*
+
 The inner guts of `GroupInfo`. This type only exists so that it can
 be wrapped in an `Arc` to make `GroupInfo` reference counted.
 
 #### Implementations
 
-- <span id="groupinfoinner-add-first-group"></span>`fn add_first_group(&mut self, pid: PatternID)` — [`PatternID`](../../index.md)
+- <span id="groupinfoinner-add-first-group"></span>`fn add_first_group(&mut self, pid: PatternID)` — [`PatternID`](../primitives/index.md)
 
-- <span id="groupinfoinner-add-explicit-group"></span>`fn add_explicit_group<N: AsRef<str>>(&mut self, pid: PatternID, group: SmallIndex, maybe_name: Option<N>) -> Result<(), GroupInfoError>` — [`PatternID`](../../index.md), [`SmallIndex`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoinner-add-explicit-group"></span>`fn add_explicit_group<N: AsRef<str>>(&mut self, pid: PatternID, group: SmallIndex, maybe_name: Option<N>) -> Result<(), GroupInfoError>` — [`PatternID`](../primitives/index.md), [`SmallIndex`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
 
 - <span id="groupinfoinner-fixup-slot-ranges"></span>`fn fixup_slot_ranges(&mut self) -> Result<(), GroupInfoError>` — [`GroupInfoError`](#groupinfoerror)
 
 - <span id="groupinfoinner-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
-- <span id="groupinfoinner-group-len"></span>`fn group_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
+- <span id="groupinfoinner-group-len"></span>`fn group_len(&self, pid: PatternID) -> usize` — [`PatternID`](../primitives/index.md)
 
 - <span id="groupinfoinner-small-slot-len"></span>`fn small_slot_len(&self) -> SmallIndex` — [`SmallIndex`](../primitives/index.md)
 
@@ -568,6 +604,8 @@ struct GroupInfoError {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2337-2339`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2337-L2339)*
+
 An error that may occur when building a `GroupInfo`.
 
 Building a `GroupInfo` does a variety of checks to make sure the
@@ -579,13 +617,13 @@ there are no duplicate capture groups for a specific pattern.
 
 - <span id="groupinfoerror-too-many-patterns"></span>`fn too_many_patterns(err: PatternIDError) -> GroupInfoError` — [`PatternIDError`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
 
-- <span id="groupinfoerror-too-many-groups"></span>`fn too_many_groups(pattern: PatternID, minimum: usize) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-too-many-groups"></span>`fn too_many_groups(pattern: PatternID, minimum: usize) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
 
-- <span id="groupinfoerror-missing-groups"></span>`fn missing_groups(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-missing-groups"></span>`fn missing_groups(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
 
-- <span id="groupinfoerror-first-must-be-unnamed"></span>`fn first_must_be_unnamed(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-first-must-be-unnamed"></span>`fn first_must_be_unnamed(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
 
-- <span id="groupinfoerror-duplicate"></span>`fn duplicate(pattern: PatternID, name: &str) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-duplicate"></span>`fn duplicate(pattern: PatternID, name: &str) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
 
 #### Trait Implementations
 
@@ -605,7 +643,7 @@ there are no duplicate capture groups for a specific pattern.
 
 - <span id="groupinfoerror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
-##### `impl<T> ToString for GroupInfoError`
+##### `impl ToString for GroupInfoError`
 
 - <span id="groupinfoerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -616,6 +654,8 @@ struct GroupInfoPatternNames<'a> {
     it: core::slice::Iter<'a, Option<alloc::sync::Arc<str>>>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2480-2482`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2480-L2482)*
 
 An iterator over capturing groups and their names for a specific pattern.
 
@@ -630,29 +670,29 @@ from which this iterator was created.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for GroupInfoPatternNames<'a>`
+##### `impl Clone for GroupInfoPatternNames<'a>`
 
 - <span id="groupinfopatternnames-clone"></span>`fn clone(&self) -> GroupInfoPatternNames<'a>` — [`GroupInfoPatternNames`](#groupinfopatternnames)
 
-##### `impl<'a> Debug for GroupInfoPatternNames<'a>`
+##### `impl Debug for GroupInfoPatternNames<'a>`
 
 - <span id="groupinfopatternnames-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> ExactSizeIterator for GroupInfoPatternNames<'a>`
+##### `impl ExactSizeIterator for GroupInfoPatternNames<'a>`
 
-##### `impl<'a> FusedIterator for GroupInfoPatternNames<'a>`
+##### `impl FusedIterator for GroupInfoPatternNames<'a>`
 
-##### `impl<I> IntoIterator for GroupInfoPatternNames<'a>`
+##### `impl IntoIterator for GroupInfoPatternNames<'a>`
 
-- <span id="groupinfopatternnames-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="groupinfopatternnames-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="groupinfopatternnames-intoiter"></span>`type IntoIter = I`
+- <span id="groupinfopatternnames-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="groupinfopatternnames-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for GroupInfoPatternNames<'a>`
+##### `impl Iterator for GroupInfoPatternNames<'a>`
 
-- <span id="groupinfopatternnames-item"></span>`type Item = Option<&'a str>`
+- <span id="groupinfopatternnames-type-item"></span>`type Item = Option<&'a str>`
 
 - <span id="groupinfopatternnames-next"></span>`fn next(&mut self) -> Option<Option<&'a str>>`
 
@@ -671,6 +711,8 @@ struct GroupInfoAllNames<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2516-2521`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2516-L2521)*
+
 An iterator over capturing groups and their names for a `GroupInfo`.
 
 This iterator is created by `GroupInfo::all_names`.
@@ -680,23 +722,23 @@ from which this iterator was created.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for GroupInfoAllNames<'a>`
+##### `impl Debug for GroupInfoAllNames<'a>`
 
 - <span id="groupinfoallnames-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for GroupInfoAllNames<'a>`
+##### `impl IntoIterator for GroupInfoAllNames<'a>`
 
-- <span id="groupinfoallnames-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="groupinfoallnames-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="groupinfoallnames-intoiter"></span>`type IntoIter = I`
+- <span id="groupinfoallnames-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="groupinfoallnames-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for GroupInfoAllNames<'a>`
+##### `impl Iterator for GroupInfoAllNames<'a>`
 
-- <span id="groupinfoallnames-item"></span>`type Item = (PatternID, usize, Option<&'a str>)`
+- <span id="groupinfoallnames-type-item"></span>`type Item = (PatternID, usize, Option<&'a str>)`
 
-- <span id="groupinfoallnames-next"></span>`fn next(&mut self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../../index.md)
+- <span id="groupinfoallnames-next"></span>`fn next(&mut self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../primitives/index.md)
 
 ## Enums
 
@@ -723,6 +765,8 @@ enum GroupInfoErrorKind {
     },
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2346-2387`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2346-L2387)*
 
 The kind of error that occurs when building a `GroupInfo` fails.
 
@@ -780,6 +824,8 @@ export it.
 ```rust
 type CaptureNameMap = std::collections::HashMap<alloc::sync::Arc<str>, crate::util::primitives::SmallIndex>;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/captures.rs:2172`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/captures.rs#L2172)*
 
 A map from capture group name to its corresponding capture group index.
 

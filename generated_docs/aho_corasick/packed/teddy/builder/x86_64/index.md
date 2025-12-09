@@ -41,6 +41,8 @@ struct SlimSSSE3<const BYTES: usize> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:465-467`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L465-L467)*
+
 #### Implementations
 
 - <span id="slimssse3-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md), [`Searcher`](../index.md)
@@ -49,15 +51,15 @@ struct SlimSSSE3<const BYTES: usize> {
 
 #### Trait Implementations
 
-##### `impl<const BYTES: usize> Clone for SlimSSSE3<BYTES>`
+##### `impl Clone for SlimSSSE3<BYTES>`
 
 - <span id="slimssse3-clone"></span>`fn clone(&self) -> SlimSSSE3<BYTES>` — [`SlimSSSE3`](#slimssse3)
 
-##### `impl<const BYTES: usize> Debug for SlimSSSE3<BYTES>`
+##### `impl Debug for SlimSSSE3<BYTES>`
 
 - <span id="slimssse3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl SearcherT for SlimSSSE3<4>`
+##### `impl SearcherT for SlimSSSE3<1>`
 
 - <span id="slimssse3-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md)
 
@@ -70,6 +72,8 @@ struct SlimAVX2<const BYTES: usize> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:528-531`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L528-L531)*
+
 #### Implementations
 
 - <span id="slimavx2-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md), [`Searcher`](../index.md)
@@ -78,15 +82,15 @@ struct SlimAVX2<const BYTES: usize> {
 
 #### Trait Implementations
 
-##### `impl<const BYTES: usize> Clone for SlimAVX2<BYTES>`
+##### `impl Clone for SlimAVX2<BYTES>`
 
 - <span id="slimavx2-clone"></span>`fn clone(&self) -> SlimAVX2<BYTES>` — [`SlimAVX2`](#slimavx2)
 
-##### `impl<const BYTES: usize> Debug for SlimAVX2<BYTES>`
+##### `impl Debug for SlimAVX2<BYTES>`
 
 - <span id="slimavx2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl SearcherT for SlimAVX2<3>`
+##### `impl SearcherT for SlimAVX2<1>`
 
 - <span id="slimavx2-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md)
 
@@ -98,6 +102,8 @@ struct FatAVX2<const BYTES: usize> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:601-603`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L601-L603)*
+
 #### Implementations
 
 - <span id="fatavx2-new"></span>`fn new(patterns: &Arc<Patterns>) -> Option<Searcher>` — [`Patterns`](../../../pattern/index.md), [`Searcher`](../index.md)
@@ -106,15 +112,15 @@ struct FatAVX2<const BYTES: usize> {
 
 #### Trait Implementations
 
-##### `impl<const BYTES: usize> Clone for FatAVX2<BYTES>`
+##### `impl Clone for FatAVX2<BYTES>`
 
 - <span id="fatavx2-clone"></span>`fn clone(&self) -> FatAVX2<BYTES>` — [`FatAVX2`](#fatavx2)
 
-##### `impl<const BYTES: usize> Debug for FatAVX2<BYTES>`
+##### `impl Debug for FatAVX2<BYTES>`
 
 - <span id="fatavx2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl SearcherT for FatAVX2<2>`
+##### `impl SearcherT for FatAVX2<1>`
 
 - <span id="fatavx2-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md)
 
@@ -126,17 +132,27 @@ struct FatAVX2<const BYTES: usize> {
 fn is_available_ssse3() -> bool
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:664-687`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L664-L687)*
+
 ### `is_available_avx2`
 
 ```rust
 fn is_available_avx2() -> bool
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:690-713`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L690-L713)*
+
 ## Macros
 
 ### `slim_ssse3!`
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:470-520`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L470-L520)*
+
 ### `slim_avx2!`
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:534-593`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L534-L593)*
+
 ### `fat_avx2!`
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:606-656`](../../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L606-L656)*
 

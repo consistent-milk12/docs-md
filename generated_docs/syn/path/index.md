@@ -30,12 +30,12 @@
 | [`printing`](#printing) | mod |  |
 | [`Path`](#path) | struct | A path at which a named item is exported (e.g. `std::collections::HashMap`). |
 | [`PathSegment`](#pathsegment) | struct | A segment of a path together with any path arguments on that segment. |
-| [`AngleBracketedGenericArguments`](#anglebracketedgenericarguments) | struct | Angle bracketed arguments of a path segment: the `<K, V>` in `HashMap<K |
-| [`AssocType`](#assoctype) | struct | A binding (equality constraint) on an associated type: the `Item = u8` |
-| [`AssocConst`](#assocconst) | struct | An equality constraint on an associated constant: the `PANIC = false` in |
+| [`AngleBracketedGenericArguments`](#anglebracketedgenericarguments) | struct | Angle bracketed arguments of a path segment: the `<K, V>` in `HashMap<K, V>`. |
+| [`AssocType`](#assoctype) | struct | A binding (equality constraint) on an associated type: the `Item = u8` in `Iterator<Item = u8>`. |
+| [`AssocConst`](#assocconst) | struct | An equality constraint on an associated constant: the `PANIC = false` in `Trait<PANIC = false>`. |
 | [`Constraint`](#constraint) | struct | An associated type bound: `Iterator<Item: Display>`. |
-| [`ParenthesizedGenericArguments`](#parenthesizedgenericarguments) | struct | Arguments of a function path segment: the `(A, B) -> C` in `Fn(A,B) -> |
-| [`QSelf`](#qself) | struct | The explicit Self type in a qualified path: the `T` in `<T as |
+| [`ParenthesizedGenericArguments`](#parenthesizedgenericarguments) | struct | Arguments of a function path segment: the `(A, B) -> C` in `Fn(A,B) -> C`. |
+| [`QSelf`](#qself) | struct | The explicit Self type in a qualified path: the `T` in `<T as Display>::fmt`. |
 | [`PathArguments`](#patharguments) | enum | Angle bracketed or parenthesized arguments of a path segment. |
 | [`GenericArgument`](#genericargument) | enum | An individual generic argument, like `'a`, `T`, or `Item = T`. |
 
@@ -55,11 +55,19 @@ struct Path {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/path.rs:11-18`](../../../.source_1765210505/syn-2.0.111/src/path.rs#L11-L18)*
+
 A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 #### Implementations
 
-- <span id="cratepath-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepathpath-parse-mod-style"></span>`fn parse_mod_style(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+- <span id="cratepathpath-parse-helper"></span>`fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+- <span id="cratepathpath-parse-rest"></span>`fn parse_rest(input: ParseStream<'_>, path: &mut Self, expr_style: bool) -> Result<()>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+- <span id="cratepathpath-is-mod-style"></span>`fn is_mod_style(&self) -> bool`
 
 #### Trait Implementations
 
@@ -79,7 +87,7 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 ##### `impl Parse for crate::path::Path`
 
-- <span id="cratepathpath-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathpath-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Path`
 
@@ -87,9 +95,9 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 ##### `impl PartialEq for syn::Path`
 
-##### `impl<T> Sealed for Path`
+##### `impl Sealed for Path`
 
-##### `impl<T> Spanned for Path`
+##### `impl Spanned for Path`
 
 - <span id="path-span"></span>`fn span(&self) -> Span`
 
@@ -106,11 +114,13 @@ struct PathSegment {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/path.rs:107-114`](../../../.source_1765210505/syn-2.0.111/src/path.rs#L107-L114)*
+
 A segment of a path together with any path arguments on that segment.
 
 #### Implementations
 
-- <span id="cratepathpathsegment-parse-helper"></span>`fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathpathsegment-parse-helper"></span>`fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
@@ -130,15 +140,15 @@ A segment of a path together with any path arguments on that segment.
 
 ##### `impl Parse for crate::path::PathSegment`
 
-- <span id="cratepathpathsegment-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathpathsegment-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::PathSegment`
 
 - <span id="cratepathsegment-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PathSegment`
+##### `impl Sealed for PathSegment`
 
-##### `impl<T> Spanned for PathSegment`
+##### `impl Spanned for PathSegment`
 
 - <span id="pathsegment-span"></span>`fn span(&self) -> Span`
 
@@ -157,12 +167,16 @@ struct AngleBracketedGenericArguments {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/path.rs:196-206`](../../../.source_1765210505/syn-2.0.111/src/path.rs#L196-L206)*
+
 Angle bracketed arguments of a path segment: the `<K, V>` in `HashMap<K,
 V>`.
 
 #### Implementations
 
-- <span id="crateanglebracketedgenericarguments-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratepathanglebracketedgenericarguments-parse-turbofish"></span>`fn parse_turbofish(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+- <span id="cratepathanglebracketedgenericarguments-do-parse"></span>`fn do_parse(colon2_token: Option<token::PathSep>, input: ParseStream<'_>) -> Result<Self>` — [`PathSep`](../token/index.md), [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
@@ -182,15 +196,15 @@ V>`.
 
 ##### `impl Parse for crate::path::AngleBracketedGenericArguments`
 
-- <span id="cratepathanglebracketedgenericarguments-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathanglebracketedgenericarguments-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::AngleBracketedGenericArguments`
 
 - <span id="crateanglebracketedgenericarguments-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for AngleBracketedGenericArguments`
+##### `impl Sealed for AngleBracketedGenericArguments`
 
-##### `impl<T> Spanned for AngleBracketedGenericArguments`
+##### `impl Spanned for AngleBracketedGenericArguments`
 
 - <span id="anglebracketedgenericarguments-span"></span>`fn span(&self) -> Span`
 
@@ -208,6 +222,8 @@ struct AssocType {
     pub ty: crate::ty::Type,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:208-218`](../../../.source_1765210505/syn-2.0.111/src/path.rs#L208-L218)*
 
 A binding (equality constraint) on an associated type: the `Item = u8`
 in `Iterator<Item = u8>`.
@@ -232,9 +248,9 @@ in `Iterator<Item = u8>`.
 
 - <span id="crateassoctype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for AssocType`
+##### `impl Sealed for AssocType`
 
-##### `impl<T> Spanned for AssocType`
+##### `impl Spanned for AssocType`
 
 - <span id="assoctype-span"></span>`fn span(&self) -> Span`
 
@@ -252,6 +268,8 @@ struct AssocConst {
     pub value: crate::expr::Expr,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:220-230`](../../../.source_1765210505/syn-2.0.111/src/path.rs#L220-L230)*
 
 An equality constraint on an associated constant: the `PANIC = false` in
 `Trait<PANIC = false>`.
@@ -276,9 +294,9 @@ An equality constraint on an associated constant: the `PANIC = false` in
 
 - <span id="crateassocconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for AssocConst`
+##### `impl Sealed for AssocConst`
 
-##### `impl<T> Spanned for AssocConst`
+##### `impl Spanned for AssocConst`
 
 - <span id="assocconst-span"></span>`fn span(&self) -> Span`
 
@@ -296,6 +314,8 @@ struct Constraint {
     pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, token::Plus>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:232-241`](../../../.source_1765210505/syn-2.0.111/src/path.rs#L232-L241)*
 
 An associated type bound: `Iterator<Item: Display>`.
 
@@ -319,9 +339,9 @@ An associated type bound: `Iterator<Item: Display>`.
 
 - <span id="crateconstraint-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Constraint`
+##### `impl Sealed for Constraint`
 
-##### `impl<T> Spanned for Constraint`
+##### `impl Spanned for Constraint`
 
 - <span id="constraint-span"></span>`fn span(&self) -> Span`
 
@@ -338,6 +358,8 @@ struct ParenthesizedGenericArguments {
     pub output: crate::ty::ReturnType,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:243-254`](../../../.source_1765210505/syn-2.0.111/src/path.rs#L243-L254)*
 
 Arguments of a function path segment: the `(A, B) -> C` in `Fn(A,B) ->
 C`.
@@ -374,15 +396,15 @@ C`.
 
 ##### `impl Parse for crate::path::ParenthesizedGenericArguments`
 
-- <span id="cratepathparenthesizedgenericarguments-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathparenthesizedgenericarguments-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ParenthesizedGenericArguments`
 
 - <span id="crateparenthesizedgenericarguments-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ParenthesizedGenericArguments`
+##### `impl Sealed for ParenthesizedGenericArguments`
 
-##### `impl<T> Spanned for ParenthesizedGenericArguments`
+##### `impl Spanned for ParenthesizedGenericArguments`
 
 - <span id="parenthesizedgenericarguments-span"></span>`fn span(&self) -> Span`
 
@@ -401,6 +423,8 @@ struct QSelf {
     pub gt_token: token::Gt,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:256-281`](../../../.source_1765210505/syn-2.0.111/src/path.rs#L256-L281)*
 
 The explicit Self type in a qualified path: the `T` in `<T as
 Display>::fmt`.
@@ -457,6 +481,8 @@ enum PathArguments {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/path.rs:128-146`](../../../.source_1765210505/syn-2.0.111/src/path.rs#L128-L146)*
+
 Angle bracketed or parenthesized arguments of a path segment.
 
 ## Angle bracketed
@@ -507,9 +533,9 @@ The `(A, B) -> C` in `Fn(A, B) -> C`.
 
 - <span id="cratepatharguments-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PathArguments`
+##### `impl Sealed for PathArguments`
 
-##### `impl<T> Spanned for PathArguments`
+##### `impl Spanned for PathArguments`
 
 - <span id="patharguments-span"></span>`fn span(&self) -> Span`
 
@@ -529,6 +555,8 @@ enum GenericArgument {
     Constraint(Constraint),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/path.rs:171-194`](../../../.source_1765210505/syn-2.0.111/src/path.rs#L171-L194)*
 
 An individual generic argument, like `'a`, `T`, or `Item = T`.
 
@@ -581,15 +609,15 @@ An individual generic argument, like `'a`, `T`, or `Item = T`.
 
 ##### `impl Parse for crate::path::GenericArgument`
 
-- <span id="cratepathgenericargument-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathgenericargument-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::GenericArgument`
 
 - <span id="crategenericargument-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for GenericArgument`
+##### `impl Sealed for GenericArgument`
 
-##### `impl<T> Spanned for GenericArgument`
+##### `impl Spanned for GenericArgument`
 
 - <span id="genericargument-span"></span>`fn span(&self) -> Span`
 

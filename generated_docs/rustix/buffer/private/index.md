@@ -18,6 +18,8 @@
 trait Sealed<T> { ... }
 ```
 
+*Defined in [`rustix-1.1.2/src/buffer.rs:299-322`](../../../../.source_1765210505/rustix-1.1.2/src/buffer.rs#L299-L322)*
+
 #### Associated Types
 
 - `type Output`

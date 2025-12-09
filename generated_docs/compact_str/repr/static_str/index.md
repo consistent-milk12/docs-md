@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`StaticStr`](#staticstr) | struct | A buffer stored on the stack whose size is equal to the stack size of `String` |
+| [`StaticStr`](#staticstr) | struct | A buffer stored on the stack whose size is equal to the stack size of `String` The last byte is set to 0. |
 | [`DISCRIMINANT_SIZE`](#discriminant_size) | const |  |
 
 ## Structs
@@ -22,6 +22,8 @@ struct StaticStr {
     discriminant: [u8; 8],
 }
 ```
+
+*Defined in [`compact_str-0.9.0/src/repr/static_str.rs:11-16`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/static_str.rs#L11-L16)*
 
 A buffer stored on the stack whose size is equal to the stack size of `String`
 The last byte is set to 0.
@@ -45,8 +47,9 @@ The last byte is set to 0.
 ## Constants
 
 ### `DISCRIMINANT_SIZE`
-
 ```rust
 const DISCRIMINANT_SIZE: usize = 8usize;
 ```
+
+*Defined in [`compact_str-0.9.0/src/repr/static_str.rs:5`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/static_str.rs#L5)*
 

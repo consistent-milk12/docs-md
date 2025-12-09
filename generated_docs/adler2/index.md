@@ -33,6 +33,8 @@ struct Adler32 {
 }
 ```
 
+*Defined in [`adler2-2.0.1/src/lib.rs:87-90`](../../.source_1765210505/adler2-2.0.1/src/lib.rs#L87-L90)*
+
 Adler-32 checksum calculator.
 
 An instance of this type is equivalent to an Adler-32 checksum: It can be created in the default
@@ -92,13 +94,7 @@ if cfg!(target_endian = "big") {
 
 #### Implementations
 
-- <span id="adler32-new"></span>`fn new() -> Self`
-
-- <span id="adler32-from-checksum"></span>`const fn from_checksum(sum: u32) -> Self`
-
-- <span id="adler32-checksum"></span>`fn checksum(&self) -> u32`
-
-- <span id="adler32-write-slice"></span>`fn write_slice(&mut self, bytes: &[u8])`
+- <span id="crateadler32-compute"></span>`fn compute(&mut self, bytes: &[u8])`
 
 #### Trait Implementations
 
@@ -129,6 +125,8 @@ if cfg!(target_endian = "big") {
 ```rust
 fn adler32_slice(data: &[u8]) -> u32
 ```
+
+*Defined in [`adler2-2.0.1/src/lib.rs:170-174`](../../.source_1765210505/adler2-2.0.1/src/lib.rs#L170-L174)*
 
 Calculates the Adler-32 checksum of a byte slice.
 

@@ -20,6 +20,8 @@ struct ArrayVecDrain<'a, T: 'a + Default> {
 }
 ```
 
+*Defined in [`tinyvec-1.10.0/src/arrayvec_drain.rs:11-13`](../../../.source_1765210505/tinyvec-1.10.0/src/arrayvec_drain.rs#L11-L13)*
+
 Draining iterator for [`ArrayVec`](../index.md)
 
 See [`ArrayVec::drain`](ArrayVec::drain)
@@ -42,15 +44,15 @@ See [`ArrayVec::drain`](ArrayVec::drain)
 
 ##### `impl<I> IntoIterator for ArrayVecDrain<'a, T>`
 
-- <span id="arrayvecdrain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="arrayvecdrain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="arrayvecdrain-intoiter"></span>`type IntoIter = I`
+- <span id="arrayvecdrain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="arrayvecdrain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T: 'a + Default> Iterator for ArrayVecDrain<'a, T>`
 
-- <span id="arrayvecdrain-item"></span>`type Item = T`
+- <span id="arrayvecdrain-type-item"></span>`type Item = T`
 
 - <span id="arrayvecdrain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

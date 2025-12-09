@@ -27,6 +27,8 @@ struct c_void {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:20-41`](../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L20-L41)*
+
 *Re-exported from `aho_corasick`*
 
 A non-empty collection of non-empty patterns to search for.
@@ -108,4 +110,6 @@ than once.
 - <span id="patterns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`ArgReg`](../backend/reg/index.md), [`A0`](../backend/reg/index.md)
 
 ## Functions
+
+*Defined in [`rustix-1.1.2/src/ffi.rs:9`](../../../.source_1765210505/rustix-1.1.2/src/ffi.rs#L9)*
 

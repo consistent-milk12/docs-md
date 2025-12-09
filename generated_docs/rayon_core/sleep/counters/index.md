@@ -33,9 +33,9 @@
 | [`select_thread`](#select_thread) | fn |  |
 | [`select_jec`](#select_jec) | fn |  |
 | [`THREADS_BITS`](#threads_bits) | const | Number of bits used for the thread counters. |
-| [`SLEEPING_SHIFT`](#sleeping_shift) | const | Bits to shift to select the sleeping threads |
-| [`INACTIVE_SHIFT`](#inactive_shift) | const | Bits to shift to select the inactive threads |
-| [`JEC_SHIFT`](#jec_shift) | const | Bits to shift to select the JEC |
+| [`SLEEPING_SHIFT`](#sleeping_shift) | const | Bits to shift to select the sleeping threads (used with `select_bits`). |
+| [`INACTIVE_SHIFT`](#inactive_shift) | const | Bits to shift to select the inactive threads (used with `select_bits`). |
+| [`JEC_SHIFT`](#jec_shift) | const | Bits to shift to select the JEC (use JOBS_BITS). |
 | [`THREADS_MAX`](#threads_max) | const | Max value for the thread counters. |
 | [`ONE_SLEEPING`](#one_sleeping) | const | Constant that can be added to add one sleeping thread. |
 | [`ONE_INACTIVE`](#one_inactive) | const | Constant that can be added to add one inactive thread. |
@@ -50,6 +50,8 @@ struct AtomicCounters {
     value: std::sync::atomic::AtomicUsize,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:3-16`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L3-L16)*
 
 #### Fields
 
@@ -87,11 +89,11 @@ struct AtomicCounters {
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for AtomicCounters`
+##### `impl Pointable for AtomicCounters`
 
-- <span id="atomiccounters-align"></span>`const ALIGN: usize`
+- <span id="atomiccounters-const-align"></span>`const ALIGN: usize`
 
-- <span id="atomiccounters-init"></span>`type Init = T`
+- <span id="atomiccounters-type-init"></span>`type Init = T`
 
 - <span id="atomiccounters-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -108,6 +110,8 @@ struct Counters {
     word: usize,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:19-21`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L19-L21)*
 
 #### Implementations
 
@@ -135,11 +139,11 @@ struct Counters {
 
 - <span id="counters-fmt"></span>`fn fmt(&self, fmt: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-##### `impl<T> Pointable for Counters`
+##### `impl Pointable for Counters`
 
-- <span id="counters-align"></span>`const ALIGN: usize`
+- <span id="counters-const-align"></span>`const ALIGN: usize`
 
-- <span id="counters-init"></span>`type Init = T`
+- <span id="counters-type-init"></span>`type Init = T`
 
 - <span id="counters-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -155,13 +159,15 @@ struct Counters {
 struct JobsEventCounter(usize);
 ```
 
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:27`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L27)*
+
 A value read from the **Jobs Event Counter**.
 See the [`README.md`](README.md) for more
 coverage of how the jobs event counter works.
 
 #### Implementations
 
-- <span id="jobseventcounter-dummy"></span>`const DUMMY: JobsEventCounter`
+- <span id="jobseventcounter-const-dummy"></span>`const DUMMY: JobsEventCounter`
 
 - <span id="jobseventcounter-as-usize"></span>`fn as_usize(self) -> usize`
 
@@ -189,11 +195,11 @@ coverage of how the jobs event counter works.
 
 - <span id="jobseventcounter-partial-cmp"></span>`fn partial_cmp(&self, other: &JobsEventCounter) -> option::Option<cmp::Ordering>` — [`JobsEventCounter`](#jobseventcounter)
 
-##### `impl<T> Pointable for JobsEventCounter`
+##### `impl Pointable for JobsEventCounter`
 
-- <span id="jobseventcounter-align"></span>`const ALIGN: usize`
+- <span id="jobseventcounter-const-align"></span>`const ALIGN: usize`
 
-- <span id="jobseventcounter-init"></span>`type Init = T`
+- <span id="jobseventcounter-type-init"></span>`type Init = T`
 
 - <span id="jobseventcounter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -213,79 +219,91 @@ coverage of how the jobs event counter works.
 fn select_thread(word: usize, shift: usize) -> usize
 ```
 
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:210-212`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L210-L212)*
+
 ### `select_jec`
 
 ```rust
 fn select_jec(word: usize) -> usize
 ```
 
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:215-217`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L215-L217)*
+
 ## Constants
 
 ### `THREADS_BITS`
-
 ```rust
 const THREADS_BITS: usize = 16usize;
 ```
 
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:57`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L57)*
+
 Number of bits used for the thread counters.
 
 ### `SLEEPING_SHIFT`
-
 ```rust
 const SLEEPING_SHIFT: usize = 0usize;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:65`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L65)*
 
 Bits to shift to select the sleeping threads
 (used with `select_bits`).
 
 ### `INACTIVE_SHIFT`
-
 ```rust
 const INACTIVE_SHIFT: usize = 16usize;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:70`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L70)*
 
 Bits to shift to select the inactive threads
 (used with `select_bits`).
 
 ### `JEC_SHIFT`
-
 ```rust
 const JEC_SHIFT: usize = 32usize;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:74`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L74)*
 
 Bits to shift to select the JEC
 (use JOBS_BITS).
 
 ### `THREADS_MAX`
-
 ```rust
 const THREADS_MAX: usize = 65_535usize;
 ```
 
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:77`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L77)*
+
 Max value for the thread counters.
 
 ### `ONE_SLEEPING`
-
 ```rust
 const ONE_SLEEPING: usize = 1usize;
 ```
 
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:80`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L80)*
+
 Constant that can be added to add one sleeping thread.
 
 ### `ONE_INACTIVE`
-
 ```rust
 const ONE_INACTIVE: usize = 65_536usize;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:84`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L84)*
 
 Constant that can be added to add one inactive thread.
 An inactive thread is either idle, sleepy, or sleeping.
 
 ### `ONE_JEC`
-
 ```rust
 const ONE_JEC: usize = 4_294_967_296usize;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/counters.rs:87`](../../../../.source_1765210505/rayon-core-1.13.0/src/sleep/counters.rs#L87)*
 
 Constant that can be added to add one to the JEC.
 

@@ -26,7 +26,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`DebugLoc`](#debugloc) | struct | The raw contents of the `.debug_loc` section. |
-| [`DebugLocLists`](#debugloclists) | struct | The `DebugLocLists` struct represents the DWARF data |
+| [`DebugLocLists`](#debugloclists) | struct | The `DebugLocLists` struct represents the DWARF data found in the `.debug_loclists` section. |
 | [`LocationLists`](#locationlists) | struct | The DWARF data found in `.debug_loc` and `.debug_loclists` sections. |
 | [`RawLocListIter`](#rawloclistiter) | struct | A raw iterator over a location list. |
 | [`LocListIter`](#loclistiter) | struct | An iterator over a location list. |
@@ -45,6 +45,8 @@ struct DebugLoc<R> {
     section: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:14-16`](../../../../.source_1765210505/gimli-0.32.3/src/read/loclists.rs#L14-L16)*
 
 The raw contents of the `.debug_loc` section.
 
@@ -82,12 +84,14 @@ struct DebugLocLists<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:74-76`](../../../../.source_1765210505/gimli-0.32.3/src/read/loclists.rs#L74-L76)*
+
 The `DebugLocLists` struct represents the DWARF data
 found in the `.debug_loclists` section.
 
 #### Implementations
 
-- <span id="debugloclists-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLocLists<R>` — [`DebugLocLists`](../index.md)
+- <span id="debugloclists-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -120,21 +124,13 @@ struct LocationLists<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:156-159`](../../../../.source_1765210505/gimli-0.32.3/src/read/loclists.rs#L156-L159)*
+
 The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 
 #### Implementations
 
-- <span id="locationlists-locations"></span>`fn locations(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
-
-- <span id="locationlists-locations-dwo"></span>`fn locations_dwo(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
-
-- <span id="locationlists-raw-locations"></span>`fn raw_locations(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`Result`](../../index.md), [`RawLocListIter`](../index.md)
-
-- <span id="locationlists-raw-locations-dwo"></span>`fn raw_locations_dwo(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`Result`](../../index.md), [`RawLocListIter`](../index.md)
-
-- <span id="locationlists-get-offset"></span>`fn get_offset(&self, unit_encoding: Encoding, base: DebugLocListsBase<<R as >::Offset>, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`Encoding`](../../index.md), [`DebugLocListsBase`](../../index.md), [`Reader`](../index.md), [`DebugLocListsIndex`](../../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md)
-
-- <span id="locationlists-lookup-offset-id"></span>`fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](../index.md), [`SectionId`](../../index.md), [`Reader`](../index.md)
+- <span id="locationlists-new"></span>`fn new(debug_loc: DebugLoc<R>, debug_loclists: DebugLocLists<R>) -> LocationLists<R>` — [`DebugLoc`](../index.md), [`DebugLocLists`](../index.md), [`LocationLists`](../index.md)
 
 #### Trait Implementations
 
@@ -161,6 +157,8 @@ struct RawLocListIter<R: Reader> {
     format: LocListsFormat,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:329-333`](../../../../.source_1765210505/gimli-0.32.3/src/read/loclists.rs#L329-L333)*
 
 A raw iterator over a location list.
 
@@ -190,6 +188,8 @@ struct LocListIter<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:536-541`](../../../../.source_1765210505/gimli-0.32.3/src/read/loclists.rs#L536-L541)*
+
 An iterator over a location list.
 
 This iterator internally handles processing of base address selection entries
@@ -218,6 +218,8 @@ struct LocationListEntry<R: Reader> {
     pub data: crate::read::Expression<R>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:679-685`](../../../../.source_1765210505/gimli-0.32.3/src/read/loclists.rs#L679-L685)*
 
 A location list entry from the `.debug_loc` or `.debug_loclists` sections.
 
@@ -265,6 +267,8 @@ enum LocListsFormat {
     Lle,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:316-322`](../../../../.source_1765210505/gimli-0.32.3/src/read/loclists.rs#L316-L322)*
 
 #### Variants
 
@@ -343,6 +347,8 @@ enum RawLocListEntry<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:337-407`](../../../../.source_1765210505/gimli-0.32.3/src/read/loclists.rs#L337-L407)*
+
 A raw entry in .debug_loclists.
 
 #### Variants
@@ -405,6 +411,8 @@ A raw entry in .debug_loclists.
 fn parse_data<R: Reader>(input: &mut R, encoding: crate::common::Encoding) -> crate::read::Result<crate::read::Expression<R>>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:409-418`](../../../../.source_1765210505/gimli-0.32.3/src/read/loclists.rs#L409-L418)*
+
 ## Type Aliases
 
 ### `LocListsHeader`
@@ -412,4 +420,6 @@ fn parse_data<R: Reader>(input: &mut R, encoding: crate::common::Encoding) -> cr
 ```rust
 type LocListsHeader = crate::read::lists::ListsHeader;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/loclists.rs:131`](../../../../.source_1765210505/gimli-0.32.3/src/read/loclists.rs#L131)*
 

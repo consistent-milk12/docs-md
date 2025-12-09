@@ -41,15 +41,15 @@ This module also contains a [`hybrid::dfa::Builder`](Builder) and a
 | [`DFA`](#dfa) | struct | A hybrid NFA/DFA (also called a "lazy DFA") for regex searching. |
 | [`Cache`](#cache) | struct | A cache represents a partially computed DFA. |
 | [`SearchProgress`](#searchprogress) | struct | Keeps track of the progress of the current search. |
-| [`Lazy`](#lazy) | struct | A type that groups methods that require the base NFA/DFA and writable |
-| [`LazyRef`](#lazyref) | struct | A type that groups methods that require the base NFA/DFA and read-only |
+| [`Lazy`](#lazy) | struct | A type that groups methods that require the base NFA/DFA and writable access to the cache. |
+| [`LazyRef`](#lazyref) | struct | A type that groups methods that require the base NFA/DFA and read-only access to the cache. |
 | [`Config`](#config) | struct | The configuration used for building a lazy DFA. |
-| [`Builder`](#builder) | struct | A builder for constructing a lazy deterministic finite automaton from |
+| [`Builder`](#builder) | struct | A builder for constructing a lazy deterministic finite automaton from regular expressions. |
 | [`OverlappingState`](#overlappingstate) | struct | Represents the current state of an overlapping search. |
-| [`StateSaver`](#statesaver) | enum | A simple type that encapsulates the saving of a state ID through a cache |
-| [`skip_empty_utf8_splits_overlapping`](#skip_empty_utf8_splits_overlapping) | fn | Runs the given overlapping `search` function (forwards or backwards) until |
-| [`minimum_lazy_state_id`](#minimum_lazy_state_id) | fn | Based on the minimum number of states required for a useful lazy DFA cache |
-| [`minimum_cache_capacity`](#minimum_cache_capacity) | fn | Based on the minimum number of states required for a useful lazy DFA cache |
+| [`StateSaver`](#statesaver) | enum | A simple type that encapsulates the saving of a state ID through a cache clearing. |
+| [`skip_empty_utf8_splits_overlapping`](#skip_empty_utf8_splits_overlapping) | fn | Runs the given overlapping `search` function (forwards or backwards) until a match is found whose offset does not split a codepoint. |
+| [`minimum_lazy_state_id`](#minimum_lazy_state_id) | fn | Based on the minimum number of states required for a useful lazy DFA cache, this returns the minimum lazy state ID that must be representable. |
+| [`minimum_cache_capacity`](#minimum_cache_capacity) | fn | Based on the minimum number of states required for a useful lazy DFA cache, this returns a heuristic minimum number of bytes of heap space required. |
 | [`StateMap`](#statemap) | type | A map from states to state identifiers. |
 | [`MIN_STATES`](#min_states) | const | The minimum number of states that a lazy DFA's cache size must support. |
 | [`SENTINEL_STATES`](#sentinel_states) | const | The number of "sentinel" states that get added to every lazy DFA. |
@@ -69,6 +69,8 @@ struct DFA {
     cache_capacity: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:118-126`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L118-L126)*
 
 A hybrid NFA/DFA (also called a "lazy DFA") for regex searching.
 
@@ -138,23 +140,35 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="dfa-next-state"></span>`fn next_state(&self, cache: &mut Cache, current: LazyStateID, input: u8) -> Result<LazyStateID, CacheError>` — [`Cache`](#cache), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
+- <span id="dfa-new"></span>`fn new(pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- <span id="dfa-next-state-untagged"></span>`fn next_state_untagged(&self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID` — [`Cache`](#cache), [`LazyStateID`](../index.md)
+- <span id="dfa-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- <span id="dfa-next-state-untagged-unchecked"></span>`unsafe fn next_state_untagged_unchecked(&self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID` — [`Cache`](#cache), [`LazyStateID`](../index.md)
+- <span id="dfa-always-match"></span>`fn always_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- <span id="dfa-next-eoi-state"></span>`fn next_eoi_state(&self, cache: &mut Cache, current: LazyStateID) -> Result<LazyStateID, CacheError>` — [`Cache`](#cache), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
+- <span id="dfa-never-match"></span>`fn never_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- <span id="dfa-start-state"></span>`fn start_state(&self, cache: &mut Cache, config: &start::Config) -> Result<LazyStateID, StartError>` — [`Cache`](#cache), [`Config`](../../util/start/index.md), [`LazyStateID`](../index.md), [`StartError`](../index.md)
+- <span id="dfa-config"></span>`fn config() -> Config` — [`Config`](#config)
 
-- <span id="dfa-start-state-forward"></span>`fn start_state_forward(&self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`LazyStateID`](../index.md), [`MatchError`](../../index.md)
+- <span id="dfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
-- <span id="dfa-start-state-reverse"></span>`fn start_state_reverse(&self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`LazyStateID`](../index.md), [`MatchError`](../../index.md)
+- <span id="dfa-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](#cache)
 
-- <span id="dfa-match-len"></span>`fn match_len(&self, cache: &Cache, id: LazyStateID) -> usize` — [`Cache`](#cache), [`LazyStateID`](../index.md)
+- <span id="dfa-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](#cache)
 
-- <span id="dfa-match-pattern"></span>`fn match_pattern(&self, cache: &Cache, id: LazyStateID, match_index: usize) -> PatternID` — [`Cache`](#cache), [`LazyStateID`](../index.md), [`PatternID`](../../index.md)
+- <span id="dfa-pattern-len"></span>`fn pattern_len(&self) -> usize`
+
+- <span id="dfa-byte-classes"></span>`fn byte_classes(&self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
+
+- <span id="dfa-get-config"></span>`fn get_config(&self) -> &Config` — [`Config`](#config)
+
+- <span id="dfa-get-nfa"></span>`fn get_nfa(&self) -> &thompson::NFA` — [`NFA`](../../nfa/thompson/nfa/index.md)
+
+- <span id="dfa-stride2"></span>`fn stride2(&self) -> usize`
+
+- <span id="dfa-stride"></span>`fn stride(&self) -> usize`
+
+- <span id="dfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
@@ -184,6 +198,8 @@ struct Cache {
     progress: Option<SearchProgress>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:1777-1867`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L1777-L1867)*
 
 A cache represents a partially computed DFA.
 
@@ -350,6 +366,8 @@ struct SearchProgress {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2048-2051`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2048-L2051)*
+
 Keeps track of the progress of the current search.
 
 This is updated via the `Cache::search_{start,update,finish}` APIs to
@@ -380,6 +398,8 @@ struct Lazy<'i, 'c> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2081-2084`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2081-L2084)*
+
 A type that groups methods that require the base NFA/DFA and writable
 access to the cache.
 
@@ -389,19 +409,19 @@ access to the cache.
 
 - <span id="lazy-as-ref"></span>`fn as_ref<'a>(self: &'a Self) -> LazyRef<'i, 'a>` — [`LazyRef`](#lazyref)
 
-- <span id="lazy-cache-next-state"></span>`fn cache_next_state(&mut self, current: LazyStateID, unit: alphabet::Unit) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../index.md), [`Unit`](../../util/alphabet/index.md), [`CacheError`](../index.md)
+- <span id="lazy-cache-next-state"></span>`fn cache_next_state(&mut self, current: LazyStateID, unit: alphabet::Unit) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../id/index.md), [`Unit`](../../util/alphabet/index.md), [`CacheError`](../error/index.md)
 
-- <span id="lazy-cache-start-group"></span>`fn cache_start_group(&mut self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`StartError`](../index.md)
+- <span id="lazy-cache-start-group"></span>`fn cache_start_group(&mut self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md), [`StartError`](../error/index.md)
 
-- <span id="lazy-cache-start-one"></span>`fn cache_start_one(&mut self, nfa_start_id: NFAStateID, start: Start) -> Result<LazyStateID, CacheError>` — [`StateID`](../../util/primitives/index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
+- <span id="lazy-cache-start-one"></span>`fn cache_start_one(&mut self, nfa_start_id: NFAStateID, start: Start) -> Result<LazyStateID, CacheError>` — [`StateID`](../../util/primitives/index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
 
-- <span id="lazy-add-builder-state"></span>`fn add_builder_state(&mut self, builder: StateBuilderNFA, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`StateBuilderNFA`](../../util/determinize/state/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
+- <span id="lazy-add-builder-state"></span>`fn add_builder_state(&mut self, builder: StateBuilderNFA, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`StateBuilderNFA`](../../util/determinize/state/index.md), [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
 
-- <span id="lazy-add-state"></span>`fn add_state(&mut self, state: State, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`State`](../../util/determinize/state/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
+- <span id="lazy-add-state"></span>`fn add_state(&mut self, state: State, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`State`](../../util/determinize/state/index.md), [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
 
-- <span id="lazy-next-state-id"></span>`fn next_state_id(&mut self) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../index.md), [`CacheError`](../index.md)
+- <span id="lazy-next-state-id"></span>`fn next_state_id(&mut self) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
 
-- <span id="lazy-try-clear-cache"></span>`fn try_clear_cache(&mut self) -> Result<(), CacheError>` — [`CacheError`](../index.md)
+- <span id="lazy-try-clear-cache"></span>`fn try_clear_cache(&mut self) -> Result<(), CacheError>` — [`CacheError`](../error/index.md)
 
 - <span id="lazy-reset-cache"></span>`fn reset_cache(&mut self)`
 
@@ -409,15 +429,15 @@ access to the cache.
 
 - <span id="lazy-init-cache"></span>`fn init_cache(&mut self)`
 
-- <span id="lazy-save-state"></span>`fn save_state(&mut self, id: LazyStateID)` — [`LazyStateID`](../index.md)
+- <span id="lazy-save-state"></span>`fn save_state(&mut self, id: LazyStateID)` — [`LazyStateID`](../id/index.md)
 
-- <span id="lazy-saved-state-id"></span>`fn saved_state_id(&mut self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazy-saved-state-id"></span>`fn saved_state_id(&mut self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
 
-- <span id="lazy-set-all-transitions"></span>`fn set_all_transitions(&mut self, from: LazyStateID, to: LazyStateID)` — [`LazyStateID`](../index.md)
+- <span id="lazy-set-all-transitions"></span>`fn set_all_transitions(&mut self, from: LazyStateID, to: LazyStateID)` — [`LazyStateID`](../id/index.md)
 
-- <span id="lazy-set-transition"></span>`fn set_transition(&mut self, from: LazyStateID, unit: alphabet::Unit, to: LazyStateID)` — [`LazyStateID`](../index.md), [`Unit`](../../util/alphabet/index.md)
+- <span id="lazy-set-transition"></span>`fn set_transition(&mut self, from: LazyStateID, unit: alphabet::Unit, to: LazyStateID)` — [`LazyStateID`](../id/index.md), [`Unit`](../../util/alphabet/index.md)
 
-- <span id="lazy-set-start-state"></span>`fn set_start_state(&mut self, anchored: Anchored, start: Start, id: LazyStateID)` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md)
+- <span id="lazy-set-start-state"></span>`fn set_start_state(&mut self, anchored: Anchored, start: Start, id: LazyStateID)` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md)
 
 - <span id="lazy-get-state-builder"></span>`fn get_state_builder(&mut self) -> StateBuilderEmpty` — [`StateBuilderEmpty`](../../util/determinize/state/index.md)
 
@@ -425,7 +445,7 @@ access to the cache.
 
 #### Trait Implementations
 
-##### `impl<'i, 'c> Debug for Lazy<'i, 'c>`
+##### `impl Debug for Lazy<'i, 'c>`
 
 - <span id="lazy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -438,6 +458,8 @@ struct LazyRef<'i, 'c> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2677-2680`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2677-L2680)*
+
 A type that groups methods that require the base NFA/DFA and read-only
 access to the cache.
 
@@ -445,19 +467,19 @@ access to the cache.
 
 - <span id="lazyref-new"></span>`fn new(dfa: &'i DFA, cache: &'c Cache) -> LazyRef<'i, 'c>` — [`DFA`](#dfa), [`Cache`](#cache), [`LazyRef`](#lazyref)
 
-- <span id="lazyref-get-cached-start-id"></span>`fn get_cached_start_id(&self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`StartError`](../index.md)
+- <span id="lazyref-get-cached-start-id"></span>`fn get_cached_start_id(&self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md), [`StartError`](../error/index.md)
 
-- <span id="lazyref-get-cached-state"></span>`fn get_cached_state(&self, sid: LazyStateID) -> &State` — [`LazyStateID`](../index.md), [`State`](../../util/determinize/state/index.md)
+- <span id="lazyref-get-cached-state"></span>`fn get_cached_state(&self, sid: LazyStateID) -> &State` — [`LazyStateID`](../id/index.md), [`State`](../../util/determinize/state/index.md)
 
-- <span id="lazyref-is-sentinel"></span>`fn is_sentinel(&self, id: LazyStateID) -> bool` — [`LazyStateID`](../index.md)
+- <span id="lazyref-is-sentinel"></span>`fn is_sentinel(&self, id: LazyStateID) -> bool` — [`LazyStateID`](../id/index.md)
 
-- <span id="lazyref-unknown-id"></span>`fn unknown_id(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazyref-unknown-id"></span>`fn unknown_id(&self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
 
-- <span id="lazyref-dead-id"></span>`fn dead_id(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazyref-dead-id"></span>`fn dead_id(&self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
 
-- <span id="lazyref-quit-id"></span>`fn quit_id(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazyref-quit-id"></span>`fn quit_id(&self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
 
-- <span id="lazyref-is-valid"></span>`fn is_valid(&self, id: LazyStateID) -> bool` — [`LazyStateID`](../index.md)
+- <span id="lazyref-is-valid"></span>`fn is_valid(&self, id: LazyStateID) -> bool` — [`LazyStateID`](../id/index.md)
 
 - <span id="lazyref-state-fits-in-cache"></span>`fn state_fits_in_cache(&self, state: &State) -> bool` — [`State`](../../util/determinize/state/index.md)
 
@@ -467,7 +489,7 @@ access to the cache.
 
 #### Trait Implementations
 
-##### `impl<'i, 'c> Debug for LazyRef<'i, 'c>`
+##### `impl Debug for LazyRef<'i, 'c>`
 
 - <span id="lazyref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -488,6 +510,8 @@ struct Config {
     minimum_bytes_per_state: Option<Option<usize>>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2880-2899`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2880-L2899)*
 
 The configuration used for building a lazy DFA.
 
@@ -551,11 +575,11 @@ default) and an [`Anchored::Pattern`](../../index.md) mode is requested via [`In
 
 - <span id="config-get-minimum-bytes-per-state"></span>`fn get_minimum_bytes_per_state(&self) -> Option<usize>`
 
-- <span id="config-get-minimum-cache-capacity"></span>`fn get_minimum_cache_capacity(&self, nfa: &thompson::NFA) -> Result<usize, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`BuildError`](../index.md)
+- <span id="config-get-minimum-cache-capacity"></span>`fn get_minimum_cache_capacity(&self, nfa: &thompson::NFA) -> Result<usize, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`BuildError`](../error/index.md)
 
-- <span id="config-byte-classes-from-nfa"></span>`fn byte_classes_from_nfa(&self, nfa: &thompson::NFA, quit: &ByteSet) -> ByteClasses` — [`NFA`](../../nfa/thompson/index.md), [`ByteSet`](../../util/alphabet/index.md), [`ByteClasses`](../../util/alphabet/index.md)
+- <span id="config-byte-classes-from-nfa"></span>`fn byte_classes_from_nfa(&self, nfa: &thompson::NFA, quit: &ByteSet) -> ByteClasses` — [`NFA`](../../nfa/thompson/nfa/index.md), [`ByteSet`](../../util/alphabet/index.md), [`ByteClasses`](../../util/alphabet/index.md)
 
-- <span id="config-quit-set-from-nfa"></span>`fn quit_set_from_nfa(&self, nfa: &thompson::NFA) -> Result<ByteSet, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`ByteSet`](../../util/alphabet/index.md), [`BuildError`](../index.md)
+- <span id="config-quit-set-from-nfa"></span>`fn quit_set_from_nfa(&self, nfa: &thompson::NFA) -> Result<ByteSet, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`ByteSet`](../../util/alphabet/index.md), [`BuildError`](../error/index.md)
 
 - <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
 
@@ -581,6 +605,8 @@ struct Builder {
     thompson: thompson::Compiler,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:3991-3995`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L3991-L3995)*
 
 A builder for constructing a lazy deterministic finite automaton from
 regular expressions.
@@ -652,17 +678,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: thompson::NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: thompson::NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
 - <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
 - <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
 
-- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
@@ -685,6 +711,8 @@ struct OverlappingState {
     rev_eoi: bool,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4188-4227`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L4188-L4227)*
 
 Represents the current state of an overlapping search.
 
@@ -792,6 +820,8 @@ enum StateSaver {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2819-2832`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2819-L2832)*
+
 A simple type that encapsulates the saving of a state ID through a cache
 clearing.
 
@@ -822,9 +852,9 @@ saved itself with Saved.
 
 - <span id="statesaver-none"></span>`fn none() -> StateSaver` — [`StateSaver`](#statesaver)
 
-- <span id="statesaver-take-to-save"></span>`fn take_to_save(&mut self) -> Option<(LazyStateID, State)>` — [`LazyStateID`](../index.md), [`State`](../../util/determinize/state/index.md)
+- <span id="statesaver-take-to-save"></span>`fn take_to_save(&mut self) -> Option<(LazyStateID, State)>` — [`LazyStateID`](../id/index.md), [`State`](../../util/determinize/state/index.md)
 
-- <span id="statesaver-take-saved"></span>`fn take_saved(&mut self) -> Option<LazyStateID>` — [`LazyStateID`](../index.md)
+- <span id="statesaver-take-saved"></span>`fn take_saved(&mut self) -> Option<LazyStateID>` — [`LazyStateID`](../id/index.md)
 
 #### Trait Implementations
 
@@ -846,6 +876,8 @@ where
     F: FnMut(&crate::util::search::Input<'_>, &mut OverlappingState) -> Result<(), crate::util::search::MatchError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4261-4293`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L4261-L4293)*
+
 Runs the given overlapping `search` function (forwards or backwards) until
 a match is found whose offset does not split a codepoint.
 
@@ -860,6 +892,8 @@ in legitimate matches getting skipped.
 fn minimum_lazy_state_id(classes: &crate::util::alphabet::ByteClasses) -> Result<crate::hybrid::id::LazyStateID, crate::hybrid::id::LazyStateIDError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4301-4307`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L4301-L4307)*
+
 Based on the minimum number of states required for a useful lazy DFA cache,
 this returns the minimum lazy state ID that must be representable.
 
@@ -872,6 +906,8 @@ may be insufficient if our MIN_STATES value is (for some reason) too high.
 ```rust
 fn minimum_cache_capacity(nfa: &thompson::NFA, classes: &crate::util::alphabet::ByteClasses, starts_for_each_pattern: bool) -> usize
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:4335-4392`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L4335-L4392)*
 
 Based on the minimum number of states required for a useful lazy DFA cache,
 this returns a heuristic minimum number of bytes of heap space required.
@@ -908,6 +944,8 @@ minimum number of states to be added.)
 type StateMap = std::collections::HashMap<self::state::State, crate::hybrid::id::LazyStateID>;
 ```
 
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:2074`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L2074)*
+
 A map from states to state identifiers. When using std, we use a standard
 hashmap, since it's a bit faster for this use case. (Other maps, like
 one's based on FNV, have not yet been benchmarked.)
@@ -918,10 +956,11 @@ fully minimize the DFA, but it works well in a lot of cases.
 ## Constants
 
 ### `MIN_STATES`
-
 ```rust
 const MIN_STATES: usize = 5usize;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:42`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L42)*
 
 The minimum number of states that a lazy DFA's cache size must support.
 
@@ -932,10 +971,11 @@ senseless to use the lazy DFA. More to the point, parts of the code do
 assume that the cache can fit at least some small number of states.
 
 ### `SENTINEL_STATES`
-
 ```rust
 const SENTINEL_STATES: usize = 3usize;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/dfa.rs:50`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/dfa.rs#L50)*
 
 The number of "sentinel" states that get added to every lazy DFA.
 

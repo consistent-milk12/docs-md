@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`unix`](#unix) | mod |  |
-| [`ReadDir`](#readdir) | struct | Wrapper around [`std::fs::ReadDir`][std::fs::ReadDir] which adds more |
-| [`DirEntry`](#direntry) | struct | Wrapper around [`std::fs::DirEntry`][std::fs::DirEntry] which adds more |
+| [`ReadDir`](#readdir) | struct | Wrapper around [`std::fs::ReadDir`][std::fs::ReadDir] which adds more helpful information to all errors. |
+| [`DirEntry`](#direntry) | struct | Wrapper around [`std::fs::DirEntry`][std::fs::DirEntry] which adds more helpful information to all errors. |
 | [`read_dir`](#read_dir) | fn | Returns an iterator over the entries within a directory. |
 
 ## Modules
@@ -28,6 +28,8 @@ struct ReadDir {
 }
 ```
 
+*Defined in [`fs-err-3.2.0/src/dir.rs:28-31`](../../../.source_1765210505/fs-err-3.2.0/src/dir.rs#L28-L31)*
+
 Wrapper around `std::fs::ReadDir` which adds more
 helpful information to all errors.
 
@@ -41,17 +43,17 @@ This struct is created via `fs_err::read_dir`.
 
 - <span id="readdir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ReadDir`
+##### `impl IntoIterator for ReadDir`
 
-- <span id="readdir-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="readdir-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="readdir-intoiter"></span>`type IntoIter = I`
+- <span id="readdir-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="readdir-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ReadDir`
 
-- <span id="readdir-item"></span>`type Item = Result<DirEntry, Error>`
+- <span id="readdir-type-item"></span>`type Item = Result<DirEntry, Error>`
 
 - <span id="readdir-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -62,6 +64,8 @@ struct DirEntry {
     inner: fs::DirEntry,
 }
 ```
+
+*Defined in [`fs-err-3.2.0/src/dir.rs:51-53`](../../../.source_1765210505/fs-err-3.2.0/src/dir.rs#L51-L53)*
 
 Wrapper around `std::fs::DirEntry` which adds more
 helpful information to all errors.
@@ -94,6 +98,8 @@ helpful information to all errors.
 ```rust
 fn read_dir<P: Into<std::path::PathBuf>>(path: P) -> io::Result<ReadDir>
 ```
+
+*Defined in [`fs-err-3.2.0/src/dir.rs:11-18`](../../../.source_1765210505/fs-err-3.2.0/src/dir.rs#L11-L18)*
 
 Returns an iterator over the entries within a directory.
 

@@ -26,8 +26,12 @@ use std::path::PathBuf;
 use std::process::Command;
 
 #[cfg(feature = "source-parsing")]
+use std::path::Path;
+#[cfg(feature = "source-parsing")]
 use Internals::CollectSourcesArgs;
-use Internals::generator::{Generator, RenderConfig};
+#[cfg(feature = "source-parsing")]
+use Internals::source::find_source_dir;
+use Internals::generator::{Generator, RenderConfig, SourceConfig};
 use Internals::multi_crate::{MultiCrateGenerator, MultiCrateParser};
 use Internals::parser::Parser as InternalParser;
 use Internals::{Cargo, Command as CliCommand, DocsArgs, GenerateArgs};
@@ -170,7 +174,21 @@ fn run_generate(args: &GenerateArgs) -> Result<()> {
         );
 
         // Generate documentation for all crates
-        let generator = MultiCrateGenerator::new(&crates, args, RenderConfig::default());
+        // Auto-detect .source_* directory for source location links
+        #[cfg(feature = "source-parsing")]
+        let source_dir = find_source_dir(Path::new("."));
+        #[cfg(not(feature = "source-parsing"))]
+        let source_dir: Option<PathBuf> = None;
+
+        let config = RenderConfig {
+            include_source: SourceConfig {
+                source_locations: true,
+                source_dir,
+                ..SourceConfig::default()
+            },
+            ..RenderConfig::default()
+        };
+        let generator = MultiCrateGenerator::new(&crates, args, config);
         generator.generate()?;
 
         // Success message

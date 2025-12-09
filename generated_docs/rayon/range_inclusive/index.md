@@ -46,6 +46,8 @@ struct Iter<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/range_inclusive.rs:45-47`](../../../.source_1765210505/rayon-1.11.0/src/range_inclusive.rs#L45-L47)*
+
 Parallel iterator over an inclusive range, implemented for all integer types and `char`.
 
 **Note:** The `zip` operation requires `IndexedParallelIterator`
@@ -94,15 +96,15 @@ assert_eq!(p, s);
 
 ##### `impl<T> IntoParallelIterator for Iter<T>`
 
-- <span id="iter-iter"></span>`type Iter = T`
+- <span id="iter-type-iter"></span>`type Iter = T`
 
-- <span id="iter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl ParallelIterator for Iter<char>`
+##### `impl<T: RangeInteger> ParallelIterator for Iter<T>`
 
-- <span id="iter-item"></span>`type Item = char`
+- <span id="iter-type-item"></span>`type Item = T`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -110,9 +112,9 @@ assert_eq!(p, s);
 
 ##### `impl<T> Pointable for Iter<T>`
 
-- <span id="iter-align"></span>`const ALIGN: usize`
+- <span id="iter-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-init"></span>`type Init = T`
+- <span id="iter-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -126,9 +128,17 @@ assert_eq!(p, s);
 
 ### `convert!`
 
+*Defined in [`rayon-1.11.0/src/range_inclusive.rs:161-173`](../../../.source_1765210505/rayon-1.11.0/src/range_inclusive.rs#L161-L173)*
+
 ### `parallel_range_impl!`
+
+*Defined in [`rayon-1.11.0/src/range_inclusive.rs:175-192`](../../../.source_1765210505/rayon-1.11.0/src/range_inclusive.rs#L175-L192)*
 
 ### `indexed_range_impl!`
 
+*Defined in [`rayon-1.11.0/src/range_inclusive.rs:194-220`](../../../.source_1765210505/rayon-1.11.0/src/range_inclusive.rs#L194-L220)*
+
 ### `convert_char!`
+
+*Defined in [`rayon-1.11.0/src/range_inclusive.rs:239-262`](../../../.source_1765210505/rayon-1.11.0/src/range_inclusive.rs#L239-L262)*
 

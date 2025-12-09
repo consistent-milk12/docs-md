@@ -76,6 +76,8 @@ fn main() {
 trait Equivalent<K: ?Sized> { ... }
 ```
 
+*Defined in [`equivalent-1.0.2/src/lib.rs:77-80`](../../.source_1765210505/equivalent-1.0.2/src/lib.rs#L77-L80)*
+
 Key equivalence trait.
 
 This trait allows hash table lookup to be customized. It has one blanket
@@ -102,6 +104,8 @@ The implementor **must** hash like `K`, if it is hashable.
 ```rust
 trait Comparable<K: ?Sized>: Equivalent<K> { ... }
 ```
+
+*Defined in [`equivalent-1.0.2/src/lib.rs:99-102`](../../.source_1765210505/equivalent-1.0.2/src/lib.rs#L99-L102)*
 
 Key ordering trait.
 

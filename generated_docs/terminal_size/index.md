@@ -43,6 +43,8 @@ if let Some((Width(w), Height(h))) = size {
 struct Width(u16);
 ```
 
+*Defined in [`terminal_size-0.4.3/src/lib.rs:22`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L22)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Width`
@@ -77,6 +79,8 @@ struct Width(u16);
 struct Height(u16);
 ```
 
+*Defined in [`terminal_size-0.4.3/src/lib.rs:24`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L24)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Height`
@@ -106,4 +110,10 @@ struct Height(u16);
 ##### `impl StructuralPartialEq for Height`
 
 ## Functions
+
+*Defined in [`terminal_size-0.4.3/src/lib.rs:30`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L30)*
+
+*Defined in [`terminal_size-0.4.3/src/lib.rs:30`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L30)*
+
+*Defined in [`terminal_size-0.4.3/src/lib.rs:30`](../../.source_1765210505/terminal_size-0.4.3/src/lib.rs#L30)*
 

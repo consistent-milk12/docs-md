@@ -202,10 +202,10 @@ Thanks for readingme!
 |------|------|-------------|
 | [`features`](#features) | mod | A module that contains the implementations for optional features. |
 | [`macros`](#macros) | mod |  |
-| [`unicode_data`](#unicode_data) | mod | Adapted from |
+| [`unicode_data`](#unicode_data) | mod | Adapted from <https://doc.rust-lang.org/nightly/src/core/unicode/unicode_data.rs.html> |
 | [`repr`](#repr) | mod |  |
 | [`traits`](#traits) | mod |  |
-| [`CompactString`](#compactstring) | struct | A [`CompactString`] is a compact string type that can be used almost anywhere a |
+| [`CompactString`](#compactstring) | struct | A [`CompactString`] is a compact string type that can be used almost anywhere a [`String`] or [`str`] can be used. |
 | [`Utf16Error`](#utf16error) | struct | A possible error value when converting a [`CompactString`] from a UTF-16 byte slice. |
 | [`Drain`](#drain) | struct | An iterator over the exacted data by [`CompactString::drain()`]. |
 | [`ReserveError`](#reserveerror) | struct | A possible error value if allocating or resizing a [`CompactString`] failed. |
@@ -232,6 +232,8 @@ Thanks for readingme!
 ```rust
 struct CompactString(repr::Repr);
 ```
+
+*Defined in [`compact_str-0.9.0/src/lib.rs:128`](../../.source_1765210505/compact_str-0.9.0/src/lib.rs#L128)*
 
 A [`CompactString`](#compactstring) is a compact string type that can be used almost anywhere a
 [`String`](../clap_builder/index.md) or [`str`](../clap_builder/builder/str/index.md) can be used.
@@ -443,7 +445,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Add for CompactString`
 
-- <span id="compactstring-output"></span>`type Output = CompactString`
+- <span id="compactstring-type-output"></span>`type Output = CompactString`
 
 - <span id="compactstring-add"></span>`fn add(self, rhs: &str) -> <Self as >::Output`
 
@@ -453,7 +455,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl AsRef for CompactString`
 
-- <span id="compactstring-as-ref"></span>`fn as_ref(&self) -> &[u8]`
+- <span id="compactstring-as-ref"></span>`fn as_ref(&self) -> &str`
 
 ##### `impl Clone for CompactString`
 
@@ -471,7 +473,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Deref for CompactString`
 
-- <span id="compactstring-target"></span>`type Target = str`
+- <span id="compactstring-type-target"></span>`type Target = str`
 
 - <span id="compactstring-deref"></span>`fn deref(&self) -> &str`
 
@@ -485,17 +487,17 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Eq for CompactString`
 
-##### `impl<'a> Extend for CompactString`
+##### `impl Extend for CompactString`
 
-- <span id="compactstring-extend"></span>`fn extend<T: IntoIterator<Item = &'a char>>(&mut self, iter: T)`
+- <span id="compactstring-extend"></span>`fn extend<T: IntoIterator<Item = char>>(&mut self, iter: T)`
 
-##### `impl FromIterator for CompactString`
+##### `impl FromIterator for super::Repr`
 
-- <span id="compactstring-from-iter"></span>`fn from_iter<T: IntoIterator<Item = String>>(iter: T) -> Self`
+- <span id="superrepr-from-iter"></span>`fn from_iter<T: IntoIterator<Item = CompactString>>(iter: T) -> Self`
 
 ##### `impl FromStr for CompactString`
 
-- <span id="compactstring-err"></span>`type Err = Infallible`
+- <span id="compactstring-type-err"></span>`type Err = Infallible`
 
 - <span id="compactstring-from-str"></span>`fn from_str(s: &str) -> Result<CompactString, <Self as >::Err>` — [`CompactString`](#compactstring)
 
@@ -509,7 +511,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - <span id="compactstring-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
-##### `impl<T: AsRef<str> + ?Sized> PartialEq for CompactString`
+##### `impl PartialEq for CompactString`
 
 - <span id="compactstring-eq"></span>`fn eq(&self, other: &T) -> bool`
 
@@ -517,15 +519,15 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - <span id="compactstring-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
-##### `impl<P, T> Receiver for CompactString`
+##### `impl Receiver for CompactString`
 
-- <span id="compactstring-target"></span>`type Target = T`
+- <span id="compactstring-type-target"></span>`type Target = T`
 
-##### `impl<T> ToCompactString for CompactString`
+##### `impl ToCompactString for CompactString`
 
 - <span id="compactstring-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl<T> ToString for CompactString`
+##### `impl ToString for CompactString`
 
 - <span id="compactstring-to-string"></span>`fn to_string(&self) -> String`
 
@@ -540,6 +542,8 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 ```rust
 struct Utf16Error(());
 ```
+
+*Defined in [`compact_str-0.9.0/src/lib.rs:2483`](../../.source_1765210505/compact_str-0.9.0/src/lib.rs#L2483)*
 
 A possible error value when converting a [`CompactString`](#compactstring) from a UTF-16 byte slice.
 
@@ -574,11 +578,11 @@ assert!(CompactString::from_utf16(v).is_err());
 
 - <span id="utf16error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToCompactString for Utf16Error`
+##### `impl ToCompactString for Utf16Error`
 
 - <span id="utf16error-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl<T> ToString for Utf16Error`
+##### `impl ToString for Utf16Error`
 
 - <span id="utf16error-to-string"></span>`fn to_string(&self) -> String`
 
@@ -592,6 +596,8 @@ struct Drain<'a> {
     chars: core::str::Chars<'a>,
 }
 ```
+
+*Defined in [`compact_str-0.9.0/src/lib.rs:2493-2498`](../../.source_1765210505/compact_str-0.9.0/src/lib.rs#L2493-L2498)*
 
 An iterator over the exacted data by `CompactString::drain()`.
 
@@ -607,7 +613,7 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 ##### `impl Deref for Drain<'_>`
 
-- <span id="drain-target"></span>`type Target = str`
+- <span id="drain-type-target"></span>`type Target = str`
 
 - <span id="drain-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -625,17 +631,17 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 ##### `impl FusedIterator for Drain<'_>`
 
-##### `impl<I> IntoIterator for Drain<'a>`
+##### `impl IntoIterator for Drain<'a>`
 
-- <span id="drain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-intoiter"></span>`type IntoIter = I`
+- <span id="drain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Drain<'_>`
 
-- <span id="drain-item"></span>`type Item = char`
+- <span id="drain-type-item"></span>`type Item = char`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<char>`
 
@@ -645,19 +651,19 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 - <span id="drain-last"></span>`fn last(self) -> Option<char>`
 
-##### `impl<P, T> Receiver for Drain<'a>`
+##### `impl Receiver for Drain<'a>`
 
-- <span id="drain-target"></span>`type Target = T`
+- <span id="drain-type-target"></span>`type Target = T`
 
 ##### `impl Send for Drain<'_>`
 
 ##### `impl Sync for Drain<'_>`
 
-##### `impl<T> ToCompactString for Drain<'a>`
+##### `impl ToCompactString for Drain<'a>`
 
 - <span id="drain-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl<T> ToString for Drain<'a>`
+##### `impl ToString for Drain<'a>`
 
 - <span id="drain-to-string"></span>`fn to_string(&self) -> String`
 
@@ -666,6 +672,8 @@ An iterator over the exacted data by `CompactString::drain()`.
 ```rust
 struct ReserveError(());
 ```
+
+*Defined in [`compact_str-0.9.0/src/lib.rs:2579`](../../.source_1765210505/compact_str-0.9.0/src/lib.rs#L2579)*
 
 A possible error value if allocating or resizing a [`CompactString`](#compactstring) failed.
 
@@ -693,11 +701,11 @@ A possible error value if allocating or resizing a [`CompactString`](#compactstr
 
 ##### `impl StructuralPartialEq for ReserveError`
 
-##### `impl<T> ToCompactString for ReserveError`
+##### `impl ToCompactString for ReserveError`
 
 - <span id="reserveerror-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl<T> ToString for ReserveError`
+##### `impl ToString for ReserveError`
 
 - <span id="reserveerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -711,6 +719,8 @@ enum ToCompactStringError {
     Fmt(fmt::Error),
 }
 ```
+
+*Defined in [`compact_str-0.9.0/src/lib.rs:2594-2599`](../../.source_1765210505/compact_str-0.9.0/src/lib.rs#L2594-L2599)*
 
 A possible error value if `ToCompactString::try_to_compact_string()` failed.
 
@@ -750,11 +760,11 @@ A possible error value if `ToCompactString::try_to_compact_string()` failed.
 
 ##### `impl StructuralPartialEq for ToCompactStringError`
 
-##### `impl<T> ToCompactString for ToCompactStringError`
+##### `impl ToCompactString for ToCompactStringError`
 
 - <span id="tocompactstringerror-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl<T> ToString for ToCompactStringError`
+##### `impl ToString for ToCompactStringError`
 
 - <span id="tocompactstringerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -765,6 +775,8 @@ A possible error value if `ToCompactString::try_to_compact_string()` failed.
 ```rust
 trait CompactStringExt { ... }
 ```
+
+*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../.source_1765210505/compact_str-0.9.0/src/traits.rs#L142-L169)*
 
 A trait that provides convenience methods for creating a [`CompactString`](#compactstring) from a collection of
 items. It is implemented for all types that can be converted into an iterator, and that iterator
@@ -808,11 +820,13 @@ assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
 trait ToCompactString { ... }
 ```
 
+*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../.source_1765210505/compact_str-0.9.0/src/traits.rs#L16-L49)*
+
 A trait for converting a value to a `CompactString`.
 
 This trait is automatically implemented for any type which implements the
-[`fmt::Display`](../miette_derive/index.md) trait. As such, [`ToCompactString`](#tocompactstring) shouldn't be implemented directly:
-[`fmt::Display`](../miette_derive/index.md) should be implemented instead, and you get the [`ToCompactString`](#tocompactstring)
+[`fmt::Display`](../miette_derive/fmt/index.md) trait. As such, [`ToCompactString`](traits/index.md) shouldn't be implemented directly:
+[`fmt::Display`](../miette_derive/fmt/index.md) should be implemented instead, and you get the [`ToCompactString`](traits/index.md)
 implementation for free.
 
 #### Required Methods
@@ -829,11 +843,6 @@ implementation for free.
 
 #### Implementors
 
-- [`CompactString`](#compactstring)
-- [`Drain`](#drain)
-- [`ReserveError`](#reserveerror)
-- [`ToCompactStringError`](#tocompactstringerror)
-- [`Utf16Error`](#utf16error)
 - `T`
 
 ### `UnwrapWithMsg`
@@ -841,6 +850,8 @@ implementation for free.
 ```rust
 trait UnwrapWithMsg { ... }
 ```
+
+*Defined in [`compact_str-0.9.0/src/lib.rs:2635-2639`](../../.source_1765210505/compact_str-0.9.0/src/lib.rs#L2635-L2639)*
 
 #### Associated Types
 
@@ -862,6 +873,8 @@ trait UnwrapWithMsg { ... }
 fn convert_while_ascii(b: &[u8], convert: fn(&u8) -> u8) -> CompactString
 ```
 
+*Defined in [`compact_str-0.9.0/src/lib.rs:1907-1947`](../../.source_1765210505/compact_str-0.9.0/src/lib.rs#L1907-L1947)*
+
 Converts the bytes while the bytes are still ascii.
 For better average performance, this is happens in chunks of `2*size_of::<usize>()`.
 Returns a vec with the converted bytes.
@@ -874,9 +887,13 @@ Copied from https://doc.rust-lang.org/nightly/src/alloc/str.rs.html#623-666
 fn unwrap_with_msg_fail<E: fmt::Display>(error: E) -> never
 ```
 
+*Defined in [`compact_str-0.9.0/src/lib.rs:2657-2659`](../../.source_1765210505/compact_str-0.9.0/src/lib.rs#L2657-L2659)*
+
 ## Macros
 
 ### `format_compact!`
+
+*Defined in [`compact_str-0.9.0/src/macros.rs:28-32`](../../.source_1765210505/compact_str-0.9.0/src/macros.rs#L28-L32)*
 
 Creates a `CompactString` using interpolation of runtime expressions.
 
@@ -895,7 +912,7 @@ depending on the intended destination of the string.
 
 To convert a single value to a string, use the
 `ToCompactString::to_compact_string` method, which uses
-the [`std::fmt::Display`](../miette_derive/index.md) formatting trait.
+the [`std::fmt::Display`](../miette_derive/fmt/index.md) formatting trait.
 
 # Panics
 

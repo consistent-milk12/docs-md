@@ -51,6 +51,8 @@ struct Header {
 }
 ```
 
+*Defined in [`object-0.37.3/src/archive.rs:25-40`](../../../.source_1765210505/object-0.37.3/src/archive.rs#L25-L40)*
+
 The header at the start of an archive member.
 
 #### Fields
@@ -111,6 +113,8 @@ struct AixHeader {
     pub namlen: [u8; 4],
 }
 ```
+
+*Defined in [`object-0.37.3/src/archive.rs:45-62`](../../../.source_1765210505/object-0.37.3/src/archive.rs#L45-L62)*
 
 The header at the start of an AIX big archive member, without name.
 
@@ -176,6 +180,8 @@ struct AixFileHeader {
 }
 ```
 
+*Defined in [`object-0.37.3/src/archive.rs:67-82`](../../../.source_1765210505/object-0.37.3/src/archive.rs#L67-L82)*
+
 The AIX big archive's fixed length header at file beginning.
 
 #### Fields
@@ -228,6 +234,8 @@ The AIX big archive's fixed length header at file beginning.
 struct AixMemberOffset([u8; 20]);
 ```
 
+*Defined in [`object-0.37.3/src/archive.rs:89`](../../../.source_1765210505/object-0.37.3/src/archive.rs#L89)*
+
 Offset of a member in an AIX big archive.
 
 This is used in the member index.
@@ -249,36 +257,40 @@ This is used in the member index.
 ## Constants
 
 ### `MAGIC`
-
 ```rust
 const MAGIC: [u8; 8];
 ```
 
+*Defined in [`object-0.37.3/src/archive.rs:9`](../../../.source_1765210505/object-0.37.3/src/archive.rs#L9)*
+
 File identification bytes stored at the beginning of the file.
 
 ### `AIX_BIG_MAGIC`
-
 ```rust
 const AIX_BIG_MAGIC: [u8; 8];
 ```
 
+*Defined in [`object-0.37.3/src/archive.rs:12`](../../../.source_1765210505/object-0.37.3/src/archive.rs#L12)*
+
 File identification bytes at the beginning of AIX big archive.
 
 ### `THIN_MAGIC`
-
 ```rust
 const THIN_MAGIC: [u8; 8];
 ```
+
+*Defined in [`object-0.37.3/src/archive.rs:17`](../../../.source_1765210505/object-0.37.3/src/archive.rs#L17)*
 
 File identification bytes stored at the beginning of a thin archive.
 
 A thin archive only contains a symbol table and file names.
 
 ### `TERMINATOR`
-
 ```rust
 const TERMINATOR: [u8; 2];
 ```
+
+*Defined in [`object-0.37.3/src/archive.rs:20`](../../../.source_1765210505/object-0.37.3/src/archive.rs#L20)*
 
 The terminator for each archive member header.
 

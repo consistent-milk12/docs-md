@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`libunwind`](#libunwind) | mod | Backtrace support using libunwind/gcc_s/etc APIs. |
-| [`Frame`](#frame) | struct | A trait representing one frame of a backtrace, yielded to the `trace` |
-| [`trace`](#trace) | fn | Inspects the current call-stack, passing all active frames into the closure |
+| [`Frame`](#frame) | struct | A trait representing one frame of a backtrace, yielded to the `trace` function of this crate. |
+| [`trace`](#trace) | fn | Inspects the current call-stack, passing all active frames into the closure provided to calculate a stack trace. |
 | [`trace_unsynchronized`](#trace_unsynchronized) | fn | Same as `trace`, only unsafe as it's unsynchronized. |
 
 ## Modules
@@ -26,6 +26,8 @@ struct Frame {
     inner: self::libunwind::Frame,
 }
 ```
+
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:76-78`](../../../.source_1765210505/backtrace-0.3.76/src/backtrace/mod.rs#L76-L78)*
 
 A trait representing one frame of a backtrace, yielded to the `trace`
 function of this crate.
@@ -48,7 +50,7 @@ until runtime.
 
 ##### `impl Clone for Frame`
 
-- <span id="frame-clone"></span>`fn clone(&self) -> Frame` — [`Frame`](../index.md)
+- <span id="frame-clone"></span>`fn clone(&self) -> Frame` — [`Frame`](#frame)
 
 ##### `impl Debug for Frame`
 
@@ -61,6 +63,8 @@ until runtime.
 ```rust
 fn trace<F: FnMut(&Frame) -> bool>(cb: F)
 ```
+
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:51-54`](../../../.source_1765210505/backtrace-0.3.76/src/backtrace/mod.rs#L51-L54)*
 
 Inspects the current call-stack, passing all active frames into the closure
 provided to calculate a stack trace.
@@ -114,6 +118,8 @@ fn main() {
 ```rust
 unsafe fn trace_unsynchronized<F: FnMut(&Frame) -> bool>(cb: F)
 ```
+
+*Defined in [`backtrace-0.3.76/src/backtrace/mod.rs:65-67`](../../../.source_1765210505/backtrace-0.3.76/src/backtrace/mod.rs#L65-L67)*
 
 Same as `trace`, only unsafe as it's unsynchronized.
 

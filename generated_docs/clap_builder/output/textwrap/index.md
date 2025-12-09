@@ -29,3 +29,5 @@ Benefits of forking:
 fn wrap(content: &str, _hard_width: usize) -> String
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/textwrap/mod.rs:26-28`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/textwrap/mod.rs#L26-L28)*
+

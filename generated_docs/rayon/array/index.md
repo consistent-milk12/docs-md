@@ -26,6 +26,8 @@ struct IntoIter<T, const N: usize> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/array.rs:43-45`](../../../.source_1765210505/rayon-1.11.0/src/array.rs#L43-L45)*
+
 Parallel iterator that moves out of an array.
 
 #### Trait Implementations
@@ -50,15 +52,15 @@ Parallel iterator that moves out of an array.
 
 ##### `impl<T> IntoParallelIterator for IntoIter<T, N>`
 
-- <span id="intoiter-iter"></span>`type Iter = T`
+- <span id="intoiter-type-iter"></span>`type Iter = T`
 
-- <span id="intoiter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send, const N: usize> ParallelIterator for IntoIter<T, N>`
 
-- <span id="intoiter-item"></span>`type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
 - <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -66,9 +68,9 @@ Parallel iterator that moves out of an array.
 
 ##### `impl<T> Pointable for IntoIter<T, N>`
 
-- <span id="intoiter-align"></span>`const ALIGN: usize`
+- <span id="intoiter-const-align"></span>`const ALIGN: usize`
 
-- <span id="intoiter-init"></span>`type Init = T`
+- <span id="intoiter-type-init"></span>`type Init = T`
 
 - <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

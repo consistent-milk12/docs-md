@@ -28,15 +28,11 @@ struct Struct<'a> {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:15-20`](../../../.source_1765210505/thiserror-impl-2.0.17/src/ast.rs#L15-L20)*
+
 #### Implementations
 
-- <span id="crateaststruct-from-field"></span>`fn from_field(&self) -> Option<&Field<'_>>` — [`Field`](#field)
-
-- <span id="crateaststruct-source-field"></span>`fn source_field(&self) -> Option<&Field<'_>>` — [`Field`](#field)
-
-- <span id="crateaststruct-backtrace-field"></span>`fn backtrace_field(&self) -> Option<&Field<'_>>` — [`Field`](#field)
-
-- <span id="crateaststruct-distinct-backtrace-field"></span>`fn distinct_backtrace_field(&self) -> Option<&Field<'_>>` — [`Field`](#field)
+- <span id="struct-from-syn"></span>`fn from_syn(node: &'a DeriveInput, data: &'a DataStruct) -> Result<Self>`
 
 ### `Enum<'a>`
 
@@ -49,9 +45,11 @@ struct Enum<'a> {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:22-27`](../../../.source_1765210505/thiserror-impl-2.0.17/src/ast.rs#L22-L27)*
+
 #### Implementations
 
-- <span id="crateastenum-validate"></span>`fn validate(&self) -> Result<()>`
+- <span id="enum-from-syn"></span>`fn from_syn(node: &'a DeriveInput, data: &'a DataEnum) -> Result<Self>`
 
 ### `Variant<'a>`
 
@@ -64,9 +62,11 @@ struct Variant<'a> {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:29-34`](../../../.source_1765210505/thiserror-impl-2.0.17/src/ast.rs#L29-L34)*
+
 #### Implementations
 
-- <span id="crateastvariant-validate"></span>`fn validate(&self) -> Result<()>`
+- <span id="variant-from-syn"></span>`fn from_syn(node: &'a syn::Variant, scope: &ParamsInScope<'a>) -> Result<Self>` — [`ParamsInScope`](../generics/index.md)
 
 ### `Field<'a>`
 
@@ -80,11 +80,13 @@ struct Field<'a> {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:36-42`](../../../.source_1765210505/thiserror-impl-2.0.17/src/ast.rs#L36-L42)*
+
 #### Implementations
 
-- <span id="crateastfield-is-backtrace"></span>`fn is_backtrace(&self) -> bool`
+- <span id="field-multiple-from-syn"></span>`fn multiple_from_syn(fields: &'a Fields, scope: &ParamsInScope<'a>) -> Result<Vec<Self>>` — [`ParamsInScope`](../generics/index.md)
 
-- <span id="crateastfield-source-span"></span>`fn source_span(&self) -> Span`
+- <span id="field-from-syn"></span>`fn from_syn(i: usize, node: &'a syn::Field, scope: &ParamsInScope<'a>) -> Result<Self>` — [`ParamsInScope`](../generics/index.md)
 
 ## Enums
 
@@ -97,9 +99,11 @@ enum Input<'a> {
 }
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:10-13`](../../../.source_1765210505/thiserror-impl-2.0.17/src/ast.rs#L10-L13)*
+
 #### Implementations
 
-- <span id="crateastinput-validate"></span>`fn validate(&self) -> Result<()>`
+- <span id="input-from-syn"></span>`fn from_syn(node: &'a DeriveInput) -> Result<Self>`
 
 ### `ContainerKind`
 
@@ -113,6 +117,8 @@ enum ContainerKind {
     UnitVariant,
 }
 ```
+
+*Defined in [`thiserror-impl-2.0.17/src/ast.rs:45-52`](../../../.source_1765210505/thiserror-impl-2.0.17/src/ast.rs#L45-L52)*
 
 #### Implementations
 
@@ -132,7 +138,7 @@ enum ContainerKind {
 
 - <span id="containerkind-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for ContainerKind`
+##### `impl ToString for ContainerKind`
 
 - <span id="containerkind-to-string"></span>`fn to_string(&self) -> String`
 

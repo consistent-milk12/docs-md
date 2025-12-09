@@ -23,6 +23,8 @@
 trait Array { ... }
 ```
 
+*Defined in [`tinyvec-1.10.0/src/array.rs:18-41`](../../../.source_1765210505/tinyvec-1.10.0/src/array.rs#L18-L41)*
+
 A trait for types that are an array.
 
 An "array", for our purposes, has the following properties:

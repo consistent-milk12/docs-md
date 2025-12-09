@@ -28,6 +28,8 @@ struct ItemRenderer<'a> {
 }
 ```
 
+*Defined in `src/generator/items.rs:35-45`*
+
 Renders individual Rust items to markdown.
 
 This struct provides methods for rendering each type of documentable item:
@@ -39,7 +41,7 @@ This struct provides methods for rendering each type of documentable item:
 - Constants
 - Type aliases
 
-The renderer is generic over [`RenderContext`](../index.md), allowing it to work with
+The renderer is generic over [`RenderContext`](../context/index.md), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
 #### Fields
@@ -59,9 +61,11 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- <span id="itemrenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../index.md)
+- <span id="itemrenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../context/index.md)
 
 - <span id="itemrenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
+
+- <span id="itemrenderer-maybe-render-source-location"></span>`fn maybe_render_source_location(&self, item: &Item) -> String`
 
 - <span id="itemrenderer-resolve-use-target"></span>`fn resolve_use_target<'b>(&self, item: &'b Item) -> Option<(&'b str, &'b Item)>`
 
@@ -83,19 +87,23 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="itemrenderer-render-type-alias"></span>`fn render_type_alias(&self, md: &mut String, item: &Item)`
 
+- <span id="itemrenderer-render-union"></span>`fn render_union(&self, md: &mut String, item_id: Id, item: &Item)`
+
+- <span id="itemrenderer-render-static"></span>`fn render_static(&self, md: &mut String, item: &Item)`
+
 #### Trait Implementations
 
-##### `impl<T> Instrument for ItemRenderer<'a>`
+##### `impl Instrument for ItemRenderer<'a>`
 
-##### `impl<T> IntoEither for ItemRenderer<'a>`
+##### `impl IntoEither for ItemRenderer<'a>`
 
-##### `impl<D> OwoColorize for ItemRenderer<'a>`
+##### `impl OwoColorize for ItemRenderer<'a>`
 
-##### `impl<T> Pointable for ItemRenderer<'a>`
+##### `impl Pointable for ItemRenderer<'a>`
 
-- <span id="itemrenderer-align"></span>`const ALIGN: usize`
+- <span id="itemrenderer-const-align"></span>`const ALIGN: usize`
 
-- <span id="itemrenderer-init"></span>`type Init = T`
+- <span id="itemrenderer-type-init"></span>`type Init = T`
 
 - <span id="itemrenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -105,5 +113,5 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="itemrenderer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for ItemRenderer<'a>`
+##### `impl WithSubscriber for ItemRenderer<'a>`
 

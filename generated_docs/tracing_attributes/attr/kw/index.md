@@ -43,6 +43,8 @@ struct fields {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:497`](../../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L497)*
+
 #### Trait Implementations
 
 ##### `impl Clone for fields`
@@ -73,7 +75,7 @@ struct fields {
 
 - <span id="fields-eq"></span>`fn eq(&self, _other: &Self) -> __private::bool`
 
-##### `impl<T> Spanned for fields`
+##### `impl Spanned for fields`
 
 - <span id="fields-span"></span>`fn span(&self) -> Span`
 
@@ -81,7 +83,7 @@ struct fields {
 
 - <span id="fields-to-tokens"></span>`fn to_tokens(&self, tokens: &mut __private::TokenStream2)`
 
-##### `impl<T> Token for fields`
+##### `impl Token for fields`
 
 - <span id="fields-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool`
 
@@ -94,6 +96,8 @@ struct skip {
     pub span: __private::Span,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:498`](../../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L498)*
 
 #### Trait Implementations
 
@@ -125,7 +129,7 @@ struct skip {
 
 - <span id="skip-eq"></span>`fn eq(&self, _other: &Self) -> __private::bool`
 
-##### `impl<T> Spanned for skip`
+##### `impl Spanned for skip`
 
 - <span id="skip-span"></span>`fn span(&self) -> Span`
 
@@ -133,7 +137,7 @@ struct skip {
 
 - <span id="skip-to-tokens"></span>`fn to_tokens(&self, tokens: &mut __private::TokenStream2)`
 
-##### `impl<T> Token for skip`
+##### `impl Token for skip`
 
 - <span id="skip-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool`
 
@@ -146,6 +150,8 @@ struct skip_all {
     pub span: __private::Span,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:499`](../../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L499)*
 
 #### Trait Implementations
 
@@ -177,7 +183,7 @@ struct skip_all {
 
 - <span id="skip-all-eq"></span>`fn eq(&self, _other: &Self) -> __private::bool`
 
-##### `impl<T> Spanned for skip_all`
+##### `impl Spanned for skip_all`
 
 - <span id="skip-all-span"></span>`fn span(&self) -> Span`
 
@@ -185,7 +191,7 @@ struct skip_all {
 
 - <span id="skip-all-to-tokens"></span>`fn to_tokens(&self, tokens: &mut __private::TokenStream2)`
 
-##### `impl<T> Token for skip_all`
+##### `impl Token for skip_all`
 
 - <span id="skip-all-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool`
 
@@ -198,6 +204,8 @@ struct level {
     pub span: __private::Span,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:500`](../../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L500)*
 
 #### Trait Implementations
 
@@ -229,7 +237,7 @@ struct level {
 
 - <span id="level-eq"></span>`fn eq(&self, _other: &Self) -> __private::bool`
 
-##### `impl<T> Spanned for level`
+##### `impl Spanned for level`
 
 - <span id="level-span"></span>`fn span(&self) -> Span`
 
@@ -237,7 +245,7 @@ struct level {
 
 - <span id="level-to-tokens"></span>`fn to_tokens(&self, tokens: &mut __private::TokenStream2)`
 
-##### `impl<T> Token for level`
+##### `impl Token for level`
 
 - <span id="level-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool`
 
@@ -250,6 +258,8 @@ struct target {
     pub span: __private::Span,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:501`](../../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L501)*
 
 #### Trait Implementations
 
@@ -281,7 +291,7 @@ struct target {
 
 - <span id="target-eq"></span>`fn eq(&self, _other: &Self) -> __private::bool`
 
-##### `impl<T> Spanned for target`
+##### `impl Spanned for target`
 
 - <span id="target-span"></span>`fn span(&self) -> Span`
 
@@ -289,7 +299,7 @@ struct target {
 
 - <span id="target-to-tokens"></span>`fn to_tokens(&self, tokens: &mut __private::TokenStream2)`
 
-##### `impl<T> Token for target`
+##### `impl Token for target`
 
 - <span id="target-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool`
 
@@ -302,6 +312,8 @@ struct parent {
     pub span: __private::Span,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:502`](../../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L502)*
 
 #### Trait Implementations
 
@@ -333,7 +345,7 @@ struct parent {
 
 - <span id="parent-eq"></span>`fn eq(&self, _other: &Self) -> __private::bool`
 
-##### `impl<T> Spanned for parent`
+##### `impl Spanned for parent`
 
 - <span id="parent-span"></span>`fn span(&self) -> Span`
 
@@ -341,7 +353,7 @@ struct parent {
 
 - <span id="parent-to-tokens"></span>`fn to_tokens(&self, tokens: &mut __private::TokenStream2)`
 
-##### `impl<T> Token for parent`
+##### `impl Token for parent`
 
 - <span id="parent-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool`
 
@@ -354,6 +366,8 @@ struct follows_from {
     pub span: __private::Span,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:503`](../../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L503)*
 
 #### Trait Implementations
 
@@ -385,7 +399,7 @@ struct follows_from {
 
 - <span id="follows-from-eq"></span>`fn eq(&self, _other: &Self) -> __private::bool`
 
-##### `impl<T> Spanned for follows_from`
+##### `impl Spanned for follows_from`
 
 - <span id="follows-from-span"></span>`fn span(&self) -> Span`
 
@@ -393,7 +407,7 @@ struct follows_from {
 
 - <span id="follows-from-to-tokens"></span>`fn to_tokens(&self, tokens: &mut __private::TokenStream2)`
 
-##### `impl<T> Token for follows_from`
+##### `impl Token for follows_from`
 
 - <span id="follows-from-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool`
 
@@ -406,6 +420,8 @@ struct name {
     pub span: __private::Span,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:504`](../../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L504)*
 
 #### Trait Implementations
 
@@ -437,7 +453,7 @@ struct name {
 
 - <span id="name-eq"></span>`fn eq(&self, _other: &Self) -> __private::bool`
 
-##### `impl<T> Spanned for name`
+##### `impl Spanned for name`
 
 - <span id="name-span"></span>`fn span(&self) -> Span`
 
@@ -445,7 +461,7 @@ struct name {
 
 - <span id="name-to-tokens"></span>`fn to_tokens(&self, tokens: &mut __private::TokenStream2)`
 
-##### `impl<T> Token for name`
+##### `impl Token for name`
 
 - <span id="name-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool`
 
@@ -458,6 +474,8 @@ struct err {
     pub span: __private::Span,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:505`](../../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L505)*
 
 #### Trait Implementations
 
@@ -489,7 +507,7 @@ struct err {
 
 - <span id="err-eq"></span>`fn eq(&self, _other: &Self) -> __private::bool`
 
-##### `impl<T> Spanned for err`
+##### `impl Spanned for err`
 
 - <span id="err-span"></span>`fn span(&self) -> Span`
 
@@ -497,7 +515,7 @@ struct err {
 
 - <span id="err-to-tokens"></span>`fn to_tokens(&self, tokens: &mut __private::TokenStream2)`
 
-##### `impl<T> Token for err`
+##### `impl Token for err`
 
 - <span id="err-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool`
 
@@ -510,6 +528,8 @@ struct ret {
     pub span: __private::Span,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:506`](../../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L506)*
 
 #### Trait Implementations
 
@@ -541,7 +561,7 @@ struct ret {
 
 - <span id="ret-eq"></span>`fn eq(&self, _other: &Self) -> __private::bool`
 
-##### `impl<T> Spanned for ret`
+##### `impl Spanned for ret`
 
 - <span id="ret-span"></span>`fn span(&self) -> Span`
 
@@ -549,7 +569,7 @@ struct ret {
 
 - <span id="ret-to-tokens"></span>`fn to_tokens(&self, tokens: &mut __private::TokenStream2)`
 
-##### `impl<T> Token for ret`
+##### `impl Token for ret`
 
 - <span id="ret-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool`
 

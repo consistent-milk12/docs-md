@@ -28,6 +28,8 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:18-24`](../../../../.source_1765210505/gimli-0.32.3/src/read/endian_slice.rs#L18-L24)*
+
 A `&[u8]` slice with endianity metadata.
 
 This implements the `Reader` trait, which is used for all reading of DWARF sections.
@@ -68,7 +70,7 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 ##### `impl<'input, Endian> Deref for EndianSlice<'input, Endian>`
 
-- <span id="endianslice-target"></span>`type Target = [u8]`
+- <span id="endianslice-type-target"></span>`type Target = [u8]`
 
 - <span id="endianslice-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -84,9 +86,9 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 ##### `impl<'input, Endian> Reader for EndianSlice<'input, Endian>`
 
-- <span id="endianslice-endian"></span>`type Endian = Endian`
+- <span id="endianslice-type-endian"></span>`type Endian = Endian`
 
-- <span id="endianslice-offset"></span>`type Offset = usize`
+- <span id="endianslice-type-offset"></span>`type Offset = usize`
 
 - <span id="endianslice-endian"></span>`fn endian(&self) -> Endian`
 
@@ -120,7 +122,7 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 ##### `impl<P, T> Receiver for EndianSlice<'input, Endian>`
 
-- <span id="endianslice-target"></span>`type Target = T`
+- <span id="endianslice-type-target"></span>`type Target = T`
 
 ##### `impl<'input, Endian> StructuralPartialEq for EndianSlice<'input, Endian>`
 
@@ -130,9 +132,11 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 struct DebugBytes<'input>(&'input [u8]);
 ```
 
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:190`](../../../../.source_1765210505/gimli-0.32.3/src/read/endian_slice.rs#L190)*
+
 #### Trait Implementations
 
-##### `impl<'input> Debug for DebugBytes<'input>`
+##### `impl Debug for DebugBytes<'input>`
 
 - <span id="debugbytes-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
 
@@ -141,6 +145,8 @@ struct DebugBytes<'input>(&'input [u8]);
 ```rust
 struct DebugByte(u8);
 ```
+
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:203`](../../../../.source_1765210505/gimli-0.32.3/src/read/endian_slice.rs#L203)*
 
 #### Trait Implementations
 
@@ -153,6 +159,8 @@ struct DebugByte(u8);
 ```rust
 struct DebugLen(usize);
 ```
+
+*Defined in [`gimli-0.32.3/src/read/endian_slice.rs:211`](../../../../.source_1765210505/gimli-0.32.3/src/read/endian_slice.rs#L211)*
 
 #### Trait Implementations
 

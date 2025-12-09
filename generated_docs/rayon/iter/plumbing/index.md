@@ -33,16 +33,16 @@ interact with them directly.  See [the `plumbing` README][r] for a general overv
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Splitter`](#splitter) | struct | A splitter controls the policy for splitting into smaller work items. |
-| [`LengthSplitter`](#lengthsplitter) | struct | The length splitter is built on thief-splitting, but additionally takes |
-| [`ProducerCallback`](#producercallback) | trait | The `ProducerCallback` trait is a kind of generic closure |
+| [`LengthSplitter`](#lengthsplitter) | struct | The length splitter is built on thief-splitting, but additionally takes into account the remaining length of the iterator. |
+| [`ProducerCallback`](#producercallback) | trait | The `ProducerCallback` trait is a kind of generic closure, [analogous to `FnOnce`][FnOnce]. |
 | [`Producer`](#producer) | trait | A `Producer` is effectively a "splittable `IntoIterator`". |
-| [`Consumer`](#consumer) | trait | A consumer is effectively a [generalized "fold" operation][fold] |
-| [`Folder`](#folder) | trait | The `Folder` trait encapsulates [the standard fold |
-| [`Reducer`](#reducer) | trait | The reducer is the final step of a `Consumer` -- after a consumer |
+| [`Consumer`](#consumer) | trait | A consumer is effectively a [generalized "fold" operation][fold], and in fact each consumer will eventually be converted into a [`Folder`]. |
+| [`Folder`](#folder) | trait | The `Folder` trait encapsulates [the standard fold operation][fold]. |
+| [`Reducer`](#reducer) | trait | The reducer is the final step of a `Consumer` -- after a consumer has been split into two parts, and each of those parts has been fully processed, we are left with two results. |
 | [`UnindexedConsumer`](#unindexedconsumer) | trait | A stateless consumer can be freely copied. |
-| [`UnindexedProducer`](#unindexedproducer) | trait | A variant on `Producer` which does not know its exact length or |
-| [`bridge`](#bridge) | fn | This helper function is used to "connect" a parallel iterator to a |
-| [`bridge_producer_consumer`](#bridge_producer_consumer) | fn | This helper function is used to "connect" a producer and a |
+| [`UnindexedProducer`](#unindexedproducer) | trait | A variant on `Producer` which does not know its exact length or cannot represent it in a `usize`. |
+| [`bridge`](#bridge) | fn | This helper function is used to "connect" a parallel iterator to a consumer. |
+| [`bridge_producer_consumer`](#bridge_producer_consumer) | fn | This helper function is used to "connect" a producer and a consumer. |
 | [`bridge_unindexed`](#bridge_unindexed) | fn | A variant of [`bridge_producer_consumer()`] where the producer is an unindexed producer. |
 | [`bridge_unindexed_producer_consumer`](#bridge_unindexed_producer_consumer) | fn |  |
 
@@ -55,6 +55,8 @@ struct Splitter {
     splits: usize,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:251-256`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L251-L256)*
 
 A splitter controls the policy for splitting into smaller work items.
 
@@ -84,13 +86,13 @@ job is actually stolen into a different thread.
 
 ##### `impl Copy for Splitter`
 
-##### `impl<T> IntoEither for Splitter`
+##### `impl IntoEither for Splitter`
 
-##### `impl<T> Pointable for Splitter`
+##### `impl Pointable for Splitter`
 
-- <span id="splitter-align"></span>`const ALIGN: usize`
+- <span id="splitter-const-align"></span>`const ALIGN: usize`
 
-- <span id="splitter-init"></span>`type Init = T`
+- <span id="splitter-type-init"></span>`type Init = T`
 
 - <span id="splitter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -108,6 +110,8 @@ struct LengthSplitter {
     min: usize,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:289-295`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L289-L295)*
 
 The length splitter is built on thief-splitting, but additionally takes
 into account the remaining length of the iterator.
@@ -133,13 +137,13 @@ into account the remaining length of the iterator.
 
 ##### `impl Copy for LengthSplitter`
 
-##### `impl<T> IntoEither for LengthSplitter`
+##### `impl IntoEither for LengthSplitter`
 
-##### `impl<T> Pointable for LengthSplitter`
+##### `impl Pointable for LengthSplitter`
 
-- <span id="lengthsplitter-align"></span>`const ALIGN: usize`
+- <span id="lengthsplitter-const-align"></span>`const ALIGN: usize`
 
-- <span id="lengthsplitter-init"></span>`type Init = T`
+- <span id="lengthsplitter-type-init"></span>`type Init = T`
 
 - <span id="lengthsplitter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -156,6 +160,8 @@ into account the remaining length of the iterator.
 ```rust
 trait ProducerCallback<T> { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:17-30`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L17-L30)*
 
 The `ProducerCallback` trait is a kind of generic closure,
 [analogous to `FnOnce`][FnOnce]. See [the corresponding section in
@@ -182,6 +188,8 @@ the plumbing README][r] for more details.
 ```rust
 trait Producer: Send + Sized { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:56-109`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L56-L109)*
 
 A `Producer` is effectively a "splittable `IntoIterator`". That
 is, a producer is a value which can be converted into an iterator
@@ -280,6 +288,8 @@ IntoIterator here until that issue is fixed.
 trait Consumer<Item>: Send + Sized { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:123-146`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L123-L146)*
+
 A consumer is effectively a [generalized "fold" operation][`fold`](../fold/index.md),
 and in fact each consumer will eventually be converted into a
 [`Folder`](#folder). What makes a consumer special is that, like a
@@ -362,6 +372,8 @@ README][r] for further details.
 trait Folder<Item>: Sized { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:154-188`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L154-L188)*
+
 The `Folder` trait encapsulates [the standard fold
 operation][`fold`](../fold/index.md).  It can be fed many items using the `consume`
 method. At the end, once all items have been consumed, it can then
@@ -437,6 +449,8 @@ be converted (using `complete`) into a final value.
 trait Reducer<Result> { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:197-201`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L197-L201)*
+
 The reducer is the final step of a `Consumer` -- after a consumer
 has been split into two parts, and each of those parts has been
 fully processed, we are left with two results. The reducer is then
@@ -470,6 +484,8 @@ README][r] for further details.
 ```rust
 trait UnindexedConsumer<I>: Consumer<I> { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:208-221`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L208-L221)*
 
 A stateless consumer can be freely copied. These consumers can be
 used like regular consumers, but they also support a
@@ -534,6 +550,8 @@ produces an unindexed consumer).
 trait UnindexedProducer: Send + Sized { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:231-243`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L231-L243)*
+
 A variant on `Producer` which does not know its exact length or
 cannot represent it in a `usize`. These producers act like
 ordinary producers except that they cannot be told to split at a
@@ -586,6 +604,8 @@ where
     C: Consumer<<I as >::Item>
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:346-371`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L346-L371)*
+
 This helper function is used to "connect" a parallel iterator to a
 consumer. It will convert the `par_iter` into a producer P and
 then pull items from P and feed them to `consumer`, splitting and
@@ -605,6 +625,8 @@ where
     P: Producer,
     C: Consumer<<P as >::Item>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:385-435`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L385-L435)*
 
 This helper function is used to "connect" a producer and a
 consumer. You may prefer to call [`bridge()`](#bridge), which wraps this
@@ -627,6 +649,8 @@ where
     C: UnindexedConsumer<<P as >::Item>
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:438-445`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L438-L445)*
+
 A variant of [`bridge_producer_consumer()`](#bridge-producer-consumer) where the producer is an unindexed producer.
 
 ### `bridge_unindexed_producer_consumer`
@@ -637,4 +661,6 @@ where
     P: UnindexedProducer,
     C: UnindexedConsumer<<P as >::Item>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/plumbing/mod.rs:447-476`](../../../../.source_1765210505/rayon-1.11.0/src/iter/plumbing/mod.rs#L447-L476)*
 

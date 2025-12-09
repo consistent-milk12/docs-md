@@ -22,6 +22,8 @@ struct ListsHeader {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/lists.rs:5-9`](../../../../.source_1765210505/gimli-0.32.3/src/read/lists.rs#L5-L9)*
+
 #### Implementations
 
 - <span id="listsheader-size"></span>`fn size(self) -> u8`
@@ -51,4 +53,6 @@ struct ListsHeader {
 ```rust
 fn parse_header<R: Reader>(input: &mut R) -> crate::read::Result<ListsHeader>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/lists.rs:43-68`](../../../../.source_1765210505/gimli-0.32.3/src/read/lists.rs#L43-L68)*
 

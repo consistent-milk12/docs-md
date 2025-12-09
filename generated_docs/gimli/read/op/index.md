@@ -31,11 +31,11 @@ Functions for parsing and evaluating DWARF expressions.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Piece`](#piece) | struct | The description of a single piece of the result of a DWARF |
+| [`Piece`](#piece) | struct | The description of a single piece of the result of a DWARF expression. |
 | [`Expression`](#expression) | struct | The bytecode for a DWARF expression or location description. |
 | [`OperationIter`](#operationiter) | struct | An iterator for the operations in an expression. |
 | [`Evaluation`](#evaluation) | struct | A DWARF expression evaluator. |
-| [`DieReference`](#diereference) | enum | A reference to a DIE, either relative to the current CU or |
+| [`DieReference`](#diereference) | enum | A reference to a DIE, either relative to the current CU or relative to the section. |
 | [`Operation`](#operation) | enum | A single decoded DWARF expression operation. |
 | [`OperationEvaluationResult`](#operationevaluationresult) | enum |  |
 | [`Location`](#location) | enum | A single location of a piece of the result of a DWARF expression. |
@@ -60,6 +60,8 @@ where
     pub location: Location<R, Offset>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/op.rs:356-378`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L356-L378)*
 
 The description of a single piece of the result of a DWARF
 expression.
@@ -113,6 +115,8 @@ expression.
 struct Expression<R: Reader>(R);
 ```
 
+*Defined in [`gimli-0.32.3/src/read/op.rs:924`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L924)*
+
 The bytecode for a DWARF expression or location description.
 
 #### Implementations
@@ -154,6 +158,8 @@ struct OperationIter<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/op.rs:962-965`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L962-L965)*
+
 An iterator for the operations in an expression.
 
 #### Implementations
@@ -192,6 +198,8 @@ struct Evaluation<R: Reader, S: EvaluationStorage<R>> {
     result: super::util::ArrayVec<<S as >::Result>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/op.rs:1106-1131`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L1106-L1131)*
 
 A DWARF expression evaluator.
 
@@ -261,6 +269,8 @@ enum DieReference<T> {
     DebugInfoRef(crate::common::DebugInfoOffset<T>),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/op.rs:15-20`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L15-L20)*
 
 A reference to a DIE, either relative to the current CU or
 relative to the section.
@@ -414,6 +424,8 @@ where
     },
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/op.rs:34-293`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L34-L293)*
 
 A single decoded DWARF expression operation.
 
@@ -734,6 +746,8 @@ enum OperationEvaluationResult<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/op.rs:296-301`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L296-L301)*
+
 #### Trait Implementations
 
 ##### `impl<R: fmt::Debug + Reader> Debug for OperationEvaluationResult<R>`
@@ -766,6 +780,8 @@ where
     },
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/op.rs:305-340`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L305-L340)*
 
 A single location of a piece of the result of a DWARF expression.
 
@@ -830,6 +846,8 @@ enum EvaluationState<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/op.rs:816-822`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L816-L822)*
+
 #### Trait Implementations
 
 ##### `impl<R: fmt::Debug + Reader> Debug for EvaluationState<R>`
@@ -861,6 +879,8 @@ enum EvaluationWaiting<R: Reader> {
     Reinterpret,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/op.rs:825-839`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L825-L839)*
 
 #### Trait Implementations
 
@@ -897,6 +917,8 @@ enum EvaluationResult<R: Reader> {
     RequiresBaseType(crate::read::UnitOffset<<R as >::Offset>),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/op.rs:845-920`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L845-L920)*
 
 The state of an `Evaluation` after evaluating a DWARF expression.
 The evaluation is either `Complete`, or it requires more data
@@ -1001,6 +1023,8 @@ to continue, as described by the variant.
 trait EvaluationStorage<R: Reader> { ... }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/op.rs:1044-1051`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L1044-L1051)*
+
 Specification of what storage should be used for [`Evaluation`](../index.md).
 
 Normally you would only need to use [`StoreOnHeap`](../../index.md), which places the stacks and the results
@@ -1063,9 +1087,13 @@ println!("{:?}", result);
 fn compute_pc<R: Reader>(pc: &R, bytecode: &R, offset: i16) -> crate::read::Result<R>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/op.rs:381-391`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L381-L391)*
+
 ### `generic_type`
 
 ```rust
 fn generic_type<O: ReaderOffset>() -> crate::read::UnitOffset<O>
 ```
+
+*Defined in [`gimli-0.32.3/src/read/op.rs:393-395`](../../../../.source_1765210505/gimli-0.32.3/src/read/op.rs#L393-L395)*
 

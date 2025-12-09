@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`ToCompactString`](#tocompactstring) | trait | A trait for converting a value to a `CompactString`. |
-| [`CompactStringExt`](#compactstringext) | trait | A trait that provides convenience methods for creating a [`CompactString`] from a collection of |
+| [`CompactStringExt`](#compactstringext) | trait | A trait that provides convenience methods for creating a [`CompactString`] from a collection of items. |
 
 ## Traits
 
@@ -19,11 +19,13 @@
 trait ToCompactString { ... }
 ```
 
+*Defined in [`compact_str-0.9.0/src/traits.rs:16-49`](../../../.source_1765210505/compact_str-0.9.0/src/traits.rs#L16-L49)*
+
 A trait for converting a value to a `CompactString`.
 
 This trait is automatically implemented for any type which implements the
-[`fmt::Display`](../../miette_derive/index.md) trait. As such, [`ToCompactString`](../index.md) shouldn't be implemented directly:
-[`fmt::Display`](../../miette_derive/index.md) should be implemented instead, and you get the [`ToCompactString`](../index.md)
+[`fmt::Display`](../../miette_derive/fmt/index.md) trait. As such, [`ToCompactString`](#tocompactstring) shouldn't be implemented directly:
+[`fmt::Display`](../../miette_derive/fmt/index.md) should be implemented instead, and you get the [`ToCompactString`](#tocompactstring)
 implementation for free.
 
 #### Required Methods
@@ -40,11 +42,6 @@ implementation for free.
 
 #### Implementors
 
-- [`CompactString`](../index.md)
-- [`Drain`](../index.md)
-- [`ReserveError`](../index.md)
-- [`ToCompactStringError`](../index.md)
-- [`Utf16Error`](../index.md)
 - `T`
 
 ### `CompactStringExt`
@@ -52,6 +49,8 @@ implementation for free.
 ```rust
 trait CompactStringExt { ... }
 ```
+
+*Defined in [`compact_str-0.9.0/src/traits.rs:142-169`](../../../.source_1765210505/compact_str-0.9.0/src/traits.rs#L142-L169)*
 
 A trait that provides convenience methods for creating a [`CompactString`](../index.md) from a collection of
 items. It is implemented for all types that can be converted into an iterator, and that iterator

@@ -7,7 +7,7 @@
 <br>
 
 This crate provides macros for conditional compilation according to rustc
-compiler version, analogous to [`#[cfg(...)]`][`cfg`](expand/index.md) and
+compiler version, analogous to [`#[cfg(...)]`][cfg](#cfg) and
 [`#[cfg_attr(...)]`][cfg_attr].
 
 
@@ -104,7 +104,7 @@ compiler version, analogous to [`#[cfg(...)]`][`cfg`](expand/index.md) and
 
 Providing additional trait impls as types are stabilized in the standard library
 without breaking compatibility with older compilers; in this case Pin\<P\>
-stabilized in [Rust 1.33][`pin`](../crossbeam_epoch/index.md):
+stabilized in [Rust 1.33][`pin`](../crossbeam_epoch/default/index.md):
 
 ```rust
 trait MyTrait {}
@@ -223,8 +223,9 @@ extern crate alloc;
 ## Constants
 
 ### `RUSTVERSION`
-
 ```rust
 const RUSTVERSION: crate::version::Version;
 ```
+
+*Defined in [`rustversion-1.0.22/src/lib.rs:217`](../../.source_1765210505/rustversion-1.0.22/src/lib.rs#L217)*
 

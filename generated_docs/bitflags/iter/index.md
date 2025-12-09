@@ -25,6 +25,8 @@ struct Iter<B: 'static> {
 }
 ```
 
+*Defined in [`bitflags-2.10.0/src/iter.rs:13-16`](../../../.source_1765210505/bitflags-2.10.0/src/iter.rs#L13-L16)*
+
 An iterator over flags values.
 
 This iterator will yield flags values for contained, defined flags first, with any remaining bits yielded
@@ -38,15 +40,15 @@ as a final flags value.
 
 ##### `impl<I> IntoIterator for Iter<B>`
 
-- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-intoiter"></span>`type IntoIter = I`
+- <span id="iter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for Iter<B>`
 
-- <span id="iter-item"></span>`type Item = B`
+- <span id="iter-type-item"></span>`type Item = B`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -61,6 +63,8 @@ struct IterNames<B: 'static> {
 }
 ```
 
+*Defined in [`bitflags-2.10.0/src/iter.rs:67-72`](../../../.source_1765210505/bitflags-2.10.0/src/iter.rs#L67-L72)*
+
 An iterator over flags values.
 
 This iterator only yields flags values for contained, defined, named flags. Any remaining bits
@@ -68,21 +72,21 @@ won't be yielded, but can be found with the `IterNames::remaining` method.
 
 #### Implementations
 
-- <span id="iternames-remaining"></span>`fn remaining(&self) -> &B`
+- <span id="iternames-new"></span>`fn new(flags: &B) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<I> IntoIterator for IterNames<B>`
 
-- <span id="iternames-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iternames-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iternames-intoiter"></span>`type IntoIter = I`
+- <span id="iternames-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iternames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for IterNames<B>`
 
-- <span id="iternames-item"></span>`type Item = (&'static str, B)`
+- <span id="iternames-type-item"></span>`type Item = (&'static str, B)`
 
 - <span id="iternames-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -94,6 +98,8 @@ struct IterDefinedNames<B: 'static> {
     idx: usize,
 }
 ```
+
+*Defined in [`bitflags-2.10.0/src/iter.rs:153-156`](../../../.source_1765210505/bitflags-2.10.0/src/iter.rs#L153-L156)*
 
 An iterator over all defined named flags.
 
@@ -108,15 +114,15 @@ whether they are contained in a particular flags value.
 
 ##### `impl<I> IntoIterator for IterDefinedNames<B>`
 
-- <span id="iterdefinednames-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iterdefinednames-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iterdefinednames-intoiter"></span>`type IntoIter = I`
+- <span id="iterdefinednames-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iterdefinednames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for IterDefinedNames<B>`
 
-- <span id="iterdefinednames-item"></span>`type Item = (&'static str, B)`
+- <span id="iterdefinednames-type-item"></span>`type Item = (&'static str, B)`
 
 - <span id="iterdefinednames-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

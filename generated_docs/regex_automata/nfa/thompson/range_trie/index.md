@@ -30,8 +30,8 @@
 | [`State`](#state) | struct | A single state in this trie. |
 | [`Transition`](#transition) | struct | A transition is a single range of bytes. |
 | [`NextDupe`](#nextdupe) | struct | The next state to process during duplication. |
-| [`NextIter`](#nextiter) | struct | The next state (and its corresponding transition) that we want to visit |
-| [`NextInsert`](#nextinsert) | struct | The next state to process during insertion and any remaining ranges that we |
+| [`NextIter`](#nextiter) | struct | The next state (and its corresponding transition) that we want to visit during iteration in lexicographic order. |
+| [`NextInsert`](#nextinsert) | struct | The next state to process during insertion and any remaining ranges that we want to add for a particular sequence of ranges. |
 | [`Split`](#split) | struct | Split represents a partitioning of two ranges into one or more ranges. |
 | [`SplitRange`](#splitrange) | enum | A tagged range indicating how it was derived from a pair of ranges. |
 | [`intersects`](#intersects) | fn | Returns true if and only if the given ranges intersect. |
@@ -52,6 +52,8 @@ struct RangeTrie {
     insert_stack: alloc::vec::Vec<NextInsert>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:179-199`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L179-L199)*
 
 A range trie represents an ordered set of sequences of bytes.
 
@@ -148,6 +150,8 @@ struct State {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:203-207`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L203-L207)*
+
 A single state in this trie.
 
 #### Fields
@@ -182,6 +186,8 @@ struct Transition {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:213-218`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L213-L218)*
+
 A transition is a single range of bytes. If a particular byte is in this
 range, then the corresponding machine may transition to the state pointed
 to by `next_id`.
@@ -215,6 +221,8 @@ struct NextDupe {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:609-614`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L609-L614)*
+
 The next state to process during duplication.
 
 #### Fields
@@ -246,6 +254,8 @@ struct NextIter {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:619-622`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L619-L622)*
+
 The next state (and its corresponding transition) that we want to visit
 during iteration in lexicographic order.
 
@@ -268,6 +278,8 @@ struct NextInsert {
     len: u8,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:628-637`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L628-L637)*
 
 The next state to process during insertion and any remaining ranges that we
 want to add for a particular sequence of ranges. The first such instance
@@ -317,6 +329,8 @@ struct Split {
     len: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:771-774`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L771-L774)*
 
 Split represents a partitioning of two ranges into one or more ranges. This
 is the secret sauce that makes a range trie work, as it's what tells us
@@ -448,6 +462,8 @@ enum SplitRange {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:778-782`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L778-L782)*
+
 A tagged range indicating how it was derived from a pair of ranges.
 
 #### Trait Implementations
@@ -478,24 +494,28 @@ A tagged range indicating how it was derived from a pair of ranges.
 fn intersects(r1: regex_syntax::utf8::Utf8Range, r2: regex_syntax::utf8::Utf8Range) -> bool
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:912-914`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L912-L914)*
+
 Returns true if and only if the given ranges intersect.
 
 ## Constants
 
 ### `FINAL`
-
 ```rust
 const FINAL: crate::util::primitives::StateID;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:154`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L154)*
 
 There is only one final state in this trie. Every sequence of byte ranges
 added shares the same final state.
 
 ### `ROOT`
-
 ```rust
 const ROOT: crate::util::primitives::StateID;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/range_trie.rs:157`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/range_trie.rs#L157)*
 
 The root state of the trie.
 

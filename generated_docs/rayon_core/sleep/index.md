@@ -33,6 +33,8 @@ struct Sleep {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:21-27`](../../../.source_1765210505/rayon-core-1.13.0/src/sleep/mod.rs#L21-L27)*
+
 The `Sleep` struct is embedded into each registry. It governs the waking and sleeping
 of workers. It has callbacks that are invoked periodically at significant events,
 such as when workers are looping and looking for work, when latches are set, or when
@@ -76,11 +78,11 @@ events. See the `README.md` in this module for more details.
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for Sleep`
+##### `impl Pointable for Sleep`
 
-- <span id="sleep-align"></span>`const ALIGN: usize`
+- <span id="sleep-const-align"></span>`const ALIGN: usize`
 
-- <span id="sleep-init"></span>`type Init = T`
+- <span id="sleep-type-init"></span>`type Init = T`
 
 - <span id="sleep-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -99,6 +101,8 @@ struct IdleState {
     jobs_counter: self::counters::JobsEventCounter,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:34-44`](../../../.source_1765210505/rayon-core-1.13.0/src/sleep/mod.rs#L34-L44)*
 
 An instance of this struct is created when a thread becomes idle.
 It is consumed when the thread finds work, and passed by `&mut`
@@ -129,11 +133,11 @@ idle.) It tracks state such as how long the thread has been idle.
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for IdleState`
+##### `impl Pointable for IdleState`
 
-- <span id="idlestate-align"></span>`const ALIGN: usize`
+- <span id="idlestate-const-align"></span>`const ALIGN: usize`
 
-- <span id="idlestate-init"></span>`type Init = T`
+- <span id="idlestate-type-init"></span>`type Init = T`
 
 - <span id="idlestate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -152,6 +156,8 @@ struct WorkerSleepState {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:48-54`](../../../.source_1765210505/rayon-core-1.13.0/src/sleep/mod.rs#L48-L54)*
+
 The "sleep state" for an individual worker.
 
 #### Fields
@@ -167,11 +173,11 @@ The "sleep state" for an individual worker.
 
 - <span id="workersleepstate-default"></span>`fn default() -> WorkerSleepState` — [`WorkerSleepState`](#workersleepstate)
 
-##### `impl<T> Pointable for WorkerSleepState`
+##### `impl Pointable for WorkerSleepState`
 
-- <span id="workersleepstate-align"></span>`const ALIGN: usize`
+- <span id="workersleepstate-const-align"></span>`const ALIGN: usize`
 
-- <span id="workersleepstate-init"></span>`type Init = T`
+- <span id="workersleepstate-type-init"></span>`type Init = T`
 
 - <span id="workersleepstate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -184,14 +190,16 @@ The "sleep state" for an individual worker.
 ## Constants
 
 ### `ROUNDS_UNTIL_SLEEPY`
-
 ```rust
 const ROUNDS_UNTIL_SLEEPY: u32 = 32u32;
 ```
 
-### `ROUNDS_UNTIL_SLEEPING`
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:56`](../../../.source_1765210505/rayon-core-1.13.0/src/sleep/mod.rs#L56)*
 
+### `ROUNDS_UNTIL_SLEEPING`
 ```rust
 const ROUNDS_UNTIL_SLEEPING: u32 = 33u32;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/sleep/mod.rs:57`](../../../.source_1765210505/rayon-core-1.13.0/src/sleep/mod.rs#L57)*
 

@@ -20,6 +20,8 @@ struct CachePadded<T> {
 }
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/cache_padded.rs:148-150`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/cache_padded.rs#L148-L150)*
+
 Pads and aligns a value to the length of a cache line.
 
 In concurrent programming, sometimes it is desirable to make sure commonly accessed pieces of
@@ -81,7 +83,7 @@ struct Queue<T> {
 
 #### Implementations
 
-- <span id="cachepadded-new"></span>`const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](../index.md)
+- <span id="cachepadded-new"></span>`const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
 - <span id="cachepadded-into-inner"></span>`fn into_inner(self) -> T`
 
@@ -89,7 +91,7 @@ struct Queue<T> {
 
 ##### `impl<T: clone::Clone> Clone for CachePadded<T>`
 
-- <span id="cachepadded-clone"></span>`fn clone(&self) -> CachePadded<T>` — [`CachePadded`](../index.md)
+- <span id="cachepadded-clone"></span>`fn clone(&self) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
 ##### `impl<T: marker::Copy> Copy for CachePadded<T>`
 
@@ -99,11 +101,11 @@ struct Queue<T> {
 
 ##### `impl<T: default::Default> Default for CachePadded<T>`
 
-- <span id="cachepadded-default"></span>`fn default() -> CachePadded<T>` — [`CachePadded`](../index.md)
+- <span id="cachepadded-default"></span>`fn default() -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
 ##### `impl<T> Deref for CachePadded<T>`
 
-- <span id="cachepadded-target"></span>`type Target = T`
+- <span id="cachepadded-type-target"></span>`type Target = T`
 
 - <span id="cachepadded-deref"></span>`fn deref(&self) -> &T`
 
@@ -123,11 +125,11 @@ struct Queue<T> {
 
 ##### `impl<T: cmp::PartialEq> PartialEq for CachePadded<T>`
 
-- <span id="cachepadded-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](../index.md)
+- <span id="cachepadded-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](#cachepadded)
 
 ##### `impl<P, T> Receiver for CachePadded<T>`
 
-- <span id="cachepadded-target"></span>`type Target = T`
+- <span id="cachepadded-type-target"></span>`type Target = T`
 
 ##### `impl<T: Send> Send for CachePadded<T>`
 

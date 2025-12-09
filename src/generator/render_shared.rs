@@ -9,12 +9,173 @@
 
 use std::borrow::Cow;
 use std::fmt::Write;
+use std::path::Path;
 
-use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, StructKind, VariantKind, Visibility};
+use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Span, StructKind, VariantKind, Visibility};
 
 use crate::generator::context::RenderContext;
-use crate::linker::method_anchor;
+use crate::linker::{assoc_item_anchor, method_anchor, AssocItemKind};
 use crate::types::TypeRenderer;
+
+// =============================================================================
+// Source Location Rendering
+// =============================================================================
+
+/// Information needed to transform source paths to relative links.
+///
+/// When generating source location references, this config enables transforming
+/// absolute cargo registry paths to relative links pointing to the local
+/// `.source_{timestamp}` directory.
+#[derive(Debug, Clone)]
+pub struct SourcePathConfig {
+    /// The `.source_{timestamp}` directory name (e.g., `.source_1733660400`).
+    pub source_dir_name: String,
+
+    /// Depth of the current markdown file from `generated_docs/`.
+    /// Used to calculate the correct number of `../` prefixes.
+    pub depth: usize,
+}
+
+impl SourcePathConfig {
+    /// Create a new source path config.
+    ///
+    /// # Arguments
+    ///
+    /// * `source_dir` - Full path to the `.source_*` directory
+    /// * `current_file` - Path of the current markdown file relative to output dir
+    #[must_use]
+    pub fn new(source_dir: &Path, current_file: &str) -> Self {
+        let source_dir_name = source_dir
+            .file_name()
+            .and_then(|n| n.to_str())
+            .unwrap_or(".source")
+            .to_string();
+
+        // Count depth: number of '/' in current_file path
+        // e.g., "serde/de/index.md" has depth 2
+        let depth = current_file.matches('/').count();
+
+        Self {
+            source_dir_name,
+            depth,
+        }
+    }
+
+    /// Create a config with a specific depth (for file-specific configs).
+    #[must_use]
+    pub fn with_depth(&self, current_file: &str) -> Self {
+        Self {
+            source_dir_name: self.source_dir_name.clone(),
+            depth: current_file.matches('/').count(),
+        }
+    }
+}
+
+/// Transform an absolute cargo registry path to a relative `.source_*` path.
+///
+/// Converts paths like:
+/// `/home/user/.cargo/registry/src/index.crates.io-xxx/serde-1.0.228/src/lib.rs`
+///
+/// To:
+/// `.source_1733660400/serde-1.0.228/src/lib.rs`
+///
+/// Returns `None` if the path doesn't match the expected cargo registry pattern.
+#[must_use]
+pub fn transform_cargo_path(absolute_path: &Path, source_dir_name: &str) -> Option<String> {
+    let path_str = absolute_path.to_str()?;
+
+    // Look for the pattern: .cargo/registry/src/{index}/
+    // The crate directory follows the index directory
+    if let Some(registry_idx) = path_str.find(".cargo/registry/src/") {
+        // Find the index directory end (e.g., "index.crates.io-xxx/")
+        let after_registry = &path_str[registry_idx + ".cargo/registry/src/".len()..];
+
+        // Skip the index directory name (find the next '/')
+        if let Some(slash_idx) = after_registry.find('/') {
+            // Everything after the index directory is the crate path
+            // e.g., "serde-1.0.228/src/lib.rs"
+            let crate_relative = &after_registry[slash_idx + 1..];
+            return Some(format!("{source_dir_name}/{crate_relative}"));
+        }
+    }
+
+    None
+}
+
+/// Render a source location reference for an item.
+///
+/// Produces a small italicized line showing the source file and line range.
+/// If `source_path_config` is provided, generates a clickable markdown link
+/// relative to the current file's location.
+///
+/// # Arguments
+///
+/// * `span` - The source span from the item
+/// * `source_path_config` - Optional configuration for path transformation
+///
+/// # Returns
+///
+/// A formatted markdown string with the source location, or empty string if span is None.
+///
+/// # Example Output (without config)
+///
+/// ```text
+/// *Defined in `/home/user/.cargo/registry/src/.../serde-1.0.228/src/lib.rs:10-25`*
+/// ```
+///
+/// # Example Output (with config, depth=2)
+///
+/// ```text
+/// *Defined in [`serde-1.0.228/src/lib.rs:10-25`](../../.source_xxx/serde-1.0.228/src/lib.rs#L10-L25)*
+/// ```
+#[must_use]
+pub fn render_source_location(
+    span: Option<&Span>,
+    source_path_config: Option<&SourcePathConfig>,
+) -> String {
+    let Some(span) = span else {
+        return String::new();
+    };
+
+    let (start_line, _) = span.begin;
+    let (end_line, _) = span.end;
+
+    // Format line reference for display
+    let line_ref = if start_line == end_line {
+        format!("{start_line}")
+    } else {
+        format!("{start_line}-{end_line}")
+    };
+
+    // Try to transform the path if config is provided
+    if let Some(config) = source_path_config
+        && let Some(relative_path) = transform_cargo_path(&span.filename, &config.source_dir_name)
+    {
+        // Build the prefix of "../" based on depth
+        // +1 to exit generated_docs/ directory
+        let prefix = "../".repeat(config.depth + 1);
+
+        // GitHub-style line fragment
+        let fragment = if start_line == end_line {
+            format!("#L{start_line}")
+        } else {
+            format!("#L{start_line}-L{end_line}")
+        };
+
+        // Display path without the .source_xxx prefix for cleaner look
+        let display_path = relative_path
+            .strip_prefix(&config.source_dir_name)
+            .map_or(relative_path.as_str(), |p| p.trim_start_matches('/'));
+
+        return format!(
+            "*Defined in [`{display_path}:{line_ref}`]({prefix}{relative_path}{fragment})*\n\n"
+        );
+    }
+
+    // Fallback: just display the path as-is (no link)
+    let filename = span.filename.display();
+    format!("*Defined in `{filename}:{line_ref}`*\n\n")
+}
 
 /// Categorized trait items for structured rendering.
 #[derive(Default)]
@@ -116,8 +277,11 @@ pub fn sanitize_path(path: &str) -> Cow<'_, str> {
 pub fn sanitize_self_param(param: &str) -> Cow<'_, str> {
     match param {
         "self: &Self" => Cow::Borrowed("&self"),
+
         "self: &mut Self" => Cow::Borrowed("&mut self"),
+
         "self: Self" => Cow::Borrowed("self"),
+
         _ => Cow::Borrowed(param),
     }
 }
@@ -184,11 +348,13 @@ pub fn render_struct_definition(
             for field_id in fields {
                 if let Some(field) = krate.index.get(field_id) {
                     let field_name = field.name.as_deref().unwrap_or("_");
+
                     if let ItemEnum::StructField(ty) = &field.inner {
                         let vis = match &field.visibility {
                             Visibility::Public => "pub ",
                             _ => "",
                         };
+
                         _ = writeln!(
                             md,
                             "    {}{}: {},",
@@ -204,10 +370,11 @@ pub fn render_struct_definition(
                 _ = writeln!(md, "    // [REDACTED: Private Fields]");
             }
 
-            md.push_str("}\n");
+            _ = writeln!(md, "}}");
         },
     }
-    md.push_str("```\n\n");
+
+    _ = writeln!(md, "```\n");
 }
 
 /// Render documented struct fields to markdown.
@@ -238,9 +405,11 @@ pub fn render_struct_fields<F>(
         .collect();
 
     if !documented_fields.is_empty() {
-        md.push_str("#### Fields\n\n");
+        _ = writeln!(md, "#### Fields\n");
+
         for field in documented_fields {
             let field_name = field.name.as_deref().unwrap_or("_");
+
             if let ItemEnum::StructField(ty) = &field.inner {
                 _ = write!(
                     md,
@@ -253,7 +422,7 @@ pub fn render_struct_fields<F>(
                     _ = write!(md, "\n\n  {}", docs.replace('\n', "\n  "));
                 }
 
-                md.push_str("\n\n");
+                _ = writeln!(md, "\n");
             }
         }
     }
@@ -283,7 +452,7 @@ pub fn render_enum_definition(
 
     _ = write!(md, "### `{name}{generics}`\n\n");
 
-    md.push_str("```rust\n");
+    _ = writeln!(md, "```rust");
     _ = writeln!(md, "enum {name}{generics}{where_clause} {{");
 
     for variant_id in &e.variants {
@@ -291,8 +460,9 @@ pub fn render_enum_definition(
             render_enum_variant(md, variant, krate, type_renderer);
         }
     }
-    md.push_str("}\n");
-    md.push_str("```\n\n");
+
+    _ = writeln!(md, "}}");
+    _ = writeln!(md, "```\n");
 }
 
 /// Render a single enum variant within the definition code block.
@@ -335,6 +505,7 @@ pub fn render_enum_variant(
                 for field_id in fields {
                     if let Some(field) = krate.index.get(field_id) {
                         let field_name = field.name.as_deref().unwrap_or("_");
+
                         if let ItemEnum::StructField(ty) = &field.inner {
                             _ = writeln!(
                                 md,
@@ -345,7 +516,8 @@ pub fn render_enum_variant(
                         }
                     }
                 }
-                md.push_str("    },\n");
+
+                _ = writeln!(md, "    }},");
             },
         }
     }
@@ -376,7 +548,8 @@ pub fn render_enum_variants_docs<F>(
         .collect();
 
     if !documented_variants.is_empty() {
-        md.push_str("#### Variants\n\n");
+        _ = writeln!(md, "#### Variants\n");
+
         for variant in documented_variants {
             let variant_name = variant.name.as_deref().unwrap_or("_");
             _ = write!(md, "- **`{variant_name}`**");
@@ -385,7 +558,7 @@ pub fn render_enum_variants_docs<F>(
                 _ = write!(md, "\n\n  {}", docs.replace('\n', "\n  "));
             }
 
-            md.push_str("\n\n");
+            _ = writeln!(md, "\n");
         }
     }
 }
@@ -414,9 +587,9 @@ impl TraitRenderer {
         let generics = type_renderer.render_generics(&t.generics.params);
         let where_clause = type_renderer.render_where_clause(&t.generics.where_predicates);
 
-        _ = write!(md, "### `{name}{generics}`\n\n");
+        _ = writeln!(md, "### `{name}{generics}`\n");
 
-        md.push_str("```rust\n");
+        _ = writeln!(md, "```rust");
 
         let bounds = if t.bounds.is_empty() {
             String::new()
@@ -430,7 +603,7 @@ impl TraitRenderer {
         };
 
         _ = writeln!(md, "trait {name}{generics}{bounds}{where_clause} {{ ... }}");
-        md.push_str("```\n\n");
+        _ = writeln!(md, "```\n");
     }
 
     /// Render a single trait item (method, associated type, or constant).
@@ -563,8 +736,8 @@ pub fn render_function_definition(
     let is_const = if f.header.is_const { "const " } else { "" };
     let is_unsafe = if f.header.is_unsafe { "unsafe " } else { "" };
 
-    _ = write!(md, "### `{name}`\n\n");
-    md.push_str("```rust\n");
+    _ = writeln!(md, "### `{name}`\n");
+    _ = writeln!(md, "```rust");
 
     _ = writeln!(
         md,
@@ -579,7 +752,7 @@ pub fn render_function_definition(
         where_clause
     );
 
-    md.push_str("```\n\n");
+    _ = writeln!(md, "```\n");
 }
 
 /// Render a constant definition to markdown.
@@ -601,9 +774,9 @@ pub fn render_constant_definition(
     const_: &rustdoc_types::Constant,
     type_renderer: &TypeRenderer,
 ) {
-    _ = write!(md, "### `{name}`\n\n");
+    _ = writeln!(md, "### `{name}`");
 
-    md.push_str("```rust\n");
+    _ = writeln!(md, "```rust");
 
     let value = const_
         .value
@@ -617,7 +790,7 @@ pub fn render_constant_definition(
         type_renderer.render_type(type_)
     );
 
-    md.push_str("```\n\n");
+    _ = writeln!(md, "```\n");
 }
 
 /// Render a type alias definition to markdown.
@@ -641,14 +814,15 @@ pub fn render_type_alias_definition(
     let where_clause = type_renderer.render_where_clause(&ta.generics.where_predicates);
 
     _ = write!(md, "### `{name}{generics}`\n\n");
-    md.push_str("```rust\n");
+    _ = writeln!(md, "```rust");
 
     _ = writeln!(
         md,
         "type {name}{generics}{where_clause} = {};",
         type_renderer.render_type(&ta.type_)
     );
-    md.push_str("```\n\n");
+
+    _ = writeln!(md, "```\n");
 }
 
 /// Render a macro definition to markdown.
@@ -710,13 +884,14 @@ pub fn render_impl_items<F, L>(
                     {
                         _ = write!(md, "\n\n  {first_line}");
                     }
-                    md.push_str("\n\n");
+
+                    _ = writeln!(md, "\n");
                 },
 
                 ItemEnum::AssocConst { type_, .. } => {
                     // Add anchor for associated constants if parent type is known
                     if let Some(type_name) = parent_type_name {
-                        let anchor = method_anchor(type_name, name);
+                        let anchor = assoc_item_anchor(type_name, name, AssocItemKind::Const);
                         _ = writeln!(
                             md,
                             "- <span id=\"{anchor}\"></span>`const {name}: {}`\n",
@@ -734,7 +909,12 @@ pub fn render_impl_items<F, L>(
                 ItemEnum::AssocType { type_, .. } => {
                     // Add anchor for associated types if parent type is known
                     let anchor_prefix = parent_type_name
-                        .map(|tn| format!("<span id=\"{}\"></span>", method_anchor(tn, name)))
+                        .map(|tn| {
+                            format!(
+                                "<span id=\"{}\"></span>",
+                                assoc_item_anchor(tn, name, AssocItemKind::Type)
+                            )
+                        })
                         .unwrap_or_default();
 
                     if let Some(ty) = type_ {
@@ -856,8 +1036,8 @@ fn render_impl_function(
 /// Helper function to add documentation with consistent formatting.
 pub fn append_docs(md: &mut String, docs: Option<String>) {
     if let Some(docs) = docs {
-        md.push_str(&docs);
-        md.push_str("\n\n");
+        _ = write!(md, "{}", &docs);
+        _ = writeln!(md, "\n");
     }
 }
 
@@ -912,6 +1092,7 @@ pub fn impl_sort_key(impl_block: &Impl, type_renderer: &TypeRenderer) -> String 
         .unwrap_or_default();
     let for_type = type_renderer.render_type(&impl_block.for_);
     let generics = type_renderer.render_generics(&impl_block.generics.params);
+
     format!("{trait_name}{generics}::{for_type}")
 }
 
@@ -927,6 +1108,170 @@ impl<T: RenderContext + ?Sized> DocsProcessor for (&T, &str) {
     fn process_item_docs(&self, item: &Item) -> Option<String> {
         self.0.process_docs(item, self.1)
     }
+}
+
+/// Render a union definition code block to markdown.
+///
+/// Produces a heading with the union name and generics, followed by a Rust
+/// code block showing the union definition with all fields.
+///
+/// # Arguments
+///
+/// * `md` - Output markdown string
+/// * `name` - The union name (may differ from item.name for re-exports)
+/// * `u` - The union data from rustdoc
+/// * `krate` - The crate containing field definitions
+/// * `type_renderer` - Type renderer for generics and field types
+pub fn render_union_definition(
+    md: &mut String,
+    name: &str,
+    u: &rustdoc_types::Union,
+    krate: &Crate,
+    type_renderer: &TypeRenderer,
+) {
+    let generics = type_renderer.render_generics(&u.generics.params);
+    let where_clause = type_renderer.render_where_clause(&u.generics.where_predicates);
+
+    _ = writeln!(md, "### `{name}{generics}`\n");
+
+    _ = writeln!(md, "```rust");
+    _ = writeln!(md, "union {name}{generics}{where_clause} {{");
+
+    for field_id in &u.fields {
+        if let Some(field) = krate.index.get(field_id) {
+            let field_name = field.name.as_deref().unwrap_or("_");
+
+            if let ItemEnum::StructField(ty) = &field.inner {
+                let vis = match &field.visibility {
+                    Visibility::Public => "pub ",
+                    _ => "",
+                };
+
+                _ = writeln!(
+                    md,
+                    "    {}{}: {},",
+                    vis,
+                    field_name,
+                    type_renderer.render_type(ty)
+                );
+            }
+        }
+    }
+
+    if u.has_stripped_fields {
+        _ = writeln!(md, "    // some fields omitted");
+    }
+
+    _ = writeln!(md, "}}\n```\n");
+}
+
+/// Render union fields documentation.
+///
+/// Creates a "Fields" section with each field's name, type, and documentation.
+/// Only renders if at least one field has documentation.
+///
+/// # Arguments
+///
+/// * `md` - Output markdown string
+/// * `fields` - Field IDs from the union
+/// * `krate` - The crate containing field definitions
+/// * `type_renderer` - Type renderer for field types
+/// * `process_docs` - Callback to process documentation strings
+pub fn render_union_fields<F>(
+    md: &mut String,
+    fields: &[Id],
+    krate: &Crate,
+    type_renderer: &TypeRenderer,
+    process_docs: F,
+) where
+    F: Fn(&Item) -> Option<String>,
+{
+    // Check if any fields have documentation
+    let has_documented_fields = fields
+        .iter()
+        .any(|id| krate.index.get(id).is_some_and(|item| item.docs.is_some()));
+
+    if !has_documented_fields {
+        return;
+    }
+
+    md.push_str("#### Fields\n\n");
+
+    for field_id in fields {
+        let Some(field) = krate.index.get(field_id) else {
+            continue;
+        };
+
+        let field_name = field.name.as_deref().unwrap_or("_");
+
+        if let ItemEnum::StructField(ty) = &field.inner {
+            let type_str = type_renderer.render_type(ty);
+            _ = writeln!(md, "- **`{field_name}`**: `{type_str}`");
+
+            if let Some(docs) = process_docs(field) {
+                // Indent documentation under the field
+                for line in docs.lines() {
+                    if line.is_empty() {
+                        md.push('\n');
+                    } else {
+                        _ = writeln!(md, "  {line}");
+                    }
+                }
+
+                _ = writeln!(md);
+            }
+        }
+    }
+}
+
+/// Render a static definition code block to markdown.
+///
+/// Produces a heading with the static name, followed by a Rust
+/// code block showing the static definition.
+///
+/// # Arguments
+///
+/// * `md` - Output markdown string
+/// * `name` - The static name (may differ from item.name for re-exports)
+/// * `s` - The static data from rustdoc
+/// * `type_renderer` - Type renderer for the static's type
+pub fn render_static_definition(
+    md: &mut String,
+    name: &str,
+    s: &rustdoc_types::Static,
+    type_renderer: &TypeRenderer,
+) {
+    _ = write!(md, "### `{name}`\n\n");
+
+    _ = writeln!(md, "```rust");
+
+    // Build the static declaration with modifiers
+    let mut decl = String::new();
+
+    // Check for unsafe (extern block statics)
+    if s.is_unsafe {
+        decl.push_str("unsafe ");
+    }
+
+    decl.push_str("static ");
+
+    // Check for mutable
+    if s.is_mutable {
+        decl.push_str("mut ");
+    }
+
+    // Add name and type
+    _ = write!(decl, "{name}: {}", type_renderer.render_type(&s.type_));
+
+    // Add initializer expression if not empty
+    if !s.expr.is_empty() {
+        _ = write!(decl, " = {}", s.expr);
+    }
+
+    decl.push(';');
+
+    _ = writeln!(md, "{decl}");
+    md.push_str("```\n\n");
 }
 
 #[cfg(test)]
@@ -1071,10 +1416,161 @@ mod tests {
         }
     }
 
-    mod categorized_trait_items_tests {
+    mod source_location_tests {
+        use std::path::PathBuf;
+
         use super::*;
-        use rustdoc_types::{Abi, Crate, Function, FunctionHeader, FunctionSignature, Target};
+
+        #[test]
+        fn transform_cargo_path_extracts_crate_relative() {
+            let path = PathBuf::from(
+                "/home/user/.cargo/registry/src/index.crates.io-xxx/serde-1.0.228/src/lib.rs",
+            );
+            let result = transform_cargo_path(&path, ".source_12345");
+            assert_eq!(
+                result,
+                Some(".source_12345/serde-1.0.228/src/lib.rs".to_string())
+            );
+        }
+
+        #[test]
+        fn transform_cargo_path_handles_nested_paths() {
+            let path = PathBuf::from(
+                "/home/user/.cargo/registry/src/index.crates.io-abc/tokio-1.0.0/src/runtime/mod.rs",
+            );
+            let result = transform_cargo_path(&path, ".source_99999");
+            assert_eq!(
+                result,
+                Some(".source_99999/tokio-1.0.0/src/runtime/mod.rs".to_string())
+            );
+        }
+
+        #[test]
+        fn transform_cargo_path_returns_none_for_non_cargo_path() {
+            let path = PathBuf::from("/usr/local/src/myproject/lib.rs");
+            let result = transform_cargo_path(&path, ".source_12345");
+            assert_eq!(result, None);
+        }
+
+        #[test]
+        fn transform_cargo_path_returns_none_for_local_path() {
+            let path = PathBuf::from("src/lib.rs");
+            let result = transform_cargo_path(&path, ".source_12345");
+            assert_eq!(result, None);
+        }
+
+        #[test]
+        fn source_path_config_calculates_depth() {
+            let source_dir = PathBuf::from("/project/.source_12345");
+
+            let config = SourcePathConfig::new(&source_dir, "index.md");
+            assert_eq!(config.depth, 0);
+
+            let config = SourcePathConfig::new(&source_dir, "serde/index.md");
+            assert_eq!(config.depth, 1);
+
+            let config = SourcePathConfig::new(&source_dir, "serde/de/visitor/index.md");
+            assert_eq!(config.depth, 3);
+        }
+
+        #[test]
+        fn source_path_config_extracts_dir_name() {
+            let source_dir = PathBuf::from("/project/.source_1733660400");
+            let config = SourcePathConfig::new(&source_dir, "index.md");
+            assert_eq!(config.source_dir_name, ".source_1733660400");
+        }
+
+        #[test]
+        fn source_path_config_with_depth_preserves_name() {
+            let source_dir = PathBuf::from("/project/.source_12345");
+            let base_config = SourcePathConfig::new(&source_dir, "");
+            let file_config = base_config.with_depth("crate/module/index.md");
+
+            assert_eq!(file_config.source_dir_name, ".source_12345");
+            assert_eq!(file_config.depth, 2);
+        }
+
+        #[test]
+        fn render_source_location_without_config_shows_absolute_path() {
+            let span = rustdoc_types::Span {
+                filename: PathBuf::from(
+                    "/home/user/.cargo/registry/src/index/serde-1.0/src/lib.rs",
+                ),
+                begin: (10, 0),
+                end: (25, 0),
+            };
+            let result = render_source_location(Some(&span), None);
+            assert!(result.contains("/home/user/.cargo/registry/src/index/serde-1.0/src/lib.rs"));
+            assert!(result.contains("10-25"));
+            // Should not have a link (no [ or ])
+            assert!(!result.contains('['));
+        }
+
+        #[test]
+        fn render_source_location_with_config_creates_link() {
+            let span = rustdoc_types::Span {
+                filename: PathBuf::from(
+                    "/home/user/.cargo/registry/src/index.crates.io-xxx/serde-1.0.228/src/lib.rs",
+                ),
+                begin: (10, 0),
+                end: (25, 0),
+            };
+            let config = SourcePathConfig {
+                source_dir_name: ".source_12345".to_string(),
+                depth: 1, // e.g., "serde/index.md"
+            };
+            let result = render_source_location(Some(&span), Some(&config));
+
+            // Should have markdown link
+            assert!(result.contains('['));
+            assert!(result.contains("]("));
+            // Should have relative prefix (depth=1 + 1 for generated_docs = ../..)
+            assert!(result.contains("../../.source_12345/serde-1.0.228/src/lib.rs"));
+            // Should have line fragment
+            assert!(result.contains("#L10-L25"));
+            // Display path should NOT have .source prefix
+            assert!(result.contains("[`serde-1.0.228/src/lib.rs:10-25`]"));
+        }
+
+        #[test]
+        fn render_source_location_single_line() {
+            let span = rustdoc_types::Span {
+                filename: PathBuf::from(
+                    "/home/user/.cargo/registry/src/index.crates.io-xxx/foo-1.0.0/src/lib.rs",
+                ),
+                begin: (42, 0),
+                end: (42, 0),
+            };
+            let config = SourcePathConfig {
+                source_dir_name: ".source_99999".to_string(),
+                depth: 0,
+            };
+            let result = render_source_location(Some(&span), Some(&config));
+
+            // Single line should show just one line number
+            assert!(result.contains(":42`]"));
+            assert!(result.contains("#L42)"));
+            // Should NOT have range format
+            assert!(!result.contains("-L"));
+        }
+
+        #[test]
+        fn render_source_location_none_span_returns_empty() {
+            let config = SourcePathConfig {
+                source_dir_name: ".source_12345".to_string(),
+                depth: 0,
+            };
+            let result = render_source_location(None, Some(&config));
+            assert!(result.is_empty());
+        }
+    }
+
+    mod categorized_trait_items_tests {
         use std::collections::HashMap;
+
+        use rustdoc_types::{Abi, Crate, Function, FunctionHeader, FunctionSignature, Target};
+
+        use super::*;
 
         fn make_test_crate(items: Vec<(Id, Item)>) -> Crate {
             let mut index: HashMap<Id, Item> = HashMap::new();
@@ -1189,7 +1685,10 @@ mod tests {
             let result = CategorizedTraitItems::categorize_trait_items(&[id], &krate);
 
             assert_eq!(result.required_methods.len(), 1);
-            assert_eq!(result.required_methods[0].name.as_deref(), Some("required_fn"));
+            assert_eq!(
+                result.required_methods[0].name.as_deref(),
+                Some("required_fn")
+            );
             assert!(result.provided_methods.is_empty());
         }
 
@@ -1203,7 +1702,10 @@ mod tests {
 
             assert!(result.required_methods.is_empty());
             assert_eq!(result.provided_methods.len(), 1);
-            assert_eq!(result.provided_methods[0].name.as_deref(), Some("provided_fn"));
+            assert_eq!(
+                result.provided_methods[0].name.as_deref(),
+                Some("provided_fn")
+            );
         }
 
         #[test]

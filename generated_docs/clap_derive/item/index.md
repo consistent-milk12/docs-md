@@ -72,6 +72,8 @@ struct Item {
 }
 ```
 
+*Defined in [`clap_derive-4.5.49/src/item.rs:33-53`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L33-L53)*
+
 #### Implementations
 
 - <span id="item-from-args-struct"></span>`fn from_args_struct(input: &DeriveInput, name: Name) -> Result<Self, syn::Error>` — [`Name`](#name)
@@ -155,6 +157,8 @@ struct Method {
 }
 ```
 
+*Defined in [`clap_derive-4.5.49/src/item.rs:1232-1235`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1232-L1235)*
+
 #### Implementations
 
 - <span id="method-new"></span>`fn new(name: Ident, args: TokenStream) -> Self`
@@ -169,7 +173,7 @@ struct Method {
 
 - <span id="method-clone"></span>`fn clone(&self) -> Method` — [`Method`](#method)
 
-##### `impl<T> Spanned for Method`
+##### `impl Spanned for Method`
 
 - <span id="method-span"></span>`fn span(&self) -> Span`
 
@@ -188,6 +192,8 @@ struct Deprecation {
 }
 ```
 
+*Defined in [`clap_derive-4.5.49/src/item.rs:1285-1290`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1285-L1290)*
+
 #### Implementations
 
 - <span id="deprecation-attribute"></span>`fn attribute(version: &'static str, old: AttrKind, new: AttrKind, span: Span) -> Self` — [`AttrKind`](../attr/index.md)
@@ -198,7 +204,7 @@ struct Deprecation {
 
 - <span id="deprecation-clone"></span>`fn clone(&self) -> Deprecation` — [`Deprecation`](#deprecation)
 
-##### `impl<T> Spanned for Deprecation`
+##### `impl Spanned for Deprecation`
 
 - <span id="deprecation-span"></span>`fn span(&self) -> Span`
 
@@ -216,6 +222,8 @@ enum ValueParser {
     Implicit(syn::Ident),
 }
 ```
+
+*Defined in [`clap_derive-4.5.49/src/item.rs:1096-1099`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1096-L1099)*
 
 #### Implementations
 
@@ -237,6 +245,8 @@ enum Action {
     Implicit(syn::Ident),
 }
 ```
+
+*Defined in [`clap_derive-4.5.49/src/item.rs:1128-1131`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1128-L1131)*
 
 #### Implementations
 
@@ -264,6 +274,8 @@ enum Kind {
     ExternalSubcommand,
 }
 ```
+
+*Defined in [`clap_derive-4.5.49/src/item.rs:1181-1190`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1181-L1190)*
 
 #### Implementations
 
@@ -293,6 +305,8 @@ enum CasingStyle {
     Verbatim,
 }
 ```
+
+*Defined in [`clap_derive-4.5.49/src/item.rs:1378-1395`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1378-L1395)*
 
 Defines the casing for the attributes long representation.
 
@@ -363,6 +377,8 @@ enum Name {
 }
 ```
 
+*Defined in [`clap_derive-4.5.49/src/item.rs:1422-1425`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1422-L1425)*
+
 #### Implementations
 
 - <span id="name-translate"></span>`fn translate(self, style: CasingStyle) -> TokenStream` — [`CasingStyle`](#casingstyle)
@@ -375,7 +391,7 @@ enum Name {
 
 - <span id="name-clone"></span>`fn clone(&self) -> Name` — [`Name`](#name)
 
-##### `impl<T> Spanned for Name`
+##### `impl Spanned for Name`
 
 - <span id="name-span"></span>`fn span(&self) -> Span`
 
@@ -391,11 +407,15 @@ enum Name {
 fn default_value_parser(inner_type: &syn::Type, span: proc_macro2::Span) -> Method
 ```
 
+*Defined in [`clap_derive-4.5.49/src/item.rs:1117-1125`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1117-L1125)*
+
 ### `default_action`
 
 ```rust
 fn default_action(field_type: &syn::Type, span: proc_macro2::Span) -> Method
 ```
+
+*Defined in [`clap_derive-4.5.49/src/item.rs:1149-1177`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1149-L1177)*
 
 ### `assert_attr_kind`
 
@@ -403,11 +423,15 @@ fn default_action(field_type: &syn::Type, span: proc_macro2::Span) -> Method
 fn assert_attr_kind(attr: &crate::attr::ClapAttr, possible_kind: &[crate::attr::AttrKind]) -> Result<(), syn::Error>
 ```
 
+*Defined in [`clap_derive-4.5.49/src/item.rs:1332-1349`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1332-L1349)*
+
 ### `process_author_str`
 
 ```rust
 fn process_author_str(author: &str) -> String
 ```
+
+*Defined in [`clap_derive-4.5.49/src/item.rs:1355-1374`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L1355-L1374)*
 
 replace all `:` with `, ` when not inside the `<>`
 
@@ -417,18 +441,20 @@ replace all `:` with `, ` when not inside the `<>`
 ## Constants
 
 ### `DEFAULT_CASING`
-
 ```rust
 const DEFAULT_CASING: CasingStyle;
 ```
 
+*Defined in [`clap_derive-4.5.49/src/item.rs:27`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L27)*
+
 Default casing style for generated arguments.
 
 ### `DEFAULT_ENV_CASING`
-
 ```rust
 const DEFAULT_ENV_CASING: CasingStyle;
 ```
+
+*Defined in [`clap_derive-4.5.49/src/item.rs:30`](../../../.source_1765210505/clap_derive-4.5.49/src/item.rs#L30)*
 
 Default casing style for environment variables
 

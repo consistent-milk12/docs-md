@@ -29,6 +29,8 @@ enum ArgAction {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
+
 Behavior of arguments when they are encountered while parsing
 
 # Examples
@@ -397,15 +399,15 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 - <span id="argaction-takes-values"></span>`fn takes_values(&self) -> bool`
 
-- <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](../index.md)
+- <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](../range/index.md)
 
-- <span id="argaction-default-num-args"></span>`fn default_num_args(&self) -> ValueRange` — [`ValueRange`](../index.md)
+- <span id="argaction-default-num-args"></span>`fn default_num_args(&self) -> ValueRange` — [`ValueRange`](../range/index.md)
 
 - <span id="argaction-default-value"></span>`fn default_value(&self) -> Option<&'static std::ffi::OsStr>`
 
 - <span id="argaction-default-missing-value"></span>`fn default_missing_value(&self) -> Option<&'static std::ffi::OsStr>`
 
-- <span id="argaction-default-value-parser"></span>`fn default_value_parser(&self) -> Option<super::ValueParser>` — [`ValueParser`](../index.md)
+- <span id="argaction-default-value-parser"></span>`fn default_value_parser(&self) -> Option<super::ValueParser>` — [`ValueParser`](../value_parser/index.md)
 
 - <span id="argaction-value-type-id"></span>`fn value_type_id(&self) -> Option<AnyValueId>` — [`AnyValueId`](../../util/any_value/index.md)
 
@@ -413,15 +415,15 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 ##### `impl Clone for ArgAction`
 
-- <span id="argaction-clone"></span>`fn clone(&self) -> ArgAction` — [`ArgAction`](../../index.md)
+- <span id="argaction-clone"></span>`fn clone(&self) -> ArgAction` — [`ArgAction`](#argaction)
 
 ##### `impl Debug for ArgAction`
 
 - <span id="argaction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoResettable for crate::builder::ArgAction`
+##### `impl IntoResettable for Option<crate::builder::ArgAction>`
 
-- <span id="cratebuilderargaction-into-resettable"></span>`fn into_resettable(self) -> Resettable<ArgAction>` — [`Resettable`](../index.md), [`ArgAction`](../../index.md)
+- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ArgAction>` — [`Resettable`](../resettable/index.md), [`ArgAction`](#argaction)
 
 ## Type Aliases
 
@@ -430,4 +432,6 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 ```rust
 type CountType = u8;
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:461`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/action.rs#L461)*
 

@@ -62,6 +62,8 @@ struct Bag {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:63-67`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/internal.rs#L63-L67)*
+
 A bag of deferred functions.
 
 #### Fields
@@ -94,13 +96,13 @@ A bag of deferred functions.
 
 - <span id="bag-drop"></span>`fn drop(&mut self)`
 
-##### `impl<T> Pointable for Bag`
+##### `impl Pointable for Bag`
 
-- <span id="bag-align"></span>`const ALIGN: usize`
+- <span id="bag-const-align"></span>`const ALIGN: usize`
 
-- <span id="bag-init"></span>`type Init = T`
+- <span id="bag-type-init"></span>`type Init = T`
 
-- <span id="bag-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="bag-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
 - <span id="bag-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -119,6 +121,8 @@ struct SealedBag {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:138-141`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/internal.rs#L138-L141)*
+
 A pair of an epoch and a bag.
 
 #### Implementations
@@ -135,13 +139,13 @@ A pair of an epoch and a bag.
 
 - <span id="sealedbag-default"></span>`fn default() -> SealedBag` — [`SealedBag`](#sealedbag)
 
-##### `impl<T> Pointable for SealedBag`
+##### `impl Pointable for SealedBag`
 
-- <span id="sealedbag-align"></span>`const ALIGN: usize`
+- <span id="sealedbag-const-align"></span>`const ALIGN: usize`
 
-- <span id="sealedbag-init"></span>`type Init = T`
+- <span id="sealedbag-type-init"></span>`type Init = T`
 
-- <span id="sealedbag-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="sealedbag-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
 - <span id="sealedbag-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -161,6 +165,8 @@ struct Global {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:156-165`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/internal.rs#L156-L165)*
+
 The global data for a garbage collector.
 
 #### Fields
@@ -179,25 +185,25 @@ The global data for a garbage collector.
 
 #### Implementations
 
-- <span id="global-collect-steps"></span>`const COLLECT_STEPS: usize`
+- <span id="global-const-collect-steps"></span>`const COLLECT_STEPS: usize`
 
 - <span id="global-new"></span>`fn new() -> Self`
 
-- <span id="global-push-bag"></span>`fn push_bag(&self, bag: &mut Bag, guard: &Guard)` — [`Bag`](#bag), [`Guard`](../index.md)
+- <span id="global-push-bag"></span>`fn push_bag(&self, bag: &mut Bag, guard: &Guard)` — [`Bag`](#bag), [`Guard`](../guard/index.md)
 
-- <span id="global-collect"></span>`fn collect(&self, guard: &Guard)` — [`Guard`](../index.md)
+- <span id="global-collect"></span>`fn collect(&self, guard: &Guard)` — [`Guard`](../guard/index.md)
 
-- <span id="global-try-advance"></span>`fn try_advance(&self, guard: &Guard) -> Epoch` — [`Guard`](../index.md), [`Epoch`](../epoch/index.md)
+- <span id="global-try-advance"></span>`fn try_advance(&self, guard: &Guard) -> Epoch` — [`Guard`](../guard/index.md), [`Epoch`](../epoch/index.md)
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for Global`
+##### `impl Pointable for Global`
 
-- <span id="global-align"></span>`const ALIGN: usize`
+- <span id="global-const-align"></span>`const ALIGN: usize`
 
-- <span id="global-init"></span>`type Init = T`
+- <span id="global-type-init"></span>`type Init = T`
 
-- <span id="global-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="global-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
 - <span id="global-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -218,6 +224,8 @@ struct Local {
     epoch: crossbeam_utils::CachePadded<crate::epoch::AtomicEpoch>,
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:271-296`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/internal.rs#L271-L296)*
 
 Participant for garbage collection.
 
@@ -257,21 +265,21 @@ Participant for garbage collection.
 
 #### Implementations
 
-- <span id="local-pinnings-between-collect"></span>`const PINNINGS_BETWEEN_COLLECT: usize`
+- <span id="local-const-pinnings-between-collect"></span>`const PINNINGS_BETWEEN_COLLECT: usize`
 
-- <span id="local-register"></span>`fn register(collector: &Collector) -> LocalHandle` — [`Collector`](../index.md), [`LocalHandle`](../index.md)
+- <span id="local-register"></span>`fn register(collector: &Collector) -> LocalHandle` — [`Collector`](../collector/index.md), [`LocalHandle`](../collector/index.md)
 
 - <span id="local-global"></span>`fn global(&self) -> &Global` — [`Global`](#global)
 
-- <span id="local-collector"></span>`fn collector(&self) -> &Collector` — [`Collector`](../index.md)
+- <span id="local-collector"></span>`fn collector(&self) -> &Collector` — [`Collector`](../collector/index.md)
 
 - <span id="local-is-pinned"></span>`fn is_pinned(&self) -> bool`
 
-- <span id="local-defer"></span>`unsafe fn defer(&self, deferred: Deferred, guard: &Guard)` — [`Deferred`](../deferred/index.md), [`Guard`](../index.md)
+- <span id="local-defer"></span>`unsafe fn defer(&self, deferred: Deferred, guard: &Guard)` — [`Deferred`](../deferred/index.md), [`Guard`](../guard/index.md)
 
-- <span id="local-flush"></span>`fn flush(&self, guard: &Guard)` — [`Guard`](../index.md)
+- <span id="local-flush"></span>`fn flush(&self, guard: &Guard)` — [`Guard`](../guard/index.md)
 
-- <span id="local-pin"></span>`fn pin(&self) -> Guard` — [`Guard`](../index.md)
+- <span id="local-pin"></span>`fn pin(&self) -> Guard` — [`Guard`](../guard/index.md)
 
 - <span id="local-unpin"></span>`fn unpin(&self)`
 
@@ -291,15 +299,15 @@ Participant for garbage collection.
 
 - <span id="local-element-of"></span>`unsafe fn element_of(entry: &Entry) -> &Self` — [`Entry`](../sync/list/index.md)
 
-- <span id="local-finalize"></span>`unsafe fn finalize(entry: &Entry, guard: &Guard)` — [`Entry`](../sync/list/index.md), [`Guard`](../index.md)
+- <span id="local-finalize"></span>`unsafe fn finalize(entry: &Entry, guard: &Guard)` — [`Entry`](../sync/list/index.md), [`Guard`](../guard/index.md)
 
-##### `impl<T> Pointable for Local`
+##### `impl Pointable for Local`
 
-- <span id="local-align"></span>`const ALIGN: usize`
+- <span id="local-const-align"></span>`const ALIGN: usize`
 
-- <span id="local-init"></span>`type Init = T`
+- <span id="local-type-init"></span>`type Init = T`
 
-- <span id="local-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="local-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
 - <span id="local-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -310,10 +318,11 @@ Participant for garbage collection.
 ## Constants
 
 ### `MAX_OBJECTS`
-
 ```rust
 const MAX_OBJECTS: usize = 64usize;
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/internal.rs:57`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/internal.rs#L57)*
 
 Maximum number of objects a bag can contain.
 

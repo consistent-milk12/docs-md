@@ -36,6 +36,8 @@ enum ErrorKind {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/kind.rs:4-330`](../../../../.source_1765210505/clap_builder-4.5.53/src/error/kind.rs#L4-L330)*
+
 Command line argument parser kind of error
 
 #### Variants
@@ -76,7 +78,7 @@ Command line argument parser kind of error
 
 - **`InvalidSubcommand`**
 
-  Occurs when the user provides an unrecognized [`Subcommand`](../../index.md) which meets the threshold for
+  Occurs when the user provides an unrecognized [`Subcommand`](../../derive/index.md) which meets the threshold for
   being similar enough to an existing subcommand.
   If it doesn't meet the threshold, or the 'suggestions' feature is disabled,
   the more general [`UnknownArgument`](../../index.md) error is returned.
@@ -324,7 +326,7 @@ Command line argument parser kind of error
 
 - **`DisplayHelpOnMissingArgumentOrSubcommand`**
 
-  Occurs when either an argument or a [`Subcommand`](../../index.md) is required, as defined by
+  Occurs when either an argument or a [`Subcommand`](../../derive/index.md) is required, as defined by
   `Command::arg_required_else_help` , but the user did not provide
   one.
   
@@ -384,7 +386,7 @@ Command line argument parser kind of error
 
 ##### `impl Clone for ErrorKind`
 
-- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](../index.md)
+- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](#errorkind)
 
 ##### `impl Copy for ErrorKind`
 
@@ -404,11 +406,11 @@ Command line argument parser kind of error
 
 ##### `impl PartialEq for ErrorKind`
 
-- <span id="errorkind-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](../index.md)
+- <span id="errorkind-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
 
 ##### `impl StructuralPartialEq for ErrorKind`
 
-##### `impl<T> ToString for ErrorKind`
+##### `impl ToString for ErrorKind`
 
 - <span id="errorkind-to-string"></span>`fn to_string(&self) -> String`
 

@@ -25,6 +25,8 @@ struct Backtrace {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/capture.rs:29-32`](../../../.source_1765210505/backtrace-0.3.76/src/capture.rs#L29-L32)*
+
 Representation of an owned and self-contained backtrace.
 
 This structure can be used to capture a backtrace at various points in a
@@ -40,13 +42,13 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- <span id="backtrace-new"></span>`fn new() -> Backtrace` — [`Backtrace`](../index.md)
+- <span id="backtrace-new"></span>`fn new() -> Backtrace` — [`Backtrace`](#backtrace)
 
-- <span id="backtrace-new-unresolved"></span>`fn new_unresolved() -> Backtrace` — [`Backtrace`](../index.md)
+- <span id="backtrace-new-unresolved"></span>`fn new_unresolved() -> Backtrace` — [`Backtrace`](#backtrace)
 
-- <span id="backtrace-create"></span>`fn create(ip: usize) -> Backtrace` — [`Backtrace`](../index.md)
+- <span id="backtrace-create"></span>`fn create(ip: usize) -> Backtrace` — [`Backtrace`](#backtrace)
 
-- <span id="backtrace-frames"></span>`fn frames(&self) -> &[BacktraceFrame]` — [`BacktraceFrame`](../index.md)
+- <span id="backtrace-frames"></span>`fn frames(&self) -> &[BacktraceFrame]` — [`BacktraceFrame`](#backtraceframe)
 
 - <span id="backtrace-resolve"></span>`fn resolve(&mut self)`
 
@@ -54,7 +56,7 @@ enabled, and the `std` feature is enabled by default.
 
 ##### `impl Clone for Backtrace`
 
-- <span id="backtrace-clone"></span>`fn clone(&self) -> Backtrace` — [`Backtrace`](../index.md)
+- <span id="backtrace-clone"></span>`fn clone(&self) -> Backtrace` — [`Backtrace`](#backtrace)
 
 ##### `impl Debug for Backtrace`
 
@@ -62,13 +64,15 @@ enabled, and the `std` feature is enabled by default.
 
 ##### `impl Default for Backtrace`
 
-- <span id="backtrace-default"></span>`fn default() -> Backtrace` — [`Backtrace`](../index.md)
+- <span id="backtrace-default"></span>`fn default() -> Backtrace` — [`Backtrace`](#backtrace)
 
 ### `TracePtr`
 
 ```rust
 struct TracePtr(*mut core::ffi::c_void);
 ```
+
+*Defined in [`backtrace-0.3.76/src/capture.rs:35`](../../../.source_1765210505/backtrace-0.3.76/src/capture.rs#L35)*
 
 #### Implementations
 
@@ -95,6 +99,8 @@ struct BacktraceFrame {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/capture.rs:144-147`](../../../.source_1765210505/backtrace-0.3.76/src/capture.rs#L144-L147)*
+
 Captured version of a frame in a backtrace.
 
 This type is returned as a list from `Backtrace::frames` and represents one
@@ -113,7 +119,7 @@ enabled, and the `std` feature is enabled by default.
 
 - <span id="backtraceframe-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
-- <span id="backtraceframe-symbols"></span>`fn symbols(&self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](../index.md)
+- <span id="backtraceframe-symbols"></span>`fn symbols(&self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](#backtracesymbol)
 
 - <span id="backtraceframe-resolve"></span>`fn resolve(&mut self)`
 
@@ -121,7 +127,7 @@ enabled, and the `std` feature is enabled by default.
 
 ##### `impl Clone for BacktraceFrame`
 
-- <span id="backtraceframe-clone"></span>`fn clone(&self) -> BacktraceFrame` — [`BacktraceFrame`](../index.md)
+- <span id="backtraceframe-clone"></span>`fn clone(&self) -> BacktraceFrame` — [`BacktraceFrame`](#backtraceframe)
 
 ##### `impl Debug for BacktraceFrame`
 
@@ -139,6 +145,8 @@ struct BacktraceSymbol {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/capture.rs:222-228`](../../../.source_1765210505/backtrace-0.3.76/src/capture.rs#L222-L228)*
+
 Captured version of a symbol in a backtrace.
 
 This type is returned as a list from `BacktraceFrame::symbols` and
@@ -151,7 +159,7 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- <span id="backtracesymbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../index.md)
+- <span id="backtracesymbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../symbolize/index.md)
 
 - <span id="backtracesymbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
@@ -165,7 +173,7 @@ enabled, and the `std` feature is enabled by default.
 
 ##### `impl Clone for BacktraceSymbol`
 
-- <span id="backtracesymbol-clone"></span>`fn clone(&self) -> BacktraceSymbol` — [`BacktraceSymbol`](../index.md)
+- <span id="backtracesymbol-clone"></span>`fn clone(&self) -> BacktraceSymbol` — [`BacktraceSymbol`](#backtracesymbol)
 
 ##### `impl Debug for BacktraceSymbol`
 
@@ -181,6 +189,8 @@ enum Frame {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/capture.rs:150-158`](../../../.source_1765210505/backtrace-0.3.76/src/capture.rs#L150-L158)*
+
 #### Implementations
 
 - <span id="frame-ip"></span>`fn ip(&self) -> *mut c_void`
@@ -189,7 +199,7 @@ enum Frame {
 
 - <span id="frame-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
-- <span id="frame-resolve-symbols"></span>`fn resolve_symbols(&self) -> Box<[BacktraceSymbol]>` — [`BacktraceSymbol`](../index.md)
+- <span id="frame-resolve-symbols"></span>`fn resolve_symbols(&self) -> Box<[BacktraceSymbol]>` — [`BacktraceSymbol`](#backtracesymbol)
 
 #### Trait Implementations
 
@@ -204,4 +214,6 @@ enum Frame {
 ```rust
 fn _assert_send_sync()
 ```
+
+*Defined in [`backtrace-0.3.76/src/capture.rs:129-132`](../../../.source_1765210505/backtrace-0.3.76/src/capture.rs#L129-L132)*
 

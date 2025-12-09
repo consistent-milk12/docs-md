@@ -6,7 +6,7 @@ These types are the public API exposed through the `--output-format json` flag. 
 struct is the root of the JSON blob and all other items are contained within.
 
 We expose a `rustc-hash` feature that is disabled by default. This feature switches the
-[`std::collections::HashMap`](../hashbrown/index.md) for `rustc_hash::FxHashMap` to improve the performance of said
+[`std::collections::HashMap`](../hashbrown/hash_map/index.md) for `rustc_hash::FxHashMap` to improve the performance of said
 `HashMap` in specific situations.
 
 `cargo-semver-checks` for example, saw a [-3% improvement][1] when benchmarking using the
@@ -132,7 +132,7 @@ increase the number of collisions.
 | [`GenericBound`](#genericbound) | enum | Either a trait bound or a lifetime bound. |
 | [`TraitBoundModifier`](#traitboundmodifier) | enum | A set of modifiers applied to a trait. |
 | [`PreciseCapturingArg`](#precisecapturingarg) | enum | One precise capturing argument. |
-| [`Term`](#term) | enum | Either a type or a constant, usually stored as the right-hand side of an equation in places like |
+| [`Term`](#term) | enum | Either a type or a constant, usually stored as the right-hand side of an equation in places like [`AssocItemConstraint`] |
 | [`Type`](#type) | enum | A type. |
 | [`MacroKind`](#macrokind) | enum | The way a [`ProcMacro`] is declared to be used. |
 | [`FORMAT_VERSION`](#format_version) | const | The version of JSON output that this crate represents. |
@@ -153,6 +153,8 @@ struct Crate {
     pub format_version: u32,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:48-67`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L48-L67)*
 
 The root of the emitted JSON blob.
 
@@ -206,11 +208,11 @@ tools to find or link to them.
 
 - <span id="crate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Crate`
+##### `impl Deserialize for Crate`
 
 - <span id="crate-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Crate`
+##### `impl DeserializeOwned for Crate`
 
 ##### `impl Eq for Crate`
 
@@ -232,6 +234,8 @@ struct Target {
     pub target_features: Vec<TargetFeature>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:71-77`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L71-L77)*
 
 Information about a target
 
@@ -256,11 +260,11 @@ Information about a target
 
 - <span id="target-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Target`
+##### `impl Deserialize for Target`
 
 - <span id="target-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Target`
+##### `impl DeserializeOwned for Target`
 
 ##### `impl Eq for Target`
 
@@ -284,6 +288,8 @@ struct TargetFeature {
     pub globally_enabled: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:101-121`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L101-L121)*
 
 Information about a target feature.
 
@@ -344,11 +350,11 @@ context.
 
 - <span id="targetfeature-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for TargetFeature`
+##### `impl Deserialize for TargetFeature`
 
 - <span id="targetfeature-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for TargetFeature`
+##### `impl DeserializeOwned for TargetFeature`
 
 ##### `impl Eq for TargetFeature`
 
@@ -371,6 +377,8 @@ struct ExternalCrate {
     pub path: std::path::PathBuf,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:125-143`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L125-L143)*
 
 Metadata of a crate, either the same crate on which `rustdoc` was invoked, or its dependency.
 
@@ -407,11 +415,11 @@ Metadata of a crate, either the same crate on which `rustdoc` was invoked, or it
 
 - <span id="externalcrate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ExternalCrate`
+##### `impl Deserialize for ExternalCrate`
 
 - <span id="externalcrate-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ExternalCrate`
+##### `impl DeserializeOwned for ExternalCrate`
 
 ##### `impl Eq for ExternalCrate`
 
@@ -439,6 +447,8 @@ struct ItemSummary {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:152-166`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L152-L166)*
+
 Information about an external (not defined in the local crate) [`Item`](#item).
 
 For external items, you don't get the same level of
@@ -460,7 +470,7 @@ the actual item definition with all the relevant info.
   
   Note that items can appear in multiple paths, and the one chosen is implementation
   defined. Currently, this is the full path to where the item was defined. Eg
-  [`String`](../clap_builder/index.md) is currently `["alloc", "string", "String"]` and [`HashMap`][`std::collections::HashMap`](../hashbrown/index.md)
+  [`String`](../clap_builder/index.md) is currently `["alloc", "string", "String"]` and [`HashMap`][`std::collections::HashMap`](../hashbrown/hash_map/index.md)
   is `["std", "collections", "hash", "map", "HashMap"]`, but this is subject to change.
 
 - **`kind`**: `ItemKind`
@@ -477,11 +487,11 @@ the actual item definition with all the relevant info.
 
 - <span id="itemsummary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ItemSummary`
+##### `impl Deserialize for ItemSummary`
 
 - <span id="itemsummary-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ItemSummary`
+##### `impl DeserializeOwned for ItemSummary`
 
 ##### `impl Eq for ItemSummary`
 
@@ -515,6 +525,8 @@ struct Item {
     pub inner: ItemEnum,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:173-208`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L173-L208)*
 
 Anything that can hold documentation - modules, structs, enums, functions, traits, etc.
 
@@ -587,11 +599,11 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 
 - <span id="item-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Item`
+##### `impl Deserialize for Item`
 
 - <span id="item-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Item`
+##### `impl DeserializeOwned for Item`
 
 ##### `impl Eq for Item`
 
@@ -615,6 +627,8 @@ struct AttributeRepr {
     pub int: Option<String>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:261-274`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L261-L274)*
 
 The contents of a `#[repr(...)]` attribute.
 
@@ -650,11 +664,11 @@ Used in [`Attribute::Repr`](#attributerepr).
 
 - <span id="attributerepr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for AttributeRepr`
+##### `impl Deserialize for AttributeRepr`
 
 - <span id="attributerepr-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for AttributeRepr`
+##### `impl DeserializeOwned for AttributeRepr`
 
 ##### `impl Eq for AttributeRepr`
 
@@ -677,6 +691,8 @@ struct Span {
     pub end: (usize, usize),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:296-303`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L296-L303)*
 
 A range of source code.
 
@@ -704,11 +720,11 @@ A range of source code.
 
 - <span id="span-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Span`
+##### `impl Deserialize for Span`
 
 - <span id="span-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Span`
+##### `impl DeserializeOwned for Span`
 
 ##### `impl Eq for Span`
 
@@ -735,6 +751,8 @@ struct Deprecation {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:307-312`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L307-L312)*
+
 Information about the deprecation of an [`Item`](#item).
 
 #### Fields
@@ -757,11 +775,11 @@ Information about the deprecation of an [`Item`](#item).
 
 - <span id="deprecation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Deprecation`
+##### `impl Deserialize for Deprecation`
 
 - <span id="deprecation-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Deprecation`
+##### `impl DeserializeOwned for Deprecation`
 
 ##### `impl Eq for Deprecation`
 
@@ -787,6 +805,8 @@ struct DynTrait {
     pub lifetime: Option<String>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:339-350`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L339-L350)*
 
 Dynamic trait object type (`dyn Trait`).
 
@@ -816,11 +836,11 @@ Dynamic trait object type (`dyn Trait`).
 
 - <span id="dyntrait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for DynTrait`
+##### `impl Deserialize for DynTrait`
 
 - <span id="dyntrait-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for DynTrait`
+##### `impl DeserializeOwned for DynTrait`
 
 ##### `impl Eq for DynTrait`
 
@@ -846,6 +866,8 @@ struct PolyTrait {
     pub generic_params: Vec<GenericParamDef>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:354-364`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L354-L364)*
 
 A trait and potential HRTBs
 
@@ -873,11 +895,11 @@ A trait and potential HRTBs
 
 - <span id="polytrait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for PolyTrait`
+##### `impl Deserialize for PolyTrait`
 
 - <span id="polytrait-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for PolyTrait`
+##### `impl DeserializeOwned for PolyTrait`
 
 ##### `impl Eq for PolyTrait`
 
@@ -904,6 +926,8 @@ struct Constant {
     pub is_literal: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:431-440`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L431-L440)*
 
 A constant.
 
@@ -933,11 +957,11 @@ A constant.
 
 - <span id="constant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Constant`
+##### `impl Deserialize for Constant`
 
 - <span id="constant-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Constant`
+##### `impl DeserializeOwned for Constant`
 
 ##### `impl Eq for Constant`
 
@@ -964,6 +988,8 @@ struct AssocItemConstraint {
     pub binding: AssocItemConstraintKind,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:450-457`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L450-L457)*
 
 Describes a bound applied to an associated type/constant.
 
@@ -997,11 +1023,11 @@ IntoIterator<Item = u32, IntoIter: Clone>
 
 - <span id="associtemconstraint-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for AssocItemConstraint`
+##### `impl Deserialize for AssocItemConstraint`
 
 - <span id="associtemconstraint-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for AssocItemConstraint`
+##### `impl DeserializeOwned for AssocItemConstraint`
 
 ##### `impl Eq for AssocItemConstraint`
 
@@ -1024,6 +1050,8 @@ IntoIterator<Item = u32, IntoIter: Clone>
 ```rust
 struct Id(u32);
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:490`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L490)*
 
 An opaque identifier for an item.
 
@@ -1049,11 +1077,11 @@ to parse them, or otherwise depend on any implementation details.
 
 - <span id="id-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Id`
+##### `impl Deserialize for Id`
 
 - <span id="id-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Id`
+##### `impl DeserializeOwned for Id`
 
 ##### `impl Eq for Id`
 
@@ -1089,6 +1117,8 @@ struct Module {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:686-697`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L686-L697)*
+
 A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
 #### Fields
@@ -1119,11 +1149,11 @@ A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
 - <span id="module-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Module`
+##### `impl Deserialize for Module`
 
 - <span id="module-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Module`
+##### `impl DeserializeOwned for Module`
 
 ##### `impl Eq for Module`
 
@@ -1151,6 +1181,8 @@ struct Union {
     pub impls: Vec<Id>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:701-714`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L701-L714)*
 
 A `union`.
 
@@ -1186,11 +1218,11 @@ A `union`.
 
 - <span id="union-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Union`
+##### `impl Deserialize for Union`
 
 - <span id="union-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Union`
+##### `impl DeserializeOwned for Union`
 
 ##### `impl Eq for Union`
 
@@ -1217,6 +1249,8 @@ struct Struct {
     pub impls: Vec<Id>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:718-727`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L718-L727)*
 
 A `struct`.
 
@@ -1246,11 +1280,11 @@ A `struct`.
 
 - <span id="struct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Struct`
+##### `impl Deserialize for Struct`
 
 - <span id="struct-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Struct`
+##### `impl DeserializeOwned for Struct`
 
 ##### `impl Eq for Struct`
 
@@ -1278,6 +1312,8 @@ struct Enum {
     pub impls: Vec<Id>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:768-779`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L768-L779)*
 
 An `enum`.
 
@@ -1311,11 +1347,11 @@ An `enum`.
 
 - <span id="enum-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Enum`
+##### `impl Deserialize for Enum`
 
 - <span id="enum-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Enum`
+##### `impl DeserializeOwned for Enum`
 
 ##### `impl Eq for Enum`
 
@@ -1342,6 +1378,8 @@ struct Variant {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:783-788`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L783-L788)*
+
 A variant of an enum.
 
 #### Fields
@@ -1364,11 +1402,11 @@ A variant of an enum.
 
 - <span id="variant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Variant`
+##### `impl Deserialize for Variant`
 
 - <span id="variant-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Variant`
+##### `impl DeserializeOwned for Variant`
 
 ##### `impl Eq for Variant`
 
@@ -1394,6 +1432,8 @@ struct Discriminant {
     pub value: String,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:835-849`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L835-L849)*
 
 The value that distinguishes a variant in an [`Enum`](#enum) from other variants.
 
@@ -1426,11 +1466,11 @@ The value that distinguishes a variant in an [`Enum`](#enum) from other variants
 
 - <span id="discriminant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Discriminant`
+##### `impl Deserialize for Discriminant`
 
 - <span id="discriminant-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Discriminant`
+##### `impl DeserializeOwned for Discriminant`
 
 ##### `impl Eq for Discriminant`
 
@@ -1458,6 +1498,8 @@ struct FunctionHeader {
     pub abi: Abi,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:853-862`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L853-L862)*
 
 A set of fundamental properties of a function.
 
@@ -1489,11 +1531,11 @@ A set of fundamental properties of a function.
 
 - <span id="functionheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for FunctionHeader`
+##### `impl Deserialize for FunctionHeader`
 
 - <span id="functionheader-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for FunctionHeader`
+##### `impl DeserializeOwned for FunctionHeader`
 
 ##### `impl Eq for FunctionHeader`
 
@@ -1521,6 +1563,8 @@ struct Function {
     pub has_body: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:900-909`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L900-L909)*
 
 A function declaration (including methods and other associated functions).
 
@@ -1552,11 +1596,11 @@ A function declaration (including methods and other associated functions).
 
 - <span id="function-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Function`
+##### `impl Deserialize for Function`
 
 - <span id="function-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Function`
+##### `impl DeserializeOwned for Function`
 
 ##### `impl Eq for Function`
 
@@ -1583,6 +1627,8 @@ struct Generics {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:913-918`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L913-L918)*
+
 Generic parameters accepted by an item and `where` clauses imposed on it and the parameters.
 
 #### Fields
@@ -1605,11 +1651,11 @@ Generic parameters accepted by an item and `where` clauses imposed on it and the
 
 - <span id="generics-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Generics`
+##### `impl Deserialize for Generics`
 
 - <span id="generics-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Generics`
+##### `impl DeserializeOwned for Generics`
 
 ##### `impl Eq for Generics`
 
@@ -1635,6 +1681,8 @@ struct GenericParamDef {
     pub kind: GenericParamDefKind,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:922-932`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L922-L932)*
 
 One generic parameter accepted by an item.
 
@@ -1663,11 +1711,11 @@ One generic parameter accepted by an item.
 
 - <span id="genericparamdef-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for GenericParamDef`
+##### `impl Deserialize for GenericParamDef`
 
 - <span id="genericparamdef-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for GenericParamDef`
+##### `impl DeserializeOwned for GenericParamDef`
 
 ##### `impl Eq for GenericParamDef`
 
@@ -1694,6 +1742,8 @@ struct Path {
     pub args: Option<Box<GenericArgs>>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1231-1255`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1231-L1255)*
 
 A type that has a simple path to it. This is the kind of type of structs, unions, enums, etc.
 
@@ -1736,11 +1786,11 @@ A type that has a simple path to it. This is the kind of type of structs, unions
 
 - <span id="path-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Path`
+##### `impl Deserialize for Path`
 
 - <span id="path-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Path`
+##### `impl DeserializeOwned for Path`
 
 ##### `impl Eq for Path`
 
@@ -1767,6 +1817,8 @@ struct FunctionPointer {
     pub header: FunctionHeader,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1259-1271`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1259-L1271)*
 
 A type that is a function pointer.
 
@@ -1799,11 +1851,11 @@ A type that is a function pointer.
 
 - <span id="functionpointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for FunctionPointer`
+##### `impl Deserialize for FunctionPointer`
 
 - <span id="functionpointer-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for FunctionPointer`
+##### `impl DeserializeOwned for FunctionPointer`
 
 ##### `impl Eq for FunctionPointer`
 
@@ -1830,6 +1882,8 @@ struct FunctionSignature {
     pub is_c_variadic: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1275-1289`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1275-L1289)*
 
 The signature of a function.
 
@@ -1864,11 +1918,11 @@ The signature of a function.
 
 - <span id="functionsignature-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for FunctionSignature`
+##### `impl Deserialize for FunctionSignature`
 
 - <span id="functionsignature-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for FunctionSignature`
+##### `impl DeserializeOwned for FunctionSignature`
 
 ##### `impl Eq for FunctionSignature`
 
@@ -1899,6 +1953,8 @@ struct Trait {
     pub implementations: Vec<Id>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1293-1311`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1293-L1311)*
 
 A `trait` declaration.
 
@@ -1945,11 +2001,11 @@ A `trait` declaration.
 
 - <span id="trait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Trait`
+##### `impl Deserialize for Trait`
 
 - <span id="trait-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Trait`
+##### `impl DeserializeOwned for Trait`
 
 ##### `impl Eq for Trait`
 
@@ -1976,6 +2032,8 @@ struct TraitAlias {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1317-1322`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1317-L1322)*
+
 A trait alias declaration, e.g. `trait Int = Add + Sub + Mul + Div;`
 
 See [the tracking issue](https://github.com/rust-lang/rust/issues/41517)
@@ -2000,11 +2058,11 @@ See [the tracking issue](https://github.com/rust-lang/rust/issues/41517)
 
 - <span id="traitalias-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for TraitAlias`
+##### `impl Deserialize for TraitAlias`
 
 - <span id="traitalias-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for TraitAlias`
+##### `impl DeserializeOwned for TraitAlias`
 
 ##### `impl Eq for TraitAlias`
 
@@ -2037,6 +2095,8 @@ struct Impl {
     pub blanket_impl: Option<Type>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1326-1360`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1326-L1360)*
 
 An `impl` block.
 
@@ -2097,11 +2157,11 @@ An `impl` block.
 
 - <span id="impl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Impl`
+##### `impl Deserialize for Impl`
 
 - <span id="impl-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Impl`
+##### `impl DeserializeOwned for Impl`
 
 ##### `impl Eq for Impl`
 
@@ -2129,6 +2189,8 @@ struct Use {
     pub is_glob: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1365-1378`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1365-L1378)*
 
 A `use` statement.
 
@@ -2164,11 +2226,11 @@ A `use` statement.
 
 - <span id="use-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Use`
+##### `impl Deserialize for Use`
 
 - <span id="use-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Use`
+##### `impl DeserializeOwned for Use`
 
 ##### `impl Eq for Use`
 
@@ -2194,6 +2256,8 @@ struct ProcMacro {
     pub helpers: Vec<String>,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1382-1401`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1382-L1401)*
 
 A procedural macro.
 
@@ -2231,11 +2295,11 @@ A procedural macro.
 
 - <span id="procmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ProcMacro`
+##### `impl Deserialize for ProcMacro`
 
 - <span id="procmacro-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ProcMacro`
+##### `impl DeserializeOwned for ProcMacro`
 
 ##### `impl Eq for ProcMacro`
 
@@ -2262,6 +2326,8 @@ struct TypeAlias {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1417-1423`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1417-L1423)*
+
 A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
 #### Fields
@@ -2284,11 +2350,11 @@ A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
 - <span id="typealias-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for TypeAlias`
+##### `impl Deserialize for TypeAlias`
 
 - <span id="typealias-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for TypeAlias`
+##### `impl DeserializeOwned for TypeAlias`
 
 ##### `impl Eq for TypeAlias`
 
@@ -2316,6 +2382,8 @@ struct Static {
     pub is_unsafe: bool,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1427-1453`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1427-L1453)*
 
 A `static` declaration.
 
@@ -2362,11 +2430,11 @@ A `static` declaration.
 
 - <span id="static-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Static`
+##### `impl Deserialize for Static`
 
 - <span id="static-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Static`
+##### `impl DeserializeOwned for Static`
 
 ##### `impl Eq for Static`
 
@@ -2393,6 +2461,8 @@ struct Primitive {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1457-1462`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1457-L1462)*
+
 A primitive type declaration. Declarations of this kind can only come from the core library.
 
 #### Fields
@@ -2415,11 +2485,11 @@ A primitive type declaration. Declarations of this kind can only come from the c
 
 - <span id="primitive-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Primitive`
+##### `impl Deserialize for Primitive`
 
 - <span id="primitive-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Primitive`
+##### `impl DeserializeOwned for Primitive`
 
 ##### `impl Eq for Primitive`
 
@@ -2459,6 +2529,8 @@ enum Attribute {
     Other(String),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:217-255`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L217-L255)*
 
 An attribute, e.g. `#[repr(C)]`
 
@@ -2526,11 +2598,11 @@ This doesn't include:
 
 - <span id="attribute-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Attribute`
+##### `impl Deserialize for Attribute`
 
 - <span id="attribute-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Attribute`
+##### `impl DeserializeOwned for Attribute`
 
 ##### `impl Eq for Attribute`
 
@@ -2554,6 +2626,8 @@ enum ReprKind {
     Simd,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:281-292`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L281-L292)*
 
 The kind of `#[repr]`.
 
@@ -2589,11 +2663,11 @@ See [AttributeRepr::kind]`.
 
 - <span id="reprkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ReprKind`
+##### `impl Deserialize for ReprKind`
 
 - <span id="reprkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ReprKind`
+##### `impl DeserializeOwned for ReprKind`
 
 ##### `impl Eq for ReprKind`
 
@@ -2620,6 +2694,8 @@ enum Visibility {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:317-335`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L317-L335)*
 
 Visibility of an [`Item`](#item).
 
@@ -2652,11 +2728,11 @@ Visibility of an [`Item`](#item).
 
 - <span id="visibility-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Visibility`
+##### `impl Deserialize for Visibility`
 
 - <span id="visibility-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Visibility`
+##### `impl DeserializeOwned for Visibility`
 
 ##### `impl Eq for Visibility`
 
@@ -2690,6 +2766,8 @@ enum GenericArgs {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:374-395`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L374-L395)*
+
 A set of generic arguments provided to a path segment, e.g.
 
 ```text
@@ -2721,11 +2799,11 @@ std::option::Option<u32>
 
 - <span id="genericargs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for GenericArgs`
+##### `impl Deserialize for GenericArgs`
 
 - <span id="genericargs-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for GenericArgs`
+##### `impl DeserializeOwned for GenericArgs`
 
 ##### `impl Eq for GenericArgs`
 
@@ -2753,6 +2831,8 @@ enum GenericArg {
     Infer,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:402-427`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L402-L427)*
 
 One argument in a list of generic arguments to a path segment.
 
@@ -2802,11 +2882,11 @@ Part of [`GenericArgs`](#genericargs).
 
 - <span id="genericarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for GenericArg`
+##### `impl Deserialize for GenericArg`
 
 - <span id="genericarg-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for GenericArg`
+##### `impl DeserializeOwned for GenericArg`
 
 ##### `impl Eq for GenericArg`
 
@@ -2832,6 +2912,8 @@ enum AssocItemConstraintKind {
     Constraint(Vec<GenericBound>),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:462-475`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L462-L475)*
 
 The way in which an associate type/constant is bound.
 
@@ -2863,11 +2945,11 @@ The way in which an associate type/constant is bound.
 
 - <span id="associtemconstraintkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for AssocItemConstraintKind`
+##### `impl Deserialize for AssocItemConstraintKind`
 
 - <span id="associtemconstraintkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for AssocItemConstraintKind`
+##### `impl DeserializeOwned for AssocItemConstraintKind`
 
 ##### `impl Eq for AssocItemConstraintKind`
 
@@ -2915,6 +2997,8 @@ enum ItemKind {
     Attribute,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:497-565`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L497-L565)*
 
 The fundamental kind of an item. Unlike [`ItemEnum`](#itemenum), this does not carry any additional info.
 
@@ -3049,11 +3133,11 @@ Part of [`ItemSummary`](#itemsummary).
 
 - <span id="itemkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ItemKind`
+##### `impl Deserialize for ItemKind`
 
 - <span id="itemkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ItemKind`
+##### `impl DeserializeOwned for ItemKind`
 
 ##### `impl Eq for ItemKind`
 
@@ -3111,6 +3195,8 @@ enum ItemEnum {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:572-682`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L572-L682)*
 
 Specific fields of an item.
 
@@ -3219,11 +3305,11 @@ Part of [`Item`](#item).
 
 - <span id="itemenum-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for ItemEnum`
+##### `impl Deserialize for ItemEnum`
 
 - <span id="itemenum-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for ItemEnum`
+##### `impl DeserializeOwned for ItemEnum`
 
 ##### `impl Eq for ItemEnum`
 
@@ -3253,6 +3339,8 @@ enum StructKind {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:732-764`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L732-L764)*
 
 The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
@@ -3298,11 +3386,11 @@ The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
 - <span id="structkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for StructKind`
+##### `impl Deserialize for StructKind`
 
 - <span id="structkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for StructKind`
+##### `impl DeserializeOwned for StructKind`
 
 ##### `impl Eq for StructKind`
 
@@ -3332,6 +3420,8 @@ enum VariantKind {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:793-831`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L793-L831)*
 
 The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it, i.e. fields.
 
@@ -3384,11 +3474,11 @@ The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it
 
 - <span id="variantkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for VariantKind`
+##### `impl Deserialize for VariantKind`
 
 - <span id="variantkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for VariantKind`
+##### `impl DeserializeOwned for VariantKind`
 
 ##### `impl Eq for VariantKind`
 
@@ -3438,6 +3528,8 @@ enum Abi {
     Other(String),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:873-896`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L873-L896)*
 
 The ABI (Application Binary Interface) used by a function.
 
@@ -3500,11 +3592,11 @@ on unwinding for more info.
 
 - <span id="abi-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Abi`
+##### `impl Deserialize for Abi`
 
 - <span id="abi-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Abi`
+##### `impl DeserializeOwned for Abi`
 
 ##### `impl Eq for Abi`
 
@@ -3541,6 +3633,8 @@ enum GenericParamDefKind {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:937-1001`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L937-L1001)*
+
 The kind of a [`GenericParamDef`](#genericparamdef).
 
 #### Variants
@@ -3567,11 +3661,11 @@ The kind of a [`GenericParamDef`](#genericparamdef).
 
 - <span id="genericparamdefkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for GenericParamDefKind`
+##### `impl Deserialize for GenericParamDefKind`
 
 - <span id="genericparamdefkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for GenericParamDefKind`
+##### `impl DeserializeOwned for GenericParamDefKind`
 
 ##### `impl Eq for GenericParamDefKind`
 
@@ -3609,6 +3703,8 @@ enum WherePredicate {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1010-1051`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1010-L1051)*
+
 One `where` clause.
 ```rust
 fn default<T>() -> T where T: Default { T::default() }
@@ -3639,11 +3735,11 @@ fn default<T>() -> T where T: Default { T::default() }
 
 - <span id="wherepredicate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for WherePredicate`
+##### `impl Deserialize for WherePredicate`
 
 - <span id="wherepredicate-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for WherePredicate`
+##### `impl DeserializeOwned for WherePredicate`
 
 ##### `impl Eq for WherePredicate`
 
@@ -3675,6 +3771,8 @@ enum GenericBound {
 }
 ```
 
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1056-1081`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1056-L1081)*
+
 Either a trait bound or a lifetime bound.
 
 #### Variants
@@ -3705,11 +3803,11 @@ Either a trait bound or a lifetime bound.
 
 - <span id="genericbound-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for GenericBound`
+##### `impl Deserialize for GenericBound`
 
 - <span id="genericbound-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for GenericBound`
+##### `impl DeserializeOwned for GenericBound`
 
 ##### `impl Eq for GenericBound`
 
@@ -3736,6 +3834,8 @@ enum TraitBoundModifier {
     MaybeConst,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1086-1096`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1086-L1096)*
 
 A set of modifiers applied to a trait.
 
@@ -3768,11 +3868,11 @@ A set of modifiers applied to a trait.
 
 - <span id="traitboundmodifier-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for TraitBoundModifier`
+##### `impl Deserialize for TraitBoundModifier`
 
 - <span id="traitboundmodifier-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for TraitBoundModifier`
+##### `impl DeserializeOwned for TraitBoundModifier`
 
 ##### `impl Eq for TraitBoundModifier`
 
@@ -3798,6 +3898,8 @@ enum PreciseCapturingArg {
     Param(String),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1101-1112`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1101-L1112)*
 
 One precise capturing argument. See [the rust reference](https://doc.rust-lang.org/reference/types/impl-trait.html#precise-capturing).
 
@@ -3827,11 +3929,11 @@ One precise capturing argument. See [the rust reference](https://doc.rust-lang.o
 
 - <span id="precisecapturingarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for PreciseCapturingArg`
+##### `impl Deserialize for PreciseCapturingArg`
 
 - <span id="precisecapturingarg-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for PreciseCapturingArg`
+##### `impl DeserializeOwned for PreciseCapturingArg`
 
 ##### `impl Eq for PreciseCapturingArg`
 
@@ -3857,6 +3959,8 @@ enum Term {
     Constant(Constant),
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1118-1137`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1118-L1137)*
 
 Either a type or a constant, usually stored as the right-hand side of an equation in places like
 [`AssocItemConstraint`](#associtemconstraint)
@@ -3895,11 +3999,11 @@ Either a type or a constant, usually stored as the right-hand side of an equatio
 
 - <span id="term-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Term`
+##### `impl Deserialize for Term`
 
 - <span id="term-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Term`
+##### `impl DeserializeOwned for Term`
 
 ##### `impl Eq for Term`
 
@@ -3954,6 +4058,8 @@ enum Type {
     },
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1142-1227`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1142-L1227)*
 
 A type.
 
@@ -4028,11 +4134,11 @@ A type.
 
 - <span id="type-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Type`
+##### `impl Deserialize for Type`
 
 - <span id="type-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for Type`
+##### `impl DeserializeOwned for Type`
 
 ##### `impl Eq for Type`
 
@@ -4059,6 +4165,8 @@ enum MacroKind {
     Derive,
 }
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:1406-1413`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L1406-L1413)*
 
 The way a [`ProcMacro`](#procmacro) is declared to be used.
 
@@ -4088,11 +4196,11 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 
 - <span id="macrokind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for MacroKind`
+##### `impl Deserialize for MacroKind`
 
 - <span id="macrokind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
-##### `impl<T> DeserializeOwned for MacroKind`
+##### `impl DeserializeOwned for MacroKind`
 
 ##### `impl Eq for MacroKind`
 
@@ -4113,10 +4221,11 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 ## Constants
 
 ### `FORMAT_VERSION`
-
 ```rust
 const FORMAT_VERSION: u32 = 57u32;
 ```
+
+*Defined in [`rustdoc-types-0.57.0/src/lib.rs:40`](../../.source_1765210505/rustdoc-types-0.57.0/src/lib.rs#L40)*
 
 The version of JSON output that this crate represents.
 

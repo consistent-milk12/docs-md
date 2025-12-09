@@ -12,13 +12,13 @@ represented internally as an array index) to a [`Value`](#value).
 
 # `Value`s and `Subscriber`s
 
-`Subscriber`s consume `Value`s as fields attached to [`span`](../span/index.md)s or [`Event`](../index.md)s.
-The set of field keys on a given span or event is defined on its [`Metadata`](../index.md).
+`Subscriber`s consume `Value`s as fields attached to [`span`](../span/index.md)s or [`Event`](../event/index.md)s.
+The set of field keys on a given span or event is defined on its [`Metadata`](../metadata/index.md).
 When a span is created, it provides [`Attributes`](../span/index.md) to the `Subscriber`'s
 `new_span` method, containing any fields whose values were provided when
 the span was created; and may call the `Subscriber`'s `record` method
 with additional [`Record`](../span/index.md)s if values are added for more of its fields.
-Similarly, the [`Event`](../index.md) type passed to the subscriber's [`event`](../event/index.md) method
+Similarly, the [`Event`](../event/index.md) type passed to the subscriber's [`event`](../event/index.md) method
 will contain any fields attached to each event.
 
 `tracing` represents values as either one of a set of Rust primitives
@@ -38,7 +38,7 @@ for their field names rather than printing them.
 
 `tracing`'s [`Value`](#value) trait is intentionally minimalist: it supports only a small
 number of Rust primitives as typed values, and only permits recording
-user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/index.md)
+user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/fmt/index.md)
 implementations. However, there are some cases where it may be useful to record
 nested values (such as arrays, `Vec`s, or `HashMap`s containing values), or
 user-defined `struct` and `enum` types without having to format them as
@@ -48,7 +48,7 @@ To address `Value`'s limitations, `tracing` offers experimental support for
 the `valuable` crate, which provides object-safe inspection of structured
 values. User-defined types can implement the `valuable::Valuable` trait,
 and be recorded as a `tracing` field by calling their `as_value` method.
-If the [`Subscriber`](../index.md) also supports the `valuable` crate, it can
+If the [`Subscriber`](../subscriber/index.md) also supports the `valuable` crate, it can
 then visit those types fields as structured values using `valuable`.
 
 <pre class="ignore" style="white-space:normal;font:inherit;">
@@ -145,7 +145,7 @@ be forwarded to the visitor's `record_debug` method.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`private`](#private) | mod |  |
-| [`Field`](#field) | struct | An opaque key allowing _O_(1) access to a field in a `Span`'s key-value |
+| [`Field`](#field) | struct | An opaque key allowing _O_(1) access to a field in a `Span`'s key-value data. |
 | [`Empty`](#empty) | struct | An empty field. |
 | [`FieldSet`](#fieldset) | struct | Describes the fields present on a span. |
 | [`ValueSet`](#valueset) | struct | A set of fields and values for a span. |
@@ -156,8 +156,8 @@ be forwarded to the visitor's `record_debug` method.
 | [`Values`](#values) | enum |  |
 | [`Visit`](#visit) | trait | Visits typed values. |
 | [`Value`](#value) | trait | A field value of an erased type. |
-| [`display`](#display) | fn | Wraps a type implementing `fmt::Display` as a `Value` that can be |
-| [`debug`](#debug) | fn | Wraps a type implementing `fmt::Debug` as a `Value` that can be |
+| [`display`](#display) | fn | Wraps a type implementing `fmt::Display` as a `Value` that can be recorded using its `Display` implementation. |
+| [`debug`](#debug) | fn | Wraps a type implementing `fmt::Debug` as a `Value` that can be recorded using its `Debug` implementation. |
 | [`impl_values!`](#impl_values) | macro |  |
 | [`ty_to_nonzero!`](#ty_to_nonzero) | macro |  |
 | [`impl_one_value!`](#impl_one_value) | macro |  |
@@ -177,6 +177,8 @@ struct Field {
     fields: FieldSet,
 }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/field.rs:134-137`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L134-L137)*
 
 An opaque key allowing _O_(1) access to a field in a `Span`'s key-value
 data.
@@ -223,7 +225,7 @@ and use the key for that name for all other accesses.
 
 - <span id="field-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> ToString for Field`
+##### `impl ToString for Field`
 
 - <span id="field-to-string"></span>`fn to_string(&self) -> String`
 
@@ -232,6 +234,8 @@ and use the key for that name for all other accesses.
 ```rust
 struct Empty;
 ```
+
+*Defined in [`tracing-core-0.1.35/src/field.rs:146`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L146)*
 
 An empty field.
 
@@ -258,7 +262,7 @@ When a field's value is `Empty`. it will not be recorded.
 
 ##### `impl Value for Empty`
 
-- <span id="empty-record"></span>`fn record(&self, _: &Field, _: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
+- <span id="empty-record"></span>`fn record(&self, _: &Field, _: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
 
 ### `FieldSet`
 
@@ -268,6 +272,8 @@ struct FieldSet {
     callsite: callsite::Identifier,
 }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/field.rs:159-164`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L159-L164)*
 
 Describes the fields present on a span.
 
@@ -296,9 +302,9 @@ callsites. However, the equality of field names is checked in debug builds.
 
 - <span id="fieldset-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
 
-- <span id="fieldset-field"></span>`fn field<Q: Borrow<str> + ?Sized>(&self, name: &Q) -> Option<Field>` — [`Field`](../index.md)
+- <span id="fieldset-field"></span>`fn field<Q: Borrow<str> + ?Sized>(&self, name: &Q) -> Option<Field>` — [`Field`](#field)
 
-- <span id="fieldset-contains"></span>`fn contains(&self, field: &Field) -> bool` — [`Field`](../index.md)
+- <span id="fieldset-contains"></span>`fn contains(&self, field: &Field) -> bool` — [`Field`](#field)
 
 - <span id="fieldset-iter"></span>`fn iter(&self) -> Iter` — [`Iter`](#iter)
 
@@ -318,11 +324,19 @@ callsites. However, the equality of field names is checked in debug builds.
 
 ##### `impl Eq for FieldSet`
 
+##### `impl IntoIterator for &FieldSet`
+
+- <span id="fieldset-type-intoiter"></span>`type IntoIter = Iter`
+
+- <span id="fieldset-type-item"></span>`type Item = Field`
+
+- <span id="fieldset-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+
 ##### `impl PartialEq for FieldSet`
 
 - <span id="fieldset-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> ToString for FieldSet`
+##### `impl ToString for FieldSet`
 
 - <span id="fieldset-to-string"></span>`fn to_string(&self) -> String`
 
@@ -335,6 +349,8 @@ struct ValueSet<'a> {
 }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/field.rs:167-170`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L167-L170)*
+
 A set of fields and values for a span.
 
 #### Implementations
@@ -345,7 +361,7 @@ A set of fields and values for a span.
 
 - <span id="valueset-len"></span>`fn len(&self) -> usize`
 
-- <span id="valueset-contains"></span>`fn contains(&self, field: &Field) -> bool` — [`Field`](../index.md)
+- <span id="valueset-contains"></span>`fn contains(&self, field: &Field) -> bool` — [`Field`](#field)
 
 - <span id="valueset-is-empty"></span>`fn is_empty(&self) -> bool`
 
@@ -361,7 +377,7 @@ A set of fields and values for a span.
 
 - <span id="valueset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for ValueSet<'a>`
+##### `impl ToString for ValueSet<'a>`
 
 - <span id="valueset-to-string"></span>`fn to_string(&self) -> String`
 
@@ -374,6 +390,8 @@ struct Iter {
 }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/field.rs:182-185`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L182-L185)*
+
 An iterator over a set of fields.
 
 #### Trait Implementations
@@ -382,25 +400,27 @@ An iterator over a set of fields.
 
 - <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for Iter`
+##### `impl IntoIterator for Iter`
 
-- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-intoiter"></span>`type IntoIter = I`
+- <span id="iter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Iter`
 
-- <span id="iter-item"></span>`type Item = Field`
+- <span id="iter-type-item"></span>`type Item = Field`
 
-- <span id="iter-next"></span>`fn next(&mut self) -> Option<Field>` — [`Field`](../index.md)
+- <span id="iter-next"></span>`fn next(&mut self) -> Option<Field>` — [`Field`](#field)
 
 ### `DisplayValue<T: fmt::Display>`
 
 ```rust
 struct DisplayValue<T: fmt::Display>(T);
 ```
+
+*Defined in [`tracing-core-0.1.35/src/field.rs:360`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L360)*
 
 A `Value` which serializes using `fmt::Display`.
 
@@ -429,13 +449,15 @@ avoid an unnecessary evaluation.
 
 ##### `impl<T> Value for DisplayValue<T>`
 
-- <span id="displayvalue-record"></span>`fn record(&self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
+- <span id="displayvalue-record"></span>`fn record(&self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
 
 ### `DebugValue<T: fmt::Debug>`
 
 ```rust
 struct DebugValue<T: fmt::Debug>(T);
 ```
+
+*Defined in [`tracing-core-0.1.35/src/field.rs:364`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L364)*
 
 A `Value` which serializes as a string using `fmt::Debug`.
 
@@ -453,13 +475,15 @@ A `Value` which serializes as a string using `fmt::Debug`.
 
 ##### `impl<T> Value for DebugValue<T>`
 
-- <span id="debugvalue-record"></span>`fn record(&self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
+- <span id="debugvalue-record"></span>`fn record(&self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
 
 ### `HexBytes<'a>`
 
 ```rust
 struct HexBytes<'a>(&'a [u8]);
 ```
+
+*Defined in [`tracing-core-0.1.35/src/field.rs:397`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L397)*
 
 #### Trait Implementations
 
@@ -477,6 +501,8 @@ enum Values<'a> {
     All(&'a [Option<&'a dyn Value>]),
 }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/field.rs:172-178`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L172-L178)*
 
 #### Variants
 
@@ -497,6 +523,8 @@ enum Values<'a> {
 trait Visit { ... }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/field.rs:275-341`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L275-L341)*
+
 Visits typed values.
 
 An instance of `Visit` ("a visitor") represents the logic necessary to
@@ -504,9 +532,9 @@ record field values of various types. When an implementor of [`Value`](#value) i
 [recorded], it calls the appropriate method on the provided visitor to
 indicate the type that value should be recorded as.
 
-When a [`Subscriber`](../index.md) implementation [records an `Event`] or a
+When a [`Subscriber`](../subscriber/index.md) implementation [records an `Event`] or a
 [set of `Value`s added to a `Span`], it can pass an `&mut Visit` to the
-`record` method on the provided [`ValueSet`](#valueset) or [`Event`](../index.md). This visitor
+`record` method on the provided [`ValueSet`](#valueset) or [`Event`](../event/index.md). This visitor
 will then be used to record all the field-value pairs present on that
 `Event` or `ValueSet`.
 
@@ -641,6 +669,8 @@ available when the Rust standard library is present, as it requires the
 trait Value: crate::sealed::Sealed { ... }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/field.rs:350-353`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L350-L353)*
+
 A field value of an erased type.
 
 Implementors of `Value` may call the appropriate typed recording methods on
@@ -710,6 +740,8 @@ where
     T: fmt::Display
 ```
 
+*Defined in [`tracing-core-0.1.35/src/field.rs:368-373`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L368-L373)*
+
 Wraps a type implementing `fmt::Display` as a `Value` that can be
 recorded using its `Display` implementation.
 
@@ -721,6 +753,8 @@ where
     T: fmt::Debug
 ```
 
+*Defined in [`tracing-core-0.1.35/src/field.rs:377-382`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L377-L382)*
+
 Wraps a type implementing `fmt::Debug` as a `Value` that can be
 recorded using its `Debug` implementation.
 
@@ -728,9 +762,17 @@ recorded using its `Debug` implementation.
 
 ### `impl_values!`
 
+*Defined in [`tracing-core-0.1.35/src/field.rs:442-448`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L442-L448)*
+
 ### `ty_to_nonzero!`
+
+*Defined in [`tracing-core-0.1.35/src/field.rs:450-487`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L450-L487)*
 
 ### `impl_one_value!`
 
+*Defined in [`tracing-core-0.1.35/src/field.rs:489-534`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L489-L534)*
+
 ### `impl_value!`
+
+*Defined in [`tracing-core-0.1.35/src/field.rs:536-547`](../../../.source_1765210505/tracing-core-0.1.35/src/field.rs#L536-L547)*
 

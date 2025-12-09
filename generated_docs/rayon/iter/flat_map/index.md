@@ -23,8 +23,10 @@ struct FlatMap<I, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:12-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flat_map.rs#L12-L15)*
+
 `FlatMap` maps each element to a parallel iterator, then flattens these iterators together.
-This struct is created by the `flat_map()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `flat_map()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -35,7 +37,7 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](../../
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for FlatMap<I, F>`
 
-- <span id="flatmap-clone"></span>`fn clone(&self) -> FlatMap<I, F>` — [`FlatMap`](../index.md)
+- <span id="flatmap-clone"></span>`fn clone(&self) -> FlatMap<I, F>` — [`FlatMap`](#flatmap)
 
 ##### `impl<I: Debug, F> Debug for FlatMap<I, F>`
 
@@ -45,23 +47,23 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](../../
 
 ##### `impl<T> IntoParallelIterator for FlatMap<I, F>`
 
-- <span id="flatmap-iter"></span>`type Iter = T`
+- <span id="flatmap-type-iter"></span>`type Iter = T`
 
-- <span id="flatmap-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatmap-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatmap-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F, PI> ParallelIterator for FlatMap<I, F>`
 
-- <span id="flatmap-item"></span>`type Item = <PI as IntoParallelIterator>::Item`
+- <span id="flatmap-type-item"></span>`type Item = <PI as IntoParallelIterator>::Item`
 
 - <span id="flatmap-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for FlatMap<I, F>`
 
-- <span id="flatmap-align"></span>`const ALIGN: usize`
+- <span id="flatmap-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatmap-init"></span>`type Init = T`
+- <span id="flatmap-type-init"></span>`type Init = T`
 
 - <span id="flatmap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -80,6 +82,8 @@ struct FlatMapConsumer<'f, C, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:50-53`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flat_map.rs#L50-L53)*
+
 #### Implementations
 
 - <span id="flatmapconsumer-new"></span>`fn new(base: C, map_op: &'f F) -> Self`
@@ -88,11 +92,11 @@ struct FlatMapConsumer<'f, C, F> {
 
 ##### `impl<'f, T, U, C, F> Consumer for FlatMapConsumer<'f, C, F>`
 
-- <span id="flatmapconsumer-folder"></span>`type Folder = FlatMapFolder<'f, C, F, <C as Consumer>::Result>`
+- <span id="flatmapconsumer-type-folder"></span>`type Folder = FlatMapFolder<'f, C, F, <C as Consumer>::Result>`
 
-- <span id="flatmapconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="flatmapconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="flatmapconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="flatmapconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="flatmapconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -104,9 +108,9 @@ struct FlatMapConsumer<'f, C, F> {
 
 ##### `impl<T> Pointable for FlatMapConsumer<'f, C, F>`
 
-- <span id="flatmapconsumer-align"></span>`const ALIGN: usize`
+- <span id="flatmapconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatmapconsumer-init"></span>`type Init = T`
+- <span id="flatmapconsumer-type-init"></span>`type Init = T`
 
 - <span id="flatmapconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -132,11 +136,13 @@ struct FlatMapFolder<'f, C, F, R> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flat_map.rs:108-112`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flat_map.rs#L108-L112)*
+
 #### Trait Implementations
 
 ##### `impl<'f, T, U, C, F> Folder for FlatMapFolder<'f, C, F, <C as >::Result>`
 
-- <span id="flatmapfolder-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="flatmapfolder-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="flatmapfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -148,9 +154,9 @@ struct FlatMapFolder<'f, C, F, R> {
 
 ##### `impl<T> Pointable for FlatMapFolder<'f, C, F, R>`
 
-- <span id="flatmapfolder-align"></span>`const ALIGN: usize`
+- <span id="flatmapfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatmapfolder-init"></span>`type Init = T`
+- <span id="flatmapfolder-type-init"></span>`type Init = T`
 
 - <span id="flatmapfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -50,6 +50,8 @@ struct Metadata<'a> {
 }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:57-86`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L57-L86)*
+
 Metadata describing a [`span`](../span/index.md) or [`event`](../event/index.md).
 
 All spans and events have the following metadata:
@@ -60,7 +62,7 @@ All spans and events have the following metadata:
   overridden.
 - A [verbosity level]. This determines how verbose a given span or event
   is, and allows enabling or disabling more verbose diagnostics
-  situationally. See the documentation for the [`Level`](../index.md) type for details.
+  situationally. See the documentation for the [`Level`](#level) type for details.
 - The names of the [`fields`](../../tracing_attributes/attr/kw/index.md) defined by the span or event.
 - Whether the metadata corresponds to a span or event.
 
@@ -70,7 +72,7 @@ location where the span or event originated _may_ be provided:
 - The [line number]
 - The [module path]
 
-Metadata is used by [`Subscriber`](../index.md)s when filtering spans and events, and it
+Metadata is used by [`Subscriber`](../subscriber/index.md)s when filtering spans and events, and it
 may also be used as part of their data payload.
 
 When created by the `event!` or `span!` macro, the metadata describing a
@@ -139,11 +141,11 @@ of `Metadata`'s other fields is checked in debug builds.
 
 #### Implementations
 
-- <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](../index.md), [`FieldSet`](../field/index.md), [`Kind`](../index.md)
+- <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](#level), [`FieldSet`](../field/index.md), [`Kind`](#kind)
 
 - <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](../field/index.md)
 
-- <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](../index.md)
+- <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](#level)
 
 - <span id="metadata-name"></span>`fn name(&self) -> &'static str`
 
@@ -179,21 +181,23 @@ of `Metadata`'s other fields is checked in debug builds.
 struct Kind(u8);
 ```
 
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:90`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L90)*
+
 Indicates whether the callsite is a span or event.
 
 #### Implementations
 
-- <span id="kind-event-bit"></span>`const EVENT_BIT: u8`
+- <span id="kind-const-event-bit"></span>`const EVENT_BIT: u8`
 
-- <span id="kind-span-bit"></span>`const SPAN_BIT: u8`
+- <span id="kind-const-span-bit"></span>`const SPAN_BIT: u8`
 
-- <span id="kind-hint-bit"></span>`const HINT_BIT: u8`
+- <span id="kind-const-hint-bit"></span>`const HINT_BIT: u8`
 
-- <span id="kind-event"></span>`const EVENT: Kind`
+- <span id="kind-const-event"></span>`const EVENT: Kind`
 
-- <span id="kind-span"></span>`const SPAN: Kind`
+- <span id="kind-const-span"></span>`const SPAN: Kind`
 
-- <span id="kind-hint"></span>`const HINT: Kind`
+- <span id="kind-const-hint"></span>`const HINT: Kind`
 
 - <span id="kind-is-span"></span>`fn is_span(&self) -> bool`
 
@@ -207,7 +211,7 @@ Indicates whether the callsite is a span or event.
 
 ##### `impl Clone for Kind`
 
-- <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](../index.md)
+- <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](#kind)
 
 ##### `impl Debug for Kind`
 
@@ -217,7 +221,7 @@ Indicates whether the callsite is a span or event.
 
 ##### `impl PartialEq for Kind`
 
-- <span id="kind-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](../index.md)
+- <span id="kind-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](#kind)
 
 ##### `impl StructuralPartialEq for Kind`
 
@@ -226,6 +230,8 @@ Indicates whether the callsite is a span or event.
 ```rust
 struct Level(LevelInner);
 ```
+
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:221`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L221)*
 
 Describes the level of verbosity of a span or event.
 
@@ -259,10 +265,10 @@ Applications using those libraries typically chose to ignore those traces. Howev
 debugging an issue involving said libraries, it may be useful to temporarily
 enable the more verbose traces.
 
-The [`LevelFilter`](../index.md) type is provided to enable filtering traces by
-verbosity. `Level`s can be compared against [`LevelFilter`](../index.md)s, and
-[`LevelFilter`](../index.md) has a variant for each `Level`, which compares analogously
-to that level. In addition, [`LevelFilter`](../index.md) adds a `LevelFilter::OFF`
+The [`LevelFilter`](#levelfilter) type is provided to enable filtering traces by
+verbosity. `Level`s can be compared against [`LevelFilter`](#levelfilter)s, and
+[`LevelFilter`](#levelfilter) has a variant for each `Level`, which compares analogously
+to that level. In addition, [`LevelFilter`](#levelfilter) adds a `LevelFilter::OFF`
 variant, which is considered "less verbose" than every other `Level`. This is
 intended to allow filters to completely disable tracing in a particular context.
 
@@ -279,9 +285,9 @@ assert!(LevelFilter::INFO >= Level::INFO);
 
 ## Examples
 
-Below is a simple example of how a [`Subscriber`](../index.md) could implement filtering through
-a [`LevelFilter`](../index.md). When a span or event is recorded, the `Subscriber::enabled` method
-compares the span or event's `Level` against the configured [`LevelFilter`](../index.md).
+Below is a simple example of how a [`Subscriber`](../subscriber/index.md) could implement filtering through
+a [`LevelFilter`](#levelfilter). When a span or event is recorded, the `Subscriber::enabled` method
+compares the span or event's `Level` against the configured [`LevelFilter`](#levelfilter).
 The optional `Subscriber::max_level_hint` method can also be implemented to allow spans
 and events above a maximum verbosity level to be skipped more efficiently,
 often improving performance in short-lived programs.
@@ -357,15 +363,15 @@ recorded in.
 
 #### Implementations
 
-- <span id="level-error"></span>`const ERROR: Level`
+- <span id="level-const-error"></span>`const ERROR: Level`
 
-- <span id="level-warn"></span>`const WARN: Level`
+- <span id="level-const-warn"></span>`const WARN: Level`
 
-- <span id="level-info"></span>`const INFO: Level`
+- <span id="level-const-info"></span>`const INFO: Level`
 
-- <span id="level-debug"></span>`const DEBUG: Level`
+- <span id="level-const-debug"></span>`const DEBUG: Level`
 
-- <span id="level-trace"></span>`const TRACE: Level`
+- <span id="level-const-trace"></span>`const TRACE: Level`
 
 - <span id="level-as-str"></span>`fn as_str(&self) -> &'static str`
 
@@ -373,7 +379,7 @@ recorded in.
 
 ##### `impl Clone for Level`
 
-- <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](../index.md)
+- <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](#level)
 
 ##### `impl Copy for Level`
 
@@ -389,7 +395,7 @@ recorded in.
 
 ##### `impl FromStr for Level`
 
-- <span id="level-err"></span>`type Err = ParseLevelError`
+- <span id="level-type-err"></span>`type Err = ParseLevelError`
 
 - <span id="level-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](#parselevelerror)
 
@@ -403,23 +409,23 @@ recorded in.
 
 ##### `impl PartialEq for Level`
 
-- <span id="level-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="level-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](#level)
 
 ##### `impl PartialOrd for Level`
 
-- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](../index.md)
+- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](#level)
 
-- <span id="level-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="level-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](#level)
 
-- <span id="level-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="level-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](#level)
 
-- <span id="level-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="level-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](#level)
 
-- <span id="level-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="level-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](#level)
 
 ##### `impl StructuralPartialEq for Level`
 
-##### `impl<T> ToString for Level`
+##### `impl ToString for Level`
 
 - <span id="level-to-string"></span>`fn to_string(&self) -> String`
 
@@ -429,9 +435,11 @@ recorded in.
 struct LevelFilter(Option<Level>);
 ```
 
-A filter comparable to a verbosity [`Level`](../index.md).
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:239`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L239)*
 
-If a [`Level`](../index.md) is considered less than or equal to a `LevelFilter`, it
+A filter comparable to a verbosity [`Level`](#level).
+
+If a [`Level`](#level) is considered less than or equal to a `LevelFilter`, it
 should be considered enabled; if greater than the `LevelFilter`, that level
 is disabled. See `LevelFilter::current` for more details.
 
@@ -439,49 +447,49 @@ Note that this is essentially identical to the `Level` type, but with the
 addition of an `OFF` level that completely disables all trace
 instrumentation.
 
-See the documentation for the [`Level`](../index.md) type to see how `Level`s
+See the documentation for the [`Level`](#level) type to see how `Level`s
 and `LevelFilter`s interact.
 
 
 #### Implementations
 
-- <span id="levelfilter-off"></span>`const OFF: LevelFilter`
+- <span id="levelfilter-const-off"></span>`const OFF: LevelFilter`
 
-- <span id="levelfilter-error"></span>`const ERROR: LevelFilter`
+- <span id="levelfilter-const-error"></span>`const ERROR: LevelFilter`
 
-- <span id="levelfilter-warn"></span>`const WARN: LevelFilter`
+- <span id="levelfilter-const-warn"></span>`const WARN: LevelFilter`
 
-- <span id="levelfilter-info"></span>`const INFO: LevelFilter`
+- <span id="levelfilter-const-info"></span>`const INFO: LevelFilter`
 
-- <span id="levelfilter-debug"></span>`const DEBUG: LevelFilter`
+- <span id="levelfilter-const-debug"></span>`const DEBUG: LevelFilter`
 
-- <span id="levelfilter-trace"></span>`const TRACE: LevelFilter`
+- <span id="levelfilter-const-trace"></span>`const TRACE: LevelFilter`
 
-- <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](../index.md)
+- <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](#level)
 
-- <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](../index.md)
+- <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](#level)
 
-- <span id="levelfilter-error-usize"></span>`const ERROR_USIZE: usize`
+- <span id="levelfilter-const-error-usize"></span>`const ERROR_USIZE: usize`
 
-- <span id="levelfilter-warn-usize"></span>`const WARN_USIZE: usize`
+- <span id="levelfilter-const-warn-usize"></span>`const WARN_USIZE: usize`
 
-- <span id="levelfilter-info-usize"></span>`const INFO_USIZE: usize`
+- <span id="levelfilter-const-info-usize"></span>`const INFO_USIZE: usize`
 
-- <span id="levelfilter-debug-usize"></span>`const DEBUG_USIZE: usize`
+- <span id="levelfilter-const-debug-usize"></span>`const DEBUG_USIZE: usize`
 
-- <span id="levelfilter-trace-usize"></span>`const TRACE_USIZE: usize`
+- <span id="levelfilter-const-trace-usize"></span>`const TRACE_USIZE: usize`
 
-- <span id="levelfilter-off-usize"></span>`const OFF_USIZE: usize`
+- <span id="levelfilter-const-off-usize"></span>`const OFF_USIZE: usize`
 
 - <span id="levelfilter-current"></span>`fn current() -> Self`
 
-- <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](../index.md)
+- <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](#levelfilter)
 
 #### Trait Implementations
 
 ##### `impl Clone for LevelFilter`
 
-- <span id="levelfilter-clone"></span>`fn clone(&self) -> LevelFilter` — [`LevelFilter`](../index.md)
+- <span id="levelfilter-clone"></span>`fn clone(&self) -> LevelFilter` — [`LevelFilter`](#levelfilter)
 
 ##### `impl Copy for LevelFilter`
 
@@ -497,7 +505,7 @@ and `LevelFilter`s interact.
 
 ##### `impl FromStr for LevelFilter`
 
-- <span id="levelfilter-err"></span>`type Err = ParseLevelFilterError`
+- <span id="levelfilter-type-err"></span>`type Err = ParseLevelFilterError`
 
 - <span id="levelfilter-from-str"></span>`fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
 
@@ -511,23 +519,23 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq for LevelFilter`
 
-- <span id="levelfilter-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="levelfilter-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-##### `impl PartialOrd for LevelFilter`
+##### `impl PartialOrd for Level`
 
-- <span id="levelfilter-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](../index.md)
+- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
 
-- <span id="levelfilter-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="level-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- <span id="levelfilter-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="level-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- <span id="levelfilter-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="level-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- <span id="levelfilter-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="level-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
 ##### `impl StructuralPartialEq for LevelFilter`
 
-##### `impl<T> ToString for LevelFilter`
+##### `impl ToString for LevelFilter`
 
 - <span id="levelfilter-to-string"></span>`fn to_string(&self) -> String`
 
@@ -536,6 +544,8 @@ and `LevelFilter`s interact.
 ```rust
 struct ParseLevelFilterError(());
 ```
+
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:243`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L243)*
 
 Indicates that a string could not be parsed to a valid level.
 
@@ -555,7 +565,7 @@ Indicates that a string could not be parsed to a valid level.
 
 ##### `impl Error for ParseLevelFilterError`
 
-##### `impl<T> ToString for ParseLevelFilterError`
+##### `impl ToString for ParseLevelFilterError`
 
 - <span id="parselevelfiltererror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -566,6 +576,8 @@ struct ParseLevelError {
     _p: (),
 }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:805-807`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L805-L807)*
 
 Returned if parsing a `Level` fails.
 
@@ -581,7 +593,7 @@ Returned if parsing a `Level` fails.
 
 ##### `impl Error for ParseLevelError`
 
-##### `impl<T> ToString for ParseLevelError`
+##### `impl ToString for ParseLevelError`
 
 - <span id="parselevelerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -598,6 +610,8 @@ enum LevelInner {
     Error,
 }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:579-600`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L579-L600)*
 
 #### Variants
 
@@ -662,4 +676,6 @@ enum LevelInner {
 ```rust
 fn filter_as_usize(x: &Option<Level>) -> usize
 ```
+
+*Defined in [`tracing-core-0.1.35/src/metadata.rs:972-977`](../../../.source_1765210505/tracing-core-0.1.35/src/metadata.rs#L972-L977)*
 

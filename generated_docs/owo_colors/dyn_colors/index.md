@@ -19,6 +19,8 @@
 struct ParseColorError;
 ```
 
+*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:72`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_colors.rs#L72)*
+
 An error for when the color can not be parsed from a string at runtime
 
 #### Trait Implementations
@@ -27,7 +29,7 @@ An error for when the color can not be parsed from a string at runtime
 
 - <span id="parsecolorerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for ParseColorError`
+##### `impl OwoColorize for ParseColorError`
 
 ## Enums
 
@@ -41,6 +43,8 @@ enum DynColors {
     Rgb(u8, u8, u8),
 }
 ```
+
+*Defined in [`owo-colors-4.2.3/src/dyn_colors.rs:13-18`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_colors.rs#L13-L18)*
 
 An enum describing runtime-configurable colors
 
@@ -73,11 +77,11 @@ allowing for multiple types of colors to be used at runtime.
 
 ##### `impl FromStr for DynColors`
 
-- <span id="dyncolors-err"></span>`type Err = ParseColorError`
+- <span id="dyncolors-type-err"></span>`type Err = ParseColorError`
 
 - <span id="dyncolors-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 
-##### `impl<D> OwoColorize for DynColors`
+##### `impl OwoColorize for DynColors`
 
 ##### `impl PartialEq for DynColors`
 

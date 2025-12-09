@@ -41,6 +41,8 @@ struct ImportTable<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/import.rs:15-19`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/import.rs#L15-L19)*
+
 Information for parsing a PE import table.
 
 Returned by [`DataDirectories::import_table`](super::DataDirectories::import_table).
@@ -61,11 +63,11 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportTable<'data>`
+##### `impl Clone for ImportTable<'data>`
 
 - <span id="importtable-clone"></span>`fn clone(&self) -> ImportTable<'data>` — [`ImportTable`](../index.md)
 
-##### `impl<'data> Debug for ImportTable<'data>`
+##### `impl Debug for ImportTable<'data>`
 
 - <span id="importtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -78,6 +80,8 @@ struct ImportDescriptorIterator<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/import.rs:102-105`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/import.rs#L102-L105)*
+
 A fallible iterator for the descriptors in the import data directory.
 
 #### Implementations
@@ -86,25 +90,25 @@ A fallible iterator for the descriptors in the import data directory.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportDescriptorIterator<'data>`
+##### `impl Clone for ImportDescriptorIterator<'data>`
 
 - <span id="importdescriptoriterator-clone"></span>`fn clone(&self) -> ImportDescriptorIterator<'data>` — [`ImportDescriptorIterator`](../index.md)
 
-##### `impl<'data> Debug for ImportDescriptorIterator<'data>`
+##### `impl Debug for ImportDescriptorIterator<'data>`
 
 - <span id="importdescriptoriterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ImportDescriptorIterator<'data>`
+##### `impl IntoIterator for ImportDescriptorIterator<'data>`
 
-- <span id="importdescriptoriterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="importdescriptoriterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="importdescriptoriterator-intoiter"></span>`type IntoIter = I`
+- <span id="importdescriptoriterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="importdescriptoriterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data> Iterator for ImportDescriptorIterator<'data>`
+##### `impl Iterator for ImportDescriptorIterator<'data>`
 
-- <span id="importdescriptoriterator-item"></span>`type Item = Result<&'data ImageImportDescriptor, Error>`
+- <span id="importdescriptoriterator-type-item"></span>`type Item = Result<&'data ImageImportDescriptor, Error>`
 
 - <span id="importdescriptoriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -115,6 +119,8 @@ struct ImportThunkList<'data> {
     data: crate::read::Bytes<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/import.rs:148-150`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/import.rs#L148-L150)*
 
 A list of import thunks.
 
@@ -128,11 +134,11 @@ These may be in the import lookup table, or the import address table.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportThunkList<'data>`
+##### `impl Clone for ImportThunkList<'data>`
 
 - <span id="importthunklist-clone"></span>`fn clone(&self) -> ImportThunkList<'data>` — [`ImportThunkList`](../index.md)
 
-##### `impl<'data> Debug for ImportThunkList<'data>`
+##### `impl Debug for ImportThunkList<'data>`
 
 - <span id="importthunklist-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -145,6 +151,8 @@ struct DelayLoadImportTable<'data> {
     import_address: u32,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/import.rs:250-254`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/import.rs#L250-L254)*
 
 Information for parsing a PE delay-load import table.
 
@@ -167,11 +175,11 @@ Returned by
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for DelayLoadImportTable<'data>`
+##### `impl Clone for DelayLoadImportTable<'data>`
 
 - <span id="delayloadimporttable-clone"></span>`fn clone(&self) -> DelayLoadImportTable<'data>` — [`DelayLoadImportTable`](../index.md)
 
-##### `impl<'data> Debug for DelayLoadImportTable<'data>`
+##### `impl Debug for DelayLoadImportTable<'data>`
 
 - <span id="delayloadimporttable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -184,6 +192,8 @@ struct DelayLoadDescriptorIterator<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/import.rs:341-344`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/import.rs#L341-L344)*
+
 A fallible iterator for the descriptors in the delay-load data directory.
 
 #### Implementations
@@ -192,25 +202,25 @@ A fallible iterator for the descriptors in the delay-load data directory.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for DelayLoadDescriptorIterator<'data>`
+##### `impl Clone for DelayLoadDescriptorIterator<'data>`
 
 - <span id="delayloaddescriptoriterator-clone"></span>`fn clone(&self) -> DelayLoadDescriptorIterator<'data>` — [`DelayLoadDescriptorIterator`](../index.md)
 
-##### `impl<'data> Debug for DelayLoadDescriptorIterator<'data>`
+##### `impl Debug for DelayLoadDescriptorIterator<'data>`
 
 - <span id="delayloaddescriptoriterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for DelayLoadDescriptorIterator<'data>`
+##### `impl IntoIterator for DelayLoadDescriptorIterator<'data>`
 
-- <span id="delayloaddescriptoriterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="delayloaddescriptoriterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="delayloaddescriptoriterator-intoiter"></span>`type IntoIter = I`
+- <span id="delayloaddescriptoriterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="delayloaddescriptoriterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data> Iterator for DelayLoadDescriptorIterator<'data>`
+##### `impl Iterator for DelayLoadDescriptorIterator<'data>`
 
-- <span id="delayloaddescriptoriterator-item"></span>`type Item = Result<&'data ImageDelayloadDescriptor, Error>`
+- <span id="delayloaddescriptoriterator-type-item"></span>`type Item = Result<&'data ImageDelayloadDescriptor, Error>`
 
 - <span id="delayloaddescriptoriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -224,6 +234,8 @@ enum Import<'data> {
     Name(u16, &'data [u8]),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/import.rs:180-187`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/import.rs#L180-L187)*
 
 A parsed import thunk.
 
@@ -241,13 +253,13 @@ A parsed import thunk.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Import<'data>`
+##### `impl Clone for Import<'data>`
 
 - <span id="import-clone"></span>`fn clone(&self) -> Import<'data>` — [`Import`](../index.md)
 
-##### `impl<'data> Copy for Import<'data>`
+##### `impl Copy for Import<'data>`
 
-##### `impl<'data> Debug for Import<'data>`
+##### `impl Debug for Import<'data>`
 
 - <span id="import-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -258,6 +270,8 @@ A parsed import thunk.
 ```rust
 trait ImageThunkData: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/import.rs:191-207`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/import.rs#L191-L207)*
 
 A trait for generic access to [`pe::ImageThunkData32`](../../../pe/index.md) and [`pe::ImageThunkData64`](../../../pe/index.md).
 

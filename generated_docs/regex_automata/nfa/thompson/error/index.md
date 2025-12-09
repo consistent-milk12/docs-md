@@ -21,13 +21,15 @@ struct BuildError {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
+
 An error that can occurred during the construction of a thompson NFA.
 
 This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](../../../../regex_syntax/hir/index.md) type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../../regex_syntax/ast/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 
@@ -42,27 +44,27 @@ building the NFA will fail.
 
 - <span id="builderror-kind"></span>`fn kind(&self) -> &BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
-- <span id="builderror-syntax"></span>`fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-syntax"></span>`fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](#builderror)
 
-- <span id="builderror-captures"></span>`fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../../util/captures/index.md), [`BuildError`](../index.md)
+- <span id="builderror-captures"></span>`fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../../util/captures/index.md), [`BuildError`](#builderror)
 
-- <span id="builderror-word"></span>`fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md), [`BuildError`](../index.md)
+- <span id="builderror-word"></span>`fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md), [`BuildError`](#builderror)
 
-- <span id="builderror-too-many-patterns"></span>`fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-too-many-patterns"></span>`fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](#builderror)
 
-- <span id="builderror-too-many-states"></span>`fn too_many_states(given: usize) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-too-many-states"></span>`fn too_many_states(given: usize) -> BuildError` — [`BuildError`](#builderror)
 
-- <span id="builderror-exceeded-size-limit"></span>`fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-exceeded-size-limit"></span>`fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](#builderror)
 
-- <span id="builderror-invalid-capture-index"></span>`fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-invalid-capture-index"></span>`fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](#builderror)
 
-- <span id="builderror-unsupported-captures"></span>`fn unsupported_captures() -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-unsupported-captures"></span>`fn unsupported_captures() -> BuildError` — [`BuildError`](#builderror)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
 
 ##### `impl Debug for BuildError`
 
@@ -76,7 +78,7 @@ building the NFA will fail.
 
 - <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
-##### `impl<T> ToString for BuildError`
+##### `impl ToString for BuildError`
 
 - <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -106,6 +108,8 @@ enum BuildErrorKind {
     UnsupportedCaptures,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:27-76`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/error.rs#L27-L76)*
 
 The kind of error that occurred during the construction of a thompson NFA.
 

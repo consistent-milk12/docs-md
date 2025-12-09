@@ -24,6 +24,8 @@ struct Key {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:9-12`](../../../.source_1765210505/clap_builder-4.5.53/src/mkeymap.rs#L9-L12)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Key`
@@ -51,6 +53,8 @@ struct MKeyMap {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:15-22`](../../../.source_1765210505/clap_builder-4.5.53/src/mkeymap.rs#L15-L22)*
+
 #### Fields
 
 - **`args`**: `Vec<crate::Arg>`
@@ -65,21 +69,21 @@ struct MKeyMap {
 
 - <span id="mkeymap-contains"></span>`fn contains<K>(&self, key: K) -> bool`
 
-- <span id="mkeymap-push"></span>`fn push(&mut self, new_arg: Arg)` — [`Arg`](../index.md)
+- <span id="mkeymap-push"></span>`fn push(&mut self, new_arg: Arg)` — [`Arg`](../builder/arg/index.md)
 
-- <span id="mkeymap-get"></span>`fn get<K: ?Sized>(&self, key: &K) -> Option<&Arg>` — [`Arg`](../index.md)
+- <span id="mkeymap-get"></span>`fn get<K: ?Sized>(&self, key: &K) -> Option<&Arg>` — [`Arg`](../builder/arg/index.md)
 
 - <span id="mkeymap-keys"></span>`fn keys(&self) -> impl Iterator<Item = &KeyType>` — [`KeyType`](#keytype)
 
-- <span id="mkeymap-args"></span>`fn args(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](../index.md)
+- <span id="mkeymap-args"></span>`fn args(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](../builder/arg/index.md)
 
-- <span id="mkeymap-args-mut"></span>`fn args_mut(&mut self) -> impl Iterator<Item = &mut Arg>` — [`Arg`](../index.md)
+- <span id="mkeymap-args-mut"></span>`fn args_mut(&mut self) -> impl Iterator<Item = &mut Arg>` — [`Arg`](../builder/arg/index.md)
 
 - <span id="mkeymap-mut-args"></span>`fn mut_args<F>(&mut self, f: F)`
 
 - <span id="mkeymap-build"></span>`fn _build(&mut self)`
 
-- <span id="mkeymap-remove-by-name"></span>`fn remove_by_name(&mut self, name: &str) -> Option<Arg>` — [`Arg`](../index.md)
+- <span id="mkeymap-remove-by-name"></span>`fn remove_by_name(&mut self, name: &str) -> Option<Arg>` — [`Arg`](../builder/arg/index.md)
 
 #### Trait Implementations
 
@@ -99,7 +103,7 @@ struct MKeyMap {
 
 ##### `impl Index for MKeyMap`
 
-- <span id="mkeymap-output"></span>`type Output = Arg`
+- <span id="mkeymap-type-output"></span>`type Output = Arg`
 
 - <span id="mkeymap-index"></span>`fn index(&self, key: &KeyType) -> &<Self as >::Output` — [`KeyType`](#keytype)
 
@@ -121,6 +125,8 @@ enum KeyType {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:25-29`](../../../.source_1765210505/clap_builder-4.5.53/src/mkeymap.rs#L25-L29)*
+
 #### Implementations
 
 - <span id="keytype-is-position"></span>`fn is_position(&self) -> bool`
@@ -141,9 +147,15 @@ enum KeyType {
 
 - <span id="keytype-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl Index for MKeyMap`
+
+- <span id="mkeymap-type-output"></span>`type Output = Arg`
+
+- <span id="mkeymap-index"></span>`fn index(&self, key: &KeyType) -> &<Self as >::Output` — [`KeyType`](#keytype)
+
 ##### `impl PartialEq for KeyType`
 
-- <span id="keytype-eq"></span>`fn eq(&self, rhs: &&str) -> bool`
+- <span id="keytype-eq"></span>`fn eq(&self, other: &KeyType) -> bool` — [`KeyType`](#keytype)
 
 ##### `impl StructuralPartialEq for KeyType`
 
@@ -154,6 +166,8 @@ enum KeyType {
 ```rust
 fn append_keys(keys: &mut Vec<Key>, arg: &crate::Arg, index: usize)
 ```
+
+*Defined in [`clap_builder-4.5.53/src/mkeymap.rs:165-188`](../../../.source_1765210505/clap_builder-4.5.53/src/mkeymap.rs#L165-L188)*
 
 Generate key types for an specific Arg.
 

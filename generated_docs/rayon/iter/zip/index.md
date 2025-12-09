@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Zip`](#zip) | struct | `Zip` is an iterator that zips up `a` and `b` into a single iterator |
+| [`Zip`](#zip) | struct | `Zip` is an iterator that zips up `a` and `b` into a single iterator of pairs. |
 | [`ZipProducer`](#zipproducer) | struct |  |
 
 ## Structs
@@ -22,9 +22,11 @@ struct Zip<A, B> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/zip.rs:12-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/zip.rs#L12-L15)*
+
 `Zip` is an iterator that zips up `a` and `b` into a single iterator
 of pairs. This struct is created by the `zip()` method on
-[`IndexedParallelIterator`](../../prelude/index.md)
+[`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -35,7 +37,7 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for Zip<A, B>`
 
-- <span id="zip-clone"></span>`fn clone(&self) -> Zip<A, B>` — [`Zip`](../index.md)
+- <span id="zip-clone"></span>`fn clone(&self) -> Zip<A, B>` — [`Zip`](#zip)
 
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for Zip<A, B>`
 
@@ -53,15 +55,15 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<T> IntoParallelIterator for Zip<A, B>`
 
-- <span id="zip-iter"></span>`type Iter = T`
+- <span id="zip-type-iter"></span>`type Iter = T`
 
-- <span id="zip-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="zip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="zip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Zip<A, B>`
 
-- <span id="zip-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
+- <span id="zip-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
 - <span id="zip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -69,9 +71,9 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<T> Pointable for Zip<A, B>`
 
-- <span id="zip-align"></span>`const ALIGN: usize`
+- <span id="zip-const-align"></span>`const ALIGN: usize`
 
-- <span id="zip-init"></span>`type Init = T`
+- <span id="zip-type-init"></span>`type Init = T`
 
 - <span id="zip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -90,15 +92,17 @@ struct ZipProducer<A: Producer, B: Producer> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/zip.rs:118-121`](../../../../.source_1765210505/rayon-1.11.0/src/iter/zip.rs#L118-L121)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for ZipProducer<A, B>`
 
 ##### `impl<T> Pointable for ZipProducer<A, B>`
 
-- <span id="zipproducer-align"></span>`const ALIGN: usize`
+- <span id="zipproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="zipproducer-init"></span>`type Init = T`
+- <span id="zipproducer-type-init"></span>`type Init = T`
 
 - <span id="zipproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -110,9 +114,9 @@ struct ZipProducer<A: Producer, B: Producer> {
 
 ##### `impl<A: Producer, B: Producer> Producer for ZipProducer<A, B>`
 
-- <span id="zipproducer-item"></span>`type Item = (<A as Producer>::Item, <B as Producer>::Item)`
+- <span id="zipproducer-type-item"></span>`type Item = (<A as Producer>::Item, <B as Producer>::Item)`
 
-- <span id="zipproducer-intoiter"></span>`type IntoIter = Zip<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
+- <span id="zipproducer-type-intoiter"></span>`type IntoIter = Zip<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
 
 - <span id="zipproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 

@@ -14,3 +14,5 @@
 
 ### `escape!`
 
+*Defined in [`anstyle-1.0.13/src/macros.rs:1-5`](../../../.source_1765210505/anstyle-1.0.13/src/macros.rs#L1-L5)*
+

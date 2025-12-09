@@ -40,19 +40,21 @@ struct WinconBytes {
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:3-6`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L3-L6)*
+
 Incrementally convert to wincon calls for non-contiguous data
 
 #### Implementations
 
 - <span id="winconbytes-new"></span>`fn new() -> Self`
 
-- <span id="winconbytes-extract-next"></span>`fn extract_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> WinconBytesIter<'s>` — [`WinconBytesIter`](../index.md)
+- <span id="winconbytes-extract-next"></span>`fn extract_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> WinconBytesIter<'s>` — [`WinconBytesIter`](#winconbytesiter)
 
 #### Trait Implementations
 
 ##### `impl Clone for WinconBytes`
 
-- <span id="winconbytes-clone"></span>`fn clone(&self) -> WinconBytes` — [`WinconBytes`](../index.md)
+- <span id="winconbytes-clone"></span>`fn clone(&self) -> WinconBytes` — [`WinconBytes`](#winconbytes)
 
 ##### `impl Debug for WinconBytes`
 
@@ -60,13 +62,13 @@ Incrementally convert to wincon calls for non-contiguous data
 
 ##### `impl Default for WinconBytes`
 
-- <span id="winconbytes-default"></span>`fn default() -> WinconBytes` — [`WinconBytes`](../index.md)
+- <span id="winconbytes-default"></span>`fn default() -> WinconBytes` — [`WinconBytes`](#winconbytes)
 
 ##### `impl Eq for WinconBytes`
 
 ##### `impl PartialEq for WinconBytes`
 
-- <span id="winconbytes-eq"></span>`fn eq(&self, other: &WinconBytes) -> bool` — [`WinconBytes`](../index.md)
+- <span id="winconbytes-eq"></span>`fn eq(&self, other: &WinconBytes) -> bool` — [`WinconBytes`](#winconbytes)
 
 ##### `impl StructuralPartialEq for WinconBytes`
 
@@ -80,35 +82,37 @@ struct WinconBytesIter<'s> {
 }
 ```
 
-See [`WinconBytes`](../index.md)
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:28-32`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L28-L32)*
+
+See [`WinconBytes`](#winconbytes)
 
 #### Trait Implementations
 
-##### `impl<'s> Debug for WinconBytesIter<'s>`
+##### `impl Debug for WinconBytesIter<'s>`
 
 - <span id="winconbytesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'s> Eq for WinconBytesIter<'s>`
+##### `impl Eq for WinconBytesIter<'s>`
 
-##### `impl<I> IntoIterator for WinconBytesIter<'s>`
+##### `impl IntoIterator for WinconBytesIter<'s>`
 
-- <span id="winconbytesiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="winconbytesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="winconbytesiter-intoiter"></span>`type IntoIter = I`
+- <span id="winconbytesiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="winconbytesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for WinconBytesIter<'_>`
 
-- <span id="winconbytesiter-item"></span>`type Item = (Style, String)`
+- <span id="winconbytesiter-type-item"></span>`type Item = (Style, String)`
 
 - <span id="winconbytesiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'s> PartialEq for WinconBytesIter<'s>`
+##### `impl PartialEq for WinconBytesIter<'s>`
 
-- <span id="winconbytesiter-eq"></span>`fn eq(&self, other: &WinconBytesIter<'s>) -> bool` — [`WinconBytesIter`](../index.md)
+- <span id="winconbytesiter-eq"></span>`fn eq(&self, other: &WinconBytesIter<'s>) -> bool` — [`WinconBytesIter`](#winconbytesiter)
 
-##### `impl<'s> StructuralPartialEq for WinconBytesIter<'s>`
+##### `impl StructuralPartialEq for WinconBytesIter<'s>`
 
 ### `WinconCapture`
 
@@ -119,6 +123,8 @@ struct WinconCapture {
     ready: Option<anstyle::Style>,
 }
 ```
+
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:68-72`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L68-L72)*
 
 #### Implementations
 
@@ -168,6 +174,8 @@ enum CsiState {
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:272-278`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L272-L278)*
+
 #### Trait Implementations
 
 ##### `impl Clone for CsiState`
@@ -198,6 +206,8 @@ enum ColorTarget {
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:281-285`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L281-L285)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ColorTarget`
@@ -226,9 +236,13 @@ enum ColorTarget {
 fn next_bytes(bytes: &mut &[u8], parser: &mut anstyle_parse::Parser, capture: &mut WinconCapture) -> Option<(anstyle::Style, String)>
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:44-65`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L44-L65)*
+
 ### `to_ansi_color`
 
 ```rust
 fn to_ansi_color(digit: u16) -> Option<anstyle::AnsiColor>
 ```
+
+*Defined in [`anstream-0.6.21/src/adapter/wincon.rs:287-299`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/wincon.rs#L287-L299)*
 

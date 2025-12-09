@@ -25,6 +25,8 @@ struct DiagnosticDef {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:30-34`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L30-L34)*
+
 ### `DiagnosticConcreteArgs`
 
 ```rust
@@ -40,6 +42,8 @@ struct DiagnosticConcreteArgs {
     pub diagnostic_source: Option<crate::diagnostic_source::DiagnosticSource>,
 }
 ```
+
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:61-71`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L61-L71)*
 
 #### Implementations
 
@@ -73,6 +77,8 @@ enum Diagnostic {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:16-28`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L16-L28)*
+
 #### Implementations
 
 - <span id="diagnostic-from-derive-input"></span>`fn from_derive_input(input: DeriveInput) -> Result<Self, syn::Error>`
@@ -88,7 +94,9 @@ enum DiagnosticDefArgs {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/diagnostic.rs:36-39`](../../../.source_1765210505/miette-derive-7.6.0/src/diagnostic.rs#L36-L39)*
+
 #### Implementations
 
-- <span id="diagnosticdefargs-parse"></span>`fn parse(_ident: &syn::Ident, fields: &syn::Fields, attrs: &[&syn::Attribute], allow_transparent: bool) -> syn::Result<Self>`
+- <span id="diagnosticdefargs-forward-or-override-enum"></span>`fn forward_or_override_enum(&self, variant: &syn::Ident, which_fn: WhichFn, f: impl FnMut(&DiagnosticConcreteArgs) -> Option<TokenStream>) -> Option<TokenStream>` — [`WhichFn`](../forward/index.md), [`DiagnosticConcreteArgs`](#diagnosticconcreteargs)
 

@@ -9,9 +9,9 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`onepass`](#onepass) | mod |  |
-| [`Remapper`](#remapper) | struct | Remapper is an abstraction the manages the remapping of state IDs in a |
+| [`Remapper`](#remapper) | struct | Remapper is an abstraction the manages the remapping of state IDs in a finite state machine. |
 | [`IndexMapper`](#indexmapper) | struct | A simple type for mapping between state indices and state IDs. |
-| [`Remappable`](#remappable) | trait | Remappable is a tightly coupled abstraction that facilitates remapping |
+| [`Remappable`](#remappable) | trait | Remappable is a tightly coupled abstraction that facilitates remapping state identifiers in DFAs. |
 
 ## Modules
 
@@ -27,6 +27,8 @@ struct Remapper {
     idxmap: IndexMapper,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:68-85`](../../../../.source_1765210505/regex-automata-0.4.13/src/dfa/remapper.rs#L68-L85)*
 
 Remapper is an abstraction the manages the remapping of state IDs in a
 finite state machine. This is useful when one wants to shuffle states into
@@ -83,6 +85,8 @@ struct IndexMapper {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:169-174`](../../../../.source_1765210505/regex-automata-0.4.13/src/dfa/remapper.rs#L169-L174)*
+
 A simple type for mapping between state indices and state IDs.
 
 The reason why this exists is because state IDs are "premultiplied." That
@@ -126,6 +130,8 @@ indices.
 ```rust
 trait Remappable: core::fmt::Debug { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/dfa/remapper.rs:28-55`](../../../../.source_1765210505/regex-automata-0.4.13/src/dfa/remapper.rs#L28-L55)*
 
 Remappable is a tightly coupled abstraction that facilitates remapping
 state identifiers in DFAs.

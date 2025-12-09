@@ -35,6 +35,8 @@ specific functions you're interested in.
 fn _exit()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:334`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L334)*
+
 See the [module comment](self).
 
 ### `_Exit`
@@ -42,6 +44,8 @@ See the [module comment](self).
 ```rust
 fn _Exit()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:335`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L335)*
 
 See the [module comment](self).
 
@@ -51,6 +55,8 @@ See the [module comment](self).
 fn exit_group()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:336`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L336)*
+
 See the [module comment](self).
 
 ### `sigpending`
@@ -58,6 +64,8 @@ See the [module comment](self).
 ```rust
 fn sigpending()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:337`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L337)*
 
 See the [module comment](self).
 
@@ -67,6 +75,8 @@ See the [module comment](self).
 fn sigsuspend()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:338`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L338)*
+
 See the [module comment](self).
 
 ### `execveat`
@@ -74,6 +84,8 @@ See the [module comment](self).
 ```rust
 fn execveat()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:339`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L339)*
 
 See the [module comment](self).
 
@@ -83,6 +95,8 @@ See the [module comment](self).
 fn execve()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:340`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L340)*
+
 See the [module comment](self).
 
 ### `gethostname`
@@ -90,6 +104,8 @@ See the [module comment](self).
 ```rust
 fn gethostname()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:345-347`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L345-L347)*
 
 For now, use `rustix::process::uname().nodename()` instead.
 

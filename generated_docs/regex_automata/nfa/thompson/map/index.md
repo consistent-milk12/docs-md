@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Utf8BoundedMap`](#utf8boundedmap) | struct | A bounded hash map where the key is a sequence of NFA transitions and the |
+| [`Utf8BoundedMap`](#utf8boundedmap) | struct | A bounded hash map where the key is a sequence of NFA transitions and the value is a pre-existing NFA state ID. |
 | [`Utf8BoundedEntry`](#utf8boundedentry) | struct | An entry in this map. |
-| [`Utf8SuffixMap`](#utf8suffixmap) | struct | A cache of suffixes used to modestly compress UTF-8 automata for large |
+| [`Utf8SuffixMap`](#utf8suffixmap) | struct | A cache of suffixes used to modestly compress UTF-8 automata for large Unicode character classes. |
 | [`Utf8SuffixKey`](#utf8suffixkey) | struct | A key that uniquely identifies an NFA state. |
 | [`Utf8SuffixEntry`](#utf8suffixentry) | struct | An entry in this map. |
 | [`PRIME`](#prime) | const |  |
@@ -27,6 +27,8 @@ struct Utf8BoundedMap {
     map: alloc::vec::Vec<Utf8BoundedEntry>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:81-94`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L81-L94)*
 
 A bounded hash map where the key is a sequence of NFA transitions and the
 value is a pre-existing NFA state ID.
@@ -84,11 +86,11 @@ amount of extra time they cost.
 
 - <span id="utf8boundedmap-clear"></span>`fn clear(&mut self)`
 
-- <span id="utf8boundedmap-hash"></span>`fn hash(&self, key: &[Transition]) -> usize` — [`Transition`](../index.md)
+- <span id="utf8boundedmap-hash"></span>`fn hash(&self, key: &[Transition]) -> usize` — [`Transition`](../nfa/index.md)
 
-- <span id="utf8boundedmap-get"></span>`fn get(&mut self, key: &[Transition], hash: usize) -> Option<StateID>` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md)
+- <span id="utf8boundedmap-get"></span>`fn get(&mut self, key: &[Transition], hash: usize) -> Option<StateID>` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md)
 
-- <span id="utf8boundedmap-set"></span>`fn set(&mut self, key: Vec<Transition>, hash: usize, state_id: StateID)` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md)
+- <span id="utf8boundedmap-set"></span>`fn set(&mut self, key: Vec<Transition>, hash: usize, state_id: StateID)` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 
@@ -109,6 +111,8 @@ struct Utf8BoundedEntry {
     val: crate::util::primitives::StateID,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:98-108`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L98-L108)*
 
 An entry in this map.
 
@@ -152,6 +156,8 @@ struct Utf8SuffixMap {
     map: alloc::vec::Vec<Utf8SuffixEntry>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:190-200`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L190-L200)*
 
 A cache of suffixes used to modestly compress UTF-8 automata for large
 Unicode character classes.
@@ -205,6 +211,8 @@ struct Utf8SuffixKey {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:205-209`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L205-L209)*
+
 A key that uniquely identifies an NFA state. It is a triple that represents
 a transition from one state for a particular byte range.
 
@@ -239,6 +247,8 @@ struct Utf8SuffixEntry {
     val: crate::util::primitives::StateID,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:213-222`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L213-L222)*
 
 An entry in this map.
 
@@ -275,14 +285,16 @@ An entry in this map.
 ## Constants
 
 ### `PRIME`
-
 ```rust
 const PRIME: u64 = 1_099_511_628_211u64;
 ```
 
-### `INIT`
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:48`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L48)*
 
+### `INIT`
 ```rust
 const INIT: u64 = 14_695_981_039_346_656_037u64;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/map.rs:49`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/map.rs#L49)*
 

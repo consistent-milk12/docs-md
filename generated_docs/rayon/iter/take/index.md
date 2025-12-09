@@ -21,8 +21,10 @@ struct Take<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/take.rs:10-13`](../../../../.source_1765210505/rayon-1.11.0/src/iter/take.rs#L10-L13)*
+
 `Take` is an iterator that iterates over the first `n` elements.
-This struct is created by the `take()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `take()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -33,7 +35,7 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<I: clone::Clone> Clone for Take<I>`
 
-- <span id="take-clone"></span>`fn clone(&self) -> Take<I>` — [`Take`](../index.md)
+- <span id="take-clone"></span>`fn clone(&self) -> Take<I>` — [`Take`](#take)
 
 ##### `impl<I: fmt::Debug> Debug for Take<I>`
 
@@ -51,15 +53,15 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<T> IntoParallelIterator for Take<I>`
 
-- <span id="take-iter"></span>`type Iter = T`
+- <span id="take-type-iter"></span>`type Iter = T`
 
-- <span id="take-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="take-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="take-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Take<I>`
 
-- <span id="take-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="take-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="take-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -67,9 +69,9 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<T> Pointable for Take<I>`
 
-- <span id="take-align"></span>`const ALIGN: usize`
+- <span id="take-const-align"></span>`const ALIGN: usize`
 
-- <span id="take-init"></span>`type Init = T`
+- <span id="take-type-init"></span>`type Init = T`
 
 - <span id="take-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

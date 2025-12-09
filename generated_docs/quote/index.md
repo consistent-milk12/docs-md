@@ -118,7 +118,7 @@ code it is convenient for a human to read and debug.
 | [`__quote_spanned!`](#__quote_spanned) | macro |  |
 | [`format_ident!`](#format_ident) | macro | Formatting macro for constructing `Ident`s. |
 | [`quote!`](#quote) | macro | The whole point. |
-| [`quote_spanned!`](#quote_spanned) | macro | Same as `quote!`, but applies a given span to all tokens originating within |
+| [`quote_spanned!`](#quote_spanned) | macro | Same as `quote!`, but applies a given span to all tokens originating within the macro invocation. |
 
 ## Modules
 
@@ -134,6 +134,8 @@ code it is convenient for a human to read and debug.
 ```rust
 trait TokenStreamExt: private::Sealed { ... }
 ```
+
+*Defined in [`quote-1.0.42/src/ext.rs:8-57`](../../.source_1765210505/quote-1.0.42/src/ext.rs#L8-L57)*
 
 TokenStream extension trait with methods for appending tokens.
 
@@ -167,9 +169,11 @@ This trait is sealed and cannot be implemented outside of the `quote` crate.
 trait IdentFragment { ... }
 ```
 
+*Defined in [`quote-1.0.42/src/ident_fragment.rs:13-23`](../../.source_1765210505/quote-1.0.42/src/ident_fragment.rs#L13-L23)*
+
 Specialized formatting trait used by `format_ident!`.
 
-[`Ident`](../proc_macro2/index.md) arguments formatted using this trait will have their `r#` prefix
+[`Ident`](../proc_macro2/imp/index.md) arguments formatted using this trait will have their `r#` prefix
 stripped, if present.
 
 See `format_ident!` for more information.
@@ -209,6 +213,8 @@ See `format_ident!` for more information.
 ```rust
 trait ToTokens { ... }
 ```
+
+*Defined in [`quote-1.0.42/src/to_tokens.rs:9-72`](../../.source_1765210505/quote-1.0.42/src/to_tokens.rs#L9-L72)*
 
 Types that can be interpolated inside a `quote!` invocation.
 
@@ -267,9 +273,15 @@ Types that can be interpolated inside a `quote!` invocation.
 
 ### `__quote!`
 
+*Defined in [`quote-1.0.42/src/lib.rs:128-478`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L128-L478)*
+
 ### `__quote_spanned!`
 
+*Defined in [`quote-1.0.42/src/lib.rs:527-625`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L527-L625)*
+
 ### `format_ident!`
+
+*Defined in [`quote-1.0.42/src/format.rs:111-125`](../../.source_1765210505/quote-1.0.42/src/format.rs#L111-L125)*
 
 Formatting macro for constructing `Ident`s.
 
@@ -283,7 +295,7 @@ named arguments.
 Only a limited set of formatting traits are supported. The current mapping
 of format types to traits is:
 
-* `{}` ⇒ [`IdentFragment`](#identfragment)
+* `{}` ⇒ [`IdentFragment`](ident_fragment/index.md)
 * `{:o}` ⇒ [`Octal`](std::fmt::Octal)
 * `{:x}` ⇒ [`LowerHex`](std::fmt::LowerHex)
 * `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
@@ -295,7 +307,7 @@ See [`std::fmt`](../anstream/fmt/index.md) for more information.
 
 # IdentFragment
 
-Unlike `format!`, this macro uses the [`IdentFragment`](#identfragment) formatting trait by
+Unlike `format!`, this macro uses the [`IdentFragment`](ident_fragment/index.md) formatting trait by
 default. This trait is like `Display`, with a few differences:
 
 * `IdentFragment` is only implemented for a limited set of types, such as
@@ -379,6 +391,8 @@ assert_eq!(upper_hex, "Id_A");
 
 ### `quote!`
 
+*Defined in [`quote-1.0.42/src/lib.rs:483-487`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L483-L487)*
+
 The whole point.
 
 Performs variable interpolation against the input and produces it as
@@ -394,7 +408,7 @@ Note: for returning tokens to the compiler in a procedural macro, use
 Variable interpolation is done with `#var` (similar to `$var` in
 `macro_rules!` macros). This grabs the `var` variable that is currently in
 scope and inserts it in that location in the output tokens. Any type
-implementing the [`ToTokens`](#totokens) trait can be interpolated. This includes most
+implementing the [`ToTokens`](to_tokens/index.md) trait can be interpolated. This includes most
 Rust primitive types as well as most of the syntax tree types from the [Syn]
 crate.
 
@@ -719,6 +733,8 @@ quote! {
 ```
 
 ### `quote_spanned!`
+
+*Defined in [`quote-1.0.42/src/lib.rs:630-634`](../../.source_1765210505/quote-1.0.42/src/lib.rs#L630-L634)*
 
 Same as `quote!`, but applies a given span to all tokens originating within
 the macro invocation.

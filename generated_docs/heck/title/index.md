@@ -19,7 +19,9 @@
 struct AsTitleCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a title case conversion in [`fmt::Display`](../../miette_derive/index.md).
+*Defined in [`heck-0.5.0/src/title.rs:44`](../../../.source_1765210505/heck-0.5.0/src/title.rs#L44)*
+
+This wrapper performs a title case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -47,6 +49,8 @@ assert_eq!(format!("{}", AsTitleCase(sentence)), "We Have Always Lived In Slums 
 ```rust
 trait ToTitleCase: ToOwned { ... }
 ```
+
+*Defined in [`heck-0.5.0/src/title.rs:23-26`](../../../.source_1765210505/heck-0.5.0/src/title.rs#L23-L26)*
 
 This trait defines a title case conversion.
 

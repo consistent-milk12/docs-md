@@ -22,15 +22,21 @@ A module that looks for word codepoints using regex-syntax's data tables.
 fn check() -> Result<(), super::UnicodeWordBoundaryError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:1577-1579`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/look.rs#L1577-L1579)*
+
 ### `fwd`
 
 ```rust
 fn fwd(haystack: &[u8], at: usize) -> Result<bool, super::UnicodeWordBoundaryError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:1582-1594`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/look.rs#L1582-L1594)*
+
 ### `rev`
 
 ```rust
 fn rev(haystack: &[u8], at: usize) -> Result<bool, super::UnicodeWordBoundaryError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:1597-1609`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/look.rs#L1597-L1609)*
 

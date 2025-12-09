@@ -24,6 +24,8 @@
 struct NoDynamicRelocationIterator;
 ```
 
+*Defined in [`object-0.37.3/src/read/traits.rs:580`](../../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L580)*
+
 An iterator for files that don't have dynamic relocations.
 
 #### Trait Implementations
@@ -32,17 +34,17 @@ An iterator for files that don't have dynamic relocations.
 
 - <span id="nodynamicrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for NoDynamicRelocationIterator`
+##### `impl IntoIterator for NoDynamicRelocationIterator`
 
-- <span id="nodynamicrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="nodynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="nodynamicrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="nodynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="nodynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for NoDynamicRelocationIterator`
 
-- <span id="nodynamicrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="nodynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="nodynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -53,6 +55,8 @@ An iterator for files that don't have dynamic relocations.
 ```rust
 trait Object<'data>: read::private::Sealed { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/traits.rs:15-335`](../../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L15-L335)*
 
 An object file.
 
@@ -231,6 +235,8 @@ This is the primary trait for the unified read API.
 trait ObjectSegment<'data>: read::private::Sealed { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/traits.rs:340-374`](../../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L340-L374)*
+
 A loadable segment in an [`Object`](../index.md).
 
 This trait is part of the unified read API.
@@ -287,6 +293,8 @@ This trait is part of the unified read API.
 ```rust
 trait ObjectSection<'data>: read::private::Sealed { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/traits.rs:379-462`](../../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L379-L462)*
 
 A section in an [`Object`](../index.md).
 
@@ -387,6 +395,8 @@ This trait is part of the unified read API.
 trait ObjectComdat<'data>: read::private::Sealed { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/traits.rs:467-487`](../../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L467-L487)*
+
 A COMDAT section group in an [`Object`](../index.md).
 
 This trait is part of the unified read API.
@@ -432,6 +442,8 @@ This trait is part of the unified read API.
 trait ObjectSymbolTable<'data>: read::private::Sealed { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/traits.rs:492-510`](../../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L492-L510)*
+
 A symbol table in an [`Object`](../index.md).
 
 This trait is part of the unified read API.
@@ -465,6 +477,8 @@ This trait is part of the unified read API.
 ```rust
 trait ObjectSymbol<'data>: read::private::Sealed { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/traits.rs:515-576`](../../../../.source_1765210505/object-0.37.3/src/read/traits.rs#L515-L576)*
 
 A symbol table entry in an [`Object`](../index.md).
 

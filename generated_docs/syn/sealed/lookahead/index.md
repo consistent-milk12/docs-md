@@ -18,9 +18,11 @@
 trait Sealed: Copy { ... }
 ```
 
+*Defined in [`syn-2.0.111/src/sealed.rs:3`](../../../../.source_1765210505/syn-2.0.111/src/sealed.rs#L3)*
+
 #### Implementors
 
-- [`End`](../../parse/index.md)
+- [`End`](../../lookahead/index.md)
 - [`PeekFn`](../../ext/private/index.md)
 - `F`
 

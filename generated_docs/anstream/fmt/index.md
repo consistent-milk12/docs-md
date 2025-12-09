@@ -23,6 +23,8 @@ where
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/fmt.rs:4-10`](../../../.source_1765210505/anstream-0.6.21/src/fmt.rs#L4-L10)*
+
 A shim which allows a [`std::io::Write`](../../fs_err/index.md) to be implemented in terms of a [`std::fmt::Write`](../../fs_err/index.md)
 
 This saves off I/O errors. instead of discarding them

@@ -22,6 +22,8 @@ struct Backoff {
 }
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:80-82`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/backoff.rs#L80-L82)*
+
 Performs exponential backoff in spin loops.
 
 Backing off in spin loops reduces contention and improves overall performance.
@@ -112,19 +114,21 @@ fn blocking_wait(ready: &AtomicBool) {
 
 ##### `impl Default for Backoff`
 
-- <span id="backoff-default"></span>`fn default() -> Backoff` — [`Backoff`](../index.md)
+- <span id="backoff-default"></span>`fn default() -> Backoff` — [`Backoff`](#backoff)
 
 ## Constants
 
 ### `SPIN_LIMIT`
-
 ```rust
 const SPIN_LIMIT: u32 = 6u32;
 ```
 
-### `YIELD_LIMIT`
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:5`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/backoff.rs#L5)*
 
+### `YIELD_LIMIT`
 ```rust
 const YIELD_LIMIT: u32 = 10u32;
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/backoff.rs:6`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/backoff.rs#L6)*
 

@@ -531,7 +531,7 @@ libc - Raw FFI bindings to platforms' system libraries
 |------|------|-------------|
 | [`macros`](#macros) | mod |  |
 | [`new`](#new) | mod | This module contains the future directory structure. |
-| [`primitives`](#primitives) | mod | This module contains type aliases for C's platform-specific types |
+| [`primitives`](#primitives) | mod | This module contains type aliases for C's platform-specific types and fixed-width integer types. |
 | [`unix`](#unix) | mod | Definitions found commonly among almost all Unix derivatives |
 | [`types`](#types) | mod | Platform-agnostic support types. |
 | [`prelude`](#prelude) | mod | Frequently-used types that are available on all platforms |
@@ -1070,6 +1070,8 @@ struct group {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
+
 #### Trait Implementations
 
 ##### `impl Clone for group`
@@ -1090,6 +1092,8 @@ struct utimbuf {
     pub modtime: time_t,
 }
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
 
 #### Trait Implementations
 
@@ -1112,6 +1116,8 @@ struct timeval {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
+
 #### Trait Implementations
 
 ##### `impl Clone for timeval`
@@ -1132,6 +1138,8 @@ struct rlimit {
     pub rlim_max: rlim_t,
 }
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
 
 #### Trait Implementations
 
@@ -1168,6 +1176,8 @@ struct rusage {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
+
 #### Trait Implementations
 
 ##### `impl Clone for rusage`
@@ -1188,6 +1198,8 @@ struct ipv6_mreq {
     pub ipv6mr_interface: crate::c_uint,
 }
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
 
 #### Trait Implementations
 
@@ -1213,6 +1225,8 @@ struct hostent {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
+
 #### Trait Implementations
 
 ##### `impl Clone for hostent`
@@ -1233,6 +1247,8 @@ struct iovec {
     pub iov_len: size_t,
 }
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
 
 #### Trait Implementations
 
@@ -1255,6 +1271,8 @@ struct pollfd {
     pub revents: crate::c_short,
 }
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
 
 #### Trait Implementations
 
@@ -1279,6 +1297,8 @@ struct winsize {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
+
 #### Trait Implementations
 
 ##### `impl Clone for winsize`
@@ -1300,6 +1320,8 @@ struct linger {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
+
 #### Trait Implementations
 
 ##### `impl Clone for linger`
@@ -1319,6 +1341,8 @@ struct sigval {
     pub sival_ptr: *mut crate::c_void,
 }
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
 
 #### Trait Implementations
 
@@ -1340,6 +1364,8 @@ struct itimerval {
     pub it_value: crate::timeval,
 }
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
 
 #### Trait Implementations
 
@@ -1364,6 +1390,8 @@ struct tms {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
+
 #### Trait Implementations
 
 ##### `impl Clone for tms`
@@ -1387,6 +1415,8 @@ struct servent {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
+
 #### Trait Implementations
 
 ##### `impl Clone for servent`
@@ -1409,6 +1439,8 @@ struct protoent {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
+
 #### Trait Implementations
 
 ##### `impl Clone for protoent`
@@ -1428,6 +1460,8 @@ struct in6_addr {
     pub s6_addr: [u8; 16],
 }
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:47-220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L47-L220)*
 
 #### Trait Implementations
 
@@ -1450,6 +1484,8 @@ enum DIR {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:40-42`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L40-L42)*
+
 #### Trait Implementations
 
 ##### `impl Clone for DIR`
@@ -1469,6 +1505,8 @@ enum FILE {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:585-587`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L585-L587)*
+
 #### Trait Implementations
 
 ##### `impl Clone for FILE`
@@ -1483,11 +1521,15 @@ enum FILE {
 
 ## Functions
 
+*Defined in [`libc-0.2.178/src/lib.rs:45`](../../.source_1765210505/libc-0.2.178/src/lib.rs#L45)*
+
 ### `isalnum`
 
 ```rust
 unsafe fn isalnum(c: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:590`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L590)*
 
 ### `isalpha`
 
@@ -1495,11 +1537,15 @@ unsafe fn isalnum(c: c_int) -> c_int
 unsafe fn isalpha(c: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:591`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L591)*
+
 ### `iscntrl`
 
 ```rust
 unsafe fn iscntrl(c: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:592`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L592)*
 
 ### `isdigit`
 
@@ -1507,11 +1553,15 @@ unsafe fn iscntrl(c: c_int) -> c_int
 unsafe fn isdigit(c: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:593`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L593)*
+
 ### `isgraph`
 
 ```rust
 unsafe fn isgraph(c: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:594`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L594)*
 
 ### `islower`
 
@@ -1519,11 +1569,15 @@ unsafe fn isgraph(c: c_int) -> c_int
 unsafe fn islower(c: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:595`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L595)*
+
 ### `isprint`
 
 ```rust
 unsafe fn isprint(c: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:596`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L596)*
 
 ### `ispunct`
 
@@ -1531,11 +1585,15 @@ unsafe fn isprint(c: c_int) -> c_int
 unsafe fn ispunct(c: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:597`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L597)*
+
 ### `isspace`
 
 ```rust
 unsafe fn isspace(c: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:598`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L598)*
 
 ### `isupper`
 
@@ -1543,11 +1601,15 @@ unsafe fn isspace(c: c_int) -> c_int
 unsafe fn isupper(c: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:599`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L599)*
+
 ### `isxdigit`
 
 ```rust
 unsafe fn isxdigit(c: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:600`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L600)*
 
 ### `isblank`
 
@@ -1555,11 +1617,15 @@ unsafe fn isxdigit(c: c_int) -> c_int
 unsafe fn isblank(c: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:601`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L601)*
+
 ### `tolower`
 
 ```rust
 unsafe fn tolower(c: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:602`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L602)*
 
 ### `toupper`
 
@@ -1567,11 +1633,15 @@ unsafe fn tolower(c: c_int) -> c_int
 unsafe fn toupper(c: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:603`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L603)*
+
 ### `qsort`
 
 ```rust
 unsafe fn qsort(base: *mut c_void, num: size_t, size: size_t, compar: Option<fn(*const c_void, *const c_void) -> c_int>)
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:604-609`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L604-L609)*
 
 ### `bsearch`
 
@@ -1579,11 +1649,15 @@ unsafe fn qsort(base: *mut c_void, num: size_t, size: size_t, compar: Option<fn(
 unsafe fn bsearch(key: *const c_void, base: *const c_void, num: size_t, size: size_t, compar: Option<fn(*const c_void, *const c_void) -> c_int>) -> *mut c_void
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:610-616`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L610-L616)*
+
 ### `fopen`
 
 ```rust
 unsafe fn fopen(filename: *const c_char, mode: *const c_char) -> *mut FILE
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:622`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L622)*
 
 ### `freopen`
 
@@ -1591,11 +1665,15 @@ unsafe fn fopen(filename: *const c_char, mode: *const c_char) -> *mut FILE
 unsafe fn freopen(filename: *const c_char, mode: *const c_char, file: *mut FILE) -> *mut FILE
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:628`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L628)*
+
 ### `fflush`
 
 ```rust
 unsafe fn fflush(file: *mut FILE) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:630`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L630)*
 
 ### `fclose`
 
@@ -1603,11 +1681,15 @@ unsafe fn fflush(file: *mut FILE) -> c_int
 unsafe fn fclose(file: *mut FILE) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:631`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L631)*
+
 ### `remove`
 
 ```rust
 unsafe fn remove(filename: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:632`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L632)*
 
 ### `rename`
 
@@ -1615,11 +1697,15 @@ unsafe fn remove(filename: *const c_char) -> c_int
 unsafe fn rename(oldname: *const c_char, newname: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:633`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L633)*
+
 ### `tmpfile`
 
 ```rust
 unsafe fn tmpfile() -> *mut FILE
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:635`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L635)*
 
 ### `setvbuf`
 
@@ -1627,11 +1713,15 @@ unsafe fn tmpfile() -> *mut FILE
 unsafe fn setvbuf(stream: *mut FILE, buffer: *mut c_char, mode: c_int, size: size_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:636`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L636)*
+
 ### `setbuf`
 
 ```rust
 unsafe fn setbuf(stream: *mut FILE, buf: *mut c_char)
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:637`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L637)*
 
 ### `getchar`
 
@@ -1639,11 +1729,15 @@ unsafe fn setbuf(stream: *mut FILE, buf: *mut c_char)
 unsafe fn getchar() -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:638`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L638)*
+
 ### `putchar`
 
 ```rust
 unsafe fn putchar(c: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:639`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L639)*
 
 ### `fgetc`
 
@@ -1651,11 +1745,15 @@ unsafe fn putchar(c: c_int) -> c_int
 unsafe fn fgetc(stream: *mut FILE) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:640`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L640)*
+
 ### `fgets`
 
 ```rust
 unsafe fn fgets(buf: *mut c_char, n: c_int, stream: *mut FILE) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:641`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L641)*
 
 ### `fputc`
 
@@ -1663,11 +1761,15 @@ unsafe fn fgets(buf: *mut c_char, n: c_int, stream: *mut FILE) -> *mut c_char
 unsafe fn fputc(c: c_int, stream: *mut FILE) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:642`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L642)*
+
 ### `fputs`
 
 ```rust
 unsafe fn fputs(s: *const c_char, stream: *mut FILE) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:647`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L647)*
 
 ### `puts`
 
@@ -1675,11 +1777,15 @@ unsafe fn fputs(s: *const c_char, stream: *mut FILE) -> c_int
 unsafe fn puts(s: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:648`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L648)*
+
 ### `ungetc`
 
 ```rust
 unsafe fn ungetc(c: c_int, stream: *mut FILE) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:649`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L649)*
 
 ### `fread`
 
@@ -1687,11 +1793,15 @@ unsafe fn ungetc(c: c_int, stream: *mut FILE) -> c_int
 unsafe fn fread(ptr: *mut c_void, size: size_t, nobj: size_t, stream: *mut FILE) -> size_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:650`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L650)*
+
 ### `fwrite`
 
 ```rust
 unsafe fn fwrite(ptr: *const c_void, size: size_t, nobj: size_t, stream: *mut FILE) -> size_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:655`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L655)*
 
 ### `fseek`
 
@@ -1699,11 +1809,15 @@ unsafe fn fwrite(ptr: *const c_void, size: size_t, nobj: size_t, stream: *mut FI
 unsafe fn fseek(stream: *mut FILE, offset: c_long, whence: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:656`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L656)*
+
 ### `ftell`
 
 ```rust
 unsafe fn ftell(stream: *mut FILE) -> c_long
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:657`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L657)*
 
 ### `rewind`
 
@@ -1711,11 +1825,15 @@ unsafe fn ftell(stream: *mut FILE) -> c_long
 unsafe fn rewind(stream: *mut FILE)
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:658`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L658)*
+
 ### `fgetpos`
 
 ```rust
 unsafe fn fgetpos(stream: *mut FILE, ptr: *mut fpos_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:661`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L661)*
 
 ### `fsetpos`
 
@@ -1723,11 +1841,15 @@ unsafe fn fgetpos(stream: *mut FILE, ptr: *mut fpos_t) -> c_int
 unsafe fn fsetpos(stream: *mut FILE, ptr: *const fpos_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:664`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L664)*
+
 ### `feof`
 
 ```rust
 unsafe fn feof(stream: *mut FILE) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:665`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L665)*
 
 ### `ferror`
 
@@ -1735,11 +1857,15 @@ unsafe fn feof(stream: *mut FILE) -> c_int
 unsafe fn ferror(stream: *mut FILE) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:666`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L666)*
+
 ### `clearerr`
 
 ```rust
 unsafe fn clearerr(stream: *mut FILE)
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:667`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L667)*
 
 ### `perror`
 
@@ -1747,11 +1873,15 @@ unsafe fn clearerr(stream: *mut FILE)
 unsafe fn perror(s: *const c_char)
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:668`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L668)*
+
 ### `atof`
 
 ```rust
 unsafe fn atof(s: *const c_char) -> c_double
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:669`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L669)*
 
 ### `atoi`
 
@@ -1759,11 +1889,15 @@ unsafe fn atof(s: *const c_char) -> c_double
 unsafe fn atoi(s: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:670`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L670)*
+
 ### `atol`
 
 ```rust
 unsafe fn atol(s: *const c_char) -> c_long
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:671`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L671)*
 
 ### `atoll`
 
@@ -1771,11 +1905,15 @@ unsafe fn atol(s: *const c_char) -> c_long
 unsafe fn atoll(s: *const c_char) -> c_longlong
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:672`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L672)*
+
 ### `strtod`
 
 ```rust
 unsafe fn strtod(s: *const c_char, endp: *mut *mut c_char) -> c_double
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:677`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L677)*
 
 ### `strtof`
 
@@ -1783,11 +1921,15 @@ unsafe fn strtod(s: *const c_char, endp: *mut *mut c_char) -> c_double
 unsafe fn strtof(s: *const c_char, endp: *mut *mut c_char) -> c_float
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:678`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L678)*
+
 ### `strtol`
 
 ```rust
 unsafe fn strtol(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_long
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:679`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L679)*
 
 ### `strtoll`
 
@@ -1795,11 +1937,15 @@ unsafe fn strtol(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_lon
 unsafe fn strtoll(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_longlong
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:680`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L680)*
+
 ### `strtoul`
 
 ```rust
 unsafe fn strtoul(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_ulong
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:681`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L681)*
 
 ### `strtoull`
 
@@ -1807,11 +1953,15 @@ unsafe fn strtoul(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_ul
 unsafe fn strtoull(s: *const c_char, endp: *mut *mut c_char, base: c_int) -> c_ulonglong
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:682`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L682)*
+
 ### `calloc`
 
 ```rust
 unsafe fn calloc(nobj: size_t, size: size_t) -> *mut c_void
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:684`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L684)*
 
 ### `malloc`
 
@@ -1819,11 +1969,15 @@ unsafe fn calloc(nobj: size_t, size: size_t) -> *mut c_void
 unsafe fn malloc(size: size_t) -> *mut c_void
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:686`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L686)*
+
 ### `realloc`
 
 ```rust
 unsafe fn realloc(p: *mut c_void, size: size_t) -> *mut c_void
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:687`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L687)*
 
 ### `free`
 
@@ -1831,11 +1985,15 @@ unsafe fn realloc(p: *mut c_void, size: size_t) -> *mut c_void
 unsafe fn free(p: *mut c_void)
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:688`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L688)*
+
 ### `abort`
 
 ```rust
 unsafe fn abort() -> never
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:689`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L689)*
 
 ### `exit`
 
@@ -1843,11 +2001,15 @@ unsafe fn abort() -> never
 unsafe fn exit(status: c_int) -> never
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:690`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L690)*
+
 ### `_exit`
 
 ```rust
 unsafe fn _exit(status: c_int) -> never
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:691`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L691)*
 
 ### `system`
 
@@ -1855,11 +2017,15 @@ unsafe fn _exit(status: c_int) -> never
 unsafe fn system(s: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:696`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L696)*
+
 ### `getenv`
 
 ```rust
 unsafe fn getenv(s: *const c_char) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:697`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L697)*
 
 ### `strcpy`
 
@@ -1867,11 +2033,15 @@ unsafe fn getenv(s: *const c_char) -> *mut c_char
 unsafe fn strcpy(dst: *mut c_char, src: *const c_char) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:699`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L699)*
+
 ### `strncpy`
 
 ```rust
 unsafe fn strncpy(dst: *mut c_char, src: *const c_char, n: size_t) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:700`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L700)*
 
 ### `stpcpy`
 
@@ -1879,11 +2049,15 @@ unsafe fn strncpy(dst: *mut c_char, src: *const c_char, n: size_t) -> *mut c_cha
 unsafe fn stpcpy(dst: *mut c_char, src: *const c_char) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:701`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L701)*
+
 ### `strcat`
 
 ```rust
 unsafe fn strcat(s: *mut c_char, ct: *const c_char) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:702`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L702)*
 
 ### `strncat`
 
@@ -1891,11 +2065,15 @@ unsafe fn strcat(s: *mut c_char, ct: *const c_char) -> *mut c_char
 unsafe fn strncat(s: *mut c_char, ct: *const c_char, n: size_t) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:703`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L703)*
+
 ### `strcmp`
 
 ```rust
 unsafe fn strcmp(cs: *const c_char, ct: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:704`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L704)*
 
 ### `strncmp`
 
@@ -1903,11 +2081,15 @@ unsafe fn strcmp(cs: *const c_char, ct: *const c_char) -> c_int
 unsafe fn strncmp(cs: *const c_char, ct: *const c_char, n: size_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:705`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L705)*
+
 ### `strcoll`
 
 ```rust
 unsafe fn strcoll(cs: *const c_char, ct: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:706`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L706)*
 
 ### `strchr`
 
@@ -1915,11 +2097,15 @@ unsafe fn strcoll(cs: *const c_char, ct: *const c_char) -> c_int
 unsafe fn strchr(cs: *const c_char, c: c_int) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:707`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L707)*
+
 ### `strrchr`
 
 ```rust
 unsafe fn strrchr(cs: *const c_char, c: c_int) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:708`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L708)*
 
 ### `strspn`
 
@@ -1927,11 +2113,15 @@ unsafe fn strrchr(cs: *const c_char, c: c_int) -> *mut c_char
 unsafe fn strspn(cs: *const c_char, ct: *const c_char) -> size_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:709`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L709)*
+
 ### `strcspn`
 
 ```rust
 unsafe fn strcspn(cs: *const c_char, ct: *const c_char) -> size_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:710`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L710)*
 
 ### `strdup`
 
@@ -1939,11 +2129,15 @@ unsafe fn strcspn(cs: *const c_char, ct: *const c_char) -> size_t
 unsafe fn strdup(cs: *const c_char) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:711`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L711)*
+
 ### `strndup`
 
 ```rust
 unsafe fn strndup(cs: *const c_char, n: size_t) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:712`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L712)*
 
 ### `strpbrk`
 
@@ -1951,11 +2145,15 @@ unsafe fn strndup(cs: *const c_char, n: size_t) -> *mut c_char
 unsafe fn strpbrk(cs: *const c_char, ct: *const c_char) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:713`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L713)*
+
 ### `strstr`
 
 ```rust
 unsafe fn strstr(cs: *const c_char, ct: *const c_char) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:714`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L714)*
 
 ### `strcasecmp`
 
@@ -1963,11 +2161,15 @@ unsafe fn strstr(cs: *const c_char, ct: *const c_char) -> *mut c_char
 unsafe fn strcasecmp(s1: *const c_char, s2: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:715`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L715)*
+
 ### `strncasecmp`
 
 ```rust
 unsafe fn strncasecmp(s1: *const c_char, s2: *const c_char, n: size_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:716`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L716)*
 
 ### `strlen`
 
@@ -1975,11 +2177,15 @@ unsafe fn strncasecmp(s1: *const c_char, s2: *const c_char, n: size_t) -> c_int
 unsafe fn strlen(cs: *const c_char) -> size_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:717`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L717)*
+
 ### `strnlen`
 
 ```rust
 unsafe fn strnlen(cs: *const c_char, maxlen: size_t) -> size_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:718`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L718)*
 
 ### `strerror`
 
@@ -1987,11 +2193,15 @@ unsafe fn strnlen(cs: *const c_char, maxlen: size_t) -> size_t
 unsafe fn strerror(n: c_int) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:723`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L723)*
+
 ### `strtok`
 
 ```rust
 unsafe fn strtok(s: *mut c_char, t: *const c_char) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:724`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L724)*
 
 ### `strtok_r`
 
@@ -1999,11 +2209,15 @@ unsafe fn strtok(s: *mut c_char, t: *const c_char) -> *mut c_char
 unsafe fn strtok_r(s: *mut c_char, t: *const c_char, p: *mut *mut c_char) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:725`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L725)*
+
 ### `strxfrm`
 
 ```rust
 unsafe fn strxfrm(s: *mut c_char, ct: *const c_char, n: size_t) -> size_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:726`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L726)*
 
 ### `strsignal`
 
@@ -2011,11 +2225,15 @@ unsafe fn strxfrm(s: *mut c_char, ct: *const c_char, n: size_t) -> size_t
 unsafe fn strsignal(sig: c_int) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:727`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L727)*
+
 ### `wcslen`
 
 ```rust
 unsafe fn wcslen(buf: *const wchar_t) -> size_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:728`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L728)*
 
 ### `wcstombs`
 
@@ -2023,11 +2241,15 @@ unsafe fn wcslen(buf: *const wchar_t) -> size_t
 unsafe fn wcstombs(dest: *mut c_char, src: *const wchar_t, n: size_t) -> size_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:729`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L729)*
+
 ### `memchr`
 
 ```rust
 unsafe fn memchr(cx: *const c_void, c: c_int, n: size_t) -> *mut c_void
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:731`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L731)*
 
 ### `wmemchr`
 
@@ -2035,11 +2257,15 @@ unsafe fn memchr(cx: *const c_void, c: c_int, n: size_t) -> *mut c_void
 unsafe fn wmemchr(cx: *const wchar_t, c: wchar_t, n: size_t) -> *mut wchar_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:732`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L732)*
+
 ### `memcmp`
 
 ```rust
 unsafe fn memcmp(cx: *const c_void, ct: *const c_void, n: size_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:733`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L733)*
 
 ### `memcpy`
 
@@ -2047,11 +2273,15 @@ unsafe fn memcmp(cx: *const c_void, ct: *const c_void, n: size_t) -> c_int
 unsafe fn memcpy(dest: *mut c_void, src: *const c_void, n: size_t) -> *mut c_void
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:734`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L734)*
+
 ### `memmove`
 
 ```rust
 unsafe fn memmove(dest: *mut c_void, src: *const c_void, n: size_t) -> *mut c_void
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:735`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L735)*
 
 ### `memset`
 
@@ -2059,11 +2289,15 @@ unsafe fn memmove(dest: *mut c_void, src: *const c_void, n: size_t) -> *mut c_vo
 unsafe fn memset(dest: *mut c_void, c: c_int, n: size_t) -> *mut c_void
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:736`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L736)*
+
 ### `memccpy`
 
 ```rust
 unsafe fn memccpy(dest: *mut c_void, src: *const c_void, c: c_int, n: size_t) -> *mut c_void
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:737`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L737)*
 
 ### `getpwnam`
 
@@ -2071,11 +2305,15 @@ unsafe fn memccpy(dest: *mut c_void, src: *const c_void, c: c_int, n: size_t) ->
 unsafe fn getpwnam(name: *const c_char) -> *mut passwd
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:742`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L742)*
+
 ### `getpwuid`
 
 ```rust
 unsafe fn getpwuid(uid: crate::uid_t) -> *mut passwd
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:744`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L744)*
 
 ### `fprintf`
 
@@ -2083,11 +2321,15 @@ unsafe fn getpwuid(uid: crate::uid_t) -> *mut passwd
 unsafe fn fprintf(stream: *mut crate::FILE, format: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:746`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L746)*
+
 ### `printf`
 
 ```rust
 unsafe fn printf(format: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:747`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L747)*
 
 ### `snprintf`
 
@@ -2095,11 +2337,15 @@ unsafe fn printf(format: *const c_char) -> c_int
 unsafe fn snprintf(s: *mut c_char, n: size_t, format: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:748`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L748)*
+
 ### `sprintf`
 
 ```rust
 unsafe fn sprintf(s: *mut c_char, format: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:749`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L749)*
 
 ### `fscanf`
 
@@ -2107,11 +2353,15 @@ unsafe fn sprintf(s: *mut c_char, format: *const c_char) -> c_int
 unsafe fn fscanf(stream: *mut crate::FILE, format: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:754`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L754)*
+
 ### `scanf`
 
 ```rust
 unsafe fn scanf(format: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:759`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L759)*
 
 ### `sscanf`
 
@@ -2119,11 +2369,15 @@ unsafe fn scanf(format: *const c_char) -> c_int
 unsafe fn sscanf(s: *const c_char, format: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:764`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L764)*
+
 ### `getchar_unlocked`
 
 ```rust
 unsafe fn getchar_unlocked() -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:765`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L765)*
 
 ### `putchar_unlocked`
 
@@ -2131,11 +2385,15 @@ unsafe fn getchar_unlocked() -> c_int
 unsafe fn putchar_unlocked(c: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:766`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L766)*
+
 ### `socket`
 
 ```rust
 unsafe fn socket(domain: c_int, ty: c_int, protocol: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:773`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L773)*
 
 ### `connect`
 
@@ -2143,11 +2401,15 @@ unsafe fn socket(domain: c_int, ty: c_int, protocol: c_int) -> c_int
 unsafe fn connect(socket: c_int, address: *const sockaddr, len: socklen_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:784`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L784)*
+
 ### `listen`
 
 ```rust
 unsafe fn listen(socket: c_int, backlog: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:790`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L790)*
 
 ### `accept`
 
@@ -2155,11 +2417,15 @@ unsafe fn listen(socket: c_int, backlog: c_int) -> c_int
 unsafe fn accept(socket: c_int, address: *mut sockaddr, address_len: *mut socklen_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:798`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L798)*
+
 ### `getpeername`
 
 ```rust
 unsafe fn getpeername(socket: c_int, address: *mut sockaddr, address_len: *mut socklen_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:806-807`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L806-L807)*
 
 ### `getsockname`
 
@@ -2167,11 +2433,15 @@ unsafe fn getpeername(socket: c_int, address: *mut sockaddr, address_len: *mut s
 unsafe fn getsockname(socket: c_int, address: *mut sockaddr, address_len: *mut socklen_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:815-816`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L815-L816)*
+
 ### `setsockopt`
 
 ```rust
 unsafe fn setsockopt(socket: c_int, level: c_int, name: c_int, value: *const c_void, option_len: socklen_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:819-825`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L819-L825)*
 
 ### `socketpair`
 
@@ -2179,11 +2449,15 @@ unsafe fn setsockopt(socket: c_int, level: c_int, name: c_int, value: *const c_v
 unsafe fn socketpair(domain: c_int, type_: c_int, protocol: c_int, socket_vector: *mut c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:834-839`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L834-L839)*
+
 ### `sendto`
 
 ```rust
 unsafe fn sendto(socket: c_int, buf: *const c_void, len: size_t, flags: c_int, addr: *const sockaddr, addrlen: socklen_t) -> ssize_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:850-857`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L850-L857)*
 
 ### `shutdown`
 
@@ -2191,11 +2465,15 @@ unsafe fn sendto(socket: c_int, buf: *const c_void, len: size_t, flags: c_int, a
 unsafe fn shutdown(socket: c_int, how: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:859`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L859)*
+
 ### `chmod`
 
 ```rust
 unsafe fn chmod(path: *const c_char, mode: mode_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:865`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L865)*
 
 ### `fchmod`
 
@@ -2203,11 +2481,15 @@ unsafe fn chmod(path: *const c_char, mode: mode_t) -> c_int
 unsafe fn fchmod(fd: c_int, mode: mode_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:870`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L870)*
+
 ### `fstat`
 
 ```rust
 unsafe fn fstat(fildes: c_int, buf: *mut stat) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:886`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L886)*
 
 ### `mkdir`
 
@@ -2215,11 +2497,15 @@ unsafe fn fstat(fildes: c_int, buf: *mut stat) -> c_int
 unsafe fn mkdir(path: *const c_char, mode: mode_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:888`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L888)*
+
 ### `stat`
 
 ```rust
 unsafe fn stat(path: *const c_char, buf: *mut stat) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:904`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L904)*
 
 ### `pclose`
 
@@ -2227,11 +2513,15 @@ unsafe fn stat(path: *const c_char, buf: *mut stat) -> c_int
 unsafe fn pclose(stream: *mut crate::FILE) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:906`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L906)*
+
 ### `fdopen`
 
 ```rust
 unsafe fn fdopen(fd: c_int, mode: *const c_char) -> *mut crate::FILE
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:911`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L911)*
 
 ### `fileno`
 
@@ -2239,11 +2529,15 @@ unsafe fn fdopen(fd: c_int, mode: *const c_char) -> *mut crate::FILE
 unsafe fn fileno(stream: *mut crate::FILE) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:912`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L912)*
+
 ### `open`
 
 ```rust
 unsafe fn open(path: *const c_char, oflag: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:919`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L919)*
 
 ### `creat`
 
@@ -2251,11 +2545,15 @@ unsafe fn open(path: *const c_char, oflag: c_int) -> c_int
 unsafe fn creat(path: *const c_char, mode: mode_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:925`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L925)*
+
 ### `fcntl`
 
 ```rust
 unsafe fn fcntl(fd: c_int, cmd: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:935`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L935)*
 
 ### `opendir`
 
@@ -2263,11 +2561,15 @@ unsafe fn fcntl(fd: c_int, cmd: c_int) -> c_int
 unsafe fn opendir(dirname: *const c_char) -> *mut crate::DIR
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:946`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L946)*
+
 ### `readdir`
 
 ```rust
 unsafe fn readdir(dirp: *mut crate::DIR) -> *mut crate::dirent
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:958`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L958)*
 
 ### `closedir`
 
@@ -2275,11 +2577,15 @@ unsafe fn readdir(dirp: *mut crate::DIR) -> *mut crate::dirent
 unsafe fn closedir(dirp: *mut crate::DIR) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:963`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L963)*
+
 ### `rewinddir`
 
 ```rust
 unsafe fn rewinddir(dirp: *mut crate::DIR)
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:972`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L972)*
 
 ### `fchmodat`
 
@@ -2287,11 +2593,15 @@ unsafe fn rewinddir(dirp: *mut crate::DIR)
 unsafe fn fchmodat(dirfd: c_int, pathname: *const c_char, mode: mode_t, flags: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:974`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L974)*
+
 ### `fchown`
 
 ```rust
 unsafe fn fchown(fd: c_int, owner: crate::uid_t, group: crate::gid_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:975`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L975)*
 
 ### `fchownat`
 
@@ -2299,11 +2609,15 @@ unsafe fn fchown(fd: c_int, owner: crate::uid_t, group: crate::gid_t) -> c_int
 unsafe fn fchownat(dirfd: c_int, pathname: *const c_char, owner: crate::uid_t, group: crate::gid_t, flags: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:976-982`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L976-L982)*
+
 ### `fstatat`
 
 ```rust
 unsafe fn fstatat(dirfd: c_int, pathname: *const c_char, buf: *mut stat, flags: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:996`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L996)*
 
 ### `linkat`
 
@@ -2311,11 +2625,15 @@ unsafe fn fstatat(dirfd: c_int, pathname: *const c_char, buf: *mut stat, flags: 
 unsafe fn linkat(olddirfd: c_int, oldpath: *const c_char, newdirfd: c_int, newpath: *const c_char, flags: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:997-1003`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L997-L1003)*
+
 ### `renameat`
 
 ```rust
 unsafe fn renameat(olddirfd: c_int, oldpath: *const c_char, newdirfd: c_int, newpath: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1004-1009`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1004-L1009)*
 
 ### `symlinkat`
 
@@ -2323,11 +2641,15 @@ unsafe fn renameat(olddirfd: c_int, oldpath: *const c_char, newdirfd: c_int, new
 unsafe fn symlinkat(target: *const c_char, newdirfd: c_int, linkpath: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1010`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1010)*
+
 ### `unlinkat`
 
 ```rust
 unsafe fn unlinkat(dirfd: c_int, pathname: *const c_char, flags: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1011`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1011)*
 
 ### `access`
 
@@ -2335,11 +2657,15 @@ unsafe fn unlinkat(dirfd: c_int, pathname: *const c_char, flags: c_int) -> c_int
 unsafe fn access(path: *const c_char, amode: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1013`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1013)*
+
 ### `alarm`
 
 ```rust
 unsafe fn alarm(seconds: c_uint) -> c_uint
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1014`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1014)*
 
 ### `chdir`
 
@@ -2347,11 +2673,15 @@ unsafe fn alarm(seconds: c_uint) -> c_uint
 unsafe fn chdir(dir: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1015`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1015)*
+
 ### `fchdir`
 
 ```rust
 unsafe fn fchdir(dirfd: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1016`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1016)*
 
 ### `chown`
 
@@ -2359,11 +2689,15 @@ unsafe fn fchdir(dirfd: c_int) -> c_int
 unsafe fn chown(path: *const c_char, uid: uid_t, gid: gid_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1017`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1017)*
+
 ### `lchown`
 
 ```rust
 unsafe fn lchown(path: *const c_char, uid: uid_t, gid: gid_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1022`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1022)*
 
 ### `close`
 
@@ -2371,11 +2705,15 @@ unsafe fn lchown(path: *const c_char, uid: uid_t, gid: gid_t) -> c_int
 unsafe fn close(fd: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1031`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1031)*
+
 ### `dup`
 
 ```rust
 unsafe fn dup(fd: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1032`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1032)*
 
 ### `dup2`
 
@@ -2383,11 +2721,15 @@ unsafe fn dup(fd: c_int) -> c_int
 unsafe fn dup2(src: c_int, dst: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1033`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1033)*
+
 ### `execl`
 
 ```rust
 unsafe fn execl(path: *const c_char, arg0: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1035`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1035)*
 
 ### `execle`
 
@@ -2395,11 +2737,15 @@ unsafe fn execl(path: *const c_char, arg0: *const c_char) -> c_int
 unsafe fn execle(path: *const c_char, arg0: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1036`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1036)*
+
 ### `execlp`
 
 ```rust
 unsafe fn execlp(file: *const c_char, arg0: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1037`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1037)*
 
 ### `execv`
 
@@ -2407,11 +2753,15 @@ unsafe fn execlp(file: *const c_char, arg0: *const c_char) -> c_int
 unsafe fn execv(prog: *const c_char, argv: *const *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1040`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1040)*
+
 ### `execve`
 
 ```rust
 unsafe fn execve(prog: *const c_char, argv: *const *const c_char, envp: *const *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1041-1045`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1041-L1045)*
 
 ### `execvp`
 
@@ -2419,11 +2769,15 @@ unsafe fn execve(prog: *const c_char, argv: *const *const c_char, envp: *const *
 unsafe fn execvp(c: *const c_char, argv: *const *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1046`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1046)*
+
 ### `fork`
 
 ```rust
 unsafe fn fork() -> pid_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1048`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1048)*
 
 ### `fpathconf`
 
@@ -2431,11 +2785,15 @@ unsafe fn fork() -> pid_t
 unsafe fn fpathconf(filedes: c_int, name: c_int) -> c_long
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1049`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1049)*
+
 ### `getcwd`
 
 ```rust
 unsafe fn getcwd(buf: *mut c_char, size: size_t) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1050`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1050)*
 
 ### `getegid`
 
@@ -2443,11 +2801,15 @@ unsafe fn getcwd(buf: *mut c_char, size: size_t) -> *mut c_char
 unsafe fn getegid() -> gid_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1051`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1051)*
+
 ### `geteuid`
 
 ```rust
 unsafe fn geteuid() -> uid_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1052`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1052)*
 
 ### `getgid`
 
@@ -2455,11 +2817,15 @@ unsafe fn geteuid() -> uid_t
 unsafe fn getgid() -> gid_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1053`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1053)*
+
 ### `getgroups`
 
 ```rust
 unsafe fn getgroups(ngroups_max: c_int, groups: *mut gid_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1054`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1054)*
 
 ### `getlogin`
 
@@ -2467,11 +2833,15 @@ unsafe fn getgroups(ngroups_max: c_int, groups: *mut gid_t) -> c_int
 unsafe fn getlogin() -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1056`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1056)*
+
 ### `getopt`
 
 ```rust
 unsafe fn getopt(argc: c_int, argv: *const *mut c_char, optstr: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1061`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1061)*
 
 ### `getpgid`
 
@@ -2479,11 +2849,15 @@ unsafe fn getopt(argc: c_int, argv: *const *mut c_char, optstr: *const c_char) -
 unsafe fn getpgid(pid: pid_t) -> pid_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1062`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1062)*
+
 ### `getpgrp`
 
 ```rust
 unsafe fn getpgrp() -> pid_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1063`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1063)*
 
 ### `getpid`
 
@@ -2491,11 +2865,15 @@ unsafe fn getpgrp() -> pid_t
 unsafe fn getpid() -> pid_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1064`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1064)*
+
 ### `getppid`
 
 ```rust
 unsafe fn getppid() -> pid_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1065`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1065)*
 
 ### `getuid`
 
@@ -2503,11 +2881,15 @@ unsafe fn getppid() -> pid_t
 unsafe fn getuid() -> uid_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1066`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1066)*
+
 ### `isatty`
 
 ```rust
 unsafe fn isatty(fd: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1067`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1067)*
 
 ### `link`
 
@@ -2515,11 +2897,15 @@ unsafe fn isatty(fd: c_int) -> c_int
 unsafe fn link(src: *const c_char, dst: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1069`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1069)*
+
 ### `lseek`
 
 ```rust
 unsafe fn lseek(fd: c_int, offset: off_t, whence: c_int) -> off_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1071`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1071)*
 
 ### `pathconf`
 
@@ -2527,11 +2913,15 @@ unsafe fn lseek(fd: c_int, offset: off_t, whence: c_int) -> off_t
 unsafe fn pathconf(path: *const c_char, name: c_int) -> c_long
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1072`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1072)*
+
 ### `pipe`
 
 ```rust
 unsafe fn pipe(fds: *mut c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1073`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1073)*
 
 ### `posix_memalign`
 
@@ -2539,11 +2929,15 @@ unsafe fn pipe(fds: *mut c_int) -> c_int
 unsafe fn posix_memalign(memptr: *mut *mut c_void, align: size_t, size: size_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1074`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1074)*
+
 ### `aligned_alloc`
 
 ```rust
 unsafe fn aligned_alloc(alignment: size_t, size: size_t) -> *mut c_void
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1075`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1075)*
 
 ### `read`
 
@@ -2551,11 +2945,15 @@ unsafe fn aligned_alloc(alignment: size_t, size: size_t) -> *mut c_void
 unsafe fn read(fd: c_int, buf: *mut c_void, count: size_t) -> ssize_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1080`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1080)*
+
 ### `rmdir`
 
 ```rust
 unsafe fn rmdir(path: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1081`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1081)*
 
 ### `seteuid`
 
@@ -2563,11 +2961,15 @@ unsafe fn rmdir(path: *const c_char) -> c_int
 unsafe fn seteuid(uid: uid_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1082`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1082)*
+
 ### `setegid`
 
 ```rust
 unsafe fn setegid(gid: gid_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1083`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1083)*
 
 ### `setgid`
 
@@ -2575,11 +2977,15 @@ unsafe fn setegid(gid: gid_t) -> c_int
 unsafe fn setgid(gid: gid_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1084`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1084)*
+
 ### `setpgid`
 
 ```rust
 unsafe fn setpgid(pid: pid_t, pgid: pid_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1085`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1085)*
 
 ### `setsid`
 
@@ -2587,11 +2993,15 @@ unsafe fn setpgid(pid: pid_t, pgid: pid_t) -> c_int
 unsafe fn setsid() -> pid_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1086`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1086)*
+
 ### `setuid`
 
 ```rust
 unsafe fn setuid(uid: uid_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1087`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1087)*
 
 ### `setreuid`
 
@@ -2599,11 +3009,15 @@ unsafe fn setuid(uid: uid_t) -> c_int
 unsafe fn setreuid(ruid: uid_t, euid: uid_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1088`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1088)*
+
 ### `setregid`
 
 ```rust
 unsafe fn setregid(rgid: gid_t, egid: gid_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1089`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1089)*
 
 ### `sleep`
 
@@ -2611,11 +3025,15 @@ unsafe fn setregid(rgid: gid_t, egid: gid_t) -> c_int
 unsafe fn sleep(secs: c_uint) -> c_uint
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1094`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1094)*
+
 ### `nanosleep`
 
 ```rust
 unsafe fn nanosleep(rqtp: *const timespec, rmtp: *mut timespec) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1101`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1101)*
 
 ### `tcgetpgrp`
 
@@ -2623,11 +3041,15 @@ unsafe fn nanosleep(rqtp: *const timespec, rmtp: *mut timespec) -> c_int
 unsafe fn tcgetpgrp(fd: c_int) -> pid_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1102`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1102)*
+
 ### `tcsetpgrp`
 
 ```rust
 unsafe fn tcsetpgrp(fd: c_int, pgrp: crate::pid_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1103`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1103)*
 
 ### `ttyname`
 
@@ -2635,11 +3057,15 @@ unsafe fn tcsetpgrp(fd: c_int, pgrp: crate::pid_t) -> c_int
 unsafe fn ttyname(fd: c_int) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1104`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1104)*
+
 ### `ttyname_r`
 
 ```rust
 unsafe fn ttyname_r(fd: c_int, buf: *mut c_char, buflen: size_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1113`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1113)*
 
 ### `unlink`
 
@@ -2647,11 +3073,15 @@ unsafe fn ttyname_r(fd: c_int, buf: *mut c_char, buflen: size_t) -> c_int
 unsafe fn unlink(c: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1114`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1114)*
+
 ### `wait`
 
 ```rust
 unsafe fn wait(status: *mut c_int) -> pid_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1119`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1119)*
 
 ### `waitpid`
 
@@ -2659,11 +3089,15 @@ unsafe fn wait(status: *mut c_int) -> pid_t
 unsafe fn waitpid(pid: pid_t, status: *mut c_int, options: c_int) -> pid_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1124`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1124)*
+
 ### `write`
 
 ```rust
 unsafe fn write(fd: c_int, buf: *const c_void, count: size_t) -> ssize_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1129`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1129)*
 
 ### `pread`
 
@@ -2671,11 +3105,15 @@ unsafe fn write(fd: c_int, buf: *const c_void, count: size_t) -> ssize_t
 unsafe fn pread(fd: c_int, buf: *mut c_void, count: size_t, offset: off_t) -> ssize_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1135`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1135)*
+
 ### `pwrite`
 
 ```rust
 unsafe fn pwrite(fd: c_int, buf: *const c_void, count: size_t, offset: off_t) -> ssize_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1141`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1141)*
 
 ### `umask`
 
@@ -2683,11 +3121,15 @@ unsafe fn pwrite(fd: c_int, buf: *const c_void, count: size_t, offset: off_t) ->
 unsafe fn umask(mask: mode_t) -> mode_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1142`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1142)*
+
 ### `utime`
 
 ```rust
 unsafe fn utime(file: *const c_char, buf: *const utimbuf) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1146`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1146)*
 
 ### `kill`
 
@@ -2695,11 +3137,15 @@ unsafe fn utime(file: *const c_char, buf: *const utimbuf) -> c_int
 unsafe fn kill(pid: pid_t, sig: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1152`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1152)*
+
 ### `killpg`
 
 ```rust
 unsafe fn killpg(pgrp: pid_t, sig: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1157`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1157)*
 
 ### `mlock`
 
@@ -2707,11 +3153,15 @@ unsafe fn killpg(pgrp: pid_t, sig: c_int) -> c_int
 unsafe fn mlock(addr: *const c_void, len: size_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1159`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1159)*
+
 ### `munlock`
 
 ```rust
 unsafe fn munlock(addr: *const c_void, len: size_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1160`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1160)*
 
 ### `mlockall`
 
@@ -2719,11 +3169,15 @@ unsafe fn munlock(addr: *const c_void, len: size_t) -> c_int
 unsafe fn mlockall(flags: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1161`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1161)*
+
 ### `munlockall`
 
 ```rust
 unsafe fn munlockall() -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1162`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1162)*
 
 ### `mmap`
 
@@ -2731,11 +3185,15 @@ unsafe fn munlockall() -> c_int
 unsafe fn mmap(addr: *mut c_void, len: size_t, prot: c_int, flags: c_int, fd: c_int, offset: off_t) -> *mut c_void
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1169-1176`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1169-L1176)*
+
 ### `munmap`
 
 ```rust
 unsafe fn munmap(addr: *mut c_void, len: size_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1181`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1181)*
 
 ### `if_nametoindex`
 
@@ -2743,11 +3201,15 @@ unsafe fn munmap(addr: *mut c_void, len: size_t) -> c_int
 unsafe fn if_nametoindex(ifname: *const c_char) -> c_uint
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1183`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1183)*
+
 ### `if_indextoname`
 
 ```rust
 unsafe fn if_indextoname(ifindex: c_uint, ifname: *mut c_char) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1184`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1184)*
 
 ### `lstat`
 
@@ -2755,11 +3217,15 @@ unsafe fn if_indextoname(ifindex: c_uint, ifname: *mut c_char) -> *mut c_char
 unsafe fn lstat(path: *const c_char, buf: *mut stat) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1200`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1200)*
+
 ### `fsync`
 
 ```rust
 unsafe fn fsync(fd: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1206`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1206)*
 
 ### `setenv`
 
@@ -2767,11 +3233,15 @@ unsafe fn fsync(fd: c_int) -> c_int
 unsafe fn setenv(name: *const c_char, val: *const c_char, overwrite: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1212`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1212)*
+
 ### `unsetenv`
 
 ```rust
 unsafe fn unsetenv(name: *const c_char) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1218`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1218)*
 
 ### `symlink`
 
@@ -2779,11 +3249,15 @@ unsafe fn unsetenv(name: *const c_char) -> c_int
 unsafe fn symlink(path1: *const c_char, path2: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1220`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1220)*
+
 ### `truncate`
 
 ```rust
 unsafe fn truncate(path: *const c_char, length: off_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1223`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1223)*
 
 ### `ftruncate`
 
@@ -2791,11 +3265,15 @@ unsafe fn truncate(path: *const c_char, length: off_t) -> c_int
 unsafe fn ftruncate(fd: c_int, length: off_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1225`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1225)*
+
 ### `signal`
 
 ```rust
 unsafe fn signal(signum: c_int, handler: sighandler_t) -> sighandler_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1227`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1227)*
 
 ### `getrusage`
 
@@ -2803,11 +3281,15 @@ unsafe fn signal(signum: c_int, handler: sighandler_t) -> sighandler_t
 unsafe fn getrusage(resource: c_int, usage: *mut rusage) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1231`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1231)*
+
 ### `realpath`
 
 ```rust
 unsafe fn realpath(pathname: *const c_char, resolved: *mut c_char) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1243`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1243)*
 
 ### `times`
 
@@ -2815,11 +3297,15 @@ unsafe fn realpath(pathname: *const c_char, resolved: *mut c_char) -> *mut c_cha
 unsafe fn times(buf: *mut crate::tms) -> crate::clock_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1246`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1246)*
+
 ### `pthread_self`
 
 ```rust
 unsafe fn pthread_self() -> crate::pthread_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1248`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1248)*
 
 ### `pthread_equal`
 
@@ -2827,11 +3313,15 @@ unsafe fn pthread_self() -> crate::pthread_t
 unsafe fn pthread_equal(t1: crate::pthread_t, t2: crate::pthread_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1249`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1249)*
+
 ### `pthread_join`
 
 ```rust
 unsafe fn pthread_join(native: crate::pthread_t, value: *mut *mut c_void) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1254`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1254)*
 
 ### `pthread_exit`
 
@@ -2839,11 +3329,15 @@ unsafe fn pthread_join(native: crate::pthread_t, value: *mut *mut c_void) -> c_i
 unsafe fn pthread_exit(value: *mut c_void) -> never
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1255`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1255)*
+
 ### `pthread_attr_init`
 
 ```rust
 unsafe fn pthread_attr_init(attr: *mut crate::pthread_attr_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1256`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1256)*
 
 ### `pthread_attr_destroy`
 
@@ -2851,11 +3345,15 @@ unsafe fn pthread_attr_init(attr: *mut crate::pthread_attr_t) -> c_int
 unsafe fn pthread_attr_destroy(attr: *mut crate::pthread_attr_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1257`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1257)*
+
 ### `pthread_attr_getstacksize`
 
 ```rust
 unsafe fn pthread_attr_getstacksize(attr: *const crate::pthread_attr_t, stacksize: *mut size_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1258-1261`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1258-L1261)*
 
 ### `pthread_attr_setstacksize`
 
@@ -2863,11 +3361,15 @@ unsafe fn pthread_attr_getstacksize(attr: *const crate::pthread_attr_t, stacksiz
 unsafe fn pthread_attr_setstacksize(attr: *mut crate::pthread_attr_t, stack_size: size_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1262-1263`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1262-L1263)*
+
 ### `pthread_attr_setdetachstate`
 
 ```rust
 unsafe fn pthread_attr_setdetachstate(attr: *mut crate::pthread_attr_t, state: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1264`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1264)*
 
 ### `pthread_detach`
 
@@ -2875,11 +3377,15 @@ unsafe fn pthread_attr_setdetachstate(attr: *mut crate::pthread_attr_t, state: c
 unsafe fn pthread_detach(thread: crate::pthread_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1265`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1265)*
+
 ### `sched_yield`
 
 ```rust
 unsafe fn sched_yield() -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1267`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1267)*
 
 ### `pthread_key_create`
 
@@ -2887,11 +3393,15 @@ unsafe fn sched_yield() -> c_int
 unsafe fn pthread_key_create(key: *mut crate::pthread_key_t, dtor: Option<fn(*mut c_void)>) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1268-1271`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1268-L1271)*
+
 ### `pthread_key_delete`
 
 ```rust
 unsafe fn pthread_key_delete(key: crate::pthread_key_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1272`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1272)*
 
 ### `pthread_getspecific`
 
@@ -2899,11 +3409,15 @@ unsafe fn pthread_key_delete(key: crate::pthread_key_t) -> c_int
 unsafe fn pthread_getspecific(key: crate::pthread_key_t) -> *mut c_void
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1273`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1273)*
+
 ### `pthread_setspecific`
 
 ```rust
 unsafe fn pthread_setspecific(key: crate::pthread_key_t, value: *const c_void) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1274`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1274)*
 
 ### `pthread_mutex_init`
 
@@ -2911,11 +3425,15 @@ unsafe fn pthread_setspecific(key: crate::pthread_key_t, value: *const c_void) -
 unsafe fn pthread_mutex_init(lock: *mut crate::pthread_mutex_t, attr: *const crate::pthread_mutexattr_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1275-1278`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1275-L1278)*
+
 ### `pthread_mutex_destroy`
 
 ```rust
 unsafe fn pthread_mutex_destroy(lock: *mut crate::pthread_mutex_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1279`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1279)*
 
 ### `pthread_mutex_lock`
 
@@ -2923,11 +3441,15 @@ unsafe fn pthread_mutex_destroy(lock: *mut crate::pthread_mutex_t) -> c_int
 unsafe fn pthread_mutex_lock(lock: *mut crate::pthread_mutex_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1280`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1280)*
+
 ### `pthread_mutex_trylock`
 
 ```rust
 unsafe fn pthread_mutex_trylock(lock: *mut crate::pthread_mutex_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1281`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1281)*
 
 ### `pthread_mutex_unlock`
 
@@ -2935,11 +3457,15 @@ unsafe fn pthread_mutex_trylock(lock: *mut crate::pthread_mutex_t) -> c_int
 unsafe fn pthread_mutex_unlock(lock: *mut crate::pthread_mutex_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1282`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1282)*
+
 ### `pthread_mutexattr_init`
 
 ```rust
 unsafe fn pthread_mutexattr_init(attr: *mut crate::pthread_mutexattr_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1284`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1284)*
 
 ### `pthread_mutexattr_destroy`
 
@@ -2947,11 +3473,15 @@ unsafe fn pthread_mutexattr_init(attr: *mut crate::pthread_mutexattr_t) -> c_int
 unsafe fn pthread_mutexattr_destroy(attr: *mut crate::pthread_mutexattr_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1289`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1289)*
+
 ### `pthread_mutexattr_settype`
 
 ```rust
 unsafe fn pthread_mutexattr_settype(attr: *mut crate::pthread_mutexattr_t, _type: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1290`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1290)*
 
 ### `pthread_cond_init`
 
@@ -2959,11 +3489,15 @@ unsafe fn pthread_mutexattr_settype(attr: *mut crate::pthread_mutexattr_t, _type
 unsafe fn pthread_cond_init(cond: *mut crate::pthread_cond_t, attr: *const crate::pthread_condattr_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1296-1299`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1296-L1299)*
+
 ### `pthread_cond_wait`
 
 ```rust
 unsafe fn pthread_cond_wait(cond: *mut crate::pthread_cond_t, lock: *mut crate::pthread_mutex_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1304-1307`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1304-L1307)*
 
 ### `pthread_cond_timedwait`
 
@@ -2971,11 +3505,15 @@ unsafe fn pthread_cond_wait(cond: *mut crate::pthread_cond_t, lock: *mut crate::
 unsafe fn pthread_cond_timedwait(cond: *mut crate::pthread_cond_t, lock: *mut crate::pthread_mutex_t, abstime: *const crate::timespec) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1313-1317`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1313-L1317)*
+
 ### `pthread_cond_signal`
 
 ```rust
 unsafe fn pthread_cond_signal(cond: *mut crate::pthread_cond_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1318`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1318)*
 
 ### `pthread_cond_broadcast`
 
@@ -2983,11 +3521,15 @@ unsafe fn pthread_cond_signal(cond: *mut crate::pthread_cond_t) -> c_int
 unsafe fn pthread_cond_broadcast(cond: *mut crate::pthread_cond_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1319`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1319)*
+
 ### `pthread_cond_destroy`
 
 ```rust
 unsafe fn pthread_cond_destroy(cond: *mut crate::pthread_cond_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1320`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1320)*
 
 ### `pthread_condattr_init`
 
@@ -2995,11 +3537,15 @@ unsafe fn pthread_cond_destroy(cond: *mut crate::pthread_cond_t) -> c_int
 unsafe fn pthread_condattr_init(attr: *mut crate::pthread_condattr_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1321`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1321)*
+
 ### `pthread_condattr_destroy`
 
 ```rust
 unsafe fn pthread_condattr_destroy(attr: *mut crate::pthread_condattr_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1322`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1322)*
 
 ### `pthread_rwlock_init`
 
@@ -3007,11 +3553,15 @@ unsafe fn pthread_condattr_destroy(attr: *mut crate::pthread_condattr_t) -> c_in
 unsafe fn pthread_rwlock_init(lock: *mut crate::pthread_rwlock_t, attr: *const crate::pthread_rwlockattr_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1327-1330`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1327-L1330)*
+
 ### `pthread_rwlock_destroy`
 
 ```rust
 unsafe fn pthread_rwlock_destroy(lock: *mut crate::pthread_rwlock_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1335`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1335)*
 
 ### `pthread_rwlock_rdlock`
 
@@ -3019,11 +3569,15 @@ unsafe fn pthread_rwlock_destroy(lock: *mut crate::pthread_rwlock_t) -> c_int
 unsafe fn pthread_rwlock_rdlock(lock: *mut crate::pthread_rwlock_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1340`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1340)*
+
 ### `pthread_rwlock_tryrdlock`
 
 ```rust
 unsafe fn pthread_rwlock_tryrdlock(lock: *mut crate::pthread_rwlock_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1345`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1345)*
 
 ### `pthread_rwlock_wrlock`
 
@@ -3031,11 +3585,15 @@ unsafe fn pthread_rwlock_tryrdlock(lock: *mut crate::pthread_rwlock_t) -> c_int
 unsafe fn pthread_rwlock_wrlock(lock: *mut crate::pthread_rwlock_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1350`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1350)*
+
 ### `pthread_rwlock_trywrlock`
 
 ```rust
 unsafe fn pthread_rwlock_trywrlock(lock: *mut crate::pthread_rwlock_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1355`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1355)*
 
 ### `pthread_rwlock_unlock`
 
@@ -3043,11 +3601,15 @@ unsafe fn pthread_rwlock_trywrlock(lock: *mut crate::pthread_rwlock_t) -> c_int
 unsafe fn pthread_rwlock_unlock(lock: *mut crate::pthread_rwlock_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1360`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1360)*
+
 ### `pthread_rwlockattr_init`
 
 ```rust
 unsafe fn pthread_rwlockattr_init(attr: *mut crate::pthread_rwlockattr_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1361`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1361)*
 
 ### `pthread_rwlockattr_destroy`
 
@@ -3055,11 +3617,15 @@ unsafe fn pthread_rwlockattr_init(attr: *mut crate::pthread_rwlockattr_t) -> c_i
 unsafe fn pthread_rwlockattr_destroy(attr: *mut crate::pthread_rwlockattr_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1362`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1362)*
+
 ### `getsockopt`
 
 ```rust
 unsafe fn getsockopt(sockfd: c_int, level: c_int, optname: c_int, optval: *mut c_void, optlen: *mut crate::socklen_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1370-1376`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1370-L1376)*
 
 ### `raise`
 
@@ -3067,11 +3633,15 @@ unsafe fn getsockopt(sockfd: c_int, level: c_int, optname: c_int, optval: *mut c
 unsafe fn raise(signum: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1377`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1377)*
+
 ### `utimes`
 
 ```rust
 unsafe fn utimes(filename: *const c_char, times: *const crate::timeval) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1381`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1381)*
 
 ### `dlopen`
 
@@ -3079,11 +3649,15 @@ unsafe fn utimes(filename: *const c_char, times: *const crate::timeval) -> c_int
 unsafe fn dlopen(filename: *const c_char, flag: c_int) -> *mut c_void
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1382`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1382)*
+
 ### `dlerror`
 
 ```rust
 unsafe fn dlerror() -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1383`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1383)*
 
 ### `dlsym`
 
@@ -3091,11 +3665,15 @@ unsafe fn dlerror() -> *mut c_char
 unsafe fn dlsym(handle: *mut c_void, symbol: *const c_char) -> *mut c_void
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1384`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1384)*
+
 ### `dlclose`
 
 ```rust
 unsafe fn dlclose(handle: *mut c_void) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1385`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1385)*
 
 ### `getaddrinfo`
 
@@ -3103,11 +3681,15 @@ unsafe fn dlclose(handle: *mut c_void) -> c_int
 unsafe fn getaddrinfo(node: *const c_char, service: *const c_char, hints: *const addrinfo, res: *mut *mut addrinfo) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1393-1398`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1393-L1398)*
+
 ### `freeaddrinfo`
 
 ```rust
 unsafe fn freeaddrinfo(res: *mut addrinfo)
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1401`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1401)*
 
 ### `hstrerror`
 
@@ -3115,11 +3697,15 @@ unsafe fn freeaddrinfo(res: *mut addrinfo)
 unsafe fn hstrerror(errcode: c_int) -> *const c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1402`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1402)*
+
 ### `gai_strerror`
 
 ```rust
 unsafe fn gai_strerror(errcode: c_int) -> *const c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1403`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1403)*
 
 ### `res_init`
 
@@ -3127,11 +3713,15 @@ unsafe fn gai_strerror(errcode: c_int) -> *const c_char
 unsafe fn res_init() -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1428`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1428)*
+
 ### `gmtime_r`
 
 ```rust
 unsafe fn gmtime_r(time_p: *const time_t, result: *mut tm) -> *mut tm
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1434`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1434)*
 
 ### `localtime_r`
 
@@ -3139,11 +3729,15 @@ unsafe fn gmtime_r(time_p: *const time_t, result: *mut tm) -> *mut tm
 unsafe fn localtime_r(time_p: *const time_t, result: *mut tm) -> *mut tm
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1439`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1439)*
+
 ### `mktime`
 
 ```rust
 unsafe fn mktime(tm: *mut tm) -> time_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1448`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1448)*
 
 ### `time`
 
@@ -3151,11 +3745,15 @@ unsafe fn mktime(tm: *mut tm) -> time_t
 unsafe fn time(time: *mut time_t) -> time_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1453`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1453)*
+
 ### `gmtime`
 
 ```rust
 unsafe fn gmtime(time_p: *const time_t) -> *mut tm
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1458`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1458)*
 
 ### `localtime`
 
@@ -3163,11 +3761,15 @@ unsafe fn gmtime(time_p: *const time_t) -> *mut tm
 unsafe fn localtime(time_p: *const time_t) -> *mut tm
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1463`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1463)*
+
 ### `difftime`
 
 ```rust
 unsafe fn difftime(time1: time_t, time0: time_t) -> c_double
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1468`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1468)*
 
 ### `timegm`
 
@@ -3175,11 +3777,15 @@ unsafe fn difftime(time1: time_t, time0: time_t) -> c_double
 unsafe fn timegm(tm: *mut crate::tm) -> time_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1474`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1474)*
+
 ### `mknod`
 
 ```rust
 unsafe fn mknod(pathname: *const c_char, mode: mode_t, dev: crate::dev_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1481`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1481)*
 
 ### `gethostname`
 
@@ -3187,11 +3793,15 @@ unsafe fn mknod(pathname: *const c_char, mode: mode_t, dev: crate::dev_t) -> c_i
 unsafe fn gethostname(name: *mut c_char, len: size_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1483`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1483)*
+
 ### `endservent`
 
 ```rust
 unsafe fn endservent()
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1484`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1484)*
 
 ### `getservbyname`
 
@@ -3199,11 +3809,15 @@ unsafe fn endservent()
 unsafe fn getservbyname(name: *const c_char, proto: *const c_char) -> *mut servent
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1485`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1485)*
+
 ### `getservbyport`
 
 ```rust
 unsafe fn getservbyport(port: c_int, proto: *const c_char) -> *mut servent
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1486`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1486)*
 
 ### `getservent`
 
@@ -3211,11 +3825,15 @@ unsafe fn getservbyport(port: c_int, proto: *const c_char) -> *mut servent
 unsafe fn getservent() -> *mut servent
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1487`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1487)*
+
 ### `setservent`
 
 ```rust
 unsafe fn setservent(stayopen: c_int)
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1488`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1488)*
 
 ### `getprotobyname`
 
@@ -3223,11 +3841,15 @@ unsafe fn setservent(stayopen: c_int)
 unsafe fn getprotobyname(name: *const c_char) -> *mut protoent
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1489`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1489)*
+
 ### `getprotobynumber`
 
 ```rust
 unsafe fn getprotobynumber(proto: c_int) -> *mut protoent
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1490`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1490)*
 
 ### `chroot`
 
@@ -3235,11 +3857,15 @@ unsafe fn getprotobynumber(proto: c_int) -> *mut protoent
 unsafe fn chroot(name: *const c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1491`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1491)*
+
 ### `usleep`
 
 ```rust
 unsafe fn usleep(secs: c_uint) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1499`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1499)*
 
 ### `send`
 
@@ -3247,11 +3873,15 @@ unsafe fn usleep(secs: c_uint) -> c_int
 unsafe fn send(socket: c_int, buf: *const c_void, len: size_t, flags: c_int) -> ssize_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1505`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1505)*
+
 ### `recv`
 
 ```rust
 unsafe fn recv(socket: c_int, buf: *mut c_void, len: size_t, flags: c_int) -> ssize_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1511`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1511)*
 
 ### `putenv`
 
@@ -3259,11 +3889,15 @@ unsafe fn recv(socket: c_int, buf: *mut c_void, len: size_t, flags: c_int) -> ss
 unsafe fn putenv(string: *mut c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1517`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1517)*
+
 ### `poll`
 
 ```rust
 unsafe fn poll(fds: *mut pollfd, nfds: nfds_t, timeout: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1522`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1522)*
 
 ### `select`
 
@@ -3271,11 +3905,15 @@ unsafe fn poll(fds: *mut pollfd, nfds: nfds_t, timeout: c_int) -> c_int
 unsafe fn select(nfds: c_int, readfds: *mut fd_set, writefds: *mut fd_set, errorfds: *mut fd_set, timeout: *mut timeval) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1534-1540`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1534-L1540)*
+
 ### `setlocale`
 
 ```rust
 unsafe fn setlocale(category: c_int, locale: *const c_char) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1542`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1542)*
 
 ### `localeconv`
 
@@ -3283,11 +3921,15 @@ unsafe fn setlocale(category: c_int, locale: *const c_char) -> *mut c_char
 unsafe fn localeconv() -> *mut lconv
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1543`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1543)*
+
 ### `sem_wait`
 
 ```rust
 unsafe fn sem_wait(sem: *mut sem_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1549`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1549)*
 
 ### `sem_trywait`
 
@@ -3295,11 +3937,15 @@ unsafe fn sem_wait(sem: *mut sem_t) -> c_int
 unsafe fn sem_trywait(sem: *mut sem_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1550`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1550)*
+
 ### `sem_post`
 
 ```rust
 unsafe fn sem_post(sem: *mut sem_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1551`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1551)*
 
 ### `statvfs`
 
@@ -3307,11 +3953,15 @@ unsafe fn sem_post(sem: *mut sem_t) -> c_int
 unsafe fn statvfs(path: *const c_char, buf: *mut crate::statvfs) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1553`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1553)*
+
 ### `fstatvfs`
 
 ```rust
 unsafe fn fstatvfs(fd: c_int, buf: *mut crate::statvfs) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1555`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1555)*
 
 ### `sigemptyset`
 
@@ -3319,11 +3969,15 @@ unsafe fn fstatvfs(fd: c_int, buf: *mut crate::statvfs) -> c_int
 unsafe fn sigemptyset(set: *mut sigset_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1558`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1558)*
+
 ### `sigaddset`
 
 ```rust
 unsafe fn sigaddset(set: *mut sigset_t, signum: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1560`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1560)*
 
 ### `sigfillset`
 
@@ -3331,11 +3985,15 @@ unsafe fn sigaddset(set: *mut sigset_t, signum: c_int) -> c_int
 unsafe fn sigfillset(set: *mut sigset_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1562`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1562)*
+
 ### `sigdelset`
 
 ```rust
 unsafe fn sigdelset(set: *mut sigset_t, signum: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1564`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1564)*
 
 ### `sigismember`
 
@@ -3343,11 +4001,15 @@ unsafe fn sigdelset(set: *mut sigset_t, signum: c_int) -> c_int
 unsafe fn sigismember(set: *const sigset_t, signum: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1566`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1566)*
+
 ### `sigprocmask`
 
 ```rust
 unsafe fn sigprocmask(how: c_int, set: *const sigset_t, oldset: *mut sigset_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1569`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1569)*
 
 ### `sigpending`
 
@@ -3355,11 +4017,15 @@ unsafe fn sigprocmask(how: c_int, set: *const sigset_t, oldset: *mut sigset_t) -
 unsafe fn sigpending(set: *mut sigset_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1571`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1571)*
+
 ### `sysconf`
 
 ```rust
 unsafe fn sysconf(name: c_int) -> c_long
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1574`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1574)*
 
 ### `mkfifo`
 
@@ -3367,11 +4033,15 @@ unsafe fn sysconf(name: c_int) -> c_long
 unsafe fn mkfifo(path: *const c_char, mode: mode_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1576`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1576)*
+
 ### `fseeko`
 
 ```rust
 unsafe fn fseeko(stream: *mut crate::FILE, offset: off_t, whence: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1579`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1579)*
 
 ### `ftello`
 
@@ -3379,11 +4049,15 @@ unsafe fn fseeko(stream: *mut crate::FILE, offset: off_t, whence: c_int) -> c_in
 unsafe fn ftello(stream: *mut crate::FILE) -> off_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1581`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1581)*
+
 ### `tcdrain`
 
 ```rust
 unsafe fn tcdrain(fd: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1586`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1586)*
 
 ### `cfgetispeed`
 
@@ -3391,11 +4065,15 @@ unsafe fn tcdrain(fd: c_int) -> c_int
 unsafe fn cfgetispeed(termios: *const crate::termios) -> crate::speed_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1587`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1587)*
+
 ### `cfgetospeed`
 
 ```rust
 unsafe fn cfgetospeed(termios: *const crate::termios) -> crate::speed_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1588`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1588)*
 
 ### `cfsetispeed`
 
@@ -3403,11 +4081,15 @@ unsafe fn cfgetospeed(termios: *const crate::termios) -> crate::speed_t
 unsafe fn cfsetispeed(termios: *mut crate::termios, speed: crate::speed_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1589`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1589)*
+
 ### `cfsetospeed`
 
 ```rust
 unsafe fn cfsetospeed(termios: *mut crate::termios, speed: crate::speed_t) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1590`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1590)*
 
 ### `tcgetattr`
 
@@ -3415,11 +4097,15 @@ unsafe fn cfsetospeed(termios: *mut crate::termios, speed: crate::speed_t) -> c_
 unsafe fn tcgetattr(fd: c_int, termios: *mut crate::termios) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1591`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1591)*
+
 ### `tcsetattr`
 
 ```rust
 unsafe fn tcsetattr(fd: c_int, optional_actions: c_int, termios: *const crate::termios) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1592`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1592)*
 
 ### `tcflow`
 
@@ -3427,11 +4113,15 @@ unsafe fn tcsetattr(fd: c_int, optional_actions: c_int, termios: *const crate::t
 unsafe fn tcflow(fd: c_int, action: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1593`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1593)*
+
 ### `tcflush`
 
 ```rust
 unsafe fn tcflush(fd: c_int, action: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1594`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1594)*
 
 ### `tcgetsid`
 
@@ -3439,11 +4129,15 @@ unsafe fn tcflush(fd: c_int, action: c_int) -> c_int
 unsafe fn tcgetsid(fd: c_int) -> crate::pid_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1595`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1595)*
+
 ### `tcsendbreak`
 
 ```rust
 unsafe fn tcsendbreak(fd: c_int, duration: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1596`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1596)*
 
 ### `mkstemp`
 
@@ -3451,11 +4145,15 @@ unsafe fn tcsendbreak(fd: c_int, duration: c_int) -> c_int
 unsafe fn mkstemp(template: *mut c_char) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1598`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1598)*
+
 ### `mkdtemp`
 
 ```rust
 unsafe fn mkdtemp(template: *mut c_char) -> *mut c_char
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1599`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1599)*
 
 ### `tmpnam`
 
@@ -3463,11 +4161,15 @@ unsafe fn mkdtemp(template: *mut c_char) -> *mut c_char
 unsafe fn tmpnam(ptr: *mut c_char) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1601`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1601)*
+
 ### `openlog`
 
 ```rust
 unsafe fn openlog(ident: *const c_char, logopt: c_int, facility: c_int)
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1603`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1603)*
 
 ### `closelog`
 
@@ -3475,11 +4177,15 @@ unsafe fn openlog(ident: *const c_char, logopt: c_int, facility: c_int)
 unsafe fn closelog()
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1604`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1604)*
+
 ### `setlogmask`
 
 ```rust
 unsafe fn setlogmask(maskpri: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1605`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1605)*
 
 ### `syslog`
 
@@ -3487,11 +4193,15 @@ unsafe fn setlogmask(maskpri: c_int) -> c_int
 unsafe fn syslog(priority: c_int, message: *const c_char)
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1607`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1607)*
+
 ### `nice`
 
 ```rust
 unsafe fn nice(incr: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1612`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1612)*
 
 ### `grantpt`
 
@@ -3499,11 +4209,15 @@ unsafe fn nice(incr: c_int) -> c_int
 unsafe fn grantpt(fd: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1614`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1614)*
+
 ### `posix_openpt`
 
 ```rust
 unsafe fn posix_openpt(flags: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1615`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1615)*
 
 ### `ptsname`
 
@@ -3511,11 +4225,15 @@ unsafe fn posix_openpt(flags: c_int) -> c_int
 unsafe fn ptsname(fd: c_int) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1616`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1616)*
+
 ### `unlockpt`
 
 ```rust
 unsafe fn unlockpt(fd: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1617`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1617)*
 
 ### `strcasestr`
 
@@ -3523,11 +4241,15 @@ unsafe fn unlockpt(fd: c_int) -> c_int
 unsafe fn strcasestr(cs: *const c_char, ct: *const c_char) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1620`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1620)*
+
 ### `getline`
 
 ```rust
 unsafe fn getline(lineptr: *mut *mut c_char, n: *mut size_t, stream: *mut FILE) -> ssize_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1621`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1621)*
 
 ### `lockf`
 
@@ -3535,11 +4257,15 @@ unsafe fn getline(lineptr: *mut *mut c_char, n: *mut size_t, stream: *mut FILE) 
 unsafe fn lockf(fd: c_int, cmd: c_int, len: off_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1624`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1624)*
+
 ### `adjtime`
 
 ```rust
 unsafe fn adjtime(delta: *const timeval, olddelta: *mut timeval) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1658`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1658)*
 
 ### `stpncpy`
 
@@ -3547,11 +4273,15 @@ unsafe fn adjtime(delta: *const timeval, olddelta: *mut timeval) -> c_int
 unsafe fn stpncpy(dst: *mut c_char, src: *const c_char, n: size_t) -> *mut c_char
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1674`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1674)*
+
 ### `sigqueue`
 
 ```rust
 unsafe fn sigqueue(pid: pid_t, sig: c_int, value: crate::sigval) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1688`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1688)*
 
 ### `confstr`
 
@@ -3559,11 +4289,15 @@ unsafe fn sigqueue(pid: pid_t, sig: c_int, value: crate::sigval) -> c_int
 unsafe fn confstr(name: c_int, buf: *mut c_char, len: size_t) -> size_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1701`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1701)*
+
 ### `dladdr`
 
 ```rust
 unsafe fn dladdr(addr: *const c_void, info: *mut Dl_info) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1709`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1709)*
 
 ### `flock`
 
@@ -3571,11 +4305,15 @@ unsafe fn dladdr(addr: *const c_void, info: *mut Dl_info) -> c_int
 unsafe fn flock(fd: c_int, operation: c_int) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1717`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1717)*
+
 ### `open_wmemstream`
 
 ```rust
 unsafe fn open_wmemstream(ptr: *mut *mut wchar_t, sizeloc: *mut size_t) -> *mut FILE
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1725`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1725)*
 
 ### `getsid`
 
@@ -3583,11 +4321,15 @@ unsafe fn open_wmemstream(ptr: *mut *mut wchar_t, sizeloc: *mut size_t) -> *mut 
 unsafe fn getsid(pid: pid_t) -> pid_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1733`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1733)*
+
 ### `pause`
 
 ```rust
 unsafe fn pause() -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1738`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1738)*
 
 ### `mkdirat`
 
@@ -3595,11 +4337,15 @@ unsafe fn pause() -> c_int
 unsafe fn mkdirat(dirfd: c_int, pathname: *const c_char, mode: mode_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1740`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1740)*
+
 ### `openat`
 
 ```rust
 unsafe fn openat(dirfd: c_int, pathname: *const c_char, flags: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1742`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1742)*
 
 ### `fdopendir`
 
@@ -3607,11 +4353,15 @@ unsafe fn openat(dirfd: c_int, pathname: *const c_char, flags: c_int) -> c_int
 unsafe fn fdopendir(fd: c_int) -> *mut crate::DIR
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1752`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1752)*
+
 ### `readdir_r`
 
 ```rust
 unsafe fn readdir_r(dirp: *mut crate::DIR, entry: *mut crate::dirent, result: *mut *mut crate::dirent) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1775-1779`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1775-L1779)*
 
 The 64-bit libc on Solaris and illumos only has readdir_r. If a
 32-bit Solaris or illumos target is ever created, it should use
@@ -3626,11 +4376,15 @@ https://www.unix.com/man-page/opensolaris/3LIB/libc/
 unsafe fn readlinkat(dirfd: c_int, pathname: *const c_char, buf: *mut c_char, bufsiz: size_t) -> ssize_t
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1807-1812`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1807-L1812)*
+
 ### `fmemopen`
 
 ```rust
 unsafe fn fmemopen(buf: *mut c_void, size: size_t, mode: *const c_char) -> *mut FILE
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1813`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1813)*
 
 ### `open_memstream`
 
@@ -3638,11 +4392,15 @@ unsafe fn fmemopen(buf: *mut c_void, size: size_t, mode: *const c_char) -> *mut 
 unsafe fn open_memstream(ptr: *mut *mut c_char, sizeloc: *mut size_t) -> *mut FILE
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1814`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1814)*
+
 ### `atexit`
 
 ```rust
 unsafe fn atexit(cb: fn()) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1815`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1815)*
 
 ### `sigaction`
 
@@ -3650,11 +4408,15 @@ unsafe fn atexit(cb: fn()) -> c_int
 unsafe fn sigaction(signum: c_int, act: *const sigaction, oldact: *mut sigaction) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1817-1818`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1817-L1818)*
+
 ### `readlink`
 
 ```rust
 unsafe fn readlink(path: *const c_char, buf: *mut c_char, bufsz: size_t) -> ssize_t
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1819`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1819)*
 
 ### `pselect`
 
@@ -3662,11 +4424,15 @@ unsafe fn readlink(path: *const c_char, buf: *mut c_char, bufsz: size_t) -> ssiz
 unsafe fn pselect(nfds: c_int, readfds: *mut fd_set, writefds: *mut fd_set, errorfds: *mut fd_set, timeout: *const timespec, sigmask: *const sigset_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1830-1837`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1830-L1837)*
+
 ### `cfmakeraw`
 
 ```rust
 unsafe fn cfmakeraw(termios: *mut crate::termios)
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1849`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1849)*
 
 ### `cfsetspeed`
 
@@ -3674,11 +4440,15 @@ unsafe fn cfmakeraw(termios: *mut crate::termios)
 unsafe fn cfsetspeed(termios: *mut crate::termios, speed: crate::speed_t) -> c_int
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1868`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1868)*
+
 ### `fnmatch`
 
 ```rust
 unsafe fn fnmatch(pattern: *const c_char, name: *const c_char, flags: c_int) -> c_int
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1874`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1874)*
 
 ### `htonl`
 
@@ -3686,11 +4456,15 @@ unsafe fn fnmatch(pattern: *const c_char, name: *const c_char, flags: c_int) -> 
 const fn htonl(hostlong: u32) -> u32
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1628-1643`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1628-L1643)*
+
 ### `htons`
 
 ```rust
 const fn htons(hostshort: u16) -> u16
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1628-1643`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1628-L1643)*
 
 ### `ntohl`
 
@@ -3698,11 +4472,15 @@ const fn htons(hostshort: u16) -> u16
 const fn ntohl(netlong: u32) -> u32
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1628-1643`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1628-L1643)*
+
 ### `ntohs`
 
 ```rust
 const fn ntohs(netshort: u16) -> u16
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:1628-1643`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L1628-L1643)*
 
 ## Type Aliases
 
@@ -3712,11 +4490,15 @@ const fn ntohs(netshort: u16) -> u16
 type c_schar = i8;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:9`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L9)*
+
 ### `c_uchar`
 
 ```rust
 type c_uchar = u8;
 ```
+
+*Defined in [`libc-0.2.178/src/primitives.rs:10`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L10)*
 
 ### `c_short`
 
@@ -3724,11 +4506,15 @@ type c_uchar = u8;
 type c_short = i16;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:11`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L11)*
+
 ### `c_ushort`
 
 ```rust
 type c_ushort = u16;
 ```
+
+*Defined in [`libc-0.2.178/src/primitives.rs:12`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L12)*
 
 ### `c_longlong`
 
@@ -3736,11 +4522,15 @@ type c_ushort = u16;
 type c_longlong = i64;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:14`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L14)*
+
 ### `c_ulonglong`
 
 ```rust
 type c_ulonglong = u64;
 ```
+
+*Defined in [`libc-0.2.178/src/primitives.rs:15`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L15)*
 
 ### `c_float`
 
@@ -3748,11 +4538,15 @@ type c_ulonglong = u64;
 type c_float = f32;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:17`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L17)*
+
 ### `c_double`
 
 ```rust
 type c_double = f64;
 ```
+
+*Defined in [`libc-0.2.178/src/primitives.rs:18`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L18)*
 
 ### `c_char`
 
@@ -3760,11 +4554,15 @@ type c_double = f64;
 type c_char = i8;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:42`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L42)*
+
 ### `c_int`
 
 ```rust
 type c_int = i32;
 ```
+
+*Defined in [`libc-0.2.178/src/primitives.rs:51`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L51)*
 
 ### `c_uint`
 
@@ -3772,11 +4570,15 @@ type c_int = i32;
 type c_uint = u32;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:52`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L52)*
+
 ### `c_long`
 
 ```rust
 type c_long = i64;
 ```
+
+*Defined in [`libc-0.2.178/src/primitives.rs:58`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L58)*
 
 ### `c_ulong`
 
@@ -3784,11 +4586,15 @@ type c_long = i64;
 type c_ulong = u64;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:59`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L59)*
+
 ### `int8_t`
 
 ```rust
 type int8_t = i8;
 ```
+
+*Defined in [`libc-0.2.178/src/primitives.rs:68`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L68)*
 
 ### `int16_t`
 
@@ -3796,11 +4602,15 @@ type int8_t = i8;
 type int16_t = i16;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:70`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L70)*
+
 ### `int32_t`
 
 ```rust
 type int32_t = i32;
 ```
+
+*Defined in [`libc-0.2.178/src/primitives.rs:72`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L72)*
 
 ### `int64_t`
 
@@ -3808,11 +4618,15 @@ type int32_t = i32;
 type int64_t = i64;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:74`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L74)*
+
 ### `uint8_t`
 
 ```rust
 type uint8_t = u8;
 ```
+
+*Defined in [`libc-0.2.178/src/primitives.rs:76`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L76)*
 
 ### `uint16_t`
 
@@ -3820,11 +4634,15 @@ type uint8_t = u8;
 type uint16_t = u16;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:78`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L78)*
+
 ### `uint32_t`
 
 ```rust
 type uint32_t = u32;
 ```
+
+*Defined in [`libc-0.2.178/src/primitives.rs:80`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L80)*
 
 ### `uint64_t`
 
@@ -3832,11 +4650,15 @@ type uint32_t = u32;
 type uint64_t = u64;
 ```
 
+*Defined in [`libc-0.2.178/src/primitives.rs:82`](../../.source_1765210505/libc-0.2.178/src/primitives.rs#L82)*
+
 ### `intmax_t`
 
 ```rust
 type intmax_t = i64;
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:8`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L8)*
 
 ### `uintmax_t`
 
@@ -3844,11 +4666,15 @@ type intmax_t = i64;
 type uintmax_t = u64;
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:9`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L9)*
+
 ### `size_t`
 
 ```rust
 type size_t = usize;
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:11`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L11)*
 
 ### `ptrdiff_t`
 
@@ -3856,11 +4682,15 @@ type size_t = usize;
 type ptrdiff_t = isize;
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:12`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L12)*
+
 ### `intptr_t`
 
 ```rust
 type intptr_t = isize;
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:13`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L13)*
 
 ### `uintptr_t`
 
@@ -3868,11 +4698,15 @@ type intptr_t = isize;
 type uintptr_t = usize;
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:14`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L14)*
+
 ### `ssize_t`
 
 ```rust
 type ssize_t = isize;
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:15`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L15)*
 
 ### `pid_t`
 
@@ -3880,11 +4714,15 @@ type ssize_t = isize;
 type pid_t = i32;
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:17`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L17)*
+
 ### `in_addr_t`
 
 ```rust
 type in_addr_t = u32;
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:18`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L18)*
 
 ### `in_port_t`
 
@@ -3892,11 +4730,15 @@ type in_addr_t = u32;
 type in_port_t = u16;
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:19`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L19)*
+
 ### `sighandler_t`
 
 ```rust
 type sighandler_t = size_t;
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:20`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L20)*
 
 ### `cc_t`
 
@@ -3904,11 +4746,15 @@ type sighandler_t = size_t;
 type cc_t = crate::c_uchar;
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:21`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L21)*
+
 ### `uid_t`
 
 ```rust
 type uid_t = u32;
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:35`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L35)*
 
 ### `gid_t`
 
@@ -3916,485 +4762,568 @@ type uid_t = u32;
 type gid_t = u32;
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:36`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L36)*
+
 ### `locale_t`
 
 ```rust
 type locale_t = *mut crate::c_void;
 ```
 
+*Defined in [`libc-0.2.178/src/unix/mod.rs:45`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L45)*
+
 ## Constants
 
 ### `INT_MIN`
-
 ```rust
 const INT_MIN: crate::c_int = -2_147_483_648i32;
 ```
 
-### `INT_MAX`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:222`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L222)*
 
+### `INT_MAX`
 ```rust
 const INT_MAX: crate::c_int = 2_147_483_647i32;
 ```
 
-### `SIG_DFL`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:223`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L223)*
 
+### `SIG_DFL`
 ```rust
 const SIG_DFL: sighandler_t = 0usize;
 ```
 
-### `SIG_IGN`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:225`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L225)*
 
+### `SIG_IGN`
 ```rust
 const SIG_IGN: sighandler_t = 1usize;
 ```
 
-### `SIG_ERR`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:226`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L226)*
 
+### `SIG_ERR`
 ```rust
 const SIG_ERR: sighandler_t = 18_446_744_073_709_551_615usize;
 ```
 
-### `DT_UNKNOWN`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:227`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L227)*
 
+### `DT_UNKNOWN`
 ```rust
 const DT_UNKNOWN: u8 = 0u8;
 ```
 
-### `DT_FIFO`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:231`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L231)*
 
+### `DT_FIFO`
 ```rust
 const DT_FIFO: u8 = 1u8;
 ```
 
-### `DT_CHR`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:232`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L232)*
 
+### `DT_CHR`
 ```rust
 const DT_CHR: u8 = 2u8;
 ```
 
-### `DT_DIR`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:233`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L233)*
 
+### `DT_DIR`
 ```rust
 const DT_DIR: u8 = 4u8;
 ```
 
-### `DT_BLK`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:234`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L234)*
 
+### `DT_BLK`
 ```rust
 const DT_BLK: u8 = 6u8;
 ```
 
-### `DT_REG`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:235`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L235)*
 
+### `DT_REG`
 ```rust
 const DT_REG: u8 = 8u8;
 ```
 
-### `DT_LNK`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:236`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L236)*
 
+### `DT_LNK`
 ```rust
 const DT_LNK: u8 = 10u8;
 ```
 
-### `DT_SOCK`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:237`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L237)*
 
+### `DT_SOCK`
 ```rust
 const DT_SOCK: u8 = 12u8;
 ```
 
-### `FD_CLOEXEC`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:238`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L238)*
 
+### `FD_CLOEXEC`
 ```rust
 const FD_CLOEXEC: crate::c_int = 1i32;
 ```
 
-### `USRQUOTA`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:243`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L243)*
 
+### `USRQUOTA`
 ```rust
 const USRQUOTA: crate::c_int = 0i32;
 ```
 
-### `GRPQUOTA`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:249`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L249)*
 
+### `GRPQUOTA`
 ```rust
 const GRPQUOTA: crate::c_int = 1i32;
 ```
 
-### `SIGIOT`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:250`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L250)*
 
+### `SIGIOT`
 ```rust
 const SIGIOT: crate::c_int = 6i32;
 ```
 
-### `S_ISUID`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:253`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L253)*
 
+### `S_ISUID`
 ```rust
 const S_ISUID: mode_t = 2_048u32;
 ```
 
-### `S_ISGID`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:255`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L255)*
 
+### `S_ISGID`
 ```rust
 const S_ISGID: mode_t = 1_024u32;
 ```
 
-### `S_ISVTX`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:256`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L256)*
 
+### `S_ISVTX`
 ```rust
 const S_ISVTX: mode_t = 512u32;
 ```
 
-### `IF_NAMESIZE`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:257`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L257)*
 
+### `IF_NAMESIZE`
 ```rust
 const IF_NAMESIZE: size_t = 16usize;
 ```
 
-### `IFNAMSIZ`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:266`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L266)*
 
+### `IFNAMSIZ`
 ```rust
 const IFNAMSIZ: size_t = 16usize;
 ```
 
-### `LOG_EMERG`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:267`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L267)*
 
+### `LOG_EMERG`
 ```rust
 const LOG_EMERG: crate::c_int = 0i32;
 ```
 
-### `LOG_ALERT`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:271`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L271)*
 
+### `LOG_ALERT`
 ```rust
 const LOG_ALERT: crate::c_int = 1i32;
 ```
 
-### `LOG_CRIT`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:272`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L272)*
 
+### `LOG_CRIT`
 ```rust
 const LOG_CRIT: crate::c_int = 2i32;
 ```
 
-### `LOG_ERR`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:273`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L273)*
 
+### `LOG_ERR`
 ```rust
 const LOG_ERR: crate::c_int = 3i32;
 ```
 
-### `LOG_WARNING`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:274`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L274)*
 
+### `LOG_WARNING`
 ```rust
 const LOG_WARNING: crate::c_int = 4i32;
 ```
 
-### `LOG_NOTICE`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:275`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L275)*
 
+### `LOG_NOTICE`
 ```rust
 const LOG_NOTICE: crate::c_int = 5i32;
 ```
 
-### `LOG_INFO`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:276`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L276)*
 
+### `LOG_INFO`
 ```rust
 const LOG_INFO: crate::c_int = 6i32;
 ```
 
-### `LOG_DEBUG`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:277`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L277)*
 
+### `LOG_DEBUG`
 ```rust
 const LOG_DEBUG: crate::c_int = 7i32;
 ```
 
-### `LOG_KERN`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:278`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L278)*
 
+### `LOG_KERN`
 ```rust
 const LOG_KERN: crate::c_int = 0i32;
 ```
 
-### `LOG_USER`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:280`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L280)*
 
+### `LOG_USER`
 ```rust
 const LOG_USER: crate::c_int = 8i32;
 ```
 
-### `LOG_MAIL`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:281`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L281)*
 
+### `LOG_MAIL`
 ```rust
 const LOG_MAIL: crate::c_int = 16i32;
 ```
 
-### `LOG_DAEMON`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:282`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L282)*
 
+### `LOG_DAEMON`
 ```rust
 const LOG_DAEMON: crate::c_int = 24i32;
 ```
 
-### `LOG_AUTH`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:283`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L283)*
 
+### `LOG_AUTH`
 ```rust
 const LOG_AUTH: crate::c_int = 32i32;
 ```
 
-### `LOG_SYSLOG`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:284`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L284)*
 
+### `LOG_SYSLOG`
 ```rust
 const LOG_SYSLOG: crate::c_int = 40i32;
 ```
 
-### `LOG_LPR`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:285`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L285)*
 
+### `LOG_LPR`
 ```rust
 const LOG_LPR: crate::c_int = 48i32;
 ```
 
-### `LOG_NEWS`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:286`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L286)*
 
+### `LOG_NEWS`
 ```rust
 const LOG_NEWS: crate::c_int = 56i32;
 ```
 
-### `LOG_UUCP`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:287`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L287)*
 
+### `LOG_UUCP`
 ```rust
 const LOG_UUCP: crate::c_int = 64i32;
 ```
 
-### `LOG_LOCAL0`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:288`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L288)*
 
+### `LOG_LOCAL0`
 ```rust
 const LOG_LOCAL0: crate::c_int = 128i32;
 ```
 
-### `LOG_LOCAL1`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:289`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L289)*
 
+### `LOG_LOCAL1`
 ```rust
 const LOG_LOCAL1: crate::c_int = 136i32;
 ```
 
-### `LOG_LOCAL2`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:290`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L290)*
 
+### `LOG_LOCAL2`
 ```rust
 const LOG_LOCAL2: crate::c_int = 144i32;
 ```
 
-### `LOG_LOCAL3`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:291`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L291)*
 
+### `LOG_LOCAL3`
 ```rust
 const LOG_LOCAL3: crate::c_int = 152i32;
 ```
 
-### `LOG_LOCAL4`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:292`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L292)*
 
+### `LOG_LOCAL4`
 ```rust
 const LOG_LOCAL4: crate::c_int = 160i32;
 ```
 
-### `LOG_LOCAL5`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:293`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L293)*
 
+### `LOG_LOCAL5`
 ```rust
 const LOG_LOCAL5: crate::c_int = 168i32;
 ```
 
-### `LOG_LOCAL6`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:294`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L294)*
 
+### `LOG_LOCAL6`
 ```rust
 const LOG_LOCAL6: crate::c_int = 176i32;
 ```
 
-### `LOG_LOCAL7`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:295`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L295)*
 
+### `LOG_LOCAL7`
 ```rust
 const LOG_LOCAL7: crate::c_int = 184i32;
 ```
 
-### `LOG_PID`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:296`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L296)*
 
+### `LOG_PID`
 ```rust
 const LOG_PID: crate::c_int = 1i32;
 ```
 
-### `LOG_CONS`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:300`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L300)*
 
+### `LOG_CONS`
 ```rust
 const LOG_CONS: crate::c_int = 2i32;
 ```
 
-### `LOG_ODELAY`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:301`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L301)*
 
+### `LOG_ODELAY`
 ```rust
 const LOG_ODELAY: crate::c_int = 4i32;
 ```
 
-### `LOG_NDELAY`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:302`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L302)*
 
+### `LOG_NDELAY`
 ```rust
 const LOG_NDELAY: crate::c_int = 8i32;
 ```
 
-### `LOG_NOWAIT`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:303`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L303)*
 
+### `LOG_NOWAIT`
 ```rust
 const LOG_NOWAIT: crate::c_int = 16i32;
 ```
 
-### `LOG_PRIMASK`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:304`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L304)*
 
+### `LOG_PRIMASK`
 ```rust
 const LOG_PRIMASK: crate::c_int = 7i32;
 ```
 
-### `LOG_FACMASK`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:307`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L307)*
 
+### `LOG_FACMASK`
 ```rust
 const LOG_FACMASK: crate::c_int = 1_016i32;
 ```
 
-### `PRIO_MIN`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:308`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L308)*
 
+### `PRIO_MIN`
 ```rust
 const PRIO_MIN: crate::c_int = -20i32;
 ```
 
-### `PRIO_MAX`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:312`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L312)*
 
+### `PRIO_MAX`
 ```rust
 const PRIO_MAX: crate::c_int = 20i32;
 ```
 
-### `IPPROTO_ICMP`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:313`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L313)*
 
+### `IPPROTO_ICMP`
 ```rust
 const IPPROTO_ICMP: crate::c_int = 1i32;
 ```
 
-### `IPPROTO_ICMPV6`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:316`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L316)*
 
+### `IPPROTO_ICMPV6`
 ```rust
 const IPPROTO_ICMPV6: crate::c_int = 58i32;
 ```
 
-### `IPPROTO_TCP`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:317`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L317)*
 
+### `IPPROTO_TCP`
 ```rust
 const IPPROTO_TCP: crate::c_int = 6i32;
 ```
 
-### `IPPROTO_UDP`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:318`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L318)*
 
+### `IPPROTO_UDP`
 ```rust
 const IPPROTO_UDP: crate::c_int = 17i32;
 ```
 
-### `IPPROTO_IP`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:319`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L319)*
 
+### `IPPROTO_IP`
 ```rust
 const IPPROTO_IP: crate::c_int = 0i32;
 ```
 
-### `IPPROTO_IPV6`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:320`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L320)*
 
+### `IPPROTO_IPV6`
 ```rust
 const IPPROTO_IPV6: crate::c_int = 41i32;
 ```
 
-### `INADDR_LOOPBACK`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:321`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L321)*
 
+### `INADDR_LOOPBACK`
 ```rust
 const INADDR_LOOPBACK: in_addr_t = 2_130_706_433u32;
 ```
 
-### `INADDR_ANY`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:323`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L323)*
 
+### `INADDR_ANY`
 ```rust
 const INADDR_ANY: in_addr_t = 0u32;
 ```
 
-### `INADDR_BROADCAST`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:324`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L324)*
 
+### `INADDR_BROADCAST`
 ```rust
 const INADDR_BROADCAST: in_addr_t = 4_294_967_295u32;
 ```
 
-### `INADDR_NONE`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:325`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L325)*
 
+### `INADDR_NONE`
 ```rust
 const INADDR_NONE: in_addr_t = 4_294_967_295u32;
 ```
 
-### `IN6ADDR_LOOPBACK_INIT`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:326`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L326)*
 
+### `IN6ADDR_LOOPBACK_INIT`
 ```rust
 const IN6ADDR_LOOPBACK_INIT: in6_addr;
 ```
 
-### `IN6ADDR_ANY_INIT`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:328-330`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L328-L330)*
 
+### `IN6ADDR_ANY_INIT`
 ```rust
 const IN6ADDR_ANY_INIT: in6_addr;
 ```
 
-### `ARPOP_REQUEST`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:332-334`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L332-L334)*
 
+### `ARPOP_REQUEST`
 ```rust
 const ARPOP_REQUEST: u16 = 1u16;
 ```
 
-### `ARPOP_REPLY`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:336`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L336)*
 
+### `ARPOP_REPLY`
 ```rust
 const ARPOP_REPLY: u16 = 2u16;
 ```
 
-### `ATF_COM`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:337`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L337)*
 
+### `ATF_COM`
 ```rust
 const ATF_COM: crate::c_int = 2i32;
 ```
 
-### `ATF_PERM`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:339`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L339)*
 
+### `ATF_PERM`
 ```rust
 const ATF_PERM: crate::c_int = 4i32;
 ```
 
-### `ATF_PUBL`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:340`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L340)*
 
+### `ATF_PUBL`
 ```rust
 const ATF_PUBL: crate::c_int = 8i32;
 ```
 
-### `ATF_USETRAILERS`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:341`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L341)*
 
+### `ATF_USETRAILERS`
 ```rust
 const ATF_USETRAILERS: crate::c_int = 16i32;
 ```
 
-### `FNM_PERIOD`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:342`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L342)*
 
+### `FNM_PERIOD`
 ```rust
 const FNM_PERIOD: crate::c_int = 4i32;
 ```
 
-### `FNM_NOMATCH`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:348`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L348)*
 
+### `FNM_NOMATCH`
 ```rust
 const FNM_NOMATCH: crate::c_int = 1i32;
 ```
 
-### `FNM_CASEFOLD`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:351`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L351)*
 
+### `FNM_CASEFOLD`
 ```rust
 const FNM_CASEFOLD: crate::c_int = 16i32;
 ```
 
-### `FNM_PATHNAME`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:361`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L361)*
 
+### `FNM_PATHNAME`
 ```rust
 const FNM_PATHNAME: crate::c_int = 1i32;
 ```
 
-### `FNM_NOESCAPE`
+*Defined in [`libc-0.2.178/src/unix/mod.rs:376`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L376)*
 
+### `FNM_NOESCAPE`
 ```rust
 const FNM_NOESCAPE: crate::c_int = 2i32;
 ```
+
+*Defined in [`libc-0.2.178/src/unix/mod.rs:395`](../../.source_1765210505/libc-0.2.178/src/unix/mod.rs#L395)*
 

@@ -87,6 +87,8 @@ struct SegmentIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:532-534`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L532-L534)*
+
 An iterator for the loadable segments in a [`File`](../index.md).
 
 #### Trait Implementations
@@ -97,15 +99,15 @@ An iterator for the loadable segments in a [`File`](../index.md).
 
 ##### `impl<I> IntoIterator for SegmentIterator<'data, 'file, R>`
 
-- <span id="segmentiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="segmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="segmentiterator-intoiter"></span>`type IntoIter = I`
+- <span id="segmentiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="segmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SegmentIterator<'data, 'file, R>`
 
-- <span id="segmentiterator-item"></span>`type Item = Segment<'data, 'file, R>`
+- <span id="segmentiterator-type-item"></span>`type Item = Segment<'data, 'file, R>`
 
 - <span id="segmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -116,6 +118,8 @@ struct Segment<'data, 'file, R: ReadRef<'data>> {
     inner: SegmentInternal<'data, 'file, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:574-576`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L574-L576)*
 
 A loadable segment in a [`File`](../index.md).
 
@@ -157,6 +161,8 @@ struct SectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:665-667`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L665-L667)*
+
 An iterator for the sections in a [`File`](../index.md).
 
 #### Trait Implementations
@@ -167,15 +173,15 @@ An iterator for the sections in a [`File`](../index.md).
 
 ##### `impl<I> IntoIterator for SectionIterator<'data, 'file, R>`
 
-- <span id="sectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="sectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="sectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="sectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="sectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SectionIterator<'data, 'file, R>`
 
-- <span id="sectioniterator-item"></span>`type Item = Section<'data, 'file, R>`
+- <span id="sectioniterator-type-item"></span>`type Item = Section<'data, 'file, R>`
 
 - <span id="sectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -186,6 +192,8 @@ struct Section<'data, 'file, R: ReadRef<'data>> {
     inner: SectionInternal<'data, 'file, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:708-710`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L708-L710)*
 
 A section in a [`File`](../index.md).
 
@@ -199,7 +207,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSection for Section<'data, 'file, R>`
 
-- <span id="section-relocationiterator"></span>`type RelocationIterator = SectionRelocationIterator<'data, 'file, R>`
+- <span id="section-type-relocationiterator"></span>`type RelocationIterator = SectionRelocationIterator<'data, 'file, R>`
 
 - <span id="section-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
@@ -245,6 +253,8 @@ struct ComdatIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:843-845`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L843-L845)*
+
 An iterator for the COMDAT section groups in a [`File`](../index.md).
 
 #### Trait Implementations
@@ -255,15 +265,15 @@ An iterator for the COMDAT section groups in a [`File`](../index.md).
 
 ##### `impl<I> IntoIterator for ComdatIterator<'data, 'file, R>`
 
-- <span id="comdatiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="comdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="comdatiterator-intoiter"></span>`type IntoIter = I`
+- <span id="comdatiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="comdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for ComdatIterator<'data, 'file, R>`
 
-- <span id="comdatiterator-item"></span>`type Item = Comdat<'data, 'file, R>`
+- <span id="comdatiterator-type-item"></span>`type Item = Comdat<'data, 'file, R>`
 
 - <span id="comdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -274,6 +284,8 @@ struct Comdat<'data, 'file, R: ReadRef<'data>> {
     inner: ComdatInternal<'data, 'file, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:885-887`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L885-L887)*
 
 A COMDAT section group in a [`File`](../index.md).
 
@@ -287,7 +299,7 @@ Most functionality is provided by the [`ObjectComdat`](../index.md) trait implem
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectComdat for Comdat<'data, 'file, R>`
 
-- <span id="comdat-sectioniterator"></span>`type SectionIterator = ComdatSectionIterator<'data, 'file, R>`
+- <span id="comdat-type-sectioniterator"></span>`type SectionIterator = ComdatSectionIterator<'data, 'file, R>`
 
 - <span id="comdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md)
 
@@ -309,6 +321,8 @@ struct ComdatSectionIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:959-961`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L959-L961)*
+
 An iterator for the sections in a [`Comdat`](../index.md).
 
 #### Trait Implementations
@@ -319,15 +333,15 @@ An iterator for the sections in a [`Comdat`](../index.md).
 
 ##### `impl<I> IntoIterator for ComdatSectionIterator<'data, 'file, R>`
 
-- <span id="comdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="comdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="comdatsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="comdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="comdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for ComdatSectionIterator<'data, 'file, R>`
 
-- <span id="comdatsectioniterator-item"></span>`type Item = SectionIndex`
+- <span id="comdatsectioniterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="comdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -341,6 +355,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1001-1006`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1001-L1006)*
+
 A symbol table in a [`File`](../index.md).
 
 Most functionality is provided by the [`ObjectSymbolTable`](../index.md) trait implementation.
@@ -353,9 +369,9 @@ Most functionality is provided by the [`ObjectSymbolTable`](../index.md) trait i
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSymbolTable for SymbolTable<'data, 'file, R>`
 
-- <span id="symboltable-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
+- <span id="symboltable-type-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
 
-- <span id="symboltable-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
+- <span id="symboltable-type-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
 
 - <span id="symboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
 
@@ -373,6 +389,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1085-1090`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1085-L1090)*
+
 An iterator for the symbols in a [`SymbolTable`](../index.md).
 
 #### Trait Implementations
@@ -383,15 +401,15 @@ An iterator for the symbols in a [`SymbolTable`](../index.md).
 
 ##### `impl<I> IntoIterator for SymbolIterator<'data, 'file, R>`
 
-- <span id="symboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="symboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="symboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="symboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'file, R>`
 
-- <span id="symboliterator-item"></span>`type Item = Symbol<'data, 'file, R>`
+- <span id="symboliterator-type-item"></span>`type Item = Symbol<'data, 'file, R>`
 
 - <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -404,6 +422,8 @@ where
     inner: SymbolInternal<'data, 'file, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:1165-1170`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1165-L1170)*
 
 An symbol in a [`SymbolTable`](../index.md).
 
@@ -459,6 +479,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1301-1306`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1301-L1306)*
+
 An iterator for the dynamic relocation entries in a [`File`](../index.md).
 
 #### Trait Implementations
@@ -469,15 +491,15 @@ An iterator for the dynamic relocation entries in a [`File`](../index.md).
 
 ##### `impl<I> IntoIterator for DynamicRelocationIterator<'data, 'file, R>`
 
-- <span id="dynamicrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dynamicrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dynamicrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="dynamicrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for DynamicRelocationIterator<'data, 'file, R>`
 
-- <span id="dynamicrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="dynamicrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="dynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -489,6 +511,8 @@ struct SectionRelocationIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1338-1340`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1338-L1340)*
+
 An iterator for the relocation entries in a [`Section`](../index.md).
 
 #### Trait Implementations
@@ -499,15 +523,15 @@ An iterator for the relocation entries in a [`Section`](../index.md).
 
 ##### `impl<I> IntoIterator for SectionRelocationIterator<'data, 'file, R>`
 
-- <span id="sectionrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="sectionrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="sectionrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="sectionrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="sectionrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SectionRelocationIterator<'data, 'file, R>`
 
-- <span id="sectionrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="sectionrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="sectionrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -530,6 +554,8 @@ enum File<'data, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:213-236`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L213-L236)*
+
 An object file that can be any supported file format.
 
 Most functionality is provided by the [`Object`](../index.md) trait implementation.
@@ -550,25 +576,25 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 ##### `impl<'data, R> Object for File<'data, R>`
 
-- <span id="file-segment"></span>`type Segment = Segment<'data, 'file, R>`
+- <span id="file-type-segment"></span>`type Segment = Segment<'data, 'file, R>`
 
-- <span id="file-segmentiterator"></span>`type SegmentIterator = SegmentIterator<'data, 'file, R>`
+- <span id="file-type-segmentiterator"></span>`type SegmentIterator = SegmentIterator<'data, 'file, R>`
 
-- <span id="file-section"></span>`type Section = Section<'data, 'file, R>`
+- <span id="file-type-section"></span>`type Section = Section<'data, 'file, R>`
 
-- <span id="file-sectioniterator"></span>`type SectionIterator = SectionIterator<'data, 'file, R>`
+- <span id="file-type-sectioniterator"></span>`type SectionIterator = SectionIterator<'data, 'file, R>`
 
-- <span id="file-comdat"></span>`type Comdat = Comdat<'data, 'file, R>`
+- <span id="file-type-comdat"></span>`type Comdat = Comdat<'data, 'file, R>`
 
-- <span id="file-comdatiterator"></span>`type ComdatIterator = ComdatIterator<'data, 'file, R>`
+- <span id="file-type-comdatiterator"></span>`type ComdatIterator = ComdatIterator<'data, 'file, R>`
 
-- <span id="file-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
+- <span id="file-type-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
 
-- <span id="file-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
+- <span id="file-type-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
 
-- <span id="file-symboltable"></span>`type SymbolTable = SymbolTable<'data, 'file, R>`
+- <span id="file-type-symboltable"></span>`type SymbolTable = SymbolTable<'data, 'file, R>`
 
-- <span id="file-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = DynamicRelocationIterator<'data, 'file, R>`
+- <span id="file-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = DynamicRelocationIterator<'data, 'file, R>`
 
 - <span id="file-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
 
@@ -647,6 +673,8 @@ enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:537-560`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L537-L560)*
+
 #### Trait Implementations
 
 ##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SegmentIteratorInternal<'data, 'file, R>`
@@ -669,6 +697,8 @@ enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
     Xcoff64(xcoff::XcoffSegment64<'data, 'file, R>),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:579-602`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L579-L602)*
 
 #### Trait Implementations
 
@@ -693,6 +723,8 @@ enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:671-694`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L671-L694)*
+
 #### Trait Implementations
 
 ##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionIteratorInternal<'data, 'file, R>`
@@ -716,6 +748,8 @@ enum SectionInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:712-735`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L712-L735)*
+
 ### `ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>>`
 
 ```rust
@@ -732,6 +766,8 @@ enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
     Xcoff64(xcoff::XcoffComdatIterator64<'data, 'file, R>),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:848-871`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L848-L871)*
 
 #### Trait Implementations
 
@@ -756,6 +792,8 @@ enum ComdatInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:889-912`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L889-L912)*
+
 ### `ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>>`
 
 ```rust
@@ -772,6 +810,8 @@ enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
     Xcoff64(xcoff::XcoffComdatSectionIterator64<'data, 'file, R>),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:964-987`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L964-L987)*
 
 #### Trait Implementations
 
@@ -798,6 +838,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1009-1055`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1009-L1055)*
+
 #### Trait Implementations
 
 ##### `impl<'data, 'file, R> Debug for SymbolTableInternal<'data, 'file, R>`
@@ -822,6 +864,8 @@ where
     Xcoff64((xcoff::XcoffSymbolIterator64<'data, 'file, R>, core::marker::PhantomData<R>)),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:1093-1149`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1093-L1149)*
 
 #### Trait Implementations
 
@@ -848,6 +892,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1172-1218`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1172-L1218)*
+
 ### `DynamicRelocationIteratorInternal<'data, 'file, R>`
 
 ```rust
@@ -859,6 +905,8 @@ where
     None(core::marker::PhantomData<(&'data (), &'file (), R)>),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/any.rs:1309-1320`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1309-L1320)*
 
 #### Trait Implementations
 
@@ -883,6 +931,8 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/any.rs:1343-1366`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L1343-L1366)*
+
 #### Trait Implementations
 
 ##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIteratorInternal<'data, 'file, R>`
@@ -893,23 +943,35 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 ### `with_inner!`
 
+*Defined in [`object-0.37.3/src/read/any.rs:30-57`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L30-L57)*
+
 Evaluate an expression on the contents of a file format enum.
 
 This is a hack to avoid virtual calls.
 
 ### `with_inner_mut!`
 
+*Defined in [`object-0.37.3/src/read/any.rs:59-86`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L59-L86)*
+
 ### `map_inner!`
+
+*Defined in [`object-0.37.3/src/read/any.rs:89-116`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L89-L116)*
 
 Like `with_inner!`, but wraps the result in another enum.
 
 ### `map_inner_option!`
 
+*Defined in [`object-0.37.3/src/read/any.rs:119-146`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L119-L146)*
+
 Like `map_inner!`, but the result is a Result or Option.
 
 ### `map_inner_option_mut!`
 
+*Defined in [`object-0.37.3/src/read/any.rs:148-175`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L148-L175)*
+
 ### `next_inner!`
+
+*Defined in [`object-0.37.3/src/read/any.rs:178-205`](../../../../.source_1765210505/object-0.37.3/src/read/any.rs#L178-L205)*
 
 Call `next` for a file format iterator.
 

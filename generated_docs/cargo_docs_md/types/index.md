@@ -54,6 +54,8 @@ struct TypeRenderer<'a> {
 }
 ```
 
+*Defined in `src/types.rs:65-71`*
+
 Type renderer for converting rustdoc types to Rust syntax strings.
 
 This struct holds a reference to the crate context and provides methods
@@ -117,27 +119,27 @@ let generics = renderer.render_generics(&params);
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for TypeRenderer<'a>`
+##### `impl Clone for TypeRenderer<'a>`
 
 - <span id="typerenderer-clone"></span>`fn clone(&self) -> TypeRenderer<'a>` — [`TypeRenderer`](#typerenderer)
 
-##### `impl<'a> Copy for TypeRenderer<'a>`
+##### `impl Copy for TypeRenderer<'a>`
 
-##### `impl<'a> Debug for TypeRenderer<'a>`
+##### `impl Debug for TypeRenderer<'a>`
 
 - <span id="typerenderer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Instrument for TypeRenderer<'a>`
+##### `impl Instrument for TypeRenderer<'a>`
 
-##### `impl<T> IntoEither for TypeRenderer<'a>`
+##### `impl IntoEither for TypeRenderer<'a>`
 
-##### `impl<D> OwoColorize for TypeRenderer<'a>`
+##### `impl OwoColorize for TypeRenderer<'a>`
 
-##### `impl<T> Pointable for TypeRenderer<'a>`
+##### `impl Pointable for TypeRenderer<'a>`
 
-- <span id="typerenderer-align"></span>`const ALIGN: usize`
+- <span id="typerenderer-const-align"></span>`const ALIGN: usize`
 
-- <span id="typerenderer-init"></span>`type Init = T`
+- <span id="typerenderer-type-init"></span>`type Init = T`
 
 - <span id="typerenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -147,5 +149,5 @@ let generics = renderer.render_generics(&params);
 
 - <span id="typerenderer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for TypeRenderer<'a>`
+##### `impl WithSubscriber for TypeRenderer<'a>`
 

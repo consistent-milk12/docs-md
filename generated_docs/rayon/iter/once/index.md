@@ -21,6 +21,8 @@ struct Once<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/once.rs:32-34`](../../../../.source_1765210505/rayon-1.11.0/src/iter/once.rs#L32-L34)*
+
 Iterator adaptor for [the `once()` function].
 
 
@@ -28,7 +30,7 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T: clone::Clone> Clone for Once<T>`
 
-- <span id="once-clone"></span>`fn clone(&self) -> Once<T>` — [`Once`](../index.md)
+- <span id="once-clone"></span>`fn clone(&self) -> Once<T>` — [`Once`](#once)
 
 ##### `impl<T: fmt::Debug> Debug for Once<T>`
 
@@ -46,15 +48,15 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T> IntoParallelIterator for Once<T>`
 
-- <span id="once-iter"></span>`type Iter = T`
+- <span id="once-type-iter"></span>`type Iter = T`
 
-- <span id="once-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="once-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="once-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Once<T>`
 
-- <span id="once-item"></span>`type Item = T`
+- <span id="once-type-item"></span>`type Item = T`
 
 - <span id="once-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -62,9 +64,9 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T> Pointable for Once<T>`
 
-- <span id="once-align"></span>`const ALIGN: usize`
+- <span id="once-const-align"></span>`const ALIGN: usize`
 
-- <span id="once-init"></span>`type Init = T`
+- <span id="once-type-init"></span>`type Init = T`
 
 - <span id="once-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -81,6 +83,8 @@ Iterator adaptor for [the `once()` function].
 ```rust
 fn once<T: Send>(item: T) -> Once<T>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/once.rs:24-26`](../../../../.source_1765210505/rayon-1.11.0/src/iter/once.rs#L24-L26)*
 
 Creates a parallel iterator that produces an element exactly once.
 

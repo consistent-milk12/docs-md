@@ -21,6 +21,8 @@ struct Mmap {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/mmap_unix.rs:12-15`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/mmap_unix.rs#L12-L15)*
+
 #### Implementations
 
 - <span id="mmap-map"></span>`unsafe fn map(file: &File, len: usize, offset: u64) -> Option<Mmap>` — [`Mmap`](#mmap)
@@ -29,7 +31,7 @@ struct Mmap {
 
 ##### `impl Deref for Mmap`
 
-- <span id="mmap-target"></span>`type Target = [u8]`
+- <span id="mmap-type-target"></span>`type Target = [u8]`
 
 - <span id="mmap-deref"></span>`fn deref(&self) -> &[u8]`
 
@@ -37,7 +39,7 @@ struct Mmap {
 
 - <span id="mmap-drop"></span>`fn drop(&mut self)`
 
-##### `impl<P, T> Receiver for Mmap`
+##### `impl Receiver for Mmap`
 
-- <span id="mmap-target"></span>`type Target = T`
+- <span id="mmap-type-target"></span>`type Target = T`
 

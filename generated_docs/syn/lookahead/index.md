@@ -42,6 +42,8 @@ struct Lookahead1<'a> {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lookahead.rs:63-67`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L63-L67)*
+
 Support for checking the next token in a stream to decide how to parse.
 
 An important advantage over `ParseStream::peek` is that here we
@@ -98,7 +100,7 @@ impl Parse for GenericParam {
 
 - <span id="lookahead1-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
-- <span id="lookahead1-error"></span>`fn error(self) -> Error` — [`Error`](../index.md)
+- <span id="lookahead1-error"></span>`fn error(self) -> Error` — [`Error`](../error/index.md)
 
 ### `CommaSeparated<'a>`
 
@@ -106,13 +108,15 @@ impl Parse for GenericParam {
 struct CommaSeparated<'a>(&'a [&'a str]);
 ```
 
+*Defined in [`syn-2.0.111/src/lookahead.rs:150`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L150)*
+
 #### Trait Implementations
 
-##### `impl<'a> Display for CommaSeparated<'a>`
+##### `impl Display for CommaSeparated<'a>`
 
 - <span id="commaseparated-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for CommaSeparated<'a>`
+##### `impl ToString for CommaSeparated<'a>`
 
 - <span id="commaseparated-to-string"></span>`fn to_string(&self) -> String`
 
@@ -121,6 +125,8 @@ struct CommaSeparated<'a>(&'a [&'a str]);
 ```rust
 struct End;
 ```
+
+*Defined in [`syn-2.0.111/src/lookahead.rs:310`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L310)*
 
 Pseudo-token used for peeking the end of a parse stream.
 
@@ -263,9 +269,9 @@ Ok(())
 
 ##### `impl Peek for End`
 
-##### `impl<T> Sealed for End`
+##### `impl Sealed for End`
 
-##### `impl<T> Token for End`
+##### `impl Token for End`
 
 - <span id="end-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md)
 
@@ -280,6 +286,8 @@ enum TokenMarker {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lookahead.rs:338`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L338)*
+
 ## Traits
 
 ### `Peek`
@@ -287,6 +295,8 @@ enum TokenMarker {
 ```rust
 trait Peek: Sealed { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/lookahead.rs:174-178`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L174-L178)*
 
 Types that can be parsed by looking at just one token.
 
@@ -298,7 +308,7 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 
 #### Implementors
 
-- [`End`](../parse/index.md)
+- [`End`](#end)
 - [`PeekFn`](../ext/private/index.md)
 - `F`
 
@@ -310,9 +320,13 @@ This trait is sealed and cannot be implemented for types outside of Syn.
 fn new(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>) -> Lookahead1<'_>
 ```
 
+*Defined in [`syn-2.0.111/src/lookahead.rs:69-75`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L69-L75)*
+
 ### `peek_impl`
 
 ```rust
 fn peek_impl(lookahead: &Lookahead1<'_>, peek: fn(crate::buffer::Cursor<'_>) -> bool, display: fn() -> &'static str) -> bool
 ```
+
+*Defined in [`syn-2.0.111/src/lookahead.rs:77-87`](../../../.source_1765210505/syn-2.0.111/src/lookahead.rs#L77-L87)*
 

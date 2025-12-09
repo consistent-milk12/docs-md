@@ -38,6 +38,8 @@
 struct Bytes<'data>(&'data [u8]);
 ```
 
+*Defined in [`object-0.37.3/src/read/util.rs:16`](../../../../.source_1765210505/object-0.37.3/src/read/util.rs#L16)*
+
 A newtype for byte slices.
 
 It has these important features:
@@ -75,33 +77,35 @@ It has these important features:
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Bytes<'data>`
+##### `impl Clone for Bytes<'data>`
 
 - <span id="bytes-clone"></span>`fn clone(&self) -> Bytes<'data>` — [`Bytes`](../index.md)
 
-##### `impl<'data> Copy for Bytes<'data>`
+##### `impl Copy for Bytes<'data>`
 
-##### `impl<'data> Debug for Bytes<'data>`
+##### `impl Debug for Bytes<'data>`
 
 - <span id="bytes-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for Bytes<'data>`
+##### `impl Default for Bytes<'data>`
 
 - <span id="bytes-default"></span>`fn default() -> Bytes<'data>` — [`Bytes`](../index.md)
 
-##### `impl<'data> Eq for Bytes<'data>`
+##### `impl Eq for Bytes<'data>`
 
-##### `impl<'data> PartialEq for Bytes<'data>`
+##### `impl PartialEq for Bytes<'data>`
 
 - <span id="bytes-eq"></span>`fn eq(&self, other: &Bytes<'data>) -> bool` — [`Bytes`](../index.md)
 
-##### `impl<'data> StructuralPartialEq for Bytes<'data>`
+##### `impl StructuralPartialEq for Bytes<'data>`
 
 ### `DebugByte`
 
 ```rust
 struct DebugByte(u8);
 ```
+
+*Defined in [`object-0.37.3/src/read/util.rs:222`](../../../../.source_1765210505/object-0.37.3/src/read/util.rs#L222)*
 
 #### Trait Implementations
 
@@ -115,6 +119,8 @@ struct DebugByte(u8);
 struct DebugLen(usize);
 ```
 
+*Defined in [`object-0.37.3/src/read/util.rs:230`](../../../../.source_1765210505/object-0.37.3/src/read/util.rs#L230)*
+
 #### Trait Implementations
 
 ##### `impl Debug for DebugLen`
@@ -127,6 +133,8 @@ struct DebugLen(usize);
 struct ByteString<'data>(&'data [u8]);
 ```
 
+*Defined in [`object-0.37.3/src/read/util.rs:244`](../../../../.source_1765210505/object-0.37.3/src/read/util.rs#L244)*
+
 A newtype for byte strings.
 
 For byte slices that are strings of an unknown encoding.
@@ -135,27 +143,27 @@ Provides a `Debug` implementation that interprets the bytes as UTF-8.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ByteString<'data>`
+##### `impl Clone for ByteString<'data>`
 
 - <span id="bytestring-clone"></span>`fn clone(&self) -> ByteString<'data>` — [`ByteString`](#bytestring)
 
-##### `impl<'data> Copy for ByteString<'data>`
+##### `impl Copy for ByteString<'data>`
 
-##### `impl<'data> Debug for ByteString<'data>`
+##### `impl Debug for ByteString<'data>`
 
 - <span id="bytestring-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for ByteString<'data>`
+##### `impl Default for ByteString<'data>`
 
 - <span id="bytestring-default"></span>`fn default() -> ByteString<'data>` — [`ByteString`](#bytestring)
 
-##### `impl<'data> Eq for ByteString<'data>`
+##### `impl Eq for ByteString<'data>`
 
-##### `impl<'data> PartialEq for ByteString<'data>`
+##### `impl PartialEq for ByteString<'data>`
 
 - <span id="bytestring-eq"></span>`fn eq(&self, other: &ByteString<'data>) -> bool` — [`ByteString`](#bytestring)
 
-##### `impl<'data> StructuralPartialEq for ByteString<'data>`
+##### `impl StructuralPartialEq for ByteString<'data>`
 
 ### `StringTable<'data, R>`
 
@@ -169,6 +177,8 @@ where
     marker: core::marker::PhantomData<&'data ()>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/util.rs:274-282`](../../../../.source_1765210505/object-0.37.3/src/read/util.rs#L274-L282)*
 
 A table of zero-terminated strings.
 
@@ -204,15 +214,21 @@ This is used by most file formats for strings such as section names and symbol n
 fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
 ```
 
+*Defined in [`object-0.37.3/src/read/util.rs:213-220`](../../../../.source_1765210505/object-0.37.3/src/read/util.rs#L213-L220)*
+
 ### `align`
 
 ```rust
 fn align(offset: usize, size: usize) -> usize
 ```
 
+*Defined in [`object-0.37.3/src/read/util.rs:254-256`](../../../../.source_1765210505/object-0.37.3/src/read/util.rs#L254-L256)*
+
 ### `data_range`
 
 ```rust
 fn data_range(data: &[u8], data_address: u64, range_address: u64, size: u64) -> Option<&[u8]>
 ```
+
+*Defined in [`object-0.37.3/src/read/util.rs:259-268`](../../../../.source_1765210505/object-0.37.3/src/read/util.rs#L259-L268)*
 

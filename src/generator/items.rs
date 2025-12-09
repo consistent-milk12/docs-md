@@ -13,8 +13,9 @@ use crate::generator::impls::ImplRenderer;
 use crate::generator::render_shared::{
     CategorizedTraitItems, TraitRenderer, append_docs, render_constant_definition,
     render_enum_definition, render_enum_variants_docs, render_function_definition,
-    render_macro_heading, render_struct_definition, render_struct_fields,
-    render_type_alias_definition,
+    render_macro_heading, render_source_location, render_static_definition,
+    render_struct_definition, render_struct_fields, render_type_alias_definition,
+    render_union_definition, render_union_fields,
 };
 use crate::types::TypeRenderer;
 
@@ -65,6 +66,20 @@ impl<'a> ItemRenderer<'a> {
     /// both single-crate and multi-crate link resolution.
     fn process_docs(&self, item: &Item) -> Option<String> {
         self.ctx.process_docs(item, self.current_file)
+    }
+
+    /// Render source location if enabled in config.
+    ///
+    /// Returns the source location string if `source_locations` is enabled,
+    /// otherwise returns an empty string. Uses the source path config to
+    /// generate clickable links to the `.source_*` directory when available.
+    fn maybe_render_source_location(&self, item: &Item) -> String {
+        if self.ctx.render_config().include_source.source_locations {
+            let source_config = self.ctx.source_path_config_for_file(self.current_file);
+            render_source_location(item.span.as_ref(), source_config.as_ref())
+        } else {
+            String::new()
+        }
     }
 
     /// Resolve a Use item to its target, returning the alias name and target item.
@@ -132,6 +147,9 @@ impl<'a> ItemRenderer<'a> {
             render_struct_definition(md, name, s, krate, &self.type_renderer);
         }
 
+        // Source location (if enabled)
+        _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
+
         // Documentation (from actual item, not the Use item)
         append_docs(md, self.process_docs(actual_item));
 
@@ -188,6 +206,9 @@ impl<'a> ItemRenderer<'a> {
             render_enum_definition(md, name, e, krate, &self.type_renderer);
         }
 
+        // Source location (if enabled)
+        _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
+
         // Documentation (from actual item, not the Use item)
         append_docs(md, self.process_docs(actual_item));
 
@@ -234,6 +255,9 @@ impl<'a> ItemRenderer<'a> {
         if let ItemEnum::Trait(t) = &actual_item.inner {
             // Trait definition (heading + code block)
             TraitRenderer::render_trait_definition(md, name, t, &self.type_renderer);
+
+            // Source location (if enabled)
+            _ = writeln!(md, "{}", &self.maybe_render_source_location(actual_item));
 
             // Documentation
             append_docs(md, self.process_docs(actual_item));
@@ -297,35 +321,54 @@ impl<'a> ItemRenderer<'a> {
     }
 
     /// Render the implementors section for a trait.
+    ///
+    /// Uses `Trait.implementations` field for direct lookup instead of scanning
+    /// all items in the crate index, providing O(k) performance where k is the
+    /// number of implementors.
     fn render_trait_implementors(&self, md: &mut String, trait_id: Id) {
         use std::collections::BTreeSet;
 
         let krate = self.ctx.krate();
+
+        // Get the trait item to access its implementations list
+        let Some(trait_item) = krate.index.get(&trait_id) else {
+            return;
+        };
+
+        let ItemEnum::Trait(trait_data) = &trait_item.inner else {
+            return;
+        };
+
         let mut implementors: BTreeSet<String> = BTreeSet::new();
 
-        for item in krate.index.values() {
-            if let ItemEnum::Impl(impl_block) = &item.inner
-                && let Some(trait_path) = &impl_block.trait_
-                && trait_path.id == trait_id
-            {
-                let for_type = self.type_renderer.render_type(&impl_block.for_);
+        // Use Trait.implementations for direct lookup instead of scanning all items
+        for impl_id in &trait_data.implementations {
+            let Some(impl_item) = krate.index.get(impl_id) else {
+                continue;
+            };
+            let ItemEnum::Impl(impl_block) = &impl_item.inner else {
+                continue;
+            };
 
-                let entry = self
-                    .type_renderer
-                    .get_type_id(&impl_block.for_)
-                    .and_then(|type_id| self.ctx.create_link(type_id, self.current_file))
-                    .unwrap_or_else(|| format!("`{for_type}`"));
+            let for_type = self.type_renderer.render_type(&impl_block.for_);
 
-                implementors.insert(entry);
-            }
+            let entry = self
+                .type_renderer
+                .get_type_id(&impl_block.for_)
+                .and_then(|type_id| self.ctx.create_link(type_id, self.current_file))
+                .unwrap_or_else(|| format!("`{for_type}`"));
+
+            implementors.insert(entry);
         }
 
         if !implementors.is_empty() {
-            md.push_str("#### Implementors\n\n");
+            _ = writeln!(md, "#### Implementors\n");
+
             for implementor in implementors {
                 _ = writeln!(md, "- {implementor}");
             }
-            md.push('\n');
+
+            _ = writeln!(md);
         }
     }
 
@@ -359,6 +402,9 @@ impl<'a> ItemRenderer<'a> {
             // Add type links for function signature types
             self.render_function_type_links(md, f);
         }
+
+        // Source location (if enabled)
+        _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
 
         // Documentation
         append_docs(md, self.process_docs(actual_item));
@@ -434,6 +480,10 @@ impl<'a> ItemRenderer<'a> {
         };
 
         render_macro_heading(md, name);
+
+        // Source location (if enabled)
+        _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
+
         append_docs(md, self.process_docs(actual_item));
     }
 
@@ -460,6 +510,9 @@ impl<'a> ItemRenderer<'a> {
             render_constant_definition(md, name, type_, const_, &self.type_renderer);
         }
 
+        // Source location (if enabled)
+        _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
+
         append_docs(md, self.process_docs(actual_item));
     }
 
@@ -482,6 +535,97 @@ impl<'a> ItemRenderer<'a> {
         if let ItemEnum::TypeAlias(ta) = &actual_item.inner {
             render_type_alias_definition(md, name, ta, &self.type_renderer);
         }
+
+        // Source location (if enabled)
+        _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
+
+        append_docs(md, self.process_docs(actual_item));
+    }
+
+    /// Render a union definition to markdown.
+    ///
+    /// Produces a section with:
+    /// - Heading with union name and generics
+    /// - Rust code block showing the union definition with all fields
+    /// - Documentation from doc comments
+    /// - Fields section (for unions with documented fields)
+    /// - Implementations section (inherent and trait impls)
+    ///
+    /// # Union Fields
+    ///
+    /// Unlike structs, all union fields share the same memory location.
+    /// Only one field can be active at a time, and accessing fields
+    /// requires `unsafe` code.
+    ///
+    /// # Re-exports
+    ///
+    /// Also handles `pub use` re-exports where the item is a Use pointing to a union.
+    pub fn render_union(&self, md: &mut String, item_id: Id, item: &Item) {
+        let krate = self.ctx.krate();
+
+        // Resolve Use items to their target, getting the display name and actual item
+        let Some((name, actual_item)) = self.resolve_use_target(item) else {
+            return;
+        };
+
+        // Get the actual ID for impl lookup (use target ID for Use items)
+        let actual_id = if let ItemEnum::Use(use_item) = &item.inner {
+            use_item.id.unwrap_or(item_id)
+        } else {
+            item_id
+        };
+
+        if let ItemEnum::Union(u) = &actual_item.inner {
+            // Union definition (heading + code block)
+            render_union_definition(md, name, u, krate, &self.type_renderer);
+        }
+
+        // Source location (if enabled)
+        _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
+
+        // Documentation (from actual item, not the Use item)
+        append_docs(md, self.process_docs(actual_item));
+
+        // Fields documentation
+        if let ItemEnum::Union(u) = &actual_item.inner {
+            render_union_fields(md, &u.fields, krate, &self.type_renderer, |field| {
+                self.process_docs(field)
+            });
+        }
+
+        // Implementations
+        let impl_renderer = ImplRenderer::new(self.ctx, self.current_file);
+        impl_renderer.render_impl_blocks(md, actual_id);
+    }
+
+    /// Render a static variable to markdown.
+    ///
+    /// Produces a section with:
+    /// - Heading with static name
+    /// - Rust code block showing `static [mut] NAME: Type = expr;`
+    /// - Documentation from doc comments
+    ///
+    /// # Static Modifiers
+    ///
+    /// The signature includes applicable modifiers:
+    /// - `static mut` - Mutable static (access requires unsafe)
+    /// - `unsafe static` - Unsafe static in extern block
+    ///
+    /// # Re-exports
+    ///
+    /// Also handles `pub use` re-exports where the item is a Use pointing to a static.
+    pub fn render_static(&self, md: &mut String, item: &Item) {
+        // Resolve Use items to their target
+        let Some((name, actual_item)) = self.resolve_use_target(item) else {
+            return;
+        };
+
+        if let ItemEnum::Static(s) = &actual_item.inner {
+            render_static_definition(md, name, s, &self.type_renderer);
+        }
+
+        // Source location (if enabled)
+        _ = write!(md, "{}", &self.maybe_render_source_location(actual_item));
 
         append_docs(md, self.process_docs(actual_item));
     }

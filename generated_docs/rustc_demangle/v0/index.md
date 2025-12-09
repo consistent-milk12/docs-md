@@ -40,8 +40,8 @@
 | [`MAX_DEPTH`](#max_depth) | const |  |
 | [`SMALL_PUNYCODE_LEN`](#small_punycode_len) | const |  |
 | [`write!`](#write) | macro |  |
-| [`invalid!`](#invalid) | macro | Mark the parser as errored (with `ParseError::Invalid`), print the |
-| [`parse!`](#parse) | macro | Call a parser method (if the parser hasn't errored yet) |
+| [`invalid!`](#invalid) | macro | Mark the parser as errored (with `ParseError::Invalid`), print the appropriate message (see `ParseError::message`) and return early. |
+| [`parse!`](#parse) | macro | Call a parser method (if the parser hasn't errored yet), and mark the parser as errored if it returns `Err`. |
 
 ## Structs
 
@@ -53,11 +53,13 @@ struct Demangle<'a> {
 }
 ```
 
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:19-21`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L19-L21)*
+
 Representation of a demangled symbol name.
 
 #### Trait Implementations
 
-##### `impl<'s> Display for Demangle<'s>`
+##### `impl Display for Demangle<'s>`
 
 - <span id="demangle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -69,6 +71,8 @@ struct Ident<'s> {
     punycode: &'s str,
 }
 ```
+
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:108-113`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L108-L113)*
 
 #### Fields
 
@@ -88,7 +92,7 @@ struct Ident<'s> {
 
 #### Trait Implementations
 
-##### `impl<'s> Display for Ident<'s>`
+##### `impl Display for Ident<'s>`
 
 - <span id="ident-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -99,6 +103,8 @@ struct HexNibbles<'s> {
     nibbles: &'s str,
 }
 ```
+
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:269-271`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L269-L271)*
 
 Sequence of lowercase hexadecimal nibbles (`0-9a-f`), used by leaf consts.
 
@@ -117,6 +123,8 @@ struct Parser<'s> {
     depth: u32,
 }
 ```
+
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:398-402`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L398-L402)*
 
 #### Implementations
 
@@ -157,6 +165,8 @@ struct Printer<'a, 'b: 'a, 's> {
     bound_lifetime_depth: u32,
 }
 ```
+
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:568-584`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L568-L584)*
 
 #### Fields
 
@@ -228,6 +238,8 @@ enum ParseError {
 }
 ```
 
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:24-30`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L24-L30)*
+
 #### Variants
 
 - **`Invalid`**
@@ -264,6 +276,8 @@ enum ParseError {
 fn demangle(s: &str) -> Result<(Demangle<'_>, &str), ParseError>
 ```
 
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:37-91`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L37-L91)*
+
 De-mangles a Rust symbol into a more readable version
 
 This function will take a **mangled** symbol and return a value. When printed,
@@ -276,30 +290,40 @@ a mangled symbol, the original value will be written instead.
 fn basic_type(tag: u8) -> Option<&'static str>
 ```
 
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:370-396`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L370-L396)*
+
 ## Constants
 
 ### `MAX_DEPTH`
-
 ```rust
 const MAX_DEPTH: u32 = 500u32;
 ```
 
-### `SMALL_PUNYCODE_LEN`
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:16`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L16)*
 
+### `SMALL_PUNYCODE_LEN`
 ```rust
 const SMALL_PUNYCODE_LEN: usize = 128usize;
 ```
+
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:115`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L115)*
 
 ## Macros
 
 ### `write!`
 
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:5-12`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L5-L12)*
+
 ### `invalid!`
+
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:598-605`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L598-L605)*
 
 Mark the parser as errored (with `ParseError::Invalid`), print the
 appropriate message (see `ParseError::message`) and return early.
 
 ### `parse!`
+
+*Defined in [`rustc-demangle-0.1.26/src/v0.rs:616-630`](../../../.source_1765210505/rustc-demangle-0.1.26/src/v0.rs#L616-L630)*
 
 Call a parser method (if the parser hasn't errored yet),
 and mark the parser as errored if it returns `Err`.

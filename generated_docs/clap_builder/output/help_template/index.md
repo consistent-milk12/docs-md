@@ -50,11 +50,13 @@ struct AutoHelp<'cmd, 'writer> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:25-27`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L25-L27)*
+
 `clap` auto-generated help writer
 
 #### Implementations
 
-- <span id="autohelp-new"></span>`fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/index.md), [`Command`](../../index.md), [`Usage`](../usage/index.md)
+- <span id="autohelp-new"></span>`fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/styled_str/index.md), [`Command`](../../builder/command/index.md), [`Usage`](../usage/index.md)
 
 - <span id="autohelp-write-help"></span>`fn write_help(&mut self)`
 
@@ -72,37 +74,19 @@ struct HelpTemplate<'cmd, 'writer> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:82-90`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L82-L90)*
+
 Help template writer
 
 Wraps a writer stream providing different methods to generate help for `clap` objects.
 
 #### Implementations
 
-- <span id="helptemplate-write-all-args"></span>`fn write_all_args(&mut self)`
+- <span id="helptemplate-new"></span>`fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/styled_str/index.md), [`Command`](../../builder/command/index.md), [`Usage`](../usage/index.md)
 
-- <span id="helptemplate-write-args"></span>`fn write_args(&mut self, args: &[&Arg], _category: &str, sort_key: fn(&crate::builder::Arg) -> (usize, String))` — [`Arg`](../../index.md)
+- <span id="helptemplate-term-w"></span>`fn term_w(cmd: &'cmd Command) -> usize` — [`Command`](../../builder/command/index.md)
 
-- <span id="helptemplate-write-arg"></span>`fn write_arg(&mut self, arg: &Arg, next_line_help: bool, longest: usize)` — [`Arg`](../../index.md)
-
-- <span id="helptemplate-short"></span>`fn short(&mut self, arg: &Arg)` — [`Arg`](../../index.md)
-
-- <span id="helptemplate-long"></span>`fn long(&mut self, arg: &Arg)` — [`Arg`](../../index.md)
-
-- <span id="helptemplate-align-to-about"></span>`fn align_to_about(&mut self, arg: &Arg, next_line_help: bool, longest: usize)` — [`Arg`](../../index.md)
-
-- <span id="helptemplate-help"></span>`fn help(&mut self, arg: Option<&Arg>, about: &StyledStr, spec_vals: &str, next_line_help: bool, longest: usize)` — [`Arg`](../../index.md), [`StyledStr`](../../builder/index.md)
-
-- <span id="helptemplate-will-args-wrap"></span>`fn will_args_wrap(&self, args: &[&Arg], longest: usize) -> bool` — [`Arg`](../../index.md)
-
-- <span id="helptemplate-arg-next-line-help"></span>`fn arg_next_line_help(&self, arg: &Arg, spec_vals: &str, longest: usize) -> bool` — [`Arg`](../../index.md)
-
-- <span id="helptemplate-spec-vals"></span>`fn spec_vals(&self, a: &Arg) -> String` — [`Arg`](../../index.md)
-
-- <span id="helptemplate-get-spaces"></span>`fn get_spaces(&self, n: usize) -> String`
-
-- <span id="helptemplate-write-padding"></span>`fn write_padding(&mut self, amount: usize)`
-
-- <span id="helptemplate-use-long-pv"></span>`fn use_long_pv(&self, arg: &Arg) -> bool` — [`Arg`](../../index.md)
+- <span id="helptemplate-write-templated-help"></span>`fn write_templated_help(&mut self, template: &str)`
 
 ## Functions
 
@@ -112,11 +96,15 @@ Wraps a writer stream providing different methods to generate help for `clap` ob
 fn positional_sort_key(arg: &crate::builder::Arg) -> (usize, String)
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1083-1085`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L1083-L1085)*
+
 ### `option_sort_key`
 
 ```rust
 fn option_sort_key(arg: &crate::builder::Arg) -> (usize, String)
 ```
+
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1087-1108`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L1087-L1108)*
 
 ### `dimensions`
 
@@ -124,17 +112,23 @@ fn option_sort_key(arg: &crate::builder::Arg) -> (usize, String)
 fn dimensions() -> (Option<usize>, Option<usize>)
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1110-1118`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L1110-L1118)*
+
 ### `should_show_arg`
 
 ```rust
 fn should_show_arg(use_long: bool, arg: &crate::builder::Arg) -> bool
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1127-1139`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L1127-L1139)*
+
 ### `should_show_subcommand`
 
 ```rust
 fn should_show_subcommand(subcommand: &crate::builder::Command) -> bool
 ```
+
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1141-1143`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L1141-L1143)*
 
 ## Type Aliases
 
@@ -144,29 +138,35 @@ fn should_show_subcommand(subcommand: &crate::builder::Command) -> bool
 type ArgSortKey = fn(&crate::builder::Arg) -> (usize, String);
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1081`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L1081)*
+
 ## Constants
 
 ### `DEFAULT_TEMPLATE`
-
 ```rust
 const DEFAULT_TEMPLATE: &str;
 ```
 
-### `DEFAULT_NO_ARGS_TEMPLATE`
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:65-70`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L65-L70)*
 
+### `DEFAULT_NO_ARGS_TEMPLATE`
 ```rust
 const DEFAULT_NO_ARGS_TEMPLATE: &str;
 ```
 
-### `SHORT_SIZE`
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:72-75`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L72-L75)*
 
+### `SHORT_SIZE`
 ```rust
 const SHORT_SIZE: usize = 4usize;
 ```
 
-### `NEXT_LINE_INDENT`
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:77`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L77)*
 
+### `NEXT_LINE_INDENT`
 ```rust
 const NEXT_LINE_INDENT: &str;
 ```
+
+*Defined in [`clap_builder-4.5.53/src/output/help_template.rs:1079`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/help_template.rs#L1079)*
 

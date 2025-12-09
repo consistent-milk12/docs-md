@@ -23,11 +23,15 @@
 fn memchr(n1: u8, haystack: &[u8]) -> Option<usize>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/memchr.rs:12-14`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/memchr.rs#L12-L14)*
+
 ### `memchr2`
 
 ```rust
 fn memchr2(n1: u8, n2: u8, haystack: &[u8]) -> Option<usize>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/memchr.rs:17-19`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/memchr.rs#L17-L19)*
 
 ### `memchr3`
 
@@ -35,11 +39,15 @@ fn memchr2(n1: u8, n2: u8, haystack: &[u8]) -> Option<usize>
 fn memchr3(n1: u8, n2: u8, n3: u8, haystack: &[u8]) -> Option<usize>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/memchr.rs:22-29`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/memchr.rs#L22-L29)*
+
 ### `memrchr`
 
 ```rust
 fn memrchr(n1: u8, haystack: &[u8]) -> Option<usize>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/memchr.rs:32-34`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/memchr.rs#L32-L34)*
 
 ### `memrchr2`
 
@@ -47,9 +55,13 @@ fn memrchr(n1: u8, haystack: &[u8]) -> Option<usize>
 fn memrchr2(n1: u8, n2: u8, haystack: &[u8]) -> Option<usize>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/memchr.rs:37-39`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/memchr.rs#L37-L39)*
+
 ### `memrchr3`
 
 ```rust
 fn memrchr3(n1: u8, n2: u8, n3: u8, haystack: &[u8]) -> Option<usize>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/memchr.rs:42-49`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/memchr.rs#L42-L49)*
 

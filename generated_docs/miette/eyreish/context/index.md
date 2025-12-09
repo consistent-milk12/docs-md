@@ -25,6 +25,8 @@
 struct Quoted<D>(D);
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/context.rs:228`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/context.rs#L228)*
+
 #### Trait Implementations
 
 ##### `impl<D> Debug for Quoted<D>`

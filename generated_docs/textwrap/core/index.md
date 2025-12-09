@@ -63,9 +63,9 @@ improving it. We would love to hear from you!
 | [`Fragment`](#fragment) | trait | A (text) fragment denotes the unit which we wrap into lines. |
 | [`skip_ansi_escape_sequence`](#skip_ansi_escape_sequence) | fn | Skip ANSI escape sequences. |
 | [`ch_width`](#ch_width) | fn |  |
-| [`display_width`](#display_width) | fn | Compute the display width of `text` while skipping over ANSI |
+| [`display_width`](#display_width) | fn | Compute the display width of `text` while skipping over ANSI escape sequences. |
 | [`break_words`](#break_words) | fn | Forcibly break words wider than `line_width` into smaller words. |
-| [`CSI`](#csi) | const | The CSI or “Control Sequence Introducer” introduces an ANSI escape |
+| [`CSI`](#csi) | const | The CSI or “Control Sequence Introducer” introduces an ANSI escape sequence. |
 | [`ANSI_FINAL_BYTE`](#ansi_final_byte) | const | The final bytes of an ANSI escape sequence must be in this range. |
 
 ## Structs
@@ -80,6 +80,8 @@ struct Word<'a> {
     width: usize,
 }
 ```
+
+*Defined in [`textwrap-0.16.2/src/core.rs:239-248`](../../../.source_1765210505/textwrap-0.16.2/src/core.rs#L239-L248)*
 
 A piece of wrappable text, including any trailing whitespace.
 
@@ -108,23 +110,23 @@ trailing whitespace, and potentially a penalty item.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Word<'a>`
+##### `impl Clone for Word<'a>`
 
 - <span id="word-clone"></span>`fn clone(&self) -> Word<'a>` — [`Word`](#word)
 
-##### `impl<'a> Copy for Word<'a>`
+##### `impl Copy for Word<'a>`
 
-##### `impl<'a> Debug for Word<'a>`
+##### `impl Debug for Word<'a>`
 
 - <span id="word-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deref for Word<'_>`
 
-- <span id="word-target"></span>`type Target = str`
+- <span id="word-type-target"></span>`type Target = str`
 
 - <span id="word-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<'a> Eq for Word<'a>`
+##### `impl Eq for Word<'a>`
 
 ##### `impl Fragment for Word<'_>`
 
@@ -134,15 +136,15 @@ trailing whitespace, and potentially a penalty item.
 
 - <span id="word-penalty-width"></span>`fn penalty_width(&self) -> f64`
 
-##### `impl<'a> PartialEq for Word<'a>`
+##### `impl PartialEq for Word<'a>`
 
 - <span id="word-eq"></span>`fn eq(&self, other: &Word<'a>) -> bool` — [`Word`](#word)
 
-##### `impl<P, T> Receiver for Word<'a>`
+##### `impl Receiver for Word<'a>`
 
-- <span id="word-target"></span>`type Target = T`
+- <span id="word-type-target"></span>`type Target = T`
 
-##### `impl<'a> StructuralPartialEq for Word<'a>`
+##### `impl StructuralPartialEq for Word<'a>`
 
 ## Traits
 
@@ -151,6 +153,8 @@ trailing whitespace, and potentially a penalty item.
 ```rust
 trait Fragment: std::fmt::Debug { ... }
 ```
+
+*Defined in [`textwrap-0.16.2/src/core.rs:221-232`](../../../.source_1765210505/textwrap-0.16.2/src/core.rs#L221-L232)*
 
 A (text) fragment denotes the unit which we wrap into lines.
 
@@ -189,6 +193,8 @@ the displayed width of each part, which this trait provides.
 fn skip_ansi_escape_sequence<I: Iterator<Item = char>>(ch: char, chars: &mut I) -> bool
 ```
 
+*Defined in [`textwrap-0.16.2/src/core.rs:52-83`](../../../.source_1765210505/textwrap-0.16.2/src/core.rs#L52-L83)*
+
 Skip ANSI escape sequences.
 
 The `ch` is the current `char`, the `chars` provide the following
@@ -203,11 +209,15 @@ Returns `true` if one or more chars were skipped.
 fn ch_width(ch: char) -> usize
 ```
 
+*Defined in [`textwrap-0.16.2/src/core.rs:87-89`](../../../.source_1765210505/textwrap-0.16.2/src/core.rs#L87-L89)*
+
 ### `display_width`
 
 ```rust
 fn display_width(text: &str) -> usize
 ```
+
+*Defined in [`textwrap-0.16.2/src/core.rs:199-209`](../../../.source_1765210505/textwrap-0.16.2/src/core.rs#L199-L209)*
 
 Compute the display width of `text` while skipping over ANSI
 escape sequences.
@@ -310,6 +320,8 @@ where
     I: IntoIterator<Item = Word<'a>>
 ```
 
+*Defined in [`textwrap-0.16.2/src/core.rs:354-367`](../../../.source_1765210505/textwrap-0.16.2/src/core.rs#L354-L367)*
+
 Forcibly break words wider than `line_width` into smaller words.
 
 This simply calls `Word::break_apart` on words that are too
@@ -319,20 +331,22 @@ simply broken into smaller pieces.
 ## Constants
 
 ### `CSI`
-
 ```rust
 const CSI: (char, char);
 ```
+
+*Defined in [`textwrap-0.16.2/src/core.rs:40`](../../../.source_1765210505/textwrap-0.16.2/src/core.rs#L40)*
 
 The CSI or “Control Sequence Introducer” introduces an ANSI escape
 sequence. This is typically used for colored text and will be
 ignored when computing the text width.
 
 ### `ANSI_FINAL_BYTE`
-
 ```rust
 const ANSI_FINAL_BYTE: std::ops::RangeInclusive<char>;
 ```
+
+*Defined in [`textwrap-0.16.2/src/core.rs:42`](../../../.source_1765210505/textwrap-0.16.2/src/core.rs#L42)*
 
 The final bytes of an ANSI escape sequence must be in this range.
 

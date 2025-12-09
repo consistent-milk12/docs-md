@@ -23,13 +23,15 @@
 struct Adhoc;
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:53`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L53)*
+
 #### Implementations
 
 - <span id="adhoc-new"></span>`fn new<M>(self, message: M) -> Report` — [`Report`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for Adhoc`
+##### `impl OwoColorize for Adhoc`
 
 ### `Trait`
 
@@ -37,13 +39,15 @@ struct Adhoc;
 struct Trait;
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:75`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L75)*
+
 #### Implementations
 
 - <span id="trait-new"></span>`fn new<E>(self, error: E) -> Report` — [`Report`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for Trait`
+##### `impl OwoColorize for Trait`
 
 ### `Boxed`
 
@@ -51,13 +55,15 @@ struct Trait;
 struct Boxed;
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:97`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L97)*
+
 #### Implementations
 
 - <span id="boxed-new"></span>`fn new(self, error: Box<dyn Diagnostic + Send + Sync>) -> Report` — [`Diagnostic`](../../index.md), [`Report`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for Boxed`
+##### `impl OwoColorize for Boxed`
 
 ## Traits
 
@@ -66,6 +72,8 @@ struct Boxed;
 ```rust
 trait AdhocKind: Sized { ... }
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:55-60`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L55-L60)*
 
 #### Provided Methods
 
@@ -81,23 +89,14 @@ trait AdhocKind: Sized { ... }
 trait TraitKind: Sized { ... }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:77-82`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L77-L82)*
+
 #### Provided Methods
 
 - `fn miette_kind(&self) -> Trait`
 
 #### Implementors
 
-- [`BoxedError`](../wrapper/index.md)
-- [`ContextError`](../error/index.md)
-- [`DiagnosticError`](../into_diagnostic/index.md)
-- [`DisplayError`](../wrapper/index.md)
-- [`InstallError`](../../index.md)
-- [`MessageError`](../wrapper/index.md)
-- [`MietteDiagnostic`](../../index.md)
-- [`MietteError`](../../index.md)
-- [`Panic`](../../panic/index.md)
-- [`Report`](../../index.md)
-- [`WithSourceCode`](../wrapper/index.md)
 - `E`
 
 ### `BoxedKind`
@@ -105,6 +104,8 @@ trait TraitKind: Sized { ... }
 ```rust
 trait BoxedKind: Sized { ... }
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/kind.rs:99-104`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/kind.rs#L99-L104)*
 
 #### Provided Methods
 

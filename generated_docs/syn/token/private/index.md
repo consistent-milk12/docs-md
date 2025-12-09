@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`WithSpan`](#withspan) | struct | Support writing `token.span` rather than `token.spans[0]` on tokens that |
+| [`WithSpan`](#withspan) | struct | Support writing `token.span` rather than `token.spans[0]` on tokens that hold a single span. |
 | [`Sealed`](#sealed) | trait |  |
 
 ## Structs
@@ -21,6 +21,8 @@ struct WithSpan {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/token.rs:147-149`](../../../../.source_1765210505/syn-2.0.111/src/token.rs#L147-L149)*
+
 Support writing `token.span` rather than `token.spans[0]` on tokens that
 hold a single span.
 
@@ -31,6 +33,8 @@ hold a single span.
 ```rust
 trait Sealed { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/token.rs:141`](../../../../.source_1765210505/syn-2.0.111/src/token.rs#L141)*
 
 #### Implementors
 
@@ -64,7 +68,6 @@ trait Sealed { ... }
 - [`Dot`](../index.md)
 - [`Dyn`](../index.md)
 - [`Else`](../index.md)
-- [`End`](../../parse/index.md)
 - [`Enum`](../index.md)
 - [`EqEq`](../index.md)
 - [`Eq`](../index.md)
@@ -76,24 +79,23 @@ trait Sealed { ... }
 - [`Ge`](../index.md)
 - [`Group`](../index.md)
 - [`Gt`](../index.md)
-- [`IdentAny`](../../ext/private/index.md)
-- [`Ident`](../../index.md)
+- [`Ident`](../../ident/index.md)
 - [`If`](../index.md)
 - [`Impl`](../index.md)
 - [`In`](../index.md)
 - [`LArrow`](../index.md)
 - [`Le`](../index.md)
 - [`Let`](../index.md)
-- [`Lifetime`](../../index.md)
-- [`LitBool`](../../index.md)
-- [`LitByteStr`](../../index.md)
-- [`LitByte`](../../index.md)
-- [`LitCStr`](../../index.md)
-- [`LitChar`](../../index.md)
-- [`LitFloat`](../../index.md)
-- [`LitInt`](../../index.md)
-- [`LitStr`](../../index.md)
-- [`Lit`](../../index.md)
+- [`Lifetime`](../../lifetime/index.md)
+- [`LitBool`](../../lit/index.md)
+- [`LitByteStr`](../../lit/index.md)
+- [`LitByte`](../../lit/index.md)
+- [`LitCStr`](../../lit/index.md)
+- [`LitChar`](../../lit/index.md)
+- [`LitFloat`](../../lit/index.md)
+- [`LitInt`](../../lit/index.md)
+- [`LitStr`](../../lit/index.md)
+- [`Lit`](../../lit/index.md)
 - [`Loop`](../index.md)
 - [`Lt`](../index.md)
 - [`Macro`](../index.md)

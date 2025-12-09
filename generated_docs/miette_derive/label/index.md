@@ -21,6 +21,8 @@
 struct Labels(Vec<Label>);
 ```
 
+*Defined in [`miette-derive-7.6.0/src/label.rs:17`](../../../.source_1765210505/miette-derive-7.6.0/src/label.rs#L17)*
+
 #### Implementations
 
 - <span id="labels-from-fields"></span>`fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
@@ -42,6 +44,8 @@ struct Label {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/label.rs:26-31`](../../../.source_1765210505/miette-derive-7.6.0/src/label.rs#L26-L31)*
+
 ### `LabelAttr`
 
 ```rust
@@ -50,6 +54,8 @@ struct LabelAttr {
     lbl_ty: LabelType,
 }
 ```
+
+*Defined in [`miette-derive-7.6.0/src/label.rs:33-36`](../../../.source_1765210505/miette-derive-7.6.0/src/label.rs#L33-L36)*
 
 #### Trait Implementations
 
@@ -68,6 +74,8 @@ enum LabelType {
     Collection,
 }
 ```
+
+*Defined in [`miette-derive-7.6.0/src/label.rs:20-24`](../../../.source_1765210505/miette-derive-7.6.0/src/label.rs#L20-L24)*
 
 #### Trait Implementations
 

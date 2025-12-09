@@ -21,6 +21,8 @@ struct RegexBuilder {
 }
 ```
 
+*Defined in [`regex-1.12.2/src/builders.rs:212-214`](../../../../.source_1765210505/regex-1.12.2/src/builders.rs#L212-L214)*
+
 A configurable builder for a [`Regex`](../../index.md).
 
 This builder can be used to programmatically set flags such as `i`
@@ -32,7 +34,7 @@ the compiled regular expression.
 
 - <span id="regexbuilder-new"></span>`fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- <span id="regexbuilder-build"></span>`fn build(&self) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../index.md)
+- <span id="regexbuilder-build"></span>`fn build(&self) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../error/index.md)
 
 - <span id="regexbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
@@ -76,6 +78,8 @@ struct RegexSetBuilder {
 }
 ```
 
+*Defined in [`regex-1.12.2/src/builders.rs:787-789`](../../../../.source_1765210505/regex-1.12.2/src/builders.rs#L787-L789)*
+
 A configurable builder for a [`RegexSet`](../../index.md).
 
 This builder can be used to programmatically set flags such as
@@ -87,7 +91,7 @@ and a size limit on the compiled regular expression.
 
 - <span id="regexsetbuilder-new"></span>`fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- <span id="regexsetbuilder-build"></span>`fn build(&self) -> Result<RegexSet, Error>` — [`RegexSet`](../../index.md), [`Error`](../../index.md)
+- <span id="regexsetbuilder-build"></span>`fn build(&self) -> Result<RegexSet, Error>` — [`RegexSet`](../../index.md), [`Error`](../../error/index.md)
 
 - <span id="regexsetbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 

@@ -26,6 +26,8 @@
 unsafe fn format64(f: f64, result: *mut u8) -> usize
 ```
 
+*Defined in [`ryu-1.0.20/src/pretty/mod.rs:52-118`](../../../.source_1765210505/ryu-1.0.20/src/pretty/mod.rs#L52-L118)*
+
 Print f64 to the given buffer and return number of bytes written.
 
 At most 24 bytes will be written.
@@ -67,6 +69,8 @@ unsafe {
 ```rust
 unsafe fn format32(f: f32, result: *mut u8) -> usize
 ```
+
+*Defined in [`ryu-1.0.20/src/pretty/mod.rs:159-224`](../../../.source_1765210505/ryu-1.0.20/src/pretty/mod.rs#L159-L224)*
 
 Print f32 to the given buffer and return number of bytes written.
 

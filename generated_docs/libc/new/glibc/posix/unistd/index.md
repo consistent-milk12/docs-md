@@ -18,3 +18,9 @@ Header: `unistd.h`
 
 ## Constants
 
+*Defined in [`libc-0.2.178/src/new/glibc/posix/unistd.rs:6`](../../../../../../.source_1765210505/libc-0.2.178/src/new/glibc/posix/unistd.rs#L6)*
+
+*Defined in [`libc-0.2.178/src/new/glibc/posix/unistd.rs:7`](../../../../../../.source_1765210505/libc-0.2.178/src/new/glibc/posix/unistd.rs#L7)*
+
+*Defined in [`libc-0.2.178/src/new/glibc/posix/unistd.rs:8`](../../../../../../.source_1765210505/libc-0.2.178/src/new/glibc/posix/unistd.rs#L8)*
+

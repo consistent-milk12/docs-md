@@ -134,7 +134,7 @@ and thousands of others.
 | [`assert_impl_any!`](#assert_impl_any) | macro | Asserts that the type implements _any_ of the given traits. |
 | [`assert_not_impl_all!`](#assert_not_impl_all) | macro | Asserts that the type does **not** implement _all_ of the given traits. |
 | [`assert_not_impl_any!`](#assert_not_impl_any) | macro | Asserts that the type does **not** implement _any_ of the given traits. |
-| [`assert_obj_safe!`](#assert_obj_safe) | macro | Asserts that the traits support dynamic dispatch |
+| [`assert_obj_safe!`](#assert_obj_safe) | macro | Asserts that the traits support dynamic dispatch ([object-safety](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#object-safety-is-required-for-trait-objects)). |
 | [`assert_trait_sub_all!`](#assert_trait_sub_all) | macro | Asserts that the trait is a child of all of the other traits. |
 | [`assert_trait_super_all!`](#assert_trait_super_all) | macro | Asserts that the trait is a parent of all of the other traits. |
 | [`assert_type_eq_all!`](#assert_type_eq_all) | macro | Asserts that _all_ types in a list are equal to each other. |
@@ -158,6 +158,8 @@ and thousands of others.
 ## Macros
 
 ### `assert_cfg!`
+
+*Defined in [`static_assertions-1.1.0/src/assert_cfg.rs:39-49`](../../.source_1765210505/static_assertions-1.1.0/src/assert_cfg.rs#L39-L49)*
 
 Asserts that a given configuration is set.
 
@@ -199,6 +201,8 @@ assert_cfg!(all(target_os = "macos",
 
 ### `assert_eq_align!`
 
+*Defined in [`static_assertions-1.1.0/src/assert_eq_align.rs:36-45`](../../.source_1765210505/static_assertions-1.1.0/src/assert_eq_align.rs#L36-L45)*
+
 Asserts that types are equal in alignment.
 
 This is useful when ensuring that pointer arithmetic is done correctly, or
@@ -235,6 +239,8 @@ assert_eq_align!(i32x4, [i32; 4]);
 
 ### `assert_eq_size!`
 
+*Defined in [`static_assertions-1.1.0/src/assert_eq_size.rs:34-40`](../../.source_1765210505/static_assertions-1.1.0/src/assert_eq_size.rs#L34-L40)*
+
 Asserts that types are equal in size.
 
 When performing operations such as pointer casts or dealing with `usize`
@@ -268,6 +274,8 @@ assert_eq_size!(u32, u8);
 
 
 ### `assert_eq_size_ptr!`
+
+*Defined in [`static_assertions-1.1.0/src/assert_eq_size.rs:76-86`](../../.source_1765210505/static_assertions-1.1.0/src/assert_eq_size.rs#L76-L86)*
 
 Asserts that values pointed to are equal in size.
 
@@ -305,6 +313,8 @@ assert_eq_size_ptr!(BYTES, TABLE);
 
 ### `assert_eq_size_val!`
 
+*Defined in [`static_assertions-1.1.0/src/assert_eq_size.rs:119-123`](../../.source_1765210505/static_assertions-1.1.0/src/assert_eq_size.rs#L119-L123)*
+
 Asserts that values are equal in size.
 
 This macro doesn't consume its arguments and thus works for
@@ -336,6 +346,8 @@ assert_eq_size_val!(0u8, 0u32);
 
 
 ### `assert_fields!`
+
+*Defined in [`static_assertions-1.1.0/src/assert_fields.rs:53-72`](../../.source_1765210505/static_assertions-1.1.0/src/assert_fields.rs#L53-L72)*
 
 Asserts that the type has the given fields.
 
@@ -389,6 +401,8 @@ assert_fields!(Range<u32>: middle);
 
 
 ### `assert_impl_one!`
+
+*Defined in [`static_assertions-1.1.0/src/assert_impl.rs:57-83`](../../.source_1765210505/static_assertions-1.1.0/src/assert_impl.rs#L57-L83)*
 
 Asserts that the type implements exactly one in a set of traits.
 
@@ -447,6 +461,8 @@ assert_impl_one!(Foo: Snap, Crackle, Pop);
 
 ### `assert_impl_all!`
 
+*Defined in [`static_assertions-1.1.0/src/assert_impl.rs:113-121`](../../.source_1765210505/static_assertions-1.1.0/src/assert_impl.rs#L113-L121)*
+
 Asserts that the type implements _all_ of the given traits.
 
 See `assert_not_impl_all!` for achieving the opposite effect.
@@ -475,6 +491,8 @@ assert_impl_all!(*const u8: Send);
 
 
 ### `assert_impl_any!`
+
+*Defined in [`static_assertions-1.1.0/src/assert_impl.rs:157-212`](../../.source_1765210505/static_assertions-1.1.0/src/assert_impl.rs#L157-L212)*
 
 Asserts that the type implements _any_ of the given traits.
 
@@ -508,6 +526,8 @@ assert_impl_any!(*const u8: Send, Sync);
 
 
 ### `assert_not_impl_all!`
+
+*Defined in [`static_assertions-1.1.0/src/assert_impl.rs:263-287`](../../.source_1765210505/static_assertions-1.1.0/src/assert_impl.rs#L263-L287)*
 
 Asserts that the type does **not** implement _all_ of the given traits.
 
@@ -559,6 +579,8 @@ assert_not_impl_all!(Cell<u32>: Send);
 
 ### `assert_not_impl_any!`
 
+*Defined in [`static_assertions-1.1.0/src/assert_impl.rs:329-356`](../../.source_1765210505/static_assertions-1.1.0/src/assert_impl.rs#L329-L356)*
+
 Asserts that the type does **not** implement _any_ of the given traits.
 
 This can be used to ensure types do not implement auto traits such as
@@ -599,6 +621,8 @@ assert_not_impl_any!(u32: Into<u64>, Into<u16>);
 
 
 ### `assert_obj_safe!`
+
+*Defined in [`static_assertions-1.1.0/src/assert_obj_safe.rs:72-76`](../../.source_1765210505/static_assertions-1.1.0/src/assert_obj_safe.rs#L72-L76)*
 
 Asserts that the traits support dynamic dispatch
 ([object-safety](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#object-safety-is-required-for-trait-objects)).
@@ -671,6 +695,8 @@ assert_obj_safe!(MyUnsafeTrait);
 
 ### `assert_trait_sub_all!`
 
+*Defined in [`static_assertions-1.1.0/src/assert_trait.rs:40-54`](../../.source_1765210505/static_assertions-1.1.0/src/assert_trait.rs#L40-L54)*
+
 Asserts that the trait is a child of all of the other traits.
 
 Related:
@@ -704,6 +730,8 @@ assert_trait_sub_all!(PartialOrd: Eq);
 
 
 ### `assert_trait_super_all!`
+
+*Defined in [`static_assertions-1.1.0/src/assert_trait.rs:101-105`](../../.source_1765210505/static_assertions-1.1.0/src/assert_trait.rs#L101-L105)*
 
 Asserts that the trait is a parent of all of the other traits.
 
@@ -744,6 +772,8 @@ assert_trait_super_all!(Copy: A, B, C);
 
 
 ### `assert_type_eq_all!`
+
+*Defined in [`static_assertions-1.1.0/src/assert_type.rs:47-67`](../../.source_1765210505/static_assertions-1.1.0/src/assert_type.rs#L47-L67)*
 
 Asserts that _all_ types in a list are equal to each other.
 
@@ -792,6 +822,8 @@ assert_type_eq_all!(str, String);
 
 ### `assert_type_ne_all!`
 
+*Defined in [`static_assertions-1.1.0/src/assert_type.rs:93-101`](../../.source_1765210505/static_assertions-1.1.0/src/assert_type.rs#L93-L101)*
+
 Asserts that _all_ types are **not** equal to each other.
 
 # Examples
@@ -816,6 +848,8 @@ assert_type_ne_all!(c_uchar, u8, u32);
 
 
 ### `const_assert!`
+
+*Defined in [`static_assertions-1.1.0/src/const_assert.rs:52-57`](../../.source_1765210505/static_assertions-1.1.0/src/const_assert.rs#L52-L57)*
 
 Asserts that constant expressions evaluate to `true`.
 
@@ -869,6 +903,8 @@ const_assert!(5 * 5 == 5);
 
 ### `const_assert_eq!`
 
+*Defined in [`static_assertions-1.1.0/src/const_assert.rs:79-83`](../../.source_1765210505/static_assertions-1.1.0/src/const_assert.rs#L79-L83)*
+
 Asserts that constants are equal in value.
 
 # Examples
@@ -890,6 +926,8 @@ const_assert_eq!(4 + 4, 4 * 4);
 ```
 
 ### `const_assert_ne!`
+
+*Defined in [`static_assertions-1.1.0/src/const_assert.rs:105-109`](../../.source_1765210505/static_assertions-1.1.0/src/const_assert.rs#L105-L109)*
 
 Asserts that constants are **not** equal in value.
 

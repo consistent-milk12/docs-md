@@ -11,8 +11,8 @@ Low-level utility functions.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`type_eq`](#type_eq) | fn | Determine if two static, generic types are equal to each other. |
-| [`type_eq_non_static`](#type_eq_non_static) | fn | Determine if two generic types which may not be static are equal to each |
-| [`non_static_type_id`](#non_static_type_id) | fn | Produces type IDs that are compatible with `TypeId::of::<T>`, but without |
+| [`type_eq_non_static`](#type_eq_non_static) | fn | Determine if two generic types which may not be static are equal to each other. |
+| [`non_static_type_id`](#non_static_type_id) | fn | Produces type IDs that are compatible with `TypeId::of::<T>`, but without `T: 'static` bound. |
 | [`transmute_unchecked`](#transmute_unchecked) | fn | Reinterprets the bits of a value of one type as another type. |
 
 ## Functions
@@ -23,6 +23,8 @@ Low-level utility functions.
 fn type_eq<T: 'static, U: 'static>() -> bool
 ```
 
+*Defined in [`castaway-0.2.4/src/utils.rs:11-21`](../../../.source_1765210505/castaway-0.2.4/src/utils.rs#L11-L21)*
+
 Determine if two static, generic types are equal to each other.
 
 ### `type_eq_non_static`
@@ -30,6 +32,8 @@ Determine if two static, generic types are equal to each other.
 ```rust
 fn type_eq_non_static<T: ?Sized, U: ?Sized>() -> bool
 ```
+
+*Defined in [`castaway-0.2.4/src/utils.rs:30-32`](../../../.source_1765210505/castaway-0.2.4/src/utils.rs#L30-L32)*
 
 Determine if two generic types which may not be static are equal to each
 other.
@@ -44,6 +48,8 @@ is done. Meaning, this function considers `Struct<'a>` to be equal to
 fn non_static_type_id<T: ?Sized>() -> core::any::TypeId
 ```
 
+*Defined in [`castaway-0.2.4/src/utils.rs:36-56`](../../../.source_1765210505/castaway-0.2.4/src/utils.rs#L36-L56)*
+
 Produces type IDs that are compatible with `TypeId::of::<T>`, but without
 `T: 'static` bound.
 
@@ -52,6 +58,8 @@ Produces type IDs that are compatible with `TypeId::of::<T>`, but without
 ```rust
 unsafe fn transmute_unchecked<T, U>(value: T) -> U
 ```
+
+*Defined in [`castaway-0.2.4/src/utils.rs:78-93`](../../../.source_1765210505/castaway-0.2.4/src/utils.rs#L78-L93)*
 
 Reinterprets the bits of a value of one type as another type.
 

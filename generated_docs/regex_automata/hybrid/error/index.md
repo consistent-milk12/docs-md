@@ -23,6 +23,8 @@ struct BuildError {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:23-25`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/error.rs#L23-L25)*
+
 An error that occurs when initial construction of a lazy DFA fails.
 
 A build error can occur when insufficient cache capacity is configured or
@@ -45,19 +47,19 @@ trait.
 
 #### Implementations
 
-- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
+- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
 
-- <span id="builderror-insufficient-cache-capacity"></span>`fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-insufficient-cache-capacity"></span>`fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](#builderror)
 
-- <span id="builderror-insufficient-state-id-capacity"></span>`fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](../id/index.md), [`BuildError`](../index.md)
+- <span id="builderror-insufficient-state-id-capacity"></span>`fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](../id/index.md), [`BuildError`](#builderror)
 
-- <span id="builderror-unsupported-dfa-word-boundary-unicode"></span>`fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-unsupported-dfa-word-boundary-unicode"></span>`fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](#builderror)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
 
 ##### `impl Debug for BuildError`
 
@@ -71,7 +73,7 @@ trait.
 
 - <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
-##### `impl<T> ToString for BuildError`
+##### `impl ToString for BuildError`
 
 - <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -80,6 +82,8 @@ trait.
 ```rust
 struct CacheError(());
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:222`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/error.rs#L222)*
 
 An error that occurs when cache usage has become inefficient.
 
@@ -101,15 +105,15 @@ trait.
 
 #### Implementations
 
-- <span id="cacheerror-too-many-cache-clears"></span>`fn too_many_cache_clears() -> CacheError` — [`CacheError`](../index.md)
+- <span id="cacheerror-too-many-cache-clears"></span>`fn too_many_cache_clears() -> CacheError` — [`CacheError`](#cacheerror)
 
-- <span id="cacheerror-bad-efficiency"></span>`fn bad_efficiency() -> CacheError` — [`CacheError`](../index.md)
+- <span id="cacheerror-bad-efficiency"></span>`fn bad_efficiency() -> CacheError` — [`CacheError`](#cacheerror)
 
 #### Trait Implementations
 
 ##### `impl Clone for CacheError`
 
-- <span id="cacheerror-clone"></span>`fn clone(&self) -> CacheError` — [`CacheError`](../index.md)
+- <span id="cacheerror-clone"></span>`fn clone(&self) -> CacheError` — [`CacheError`](#cacheerror)
 
 ##### `impl Debug for CacheError`
 
@@ -121,7 +125,7 @@ trait.
 
 ##### `impl Error for CacheError`
 
-##### `impl<T> ToString for CacheError`
+##### `impl ToString for CacheError`
 
 - <span id="cacheerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -142,6 +146,8 @@ enum BuildErrorKind {
     Unsupported(&'static str),
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:28-33`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/error.rs#L28-L33)*
 
 #### Trait Implementations
 
@@ -168,6 +174,8 @@ enum StartError {
     },
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/error.rs:117-136`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/error.rs#L117-L136)*
 
 An error that can occur when computing the start state for a search.
 
@@ -207,17 +215,17 @@ semver compatible release.
 
 #### Implementations
 
-- <span id="starterror-cache"></span>`fn cache(err: CacheError) -> StartError` — [`CacheError`](../index.md), [`StartError`](../index.md)
+- <span id="starterror-cache"></span>`fn cache(err: CacheError) -> StartError` — [`CacheError`](#cacheerror), [`StartError`](#starterror)
 
-- <span id="starterror-quit"></span>`fn quit(byte: u8) -> StartError` — [`StartError`](../index.md)
+- <span id="starterror-quit"></span>`fn quit(byte: u8) -> StartError` — [`StartError`](#starterror)
 
-- <span id="starterror-unsupported-anchored"></span>`fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../../index.md), [`StartError`](../index.md)
+- <span id="starterror-unsupported-anchored"></span>`fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../../index.md), [`StartError`](#starterror)
 
 #### Trait Implementations
 
 ##### `impl Clone for StartError`
 
-- <span id="starterror-clone"></span>`fn clone(&self) -> StartError` — [`StartError`](../index.md)
+- <span id="starterror-clone"></span>`fn clone(&self) -> StartError` — [`StartError`](#starterror)
 
 ##### `impl Debug for StartError`
 
@@ -231,7 +239,7 @@ semver compatible release.
 
 - <span id="starterror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
-##### `impl<T> ToString for StartError`
+##### `impl ToString for StartError`
 
 - <span id="starterror-to-string"></span>`fn to_string(&self) -> String`
 

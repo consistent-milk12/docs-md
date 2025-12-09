@@ -11,7 +11,7 @@
 | [`NarratableReportHandler`](#narratablereporthandler) | struct | [`ReportHandler`] that renders plain text and avoids extraneous graphics. |
 | [`Line`](#line) | struct |  |
 | [`SpanAttach`](#spanattach) | enum |  |
-| [`safe_get_column`](#safe_get_column) | fn | Returns column at offset, and nearest boundary if offset is in the middle of |
+| [`safe_get_column`](#safe_get_column) | fn | Returns column at offset, and nearest boundary if offset is in the middle of the character |
 
 ## Structs
 
@@ -24,6 +24,8 @@ struct NarratableReportHandler {
     footer: Option<String>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
 
 [`ReportHandler`](../../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
@@ -55,7 +57,7 @@ non-graphical environments, such as non-TTY output.
 
 - <span id="narratablereporthandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for NarratableReportHandler`
+##### `impl OwoColorize for NarratableReportHandler`
 
 ##### `impl ReportHandler for NarratableReportHandler`
 
@@ -72,13 +74,15 @@ struct Line {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
+
 #### Implementations
 
 - <span id="line-span-attach"></span>`fn span_attach(&self, span: &SourceSpan) -> Option<SpanAttach>` — [`SourceSpan`](../../index.md), [`SpanAttach`](#spanattach)
 
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for Line`
+##### `impl OwoColorize for Line`
 
 ## Enums
 
@@ -99,9 +103,11 @@ enum SpanAttach {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
+
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for SpanAttach`
+##### `impl OwoColorize for SpanAttach`
 
 ## Functions
 
@@ -110,6 +116,8 @@ enum SpanAttach {
 ```rust
 fn safe_get_column(text: &str, offset: usize, start: bool) -> usize
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
 
 Returns column at offset, and nearest boundary if offset is in the middle of
 the character

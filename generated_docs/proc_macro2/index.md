@@ -115,7 +115,7 @@ a different thread.
 | [`probe`](#probe) | mod |  |
 | [`rcvec`](#rcvec) | mod |  |
 | [`detection`](#detection) | mod |  |
-| [`extra`](#extra) | mod | Items which do not have a correspondence to any API in the proc_macro crate |
+| [`extra`](#extra) | mod | Items which do not have a correspondence to any API in the proc_macro crate, but are necessary to include in proc-macro2. |
 | [`imp`](#imp) | mod |  |
 | [`token_stream`](#token_stream) | mod | Public implementation details for the `TokenStream` type, such as iterators. |
 | [`TokenStream`](#tokenstream) | struct | An abstract stream of tokens, or more concretely a sequence of token trees. |
@@ -124,10 +124,10 @@ a different thread.
 | [`Group`](#group) | struct | A delimited token stream. |
 | [`Punct`](#punct) | struct | A `Punct` is a single punctuation character like `+`, `-` or `#`. |
 | [`Ident`](#ident) | struct | A word of Rust code, which may be a keyword or legal variable name. |
-| [`Literal`](#literal) | struct | A literal string (`"hello"`), byte string (`b"hello"`), character (`'a'`) |
+| [`Literal`](#literal) | struct | A literal string (`"hello"`), byte string (`b"hello"`), character (`'a'`), byte character (`b'a'`), an integer or floating point number with or without a suffix (`1`, `1u8`, `2.3`, `2.3f32`). |
 | [`TokenTree`](#tokentree) | enum | A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`). |
 | [`Delimiter`](#delimiter) | enum | Describes how a sequence of token trees is delimited. |
-| [`Spacing`](#spacing) | enum | Whether a `Punct` is followed immediately by another `Punct` or followed by |
+| [`Spacing`](#spacing) | enum | Whether a `Punct` is followed immediately by another `Punct` or followed by another token or whitespace. |
 | [`suffixed_int_literals!`](#suffixed_int_literals) | macro |  |
 | [`unsuffixed_int_literals!`](#unsuffixed_int_literals) | macro |  |
 
@@ -152,6 +152,8 @@ struct TokenStream {
     _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
 
 An abstract stream of tokens, or more concretely a sequence of token trees.
 
@@ -191,7 +193,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl Extend for TokenStream`
 
-- <span id="tokenstream-extend"></span>`fn extend<I: IntoIterator<Item = TokenStream>>(&mut self, streams: I)`
+- <span id="tokenstream-extend"></span>`fn extend<I: IntoIterator<Item = TokenTree>>(&mut self, streams: I)`
 
 ##### `impl FromIterator for TokenStream`
 
@@ -199,15 +201,15 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl FromStr for TokenStream`
 
-- <span id="tokenstream-err"></span>`type Err = LexError`
+- <span id="tokenstream-type-err"></span>`type Err = LexError`
 
 - <span id="tokenstream-from-str"></span>`fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](#tokenstream), [`LexError`](#lexerror)
 
 ##### `impl IntoIterator for TokenStream`
 
-- <span id="tokenstream-item"></span>`type Item = TokenTree`
+- <span id="tokenstream-type-item"></span>`type Item = TokenTree`
 
-- <span id="tokenstream-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="tokenstream-type-intoiter"></span>`type IntoIter = IntoIter`
 
 - <span id="tokenstream-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](token_stream/index.md)
 
@@ -215,7 +217,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl Sealed for proc_macro2::TokenStream`
 
-##### `impl<T> ToString for TokenStream`
+##### `impl ToString for TokenStream`
 
 - <span id="tokenstream-to-string"></span>`fn to_string(&self) -> String`
 
@@ -238,6 +240,8 @@ struct LexError {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:211-214`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L211-L214)*
+
 Error returned from `TokenStream::from_str`.
 
 #### Implementations
@@ -256,7 +260,7 @@ Error returned from `TokenStream::from_str`.
 
 ##### `impl Error for LexError`
 
-##### `impl<T> ToString for LexError`
+##### `impl ToString for LexError`
 
 - <span id="lexerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -268,6 +272,8 @@ struct Span {
     _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:358-361`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L358-L361)*
 
 A region of source code, along with macro expansion information.
 
@@ -312,6 +318,8 @@ struct Group {
     inner: imp::Group,
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:647-649`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L647-L649)*
 
 A delimited token stream.
 
@@ -358,7 +366,7 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 
 ##### `impl Sealed for proc_macro2::Group`
 
-##### `impl<T> ToString for Group`
+##### `impl ToString for Group`
 
 - <span id="group-to-string"></span>`fn to_string(&self) -> String`
 
@@ -377,6 +385,8 @@ struct Punct {
     span: Span,
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:787-791`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L787-L791)*
 
 A `Punct` is a single punctuation character like `+`, `-` or `#`.
 
@@ -415,7 +425,7 @@ Multicharacter operators like `+=` are represented as two instances of
 
 ##### `impl Sealed for proc_macro2::Punct`
 
-##### `impl<T> ToString for Punct`
+##### `impl ToString for Punct`
 
 - <span id="punct-to-string"></span>`fn to_string(&self) -> String`
 
@@ -433,6 +443,8 @@ struct Ident {
     _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:936-939`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L936-L939)*
 
 A word of Rust code, which may be a keyword or legal variable name.
 
@@ -535,7 +547,7 @@ if ident_string.len() > 60 {
 
 ##### `impl IdentFragment for proc_macro2::Ident`
 
-- <span id="proc-macro2ident-error"></span>`type Error = Infallible`
+- <span id="proc-macro2ident-type-error"></span>`type Error = Infallible`
 
 ##### `impl Ord for Ident`
 
@@ -553,7 +565,7 @@ if ident_string.len() > 60 {
 
 ##### `impl Sealed for proc_macro2::Ident`
 
-##### `impl<T> ToString for Ident`
+##### `impl ToString for Ident`
 
 - <span id="ident-to-string"></span>`fn to_string(&self) -> String`
 
@@ -569,6 +581,8 @@ struct Literal {
     _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1070-1073`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L1070-L1073)*
 
 A literal string (`"hello"`), byte string (`b"hello"`), character (`'a'`),
 byte character (`b'a'`), an integer or floating point number with or without
@@ -671,7 +685,7 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 ##### `impl FromStr for Literal`
 
-- <span id="literal-err"></span>`type Err = LexError`
+- <span id="literal-type-err"></span>`type Err = LexError`
 
 - <span id="literal-from-str"></span>`fn from_str(repr: &str) -> Result<Self, LexError>` — [`LexError`](#lexerror)
 
@@ -679,7 +693,7 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 ##### `impl Sealed for proc_macro2::Literal`
 
-##### `impl<T> ToString for Literal`
+##### `impl ToString for Literal`
 
 - <span id="literal-to-string"></span>`fn to_string(&self) -> String`
 
@@ -701,6 +715,8 @@ enum TokenTree {
     Literal(Literal),
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:546-555`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L546-L555)*
 
 A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
@@ -742,11 +758,19 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 - <span id="tokentree-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+##### `impl Extend for TokenStream`
+
+- <span id="tokenstream-extend"></span>`fn extend<I: IntoIterator<Item = TokenTree>>(&mut self, stream: I)`
+
+##### `impl FromIterator for TokenStream`
+
+- <span id="tokenstream-from-iter"></span>`fn from_iter<I: IntoIterator<Item = TokenTree>>(trees: I) -> Self`
+
 ##### `impl Parse for proc_macro2::TokenTree`
 
 ##### `impl Sealed for proc_macro2::TokenTree`
 
-##### `impl<T> ToString for TokenTree`
+##### `impl ToString for TokenTree`
 
 - <span id="tokentree-to-string"></span>`fn to_string(&self) -> String`
 
@@ -766,6 +790,8 @@ enum Delimiter {
     None,
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:653-680`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L653-L680)*
 
 Describes how a sequence of token trees is delimited.
 
@@ -834,6 +860,8 @@ enum Spacing {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:796-804`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L796-L804)*
+
 Whether a `Punct` is followed immediately by another `Punct` or followed by
 another token or whitespace.
 
@@ -874,5 +902,9 @@ another token or whitespace.
 
 ### `suffixed_int_literals!`
 
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1075-1092`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L1075-L1092)*
+
 ### `unsuffixed_int_literals!`
+
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1094-1113`](../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L1094-L1113)*
 

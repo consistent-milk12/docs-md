@@ -21,6 +21,8 @@ enum Help {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/help.rs:19-22`](../../../.source_1765210505/miette-derive-7.6.0/src/help.rs#L19-L22)*
+
 #### Implementations
 
 - <span id="help-from-fields"></span>`fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`

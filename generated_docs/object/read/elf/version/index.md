@@ -24,6 +24,8 @@
 struct VersionIndex(u16);
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:10`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L10)*
+
 A version index.
 
 #### Implementations
@@ -63,6 +65,8 @@ struct Version<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:38-44`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L38-L44)*
+
 A version definition or requirement.
 
 This is derived from entries in the [`elf::SHT_GNU_VERDEF`](../../../elf/index.md) and [`elf::SHT_GNU_VERNEED`](../../../elf/index.md) sections.
@@ -77,17 +81,17 @@ This is derived from entries in the [`elf::SHT_GNU_VERDEF`](../../../elf/index.m
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Version<'data>`
+##### `impl Clone for Version<'data>`
 
 - <span id="version-clone"></span>`fn clone(&self) -> Version<'data>` — [`Version`](../index.md)
 
-##### `impl<'data> Copy for Version<'data>`
+##### `impl Copy for Version<'data>`
 
-##### `impl<'data> Debug for Version<'data>`
+##### `impl Debug for Version<'data>`
 
 - <span id="version-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for Version<'data>`
+##### `impl Default for Version<'data>`
 
 - <span id="version-default"></span>`fn default() -> Version<'data>` — [`Version`](../index.md)
 
@@ -99,6 +103,8 @@ struct VersionTable<'data, Elf: FileHeader> {
     versions: alloc::vec::Vec<Version<'data>>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/version.rs:75-78`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L75-L78)*
 
 A table of version definitions and requirements.
 
@@ -144,6 +150,8 @@ struct VerdefIterator<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/version.rs:234-237`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L234-L237)*
+
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../../elf/index.md) section.
 
 #### Implementations
@@ -166,15 +174,15 @@ An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../../elf/index
 
 ##### `impl<I> IntoIterator for VerdefIterator<'data, Elf>`
 
-- <span id="verdefiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="verdefiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="verdefiterator-intoiter"></span>`type IntoIter = I`
+- <span id="verdefiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="verdefiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VerdefIterator<'data, Elf>`
 
-- <span id="verdefiterator-item"></span>`type Item = Result<(&'data Verdef<<Elf as FileHeader>::Endian>, VerdauxIterator<'data, Elf>), Error>`
+- <span id="verdefiterator-type-item"></span>`type Item = Result<(&'data Verdef<<Elf as FileHeader>::Endian>, VerdauxIterator<'data, Elf>), Error>`
 
 - <span id="verdefiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -187,6 +195,8 @@ struct VerdauxIterator<'data, Elf: FileHeader> {
     count: u16,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/version.rs:297-301`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L297-L301)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERDEF`](../../../elf/index.md) section.
 
@@ -210,15 +220,15 @@ An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERD
 
 ##### `impl<I> IntoIterator for VerdauxIterator<'data, Elf>`
 
-- <span id="verdauxiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="verdauxiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="verdauxiterator-intoiter"></span>`type IntoIter = I`
+- <span id="verdauxiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="verdauxiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VerdauxIterator<'data, Elf>`
 
-- <span id="verdauxiterator-item"></span>`type Item = Result<&'data Verdaux<<Elf as FileHeader>::Endian>, Error>`
+- <span id="verdauxiterator-type-item"></span>`type Item = Result<&'data Verdaux<<Elf as FileHeader>::Endian>, Error>`
 
 - <span id="verdauxiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -230,6 +240,8 @@ struct VerneedIterator<'data, Elf: FileHeader> {
     data: crate::read::Bytes<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/version.rs:350-353`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L350-L353)*
 
 An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../../elf/index.md) section.
 
@@ -253,15 +265,15 @@ An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../../elf/inde
 
 ##### `impl<I> IntoIterator for VerneedIterator<'data, Elf>`
 
-- <span id="verneediterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="verneediterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="verneediterator-intoiter"></span>`type IntoIter = I`
+- <span id="verneediterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="verneediterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VerneedIterator<'data, Elf>`
 
-- <span id="verneediterator-item"></span>`type Item = Result<(&'data Verneed<<Elf as FileHeader>::Endian>, VernauxIterator<'data, Elf>), Error>`
+- <span id="verneediterator-type-item"></span>`type Item = Result<(&'data Verneed<<Elf as FileHeader>::Endian>, VernauxIterator<'data, Elf>), Error>`
 
 - <span id="verneediterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -274,6 +286,8 @@ struct VernauxIterator<'data, Elf: FileHeader> {
     count: u16,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/version.rs:426-430`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/version.rs#L426-L430)*
 
 An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERNEED`](../../../elf/index.md) section.
 
@@ -297,15 +311,15 @@ An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERN
 
 ##### `impl<I> IntoIterator for VernauxIterator<'data, Elf>`
 
-- <span id="vernauxiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="vernauxiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="vernauxiterator-intoiter"></span>`type IntoIter = I`
+- <span id="vernauxiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="vernauxiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for VernauxIterator<'data, Elf>`
 
-- <span id="vernauxiterator-item"></span>`type Item = Result<&'data Vernaux<<Elf as FileHeader>::Endian>, Error>`
+- <span id="vernauxiterator-type-item"></span>`type Item = Result<&'data Vernaux<<Elf as FileHeader>::Endian>, Error>`
 
 - <span id="vernauxiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

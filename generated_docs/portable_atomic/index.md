@@ -289,6 +289,8 @@ struct AtomicBool {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:555-557`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L555-L557)*
+
 A boolean type which can be safely shared between threads.
 
 This type has the same in-memory representation as a `bool`.
@@ -368,6 +370,8 @@ struct AtomicPtr<T> {
     inner: self::core_atomic::AtomicPtr<T>,
 }
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:1594-1596`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L1594-L1596)*
 
 A raw pointer type which can be safely shared between threads.
 
@@ -452,6 +456,8 @@ struct AtomicIsize {
     inner: self::core_atomic::AtomicIsize,
 }
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4786`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4786)*
 
 An integer type which can be safely shared between threads.
 
@@ -551,6 +557,8 @@ struct AtomicUsize {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4788`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4788)*
+
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
@@ -648,6 +656,8 @@ struct AtomicI8 {
     inner: self::core_atomic::AtomicI8,
 }
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4796`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4796)*
 
 An integer type which can be safely shared between threads.
 
@@ -747,6 +757,8 @@ struct AtomicU8 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4797`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4797)*
+
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
@@ -844,6 +856,8 @@ struct AtomicI16 {
     inner: self::core_atomic::AtomicI16,
 }
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4800`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4800)*
 
 An integer type which can be safely shared between threads.
 
@@ -943,6 +957,8 @@ struct AtomicU16 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4801-4802`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4801-L4802)*
+
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
@@ -1040,6 +1056,8 @@ struct AtomicI32 {
     inner: self::core_atomic::AtomicI32,
 }
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4805`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4805)*
 
 An integer type which can be safely shared between threads.
 
@@ -1139,6 +1157,8 @@ struct AtomicU32 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4806-4807`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4806-L4807)*
+
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
@@ -1236,6 +1256,8 @@ struct AtomicI64 {
     inner: self::core_atomic::AtomicI64,
 }
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4810`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4810)*
 
 An integer type which can be safely shared between threads.
 
@@ -1335,6 +1357,8 @@ struct AtomicU64 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4811-4812`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4811-L4812)*
+
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
@@ -1432,6 +1456,8 @@ struct AtomicI128 {
     inner: self::atomic128::x86_64::AtomicI128,
 }
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4815`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4815)*
 
 An integer type which can be safely shared between threads.
 
@@ -1531,6 +1557,8 @@ struct AtomicU128 {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:4816-4817`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L4816-L4817)*
+
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
@@ -1623,35 +1651,67 @@ atomic instructions or locks will be used.
 
 ## Functions
 
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:483`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L483)*
+
 ## Macros
 
 ### `unnamed!`
 
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:471`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L471)*
+
 ### `unnamed!`
+
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:471`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L471)*
 
 ### `atomic_int!`
 
+*Defined in [`portable-atomic-1.11.1/src/lib.rs:2720-4774`](../../.source_1765210505/portable-atomic-1.11.1/src/lib.rs#L2720-L4774)*
+
 ### `cfg_has_atomic_8!`
+
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:18-22`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L18-L22)*
 
 ### `cfg_no_atomic_8!`
 
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:24-26`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L24-L26)*
+
 ### `cfg_has_atomic_16!`
+
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:28-32`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L28-L32)*
 
 ### `cfg_no_atomic_16!`
 
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:34-36`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L34-L36)*
+
 ### `cfg_has_atomic_32!`
+
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:88-92`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L88-L92)*
 
 ### `cfg_no_atomic_32!`
 
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:94-96`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L94-L96)*
+
 ### `cfg_has_atomic_64!`
+
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:174-178`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L174-L178)*
 
 ### `cfg_no_atomic_64!`
 
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:180-182`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L180-L182)*
+
 ### `cfg_has_atomic_128!`
+
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:323-327`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L323-L327)*
 
 ### `cfg_no_atomic_128!`
 
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:329-331`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L329-L331)*
+
 ### `cfg_has_atomic_cas!`
 
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:446-450`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L446-L450)*
+
 ### `cfg_no_atomic_cas!`
+
+*Defined in [`portable-atomic-1.11.1/src/cfgs.rs:452-454`](../../.source_1765210505/portable-atomic-1.11.1/src/cfgs.rs#L452-L454)*
 

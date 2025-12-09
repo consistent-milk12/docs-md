@@ -23,6 +23,8 @@ struct Args {
 }
 ```
 
+*Defined in [`rustversion-1.0.22/src/attr.rs:6-9`](../../../.source_1765210505/rustversion-1.0.22/src/attr.rs#L6-L9)*
+
 ## Enums
 
 ### `Then`
@@ -34,6 +36,8 @@ enum Then {
 }
 ```
 
+*Defined in [`rustversion-1.0.22/src/attr.rs:11-14`](../../../.source_1765210505/rustversion-1.0.22/src/attr.rs#L11-L14)*
+
 ## Functions
 
 ### `parse`
@@ -41,4 +45,6 @@ enum Then {
 ```rust
 fn parse(input: proc_macro::TokenStream) -> std::result::Result<Args, Error>
 ```
+
+*Defined in [`rustversion-1.0.22/src/attr.rs:16-35`](../../../.source_1765210505/rustversion-1.0.22/src/attr.rs#L16-L35)*
 

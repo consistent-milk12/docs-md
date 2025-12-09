@@ -30,12 +30,12 @@ Best paired with other libraries in the family:
 
 # Progress Bars and Spinners
 
-indicatif comes with a [`ProgressBar`](#progressbar) type that supports both bounded
+indicatif comes with a [`ProgressBar`](progress_bar/index.md) type that supports both bounded
 progress bar uses as well as unbounded "spinner" type progress reports.
 Progress bars are [`Sync`](../miniz_oxide/index.md) and `Send` objects which means that they are
 internally locked and can be passed from thread to thread.
 
-Additionally a [`MultiProgress`](#multiprogress) utility is provided that can manage
+Additionally a [`MultiProgress`](multi/index.md) utility is provided that can manage
 rendering multiple progress bars at once (eg: from multiple threads).
 
 To whet your appetite, this is what this can look like:
@@ -221,7 +221,7 @@ If the list above does not contain the value you need, consider creating a custo
 
 The design of the progress bar can be altered with the integrated
 template functionality.  The template can be set by changing a
-[`ProgressStyle`](#progressstyle) and attaching it to the progress bar.
+[`ProgressStyle`](style/index.md) and attaching it to the progress bar.
 
 # Human Readable Formatting
 
@@ -328,6 +328,8 @@ struct ProgressDrawTarget {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:25-27`](../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L25-L27)*
+
 Target for draw operations
 
 This tells a [`ProgressBar`](crate::ProgressBar) or a
@@ -350,9 +352,9 @@ device.
 
 - <span id="progressdrawtarget-term"></span>`fn term(term: Term, refresh_rate: u8) -> Self`
 
-- <span id="progressdrawtarget-term-like"></span>`fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](#termlike)
+- <span id="progressdrawtarget-term-like"></span>`fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](term_like/index.md)
 
-- <span id="progressdrawtarget-term-like-with-hz"></span>`fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](#termlike)
+- <span id="progressdrawtarget-term-like-with-hz"></span>`fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](term_like/index.md)
 
 - <span id="progressdrawtarget-hidden"></span>`fn hidden() -> Self`
 
@@ -386,6 +388,8 @@ device.
 struct BinaryBytes(u64);
 ```
 
+*Defined in [`indicatif-0.18.3/src/format.rs:64`](../../.source_1765210505/indicatif-0.18.3/src/format.rs#L64)*
+
 Formats bytes for human readability using ISO/IEC prefixes
 
 # Examples
@@ -409,7 +413,7 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 
 - <span id="binarybytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for BinaryBytes`
+##### `impl ToString for BinaryBytes`
 
 - <span id="binarybytes-to-string"></span>`fn to_string(&self) -> String`
 
@@ -418,6 +422,8 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 ```rust
 struct DecimalBytes(u64);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:49`](../../.source_1765210505/indicatif-0.18.3/src/format.rs#L49)*
 
 Formats bytes for human readability using SI prefixes
 
@@ -442,7 +448,7 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 
 - <span id="decimalbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for DecimalBytes`
+##### `impl ToString for DecimalBytes`
 
 - <span id="decimalbytes-to-string"></span>`fn to_string(&self) -> String`
 
@@ -451,6 +457,8 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 ```rust
 struct FormattedDuration(std::time::Duration);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:15`](../../.source_1765210505/indicatif-0.18.3/src/format.rs#L15)*
 
 Wraps an std duration for human basic formatting.
 
@@ -464,7 +472,7 @@ Wraps an std duration for human basic formatting.
 
 - <span id="formattedduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for FormattedDuration`
+##### `impl ToString for FormattedDuration`
 
 - <span id="formattedduration-to-string"></span>`fn to_string(&self) -> String`
 
@@ -473,6 +481,8 @@ Wraps an std duration for human basic formatting.
 ```rust
 struct HumanBytes(u64);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:34`](../../.source_1765210505/indicatif-0.18.3/src/format.rs#L34)*
 
 Formats bytes for human readability
 
@@ -497,7 +507,7 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 
 - <span id="humanbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for HumanBytes`
+##### `impl ToString for HumanBytes`
 
 - <span id="humanbytes-to-string"></span>`fn to_string(&self) -> String`
 
@@ -506,6 +516,8 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 ```rust
 struct HumanCount(u64);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:68`](../../.source_1765210505/indicatif-0.18.3/src/format.rs#L68)*
 
 Formats counts for human readability using commas
 
@@ -519,7 +531,7 @@ Formats counts for human readability using commas
 
 - <span id="humancount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for HumanCount`
+##### `impl ToString for HumanCount`
 
 - <span id="humancount-to-string"></span>`fn to_string(&self) -> String`
 
@@ -528,6 +540,8 @@ Formats counts for human readability using commas
 ```rust
 struct HumanDuration(std::time::Duration);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:19`](../../.source_1765210505/indicatif-0.18.3/src/format.rs#L19)*
 
 Wraps an std duration for human readable formatting.
 
@@ -541,7 +555,7 @@ Wraps an std duration for human readable formatting.
 
 - <span id="humanduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for HumanDuration`
+##### `impl ToString for HumanDuration`
 
 - <span id="humanduration-to-string"></span>`fn to_string(&self) -> String`
 
@@ -550,6 +564,8 @@ Wraps an std duration for human readable formatting.
 ```rust
 struct HumanFloatCount(f64);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:72`](../../.source_1765210505/indicatif-0.18.3/src/format.rs#L72)*
 
 Formats counts for human readability using commas for floats
 
@@ -563,7 +579,7 @@ Formats counts for human readability using commas for floats
 
 - <span id="humanfloatcount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for HumanFloatCount`
+##### `impl ToString for HumanFloatCount`
 
 - <span id="humanfloatcount-to-string"></span>`fn to_string(&self) -> String`
 
@@ -576,11 +592,13 @@ struct ProgressBarIter<T> {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../.source_1765210505/indicatif-0.18.3/src/iter.rs#L62-L65)*
+
 Wraps an iterator to display its progress.
 
 #### Implementations
 
-- <span id="progressbariter-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](#progressstyle)
+- <span id="progressbariter-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](style/index.md)
 
 - <span id="progressbariter-with-prefix"></span>`fn with_prefix(self, prefix: impl Into<Cow<'static, str>>) -> Self`
 
@@ -590,7 +608,7 @@ Wraps an iterator to display its progress.
 
 - <span id="progressbariter-with-elapsed"></span>`fn with_elapsed(self, elapsed: Duration) -> Self`
 
-- <span id="progressbariter-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](#progressfinish)
+- <span id="progressbariter-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](state/index.md)
 
 #### Trait Implementations
 
@@ -616,21 +634,21 @@ Wraps an iterator to display its progress.
 
 ##### `impl<I> IntoIterator for ProgressBarIter<T>`
 
-- <span id="progressbariter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="progressbariter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="progressbariter-intoiter"></span>`type IntoIter = I`
+- <span id="progressbariter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="progressbariter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<S, T: Iterator<Item = S>> Iterator for ProgressBarIter<T>`
 
-- <span id="progressbariter-item"></span>`type Item = S`
+- <span id="progressbariter-type-item"></span>`type Item = S`
 
 - <span id="progressbariter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<S, T> ProgressIterator for ProgressBarIter<T>`
 
-- <span id="progressbariter-progress-with"></span>`fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<T>` — [`ProgressBar`](#progressbar), [`ProgressBarIter`](#progressbariter)
+- <span id="progressbariter-progress-with"></span>`fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<T>` — [`ProgressBar`](progress_bar/index.md), [`ProgressBarIter`](iter/index.md)
 
 ##### `impl<R: io::Read> Read for ProgressBarIter<R>`
 
@@ -664,33 +682,35 @@ struct MultiProgress {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/multi.rs:18-20`](../../.source_1765210505/indicatif-0.18.3/src/multi.rs#L18-L20)*
+
 Manages multiple progress bars from different threads
 
 #### Implementations
 
 - <span id="multiprogress-new"></span>`fn new() -> Self`
 
-- <span id="multiprogress-with-draw-target"></span>`fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](#progressdrawtarget)
+- <span id="multiprogress-with-draw-target"></span>`fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](draw_target/index.md)
 
-- <span id="multiprogress-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](#progressdrawtarget)
+- <span id="multiprogress-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](draw_target/index.md)
 
 - <span id="multiprogress-set-move-cursor"></span>`fn set_move_cursor(&self, move_cursor: bool)`
 
-- <span id="multiprogress-set-alignment"></span>`fn set_alignment(&self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](#multiprogressalignment)
+- <span id="multiprogress-set-alignment"></span>`fn set_alignment(&self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](multi/index.md)
 
-- <span id="multiprogress-add"></span>`fn add(&self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-add"></span>`fn add(&self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md)
 
-- <span id="multiprogress-insert"></span>`fn insert(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-insert"></span>`fn insert(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md)
 
-- <span id="multiprogress-insert-from-back"></span>`fn insert_from_back(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-insert-from-back"></span>`fn insert_from_back(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md)
 
-- <span id="multiprogress-insert-before"></span>`fn insert_before(&self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-insert-before"></span>`fn insert_before(&self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md)
 
-- <span id="multiprogress-insert-after"></span>`fn insert_after(&self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-insert-after"></span>`fn insert_after(&self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md)
 
-- <span id="multiprogress-remove"></span>`fn remove(&self, pb: &ProgressBar)` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-remove"></span>`fn remove(&self, pb: &ProgressBar)` — [`ProgressBar`](progress_bar/index.md)
 
-- <span id="multiprogress-internalize"></span>`fn internalize(&self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](multi/index.md), [`ProgressBar`](#progressbar)
+- <span id="multiprogress-internalize"></span>`fn internalize(&self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](multi/index.md), [`ProgressBar`](progress_bar/index.md)
 
 - <span id="multiprogress-println"></span>`fn println<I: AsRef<str>>(&self, msg: I) -> io::Result<()>`
 
@@ -704,7 +724,7 @@ Manages multiple progress bars from different threads
 
 ##### `impl Clone for MultiProgress`
 
-- <span id="multiprogress-clone"></span>`fn clone(&self) -> MultiProgress` — [`MultiProgress`](#multiprogress)
+- <span id="multiprogress-clone"></span>`fn clone(&self) -> MultiProgress` — [`MultiProgress`](multi/index.md)
 
 ##### `impl Debug for MultiProgress`
 
@@ -724,6 +744,8 @@ struct ProgressBar {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:25-29`](../../.source_1765210505/indicatif-0.18.3/src/progress_bar.rs#L25-L29)*
+
 A progress bar or spinner
 
 The progress bar is an `Arc` around its internal state. When the progress bar is cloned it
@@ -737,11 +759,11 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-hidden"></span>`fn hidden() -> Self`
 
-- <span id="progressbar-with-draw-target"></span>`fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](#progressdrawtarget)
+- <span id="progressbar-with-draw-target"></span>`fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](draw_target/index.md)
 
-- <span id="progressbar-style"></span>`fn style(&self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
+- <span id="progressbar-style"></span>`fn style(&self) -> ProgressStyle` — [`ProgressStyle`](style/index.md)
 
-- <span id="progressbar-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](#progressstyle)
+- <span id="progressbar-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](style/index.md)
 
 - <span id="progressbar-with-tab-width"></span>`fn with_tab_width(self, tab_width: usize) -> Self`
 
@@ -753,11 +775,11 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-with-elapsed"></span>`fn with_elapsed(self, elapsed: Duration) -> Self`
 
-- <span id="progressbar-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](#progressfinish)
+- <span id="progressbar-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](state/index.md)
 
 - <span id="progressbar-new-spinner"></span>`fn new_spinner() -> Self`
 
-- <span id="progressbar-set-style"></span>`fn set_style(&self, style: ProgressStyle)` — [`ProgressStyle`](#progressstyle)
+- <span id="progressbar-set-style"></span>`fn set_style(&self, style: ProgressStyle)` — [`ProgressStyle`](style/index.md)
 
 - <span id="progressbar-set-tab-width"></span>`fn set_tab_width(&self, tab_width: usize)`
 
@@ -781,7 +803,7 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-println"></span>`fn println<I: AsRef<str>>(&self, msg: I)`
 
-- <span id="progressbar-update"></span>`fn update(&self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](#progressstate)
+- <span id="progressbar-update"></span>`fn update(&self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](state/index.md)
 
 - <span id="progressbar-set-position"></span>`fn set_position(&self, pos: u64)`
 
@@ -799,7 +821,7 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-set-elapsed"></span>`fn set_elapsed(&self, elapsed: Duration)`
 
-- <span id="progressbar-downgrade"></span>`fn downgrade(&self) -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
+- <span id="progressbar-downgrade"></span>`fn downgrade(&self) -> WeakProgressBar` — [`WeakProgressBar`](progress_bar/index.md)
 
 - <span id="progressbar-reset-eta"></span>`fn reset_eta(&self)`
 
@@ -819,17 +841,17 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-finish-using-style"></span>`fn finish_using_style(&self)`
 
-- <span id="progressbar-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](#progressdrawtarget)
+- <span id="progressbar-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](draw_target/index.md)
 
 - <span id="progressbar-force-draw"></span>`fn force_draw(&self)`
 
 - <span id="progressbar-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&self, f: F) -> R`
 
-- <span id="progressbar-wrap-iter"></span>`fn wrap_iter<It: Iterator>(&self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](#progressbariter)
+- <span id="progressbar-wrap-iter"></span>`fn wrap_iter<It: Iterator>(&self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](iter/index.md)
 
-- <span id="progressbar-wrap-read"></span>`fn wrap_read<R: io::Read>(&self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](#progressbariter)
+- <span id="progressbar-wrap-read"></span>`fn wrap_read<R: io::Read>(&self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](iter/index.md)
 
-- <span id="progressbar-wrap-write"></span>`fn wrap_write<W: io::Write>(&self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](#progressbariter)
+- <span id="progressbar-wrap-write"></span>`fn wrap_write<W: io::Write>(&self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](iter/index.md)
 
 - <span id="progressbar-position"></span>`fn position(&self) -> u64`
 
@@ -855,7 +877,7 @@ just increments the refcount (so the original and its clone share the same state
 
 ##### `impl Clone for ProgressBar`
 
-- <span id="progressbar-clone"></span>`fn clone(&self) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="progressbar-clone"></span>`fn clone(&self) -> ProgressBar` — [`ProgressBar`](progress_bar/index.md)
 
 ##### `impl Debug for ProgressBar`
 
@@ -871,7 +893,9 @@ struct WeakProgressBar {
 }
 ```
 
-A weak reference to a [`ProgressBar`](#progressbar).
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:651-655`](../../.source_1765210505/indicatif-0.18.3/src/progress_bar.rs#L651-L655)*
+
+A weak reference to a [`ProgressBar`](progress_bar/index.md).
 
 Useful for creating custom steady tick implementations
 
@@ -879,17 +903,17 @@ Useful for creating custom steady tick implementations
 
 - <span id="weakprogressbar-new"></span>`fn new() -> Self`
 
-- <span id="weakprogressbar-upgrade"></span>`fn upgrade(&self) -> Option<ProgressBar>` — [`ProgressBar`](#progressbar)
+- <span id="weakprogressbar-upgrade"></span>`fn upgrade(&self) -> Option<ProgressBar>` — [`ProgressBar`](progress_bar/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WeakProgressBar`
 
-- <span id="weakprogressbar-clone"></span>`fn clone(&self) -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
+- <span id="weakprogressbar-clone"></span>`fn clone(&self) -> WeakProgressBar` — [`WeakProgressBar`](progress_bar/index.md)
 
 ##### `impl Default for WeakProgressBar`
 
-- <span id="weakprogressbar-default"></span>`fn default() -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
+- <span id="weakprogressbar-default"></span>`fn default() -> WeakProgressBar` — [`WeakProgressBar`](progress_bar/index.md)
 
 ### `ProgressState`
 
@@ -905,6 +929,8 @@ struct ProgressState {
     prefix: TabExpandedString,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../.source_1765210505/indicatif-0.18.3/src/state.rs#L242-L251)*
 
 The state of a progress bar at a moment in time.
 
@@ -945,6 +971,8 @@ struct ProgressStyle {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/style.rs:23-31`](../../.source_1765210505/indicatif-0.18.3/src/style.rs#L23-L31)*
+
 #### Implementations
 
 - <span id="progressstyle-default-bar"></span>`fn default_bar() -> Self`
@@ -969,7 +997,7 @@ struct ProgressStyle {
 
 - <span id="progressstyle-template"></span>`fn template(self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](style/index.md)
 
-- <span id="progressstyle-current-tick-str"></span>`fn current_tick_str(&self, state: &ProgressState) -> &str` — [`ProgressState`](#progressstate)
+- <span id="progressstyle-current-tick-str"></span>`fn current_tick_str(&self, state: &ProgressState) -> &str` — [`ProgressState`](state/index.md)
 
 - <span id="progressstyle-get-tick-str"></span>`fn get_tick_str(&self, idx: u64) -> &str`
 
@@ -977,15 +1005,15 @@ struct ProgressStyle {
 
 - <span id="progressstyle-format-bar"></span>`fn format_bar(&self, fract: f32, width: usize, alt_style: Option<&Style>) -> BarDisplay<'_>` — [`BarDisplay`](style/index.md)
 
-- <span id="progressstyle-format-state"></span>`fn format_state(&self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](#progressstate), [`LineType`](draw_target/index.md)
+- <span id="progressstyle-format-state"></span>`fn format_state(&self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](state/index.md), [`LineType`](draw_target/index.md)
 
-- <span id="progressstyle-push-line"></span>`fn push_line(&self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](draw_target/index.md), [`ProgressState`](#progressstate), [`WideElement`](style/index.md)
+- <span id="progressstyle-push-line"></span>`fn push_line(&self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](draw_target/index.md), [`ProgressState`](state/index.md), [`WideElement`](style/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ProgressStyle`
 
-- <span id="progressstyle-clone"></span>`fn clone(&self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
+- <span id="progressstyle-clone"></span>`fn clone(&self) -> ProgressStyle` — [`ProgressStyle`](style/index.md)
 
 ## Enums
 
@@ -997,6 +1025,8 @@ enum MultiProgressAlignment {
     Bottom,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/multi.rs:505-509`](../../.source_1765210505/indicatif-0.18.3/src/multi.rs#L505-L509)*
 
 Vertical alignment of a multi progress.
 
@@ -1019,7 +1049,7 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 
 ##### `impl Clone for MultiProgressAlignment`
 
-- <span id="multiprogressalignment-clone"></span>`fn clone(&self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](#multiprogressalignment)
+- <span id="multiprogressalignment-clone"></span>`fn clone(&self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](multi/index.md)
 
 ##### `impl Copy for MultiProgressAlignment`
 
@@ -1029,7 +1059,7 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 
 ##### `impl Default for MultiProgressAlignment`
 
-- <span id="multiprogressalignment-default"></span>`fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](#multiprogressalignment)
+- <span id="multiprogressalignment-default"></span>`fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](multi/index.md)
 
 ### `ProgressFinish`
 
@@ -1043,9 +1073,11 @@ enum ProgressFinish {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../.source_1765210505/indicatif-0.18.3/src/state.rs#L615-L637)*
+
 Behavior of a progress bar when it is finished
 
-This is invoked when a [`ProgressBar`](#progressbar) or [`ProgressBarIter`](#progressbariter) completes and
+This is invoked when a [`ProgressBar`](progress_bar/index.md) or [`ProgressBarIter`](iter/index.md) completes and
 `ProgressBar::is_finished` is false.
 
 
@@ -1087,7 +1119,7 @@ This is invoked when a [`ProgressBar`](#progressbar) or [`ProgressBarIter`](#pro
 
 ##### `impl Clone for ProgressFinish`
 
-- <span id="progressfinish-clone"></span>`fn clone(&self) -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
+- <span id="progressfinish-clone"></span>`fn clone(&self) -> ProgressFinish` — [`ProgressFinish`](state/index.md)
 
 ##### `impl Debug for ProgressFinish`
 
@@ -1095,7 +1127,7 @@ This is invoked when a [`ProgressBar`](#progressbar) or [`ProgressBarIter`](#pro
 
 ##### `impl Default for ProgressFinish`
 
-- <span id="progressfinish-default"></span>`fn default() -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
+- <span id="progressfinish-default"></span>`fn default() -> ProgressFinish` — [`ProgressFinish`](state/index.md)
 
 ## Traits
 
@@ -1106,6 +1138,8 @@ trait ProgressIterator
 where
     Self: Sized + Iterator { ... }
 ```
+
+*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../.source_1765210505/indicatif-0.18.3/src/iter.rs#L18-L58)*
 
 Wraps an iterator to display its progress.
 
@@ -1135,7 +1169,6 @@ Wraps an iterator to display its progress.
 
 #### Implementors
 
-- [`ProgressBarIter`](#progressbariter)
 - `T`
 
 ### `TermLike`
@@ -1143,6 +1176,8 @@ Wraps an iterator to display its progress.
 ```rust
 trait TermLike: Debug + Send + Sync { ... }
 ```
+
+*Defined in [`indicatif-0.18.3/src/term_like.rs:11-37`](../../.source_1765210505/indicatif-0.18.3/src/term_like.rs#L11-L37)*
 
 A trait for minimal terminal-like behavior.
 

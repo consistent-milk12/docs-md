@@ -23,6 +23,8 @@ struct Drain<'a, T: 'a, A: Allocator + 'a> {
 }
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/drain.rs:22-30`](../../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/drain.rs#L22-L30)*
+
 A draining iterator for `Vec<T>`.
 
 This `struct` is created by `Vec::drain`.
@@ -51,11 +53,9 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 #### Implementations
 
-- <span id="drain-as-slice"></span>`fn as_slice(&self) -> &[T]`
+- <span id="superdrain-fill"></span>`unsafe fn fill<I: Iterator<Item = T>>(&mut self, replace_with: &mut I) -> bool`
 
-- <span id="drain-allocator"></span>`fn allocator(&self) -> &A`
-
-- <span id="drain-keep-rest"></span>`fn keep_rest(self)`
+- <span id="superdrain-move-tail"></span>`unsafe fn move_tail(&mut self, additional: usize)`
 
 #### Trait Implementations
 
@@ -81,15 +81,15 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 ##### `impl<I> IntoIterator for Drain<'a, T, A>`
 
-- <span id="drain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-intoiter"></span>`type IntoIter = I`
+- <span id="drain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for Drain<'_, T, A>`
 
-- <span id="drain-item"></span>`type Item = T`
+- <span id="drain-type-item"></span>`type Item = T`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<T>`
 

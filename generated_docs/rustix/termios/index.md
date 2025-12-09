@@ -61,13 +61,13 @@ not supported by the platform or the device.
 | [`tc`](#tc) | mod |  |
 | [`tty`](#tty) | mod | Functions which operate on file descriptors which might be terminals. |
 | [`types`](#types) | mod |  |
-| [`speed`](#speed) | mod | Speeds for use with [`Termios::set_speed`], [`Termios::set_input_speed`] |
+| [`speed`](#speed) | mod | Speeds for use with [`Termios::set_speed`], [`Termios::set_input_speed`], and [`Termios::set_output_speed`]. |
 | [`Termios`](#termios) | struct | `struct termios` for use with [`tcgetattr`] and [`tcsetattr`]. |
 | [`InputModes`](#inputmodes) | struct | Flags controlling terminal input. |
 | [`OutputModes`](#outputmodes) | struct | Flags controlling terminal output. |
 | [`ControlModes`](#controlmodes) | struct | Flags controlling special terminal modes. |
 | [`LocalModes`](#localmodes) | struct | Flags controlling “local” terminal modes. |
-| [`SpecialCodes`](#specialcodes) | struct | An array indexed by [`SpecialCodeIndex`] indicating the current values of |
+| [`SpecialCodes`](#specialcodes) | struct | An array indexed by [`SpecialCodeIndex`] indicating the current values of various special control codes. |
 | [`SpecialCode`](#specialcode) | struct | A newtype for pretty printing. |
 | [`SpecialCodeIndex`](#specialcodeindex) | struct | Indices for use with [`Termios::special_codes`]. |
 | [`Winsize`](#winsize) | struct | `struct winsize` for use with [`tcgetwinsize`]. |
@@ -83,9 +83,9 @@ not supported by the platform or the device.
 | [`tcsetattr`](#tcsetattr) | fn | `tcsetattr(fd)`—Set terminal attributes. |
 | [`tcsendbreak`](#tcsendbreak) | fn | `tcsendbreak(fd, 0)`—Transmit zero-valued bits. |
 | [`tcdrain`](#tcdrain) | fn | `tcdrain(fd, duration)`—Wait until all pending output has been written. |
-| [`tcflush`](#tcflush) | fn | `tcflush(fd, queue_selector)`—Wait until all pending output has been |
+| [`tcflush`](#tcflush) | fn | `tcflush(fd, queue_selector)`—Wait until all pending output has been written. |
 | [`tcflow`](#tcflow) | fn | `tcflow(fd, action)`—Suspend or resume transmission or reception. |
-| [`tcgetsid`](#tcgetsid) | fn | `tcgetsid(fd)`—Return the session ID of the current session with `fd` as |
+| [`tcgetsid`](#tcgetsid) | fn | `tcgetsid(fd)`—Return the session ID of the current session with `fd` as its controlling terminal. |
 | [`tcsetwinsize`](#tcsetwinsize) | fn | `tcsetwinsize(fd)`—Set the current terminal window size. |
 | [`isatty`](#isatty) | fn | `isatty(fd)`—Tests whether a file descriptor refers to a terminal. |
 
@@ -114,7 +114,9 @@ struct Termios {
 }
 ```
 
-`struct termios` for use with [`tcgetattr`](../backend/termios/syscalls/index.md) and [`tcsetattr`](#tcsetattr).
+*Defined in [`rustix-1.1.2/src/termios/types.rs:14-75`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L14-L75)*
+
+`struct termios` for use with [`tcgetattr`](#tcgetattr) and [`tcsetattr`](../backend/termios/syscalls/index.md).
 
 
 
@@ -166,11 +168,11 @@ struct Termios {
 
 - <span id="termios-output-speed"></span>`fn output_speed(&self) -> u32`
 
-- <span id="termios-set-speed"></span>`fn set_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="termios-set-speed"></span>`fn set_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md)
 
-- <span id="termios-set-input-speed"></span>`fn set_input_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="termios-set-input-speed"></span>`fn set_input_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md)
 
-- <span id="termios-set-output-speed"></span>`fn set_output_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="termios-set-output-speed"></span>`fn set_output_speed(&mut self, new_speed: u32) -> io::Result<()>` — [`Result`](../io/errno/index.md)
 
 #### Trait Implementations
 
@@ -188,49 +190,41 @@ struct Termios {
 struct InputModes(<InputModes as __private::PublicFlags>::Internal);
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/types.rs:245-311`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L245-L311)*
+
 Flags controlling terminal input.
 
 #### Implementations
 
-- <span id="inputmodes-empty"></span>`const fn empty() -> Self`
+- <span id="inputmodes-const-ignbrk"></span>`const IGNBRK: Self`
 
-- <span id="inputmodes-all"></span>`const fn all() -> Self`
+- <span id="inputmodes-const-brkint"></span>`const BRKINT: Self`
 
-- <span id="inputmodes-bits"></span>`const fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
+- <span id="inputmodes-const-ignpar"></span>`const IGNPAR: Self`
 
-- <span id="inputmodes-from-bits"></span>`const fn from_bits(bits: ffi::c_uint) -> __private::core::option::Option<Self>` — [`c_uint`](../ffi/index.md)
+- <span id="inputmodes-const-parmrk"></span>`const PARMRK: Self`
 
-- <span id="inputmodes-from-bits-truncate"></span>`const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+- <span id="inputmodes-const-inpck"></span>`const INPCK: Self`
 
-- <span id="inputmodes-from-bits-retain"></span>`const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+- <span id="inputmodes-const-istrip"></span>`const ISTRIP: Self`
 
-- <span id="inputmodes-from-name"></span>`fn from_name(name: &str) -> __private::core::option::Option<Self>`
+- <span id="inputmodes-const-inlcr"></span>`const INLCR: Self`
 
-- <span id="inputmodes-is-empty"></span>`const fn is_empty(&self) -> bool`
+- <span id="inputmodes-const-igncr"></span>`const IGNCR: Self`
 
-- <span id="inputmodes-is-all"></span>`const fn is_all(&self) -> bool`
+- <span id="inputmodes-const-icrnl"></span>`const ICRNL: Self`
 
-- <span id="inputmodes-intersects"></span>`const fn intersects(&self, other: Self) -> bool`
+- <span id="inputmodes-const-iuclc"></span>`const IUCLC: Self`
 
-- <span id="inputmodes-contains"></span>`const fn contains(&self, other: Self) -> bool`
+- <span id="inputmodes-const-ixon"></span>`const IXON: Self`
 
-- <span id="inputmodes-insert"></span>`fn insert(&mut self, other: Self)`
+- <span id="inputmodes-const-ixany"></span>`const IXANY: Self`
 
-- <span id="inputmodes-remove"></span>`fn remove(&mut self, other: Self)`
+- <span id="inputmodes-const-ixoff"></span>`const IXOFF: Self`
 
-- <span id="inputmodes-toggle"></span>`fn toggle(&mut self, other: Self)`
+- <span id="inputmodes-const-imaxbel"></span>`const IMAXBEL: Self`
 
-- <span id="inputmodes-set"></span>`fn set(&mut self, other: Self, value: bool)`
-
-- <span id="inputmodes-intersection"></span>`const fn intersection(self, other: Self) -> Self`
-
-- <span id="inputmodes-union"></span>`const fn union(self, other: Self) -> Self`
-
-- <span id="inputmodes-difference"></span>`const fn difference(self, other: Self) -> Self`
-
-- <span id="inputmodes-symmetric-difference"></span>`const fn symmetric_difference(self, other: Self) -> Self`
-
-- <span id="inputmodes-complement"></span>`const fn complement(self) -> Self`
+- <span id="inputmodes-const-iutf8"></span>`const IUTF8: Self`
 
 #### Trait Implementations
 
@@ -240,7 +234,7 @@ Flags controlling terminal input.
 
 ##### `impl BitAnd for InputModes`
 
-- <span id="inputmodes-output"></span>`type Output = InputModes`
+- <span id="inputmodes-type-output"></span>`type Output = InputModes`
 
 - <span id="inputmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -250,7 +244,7 @@ Flags controlling terminal input.
 
 ##### `impl BitOr for InputModes`
 
-- <span id="inputmodes-output"></span>`type Output = InputModes`
+- <span id="inputmodes-type-output"></span>`type Output = InputModes`
 
 - <span id="inputmodes-bitor"></span>`fn bitor(self, other: InputModes) -> Self` — [`InputModes`](#inputmodes)
 
@@ -260,7 +254,7 @@ Flags controlling terminal input.
 
 ##### `impl BitXor for InputModes`
 
-- <span id="inputmodes-output"></span>`type Output = InputModes`
+- <span id="inputmodes-type-output"></span>`type Output = InputModes`
 
 - <span id="inputmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -286,9 +280,9 @@ Flags controlling terminal input.
 
 ##### `impl Flags for InputModes`
 
-- <span id="inputmodes-flags"></span>`const FLAGS: &'static [Flag<InputModes>]`
+- <span id="inputmodes-const-flags"></span>`const FLAGS: &'static [Flag<InputModes>]`
 
-- <span id="inputmodes-bits"></span>`type Bits = u32`
+- <span id="inputmodes-type-bits"></span>`type Bits = u32`
 
 - <span id="inputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
 
@@ -304,9 +298,9 @@ Flags controlling terminal input.
 
 ##### `impl IntoIterator for InputModes`
 
-- <span id="inputmodes-item"></span>`type Item = InputModes`
+- <span id="inputmodes-type-item"></span>`type Item = InputModes`
 
-- <span id="inputmodes-intoiter"></span>`type IntoIter = Iter<InputModes>`
+- <span id="inputmodes-type-intoiter"></span>`type IntoIter = Iter<InputModes>`
 
 - <span id="inputmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -316,7 +310,7 @@ Flags controlling terminal input.
 
 ##### `impl Not for InputModes`
 
-- <span id="inputmodes-output"></span>`type Output = InputModes`
+- <span id="inputmodes-type-output"></span>`type Output = InputModes`
 
 - <span id="inputmodes-not"></span>`fn not(self) -> Self`
 
@@ -330,15 +324,15 @@ Flags controlling terminal input.
 
 ##### `impl PublicFlags for InputModes`
 
-- <span id="inputmodes-primitive"></span>`type Primitive = u32`
+- <span id="inputmodes-type-primitive"></span>`type Primitive = u32`
 
-- <span id="inputmodes-internal"></span>`type Internal = InternalBitFlags`
+- <span id="inputmodes-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for InputModes`
 
 ##### `impl Sub for InputModes`
 
-- <span id="inputmodes-output"></span>`type Output = InputModes`
+- <span id="inputmodes-type-output"></span>`type Output = InputModes`
 
 - <span id="inputmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -356,13 +350,73 @@ Flags controlling terminal input.
 struct OutputModes(<OutputModes as __private::PublicFlags>::Internal);
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/types.rs:313-526`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L313-L526)*
+
 Flags controlling terminal output.
 
 #### Implementations
 
-- <span id="outputmodes-iter"></span>`const fn iter(&self) -> iter::Iter<OutputModes>` — [`OutputModes`](#outputmodes)
+- <span id="outputmodes-const-opost"></span>`const OPOST: Self`
 
-- <span id="outputmodes-iter-names"></span>`const fn iter_names(&self) -> iter::IterNames<OutputModes>` — [`OutputModes`](#outputmodes)
+- <span id="outputmodes-const-olcuc"></span>`const OLCUC: Self`
+
+- <span id="outputmodes-const-onlcr"></span>`const ONLCR: Self`
+
+- <span id="outputmodes-const-ocrnl"></span>`const OCRNL: Self`
+
+- <span id="outputmodes-const-onocr"></span>`const ONOCR: Self`
+
+- <span id="outputmodes-const-onlret"></span>`const ONLRET: Self`
+
+- <span id="outputmodes-const-ofill"></span>`const OFILL: Self`
+
+- <span id="outputmodes-const-ofdel"></span>`const OFDEL: Self`
+
+- <span id="outputmodes-const-nldly"></span>`const NLDLY: Self`
+
+- <span id="outputmodes-const-nl0"></span>`const NL0: Self`
+
+- <span id="outputmodes-const-nl1"></span>`const NL1: Self`
+
+- <span id="outputmodes-const-crdly"></span>`const CRDLY: Self`
+
+- <span id="outputmodes-const-cr0"></span>`const CR0: Self`
+
+- <span id="outputmodes-const-cr1"></span>`const CR1: Self`
+
+- <span id="outputmodes-const-cr2"></span>`const CR2: Self`
+
+- <span id="outputmodes-const-cr3"></span>`const CR3: Self`
+
+- <span id="outputmodes-const-tabdly"></span>`const TABDLY: Self`
+
+- <span id="outputmodes-const-tab0"></span>`const TAB0: Self`
+
+- <span id="outputmodes-const-tab1"></span>`const TAB1: Self`
+
+- <span id="outputmodes-const-tab2"></span>`const TAB2: Self`
+
+- <span id="outputmodes-const-tab3"></span>`const TAB3: Self`
+
+- <span id="outputmodes-const-xtabs"></span>`const XTABS: Self`
+
+- <span id="outputmodes-const-bsdly"></span>`const BSDLY: Self`
+
+- <span id="outputmodes-const-bs0"></span>`const BS0: Self`
+
+- <span id="outputmodes-const-bs1"></span>`const BS1: Self`
+
+- <span id="outputmodes-const-ffdly"></span>`const FFDLY: Self`
+
+- <span id="outputmodes-const-ff0"></span>`const FF0: Self`
+
+- <span id="outputmodes-const-ff1"></span>`const FF1: Self`
+
+- <span id="outputmodes-const-vtdly"></span>`const VTDLY: Self`
+
+- <span id="outputmodes-const-vt0"></span>`const VT0: Self`
+
+- <span id="outputmodes-const-vt1"></span>`const VT1: Self`
 
 #### Trait Implementations
 
@@ -372,7 +426,7 @@ Flags controlling terminal output.
 
 ##### `impl BitAnd for OutputModes`
 
-- <span id="outputmodes-output"></span>`type Output = OutputModes`
+- <span id="outputmodes-type-output"></span>`type Output = OutputModes`
 
 - <span id="outputmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -382,7 +436,7 @@ Flags controlling terminal output.
 
 ##### `impl BitOr for OutputModes`
 
-- <span id="outputmodes-output"></span>`type Output = OutputModes`
+- <span id="outputmodes-type-output"></span>`type Output = OutputModes`
 
 - <span id="outputmodes-bitor"></span>`fn bitor(self, other: OutputModes) -> Self` — [`OutputModes`](#outputmodes)
 
@@ -392,7 +446,7 @@ Flags controlling terminal output.
 
 ##### `impl BitXor for OutputModes`
 
-- <span id="outputmodes-output"></span>`type Output = OutputModes`
+- <span id="outputmodes-type-output"></span>`type Output = OutputModes`
 
 - <span id="outputmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -418,9 +472,9 @@ Flags controlling terminal output.
 
 ##### `impl Flags for OutputModes`
 
-- <span id="outputmodes-flags"></span>`const FLAGS: &'static [Flag<OutputModes>]`
+- <span id="outputmodes-const-flags"></span>`const FLAGS: &'static [Flag<OutputModes>]`
 
-- <span id="outputmodes-bits"></span>`type Bits = u32`
+- <span id="outputmodes-type-bits"></span>`type Bits = u32`
 
 - <span id="outputmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
 
@@ -436,9 +490,9 @@ Flags controlling terminal output.
 
 ##### `impl IntoIterator for OutputModes`
 
-- <span id="outputmodes-item"></span>`type Item = OutputModes`
+- <span id="outputmodes-type-item"></span>`type Item = OutputModes`
 
-- <span id="outputmodes-intoiter"></span>`type IntoIter = Iter<OutputModes>`
+- <span id="outputmodes-type-intoiter"></span>`type IntoIter = Iter<OutputModes>`
 
 - <span id="outputmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -448,7 +502,7 @@ Flags controlling terminal output.
 
 ##### `impl Not for OutputModes`
 
-- <span id="outputmodes-output"></span>`type Output = OutputModes`
+- <span id="outputmodes-type-output"></span>`type Output = OutputModes`
 
 - <span id="outputmodes-not"></span>`fn not(self) -> Self`
 
@@ -462,15 +516,15 @@ Flags controlling terminal output.
 
 ##### `impl PublicFlags for OutputModes`
 
-- <span id="outputmodes-primitive"></span>`type Primitive = u32`
+- <span id="outputmodes-type-primitive"></span>`type Primitive = u32`
 
-- <span id="outputmodes-internal"></span>`type Internal = InternalBitFlags`
+- <span id="outputmodes-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for OutputModes`
 
 ##### `impl Sub for OutputModes`
 
-- <span id="outputmodes-output"></span>`type Output = OutputModes`
+- <span id="outputmodes-type-output"></span>`type Output = OutputModes`
 
 - <span id="outputmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -488,6 +542,8 @@ Flags controlling terminal output.
 struct ControlModes(<ControlModes as __private::PublicFlags>::Internal);
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/types.rs:528-592`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L528-L592)*
+
 Flags controlling special terminal modes.
 
 `CBAUD`, `CBAUDEX`, `CIBAUD`, `CIBAUDEX`, and various `B*` speed
@@ -498,31 +554,31 @@ probably these flags.
 
 #### Implementations
 
-- <span id="controlmodes-csize"></span>`const CSIZE: Self`
+- <span id="controlmodes-const-csize"></span>`const CSIZE: Self`
 
-- <span id="controlmodes-cs5"></span>`const CS5: Self`
+- <span id="controlmodes-const-cs5"></span>`const CS5: Self`
 
-- <span id="controlmodes-cs6"></span>`const CS6: Self`
+- <span id="controlmodes-const-cs6"></span>`const CS6: Self`
 
-- <span id="controlmodes-cs7"></span>`const CS7: Self`
+- <span id="controlmodes-const-cs7"></span>`const CS7: Self`
 
-- <span id="controlmodes-cs8"></span>`const CS8: Self`
+- <span id="controlmodes-const-cs8"></span>`const CS8: Self`
 
-- <span id="controlmodes-cstopb"></span>`const CSTOPB: Self`
+- <span id="controlmodes-const-cstopb"></span>`const CSTOPB: Self`
 
-- <span id="controlmodes-cread"></span>`const CREAD: Self`
+- <span id="controlmodes-const-cread"></span>`const CREAD: Self`
 
-- <span id="controlmodes-parenb"></span>`const PARENB: Self`
+- <span id="controlmodes-const-parenb"></span>`const PARENB: Self`
 
-- <span id="controlmodes-parodd"></span>`const PARODD: Self`
+- <span id="controlmodes-const-parodd"></span>`const PARODD: Self`
 
-- <span id="controlmodes-hupcl"></span>`const HUPCL: Self`
+- <span id="controlmodes-const-hupcl"></span>`const HUPCL: Self`
 
-- <span id="controlmodes-clocal"></span>`const CLOCAL: Self`
+- <span id="controlmodes-const-clocal"></span>`const CLOCAL: Self`
 
-- <span id="controlmodes-crtscts"></span>`const CRTSCTS: Self`
+- <span id="controlmodes-const-crtscts"></span>`const CRTSCTS: Self`
 
-- <span id="controlmodes-cmspar"></span>`const CMSPAR: Self`
+- <span id="controlmodes-const-cmspar"></span>`const CMSPAR: Self`
 
 #### Trait Implementations
 
@@ -532,7 +588,7 @@ probably these flags.
 
 ##### `impl BitAnd for ControlModes`
 
-- <span id="controlmodes-output"></span>`type Output = ControlModes`
+- <span id="controlmodes-type-output"></span>`type Output = ControlModes`
 
 - <span id="controlmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -542,7 +598,7 @@ probably these flags.
 
 ##### `impl BitOr for ControlModes`
 
-- <span id="controlmodes-output"></span>`type Output = ControlModes`
+- <span id="controlmodes-type-output"></span>`type Output = ControlModes`
 
 - <span id="controlmodes-bitor"></span>`fn bitor(self, other: ControlModes) -> Self` — [`ControlModes`](#controlmodes)
 
@@ -552,7 +608,7 @@ probably these flags.
 
 ##### `impl BitXor for ControlModes`
 
-- <span id="controlmodes-output"></span>`type Output = ControlModes`
+- <span id="controlmodes-type-output"></span>`type Output = ControlModes`
 
 - <span id="controlmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -578,9 +634,9 @@ probably these flags.
 
 ##### `impl Flags for ControlModes`
 
-- <span id="controlmodes-flags"></span>`const FLAGS: &'static [Flag<ControlModes>]`
+- <span id="controlmodes-const-flags"></span>`const FLAGS: &'static [Flag<ControlModes>]`
 
-- <span id="controlmodes-bits"></span>`type Bits = u32`
+- <span id="controlmodes-type-bits"></span>`type Bits = u32`
 
 - <span id="controlmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
 
@@ -596,9 +652,9 @@ probably these flags.
 
 ##### `impl IntoIterator for ControlModes`
 
-- <span id="controlmodes-item"></span>`type Item = ControlModes`
+- <span id="controlmodes-type-item"></span>`type Item = ControlModes`
 
-- <span id="controlmodes-intoiter"></span>`type IntoIter = Iter<ControlModes>`
+- <span id="controlmodes-type-intoiter"></span>`type IntoIter = Iter<ControlModes>`
 
 - <span id="controlmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -608,7 +664,7 @@ probably these flags.
 
 ##### `impl Not for ControlModes`
 
-- <span id="controlmodes-output"></span>`type Output = ControlModes`
+- <span id="controlmodes-type-output"></span>`type Output = ControlModes`
 
 - <span id="controlmodes-not"></span>`fn not(self) -> Self`
 
@@ -622,15 +678,15 @@ probably these flags.
 
 ##### `impl PublicFlags for ControlModes`
 
-- <span id="controlmodes-primitive"></span>`type Primitive = u32`
+- <span id="controlmodes-type-primitive"></span>`type Primitive = u32`
 
-- <span id="controlmodes-internal"></span>`type Internal = InternalBitFlags`
+- <span id="controlmodes-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for ControlModes`
 
 ##### `impl Sub for ControlModes`
 
-- <span id="controlmodes-output"></span>`type Output = ControlModes`
+- <span id="controlmodes-type-output"></span>`type Output = ControlModes`
 
 - <span id="controlmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -648,49 +704,43 @@ probably these flags.
 struct LocalModes(<LocalModes as __private::PublicFlags>::Internal);
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/types.rs:594-664`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L594-L664)*
+
 Flags controlling “local” terminal modes.
 
 #### Implementations
 
-- <span id="localmodes-empty"></span>`const fn empty() -> Self`
+- <span id="localmodes-const-xcase"></span>`const XCASE: Self`
 
-- <span id="localmodes-all"></span>`const fn all() -> Self`
+- <span id="localmodes-const-echoctl"></span>`const ECHOCTL: Self`
 
-- <span id="localmodes-bits"></span>`const fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
+- <span id="localmodes-const-echoprt"></span>`const ECHOPRT: Self`
 
-- <span id="localmodes-from-bits"></span>`const fn from_bits(bits: ffi::c_uint) -> __private::core::option::Option<Self>` — [`c_uint`](../ffi/index.md)
+- <span id="localmodes-const-echoke"></span>`const ECHOKE: Self`
 
-- <span id="localmodes-from-bits-truncate"></span>`const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+- <span id="localmodes-const-flusho"></span>`const FLUSHO: Self`
 
-- <span id="localmodes-from-bits-retain"></span>`const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+- <span id="localmodes-const-pendin"></span>`const PENDIN: Self`
 
-- <span id="localmodes-from-name"></span>`fn from_name(name: &str) -> __private::core::option::Option<Self>`
+- <span id="localmodes-const-extproc"></span>`const EXTPROC: Self`
 
-- <span id="localmodes-is-empty"></span>`const fn is_empty(&self) -> bool`
+- <span id="localmodes-const-isig"></span>`const ISIG: Self`
 
-- <span id="localmodes-is-all"></span>`const fn is_all(&self) -> bool`
+- <span id="localmodes-const-icanon"></span>`const ICANON: Self`
 
-- <span id="localmodes-intersects"></span>`const fn intersects(&self, other: Self) -> bool`
+- <span id="localmodes-const-echo"></span>`const ECHO: Self`
 
-- <span id="localmodes-contains"></span>`const fn contains(&self, other: Self) -> bool`
+- <span id="localmodes-const-echoe"></span>`const ECHOE: Self`
 
-- <span id="localmodes-insert"></span>`fn insert(&mut self, other: Self)`
+- <span id="localmodes-const-echok"></span>`const ECHOK: Self`
 
-- <span id="localmodes-remove"></span>`fn remove(&mut self, other: Self)`
+- <span id="localmodes-const-echonl"></span>`const ECHONL: Self`
 
-- <span id="localmodes-toggle"></span>`fn toggle(&mut self, other: Self)`
+- <span id="localmodes-const-noflsh"></span>`const NOFLSH: Self`
 
-- <span id="localmodes-set"></span>`fn set(&mut self, other: Self, value: bool)`
+- <span id="localmodes-const-tostop"></span>`const TOSTOP: Self`
 
-- <span id="localmodes-intersection"></span>`const fn intersection(self, other: Self) -> Self`
-
-- <span id="localmodes-union"></span>`const fn union(self, other: Self) -> Self`
-
-- <span id="localmodes-difference"></span>`const fn difference(self, other: Self) -> Self`
-
-- <span id="localmodes-symmetric-difference"></span>`const fn symmetric_difference(self, other: Self) -> Self`
-
-- <span id="localmodes-complement"></span>`const fn complement(self) -> Self`
+- <span id="localmodes-const-iexten"></span>`const IEXTEN: Self`
 
 #### Trait Implementations
 
@@ -700,7 +750,7 @@ Flags controlling “local” terminal modes.
 
 ##### `impl BitAnd for LocalModes`
 
-- <span id="localmodes-output"></span>`type Output = LocalModes`
+- <span id="localmodes-type-output"></span>`type Output = LocalModes`
 
 - <span id="localmodes-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -710,7 +760,7 @@ Flags controlling “local” terminal modes.
 
 ##### `impl BitOr for LocalModes`
 
-- <span id="localmodes-output"></span>`type Output = LocalModes`
+- <span id="localmodes-type-output"></span>`type Output = LocalModes`
 
 - <span id="localmodes-bitor"></span>`fn bitor(self, other: LocalModes) -> Self` — [`LocalModes`](#localmodes)
 
@@ -720,7 +770,7 @@ Flags controlling “local” terminal modes.
 
 ##### `impl BitXor for LocalModes`
 
-- <span id="localmodes-output"></span>`type Output = LocalModes`
+- <span id="localmodes-type-output"></span>`type Output = LocalModes`
 
 - <span id="localmodes-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -746,9 +796,9 @@ Flags controlling “local” terminal modes.
 
 ##### `impl Flags for LocalModes`
 
-- <span id="localmodes-flags"></span>`const FLAGS: &'static [Flag<LocalModes>]`
+- <span id="localmodes-const-flags"></span>`const FLAGS: &'static [Flag<LocalModes>]`
 
-- <span id="localmodes-bits"></span>`type Bits = u32`
+- <span id="localmodes-type-bits"></span>`type Bits = u32`
 
 - <span id="localmodes-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
 
@@ -764,9 +814,9 @@ Flags controlling “local” terminal modes.
 
 ##### `impl IntoIterator for LocalModes`
 
-- <span id="localmodes-item"></span>`type Item = LocalModes`
+- <span id="localmodes-type-item"></span>`type Item = LocalModes`
 
-- <span id="localmodes-intoiter"></span>`type IntoIter = Iter<LocalModes>`
+- <span id="localmodes-type-intoiter"></span>`type IntoIter = Iter<LocalModes>`
 
 - <span id="localmodes-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -776,7 +826,7 @@ Flags controlling “local” terminal modes.
 
 ##### `impl Not for LocalModes`
 
-- <span id="localmodes-output"></span>`type Output = LocalModes`
+- <span id="localmodes-type-output"></span>`type Output = LocalModes`
 
 - <span id="localmodes-not"></span>`fn not(self) -> Self`
 
@@ -790,15 +840,15 @@ Flags controlling “local” terminal modes.
 
 ##### `impl PublicFlags for LocalModes`
 
-- <span id="localmodes-primitive"></span>`type Primitive = u32`
+- <span id="localmodes-type-primitive"></span>`type Primitive = u32`
 
-- <span id="localmodes-internal"></span>`type Internal = InternalBitFlags`
+- <span id="localmodes-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for LocalModes`
 
 ##### `impl Sub for LocalModes`
 
-- <span id="localmodes-output"></span>`type Output = LocalModes`
+- <span id="localmodes-type-output"></span>`type Output = LocalModes`
 
 - <span id="localmodes-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -816,6 +866,8 @@ Flags controlling “local” terminal modes.
 struct SpecialCodes([linux_raw_sys::general::cc_t; 19]);
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1124`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1124)*
+
 An array indexed by [`SpecialCodeIndex`](#specialcodeindex) indicating the current values of
 various special control codes.
 
@@ -831,7 +883,7 @@ various special control codes.
 
 ##### `impl Index for SpecialCodes`
 
-- <span id="specialcodes-output"></span>`type Output = u8`
+- <span id="specialcodes-type-output"></span>`type Output = u8`
 
 - <span id="specialcodes-index"></span>`fn index(&self, index: SpecialCodeIndex) -> &<Self as >::Output` — [`SpecialCodeIndex`](#specialcodeindex)
 
@@ -844,6 +896,8 @@ various special control codes.
 ```rust
 struct SpecialCode(u8);
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1162`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1162)*
 
 A newtype for pretty printing.
 
@@ -859,43 +913,45 @@ A newtype for pretty printing.
 struct SpecialCodeIndex(usize);
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1183`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1183)*
+
 Indices for use with `Termios::special_codes`.
 
 #### Implementations
 
-- <span id="specialcodeindex-vintr"></span>`const VINTR: Self`
+- <span id="specialcodeindex-const-vintr"></span>`const VINTR: Self`
 
-- <span id="specialcodeindex-vquit"></span>`const VQUIT: Self`
+- <span id="specialcodeindex-const-vquit"></span>`const VQUIT: Self`
 
-- <span id="specialcodeindex-verase"></span>`const VERASE: Self`
+- <span id="specialcodeindex-const-verase"></span>`const VERASE: Self`
 
-- <span id="specialcodeindex-vkill"></span>`const VKILL: Self`
+- <span id="specialcodeindex-const-vkill"></span>`const VKILL: Self`
 
-- <span id="specialcodeindex-veof"></span>`const VEOF: Self`
+- <span id="specialcodeindex-const-veof"></span>`const VEOF: Self`
 
-- <span id="specialcodeindex-vtime"></span>`const VTIME: Self`
+- <span id="specialcodeindex-const-vtime"></span>`const VTIME: Self`
 
-- <span id="specialcodeindex-vmin"></span>`const VMIN: Self`
+- <span id="specialcodeindex-const-vmin"></span>`const VMIN: Self`
 
-- <span id="specialcodeindex-vswtc"></span>`const VSWTC: Self`
+- <span id="specialcodeindex-const-vswtc"></span>`const VSWTC: Self`
 
-- <span id="specialcodeindex-vstart"></span>`const VSTART: Self`
+- <span id="specialcodeindex-const-vstart"></span>`const VSTART: Self`
 
-- <span id="specialcodeindex-vstop"></span>`const VSTOP: Self`
+- <span id="specialcodeindex-const-vstop"></span>`const VSTOP: Self`
 
-- <span id="specialcodeindex-vsusp"></span>`const VSUSP: Self`
+- <span id="specialcodeindex-const-vsusp"></span>`const VSUSP: Self`
 
-- <span id="specialcodeindex-veol"></span>`const VEOL: Self`
+- <span id="specialcodeindex-const-veol"></span>`const VEOL: Self`
 
-- <span id="specialcodeindex-vreprint"></span>`const VREPRINT: Self`
+- <span id="specialcodeindex-const-vreprint"></span>`const VREPRINT: Self`
 
-- <span id="specialcodeindex-vdiscard"></span>`const VDISCARD: Self`
+- <span id="specialcodeindex-const-vdiscard"></span>`const VDISCARD: Self`
 
-- <span id="specialcodeindex-vwerase"></span>`const VWERASE: Self`
+- <span id="specialcodeindex-const-vwerase"></span>`const VWERASE: Self`
 
-- <span id="specialcodeindex-vlnext"></span>`const VLNEXT: Self`
+- <span id="specialcodeindex-const-vlnext"></span>`const VLNEXT: Self`
 
-- <span id="specialcodeindex-veol2"></span>`const VEOL2: Self`
+- <span id="specialcodeindex-const-veol2"></span>`const VEOL2: Self`
 
 #### Trait Implementations
 
@@ -915,6 +971,16 @@ Indices for use with `Termios::special_codes`.
 
 - <span id="specialcodeindex-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl Index for SpecialCodes`
+
+- <span id="specialcodes-type-output"></span>`type Output = u8`
+
+- <span id="specialcodes-index"></span>`fn index(&self, index: SpecialCodeIndex) -> &<Self as >::Output` — [`SpecialCodeIndex`](#specialcodeindex)
+
+##### `impl IndexMut for SpecialCodes`
+
+- <span id="specialcodes-index-mut"></span>`fn index_mut(&mut self, index: SpecialCodeIndex) -> &mut <Self as >::Output` — [`SpecialCodeIndex`](#specialcodeindex)
+
 ##### `impl PartialEq for SpecialCodeIndex`
 
 - <span id="specialcodeindex-eq"></span>`fn eq(&self, other: &SpecialCodeIndex) -> bool` — [`SpecialCodeIndex`](#specialcodeindex)
@@ -932,7 +998,9 @@ struct Winsize {
 }
 ```
 
-`struct winsize` for use with [`tcgetwinsize`](../backend/termios/syscalls/index.md).
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1436-1444`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1436-L1444)*
+
+`struct winsize` for use with [`tcgetwinsize`](#tcgetwinsize).
 
 
 #### Fields
@@ -981,7 +1049,9 @@ enum OptionalActions {
 }
 ```
 
-`TCSA*` values for use with [`tcsetattr`](#tcsetattr).
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1372-1385`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1372-L1385)*
+
+`TCSA*` values for use with [`tcsetattr`](../backend/termios/syscalls/index.md).
 
 
 #### Variants
@@ -1032,6 +1102,8 @@ enum QueueSelector {
     IOFlush,
 }
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1392-1404`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1392-L1404)*
 
 `TC*` values for use with [`tcflush`](../backend/termios/syscalls/index.md).
 
@@ -1084,6 +1156,8 @@ enum Action {
     IOn,
 }
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/types.rs:1411-1427`](../../../.source_1765210505/rustix-1.1.2/src/termios/types.rs#L1411-L1427)*
 
 `TC*` values for use with [`tcflow`](../backend/termios/syscalls/index.md).
 
@@ -1138,6 +1212,8 @@ enum Action {
 fn ioctl_tiocexcl<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/ioctl.rs:32-38`](../../../.source_1765210505/rustix-1.1.2/src/termios/ioctl.rs#L32-L38)*
+
 `ioctl(fd, TIOCEXCL)`—Enables exclusive mode on a terminal.
 
 In exclusive mode, subsequent unprivileged `open` calls on the terminal
@@ -1159,6 +1235,8 @@ device fail with `io::Errno::BUSY`.
 fn ioctl_tiocnxcl<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/ioctl.rs:60-66`](../../../.source_1765210505/rustix-1.1.2/src/termios/ioctl.rs#L60-L66)*
+
 `ioctl(fd, TIOCNXCL)`—Disables exclusive mode on a terminal.
 
 # References
@@ -1176,6 +1254,8 @@ fn ioctl_tiocnxcl<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```rust
 fn tcgetattr<Fd: AsFd>(fd: Fd) -> io::Result<crate::termios::Termios>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:30-32`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L30-L32)*
 
 `tcgetattr(fd)`—Get terminal attributes.
 
@@ -1200,6 +1280,8 @@ initializes the fields that `TCGETS` doesn't initialize, and fails with
 fn tcgetwinsize<Fd: AsFd>(fd: Fd) -> io::Result<crate::termios::Winsize>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:50-52`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L50-L52)*
+
 `tcgetwinsize(fd)`—Get the current terminal window size.
 
 Also known as the `TIOCGWINSZ` operation with `ioctl`.
@@ -1213,6 +1295,8 @@ Also known as the `TIOCGWINSZ` operation with `ioctl`.
 ```rust
 fn tcgetpgrp<Fd: AsFd>(fd: Fd) -> io::Result<Pid>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:72-74`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L72-L74)*
 
 `tcgetpgrp(fd)`—Get the terminal foreground process group.
 
@@ -1235,6 +1319,8 @@ pid is 0.
 fn tcsetpgrp<Fd: AsFd>(fd: Fd, pid: Pid) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:89-91`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L89-L91)*
+
 `tcsetpgrp(fd, pid)`—Set the terminal foreground process group.
 
 Also known as the `TIOCSPGRP` operation with `ioctl`.
@@ -1250,6 +1336,8 @@ Also known as the `TIOCSPGRP` operation with `ioctl`.
 ```rust
 fn tcsetattr<Fd: AsFd>(fd: Fd, optional_actions: crate::termios::OptionalActions, termios: &crate::termios::Termios) -> io::Result<()>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:114-120`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L114-L120)*
 
 `tcsetattr(fd)`—Set terminal attributes.
 
@@ -1272,6 +1360,8 @@ with `io::Errno::RANGE` if the input or output speeds cannot be supported.
 ```rust
 fn tcsendbreak<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:142-144`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L142-L144)*
 
 `tcsendbreak(fd, 0)`—Transmit zero-valued bits.
 
@@ -1297,6 +1387,8 @@ parameter of 0.
 fn tcdrain<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:158-160`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L158-L160)*
+
 `tcdrain(fd, duration)`—Wait until all pending output has been written.
 
 # References
@@ -1312,6 +1404,8 @@ fn tcdrain<Fd: AsFd>(fd: Fd) -> io::Result<()>
 ```rust
 fn tcflush<Fd: AsFd>(fd: Fd, queue_selector: crate::termios::QueueSelector) -> io::Result<()>
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:176-178`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L176-L178)*
 
 `tcflush(fd, queue_selector)`—Wait until all pending output has been
 written.
@@ -1330,6 +1424,8 @@ written.
 fn tcflow<Fd: AsFd>(fd: Fd, action: crate::termios::Action) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:193-195`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L193-L195)*
+
 `tcflow(fd, action)`—Suspend or resume transmission or reception.
 
 # References
@@ -1346,6 +1442,8 @@ fn tcflow<Fd: AsFd>(fd: Fd, action: crate::termios::Action) -> io::Result<()>
 fn tcgetsid<Fd: AsFd>(fd: Fd) -> io::Result<Pid>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:208-210`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L208-L210)*
+
 `tcgetsid(fd)`—Return the session ID of the current session with `fd` as
 its controlling terminal.
 
@@ -1361,6 +1459,8 @@ its controlling terminal.
 fn tcsetwinsize<Fd: AsFd>(fd: Fd, winsize: crate::termios::Winsize) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/termios/tc.rs:223-225`](../../../.source_1765210505/rustix-1.1.2/src/termios/tc.rs#L223-L225)*
+
 `tcsetwinsize(fd)`—Set the current terminal window size.
 
 Also known as the `TIOCSWINSZ` operation with `ioctl`.
@@ -1374,6 +1474,8 @@ Also known as the `TIOCSWINSZ` operation with `ioctl`.
 ```rust
 fn isatty<Fd: AsFd>(fd: Fd) -> bool
 ```
+
+*Defined in [`rustix-1.1.2/src/termios/tty.rs:22-24`](../../../.source_1765210505/rustix-1.1.2/src/termios/tty.rs#L22-L24)*
 
 `isatty(fd)`—Tests whether a file descriptor refers to a terminal.
 

@@ -21,10 +21,10 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`HeapVisitor`](#heapvisitor) | struct | HeapVisitor visits every item in an `Ast` recursively using constant stack |
-| [`Frame`](#frame) | enum | Represents a single stack frame while performing structural induction over |
-| [`ClassFrame`](#classframe) | enum | Represents a single stack frame while performing structural induction over |
-| [`ClassInduct`](#classinduct) | enum | A representation of the inductive step when performing structural induction |
+| [`HeapVisitor`](#heapvisitor) | struct | HeapVisitor visits every item in an `Ast` recursively using constant stack size and a heap size proportional to the size of the `Ast`. |
+| [`Frame`](#frame) | enum | Represents a single stack frame while performing structural induction over an `Ast`. |
+| [`ClassFrame`](#classframe) | enum | Represents a single stack frame while performing structural induction over a character class. |
+| [`ClassInduct`](#classinduct) | enum | A representation of the inductive step when performing structural induction over a character class. |
 | [`Visitor`](#visitor) | trait | A trait for visiting an abstract syntax tree (AST) in depth first order. |
 | [`visit`](#visit) | fn | Executes an implementation of `Visitor` in constant stack space. |
 
@@ -38,6 +38,8 @@ struct HeapVisitor<'a> {
     stack_class: alloc::vec::Vec<(ClassInduct<'a>, ClassFrame<'a>)>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:124-132`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L124-L132)*
 
 HeapVisitor visits every item in an `Ast` recursively using constant stack
 size and a heap size proportional to the size of the `Ast`.
@@ -59,17 +61,17 @@ size and a heap size proportional to the size of the `Ast`.
 
 - <span id="heapvisitor-new"></span>`fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
 
-- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, ast: &'a Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Ast`](../index.md), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, ast: &'a Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Ast`](../index.md), [`Visitor`](#visitor)
 
-- <span id="heapvisitor-induct"></span>`fn induct<V: Visitor>(&mut self, ast: &'a Ast, visitor: &mut V) -> Result<Option<Frame<'a>>, <V as >::Err>` — [`Ast`](../index.md), [`Frame`](#frame), [`Visitor`](../index.md)
+- <span id="heapvisitor-induct"></span>`fn induct<V: Visitor>(&mut self, ast: &'a Ast, visitor: &mut V) -> Result<Option<Frame<'a>>, <V as >::Err>` — [`Ast`](../index.md), [`Frame`](#frame), [`Visitor`](#visitor)
 
 - <span id="heapvisitor-pop"></span>`fn pop(&self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
 
-- <span id="heapvisitor-visit-class"></span>`fn visit_class<V: Visitor>(&mut self, ast: &'a ast::ClassBracketed, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassBracketed`](../index.md), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit-class"></span>`fn visit_class<V: Visitor>(&mut self, ast: &'a ast::ClassBracketed, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassBracketed`](../index.md), [`Visitor`](#visitor)
 
-- <span id="heapvisitor-visit-class-pre"></span>`fn visit_class_pre<V: Visitor>(&self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit-class-pre"></span>`fn visit_class_pre<V: Visitor>(&self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](#visitor)
 
-- <span id="heapvisitor-visit-class-post"></span>`fn visit_class_post<V: Visitor>(&self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit-class-post"></span>`fn visit_class_post<V: Visitor>(&self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](#visitor)
 
 - <span id="heapvisitor-induct-class"></span>`fn induct_class(&self, ast: &ClassInduct<'a>) -> Option<ClassFrame<'a>>` — [`ClassInduct`](#classinduct), [`ClassFrame`](#classframe)
 
@@ -93,6 +95,8 @@ enum Frame<'a> {
     },
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:136-159`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L136-L159)*
 
 Represents a single stack frame while performing structural induction over
 an `Ast`.
@@ -146,6 +150,8 @@ enum ClassFrame<'a> {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:163-184`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L163-L184)*
+
 Represents a single stack frame while performing structural induction over
 a character class.
 
@@ -176,7 +182,7 @@ a character class.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ClassFrame<'a>`
+##### `impl Debug for ClassFrame<'a>`
 
 - <span id="classframe-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -188,6 +194,8 @@ enum ClassInduct<'a> {
     BinaryOp(&'a ast::ClassSetBinaryOp),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:195-198`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L195-L198)*
 
 A representation of the inductive step when performing structural induction
 over a character class.
@@ -207,7 +215,7 @@ syntax, which is not possible.)
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ClassInduct<'a>`
+##### `impl Debug for ClassInduct<'a>`
 
 - <span id="classinduct-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -219,6 +227,8 @@ syntax, which is not possible.)
 trait Visitor { ... }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:20-102`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L20-L102)*
+
 A trait for visiting an abstract syntax tree (AST) in depth first order.
 
 The principle aim of this trait is to enable callers to perform case
@@ -228,7 +238,7 @@ usage, which can be important since the size of an abstract syntax tree
 may be proportional to end user input.
 
 Typical usage of this trait involves providing an implementation and then
-running it using the [`visit`](../index.md) function.
+running it using the [`visit`](#visit) function.
 
 Note that the abstract syntax tree for a regular expression is quite
 complex. Unless you specifically need it, you might be able to use the much
@@ -303,10 +313,12 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 fn visit<V: Visitor>(ast: &crate::ast::Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/ast/visitor.rs:118-120`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/visitor.rs#L118-L120)*
+
 Executes an implementation of `Visitor` in constant stack space.
 
 This function will visit every node in the given `Ast` while calling the
-appropriate methods provided by the [`Visitor`](../index.md) trait.
+appropriate methods provided by the [`Visitor`](#visitor) trait.
 
 The primary use case for this method is when one wants to perform case
 analysis over an `Ast` without using a stack size proportional to the depth

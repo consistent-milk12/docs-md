@@ -41,7 +41,7 @@
 | [`ReplacerRef`](#replacerref) | struct | A by-reference adaptor for a [`Replacer`]. |
 | [`NoExpand`](#noexpand) | struct | A helper type for forcing literal string replacement. |
 | [`Replacer`](#replacer) | trait | A trait for types that can be used to replace matches in a haystack. |
-| [`no_expansion`](#no_expansion) | fn | Quickly checks the given replacement string for whether interpolation |
+| [`no_expansion`](#no_expansion) | fn | Quickly checks the given replacement string for whether interpolation should be done on it. |
 
 ## Structs
 
@@ -53,6 +53,8 @@ struct Regex {
     pattern: alloc::sync::Arc<str>,
 }
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:101-104`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L101-L104)*
 
 A compiled regular expression for searching Unicode haystacks.
 
@@ -150,15 +152,27 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 #### Implementations
 
-- <span id="regex-as-str"></span>`fn as_str(&self) -> &str`
+- <span id="regex-new"></span>`fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../error/index.md)
 
-- <span id="regex-capture-names"></span>`fn capture_names(&self) -> CaptureNames<'_>` — [`CaptureNames`](../../index.md)
+- <span id="regex-is-match"></span>`fn is_match(&self, haystack: &str) -> bool`
 
-- <span id="regex-captures-len"></span>`fn captures_len(&self) -> usize`
+- <span id="regex-find"></span>`fn find<'h>(&self, haystack: &'h str) -> Option<Match<'h>>` — [`Match`](../../index.md)
 
-- <span id="regex-static-captures-len"></span>`fn static_captures_len(&self) -> Option<usize>`
+- <span id="regex-find-iter"></span>`fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> Matches<'r, 'h>` — [`Matches`](../../index.md)
 
-- <span id="regex-capture-locations"></span>`fn capture_locations(&self) -> CaptureLocations` — [`CaptureLocations`](../../index.md)
+- <span id="regex-captures"></span>`fn captures<'h>(&self, haystack: &'h str) -> Option<Captures<'h>>` — [`Captures`](../../index.md)
+
+- <span id="regex-captures-iter"></span>`fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](../../index.md)
+
+- <span id="regex-split"></span>`fn split<'r, 'h>(self: &'r Self, haystack: &'h str) -> Split<'r, 'h>` — [`Split`](../../index.md)
+
+- <span id="regex-splitn"></span>`fn splitn<'r, 'h>(self: &'r Self, haystack: &'h str, limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](../../index.md)
+
+- <span id="regex-replace"></span>`fn replace<'h, R: Replacer>(&self, haystack: &'h str, rep: R) -> Cow<'h, str>`
+
+- <span id="regex-replace-all"></span>`fn replace_all<'h, R: Replacer>(&self, haystack: &'h str, rep: R) -> Cow<'h, str>`
+
+- <span id="regex-replacen"></span>`fn replacen<'h, R: Replacer>(&self, haystack: &'h str, limit: usize, rep: R) -> Cow<'h, str>`
 
 #### Trait Implementations
 
@@ -176,11 +190,11 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 ##### `impl FromStr for Regex`
 
-- <span id="regex-err"></span>`type Err = Error`
+- <span id="regex-type-err"></span>`type Err = Error`
 
-- <span id="regex-from-str"></span>`fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../index.md)
+- <span id="regex-from-str"></span>`fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../error/index.md)
 
-##### `impl<T> ToString for Regex`
+##### `impl ToString for Regex`
 
 - <span id="regex-to-string"></span>`fn to_string(&self) -> String`
 
@@ -193,6 +207,8 @@ struct Match<'h> {
     end: usize,
 }
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:1490-1494`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L1490-L1494)*
 
 Represents a single match of a regex in a haystack.
 
@@ -263,23 +279,23 @@ assert_eq!("αβγδ", m.as_str());
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Match<'h>`
+##### `impl Clone for Match<'h>`
 
 - <span id="match-clone"></span>`fn clone(&self) -> Match<'h>` — [`Match`](../../index.md)
 
-##### `impl<'h> Copy for Match<'h>`
+##### `impl Copy for Match<'h>`
 
-##### `impl<'h> Debug for Match<'h>`
+##### `impl Debug for Match<'h>`
 
 - <span id="match-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'h> Eq for Match<'h>`
+##### `impl Eq for Match<'h>`
 
-##### `impl<'h> PartialEq for Match<'h>`
+##### `impl PartialEq for Match<'h>`
 
 - <span id="match-eq"></span>`fn eq(&self, other: &Match<'h>) -> bool` — [`Match`](../../index.md)
 
-##### `impl<'h> StructuralPartialEq for Match<'h>`
+##### `impl StructuralPartialEq for Match<'h>`
 
 ### `Captures<'h>`
 
@@ -290,6 +306,8 @@ struct Captures<'h> {
     static_captures_len: Option<usize>,
 }
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:1642-1646`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L1642-L1646)*
 
 Represents the capture groups for a single match.
 
@@ -361,13 +379,13 @@ assert_eq!("y", &caps["last"]);
 
 #### Trait Implementations
 
-##### `impl<'h> Debug for Captures<'h>`
+##### `impl Debug for Captures<'h>`
 
 - <span id="captures-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'h> Index for Captures<'h>`
+##### `impl Index for Captures<'h>`
 
-- <span id="captures-output"></span>`type Output = str`
+- <span id="captures-type-output"></span>`type Output = str`
 
 - <span id="captures-index"></span>`fn index<'a>(self: &'a Self, i: usize) -> &'a str`
 
@@ -376,6 +394,8 @@ assert_eq!("y", &caps["last"]);
 ```rust
 struct CaptureLocations(captures::Captures);
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:2093`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2093)*
 
 A low level representation of the byte offsets of each capture group.
 
@@ -441,6 +461,8 @@ struct Matches<'r, 'h> {
 }
 ```
 
+*Defined in [`regex-1.12.2/src/regex/string.rs:2193-2196`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2193-L2196)*
+
 An iterator over all non-overlapping matches in a haystack.
 
 This iterator yields [`Match`](../../index.md) values. The iterator stops when no more
@@ -459,23 +481,23 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 #### Trait Implementations
 
-##### `impl<'r, 'h> Debug for Matches<'r, 'h>`
+##### `impl Debug for Matches<'r, 'h>`
 
 - <span id="matches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'r, 'h> FusedIterator for Matches<'r, 'h>`
+##### `impl FusedIterator for Matches<'r, 'h>`
 
-##### `impl<I> IntoIterator for Matches<'r, 'h>`
+##### `impl IntoIterator for Matches<'r, 'h>`
 
-- <span id="matches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="matches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="matches-intoiter"></span>`type IntoIter = I`
+- <span id="matches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="matches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'h> Iterator for Matches<'r, 'h>`
+##### `impl Iterator for Matches<'r, 'h>`
 
-- <span id="matches-item"></span>`type Item = Match<'h>`
+- <span id="matches-type-item"></span>`type Item = Match<'h>`
 
 - <span id="matches-next"></span>`fn next(&mut self) -> Option<Match<'h>>` — [`Match`](../../index.md)
 
@@ -489,6 +511,8 @@ struct CaptureMatches<'r, 'h> {
     it: meta::CapturesMatches<'r, 'h>,
 }
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:2237-2240`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2237-L2240)*
 
 An iterator over all non-overlapping capture matches in a haystack.
 
@@ -508,23 +532,23 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 #### Trait Implementations
 
-##### `impl<'r, 'h> Debug for CaptureMatches<'r, 'h>`
+##### `impl Debug for CaptureMatches<'r, 'h>`
 
 - <span id="capturematches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'r, 'h> FusedIterator for CaptureMatches<'r, 'h>`
+##### `impl FusedIterator for CaptureMatches<'r, 'h>`
 
-##### `impl<I> IntoIterator for CaptureMatches<'r, 'h>`
+##### `impl IntoIterator for CaptureMatches<'r, 'h>`
 
-- <span id="capturematches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturematches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturematches-intoiter"></span>`type IntoIter = I`
+- <span id="capturematches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturematches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'h> Iterator for CaptureMatches<'r, 'h>`
+##### `impl Iterator for CaptureMatches<'r, 'h>`
 
-- <span id="capturematches-item"></span>`type Item = Captures<'h>`
+- <span id="capturematches-type-item"></span>`type Item = Captures<'h>`
 
 - <span id="capturematches-next"></span>`fn next(&mut self) -> Option<Captures<'h>>` — [`Captures`](../../index.md)
 
@@ -538,6 +562,8 @@ struct Split<'r, 'h> {
     it: meta::Split<'r, 'h>,
 }
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:2281-2284`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2281-L2284)*
 
 An iterator over all substrings delimited by a regex match.
 
@@ -554,23 +580,23 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 #### Trait Implementations
 
-##### `impl<'r, 'h> Debug for Split<'r, 'h>`
+##### `impl Debug for Split<'r, 'h>`
 
 - <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'r, 'h> FusedIterator for Split<'r, 'h>`
+##### `impl FusedIterator for Split<'r, 'h>`
 
-##### `impl<I> IntoIterator for Split<'r, 'h>`
+##### `impl IntoIterator for Split<'r, 'h>`
 
-- <span id="split-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="split-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="split-intoiter"></span>`type IntoIter = I`
+- <span id="split-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="split-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'h> Iterator for Split<'r, 'h>`
+##### `impl Iterator for Split<'r, 'h>`
 
-- <span id="split-item"></span>`type Item = &'h str`
+- <span id="split-type-item"></span>`type Item = &'h str`
 
 - <span id="split-next"></span>`fn next(&mut self) -> Option<&'h str>`
 
@@ -582,6 +608,8 @@ struct SplitN<'r, 'h> {
     it: meta::SplitN<'r, 'h>,
 }
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:2316-2319`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2316-L2319)*
 
 An iterator over at most `N` substrings delimited by a regex match.
 
@@ -604,23 +632,23 @@ by the `limit` parameter to `Regex::splitn`.
 
 #### Trait Implementations
 
-##### `impl<'r, 'h> Debug for SplitN<'r, 'h>`
+##### `impl Debug for SplitN<'r, 'h>`
 
 - <span id="splitn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'r, 'h> FusedIterator for SplitN<'r, 'h>`
+##### `impl FusedIterator for SplitN<'r, 'h>`
 
-##### `impl<I> IntoIterator for SplitN<'r, 'h>`
+##### `impl IntoIterator for SplitN<'r, 'h>`
 
-- <span id="splitn-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splitn-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="splitn-intoiter"></span>`type IntoIter = I`
+- <span id="splitn-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="splitn-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'h> Iterator for SplitN<'r, 'h>`
+##### `impl Iterator for SplitN<'r, 'h>`
 
-- <span id="splitn-item"></span>`type Item = &'h str`
+- <span id="splitn-type-item"></span>`type Item = &'h str`
 
 - <span id="splitn-next"></span>`fn next(&mut self) -> Option<&'h str>`
 
@@ -631,6 +659,8 @@ by the `limit` parameter to `Regex::splitn`.
 ```rust
 struct CaptureNames<'r>(captures::GroupInfoPatternNames<'r>);
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:2348`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2348)*
 
 An iterator over the names of all capture groups in a regex.
 
@@ -645,29 +675,29 @@ This iterator is created by `Regex::capture_names`.
 
 #### Trait Implementations
 
-##### `impl<'r> Clone for CaptureNames<'r>`
+##### `impl Clone for CaptureNames<'r>`
 
 - <span id="capturenames-clone"></span>`fn clone(&self) -> CaptureNames<'r>` — [`CaptureNames`](../../index.md)
 
-##### `impl<'r> Debug for CaptureNames<'r>`
+##### `impl Debug for CaptureNames<'r>`
 
 - <span id="capturenames-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'r> ExactSizeIterator for CaptureNames<'r>`
+##### `impl ExactSizeIterator for CaptureNames<'r>`
 
-##### `impl<'r> FusedIterator for CaptureNames<'r>`
+##### `impl FusedIterator for CaptureNames<'r>`
 
-##### `impl<I> IntoIterator for CaptureNames<'r>`
+##### `impl IntoIterator for CaptureNames<'r>`
 
-- <span id="capturenames-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturenames-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturenames-intoiter"></span>`type IntoIter = I`
+- <span id="capturenames-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturenames-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r> Iterator for CaptureNames<'r>`
+##### `impl Iterator for CaptureNames<'r>`
 
-- <span id="capturenames-item"></span>`type Item = Option<&'r str>`
+- <span id="capturenames-type-item"></span>`type Item = Option<&'r str>`
 
 - <span id="capturenames-next"></span>`fn next(&mut self) -> Option<Option<&'r str>>`
 
@@ -683,6 +713,8 @@ struct SubCaptureMatches<'c, 'h> {
     it: captures::CapturesPatternIter<'c>,
 }
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:2390-2393`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2390-L2393)*
 
 An iterator over all group matches in a [`Captures`](../../index.md) value.
 
@@ -703,29 +735,29 @@ matched haystack.
 
 #### Trait Implementations
 
-##### `impl<'c, 'h> Clone for SubCaptureMatches<'c, 'h>`
+##### `impl Clone for SubCaptureMatches<'c, 'h>`
 
 - <span id="subcapturematches-clone"></span>`fn clone(&self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](../../index.md)
 
-##### `impl<'c, 'h> Debug for SubCaptureMatches<'c, 'h>`
+##### `impl Debug for SubCaptureMatches<'c, 'h>`
 
 - <span id="subcapturematches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'c, 'h> ExactSizeIterator for SubCaptureMatches<'c, 'h>`
+##### `impl ExactSizeIterator for SubCaptureMatches<'c, 'h>`
 
-##### `impl<'c, 'h> FusedIterator for SubCaptureMatches<'c, 'h>`
+##### `impl FusedIterator for SubCaptureMatches<'c, 'h>`
 
-##### `impl<I> IntoIterator for SubCaptureMatches<'c, 'h>`
+##### `impl IntoIterator for SubCaptureMatches<'c, 'h>`
 
-- <span id="subcapturematches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="subcapturematches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="subcapturematches-intoiter"></span>`type IntoIter = I`
+- <span id="subcapturematches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="subcapturematches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'c, 'h> Iterator for SubCaptureMatches<'c, 'h>`
+##### `impl Iterator for SubCaptureMatches<'c, 'h>`
 
-- <span id="subcapturematches-item"></span>`type Item = Option<Match<'h>>`
+- <span id="subcapturematches-type-item"></span>`type Item = Option<Match<'h>>`
 
 - <span id="subcapturematches-next"></span>`fn next(&mut self) -> Option<Option<Match<'h>>>` — [`Match`](../../index.md)
 
@@ -738,6 +770,8 @@ matched haystack.
 ```rust
 struct ReplacerRef<'a, R: ?Sized>(&'a mut R);
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:2567`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2567)*
 
 A by-reference adaptor for a [`Replacer`](../../index.md).
 
@@ -764,6 +798,8 @@ This type is created by `Replacer::by_ref`.
 struct NoExpand<'s>(&'s str);
 ```
 
+*Defined in [`regex-1.12.2/src/regex/string.rs:2599`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2599)*
+
 A helper type for forcing literal string replacement.
 
 It can be used with routines like `Regex::replace` and
@@ -786,15 +822,15 @@ assert_eq!(result, "$2 $last");
 
 #### Trait Implementations
 
-##### `impl<'s> Clone for NoExpand<'s>`
+##### `impl Clone for NoExpand<'s>`
 
 - <span id="noexpand-clone"></span>`fn clone(&self) -> NoExpand<'s>` — [`NoExpand`](../../index.md)
 
-##### `impl<'s> Debug for NoExpand<'s>`
+##### `impl Debug for NoExpand<'s>`
 
 - <span id="noexpand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'s> Replacer for NoExpand<'s>`
+##### `impl Replacer for NoExpand<'s>`
 
 - <span id="noexpand-replace-append"></span>`fn replace_append(&mut self, _: &Captures<'_>, dst: &mut String)` — [`Captures`](../../index.md)
 
@@ -807,6 +843,8 @@ assert_eq!(result, "$2 $last");
 ```rust
 trait Replacer { ... }
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:2452-2498`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2452-L2498)*
 
 A trait for types that can be used to replace matches in a haystack.
 
@@ -875,6 +913,8 @@ assert_eq!(result, "Bruce Springsteen");
 ```rust
 fn no_expansion<T: AsRef<str>>(replacement: &T) -> Option<alloc::borrow::Cow<'_, str>>
 ```
+
+*Defined in [`regex-1.12.2/src/regex/string.rs:2619-2625`](../../../../.source_1765210505/regex-1.12.2/src/regex/string.rs#L2619-L2625)*
 
 Quickly checks the given replacement string for whether interpolation
 should be done on it. It returns `None` if a `$` was found anywhere in the

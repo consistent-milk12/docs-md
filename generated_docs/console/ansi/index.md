@@ -40,29 +40,31 @@ struct Matches<'a> {
 }
 ```
 
+*Defined in [`console-0.16.1/src/ansi.rs:109-112`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L109-L112)*
+
 #### Implementations
 
 - <span id="matches-new"></span>`fn new(s: &'a str) -> Self`
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Matches<'a>`
+##### `impl Debug for Matches<'a>`
 
 - <span id="matches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FusedIterator for Matches<'_>`
 
-##### `impl<I> IntoIterator for Matches<'a>`
+##### `impl IntoIterator for Matches<'a>`
 
-- <span id="matches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="matches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="matches-intoiter"></span>`type IntoIter = I`
+- <span id="matches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="matches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Matches<'a>`
+##### `impl Iterator for Matches<'a>`
 
-- <span id="matches-item"></span>`type Item = Match<'a>`
+- <span id="matches-type-item"></span>`type Item = Match<'a>`
 
 - <span id="matches-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -76,13 +78,15 @@ struct Match<'a> {
 }
 ```
 
+*Defined in [`console-0.16.1/src/ansi.rs:122-126`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L122-L126)*
+
 #### Implementations
 
 - <span id="match-as-str"></span>`fn as_str(&self) -> &'a str`
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Match<'a>`
+##### `impl Debug for Match<'a>`
 
 - <span id="match-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -94,7 +98,9 @@ struct WithoutAnsi<'a> {
 }
 ```
 
-A wrapper struct that implements [`core::fmt::Display`](../../miette_derive/index.md), only displaying non-ansi parts.
+*Defined in [`console-0.16.1/src/ansi.rs:206-208`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L206-L208)*
+
+A wrapper struct that implements [`core::fmt::Display`](../../miette_derive/fmt/index.md), only displaying non-ansi parts.
 
 #### Implementations
 
@@ -106,7 +112,7 @@ A wrapper struct that implements [`core::fmt::Display`](../../miette_derive/inde
 
 - <span id="withoutansi-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for WithoutAnsi<'a>`
+##### `impl ToString for WithoutAnsi<'a>`
 
 - <span id="withoutansi-to-string"></span>`fn to_string(&self) -> String`
 
@@ -122,6 +128,8 @@ struct AnsiCodeIterator<'a> {
 }
 ```
 
+*Defined in [`console-0.16.1/src/ansi.rs:233-239`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L233-L239)*
+
 An iterator over ansi codes in a string.
 
 This type can be used to scan over ansi codes in a string.
@@ -131,7 +139,7 @@ ansi codes or string values.
 
 #### Implementations
 
-- <span id="ansicodeiterator-new"></span>`fn new(s: &'a str) -> AnsiCodeIterator<'a>` — [`AnsiCodeIterator`](../index.md)
+- <span id="ansicodeiterator-new"></span>`fn new(s: &'a str) -> AnsiCodeIterator<'a>` — [`AnsiCodeIterator`](#ansicodeiterator)
 
 - <span id="ansicodeiterator-current-slice"></span>`fn current_slice(&self) -> &str`
 
@@ -141,17 +149,17 @@ ansi codes or string values.
 
 ##### `impl FusedIterator for AnsiCodeIterator<'_>`
 
-##### `impl<I> IntoIterator for AnsiCodeIterator<'a>`
+##### `impl IntoIterator for AnsiCodeIterator<'a>`
 
-- <span id="ansicodeiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="ansicodeiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="ansicodeiterator-intoiter"></span>`type IntoIter = I`
+- <span id="ansicodeiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="ansicodeiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for AnsiCodeIterator<'a>`
+##### `impl Iterator for AnsiCodeIterator<'a>`
 
-- <span id="ansicodeiterator-item"></span>`type Item = (&'a str, bool)`
+- <span id="ansicodeiterator-type-item"></span>`type Item = (&'a str, bool)`
 
 - <span id="ansicodeiterator-next"></span>`fn next(&mut self) -> Option<(&'a str, bool)>`
 
@@ -176,6 +184,8 @@ enum State {
     Trap,
 }
 ```
+
+*Defined in [`console-0.16.1/src/ansi.rs:10-24`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L10-L24)*
 
 #### Implementations
 
@@ -209,11 +219,15 @@ enum State {
 fn find_ansi_code_exclusive(it: &mut core::iter::Peekable<core::str::CharIndices<'_>>) -> Option<(usize, usize)>
 ```
 
+*Defined in [`console-0.16.1/src/ansi.rs:149-188`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L149-L188)*
+
 ### `strip_ansi_codes`
 
 ```rust
 fn strip_ansi_codes(s: &str) -> alloc::borrow::Cow<'_, str>
 ```
+
+*Defined in [`console-0.16.1/src/ansi.rs:192-203`](../../../.source_1765210505/console-0.16.1/src/ansi.rs#L192-L203)*
 
 Helper function to strip ansi codes.
 

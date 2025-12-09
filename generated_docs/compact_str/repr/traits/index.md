@@ -20,6 +20,8 @@
 trait IntoRepr { ... }
 ```
 
+*Defined in [`compact_str-0.9.0/src/repr/traits.rs:10-12`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/traits.rs#L10-L12)*
+
 Defines how to _efficiently_ create a [`Repr`](../index.md) from `self`
 
 #### Required Methods
@@ -60,14 +62,16 @@ Defines how to _efficiently_ create a [`Repr`](../index.md) from `self`
 ## Constants
 
 ### `FALSE`
-
 ```rust
 const FALSE: super::Repr;
 ```
 
-### `TRUE`
+*Defined in [`compact_str-0.9.0/src/repr/traits.rs:6`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/traits.rs#L6)*
 
+### `TRUE`
 ```rust
 const TRUE: super::Repr;
 ```
+
+*Defined in [`compact_str-0.9.0/src/repr/traits.rs:7`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/traits.rs#L7)*
 

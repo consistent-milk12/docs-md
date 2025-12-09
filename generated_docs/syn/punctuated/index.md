@@ -53,7 +53,7 @@ a_function_call(arg1, arg2, arg3);
 | Item | Kind | Description |
 |------|------|-------------|
 | [`printing`](#printing) | mod |  |
-| [`Punctuated`](#punctuated) | struct | **A punctuated sequence of syntax tree nodes of type `T` separated by |
+| [`Punctuated`](#punctuated) | struct | **A punctuated sequence of syntax tree nodes of type `T` separated by punctuation of type `P`.** |
 | [`Pairs`](#pairs) | struct | An iterator over borrowed pairs of type `Pair<&T, &P>`. |
 | [`PairsMut`](#pairsmut) | struct | An iterator over mutably borrowed pairs of type `Pair<&mut T, &mut P>`. |
 | [`IntoPairs`](#intopairs) | struct | An iterator over owned pairs of type `Pair<T, P>`. |
@@ -62,7 +62,7 @@ a_function_call(arg1, arg2, arg3);
 | [`PrivateIter`](#privateiter) | struct |  |
 | [`IterMut`](#itermut) | struct | An iterator over mutably borrowed values of type `&mut T`. |
 | [`PrivateIterMut`](#privateitermut) | struct |  |
-| [`Pair`](#pair) | enum | A single syntax tree node of type `T` followed by its trailing punctuation |
+| [`Pair`](#pair) | enum | A single syntax tree node of type `T` followed by its trailing punctuation of type `P` if any. |
 | [`IterTrait`](#itertrait) | trait |  |
 | [`IterMutTrait`](#itermuttrait) | trait |  |
 | [`do_extend`](#do_extend) | fn |  |
@@ -83,6 +83,8 @@ struct Punctuated<T, P> {
     last: Option<Box<T>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/punctuated.rs:49-52`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L49-L52)*
 
 **A punctuated sequence of syntax tree nodes of type `T` separated by
 punctuation of type `P`.**
@@ -138,13 +140,13 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - <span id="punctuated-clear"></span>`fn clear(&mut self)`
 
-- <span id="punctuated-parse-terminated"></span>`fn parse_terminated(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="punctuated-parse-terminated"></span>`fn parse_terminated(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-- <span id="punctuated-parse-terminated-with"></span>`fn parse_terminated_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="punctuated-parse-terminated-with"></span>`fn parse_terminated_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-- <span id="punctuated-parse-separated-nonempty"></span>`fn parse_separated_nonempty(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="punctuated-parse-separated-nonempty"></span>`fn parse_separated_nonempty(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-- <span id="punctuated-parse-separated-nonempty-with"></span>`fn parse_separated_nonempty_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="punctuated-parse-separated-nonempty-with"></span>`fn parse_separated_nonempty_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
@@ -170,7 +172,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<T, P> FromIterator for Punctuated<T, P>`
 
-- <span id="punctuated-from-iter"></span>`fn from_iter<I: IntoIterator<Item = Pair<T, P>>>(i: I) -> Self`
+- <span id="punctuated-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(i: I) -> Self`
 
 ##### `impl<T, P> Hash for Punctuated<T, P>`
 
@@ -178,7 +180,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<T, P> Index for Punctuated<T, P>`
 
-- <span id="punctuated-output"></span>`type Output = T`
+- <span id="punctuated-type-output"></span>`type Output = T`
 
 - <span id="punctuated-index"></span>`fn index(&self, index: usize) -> &<Self as >::Output`
 
@@ -188,9 +190,9 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<T, P> IntoIterator for Punctuated<T, P>`
 
-- <span id="punctuated-item"></span>`type Item = T`
+- <span id="punctuated-type-item"></span>`type Item = T`
 
-- <span id="punctuated-intoiter"></span>`type IntoIter = IntoIter<T>`
+- <span id="punctuated-type-intoiter"></span>`type IntoIter = IntoIter<T>`
 
 - <span id="punctuated-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -217,6 +219,8 @@ struct Pairs<'a, T: 'a, P: 'a> {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/punctuated.rs:567-570`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L567-L570)*
+
 An iterator over borrowed pairs of type `Pair<&T, &P>`.
 
 Refer to the [module documentation] for details about punctuated sequences.
@@ -238,15 +242,15 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<I> IntoIterator for Pairs<'a, T, P>`
 
-- <span id="pairs-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="pairs-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="pairs-intoiter"></span>`type IntoIter = I`
+- <span id="pairs-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="pairs-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T, P> Iterator for Pairs<'a, T, P>`
 
-- <span id="pairs-item"></span>`type Item = Pair<&'a T, &'a P>`
+- <span id="pairs-type-item"></span>`type Item = Pair<&'a T, &'a P>`
 
 - <span id="pairs-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -260,6 +264,8 @@ struct PairsMut<'a, T: 'a, P: 'a> {
     last: option::IntoIter<&'a mut T>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/punctuated.rs:617-620`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L617-L620)*
 
 An iterator over mutably borrowed pairs of type `Pair<&mut T, &mut P>`.
 
@@ -278,15 +284,15 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<I> IntoIterator for PairsMut<'a, T, P>`
 
-- <span id="pairsmut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="pairsmut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="pairsmut-intoiter"></span>`type IntoIter = I`
+- <span id="pairsmut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="pairsmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T, P> Iterator for PairsMut<'a, T, P>`
 
-- <span id="pairsmut-item"></span>`type Item = Pair<&'a mut T, &'a mut P>`
+- <span id="pairsmut-type-item"></span>`type Item = Pair<&'a mut T, &'a mut P>`
 
 - <span id="pairsmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -300,6 +306,8 @@ struct IntoPairs<T, P> {
     last: option::IntoIter<T>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/punctuated.rs:657-660`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L657-L660)*
 
 An iterator over owned pairs of type `Pair<T, P>`.
 
@@ -322,15 +330,15 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<I> IntoIterator for IntoPairs<T, P>`
 
-- <span id="intopairs-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intopairs-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intopairs-intoiter"></span>`type IntoIter = I`
+- <span id="intopairs-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intopairs-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, P> Iterator for IntoPairs<T, P>`
 
-- <span id="intopairs-item"></span>`type Item = Pair<T, P>`
+- <span id="intopairs-type-item"></span>`type Item = Pair<T, P>`
 
 - <span id="intopairs-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -343,6 +351,8 @@ struct IntoIter<T> {
     inner: vec::IntoIter<T>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/punctuated.rs:710-712`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L710-L712)*
 
 An iterator over owned values of type `T`.
 
@@ -365,15 +375,15 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<I> IntoIterator for IntoIter<T>`
 
-- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for IntoIter<T>`
 
-- <span id="intoiter-item"></span>`type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -386,6 +396,8 @@ struct Iter<'a, T: 'a> {
     inner: Box<crate::drops::NoDrop<dyn IterTrait<'a, T>>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/punctuated.rs:754-756`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L754-L756)*
 
 An iterator over borrowed values of type `&T`.
 
@@ -408,15 +420,15 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<I> IntoIterator for Iter<'a, T>`
 
-- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-intoiter"></span>`type IntoIter = I`
+- <span id="iter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for Iter<'a, T>`
 
-- <span id="iter-item"></span>`type Item = &'a T`
+- <span id="iter-type-item"></span>`type Item = &'a T`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -430,6 +442,8 @@ struct PrivateIter<'a, T: 'a, P: 'a> {
     last: option::IntoIter<&'a T>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/punctuated.rs:762-765`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L762-L765)*
 
 #### Trait Implementations
 
@@ -447,15 +461,15 @@ struct PrivateIter<'a, T: 'a, P: 'a> {
 
 ##### `impl<I> IntoIterator for PrivateIter<'a, T, P>`
 
-- <span id="privateiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="privateiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="privateiter-intoiter"></span>`type IntoIter = I`
+- <span id="privateiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="privateiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T, P> Iterator for PrivateIter<'a, T, P>`
 
-- <span id="privateiter-item"></span>`type Item = &'a T`
+- <span id="privateiter-type-item"></span>`type Item = &'a T`
 
 - <span id="privateiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -468,6 +482,8 @@ struct IterMut<'a, T: 'a> {
     inner: Box<crate::drops::NoDrop<dyn IterMutTrait<'a, T, Item = &'a mut T>>>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/punctuated.rs:868-870`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L868-L870)*
 
 An iterator over mutably borrowed values of type `&mut T`.
 
@@ -486,15 +502,15 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<I> IntoIterator for IterMut<'a, T>`
 
-- <span id="itermut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itermut-intoiter"></span>`type IntoIter = I`
+- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for IterMut<'a, T>`
 
-- <span id="itermut-item"></span>`type Item = &'a mut T`
+- <span id="itermut-type-item"></span>`type Item = &'a mut T`
 
 - <span id="itermut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -509,6 +525,8 @@ struct PrivateIterMut<'a, T: 'a, P: 'a> {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/punctuated.rs:877-880`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L877-L880)*
+
 #### Trait Implementations
 
 ##### `impl<'a, T, P> DoubleEndedIterator for PrivateIterMut<'a, T, P>`
@@ -521,15 +539,15 @@ struct PrivateIterMut<'a, T: 'a, P: 'a> {
 
 ##### `impl<I> IntoIterator for PrivateIterMut<'a, T, P>`
 
-- <span id="privateitermut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="privateitermut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="privateitermut-intoiter"></span>`type IntoIter = I`
+- <span id="privateitermut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="privateitermut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T, P> Iterator for PrivateIterMut<'a, T, P>`
 
-- <span id="privateitermut-item"></span>`type Item = &'a mut T`
+- <span id="privateitermut-type-item"></span>`type Item = &'a mut T`
 
 - <span id="privateitermut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -545,6 +563,8 @@ enum Pair<T, P> {
     End(T),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/punctuated.rs:958-961`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L958-L961)*
 
 A single syntax tree node of type `T` followed by its trailing punctuation
 of type `P` if any.
@@ -576,6 +596,14 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<T, P> Copy for Pair<T, P>`
 
+##### `impl<T, P> Extend for Punctuated<T, P>`
+
+- <span id="punctuated-extend"></span>`fn extend<I: IntoIterator<Item = Pair<T, P>>>(&mut self, i: I)`
+
+##### `impl<T, P> FromIterator for Punctuated<T, P>`
+
+- <span id="punctuated-from-iter"></span>`fn from_iter<I: IntoIterator<Item = Pair<T, P>>>(i: I) -> Self`
+
 ##### `impl<T> Sealed for Pair<T, P>`
 
 ##### `impl<T> Spanned for Pair<T, P>`
@@ -594,6 +622,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 trait IterTrait<'a, T: 'a>: Iterator<Item = &'a T> + DoubleEndedIterator + ExactSizeIterator { ... }
 ```
 
+*Defined in [`syn-2.0.111/src/punctuated.rs:758-760`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L758-L760)*
+
 #### Required Methods
 
 - `fn clone_box(&self) -> Box<NoDrop<dyn IterTrait<'a, T>>>`
@@ -607,6 +637,8 @@ trait IterTrait<'a, T: 'a>: Iterator<Item = &'a T> + DoubleEndedIterator + Exact
 ```rust
 trait IterMutTrait<'a, T: 'a>: DoubleEndedIterator<Item = &'a mut T> + ExactSizeIterator<Item = &'a mut T> { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/punctuated.rs:872-875`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L872-L875)*
 
 #### Implementors
 
@@ -622,15 +654,21 @@ where
     I: Iterator<Item = Pair<T, P>>
 ```
 
+*Defined in [`syn-2.0.111/src/punctuated.rs:499-516`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L499-L516)*
+
 ### `empty_punctuated_iter`
 
 ```rust
 fn empty_punctuated_iter<'a, T>() -> Iter<'a, T>
 ```
 
+*Defined in [`syn-2.0.111/src/punctuated.rs:775-779`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L775-L779)*
+
 ### `empty_punctuated_iter_mut`
 
 ```rust
 fn empty_punctuated_iter_mut<'a, T>() -> IterMut<'a, T>
 ```
+
+*Defined in [`syn-2.0.111/src/punctuated.rs:890-894`](../../../.source_1765210505/syn-2.0.111/src/punctuated.rs#L890-L894)*
 

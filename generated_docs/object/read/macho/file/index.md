@@ -60,6 +60,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/file.rs:37-49`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L37-L49)*
+
 A partially parsed Mach-O file.
 
 Most of the functionality of this type is provided by the [`Object`](../../index.md) trait implementation.
@@ -94,25 +96,25 @@ Most of the functionality of this type is provided by the [`Object`](../../index
 
 ##### `impl<'data, Mach, R> Object for MachOFile<'data, Mach, R>`
 
-- <span id="machofile-segment"></span>`type Segment = MachOSegment<'data, 'file, Mach, R>`
+- <span id="machofile-type-segment"></span>`type Segment = MachOSegment<'data, 'file, Mach, R>`
 
-- <span id="machofile-segmentiterator"></span>`type SegmentIterator = MachOSegmentIterator<'data, 'file, Mach, R>`
+- <span id="machofile-type-segmentiterator"></span>`type SegmentIterator = MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-section"></span>`type Section = MachOSection<'data, 'file, Mach, R>`
+- <span id="machofile-type-section"></span>`type Section = MachOSection<'data, 'file, Mach, R>`
 
-- <span id="machofile-sectioniterator"></span>`type SectionIterator = MachOSectionIterator<'data, 'file, Mach, R>`
+- <span id="machofile-type-sectioniterator"></span>`type SectionIterator = MachOSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-comdat"></span>`type Comdat = MachOComdat<'data, 'file, Mach, R>`
+- <span id="machofile-type-comdat"></span>`type Comdat = MachOComdat<'data, 'file, Mach, R>`
 
-- <span id="machofile-comdatiterator"></span>`type ComdatIterator = MachOComdatIterator<'data, 'file, Mach, R>`
+- <span id="machofile-type-comdatiterator"></span>`type ComdatIterator = MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
+- <span id="machofile-type-symbol"></span>`type Symbol = MachOSymbol<'data, 'file, Mach, R>`
 
-- <span id="machofile-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
+- <span id="machofile-type-symboliterator"></span>`type SymbolIterator = MachOSymbolIterator<'data, 'file, Mach, R>`
 
-- <span id="machofile-symboltable"></span>`type SymbolTable = MachOSymbolTable<'data, 'file, Mach, R>`
+- <span id="machofile-type-symboltable"></span>`type SymbolTable = MachOSymbolTable<'data, 'file, Mach, R>`
 
-- <span id="machofile-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="machofile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
 - <span id="machofile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md)
 
@@ -175,6 +177,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/file.rs:527-534`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L527-L534)*
+
 An iterator for the COMDAT section groups in a [`MachOFile`](../index.md).
 
 This is a stub that doesn't implement any functionality.
@@ -187,15 +191,15 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<I> IntoIterator for MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machocomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machocomdatiterator-intoiter"></span>`type IntoIter = I`
+- <span id="machocomdatiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machocomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Mach, R> Iterator for MachOComdatIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatiterator-item"></span>`type Item = MachOComdat<'data, 'file, Mach, R>`
+- <span id="machocomdatiterator-type-item"></span>`type Item = MachOComdat<'data, 'file, Mach, R>`
 
 - <span id="machocomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -210,6 +214,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/file.rs:561-568`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L561-L568)*
+
 A COMDAT section group in a [`MachOFile`](../index.md).
 
 This is a stub that doesn't implement any functionality.
@@ -222,7 +228,7 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Mach, R> ObjectComdat for MachOComdat<'data, 'file, Mach, R>`
 
-- <span id="machocomdat-sectioniterator"></span>`type SectionIterator = MachOComdatSectionIterator<'data, 'file, Mach, R>`
+- <span id="machocomdat-type-sectioniterator"></span>`type SectionIterator = MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
 - <span id="machocomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md)
 
@@ -247,6 +253,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/file.rs:621-628`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L621-L628)*
+
 An iterator for the sections in a COMDAT section group in a [`MachOFile`](../index.md).
 
 This is a stub that doesn't implement any functionality.
@@ -259,15 +267,15 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<I> IntoIterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machocomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machocomdatsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="machocomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machocomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Mach, R> Iterator for MachOComdatSectionIterator<'data, 'file, Mach, R>`
 
-- <span id="machocomdatsectioniterator-item"></span>`type Item = SectionIndex`
+- <span id="machocomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="machocomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -278,6 +286,8 @@ This is a stub that doesn't implement any functionality.
 ```rust
 trait MachHeader: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/file.rs:644-723`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L644-L723)*
 
 A trait for generic access to [`macho::MachHeader32`](../../../macho/index.md) and [`macho::MachHeader64`](../../../macho/index.md).
 
@@ -350,6 +360,8 @@ A trait for generic access to [`macho::MachHeader32`](../../../macho/index.md) a
 type MachOFile32<'data, Endian, R> = MachOFile<'data, macho::MachHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/file.rs:24-25`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L24-L25)*
+
 A 32-bit Mach-O object file.
 
 This is a file that starts with [`macho::MachHeader32`](../../../macho/index.md), and corresponds
@@ -360,6 +372,8 @@ to [`crate::FileKind::MachO32`](../../../index.md).
 ```rust
 type MachOFile64<'data, Endian, R> = MachOFile<'data, macho::MachHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/file.rs:30-31`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L30-L31)*
 
 A 64-bit Mach-O object file.
 
@@ -372,6 +386,8 @@ to [`crate::FileKind::MachO64`](../../../index.md).
 type MachOComdatIterator32<'data, 'file, Endian, R> = MachOComdatIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/file.rs:517-518`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L517-L518)*
+
 An iterator for the COMDAT section groups in a [`MachOFile64`](../index.md).
 
 ### `MachOComdatIterator64<'data, 'file, Endian, R>`
@@ -379,6 +395,8 @@ An iterator for the COMDAT section groups in a [`MachOFile64`](../index.md).
 ```rust
 type MachOComdatIterator64<'data, 'file, Endian, R> = MachOComdatIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/file.rs:520-521`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L520-L521)*
 
 An iterator for the COMDAT section groups in a [`MachOFile64`](../index.md).
 
@@ -388,6 +406,8 @@ An iterator for the COMDAT section groups in a [`MachOFile64`](../index.md).
 type MachOComdat32<'data, 'file, Endian, R> = MachOComdat<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/file.rs:550-551`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L550-L551)*
+
 A COMDAT section group in a [`MachOFile32`](../index.md).
 
 ### `MachOComdat64<'data, 'file, Endian, R>`
@@ -395,6 +415,8 @@ A COMDAT section group in a [`MachOFile32`](../index.md).
 ```rust
 type MachOComdat64<'data, 'file, Endian, R> = MachOComdat<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/file.rs:554-555`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L554-L555)*
 
 A COMDAT section group in a [`MachOFile64`](../index.md).
 
@@ -404,6 +426,8 @@ A COMDAT section group in a [`MachOFile64`](../index.md).
 type MachOComdatSectionIterator32<'data, 'file, Endian, R> = MachOComdatSectionIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/file.rs:611-612`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L611-L612)*
+
 An iterator for the sections in a COMDAT section group in a [`MachOFile32`](../index.md).
 
 ### `MachOComdatSectionIterator64<'data, 'file, Endian, R>`
@@ -411,6 +435,8 @@ An iterator for the sections in a COMDAT section group in a [`MachOFile32`](../i
 ```rust
 type MachOComdatSectionIterator64<'data, 'file, Endian, R> = MachOComdatSectionIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/file.rs:614-615`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/file.rs#L614-L615)*
 
 An iterator for the sections in a COMDAT section group in a [`MachOFile64`](../index.md).
 

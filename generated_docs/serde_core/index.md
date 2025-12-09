@@ -56,7 +56,7 @@ as shown in the following build timings.
 |------|------|-------------|
 | [`crate_root`](#crate_root) | mod |  |
 | [`macros`](#macros) | mod |  |
-| [`lib`](#lib) | mod | A facade around all the types we need from the `std`, `core`, and `alloc` |
+| [`lib`](#lib) | mod | A facade around all the types we need from the `std`, `core`, and `alloc` crates. |
 | [`de`](#de) | mod | Generic data structure deserialization framework. |
 | [`ser`](#ser) | mod | Generic data structure serialization framework. |
 | [`format`](#format) | mod |  |
@@ -65,7 +65,7 @@ as shown in the following build timings.
 | [`Serialize`](#serialize) | trait |  |
 | [`Serializer`](#serializer) | trait |  |
 | [`tri!`](#tri) | macro |  |
-| [`forward_to_deserialize_any!`](#forward_to_deserialize_any) | macro | Helper macro when implementing the `Deserializer` part of a new data format |
+| [`forward_to_deserialize_any!`](#forward_to_deserialize_any) | macro | Helper macro when implementing the `Deserializer` part of a new data format for Serde. |
 
 ## Modules
 
@@ -83,6 +83,8 @@ as shown in the following build timings.
 ```rust
 trait Deserialize<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:554-593`](../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L554-L593)*
 
 A **data structure** that can be deserialized from any data format supported
 by Serde.
@@ -146,7 +148,7 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 - [`Field`](de/impls/range_to/index.md)
 - [`HashMap`](lib/index.md)
 - [`HashSet`](lib/index.md)
-- [`IgnoredAny`](de/index.md)
+- [`IgnoredAny`](de/ignored_any/index.md)
 - [`LinkedList`](lib/index.md)
 - [`Mutex`](lib/index.md)
 - [`OsStringKind`](de/impls/index.md)
@@ -261,6 +263,8 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 ```rust
 trait Deserializer<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:945-1266`](../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L945-L1266)*
 
 A **data format** that can deserialize any data structure supported by
 Serde.
@@ -540,6 +544,8 @@ a basic JSON `Deserializer`.
 trait Serialize { ... }
 ```
 
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:234-268`](../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L234-L268)*
+
 A **data structure** that can be serialized into any data format supported
 by Serde.
 
@@ -713,6 +719,8 @@ provides an implementation of `Serialize` for it.
 ```rust
 trait Serializer: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:355-1462`](../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L355-L1462)*
 
 A **data format** that can serialize any data structure supported by Serde.
 
@@ -957,15 +965,19 @@ a basic JSON `Serializer`.
 
 ### `tri!`
 
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+
 ### `forward_to_deserialize_any!`
+
+*Defined in [`serde_core-1.0.228/src/macros.rs:110-118`](../../.source_1765210505/serde_core-1.0.228/src/macros.rs#L110-L118)*
 
 Helper macro when implementing the `Deserializer` part of a new data format
 for Serde.
 
-Some [`Deserializer`](#deserializer) implementations for self-describing formats do not
+Some [`Deserializer`](de/index.md) implementations for self-describing formats do not
 care what hint the [`Visitor`](de/index.md) gives them, they just want to blindly call
 the [`Visitor`](de/index.md) method corresponding to the data they can tell is in the
-input. This requires repetitive implementations of all the [`Deserializer`](#deserializer)
+input. This requires repetitive implementations of all the [`Deserializer`](de/index.md)
 trait methods.
 
 ```edition2021

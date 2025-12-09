@@ -4,7 +4,7 @@
 
 # Module `builder`
 
-Define [`Command`](../index.md) line [arguments][`Arg`](../index.md)
+Define [`Command`](command/index.md) line [arguments][`Arg`](arg/index.md)
 
 ## Contents
 
@@ -147,6 +147,8 @@ struct Str {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/str.rs:13-15`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/str.rs#L13-L15)*
+
 A UTF-8-encoded fixed string
 
 <div class="warning">
@@ -168,11 +170,11 @@ feature
 
 ##### `impl AsRef for Str`
 
-- <span id="str-as-ref"></span>`fn as_ref(&self) -> &std::path::Path`
+- <span id="str-as-ref"></span>`fn as_ref(&self) -> &str`
 
 ##### `impl Clone for Str`
 
-- <span id="str-clone"></span>`fn clone(&self) -> Str` — [`Str`](#str)
+- <span id="str-clone"></span>`fn clone(&self) -> Str` — [`Str`](str/index.md)
 
 ##### `impl Debug for Str`
 
@@ -180,11 +182,11 @@ feature
 
 ##### `impl Default for Str`
 
-- <span id="str-default"></span>`fn default() -> Str` — [`Str`](#str)
+- <span id="str-default"></span>`fn default() -> Str` — [`Str`](str/index.md)
 
 ##### `impl Deref for Str`
 
-- <span id="str-target"></span>`type Target = str`
+- <span id="str-type-target"></span>`type Target = str`
 
 - <span id="str-deref"></span>`fn deref(&self) -> &str`
 
@@ -198,29 +200,29 @@ feature
 
 - <span id="str-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<I> IntoResettable for Str`
+##### `impl IntoResettable for Str`
 
-- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](#resettable), [`OsStr`](#osstr)
+- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<String>` — [`Resettable`](resettable/index.md)
 
 ##### `impl Ord for Str`
 
-- <span id="str-cmp"></span>`fn cmp(&self, other: &Str) -> cmp::Ordering` — [`Str`](#str)
+- <span id="str-cmp"></span>`fn cmp(&self, other: &Str) -> cmp::Ordering` — [`Str`](str/index.md)
 
 ##### `impl PartialEq for Str`
 
-- <span id="str-eq"></span>`fn eq(&self, other: &str) -> bool`
+- <span id="str-eq"></span>`fn eq(&self, other: &Str) -> bool` — [`Str`](str/index.md)
 
 ##### `impl PartialOrd for Str`
 
-- <span id="str-partial-cmp"></span>`fn partial_cmp(&self, other: &Str) -> option::Option<cmp::Ordering>` — [`Str`](#str)
+- <span id="str-partial-cmp"></span>`fn partial_cmp(&self, other: &Str) -> option::Option<cmp::Ordering>` — [`Str`](str/index.md)
 
-##### `impl<P, T> Receiver for Str`
+##### `impl Receiver for Str`
 
-- <span id="str-target"></span>`type Target = T`
+- <span id="str-type-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for Str`
 
-##### `impl<T> ToString for Str`
+##### `impl ToString for Str`
 
 - <span id="str-to-string"></span>`fn to_string(&self) -> String`
 
@@ -260,10 +262,12 @@ struct Arg {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
+
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
 
-There are two methods for constructing [`Arg`](../index.md)s, using the builder pattern and setting options
+There are two methods for constructing [`Arg`](arg/index.md)s, using the builder pattern and setting options
 manually, or using a usage string which is far less verbose but has fewer options. You can also
 use a combination of the two methods to achieve the best of both worlds.
 
@@ -291,97 +295,55 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- <span id="arg-get-id"></span>`fn get_id(&self) -> &Id` — [`Id`](../index.md)
+- <span id="arg-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](../util/id/index.md)
 
-- <span id="arg-get-help"></span>`fn get_help(&self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
+- <span id="arg-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](../util/id/index.md)
 
-- <span id="arg-get-long-help"></span>`fn get_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
+- <span id="arg-short"></span>`fn short(self, s: impl IntoResettable<char>) -> Self` — [`IntoResettable`](resettable/index.md)
 
-- <span id="arg-get-display-order"></span>`fn get_display_order(&self) -> usize`
+- <span id="arg-long"></span>`fn long(self, l: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
 
-- <span id="arg-get-help-heading"></span>`fn get_help_heading(&self) -> Option<&str>`
+- <span id="arg-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
 
-- <span id="arg-get-short"></span>`fn get_short(&self) -> Option<char>`
+- <span id="arg-short-alias"></span>`fn short_alias(self, name: impl IntoResettable<char>) -> Self` — [`IntoResettable`](resettable/index.md)
 
-- <span id="arg-get-visible-short-aliases"></span>`fn get_visible_short_aliases(&self) -> Option<Vec<char>>`
+- <span id="arg-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](str/index.md)
 
-- <span id="arg-get-all-short-aliases"></span>`fn get_all_short_aliases(&self) -> Option<Vec<char>>`
+- <span id="arg-short-aliases"></span>`fn short_aliases(self, names: impl IntoIterator<Item = char>) -> Self`
 
-- <span id="arg-get-short-and-visible-aliases"></span>`fn get_short_and_visible_aliases(&self) -> Option<Vec<char>>`
+- <span id="arg-visible-alias"></span>`fn visible_alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
 
-- <span id="arg-get-long"></span>`fn get_long(&self) -> Option<&str>`
+- <span id="arg-visible-short-alias"></span>`fn visible_short_alias(self, name: impl IntoResettable<char>) -> Self` — [`IntoResettable`](resettable/index.md)
 
-- <span id="arg-get-visible-aliases"></span>`fn get_visible_aliases(&self) -> Option<Vec<&str>>`
+- <span id="arg-visible-aliases"></span>`fn visible_aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](str/index.md)
 
-- <span id="arg-get-all-aliases"></span>`fn get_all_aliases(&self) -> Option<Vec<&str>>`
+- <span id="arg-visible-short-aliases"></span>`fn visible_short_aliases(self, names: impl IntoIterator<Item = char>) -> Self`
 
-- <span id="arg-get-long-and-visible-aliases"></span>`fn get_long_and_visible_aliases(&self) -> Option<Vec<&str>>`
+- <span id="arg-index"></span>`fn index(self, idx: impl IntoResettable<usize>) -> Self` — [`IntoResettable`](resettable/index.md)
 
-- <span id="arg-get-aliases"></span>`fn get_aliases(&self) -> Option<Vec<&str>>`
+- <span id="arg-trailing-var-arg"></span>`fn trailing_var_arg(self, yes: bool) -> Self`
 
-- <span id="arg-get-possible-values"></span>`fn get_possible_values(&self) -> Vec<PossibleValue>` — [`PossibleValue`](#possiblevalue)
+- <span id="arg-last"></span>`fn last(self, yes: bool) -> Self`
 
-- <span id="arg-get-value-names"></span>`fn get_value_names(&self) -> Option<&[Str]>` — [`Str`](#str)
+- <span id="arg-required"></span>`fn required(self, yes: bool) -> Self`
 
-- <span id="arg-get-num-args"></span>`fn get_num_args(&self) -> Option<ValueRange>` — [`ValueRange`](#valuerange)
+- <span id="arg-requires"></span>`fn requires(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](resettable/index.md), [`Id`](../util/id/index.md)
 
-- <span id="arg-get-min-vals"></span>`fn get_min_vals(&self) -> usize`
+- <span id="arg-exclusive"></span>`fn exclusive(self, yes: bool) -> Self`
 
-- <span id="arg-get-value-delimiter"></span>`fn get_value_delimiter(&self) -> Option<char>`
+- <span id="arg-global"></span>`fn global(self, yes: bool) -> Self`
 
-- <span id="arg-get-value-terminator"></span>`fn get_value_terminator(&self) -> Option<&Str>` — [`Str`](#str)
+- <span id="arg-is-set"></span>`fn is_set(&self, s: ArgSettings) -> bool` — [`ArgSettings`](arg_settings/index.md)
 
-- <span id="arg-get-index"></span>`fn get_index(&self) -> Option<usize>`
+- <span id="arg-setting"></span>`fn setting(self, setting: ArgSettings) -> Self` — [`ArgSettings`](arg_settings/index.md)
 
-- <span id="arg-get-value-hint"></span>`fn get_value_hint(&self) -> ValueHint` — [`ValueHint`](../index.md)
-
-- <span id="arg-get-default-values"></span>`fn get_default_values(&self) -> &[OsStr]` — [`OsStr`](#osstr)
-
-- <span id="arg-is-positional"></span>`fn is_positional(&self) -> bool`
-
-- <span id="arg-is-required-set"></span>`fn is_required_set(&self) -> bool`
-
-- <span id="arg-is-multiple-values-set"></span>`fn is_multiple_values_set(&self) -> bool`
-
-- <span id="arg-is-takes-value-set"></span>`fn is_takes_value_set(&self) -> bool`
-
-- <span id="arg-is-allow-hyphen-values-set"></span>`fn is_allow_hyphen_values_set(&self) -> bool`
-
-- <span id="arg-is-allow-negative-numbers-set"></span>`fn is_allow_negative_numbers_set(&self) -> bool`
-
-- <span id="arg-get-action"></span>`fn get_action(&self) -> &ArgAction` — [`ArgAction`](../index.md)
-
-- <span id="arg-get-value-parser"></span>`fn get_value_parser(&self) -> &super::ValueParser` — [`ValueParser`](#valueparser)
-
-- <span id="arg-is-global-set"></span>`fn is_global_set(&self) -> bool`
-
-- <span id="arg-is-next-line-help-set"></span>`fn is_next_line_help_set(&self) -> bool`
-
-- <span id="arg-is-hide-set"></span>`fn is_hide_set(&self) -> bool`
-
-- <span id="arg-is-hide-default-value-set"></span>`fn is_hide_default_value_set(&self) -> bool`
-
-- <span id="arg-is-hide-possible-values-set"></span>`fn is_hide_possible_values_set(&self) -> bool`
-
-- <span id="arg-is-hide-short-help-set"></span>`fn is_hide_short_help_set(&self) -> bool`
-
-- <span id="arg-is-hide-long-help-set"></span>`fn is_hide_long_help_set(&self) -> bool`
-
-- <span id="arg-is-require-equals-set"></span>`fn is_require_equals_set(&self) -> bool`
-
-- <span id="arg-is-exclusive-set"></span>`fn is_exclusive_set(&self) -> bool`
-
-- <span id="arg-is-trailing-var-arg-set"></span>`fn is_trailing_var_arg_set(&self) -> bool`
-
-- <span id="arg-is-last-set"></span>`fn is_last_set(&self) -> bool`
-
-- <span id="arg-is-ignore-case-set"></span>`fn is_ignore_case_set(&self) -> bool`
+- <span id="arg-unset-setting"></span>`fn unset_setting(self, setting: ArgSettings) -> Self` — [`ArgSettings`](arg_settings/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Arg`
 
-- <span id="arg-clone"></span>`fn clone(&self) -> Arg` — [`Arg`](../index.md)
+- <span id="arg-clone"></span>`fn clone(&self) -> Arg` — [`Arg`](arg/index.md)
 
 ##### `impl Debug for Arg`
 
@@ -389,7 +351,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 ##### `impl Default for Arg`
 
-- <span id="arg-default"></span>`fn default() -> Arg` — [`Arg`](../index.md)
+- <span id="arg-default"></span>`fn default() -> Arg` — [`Arg`](arg/index.md)
 
 ##### `impl Display for Arg`
 
@@ -399,17 +361,17 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 ##### `impl Ord for Arg`
 
-- <span id="arg-cmp"></span>`fn cmp(&self, other: &Arg) -> Ordering` — [`Arg`](../index.md)
+- <span id="arg-cmp"></span>`fn cmp(&self, other: &Arg) -> Ordering` — [`Arg`](arg/index.md)
 
 ##### `impl PartialEq for Arg`
 
-- <span id="arg-eq"></span>`fn eq(&self, other: &Arg) -> bool` — [`Arg`](../index.md)
+- <span id="arg-eq"></span>`fn eq(&self, other: &Arg) -> bool` — [`Arg`](arg/index.md)
 
 ##### `impl PartialOrd for Arg`
 
 - <span id="arg-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
-##### `impl<T> ToString for Arg`
+##### `impl ToString for Arg`
 
 - <span id="arg-to-string"></span>`fn to_string(&self) -> String`
 
@@ -425,6 +387,8 @@ struct ArgGroup {
     multiple: bool,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
 
 Specifies a logical group of [arguments]
 
@@ -491,15 +455,35 @@ assert_eq!(matches
 
 #### Implementations
 
-- <span id="arggroup-get-id"></span>`fn get_id(&self) -> &Id` — [`Id`](../index.md)
+- <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](../util/id/index.md)
 
-- <span id="arggroup-is-required-set"></span>`fn is_required_set(&self) -> bool`
+- <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](../util/id/index.md)
+
+- <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](resettable/index.md), [`Id`](../util/id/index.md)
+
+- <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../util/id/index.md)
+
+- <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](../util/id/index.md)
+
+- <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
+
+- <span id="arggroup-is-multiple"></span>`fn is_multiple(&mut self) -> bool`
+
+- <span id="arggroup-required"></span>`fn required(self, yes: bool) -> Self`
+
+- <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](resettable/index.md), [`Id`](../util/id/index.md)
+
+- <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../util/id/index.md)
+
+- <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](resettable/index.md), [`Id`](../util/id/index.md)
+
+- <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../util/id/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgGroup`
 
-- <span id="arggroup-clone"></span>`fn clone(&self) -> ArgGroup` — [`ArgGroup`](../index.md)
+- <span id="arggroup-clone"></span>`fn clone(&self) -> ArgGroup` — [`ArgGroup`](arg_group/index.md)
 
 ##### `impl Debug for ArgGroup`
 
@@ -507,13 +491,13 @@ assert_eq!(matches
 
 ##### `impl Default for ArgGroup`
 
-- <span id="arggroup-default"></span>`fn default() -> ArgGroup` — [`ArgGroup`](../index.md)
+- <span id="arggroup-default"></span>`fn default() -> ArgGroup` — [`ArgGroup`](arg_group/index.md)
 
 ##### `impl Eq for ArgGroup`
 
 ##### `impl PartialEq for ArgGroup`
 
-- <span id="arggroup-eq"></span>`fn eq(&self, other: &ArgGroup) -> bool` — [`ArgGroup`](../index.md)
+- <span id="arggroup-eq"></span>`fn eq(&self, other: &ArgGroup) -> bool` — [`ArgGroup`](arg_group/index.md)
 
 ##### `impl StructuralPartialEq for ArgGroup`
 
@@ -559,6 +543,8 @@ struct Command {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
+
 Build a command-line interface.
 
 This includes defining arguments, subcommands, parser behavior, and help output.
@@ -599,47 +585,73 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- <span id="command-no-binary-name"></span>`fn no_binary_name(self, yes: bool) -> Self`
+- <span id="command-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](str/index.md)
 
-- <span id="command-ignore-errors"></span>`fn ignore_errors(self, yes: bool) -> Self`
+- <span id="command-arg"></span>`fn arg(self, a: impl Into<Arg>) -> Self` — [`Arg`](arg/index.md)
 
-- <span id="command-args-override-self"></span>`fn args_override_self(self, yes: bool) -> Self`
+- <span id="command-arg-internal"></span>`fn arg_internal(&mut self, arg: Arg)` — [`Arg`](arg/index.md)
 
-- <span id="command-dont-delimit-trailing-values"></span>`fn dont_delimit_trailing_values(self, yes: bool) -> Self`
+- <span id="command-args"></span>`fn args(self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](arg/index.md)
 
-- <span id="command-color"></span>`fn color(self, color: ColorChoice) -> Self` — [`ColorChoice`](../index.md)
+- <span id="command-mut-arg"></span>`fn mut_arg<F>(self, arg_id: impl AsRef<str>, f: F) -> Self`
 
-- <span id="command-styles"></span>`fn styles(self, styles: Styles) -> Self` — [`Styles`](#styles)
+- <span id="command-mut-args"></span>`fn mut_args<F>(self, f: F) -> Self`
 
-- <span id="command-term-width"></span>`fn term_width(self, width: usize) -> Self`
+- <span id="command-mut-group"></span>`fn mut_group<F>(self, arg_id: impl AsRef<str>, f: F) -> Self`
 
-- <span id="command-max-term-width"></span>`fn max_term_width(self, width: usize) -> Self`
+- <span id="command-mut-subcommand"></span>`fn mut_subcommand<F>(self, name: impl AsRef<str>, f: F) -> Self`
 
-- <span id="command-disable-version-flag"></span>`fn disable_version_flag(self, yes: bool) -> Self`
+- <span id="command-mut-subcommands"></span>`fn mut_subcommands<F>(self, f: F) -> Self`
 
-- <span id="command-propagate-version"></span>`fn propagate_version(self, yes: bool) -> Self`
+- <span id="command-group"></span>`fn group(self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](arg_group/index.md)
 
-- <span id="command-next-line-help"></span>`fn next_line_help(self, yes: bool) -> Self`
+- <span id="command-groups"></span>`fn groups(self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](arg_group/index.md)
 
-- <span id="command-disable-help-flag"></span>`fn disable_help_flag(self, yes: bool) -> Self`
+- <span id="command-subcommand"></span>`fn subcommand(self, subcmd: impl Into<Command>) -> Self` — [`Command`](command/index.md)
 
-- <span id="command-disable-help-subcommand"></span>`fn disable_help_subcommand(self, yes: bool) -> Self`
+- <span id="command-subcommand-internal"></span>`fn subcommand_internal(self, subcmd: Self) -> Self`
 
-- <span id="command-disable-colored-help"></span>`fn disable_colored_help(self, yes: bool) -> Self`
+- <span id="command-subcommands"></span>`fn subcommands(self, subcmds: impl IntoIterator<Item = impl Into<Self>>) -> Self`
 
-- <span id="command-help-expected"></span>`fn help_expected(self, yes: bool) -> Self`
+- <span id="command-defer"></span>`fn defer(self, deferred: fn(Command) -> Command) -> Self` — [`Command`](command/index.md)
 
-- <span id="command-hide-possible-values"></span>`fn hide_possible_values(self, yes: bool) -> Self`
+- <span id="command-debug-assert"></span>`fn debug_assert(self)`
 
-- <span id="command-infer-long-args"></span>`fn infer_long_args(self, yes: bool) -> Self`
+- <span id="command-error"></span>`fn error(&mut self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](../error/kind/index.md), [`Error`](../index.md)
 
-- <span id="command-infer-subcommands"></span>`fn infer_subcommands(self, yes: bool) -> Self`
+- <span id="command-get-matches"></span>`fn get_matches(self) -> ArgMatches` — [`ArgMatches`](../parser/matches/arg_matches/index.md)
+
+- <span id="command-get-matches-mut"></span>`fn get_matches_mut(&mut self) -> ArgMatches` — [`ArgMatches`](../parser/matches/arg_matches/index.md)
+
+- <span id="command-try-get-matches"></span>`fn try_get_matches(self) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md), [`ArgMatches`](../parser/matches/arg_matches/index.md)
+
+- <span id="command-get-matches-from"></span>`fn get_matches_from<I, T>(self, itr: I) -> ArgMatches` — [`ArgMatches`](../parser/matches/arg_matches/index.md)
+
+- <span id="command-try-get-matches-from"></span>`fn try_get_matches_from<I, T>(self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md), [`ArgMatches`](../parser/matches/arg_matches/index.md)
+
+- <span id="command-try-get-matches-from-mut"></span>`fn try_get_matches_from_mut<I, T>(&mut self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md), [`ArgMatches`](../parser/matches/arg_matches/index.md)
+
+- <span id="command-print-help"></span>`fn print_help(&mut self) -> io::Result<()>`
+
+- <span id="command-print-long-help"></span>`fn print_long_help(&mut self) -> io::Result<()>`
+
+- <span id="command-render-help"></span>`fn render_help(&mut self) -> StyledStr` — [`StyledStr`](styled_str/index.md)
+
+- <span id="command-render-long-help"></span>`fn render_long_help(&mut self) -> StyledStr` — [`StyledStr`](styled_str/index.md)
+
+- <span id="command-render-version"></span>`fn render_version(&self) -> String`
+
+- <span id="command-render-long-version"></span>`fn render_long_version(&self) -> String`
+
+- <span id="command-render-usage"></span>`fn render_usage(&mut self) -> StyledStr` — [`StyledStr`](styled_str/index.md)
+
+- <span id="command-render-usage"></span>`fn render_usage_(&mut self) -> Option<StyledStr>` — [`StyledStr`](styled_str/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Command`
 
-- <span id="command-clone"></span>`fn clone(&self) -> Command` — [`Command`](../index.md)
+- <span id="command-clone"></span>`fn clone(&self) -> Command` — [`Command`](command/index.md)
 
 ##### `impl Debug for Command`
 
@@ -655,11 +667,11 @@ let m = Command::new("My Program")
 
 ##### `impl Index for Command`
 
-- <span id="command-output"></span>`type Output = Arg`
+- <span id="command-type-output"></span>`type Output = Arg`
 
-- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](../index.md)
+- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](../util/id/index.md)
 
-##### `impl<T> ToString for Command`
+##### `impl ToString for Command`
 
 - <span id="command-to-string"></span>`fn to_string(&self) -> String`
 
@@ -670,6 +682,8 @@ struct OsStr {
     name: inner::Inner,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:14-16`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/os_str.rs#L14-L16)*
 
 A UTF-8-encoded fixed string
 
@@ -696,7 +710,7 @@ feature
 
 ##### `impl Clone for OsStr`
 
-- <span id="osstr-clone"></span>`fn clone(&self) -> OsStr` — [`OsStr`](#osstr)
+- <span id="osstr-clone"></span>`fn clone(&self) -> OsStr` — [`OsStr`](os_str/index.md)
 
 ##### `impl Debug for OsStr`
 
@@ -704,11 +718,11 @@ feature
 
 ##### `impl Default for OsStr`
 
-- <span id="osstr-default"></span>`fn default() -> OsStr` — [`OsStr`](#osstr)
+- <span id="osstr-default"></span>`fn default() -> OsStr` — [`OsStr`](os_str/index.md)
 
 ##### `impl Deref for OsStr`
 
-- <span id="osstr-target"></span>`type Target = OsStr`
+- <span id="osstr-type-target"></span>`type Target = OsStr`
 
 - <span id="osstr-deref"></span>`fn deref(&self) -> &std::ffi::OsStr`
 
@@ -718,25 +732,25 @@ feature
 
 - <span id="osstr-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<I> IntoResettable for OsStr`
+##### `impl IntoResettable for OsStr`
 
-- <span id="osstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](#resettable), [`OsStr`](#osstr)
+- <span id="osstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](resettable/index.md), [`OsStr`](os_str/index.md)
 
 ##### `impl Ord for OsStr`
 
-- <span id="osstr-cmp"></span>`fn cmp(&self, other: &OsStr) -> cmp::Ordering` — [`OsStr`](#osstr)
+- <span id="osstr-cmp"></span>`fn cmp(&self, other: &OsStr) -> cmp::Ordering` — [`OsStr`](os_str/index.md)
 
 ##### `impl PartialEq for OsStr`
 
-- <span id="osstr-eq"></span>`fn eq(&self, other: &&std::ffi::OsStr) -> bool`
+- <span id="osstr-eq"></span>`fn eq(&self, other: &OsStr) -> bool` — [`OsStr`](os_str/index.md)
 
 ##### `impl PartialOrd for OsStr`
 
-- <span id="osstr-partial-cmp"></span>`fn partial_cmp(&self, other: &OsStr) -> option::Option<cmp::Ordering>` — [`OsStr`](#osstr)
+- <span id="osstr-partial-cmp"></span>`fn partial_cmp(&self, other: &OsStr) -> option::Option<cmp::Ordering>` — [`OsStr`](os_str/index.md)
 
-##### `impl<P, T> Receiver for OsStr`
+##### `impl Receiver for OsStr`
 
-- <span id="osstr-target"></span>`type Target = T`
+- <span id="osstr-type-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for OsStr`
 
@@ -750,6 +764,8 @@ struct PossibleValue {
     hide: bool,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
 
 A possible value of an argument.
 
@@ -786,21 +802,21 @@ let cfg = Arg::new("config")
 
 #### Implementations
 
-- <span id="possiblevalue-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](#str)
+- <span id="possiblevalue-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](str/index.md)
 
-- <span id="possiblevalue-help"></span>`fn help(self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](#intoresettable), [`StyledStr`](#styledstr)
+- <span id="possiblevalue-help"></span>`fn help(self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
 
 - <span id="possiblevalue-hide"></span>`fn hide(self, yes: bool) -> Self`
 
-- <span id="possiblevalue-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](#intoresettable), [`Str`](#str)
+- <span id="possiblevalue-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
 
-- <span id="possiblevalue-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](#str)
+- <span id="possiblevalue-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](str/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for PossibleValue`
 
-- <span id="possiblevalue-clone"></span>`fn clone(&self) -> PossibleValue` — [`PossibleValue`](#possiblevalue)
+- <span id="possiblevalue-clone"></span>`fn clone(&self) -> PossibleValue` — [`PossibleValue`](possible_value/index.md)
 
 ##### `impl Debug for PossibleValue`
 
@@ -808,13 +824,13 @@ let cfg = Arg::new("config")
 
 ##### `impl Default for PossibleValue`
 
-- <span id="possiblevalue-default"></span>`fn default() -> PossibleValue` — [`PossibleValue`](#possiblevalue)
+- <span id="possiblevalue-default"></span>`fn default() -> PossibleValue` — [`PossibleValue`](possible_value/index.md)
 
 ##### `impl Eq for PossibleValue`
 
 ##### `impl PartialEq for PossibleValue`
 
-- <span id="possiblevalue-eq"></span>`fn eq(&self, other: &PossibleValue) -> bool` — [`PossibleValue`](#possiblevalue)
+- <span id="possiblevalue-eq"></span>`fn eq(&self, other: &PossibleValue) -> bool` — [`PossibleValue`](possible_value/index.md)
 
 ##### `impl StructuralPartialEq for PossibleValue`
 
@@ -827,17 +843,19 @@ struct ValueRange {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/range.rs:3-6`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/range.rs#L3-L6)*
+
 Values per occurrence for an argument
 
 #### Implementations
 
-- <span id="valuerange-empty"></span>`const EMPTY: Self`
+- <span id="valuerange-const-empty"></span>`const EMPTY: Self`
 
-- <span id="valuerange-single"></span>`const SINGLE: Self`
+- <span id="valuerange-const-single"></span>`const SINGLE: Self`
 
-- <span id="valuerange-optional"></span>`const OPTIONAL: Self`
+- <span id="valuerange-const-optional"></span>`const OPTIONAL: Self`
 
-- <span id="valuerange-full"></span>`const FULL: Self`
+- <span id="valuerange-const-full"></span>`const FULL: Self`
 
 - <span id="valuerange-new"></span>`fn new(range: impl Into<Self>) -> Self`
 
@@ -863,7 +881,7 @@ Values per occurrence for an argument
 
 ##### `impl Clone for ValueRange`
 
-- <span id="valuerange-clone"></span>`fn clone(&self) -> ValueRange` — [`ValueRange`](#valuerange)
+- <span id="valuerange-clone"></span>`fn clone(&self) -> ValueRange` — [`ValueRange`](range/index.md)
 
 ##### `impl Copy for ValueRange`
 
@@ -885,13 +903,13 @@ Values per occurrence for an argument
 
 - <span id="valuerange-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<I> IntoResettable for ValueRange`
+##### `impl IntoResettable for ValueRange`
 
-- <span id="valuerange-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueRange>` — [`Resettable`](#resettable), [`ValueRange`](#valuerange)
+- <span id="valuerange-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueRange>` — [`Resettable`](resettable/index.md), [`ValueRange`](range/index.md)
 
 ##### `impl PartialEq for ValueRange`
 
-- <span id="valuerange-eq"></span>`fn eq(&self, other: &ValueRange) -> bool` — [`ValueRange`](#valuerange)
+- <span id="valuerange-eq"></span>`fn eq(&self, other: &ValueRange) -> bool` — [`ValueRange`](range/index.md)
 
 ##### `impl RangeBounds for ValueRange`
 
@@ -901,7 +919,7 @@ Values per occurrence for an argument
 
 ##### `impl StructuralPartialEq for ValueRange`
 
-##### `impl<T> ToString for ValueRange`
+##### `impl ToString for ValueRange`
 
 - <span id="valuerange-to-string"></span>`fn to_string(&self) -> String`
 
@@ -910,6 +928,8 @@ Values per occurrence for an argument
 ```rust
 struct StyledStr(String);
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/styled_str.rs:25`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/styled_str.rs#L25)*
 
 Terminal-styling container
 
@@ -968,7 +988,7 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl Clone for StyledStr`
 
-- <span id="styledstr-clone"></span>`fn clone(&self) -> StyledStr` — [`StyledStr`](#styledstr)
+- <span id="styledstr-clone"></span>`fn clone(&self) -> StyledStr` — [`StyledStr`](styled_str/index.md)
 
 ##### `impl Debug for StyledStr`
 
@@ -976,7 +996,7 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl Default for StyledStr`
 
-- <span id="styledstr-default"></span>`fn default() -> StyledStr` — [`StyledStr`](#styledstr)
+- <span id="styledstr-default"></span>`fn default() -> StyledStr` — [`StyledStr`](styled_str/index.md)
 
 ##### `impl Display for StyledStr`
 
@@ -984,25 +1004,25 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl Eq for StyledStr`
 
-##### `impl<I> IntoResettable for StyledStr`
+##### `impl IntoResettable for StyledStr`
 
-- <span id="styledstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<StyledStr>` — [`Resettable`](#resettable), [`StyledStr`](#styledstr)
+- <span id="styledstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<StyledStr>` — [`Resettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
 
 ##### `impl Ord for StyledStr`
 
-- <span id="styledstr-cmp"></span>`fn cmp(&self, other: &StyledStr) -> cmp::Ordering` — [`StyledStr`](#styledstr)
+- <span id="styledstr-cmp"></span>`fn cmp(&self, other: &StyledStr) -> cmp::Ordering` — [`StyledStr`](styled_str/index.md)
 
 ##### `impl PartialEq for StyledStr`
 
-- <span id="styledstr-eq"></span>`fn eq(&self, other: &StyledStr) -> bool` — [`StyledStr`](#styledstr)
+- <span id="styledstr-eq"></span>`fn eq(&self, other: &StyledStr) -> bool` — [`StyledStr`](styled_str/index.md)
 
 ##### `impl PartialOrd for StyledStr`
 
-- <span id="styledstr-partial-cmp"></span>`fn partial_cmp(&self, other: &StyledStr) -> option::Option<cmp::Ordering>` — [`StyledStr`](#styledstr)
+- <span id="styledstr-partial-cmp"></span>`fn partial_cmp(&self, other: &StyledStr) -> option::Option<cmp::Ordering>` — [`StyledStr`](styled_str/index.md)
 
 ##### `impl StructuralPartialEq for StyledStr`
 
-##### `impl<T> ToString for StyledStr`
+##### `impl ToString for StyledStr`
 
 - <span id="styledstr-to-string"></span>`fn to_string(&self) -> String`
 
@@ -1027,6 +1047,8 @@ struct Styles {
     context_value: Option<Style>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
 
 Terminal styling definitions
 
@@ -1075,7 +1097,7 @@ let styles = Styles::styled()
 
 ##### `impl Clone for Styles`
 
-- <span id="styles-clone"></span>`fn clone(&self) -> Styles` — [`Styles`](#styles)
+- <span id="styles-clone"></span>`fn clone(&self) -> Styles` — [`Styles`](styling/index.md)
 
 ##### `impl Debug for Styles`
 
@@ -1092,21 +1114,23 @@ struct BoolValueParser {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1677`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L1677)*
+
 Implementation for `ValueParser::bool`
 
-Useful for composing new [`TypedValueParser`](#typedvalueparser)s
+Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 
 #### Implementations
 
 - <span id="boolvalueparser-new"></span>`fn new() -> Self`
 
-- <span id="boolvalueparser-possible-values"></span>`fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](#possiblevalue)
+- <span id="boolvalueparser-possible-values"></span>`fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](possible_value/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BoolValueParser`
 
-- <span id="boolvalueparser-clone"></span>`fn clone(&self) -> BoolValueParser` — [`BoolValueParser`](#boolvalueparser)
+- <span id="boolvalueparser-clone"></span>`fn clone(&self) -> BoolValueParser` — [`BoolValueParser`](value_parser/index.md)
 
 ##### `impl Copy for BoolValueParser`
 
@@ -1118,17 +1142,17 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 - <span id="boolvalueparser-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoResettable for BoolValueParser`
+##### `impl IntoResettable for BoolValueParser`
 
-- <span id="boolvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="boolvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl TypedValueParser for BoolValueParser`
 
-- <span id="boolvalueparser-value"></span>`type Value = bool`
+- <span id="boolvalueparser-type-value"></span>`type Value = bool`
 
-- <span id="boolvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="boolvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="boolvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](#possiblevalue)
+- <span id="boolvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](possible_value/index.md)
 
 ### `BoolishValueParser`
 
@@ -1137,11 +1161,13 @@ struct BoolishValueParser {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1877`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L1877)*
+
 Parse bool-like string values
 
 See also:
 - `ValueParser::bool` for different human readable bool representations
-- [`FalseyValueParser`](#falseyvalueparser) for assuming non-false is true
+- [`FalseyValueParser`](value_parser/index.md) for assuming non-false is true
 
 # Example
 
@@ -1186,13 +1212,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 - <span id="boolishvalueparser-new"></span>`fn new() -> Self`
 
-- <span id="boolishvalueparser-possible-values"></span>`fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](#possiblevalue)
+- <span id="boolishvalueparser-possible-values"></span>`fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](possible_value/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BoolishValueParser`
 
-- <span id="boolishvalueparser-clone"></span>`fn clone(&self) -> BoolishValueParser` — [`BoolishValueParser`](#boolishvalueparser)
+- <span id="boolishvalueparser-clone"></span>`fn clone(&self) -> BoolishValueParser` — [`BoolishValueParser`](value_parser/index.md)
 
 ##### `impl Copy for BoolishValueParser`
 
@@ -1204,17 +1230,17 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 - <span id="boolishvalueparser-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoResettable for BoolishValueParser`
+##### `impl IntoResettable for BoolishValueParser`
 
-- <span id="boolishvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="boolishvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl TypedValueParser for BoolishValueParser`
 
-- <span id="boolishvalueparser-value"></span>`type Value = bool`
+- <span id="boolishvalueparser-type-value"></span>`type Value = bool`
 
-- <span id="boolishvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="boolishvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="boolishvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](#possiblevalue)
+- <span id="boolishvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](possible_value/index.md)
 
 ### `EnumValueParser<E: crate::ValueEnum + Clone + Send + Sync + 'static>`
 
@@ -1222,10 +1248,12 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 struct EnumValueParser<E: crate::ValueEnum + Clone + Send + Sync + 'static>(std::marker::PhantomData<E>);
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1079-1081`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L1079-L1081)*
+
 Parse an `ValueEnum` value.
 
 See also:
-- [`PossibleValuesParser`](#possiblevaluesparser)
+- [`PossibleValuesParser`](value_parser/index.md)
 
 # Example
 
@@ -1269,7 +1297,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), Colo
 
 ##### `impl<E: clone::Clone + crate::ValueEnum + Clone + Send + Sync + 'static> Clone for EnumValueParser<E>`
 
-- <span id="enumvalueparser-clone"></span>`fn clone(&self) -> EnumValueParser<E>` — [`EnumValueParser`](#enumvalueparser)
+- <span id="enumvalueparser-clone"></span>`fn clone(&self) -> EnumValueParser<E>` — [`EnumValueParser`](value_parser/index.md)
 
 ##### `impl<E: fmt::Debug + crate::ValueEnum + Clone + Send + Sync + 'static> Debug for EnumValueParser<E>`
 
@@ -1281,15 +1309,15 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), Colo
 
 ##### `impl<I> IntoResettable for EnumValueParser<E>`
 
-- <span id="enumvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="enumvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl<E: crate::ValueEnum + Clone + Send + Sync + 'static> TypedValueParser for EnumValueParser<E>`
 
-- <span id="enumvalueparser-value"></span>`type Value = E`
+- <span id="enumvalueparser-type-value"></span>`type Value = E`
 
-- <span id="enumvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="enumvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="enumvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](#possiblevalue)
+- <span id="enumvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](possible_value/index.md)
 
 ### `FalseyValueParser`
 
@@ -1298,11 +1326,13 @@ struct FalseyValueParser {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1778`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L1778)*
+
 Parse false-like string values, everything else is `true`
 
 See also:
 - `ValueParser::bool` for assuming non-false is true
-- [`BoolishValueParser`](#boolishvalueparser) for different human readable bool representations
+- [`BoolishValueParser`](value_parser/index.md) for different human readable bool representations
 
 # Example
 
@@ -1343,13 +1373,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 - <span id="falseyvalueparser-new"></span>`fn new() -> Self`
 
-- <span id="falseyvalueparser-possible-values"></span>`fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](#possiblevalue)
+- <span id="falseyvalueparser-possible-values"></span>`fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](possible_value/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for FalseyValueParser`
 
-- <span id="falseyvalueparser-clone"></span>`fn clone(&self) -> FalseyValueParser` — [`FalseyValueParser`](#falseyvalueparser)
+- <span id="falseyvalueparser-clone"></span>`fn clone(&self) -> FalseyValueParser` — [`FalseyValueParser`](value_parser/index.md)
 
 ##### `impl Copy for FalseyValueParser`
 
@@ -1361,17 +1391,17 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 - <span id="falseyvalueparser-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoResettable for FalseyValueParser`
+##### `impl IntoResettable for FalseyValueParser`
 
-- <span id="falseyvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="falseyvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl TypedValueParser for FalseyValueParser`
 
-- <span id="falseyvalueparser-value"></span>`type Value = bool`
+- <span id="falseyvalueparser-type-value"></span>`type Value = bool`
 
-- <span id="falseyvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, _arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="falseyvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, _arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="falseyvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](#possiblevalue)
+- <span id="falseyvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](possible_value/index.md)
 
 ### `MapValueParser<P, F>`
 
@@ -1381,6 +1411,8 @@ struct MapValueParser<P, F> {
     func: F,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2014-2017`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L2014-L2017)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -1394,7 +1426,7 @@ See `TypedValueParser::map`
 
 ##### `impl<P: clone::Clone, F: clone::Clone> Clone for MapValueParser<P, F>`
 
-- <span id="mapvalueparser-clone"></span>`fn clone(&self) -> MapValueParser<P, F>` — [`MapValueParser`](#mapvalueparser)
+- <span id="mapvalueparser-clone"></span>`fn clone(&self) -> MapValueParser<P, F>` — [`MapValueParser`](value_parser/index.md)
 
 ##### `impl<P: fmt::Debug, F: fmt::Debug> Debug for MapValueParser<P, F>`
 
@@ -1402,17 +1434,17 @@ See `TypedValueParser::map`
 
 ##### `impl<I> IntoResettable for MapValueParser<P, F>`
 
-- <span id="mapvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="mapvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl<P, F, T> TypedValueParser for MapValueParser<P, F>`
 
-- <span id="mapvalueparser-value"></span>`type Value = T`
+- <span id="mapvalueparser-type-value"></span>`type Value = T`
 
-- <span id="mapvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="mapvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="mapvalueparser-parse"></span>`fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="mapvalueparser-parse"></span>`fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="mapvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](#possiblevalue)
+- <span id="mapvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](possible_value/index.md)
 
 ### `NonEmptyStringValueParser`
 
@@ -1420,6 +1452,8 @@ See `TypedValueParser::map`
 struct NonEmptyStringValueParser {
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1968`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L1968)*
 
 Parse non-empty string values
 
@@ -1464,7 +1498,7 @@ assert!(value_parser.parse_ref(&cmd, arg, OsStr::new("")).is_err());
 
 ##### `impl Clone for NonEmptyStringValueParser`
 
-- <span id="nonemptystringvalueparser-clone"></span>`fn clone(&self) -> NonEmptyStringValueParser` — [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
+- <span id="nonemptystringvalueparser-clone"></span>`fn clone(&self) -> NonEmptyStringValueParser` — [`NonEmptyStringValueParser`](value_parser/index.md)
 
 ##### `impl Copy for NonEmptyStringValueParser`
 
@@ -1476,15 +1510,15 @@ assert!(value_parser.parse_ref(&cmd, arg, OsStr::new("")).is_err());
 
 - <span id="nonemptystringvalueparser-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoResettable for NonEmptyStringValueParser`
+##### `impl IntoResettable for NonEmptyStringValueParser`
 
-- <span id="nonemptystringvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="nonemptystringvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl TypedValueParser for NonEmptyStringValueParser`
 
-- <span id="nonemptystringvalueparser-value"></span>`type Value = String`
+- <span id="nonemptystringvalueparser-type-value"></span>`type Value = String`
 
-- <span id="nonemptystringvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="nonemptystringvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
 ### `OsStringValueParser`
 
@@ -1493,9 +1527,11 @@ struct OsStringValueParser {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:953`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L953)*
+
 Implementation for `ValueParser::os_string`
 
-Useful for composing new [`TypedValueParser`](#typedvalueparser)s
+Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 
 #### Implementations
 
@@ -1505,7 +1541,7 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ##### `impl Clone for OsStringValueParser`
 
-- <span id="osstringvalueparser-clone"></span>`fn clone(&self) -> OsStringValueParser` — [`OsStringValueParser`](#osstringvalueparser)
+- <span id="osstringvalueparser-clone"></span>`fn clone(&self) -> OsStringValueParser` — [`OsStringValueParser`](value_parser/index.md)
 
 ##### `impl Copy for OsStringValueParser`
 
@@ -1517,17 +1553,17 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 - <span id="osstringvalueparser-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoResettable for OsStringValueParser`
+##### `impl IntoResettable for OsStringValueParser`
 
-- <span id="osstringvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="osstringvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl TypedValueParser for OsStringValueParser`
 
-- <span id="osstringvalueparser-value"></span>`type Value = OsString`
+- <span id="osstringvalueparser-type-value"></span>`type Value = OsString`
 
-- <span id="osstringvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="osstringvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="osstringvalueparser-parse"></span>`fn parse(&self, _cmd: &crate::Command, _arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="osstringvalueparser-parse"></span>`fn parse(&self, _cmd: &crate::Command, _arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
 ### `PathBufValueParser`
 
@@ -1536,9 +1572,11 @@ struct PathBufValueParser {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:995`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L995)*
+
 Implementation for `ValueParser::path_buf`
 
-Useful for composing new [`TypedValueParser`](#typedvalueparser)s
+Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 
 #### Implementations
 
@@ -1548,7 +1586,7 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ##### `impl Clone for PathBufValueParser`
 
-- <span id="pathbufvalueparser-clone"></span>`fn clone(&self) -> PathBufValueParser` — [`PathBufValueParser`](#pathbufvalueparser)
+- <span id="pathbufvalueparser-clone"></span>`fn clone(&self) -> PathBufValueParser` — [`PathBufValueParser`](value_parser/index.md)
 
 ##### `impl Copy for PathBufValueParser`
 
@@ -1560,17 +1598,17 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 - <span id="pathbufvalueparser-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoResettable for PathBufValueParser`
+##### `impl IntoResettable for PathBufValueParser`
 
-- <span id="pathbufvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="pathbufvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl TypedValueParser for PathBufValueParser`
 
-- <span id="pathbufvalueparser-value"></span>`type Value = PathBuf`
+- <span id="pathbufvalueparser-type-value"></span>`type Value = PathBuf`
 
-- <span id="pathbufvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="pathbufvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="pathbufvalueparser-parse"></span>`fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="pathbufvalueparser-parse"></span>`fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
 ### `PossibleValuesParser`
 
@@ -1578,10 +1616,12 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 struct PossibleValuesParser(Vec<super::PossibleValue>);
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1196`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L1196)*
+
 Verify the value is from an enumerated set of `PossibleValue`.
 
 See also:
-- [`EnumValueParser`](#enumvalueparser) for directly supporting `ValueEnum` types
+- [`EnumValueParser`](value_parser/index.md) for directly supporting `ValueEnum` types
 - `TypedValueParser::map` for adapting values to a more specialized type, like an external
   enums that can't implement `ValueEnum`
 
@@ -1620,31 +1660,31 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), "nev
 
 #### Implementations
 
-- <span id="possiblevaluesparser-new"></span>`fn new(values: impl Into<PossibleValuesParser>) -> Self` — [`PossibleValuesParser`](#possiblevaluesparser)
+- <span id="possiblevaluesparser-new"></span>`fn new(values: impl Into<PossibleValuesParser>) -> Self` — [`PossibleValuesParser`](value_parser/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for PossibleValuesParser`
 
-- <span id="possiblevaluesparser-clone"></span>`fn clone(&self) -> PossibleValuesParser` — [`PossibleValuesParser`](#possiblevaluesparser)
+- <span id="possiblevaluesparser-clone"></span>`fn clone(&self) -> PossibleValuesParser` — [`PossibleValuesParser`](value_parser/index.md)
 
 ##### `impl Debug for PossibleValuesParser`
 
 - <span id="possiblevaluesparser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoResettable for PossibleValuesParser`
+##### `impl IntoResettable for PossibleValuesParser`
 
-- <span id="possiblevaluesparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="possiblevaluesparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl TypedValueParser for PossibleValuesParser`
 
-- <span id="possiblevaluesparser-value"></span>`type Value = String`
+- <span id="possiblevaluesparser-type-value"></span>`type Value = String`
 
-- <span id="possiblevaluesparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="possiblevaluesparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="possiblevaluesparser-parse"></span>`fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<String, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`Error`](../index.md)
+- <span id="possiblevaluesparser-parse"></span>`fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<String, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`Error`](../index.md)
 
-- <span id="possiblevaluesparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](#possiblevalue)
+- <span id="possiblevaluesparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](possible_value/index.md)
 
 ### `RangedI64ValueParser<T: TryFrom<i64> + Clone + Send + Sync>`
 
@@ -1654,6 +1694,8 @@ struct RangedI64ValueParser<T: TryFrom<i64> + Clone + Send + Sync> {
     target: std::marker::PhantomData<T>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1315-1318`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L1315-L1318)*
 
 Parse number that fall within a range of values
 
@@ -1714,7 +1756,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 ##### `impl<T: clone::Clone + TryFrom<i64> + Clone + Send + Sync> Clone for RangedI64ValueParser<T>`
 
-- <span id="rangedi64valueparser-clone"></span>`fn clone(&self) -> RangedI64ValueParser<T>` — [`RangedI64ValueParser`](#rangedi64valueparser)
+- <span id="rangedi64valueparser-clone"></span>`fn clone(&self) -> RangedI64ValueParser<T>` — [`RangedI64ValueParser`](value_parser/index.md)
 
 ##### `impl<T: marker::Copy + TryFrom<i64> + Clone + Send + Sync> Copy for RangedI64ValueParser<T>`
 
@@ -1728,13 +1770,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 ##### `impl<I> IntoResettable for RangedI64ValueParser<T>`
 
-- <span id="rangedi64valueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="rangedi64valueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl<T: TryFrom<i64> + Clone + Send + Sync + 'static> TypedValueParser for RangedI64ValueParser<T>`
 
-- <span id="rangedi64valueparser-value"></span>`type Value = T`
+- <span id="rangedi64valueparser-type-value"></span>`type Value = T`
 
-- <span id="rangedi64valueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, raw_value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="rangedi64valueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, raw_value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
 ### `RangedU64ValueParser<T: TryFrom<u64>>`
 
@@ -1744,6 +1786,8 @@ struct RangedU64ValueParser<T: TryFrom<u64>> {
     target: std::marker::PhantomData<T>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:1514-1517`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L1514-L1517)*
 
 Parse number that fall within a range of values
 
@@ -1796,7 +1840,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 ##### `impl<T: clone::Clone + TryFrom<u64>> Clone for RangedU64ValueParser<T>`
 
-- <span id="rangedu64valueparser-clone"></span>`fn clone(&self) -> RangedU64ValueParser<T>` — [`RangedU64ValueParser`](#rangedu64valueparser)
+- <span id="rangedu64valueparser-clone"></span>`fn clone(&self) -> RangedU64ValueParser<T>` — [`RangedU64ValueParser`](value_parser/index.md)
 
 ##### `impl<T: marker::Copy + TryFrom<u64>> Copy for RangedU64ValueParser<T>`
 
@@ -1810,13 +1854,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 ##### `impl<I> IntoResettable for RangedU64ValueParser<T>`
 
-- <span id="rangedu64valueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="rangedu64valueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl<T: TryFrom<u64> + Clone + Send + Sync + 'static> TypedValueParser for RangedU64ValueParser<T>`
 
-- <span id="rangedu64valueparser-value"></span>`type Value = T`
+- <span id="rangedu64valueparser-type-value"></span>`type Value = T`
 
-- <span id="rangedu64valueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, raw_value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="rangedu64valueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, raw_value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
 ### `StringValueParser`
 
@@ -1825,9 +1869,11 @@ struct StringValueParser {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:905`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L905)*
+
 Implementation for `ValueParser::string`
 
-Useful for composing new [`TypedValueParser`](#typedvalueparser)s
+Useful for composing new [`TypedValueParser`](value_parser/index.md)s
 
 #### Implementations
 
@@ -1837,7 +1883,7 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ##### `impl Clone for StringValueParser`
 
-- <span id="stringvalueparser-clone"></span>`fn clone(&self) -> StringValueParser` — [`StringValueParser`](#stringvalueparser)
+- <span id="stringvalueparser-clone"></span>`fn clone(&self) -> StringValueParser` — [`StringValueParser`](value_parser/index.md)
 
 ##### `impl Copy for StringValueParser`
 
@@ -1849,17 +1895,17 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 - <span id="stringvalueparser-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoResettable for StringValueParser`
+##### `impl IntoResettable for StringValueParser`
 
-- <span id="stringvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="stringvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl TypedValueParser for StringValueParser`
 
-- <span id="stringvalueparser-value"></span>`type Value = String`
+- <span id="stringvalueparser-type-value"></span>`type Value = String`
 
-- <span id="stringvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="stringvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="stringvalueparser-parse"></span>`fn parse(&self, cmd: &crate::Command, _arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="stringvalueparser-parse"></span>`fn parse(&self, cmd: &crate::Command, _arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
 ### `TryMapValueParser<P, F>`
 
@@ -1869,6 +1915,8 @@ struct TryMapValueParser<P, F> {
     func: F,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2073-2076`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L2073-L2076)*
 
 Adapt a `TypedValueParser` from one value to another
 
@@ -1882,7 +1930,7 @@ See `TypedValueParser::try_map`
 
 ##### `impl<P: clone::Clone, F: clone::Clone> Clone for TryMapValueParser<P, F>`
 
-- <span id="trymapvalueparser-clone"></span>`fn clone(&self) -> TryMapValueParser<P, F>` — [`TryMapValueParser`](#trymapvalueparser)
+- <span id="trymapvalueparser-clone"></span>`fn clone(&self) -> TryMapValueParser<P, F>` — [`TryMapValueParser`](value_parser/index.md)
 
 ##### `impl<P: fmt::Debug, F: fmt::Debug> Debug for TryMapValueParser<P, F>`
 
@@ -1890,15 +1938,15 @@ See `TypedValueParser::try_map`
 
 ##### `impl<I> IntoResettable for TryMapValueParser<P, F>`
 
-- <span id="trymapvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="trymapvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl<P, F, T, E> TypedValueParser for TryMapValueParser<P, F>`
 
-- <span id="trymapvalueparser-value"></span>`type Value = T`
+- <span id="trymapvalueparser-type-value"></span>`type Value = T`
 
-- <span id="trymapvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="trymapvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="trymapvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](#possiblevalue)
+- <span id="trymapvalueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](possible_value/index.md)
 
 ### `UnknownArgumentValueParser`
 
@@ -1908,6 +1956,8 @@ struct UnknownArgumentValueParser {
     suggestions: Vec<crate::builder::StyledStr>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2159-2162`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L2159-L2162)*
 
 When encountered, report `ErrorKind::UnknownArgument`
 
@@ -1945,39 +1995,41 @@ assert_eq!(err.kind(), clap::error::ErrorKind::UnknownArgument);
 
 #### Implementations
 
-- <span id="unknownargumentvalueparser-suggest-arg"></span>`fn suggest_arg(arg: impl Into<Str>) -> Self` — [`Str`](#str)
+- <span id="unknownargumentvalueparser-suggest-arg"></span>`fn suggest_arg(arg: impl Into<Str>) -> Self` — [`Str`](str/index.md)
 
-- <span id="unknownargumentvalueparser-suggest"></span>`fn suggest(text: impl Into<StyledStr>) -> Self` — [`StyledStr`](#styledstr)
+- <span id="unknownargumentvalueparser-suggest"></span>`fn suggest(text: impl Into<StyledStr>) -> Self` — [`StyledStr`](styled_str/index.md)
 
-- <span id="unknownargumentvalueparser-and-suggest"></span>`fn and_suggest(self, text: impl Into<StyledStr>) -> Self` — [`StyledStr`](#styledstr)
+- <span id="unknownargumentvalueparser-and-suggest"></span>`fn and_suggest(self, text: impl Into<StyledStr>) -> Self` — [`StyledStr`](styled_str/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for UnknownArgumentValueParser`
 
-- <span id="unknownargumentvalueparser-clone"></span>`fn clone(&self) -> UnknownArgumentValueParser` — [`UnknownArgumentValueParser`](#unknownargumentvalueparser)
+- <span id="unknownargumentvalueparser-clone"></span>`fn clone(&self) -> UnknownArgumentValueParser` — [`UnknownArgumentValueParser`](value_parser/index.md)
 
 ##### `impl Debug for UnknownArgumentValueParser`
 
 - <span id="unknownargumentvalueparser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoResettable for UnknownArgumentValueParser`
+##### `impl IntoResettable for UnknownArgumentValueParser`
 
-- <span id="unknownargumentvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="unknownargumentvalueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ##### `impl TypedValueParser for UnknownArgumentValueParser`
 
-- <span id="unknownargumentvalueparser-value"></span>`type Value = String`
+- <span id="unknownargumentvalueparser-type-value"></span>`type Value = String`
 
-- <span id="unknownargumentvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="unknownargumentvalueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
-- <span id="unknownargumentvalueparser-parse-ref"></span>`fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, _value: &std::ffi::OsStr, source: ValueSource) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`ValueSource`](../parser/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../index.md)
+- <span id="unknownargumentvalueparser-parse-ref"></span>`fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, _value: &std::ffi::OsStr, source: ValueSource) -> Result<<Self as >::Value, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`ValueSource`](../parser/matches/value_source/index.md), [`TypedValueParser`](value_parser/index.md), [`Error`](../index.md)
 
 ### `ValueParser`
 
 ```rust
 struct ValueParser(ValueParserInner);
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:63`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L63)*
 
 Parse/validate argument values
 
@@ -1988,7 +2040,7 @@ use within an application.
 
 See
 - `value_parser!` for automatically selecting an implementation for a given type
-- `ValueParser::new` for additional [`TypedValueParser`](#typedvalueparser) that can be used
+- `ValueParser::new` for additional [`TypedValueParser`](value_parser/index.md) that can be used
 
 # Example
 
@@ -2055,9 +2107,9 @@ assert_eq!(port, 3001);
 
 - <span id="valueparser-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error>`
 
-##### `impl<I> IntoResettable for ValueParser`
+##### `impl IntoResettable for ValueParser`
 
-- <span id="valueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](#resettable), [`ValueParser`](#valueparser)
+- <span id="valueparser-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueParser>` — [`Resettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
 ## Enums
 
@@ -2076,6 +2128,8 @@ enum ArgAction {
     Version,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/action.rs:34-353`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/action.rs#L34-L353)*
 
 Behavior of arguments when they are encountered while parsing
 
@@ -2445,15 +2499,15 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 - <span id="argaction-takes-values"></span>`fn takes_values(&self) -> bool`
 
-- <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](#valuerange)
+- <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](range/index.md)
 
-- <span id="argaction-default-num-args"></span>`fn default_num_args(&self) -> ValueRange` — [`ValueRange`](#valuerange)
+- <span id="argaction-default-num-args"></span>`fn default_num_args(&self) -> ValueRange` — [`ValueRange`](range/index.md)
 
 - <span id="argaction-default-value"></span>`fn default_value(&self) -> Option<&'static std::ffi::OsStr>`
 
 - <span id="argaction-default-missing-value"></span>`fn default_missing_value(&self) -> Option<&'static std::ffi::OsStr>`
 
-- <span id="argaction-default-value-parser"></span>`fn default_value_parser(&self) -> Option<super::ValueParser>` — [`ValueParser`](#valueparser)
+- <span id="argaction-default-value-parser"></span>`fn default_value_parser(&self) -> Option<super::ValueParser>` — [`ValueParser`](value_parser/index.md)
 
 - <span id="argaction-value-type-id"></span>`fn value_type_id(&self) -> Option<AnyValueId>` — [`AnyValueId`](../util/any_value/index.md)
 
@@ -2461,15 +2515,15 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 ##### `impl Clone for ArgAction`
 
-- <span id="argaction-clone"></span>`fn clone(&self) -> ArgAction` — [`ArgAction`](../index.md)
+- <span id="argaction-clone"></span>`fn clone(&self) -> ArgAction` — [`ArgAction`](action/index.md)
 
 ##### `impl Debug for ArgAction`
 
 - <span id="argaction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoResettable for crate::builder::ArgAction`
+##### `impl IntoResettable for Option<crate::builder::ArgAction>`
 
-- <span id="cratebuilderargaction-into-resettable"></span>`fn into_resettable(self) -> Resettable<ArgAction>` — [`Resettable`](#resettable), [`ArgAction`](../index.md)
+- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ArgAction>` — [`Resettable`](resettable/index.md), [`ArgAction`](action/index.md)
 
 ### `ArgPredicate`
 
@@ -2479,6 +2533,8 @@ enum ArgPredicate {
     Equals(crate::builder::OsStr),
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
 
 Operations to perform on argument values
 
@@ -2498,7 +2554,7 @@ These do not apply to `ValueSource::DefaultValue`
 
 ##### `impl Clone for ArgPredicate`
 
-- <span id="argpredicate-clone"></span>`fn clone(&self) -> ArgPredicate` — [`ArgPredicate`](#argpredicate)
+- <span id="argpredicate-clone"></span>`fn clone(&self) -> ArgPredicate` — [`ArgPredicate`](arg_predicate/index.md)
 
 ##### `impl Debug for ArgPredicate`
 
@@ -2508,7 +2564,7 @@ These do not apply to `ValueSource::DefaultValue`
 
 ##### `impl PartialEq for ArgPredicate`
 
-- <span id="argpredicate-eq"></span>`fn eq(&self, other: &ArgPredicate) -> bool` — [`ArgPredicate`](#argpredicate)
+- <span id="argpredicate-eq"></span>`fn eq(&self, other: &ArgPredicate) -> bool` — [`ArgPredicate`](arg_predicate/index.md)
 
 ##### `impl StructuralPartialEq for ArgPredicate`
 
@@ -2520,6 +2576,8 @@ enum Resettable<T> {
     Reset,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
 
 Clearable builder value
 
@@ -2560,7 +2618,7 @@ command.mut_arg("input", |arg| arg.short(None));
 
 ##### `impl<T: clone::Clone> Clone for Resettable<T>`
 
-- <span id="resettable-clone"></span>`fn clone(&self) -> Resettable<T>` — [`Resettable`](#resettable)
+- <span id="resettable-clone"></span>`fn clone(&self) -> Resettable<T>` — [`Resettable`](resettable/index.md)
 
 ##### `impl<T: marker::Copy> Copy for Resettable<T>`
 
@@ -2576,19 +2634,19 @@ command.mut_arg("input", |arg| arg.short(None));
 
 ##### `impl<T> IntoResettable for Resettable<T>`
 
-- <span id="resettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<T>` — [`Resettable`](#resettable)
+- <span id="resettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<T>` — [`Resettable`](resettable/index.md)
 
 ##### `impl<T: cmp::Ord> Ord for Resettable<T>`
 
-- <span id="resettable-cmp"></span>`fn cmp(&self, other: &Resettable<T>) -> cmp::Ordering` — [`Resettable`](#resettable)
+- <span id="resettable-cmp"></span>`fn cmp(&self, other: &Resettable<T>) -> cmp::Ordering` — [`Resettable`](resettable/index.md)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for Resettable<T>`
 
-- <span id="resettable-eq"></span>`fn eq(&self, other: &Resettable<T>) -> bool` — [`Resettable`](#resettable)
+- <span id="resettable-eq"></span>`fn eq(&self, other: &Resettable<T>) -> bool` — [`Resettable`](resettable/index.md)
 
 ##### `impl<T: cmp::PartialOrd> PartialOrd for Resettable<T>`
 
-- <span id="resettable-partial-cmp"></span>`fn partial_cmp(&self, other: &Resettable<T>) -> option::Option<cmp::Ordering>` — [`Resettable`](#resettable)
+- <span id="resettable-partial-cmp"></span>`fn partial_cmp(&self, other: &Resettable<T>) -> option::Option<cmp::Ordering>` — [`Resettable`](resettable/index.md)
 
 ##### `impl<T> StructuralPartialEq for Resettable<T>`
 
@@ -2611,6 +2669,8 @@ enum ValueHint {
     EmailAddress,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/value_hint.rs:29-68`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_hint.rs#L29-L68)*
 
 Provide shell with hint on how to complete an argument.
 
@@ -2705,7 +2765,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Clone for ValueHint`
 
-- <span id="valuehint-clone"></span>`fn clone(&self) -> ValueHint` — [`ValueHint`](../index.md)
+- <span id="valuehint-clone"></span>`fn clone(&self) -> ValueHint` — [`ValueHint`](value_hint/index.md)
 
 ##### `impl Copy for ValueHint`
 
@@ -2715,13 +2775,13 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Default for ValueHint`
 
-- <span id="valuehint-default"></span>`fn default() -> ValueHint` — [`ValueHint`](../index.md)
+- <span id="valuehint-default"></span>`fn default() -> ValueHint` — [`ValueHint`](value_hint/index.md)
 
 ##### `impl Eq for ValueHint`
 
 ##### `impl FromStr for ValueHint`
 
-- <span id="valuehint-err"></span>`type Err = String`
+- <span id="valuehint-type-err"></span>`type Err = String`
 
 - <span id="valuehint-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as FromStr>::Err>`
 
@@ -2729,13 +2789,13 @@ Overview of which hints are supported by which shell:
 
 - <span id="valuehint-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl IntoResettable for crate::builder::ValueHint`
+##### `impl IntoResettable for Option<crate::builder::ValueHint>`
 
-- <span id="cratebuildervaluehint-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueHint>` — [`Resettable`](#resettable), [`ValueHint`](../index.md)
+- <span id="option-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueHint>` — [`Resettable`](resettable/index.md), [`ValueHint`](value_hint/index.md)
 
 ##### `impl PartialEq for ValueHint`
 
-- <span id="valuehint-eq"></span>`fn eq(&self, other: &ValueHint) -> bool` — [`ValueHint`](../index.md)
+- <span id="valuehint-eq"></span>`fn eq(&self, other: &ValueHint) -> bool` — [`ValueHint`](value_hint/index.md)
 
 ##### `impl StructuralPartialEq for ValueHint`
 
@@ -2747,6 +2807,8 @@ Overview of which hints are supported by which shell:
 trait IntoResettable<T> { ... }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
+
 Convert to the intended resettable type
 
 #### Required Methods
@@ -2757,29 +2819,9 @@ Convert to the intended resettable type
 
 #### Implementors
 
-- [`ArgAction`](../index.md)
-- [`BoolValueParser`](#boolvalueparser)
-- [`BoolishValueParser`](#boolishvalueparser)
-- [`EnumValueParser`](#enumvalueparser)
-- [`FalseyValueParser`](#falseyvalueparser)
-- [`Id`](../index.md)
-- [`MapValueParser`](#mapvalueparser)
-- [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
-- [`OsStr`](#osstr)
-- [`OsStringValueParser`](#osstringvalueparser)
-- [`PathBufValueParser`](#pathbufvalueparser)
-- [`PossibleValuesParser`](#possiblevaluesparser)
-- [`RangedI64ValueParser`](#rangedi64valueparser)
-- [`RangedU64ValueParser`](#rangedu64valueparser)
-- [`Resettable`](#resettable)
-- [`Str`](#str)
-- [`StringValueParser`](#stringvalueparser)
-- [`StyledStr`](#styledstr)
-- [`TryMapValueParser`](#trymapvalueparser)
-- [`UnknownArgumentValueParser`](#unknownargumentvalueparser)
-- [`ValueHint`](../index.md)
-- [`ValueParser`](#valueparser)
-- [`ValueRange`](#valuerange)
+- [`ArgAction`](action/index.md)
+- [`Resettable`](resettable/index.md)
+- [`ValueHint`](value_hint/index.md)
 - `I`
 - `Option<&'static str>`
 - `Option<char>`
@@ -2795,6 +2837,8 @@ Convert to the intended resettable type
 ```rust
 trait TypedValueParser: Clone + Send + Sync + 'static { ... }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:711-868`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L711-L868)*
 
 Parse/validate argument values
 
@@ -2886,20 +2930,20 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 
 #### Implementors
 
-- [`BoolValueParser`](#boolvalueparser)
-- [`BoolishValueParser`](#boolishvalueparser)
-- [`EnumValueParser`](#enumvalueparser)
-- [`FalseyValueParser`](#falseyvalueparser)
-- [`MapValueParser`](#mapvalueparser)
-- [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
-- [`OsStringValueParser`](#osstringvalueparser)
-- [`PathBufValueParser`](#pathbufvalueparser)
-- [`PossibleValuesParser`](#possiblevaluesparser)
-- [`RangedI64ValueParser`](#rangedi64valueparser)
-- [`RangedU64ValueParser`](#rangedu64valueparser)
-- [`StringValueParser`](#stringvalueparser)
-- [`TryMapValueParser`](#trymapvalueparser)
-- [`UnknownArgumentValueParser`](#unknownargumentvalueparser)
+- [`BoolValueParser`](value_parser/index.md)
+- [`BoolishValueParser`](value_parser/index.md)
+- [`EnumValueParser`](value_parser/index.md)
+- [`FalseyValueParser`](value_parser/index.md)
+- [`MapValueParser`](value_parser/index.md)
+- [`NonEmptyStringValueParser`](value_parser/index.md)
+- [`OsStringValueParser`](value_parser/index.md)
+- [`PathBufValueParser`](value_parser/index.md)
+- [`PossibleValuesParser`](value_parser/index.md)
+- [`RangedI64ValueParser`](value_parser/index.md)
+- [`RangedU64ValueParser`](value_parser/index.md)
+- [`StringValueParser`](value_parser/index.md)
+- [`TryMapValueParser`](value_parser/index.md)
+- [`UnknownArgumentValueParser`](value_parser/index.md)
 - `F`
 
 ### `ValueParserFactory`
@@ -2907,6 +2951,8 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 ```rust
 trait ValueParserFactory { ... }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/value_parser.rs:2276-2285`](../../../.source_1765210505/clap_builder-4.5.53/src/builder/value_parser.rs#L2276-L2285)*
 
 Register a type with [`value_parser!`][crate::value_parser!]
 

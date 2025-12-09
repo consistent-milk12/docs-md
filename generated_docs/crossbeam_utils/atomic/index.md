@@ -6,8 +6,8 @@
 
 Atomic types.
 
-* [`AtomicCell`](#atomiccell), a thread-safe mutable memory location.
-* [`AtomicConsume`](#atomicconsume), for reading from primitive atomic types with "consume" ordering.
+* [`AtomicCell`](atomic_cell/index.md), a thread-safe mutable memory location.
+* [`AtomicConsume`](consume/index.md), for reading from primitive atomic types with "consume" ordering.
 
 ## Quick Reference
 
@@ -34,6 +34,8 @@ struct AtomicCell<T> {
     value: core::cell::UnsafeCell<core::mem::MaybeUninit<T>>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:30-45`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L30-L45)*
 
 A thread-safe mutable memory location.
 
@@ -69,21 +71,17 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- <span id="atomiccell-fetch-add"></span>`fn fetch_add(&self, val: i32) -> i32`
+- <span id="atomiccell-new"></span>`const fn new(val: T) -> AtomicCell<T>` — [`AtomicCell`](atomic_cell/index.md)
 
-- <span id="atomiccell-fetch-sub"></span>`fn fetch_sub(&self, val: i32) -> i32`
+- <span id="atomiccell-into-inner"></span>`fn into_inner(self) -> T`
 
-- <span id="atomiccell-fetch-and"></span>`fn fetch_and(&self, val: i32) -> i32`
+- <span id="atomiccell-is-lock-free"></span>`const fn is_lock_free() -> bool`
 
-- <span id="atomiccell-fetch-nand"></span>`fn fetch_nand(&self, val: i32) -> i32`
+- <span id="atomiccell-store"></span>`fn store(&self, val: T)`
 
-- <span id="atomiccell-fetch-or"></span>`fn fetch_or(&self, val: i32) -> i32`
+- <span id="atomiccell-swap"></span>`fn swap(&self, val: T) -> T`
 
-- <span id="atomiccell-fetch-xor"></span>`fn fetch_xor(&self, val: i32) -> i32`
-
-- <span id="atomiccell-fetch-max"></span>`fn fetch_max(&self, val: i32) -> i32`
-
-- <span id="atomiccell-fetch-min"></span>`fn fetch_min(&self, val: i32) -> i32`
+- <span id="atomiccell-as-ptr"></span>`fn as_ptr(&self) -> *mut T`
 
 #### Trait Implementations
 
@@ -93,7 +91,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 ##### `impl<T: Default> Default for AtomicCell<T>`
 
-- <span id="atomiccell-default"></span>`fn default() -> AtomicCell<T>` — [`AtomicCell`](#atomiccell)
+- <span id="atomiccell-default"></span>`fn default() -> AtomicCell<T>` — [`AtomicCell`](atomic_cell/index.md)
 
 ##### `impl<T> Drop for AtomicCell<T>`
 
@@ -114,6 +112,8 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 ```rust
 trait AtomicConsume { ... }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/consume.rs:5-25`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/consume.rs#L5-L25)*
 
 Trait which allows reading from primitive atomic types with "consume" ordering.
 

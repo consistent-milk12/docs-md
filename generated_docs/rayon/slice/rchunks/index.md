@@ -28,6 +28,8 @@ struct RChunks<'data, T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:6-9`](../../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L6-L9)*
+
 Parallel iterator over immutable non-overlapping chunks of a slice, starting at the end.
 
 #### Implementations
@@ -56,15 +58,15 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 ##### `impl<T> IntoParallelIterator for RChunks<'data, T>`
 
-- <span id="rchunks-iter"></span>`type Iter = T`
+- <span id="rchunks-type-iter"></span>`type Iter = T`
 
-- <span id="rchunks-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="rchunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="rchunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Sync> ParallelIterator for RChunks<'data, T>`
 
-- <span id="rchunks-item"></span>`type Item = &'data [T]`
+- <span id="rchunks-type-item"></span>`type Item = &'data [T]`
 
 - <span id="rchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -72,9 +74,9 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 ##### `impl<T> Pointable for RChunks<'data, T>`
 
-- <span id="rchunks-align"></span>`const ALIGN: usize`
+- <span id="rchunks-const-align"></span>`const ALIGN: usize`
 
-- <span id="rchunks-init"></span>`type Init = T`
+- <span id="rchunks-type-init"></span>`type Init = T`
 
 - <span id="rchunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -93,15 +95,17 @@ struct RChunksProducer<'data, T: Sync> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:61-64`](../../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L61-L64)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for RChunksProducer<'data, T>`
 
 ##### `impl<T> Pointable for RChunksProducer<'data, T>`
 
-- <span id="rchunksproducer-align"></span>`const ALIGN: usize`
+- <span id="rchunksproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="rchunksproducer-init"></span>`type Init = T`
+- <span id="rchunksproducer-type-init"></span>`type Init = T`
 
 - <span id="rchunksproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -113,9 +117,9 @@ struct RChunksProducer<'data, T: Sync> {
 
 ##### `impl<'data, T: 'data + Sync> Producer for RChunksProducer<'data, T>`
 
-- <span id="rchunksproducer-item"></span>`type Item = &'data [T]`
+- <span id="rchunksproducer-type-item"></span>`type Item = &'data [T]`
 
-- <span id="rchunksproducer-intoiter"></span>`type IntoIter = RChunks<'data, T>`
+- <span id="rchunksproducer-type-intoiter"></span>`type IntoIter = RChunks<'data, T>`
 
 - <span id="rchunksproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
 
@@ -130,6 +134,8 @@ struct RChunksExact<'data, T> {
     rem: &'data [T],
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:92-96`](../../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L92-L96)*
 
 Parallel iterator over immutable non-overlapping chunks of a slice, starting at the end.
 
@@ -161,15 +167,15 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 ##### `impl<T> IntoParallelIterator for RChunksExact<'data, T>`
 
-- <span id="rchunksexact-iter"></span>`type Iter = T`
+- <span id="rchunksexact-type-iter"></span>`type Iter = T`
 
-- <span id="rchunksexact-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="rchunksexact-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="rchunksexact-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Sync> ParallelIterator for RChunksExact<'data, T>`
 
-- <span id="rchunksexact-item"></span>`type Item = &'data [T]`
+- <span id="rchunksexact-type-item"></span>`type Item = &'data [T]`
 
 - <span id="rchunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -177,9 +183,9 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 ##### `impl<T> Pointable for RChunksExact<'data, T>`
 
-- <span id="rchunksexact-align"></span>`const ALIGN: usize`
+- <span id="rchunksexact-const-align"></span>`const ALIGN: usize`
 
-- <span id="rchunksexact-init"></span>`type Init = T`
+- <span id="rchunksexact-type-init"></span>`type Init = T`
 
 - <span id="rchunksexact-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -198,15 +204,17 @@ struct RChunksExactProducer<'data, T: Sync> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:161-164`](../../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L161-L164)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for RChunksExactProducer<'data, T>`
 
 ##### `impl<T> Pointable for RChunksExactProducer<'data, T>`
 
-- <span id="rchunksexactproducer-align"></span>`const ALIGN: usize`
+- <span id="rchunksexactproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="rchunksexactproducer-init"></span>`type Init = T`
+- <span id="rchunksexactproducer-type-init"></span>`type Init = T`
 
 - <span id="rchunksexactproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -218,9 +226,9 @@ struct RChunksExactProducer<'data, T: Sync> {
 
 ##### `impl<'data, T: 'data + Sync> Producer for RChunksExactProducer<'data, T>`
 
-- <span id="rchunksexactproducer-item"></span>`type Item = &'data [T]`
+- <span id="rchunksexactproducer-type-item"></span>`type Item = &'data [T]`
 
-- <span id="rchunksexactproducer-intoiter"></span>`type IntoIter = RChunksExact<'data, T>`
+- <span id="rchunksexactproducer-type-intoiter"></span>`type IntoIter = RChunksExact<'data, T>`
 
 - <span id="rchunksexactproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
 
@@ -234,6 +242,8 @@ struct RChunksMut<'data, T> {
     slice: &'data mut [T],
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:192-195`](../../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L192-L195)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice, starting at the end.
 
@@ -259,15 +269,15 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 ##### `impl<T> IntoParallelIterator for RChunksMut<'data, T>`
 
-- <span id="rchunksmut-iter"></span>`type Iter = T`
+- <span id="rchunksmut-type-iter"></span>`type Iter = T`
 
-- <span id="rchunksmut-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="rchunksmut-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="rchunksmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Send> ParallelIterator for RChunksMut<'data, T>`
 
-- <span id="rchunksmut-item"></span>`type Item = &'data mut [T]`
+- <span id="rchunksmut-type-item"></span>`type Item = &'data mut [T]`
 
 - <span id="rchunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -275,9 +285,9 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 ##### `impl<T> Pointable for RChunksMut<'data, T>`
 
-- <span id="rchunksmut-align"></span>`const ALIGN: usize`
+- <span id="rchunksmut-const-align"></span>`const ALIGN: usize`
 
-- <span id="rchunksmut-init"></span>`type Init = T`
+- <span id="rchunksmut-type-init"></span>`type Init = T`
 
 - <span id="rchunksmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -296,15 +306,17 @@ struct RChunksMutProducer<'data, T: Send> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:241-244`](../../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L241-L244)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for RChunksMutProducer<'data, T>`
 
 ##### `impl<T> Pointable for RChunksMutProducer<'data, T>`
 
-- <span id="rchunksmutproducer-align"></span>`const ALIGN: usize`
+- <span id="rchunksmutproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="rchunksmutproducer-init"></span>`type Init = T`
+- <span id="rchunksmutproducer-type-init"></span>`type Init = T`
 
 - <span id="rchunksmutproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -316,9 +328,9 @@ struct RChunksMutProducer<'data, T: Send> {
 
 ##### `impl<'data, T: 'data + Send> Producer for RChunksMutProducer<'data, T>`
 
-- <span id="rchunksmutproducer-item"></span>`type Item = &'data mut [T]`
+- <span id="rchunksmutproducer-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="rchunksmutproducer-intoiter"></span>`type IntoIter = RChunksMut<'data, T>`
+- <span id="rchunksmutproducer-type-intoiter"></span>`type IntoIter = RChunksMut<'data, T>`
 
 - <span id="rchunksmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
 
@@ -333,6 +345,8 @@ struct RChunksExactMut<'data, T: Send> {
     rem: &'data mut [T],
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:272-276`](../../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L272-L276)*
 
 Parallel iterator over mutable non-overlapping chunks of a slice, starting at the end.
 
@@ -364,15 +378,15 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 ##### `impl<T> IntoParallelIterator for RChunksExactMut<'data, T>`
 
-- <span id="rchunksexactmut-iter"></span>`type Iter = T`
+- <span id="rchunksexactmut-type-iter"></span>`type Iter = T`
 
-- <span id="rchunksexactmut-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="rchunksexactmut-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="rchunksexactmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Send + 'data> ParallelIterator for RChunksExactMut<'data, T>`
 
-- <span id="rchunksexactmut-item"></span>`type Item = &'data mut [T]`
+- <span id="rchunksexactmut-type-item"></span>`type Item = &'data mut [T]`
 
 - <span id="rchunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -380,9 +394,9 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 ##### `impl<T> Pointable for RChunksExactMut<'data, T>`
 
-- <span id="rchunksexactmut-align"></span>`const ALIGN: usize`
+- <span id="rchunksexactmut-const-align"></span>`const ALIGN: usize`
 
-- <span id="rchunksexactmut-init"></span>`type Init = T`
+- <span id="rchunksexactmut-type-init"></span>`type Init = T`
 
 - <span id="rchunksexactmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -401,15 +415,17 @@ struct RChunksExactMutProducer<'data, T: Send> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/rchunks.rs:358-361`](../../../../.source_1765210505/rayon-1.11.0/src/slice/rchunks.rs#L358-L361)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for RChunksExactMutProducer<'data, T>`
 
 ##### `impl<T> Pointable for RChunksExactMutProducer<'data, T>`
 
-- <span id="rchunksexactmutproducer-align"></span>`const ALIGN: usize`
+- <span id="rchunksexactmutproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="rchunksexactmutproducer-init"></span>`type Init = T`
+- <span id="rchunksexactmutproducer-type-init"></span>`type Init = T`
 
 - <span id="rchunksexactmutproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -421,9 +437,9 @@ struct RChunksExactMutProducer<'data, T: Send> {
 
 ##### `impl<'data, T: 'data + Send> Producer for RChunksExactMutProducer<'data, T>`
 
-- <span id="rchunksexactmutproducer-item"></span>`type Item = &'data mut [T]`
+- <span id="rchunksexactmutproducer-type-item"></span>`type Item = &'data mut [T]`
 
-- <span id="rchunksexactmutproducer-intoiter"></span>`type IntoIter = RChunksExactMut<'data, T>`
+- <span id="rchunksexactmutproducer-type-intoiter"></span>`type IntoIter = RChunksExactMut<'data, T>`
 
 - <span id="rchunksexactmutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../../iter/plumbing/index.md)
 

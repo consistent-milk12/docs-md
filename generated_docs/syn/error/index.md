@@ -41,6 +41,8 @@ struct Error {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/error.rs:101-103`](../../../.source_1765210505/syn-2.0.111/src/error.rs#L101-L103)*
+
 Error returned when a Syn parser cannot parse the input tokens.
 
 # Error reporting in proc macros
@@ -132,7 +134,7 @@ mod expand {
 
 - <span id="error-into-compile-error"></span>`fn into_compile_error(self) -> TokenStream`
 
-- <span id="error-combine"></span>`fn combine(&mut self, another: Error)` — [`Error`](../index.md)
+- <span id="error-combine"></span>`fn combine(&mut self, another: Error)` — [`Error`](#error)
 
 #### Trait Implementations
 
@@ -156,13 +158,13 @@ mod expand {
 
 ##### `impl IntoIterator for Error`
 
-- <span id="error-item"></span>`type Item = Error`
+- <span id="error-type-item"></span>`type Item = Error`
 
-- <span id="error-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="error-type-intoiter"></span>`type IntoIter = IntoIter`
 
 - <span id="error-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
@@ -174,6 +176,8 @@ struct ErrorMessage {
     message: String,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/error.rs:105-113`](../../../.source_1765210505/syn-2.0.111/src/error.rs#L105-L113)*
 
 #### Implementations
 
@@ -198,6 +202,8 @@ struct SpanRange {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/error.rs:118-121`](../../../.source_1765210505/syn-2.0.111/src/error.rs#L118-L121)*
+
 #### Trait Implementations
 
 ##### `impl Clone for SpanRange`
@@ -214,19 +220,21 @@ struct IntoIter {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/error.rs:423-425`](../../../.source_1765210505/syn-2.0.111/src/error.rs#L423-L425)*
+
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for IntoIter`
+##### `impl IntoIterator for IntoIter`
 
-- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- <span id="intoiter-item"></span>`type Item = Error`
+- <span id="intoiter-type-item"></span>`type Item = Error`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -238,19 +246,21 @@ struct Iter<'a> {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/error.rs:448-450`](../../../.source_1765210505/syn-2.0.111/src/error.rs#L448-L450)*
+
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for Iter<'a>`
+##### `impl IntoIterator for Iter<'a>`
 
-- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-intoiter"></span>`type IntoIter = I`
+- <span id="iter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Iter<'a>`
+##### `impl Iterator for Iter<'a>`
 
-- <span id="iter-item"></span>`type Item = Error`
+- <span id="iter-type-item"></span>`type Item = Error`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -262,11 +272,15 @@ struct Iter<'a> {
 fn new_at<T: Display>(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>, message: T) -> Error
 ```
 
+*Defined in [`syn-2.0.111/src/error.rs:328-335`](../../../.source_1765210505/syn-2.0.111/src/error.rs#L328-L335)*
+
 ### `new2`
 
 ```rust
 fn new2<T: Display>(start: proc_macro2::Span, end: proc_macro2::Span, message: T) -> Error
 ```
+
+*Defined in [`syn-2.0.111/src/error.rs:338-349`](../../../.source_1765210505/syn-2.0.111/src/error.rs#L338-L349)*
 
 ## Type Aliases
 
@@ -275,6 +289,8 @@ fn new2<T: Display>(start: proc_macro2::Span, end: proc_macro2::Span, message: T
 ```rust
 type Result<T> = std::result::Result<T, Error>;
 ```
+
+*Defined in [`syn-2.0.111/src/error.rs:15`](../../../.source_1765210505/syn-2.0.111/src/error.rs#L15)*
 
 The result of a Syn parser.
 

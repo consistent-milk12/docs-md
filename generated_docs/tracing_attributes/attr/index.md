@@ -28,7 +28,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`kw`](#kw) | mod |  |
-| [`EventArgs`](#eventargs) | struct | Arguments to `#[instrument(err(...))]` and `#[instrument(ret(...))]` which describe how the |
+| [`EventArgs`](#eventargs) | struct | Arguments to `#[instrument(err(...))]` and `#[instrument(ret(...))]` which describe how the return value event should be emitted. |
 | [`InstrumentArgs`](#instrumentargs) | struct |  |
 | [`StrArg`](#strarg) | struct |  |
 | [`ExprArg`](#exprarg) | struct |  |
@@ -55,6 +55,8 @@ struct EventArgs {
     mode: FormatMode,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:13-16`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L13-L16)*
 
 Arguments to `#[instrument(err(...))]` and `#[instrument(ret(...))]` which describe how the
 return value event should be emitted.
@@ -99,6 +101,8 @@ struct InstrumentArgs {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:19-32`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L19-L32)*
+
 #### Fields
 
 - **`parse_warnings`**: `Vec<syn::Error>`
@@ -140,6 +144,8 @@ struct StrArg<T> {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:241-244`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L241-L244)*
+
 #### Trait Implementations
 
 ##### `impl<T: Parse> Parse for StrArg<T>`
@@ -155,6 +161,8 @@ struct ExprArg<T> {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:258-261`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L258-L261)*
+
 #### Trait Implementations
 
 ##### `impl<T: Parse> Parse for ExprArg<T>`
@@ -167,6 +175,8 @@ struct ExprArg<T> {
 struct Skips(std::collections::HashSet<syn::Ident>);
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:275`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L275)*
+
 #### Trait Implementations
 
 ##### `impl Parse for Skips`
@@ -178,6 +188,8 @@ struct Skips(std::collections::HashSet<syn::Ident>);
 ```rust
 struct Fields(syn::punctuated::Punctuated<Field, token::Comma>);
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:307`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L307)*
 
 #### Trait Implementations
 
@@ -193,7 +205,7 @@ struct Fields(syn::punctuated::Punctuated<Field, token::Comma>);
 
 - <span id="fields-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
-##### `impl<T> Spanned for Fields`
+##### `impl Spanned for Fields`
 
 - <span id="fields-span"></span>`fn span(&self) -> Span`
 
@@ -211,6 +223,8 @@ struct Field {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:310-314`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L310-L314)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Field`
@@ -225,7 +239,7 @@ struct Field {
 
 - <span id="field-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
-##### `impl<T> Spanned for Field`
+##### `impl Spanned for Field`
 
 - <span id="field-span"></span>`fn span(&self) -> Span`
 
@@ -244,6 +258,8 @@ enum LitStrOrIdent {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:218-221`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L218-L221)*
+
 #### Trait Implementations
 
 ##### `impl Clone for LitStrOrIdent`
@@ -258,7 +274,7 @@ enum LitStrOrIdent {
 
 - <span id="litstrorident-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
-##### `impl<T> Spanned for LitStrOrIdent`
+##### `impl Spanned for LitStrOrIdent`
 
 - <span id="litstrorident-span"></span>`fn span(&self) -> Span`
 
@@ -275,6 +291,8 @@ enum FormatMode {
     Debug,
 }
 ```
+
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:299-304`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L299-L304)*
 
 #### Trait Implementations
 
@@ -312,6 +330,8 @@ enum FieldKind {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:317-321`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L317-L321)*
+
 #### Trait Implementations
 
 ##### `impl Clone for FieldKind`
@@ -328,7 +348,7 @@ enum FieldKind {
 
 - <span id="fieldkind-eq"></span>`fn eq(&self, other: &FieldKind) -> bool` — [`FieldKind`](#fieldkind)
 
-##### `impl<T> Spanned for FieldKind`
+##### `impl Spanned for FieldKind`
 
 - <span id="fieldkind-span"></span>`fn span(&self) -> Span`
 
@@ -347,6 +367,8 @@ enum FieldName {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:324-327`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L324-L327)*
+
 #### Trait Implementations
 
 ##### `impl Clone for FieldName`
@@ -357,7 +379,7 @@ enum FieldName {
 
 - <span id="fieldname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Spanned for FieldName`
+##### `impl Spanned for FieldName`
 
 - <span id="fieldname-span"></span>`fn span(&self) -> Span`
 
@@ -378,6 +400,8 @@ enum Level {
 }
 ```
 
+*Defined in [`tracing-attributes-0.1.31/src/attr.rs:429-436`](../../../.source_1765210505/tracing-attributes-0.1.31/src/attr.rs#L429-L436)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Level`
@@ -392,7 +416,7 @@ enum Level {
 
 - <span id="level-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
-##### `impl<T> Spanned for Level`
+##### `impl Spanned for Level`
 
 - <span id="level-span"></span>`fn span(&self) -> Span`
 

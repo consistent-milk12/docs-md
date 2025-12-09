@@ -29,6 +29,8 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:32-39`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L32-L39)*
+
 #### Implementations
 
 - <span id="debuglookup-items"></span>`fn items(&self) -> LookupEntryIter<R, Parser>` — [`LookupEntryIter`](#lookupentryiter)
@@ -57,6 +59,8 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:72-79`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L72-L79)*
+
 #### Implementations
 
 - <span id="lookupentryiter-next"></span>`fn next(&mut self) -> Result<Option<<Parser as >::Entry>>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
@@ -82,6 +86,8 @@ struct PubStuffHeader<T> {
     unit_length: T,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:129-135`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L129-L135)*
 
 #### Trait Implementations
 
@@ -112,6 +118,8 @@ where
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:146-153`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L146-L153)*
+
 #### Trait Implementations
 
 ##### `impl<R, Entry> Clone for PubStuffParser<R, Entry>`
@@ -124,9 +132,9 @@ where
 
 ##### `impl<R, Entry> LookupParser for PubStuffParser<R, Entry>`
 
-- <span id="pubstuffparser-header"></span>`type Header = PubStuffHeader<<R as Reader>::Offset>`
+- <span id="pubstuffparser-type-header"></span>`type Header = PubStuffHeader<<R as Reader>::Offset>`
 
-- <span id="pubstuffparser-entry"></span>`type Entry = Entry`
+- <span id="pubstuffparser-type-entry"></span>`type Entry = Entry`
 
 - <span id="pubstuffparser-parse-header"></span>`fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
 
@@ -139,6 +147,8 @@ where
 ```rust
 trait LookupParser<R: Reader> { ... }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:15-29`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L15-L29)*
 
 #### Associated Types
 
@@ -165,6 +175,8 @@ trait LookupParser<R: Reader> { ... }
 ```rust
 trait PubStuffEntry<R: Reader> { ... }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/lookup.rs:137-143`](../../../../.source_1765210505/gimli-0.32.3/src/read/lookup.rs#L137-L143)*
 
 #### Required Methods
 

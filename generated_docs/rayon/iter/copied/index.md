@@ -23,9 +23,11 @@ struct Copied<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/copied.rs:13-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/copied.rs#L13-L15)*
+
 `Copied` is an iterator that copies the elements of an underlying iterator.
 
-This struct is created by the `copied()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `copied()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -36,7 +38,7 @@ This struct is created by the `copied()` method on [`ParallelIterator`](../../pr
 
 ##### `impl<I: clone::Clone> Clone for Copied<I>`
 
-- <span id="copied-clone"></span>`fn clone(&self) -> Copied<I>` — [`Copied`](../index.md)
+- <span id="copied-clone"></span>`fn clone(&self) -> Copied<I>` — [`Copied`](#copied)
 
 ##### `impl<I: fmt::Debug> Debug for Copied<I>`
 
@@ -54,15 +56,15 @@ This struct is created by the `copied()` method on [`ParallelIterator`](../../pr
 
 ##### `impl<T> IntoParallelIterator for Copied<I>`
 
-- <span id="copied-iter"></span>`type Iter = T`
+- <span id="copied-type-iter"></span>`type Iter = T`
 
-- <span id="copied-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="copied-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="copied-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T, I> ParallelIterator for Copied<I>`
 
-- <span id="copied-item"></span>`type Item = T`
+- <span id="copied-type-item"></span>`type Item = T`
 
 - <span id="copied-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -70,9 +72,9 @@ This struct is created by the `copied()` method on [`ParallelIterator`](../../pr
 
 ##### `impl<T> Pointable for Copied<I>`
 
-- <span id="copied-align"></span>`const ALIGN: usize`
+- <span id="copied-const-align"></span>`const ALIGN: usize`
 
-- <span id="copied-init"></span>`type Init = T`
+- <span id="copied-type-init"></span>`type Init = T`
 
 - <span id="copied-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -90,15 +92,17 @@ struct CopiedProducer<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/copied.rs:91-93`](../../../../.source_1765210505/rayon-1.11.0/src/iter/copied.rs#L91-L93)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for CopiedProducer<P>`
 
 ##### `impl<T> Pointable for CopiedProducer<P>`
 
-- <span id="copiedproducer-align"></span>`const ALIGN: usize`
+- <span id="copiedproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="copiedproducer-init"></span>`type Init = T`
+- <span id="copiedproducer-type-init"></span>`type Init = T`
 
 - <span id="copiedproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -110,9 +114,9 @@ struct CopiedProducer<P> {
 
 ##### `impl<'a, T, P> Producer for CopiedProducer<P>`
 
-- <span id="copiedproducer-item"></span>`type Item = T`
+- <span id="copiedproducer-type-item"></span>`type Item = T`
 
-- <span id="copiedproducer-intoiter"></span>`type IntoIter = Copied<<P as Producer>::IntoIter>`
+- <span id="copiedproducer-type-intoiter"></span>`type IntoIter = Copied<<P as Producer>::IntoIter>`
 
 - <span id="copiedproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
@@ -132,6 +136,8 @@ struct CopiedConsumer<C> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/copied.rs:134-136`](../../../../.source_1765210505/rayon-1.11.0/src/iter/copied.rs#L134-L136)*
+
 #### Implementations
 
 - <span id="copiedconsumer-new"></span>`fn new(base: C) -> Self`
@@ -140,11 +146,11 @@ struct CopiedConsumer<C> {
 
 ##### `impl<'a, T, C> Consumer for CopiedConsumer<C>`
 
-- <span id="copiedconsumer-folder"></span>`type Folder = CopiedFolder<<C as Consumer>::Folder>`
+- <span id="copiedconsumer-type-folder"></span>`type Folder = CopiedFolder<<C as Consumer>::Folder>`
 
-- <span id="copiedconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="copiedconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="copiedconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="copiedconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="copiedconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -156,9 +162,9 @@ struct CopiedConsumer<C> {
 
 ##### `impl<T> Pointable for CopiedConsumer<C>`
 
-- <span id="copiedconsumer-align"></span>`const ALIGN: usize`
+- <span id="copiedconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="copiedconsumer-init"></span>`type Init = T`
+- <span id="copiedconsumer-type-init"></span>`type Init = T`
 
 - <span id="copiedconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -182,11 +188,13 @@ struct CopiedFolder<F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/copied.rs:187-189`](../../../../.source_1765210505/rayon-1.11.0/src/iter/copied.rs#L187-L189)*
+
 #### Trait Implementations
 
 ##### `impl<'a, T, F> Folder for CopiedFolder<F>`
 
-- <span id="copiedfolder-result"></span>`type Result = <F as Folder>::Result`
+- <span id="copiedfolder-type-result"></span>`type Result = <F as Folder>::Result`
 
 - <span id="copiedfolder-consume"></span>`fn consume(self, item: &'a T) -> Self`
 
@@ -200,9 +208,9 @@ struct CopiedFolder<F> {
 
 ##### `impl<T> Pointable for CopiedFolder<F>`
 
-- <span id="copiedfolder-align"></span>`const ALIGN: usize`
+- <span id="copiedfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="copiedfolder-init"></span>`type Init = T`
+- <span id="copiedfolder-type-init"></span>`type Init = T`
 
 - <span id="copiedfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

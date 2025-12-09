@@ -22,16 +22,18 @@ struct IterBridge<Iter> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:72-74`](../../../../.source_1765210505/rayon-1.11.0/src/iter/par_bridge.rs#L72-L74)*
+
 `IterBridge` is a parallel iterator that wraps a sequential iterator.
 
 This type is created when using the `par_bridge` method on `ParallelBridge`. See the
-[`ParallelBridge`](../../prelude/index.md) documentation for details.
+[`ParallelBridge`](#parallelbridge) documentation for details.
 
 #### Trait Implementations
 
 ##### `impl<Iter: clone::Clone> Clone for IterBridge<Iter>`
 
-- <span id="iterbridge-clone"></span>`fn clone(&self) -> IterBridge<Iter>` — [`IterBridge`](../index.md)
+- <span id="iterbridge-clone"></span>`fn clone(&self) -> IterBridge<Iter>` — [`IterBridge`](#iterbridge)
 
 ##### `impl<Iter: fmt::Debug> Debug for IterBridge<Iter>`
 
@@ -41,23 +43,23 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 ##### `impl<T> IntoParallelIterator for IterBridge<Iter>`
 
-- <span id="iterbridge-iter"></span>`type Iter = T`
+- <span id="iterbridge-type-iter"></span>`type Iter = T`
 
-- <span id="iterbridge-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iterbridge-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iterbridge-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<Iter> ParallelIterator for IterBridge<Iter>`
 
-- <span id="iterbridge-item"></span>`type Item = <Iter as Iterator>::Item`
+- <span id="iterbridge-type-item"></span>`type Item = <Iter as Iterator>::Item`
 
 - <span id="iterbridge-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for IterBridge<Iter>`
 
-- <span id="iterbridge-align"></span>`const ALIGN: usize`
+- <span id="iterbridge-const-align"></span>`const ALIGN: usize`
 
-- <span id="iterbridge-init"></span>`type Init = T`
+- <span id="iterbridge-type-init"></span>`type Init = T`
 
 - <span id="iterbridge-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -77,15 +79,17 @@ struct IterParallelProducer<'a, Iter> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:100-104`](../../../../.source_1765210505/rayon-1.11.0/src/iter/par_bridge.rs#L100-L104)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for IterParallelProducer<'a, Iter>`
 
 ##### `impl<T> Pointable for IterParallelProducer<'a, Iter>`
 
-- <span id="iterparallelproducer-align"></span>`const ALIGN: usize`
+- <span id="iterparallelproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="iterparallelproducer-init"></span>`type Init = T`
+- <span id="iterparallelproducer-type-init"></span>`type Init = T`
 
 - <span id="iterparallelproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -95,6 +99,14 @@ struct IterParallelProducer<'a, Iter> {
 
 - <span id="iterparallelproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
+##### `impl<Iter: Iterator + Send> UnindexedProducer for &IterParallelProducer<'_, Iter>`
+
+- <span id="iterparallelproducer-type-item"></span>`type Item = <Iter as Iterator>::Item`
+
+- <span id="iterparallelproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
+
+- <span id="iterparallelproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
+
 ## Traits
 
 ### `ParallelBridge`
@@ -102,6 +114,8 @@ struct IterParallelProducer<'a, Iter> {
 ```rust
 trait ParallelBridge: Sized { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:53-56`](../../../../.source_1765210505/rayon-1.11.0/src/iter/par_bridge.rs#L53-L56)*
 
 Conversion trait to convert an `Iterator` to a `ParallelIterator`.
 

@@ -21,6 +21,8 @@ The `Pid` type.
 struct Pid(core::num::NonZeroI32);
 ```
 
+*Defined in [`rustix-1.1.2/src/pid.rs:19`](../../../.source_1765210505/rustix-1.1.2/src/pid.rs#L19)*
+
 `pid_t`—A non-zero Unix process ID.
 
 This is a pid, and not a pidfd. It is not a file descriptor, and the
@@ -31,7 +33,7 @@ On Linux, `Pid` values are also used to identify threads.
 
 #### Implementations
 
-- <span id="pid-init"></span>`const INIT: Self`
+- <span id="pid-const-init"></span>`const INIT: Self`
 
 - <span id="pid-from-raw"></span>`const fn from_raw(raw: i32) -> Option<Self>`
 
@@ -91,7 +93,7 @@ On Linux, `Pid` values are also used to identify threads.
 
 ##### `impl StructuralPartialEq for Pid`
 
-##### `impl<T> ToString for Pid`
+##### `impl ToString for Pid`
 
 - <span id="pid-to-string"></span>`fn to_string(&self) -> String`
 
@@ -110,6 +112,8 @@ On Linux, `Pid` values are also used to identify threads.
 ```rust
 type RawPid = i32;
 ```
+
+*Defined in [`rustix-1.1.2/src/pid.rs:8`](../../../.source_1765210505/rustix-1.1.2/src/pid.rs#L8)*
 
 A process identifier as a raw integer.
 

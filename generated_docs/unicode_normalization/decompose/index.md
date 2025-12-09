@@ -24,19 +24,21 @@ struct Decompositions<I> {
 }
 ```
 
+*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:23-37`](../../../.source_1765210505/unicode-normalization-0.1.25/src/decompose.rs#L23-L37)*
+
 External iterator for a string decomposition's characters.
 
 #### Implementations
 
-- <span id="decompositions-new-canonical"></span>`fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="decompositions-new-canonical"></span>`fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
-- <span id="decompositions-new-compatible"></span>`fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="decompositions-new-compatible"></span>`fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
 #### Trait Implementations
 
 ##### `impl<I: clone::Clone> Clone for Decompositions<I>`
 
-- <span id="decompositions-clone"></span>`fn clone(&self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="decompositions-clone"></span>`fn clone(&self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Decompositions<I>`
 
@@ -46,15 +48,15 @@ External iterator for a string decomposition's characters.
 
 ##### `impl<I> IntoIterator for Decompositions<I>`
 
-- <span id="decompositions-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="decompositions-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="decompositions-intoiter"></span>`type IntoIter = I`
+- <span id="decompositions-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="decompositions-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Decompositions<I>`
 
-- <span id="decompositions-item"></span>`type Item = char`
+- <span id="decompositions-type-item"></span>`type Item = char`
 
 - <span id="decompositions-next"></span>`fn next(&mut self) -> Option<char>`
 
@@ -66,17 +68,17 @@ External iterator for a string decomposition's characters.
 
 ##### `impl<I> UnicodeNormalization for Decompositions<I>`
 
-- <span id="decompositions-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="decompositions-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
-- <span id="decompositions-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="decompositions-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
 
-- <span id="decompositions-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="decompositions-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
 
-- <span id="decompositions-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="decompositions-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
 
-- <span id="decompositions-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](../index.md)
+- <span id="decompositions-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
 
-- <span id="decompositions-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
+- <span id="decompositions-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](../stream_safe/index.md)
 
 ## Enums
 
@@ -88,6 +90,8 @@ enum DecompositionType {
     Compatible,
 }
 ```
+
+*Defined in [`unicode-normalization-0.1.25/src/decompose.rs:16-19`](../../../.source_1765210505/unicode-normalization-0.1.25/src/decompose.rs#L16-L19)*
 
 #### Trait Implementations
 

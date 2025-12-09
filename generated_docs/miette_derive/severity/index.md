@@ -19,6 +19,8 @@
 struct Severity(syn::Ident);
 ```
 
+*Defined in [`miette-derive-7.6.0/src/severity.rs:15`](../../../.source_1765210505/miette-derive-7.6.0/src/severity.rs#L15)*
+
 #### Implementations
 
 - <span id="severity-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
@@ -38,4 +40,6 @@ struct Severity(syn::Ident);
 ```rust
 fn get_severity(input: &str, span: proc_macro2::Span) -> syn::Result<String>
 ```
+
+*Defined in [`miette-derive-7.6.0/src/severity.rs:50-60`](../../../.source_1765210505/miette-derive-7.6.0/src/severity.rs#L50-L60)*
 

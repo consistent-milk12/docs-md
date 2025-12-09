@@ -58,15 +58,15 @@ big `Cons` needs to be.
 
 # Memory layout
 
-For non-zero-sized values, a [`Box`](#box) will use the [`Global`](../alloc/index.md) allocator for
+For non-zero-sized values, a [`Box`](#box) will use the [`Global`](../alloc/global/index.md) allocator for
 its allocation. It is valid to convert both ways between a [`Box`](#box) and a
-raw pointer allocated with the [`Global`](../alloc/index.md) allocator, given that the
+raw pointer allocated with the [`Global`](../alloc/global/index.md) allocator, given that the
 [`Layout`](../alloc/index.md) used with the allocator is correct for the type. More precisely,
-a `value: *mut T` that has been allocated with the [`Global`](../alloc/index.md) allocator
+a `value: *mut T` that has been allocated with the [`Global`](../alloc/global/index.md) allocator
 with `Layout::for_value(&*value)` may be converted into a box using
 `Box::<T>::from_raw(value)`. Conversely, the memory backing a `value: *mut
 T` obtained from `Box::<T>::into_raw` may be deallocated using the
-[`Global`](../alloc/index.md) allocator with `Layout::for_value(&*value)`.
+[`Global`](../alloc/global/index.md) allocator with `Layout::for_value(&*value)`.
 
 For zero-sized values, the `Box` pointer still has to be [`valid`](../../../thiserror_impl/valid/index.md) for reads
 and writes and sufficiently aligned. In particular, casting any aligned
@@ -163,15 +163,27 @@ is not allowed. For more guidance on working with box from unsafe code, see
 struct Box<T: ?Sized, A: Allocator>(super::unique::Unique<T>, A);
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:177`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/boxed.rs#L177)*
+
 A pointer type for heap allocation.
 
 See the [module-level documentation](../../std/boxed/index.html) for more.
 
 #### Implementations
 
-- <span id="box-downcast"></span>`fn downcast<T: Any>(self) -> Result<Box<T, A>, Self>` — [`Box`](#box)
+- <span id="box-new"></span>`fn new(x: T) -> Self`
 
-- <span id="box-downcast-unchecked"></span>`unsafe fn downcast_unchecked<T: Any>(self) -> Box<T, A>` — [`Box`](#box)
+- <span id="box-new-uninit"></span>`fn new_uninit() -> Box<mem::MaybeUninit<T>>` — [`Box`](#box)
+
+- <span id="box-new-zeroed"></span>`fn new_zeroed() -> Box<mem::MaybeUninit<T>>` — [`Box`](#box)
+
+- <span id="box-pin"></span>`fn pin(x: T) -> Pin<Box<T>>` — [`Box`](#box)
+
+- <span id="box-try-new"></span>`fn try_new(x: T) -> Result<Self, AllocError>` — [`AllocError`](../alloc/index.md)
+
+- <span id="box-try-new-uninit"></span>`fn try_new_uninit() -> Result<Box<mem::MaybeUninit<T>>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md)
+
+- <span id="box-try-new-zeroed"></span>`fn try_new_zeroed() -> Result<Box<mem::MaybeUninit<T>>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md)
 
 #### Trait Implementations
 
@@ -185,7 +197,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 ##### `impl<I: Iterator + ?Sized, A: Allocator> BoxIter for Box<I, A>`
 
-- <span id="box-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="box-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="box-last"></span>`fn last(self) -> Option<<I as >::Item>`
 
@@ -199,13 +211,13 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 - <span id="box-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T, A: Allocator + Default> Default for Box<[T], A>`
+##### `impl<T: Default> Default for Box<T>`
 
 - <span id="box-default"></span>`fn default() -> Self`
 
 ##### `impl<T: ?Sized, A: Allocator> Deref for Box<T, A>`
 
-- <span id="box-target"></span>`type Target = T`
+- <span id="box-type-target"></span>`type Target = T`
 
 - <span id="box-deref"></span>`fn deref(&self) -> &T`
 
@@ -233,6 +245,10 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 - <span id="box-len"></span>`fn len(&self) -> usize`
 
+##### `impl Extend for alloc_crate::string::String`
+
+- <span id="alloc-cratestringstring-extend"></span>`fn extend<I: IntoIterator<Item = Box<str, A>>>(&mut self, iter: I)`
+
 ##### `impl<I> FromIterator for Box<[I]>`
 
 - <span id="box-from-iter"></span>`fn from_iter<T: IntoIterator<Item = I>>(iter: T) -> Self`
@@ -241,7 +257,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 ##### `impl<F: ?Sized + Future + Unpin, A> Future for Box<F, A>`
 
-- <span id="box-output"></span>`type Output = <F as Future>::Output`
+- <span id="box-type-output"></span>`type Output = <F as Future>::Output`
 
 - <span id="box-poll"></span>`fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
 
@@ -281,23 +297,23 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 ##### `impl<F> IntoFuture for Box<T, A>`
 
-- <span id="box-output"></span>`type Output = <F as Future>::Output`
+- <span id="box-type-output"></span>`type Output = <F as Future>::Output`
 
-- <span id="box-intofuture"></span>`type IntoFuture = F`
+- <span id="box-type-intofuture"></span>`type IntoFuture = F`
 
 - <span id="box-into-future"></span>`fn into_future(self) -> <F as IntoFuture>::IntoFuture`
 
 ##### `impl<I> IntoIterator for Box<T, A>`
 
-- <span id="box-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="box-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="box-intoiter"></span>`type IntoIter = I`
+- <span id="box-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="box-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator + ?Sized, A: Allocator> Iterator for Box<I, A>`
 
-- <span id="box-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="box-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="box-next"></span>`fn next(&mut self) -> Option<<I as >::Item>`
 
@@ -335,7 +351,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 ##### `impl<P, T> Receiver for Box<T, A>`
 
-- <span id="box-target"></span>`type Target = T`
+- <span id="box-type-target"></span>`type Target = T`
 
 ##### `impl<T, A> Send for Box<T, A>`
 
@@ -354,6 +370,8 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 ```rust
 trait BoxIter { ... }
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/boxed.rs:1903-1906`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/boxed.rs#L1903-L1906)*
 
 #### Associated Types
 

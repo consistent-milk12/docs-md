@@ -22,6 +22,8 @@ struct Empty<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:33-35`](../../../../.source_1765210505/rayon-1.11.0/src/iter/empty.rs#L33-L35)*
+
 Iterator adaptor for [the `empty()` function].
 
 
@@ -47,15 +49,15 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T> IntoParallelIterator for Empty<T>`
 
-- <span id="empty-iter"></span>`type Iter = T`
+- <span id="empty-type-iter"></span>`type Iter = T`
 
-- <span id="empty-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="empty-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="empty-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Empty<T>`
 
-- <span id="empty-item"></span>`type Item = T`
+- <span id="empty-type-item"></span>`type Item = T`
 
 - <span id="empty-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -63,9 +65,9 @@ Iterator adaptor for [the `empty()` function].
 
 ##### `impl<T> Pointable for Empty<T>`
 
-- <span id="empty-align"></span>`const ALIGN: usize`
+- <span id="empty-const-align"></span>`const ALIGN: usize`
 
-- <span id="empty-init"></span>`type Init = T`
+- <span id="empty-type-init"></span>`type Init = T`
 
 - <span id="empty-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -81,6 +83,8 @@ Iterator adaptor for [the `empty()` function].
 struct EmptyProducer<T: Send>(std::marker::PhantomData<T>);
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:87`](../../../../.source_1765210505/rayon-1.11.0/src/iter/empty.rs#L87)*
+
 Private empty producer
 
 #### Trait Implementations
@@ -89,9 +93,9 @@ Private empty producer
 
 ##### `impl<T> Pointable for EmptyProducer<T>`
 
-- <span id="emptyproducer-align"></span>`const ALIGN: usize`
+- <span id="emptyproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="emptyproducer-init"></span>`type Init = T`
+- <span id="emptyproducer-type-init"></span>`type Init = T`
 
 - <span id="emptyproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -103,9 +107,9 @@ Private empty producer
 
 ##### `impl<T: Send> Producer for EmptyProducer<T>`
 
-- <span id="emptyproducer-item"></span>`type Item = T`
+- <span id="emptyproducer-type-item"></span>`type Item = T`
 
-- <span id="emptyproducer-intoiter"></span>`type IntoIter = Empty<T>`
+- <span id="emptyproducer-type-intoiter"></span>`type IntoIter = Empty<T>`
 
 - <span id="emptyproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
@@ -120,6 +124,8 @@ Private empty producer
 ```rust
 fn empty<T: Send>() -> Empty<T>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/empty.rs:24-28`](../../../../.source_1765210505/rayon-1.11.0/src/iter/empty.rs#L24-L28)*
 
 Creates a parallel iterator that produces nothing.
 

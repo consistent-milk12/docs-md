@@ -13,7 +13,7 @@
 | [`Match`](#match) | struct | A representation of a match reported by an Aho-Corasick searcher. |
 | [`Anchored`](#anchored) | enum | The type of anchored search to perform. |
 | [`MatchKind`](#matchkind) | enum | A knob for controlling the match semantics of an Aho-Corasick automaton. |
-| [`StartKind`](#startkind) | enum | The kind of anchored starting configurations to support in an Aho-Corasick |
+| [`StartKind`](#startkind) | enum | The kind of anchored starting configurations to support in an Aho-Corasick searcher. |
 
 ## Structs
 
@@ -27,6 +27,8 @@ struct Input<'h> {
     earliest: bool,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:83-88`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L83-L88)*
 
 The configuration and the haystack to use for an Aho-Corasick search.
 
@@ -43,7 +45,7 @@ start of the search) or anchored (matches can only occur beginning at
 the start of the search) search. Unanchored search is the default. This is
 configured via `Input::anchored`.
 * Whether to quit the search as soon as a match has been found, regardless
-of the [`MatchKind`](../../index.md) that the searcher was built with. This is configured
+of the [`MatchKind`](#matchkind) that the searcher was built with. This is configured
 via `Input::earliest`.
 
 For most cases, the defaults for all optional parameters are appropriate.
@@ -108,15 +110,15 @@ assert_eq!(
 
 #### Implementations
 
-- <span id="input-new"></span>`fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-new"></span>`fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](#input)
 
-- <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](#input)
 
-- <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](#input)
 
-- <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](../../index.md), [`Input`](../../index.md)
+- <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](#anchored), [`Input`](#input)
 
-- <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](#input)
 
 - <span id="input-set-span"></span>`fn set_span<S: Into<Span>>(&mut self, span: S)`
 
@@ -126,7 +128,7 @@ assert_eq!(
 
 - <span id="input-set-end"></span>`fn set_end(&mut self, end: usize)`
 
-- <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](../../index.md)
+- <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](#anchored)
 
 - <span id="input-set-earliest"></span>`fn set_earliest(&mut self, yes: bool)`
 
@@ -136,11 +138,11 @@ assert_eq!(
 
 - <span id="input-end"></span>`fn end(&self) -> usize`
 
-- <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](../../index.md)
+- <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](#span)
 
 - <span id="input-get-range"></span>`fn get_range(&self) -> Range<usize>`
 
-- <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](../../index.md)
+- <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](#anchored)
 
 - <span id="input-get-earliest"></span>`fn get_earliest(&self) -> bool`
 
@@ -148,11 +150,11 @@ assert_eq!(
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Input<'h>`
+##### `impl Clone for Input<'h>`
 
-- <span id="input-clone"></span>`fn clone(&self) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-clone"></span>`fn clone(&self) -> Input<'h>` — [`Input`](#input)
 
-##### `impl<'h> Debug for Input<'h>`
+##### `impl Debug for Input<'h>`
 
 - <span id="input-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -164,6 +166,8 @@ struct Span {
     pub end: usize,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:673-678`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L673-L678)*
 
 A representation of a range in a haystack.
 
@@ -205,13 +209,13 @@ to create a span where `start > end`.
 
 - <span id="span-contains"></span>`fn contains(&self, offset: usize) -> bool`
 
-- <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](../../index.md)
+- <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](#span)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](../../index.md)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](#span)
 
 ##### `impl Copy for Span`
 
@@ -225,9 +229,19 @@ to create a span where `start > end`.
 
 - <span id="span-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl Index for [u8]`
+
+- <span id="u8-type-output"></span>`type Output = [u8]`
+
+- <span id="u8-index"></span>`fn index(&self, index: Span) -> &[u8]` — [`Span`](#span)
+
+##### `impl IndexMut for [u8]`
+
+- <span id="u8-index-mut"></span>`fn index_mut(&mut self, index: Span) -> &mut [u8]` — [`Span`](#span)
+
 ##### `impl PartialEq for Span`
 
-- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](../../index.md)
+- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
 
 ##### `impl StructuralPartialEq for Span`
 
@@ -240,10 +254,12 @@ struct Match {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:825-830`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L825-L830)*
+
 A representation of a match reported by an Aho-Corasick searcher.
 
-A match has two essential pieces of information: the [`PatternID`](../../index.md) that
-matches, and the [`Span`](../../index.md) of the match in a haystack.
+A match has two essential pieces of information: the [`PatternID`](../primitives/index.md) that
+matches, and the [`Span`](#span) of the match in a haystack.
 
 The pattern is identified by an ID, which corresponds to its position
 (starting from `0`) relative to other patterns used to construct the
@@ -265,11 +281,11 @@ offset as less than or equal to its end offset.
 
 #### Implementations
 
-- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../../index.md), [`Match`](../../index.md)
+- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../primitives/index.md), [`Match`](#match)
 
-- <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](../../index.md)
+- <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](#match)
 
-- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../primitives/index.md)
 
 - <span id="match-start"></span>`fn start(&self) -> usize`
 
@@ -277,19 +293,19 @@ offset as less than or equal to its end offset.
 
 - <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
 
-- <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](../../index.md)
+- <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](#span)
 
 - <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
 
 - <span id="match-len"></span>`fn len(&self) -> usize`
 
-- <span id="match-offset"></span>`fn offset(&self, offset: usize) -> Match` — [`Match`](../../index.md)
+- <span id="match-offset"></span>`fn offset(&self, offset: usize) -> Match` — [`Match`](#match)
 
 #### Trait Implementations
 
 ##### `impl Clone for Match`
 
-- <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](../../index.md)
+- <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](#match)
 
 ##### `impl Copy for Match`
 
@@ -305,7 +321,7 @@ offset as less than or equal to its end offset.
 
 ##### `impl PartialEq for Match`
 
-- <span id="match-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](../../index.md)
+- <span id="match-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](#match)
 
 ##### `impl StructuralPartialEq for Match`
 
@@ -319,6 +335,8 @@ enum Anchored {
     Yes,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:784-792`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L784-L792)*
 
 The type of anchored search to perform.
 
@@ -347,7 +365,7 @@ fallible or an infallible routine was called.
 
 ##### `impl Clone for Anchored`
 
-- <span id="anchored-clone"></span>`fn clone(&self) -> Anchored` — [`Anchored`](../../index.md)
+- <span id="anchored-clone"></span>`fn clone(&self) -> Anchored` — [`Anchored`](#anchored)
 
 ##### `impl Copy for Anchored`
 
@@ -359,7 +377,7 @@ fallible or an infallible routine was called.
 
 ##### `impl PartialEq for Anchored`
 
-- <span id="anchored-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](../../index.md)
+- <span id="anchored-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](#anchored)
 
 ##### `impl StructuralPartialEq for Anchored`
 
@@ -372,6 +390,8 @@ enum MatchKind {
     LeftmostLongest,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1052-1074`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L1052-L1074)*
 
 A knob for controlling the match semantics of an Aho-Corasick automaton.
 
@@ -495,13 +515,13 @@ POSIX regex alternations.
 
 - <span id="matchkind-is-leftmost-first"></span>`fn is_leftmost_first(&self) -> bool`
 
-- <span id="matchkind-as-packed"></span>`fn as_packed(&self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](../../packed/index.md)
+- <span id="matchkind-as-packed"></span>`fn as_packed(&self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](../../packed/api/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchKind`
 
-- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Copy for MatchKind`
 
@@ -511,13 +531,13 @@ POSIX regex alternations.
 
 ##### `impl Default for MatchKind`
 
-- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](../../index.md)
+- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
 
 ##### `impl StructuralPartialEq for MatchKind`
 
@@ -530,6 +550,8 @@ enum StartKind {
     Anchored,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/search.rs:1133-1142`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/search.rs#L1133-L1142)*
 
 The kind of anchored starting configurations to support in an Aho-Corasick
 searcher.
@@ -568,7 +590,7 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 ##### `impl Clone for StartKind`
 
-- <span id="startkind-clone"></span>`fn clone(&self) -> StartKind` — [`StartKind`](../../index.md)
+- <span id="startkind-clone"></span>`fn clone(&self) -> StartKind` — [`StartKind`](#startkind)
 
 ##### `impl Copy for StartKind`
 
@@ -578,13 +600,13 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 ##### `impl Default for StartKind`
 
-- <span id="startkind-default"></span>`fn default() -> StartKind` — [`StartKind`](../../index.md)
+- <span id="startkind-default"></span>`fn default() -> StartKind` — [`StartKind`](#startkind)
 
 ##### `impl Eq for StartKind`
 
 ##### `impl PartialEq for StartKind`
 
-- <span id="startkind-eq"></span>`fn eq(&self, other: &StartKind) -> bool` — [`StartKind`](../../index.md)
+- <span id="startkind-eq"></span>`fn eq(&self, other: &StartKind) -> bool` — [`StartKind`](#startkind)
 
 ##### `impl StructuralPartialEq for StartKind`
 

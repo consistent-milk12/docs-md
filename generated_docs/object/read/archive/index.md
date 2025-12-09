@@ -61,7 +61,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 | [`SymbolIteratorInternal`](#symboliteratorinternal) | enum |  |
 | [`parse_u64_digits`](#parse_u64_digits) | fn |  |
 | [`parse_sysv_extended_name`](#parse_sysv_extended_name) | fn | Digits are a decimal offset into the extended name table. |
-| [`parse_bsd_extended_name`](#parse_bsd_extended_name) | fn | Digits are a decimal length of the extended name, which is contained |
+| [`parse_bsd_extended_name`](#parse_bsd_extended_name) | fn | Digits are a decimal length of the extended name, which is contained in `data` at `offset`. |
 
 ## Structs
 
@@ -77,6 +77,8 @@ struct ArchiveFile<'data, R: ReadRef<'data>> {
     thin: bool,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/archive.rs:66-73`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L66-L73)*
 
 A partially parsed archive file.
 
@@ -119,6 +121,8 @@ struct ArchiveMemberIterator<'data, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/archive.rs:323-328`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L323-L328)*
+
 An iterator over the members of an archive.
 
 #### Trait Implementations
@@ -129,15 +133,15 @@ An iterator over the members of an archive.
 
 ##### `impl<I> IntoIterator for ArchiveMemberIterator<'data, R>`
 
-- <span id="archivememberiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="archivememberiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="archivememberiterator-intoiter"></span>`type IntoIter = I`
+- <span id="archivememberiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="archivememberiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, R: ReadRef<'data>> Iterator for ArchiveMemberIterator<'data, R>`
 
-- <span id="archivememberiterator-item"></span>`type Item = Result<ArchiveMember<'data>, Error>`
+- <span id="archivememberiterator-type-item"></span>`type Item = Result<ArchiveMember<'data>, Error>`
 
 - <span id="archivememberiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -151,6 +155,8 @@ struct ArchiveMember<'data> {
     size: u64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/archive.rs:374-380`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L374-L380)*
 
 A partially parsed archive member.
 
@@ -186,7 +192,7 @@ A partially parsed archive member.
 
 #### Trait Implementations
 
-##### `impl<'data> Debug for ArchiveMember<'data>`
+##### `impl Debug for ArchiveMember<'data>`
 
 - <span id="archivemember-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -195,6 +201,8 @@ A partially parsed archive member.
 ```rust
 struct ArchiveOffset(u64);
 ```
+
+*Defined in [`object-0.37.3/src/read/archive.rs:598`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L598)*
 
 An offset of a member in an archive.
 
@@ -216,6 +224,8 @@ An offset of a member in an archive.
 struct ArchiveSymbolIterator<'data>(SymbolIteratorInternal<'data>);
 ```
 
+*Defined in [`object-0.37.3/src/read/archive.rs:602`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L602)*
+
 An iterator over the symbols in the archive symbol table.
 
 #### Implementations
@@ -224,25 +234,25 @@ An iterator over the symbols in the archive symbol table.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ArchiveSymbolIterator<'data>`
+##### `impl Clone for ArchiveSymbolIterator<'data>`
 
 - <span id="archivesymboliterator-clone"></span>`fn clone(&self) -> ArchiveSymbolIterator<'data>` — [`ArchiveSymbolIterator`](#archivesymboliterator)
 
-##### `impl<'data> Debug for ArchiveSymbolIterator<'data>`
+##### `impl Debug for ArchiveSymbolIterator<'data>`
 
 - <span id="archivesymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ArchiveSymbolIterator<'data>`
+##### `impl IntoIterator for ArchiveSymbolIterator<'data>`
 
-- <span id="archivesymboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="archivesymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="archivesymboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="archivesymboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="archivesymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data> Iterator for ArchiveSymbolIterator<'data>`
+##### `impl Iterator for ArchiveSymbolIterator<'data>`
 
-- <span id="archivesymboliterator-item"></span>`type Item = Result<ArchiveSymbol<'data>, Error>`
+- <span id="archivesymboliterator-type-item"></span>`type Item = Result<ArchiveSymbol<'data>, Error>`
 
 - <span id="archivesymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -257,6 +267,8 @@ struct ArchiveSymbol<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/archive.rs:825-828`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L825-L828)*
+
 A symbol in the archive symbol table.
 
 This is used to find the member containing the symbol.
@@ -269,13 +281,13 @@ This is used to find the member containing the symbol.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ArchiveSymbol<'data>`
+##### `impl Clone for ArchiveSymbol<'data>`
 
 - <span id="archivesymbol-clone"></span>`fn clone(&self) -> ArchiveSymbol<'data>` — [`ArchiveSymbol`](#archivesymbol)
 
-##### `impl<'data> Copy for ArchiveSymbol<'data>`
+##### `impl Copy for ArchiveSymbol<'data>`
 
-##### `impl<'data> Debug for ArchiveSymbol<'data>`
+##### `impl Debug for ArchiveSymbol<'data>`
 
 - <span id="archivesymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -294,6 +306,8 @@ enum ArchiveKind {
     AixBig,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/archive.rs:33-50`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L33-L50)*
 
 The kind of archive format.
 
@@ -367,17 +381,19 @@ enum Members<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/archive.rs:54-62`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L54-L62)*
+
 The list of members in the archive.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Members<'data>`
+##### `impl Clone for Members<'data>`
 
 - <span id="members-clone"></span>`fn clone(&self) -> Members<'data>` — [`Members`](#members)
 
-##### `impl<'data> Copy for Members<'data>`
+##### `impl Copy for Members<'data>`
 
-##### `impl<'data> Debug for Members<'data>`
+##### `impl Debug for Members<'data>`
 
 - <span id="members-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -389,6 +405,8 @@ enum MemberHeader<'data> {
     AixBig(&'data archive::AixHeader),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/archive.rs:365-370`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L365-L370)*
 
 An archive member header.
 
@@ -404,13 +422,13 @@ An archive member header.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for MemberHeader<'data>`
+##### `impl Clone for MemberHeader<'data>`
 
 - <span id="memberheader-clone"></span>`fn clone(&self) -> MemberHeader<'data>` — [`MemberHeader`](#memberheader)
 
-##### `impl<'data> Copy for MemberHeader<'data>`
+##### `impl Copy for MemberHeader<'data>`
 
-##### `impl<'data> Debug for MemberHeader<'data>`
+##### `impl Debug for MemberHeader<'data>`
 
 - <span id="memberheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -442,6 +460,8 @@ enum SymbolIteratorInternal<'data> {
     },
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/archive.rs:605-665`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L605-L665)*
 
 #### Variants
 
@@ -502,11 +522,11 @@ enum SymbolIteratorInternal<'data> {
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for SymbolIteratorInternal<'data>`
+##### `impl Clone for SymbolIteratorInternal<'data>`
 
 - <span id="symboliteratorinternal-clone"></span>`fn clone(&self) -> SymbolIteratorInternal<'data>` — [`SymbolIteratorInternal`](#symboliteratorinternal)
 
-##### `impl<'data> Debug for SymbolIteratorInternal<'data>`
+##### `impl Debug for SymbolIteratorInternal<'data>`
 
 - <span id="symboliteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -518,11 +538,15 @@ enum SymbolIteratorInternal<'data> {
 fn parse_u64_digits(digits: &[u8], radix: u32) -> Option<u64>
 ```
 
+*Defined in [`object-0.37.3/src/read/archive.rs:845-861`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L845-L861)*
+
 ### `parse_sysv_extended_name`
 
 ```rust
 fn parse_sysv_extended_name<'data>(digits: &[u8], names: &'data [u8]) -> Result<&'data [u8], ()>
 ```
+
+*Defined in [`object-0.37.3/src/read/archive.rs:865-879`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L865-L879)*
 
 Digits are a decimal offset into the extended name table.
 Name is terminated by "/\n" (for GNU) or a null byte (for COFF).
@@ -532,6 +556,8 @@ Name is terminated by "/\n" (for GNU) or a null byte (for COFF).
 ```rust
 fn parse_bsd_extended_name<'data, R: ReadRef<'data>>(digits: &[u8], data: R, offset: &mut u64, size: &mut u64) -> Result<&'data [u8], ()>
 ```
+
+*Defined in [`object-0.37.3/src/read/archive.rs:884-898`](../../../../.source_1765210505/object-0.37.3/src/read/archive.rs#L884-L898)*
 
 Digits are a decimal length of the extended name, which is contained
 in `data` at `offset`.

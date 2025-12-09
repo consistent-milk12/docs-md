@@ -30,6 +30,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:22-29`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L22-L29)*
+
 An iterator for the segments in an [`XcoffFile`](../index.md).
 
 This is a stub that doesn't implement any functionality.
@@ -42,15 +44,15 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<I> IntoIterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsegmentiterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsegmentiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsegmentiterator-item"></span>`type Item = XcoffSegment<'data, 'file, Xcoff, R>`
+- <span id="xcoffsegmentiterator-type-item"></span>`type Item = XcoffSegment<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -64,6 +66,8 @@ where
     file: &'file super::XcoffFile<'data, Xcoff, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:54-61`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L54-L61)*
 
 A loadable section in an [`XcoffFile`](../index.md).
 
@@ -105,6 +109,8 @@ This is a stub that doesn't implement any functionality.
 type XcoffSegmentIterator32<'data, 'file, R> = XcoffSegmentIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:12-13`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L12-L13)*
+
 An iterator for the segments in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSegmentIterator64<'data, 'file, R>`
@@ -112,6 +118,8 @@ An iterator for the segments in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSegmentIterator64<'data, 'file, R> = XcoffSegmentIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:15-16`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L15-L16)*
 
 An iterator for the segments in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -121,6 +129,8 @@ An iterator for the segments in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSegment32<'data, 'file, R> = XcoffSegment<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:44-45`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L44-L45)*
+
 A segment in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSegment64<'data, 'file, R>`
@@ -128,6 +138,8 @@ A segment in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSegment64<'data, 'file, R> = XcoffSegment<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/segment.rs:47-48`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/segment.rs#L47-L48)*
 
 A segment in an [`XcoffFile64`](super::XcoffFile64).
 

@@ -28,7 +28,7 @@ specialized architecture dependent routines are unavailable.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`memchr`](#memchr) | mod | Provides architecture independent implementations of `memchr` and friends. |
-| [`packedpair`](#packedpair) | mod | Provides an architecture independent implementation of the "packed pair" |
+| [`packedpair`](#packedpair) | mod | Provides an architecture independent implementation of the "packed pair" algorithm. |
 | [`rabinkarp`](#rabinkarp) | mod | An implementation of the [Rabin-Karp substring search algorithm][rabinkarp]. |
 | [`shiftor`](#shiftor) | mod | An implementation of the [Shift-Or substring search algorithm][shiftor]. |
 | [`twoway`](#twoway) | mod | An implementation of the [Two-Way substring search algorithm][two-way]. |
@@ -53,6 +53,8 @@ specialized architecture dependent routines are unavailable.
 fn is_prefix(haystack: &[u8], needle: &[u8]) -> bool
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:26-29`](../../../../.source_1765210505/memchr-2.7.6/src/arch/all/mod.rs#L26-L29)*
+
 Returns true if and only if `needle` is a prefix of `haystack`.
 
 This uses a latency optimized variant of `memcmp` internally which *might*
@@ -70,6 +72,8 @@ another function that is marked as `inline(never)` or just `inline`.
 fn is_suffix(haystack: &[u8], needle: &[u8]) -> bool
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:42-45`](../../../../.source_1765210505/memchr-2.7.6/src/arch/all/mod.rs#L42-L45)*
+
 Returns true if and only if `needle` is a suffix of `haystack`.
 
 This uses a latency optimized variant of `memcmp` internally which *might*
@@ -86,6 +90,8 @@ another function that is marked as `inline(never)` or just `inline`.
 ```rust
 fn is_equal(x: &[u8], y: &[u8]) -> bool
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:65-73`](../../../../.source_1765210505/memchr-2.7.6/src/arch/all/mod.rs#L65-L73)*
 
 Compare corresponding bytes in `x` and `y` for equality.
 
@@ -110,6 +116,8 @@ might be in some cases.
 ```rust
 unsafe fn is_equal_raw(x: *const u8, y: *const u8, n: usize) -> bool
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/mod.rs:108-158`](../../../../.source_1765210505/memchr-2.7.6/src/arch/all/mod.rs#L108-L158)*
 
 Compare `n` bytes at the given pointers for equality.
 

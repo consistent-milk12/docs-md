@@ -66,6 +66,8 @@ where
     R: gimli::Reader;
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:30-32`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L30-L32)*
+
 *Re-exported from `addr2line`*
 
 An iterator over function frames.
@@ -92,6 +94,8 @@ struct VecDeque<R: gimli::Reader> {
     dwo: core::cell::OnceCell<Result<Option<alloc::boxed::Box<DwoUnit<R>>>, gimli::Error>>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/unit.rs:18-25`](../../../.source_1765210505/addr2line-0.25.1/src/unit.rs#L18-L25)*
 
 *Re-exported from `addr2line`*
 
@@ -123,6 +127,8 @@ struct CStr<R: gimli::Reader> {
     inlined_addresses: alloc::boxed::Box<[InlinedFunctionAddress]>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/function.rs:67-74`](../../../.source_1765210505/addr2line-0.25.1/src/function.rs#L67-L74)*
 
 *Re-exported from `addr2line`*
 
@@ -160,6 +166,8 @@ where
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:43-52`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L43-L52)*
+
 *Re-exported from `addr2line`*
 
 ## Enums
@@ -176,7 +184,29 @@ where
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:34-41`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L34-L41)*
+
 *Re-exported from `addr2line`*
 
 ## Functions
+
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
+
+*Defined in [`serde_core-1.0.228/src/lib.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/lib.rs#L111)*
 

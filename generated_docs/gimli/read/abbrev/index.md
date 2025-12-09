@@ -26,10 +26,10 @@ Functions for parsing DWARF debugging abbreviations.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`DebugAbbrev`](#debugabbrev) | struct | The `DebugAbbrev` struct represents the abbreviations describing |
+| [`DebugAbbrev`](#debugabbrev) | struct | The `DebugAbbrev` struct represents the abbreviations describing `DebuggingInformationEntry`s' attribute names and forms found in the `.debug_abbrev` section. |
 | [`AbbreviationsCache`](#abbreviationscache) | struct | A cache of previously parsed `Abbreviations`. |
 | [`Abbreviations`](#abbreviations) | struct | A set of type abbreviations. |
-| [`Abbreviation`](#abbreviation) | struct | An abbreviation describes the shape of a `DebuggingInformationEntry`'s type |
+| [`Abbreviation`](#abbreviation) | struct | An abbreviation describes the shape of a `DebuggingInformationEntry`'s type: its code, tag type, whether it has children, and its set of attributes. |
 | [`AttributeSpecification`](#attributespecification) | struct | The description of an attribute in an abbreviated type. |
 | [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy) | enum | The strategy to use for caching abbreviations. |
 | [`Attributes`](#attributes) | enum | A list of attributes found in an `Abbreviation` |
@@ -45,6 +45,8 @@ struct DebugAbbrev<R> {
     debug_abbrev_section: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:22-24`](../../../../.source_1765210505/gimli-0.32.3/src/read/abbrev.rs#L22-L24)*
 
 The `DebugAbbrev` struct represents the abbreviations describing
 `DebuggingInformationEntry`s' attribute names and forms found in the
@@ -84,6 +86,8 @@ struct AbbreviationsCache {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:112-114`](../../../../.source_1765210505/gimli-0.32.3/src/read/abbrev.rs#L112-L114)*
+
 A cache of previously parsed `Abbreviations`.
 
 #### Implementations
@@ -114,6 +118,8 @@ struct Abbreviations {
     map: btree_map::BTreeMap<u64, Abbreviation>,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:206-209`](../../../../.source_1765210505/gimli-0.32.3/src/read/abbrev.rs#L206-L209)*
 
 A set of type abbreviations.
 
@@ -155,6 +161,8 @@ struct Abbreviation {
     attributes: Attributes,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:282-287`](../../../../.source_1765210505/gimli-0.32.3/src/read/abbrev.rs#L282-L287)*
 
 An abbreviation describes the shape of a `DebuggingInformationEntry`'s type:
 its code, tag type, whether it has children, and its set of attributes.
@@ -207,6 +215,8 @@ struct AttributeSpecification {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:479-483`](../../../../.source_1765210505/gimli-0.32.3/src/read/abbrev.rs#L479-L483)*
+
 The description of an attribute in an abbreviated type. It is a pair of name
 and form.
 
@@ -240,6 +250,10 @@ and form.
 
 ##### `impl Eq for AttributeSpecification`
 
+##### `impl FromIterator for Attributes`
+
+- <span id="attributes-from-iter"></span>`fn from_iter<I>(iter: I) -> Attributes` — [`Attributes`](#attributes)
+
 ##### `impl PartialEq for AttributeSpecification`
 
 - <span id="attributespecification-eq"></span>`fn eq(&self, other: &AttributeSpecification) -> bool` — [`AttributeSpecification`](../index.md)
@@ -256,6 +270,8 @@ enum AbbreviationsCacheStrategy {
     All,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:99-108`](../../../../.source_1765210505/gimli-0.32.3/src/read/abbrev.rs#L99-L108)*
 
 The strategy to use for caching abbreviations.
 
@@ -305,6 +321,8 @@ enum Attributes {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:391-397`](../../../../.source_1765210505/gimli-0.32.3/src/read/abbrev.rs#L391-L397)*
+
 A list of attributes found in an `Abbreviation`
 
 #### Implementations
@@ -325,7 +343,7 @@ A list of attributes found in an `Abbreviation`
 
 ##### `impl Deref for Attributes`
 
-- <span id="attributes-target"></span>`type Target = [AttributeSpecification]`
+- <span id="attributes-type-target"></span>`type Target = [AttributeSpecification]`
 
 - <span id="attributes-deref"></span>`fn deref(&self) -> &[AttributeSpecification]` — [`AttributeSpecification`](../index.md)
 
@@ -339,9 +357,9 @@ A list of attributes found in an `Abbreviation`
 
 - <span id="attributes-eq"></span>`fn eq(&self, other: &Attributes) -> bool` — [`Attributes`](#attributes)
 
-##### `impl<P, T> Receiver for Attributes`
+##### `impl Receiver for Attributes`
 
-- <span id="attributes-target"></span>`type Target = T`
+- <span id="attributes-type-target"></span>`type Target = T`
 
 ## Functions
 
@@ -351,11 +369,14 @@ A list of attributes found in an `Abbreviation`
 fn get_attribute_size(form: constants::DwForm, encoding: crate::common::Encoding) -> Option<u8>
 ```
 
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:572-637`](../../../../.source_1765210505/gimli-0.32.3/src/read/abbrev.rs#L572-L637)*
+
 ## Constants
 
 ### `MAX_ATTRIBUTES_INLINE`
-
 ```rust
 const MAX_ATTRIBUTES_INLINE: usize = 5usize;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/abbrev.rs:400`](../../../../.source_1765210505/gimli-0.32.3/src/read/abbrev.rs#L400)*
 

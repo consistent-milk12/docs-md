@@ -108,6 +108,8 @@ struct Splice<'a, I: Iterator + 'a, A: Allocator + 'a> {
 }
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/splice.rs:21-24`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/splice.rs#L21-L24)*
+
 A splicing iterator for `Vec`.
 
 This struct is created by `Vec::splice()`.
@@ -139,15 +141,15 @@ let iter: std::vec::Splice<_> = v.splice(1.., new);
 
 ##### `impl<I> IntoIterator for Splice<'a, I, A>`
 
-- <span id="splice-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splice-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="splice-intoiter"></span>`type IntoIter = I`
+- <span id="splice-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="splice-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator, A: Allocator> Iterator for Splice<'_, I, A>`
 
-- <span id="splice-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splice-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="splice-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -163,6 +165,8 @@ struct Drain<'a, T: 'a, A: Allocator + 'a> {
     vec: core::ptr::NonNull<super::Vec<T, A>>,
 }
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/drain.rs:22-30`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/drain.rs#L22-L30)*
 
 A draining iterator for `Vec<T>`.
 
@@ -192,11 +196,9 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 #### Implementations
 
-- <span id="drain-as-slice"></span>`fn as_slice(&self) -> &[T]`
+- <span id="superdrain-fill"></span>`unsafe fn fill<I: Iterator<Item = T>>(&mut self, replace_with: &mut I) -> bool`
 
-- <span id="drain-allocator"></span>`fn allocator(&self) -> &A`
-
-- <span id="drain-keep-rest"></span>`fn keep_rest(self)`
+- <span id="superdrain-move-tail"></span>`unsafe fn move_tail(&mut self, additional: usize)`
 
 #### Trait Implementations
 
@@ -222,15 +224,15 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 ##### `impl<I> IntoIterator for Drain<'a, T, A>`
 
-- <span id="drain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-intoiter"></span>`type IntoIter = I`
+- <span id="drain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for Drain<'_, T, A>`
 
-- <span id="drain-item"></span>`type Item = T`
+- <span id="drain-type-item"></span>`type Item = T`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -252,6 +254,8 @@ struct IntoIter<T, A: Allocator> {
     end: *const T,
 }
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
 
 An iterator that moves out of a vector.
 
@@ -303,15 +307,15 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
 ##### `impl<I> IntoIterator for IntoIter<T, A>`
 
-- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for IntoIter<T, A>`
 
-- <span id="intoiter-item"></span>`type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -331,6 +335,8 @@ struct Vec<T, A: Allocator> {
     len: usize,
 }
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:348-351`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/mod.rs#L348-L351)*
 
 A contiguous growable array type, written as `Vec<T>`, short for 'vector'.
 
@@ -580,7 +586,11 @@ The order has changed in the past and may change again.
 
 #### Implementations
 
-- <span id="vec-extend-with"></span>`fn extend_with<E: ExtendWith<T>>(&mut self, n: usize, value: E)`
+- <span id="vec-new"></span>`const fn new() -> Self`
+
+- <span id="vec-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
+
+- <span id="vec-from-raw-parts"></span>`unsafe fn from_raw_parts(ptr: *mut T, length: usize, capacity: usize) -> Self`
 
 #### Trait Implementations
 
@@ -608,7 +618,7 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, A: Allocator> Deref for Vec<T, A>`
 
-- <span id="vec-target"></span>`type Target = [T]`
+- <span id="vec-type-target"></span>`type Target = [T]`
 
 - <span id="vec-deref"></span>`fn deref(&self) -> &[T]`
 
@@ -636,7 +646,7 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, I: SliceIndex<[T]>, A: Allocator> Index for Vec<T, A>`
 
-- <span id="vec-output"></span>`type Output = <I as SliceIndex>::Output`
+- <span id="vec-type-output"></span>`type Output = <I as SliceIndex>::Output`
 
 - <span id="vec-index"></span>`fn index(&self, index: I) -> &<Self as >::Output`
 
@@ -646,9 +656,9 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, A: Allocator> IntoIterator for Vec<T, A>`
 
-- <span id="vec-item"></span>`type Item = T`
+- <span id="vec-type-item"></span>`type Item = T`
 
-- <span id="vec-intoiter"></span>`type IntoIter = IntoIter<T, A>`
+- <span id="vec-type-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
 - <span id="vec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -656,11 +666,11 @@ The order has changed in the past and may change again.
 
 - <span id="vec-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
-##### `impl<T, U, A: Allocator> PartialEq for super::Vec<T, A>`
+##### `impl<T, U, A1: Allocator, A2: Allocator> PartialEq for super::Vec<T, A1>`
 
-- <span id="supervec-eq"></span>`fn eq(&self, other: &&[U]) -> bool`
+- <span id="supervec-eq"></span>`fn eq(&self, other: &Vec<U, A2>) -> bool` — [`Vec`](#vec)
 
-- <span id="supervec-ne"></span>`fn ne(&self, other: &&[U]) -> bool`
+- <span id="supervec-ne"></span>`fn ne(&self, other: &Vec<U, A2>) -> bool` — [`Vec`](#vec)
 
 ##### `impl<T: PartialOrd, A: Allocator> PartialOrd for Vec<T, A>`
 
@@ -668,13 +678,15 @@ The order has changed in the past and may change again.
 
 ##### `impl<P, T> Receiver for Vec<T, A>`
 
-- <span id="vec-target"></span>`type Target = T`
+- <span id="vec-type-target"></span>`type Target = T`
 
 ### `ExtendElement<T>`
 
 ```rust
 struct ExtendElement<T>(T);
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:2481`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/mod.rs#L2481)*
 
 #### Trait Implementations
 
@@ -691,6 +703,8 @@ struct ExtendElement<T>(T);
 ```rust
 trait ExtendWith<T> { ... }
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/mod.rs:2476-2479`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/mod.rs#L2476-L2479)*
 
 #### Required Methods
 

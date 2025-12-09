@@ -58,15 +58,17 @@ struct BarState {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:15-21`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L15-L21)*
+
 #### Implementations
 
-- <span id="barstate-new"></span>`fn new(len: Option<u64>, draw_target: ProgressDrawTarget, pos: Arc<AtomicPosition>) -> Self` — [`ProgressDrawTarget`](../index.md), [`AtomicPosition`](#atomicposition)
+- <span id="barstate-new"></span>`fn new(len: Option<u64>, draw_target: ProgressDrawTarget, pos: Arc<AtomicPosition>) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md), [`AtomicPosition`](#atomicposition)
 
-- <span id="barstate-finish-using-style"></span>`fn finish_using_style(&mut self, now: Instant, finish: ProgressFinish)` — [`ProgressFinish`](../index.md)
+- <span id="barstate-finish-using-style"></span>`fn finish_using_style(&mut self, now: Instant, finish: ProgressFinish)` — [`ProgressFinish`](#progressfinish)
 
 - <span id="barstate-reset"></span>`fn reset(&mut self, now: Instant, mode: Reset)` — [`Reset`](#reset)
 
-- <span id="barstate-update"></span>`fn update(&mut self, now: Instant, f: impl FnOnce(&mut ProgressState), tick: bool)` — [`ProgressState`](../index.md)
+- <span id="barstate-update"></span>`fn update(&mut self, now: Instant, f: impl FnOnce(&mut ProgressState), tick: bool)` — [`ProgressState`](#progressstate)
 
 - <span id="barstate-unset-length"></span>`fn unset_length(&mut self, now: Instant)`
 
@@ -78,7 +80,7 @@ struct BarState {
 
 - <span id="barstate-set-tab-width"></span>`fn set_tab_width(&mut self, tab_width: usize)`
 
-- <span id="barstate-set-style"></span>`fn set_style(&mut self, style: ProgressStyle)` — [`ProgressStyle`](../index.md)
+- <span id="barstate-set-style"></span>`fn set_style(&mut self, style: ProgressStyle)` — [`ProgressStyle`](../style/index.md)
 
 - <span id="barstate-tick"></span>`fn tick(&mut self, now: Instant)`
 
@@ -110,6 +112,8 @@ struct ProgressState {
     prefix: TabExpandedString,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:242-251`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L242-L251)*
 
 The state of a progress bar at a moment in time.
 
@@ -148,6 +152,8 @@ struct Estimator {
     start_time: std::time::Instant,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:421-427`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L421-L427)*
 
 Double-smoothed exponentially weighted estimator
 
@@ -193,6 +199,8 @@ struct AtomicPosition {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:532-537`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L532-L537)*
+
 #### Implementations
 
 - <span id="atomicposition-new"></span>`fn new() -> Self`
@@ -219,6 +227,8 @@ enum Reset {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:234-238`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L234-L238)*
+
 ### `TabExpandedString`
 
 ```rust
@@ -231,6 +241,8 @@ enum TabExpandedString {
     },
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:353-360`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L353-L360)*
 
 #### Implementations
 
@@ -270,9 +282,11 @@ enum ProgressFinish {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:615-637`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L615-L637)*
+
 Behavior of a progress bar when it is finished
 
-This is invoked when a [`ProgressBar`](../index.md) or [`ProgressBarIter`](../index.md) completes and
+This is invoked when a [`ProgressBar`](../progress_bar/index.md) or [`ProgressBarIter`](../iter/index.md) completes and
 `ProgressBar::is_finished` is false.
 
 
@@ -314,7 +328,7 @@ This is invoked when a [`ProgressBar`](../index.md) or [`ProgressBarIter`](../in
 
 ##### `impl Clone for ProgressFinish`
 
-- <span id="progressfinish-clone"></span>`fn clone(&self) -> ProgressFinish` — [`ProgressFinish`](../index.md)
+- <span id="progressfinish-clone"></span>`fn clone(&self) -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
 
 ##### `impl Debug for ProgressFinish`
 
@@ -322,7 +336,7 @@ This is invoked when a [`ProgressBar`](../index.md) or [`ProgressBarIter`](../in
 
 ##### `impl Default for ProgressFinish`
 
-- <span id="progressfinish-default"></span>`fn default() -> ProgressFinish` — [`ProgressFinish`](../index.md)
+- <span id="progressfinish-default"></span>`fn default() -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
 
 ### `Status`
 
@@ -333,6 +347,8 @@ enum Status {
     DoneHidden,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:679-683`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L679-L683)*
 
 #### Trait Implementations
 
@@ -347,6 +363,8 @@ enum Status {
 ```rust
 fn estimator_weight(age: f64) -> f64
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:663-666`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L663-L666)*
 
 Get the appropriate dilution weight for Estimator data given the data's age (in seconds)
 
@@ -379,29 +397,36 @@ samples, a very useful feature.
 fn duration_to_secs(d: std::time::Duration) -> f64
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:668-670`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L668-L670)*
+
 ### `secs_to_duration`
 
 ```rust
 fn secs_to_duration(s: f64) -> std::time::Duration
 ```
 
+*Defined in [`indicatif-0.18.3/src/state.rs:672-676`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L672-L676)*
+
 ## Constants
 
 ### `INTERVAL`
-
 ```rust
 const INTERVAL: u64 = 1_000_000u64;
 ```
 
-### `MAX_BURST`
+*Defined in [`indicatif-0.18.3/src/state.rs:603`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L603)*
 
+### `MAX_BURST`
 ```rust
 const MAX_BURST: u8 = 10u8;
 ```
 
-### `DEFAULT_TAB_WIDTH`
+*Defined in [`indicatif-0.18.3/src/state.rs:604`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L604)*
 
+### `DEFAULT_TAB_WIDTH`
 ```rust
 const DEFAULT_TAB_WIDTH: usize = 8usize;
 ```
+
+*Defined in [`indicatif-0.18.3/src/state.rs:685`](../../../.source_1765210505/indicatif-0.18.3/src/state.rs#L685)*
 

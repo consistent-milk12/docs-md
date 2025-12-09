@@ -33,11 +33,27 @@ let link = registry.create_link(&some_id, "index.md");
 // Returns: Some("[`ItemName`](module.md)")
 ```
 
+## Contents
+
+- [Structs](#structs)
+  - [`LinkRegistry`](#linkregistry)
+- [Enums](#enums)
+  - [`AssocItemKind`](#associtemkind)
+- [Functions](#functions)
+  - [`assoc_item_anchor`](#assoc_item_anchor)
+  - [`method_anchor`](#method_anchor)
+  - [`slugify_anchor`](#slugify_anchor)
+  - [`slugify_anchor_ascii`](#slugify_anchor_ascii)
+  - [`slugify_anchor_impl`](#slugify_anchor_impl)
+  - [`item_has_anchor`](#item_has_anchor)
+
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`LinkRegistry`](#linkregistry) | struct | Registry mapping item IDs to their documentation file paths. |
+| [`AssocItemKind`](#associtemkind) | enum | Kind of associated item for anchor generation. |
+| [`assoc_item_anchor`](#assoc_item_anchor) | fn | Generate a compound anchor for an associated item on a type. |
 | [`method_anchor`](#method_anchor) | fn | Generate a compound anchor for a method on a type. |
 | [`slugify_anchor`](#slugify_anchor) | fn | Convert a name to a GitHub-style markdown anchor slug. |
 | [`slugify_anchor_ascii`](#slugify_anchor_ascii) | fn | Fast ASCII-only slugification (no allocation for normalization). |
@@ -54,6 +70,8 @@ struct LinkRegistry {
     item_names: std::collections::HashMap<rustdoc_types::Id, String>,
 }
 ```
+
+*Defined in `src/linker.rs:257-269`*
 
 Registry mapping item IDs to their documentation file paths.
 
@@ -101,19 +119,19 @@ create links between items.
 
 ##### `impl Default for LinkRegistry`
 
-- <span id="linkregistry-default"></span>`fn default() -> LinkRegistry` — [`LinkRegistry`](../index.md)
+- <span id="linkregistry-default"></span>`fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
 
-##### `impl<T> Instrument for LinkRegistry`
+##### `impl Instrument for LinkRegistry`
 
-##### `impl<T> IntoEither for LinkRegistry`
+##### `impl IntoEither for LinkRegistry`
 
-##### `impl<D> OwoColorize for LinkRegistry`
+##### `impl OwoColorize for LinkRegistry`
 
-##### `impl<T> Pointable for LinkRegistry`
+##### `impl Pointable for LinkRegistry`
 
-- <span id="linkregistry-align"></span>`const ALIGN: usize`
+- <span id="linkregistry-const-align"></span>`const ALIGN: usize`
 
-- <span id="linkregistry-init"></span>`type Init = T`
+- <span id="linkregistry-type-init"></span>`type Init = T`
 
 - <span id="linkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -123,15 +141,126 @@ create links between items.
 
 - <span id="linkregistry-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for LinkRegistry`
+##### `impl WithSubscriber for LinkRegistry`
+
+## Enums
+
+### `AssocItemKind`
+
+```rust
+enum AssocItemKind {
+    Method,
+    Const,
+    Type,
+}
+```
+
+*Defined in `src/linker.rs:41-48`*
+
+Kind of associated item for anchor generation.
+
+Used to disambiguate anchors when multiple items share the same name
+(e.g., `type Init` and `fn init` in the same impl block).
+
+#### Variants
+
+- **`Method`**
+
+  A method or function (`fn`)
+
+- **`Const`**
+
+  An associated constant (`const`)
+
+- **`Type`**
+
+  An associated type (`type`)
+
+#### Trait Implementations
+
+##### `impl Clone for AssocItemKind`
+
+- <span id="associtemkind-clone"></span>`fn clone(&self) -> AssocItemKind` — [`AssocItemKind`](#associtemkind)
+
+##### `impl Copy for AssocItemKind`
+
+##### `impl Debug for AssocItemKind`
+
+- <span id="associtemkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Eq for AssocItemKind`
+
+##### `impl Equivalent for AssocItemKind`
+
+- <span id="associtemkind-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
+
+##### `impl Instrument for AssocItemKind`
+
+##### `impl IntoEither for AssocItemKind`
+
+##### `impl OwoColorize for AssocItemKind`
+
+##### `impl PartialEq for AssocItemKind`
+
+- <span id="associtemkind-eq"></span>`fn eq(&self, other: &AssocItemKind) -> bool` — [`AssocItemKind`](#associtemkind)
+
+##### `impl Pointable for AssocItemKind`
+
+- <span id="associtemkind-const-align"></span>`const ALIGN: usize`
+
+- <span id="associtemkind-type-init"></span>`type Init = T`
+
+- <span id="associtemkind-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="associtemkind-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="associtemkind-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="associtemkind-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl StructuralPartialEq for AssocItemKind`
+
+##### `impl WithSubscriber for AssocItemKind`
 
 ## Functions
+
+### `assoc_item_anchor`
+
+```rust
+fn assoc_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind) -> String
+```
+
+*Defined in `src/linker.rs:72-83`*
+
+Generate a compound anchor for an associated item on a type.
+
+This creates a unique anchor that combines the type name, item kind, and item name,
+enabling deep linking to specific items. The format is `typename-itemname` for methods
+(backward compatible), and `typename-kind-itemname` for constants and types to avoid
+collisions.
+
+# Arguments
+
+* `type_name` - The name of the type (struct, enum, trait, etc.)
+* `item_name` - The name of the method or associated item
+* `kind` - The kind of associated item (method, const, or type)
+
+# Examples
+
+```ignore
+assert_eq!(assoc_item_anchor("Parser", "parse", AssocItemKind::Method), "parser-parse");
+assert_eq!(assoc_item_anchor("HashMap", "new", AssocItemKind::Method), "hashmap-new");
+assert_eq!(assoc_item_anchor("Vec", "Item", AssocItemKind::Type), "vec-type-item");
+assert_eq!(assoc_item_anchor("Vec", "ALIGN", AssocItemKind::Const), "vec-const-align");
+```
 
 ### `method_anchor`
 
 ```rust
 fn method_anchor(type_name: &str, method_name: &str) -> String
 ```
+
+*Defined in `src/linker.rs:104-106`*
 
 Generate a compound anchor for a method on a type.
 
@@ -157,6 +286,8 @@ assert_eq!(method_anchor("Vec<T>", "push"), "vec-push");
 ```rust
 fn slugify_anchor(name: &str) -> String
 ```
+
+*Defined in `src/linker.rs:134-145`*
 
 Convert a name to a GitHub-style markdown anchor slug.
 
@@ -190,6 +321,8 @@ assert_eq!(slugify_anchor("Größe"), "größe");
 fn slugify_anchor_ascii(name: &str) -> String
 ```
 
+*Defined in `src/linker.rs:148-180`*
+
 Fast ASCII-only slugification (no allocation for normalization).
 
 ### `slugify_anchor_impl`
@@ -198,6 +331,8 @@ Fast ASCII-only slugification (no allocation for normalization).
 fn slugify_anchor_impl(name: &str) -> String
 ```
 
+*Defined in `src/linker.rs:183-217`*
+
 Unicode-aware slugification with full lowercase support.
 
 ### `item_has_anchor`
@@ -205,6 +340,8 @@ Unicode-aware slugification with full lowercase support.
 ```rust
 const fn item_has_anchor(kind: rustdoc_types::ItemKind) -> bool
 ```
+
+*Defined in `src/linker.rs:237-249`*
 
 Check if an item kind generates a heading anchor in markdown.
 

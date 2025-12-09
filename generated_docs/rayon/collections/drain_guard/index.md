@@ -21,6 +21,8 @@ struct DrainGuard<'a, T, C: From<Vec<T>>> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/collections/mod.rs:46-49`](../../../../.source_1765210505/rayon-1.11.0/src/collections/mod.rs#L46-L49)*
+
 A proxy for draining a collection by converting to a `Vec` and back.
 
 This is used for draining `BinaryHeap` and `VecDeque`, which both have
@@ -40,11 +42,19 @@ zero-allocation conversions to/from `Vec`, though not zero-cost:
 
 ##### `impl<T> IntoEither for DrainGuard<'a, T, C>`
 
+##### `impl<'a, T, C> ParallelDrainRange for &'a mut DrainGuard<'_, T, C>`
+
+- <span id="a-mut-drainguard-type-iter"></span>`type Iter = Drain<'a, T>`
+
+- <span id="a-mut-drainguard-type-item"></span>`type Item = T`
+
+- <span id="a-mut-drainguard-par-drain"></span>`fn par_drain<R: RangeBounds<usize>>(self, range: R) -> <Self as >::Iter` — [`ParallelDrainRange`](../../iter/index.md)
+
 ##### `impl<T> Pointable for DrainGuard<'a, T, C>`
 
-- <span id="drainguard-align"></span>`const ALIGN: usize`
+- <span id="drainguard-const-align"></span>`const ALIGN: usize`
 
-- <span id="drainguard-init"></span>`type Init = T`
+- <span id="drainguard-type-init"></span>`type Init = T`
 
 - <span id="drainguard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

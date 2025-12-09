@@ -78,11 +78,15 @@ struct Mapping {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:63-68`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L63-L68)*
+
 #### Implementations
 
-- <span id="mapping-mk"></span>`fn mk<F>(data: Mmap, mk: F) -> Option<Mapping>` — [`Mmap`](mmap/index.md), [`Mapping`](#mapping)
+- <span id="supermapping-new"></span>`fn new(path: &Path) -> Option<Mapping>` — [`Mapping`](#mapping)
 
-- <span id="mapping-mk-or-other"></span>`fn mk_or_other<F>(data: Mmap, mk: F) -> Option<Mapping>` — [`Mmap`](mmap/index.md), [`Mapping`](#mapping)
+- <span id="supermapping-new-debug"></span>`fn new_debug(original_path: &Path, path: PathBuf, crc: Option<u32>) -> Option<Mapping>` — [`Mapping`](#mapping)
+
+- <span id="supermapping-load-dwarf-package"></span>`fn load_dwarf_package<'data>(path: &Path, stash: &'data Stash) -> Option<Object<'data>>` — [`Stash`](stash/index.md), [`Object`](elf/index.md)
 
 ### `Context<'a>`
 
@@ -93,6 +97,8 @@ struct Context<'a> {
     package: Option<gimli::DwarfPackage<self::gimli::read::EndianSlice<'a, self::gimli::NativeEndian>>>,
 }
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:111-115`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L111-L115)*
 
 #### Implementations
 
@@ -108,6 +114,8 @@ struct Cache {
     mappings: lru::Lru<(usize, Mapping), MAPPINGS_CACHE_SIZE>,
 }
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:259-273`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L259-L273)*
 
 #### Fields
 
@@ -153,6 +161,8 @@ struct Library {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:275-307`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L275-L307)*
+
 #### Fields
 
 - **`segments`**: `Vec<LibrarySegment>`
@@ -175,6 +185,8 @@ struct LibrarySegment {
     len: usize,
 }
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:309-316`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L309-L316)*
 
 #### Fields
 
@@ -199,6 +211,8 @@ enum Either<A, B> {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:70-74`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L70-L74)*
+
 ### `Symbol<'a>`
 
 ```rust
@@ -214,6 +228,8 @@ enum Symbol<'a> {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:503-514`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L503-L514)*
+
 #### Variants
 
 - **`Frame`**
@@ -228,11 +244,11 @@ enum Symbol<'a> {
 
 #### Implementations
 
-- <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../../index.md)
+- <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../index.md)
 
 - <span id="symbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
-- <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../../index.md)
+- <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../../types/index.md)
 
 - <span id="symbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 
@@ -248,11 +264,15 @@ enum Symbol<'a> {
 fn mmap(path: &mystd::path::Path) -> Option<self::mmap::Mmap>
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:192-196`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L192-L196)*
+
 ### `create_mapping`
 
 ```rust
 fn create_mapping(lib: &Library) -> Option<Mapping>
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:318-328`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L318-L328)*
 
 ### `clear_symbol_cache`
 
@@ -260,17 +280,22 @@ fn create_mapping(lib: &Library) -> Option<Mapping>
 unsafe fn clear_symbol_cache()
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:346-350`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L346-L350)*
+
 ### `resolve`
 
 ```rust
 unsafe fn resolve(what: super::ResolveWhat<'_>, cb: &mut dyn FnMut(&super::Symbol))
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:441-501`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L441-L501)*
+
 ## Constants
 
 ### `MAPPINGS_CACHE_SIZE`
-
 ```rust
 const MAPPINGS_CACHE_SIZE: usize = 4usize;
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli.rs:61`](../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli.rs#L61)*
 

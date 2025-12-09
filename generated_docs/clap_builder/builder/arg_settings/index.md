@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`ArgFlags`](#argflags) | struct |  |
-| [`ArgSettings`](#argsettings) | enum | Various settings that apply to arguments and may be set, unset, and checked via getter/setter |
+| [`ArgSettings`](#argsettings) | enum | Various settings that apply to arguments and may be set, unset, and checked via getter/setter methods [`Arg::setting`], [`Arg::unset_setting`], and [`Arg::is_set`]. |
 
 ## Structs
 
@@ -18,6 +18,8 @@
 ```rust
 struct ArgFlags(u32);
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/arg_settings.rs:5`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg_settings.rs#L5)*
 
 #### Implementations
 
@@ -33,7 +35,7 @@ struct ArgFlags(u32);
 
 ##### `impl BitOr for ArgFlags`
 
-- <span id="argflags-output"></span>`type Output = ArgFlags`
+- <span id="argflags-type-output"></span>`type Output = ArgFlags`
 
 - <span id="argflags-bitor"></span>`fn bitor(self, rhs: Self) -> <Self as >::Output`
 
@@ -82,6 +84,8 @@ enum ArgSettings {
     Exclusive,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/arg_settings.rs:44-64`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg_settings.rs#L44-L64)*
 
 Various settings that apply to arguments and may be set, unset, and checked via getter/setter
 methods `Arg::setting`, `Arg::unset_setting`, and `Arg::is_set`. This is what the

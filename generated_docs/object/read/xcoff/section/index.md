@@ -45,6 +45,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:23-30`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L23-L30)*
+
 An iterator for the sections in an [`XcoffFile`](../index.md).
 
 #### Trait Implementations
@@ -55,15 +57,15 @@ An iterator for the sections in an [`XcoffFile`](../index.md).
 
 ##### `impl<I> IntoIterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsectioniterator-item"></span>`type Item = XcoffSection<'data, 'file, Xcoff, R>`
+- <span id="xcoffsectioniterator-type-item"></span>`type Item = XcoffSection<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -79,6 +81,8 @@ where
     index: crate::read::SectionIndex,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:59-67`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L59-L67)*
 
 A section in an [`XcoffFile`](../index.md).
 
@@ -102,7 +106,7 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 ##### `impl<'data, 'file, Xcoff, R> ObjectSection for XcoffSection<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsection-relocationiterator"></span>`type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffsection-type-relocationiterator"></span>`type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
 
@@ -150,6 +154,8 @@ struct SectionTable<'data, Xcoff: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:228-230`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L228-L230)*
+
 The table of section headers in an XCOFF file.
 
 Returned by `FileHeader::sections`.
@@ -189,6 +195,8 @@ Returned by `FileHeader::sections`.
 ```rust
 trait SectionHeader: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:290-335`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L290-L335)*
 
 A trait for generic access to [`xcoff::SectionHeader32`](../../../xcoff/index.md) and [`xcoff::SectionHeader64`](../../../xcoff/index.md).
 
@@ -255,6 +263,8 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../../xcoff/index.md
 type XcoffSectionIterator32<'data, 'file, R> = XcoffSectionIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:15-16`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L15-L16)*
+
 An iterator for the sections in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSectionIterator64<'data, 'file, R>`
@@ -262,6 +272,8 @@ An iterator for the sections in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSectionIterator64<'data, 'file, R> = XcoffSectionIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:18-19`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L18-L19)*
 
 An iterator for the sections in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -271,6 +283,8 @@ An iterator for the sections in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSection32<'data, 'file, R> = XcoffSection<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:49-50`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L49-L50)*
+
 A section in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSection64<'data, 'file, R>`
@@ -278,6 +292,8 @@ A section in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSection64<'data, 'file, R> = XcoffSection<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/section.rs:52-53`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/section.rs#L52-L53)*
 
 A section in an [`XcoffFile64`](super::XcoffFile64).
 

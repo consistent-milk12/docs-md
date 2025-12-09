@@ -6,7 +6,7 @@
 
 Table of Contents generation for module documentation.
 
-This module provides [`TocGenerator`](../index.md) which generates a markdown table of contents
+This module provides [`TocGenerator`](#tocgenerator) which generates a markdown table of contents
 for modules that exceed a configurable item threshold. The TOC provides navigation
 to major sections (Types, Traits, Functions, etc.) with nested links to individual items.
 
@@ -42,6 +42,8 @@ struct TocEntry {
 }
 ```
 
+*Defined in `src/generator/toc.rs:28-37`*
+
 An entry in the table of contents.
 
 Each entry represents either a section heading (like "Structs") or an
@@ -74,23 +76,23 @@ for nested navigation.
 
 ##### `impl Clone for TocEntry`
 
-- <span id="tocentry-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](../index.md)
+- <span id="tocentry-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](#tocentry)
 
 ##### `impl Debug for TocEntry`
 
 - <span id="tocentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Instrument for TocEntry`
+##### `impl Instrument for TocEntry`
 
-##### `impl<T> IntoEither for TocEntry`
+##### `impl IntoEither for TocEntry`
 
-##### `impl<D> OwoColorize for TocEntry`
+##### `impl OwoColorize for TocEntry`
 
-##### `impl<T> Pointable for TocEntry`
+##### `impl Pointable for TocEntry`
 
-- <span id="tocentry-align"></span>`const ALIGN: usize`
+- <span id="tocentry-const-align"></span>`const ALIGN: usize`
 
-- <span id="tocentry-init"></span>`type Init = T`
+- <span id="tocentry-type-init"></span>`type Init = T`
 
 - <span id="tocentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -100,7 +102,7 @@ for nested navigation.
 
 - <span id="tocentry-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for TocEntry`
+##### `impl WithSubscriber for TocEntry`
 
 ### `TocGenerator`
 
@@ -109,6 +111,8 @@ struct TocGenerator {
     threshold: usize,
 }
 ```
+
+*Defined in `src/generator/toc.rs:88-91`*
 
 Generator for markdown table of contents.
 
@@ -126,31 +130,31 @@ modules with unnecessary navigation.
 
 - <span id="tocgenerator-new"></span>`const fn new(threshold: usize) -> Self`
 
-- <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](../index.md)
+- <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](#tocentry)
 
-- <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](../index.md)
+- <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](#tocentry)
 
 #### Trait Implementations
 
 ##### `impl Clone for TocGenerator`
 
-- <span id="tocgenerator-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](../index.md)
+- <span id="tocgenerator-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](#tocgenerator)
 
 ##### `impl Debug for TocGenerator`
 
 - <span id="tocgenerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Instrument for TocGenerator`
+##### `impl Instrument for TocGenerator`
 
-##### `impl<T> IntoEither for TocGenerator`
+##### `impl IntoEither for TocGenerator`
 
-##### `impl<D> OwoColorize for TocGenerator`
+##### `impl OwoColorize for TocGenerator`
 
-##### `impl<T> Pointable for TocGenerator`
+##### `impl Pointable for TocGenerator`
 
-- <span id="tocgenerator-align"></span>`const ALIGN: usize`
+- <span id="tocgenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="tocgenerator-init"></span>`type Init = T`
+- <span id="tocgenerator-type-init"></span>`type Init = T`
 
 - <span id="tocgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -160,5 +164,5 @@ modules with unnecessary navigation.
 
 - <span id="tocgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for TocGenerator`
+##### `impl WithSubscriber for TocGenerator`
 

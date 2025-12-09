@@ -25,6 +25,8 @@ struct MultiName {
 }
 ```
 
+*Defined in [`serde_derive-1.0.228/src/internals/name.rs:9-15`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/name.rs#L9-L15)*
+
 #### Implementations
 
 - <span id="multiname-from-attrs"></span>`fn from_attrs(source_name: Name, ser_name: Attr<'_, Name>, de_name: Attr<'_, Name>, de_aliases: Option<VecAttr<'_, Name>>) -> Self` — [`Name`](#name), [`Attr`](../attr/index.md), [`VecAttr`](../attr/index.md)
@@ -43,6 +45,8 @@ struct Name {
     pub span: proc_macro2::Span,
 }
 ```
+
+*Defined in [`serde_derive-1.0.228/src/internals/name.rs:60-63`](../../../../.source_1765210505/serde_derive-1.0.228/src/internals/name.rs#L60-L63)*
 
 #### Trait Implementations
 
@@ -68,11 +72,11 @@ struct Name {
 
 - <span id="name-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
-##### `impl<T> Spanned for Name`
+##### `impl Spanned for Name`
 
 - <span id="name-span"></span>`fn span(&self) -> Span`
 
-##### `impl<T> ToString for Name`
+##### `impl ToString for Name`
 
 - <span id="name-to-string"></span>`fn to_string(&self) -> String`
 

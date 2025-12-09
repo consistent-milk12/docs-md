@@ -53,12 +53,14 @@ where
     T: Send { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3280-3303`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L3280-L3303)*
+
 `FromParallelIterator` implements the creation of a collection
-from a [`ParallelIterator`](#paralleliterator). By implementing
+from a [`ParallelIterator`](../iter/index.md). By implementing
 `FromParallelIterator` for a given type, you define how it will be
 created from an iterator.
 
-`FromParallelIterator` is used through [`ParallelIterator`](#paralleliterator)'s `collect()` method.
+`FromParallelIterator` is used through [`ParallelIterator`](../iter/index.md)'s `collect()` method.
 
 # Examples
 
@@ -120,6 +122,8 @@ assert_eq!(bh.mass, 4000);
 ```rust
 trait IndexedParallelIterator: ParallelIterator { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:2439-3244`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L2439-L3244)*
 
 An iterator that supports "random access" to its data, meaning
 that you can split it at arbitrary indices and draw data from
@@ -265,26 +269,26 @@ those points.
 
 #### Implementors
 
-- [`Chain`](../iter/index.md)
-- [`ChunksExactMut`](../slice/index.md)
-- [`ChunksExact`](../slice/index.md)
-- [`ChunksMut`](../slice/index.md)
-- [`Chunks`](../iter/index.md)
-- [`Chunks`](../slice/index.md)
-- [`Cloned`](../iter/index.md)
-- [`Copied`](../iter/index.md)
+- [`Chain`](../iter/chain/index.md)
+- [`ChunksExactMut`](../slice/chunks/index.md)
+- [`ChunksExact`](../slice/chunks/index.md)
+- [`ChunksMut`](../slice/chunks/index.md)
+- [`Chunks`](../iter/chunks/index.md)
+- [`Chunks`](../slice/chunks/index.md)
+- [`Cloned`](../iter/cloned/index.md)
+- [`Copied`](../iter/copied/index.md)
 - [`Drain`](../collections/binary_heap/index.md)
 - [`Drain`](../collections/vec_deque/index.md)
 - [`Drain`](../vec/index.md)
 - [`Either`](../iter/index.md)
-- [`Empty`](../iter/index.md)
-- [`Enumerate`](../iter/index.md)
-- [`FoldChunksWith`](../iter/index.md)
-- [`FoldChunks`](../iter/index.md)
-- [`Inspect`](../iter/index.md)
-- [`InterleaveShortest`](../iter/index.md)
-- [`Interleave`](../iter/index.md)
-- [`Intersperse`](../iter/index.md)
+- [`Empty`](../iter/empty/index.md)
+- [`Enumerate`](../iter/enumerate/index.md)
+- [`FoldChunksWith`](../iter/fold_chunks_with/index.md)
+- [`FoldChunks`](../iter/fold_chunks/index.md)
+- [`Inspect`](../iter/inspect/index.md)
+- [`InterleaveShortest`](../iter/interleave_shortest/index.md)
+- [`Interleave`](../iter/interleave/index.md)
+- [`Intersperse`](../iter/intersperse/index.md)
 - [`IntoIter`](../array/index.md)
 - [`IntoIter`](../collections/binary_heap/index.md)
 - [`IntoIter`](../collections/vec_deque/index.md)
@@ -302,27 +306,27 @@ those points.
 - [`Iter`](../range_inclusive/index.md)
 - [`Iter`](../result/index.md)
 - [`Iter`](../slice/index.md)
-- [`MapInit`](../iter/index.md)
-- [`MapWith`](../iter/index.md)
-- [`Map`](../iter/index.md)
-- [`MaxLen`](../iter/index.md)
-- [`MinLen`](../iter/index.md)
-- [`MultiZip`](../iter/index.md)
-- [`Once`](../iter/index.md)
-- [`PanicFuse`](../iter/index.md)
-- [`RChunksExactMut`](../slice/index.md)
-- [`RChunksExact`](../slice/index.md)
-- [`RChunksMut`](../slice/index.md)
-- [`RChunks`](../slice/index.md)
-- [`RepeatN`](../iter/index.md)
-- [`Rev`](../iter/index.md)
-- [`Skip`](../iter/index.md)
-- [`StepBy`](../iter/index.md)
-- [`Take`](../iter/index.md)
-- [`Update`](../iter/index.md)
+- [`MapInit`](../iter/map_with/index.md)
+- [`MapWith`](../iter/map_with/index.md)
+- [`Map`](../iter/map/index.md)
+- [`MaxLen`](../iter/len/index.md)
+- [`MinLen`](../iter/len/index.md)
+- [`MultiZip`](../iter/multizip/index.md)
+- [`Once`](../iter/once/index.md)
+- [`PanicFuse`](../iter/panic_fuse/index.md)
+- [`RChunksExactMut`](../slice/rchunks/index.md)
+- [`RChunksExact`](../slice/rchunks/index.md)
+- [`RChunksMut`](../slice/rchunks/index.md)
+- [`RChunks`](../slice/rchunks/index.md)
+- [`RepeatN`](../iter/repeat/index.md)
+- [`Rev`](../iter/rev/index.md)
+- [`Skip`](../iter/skip/index.md)
+- [`StepBy`](../iter/step_by/index.md)
+- [`Take`](../iter/take/index.md)
+- [`Update`](../iter/update/index.md)
 - [`Windows`](../slice/index.md)
-- [`ZipEq`](../iter/index.md)
-- [`Zip`](../iter/index.md)
+- [`ZipEq`](../iter/zip_eq/index.md)
+- [`Zip`](../iter/zip/index.md)
 
 ### `IntoParallelIterator`
 
@@ -330,7 +334,9 @@ those points.
 trait IntoParallelIterator { ... }
 ```
 
-`IntoParallelIterator` implements the conversion to a [`ParallelIterator`](#paralleliterator).
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:219-249`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L219-L249)*
+
+`IntoParallelIterator` implements the conversion to a [`ParallelIterator`](../iter/index.md).
 
 By implementing `IntoParallelIterator` for a type, you define how it will
 transformed into an iterator. This is a parallel version of the standard
@@ -350,123 +356,6 @@ library's `std::iter::IntoIterator` trait.
 
 #### Implementors
 
-- [`Bytes`](../str/index.md)
-- [`Chain`](../iter/index.md)
-- [`CharIndices`](../str/index.md)
-- [`Chars`](../str/index.md)
-- [`ChunkByMut`](../slice/index.md)
-- [`ChunkBy`](../slice/index.md)
-- [`ChunksExactMut`](../slice/index.md)
-- [`ChunksExact`](../slice/index.md)
-- [`ChunksMut`](../slice/index.md)
-- [`Chunks`](../iter/index.md)
-- [`Chunks`](../slice/index.md)
-- [`Cloned`](../iter/index.md)
-- [`Copied`](../iter/index.md)
-- [`Drain`](../collections/binary_heap/index.md)
-- [`Drain`](../collections/hash_map/index.md)
-- [`Drain`](../collections/hash_set/index.md)
-- [`Drain`](../collections/vec_deque/index.md)
-- [`Drain`](../string/index.md)
-- [`Drain`](../vec/index.md)
-- [`Empty`](../iter/index.md)
-- [`EncodeUtf16`](../str/index.md)
-- [`Enumerate`](../iter/index.md)
-- [`ExponentialBlocks`](../iter/index.md)
-- [`FilterMap`](../iter/index.md)
-- [`Filter`](../iter/index.md)
-- [`FlatMapIter`](../iter/index.md)
-- [`FlatMap`](../iter/index.md)
-- [`FlattenIter`](../iter/index.md)
-- [`Flatten`](../iter/index.md)
-- [`FoldChunksWith`](../iter/index.md)
-- [`FoldChunks`](../iter/index.md)
-- [`FoldWith`](../iter/index.md)
-- [`Fold`](../iter/index.md)
-- [`Inspect`](../iter/index.md)
-- [`InterleaveShortest`](../iter/index.md)
-- [`Interleave`](../iter/index.md)
-- [`Intersperse`](../iter/index.md)
-- [`IntoIter`](../array/index.md)
-- [`IntoIter`](../collections/binary_heap/index.md)
-- [`IntoIter`](../collections/btree_map/index.md)
-- [`IntoIter`](../collections/btree_set/index.md)
-- [`IntoIter`](../collections/hash_map/index.md)
-- [`IntoIter`](../collections/hash_set/index.md)
-- [`IntoIter`](../collections/linked_list/index.md)
-- [`IntoIter`](../collections/vec_deque/index.md)
-- [`IntoIter`](../option/index.md)
-- [`IntoIter`](../result/index.md)
-- [`IntoIter`](../vec/index.md)
-- [`IterBridge`](../iter/index.md)
-- [`IterMut`](../collections/btree_map/index.md)
-- [`IterMut`](../collections/hash_map/index.md)
-- [`IterMut`](../collections/linked_list/index.md)
-- [`IterMut`](../collections/vec_deque/index.md)
-- [`IterMut`](../option/index.md)
-- [`IterMut`](../result/index.md)
-- [`IterMut`](../slice/index.md)
-- [`Iter`](../collections/binary_heap/index.md)
-- [`Iter`](../collections/btree_map/index.md)
-- [`Iter`](../collections/btree_set/index.md)
-- [`Iter`](../collections/hash_map/index.md)
-- [`Iter`](../collections/hash_set/index.md)
-- [`Iter`](../collections/linked_list/index.md)
-- [`Iter`](../collections/vec_deque/index.md)
-- [`Iter`](../option/index.md)
-- [`Iter`](../range/index.md)
-- [`Iter`](../range_inclusive/index.md)
-- [`Iter`](../result/index.md)
-- [`Iter`](../slice/index.md)
-- [`Lines`](../str/index.md)
-- [`MapInit`](../iter/index.md)
-- [`MapWith`](../iter/index.md)
-- [`Map`](../iter/index.md)
-- [`MatchIndices`](../str/index.md)
-- [`Matches`](../str/index.md)
-- [`MaxLen`](../iter/index.md)
-- [`MinLen`](../iter/index.md)
-- [`MultiZip`](../iter/index.md)
-- [`Once`](../iter/index.md)
-- [`PanicFuse`](../iter/index.md)
-- [`Positions`](../iter/index.md)
-- [`RChunksExactMut`](../slice/index.md)
-- [`RChunksExact`](../slice/index.md)
-- [`RChunksMut`](../slice/index.md)
-- [`RChunks`](../slice/index.md)
-- [`RepeatN`](../iter/index.md)
-- [`Repeat`](../iter/index.md)
-- [`Rev`](../iter/index.md)
-- [`SkipAnyWhile`](../iter/index.md)
-- [`SkipAny`](../iter/index.md)
-- [`Skip`](../iter/index.md)
-- [`SplitAsciiWhitespace`](../str/index.md)
-- [`SplitInclusiveMut`](../slice/index.md)
-- [`SplitInclusive`](../slice/index.md)
-- [`SplitInclusive`](../str/index.md)
-- [`SplitMut`](../slice/index.md)
-- [`SplitTerminator`](../str/index.md)
-- [`SplitWhitespace`](../str/index.md)
-- [`Split`](../iter/index.md)
-- [`Split`](../slice/index.md)
-- [`Split`](../str/index.md)
-- [`StepBy`](../iter/index.md)
-- [`TakeAnyWhile`](../iter/index.md)
-- [`TakeAny`](../iter/index.md)
-- [`Take`](../iter/index.md)
-- [`TryFoldWith`](../iter/index.md)
-- [`TryFold`](../iter/index.md)
-- [`UniformBlocks`](../iter/index.md)
-- [`UnzipA`](../iter/unzip/index.md)
-- [`UnzipB`](../iter/unzip/index.md)
-- [`Update`](../iter/index.md)
-- [`WalkTreePostfix`](../iter/index.md)
-- [`WalkTreePrefix`](../iter/index.md)
-- [`WalkTree`](../iter/index.md)
-- [`WhileSome`](../iter/index.md)
-- [`Windows`](../slice/index.md)
-- [`ZipEq`](../iter/index.md)
-- [`Zip`](../iter/index.md)
 - `&'a (A)`
 - `&'a (A, B)`
 - `&'a (A, B, C)`
@@ -548,15 +437,17 @@ library's `std::iter::IntoIterator` trait.
 trait IntoParallelRefIterator<'data> { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:261-285`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L261-L285)*
+
 `IntoParallelRefIterator` implements the conversion to a
-[`ParallelIterator`](#paralleliterator), providing shared references to the data.
+[`ParallelIterator`](../iter/index.md), providing shared references to the data.
 
 This is a parallel version of the `iter()` method
 defined by various collections.
 
 This trait is automatically implemented
 `for I where &I: IntoParallelIterator`. In most cases, users
-will want to implement [`IntoParallelIterator`](#intoparalleliterator) rather than implement
+will want to implement [`IntoParallelIterator`](../iter/index.md) rather than implement
 this trait directly.
 
 #### Associated Types
@@ -581,15 +472,17 @@ this trait directly.
 trait IntoParallelRefMutIterator<'data> { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:309-329`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L309-L329)*
+
 `IntoParallelRefMutIterator` implements the conversion to a
-[`ParallelIterator`](#paralleliterator), providing mutable references to the data.
+[`ParallelIterator`](../iter/index.md), providing mutable references to the data.
 
 This is a parallel version of the `iter_mut()` method
 defined by various collections.
 
 This trait is automatically implemented
 `for I where &mut I: IntoParallelIterator`. In most cases, users
-will want to implement [`IntoParallelIterator`](#intoparalleliterator) rather than implement
+will want to implement [`IntoParallelIterator`](../iter/index.md) rather than implement
 this trait directly.
 
 #### Associated Types
@@ -613,6 +506,8 @@ this trait directly.
 ```rust
 trait ParallelBridge: Sized { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/par_bridge.rs:53-56`](../../../.source_1765210505/rayon-1.11.0/src/iter/par_bridge.rs#L53-L56)*
 
 Conversion trait to convert an `Iterator` to a `ParallelIterator`.
 
@@ -671,10 +566,12 @@ assert_eq!(&*output, &["one!", "three!", "two!"]);
 trait ParallelDrainFull { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3360-3394`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L3360-L3394)*
+
 `ParallelDrainFull` creates a parallel iterator that moves all items
 from a collection while retaining the original capacity.
 
-Types which are indexable typically implement [`ParallelDrainRange`](#paralleldrainrange)
+Types which are indexable typically implement [`ParallelDrainRange`](../iter/index.md)
 instead, where you can drain fully with `par_drain(..)`.
 
 #### Associated Types
@@ -701,10 +598,12 @@ instead, where you can drain fully with `par_drain(..)`.
 trait ParallelDrainRange<Idx> { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3400-3467`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L3400-L3467)*
+
 `ParallelDrainRange` creates a parallel iterator that moves a range of items
 from a collection while retaining the original capacity.
 
-Types which are not indexable may implement [`ParallelDrainFull`](#paralleldrainfull) instead.
+Types which are not indexable may implement [`ParallelDrainFull`](../iter/index.md) instead.
 
 #### Associated Types
 
@@ -733,7 +632,9 @@ where
     T: Send { ... }
 ```
 
-`ParallelExtend` extends an existing collection with items from a [`ParallelIterator`](#paralleliterator).
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:3333-3353`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L3333-L3353)*
+
+`ParallelExtend` extends an existing collection with items from a [`ParallelIterator`](../iter/index.md).
 
 # Examples
 
@@ -792,11 +693,13 @@ assert_eq!(bh.mass, 4080);
 trait ParallelIterator: Sized + Send { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/mod.rs:356-2421`](../../../.source_1765210505/rayon-1.11.0/src/iter/mod.rs#L356-L2421)*
+
 Parallel version of the standard iterator trait.
 
 The combinators on this trait are available on **all** parallel
 iterators.  Additional methods can be found on the
-[`IndexedParallelIterator`](#indexedparalleliterator) trait: those methods are only
+[`IndexedParallelIterator`](../iter/index.md) trait: those methods are only
 available for parallel iterators where the number of items is
 known in advance (so, e.g., after invoking `filter`, those methods
 become unavailable).
@@ -1052,18 +955,18 @@ For examples of using parallel iterators, see [the docs on the
 #### Implementors
 
 - [`Bytes`](../str/index.md)
-- [`Chain`](../iter/index.md)
+- [`Chain`](../iter/chain/index.md)
 - [`CharIndices`](../str/index.md)
 - [`Chars`](../str/index.md)
-- [`ChunkByMut`](../slice/index.md)
-- [`ChunkBy`](../slice/index.md)
-- [`ChunksExactMut`](../slice/index.md)
-- [`ChunksExact`](../slice/index.md)
-- [`ChunksMut`](../slice/index.md)
-- [`Chunks`](../iter/index.md)
-- [`Chunks`](../slice/index.md)
-- [`Cloned`](../iter/index.md)
-- [`Copied`](../iter/index.md)
+- [`ChunkByMut`](../slice/chunk_by/index.md)
+- [`ChunkBy`](../slice/chunk_by/index.md)
+- [`ChunksExactMut`](../slice/chunks/index.md)
+- [`ChunksExact`](../slice/chunks/index.md)
+- [`ChunksMut`](../slice/chunks/index.md)
+- [`Chunks`](../iter/chunks/index.md)
+- [`Chunks`](../slice/chunks/index.md)
+- [`Cloned`](../iter/cloned/index.md)
+- [`Copied`](../iter/copied/index.md)
 - [`Drain`](../collections/binary_heap/index.md)
 - [`Drain`](../collections/hash_map/index.md)
 - [`Drain`](../collections/hash_set/index.md)
@@ -1071,24 +974,24 @@ For examples of using parallel iterators, see [the docs on the
 - [`Drain`](../string/index.md)
 - [`Drain`](../vec/index.md)
 - [`Either`](../iter/index.md)
-- [`Empty`](../iter/index.md)
+- [`Empty`](../iter/empty/index.md)
 - [`EncodeUtf16`](../str/index.md)
-- [`Enumerate`](../iter/index.md)
-- [`ExponentialBlocks`](../iter/index.md)
-- [`FilterMap`](../iter/index.md)
-- [`Filter`](../iter/index.md)
-- [`FlatMapIter`](../iter/index.md)
-- [`FlatMap`](../iter/index.md)
-- [`FlattenIter`](../iter/index.md)
-- [`Flatten`](../iter/index.md)
-- [`FoldChunksWith`](../iter/index.md)
-- [`FoldChunks`](../iter/index.md)
-- [`FoldWith`](../iter/index.md)
-- [`Fold`](../iter/index.md)
-- [`Inspect`](../iter/index.md)
-- [`InterleaveShortest`](../iter/index.md)
-- [`Interleave`](../iter/index.md)
-- [`Intersperse`](../iter/index.md)
+- [`Enumerate`](../iter/enumerate/index.md)
+- [`ExponentialBlocks`](../iter/blocks/index.md)
+- [`FilterMap`](../iter/filter_map/index.md)
+- [`Filter`](../iter/filter/index.md)
+- [`FlatMapIter`](../iter/flat_map_iter/index.md)
+- [`FlatMap`](../iter/flat_map/index.md)
+- [`FlattenIter`](../iter/flatten_iter/index.md)
+- [`Flatten`](../iter/flatten/index.md)
+- [`FoldChunksWith`](../iter/fold_chunks_with/index.md)
+- [`FoldChunks`](../iter/fold_chunks/index.md)
+- [`FoldWith`](../iter/fold/index.md)
+- [`Fold`](../iter/fold/index.md)
+- [`Inspect`](../iter/inspect/index.md)
+- [`InterleaveShortest`](../iter/interleave_shortest/index.md)
+- [`Interleave`](../iter/interleave/index.md)
+- [`Intersperse`](../iter/intersperse/index.md)
 - [`IntoIter`](../array/index.md)
 - [`IntoIter`](../collections/binary_heap/index.md)
 - [`IntoIter`](../collections/btree_map/index.md)
@@ -1100,7 +1003,7 @@ For examples of using parallel iterators, see [the docs on the
 - [`IntoIter`](../option/index.md)
 - [`IntoIter`](../result/index.md)
 - [`IntoIter`](../vec/index.md)
-- [`IterBridge`](../iter/index.md)
+- [`IterBridge`](../iter/par_bridge/index.md)
 - [`IterMut`](../collections/btree_map/index.md)
 - [`IterMut`](../collections/hash_map/index.md)
 - [`IterMut`](../collections/linked_list/index.md)
@@ -1121,27 +1024,27 @@ For examples of using parallel iterators, see [the docs on the
 - [`Iter`](../result/index.md)
 - [`Iter`](../slice/index.md)
 - [`Lines`](../str/index.md)
-- [`MapInit`](../iter/index.md)
-- [`MapWith`](../iter/index.md)
-- [`Map`](../iter/index.md)
+- [`MapInit`](../iter/map_with/index.md)
+- [`MapWith`](../iter/map_with/index.md)
+- [`Map`](../iter/map/index.md)
 - [`MatchIndices`](../str/index.md)
 - [`Matches`](../str/index.md)
-- [`MaxLen`](../iter/index.md)
-- [`MinLen`](../iter/index.md)
-- [`MultiZip`](../iter/index.md)
-- [`Once`](../iter/index.md)
-- [`PanicFuse`](../iter/index.md)
-- [`Positions`](../iter/index.md)
-- [`RChunksExactMut`](../slice/index.md)
-- [`RChunksExact`](../slice/index.md)
-- [`RChunksMut`](../slice/index.md)
-- [`RChunks`](../slice/index.md)
-- [`RepeatN`](../iter/index.md)
-- [`Repeat`](../iter/index.md)
-- [`Rev`](../iter/index.md)
-- [`SkipAnyWhile`](../iter/index.md)
-- [`SkipAny`](../iter/index.md)
-- [`Skip`](../iter/index.md)
+- [`MaxLen`](../iter/len/index.md)
+- [`MinLen`](../iter/len/index.md)
+- [`MultiZip`](../iter/multizip/index.md)
+- [`Once`](../iter/once/index.md)
+- [`PanicFuse`](../iter/panic_fuse/index.md)
+- [`Positions`](../iter/positions/index.md)
+- [`RChunksExactMut`](../slice/rchunks/index.md)
+- [`RChunksExact`](../slice/rchunks/index.md)
+- [`RChunksMut`](../slice/rchunks/index.md)
+- [`RChunks`](../slice/rchunks/index.md)
+- [`RepeatN`](../iter/repeat/index.md)
+- [`Repeat`](../iter/repeat/index.md)
+- [`Rev`](../iter/rev/index.md)
+- [`SkipAnyWhile`](../iter/skip_any_while/index.md)
+- [`SkipAny`](../iter/skip_any/index.md)
+- [`Skip`](../iter/skip/index.md)
 - [`SplitAsciiWhitespace`](../str/index.md)
 - [`SplitInclusiveMut`](../slice/index.md)
 - [`SplitInclusive`](../slice/index.md)
@@ -1149,32 +1052,34 @@ For examples of using parallel iterators, see [the docs on the
 - [`SplitMut`](../slice/index.md)
 - [`SplitTerminator`](../str/index.md)
 - [`SplitWhitespace`](../str/index.md)
-- [`Split`](../iter/index.md)
+- [`Split`](../iter/splitter/index.md)
 - [`Split`](../slice/index.md)
 - [`Split`](../str/index.md)
-- [`StepBy`](../iter/index.md)
-- [`TakeAnyWhile`](../iter/index.md)
-- [`TakeAny`](../iter/index.md)
-- [`Take`](../iter/index.md)
-- [`TryFoldWith`](../iter/index.md)
-- [`TryFold`](../iter/index.md)
-- [`UniformBlocks`](../iter/index.md)
+- [`StepBy`](../iter/step_by/index.md)
+- [`TakeAnyWhile`](../iter/take_any_while/index.md)
+- [`TakeAny`](../iter/take_any/index.md)
+- [`Take`](../iter/take/index.md)
+- [`TryFoldWith`](../iter/try_fold/index.md)
+- [`TryFold`](../iter/try_fold/index.md)
+- [`UniformBlocks`](../iter/blocks/index.md)
 - [`UnzipA`](../iter/unzip/index.md)
 - [`UnzipB`](../iter/unzip/index.md)
-- [`Update`](../iter/index.md)
-- [`WalkTreePostfix`](../iter/index.md)
-- [`WalkTreePrefix`](../iter/index.md)
-- [`WalkTree`](../iter/index.md)
-- [`WhileSome`](../iter/index.md)
+- [`Update`](../iter/update/index.md)
+- [`WalkTreePostfix`](../iter/walk_tree/index.md)
+- [`WalkTreePrefix`](../iter/walk_tree/index.md)
+- [`WalkTree`](../iter/walk_tree/index.md)
+- [`WhileSome`](../iter/while_some/index.md)
 - [`Windows`](../slice/index.md)
-- [`ZipEq`](../iter/index.md)
-- [`Zip`](../iter/index.md)
+- [`ZipEq`](../iter/zip_eq/index.md)
+- [`Zip`](../iter/zip/index.md)
 
 ### `ParallelSlice<T: Sync>`
 
 ```rust
 trait ParallelSlice<T: Sync> { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:29-199`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L29-L199)*
 
 Parallel extensions for slices.
 
@@ -1227,6 +1132,8 @@ Parallel extensions for slices.
 ```rust
 trait ParallelSliceMut<T: Send> { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/mod.rs:209-754`](../../../.source_1765210505/rayon-1.11.0/src/slice/mod.rs#L209-L754)*
 
 Parallel extensions for mutable slices.
 
@@ -1303,6 +1210,8 @@ Parallel extensions for mutable slices.
 ```rust
 trait ParallelString { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/str.rs:58-342`](../../../.source_1765210505/rayon-1.11.0/src/str.rs#L58-L342)*
 
 Parallel extensions for strings.
 

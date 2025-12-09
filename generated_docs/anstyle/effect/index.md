@@ -23,6 +23,8 @@
 struct Effects(u16);
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:9`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L9)*
+
 A set of text effects
 
 # Examples
@@ -33,31 +35,31 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 #### Implementations
 
-- <span id="effects-plain"></span>`const PLAIN: Self`
+- <span id="effects-const-plain"></span>`const PLAIN: Self`
 
-- <span id="effects-bold"></span>`const BOLD: Self`
+- <span id="effects-const-bold"></span>`const BOLD: Self`
 
-- <span id="effects-dimmed"></span>`const DIMMED: Self`
+- <span id="effects-const-dimmed"></span>`const DIMMED: Self`
 
-- <span id="effects-italic"></span>`const ITALIC: Self`
+- <span id="effects-const-italic"></span>`const ITALIC: Self`
 
-- <span id="effects-underline"></span>`const UNDERLINE: Self`
+- <span id="effects-const-underline"></span>`const UNDERLINE: Self`
 
-- <span id="effects-double-underline"></span>`const DOUBLE_UNDERLINE: Self`
+- <span id="effects-const-double-underline"></span>`const DOUBLE_UNDERLINE: Self`
 
-- <span id="effects-curly-underline"></span>`const CURLY_UNDERLINE: Self`
+- <span id="effects-const-curly-underline"></span>`const CURLY_UNDERLINE: Self`
 
-- <span id="effects-dotted-underline"></span>`const DOTTED_UNDERLINE: Self`
+- <span id="effects-const-dotted-underline"></span>`const DOTTED_UNDERLINE: Self`
 
-- <span id="effects-dashed-underline"></span>`const DASHED_UNDERLINE: Self`
+- <span id="effects-const-dashed-underline"></span>`const DASHED_UNDERLINE: Self`
 
-- <span id="effects-blink"></span>`const BLINK: Self`
+- <span id="effects-const-blink"></span>`const BLINK: Self`
 
-- <span id="effects-invert"></span>`const INVERT: Self`
+- <span id="effects-const-invert"></span>`const INVERT: Self`
 
-- <span id="effects-hidden"></span>`const HIDDEN: Self`
+- <span id="effects-const-hidden"></span>`const HIDDEN: Self`
 
-- <span id="effects-strikethrough"></span>`const STRIKETHROUGH: Self`
+- <span id="effects-const-strikethrough"></span>`const STRIKETHROUGH: Self`
 
 - <span id="effects-new"></span>`const fn new() -> Self`
 
@@ -85,7 +87,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl BitOr for Effects`
 
-- <span id="effects-output"></span>`type Output = Effects`
+- <span id="effects-type-output"></span>`type Output = Effects`
 
 - <span id="effects-bitor"></span>`fn bitor(self, rhs: Self) -> Self`
 
@@ -129,7 +131,7 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 ##### `impl Sub for Effects`
 
-- <span id="effects-output"></span>`type Output = Effects`
+- <span id="effects-type-output"></span>`type Output = Effects`
 
 - <span id="effects-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -146,11 +148,15 @@ struct Metadata {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:263-266`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L263-L266)*
+
 ### `EffectsDisplay`
 
 ```rust
 struct EffectsDisplay(Effects);
 ```
+
+*Defined in [`anstyle-1.0.13/src/effect.rs:320`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L320)*
 
 #### Trait Implementations
 
@@ -172,7 +178,7 @@ struct EffectsDisplay(Effects);
 
 - <span id="effectsdisplay-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for EffectsDisplay`
+##### `impl ToString for EffectsDisplay`
 
 - <span id="effectsdisplay-to-string"></span>`fn to_string(&self) -> String`
 
@@ -184,6 +190,8 @@ struct EffectIter {
     effects: Effects,
 }
 ```
+
+*Defined in [`anstyle-1.0.13/src/effect.rs:334-337`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L334-L337)*
 
 Enumerate each enabled value in [`Effects`](../index.md)
 
@@ -199,17 +207,17 @@ Enumerate each enabled value in [`Effects`](../index.md)
 
 ##### `impl Eq for EffectIter`
 
-##### `impl<I> IntoIterator for EffectIter`
+##### `impl IntoIterator for EffectIter`
 
-- <span id="effectiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="effectiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="effectiter-intoiter"></span>`type IntoIter = I`
+- <span id="effectiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="effectiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIter`
 
-- <span id="effectiter-item"></span>`type Item = Effects`
+- <span id="effectiter-type-item"></span>`type Item = Effects`
 
 - <span id="effectiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -228,6 +236,8 @@ struct EffectIndexIter {
 }
 ```
 
+*Defined in [`anstyle-1.0.13/src/effect.rs:358-361`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L358-L361)*
+
 #### Trait Implementations
 
 ##### `impl Clone for EffectIndexIter`
@@ -240,17 +250,17 @@ struct EffectIndexIter {
 
 ##### `impl Eq for EffectIndexIter`
 
-##### `impl<I> IntoIterator for EffectIndexIter`
+##### `impl IntoIterator for EffectIndexIter`
 
-- <span id="effectindexiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="effectindexiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="effectindexiter-intoiter"></span>`type IntoIter = I`
+- <span id="effectindexiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="effectindexiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for EffectIndexIter`
 
-- <span id="effectindexiter-item"></span>`type Item = usize`
+- <span id="effectindexiter-type-item"></span>`type Item = usize`
 
 - <span id="effectindexiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -263,8 +273,9 @@ struct EffectIndexIter {
 ## Constants
 
 ### `METADATA`
-
 ```rust
 const METADATA: [Metadata; 12];
 ```
+
+*Defined in [`anstyle-1.0.13/src/effect.rs:268-317`](../../../.source_1765210505/anstyle-1.0.13/src/effect.rs#L268-L317)*
 

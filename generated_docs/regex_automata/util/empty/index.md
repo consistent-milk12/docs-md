@@ -176,6 +176,8 @@ where
     F: FnMut(&crate::util::search::Input<'_>) -> Result<Option<(T, usize)>, crate::util::search::MatchError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/empty.rs:161-171`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/empty.rs#L161-L171)*
+
 ### `skip_splits_rev`
 
 ```rust
@@ -184,6 +186,8 @@ where
     F: FnMut(&crate::util::search::Input<'_>) -> Result<Option<(T, usize)>, crate::util::search::MatchError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/empty.rs:175-185`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/empty.rs#L175-L185)*
+
 ### `skip_splits`
 
 ```rust
@@ -191,4 +195,6 @@ fn skip_splits<T, F>(forward: bool, input: &crate::util::search::Input<'_>, init
 where
     F: FnMut(&crate::util::search::Input<'_>) -> Result<Option<(T, usize)>, crate::util::search::MatchError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/empty.rs:187-265`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/empty.rs#L187-L265)*
 

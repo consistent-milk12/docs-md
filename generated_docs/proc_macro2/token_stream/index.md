@@ -24,6 +24,8 @@ struct TokenStream {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:205-208`](../../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L205-L208)*
+
 An abstract stream of tokens, or more concretely a sequence of token trees.
 
 This type provides interfaces for iterating over token trees and for
@@ -62,7 +64,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl Extend for TokenStream`
 
-- <span id="tokenstream-extend"></span>`fn extend<I: IntoIterator<Item = TokenStream>>(&mut self, streams: I)`
+- <span id="tokenstream-extend"></span>`fn extend<I: IntoIterator<Item = TokenTree>>(&mut self, streams: I)`
 
 ##### `impl FromIterator for TokenStream`
 
@@ -70,15 +72,15 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl FromStr for TokenStream`
 
-- <span id="tokenstream-err"></span>`type Err = LexError`
+- <span id="tokenstream-type-err"></span>`type Err = LexError`
 
 - <span id="tokenstream-from-str"></span>`fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](../index.md), [`LexError`](../index.md)
 
 ##### `impl IntoIterator for TokenStream`
 
-- <span id="tokenstream-item"></span>`type Item = TokenTree`
+- <span id="tokenstream-type-item"></span>`type Item = TokenTree`
 
-- <span id="tokenstream-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="tokenstream-type-intoiter"></span>`type IntoIter = IntoIter`
 
 - <span id="tokenstream-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](#intoiter)
 
@@ -86,7 +88,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl Sealed for proc_macro2::TokenStream`
 
-##### `impl<T> ToString for TokenStream`
+##### `impl ToString for TokenStream`
 
 - <span id="tokenstream-to-string"></span>`fn to_string(&self) -> String`
 
@@ -109,6 +111,8 @@ struct IntoIter {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/lib.rs:1460-1463`](../../../.source_1765210505/proc-macro2-1.0.103/src/lib.rs#L1460-L1463)*
+
 An iterator over `TokenStream`'s `TokenTree`s.
 
 The iteration is "shallow", e.g. the iterator doesn't recurse into
@@ -124,17 +128,17 @@ delimited groups, and returns whole groups as token trees.
 
 - <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for IntoIter`
+##### `impl IntoIterator for IntoIter`
 
-- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- <span id="intoiter-item"></span>`type Item = TokenTree`
+- <span id="intoiter-type-item"></span>`type Item = TokenTree`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<TokenTree>` — [`TokenTree`](../index.md)
 

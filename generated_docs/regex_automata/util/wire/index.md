@@ -75,37 +75,37 @@ for deserializing [dense DFAs](crate::dfa::dense::DFA) using correct alignment.
 | [`u32s_to_state_ids_mut`](#u32s_to_state_ids_mut) | fn | Safely converts a `&mut [u32]` to `&mut [StateID]` with zero cost. |
 | [`u32s_to_pattern_ids`](#u32s_to_pattern_ids) | fn | Safely converts a `&[u32]` to `&[PatternID]` with zero cost. |
 | [`check_alignment`](#check_alignment) | fn | Checks that the given slice has an alignment that matches `T`. |
-| [`skip_initial_padding`](#skip_initial_padding) | fn | Reads a possibly empty amount of padding, up to 7 bytes, from the beginning |
-| [`alloc_aligned_buffer`](#alloc_aligned_buffer) | fn | Allocate a byte buffer of the given size, along with some initial padding |
+| [`skip_initial_padding`](#skip_initial_padding) | fn | Reads a possibly empty amount of padding, up to 7 bytes, from the beginning of the given slice. |
+| [`alloc_aligned_buffer`](#alloc_aligned_buffer) | fn | Allocate a byte buffer of the given size, along with some initial padding such that `buf[padding..]` has the same alignment as `T`, where the alignment of `T` must be at most `8`. |
 | [`read_label`](#read_label) | fn | Reads a NUL terminated label starting at the beginning of the given slice. |
 | [`write_label`](#write_label) | fn | Writes the given label to the buffer as a NUL terminated string. |
-| [`write_label_len`](#write_label_len) | fn | Returns the total number of bytes (including padding) that would be written |
-| [`read_endianness_check`](#read_endianness_check) | fn | Reads the endianness check from the beginning of the given slice and |
+| [`write_label_len`](#write_label_len) | fn | Returns the total number of bytes (including padding) that would be written for the given label. |
+| [`read_endianness_check`](#read_endianness_check) | fn | Reads the endianness check from the beginning of the given slice and confirms that the endianness of the serialized object matches the expected endianness. |
 | [`write_endianness_check`](#write_endianness_check) | fn | Writes 0xFEFF as an integer using the given endianness. |
 | [`write_endianness_check_len`](#write_endianness_check_len) | fn | Returns the number of bytes written by the endianness check. |
-| [`read_version`](#read_version) | fn | Reads a version number from the beginning of the given slice and confirms |
+| [`read_version`](#read_version) | fn | Reads a version number from the beginning of the given slice and confirms that is matches the expected version number given. |
 | [`write_version`](#write_version) | fn | Writes the given version number to the beginning of the given slice. |
 | [`write_version_len`](#write_version_len) | fn | Returns the number of bytes written by writing the version number. |
 | [`read_pattern_id`](#read_pattern_id) | fn | Reads a pattern ID from the given slice. |
 | [`read_pattern_id_unchecked`](#read_pattern_id_unchecked) | fn | Reads a pattern ID from the given slice. |
-| [`write_pattern_id`](#write_pattern_id) | fn | Write the given pattern ID to the beginning of the given slice of bytes |
+| [`write_pattern_id`](#write_pattern_id) | fn | Write the given pattern ID to the beginning of the given slice of bytes using the specified endianness. |
 | [`try_read_state_id`](#try_read_state_id) | fn | Attempts to read a state ID from the given slice. |
 | [`read_state_id`](#read_state_id) | fn | Reads a state ID from the given slice. |
 | [`read_state_id_unchecked`](#read_state_id_unchecked) | fn | Reads a state ID from the given slice. |
-| [`write_state_id`](#write_state_id) | fn | Write the given state ID to the beginning of the given slice of bytes |
-| [`try_read_u16_as_usize`](#try_read_u16_as_usize) | fn | Try to read a u16 as a usize from the beginning of the given slice in |
-| [`try_read_u32_as_usize`](#try_read_u32_as_usize) | fn | Try to read a u32 as a usize from the beginning of the given slice in |
-| [`try_read_u16`](#try_read_u16) | fn | Try to read a u16 from the beginning of the given slice in native endian |
-| [`try_read_u32`](#try_read_u32) | fn | Try to read a u32 from the beginning of the given slice in native endian |
-| [`try_read_u128`](#try_read_u128) | fn | Try to read a u128 from the beginning of the given slice in native endian |
+| [`write_state_id`](#write_state_id) | fn | Write the given state ID to the beginning of the given slice of bytes using the specified endianness. |
+| [`try_read_u16_as_usize`](#try_read_u16_as_usize) | fn | Try to read a u16 as a usize from the beginning of the given slice in native endian format. |
+| [`try_read_u32_as_usize`](#try_read_u32_as_usize) | fn | Try to read a u32 as a usize from the beginning of the given slice in native endian format. |
+| [`try_read_u16`](#try_read_u16) | fn | Try to read a u16 from the beginning of the given slice in native endian format. |
+| [`try_read_u32`](#try_read_u32) | fn | Try to read a u32 from the beginning of the given slice in native endian format. |
+| [`try_read_u128`](#try_read_u128) | fn | Try to read a u128 from the beginning of the given slice in native endian format. |
 | [`read_u16`](#read_u16) | fn | Read a u16 from the beginning of the given slice in native endian format. |
 | [`read_u32`](#read_u32) | fn | Read a u32 from the beginning of the given slice in native endian format. |
 | [`read_u128`](#read_u128) | fn | Read a u128 from the beginning of the given slice in native endian format. |
 | [`check_slice_len`](#check_slice_len) | fn | Checks that the given slice has some minimal length. |
-| [`mul`](#mul) | fn | Multiply the given numbers, and on overflow, return an error that includes |
-| [`add`](#add) | fn | Add the given numbers, and on overflow, return an error that includes |
-| [`shl`](#shl) | fn | Shift `a` left by `b`, and on overflow, return an error that includes |
-| [`padding_len`](#padding_len) | fn | Returns the number of additional bytes required to add to the given length |
+| [`mul`](#mul) | fn | Multiply the given numbers, and on overflow, return an error that includes 'what' in the error message. |
+| [`add`](#add) | fn | Add the given numbers, and on overflow, return an error that includes 'what' in the error message. |
+| [`shl`](#shl) | fn | Shift `a` left by `b`, and on overflow, return an error that includes 'what' in the error message. |
+| [`padding_len`](#padding_len) | fn | Returns the number of additional bytes required to add to the given length in order to make the total length a multiple of 4. |
 | [`NE`](#ne) | type |  |
 
 ## Structs
@@ -118,6 +118,8 @@ struct AlignAs<B: ?Sized, T> {
     pub bytes: B,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:66-71`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L66-L71)*
 
 A hack to align a smaller type `B` with a bigger type `T`.
 
@@ -153,6 +155,8 @@ struct SerializeError {
     what: &'static str,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:88-105`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L88-L105)*
 
 An error that occurs when serializing an object from this crate.
 
@@ -205,7 +209,7 @@ configurations.
 
 ##### `impl Error for SerializeError`
 
-##### `impl<T> ToString for SerializeError`
+##### `impl ToString for SerializeError`
 
 - <span id="serializeerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -214,6 +218,8 @@ configurations.
 ```rust
 struct DeserializeError(DeserializeErrorKind);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:138`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L138)*
 
 An error that occurs when deserializing an object defined in this crate.
 
@@ -265,7 +271,7 @@ configurations.
 
 ##### `impl Error for DeserializeError`
 
-##### `impl<T> ToString for DeserializeError`
+##### `impl ToString for DeserializeError`
 
 - <span id="deserializeerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -313,6 +319,8 @@ enum DeserializeErrorKind {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:141-152`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L141-L152)*
+
 #### Trait Implementations
 
 ##### `impl Debug for DeserializeErrorKind`
@@ -325,6 +333,8 @@ enum DeserializeErrorKind {
 enum LE {
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:862`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L862)*
 
 Little endian writing.
 
@@ -345,6 +355,8 @@ enum BE {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:864`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L864)*
+
 Big endian writing.
 
 #### Trait Implementations
@@ -364,6 +376,8 @@ Big endian writing.
 ```rust
 trait Endian { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:844-859`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L844-L859)*
 
 A simple trait for writing code generic over endianness.
 
@@ -397,6 +411,8 @@ subset.
 fn u32s_to_state_ids(slice: &[u32]) -> &[crate::util::primitives::StateID]
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:266-278`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L266-L278)*
+
 Safely converts a `&[u32]` to `&[StateID]` with zero cost.
 
 ### `u32s_to_state_ids_mut`
@@ -404,6 +420,8 @@ Safely converts a `&[u32]` to `&[StateID]` with zero cost.
 ```rust
 fn u32s_to_state_ids_mut(slice: &mut [u32]) -> &mut [crate::util::primitives::StateID]
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:281-293`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L281-L293)*
 
 Safely converts a `&mut [u32]` to `&mut [StateID]` with zero cost.
 
@@ -413,6 +431,8 @@ Safely converts a `&mut [u32]` to `&mut [StateID]` with zero cost.
 fn u32s_to_pattern_ids(slice: &[u32]) -> &[crate::util::primitives::PatternID]
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:297-309`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L297-L309)*
+
 Safely converts a `&[u32]` to `&[PatternID]` with zero cost.
 
 ### `check_alignment`
@@ -420,6 +440,8 @@ Safely converts a `&[u32]` to `&[PatternID]` with zero cost.
 ```rust
 fn check_alignment<T>(slice: &[u8]) -> Result<(), DeserializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:316-325`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L316-L325)*
 
 Checks that the given slice has an alignment that matches `T`.
 
@@ -432,6 +454,8 @@ sufficient to perform the cast for any `T`.
 ```rust
 fn skip_initial_padding(slice: &[u8]) -> usize
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:336-342`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L336-L342)*
 
 Reads a possibly empty amount of padding, up to 7 bytes, from the beginning
 of the given slice. All padding bytes must be NUL bytes.
@@ -448,6 +472,8 @@ This returns the number of bytes read from the given slice.
 ```rust
 fn alloc_aligned_buffer<T>(size: usize) -> (alloc::vec::Vec<u8>, usize)
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:361-404`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L361-L404)*
 
 Allocate a byte buffer of the given size, along with some initial padding
 such that `buf[padding..]` has the same alignment as `T`, where the
@@ -472,6 +498,8 @@ does some sanity asserts under the assumption of a max alignment of `8`.
 fn read_label(slice: &[u8], expected_label: &'static str) -> Result<usize, DeserializeError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:414-442`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L414-L442)*
+
 Reads a NUL terminated label starting at the beginning of the given slice.
 
 If a NUL terminated label could not be found, then an error is returned.
@@ -486,6 +514,8 @@ returned.
 ```rust
 fn write_label(label: &str, dst: &mut [u8]) -> Result<usize, SerializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:453-467`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L453-L467)*
 
 Writes the given label to the buffer as a NUL terminated string. The label
 given must not contain NUL, otherwise this will panic. Similarly, the label
@@ -503,6 +533,8 @@ returned.
 fn write_label_len(label: &str) -> usize
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:473-478`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L473-L478)*
+
 Returns the total number of bytes (including padding) that would be written
 for the given label. This panics if the given label contains a NUL byte or
 is longer than 255 bytes. (The size restriction exists so that searching
@@ -513,6 +545,8 @@ for a label during deserialization can be done in small bounded space.)
 ```rust
 fn read_endianness_check(slice: &[u8]) -> Result<usize, DeserializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:486-495`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L486-L495)*
 
 Reads the endianness check from the beginning of the given slice and
 confirms that the endianness of the serialized object matches the expected
@@ -526,6 +560,8 @@ Upon success, the total number of bytes read is returned.
 ```rust
 fn write_endianness_check<E: Endian>(dst: &mut [u8]) -> Result<usize, SerializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:504-513`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L504-L513)*
 
 Writes 0xFEFF as an integer using the given endianness.
 
@@ -541,6 +577,8 @@ Upon success, the total number of bytes written is returned.
 fn write_endianness_check_len() -> usize
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:516-518`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L516-L518)*
+
 Returns the number of bytes written by the endianness check.
 
 ### `read_version`
@@ -548,6 +586,8 @@ Returns the number of bytes written by the endianness check.
 ```rust
 fn read_version(slice: &[u8], expected_version: u32) -> Result<usize, DeserializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:529-539`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L529-L539)*
 
 Reads a version number from the beginning of the given slice and confirms
 that is matches the expected version number given. If the slice is too
@@ -565,6 +605,8 @@ we'll need to relax this a bit and support older versions.
 fn write_version<E: Endian>(version: u32, dst: &mut [u8]) -> Result<usize, SerializeError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:548-558`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L548-L558)*
+
 Writes the given version number to the beginning of the given slice.
 
 This is useful for writing into the header of a serialized object. It can
@@ -579,6 +621,8 @@ Upon success, the total number of bytes written is returned.
 fn write_version_len() -> usize
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:561-563`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L561-L563)*
+
 Returns the number of bytes written by writing the version number.
 
 ### `read_pattern_id`
@@ -586,6 +630,8 @@ Returns the number of bytes written by writing the version number.
 ```rust
 fn read_pattern_id(slice: &[u8], what: &'static str) -> Result<(crate::util::primitives::PatternID, usize), DeserializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:570-579`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L570-L579)*
 
 Reads a pattern ID from the given slice. If the slice has insufficient
 length, then this panics. If the deserialized integer exceeds the pattern
@@ -599,6 +645,8 @@ Upon success, this also returns the number of bytes read.
 fn read_pattern_id_unchecked(slice: &[u8]) -> (crate::util::primitives::PatternID, usize)
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:586-591`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L586-L591)*
+
 Reads a pattern ID from the given slice. If the slice has insufficient
 length, then this panics. Otherwise, the deserialized integer is assumed
 to be a valid pattern ID.
@@ -611,6 +659,8 @@ This also returns the number of bytes read.
 fn write_pattern_id<E: Endian>(pid: crate::util::primitives::PatternID, dst: &mut [u8]) -> usize
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:597-603`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L597-L603)*
+
 Write the given pattern ID to the beginning of the given slice of bytes
 using the specified endianness. The given slice must have length at least
 `PatternID::SIZE`, or else this panics. Upon success, the total number of
@@ -621,6 +671,8 @@ bytes written is returned.
 ```rust
 fn try_read_state_id(slice: &[u8], what: &'static str) -> Result<(crate::util::primitives::StateID, usize), DeserializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:610-618`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L610-L618)*
 
 Attempts to read a state ID from the given slice. If the slice has an
 insufficient number of bytes or if the state ID exceeds the limit for
@@ -634,6 +686,8 @@ Upon success, this also returns the number of bytes read.
 fn read_state_id(slice: &[u8], what: &'static str) -> Result<(crate::util::primitives::StateID, usize), DeserializeError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:625-634`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L625-L634)*
+
 Reads a state ID from the given slice. If the slice has insufficient
 length, then this panics. If the deserialized integer exceeds the state ID
 limit for the current target, then this returns an error.
@@ -645,6 +699,8 @@ Upon success, this also returns the number of bytes read.
 ```rust
 fn read_state_id_unchecked(slice: &[u8]) -> (crate::util::primitives::StateID, usize)
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:641-646`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L641-L646)*
 
 Reads a state ID from the given slice. If the slice has insufficient
 length, then this panics. Otherwise, the deserialized integer is assumed
@@ -658,6 +714,8 @@ This also returns the number of bytes read.
 fn write_state_id<E: Endian>(sid: crate::util::primitives::StateID, dst: &mut [u8]) -> usize
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:652-658`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L652-L658)*
+
 Write the given state ID to the beginning of the given slice of bytes
 using the specified endianness. The given slice must have length at least
 `StateID::SIZE`, or else this panics. Upon success, the total number of
@@ -668,6 +726,8 @@ bytes written is returned.
 ```rust
 fn try_read_u16_as_usize(slice: &[u8], what: &'static str) -> Result<(usize, usize), DeserializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:668-677`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L668-L677)*
 
 Try to read a u16 as a usize from the beginning of the given slice in
 native endian format. If the slice has fewer than 2 bytes or if the
@@ -684,6 +744,8 @@ Upon success, this also returns the number of bytes read.
 fn try_read_u32_as_usize(slice: &[u8], what: &'static str) -> Result<(usize, usize), DeserializeError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:687-696`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L687-L696)*
+
 Try to read a u32 as a usize from the beginning of the given slice in
 native endian format. If the slice has fewer than 4 bytes or if the
 deserialized number cannot be represented by usize, then this returns an
@@ -699,6 +761,8 @@ Upon success, this also returns the number of bytes read.
 fn try_read_u16(slice: &[u8], what: &'static str) -> Result<(u16, usize), DeserializeError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:705-711`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L705-L711)*
+
 Try to read a u16 from the beginning of the given slice in native endian
 format. If the slice has fewer than 2 bytes, then this returns an error.
 The error message will include the `what` description of what is being
@@ -712,6 +776,8 @@ Upon success, this also returns the number of bytes read.
 ```rust
 fn try_read_u32(slice: &[u8], what: &'static str) -> Result<(u32, usize), DeserializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:720-726`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L720-L726)*
 
 Try to read a u32 from the beginning of the given slice in native endian
 format. If the slice has fewer than 4 bytes, then this returns an error.
@@ -727,6 +793,8 @@ Upon success, this also returns the number of bytes read.
 fn try_read_u128(slice: &[u8], what: &'static str) -> Result<(u128, usize), DeserializeError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:735-741`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L735-L741)*
+
 Try to read a u128 from the beginning of the given slice in native endian
 format. If the slice has fewer than 16 bytes, then this returns an error.
 The error message will include the `what` description of what is being
@@ -741,6 +809,8 @@ Upon success, this also returns the number of bytes read.
 fn read_u16(slice: &[u8]) -> u16
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:749-752`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L749-L752)*
+
 Read a u16 from the beginning of the given slice in native endian format.
 If the slice has fewer than 2 bytes, then this panics.
 
@@ -752,6 +822,8 @@ its automaton at search time.
 ```rust
 fn read_u32(slice: &[u8]) -> u32
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:760-763`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L760-L763)*
 
 Read a u32 from the beginning of the given slice in native endian format.
 If the slice has fewer than 4 bytes, then this panics.
@@ -765,6 +837,8 @@ its automaton at search time.
 fn read_u128(slice: &[u8]) -> u128
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:767-770`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L767-L770)*
+
 Read a u128 from the beginning of the given slice in native endian format.
 If the slice has fewer than 16 bytes, then this panics.
 
@@ -773,6 +847,8 @@ If the slice has fewer than 16 bytes, then this panics.
 ```rust
 fn check_slice_len<T>(slice: &[T], at_least_len: usize, what: &'static str) -> Result<(), DeserializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:775-784`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L775-L784)*
 
 Checks that the given slice has some minimal length. If it's smaller than
 the bound given, then a "buffer too small" error is returned with `what`
@@ -783,6 +859,8 @@ describing what the buffer represents.
 ```rust
 fn mul(a: usize, b: usize, what: &'static str) -> Result<usize, DeserializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:790-799`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L790-L799)*
 
 Multiply the given numbers, and on overflow, return an error that includes
 'what' in the error message.
@@ -795,6 +873,8 @@ This is useful when doing arithmetic with untrusted data.
 fn add(a: usize, b: usize, what: &'static str) -> Result<usize, DeserializeError>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:805-814`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L805-L814)*
+
 Add the given numbers, and on overflow, return an error that includes
 'what' in the error message.
 
@@ -805,6 +885,8 @@ This is useful when doing arithmetic with untrusted data.
 ```rust
 fn shl(a: usize, b: usize, what: &'static str) -> Result<usize, DeserializeError>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:820-831`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L820-L831)*
 
 Shift `a` left by `b`, and on overflow, return an error that includes
 'what' in the error message.
@@ -817,6 +899,8 @@ This is useful when doing arithmetic with untrusted data.
 fn padding_len(non_padding_len: usize) -> usize
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:836-838`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L836-L838)*
+
 Returns the number of additional bytes required to add to the given length
 in order to make the total length a multiple of 4. The return value is
 always less than 4.
@@ -828,4 +912,6 @@ always less than 4.
 ```rust
 type NE = LE;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/wire.rs:867`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/wire.rs#L867)*
 

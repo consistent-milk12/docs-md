@@ -20,7 +20,9 @@
 struct AsUpperCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../../miette_derive/index.md).
+*Defined in [`heck-0.5.0/src/upper_camel.rs:57`](../../../.source_1765210505/heck-0.5.0/src/upper_camel.rs#L57)*
+
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -48,6 +50,8 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 ```rust
 trait ToUpperCamelCase: ToOwned { ... }
 ```
+
+*Defined in [`heck-0.5.0/src/upper_camel.rs:23-26`](../../../.source_1765210505/heck-0.5.0/src/upper_camel.rs#L23-L26)*
 
 This trait defines an upper camel case conversion.
 
@@ -79,7 +83,9 @@ assert_eq!(sentence.to_upper_camel_case(), "WeAreNotInTheLeastAfraidOfRuins");
 trait ToPascalCase: ToOwned { ... }
 ```
 
-`ToPascalCase` is an alias for [`ToUpperCamelCase`](../index.md). See ToUpperCamelCase for more
+*Defined in [`heck-0.5.0/src/upper_camel.rs:36-39`](../../../.source_1765210505/heck-0.5.0/src/upper_camel.rs#L36-L39)*
+
+`ToPascalCase` is an alias for [`ToUpperCamelCase`](#touppercamelcase). See ToUpperCamelCase for more
 documentation.
 
 #### Required Methods

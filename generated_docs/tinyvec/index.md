@@ -84,13 +84,13 @@ unlikely to clash with any future methods added to `Vec`.
 | [`tinyvec`](#tinyvec) | mod |  |
 | [`const_generic_impl`](#const_generic_impl) | mod |  |
 | [`ArrayVec`](#arrayvec) | struct | An array-backed, vector-like data structure. |
-| [`ArrayVecSplice`](#arrayvecsplice) | struct | Splicing iterator for `ArrayVec` |
-| [`TryFromSliceError`](#tryfromsliceerror) | struct | The error type returned when a conversion from a slice to an [`ArrayVec`] |
+| [`ArrayVecSplice`](#arrayvecsplice) | struct | Splicing iterator for `ArrayVec` See [`ArrayVec::splice`](ArrayVec::<A>::splice) |
+| [`TryFromSliceError`](#tryfromsliceerror) | struct | The error type returned when a conversion from a slice to an [`ArrayVec`] fails. |
 | [`ArrayVecIterator`](#arrayveciterator) | struct | Iterator for consuming an `ArrayVec` and returning owned elements. |
 | [`ArrayVecDrain`](#arrayvecdrain) | struct | Draining iterator for [`ArrayVec`] |
 | [`SliceVec`](#slicevec) | struct | A slice-backed vector-like data structure. |
 | [`SliceVecDrain`](#slicevecdrain) | struct | Draining iterator for [`SliceVec`] |
-| [`TinyVecSplice`](#tinyvecsplice) | struct | Splicing iterator for `TinyVec` |
+| [`TinyVecSplice`](#tinyvecsplice) | struct | Splicing iterator for `TinyVec` See [`TinyVec::splice`](TinyVec::<A>::splice) |
 | [`TinyVec`](#tinyvec) | enum | A vector that starts inline, but can automatically move to the heap. |
 | [`TinyVecDrain`](#tinyvecdrain) | enum | Draining iterator for `TinyVecDrain` |
 | [`TinyVecIterator`](#tinyveciterator) | enum | Iterator for consuming an `TinyVec` and returning owned elements. |
@@ -117,6 +117,8 @@ struct ArrayVec<A> {
     data: A,
 }
 ```
+
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:106-109`](../../.source_1765210505/tinyvec-1.10.0/src/arrayvec.rs#L106-L109)*
 
 An array-backed, vector-like data structure.
 
@@ -173,7 +175,69 @@ assert_eq!(no_ints.len(), 0);
 
 #### Implementations
 
-- <span id="arrayvec-as-inner"></span>`const fn as_inner(&self) -> &A`
+- <span id="arrayvec-append"></span>`fn append(&mut self, other: &mut Self)`
+
+- <span id="arrayvec-try-append"></span>`fn try_append<'other>(&mut self, other: &'other mut Self) -> Option<&'other mut Self>`
+
+- <span id="arrayvec-as-mut-ptr"></span>`fn as_mut_ptr(&mut self) -> *mut <A as >::Item` — [`Array`](#array)
+
+- <span id="arrayvec-as-mut-slice"></span>`fn as_mut_slice(&mut self) -> &mut [<A as >::Item]` — [`Array`](#array)
+
+- <span id="arrayvec-as-ptr"></span>`fn as_ptr(&self) -> *const <A as >::Item` — [`Array`](#array)
+
+- <span id="arrayvec-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](#array)
+
+- <span id="arrayvec-capacity"></span>`fn capacity(&self) -> usize`
+
+- <span id="arrayvec-clear"></span>`fn clear(&mut self)`
+
+- <span id="arrayvec-drain"></span>`fn drain<R>(&mut self, range: R) -> ArrayVecDrain<'_, <A as >::Item>` — [`ArrayVecDrain`](#arrayvecdrain), [`Array`](#array)
+
+- <span id="arrayvec-into-inner"></span>`fn into_inner(self) -> A`
+
+- <span id="arrayvec-extend-from-slice"></span>`fn extend_from_slice(&mut self, sli: &[<A as >::Item])` — [`Array`](#array)
+
+- <span id="arrayvec-fill"></span>`fn fill<I: IntoIterator<Item = <A as >::Item>>(&mut self, iter: I) -> <I as >::IntoIter`
+
+- <span id="arrayvec-from-array-len"></span>`fn from_array_len(data: A, len: usize) -> Self`
+
+- <span id="arrayvec-insert"></span>`fn insert(&mut self, index: usize, item: <A as >::Item)` — [`Array`](#array)
+
+- <span id="arrayvec-try-insert"></span>`fn try_insert(&mut self, index: usize, item: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](#array)
+
+- <span id="arrayvec-is-empty"></span>`fn is_empty(&self) -> bool`
+
+- <span id="arrayvec-len"></span>`fn len(&self) -> usize`
+
+- <span id="arrayvec-new"></span>`fn new() -> Self`
+
+- <span id="arrayvec-pop"></span>`fn pop(&mut self) -> Option<<A as >::Item>` — [`Array`](#array)
+
+- <span id="arrayvec-push"></span>`fn push(&mut self, val: <A as >::Item)` — [`Array`](#array)
+
+- <span id="arrayvec-try-push"></span>`fn try_push(&mut self, val: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](#array)
+
+- <span id="arrayvec-remove"></span>`fn remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](#array)
+
+- <span id="arrayvec-resize"></span>`fn resize(&mut self, new_len: usize, new_val: <A as >::Item)` — [`Array`](#array)
+
+- <span id="arrayvec-resize-with"></span>`fn resize_with<F: FnMut() -> <A as >::Item>(&mut self, new_len: usize, f: F)`
+
+- <span id="arrayvec-retain"></span>`fn retain<F: FnMut(&<A as >::Item) -> bool>(&mut self, acceptable: F)`
+
+- <span id="arrayvec-retain-mut"></span>`fn retain_mut<F>(&mut self, acceptable: F)`
+
+- <span id="arrayvec-set-len"></span>`fn set_len(&mut self, new_len: usize)`
+
+- <span id="arrayvec-split-off"></span>`fn split_off(&mut self, at: usize) -> Self`
+
+- <span id="arrayvec-splice"></span>`fn splice<R, I>(&mut self, range: R, replacement: I) -> ArrayVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`ArrayVecSplice`](#arrayvecsplice)
+
+- <span id="arrayvec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](#array)
+
+- <span id="arrayvec-truncate"></span>`fn truncate(&mut self, new_len: usize)`
+
+- <span id="arrayvec-try-from-array-len"></span>`fn try_from_array_len(data: A, len: usize) -> Result<Self, A>`
 
 #### Trait Implementations
 
@@ -207,7 +271,7 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array> Deref for ArrayVec<A>`
 
-- <span id="arrayvec-target"></span>`type Target = [<A as Array>::Item]`
+- <span id="arrayvec-type-target"></span>`type Target = [<A as Array>::Item]`
 
 - <span id="arrayvec-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -235,7 +299,7 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array, I: SliceIndex<[<A as >::Item]>> Index for ArrayVec<A>`
 
-- <span id="arrayvec-output"></span>`type Output = <I as SliceIndex>::Output`
+- <span id="arrayvec-type-output"></span>`type Output = <I as SliceIndex>::Output`
 
 - <span id="arrayvec-index"></span>`fn index(&self, index: I) -> &<Self as >::Output`
 
@@ -245,9 +309,9 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array> IntoIterator for ArrayVec<A>`
 
-- <span id="arrayvec-item"></span>`type Item = <A as Array>::Item`
+- <span id="arrayvec-type-item"></span>`type Item = <A as Array>::Item`
 
-- <span id="arrayvec-intoiter"></span>`type IntoIter = ArrayVecIterator<A>`
+- <span id="arrayvec-type-intoiter"></span>`type IntoIter = ArrayVecIterator<A>`
 
 - <span id="arrayvec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -269,7 +333,7 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array> PartialEq for ArrayVec<A>`
 
-- <span id="arrayvec-eq"></span>`fn eq(&self, other: &&[<A as >::Item]) -> bool` — [`Array`](#array)
+- <span id="arrayvec-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<A: Array> PartialOrd for ArrayVec<A>`
 
@@ -281,7 +345,7 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<P, T> Receiver for ArrayVec<A>`
 
-- <span id="arrayvec-target"></span>`type Target = T`
+- <span id="arrayvec-type-target"></span>`type Target = T`
 
 ##### `impl<T> ToString for ArrayVec<A>`
 
@@ -306,6 +370,8 @@ struct ArrayVecSplice<'p, A: Array, I: Iterator<Item = <A as >::Item>> {
 }
 ```
 
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1264-1269`](../../.source_1765210505/tinyvec-1.10.0/src/arrayvec.rs#L1264-L1269)*
+
 Splicing iterator for `ArrayVec`
 See [`ArrayVec::splice`](ArrayVec::<A>::splice)
 
@@ -327,15 +393,15 @@ See [`ArrayVec::splice`](ArrayVec::<A>::splice)
 
 ##### `impl<I> IntoIterator for ArrayVecSplice<'p, A, I>`
 
-- <span id="arrayvecsplice-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="arrayvecsplice-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="arrayvecsplice-intoiter"></span>`type IntoIter = I`
+- <span id="arrayvecsplice-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="arrayvecsplice-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'p, A: Array, I: Iterator<Item = <A as >::Item>> Iterator for ArrayVecSplice<'p, A, I>`
 
-- <span id="arrayvecsplice-item"></span>`type Item = <A as Array>::Item`
+- <span id="arrayvecsplice-type-item"></span>`type Item = <A as Array>::Item`
 
 - <span id="arrayvecsplice-next"></span>`fn next(&mut self) -> Option<<A as >::Item>` — [`Array`](#array)
 
@@ -346,6 +412,8 @@ See [`ArrayVec::splice`](ArrayVec::<A>::splice)
 ```rust
 struct TryFromSliceError(());
 ```
+
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1425`](../../.source_1765210505/tinyvec-1.10.0/src/arrayvec.rs#L1425)*
 
 The error type returned when a conversion from a slice to an [`ArrayVec`](#arrayvec)
 fails.
@@ -366,7 +434,7 @@ fails.
 
 - <span id="tryfromsliceerror-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<T> ToString for TryFromSliceError`
+##### `impl ToString for TryFromSliceError`
 
 - <span id="tryfromsliceerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -379,6 +447,8 @@ struct ArrayVecIterator<A: Array> {
     data: A,
 }
 ```
+
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:1478-1482`](../../.source_1765210505/tinyvec-1.10.0/src/arrayvec.rs#L1478-L1482)*
 
 Iterator for consuming an `ArrayVec` and returning owned elements.
 
@@ -406,15 +476,15 @@ Iterator for consuming an `ArrayVec` and returning owned elements.
 
 ##### `impl<I> IntoIterator for ArrayVecIterator<A>`
 
-- <span id="arrayveciterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="arrayveciterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="arrayveciterator-intoiter"></span>`type IntoIter = I`
+- <span id="arrayveciterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="arrayveciterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A: Array> Iterator for ArrayVecIterator<A>`
 
-- <span id="arrayveciterator-item"></span>`type Item = <A as Array>::Item`
+- <span id="arrayveciterator-type-item"></span>`type Item = <A as Array>::Item`
 
 - <span id="arrayveciterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -433,6 +503,8 @@ struct ArrayVecDrain<'a, T: 'a + Default> {
     iter: slice::IterMut<'a, T>,
 }
 ```
+
+*Defined in [`tinyvec-1.10.0/src/arrayvec_drain.rs:11-13`](../../.source_1765210505/tinyvec-1.10.0/src/arrayvec_drain.rs#L11-L13)*
 
 Draining iterator for [`ArrayVec`](#arrayvec)
 
@@ -456,15 +528,15 @@ See [`ArrayVec::drain`](ArrayVec::drain)
 
 ##### `impl<I> IntoIterator for ArrayVecDrain<'a, T>`
 
-- <span id="arrayvecdrain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="arrayvecdrain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="arrayvecdrain-intoiter"></span>`type IntoIter = I`
+- <span id="arrayvecdrain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="arrayvecdrain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T: 'a + Default> Iterator for ArrayVecDrain<'a, T>`
 
-- <span id="arrayvecdrain-item"></span>`type Item = T`
+- <span id="arrayvecdrain-type-item"></span>`type Item = T`
 
 - <span id="arrayvecdrain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -484,6 +556,8 @@ struct SliceVec<'s, T> {
     len: usize,
 }
 ```
+
+*Defined in [`tinyvec-1.10.0/src/slicevec.rs:16-19`](../../.source_1765210505/tinyvec-1.10.0/src/slicevec.rs#L16-L19)*
 
 A slice-backed vector-like data structure.
 
@@ -572,7 +646,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T> Deref for SliceVec<'s, T>`
 
-- <span id="slicevec-target"></span>`type Target = [T]`
+- <span id="slicevec-type-target"></span>`type Target = [T]`
 
 - <span id="slicevec-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -596,7 +670,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T, I> Index for SliceVec<'s, T>`
 
-- <span id="slicevec-output"></span>`type Output = <I as SliceIndex>::Output`
+- <span id="slicevec-type-output"></span>`type Output = <I as SliceIndex>::Output`
 
 - <span id="slicevec-index"></span>`fn index(&self, index: I) -> &<Self as >::Output`
 
@@ -606,9 +680,9 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T> IntoIterator for SliceVec<'s, T>`
 
-- <span id="slicevec-item"></span>`type Item = &'s mut T`
+- <span id="slicevec-type-item"></span>`type Item = &'s mut T`
 
-- <span id="slicevec-intoiter"></span>`type IntoIter = IterMut<'s, T>`
+- <span id="slicevec-type-intoiter"></span>`type IntoIter = IterMut<'s, T>`
 
 - <span id="slicevec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -630,7 +704,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T> PartialEq for SliceVec<'s, T>`
 
-- <span id="slicevec-eq"></span>`fn eq(&self, other: &&[T]) -> bool`
+- <span id="slicevec-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<'s, T> PartialOrd for SliceVec<'s, T>`
 
@@ -642,7 +716,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<P, T> Receiver for SliceVec<'s, T>`
 
-- <span id="slicevec-target"></span>`type Target = T`
+- <span id="slicevec-type-target"></span>`type Target = T`
 
 ##### `impl<T> ToString for SliceVec<'s, T>`
 
@@ -667,6 +741,8 @@ struct SliceVecDrain<'p, 's, T: Default> {
 }
 ```
 
+*Defined in [`tinyvec-1.10.0/src/slicevec.rs:714-719`](../../.source_1765210505/tinyvec-1.10.0/src/slicevec.rs#L714-L719)*
+
 Draining iterator for [`SliceVec`](#slicevec)
 
 See [`SliceVec::drain`](SliceVec::drain)
@@ -681,15 +757,15 @@ See [`SliceVec::drain`](SliceVec::drain)
 
 ##### `impl<I> IntoIterator for SliceVecDrain<'p, 's, T>`
 
-- <span id="slicevecdrain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="slicevecdrain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="slicevecdrain-intoiter"></span>`type IntoIter = I`
+- <span id="slicevecdrain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="slicevecdrain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'p, 's, T: Default> Iterator for SliceVecDrain<'p, 's, T>`
 
-- <span id="slicevecdrain-item"></span>`type Item = T`
+- <span id="slicevecdrain-type-item"></span>`type Item = T`
 
 - <span id="slicevecdrain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -703,6 +779,8 @@ struct TinyVecSplice<'p, A: Array, I: Iterator<Item = <A as >::Item>> {
     replacement: I,
 }
 ```
+
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1215-1220`](../../.source_1765210505/tinyvec-1.10.0/src/tinyvec.rs#L1215-L1220)*
 
 Splicing iterator for `TinyVec`
 See [`TinyVec::splice`](TinyVec::<A>::splice)
@@ -725,15 +803,15 @@ See [`TinyVec::splice`](TinyVec::<A>::splice)
 
 ##### `impl<I> IntoIterator for TinyVecSplice<'p, A, I>`
 
-- <span id="tinyvecsplice-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tinyvecsplice-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tinyvecsplice-intoiter"></span>`type IntoIter = I`
+- <span id="tinyvecsplice-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tinyvecsplice-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'p, A, I> Iterator for TinyVecSplice<'p, A, I>`
 
-- <span id="tinyvecsplice-item"></span>`type Item = <A as Array>::Item`
+- <span id="tinyvecsplice-type-item"></span>`type Item = <A as Array>::Item`
 
 - <span id="tinyvecsplice-next"></span>`fn next(&mut self) -> Option<<A as >::Item>` — [`Array`](#array)
 
@@ -749,6 +827,8 @@ enum TinyVec<A: Array> {
     Heap(alloc::vec::Vec<<A as >::Item>),
 }
 ```
+
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:96-101`](../../.source_1765210505/tinyvec-1.10.0/src/tinyvec.rs#L96-L101)*
 
 A vector that starts inline, but can automatically move to the heap.
 
@@ -774,55 +854,25 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 #### Implementations
 
-- <span id="tinyvec-append"></span>`fn append(&mut self, other: &mut Self)`
+- <span id="tinyvec-is-heap"></span>`fn is_heap(&self) -> bool`
 
-- <span id="tinyvec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](#array)
+- <span id="tinyvec-is-inline"></span>`fn is_inline(&self) -> bool`
 
-- <span id="tinyvec-pop"></span>`fn pop(&mut self) -> Option<<A as >::Item>` — [`Array`](#array)
+- <span id="tinyvec-shrink-to-fit"></span>`fn shrink_to_fit(&mut self)`
 
-- <span id="tinyvec-remove"></span>`fn remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](#array)
+- <span id="tinyvec-move-to-the-heap"></span>`fn move_to_the_heap(&mut self)`
 
-- <span id="tinyvec-len"></span>`fn len(&self) -> usize`
+- <span id="tinyvec-move-to-the-heap-and-reserve"></span>`fn move_to_the_heap_and_reserve(&mut self, n: usize)`
 
-- <span id="tinyvec-capacity"></span>`fn capacity(&self) -> usize`
+- <span id="tinyvec-reserve"></span>`fn reserve(&mut self, n: usize)`
 
-- <span id="tinyvec-truncate"></span>`fn truncate(&mut self, new_len: usize)`
+- <span id="tinyvec-reserve-exact"></span>`fn reserve_exact(&mut self, n: usize)`
 
-- <span id="tinyvec-as-mut-ptr"></span>`fn as_mut_ptr(&mut self) -> *mut <A as >::Item` — [`Array`](#array)
+- <span id="tinyvec-with-capacity"></span>`fn with_capacity(cap: usize) -> Self`
 
-- <span id="tinyvec-as-ptr"></span>`fn as_ptr(&self) -> *const <A as >::Item` — [`Array`](#array)
+- <span id="tinyvec-into-boxed-slice"></span>`fn into_boxed_slice(self) -> alloc::boxed::Box<[<A as >::Item]>` — [`Array`](#array)
 
-- <span id="tinyvec-retain"></span>`fn retain<F: FnMut(&<A as >::Item) -> bool>(&mut self, acceptable: F)`
-
-- <span id="tinyvec-as-mut-slice"></span>`fn as_mut_slice(&mut self) -> &mut [<A as >::Item]` — [`Array`](#array)
-
-- <span id="tinyvec-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](#array)
-
-- <span id="tinyvec-clear"></span>`fn clear(&mut self)`
-
-- <span id="tinyvec-drain"></span>`fn drain<R: RangeBounds<usize>>(&mut self, range: R) -> TinyVecDrain<'_, A>` — [`TinyVecDrain`](#tinyvecdrain)
-
-- <span id="tinyvec-extend-from-slice"></span>`fn extend_from_slice(&mut self, sli: &[<A as >::Item])` — [`Array`](#array)
-
-- <span id="tinyvec-from-array-len"></span>`fn from_array_len(data: A, len: usize) -> Self`
-
-- <span id="tinyvec-insert"></span>`fn insert(&mut self, index: usize, item: <A as >::Item)` — [`Array`](#array)
-
-- <span id="tinyvec-is-empty"></span>`fn is_empty(&self) -> bool`
-
-- <span id="tinyvec-new"></span>`fn new() -> Self`
-
-- <span id="tinyvec-push"></span>`fn push(&mut self, val: <A as >::Item)` — [`Array`](#array)
-
-- <span id="tinyvec-resize"></span>`fn resize(&mut self, new_len: usize, new_val: <A as >::Item)` — [`Array`](#array)
-
-- <span id="tinyvec-resize-with"></span>`fn resize_with<F: FnMut() -> <A as >::Item>(&mut self, new_len: usize, f: F)`
-
-- <span id="tinyvec-split-off"></span>`fn split_off(&mut self, at: usize) -> Self`
-
-- <span id="tinyvec-splice"></span>`fn splice<R, I>(&mut self, range: R, replacement: I) -> TinyVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`TinyVecSplice`](#tinyvecsplice)
-
-- <span id="tinyvec-try-from-array-len"></span>`fn try_from_array_len(data: A, len: usize) -> Result<Self, A>`
+- <span id="tinyvec-into-vec"></span>`fn into_vec(self) -> Vec<<A as >::Item>` — [`Array`](#array)
 
 #### Trait Implementations
 
@@ -854,7 +904,7 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 ##### `impl<A: Array> Deref for TinyVec<A>`
 
-- <span id="tinyvec-target"></span>`type Target = [<A as Array>::Item]`
+- <span id="tinyvec-type-target"></span>`type Target = [<A as Array>::Item]`
 
 - <span id="tinyvec-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -882,7 +932,7 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 ##### `impl<A: Array, I: SliceIndex<[<A as >::Item]>> Index for TinyVec<A>`
 
-- <span id="tinyvec-output"></span>`type Output = <I as SliceIndex>::Output`
+- <span id="tinyvec-type-output"></span>`type Output = <I as SliceIndex>::Output`
 
 - <span id="tinyvec-index"></span>`fn index(&self, index: I) -> &<Self as >::Output`
 
@@ -892,9 +942,9 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 ##### `impl<A: Array> IntoIterator for TinyVec<A>`
 
-- <span id="tinyvec-item"></span>`type Item = <A as Array>::Item`
+- <span id="tinyvec-type-item"></span>`type Item = <A as Array>::Item`
 
-- <span id="tinyvec-intoiter"></span>`type IntoIter = TinyVecIterator<A>`
+- <span id="tinyvec-type-intoiter"></span>`type IntoIter = TinyVecIterator<A>`
 
 - <span id="tinyvec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -928,7 +978,7 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 ##### `impl<P, T> Receiver for TinyVec<A>`
 
-- <span id="tinyvec-target"></span>`type Target = T`
+- <span id="tinyvec-type-target"></span>`type Target = T`
 
 ##### `impl<T> ToString for TinyVec<A>`
 
@@ -951,6 +1001,8 @@ enum TinyVecDrain<'p, A: Array> {
 }
 ```
 
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1166-1171`](../../.source_1765210505/tinyvec-1.10.0/src/tinyvec.rs#L1166-L1171)*
+
 Draining iterator for `TinyVecDrain`
 
 See [`TinyVecDrain::drain`](TinyVecDrain::<A>::drain)
@@ -965,15 +1017,15 @@ See [`TinyVecDrain::drain`](TinyVecDrain::<A>::drain)
 
 ##### `impl<I> IntoIterator for TinyVecDrain<'p, A>`
 
-- <span id="tinyvecdrain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tinyvecdrain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tinyvecdrain-intoiter"></span>`type IntoIter = I`
+- <span id="tinyvecdrain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tinyvecdrain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'p, A: Array> Iterator for TinyVecDrain<'p, A>`
 
-- <span id="tinyvecdrain-item"></span>`type Item = <A as Array>::Item`
+- <span id="tinyvecdrain-type-item"></span>`type Item = <A as Array>::Item`
 
 - <span id="tinyvecdrain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -995,6 +1047,8 @@ enum TinyVecIterator<A: Array> {
     Heap(alloc::vec::IntoIter<<A as >::Item>),
 }
 ```
+
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:1483-1488`](../../.source_1765210505/tinyvec-1.10.0/src/tinyvec.rs#L1483-L1488)*
 
 Iterator for consuming an `TinyVec` and returning owned elements.
 
@@ -1022,15 +1076,15 @@ Iterator for consuming an `TinyVec` and returning owned elements.
 
 ##### `impl<I> IntoIterator for TinyVecIterator<A>`
 
-- <span id="tinyveciterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tinyveciterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tinyveciterator-intoiter"></span>`type IntoIter = I`
+- <span id="tinyveciterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tinyveciterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A: Array> Iterator for TinyVecIterator<A>`
 
-- <span id="tinyveciterator-item"></span>`type Item = <A as Array>::Item`
+- <span id="tinyveciterator-type-item"></span>`type Item = <A as Array>::Item`
 
 - <span id="tinyveciterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -1049,6 +1103,8 @@ Iterator for consuming an `TinyVec` and returning owned elements.
 ```rust
 trait Array { ... }
 ```
+
+*Defined in [`tinyvec-1.10.0/src/array.rs:18-41`](../../.source_1765210505/tinyvec-1.10.0/src/array.rs#L18-L41)*
 
 A trait for types that are an array.
 
@@ -1098,6 +1154,8 @@ Just a reminder: this trait is 100% safe, which means that `unsafe` code
 
 ### `array_vec!`
 
+*Defined in [`tinyvec-1.10.0/src/arrayvec.rs:30-50`](../../.source_1765210505/tinyvec-1.10.0/src/arrayvec.rs#L30-L50)*
+
 Helper to make an `ArrayVec`.
 
 You specify the backing array type, and optionally give all the elements you
@@ -1116,6 +1174,8 @@ let some_ints: ArrayVec<[u8; 10]> = array_vec!(5, 6, 7, 8);
 ```
 
 ### `tiny_vec!`
+
+*Defined in [`tinyvec-1.10.0/src/tinyvec.rs:37-66`](../../.source_1765210505/tinyvec-1.10.0/src/tinyvec.rs#L37-L66)*
 
 Helper to make a `TinyVec`.
 

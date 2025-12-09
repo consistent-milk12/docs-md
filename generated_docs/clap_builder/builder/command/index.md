@@ -11,7 +11,7 @@
 | [`Command`](#command) | struct | Build a command-line interface. |
 | [`TermWidth`](#termwidth) | struct |  |
 | [`MaxTermWidth`](#maxtermwidth) | struct |  |
-| [`Captures`](#captures) | trait | A workaround |
+| [`Captures`](#captures) | trait | A workaround: <https://github.com/rust-lang/rust/issues/34511#issuecomment-373423999> |
 | [`AppExt`](#appext) | trait |  |
 | [`two_elements_of`](#two_elements_of) | fn | Returns the first two elements of an iterator as an `Option<(T, T)>`. |
 
@@ -59,6 +59,8 @@ struct Command {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:74-113`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L74-L113)*
+
 Build a command-line interface.
 
 This includes defining arguments, subcommands, parser behavior, and help output.
@@ -99,47 +101,73 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- <span id="command-no-binary-name"></span>`fn no_binary_name(self, yes: bool) -> Self`
+- <span id="command-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](../str/index.md)
 
-- <span id="command-ignore-errors"></span>`fn ignore_errors(self, yes: bool) -> Self`
+- <span id="command-arg"></span>`fn arg(self, a: impl Into<Arg>) -> Self` — [`Arg`](../arg/index.md)
 
-- <span id="command-args-override-self"></span>`fn args_override_self(self, yes: bool) -> Self`
+- <span id="command-arg-internal"></span>`fn arg_internal(&mut self, arg: Arg)` — [`Arg`](../arg/index.md)
 
-- <span id="command-dont-delimit-trailing-values"></span>`fn dont_delimit_trailing_values(self, yes: bool) -> Self`
+- <span id="command-args"></span>`fn args(self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](../arg/index.md)
 
-- <span id="command-color"></span>`fn color(self, color: ColorChoice) -> Self` — [`ColorChoice`](../../index.md)
+- <span id="command-mut-arg"></span>`fn mut_arg<F>(self, arg_id: impl AsRef<str>, f: F) -> Self`
 
-- <span id="command-styles"></span>`fn styles(self, styles: Styles) -> Self` — [`Styles`](../index.md)
+- <span id="command-mut-args"></span>`fn mut_args<F>(self, f: F) -> Self`
 
-- <span id="command-term-width"></span>`fn term_width(self, width: usize) -> Self`
+- <span id="command-mut-group"></span>`fn mut_group<F>(self, arg_id: impl AsRef<str>, f: F) -> Self`
 
-- <span id="command-max-term-width"></span>`fn max_term_width(self, width: usize) -> Self`
+- <span id="command-mut-subcommand"></span>`fn mut_subcommand<F>(self, name: impl AsRef<str>, f: F) -> Self`
 
-- <span id="command-disable-version-flag"></span>`fn disable_version_flag(self, yes: bool) -> Self`
+- <span id="command-mut-subcommands"></span>`fn mut_subcommands<F>(self, f: F) -> Self`
 
-- <span id="command-propagate-version"></span>`fn propagate_version(self, yes: bool) -> Self`
+- <span id="command-group"></span>`fn group(self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](../arg_group/index.md)
 
-- <span id="command-next-line-help"></span>`fn next_line_help(self, yes: bool) -> Self`
+- <span id="command-groups"></span>`fn groups(self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](../arg_group/index.md)
 
-- <span id="command-disable-help-flag"></span>`fn disable_help_flag(self, yes: bool) -> Self`
+- <span id="command-subcommand"></span>`fn subcommand(self, subcmd: impl Into<Command>) -> Self` — [`Command`](#command)
 
-- <span id="command-disable-help-subcommand"></span>`fn disable_help_subcommand(self, yes: bool) -> Self`
+- <span id="command-subcommand-internal"></span>`fn subcommand_internal(self, subcmd: Self) -> Self`
 
-- <span id="command-disable-colored-help"></span>`fn disable_colored_help(self, yes: bool) -> Self`
+- <span id="command-subcommands"></span>`fn subcommands(self, subcmds: impl IntoIterator<Item = impl Into<Self>>) -> Self`
 
-- <span id="command-help-expected"></span>`fn help_expected(self, yes: bool) -> Self`
+- <span id="command-defer"></span>`fn defer(self, deferred: fn(Command) -> Command) -> Self` — [`Command`](#command)
 
-- <span id="command-hide-possible-values"></span>`fn hide_possible_values(self, yes: bool) -> Self`
+- <span id="command-debug-assert"></span>`fn debug_assert(self)`
 
-- <span id="command-infer-long-args"></span>`fn infer_long_args(self, yes: bool) -> Self`
+- <span id="command-error"></span>`fn error(&mut self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](../../error/kind/index.md), [`Error`](../../index.md)
 
-- <span id="command-infer-subcommands"></span>`fn infer_subcommands(self, yes: bool) -> Self`
+- <span id="command-get-matches"></span>`fn get_matches(self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+
+- <span id="command-get-matches-mut"></span>`fn get_matches_mut(&mut self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+
+- <span id="command-try-get-matches"></span>`fn try_get_matches(self) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+
+- <span id="command-get-matches-from"></span>`fn get_matches_from<I, T>(self, itr: I) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+
+- <span id="command-try-get-matches-from"></span>`fn try_get_matches_from<I, T>(self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+
+- <span id="command-try-get-matches-from-mut"></span>`fn try_get_matches_from_mut<I, T>(&mut self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+
+- <span id="command-print-help"></span>`fn print_help(&mut self) -> io::Result<()>`
+
+- <span id="command-print-long-help"></span>`fn print_long_help(&mut self) -> io::Result<()>`
+
+- <span id="command-render-help"></span>`fn render_help(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
+
+- <span id="command-render-long-help"></span>`fn render_long_help(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
+
+- <span id="command-render-version"></span>`fn render_version(&self) -> String`
+
+- <span id="command-render-long-version"></span>`fn render_long_version(&self) -> String`
+
+- <span id="command-render-usage"></span>`fn render_usage(&mut self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
+
+- <span id="command-render-usage"></span>`fn render_usage_(&mut self) -> Option<StyledStr>` — [`StyledStr`](../styled_str/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Command`
 
-- <span id="command-clone"></span>`fn clone(&self) -> Command` — [`Command`](../../index.md)
+- <span id="command-clone"></span>`fn clone(&self) -> Command` — [`Command`](#command)
 
 ##### `impl Debug for Command`
 
@@ -155,11 +183,11 @@ let m = Command::new("My Program")
 
 ##### `impl Index for Command`
 
-- <span id="command-output"></span>`type Output = Arg`
+- <span id="command-type-output"></span>`type Output = Arg`
 
-- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](../../index.md)
+- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](../../util/id/index.md)
 
-##### `impl<T> ToString for Command`
+##### `impl ToString for Command`
 
 - <span id="command-to-string"></span>`fn to_string(&self) -> String`
 
@@ -168,6 +196,8 @@ let m = Command::new("My Program")
 ```rust
 struct TermWidth(usize);
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5260`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L5260)*
 
 #### Trait Implementations
 
@@ -192,6 +222,8 @@ struct TermWidth(usize);
 ```rust
 struct MaxTermWidth(usize);
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5266`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L5266)*
 
 #### Trait Implementations
 
@@ -219,6 +251,8 @@ struct MaxTermWidth(usize);
 trait Captures<'a> { ... }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:4933`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L4933)*
+
 A workaround:
 <https://github.com/rust-lang/rust/issues/34511#issuecomment-373423999>
 
@@ -232,10 +266,12 @@ A workaround:
 trait AppExt: Extension { ... }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5256`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L5256)*
+
 #### Implementors
 
 - [`MaxTermWidth`](#maxtermwidth)
-- [`Styles`](../index.md)
+- [`Styles`](../styling/index.md)
 - [`TermWidth`](#termwidth)
 
 ## Functions
@@ -247,6 +283,8 @@ fn two_elements_of<I, T>(iter: I) -> Option<(T, T)>
 where
     I: Iterator<Item = T>
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/command.rs:5273-5284`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/command.rs#L5273-L5284)*
 
 Returns the first two elements of an iterator as an `Option<(T, T)>`.
 

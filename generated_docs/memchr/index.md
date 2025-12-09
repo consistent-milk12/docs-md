@@ -245,12 +245,14 @@ struct Memchr<'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:288-291`](../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L288-L291)*
+
 An iterator over all occurrences of a single byte in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr_iter`](#memchr-iter) or `[memrchr_iter`]
+This iterator is created by the [`memchr_iter`](memchr/index.md) or `[memrchr_iter`]
 functions. It can also be created with the `Memchr::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -258,35 +260,35 @@ searched.
 
 #### Implementations
 
-- <span id="memchr-new"></span>`fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](#memchr)
+- <span id="memchr-new"></span>`fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Memchr<'h>`
+##### `impl Clone for Memchr<'h>`
 
-- <span id="memchr-clone"></span>`fn clone(&self) -> Memchr<'h>` — [`Memchr`](#memchr)
+- <span id="memchr-clone"></span>`fn clone(&self) -> Memchr<'h>` — [`Memchr`](memchr/index.md)
 
-##### `impl<'h> Debug for Memchr<'h>`
+##### `impl Debug for Memchr<'h>`
 
 - <span id="memchr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'h> DoubleEndedIterator for Memchr<'h>`
+##### `impl DoubleEndedIterator for Memchr<'h>`
 
 - <span id="memchr-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<'h> FusedIterator for Memchr<'h>`
+##### `impl FusedIterator for Memchr<'h>`
 
-##### `impl<I> IntoIterator for Memchr<'h>`
+##### `impl IntoIterator for Memchr<'h>`
 
-- <span id="memchr-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="memchr-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="memchr-intoiter"></span>`type IntoIter = I`
+- <span id="memchr-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="memchr-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h> Iterator for Memchr<'h>`
+##### `impl Iterator for Memchr<'h>`
 
-- <span id="memchr-item"></span>`type Item = usize`
+- <span id="memchr-type-item"></span>`type Item = usize`
 
 - <span id="memchr-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -304,12 +306,14 @@ struct Memchr2<'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:364-368`](../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L364-L368)*
+
 An iterator over all occurrences of two possible bytes in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
+This iterator is created by the [`memchr2_iter`](memchr/index.md) or `[memrchr2_iter`]
 functions. It can also be created with the `Memchr2::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -317,35 +321,35 @@ searched.
 
 #### Implementations
 
-- <span id="memchr2-new"></span>`fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](#memchr2)
+- <span id="memchr2-new"></span>`fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Memchr2<'h>`
+##### `impl Clone for Memchr2<'h>`
 
-- <span id="memchr2-clone"></span>`fn clone(&self) -> Memchr2<'h>` — [`Memchr2`](#memchr2)
+- <span id="memchr2-clone"></span>`fn clone(&self) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md)
 
-##### `impl<'h> Debug for Memchr2<'h>`
+##### `impl Debug for Memchr2<'h>`
 
 - <span id="memchr2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'h> DoubleEndedIterator for Memchr2<'h>`
+##### `impl DoubleEndedIterator for Memchr2<'h>`
 
 - <span id="memchr2-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<'h> FusedIterator for Memchr2<'h>`
+##### `impl FusedIterator for Memchr2<'h>`
 
-##### `impl<I> IntoIterator for Memchr2<'h>`
+##### `impl IntoIterator for Memchr2<'h>`
 
-- <span id="memchr2-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="memchr2-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="memchr2-intoiter"></span>`type IntoIter = I`
+- <span id="memchr2-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="memchr2-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h> Iterator for Memchr2<'h>`
+##### `impl Iterator for Memchr2<'h>`
 
-- <span id="memchr2-item"></span>`type Item = usize`
+- <span id="memchr2-type-item"></span>`type Item = usize`
 
 - <span id="memchr2-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -362,12 +366,14 @@ struct Memchr3<'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/memchr.rs:432-437`](../../.source_1765210505/memchr-2.7.6/src/memchr.rs#L432-L437)*
+
 An iterator over all occurrences of three possible bytes in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
+This iterator is created by the [`memchr2_iter`](memchr/index.md) or `[memrchr2_iter`]
 functions. It can also be created with the `Memchr3::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -375,39 +381,63 @@ searched.
 
 #### Implementations
 
-- <span id="memchr3-new"></span>`fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](#memchr3)
+- <span id="memchr3-new"></span>`fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Memchr3<'h>`
+##### `impl Clone for Memchr3<'h>`
 
-- <span id="memchr3-clone"></span>`fn clone(&self) -> Memchr3<'h>` — [`Memchr3`](#memchr3)
+- <span id="memchr3-clone"></span>`fn clone(&self) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md)
 
-##### `impl<'h> Debug for Memchr3<'h>`
+##### `impl Debug for Memchr3<'h>`
 
 - <span id="memchr3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'h> DoubleEndedIterator for Memchr3<'h>`
+##### `impl DoubleEndedIterator for Memchr3<'h>`
 
 - <span id="memchr3-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<'h> FusedIterator for Memchr3<'h>`
+##### `impl FusedIterator for Memchr3<'h>`
 
-##### `impl<I> IntoIterator for Memchr3<'h>`
+##### `impl IntoIterator for Memchr3<'h>`
 
-- <span id="memchr3-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="memchr3-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="memchr3-intoiter"></span>`type IntoIter = I`
+- <span id="memchr3-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="memchr3-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h> Iterator for Memchr3<'h>`
+##### `impl Iterator for Memchr3<'h>`
 
-- <span id="memchr3-item"></span>`type Item = usize`
+- <span id="memchr3-type-item"></span>`type Item = usize`
 
 - <span id="memchr3-next"></span>`fn next(&mut self) -> Option<usize>`
 
 - <span id="memchr3-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ## Functions
+
+*Defined in [`memchr-2.7.6/src/lib.rs:204`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L204)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:204`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L204)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:204`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L204)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:204`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L204)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:204`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L204)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:204`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L204)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:205`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L205)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:205`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L205)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:205`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L205)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:205`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L205)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:205`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L205)*
+
+*Defined in [`memchr-2.7.6/src/lib.rs:205`](../../.source_1765210505/memchr-2.7.6/src/lib.rs#L205)*
 

@@ -19,6 +19,8 @@
 struct BlankHighlighter;
 ```
 
+*Defined in [`miette-7.6.0/src/highlighters/blank.rs:10`](../../../../.source_1765210505/miette-7.6.0/src/highlighters/blank.rs#L10)*
+
 The default syntax highlighter. It applies `Style::default()` to input text.
 This is used by default when no syntax highlighting features are enabled.
 
@@ -40,13 +42,15 @@ This is used by default when no syntax highlighting features are enabled.
 
 - <span id="blankhighlighter-start-highlighter-state"></span>`fn start_highlighter_state<'h>(self: &'h Self, _source: &dyn SpanContents<'_>) -> Box<dyn super::HighlighterState>` — [`SpanContents`](../../index.md), [`HighlighterState`](../index.md)
 
-##### `impl<D> OwoColorize for BlankHighlighter`
+##### `impl OwoColorize for BlankHighlighter`
 
 ### `BlankHighlighterState`
 
 ```rust
 struct BlankHighlighterState;
 ```
+
+*Defined in [`miette-7.6.0/src/highlighters/blank.rs:30`](../../../../.source_1765210505/miette-7.6.0/src/highlighters/blank.rs#L30)*
 
 The default highlighter state. It applies `Style::default()` to input text.
 This is used by default when no syntax highlighting features are enabled.
@@ -65,5 +69,5 @@ This is used by default when no syntax highlighting features are enabled.
 
 - <span id="blankhighlighterstate-highlight-line"></span>`fn highlight_line<'s>(&mut self, line: &'s str) -> Vec<owo_colors::Styled<&'s str>>`
 
-##### `impl<D> OwoColorize for BlankHighlighterState`
+##### `impl OwoColorize for BlankHighlighterState`
 

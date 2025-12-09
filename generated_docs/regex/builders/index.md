@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`string`](#string) | mod |  |
 | [`bytes`](#bytes) | mod |  |
-| [`Builder`](#builder) | struct | A builder for constructing a `Regex`, `bytes::Regex`, `RegexSet` or a |
+| [`Builder`](#builder) | struct | A builder for constructing a `Regex`, `bytes::Regex`, `RegexSet` or a `bytes::RegexSet`. |
 
 ## Modules
 
@@ -29,6 +29,8 @@ struct Builder {
 }
 ```
 
+*Defined in [`regex-1.12.2/src/builders.rs:44-48`](../../../.source_1765210505/regex-1.12.2/src/builders.rs#L44-L48)*
+
 A builder for constructing a `Regex`, `bytes::Regex`, `RegexSet` or a
 `bytes::RegexSet`.
 
@@ -40,13 +42,13 @@ and `bytes::RegexSetBuilder`.
 
 - <span id="builder-new"></span>`fn new<I, S>(patterns: I) -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build-one-string"></span>`fn build_one_string(&self) -> Result<crate::Regex, Error>` — [`Regex`](../index.md), [`Error`](../index.md)
+- <span id="builder-build-one-string"></span>`fn build_one_string(&self) -> Result<crate::Regex, Error>` — [`Regex`](../index.md), [`Error`](../error/index.md)
 
-- <span id="builder-build-one-bytes"></span>`fn build_one_bytes(&self) -> Result<crate::bytes::Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../index.md)
+- <span id="builder-build-one-bytes"></span>`fn build_one_bytes(&self) -> Result<crate::bytes::Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../error/index.md)
 
-- <span id="builder-build-many-string"></span>`fn build_many_string(&self) -> Result<crate::RegexSet, Error>` — [`RegexSet`](../index.md), [`Error`](../index.md)
+- <span id="builder-build-many-string"></span>`fn build_many_string(&self) -> Result<crate::RegexSet, Error>` — [`RegexSet`](../index.md), [`Error`](../error/index.md)
 
-- <span id="builder-build-many-bytes"></span>`fn build_many_bytes(&self) -> Result<crate::bytes::RegexSet, Error>` — [`RegexSet`](../regexset/bytes/index.md), [`Error`](../index.md)
+- <span id="builder-build-many-bytes"></span>`fn build_many_bytes(&self) -> Result<crate::bytes::RegexSet, Error>` — [`RegexSet`](../regexset/bytes/index.md), [`Error`](../error/index.md)
 
 - <span id="builder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 

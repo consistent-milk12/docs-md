@@ -25,6 +25,8 @@ struct IntoIter<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/collections/btree_set.rs:14-16`](../../../../.source_1765210505/rayon-1.11.0/src/collections/btree_set.rs#L14-L16)*
+
 Parallel iterator over a B-Tree set
 
 #### Trait Implementations
@@ -37,15 +39,15 @@ Parallel iterator over a B-Tree set
 
 ##### `impl<T> IntoParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-iter"></span>`type Iter = T`
+- <span id="intoiter-type-iter"></span>`type Iter = T`
 
-- <span id="intoiter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-item"></span>`type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
 - <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -53,9 +55,9 @@ Parallel iterator over a B-Tree set
 
 ##### `impl<T> Pointable for IntoIter<T>`
 
-- <span id="intoiter-align"></span>`const ALIGN: usize`
+- <span id="intoiter-const-align"></span>`const ALIGN: usize`
 
-- <span id="intoiter-init"></span>`type Init = T`
+- <span id="intoiter-type-init"></span>`type Init = T`
 
 - <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -73,6 +75,8 @@ struct Iter<'a, T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/collections/btree_set.rs:30-32`](../../../../.source_1765210505/rayon-1.11.0/src/collections/btree_set.rs#L30-L32)*
+
 Parallel iterator over an immutable reference to a B-Tree set
 
 #### Trait Implementations
@@ -89,15 +93,15 @@ Parallel iterator over an immutable reference to a B-Tree set
 
 ##### `impl<T> IntoParallelIterator for Iter<'a, T>`
 
-- <span id="iter-iter"></span>`type Iter = T`
+- <span id="iter-type-iter"></span>`type Iter = T`
 
-- <span id="iter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T: Sync + 'a> ParallelIterator for Iter<'a, T>`
 
-- <span id="iter-item"></span>`type Item = &'a T`
+- <span id="iter-type-item"></span>`type Item = &'a T`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -105,9 +109,9 @@ Parallel iterator over an immutable reference to a B-Tree set
 
 ##### `impl<T> Pointable for Iter<'a, T>`
 
-- <span id="iter-align"></span>`const ALIGN: usize`
+- <span id="iter-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-init"></span>`type Init = T`
+- <span id="iter-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -26,6 +26,8 @@ struct ClapAttr {
 }
 ```
 
+*Defined in [`clap_derive-4.5.49/src/attr.rs:17-22`](../../../.source_1765210505/clap_derive-4.5.49/src/attr.rs#L17-L22)*
+
 #### Implementations
 
 - <span id="clapattr-parse-all"></span>`fn parse_all(all_attrs: &[Attribute]) -> Result<Vec<Self>, syn::Error>`
@@ -78,6 +80,8 @@ enum MagicAttrName {
 }
 ```
 
+*Defined in [`clap_derive-4.5.49/src/attr.rs:145-171`](../../../.source_1765210505/clap_derive-4.5.49/src/attr.rs#L145-L171)*
+
 #### Trait Implementations
 
 ##### `impl Clone for MagicAttrName`
@@ -104,13 +108,15 @@ enum AttrValue {
 }
 ```
 
+*Defined in [`clap_derive-4.5.49/src/attr.rs:175-179`](../../../.source_1765210505/clap_derive-4.5.49/src/attr.rs#L175-L179)*
+
 #### Trait Implementations
 
 ##### `impl Clone for AttrValue`
 
 - <span id="attrvalue-clone"></span>`fn clone(&self) -> AttrValue` — [`AttrValue`](#attrvalue)
 
-##### `impl<T> Spanned for AttrValue`
+##### `impl Spanned for AttrValue`
 
 - <span id="attrvalue-span"></span>`fn span(&self) -> Span`
 
@@ -130,6 +136,8 @@ enum AttrKind {
     Value,
 }
 ```
+
+*Defined in [`clap_derive-4.5.49/src/attr.rs:195-202`](../../../.source_1765210505/clap_derive-4.5.49/src/attr.rs#L195-L202)*
 
 #### Implementations
 

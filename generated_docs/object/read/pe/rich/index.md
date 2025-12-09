@@ -27,6 +27,8 @@ struct RichHeaderInfo<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:12-26`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/rich.rs#L12-L26)*
+
 Parsed information about a Rich Header.
 
 #### Fields
@@ -57,13 +59,13 @@ Parsed information about a Rich Header.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for RichHeaderInfo<'data>`
+##### `impl Clone for RichHeaderInfo<'data>`
 
 - <span id="richheaderinfo-clone"></span>`fn clone(&self) -> RichHeaderInfo<'data>` — [`RichHeaderInfo`](../index.md)
 
-##### `impl<'data> Copy for RichHeaderInfo<'data>`
+##### `impl Copy for RichHeaderInfo<'data>`
 
-##### `impl<'data> Debug for RichHeaderInfo<'data>`
+##### `impl Debug for RichHeaderInfo<'data>`
 
 - <span id="richheaderinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -75,6 +77,8 @@ struct RichHeaderEntry {
     pub count: u32,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:33-38`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/rich.rs#L33-L38)*
 
 A PE rich header entry after it has been unmasked.
 
@@ -109,6 +113,8 @@ See [`pe::MaskedRichHeaderEntry`](../../../pe/index.md).
 ```rust
 fn memmem(data: &[u8], needle: &[u8], align: usize) -> Option<usize>
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/rich.rs:84-92`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/rich.rs#L84-L92)*
 
 Find the offset of the first occurrence of needle in the data.
 

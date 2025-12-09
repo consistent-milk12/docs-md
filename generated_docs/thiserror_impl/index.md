@@ -53,9 +53,11 @@
 struct private;
 ```
 
+*Defined in [`thiserror-impl-2.0.17/src/lib.rs:45`](../../.source_1765210505/thiserror-impl-2.0.17/src/lib.rs#L45)*
+
 #### Trait Implementations
 
-##### `impl<T> Spanned for private`
+##### `impl Spanned for private`
 
 - <span id="private-span"></span>`fn span(&self) -> Span`
 

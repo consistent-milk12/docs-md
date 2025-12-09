@@ -46,6 +46,8 @@ struct One {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:29-34`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L29-L34)*
+
 Finds all occurrences of a single byte in a haystack.
 
 #### Fields
@@ -113,6 +115,8 @@ struct OneIter<'a, 'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:467-470`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L467-L470)*
+
 An iterator over all occurrences of a single byte in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
@@ -127,31 +131,31 @@ The lifetime parameters are as follows:
 
 #### Trait Implementations
 
-##### `impl<'a, 'h> Clone for OneIter<'a, 'h>`
+##### `impl Clone for OneIter<'a, 'h>`
 
 - <span id="oneiter-clone"></span>`fn clone(&self) -> OneIter<'a, 'h>` — [`OneIter`](#oneiter)
 
-##### `impl<'a, 'h> Debug for OneIter<'a, 'h>`
+##### `impl Debug for OneIter<'a, 'h>`
 
 - <span id="oneiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'h> DoubleEndedIterator for OneIter<'a, 'h>`
+##### `impl DoubleEndedIterator for OneIter<'a, 'h>`
 
 - <span id="oneiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<'a, 'h> FusedIterator for OneIter<'a, 'h>`
+##### `impl FusedIterator for OneIter<'a, 'h>`
 
-##### `impl<I> IntoIterator for OneIter<'a, 'h>`
+##### `impl IntoIterator for OneIter<'a, 'h>`
 
-- <span id="oneiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="oneiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="oneiter-intoiter"></span>`type IntoIter = I`
+- <span id="oneiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="oneiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h> Iterator for OneIter<'a, 'h>`
+##### `impl Iterator for OneIter<'a, 'h>`
 
-- <span id="oneiter-item"></span>`type Item = usize`
+- <span id="oneiter-type-item"></span>`type Item = usize`
 
 - <span id="oneiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -167,6 +171,8 @@ struct Two {
     avx2: generic::Two<core::arch::x86_64::__m256i>,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:516-521`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L516-L521)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -231,6 +237,8 @@ struct TwoIter<'a, 'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:855-858`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L855-L858)*
+
 An iterator over all occurrences of two possible bytes in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
@@ -245,31 +253,31 @@ The lifetime parameters are as follows:
 
 #### Trait Implementations
 
-##### `impl<'a, 'h> Clone for TwoIter<'a, 'h>`
+##### `impl Clone for TwoIter<'a, 'h>`
 
 - <span id="twoiter-clone"></span>`fn clone(&self) -> TwoIter<'a, 'h>` — [`TwoIter`](#twoiter)
 
-##### `impl<'a, 'h> Debug for TwoIter<'a, 'h>`
+##### `impl Debug for TwoIter<'a, 'h>`
 
 - <span id="twoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'h> DoubleEndedIterator for TwoIter<'a, 'h>`
+##### `impl DoubleEndedIterator for TwoIter<'a, 'h>`
 
 - <span id="twoiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<'a, 'h> FusedIterator for TwoIter<'a, 'h>`
+##### `impl FusedIterator for TwoIter<'a, 'h>`
 
-##### `impl<I> IntoIterator for TwoIter<'a, 'h>`
+##### `impl IntoIterator for TwoIter<'a, 'h>`
 
-- <span id="twoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="twoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="twoiter-intoiter"></span>`type IntoIter = I`
+- <span id="twoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="twoiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h> Iterator for TwoIter<'a, 'h>`
+##### `impl Iterator for TwoIter<'a, 'h>`
 
-- <span id="twoiter-item"></span>`type Item = usize`
+- <span id="twoiter-type-item"></span>`type Item = usize`
 
 - <span id="twoiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -283,6 +291,8 @@ struct Three {
     avx2: generic::Three<core::arch::x86_64::__m256i>,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:895-900`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L895-L900)*
 
 Finds all occurrences of three bytes in a haystack.
 
@@ -347,6 +357,8 @@ struct ThreeIter<'a, 'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs:1242-1245`](../../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/avx2/memchr.rs#L1242-L1245)*
+
 An iterator over all occurrences of three possible bytes in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
@@ -361,31 +373,31 @@ The lifetime parameters are as follows:
 
 #### Trait Implementations
 
-##### `impl<'a, 'h> Clone for ThreeIter<'a, 'h>`
+##### `impl Clone for ThreeIter<'a, 'h>`
 
 - <span id="threeiter-clone"></span>`fn clone(&self) -> ThreeIter<'a, 'h>` — [`ThreeIter`](#threeiter)
 
-##### `impl<'a, 'h> Debug for ThreeIter<'a, 'h>`
+##### `impl Debug for ThreeIter<'a, 'h>`
 
 - <span id="threeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'h> DoubleEndedIterator for ThreeIter<'a, 'h>`
+##### `impl DoubleEndedIterator for ThreeIter<'a, 'h>`
 
 - <span id="threeiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<'a, 'h> FusedIterator for ThreeIter<'a, 'h>`
+##### `impl FusedIterator for ThreeIter<'a, 'h>`
 
-##### `impl<I> IntoIterator for ThreeIter<'a, 'h>`
+##### `impl IntoIterator for ThreeIter<'a, 'h>`
 
-- <span id="threeiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="threeiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="threeiter-intoiter"></span>`type IntoIter = I`
+- <span id="threeiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="threeiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h> Iterator for ThreeIter<'a, 'h>`
+##### `impl Iterator for ThreeIter<'a, 'h>`
 
-- <span id="threeiter-item"></span>`type Item = usize`
+- <span id="threeiter-type-item"></span>`type Item = usize`
 
 - <span id="threeiter-next"></span>`fn next(&mut self) -> Option<usize>`
 

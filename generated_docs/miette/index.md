@@ -58,7 +58,7 @@ diagnostic error code: ruget::api::bad_json
 ## Features
 
 - Generic [`Diagnostic`](#diagnostic) protocol, compatible (and dependent on)
-  [`std::error::Error`](../cargo_docs_md/error/index.md).
+  [`std::error::Error`](../addr2line/index.md).
 - Unique error codes on every [`Diagnostic`](#diagnostic).
 - Custom links to get more details on error codes.
 - Super handy derive macro for defining diagnostic metadata.
@@ -182,7 +182,7 @@ diagnostic help: try doing it better next time?">
 
 `miette` is _fully compatible_ with library usage. Consumers who don't know
 about, or don't want, `miette` features can safely use its error types as
-regular [`std::error::Error`](../cargo_docs_md/error/index.md).
+regular [`std::error::Error`](../addr2line/index.md).
 
 We highly recommend using something like [`thiserror`](https://docs.rs/thiserror)
 to define unique error types and error wrappers for your library.
@@ -885,11 +885,11 @@ under the Apache License. Some code is taken from
 | [`eyreish`](#eyreish) | mod |  |
 | [`handler`](#handler) | mod |  |
 | [`handlers`](#handlers) | mod | Reporters included with `miette`. |
-| [`highlighters`](#highlighters) | mod | This module provides a trait for creating custom syntax highlighters that |
+| [`highlighters`](#highlighters) | mod | This module provides a trait for creating custom syntax highlighters that highlight [`Diagnostic`](crate::Diagnostic) source code with ANSI escape sequences when rendering with the [`GraphicalReportHighlighter`](crate::GraphicalReportHandler). |
 | [`miette_diagnostic`](#miette_diagnostic) | mod |  |
 | [`named_source`](#named_source) | mod |  |
 | [`panic`](#panic) | mod |  |
-| [`protocol`](#protocol) | mod | This module defines the core of the miette protocol: a series of types and |
+| [`protocol`](#protocol) | mod | This module defines the core of the miette protocol: a series of types and traits that you can implement to get access to miette's (and related library's) full reporting and such features. |
 | [`source_impls`](#source_impls) | mod | Default trait implementations for [`SourceCode`]. |
 | [`context`](#context) | mod |  |
 | [`error`](#error) | mod |  |
@@ -906,11 +906,11 @@ under the Apache License. Some code is taken from
 | [`narratable`](#narratable) | mod |  |
 | [`theme`](#theme) | mod |  |
 | [`Report`](#report) | struct | Core Diagnostic wrapper type. |
-| [`InstallError`](#installerror) | struct | Error indicating that [`set_hook()`] was unable to install the provided |
+| [`InstallError`](#installerror) | struct | Error indicating that [`set_hook()`] was unable to install the provided [`ErrorHook`]. |
 | [`MietteHandlerOpts`](#miettehandleropts) | struct | Create a custom [`MietteHandler`] from options. |
-| [`MietteHandler`](#miettehandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a |
+| [`MietteHandler`](#miettehandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a quasi-graphical way, using terminal colors, unicode drawing characters, and other such things. |
 | [`MietteDiagnostic`](#miettediagnostic) | struct | Diagnostic that can be created at runtime. |
-| [`NamedSource`](#namedsource) | struct | Utility struct for when you have a regular [`SourceCode`] type that doesn't |
+| [`NamedSource`](#namedsource) | struct | Utility struct for when you have a regular [`SourceCode`] type that doesn't implement `name`. |
 | [`Panic`](#panic) | struct |  |
 | [`LabeledSpan`](#labeledspan) | struct | A labeled [`SourceSpan`]. |
 | [`MietteSpanContents`](#miettespancontents) | struct | Basic implementation of the [`SpanContents`] trait, for convenience. |
@@ -922,7 +922,7 @@ under the Apache License. Some code is taken from
 | [`Severity`](#severity) | enum | [`Diagnostic`] severity. |
 | [`ReportHandler`](#reporthandler) | trait | Error Report Handler trait for customizing `miette::Report` |
 | [`WrapErr`](#wraperr) | trait | Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`]. |
-| [`Diagnostic`](#diagnostic) | trait | Adds rich metadata to your Error that can be used by |
+| [`Diagnostic`](#diagnostic) | trait | Adds rich metadata to your Error that can be used by [`Report`](crate::Report) to print really nice and human-friendly error messages. |
 | [`SourceCode`](#sourcecode) | trait | Represents readable source code of some sort. |
 | [`SpanContents`](#spancontents) | trait | Contents of a [`SourceCode`] covered by [`SourceSpan`]. |
 | [`set_hook`](#set_hook) | fn | Set the error hook. |
@@ -978,6 +978,8 @@ struct Report {
     inner: self::ptr::Own<error::ErrorImpl<()>>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:53-55`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L53-L55)*
 
 Core Diagnostic wrapper type.
 
@@ -1039,7 +1041,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl Deref for super::Report`
 
-- <span id="superreport-target"></span>`type Target = dyn Diagnostic + Send + Sync`
+- <span id="superreport-type-target"></span>`type Target = dyn Diagnostic + Send + Sync`
 
 - <span id="superreport-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -1059,27 +1061,29 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 - <span id="superreport-drop"></span>`fn drop(&mut self)`
 
-##### `impl<D> OwoColorize for Report`
+##### `impl OwoColorize for Report`
 
-##### `impl<P, T> Receiver for Report`
+##### `impl Receiver for Report`
 
-- <span id="report-target"></span>`type Target = T`
+- <span id="report-type-target"></span>`type Target = T`
 
 ##### `impl Send for Report`
 
 ##### `impl Sync for Report`
 
-##### `impl<T> ToString for Report`
+##### `impl ToString for Report`
 
 - <span id="report-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for Report`
+##### `impl TraitKind for Report`
 
 ### `InstallError`
 
 ```rust
 struct InstallError;
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:69`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L69)*
 
 Error indicating that [`set_hook()`](#set-hook) was unable to install the provided
 [`ErrorHook`](#errorhook).
@@ -1090,7 +1094,7 @@ Error indicating that [`set_hook()`](#set-hook) was unable to install the provid
 
 - <span id="installerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for InstallError`
+##### `impl Diag for InstallError`
 
 - <span id="installerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
@@ -1102,13 +1106,13 @@ Error indicating that [`set_hook()`](#set-hook) was unable to install the provid
 
 ##### `impl Error for InstallError`
 
-##### `impl<D> OwoColorize for InstallError`
+##### `impl OwoColorize for InstallError`
 
-##### `impl<T> ToString for InstallError`
+##### `impl ToString for InstallError`
 
 - <span id="installerror-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for InstallError`
+##### `impl TraitKind for InstallError`
 
 ### `MietteHandlerOpts`
 
@@ -1134,6 +1138,8 @@ struct MietteHandlerOpts {
     show_related_as_nested: Option<bool>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handler.rs:42-61`](../../.source_1765210505/miette-7.6.0/src/handler.rs#L42-L61)*
 
 Create a custom [`MietteHandler`](#miettehandler) from options.
 
@@ -1218,7 +1224,7 @@ miette::set_hook(Box::new(|_| {
 
 - <span id="miettehandleropts-default"></span>`fn default() -> MietteHandlerOpts` — [`MietteHandlerOpts`](#miettehandleropts)
 
-##### `impl<D> OwoColorize for MietteHandlerOpts`
+##### `impl OwoColorize for MietteHandlerOpts`
 
 ### `MietteHandler`
 
@@ -1227,6 +1233,8 @@ struct MietteHandler {
     inner: Box<dyn ReportHandler + Send + Sync>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handler.rs:387-389`](../../.source_1765210505/miette-7.6.0/src/handler.rs#L387-L389)*
 
 A [`ReportHandler`](#reporthandler) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -1251,7 +1259,7 @@ printer.
 
 - <span id="miettehandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for MietteHandler`
+##### `impl OwoColorize for MietteHandler`
 
 ##### `impl ReportHandler for MietteHandler`
 
@@ -1269,6 +1277,8 @@ struct MietteDiagnostic {
     pub labels: Option<Vec<crate::LabeledSpan>>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../.source_1765210505/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
 
 Diagnostic that can be created at runtime.
 
@@ -1335,7 +1345,7 @@ Diagnostic that can be created at runtime.
 
 - <span id="miettediagnostic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for MietteDiagnostic`
+##### `impl Diag for MietteDiagnostic`
 
 - <span id="miettediagnostic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
@@ -1359,7 +1369,7 @@ Diagnostic that can be created at runtime.
 
 ##### `impl Error for MietteDiagnostic`
 
-##### `impl<D> OwoColorize for MietteDiagnostic`
+##### `impl OwoColorize for MietteDiagnostic`
 
 ##### `impl PartialEq for MietteDiagnostic`
 
@@ -1367,11 +1377,11 @@ Diagnostic that can be created at runtime.
 
 ##### `impl StructuralPartialEq for MietteDiagnostic`
 
-##### `impl<T> ToString for MietteDiagnostic`
+##### `impl ToString for MietteDiagnostic`
 
 - <span id="miettediagnostic-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for MietteDiagnostic`
+##### `impl TraitKind for MietteDiagnostic`
 
 ### `NamedSource<S: SourceCode + 'static>`
 
@@ -1382,6 +1392,8 @@ struct NamedSource<S: SourceCode + 'static> {
     language: Option<String>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/named_source.rs:7-11`](../../.source_1765210505/miette-7.6.0/src/named_source.rs#L7-L11)*
 
 Utility struct for when you have a regular [`SourceCode`](#sourcecode) type that doesn't
 implement `name`. For example [`String`](../clap_builder/index.md). Or if you want to override the
@@ -1439,6 +1451,8 @@ implement `name`. For example [`String`](../clap_builder/index.md). Or if you wa
 struct Panic(String);
 ```
 
+*Defined in [`miette-7.6.0/src/panic.rs:30`](../../.source_1765210505/miette-7.6.0/src/panic.rs#L30)*
+
 #### Implementations
 
 - <span id="panic-backtrace"></span>`fn backtrace() -> String`
@@ -1449,7 +1463,7 @@ struct Panic(String);
 
 - <span id="panic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for Panic`
+##### `impl Diag for Panic`
 
 - <span id="panic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
@@ -1463,13 +1477,13 @@ struct Panic(String);
 
 ##### `impl Error for Panic`
 
-##### `impl<D> OwoColorize for Panic`
+##### `impl OwoColorize for Panic`
 
-##### `impl<T> ToString for Panic`
+##### `impl ToString for Panic`
 
 - <span id="panic-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for Panic`
+##### `impl TraitKind for Panic`
 
 ### `LabeledSpan`
 
@@ -1480,6 +1494,8 @@ struct LabeledSpan {
     primary: bool,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/protocol.rs:250-255`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L250-L255)*
 
 A labeled [`SourceSpan`](#sourcespan).
 
@@ -1523,7 +1539,7 @@ A labeled [`SourceSpan`](#sourcespan).
 
 ##### `impl Eq for LabeledSpan`
 
-##### `impl<D> OwoColorize for LabeledSpan`
+##### `impl OwoColorize for LabeledSpan`
 
 ##### `impl PartialEq for LabeledSpan`
 
@@ -1545,6 +1561,8 @@ struct MietteSpanContents<'a> {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/protocol.rs:458-473`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L458-L473)*
+
 Basic implementation of the [`SpanContents`](#spancontents) trait, for convenience.
 
 #### Implementations
@@ -1557,17 +1575,17 @@ Basic implementation of the [`SpanContents`](#spancontents) trait, for convenien
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for MietteSpanContents<'a>`
+##### `impl Clone for MietteSpanContents<'a>`
 
 - <span id="miettespancontents-clone"></span>`fn clone(&self) -> MietteSpanContents<'a>` — [`MietteSpanContents`](#miettespancontents)
 
-##### `impl<'a> Debug for MietteSpanContents<'a>`
+##### `impl Debug for MietteSpanContents<'a>`
 
 - <span id="miettespancontents-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for MietteSpanContents<'a>`
+##### `impl OwoColorize for MietteSpanContents<'a>`
 
-##### `impl<'a> SpanContents for MietteSpanContents<'a>`
+##### `impl SpanContents for MietteSpanContents<'a>`
 
 - <span id="miettespancontents-data"></span>`fn data(&self) -> &'a [u8]`
 
@@ -1591,6 +1609,8 @@ struct SourceSpan {
     length: usize,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/protocol.rs:549-554`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L549-L554)*
 
 Span within a [`SourceCode`](#sourcecode)
 
@@ -1636,7 +1656,7 @@ Span within a [`SourceCode`](#sourcecode)
 
 - <span id="sourcespan-cmp"></span>`fn cmp(&self, other: &SourceSpan) -> cmp::Ordering` — [`SourceSpan`](#sourcespan)
 
-##### `impl<D> OwoColorize for SourceSpan`
+##### `impl OwoColorize for SourceSpan`
 
 ##### `impl PartialEq for SourceSpan`
 
@@ -1653,6 +1673,8 @@ Span within a [`SourceCode`](#sourcecode)
 ```rust
 struct SourceOffset(ByteOffset);
 ```
+
+*Defined in [`miette-7.6.0/src/protocol.rs:673`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L673)*
 
 Newtype that represents the [`ByteOffset`](#byteoffset) from the beginning of a [`SourceCode`](#sourcecode)
 
@@ -1686,7 +1708,7 @@ Newtype that represents the [`ByteOffset`](#byteoffset) from the beginning of a 
 
 - <span id="sourceoffset-cmp"></span>`fn cmp(&self, other: &SourceOffset) -> cmp::Ordering` — [`SourceOffset`](#sourceoffset)
 
-##### `impl<D> OwoColorize for SourceOffset`
+##### `impl OwoColorize for SourceOffset`
 
 ##### `impl PartialEq for SourceOffset`
 
@@ -1709,13 +1731,15 @@ enum MietteError {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/error.rs:13-21`](../../.source_1765210505/miette-7.6.0/src/error.rs#L13-L21)*
+
 Error enum for miette. Used by certain operations in the protocol.
 
 #### Variants
 
 - **`IoError`**
 
-  Wrapper around [`std::io::Error`](../cargo_docs_md/error/index.md). This is returned when something went
+  Wrapper around [`std::io::Error`](../addr2line/index.md). This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**
@@ -1729,7 +1753,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - <span id="mietteerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for MietteError`
+##### `impl Diag for MietteError`
 
 - <span id="mietteerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
@@ -1749,13 +1773,13 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - <span id="mietteerror-source"></span>`fn source(&self) -> Option<&dyn Error>`
 
-##### `impl<D> OwoColorize for MietteError`
+##### `impl OwoColorize for MietteError`
 
-##### `impl<T> ToString for MietteError`
+##### `impl ToString for MietteError`
 
 - <span id="mietteerror-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for MietteError`
+##### `impl TraitKind for MietteError`
 
 ### `RgbColors`
 
@@ -1766,6 +1790,8 @@ enum RgbColors {
     Never,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handler.rs:15-23`](../../.source_1765210505/miette-7.6.0/src/handler.rs#L15-L23)*
 
 Settings to control the color format used for graphical rendering.
 
@@ -1801,7 +1827,7 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl Eq for RgbColors`
 
-##### `impl<D> OwoColorize for RgbColors`
+##### `impl OwoColorize for RgbColors`
 
 ##### `impl PartialEq for RgbColors`
 
@@ -1818,6 +1844,8 @@ enum HighlighterOption {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handler.rs:414-419`](../../.source_1765210505/miette-7.6.0/src/handler.rs#L414-L419)*
+
 #### Implementations
 
 - <span id="highlighteroption-select"></span>`fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](highlighters/index.md), [`HighlighterOption`](handler/index.md)
@@ -1828,7 +1856,7 @@ enum HighlighterOption {
 
 - <span id="highlighteroption-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for HighlighterOption`
+##### `impl OwoColorize for HighlighterOption`
 
 ### `Severity`
 
@@ -1839,6 +1867,8 @@ enum Severity {
     Error,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/protocol.rs:189-198`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L189-L198)*
 
 [`Diagnostic`](#diagnostic) severity. Intended to be used by
 [`ReportHandler`](crate::ReportHandler)s to change the way different
@@ -1881,7 +1911,7 @@ enum Severity {
 
 - <span id="severity-cmp"></span>`fn cmp(&self, other: &Severity) -> cmp::Ordering` — [`Severity`](#severity)
 
-##### `impl<D> OwoColorize for Severity`
+##### `impl OwoColorize for Severity`
 
 ##### `impl PartialEq for Severity`
 
@@ -1900,6 +1930,8 @@ enum Severity {
 ```rust
 trait ReportHandler: core::any::Any + Send + Sync { ... }
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:144-201`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L144-L201)*
 
 Error Report Handler trait for customizing `miette::Report`
 
@@ -1932,6 +1964,8 @@ Error Report Handler trait for customizing `miette::Report`
 ```rust
 trait WrapErr<T, E>: context::private::Sealed { ... }
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:433-460`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L433-L460)*
 
 Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`](#result).
 
@@ -2137,6 +2171,8 @@ supports both of the following use cases:
 trait Diagnostic: std::error::Error { ... }
 ```
 
+*Defined in [`miette-7.6.0/src/protocol.rs:20-70`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L20-L70)*
+
 Adds rich metadata to your Error that can be used by
 [`Report`](crate::Report) to print really nice and human-friendly error
 messages.
@@ -2195,6 +2231,8 @@ messages.
 trait SourceCode: Send + Sync { ... }
 ```
 
+*Defined in [`miette-7.6.0/src/protocol.rs:236-245`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L236-L245)*
+
 Represents readable source code of some sort.
 
 This trait is able to support simple `SourceCode` types like [`String`](../clap_builder/index.md)s, as
@@ -2228,6 +2266,8 @@ gigabytes or larger in size.
 ```rust
 trait SpanContents<'a> { ... }
 ```
+
+*Defined in [`miette-7.6.0/src/protocol.rs:426-452`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L426-L452)*
 
 Contents of a [`SourceCode`](#sourcecode) covered by [`SourceSpan`](#sourcespan).
 
@@ -2277,6 +2317,8 @@ Includes line and column information to optimize highlight calculations.
 fn set_hook(hook: ErrorHook) -> Result<(), InstallError>
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:83-85`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L83-L85)*
+
 Set the error hook.
 
 ### `capture_handler`
@@ -2285,17 +2327,23 @@ Set the error hook.
 fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:89-102`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L89-L102)*
+
 ### `get_default_printer`
 
 ```rust
 fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:104-109`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L104-L109)*
+
 ### `set_panic_hook`
 
 ```rust
 fn set_panic_hook()
 ```
+
+*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../.source_1765210505/miette-7.6.0/src/panic.rs#L8-L27)*
 
 Tells miette to render panics using its rendering engine.
 
@@ -2307,11 +2355,15 @@ Tells miette to render panics using its rendering engine.
 type ErrorHook = Box<dyn Fn(&dyn Diagnostic) -> Box<dyn ReportHandler> + Sync + Send>;
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:61-62`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L61-L62)*
+
 ### `Result<T, E>`
 
 ```rust
 type Result<T, E> = core::result::Result<T, E>;
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/mod.rs:257`](../../.source_1765210505/miette-7.6.0/src/eyreish/mod.rs#L257)*
 
 type alias for `Result<T, Report>`
 
@@ -2374,11 +2426,15 @@ You can just replace `use`s of `anyhow::Result`/`eyre::Result` with
 type ByteOffset = usize;
 ```
 
+*Defined in [`miette-7.6.0/src/protocol.rs:666`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L666)*
+
 "Raw" type for the byte offset from the beginning of a [`SourceCode`](#sourcecode).
 
 ## Macros
 
 ### `bail!`
+
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:80-89`](../../.source_1765210505/miette-7.6.0/src/eyreish/macros.rs#L80-L89)*
 
 Return early with an error.
 
@@ -2447,6 +2503,8 @@ fn divide(x: f64, y: f64) -> Result<f64> {
 
 ### `ensure!`
 
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:156-169`](../../.source_1765210505/miette-7.6.0/src/eyreish/macros.rs#L156-L169)*
+
 Return early with an error if a condition is not satisfied.
 
 This macro is equivalent to `if !$cond { return Err(From::from($err)); }`.
@@ -2507,6 +2565,8 @@ fn divide(x: f64, y: f64) -> Result<f64> {
 
 ### `miette!`
 
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:229-240`](../../.source_1765210505/miette-7.6.0/src/eyreish/macros.rs#L229-L240)*
+
 Construct an ad-hoc [`Report`](#report).
 
 # Examples
@@ -2552,6 +2612,8 @@ You can just replace `use`s of the `anyhow!`/`eyre!` macros with `miette!`.
 
 ### `diagnostic!`
 
+*Defined in [`miette-7.6.0/src/eyreish/macros.rs:291-300`](../../.source_1765210505/miette-7.6.0/src/eyreish/macros.rs#L291-L300)*
+
 Construct a [`MietteDiagnostic`](#miettediagnostic) in more user-friendly way.
 
 # Examples
@@ -2588,5 +2650,9 @@ assert_eq!(diag.message, "1 + 2 = 3");
 
 ### `box_error_impls!`
 
+*Defined in [`miette-7.6.0/src/protocol.rs:72-86`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L72-L86)*
+
 ### `box_borrow_impls!`
+
+*Defined in [`miette-7.6.0/src/protocol.rs:94-104`](../../.source_1765210505/miette-7.6.0/src/protocol.rs#L94-L104)*
 

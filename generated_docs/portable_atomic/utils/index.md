@@ -50,7 +50,7 @@
 | [`ifunc!`](#ifunc) | macro | # Safety |
 | [`fn_alias!`](#fn_alias) | macro |  |
 | [`const_fn!`](#const_fn) | macro | Make the given function const if the given condition is true. |
-| [`impl_debug_and_serde!`](#impl_debug_and_serde) | macro | Implements `core::fmt::Debug` and `serde::{Serialize, Deserialize}` (when serde |
+| [`impl_debug_and_serde!`](#impl_debug_and_serde) | macro | Implements `core::fmt::Debug` and `serde::{Serialize, Deserialize}` (when serde feature is enabled) for atomic bool, integer, or float. |
 | [`impl_debug!`](#impl_debug) | macro |  |
 | [`impl_default_no_fetch_ops!`](#impl_default_no_fetch_ops) | macro |  |
 | [`impl_default_bit_opts!`](#impl_default_bit_opts) | macro |  |
@@ -72,6 +72,8 @@ struct Pair<T: Copy> {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:393-411`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L393-L411)*
+
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone + Copy> Clone for Pair<T>`
@@ -88,11 +90,15 @@ struct Pair<T: Copy> {
 const fn _assert_is_bool(v: bool) -> bool
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:16-18`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L16-L18)*
+
 ### `assert_unchecked`
 
 ```rust
 unsafe fn assert_unchecked(cond: bool)
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:273-282`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L273-L282)*
 
 ### `assert_load_ordering`
 
@@ -100,11 +106,15 @@ unsafe fn assert_unchecked(cond: bool)
 fn assert_load_ordering(order: core::sync::atomic::Ordering)
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:287-294`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L287-L294)*
+
 ### `assert_store_ordering`
 
 ```rust
 fn assert_store_ordering(order: core::sync::atomic::Ordering)
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:298-305`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L298-L305)*
 
 ### `assert_compare_exchange_ordering`
 
@@ -112,21 +122,33 @@ fn assert_store_ordering(order: core::sync::atomic::Ordering)
 fn assert_compare_exchange_ordering(success: core::sync::atomic::Ordering, failure: core::sync::atomic::Ordering)
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:309-324`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L309-L324)*
+
 ### `upgrade_success_ordering`
 
 ```rust
 fn upgrade_success_ordering(success: core::sync::atomic::Ordering, failure: core::sync::atomic::Ordering) -> core::sync::atomic::Ordering
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:330-337`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L330-L337)*
+
 ## Macros
 
 ### `static_assert!`
 
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:11-15`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L11-L15)*
+
 ### `static_assert_layout!`
+
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:20-27`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L20-L27)*
 
 ### `doc_comment!`
 
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:30-35`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L30-L35)*
+
 ### `ifunc!`
+
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:56-79`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L56-L79)*
 
 # Safety
 
@@ -138,20 +160,34 @@ The second requirement is always met if the function pointer is to the function 
 
 ### `fn_alias!`
 
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:92-116`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L92-L116)*
+
 ### `const_fn!`
+
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:119-132`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L119-L132)*
 
 Make the given function const if the given condition is true.
 
 ### `impl_debug_and_serde!`
+
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:136-170`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L136-L170)*
 
 Implements `core::fmt::Debug` and `serde::{Serialize, Deserialize}` (when serde
 feature is enabled) for atomic bool, integer, or float.
 
 ### `impl_debug!`
 
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:171-181`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L171-L181)*
+
 ### `impl_default_no_fetch_ops!`
+
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:185-234`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L185-L234)*
 
 ### `impl_default_bit_opts!`
 
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:235-258`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L235-L258)*
+
 ### `items!`
+
+*Defined in [`portable-atomic-1.11.1/src/utils.rs:261-265`](../../../.source_1765210505/portable-atomic-1.11.1/src/utils.rs#L261-L265)*
 

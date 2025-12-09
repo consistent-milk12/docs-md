@@ -22,6 +22,8 @@ enum ValueSource {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/matches/value_source.rs:4-11`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/value_source.rs#L4-L11)*
+
 Origin of the argument's value
 
 #### Variants
@@ -46,7 +48,7 @@ Origin of the argument's value
 
 ##### `impl Clone for ValueSource`
 
-- <span id="valuesource-clone"></span>`fn clone(&self) -> ValueSource` — [`ValueSource`](../../index.md)
+- <span id="valuesource-clone"></span>`fn clone(&self) -> ValueSource` — [`ValueSource`](#valuesource)
 
 ##### `impl Copy for ValueSource`
 
@@ -58,15 +60,15 @@ Origin of the argument's value
 
 ##### `impl Ord for ValueSource`
 
-- <span id="valuesource-cmp"></span>`fn cmp(&self, other: &ValueSource) -> cmp::Ordering` — [`ValueSource`](../../index.md)
+- <span id="valuesource-cmp"></span>`fn cmp(&self, other: &ValueSource) -> cmp::Ordering` — [`ValueSource`](#valuesource)
 
 ##### `impl PartialEq for ValueSource`
 
-- <span id="valuesource-eq"></span>`fn eq(&self, other: &ValueSource) -> bool` — [`ValueSource`](../../index.md)
+- <span id="valuesource-eq"></span>`fn eq(&self, other: &ValueSource) -> bool` — [`ValueSource`](#valuesource)
 
 ##### `impl PartialOrd for ValueSource`
 
-- <span id="valuesource-partial-cmp"></span>`fn partial_cmp(&self, other: &ValueSource) -> option::Option<cmp::Ordering>` — [`ValueSource`](../../index.md)
+- <span id="valuesource-partial-cmp"></span>`fn partial_cmp(&self, other: &ValueSource) -> option::Option<cmp::Ordering>` — [`ValueSource`](#valuesource)
 
 ##### `impl StructuralPartialEq for ValueSource`
 

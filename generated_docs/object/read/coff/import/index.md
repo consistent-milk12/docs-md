@@ -32,6 +32,8 @@ struct ImportFile<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/import.rs:20-26`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L20-L26)*
+
 A Windows short form description of a symbol to import.
 
 Used in Windows import libraries to provide a mapping from
@@ -58,11 +60,11 @@ to [`crate::FileKind::CoffImport`](../../../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportFile<'data>`
+##### `impl Clone for ImportFile<'data>`
 
 - <span id="importfile-clone"></span>`fn clone(&self) -> ImportFile<'data>` — [`ImportFile`](../index.md)
 
-##### `impl<'data> Debug for ImportFile<'data>`
+##### `impl Debug for ImportFile<'data>`
 
 - <span id="importfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -76,6 +78,8 @@ struct ImportObjectData<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/import.rs:200-204`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L200-L204)*
+
 The data following [`pe::ImportObjectHeader`](../../../pe/index.md).
 
 #### Implementations
@@ -88,11 +92,11 @@ The data following [`pe::ImportObjectHeader`](../../../pe/index.md).
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportObjectData<'data>`
+##### `impl Clone for ImportObjectData<'data>`
 
 - <span id="importobjectdata-clone"></span>`fn clone(&self) -> ImportObjectData<'data>` — [`ImportObjectData`](../index.md)
 
-##### `impl<'data> Debug for ImportObjectData<'data>`
+##### `impl Debug for ImportObjectData<'data>`
 
 - <span id="importobjectdata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -106,6 +110,8 @@ enum ImportName<'data> {
     Name(&'data [u8]),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/import.rs:114-119`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L114-L119)*
 
 The name or ordinal to import from a DLL.
 
@@ -121,23 +127,23 @@ The name or ordinal to import from a DLL.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportName<'data>`
+##### `impl Clone for ImportName<'data>`
 
 - <span id="importname-clone"></span>`fn clone(&self) -> ImportName<'data>` — [`ImportName`](../index.md)
 
-##### `impl<'data> Copy for ImportName<'data>`
+##### `impl Copy for ImportName<'data>`
 
-##### `impl<'data> Debug for ImportName<'data>`
+##### `impl Debug for ImportName<'data>`
 
 - <span id="importname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for ImportName<'data>`
+##### `impl Eq for ImportName<'data>`
 
-##### `impl<'data> PartialEq for ImportName<'data>`
+##### `impl PartialEq for ImportName<'data>`
 
 - <span id="importname-eq"></span>`fn eq(&self, other: &ImportName<'data>) -> bool` — [`ImportName`](../index.md)
 
-##### `impl<'data> StructuralPartialEq for ImportName<'data>`
+##### `impl StructuralPartialEq for ImportName<'data>`
 
 ### `ImportType`
 
@@ -148,6 +154,8 @@ enum ImportType {
     Const,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/import.rs:123-130`](../../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L123-L130)*
 
 The kind of import symbol.
 

@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`GraphicalTheme`](#graphicaltheme) | struct | Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to |
-| [`ThemeStyles`](#themestyles) | struct | Styles for various parts of graphical rendering for the |
-| [`ThemeCharacters`](#themecharacters) | struct | Characters to be used when drawing when using |
+| [`GraphicalTheme`](#graphicaltheme) | struct | Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to render fancy [`Diagnostic`](crate::Diagnostic) reports. |
+| [`ThemeStyles`](#themestyles) | struct | Styles for various parts of graphical rendering for the [`GraphicalReportHandler`](crate::GraphicalReportHandler). |
+| [`ThemeCharacters`](#themecharacters) | struct | Characters to be used when drawing when using [`GraphicalReportHandler`](crate::GraphicalReportHandler). |
 | [`style`](#style) | fn |  |
 
 ## Structs
@@ -23,6 +23,8 @@ struct GraphicalTheme {
     pub styles: ThemeStyles,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
 
 Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to
 render fancy [`Diagnostic`](crate::Diagnostic) reports.
@@ -68,7 +70,7 @@ one of the predefined ones using the methods below.
 
 - <span id="graphicaltheme-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for GraphicalTheme`
+##### `impl OwoColorize for GraphicalTheme`
 
 ### `ThemeStyles`
 
@@ -83,6 +85,8 @@ struct ThemeStyles {
     pub highlights: Vec<owo_colors::Style>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
 
 Styles for various parts of graphical rendering for the
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -136,7 +140,7 @@ Styles for various parts of graphical rendering for the
 
 - <span id="themestyles-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for ThemeStyles`
+##### `impl OwoColorize for ThemeStyles`
 
 ### `ThemeCharacters`
 
@@ -166,6 +170,8 @@ struct ThemeCharacters {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
+
 Characters to be used when drawing when using
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
 
@@ -189,7 +195,7 @@ Characters to be used when drawing when using
 
 ##### `impl Eq for ThemeCharacters`
 
-##### `impl<D> OwoColorize for ThemeCharacters`
+##### `impl OwoColorize for ThemeCharacters`
 
 ##### `impl PartialEq for ThemeCharacters`
 
@@ -204,4 +210,6 @@ Characters to be used when drawing when using
 ```rust
 fn style() -> owo_colors::Style
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
 

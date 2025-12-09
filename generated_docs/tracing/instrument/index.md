@@ -13,7 +13,7 @@ Attach a span to a `std::future::Future`.
 | [`WithDispatch`](#withdispatch) | struct | A [`Future`] that has been instrumented with a `tracing` [`Subscriber`]. |
 | [`Instrumented`](#instrumented) | struct | A [`Future`] that has been instrumented with a `tracing` [`Span`]. |
 | [`Instrument`](#instrument) | trait | Attaches spans to a [`std::future::Future`]. |
-| [`WithSubscriber`](#withsubscriber) | trait | Extension trait allowing futures to be instrumented with |
+| [`WithSubscriber`](#withsubscriber) | trait | Extension trait allowing futures to be instrumented with a `tracing` [`Subscriber`](crate::Subscriber). |
 
 ## Structs
 
@@ -26,7 +26,9 @@ struct WithDispatch<T> {
 }
 ```
 
-A `Future` that has been instrumented with a `tracing` [`Subscriber`](../../tracing_core/index.md).
+*Defined in [`tracing-0.1.43/src/instrument.rs:236-252`](../../../.source_1765210505/tracing-0.1.43/src/instrument.rs#L236-L252)*
+
+A `Future` that has been instrumented with a `tracing` [`Subscriber`](../../tracing_core/subscriber/index.md).
 
 This type is returned by the [`WithSubscriber`](#withsubscriber) extension trait. See that
 trait's documentation for details.
@@ -35,7 +37,7 @@ trait's documentation for details.
 
 #### Implementations
 
-- <span id="withdispatch-dispatcher"></span>`fn dispatcher(&self) -> &Dispatch` — [`Dispatch`](../index.md)
+- <span id="withdispatch-dispatcher"></span>`fn dispatcher(&self) -> &Dispatch` — [`Dispatch`](../dispatcher/index.md)
 
 - <span id="withdispatch-inner"></span>`fn inner(&self) -> &T`
 
@@ -59,7 +61,7 @@ trait's documentation for details.
 
 ##### `impl<T: Future> Future for WithDispatch<T>`
 
-- <span id="withdispatch-output"></span>`type Output = <T as Future>::Output`
+- <span id="withdispatch-type-output"></span>`type Output = <T as Future>::Output`
 
 - <span id="withdispatch-poll"></span>`fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
 
@@ -67,9 +69,9 @@ trait's documentation for details.
 
 ##### `impl<F> IntoFuture for WithDispatch<T>`
 
-- <span id="withdispatch-output"></span>`type Output = <F as Future>::Output`
+- <span id="withdispatch-type-output"></span>`type Output = <F as Future>::Output`
 
-- <span id="withdispatch-intofuture"></span>`type IntoFuture = F`
+- <span id="withdispatch-type-intofuture"></span>`type IntoFuture = F`
 
 - <span id="withdispatch-into-future"></span>`fn into_future(self) -> <F as IntoFuture>::IntoFuture`
 
@@ -86,18 +88,20 @@ struct Instrumented<T> {
 }
 ```
 
-A `Future` that has been instrumented with a `tracing` [`Span`](../index.md).
+*Defined in [`tracing-0.1.43/src/instrument.rs:254-288`](../../../.source_1765210505/tracing-0.1.43/src/instrument.rs#L254-L288)*
 
-This type is returned by the [`Instrument`](../index.md) extension trait. See that
+A `Future` that has been instrumented with a `tracing` [`Span`](../span/index.md).
+
+This type is returned by the [`Instrument`](#instrument) extension trait. See that
 trait's documentation for details.
 
 
 
 #### Implementations
 
-- <span id="instrumented-span"></span>`fn span(&self) -> &Span` — [`Span`](../index.md)
+- <span id="instrumented-span"></span>`fn span(&self) -> &Span` — [`Span`](../span/index.md)
 
-- <span id="instrumented-span-mut"></span>`fn span_mut(&mut self) -> &mut Span` — [`Span`](../index.md)
+- <span id="instrumented-span-mut"></span>`fn span_mut(&mut self) -> &mut Span` — [`Span`](../span/index.md)
 
 - <span id="instrumented-inner"></span>`fn inner(&self) -> &T`
 
@@ -125,7 +129,7 @@ trait's documentation for details.
 
 ##### `impl<T: Future> Future for Instrumented<T>`
 
-- <span id="instrumented-output"></span>`type Output = <T as Future>::Output`
+- <span id="instrumented-type-output"></span>`type Output = <T as Future>::Output`
 
 - <span id="instrumented-poll"></span>`fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
 
@@ -133,9 +137,9 @@ trait's documentation for details.
 
 ##### `impl<F> IntoFuture for Instrumented<T>`
 
-- <span id="instrumented-output"></span>`type Output = <F as Future>::Output`
+- <span id="instrumented-type-output"></span>`type Output = <F as Future>::Output`
 
-- <span id="instrumented-intofuture"></span>`type IntoFuture = F`
+- <span id="instrumented-type-intofuture"></span>`type IntoFuture = F`
 
 - <span id="instrumented-into-future"></span>`fn into_future(self) -> <F as IntoFuture>::IntoFuture`
 
@@ -151,6 +155,8 @@ trait's documentation for details.
 trait Instrument: Sized { ... }
 ```
 
+*Defined in [`tracing-0.1.43/src/instrument.rs:20-131`](../../../.source_1765210505/tracing-0.1.43/src/instrument.rs#L20-L131)*
+
 Attaches spans to a `std::future::Future`.
 
 Extension trait allowing futures to be
@@ -161,21 +167,14 @@ instrumented with a `tracing` [`span`](../span/index.md).
 
 - `fn instrument(self, span: Span) -> Instrumented<Self>`
 
-  Instruments this type with the provided [`Span`](../index.md), returning an
+  Instruments this type with the provided [`Span`](../span/index.md), returning an
 
 - `fn in_current_span(self) -> Instrumented<Self>`
 
-  Instruments this type with the [current] [`Span`](../index.md), returning an
+  Instruments this type with the [current] [`Span`](../span/index.md), returning an
 
 #### Implementors
 
-- [`EnteredSpan`](../span/index.md)
-- [`Entered`](../span/index.md)
-- [`Inner`](../span/index.md)
-- [`Instrumented`](#instrumented)
-- [`PhantomNotSend`](../span/index.md)
-- [`Span`](../index.md)
-- [`WithDispatch`](#withdispatch)
 - `T`
 
 ### `WithSubscriber`
@@ -184,6 +183,8 @@ instrumented with a `tracing` [`span`](../span/index.md).
 trait WithSubscriber: Sized { ... }
 ```
 
+*Defined in [`tracing-0.1.43/src/instrument.rs:136-234`](../../../.source_1765210505/tracing-0.1.43/src/instrument.rs#L136-L234)*
+
 Extension trait allowing futures to be instrumented with
 a `tracing` [`Subscriber`](crate::Subscriber).
 
@@ -191,20 +192,13 @@ a `tracing` [`Subscriber`](crate::Subscriber).
 
 - `fn with_subscriber<S>(self, subscriber: S) -> WithDispatch<Self>`
 
-  Attaches the provided [`Subscriber`](../../tracing_core/index.md) to this type, returning a
+  Attaches the provided [`Subscriber`](../../tracing_core/subscriber/index.md) to this type, returning a
 
 - `fn with_current_subscriber(self) -> WithDispatch<Self>`
 
-  Attaches the current [`default`](../../crossbeam_epoch/default/index.md) [`Subscriber`](../../tracing_core/index.md) to this type, returning a
+  Attaches the current [`default`](../../crossbeam_epoch/default/index.md) [`Subscriber`](../../tracing_core/subscriber/index.md) to this type, returning a
 
 #### Implementors
 
-- [`EnteredSpan`](../span/index.md)
-- [`Entered`](../span/index.md)
-- [`Inner`](../span/index.md)
-- [`Instrumented`](#instrumented)
-- [`PhantomNotSend`](../span/index.md)
-- [`Span`](../index.md)
-- [`WithDispatch`](#withdispatch)
 - `T`
 

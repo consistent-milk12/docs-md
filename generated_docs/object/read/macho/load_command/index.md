@@ -24,6 +24,8 @@ struct LoadCommandIterator<'data, E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:12-16`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/load_command.rs#L12-L16)*
+
 An iterator for the load commands from a [`MachHeader`](../index.md).
 
 #### Implementations
@@ -52,15 +54,15 @@ An iterator for the load commands from a [`MachHeader`](../index.md).
 
 ##### `impl<I> IntoIterator for LoadCommandIterator<'data, E>`
 
-- <span id="loadcommanditerator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="loadcommanditerator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="loadcommanditerator-intoiter"></span>`type IntoIter = I`
+- <span id="loadcommanditerator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="loadcommanditerator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, E: Endian> Iterator for LoadCommandIterator<'data, E>`
 
-- <span id="loadcommanditerator-item"></span>`type Item = Result<LoadCommandData<'data, E>, Error>`
+- <span id="loadcommanditerator-type-item"></span>`type Item = Result<LoadCommandData<'data, E>, Error>`
 
 - <span id="loadcommanditerator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -73,6 +75,8 @@ struct LoadCommandData<'data, E: Endian> {
     marker: core::marker::PhantomData<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:74-79`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/load_command.rs#L74-L79)*
 
 The data for a [`macho::LoadCommand`](../../../macho/index.md).
 
@@ -161,6 +165,8 @@ enum LoadCommandVariant<'data, E: Endian> {
     Other,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/load_command.rs:280-360`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/load_command.rs#L280-L360)*
 
 A [`macho::LoadCommand`](../../../macho/index.md) that has been interpreted according to its `cmd` field.
 

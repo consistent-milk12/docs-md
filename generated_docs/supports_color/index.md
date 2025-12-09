@@ -63,7 +63,7 @@ if let Some(support) = supports_color::on(Stream::Stdout) {
 | [`check_term_16m`](#check_term_16m) | fn |  |
 | [`check_256_color`](#check_256_color) | fn |  |
 | [`on`](#on) | fn | Returns a [ColorLevel] if a [Stream] supports terminal colors. |
-| [`on_cached`](#on_cached) | fn | Returns a [ColorLevel] if a [Stream] supports terminal colors, caching the result to |
+| [`on_cached`](#on_cached) | fn | Returns a [ColorLevel] if a [Stream] supports terminal colors, caching the result to be returned from then on. |
 | [`assert_stream_in_bounds!`](#assert_stream_in_bounds) | macro |  |
 
 ## Structs
@@ -78,6 +78,8 @@ struct ColorLevel {
     pub has_16m: bool,
 }
 ```
+
+*Defined in [`supports-color-3.0.2/src/lib.rs:191-199`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L191-L199)*
 
 Color level support details.
 
@@ -132,6 +134,8 @@ enum Stream {
 }
 ```
 
+*Defined in [`supports-color-3.0.2/src/lib.rs:31-34`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L31-L34)*
+
 possible stream sources
 
 #### Trait Implementations
@@ -154,11 +158,15 @@ possible stream sources
 fn env_force_color() -> usize
 ```
 
+*Defined in [`supports-color-3.0.2/src/lib.rs:36-52`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L36-L52)*
+
 ### `env_no_color`
 
 ```rust
 fn env_no_color() -> bool
 ```
+
+*Defined in [`supports-color-3.0.2/src/lib.rs:54-59`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L54-L59)*
 
 ### `as_str`
 
@@ -166,11 +174,15 @@ fn env_no_color() -> bool
 fn as_str<E>(option: &Result<String, E>) -> Result<&str, &E>
 ```
 
+*Defined in [`supports-color-3.0.2/src/lib.rs:62-67`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L62-L67)*
+
 ### `translate_level`
 
 ```rust
 fn translate_level(level: usize) -> Option<ColorLevel>
 ```
+
+*Defined in [`supports-color-3.0.2/src/lib.rs:69-80`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L69-L80)*
 
 ### `is_a_tty`
 
@@ -178,11 +190,15 @@ fn translate_level(level: usize) -> Option<ColorLevel>
 fn is_a_tty(stream: Stream) -> bool
 ```
 
+*Defined in [`supports-color-3.0.2/src/lib.rs:82-88`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L82-L88)*
+
 ### `supports_color`
 
 ```rust
 fn supports_color(stream: Stream) -> usize
 ```
+
+*Defined in [`supports-color-3.0.2/src/lib.rs:90-117`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L90-L117)*
 
 ### `check_ansi_color`
 
@@ -190,11 +206,15 @@ fn supports_color(stream: Stream) -> usize
 fn check_ansi_color(term: Option<&str>) -> bool
 ```
 
+*Defined in [`supports-color-3.0.2/src/lib.rs:132-140`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L132-L140)*
+
 ### `check_colorterm_16m`
 
 ```rust
 fn check_colorterm_16m(colorterm: &str) -> bool
 ```
+
+*Defined in [`supports-color-3.0.2/src/lib.rs:142-144`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L142-L144)*
 
 ### `check_term_16m`
 
@@ -202,17 +222,23 @@ fn check_colorterm_16m(colorterm: &str) -> bool
 fn check_term_16m(term: &str) -> bool
 ```
 
+*Defined in [`supports-color-3.0.2/src/lib.rs:146-148`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L146-L148)*
+
 ### `check_256_color`
 
 ```rust
 fn check_256_color(term: &str) -> bool
 ```
 
+*Defined in [`supports-color-3.0.2/src/lib.rs:150-152`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L150-L152)*
+
 ### `on`
 
 ```rust
 fn on(stream: Stream) -> Option<ColorLevel>
 ```
+
+*Defined in [`supports-color-3.0.2/src/lib.rs:157-159`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L157-L159)*
 
 Returns a [ColorLevel] if a [Stream] supports terminal colors.
 
@@ -222,6 +248,8 @@ Returns a [ColorLevel] if a [Stream] supports terminal colors.
 fn on_cached(stream: Stream) -> Option<ColorLevel>
 ```
 
+*Defined in [`supports-color-3.0.2/src/lib.rs:178-183`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L178-L183)*
+
 Returns a [ColorLevel] if a [Stream] supports terminal colors, caching the result to
 be returned from then on.
 
@@ -230,4 +258,6 @@ If you expect your environment to change between calls, use [`on`](#on)
 ## Macros
 
 ### `assert_stream_in_bounds!`
+
+*Defined in [`supports-color-3.0.2/src/lib.rs:161-167`](../../.source_1765210505/supports-color-3.0.2/src/lib.rs#L161-L167)*
 

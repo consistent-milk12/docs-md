@@ -6,8 +6,8 @@
 
 Generic data structure deserialization framework.
 
-The two most important traits in this module are [`Deserialize`](../index.md) and
-[`Deserializer`](../index.md).
+The two most important traits in this module are [`Deserialize`](#deserialize) and
+[`Deserializer`](#deserializer).
 
  - **A type that implements `Deserialize` is a data structure** that can be
    deserialized from any data format supported by Serde, and conversely
@@ -16,26 +16,26 @@ The two most important traits in this module are [`Deserialize`](../index.md) an
 
 # The Deserialize trait
 
-Serde provides [`Deserialize`](../index.md) implementations for many Rust primitive and
+Serde provides [`Deserialize`](#deserialize) implementations for many Rust primitive and
 standard library types. The complete list is below. All of these can be
 deserialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called `serde_derive` to
-automatically generate [`Deserialize`](../index.md) implementations for structs and enums
+automatically generate [`Deserialize`](#deserialize) implementations for structs and enums
 in your program. See the [derive section of the manual] for how to use this.
 
-In rare cases it may be necessary to implement [`Deserialize`](../index.md) manually for
+In rare cases it may be necessary to implement [`Deserialize`](#deserialize) manually for
 some type in your program. See the [Implementing `Deserialize`] section of
 the manual for more about this.
 
-Third-party crates may provide [`Deserialize`](../index.md) implementations for types
+Third-party crates may provide [`Deserialize`](#deserialize) implementations for types
 that they expose. For example the `linked-hash-map` crate provides a
 `LinkedHashMap<K, V>` type that is deserializable by Serde because the
-crate provides an implementation of [`Deserialize`](../index.md) for it.
+crate provides an implementation of [`Deserialize`](#deserialize) for it.
 
 # The Deserializer trait
 
-[`Deserializer`](../index.md) implementations are provided by third-party crates, for
+[`Deserializer`](#deserializer) implementations are provided by third-party crates, for
 example `serde_json`, `serde_yaml` and `postcard`.
 
 A partial list of well-maintained formats is given on the [Serde
@@ -149,25 +149,25 @@ One example is `OsStr`.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`value`](#value) | mod | Building blocks for deserializing basic values using the `IntoDeserializer` |
+| [`value`](#value) | mod | Building blocks for deserializing basic values using the `IntoDeserializer` trait. |
 | [`ignored_any`](#ignored_any) | mod |  |
 | [`impls`](#impls) | mod |  |
 | [`IgnoredAny`](#ignoredany) | struct |  |
 | [`OneOf`](#oneof) | struct | Used in error messages. |
 | [`WithDecimalPoint`](#withdecimalpoint) | struct |  |
-| [`Unexpected`](#unexpected) | enum | `Unexpected` represents an unexpected invocation of any one of the `Visitor` |
-| [`Error`](#error) | trait | The `Error` trait allows `Deserialize` implementations to create descriptive |
-| [`Expected`](#expected) | trait | `Expected` represents an explanation of what data a `Visitor` was expecting |
-| [`Deserialize`](#deserialize) | trait | A **data structure** that can be deserialized from any data format supported |
-| [`DeserializeOwned`](#deserializeowned) | trait | A data structure that can be deserialized without borrowing any data from |
+| [`Unexpected`](#unexpected) | enum | `Unexpected` represents an unexpected invocation of any one of the `Visitor` trait methods. |
+| [`Error`](#error) | trait | The `Error` trait allows `Deserialize` implementations to create descriptive error messages belonging to the `Deserializer` against which they are currently running. |
+| [`Expected`](#expected) | trait | `Expected` represents an explanation of what data a `Visitor` was expecting to receive. |
+| [`Deserialize`](#deserialize) | trait | A **data structure** that can be deserialized from any data format supported by Serde. |
+| [`DeserializeOwned`](#deserializeowned) | trait | A data structure that can be deserialized without borrowing any data from the deserializer. |
 | [`DeserializeSeed`](#deserializeseed) | trait | `DeserializeSeed` is the stateful form of the `Deserialize` trait. |
-| [`Deserializer`](#deserializer) | trait | A **data format** that can deserialize any data structure supported by |
+| [`Deserializer`](#deserializer) | trait | A **data format** that can deserialize any data structure supported by Serde. |
 | [`Visitor`](#visitor) | trait | This trait represents a visitor that walks through a deserializer. |
 | [`SeqAccess`](#seqaccess) | trait | Provides a `Visitor` access to each element of a sequence in the input. |
 | [`MapAccess`](#mapaccess) | trait | Provides a `Visitor` access to each entry of a map in the input. |
 | [`EnumAccess`](#enumaccess) | trait | Provides a `Visitor` access to the data of an enum in the input. |
-| [`VariantAccess`](#variantaccess) | trait | `VariantAccess` is a visitor that is created by the `Deserializer` and |
-| [`IntoDeserializer`](#intodeserializer) | trait | Converts an existing value into a `Deserializer` from which other values can |
+| [`VariantAccess`](#variantaccess) | trait | `VariantAccess` is a visitor that is created by the `Deserializer` and passed to the `Deserialize` to deserialize the content of a particular enum variant. |
+| [`IntoDeserializer`](#intodeserializer) | trait | Converts an existing value into a `Deserializer` from which other values can be deserialized. |
 | [`declare_error_trait!`](#declare_error_trait) | macro |  |
 
 ## Modules
@@ -183,6 +183,8 @@ One example is `OsStr`.
 ```rust
 struct IgnoredAny;
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/ignored_any.rs:111`](../../../.source_1765210505/serde_core-1.0.228/src/de/ignored_any.rs#L111)*
 
 An efficient way of discarding data from a deserializer.
 
@@ -292,7 +294,7 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Clone for IgnoredAny`
 
-- <span id="ignoredany-clone"></span>`fn clone(&self) -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
+- <span id="ignoredany-clone"></span>`fn clone(&self) -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md)
 
 ##### `impl Copy for IgnoredAny`
 
@@ -302,27 +304,27 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Default for IgnoredAny`
 
-- <span id="ignoredany-default"></span>`fn default() -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
+- <span id="ignoredany-default"></span>`fn default() -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md)
 
-##### `impl<'de> Deserialize for IgnoredAny`
+##### `impl Deserialize for IgnoredAny`
 
-- <span id="ignoredany-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](#ignoredany), [`Deserializer`](../index.md)
+- <span id="ignoredany-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](ignored_any/index.md), [`Deserializer`](#deserializer)
 
-##### `impl<T> DeserializeOwned for IgnoredAny`
+##### `impl DeserializeOwned for IgnoredAny`
 
-##### `impl<'de, T> Expected for IgnoredAny`
+##### `impl Expected for IgnoredAny`
 
 - <span id="ignoredany-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for IgnoredAny`
 
-- <span id="ignoredany-eq"></span>`fn eq(&self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](#ignoredany)
+- <span id="ignoredany-eq"></span>`fn eq(&self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](ignored_any/index.md)
 
 ##### `impl StructuralPartialEq for IgnoredAny`
 
-##### `impl<'de> Visitor for IgnoredAny`
+##### `impl Visitor for IgnoredAny`
 
-- <span id="ignoredany-value"></span>`type Value = IgnoredAny`
+- <span id="ignoredany-type-value"></span>`type Value = IgnoredAny`
 
 - <span id="ignoredany-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -364,6 +366,8 @@ struct OneOf {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2333-2335`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L2333-L2335)*
+
 Used in error messages.
 
 - expected `a`
@@ -378,7 +382,7 @@ The slice of names must not be empty.
 
 - <span id="oneof-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for OneOf`
+##### `impl ToString for OneOf`
 
 - <span id="oneof-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
 
@@ -388,13 +392,15 @@ The slice of names must not be empty.
 struct WithDecimalPoint(f64);
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2357`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L2357)*
+
 #### Trait Implementations
 
 ##### `impl Display for WithDecimalPoint`
 
 - <span id="withdecimalpoint-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for WithDecimalPoint`
+##### `impl ToString for WithDecimalPoint`
 
 - <span id="withdecimalpoint-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
 
@@ -424,6 +430,8 @@ enum Unexpected<'a> {
     Other(&'a str),
 }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:338-399`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L338-L399)*
 
 `Unexpected` represents an unexpected invocation of any one of the `Visitor`
 trait methods.
@@ -537,27 +545,27 @@ where
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Unexpected<'a>`
+##### `impl Clone for Unexpected<'a>`
 
 - <span id="unexpected-clone"></span>`fn clone(&self) -> Unexpected<'a>` — [`Unexpected`](#unexpected)
 
-##### `impl<'a> Copy for Unexpected<'a>`
+##### `impl Copy for Unexpected<'a>`
 
-##### `impl<'a> Debug for Unexpected<'a>`
+##### `impl Debug for Unexpected<'a>`
 
 - <span id="unexpected-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Display for Unexpected<'a>`
+##### `impl Display for Unexpected<'a>`
 
 - <span id="unexpected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> PartialEq for Unexpected<'a>`
+##### `impl PartialEq for Unexpected<'a>`
 
 - <span id="unexpected-eq"></span>`fn eq(&self, other: &Unexpected<'a>) -> bool` — [`Unexpected`](#unexpected)
 
-##### `impl<'a> StructuralPartialEq for Unexpected<'a>`
+##### `impl StructuralPartialEq for Unexpected<'a>`
 
-##### `impl<T> ToString for Unexpected<'a>`
+##### `impl ToString for Unexpected<'a>`
 
 - <span id="unexpected-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
 
@@ -568,6 +576,8 @@ where
 ```rust
 trait Error: Sized + StdError { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:304`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L304)*
 
 The `Error` trait allows `Deserialize` implementations to create descriptive
 error messages belonging to the `Deserializer` against which they are
@@ -635,6 +645,8 @@ type appropriate for a basic JSON data format.
 trait Expected { ... }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:484-488`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L484-L488)*
+
 `Expected` represents an explanation of what data a `Visitor` was expecting
 to receive.
 
@@ -695,28 +707,8 @@ return Err(de::Error::invalid_type(
 
 #### Implementors
 
-- [`ArrayInPlaceVisitor`](impls/index.md)
-- [`ArrayVisitor`](impls/index.md)
-- [`BoolVisitor`](impls/index.md)
-- [`BytesVisitor`](impls/index.md)
-- [`CStringVisitor`](impls/index.md)
-- [`CharVisitor`](impls/index.md)
 - [`ExpectedInMap`](value/index.md)
 - [`ExpectedInSeq`](value/index.md)
-- [`FromStrVisitor`](impls/index.md)
-- [`IgnoredAny`](#ignoredany)
-- [`OptionVisitor`](impls/index.md)
-- [`OsStringVisitor`](impls/index.md)
-- [`PathBufVisitor`](impls/index.md)
-- [`PathVisitor`](impls/index.md)
-- [`PhantomDataVisitor`](impls/index.md)
-- [`RangeFromVisitor`](impls/range_from/index.md)
-- [`RangeToVisitor`](impls/range_to/index.md)
-- [`RangeVisitor`](impls/range/index.md)
-- [`StrVisitor`](impls/index.md)
-- [`StringInPlaceVisitor`](impls/index.md)
-- [`StringVisitor`](impls/index.md)
-- [`UnitVisitor`](impls/index.md)
 - `&str`
 - `T`
 
@@ -725,6 +717,8 @@ return Err(de::Error::invalid_type(
 ```rust
 trait Deserialize<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:554-593`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L554-L593)*
 
 A **data structure** that can be deserialized from any data format supported
 by Serde.
@@ -788,7 +782,7 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 - [`Field`](impls/range_to/index.md)
 - [`HashMap`](../lib/index.md)
 - [`HashSet`](../lib/index.md)
-- [`IgnoredAny`](#ignoredany)
+- [`IgnoredAny`](ignored_any/index.md)
 - [`LinkedList`](../lib/index.md)
 - [`Mutex`](../lib/index.md)
 - [`OsStringKind`](impls/index.md)
@@ -904,6 +898,8 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 trait DeserializeOwned: Deserialize<'de> { ... }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:632`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L632)*
+
 A data structure that can be deserialized without borrowing any data from
 the deserializer.
 
@@ -937,11 +933,6 @@ lifetimes].
 
 #### Implementors
 
-- [`Field`](impls/range/index.md)
-- [`Field`](impls/range_from/index.md)
-- [`Field`](impls/range_to/index.md)
-- [`IgnoredAny`](#ignoredany)
-- [`OsStringKind`](impls/index.md)
 - `T`
 
 ### `DeserializeSeed<'de>`
@@ -949,6 +940,8 @@ lifetimes].
 ```rust
 trait DeserializeSeed<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:803-812`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L803-L812)*
 
 `DeserializeSeed` is the stateful form of the `Deserialize` trait. If you
 ever find yourself looking for a way to pass data into a `Deserialize` impl,
@@ -1132,6 +1125,8 @@ let flattened: Vec<u64> = deserializer.deserialize_seq(visitor)?;
 ```rust
 trait Deserializer<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:945-1266`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L945-L1266)*
 
 A **data format** that can deserialize any data structure supported by
 Serde.
@@ -1411,6 +1406,8 @@ a basic JSON `Deserializer`.
 trait Visitor<'de>: Sized { ... }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:1317-1720`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L1317-L1720)*
+
 This trait represents a visitor that walks through a deserializer.
 
 # Lifetime
@@ -1580,7 +1577,7 @@ impl<'de> Visitor<'de> for LongString {
 - [`CStringVisitor`](impls/index.md)
 - [`CharVisitor`](impls/index.md)
 - [`FromStrVisitor`](impls/index.md)
-- [`IgnoredAny`](#ignoredany)
+- [`IgnoredAny`](ignored_any/index.md)
 - [`OptionVisitor`](impls/index.md)
 - [`OsStringVisitor`](impls/index.md)
 - [`PathBufVisitor`](impls/index.md)
@@ -1599,6 +1596,8 @@ impl<'de> Visitor<'de> for LongString {
 ```rust
 trait SeqAccess<'de> { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:1749-1781`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L1749-L1781)*
 
 Provides a `Visitor` access to each element of a sequence in the input.
 
@@ -1649,6 +1648,8 @@ implementation of `SeqAccess` for a basic JSON data format.
 ```rust
 trait MapAccess<'de> { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:1837-1940`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L1837-L1940)*
 
 Provides a `Visitor` access to each entry of a map in the input.
 
@@ -1713,6 +1714,8 @@ implementation of `MapAccess` for a basic JSON data format.
 trait EnumAccess<'de>: Sized { ... }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2035-2062`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L2035-L2062)*
+
 Provides a `Visitor` access to the data of an enum in the input.
 
 `EnumAccess` is created by the `Deserializer` and passed to the
@@ -1762,6 +1765,8 @@ implementation of `EnumAccess` for a basic JSON data format.
 ```rust
 trait VariantAccess<'de>: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2088-2280`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L2088-L2280)*
 
 `VariantAccess` is a visitor that is created by the `Deserializer` and
 passed to the `Deserialize` to deserialize the content of a particular enum
@@ -1817,6 +1822,8 @@ implementation of `VariantAccess` for a basic JSON data format.
 ```rust
 trait IntoDeserializer<'de, E: Error> { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:2316-2322`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L2316-L2322)*
 
 Converts an existing value into a `Deserializer` from which other values can
 be deserialized.
@@ -1919,4 +1926,6 @@ impl FromStr for Setting {
 ## Macros
 
 ### `declare_error_trait!`
+
+*Defined in [`serde_core-1.0.228/src/de/mod.rs:137-301`](../../../.source_1765210505/serde_core-1.0.228/src/de/mod.rs#L137-L301)*
 

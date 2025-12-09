@@ -54,6 +54,8 @@ This module should be replaced once rust provides safe transmutes.
 trait Pod: Copy + 'static { ... }
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:22`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L22)*
+
 A trait for types that can safely be converted from and to byte slices.
 
 # Safety
@@ -76,7 +78,6 @@ A type that is `Pod` must:
 - [`BlockAux64`](../xcoff/index.md)
 - [`BuildToolVersion`](../macho/index.md)
 - [`BuildVersionCommand`](../macho/index.md)
-- [`ClsId`](../pe/index.md)
 - [`CompressionHeader32`](../elf/index.md)
 - [`CompressionHeader64`](../elf/index.md)
 - [`CsectAux32`](../xcoff/index.md)
@@ -124,6 +125,7 @@ A type that is `Pod` must:
 - [`FvmlibCommand`](../macho/index.md)
 - [`Fvmlib`](../macho/index.md)
 - [`GnuHashHeader`](../elf/index.md)
+- [`Guid`](../pe/index.md)
 - [`HashHeader`](../elf/index.md)
 - [`Header`](../archive/index.md)
 - [`I16Bytes`](../index.md)
@@ -280,6 +282,8 @@ A type that is `Pod` must:
 fn from_bytes<T: Pod>(data: &[u8]) -> result::Result<(&T, &[u8]), ()>
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:30-42`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L30-L42)*
+
 Cast the head of a byte slice to a `Pod` type.
 
 Returns the type and the tail of the byte slice.
@@ -291,6 +295,8 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 ```rust
 fn from_bytes_mut<T: Pod>(data: &mut [u8]) -> result::Result<(&mut T, &mut [u8]), ()>
 ```
+
+*Defined in [`object-0.37.3/src/pod.rs:50-65`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L50-L65)*
 
 Cast the head of a mutable byte slice to a `Pod` type.
 
@@ -304,6 +310,8 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 fn slice_from_bytes<T: Pod>(data: &[u8], count: usize) -> result::Result<(&[T], &[u8]), ()>
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:73-85`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L73-L85)*
+
 Cast the head of a byte slice to a slice of a `Pod` type.
 
 Returns the type slice and the tail of the byte slice.
@@ -316,6 +324,8 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 fn slice_from_bytes_mut<T: Pod>(data: &mut [u8], count: usize) -> result::Result<(&mut [T], &mut [u8]), ()>
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:93-111`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L93-L111)*
+
 Cast the head of a mutable byte slice to a slice of a `Pod` type.
 
 Returns the type slice and the tail of the byte slice.
@@ -327,6 +337,8 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 ```rust
 fn slice_from_all_bytes<T: Pod>(data: &[u8]) -> result::Result<&[T], ()>
 ```
+
+*Defined in [`object-0.37.3/src/pod.rs:120-127`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L120-L127)*
 
 Cast all of a byte slice to a slice of a `Pod` type.
 
@@ -341,6 +353,8 @@ of the type size, or the alignment is invalid.
 fn slice_from_all_bytes_mut<T: Pod>(data: &mut [u8]) -> result::Result<&mut [T], ()>
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:136-143`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L136-L143)*
+
 Cast all of a byte slice to a slice of a `Pod` type.
 
 Returns the type slice.
@@ -354,6 +368,8 @@ of the type size, or the alignment is invalid.
 fn bytes_of<T: Pod>(val: &T) -> &[u8]
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:147-154`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L147-L154)*
+
 Cast a `Pod` type to a byte slice.
 
 ### `bytes_of_mut`
@@ -361,6 +377,8 @@ Cast a `Pod` type to a byte slice.
 ```rust
 fn bytes_of_mut<T: Pod>(val: &mut T) -> &mut [u8]
 ```
+
+*Defined in [`object-0.37.3/src/pod.rs:158-165`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L158-L165)*
 
 Cast a `Pod` type to a mutable byte slice.
 
@@ -370,6 +388,8 @@ Cast a `Pod` type to a mutable byte slice.
 fn bytes_of_slice<T: Pod>(val: &[T]) -> &[u8]
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:169-176`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L169-L176)*
+
 Cast a slice of a `Pod` type to a byte slice.
 
 ### `bytes_of_slice_mut`
@@ -377,6 +397,8 @@ Cast a slice of a `Pod` type to a byte slice.
 ```rust
 fn bytes_of_slice_mut<T: Pod>(val: &mut [T]) -> &mut [u8]
 ```
+
+*Defined in [`object-0.37.3/src/pod.rs:180-187`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L180-L187)*
 
 Cast a slice of a `Pod` type to a mutable byte slice.
 
@@ -388,7 +410,11 @@ Cast a slice of a `Pod` type to a mutable byte slice.
 type Result<T> = result::Result<T, ()>;
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:13`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L13)*
+
 ## Macros
 
 ### `unsafe_impl_pod!`
+
+*Defined in [`object-0.37.3/src/pod.rs:189-195`](../../../.source_1765210505/object-0.37.3/src/pod.rs#L189-L195)*
 

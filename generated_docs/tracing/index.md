@@ -95,7 +95,7 @@
  ## Subscribers
 
  As `Span`s and `Event`s occur, they are recorded or aggregated by
- implementations of the [`Subscriber`](../tracing_core/index.md) trait. `Subscriber`s are notified
+ implementations of the [`Subscriber`](../tracing_core/subscriber/index.md) trait. `Subscriber`s are notified
  when an `Event` takes place and when a `Span` is entered or exited. These
  notifications are represented by the following `Subscriber` trait methods:
 
@@ -126,7 +126,7 @@
 
  ### Spans
 
- The [`span!`](#span) macro expands to a [`Span` struct][`Span`](#span) which is used to
+ The [`span!`](#span) macro expands to a [`Span` struct][`Span`](span/index.md) which is used to
  record a span. The `Span::enter` method on that struct records that the
  span has been entered, and returns a [RAII] guard object, which will exit
  the span when dropped.
@@ -173,7 +173,7 @@
 
  For functions which don't have built-in tracing support and can't have
  the `#[instrument]` attribute applied (such as from an external crate),
- the [`Span` struct][`Span`](#span) has a [`in_scope()` method]`in_scope`
+ the [`Span` struct][`Span`](span/index.md) has a [`in_scope()` method]`in_scope`
  which can be used to easily wrap synchronous code in a span.
 
  For example:
@@ -635,7 +635,7 @@
  libraries and applications either emit or consume `log` records. Therefore,
  `tracing` provides multiple forms of interoperability with `log`: `tracing`
  instrumentation can emit `log` records, and a compatibility layer enables
- `tracing` [`Subscriber`](../tracing_core/index.md)s to consume `log` records as `tracing` [`Event`](#event)s.
+ `tracing` [`Subscriber`](../tracing_core/subscriber/index.md)s to consume `log` records as `tracing` [`Event`](#event)s.
 
  ### Emitting `log` Records
 
@@ -674,7 +674,7 @@
  ### Consuming `log` Records
 
  The `tracing-log` crate provides a compatibility layer which
- allows a `tracing` [`Subscriber`](../tracing_core/index.md) to consume `log` records as though they
+ allows a `tracing` [`Subscriber`](../tracing_core/subscriber/index.md) to consume `log` records as though they
  were `tracing` [events]. This allows applications using `tracing` to record
  the logs emitted by dependencies using `log` as events within the context of
  the application's trace tree. See [that crate's documentation][log-tracer]
@@ -946,7 +946,7 @@
 | [`field`](#field) | mod | `Span` and `Event` key-value data. |
 | [`instrument`](#instrument) | mod | Attach a span to a `std::future::Future`. |
 | [`level_filters`](#level_filters) | mod | Trace verbosity level filtering. |
-| [`span`](#span) | mod | Spans represent periods of time in which a program was executing in a |
+| [`span`](#span) | mod | Spans represent periods of time in which a program was executing in a particular context. |
 | [`subscriber`](#subscriber) | mod | Collects and records trace data. |
 | [`sealed`](#sealed) | mod |  |
 | [`Span`](#span) | struct |  |
@@ -992,6 +992,8 @@ struct Span {
 }
 ```
 
+*Defined in [`tracing-0.1.43/src/span.rs:349-359`](../../.source_1765210505/tracing-0.1.43/src/span.rs#L349-L359)*
+
 A handle representing a span, with the capability to enter the span if it
 exists.
 
@@ -1016,19 +1018,19 @@ manner regardless of whether or not the trace is currently being collected.
 
 #### Implementations
 
-- <span id="span-new"></span>`fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
+- <span id="span-new"></span>`fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](span/index.md)
 
-- <span id="span-new-root"></span>`fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
+- <span id="span-new-root"></span>`fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](span/index.md)
 
-- <span id="span-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Id`](span/index.md), [`Metadata`](#metadata), [`Span`](#span)
+- <span id="span-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Id`](span/index.md), [`Metadata`](#metadata), [`Span`](span/index.md)
 
-- <span id="span-new-disabled"></span>`fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
+- <span id="span-new-disabled"></span>`fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Metadata`](#metadata), [`Span`](span/index.md)
 
-- <span id="span-none"></span>`const fn none() -> Span` — [`Span`](#span)
+- <span id="span-none"></span>`const fn none() -> Span` — [`Span`](span/index.md)
 
-- <span id="span-current"></span>`fn current() -> Span` — [`Span`](#span)
+- <span id="span-current"></span>`fn current() -> Span` — [`Span`](span/index.md)
 
-- <span id="span-make-with"></span>`fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Metadata`](#metadata), [`Attributes`](span/index.md), [`Dispatch`](#dispatch), [`Span`](#span)
+- <span id="span-make-with"></span>`fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Metadata`](#metadata), [`Attributes`](span/index.md), [`Dispatch`](dispatcher/index.md), [`Span`](span/index.md)
 
 - <span id="span-enter"></span>`fn enter(&self) -> Entered<'_>` — [`Entered`](span/index.md)
 
@@ -1058,13 +1060,13 @@ manner regardless of whether or not the trace is currently being collected.
 
 - <span id="span-metadata"></span>`fn metadata(&self) -> Option<&'static Metadata<'static>>` — [`Metadata`](#metadata)
 
-- <span id="span-with-subscriber"></span>`fn with_subscriber<T>(&self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>` — [`Id`](span/index.md), [`Dispatch`](#dispatch)
+- <span id="span-with-subscriber"></span>`fn with_subscriber<T>(&self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>` — [`Id`](span/index.md), [`Dispatch`](dispatcher/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](#span)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](span/index.md)
 
 ##### `impl Debug for Span`
 
@@ -1078,13 +1080,13 @@ manner regardless of whether or not the trace is currently being collected.
 
 - <span id="span-hash"></span>`fn hash<H: Hasher>(&self, hasher: &mut H)`
 
-##### `impl<T> Instrument for Span`
+##### `impl Instrument for Span`
 
 ##### `impl PartialEq for Span`
 
 - <span id="span-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> WithSubscriber for Span`
+##### `impl WithSubscriber for Span`
 
 ## Traits
 
@@ -1093,6 +1095,8 @@ manner regardless of whether or not the trace is currently being collected.
 ```rust
 trait Instrument: Sized { ... }
 ```
+
+*Defined in [`tracing-0.1.43/src/instrument.rs:20-131`](../../.source_1765210505/tracing-0.1.43/src/instrument.rs#L20-L131)*
 
 Attaches spans to a `std::future::Future`.
 
@@ -1104,28 +1108,27 @@ instrumented with a `tracing` [`span`](span/index.md).
 
 - `fn instrument(self, span: Span) -> Instrumented<Self>`
 
-  Instruments this type with the provided [`Span`](#span), returning an
+  Instruments this type with the provided [`Span`](span/index.md), returning an
 
 - `fn in_current_span(self) -> Instrumented<Self>`
 
-  Instruments this type with the [current] [`Span`](#span), returning an
+  Instruments this type with the [current] [`Span`](span/index.md), returning an
 
 #### Implementors
 
-- [`EnteredSpan`](span/index.md)
-- [`Entered`](span/index.md)
-- [`Inner`](span/index.md)
-- [`Instrumented`](instrument/index.md)
-- [`PhantomNotSend`](span/index.md)
-- [`Span`](#span)
-- [`WithDispatch`](instrument/index.md)
 - `T`
 
 ## Functions
 
+*Defined in [`tracing-0.1.43/src/lib.rs:957`](../../.source_1765210505/tracing-0.1.43/src/lib.rs#L957)*
+
+*Defined in [`tracing-0.1.43/src/lib.rs:957`](../../.source_1765210505/tracing-0.1.43/src/lib.rs#L957)*
+
 ## Macros
 
 ### `event!`
+
+*Defined in [`tracing-0.1.43/src/macros.rs:615-1053`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L615-L1053)*
 
 Constructs a new `Event`.
 
@@ -1163,6 +1166,8 @@ event!(Level::INFO, the_answer = data.0);
 
 ### `span!`
 
+*Defined in [`tracing-0.1.43/src/macros.rs:20-131`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L20-L131)*
+
 Constructs a new span.
 
 See [the top-level documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
@@ -1182,6 +1187,8 @@ let _enter = span.enter();
 
 ### `record_all!`
 
+*Defined in [`tracing-0.1.43/src/macros.rs:152-161`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L152-L161)*
+
 Records multiple values on a span in a single call. As with recording
 individual values, all fields must be declared when the span is created.
 
@@ -1200,6 +1207,8 @@ record_all!(span, field1 = ?"1", field2 = %"2", field3 = 3);
 ```
 
 ### `trace_span!`
+
+*Defined in [`tracing-0.1.43/src/macros.rs:197-242`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L197-L242)*
 
 Constructs a span at the trace level.
 
@@ -1235,6 +1244,8 @@ span.in_scope(|| {
 
 ### `debug_span!`
 
+*Defined in [`tracing-0.1.43/src/macros.rs:278-323`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L278-L323)*
+
 Constructs a span at the debug level.
 
 [Fields] and [`attributes`](../object/read/elf/attributes/index.md) are set using the same syntax as the `span!`
@@ -1268,6 +1279,8 @@ span.in_scope(|| {
 ```
 
 ### `info_span!`
+
+*Defined in [`tracing-0.1.43/src/macros.rs:359-404`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L359-L404)*
 
 Constructs a span at the info level.
 
@@ -1303,6 +1316,8 @@ span.in_scope(|| {
 
 ### `warn_span!`
 
+*Defined in [`tracing-0.1.43/src/macros.rs:440-485`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L440-L485)*
+
 Constructs a span at the warn level.
 
 [Fields] and [`attributes`](../object/read/elf/attributes/index.md) are set using the same syntax as the `span!`
@@ -1336,6 +1351,8 @@ span.in_scope(|| {
 ```
 
 ### `error_span!`
+
+*Defined in [`tracing-0.1.43/src/macros.rs:520-565`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L520-L565)*
 
 Constructs a span at the error level.
 
@@ -1371,6 +1388,8 @@ span.in_scope(|| {
 
 ### `event_enabled!`
 
+*Defined in [`tracing-0.1.43/src/macros.rs:1083-1087`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1083-L1087)*
+
 Tests whether an event with the specified level and target would be enabled.
 
 This is similar to `enabled!`, but queries the current subscriber specifically for
@@ -1399,6 +1418,8 @@ if event_enabled!(Level::DEBUG, foo_field) {
 
 
 ### `span_enabled!`
+
+*Defined in [`tracing-0.1.43/src/macros.rs:1117-1121`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1117-L1121)*
 
 Tests whether a span with the specified level and target would be enabled.
 
@@ -1429,6 +1450,8 @@ if span_enabled!(Level::DEBUG, foo_field) {
 
 ### `enabled!`
 
+*Defined in [`tracing-0.1.43/src/macros.rs:1214-1294`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1214-L1294)*
+
 Checks whether a span or event is [enabled](#enabled) based on the provided [`metadata`](../tracing_core/metadata/index.md).
 
 
@@ -1441,7 +1464,7 @@ and emitting an event for each item).
 # Usage
 
 [Subscribers] can make filtering decisions based all the data included in a
-span or event's [`Metadata`](../tracing_core/index.md). This means that it is possible for `enabled!`
+span or event's [`Metadata`](../tracing_core/metadata/index.md). This means that it is possible for `enabled!`
 to return a _false positive_ (indicating that something would be enabled
 when it actually would not be) or a _false negative_ (indicating that
 something would be disabled when it would actually be enabled).
@@ -1504,7 +1527,7 @@ if enabled!(target: "my_crate", Level::DEBUG, hello) {
 
 # Alternatives
 
-`enabled!` queries subscribers with [`Metadata`](../tracing_core/index.md) where
+`enabled!` queries subscribers with [`Metadata`](../tracing_core/metadata/index.md) where
 `is_event` and `is_span` both return `false`. Alternatively,
 use [`event_enabled!`](#event-enabled) or `span_enabled!` to ensure one of these
 returns true.
@@ -1515,6 +1538,8 @@ returns true.
 
 
 ### `trace!`
+
+*Defined in [`tracing-0.1.43/src/macros.rs:1333-1583`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1333-L1583)*
 
 Constructs an event at the trace level.
 
@@ -1553,6 +1578,8 @@ trace!(name: "completed", position = ?pos);
 
 ### `debug!`
 
+*Defined in [`tracing-0.1.43/src/macros.rs:1609-1859`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1609-L1859)*
+
 Constructs an event at the debug level.
 
 This functions similarly to the `event!` macro. See [the top-level
@@ -1576,6 +1603,8 @@ debug!(name: "completed", position = ?pos);
 ```
 
 ### `info!`
+
+*Defined in [`tracing-0.1.43/src/macros.rs:1896-2146`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L1896-L2146)*
 
 Constructs an event at the info level.
 
@@ -1612,6 +1641,8 @@ info!(name: "completed", "completed connection to {:?}", addr);
 
 ### `warn!`
 
+*Defined in [`tracing-0.1.43/src/macros.rs:2176-2426`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L2176-L2426)*
+
 Constructs an event at the warn level.
 
 This functions similarly to the `event!` macro. See [the top-level
@@ -1639,6 +1670,8 @@ warn!(name: "invalid", ?input);
 ```
 
 ### `error!`
+
+*Defined in [`tracing-0.1.43/src/macros.rs:2452-2702`](../../.source_1765210505/tracing-0.1.43/src/macros.rs#L2452-L2702)*
 
 Constructs an event at the error level.
 

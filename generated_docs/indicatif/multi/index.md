@@ -24,33 +24,35 @@ struct MultiProgress {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/multi.rs:18-20`](../../../.source_1765210505/indicatif-0.18.3/src/multi.rs#L18-L20)*
+
 Manages multiple progress bars from different threads
 
 #### Implementations
 
 - <span id="multiprogress-new"></span>`fn new() -> Self`
 
-- <span id="multiprogress-with-draw-target"></span>`fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
+- <span id="multiprogress-with-draw-target"></span>`fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
 
-- <span id="multiprogress-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../index.md)
+- <span id="multiprogress-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md)
 
 - <span id="multiprogress-set-move-cursor"></span>`fn set_move_cursor(&self, move_cursor: bool)`
 
-- <span id="multiprogress-set-alignment"></span>`fn set_alignment(&self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](../index.md)
+- <span id="multiprogress-set-alignment"></span>`fn set_alignment(&self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](#multiprogressalignment)
 
-- <span id="multiprogress-add"></span>`fn add(&self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-add"></span>`fn add(&self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
-- <span id="multiprogress-insert"></span>`fn insert(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-insert"></span>`fn insert(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
-- <span id="multiprogress-insert-from-back"></span>`fn insert_from_back(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-insert-from-back"></span>`fn insert_from_back(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
-- <span id="multiprogress-insert-before"></span>`fn insert_before(&self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-insert-before"></span>`fn insert_before(&self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
-- <span id="multiprogress-insert-after"></span>`fn insert_after(&self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-insert-after"></span>`fn insert_after(&self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
-- <span id="multiprogress-remove"></span>`fn remove(&self, pb: &ProgressBar)` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-remove"></span>`fn remove(&self, pb: &ProgressBar)` — [`ProgressBar`](../progress_bar/index.md)
 
-- <span id="multiprogress-internalize"></span>`fn internalize(&self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](#insertlocation), [`ProgressBar`](../index.md)
+- <span id="multiprogress-internalize"></span>`fn internalize(&self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](#insertlocation), [`ProgressBar`](../progress_bar/index.md)
 
 - <span id="multiprogress-println"></span>`fn println<I: AsRef<str>>(&self, msg: I) -> io::Result<()>`
 
@@ -64,7 +66,7 @@ Manages multiple progress bars from different threads
 
 ##### `impl Clone for MultiProgress`
 
-- <span id="multiprogress-clone"></span>`fn clone(&self) -> MultiProgress` — [`MultiProgress`](../index.md)
+- <span id="multiprogress-clone"></span>`fn clone(&self) -> MultiProgress` — [`MultiProgress`](#multiprogress)
 
 ##### `impl Debug for MultiProgress`
 
@@ -87,6 +89,8 @@ struct MultiState {
     zombie_lines_count: crate::draw_target::VisualLines,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/multi.rs:207-224`](../../../.source_1765210505/indicatif-0.18.3/src/multi.rs#L207-L224)*
 
 #### Fields
 
@@ -122,7 +126,7 @@ struct MultiState {
 
 #### Implementations
 
-- <span id="multistate-new"></span>`fn new(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
+- <span id="multistate-new"></span>`fn new(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
 
 - <span id="multistate-mark-zombie"></span>`fn mark_zombie(&mut self, index: usize)`
 
@@ -161,6 +165,8 @@ struct MultiStateMember {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/multi.rs:471-477`](../../../.source_1765210505/indicatif-0.18.3/src/multi.rs#L471-L477)*
+
 #### Fields
 
 - **`draw_state`**: `Option<crate::draw_target::DrawState>`
@@ -193,6 +199,8 @@ enum MultiProgressAlignment {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/multi.rs:505-509`](../../../.source_1765210505/indicatif-0.18.3/src/multi.rs#L505-L509)*
+
 Vertical alignment of a multi progress.
 
 The alignment controls how the multi progress is aligned if some of its progress bars get removed.
@@ -214,7 +222,7 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 
 ##### `impl Clone for MultiProgressAlignment`
 
-- <span id="multiprogressalignment-clone"></span>`fn clone(&self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](../index.md)
+- <span id="multiprogressalignment-clone"></span>`fn clone(&self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](#multiprogressalignment)
 
 ##### `impl Copy for MultiProgressAlignment`
 
@@ -224,7 +232,7 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 
 ##### `impl Default for MultiProgressAlignment`
 
-- <span id="multiprogressalignment-default"></span>`fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](../index.md)
+- <span id="multiprogressalignment-default"></span>`fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](#multiprogressalignment)
 
 ### `InsertLocation`
 
@@ -237,4 +245,6 @@ enum InsertLocation {
     Before(usize),
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/multi.rs:511-517`](../../../.source_1765210505/indicatif-0.18.3/src/multi.rs#L511-L517)*
 

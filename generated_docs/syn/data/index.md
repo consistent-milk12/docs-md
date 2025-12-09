@@ -25,7 +25,7 @@
 | [`parsing`](#parsing) | mod |  |
 | [`printing`](#printing) | mod |  |
 | [`Variant`](#variant) | struct | An enum variant. |
-| [`FieldsNamed`](#fieldsnamed) | struct | Named fields of a struct or struct variant such as `Point { x: f64 |
+| [`FieldsNamed`](#fieldsnamed) | struct | Named fields of a struct or struct variant such as `Point { x: f64, y: f64 }`. |
 | [`FieldsUnnamed`](#fieldsunnamed) | struct | Unnamed fields of a tuple struct or tuple variant such as `Some(T)`. |
 | [`Field`](#field) | struct | A field of a struct or enum variant. |
 | [`Members`](#members) | struct |  |
@@ -48,6 +48,8 @@ struct Variant {
     pub discriminant: Option<(token::Eq, crate::expr::Expr)>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:9-24`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L9-L24)*
 
 An enum variant.
 
@@ -83,15 +85,15 @@ An enum variant.
 
 ##### `impl Parse for crate::data::Variant`
 
-- <span id="cratedatavariant-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratedatavariant-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Variant`
 
 - <span id="cratevariant-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Variant`
+##### `impl Sealed for Variant`
 
-##### `impl<T> Spanned for Variant`
+##### `impl Spanned for Variant`
 
 - <span id="variant-span"></span>`fn span(&self) -> Span`
 
@@ -107,6 +109,8 @@ struct FieldsNamed {
     pub named: crate::punctuated::Punctuated<Field, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:48-56`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L48-L56)*
 
 Named fields of a struct or struct variant such as `Point { x: f64,
 y: f64 }`.
@@ -133,15 +137,15 @@ y: f64 }`.
 
 ##### `impl Parse for crate::data::FieldsNamed`
 
-- <span id="cratedatafieldsnamed-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratedatafieldsnamed-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::FieldsNamed`
 
 - <span id="cratefieldsnamed-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for FieldsNamed`
+##### `impl Sealed for FieldsNamed`
 
-##### `impl<T> Spanned for FieldsNamed`
+##### `impl Spanned for FieldsNamed`
 
 - <span id="fieldsnamed-span"></span>`fn span(&self) -> Span`
 
@@ -157,6 +161,8 @@ struct FieldsUnnamed {
     pub unnamed: crate::punctuated::Punctuated<Field, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:58-65`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L58-L65)*
 
 Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 
@@ -182,15 +188,15 @@ Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 
 ##### `impl Parse for crate::data::FieldsUnnamed`
 
-- <span id="cratedatafieldsunnamed-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratedatafieldsunnamed-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::FieldsUnnamed`
 
 - <span id="cratefieldsunnamed-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for FieldsUnnamed`
+##### `impl Sealed for FieldsUnnamed`
 
-##### `impl<T> Spanned for FieldsUnnamed`
+##### `impl Spanned for FieldsUnnamed`
 
 - <span id="fieldsunnamed-span"></span>`fn span(&self) -> Span`
 
@@ -211,6 +217,8 @@ struct Field {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/data.rs:181-200`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L181-L200)*
+
 A field of a struct or enum variant.
 
 #### Fields
@@ -223,9 +231,9 @@ A field of a struct or enum variant.
 
 #### Implementations
 
-- <span id="cratedatafield-parse-named"></span>`fn parse_named(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratedatafield-parse-named"></span>`fn parse_named(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-- <span id="cratedatafield-parse-unnamed"></span>`fn parse_unnamed(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratedatafield-parse-unnamed"></span>`fn parse_unnamed(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
@@ -247,9 +255,9 @@ A field of a struct or enum variant.
 
 - <span id="cratefield-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Field`
+##### `impl Sealed for Field`
 
-##### `impl<T> Spanned for Field`
+##### `impl Spanned for Field`
 
 - <span id="field-span"></span>`fn span(&self) -> Span`
 
@@ -266,23 +274,25 @@ struct Members<'a> {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/data.rs:202-205`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L202-L205)*
+
 #### Trait Implementations
 
-##### `impl<'a> Clone for Members<'a>`
+##### `impl Clone for Members<'a>`
 
 - <span id="members-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<I> IntoIterator for Members<'a>`
+##### `impl IntoIterator for Members<'a>`
 
-- <span id="members-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="members-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="members-intoiter"></span>`type IntoIter = I`
+- <span id="members-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="members-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Members<'a>`
+##### `impl Iterator for Members<'a>`
 
-- <span id="members-item"></span>`type Item = Member`
+- <span id="members-type-item"></span>`type Item = Member`
 
 - <span id="members-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -297,6 +307,8 @@ enum Fields {
     Unit,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/data.rs:26-46`](../../../.source_1765210505/syn-2.0.111/src/data.rs#L26-L46)*
 
 Data stored within an enum variant or struct.
 
@@ -322,9 +334,9 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- <span id="fields-iter"></span>`fn iter(&self) -> punctuated::Iter<'_, Field>` — [`Iter`](../punctuated/index.md), [`Field`](../index.md)
+- <span id="fields-iter"></span>`fn iter(&self) -> punctuated::Iter<'_, Field>` — [`Iter`](../punctuated/index.md), [`Field`](#field)
 
-- <span id="fields-iter-mut"></span>`fn iter_mut(&mut self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](../punctuated/index.md), [`Field`](../index.md)
+- <span id="fields-iter-mut"></span>`fn iter_mut(&mut self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](../punctuated/index.md), [`Field`](#field)
 
 - <span id="fields-len"></span>`fn len(&self) -> usize`
 
@@ -350,9 +362,9 @@ This type is a [syntax tree enum].
 
 ##### `impl IntoIterator for Fields`
 
-- <span id="fields-item"></span>`type Item = Field`
+- <span id="fields-type-item"></span>`type Item = Field`
 
-- <span id="fields-intoiter"></span>`type IntoIter = IntoIter<Field>`
+- <span id="fields-type-intoiter"></span>`type IntoIter = IntoIter<Field>`
 
 - <span id="fields-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -360,9 +372,9 @@ This type is a [syntax tree enum].
 
 - <span id="cratefields-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Fields`
+##### `impl Sealed for Fields`
 
-##### `impl<T> Spanned for Fields`
+##### `impl Spanned for Fields`
 
 - <span id="fields-span"></span>`fn span(&self) -> Span`
 

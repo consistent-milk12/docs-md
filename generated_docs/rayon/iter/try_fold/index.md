@@ -27,8 +27,10 @@ struct TryFold<I, U, ID, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:26-31`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_fold.rs#L26-L31)*
+
 `TryFold` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `try_fold()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `try_fold()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -39,7 +41,7 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](../../
 
 ##### `impl<I: clone::Clone, U: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-clone"></span>`fn clone(&self) -> TryFold<I, U, ID, F>` — [`TryFold`](../index.md)
+- <span id="tryfold-clone"></span>`fn clone(&self) -> TryFold<I, U, ID, F>` — [`TryFold`](#tryfold)
 
 ##### `impl<U, I: ParallelIterator + Debug, ID, F> Debug for TryFold<I, U, ID, F>`
 
@@ -49,23 +51,23 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](../../
 
 ##### `impl<T> IntoParallelIterator for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-iter"></span>`type Iter = T`
+- <span id="tryfold-type-iter"></span>`type Iter = T`
 
-- <span id="tryfold-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="tryfold-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="tryfold-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, ID, F> ParallelIterator for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-item"></span>`type Item = U`
+- <span id="tryfold-type-item"></span>`type Item = U`
 
 - <span id="tryfold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for TryFold<I, U, ID, F>`
 
-- <span id="tryfold-align"></span>`const ALIGN: usize`
+- <span id="tryfold-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryfold-init"></span>`type Init = T`
+- <span id="tryfold-type-init"></span>`type Init = T`
 
 - <span id="tryfold-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -86,15 +88,17 @@ struct TryFoldConsumer<'c, U, C, ID, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:62-67`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_fold.rs#L62-L67)*
+
 #### Trait Implementations
 
 ##### `impl<'r, U, T, C, ID, F> Consumer for TryFoldConsumer<'r, U, C, ID, F>`
 
-- <span id="tryfoldconsumer-folder"></span>`type Folder = TryFoldFolder<'r, <C as Consumer>::Folder, U, F>`
+- <span id="tryfoldconsumer-type-folder"></span>`type Folder = TryFoldFolder<'r, <C as Consumer>::Folder, U, F>`
 
-- <span id="tryfoldconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="tryfoldconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="tryfoldconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="tryfoldconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="tryfoldconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -106,9 +110,9 @@ struct TryFoldConsumer<'c, U, C, ID, F> {
 
 ##### `impl<T> Pointable for TryFoldConsumer<'c, U, C, ID, F>`
 
-- <span id="tryfoldconsumer-align"></span>`const ALIGN: usize`
+- <span id="tryfoldconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryfoldconsumer-init"></span>`type Init = T`
+- <span id="tryfoldconsumer-type-init"></span>`type Init = T`
 
 - <span id="tryfoldconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -134,11 +138,13 @@ struct TryFoldFolder<'r, C, U: Try, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:124-128`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_fold.rs#L124-L128)*
+
 #### Trait Implementations
 
 ##### `impl<'r, C, U, F, T> Folder for TryFoldFolder<'r, C, U, F>`
 
-- <span id="tryfoldfolder-result"></span>`type Result = <C as Folder>::Result`
+- <span id="tryfoldfolder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="tryfoldfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -150,9 +156,9 @@ struct TryFoldFolder<'r, C, U: Try, F> {
 
 ##### `impl<T> Pointable for TryFoldFolder<'r, C, U, F>`
 
-- <span id="tryfoldfolder-align"></span>`const ALIGN: usize`
+- <span id="tryfoldfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryfoldfolder-init"></span>`type Init = T`
+- <span id="tryfoldfolder-type-init"></span>`type Init = T`
 
 - <span id="tryfoldfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -172,8 +178,10 @@ struct TryFoldWith<I, U: Try, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:180-184`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_fold.rs#L180-L184)*
+
 `TryFoldWith` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `try_fold_with()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `try_fold_with()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -184,7 +192,7 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 
 ##### `impl<I: clone::Clone, U: clone::Clone + Try, F: clone::Clone> Clone for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-clone"></span>`fn clone(&self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](../index.md)
+- <span id="tryfoldwith-clone"></span>`fn clone(&self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](#tryfoldwith)
 
 ##### `impl<I, U, F> Debug for TryFoldWith<I, U, F>`
 
@@ -194,23 +202,23 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 
 ##### `impl<T> IntoParallelIterator for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-iter"></span>`type Iter = T`
+- <span id="tryfoldwith-type-iter"></span>`type Iter = T`
 
-- <span id="tryfoldwith-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="tryfoldwith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="tryfoldwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, F> ParallelIterator for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-item"></span>`type Item = U`
+- <span id="tryfoldwith-type-item"></span>`type Item = U`
 
 - <span id="tryfoldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for TryFoldWith<I, U, F>`
 
-- <span id="tryfoldwith-align"></span>`const ALIGN: usize`
+- <span id="tryfoldwith-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryfoldwith-init"></span>`type Init = T`
+- <span id="tryfoldwith-type-init"></span>`type Init = T`
 
 - <span id="tryfoldwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -230,15 +238,17 @@ struct TryFoldWithConsumer<'c, C, U: Try, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_fold.rs:220-224`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_fold.rs#L220-L224)*
+
 #### Trait Implementations
 
 ##### `impl<'r, U, T, C, F> Consumer for TryFoldWithConsumer<'r, C, U, F>`
 
-- <span id="tryfoldwithconsumer-folder"></span>`type Folder = TryFoldFolder<'r, <C as Consumer>::Folder, U, F>`
+- <span id="tryfoldwithconsumer-type-folder"></span>`type Folder = TryFoldFolder<'r, <C as Consumer>::Folder, U, F>`
 
-- <span id="tryfoldwithconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="tryfoldwithconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="tryfoldwithconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="tryfoldwithconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="tryfoldwithconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -250,9 +260,9 @@ struct TryFoldWithConsumer<'c, C, U: Try, F> {
 
 ##### `impl<T> Pointable for TryFoldWithConsumer<'c, C, U, F>`
 
-- <span id="tryfoldwithconsumer-align"></span>`const ALIGN: usize`
+- <span id="tryfoldwithconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryfoldwithconsumer-init"></span>`type Init = T`
+- <span id="tryfoldwithconsumer-type-init"></span>`type Init = T`
 
 - <span id="tryfoldwithconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

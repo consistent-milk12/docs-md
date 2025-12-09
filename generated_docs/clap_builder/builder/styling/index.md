@@ -4,7 +4,7 @@
 
 # Module `styling`
 
-Terminal [`Styles`](../index.md) for help and error output
+Terminal [`Styles`](#styles) for help and error output
 
 ## Quick Reference
 
@@ -29,6 +29,8 @@ struct Styles {
     context_value: Option<Style>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/styling.rs:23-33`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/styling.rs#L23-L33)*
 
 Terminal styling definitions
 
@@ -77,7 +79,7 @@ let styles = Styles::styled()
 
 ##### `impl Clone for Styles`
 
-- <span id="styles-clone"></span>`fn clone(&self) -> Styles` — [`Styles`](../index.md)
+- <span id="styles-clone"></span>`fn clone(&self) -> Styles` — [`Styles`](#styles)
 
 ##### `impl Debug for Styles`
 

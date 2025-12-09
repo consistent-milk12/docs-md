@@ -14,7 +14,7 @@ string into something that can run a search looks roughly like this:
 
 * A `&str` is parsed into a [`regex-syntax::ast::Ast`](regex_syntax::ast::Ast).
 * An `Ast` is translated into a [`regex-syntax::hir::Hir`](regex_syntax::hir::Hir).
-* An `Hir` is compiled into a [`NFA`](#nfa).
+* An `Hir` is compiled into a [`NFA`](nfa/index.md).
 * The `NFA` is then used to build one of a few different regex engines:
   * An `NFA` is used directly in the `PikeVM` and `BoundedBacktracker` engines.
   * An `NFA` is used by a [hybrid NFA/DFA](crate::hybrid) to build out a DFA's
@@ -87,7 +87,7 @@ seen as a sequence of instructions for how to match a regex.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`backtrack`](#backtrack) | mod | An NFA backed bounded backtracker for executing regex searches with capturing |
+| [`backtrack`](#backtrack) | mod | An NFA backed bounded backtracker for executing regex searches with capturing groups. |
 | [`builder`](#builder) | mod |  |
 | [`compiler`](#compiler) | mod |  |
 | [`error`](#error) | mod |  |
@@ -138,11 +138,13 @@ struct Builder {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/builder.rs:313-357`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/builder.rs#L313-L357)*
+
 An abstraction for building Thompson NFAs by hand.
 
 A builder is what a [`thompson::Compiler`](crate::nfa::thompson::Compiler)
 uses internally to translate a regex's high-level intermediate
-representation into an [`NFA`](#nfa).
+representation into an [`NFA`](nfa/index.md).
 
 The primary function of this builder is to abstract away the internal
 representation of an NFA and make it difficult to produce NFAs are that
@@ -345,43 +347,43 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](builder/index.md)
 
 - <span id="builder-clear"></span>`fn clear(&mut self)`
 
-- <span id="builder-build"></span>`fn build(&self, start_anchored: StateID, start_unanchored: StateID) -> Result<NFA, BuildError>` — [`StateID`](../../util/primitives/index.md), [`NFA`](#nfa), [`BuildError`](#builderror)
+- <span id="builder-build"></span>`fn build(&self, start_anchored: StateID, start_unanchored: StateID) -> Result<NFA, BuildError>` — [`StateID`](../../util/primitives/index.md), [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-start-pattern"></span>`fn start_pattern(&mut self) -> Result<PatternID, BuildError>` — [`PatternID`](../../index.md), [`BuildError`](#builderror)
+- <span id="builder-start-pattern"></span>`fn start_pattern(&mut self) -> Result<PatternID, BuildError>` — [`PatternID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-finish-pattern"></span>`fn finish_pattern(&mut self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md), [`BuildError`](#builderror)
+- <span id="builder-finish-pattern"></span>`fn finish_pattern(&mut self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-current-pattern-id"></span>`fn current_pattern_id(&self) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="builder-current-pattern-id"></span>`fn current_pattern_id(&self) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
 
 - <span id="builder-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
-- <span id="builder-add-empty"></span>`fn add_empty(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-add-empty"></span>`fn add_empty(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-add-union"></span>`fn add_union(&mut self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-add-union"></span>`fn add_union(&mut self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-add-union-reverse"></span>`fn add_union_reverse(&mut self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-add-union-reverse"></span>`fn add_union_reverse(&mut self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-add-range"></span>`fn add_range(&mut self, trans: Transition) -> Result<StateID, BuildError>` — [`Transition`](#transition), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-add-range"></span>`fn add_range(&mut self, trans: Transition) -> Result<StateID, BuildError>` — [`Transition`](nfa/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-add-sparse"></span>`fn add_sparse(&mut self, transitions: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](#transition), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-add-sparse"></span>`fn add_sparse(&mut self, transitions: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](nfa/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-add-look"></span>`fn add_look(&mut self, next: StateID, look: Look) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`Look`](../../util/look/index.md), [`BuildError`](#builderror)
+- <span id="builder-add-look"></span>`fn add_look(&mut self, next: StateID, look: Look) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`Look`](../../util/look/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-add-capture-start"></span>`fn add_capture_start(&mut self, next: StateID, group_index: u32, name: Option<Arc<str>>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-add-capture-start"></span>`fn add_capture_start(&mut self, next: StateID, group_index: u32, name: Option<Arc<str>>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-add-capture-end"></span>`fn add_capture_end(&mut self, next: StateID, group_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-add-capture-end"></span>`fn add_capture_end(&mut self, next: StateID, group_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-add-fail"></span>`fn add_fail(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-add-fail"></span>`fn add_fail(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-add-match"></span>`fn add_match(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-add-match"></span>`fn add_match(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-add"></span>`fn add(&mut self, state: State) -> Result<StateID, BuildError>` — [`State`](builder/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-add"></span>`fn add(&mut self, state: State) -> Result<StateID, BuildError>` — [`State`](builder/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-patch"></span>`fn patch(&mut self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="builder-patch"></span>`fn patch(&mut self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
 - <span id="builder-set-utf8"></span>`fn set_utf8(&mut self, yes: bool)`
 
@@ -395,19 +397,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-get-look-matcher"></span>`fn get_look_matcher(&self) -> &LookMatcher` — [`LookMatcher`](../../util/look/index.md)
 
-- <span id="builder-set-size-limit"></span>`fn set_size_limit(&mut self, limit: Option<usize>) -> Result<(), BuildError>` — [`BuildError`](#builderror)
+- <span id="builder-set-size-limit"></span>`fn set_size_limit(&mut self, limit: Option<usize>) -> Result<(), BuildError>` — [`BuildError`](error/index.md)
 
 - <span id="builder-get-size-limit"></span>`fn get_size_limit(&self) -> Option<usize>`
 
 - <span id="builder-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="builder-check-size-limit"></span>`fn check_size_limit(&self) -> Result<(), BuildError>` — [`BuildError`](#builderror)
+- <span id="builder-check-size-limit"></span>`fn check_size_limit(&self) -> Result<(), BuildError>` — [`BuildError`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](builder/index.md)
 
 ##### `impl Debug for Builder`
 
@@ -415,7 +417,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default for Builder`
 
-- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
+- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](builder/index.md)
 
 ### `BuildError`
 
@@ -425,13 +427,15 @@ struct BuildError {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/error.rs:21-23`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/error.rs#L21-L23)*
+
 An error that can occurred during the construction of a thompson NFA.
 
 This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/hir/index.md) type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/ast/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 
@@ -446,27 +450,27 @@ building the NFA will fail.
 
 - <span id="builderror-kind"></span>`fn kind(&self) -> &BuildErrorKind` — [`BuildErrorKind`](error/index.md)
 
-- <span id="builderror-syntax"></span>`fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-syntax"></span>`fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](error/index.md)
 
-- <span id="builderror-captures"></span>`fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../util/captures/index.md), [`BuildError`](#builderror)
+- <span id="builderror-captures"></span>`fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../util/captures/index.md), [`BuildError`](error/index.md)
 
-- <span id="builderror-word"></span>`fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../util/look/index.md), [`BuildError`](#builderror)
+- <span id="builderror-word"></span>`fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../util/look/index.md), [`BuildError`](error/index.md)
 
-- <span id="builderror-too-many-patterns"></span>`fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-too-many-patterns"></span>`fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](error/index.md)
 
-- <span id="builderror-too-many-states"></span>`fn too_many_states(given: usize) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-too-many-states"></span>`fn too_many_states(given: usize) -> BuildError` — [`BuildError`](error/index.md)
 
-- <span id="builderror-exceeded-size-limit"></span>`fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-exceeded-size-limit"></span>`fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](error/index.md)
 
-- <span id="builderror-invalid-capture-index"></span>`fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-invalid-capture-index"></span>`fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](error/index.md)
 
-- <span id="builderror-unsupported-captures"></span>`fn unsupported_captures() -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-unsupported-captures"></span>`fn unsupported_captures() -> BuildError` — [`BuildError`](error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](error/index.md)
 
 ##### `impl Debug for BuildError`
 
@@ -480,7 +484,7 @@ building the NFA will fail.
 
 - <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
-##### `impl<T> ToString for BuildError`
+##### `impl ToString for BuildError`
 
 - <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -491,6 +495,8 @@ struct DenseTransitions {
     pub transitions: alloc::boxed::Box<[crate::util::primitives::StateID]>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1882-1886`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1882-L1886)*
 
 A sequence of transitions used to represent a dense state.
 
@@ -518,13 +524,13 @@ usually requires (much) more heap memory.
 
 - <span id="densetransitions-matches-byte"></span>`fn matches_byte(&self, byte: u8) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
 
-- <span id="densetransitions-iter"></span>`fn iter(&self) -> impl Iterator<Item = Transition> + '_` — [`Transition`](#transition)
+- <span id="densetransitions-iter"></span>`fn iter(&self) -> impl Iterator<Item = Transition> + '_` — [`Transition`](nfa/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for DenseTransitions`
 
-- <span id="densetransitions-clone"></span>`fn clone(&self) -> DenseTransitions` — [`DenseTransitions`](#densetransitions)
+- <span id="densetransitions-clone"></span>`fn clone(&self) -> DenseTransitions` — [`DenseTransitions`](nfa/index.md)
 
 ##### `impl Debug for DenseTransitions`
 
@@ -534,7 +540,7 @@ usually requires (much) more heap memory.
 
 ##### `impl PartialEq for DenseTransitions`
 
-- <span id="densetransitions-eq"></span>`fn eq(&self, other: &DenseTransitions) -> bool` — [`DenseTransitions`](#densetransitions)
+- <span id="densetransitions-eq"></span>`fn eq(&self, other: &DenseTransitions) -> bool` — [`DenseTransitions`](nfa/index.md)
 
 ##### `impl StructuralPartialEq for DenseTransitions`
 
@@ -546,6 +552,8 @@ struct PatternIter<'a> {
     _marker: core::marker::PhantomData<&'a ()>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:2023-2031`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L2023-L2031)*
 
 An iterator over all pattern IDs in an NFA.
 
@@ -566,23 +574,23 @@ this pattern iterator was created.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for PatternIter<'a>`
+##### `impl Debug for PatternIter<'a>`
 
 - <span id="patterniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for PatternIter<'a>`
+##### `impl IntoIterator for PatternIter<'a>`
 
-- <span id="patterniter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="patterniter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="patterniter-intoiter"></span>`type IntoIter = I`
+- <span id="patterniter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="patterniter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for PatternIter<'a>`
+##### `impl Iterator for PatternIter<'a>`
 
-- <span id="patterniter-item"></span>`type Item = PatternID`
+- <span id="patterniter-type-item"></span>`type Item = PatternID`
 
-- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../../index.md)
+- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md)
 
 ### `SparseTransitions`
 
@@ -591,6 +599,8 @@ struct SparseTransitions {
     pub transitions: alloc::boxed::Box<[Transition]>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1795-1798`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1795-L1798)*
 
 A sequence of transitions used to represent a sparse state.
 
@@ -618,7 +628,7 @@ corresponding transition.
 
 ##### `impl Clone for SparseTransitions`
 
-- <span id="sparsetransitions-clone"></span>`fn clone(&self) -> SparseTransitions` — [`SparseTransitions`](#sparsetransitions)
+- <span id="sparsetransitions-clone"></span>`fn clone(&self) -> SparseTransitions` — [`SparseTransitions`](nfa/index.md)
 
 ##### `impl Debug for SparseTransitions`
 
@@ -628,7 +638,7 @@ corresponding transition.
 
 ##### `impl PartialEq for SparseTransitions`
 
-- <span id="sparsetransitions-eq"></span>`fn eq(&self, other: &SparseTransitions) -> bool` — [`SparseTransitions`](#sparsetransitions)
+- <span id="sparsetransitions-eq"></span>`fn eq(&self, other: &SparseTransitions) -> bool` — [`SparseTransitions`](nfa/index.md)
 
 ##### `impl StructuralPartialEq for SparseTransitions`
 
@@ -641,6 +651,8 @@ struct Transition {
     pub next: crate::util::primitives::StateID,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1965-1972`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1965-L1972)*
 
 A single transition to another state.
 
@@ -673,7 +685,7 @@ falls in the inclusive range of bytes specified.
 
 ##### `impl Clone for Transition`
 
-- <span id="transition-clone"></span>`fn clone(&self) -> Transition` — [`Transition`](#transition)
+- <span id="transition-clone"></span>`fn clone(&self) -> Transition` — [`Transition`](nfa/index.md)
 
 ##### `impl Copy for Transition`
 
@@ -689,7 +701,7 @@ falls in the inclusive range of bytes specified.
 
 ##### `impl PartialEq for Transition`
 
-- <span id="transition-eq"></span>`fn eq(&self, other: &Transition) -> bool` — [`Transition`](#transition)
+- <span id="transition-eq"></span>`fn eq(&self, other: &Transition) -> bool` — [`Transition`](nfa/index.md)
 
 ##### `impl StructuralPartialEq for Transition`
 
@@ -698,6 +710,8 @@ falls in the inclusive range of bytes specified.
 ```rust
 struct NFA(alloc::sync::Arc<Inner>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:190-202`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L190-L202)*
 
 A byte oriented Thompson non-deterministic finite automaton (NFA).
 
@@ -868,19 +882,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="nfa-new"></span>`fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](#builderror)
+- <span id="nfa-new"></span>`fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- <span id="nfa-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](#builderror)
+- <span id="nfa-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- <span id="nfa-always-match"></span>`fn always_match() -> NFA` — [`NFA`](#nfa)
+- <span id="nfa-always-match"></span>`fn always_match() -> NFA` — [`NFA`](nfa/index.md)
 
-- <span id="nfa-never-match"></span>`fn never_match() -> NFA` — [`NFA`](#nfa)
+- <span id="nfa-never-match"></span>`fn never_match() -> NFA` — [`NFA`](nfa/index.md)
 
-- <span id="nfa-config"></span>`fn config() -> Config` — [`Config`](#config)
+- <span id="nfa-config"></span>`fn config() -> Config` — [`Config`](compiler/index.md)
 
-- <span id="nfa-compiler"></span>`fn compiler() -> Compiler` — [`Compiler`](#compiler)
+- <span id="nfa-compiler"></span>`fn compiler() -> Compiler` — [`Compiler`](compiler/index.md)
 
-- <span id="nfa-patterns"></span>`fn patterns(&self) -> PatternIter<'_>` — [`PatternIter`](#patterniter)
+- <span id="nfa-patterns"></span>`fn patterns(&self) -> PatternIter<'_>` — [`PatternIter`](nfa/index.md)
 
 - <span id="nfa-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
@@ -888,15 +902,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="nfa-start-unanchored"></span>`fn start_unanchored(&self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- <span id="nfa-start-pattern"></span>`fn start_pattern(&self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../index.md), [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-start-pattern"></span>`fn start_pattern(&self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../util/primitives/index.md), [`StateID`](../../util/primitives/index.md)
 
 - <span id="nfa-byte-class-set"></span>`fn byte_class_set(&self) -> &ByteClassSet` — [`ByteClassSet`](../../util/alphabet/index.md)
 
 - <span id="nfa-byte-classes"></span>`fn byte_classes(&self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
 
-- <span id="nfa-state"></span>`fn state(&self, id: StateID) -> &State` — [`StateID`](../../util/primitives/index.md), [`State`](#state)
+- <span id="nfa-state"></span>`fn state(&self, id: StateID) -> &State` — [`StateID`](../../util/primitives/index.md), [`State`](nfa/index.md)
 
-- <span id="nfa-states"></span>`fn states(&self) -> &[State]` — [`State`](#state)
+- <span id="nfa-states"></span>`fn states(&self) -> &[State]` — [`State`](nfa/index.md)
 
 - <span id="nfa-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
 
@@ -922,7 +936,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for NFA`
 
-- <span id="nfa-clone"></span>`fn clone(&self) -> NFA` — [`NFA`](#nfa)
+- <span id="nfa-clone"></span>`fn clone(&self) -> NFA` — [`NFA`](nfa/index.md)
 
 ##### `impl Debug for NFA`
 
@@ -940,6 +954,8 @@ struct Compiler {
     utf8_suffix: core::cell::RefCell<crate::nfa::thompson::map::Utf8SuffixMap>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:718-736`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L718-L736)*
 
 A builder for compiling an NFA from a regex's high-level intermediate
 representation (HIR).
@@ -1045,77 +1061,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="compiler-compile"></span>`fn compile<H: Borrow<Hir>>(&self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](#builderror)
+- <span id="compiler-new"></span>`fn new() -> Compiler` — [`Compiler`](compiler/index.md)
 
-- <span id="compiler-c"></span>`fn c(&self, expr: &Hir) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+- <span id="compiler-build"></span>`fn build(&self, pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- <span id="compiler-c-concat"></span>`fn c_concat<I>(&self, it: I) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+- <span id="compiler-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- <span id="compiler-c-alt-slice"></span>`fn c_alt_slice(&self, exprs: &[Hir]) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+- <span id="compiler-build-from-hir"></span>`fn build_from_hir(&self, expr: &Hir) -> Result<NFA, BuildError>` — [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- <span id="compiler-c-alt-iter"></span>`fn c_alt_iter<I>(&self, it: I) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+- <span id="compiler-build-many-from-hir"></span>`fn build_many_from_hir<H: Borrow<Hir>>(&self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- <span id="compiler-c-cap"></span>`fn c_cap(&self, index: u32, name: Option<&str>, expr: &Hir) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+- <span id="compiler-configure"></span>`fn configure(&mut self, config: Config) -> &mut Compiler` — [`Config`](compiler/index.md), [`Compiler`](compiler/index.md)
 
-- <span id="compiler-c-repetition"></span>`fn c_repetition(&self, rep: &hir::Repetition) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-bounded"></span>`fn c_bounded(&self, expr: &Hir, greedy: bool, min: u32, max: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-at-least"></span>`fn c_at_least(&self, expr: &Hir, greedy: bool, n: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-zero-or-one"></span>`fn c_zero_or_one(&self, expr: &Hir, greedy: bool) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-exactly"></span>`fn c_exactly(&self, expr: &Hir, n: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-byte-class"></span>`fn c_byte_class(&self, cls: &hir::ClassBytes) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-unicode-class"></span>`fn c_unicode_class(&self, cls: &hir::ClassUnicode) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-unicode-class-reverse-with-suffix"></span>`fn c_unicode_class_reverse_with_suffix(&self, cls: &hir::ClassUnicode) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-look"></span>`fn c_look(&self, anchor: &hir::Look) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-literal"></span>`fn c_literal(&self, bytes: &[u8]) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-range"></span>`fn c_range(&self, start: u8, end: u8) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-empty"></span>`fn c_empty(&self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-c-fail"></span>`fn c_fail(&self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-patch"></span>`fn patch(&self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-start-pattern"></span>`fn start_pattern(&self) -> Result<PatternID, BuildError>` — [`PatternID`](../../index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-finish-pattern"></span>`fn finish_pattern(&self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-add-empty"></span>`fn add_empty(&self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-add-range"></span>`fn add_range(&self, start: u8, end: u8) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-add-sparse"></span>`fn add_sparse(&self, ranges: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](#transition), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-add-look"></span>`fn add_look(&self, look: Look) -> Result<StateID, BuildError>` — [`Look`](../../util/look/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-add-union"></span>`fn add_union(&self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-add-union-reverse"></span>`fn add_union_reverse(&self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-add-capture-start"></span>`fn add_capture_start(&self, capture_index: u32, name: Option<&str>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-add-capture-end"></span>`fn add_capture_end(&self, capture_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-add-fail"></span>`fn add_fail(&self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-add-match"></span>`fn add_match(&self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
-
-- <span id="compiler-is-reverse"></span>`fn is_reverse(&self) -> bool`
+- <span id="compiler-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Compiler` — [`Config`](../../util/syntax/index.md), [`Compiler`](compiler/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Compiler`
 
-- <span id="compiler-clone"></span>`fn clone(&self) -> Compiler` — [`Compiler`](#compiler)
+- <span id="compiler-clone"></span>`fn clone(&self) -> Compiler` — [`Compiler`](compiler/index.md)
 
 ##### `impl Debug for Compiler`
 
@@ -1134,25 +1098,27 @@ struct Config {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:28-37`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L28-L37)*
+
 The configuration used for a Thompson NFA compiler.
 
 #### Implementations
 
-- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](compiler/index.md)
 
-- <span id="config-utf8"></span>`fn utf8(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-utf8"></span>`fn utf8(self, yes: bool) -> Config` — [`Config`](compiler/index.md)
 
-- <span id="config-reverse"></span>`fn reverse(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-reverse"></span>`fn reverse(self, yes: bool) -> Config` — [`Config`](compiler/index.md)
 
-- <span id="config-nfa-size-limit"></span>`fn nfa_size_limit(self, bytes: Option<usize>) -> Config` — [`Config`](#config)
+- <span id="config-nfa-size-limit"></span>`fn nfa_size_limit(self, bytes: Option<usize>) -> Config` — [`Config`](compiler/index.md)
 
-- <span id="config-shrink"></span>`fn shrink(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-shrink"></span>`fn shrink(self, yes: bool) -> Config` — [`Config`](compiler/index.md)
 
-- <span id="config-captures"></span>`fn captures(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-captures"></span>`fn captures(self, yes: bool) -> Config` — [`Config`](compiler/index.md)
 
-- <span id="config-which-captures"></span>`fn which_captures(self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](#whichcaptures), [`Config`](#config)
+- <span id="config-which-captures"></span>`fn which_captures(self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](compiler/index.md), [`Config`](compiler/index.md)
 
-- <span id="config-look-matcher"></span>`fn look_matcher(self, m: LookMatcher) -> Config` — [`LookMatcher`](../../util/look/index.md), [`Config`](#config)
+- <span id="config-look-matcher"></span>`fn look_matcher(self, m: LookMatcher) -> Config` — [`LookMatcher`](../../util/look/index.md), [`Config`](compiler/index.md)
 
 - <span id="config-get-utf8"></span>`fn get_utf8(&self) -> bool`
 
@@ -1164,19 +1130,19 @@ The configuration used for a Thompson NFA compiler.
 
 - <span id="config-get-captures"></span>`fn get_captures(&self) -> bool`
 
-- <span id="config-get-which-captures"></span>`fn get_which_captures(&self) -> WhichCaptures` — [`WhichCaptures`](#whichcaptures)
+- <span id="config-get-which-captures"></span>`fn get_which_captures(&self) -> WhichCaptures` — [`WhichCaptures`](compiler/index.md)
 
 - <span id="config-get-look-matcher"></span>`fn get_look_matcher(&self) -> LookMatcher` — [`LookMatcher`](../../util/look/index.md)
 
 - <span id="config-get-unanchored-prefix"></span>`fn get_unanchored_prefix(&self) -> bool`
 
-- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
+- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](compiler/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](compiler/index.md)
 
 ##### `impl Debug for Config`
 
@@ -1184,7 +1150,7 @@ The configuration used for a Thompson NFA compiler.
 
 ##### `impl Default for Config`
 
-- <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](compiler/index.md)
 
 ## Enums
 
@@ -1220,6 +1186,8 @@ enum State {
     },
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1514-1621`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1514-L1621)*
 
 A state in an NFA.
 
@@ -1338,7 +1306,7 @@ need to do some kind of analysis on the NFA.
 
 ##### `impl Clone for State`
 
-- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](nfa/index.md)
 
 ##### `impl Debug for State`
 
@@ -1348,7 +1316,7 @@ need to do some kind of analysis on the NFA.
 
 ##### `impl PartialEq for State`
 
-- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](nfa/index.md)
 
 ##### `impl StructuralPartialEq for State`
 
@@ -1361,6 +1329,8 @@ enum WhichCaptures {
     None,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/compiler.rs:547-589`](../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/compiler.rs#L547-L589)*
 
 A configuration indicating which kinds of
 [`State::Capture`](crate::nfa::thompson::State::Capture) states to include.
@@ -1429,7 +1399,7 @@ The default configuration is [`WhichCaptures::All`](../../index.md).
 
 ##### `impl Clone for WhichCaptures`
 
-- <span id="whichcaptures-clone"></span>`fn clone(&self) -> WhichCaptures` — [`WhichCaptures`](#whichcaptures)
+- <span id="whichcaptures-clone"></span>`fn clone(&self) -> WhichCaptures` — [`WhichCaptures`](compiler/index.md)
 
 ##### `impl Copy for WhichCaptures`
 
@@ -1439,5 +1409,5 @@ The default configuration is [`WhichCaptures::All`](../../index.md).
 
 ##### `impl Default for WhichCaptures`
 
-- <span id="whichcaptures-default"></span>`fn default() -> WhichCaptures` — [`WhichCaptures`](#whichcaptures)
+- <span id="whichcaptures-default"></span>`fn default() -> WhichCaptures` — [`WhichCaptures`](compiler/index.md)
 

@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Remapper`](#remapper) | struct | Remapper is an abstraction the manages the remapping of state IDs in a |
+| [`Remapper`](#remapper) | struct | Remapper is an abstraction the manages the remapping of state IDs in a finite state machine. |
 | [`IndexMapper`](#indexmapper) | struct | A simple type for mapping between state indices and state IDs. |
-| [`Remappable`](#remappable) | trait | Remappable is a tightly coupled abstraction that facilitates remapping |
+| [`Remappable`](#remappable) | trait | Remappable is a tightly coupled abstraction that facilitates remapping state identifiers in DFAs. |
 
 ## Structs
 
@@ -22,6 +22,8 @@ struct Remapper {
     idx: IndexMapper,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:67-84`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/remapper.rs#L67-L84)*
 
 Remapper is an abstraction the manages the remapping of state IDs in a
 finite state machine. This is useful when one wants to shuffle states into
@@ -78,6 +80,8 @@ struct IndexMapper {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:177-182`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/remapper.rs#L177-L182)*
+
 A simple type for mapping between state indices and state IDs.
 
 The reason why this exists is because state IDs are "premultiplied" in a
@@ -125,6 +129,8 @@ identity.
 ```rust
 trait Remappable: core::fmt::Debug { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/remapper.rs:28-54`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/remapper.rs#L28-L54)*
 
 Remappable is a tightly coupled abstraction that facilitates remapping
 state identifiers in DFAs.

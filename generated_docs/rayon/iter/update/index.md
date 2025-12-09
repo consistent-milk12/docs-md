@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Update`](#update) | struct | `Update` is an iterator that mutates the elements of an |
+| [`Update`](#update) | struct | `Update` is an iterator that mutates the elements of an underlying iterator before they are yielded. |
 | [`UpdateProducer`](#updateproducer) | struct |  |
 | [`UpdateConsumer`](#updateconsumer) | struct |  |
 | [`UpdateFolder`](#updatefolder) | struct |  |
@@ -26,10 +26,12 @@ struct Update<I, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/update.rs:14-17`](../../../../.source_1765210505/rayon-1.11.0/src/iter/update.rs#L14-L17)*
+
 `Update` is an iterator that mutates the elements of an
 underlying iterator before they are yielded.
 
-This struct is created by the `update()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `update()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -40,7 +42,7 @@ This struct is created by the `update()` method on [`ParallelIterator`](../../pr
 
 ##### `impl<I: clone::Clone, F: clone::Clone> Clone for Update<I, F>`
 
-- <span id="update-clone"></span>`fn clone(&self) -> Update<I, F>` — [`Update`](../index.md)
+- <span id="update-clone"></span>`fn clone(&self) -> Update<I, F>` — [`Update`](#update)
 
 ##### `impl<I: Debug, F> Debug for Update<I, F>`
 
@@ -58,15 +60,15 @@ This struct is created by the `update()` method on [`ParallelIterator`](../../pr
 
 ##### `impl<T> IntoParallelIterator for Update<I, F>`
 
-- <span id="update-iter"></span>`type Iter = T`
+- <span id="update-type-iter"></span>`type Iter = T`
 
-- <span id="update-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="update-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="update-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, F> ParallelIterator for Update<I, F>`
 
-- <span id="update-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="update-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="update-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -74,9 +76,9 @@ This struct is created by the `update()` method on [`ParallelIterator`](../../pr
 
 ##### `impl<T> Pointable for Update<I, F>`
 
-- <span id="update-align"></span>`const ALIGN: usize`
+- <span id="update-const-align"></span>`const ALIGN: usize`
 
-- <span id="update-init"></span>`type Init = T`
+- <span id="update-type-init"></span>`type Init = T`
 
 - <span id="update-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -95,15 +97,17 @@ struct UpdateProducer<'f, P, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/update.rs:106-109`](../../../../.source_1765210505/rayon-1.11.0/src/iter/update.rs#L106-L109)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for UpdateProducer<'f, P, F>`
 
 ##### `impl<T> Pointable for UpdateProducer<'f, P, F>`
 
-- <span id="updateproducer-align"></span>`const ALIGN: usize`
+- <span id="updateproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="updateproducer-init"></span>`type Init = T`
+- <span id="updateproducer-type-init"></span>`type Init = T`
 
 - <span id="updateproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -115,9 +119,9 @@ struct UpdateProducer<'f, P, F> {
 
 ##### `impl<'f, P, F> Producer for UpdateProducer<'f, P, F>`
 
-- <span id="updateproducer-item"></span>`type Item = <P as Producer>::Item`
+- <span id="updateproducer-type-item"></span>`type Item = <P as Producer>::Item`
 
-- <span id="updateproducer-intoiter"></span>`type IntoIter = UpdateSeq<<P as Producer>::IntoIter, &'f F>`
+- <span id="updateproducer-type-intoiter"></span>`type IntoIter = UpdateSeq<<P as Producer>::IntoIter, &'f F>`
 
 - <span id="updateproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
@@ -138,6 +142,8 @@ struct UpdateConsumer<'f, C, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/update.rs:162-165`](../../../../.source_1765210505/rayon-1.11.0/src/iter/update.rs#L162-L165)*
+
 #### Implementations
 
 - <span id="updateconsumer-new"></span>`fn new(base: C, update_op: &'f F) -> Self`
@@ -146,11 +152,11 @@ struct UpdateConsumer<'f, C, F> {
 
 ##### `impl<'f, T, C, F> Consumer for UpdateConsumer<'f, C, F>`
 
-- <span id="updateconsumer-folder"></span>`type Folder = UpdateFolder<'f, <C as Consumer>::Folder, F>`
+- <span id="updateconsumer-type-folder"></span>`type Folder = UpdateFolder<'f, <C as Consumer>::Folder, F>`
 
-- <span id="updateconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="updateconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="updateconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="updateconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="updateconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -162,9 +168,9 @@ struct UpdateConsumer<'f, C, F> {
 
 ##### `impl<T> Pointable for UpdateConsumer<'f, C, F>`
 
-- <span id="updateconsumer-align"></span>`const ALIGN: usize`
+- <span id="updateconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="updateconsumer-init"></span>`type Init = T`
+- <span id="updateconsumer-type-init"></span>`type Init = T`
 
 - <span id="updateconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -189,11 +195,13 @@ struct UpdateFolder<'f, C, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/update.rs:217-220`](../../../../.source_1765210505/rayon-1.11.0/src/iter/update.rs#L217-L220)*
+
 #### Trait Implementations
 
 ##### `impl<'f, T, C, F> Folder for UpdateFolder<'f, C, F>`
 
-- <span id="updatefolder-result"></span>`type Result = <C as Folder>::Result`
+- <span id="updatefolder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="updatefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -207,9 +215,9 @@ struct UpdateFolder<'f, C, F> {
 
 ##### `impl<T> Pointable for UpdateFolder<'f, C, F>`
 
-- <span id="updatefolder-align"></span>`const ALIGN: usize`
+- <span id="updatefolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="updatefolder-init"></span>`type Init = T`
+- <span id="updatefolder-type-init"></span>`type Init = T`
 
 - <span id="updatefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -227,6 +235,8 @@ struct UpdateSeq<I, F> {
     update_op: F,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/update.rs:268-271`](../../../../.source_1765210505/rayon-1.11.0/src/iter/update.rs#L268-L271)*
 
 Standard Update adaptor, based on `itertools::adaptors::Update`
 
@@ -250,15 +260,15 @@ Standard Update adaptor, based on `itertools::adaptors::Update`
 
 ##### `impl<I> IntoIterator for UpdateSeq<I, F>`
 
-- <span id="updateseq-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="updateseq-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="updateseq-intoiter"></span>`type IntoIter = I`
+- <span id="updateseq-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="updateseq-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I, F> Iterator for UpdateSeq<I, F>`
 
-- <span id="updateseq-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="updateseq-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="updateseq-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -270,9 +280,9 @@ Standard Update adaptor, based on `itertools::adaptors::Update`
 
 ##### `impl<T> Pointable for UpdateSeq<I, F>`
 
-- <span id="updateseq-align"></span>`const ALIGN: usize`
+- <span id="updateseq-const-align"></span>`const ALIGN: usize`
 
-- <span id="updateseq-init"></span>`type Init = T`
+- <span id="updateseq-type-init"></span>`type Init = T`
 
 - <span id="updateseq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -289,4 +299,6 @@ Standard Update adaptor, based on `itertools::adaptors::Update`
 ```rust
 fn apply<T>(update_op: impl Fn(&mut T)) -> impl Fn(T) -> T
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/update.rs:222-227`](../../../../.source_1765210505/rayon-1.11.0/src/iter/update.rs#L222-L227)*
 

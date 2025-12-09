@@ -6,6 +6,7 @@
 
 use std::collections::HashMap;
 use std::fmt::Write;
+use std::path::Path;
 use std::sync::LazyLock;
 
 use regex::Regex;
@@ -18,6 +19,7 @@ use crate::generator::doc_links::{
     convert_html_links, convert_path_reference_links, strip_duplicate_title,
     strip_reference_definitions, unhide_code_lines,
 };
+use crate::generator::render_shared::SourcePathConfig;
 use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
 use crate::linker::{LinkRegistry, item_has_anchor, slugify_anchor};
 use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
@@ -54,6 +56,11 @@ pub struct MultiCrateContext<'a> {
     /// Maps target crate name -> type name -> impl blocks from other crates.
     /// This is computed once during construction rather than per-view.
     cross_crate_impls: HashMap<String, HashMap<String, Vec<&'a Impl>>>,
+
+    /// Base source path configuration for transforming cargo registry paths.
+    ///
+    /// `None` if source locations are disabled or no `.source_*` dir detected.
+    source_path_config: Option<SourcePathConfig>,
 }
 
 impl<'a> MultiCrateContext<'a> {
@@ -78,6 +85,17 @@ impl<'a> MultiCrateContext<'a> {
         debug!("Building cross-crate impl map");
         let cross_crate_impls = Self::build_cross_crate_impls(crates);
 
+        // Build source path config if source_locations is enabled and we have a source_dir
+        let source_path_config = if config.include_source.source_locations {
+            config
+                .include_source
+                .source_dir
+                .as_ref()
+                .map(|dir| SourcePathConfig::new(dir, ""))
+        } else {
+            None
+        };
+
         debug!(
             cross_crate_impl_count = cross_crate_impls.values().map(HashMap::len).sum::<usize>(),
             "Multi-crate context created"
@@ -89,7 +107,29 @@ impl<'a> MultiCrateContext<'a> {
             args,
             config,
             cross_crate_impls,
+            source_path_config,
         }
+    }
+
+    /// Set the source directory for path transformation.
+    ///
+    /// This can be called after construction if a `.source_*` directory
+    /// is detected or specified via CLI. Only has effect if `source_locations`
+    /// is enabled in the config.
+    pub fn set_source_dir(&mut self, source_dir: &Path) {
+        if self.config.include_source.source_locations {
+            self.source_path_config = Some(SourcePathConfig::new(source_dir, ""));
+        }
+    }
+
+    /// Get source path config for a specific file.
+    ///
+    /// Returns `None` if source locations are disabled or no source dir configured.
+    #[must_use]
+    pub fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig> {
+        self.source_path_config
+            .as_ref()
+            .map(|base| base.with_depth(current_file))
     }
 
     /// Build the cross-crate impl map for all crates.
@@ -293,14 +333,29 @@ impl<'a> SingleCrateView<'a> {
     }
 
     /// Build the impl map for all types.
+    ///
+    /// Uses the `impls` field on Struct/Enum/Union items directly rather than
+    /// scanning all items and checking the `for_` field. This provides clearer
+    /// semantics and leverages `rustdoc_types` structured data.
     fn build_impl_map(&mut self) {
         self.impl_map.clear();
 
-        for item in self.krate.index.values() {
-            if let ItemEnum::Impl(impl_block) = &item.inner
-                && let Some(target_id) = Self::get_impl_target_id(impl_block)
-            {
-                self.impl_map.entry(target_id).or_default().push(impl_block);
+        // Iterate over all types that can have impl blocks and collect their impls
+        for (type_id, item) in &self.krate.index {
+            let impl_ids: &[Id] = match &item.inner {
+                ItemEnum::Struct(s) => &s.impls,
+                ItemEnum::Enum(e) => &e.impls,
+                ItemEnum::Union(u) => &u.impls,
+                _ => continue,
+            };
+
+            // Look up each impl block and add to the map
+            for impl_id in impl_ids {
+                if let Some(impl_item) = self.krate.index.get(impl_id)
+                    && let ItemEnum::Impl(impl_block) = &impl_item.inner
+                {
+                    self.impl_map.entry(*type_id).or_default().push(impl_block);
+                }
             }
         }
 
@@ -331,23 +386,14 @@ impl<'a> SingleCrateView<'a> {
         }
     }
 
-    /// Get the target type ID for an impl block.
-    const fn get_impl_target_id(impl_block: &Impl) -> Option<Id> {
-        use rustdoc_types::Type;
-
-        match &impl_block.for_ {
-            Type::ResolvedPath(path) => Some(path.id),
-            _ => None,
-        }
-    }
-
     /// Generate a sort key for impl blocks.
     fn impl_sort_key(impl_block: &Impl) -> (u8, String) {
         // Extract trait name from the path (last segment)
+        // Using rsplit().next() is more efficient than split().last()
         let trait_name: String = impl_block
             .trait_
             .as_ref()
-            .and_then(|p| p.path.split("::").last())
+            .and_then(|p| p.path.rsplit("::").next())
             .unwrap_or("")
             .to_string();
 
@@ -1572,6 +1618,10 @@ impl ItemAccess for SingleCrateView<'_> {
 
     fn render_config(&self) -> &RenderConfig {
         &self.ctx.config
+    }
+
+    fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig> {
+        self.ctx.source_path_config_for_file(current_file)
     }
 }
 

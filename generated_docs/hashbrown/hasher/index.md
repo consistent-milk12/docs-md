@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`DefaultHashBuilder`](#defaulthashbuilder) | struct | Default hash builder for the `S` type parameter of |
+| [`DefaultHashBuilder`](#defaulthashbuilder) | struct | Default hash builder for the `S` type parameter of [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet). |
 | [`DefaultHasher`](#defaulthasher) | struct | Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet). |
 | [`forward_writes!`](#forward_writes) | macro |  |
 
@@ -22,6 +22,8 @@ struct DefaultHashBuilder {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:14-17`](../../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L14-L17)*
+
 Default hash builder for the `S` type parameter of
 [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
@@ -33,13 +35,13 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl BuildHasher for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-hasher"></span>`type Hasher = DefaultHasher`
+- <span id="defaulthashbuilder-type-hasher"></span>`type Hasher = DefaultHasher`
 
 - <span id="defaulthashbuilder-build-hasher"></span>`fn build_hasher(&self) -> <Self as >::Hasher`
 
 ##### `impl Clone for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-clone"></span>`fn clone(&self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](../index.md)
+- <span id="defaulthashbuilder-clone"></span>`fn clone(&self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
 
 ##### `impl Debug for DefaultHashBuilder`
 
@@ -47,7 +49,7 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl Default for DefaultHashBuilder`
 
-- <span id="defaulthashbuilder-default"></span>`fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](../index.md)
+- <span id="defaulthashbuilder-default"></span>`fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
 
 ### `DefaultHasher`
 
@@ -57,13 +59,15 @@ struct DefaultHasher {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:34-36`](../../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L34-L36)*
+
 Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
 #### Trait Implementations
 
 ##### `impl Clone for DefaultHasher`
 
-- <span id="defaulthasher-clone"></span>`fn clone(&self) -> DefaultHasher` — [`DefaultHasher`](../index.md)
+- <span id="defaulthasher-clone"></span>`fn clone(&self) -> DefaultHasher` — [`DefaultHasher`](#defaulthasher)
 
 ##### `impl Hasher for DefaultHasher`
 
@@ -98,4 +102,6 @@ Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 ## Macros
 
 ### `forward_writes!`
+
+*Defined in [`hashbrown-0.16.1/src/hasher.rs:39-46`](../../../.source_1765210505/hashbrown-0.16.1/src/hasher.rs#L39-L46)*
 

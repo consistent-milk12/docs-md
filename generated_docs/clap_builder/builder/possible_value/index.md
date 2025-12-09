@@ -23,6 +23,8 @@ struct PossibleValue {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/possible_value.rs:40-45`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/possible_value.rs#L40-L45)*
+
 A possible value of an argument.
 
 This is used for specifying [possible values] of [Args].
@@ -58,21 +60,21 @@ let cfg = Arg::new("config")
 
 #### Implementations
 
-- <span id="possiblevalue-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](../index.md)
+- <span id="possiblevalue-new"></span>`fn new(name: impl Into<Str>) -> Self` — [`Str`](../str/index.md)
 
-- <span id="possiblevalue-help"></span>`fn help(self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- <span id="possiblevalue-help"></span>`fn help(self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../resettable/index.md), [`StyledStr`](../styled_str/index.md)
 
 - <span id="possiblevalue-hide"></span>`fn hide(self, yes: bool) -> Self`
 
-- <span id="possiblevalue-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../index.md), [`Str`](../index.md)
+- <span id="possiblevalue-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Str`](../str/index.md)
 
-- <span id="possiblevalue-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](../index.md)
+- <span id="possiblevalue-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](../str/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for PossibleValue`
 
-- <span id="possiblevalue-clone"></span>`fn clone(&self) -> PossibleValue` — [`PossibleValue`](../index.md)
+- <span id="possiblevalue-clone"></span>`fn clone(&self) -> PossibleValue` — [`PossibleValue`](#possiblevalue)
 
 ##### `impl Debug for PossibleValue`
 
@@ -80,13 +82,13 @@ let cfg = Arg::new("config")
 
 ##### `impl Default for PossibleValue`
 
-- <span id="possiblevalue-default"></span>`fn default() -> PossibleValue` — [`PossibleValue`](../index.md)
+- <span id="possiblevalue-default"></span>`fn default() -> PossibleValue` — [`PossibleValue`](#possiblevalue)
 
 ##### `impl Eq for PossibleValue`
 
 ##### `impl PartialEq for PossibleValue`
 
-- <span id="possiblevalue-eq"></span>`fn eq(&self, other: &PossibleValue) -> bool` — [`PossibleValue`](../index.md)
+- <span id="possiblevalue-eq"></span>`fn eq(&self, other: &PossibleValue) -> bool` — [`PossibleValue`](#possiblevalue)
 
 ##### `impl StructuralPartialEq for PossibleValue`
 

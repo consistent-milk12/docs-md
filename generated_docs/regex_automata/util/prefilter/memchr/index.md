@@ -20,6 +20,8 @@
 struct Memchr(u8);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/memchr.rs:7`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/memchr.rs#L7)*
+
 #### Implementations
 
 - <span id="memchr-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr>` — [`MatchKind`](../../../index.md), [`Memchr`](#memchr)
@@ -50,6 +52,8 @@ struct Memchr(u8);
 struct Memchr2(u8, u8);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/memchr.rs:66`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/memchr.rs#L66)*
+
 #### Implementations
 
 - <span id="memchr2-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memchr2>` — [`MatchKind`](../../../index.md), [`Memchr2`](#memchr2)
@@ -79,6 +83,8 @@ struct Memchr2(u8, u8);
 ```rust
 struct Memchr3(u8, u8, u8);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/memchr.rs:127`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/memchr.rs#L127)*
 
 #### Implementations
 

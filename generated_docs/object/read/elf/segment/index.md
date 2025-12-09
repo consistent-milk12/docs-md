@@ -43,6 +43,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:20-27`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L20-L27)*
+
 An iterator for the segments in an [`ElfFile`](../index.md).
 
 #### Trait Implementations
@@ -53,15 +55,15 @@ An iterator for the segments in an [`ElfFile`](../index.md).
 
 ##### `impl<I> IntoIterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfsegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfsegmentiterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfsegmentiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsegmentiterator-item"></span>`type Item = ElfSegment<'data, 'file, Elf, R>`
+- <span id="elfsegmentiterator-type-item"></span>`type Item = ElfSegment<'data, 'file, Elf, R>`
 
 - <span id="elfsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -76,6 +78,8 @@ where
     segment: &'data <Elf as >::ProgramHeader,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:60-67`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L60-L67)*
 
 A segment in an [`ElfFile`](../index.md).
 
@@ -124,6 +128,8 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 ```rust
 trait ProgramHeader: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:152-273`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L152-L273)*
 
 A trait for generic access to [`elf::ProgramHeader32`](../../../elf/index.md) and [`elf::ProgramHeader64`](../../../elf/index.md).
 
@@ -196,6 +202,8 @@ A trait for generic access to [`elf::ProgramHeader32`](../../../elf/index.md) an
 type ElfSegmentIterator32<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:12-13`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L12-L13)*
+
 An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSegmentIterator64<'data, 'file, Endian, R>`
@@ -203,6 +211,8 @@ An iterator for the segments in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSegmentIterator64<'data, 'file, Endian, R> = ElfSegmentIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:15-16`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L15-L16)*
 
 An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 
@@ -212,6 +222,8 @@ An iterator for the segments in an [`ElfFile64`](super::ElfFile64).
 type ElfSegment32<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:50-51`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L50-L51)*
+
 A segment in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSegment64<'data, 'file, Endian, R>`
@@ -219,6 +231,8 @@ A segment in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSegment64<'data, 'file, Endian, R> = ElfSegment<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/segment.rs:53-54`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/segment.rs#L53-L54)*
 
 A segment in an [`ElfFile64`](super::ElfFile64).
 

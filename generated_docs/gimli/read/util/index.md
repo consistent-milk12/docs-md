@@ -27,6 +27,8 @@ struct ArrayVec<A: ArrayLike> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/util.rs:121-124`](../../../../.source_1765210505/gimli-0.32.3/src/read/util.rs#L121-L124)*
+
 #### Implementations
 
 - <span id="arrayvec-new"></span>`fn new() -> Self`
@@ -57,7 +59,7 @@ struct ArrayVec<A: ArrayLike> {
 
 ##### `impl<A: ArrayLike> Deref for ArrayVec<A>`
 
-- <span id="arrayvec-target"></span>`type Target = [<A as ArrayLike>::Item]`
+- <span id="arrayvec-type-target"></span>`type Target = [<A as ArrayLike>::Item]`
 
 - <span id="arrayvec-deref"></span>`fn deref(&self) -> &[<A as >::Item]` — [`ArrayLike`](../index.md)
 
@@ -77,7 +79,7 @@ struct ArrayVec<A: ArrayLike> {
 
 ##### `impl<P, T> Receiver for ArrayVec<A>`
 
-- <span id="arrayvec-target"></span>`type Target = T`
+- <span id="arrayvec-type-target"></span>`type Target = T`
 
 ## Traits
 
@@ -86,6 +88,8 @@ struct ArrayVec<A: ArrayLike> {
 ```rust
 trait ArrayLike: Sealed { ... }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/util.rs:33-42`](../../../../.source_1765210505/gimli-0.32.3/src/read/util.rs#L33-L42)*
 
 Marker trait for types that can be used as backing storage when a growable array type is needed.
 

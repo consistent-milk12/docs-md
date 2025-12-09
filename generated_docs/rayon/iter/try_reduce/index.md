@@ -24,6 +24,8 @@ struct TryReduceConsumer<'r, R, ID> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_reduce.rs:24-28`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_reduce.rs#L24-L28)*
+
 #### Trait Implementations
 
 ##### `impl<'r, R, ID> Clone for TryReduceConsumer<'r, R, ID>`
@@ -32,11 +34,11 @@ struct TryReduceConsumer<'r, R, ID> {
 
 ##### `impl<'r, R, ID, T> Consumer for TryReduceConsumer<'r, R, ID>`
 
-- <span id="tryreduceconsumer-folder"></span>`type Folder = TryReduceFolder<'r, R, T>`
+- <span id="tryreduceconsumer-type-folder"></span>`type Folder = TryReduceFolder<'r, R, T>`
 
-- <span id="tryreduceconsumer-reducer"></span>`type Reducer = TryReduceConsumer<'r, R, ID>`
+- <span id="tryreduceconsumer-type-reducer"></span>`type Reducer = TryReduceConsumer<'r, R, ID>`
 
-- <span id="tryreduceconsumer-result"></span>`type Result = T`
+- <span id="tryreduceconsumer-type-result"></span>`type Result = T`
 
 - <span id="tryreduceconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
@@ -50,9 +52,9 @@ struct TryReduceConsumer<'r, R, ID> {
 
 ##### `impl<T> Pointable for TryReduceConsumer<'r, R, ID>`
 
-- <span id="tryreduceconsumer-align"></span>`const ALIGN: usize`
+- <span id="tryreduceconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryreduceconsumer-init"></span>`type Init = T`
+- <span id="tryreduceconsumer-type-init"></span>`type Init = T`
 
 - <span id="tryreduceconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -82,11 +84,13 @@ struct TryReduceFolder<'r, R, T: Try> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_reduce.rs:93-97`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_reduce.rs#L93-L97)*
+
 #### Trait Implementations
 
 ##### `impl<'r, R, T> Folder for TryReduceFolder<'r, R, T>`
 
-- <span id="tryreducefolder-result"></span>`type Result = T`
+- <span id="tryreducefolder-type-result"></span>`type Result = T`
 
 - <span id="tryreducefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -98,9 +102,9 @@ struct TryReduceFolder<'r, R, T: Try> {
 
 ##### `impl<T> Pointable for TryReduceFolder<'r, R, T>`
 
-- <span id="tryreducefolder-align"></span>`const ALIGN: usize`
+- <span id="tryreducefolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryreducefolder-init"></span>`type Init = T`
+- <span id="tryreducefolder-type-init"></span>`type Init = T`
 
 - <span id="tryreducefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -122,4 +126,6 @@ where
     ID: Fn() -> <T as >::Output + Sync,
     T: Try + Send
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/try_reduce.rs:8-22`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_reduce.rs#L8-L22)*
 

@@ -17,12 +17,14 @@
 //! testability and reducing coupling.
 
 use std::collections::HashMap;
+use std::path::Path;
 
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
 
 use crate::Args;
 use crate::generator::config::RenderConfig;
 use crate::generator::doc_links::{DocLinkProcessor, strip_duplicate_title};
+use crate::generator::render_shared::SourcePathConfig;
 use crate::linker::LinkRegistry;
 
 // =============================================================================
@@ -50,6 +52,14 @@ pub trait ItemAccess {
 
     /// Get the rendering configuration.
     fn render_config(&self) -> &RenderConfig;
+
+    /// Get source path config for a specific file.
+    ///
+    /// Returns `None` if source locations are disabled or no source dir configured.
+    /// The returned config has the correct depth for the given file path.
+    fn source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig> {
+        None
+    }
 }
 
 /// Item visibility and filtering logic.
@@ -142,6 +152,19 @@ pub struct GeneratorContext<'a> {
 
     /// Rendering configuration options.
     pub config: RenderConfig,
+
+    /// Pre-built index mapping item names to their IDs for fast lookup.
+    ///
+    /// Built once at construction time from `krate.paths` and shared across
+    /// all `DocLinkProcessor` instances for efficiency.
+    path_name_index: HashMap<&'a str, Vec<Id>>,
+
+    /// Base source path configuration for transforming cargo registry paths.
+    ///
+    /// `None` if source locations are disabled or no `.source_*` dir detected.
+    /// The `depth` field is set to 0; use `source_path_config_for_file()` to
+    /// get a config with the correct depth for a specific file.
+    source_path_config: Option<SourcePathConfig>,
 }
 
 impl<'a> GeneratorContext<'a> {
@@ -168,6 +191,18 @@ impl<'a> GeneratorContext<'a> {
         let impl_map = Self::build_impl_map(krate);
         let is_flat = matches!(args.format, CliOutputFormat::Flat);
         let link_registry = LinkRegistry::build(krate, is_flat, !args.exclude_private);
+        let path_name_index = Self::build_path_name_index(krate);
+
+        // Build source path config if source_locations is enabled and we have a source_dir
+        let source_path_config = if config.include_source.source_locations {
+            config
+                .include_source
+                .source_dir
+                .as_ref()
+                .map(|dir| SourcePathConfig::new(dir, ""))
+        } else {
+            None
+        };
 
         Self {
             krate,
@@ -176,6 +211,19 @@ impl<'a> GeneratorContext<'a> {
             link_registry,
             args,
             config,
+            path_name_index,
+            source_path_config,
+        }
+    }
+
+    /// Set the source directory for path transformation.
+    ///
+    /// This can be called after construction if a `.source_*` directory
+    /// is detected or specified via CLI. Only has effect if `source_locations`
+    /// is enabled in the config.
+    pub fn set_source_dir(&mut self, source_dir: &Path) {
+        if self.config.include_source.source_locations {
+            self.source_path_config = Some(SourcePathConfig::new(source_dir, ""));
         }
     }
 
@@ -184,17 +232,28 @@ impl<'a> GeneratorContext<'a> {
     /// This enables rendering the "Implementations" and "Trait Implementations"
     /// sections for structs, enums, and other types.
     ///
-    /// Rustdoc JSON stores impl blocks as separate items in the index.
-    /// Each impl has a `for_` field indicating what type it implements for.
-    /// We walk all items, find impls, and group them by their target type ID.
+    /// Uses the `impls` field on Struct/Enum/Union items directly rather than
+    /// scanning all items and checking the `for_` field. This provides clearer
+    /// semantics and leverages `rustdoc_types` structured data.
     fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>> {
         let mut map: HashMap<Id, Vec<&'a Impl>> = HashMap::new();
 
-        for item in krate.index.values() {
-            if let ItemEnum::Impl(impl_block) = &item.inner
-                && let Some(type_id) = Self::get_type_id(&impl_block.for_)
-            {
-                map.entry(type_id).or_default().push(impl_block);
+        // Iterate over all types that can have impl blocks and collect their impls
+        for (type_id, item) in &krate.index {
+            let impl_ids: &[Id] = match &item.inner {
+                ItemEnum::Struct(s) => &s.impls,
+                ItemEnum::Enum(e) => &e.impls,
+                ItemEnum::Union(u) => &u.impls,
+                _ => continue,
+            };
+
+            // Look up each impl block and add to the map
+            for impl_id in impl_ids {
+                if let Some(impl_item) = krate.index.get(impl_id)
+                    && let ItemEnum::Impl(impl_block) = &impl_item.inner
+                {
+                    map.entry(*type_id).or_default().push(impl_block);
+                }
             }
         }
 
@@ -215,17 +274,6 @@ impl<'a> GeneratorContext<'a> {
             .trait_
             .as_ref()
             .map_or_else(|| (0, String::new()), |path| (1, path.path.clone()))
-    }
-
-    /// Extract the item ID from a Type if it's a resolved path.
-    ///
-    /// Only `ResolvedPath` types (named types like `Vec`, `String`, `MyStruct`)
-    /// have associated IDs. Other types (primitives, references, etc.) return None.
-    const fn get_type_id(ty: &rustdoc_types::Type) -> Option<Id> {
-        match ty {
-            rustdoc_types::Type::ResolvedPath(path) => Some(path.id),
-            _ => None,
-        }
     }
 
     /// Check if an item should be included based on visibility settings.
@@ -267,6 +315,33 @@ impl<'a> GeneratorContext<'a> {
 
         count
     }
+
+    /// Build an index mapping item names to their IDs for fast lookup.
+    ///
+    /// This index is built once at context construction time and shared
+    /// across all `DocLinkProcessor` instances, eliminating redundant
+    /// index building for each item with documentation.
+    fn build_path_name_index(krate: &'a Crate) -> HashMap<&'a str, Vec<Id>> {
+        let mut index: HashMap<&'a str, Vec<Id>> = HashMap::new();
+
+        for (id, path_info) in &krate.paths {
+            if let Some(name) = path_info.path.last() {
+                index.entry(name.as_str()).or_default().push(*id);
+            }
+        }
+
+        // Sort each Vec by full path for deterministic resolution order
+        // Using direct Vec<String> comparison (lexicographic) instead of joining
+        for ids in index.values_mut() {
+            ids.sort_by(|a, b| {
+                let path_a = krate.paths.get(a).map(|p| &p.path);
+                let path_b = krate.paths.get(b).map(|p| &p.path);
+                path_a.cmp(&path_b)
+            });
+        }
+
+        index
+    }
 }
 
 impl ItemAccess for GeneratorContext<'_> {
@@ -292,6 +367,12 @@ impl ItemAccess for GeneratorContext<'_> {
 
     fn render_config(&self) -> &RenderConfig {
         &self.config
+    }
+
+    fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig> {
+        self.source_path_config
+            .as_ref()
+            .map(|base| base.with_depth(current_file))
     }
 }
 
@@ -324,7 +405,13 @@ impl LinkResolver for GeneratorContext<'_> {
         // Strip duplicate title if docs start with "# name"
         let docs = strip_duplicate_title(docs, name);
 
-        let processor = DocLinkProcessor::new(self.krate, &self.link_registry, current_file);
+        // Use pre-built index for efficiency (avoids rebuilding for each item)
+        let processor = DocLinkProcessor::with_index(
+            self.krate,
+            &self.link_registry,
+            current_file,
+            &self.path_name_index,
+        );
         Some(processor.process(docs, &item.links))
     }
 

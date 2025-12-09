@@ -6,8 +6,8 @@
 
 Generic data structure serialization framework.
 
-The two most important traits in this module are [`Serialize`](../index.md) and
-[`Serializer`](../index.md).
+The two most important traits in this module are [`Serialize`](#serialize) and
+[`Serializer`](#serializer).
 
  - **A type that implements `Serialize` is a data structure** that can be
    serialized to any data format supported by Serde, and conversely
@@ -16,26 +16,26 @@ The two most important traits in this module are [`Serialize`](../index.md) and
 
 # The Serialize trait
 
-Serde provides [`Serialize`](../index.md) implementations for many Rust primitive and
+Serde provides [`Serialize`](#serialize) implementations for many Rust primitive and
 standard library types. The complete list is below. All of these can be
 serialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called `serde_derive` to
-automatically generate [`Serialize`](../index.md) implementations for structs and enums
+automatically generate [`Serialize`](#serialize) implementations for structs and enums
 in your program. See the [derive section of the manual] for how to use this.
 
-In rare cases it may be necessary to implement [`Serialize`](../index.md) manually for
+In rare cases it may be necessary to implement [`Serialize`](#serialize) manually for
 some type in your program. See the [Implementing `Serialize`] section of the
 manual for more about this.
 
-Third-party crates may provide [`Serialize`](../index.md) implementations for types that
+Third-party crates may provide [`Serialize`](#serialize) implementations for types that
 they expose. For example the `linked-hash-map` crate provides a
 `LinkedHashMap<K, V>` type that is serializable by Serde because the crate
-provides an implementation of [`Serialize`](../index.md) for it.
+provides an implementation of [`Serialize`](#serialize) for it.
 
 # The Serializer trait
 
-[`Serializer`](../index.md) implementations are provided by third-party crates, for
+[`Serializer`](#serializer) implementations are provided by third-party crates, for
 example `serde_json`, `serde_yaml` and `postcard`.
 
 A partial list of well-maintained formats is given on the [Serde
@@ -144,8 +144,8 @@ website][data formats].
 | [`impls`](#impls) | mod |  |
 | [`impossible`](#impossible) | mod | This module contains `Impossible` serializer and its implementations. |
 | [`Impossible`](#impossible) | struct |  |
-| [`Error`](#error) | trait | Trait used by `Serialize` implementations to generically construct |
-| [`Serialize`](#serialize) | trait | A **data structure** that can be serialized into any data format supported |
+| [`Error`](#error) | trait | Trait used by `Serialize` implementations to generically construct errors belonging to the `Serializer` against which they are currently running. |
+| [`Serialize`](#serialize) | trait | A **data structure** that can be serialized into any data format supported by Serde. |
 | [`Serializer`](#serializer) | trait | A **data format** that can serialize any data structure supported by Serde. |
 | [`SerializeSeq`](#serializeseq) | trait | Returned from `Serializer::serialize_seq`. |
 | [`SerializeTuple`](#serializetuple) | trait | Returned from `Serializer::serialize_tuple`. |
@@ -175,11 +175,13 @@ struct Impossible<Ok, Error> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/ser/impossible.rs:60-64`](../../../.source_1765210505/serde_core-1.0.228/src/ser/impossible.rs#L60-L64)*
+
 Helper type for implementing a `Serializer` that does not support
 serializing one of the compound types.
 
 This type cannot be instantiated, but implements every one of the traits
-corresponding to the [`Serializer`](../index.md) compound types: [`SerializeSeq`](#serializeseq),
+corresponding to the [`Serializer`](#serializer) compound types: [`SerializeSeq`](#serializeseq),
 [`SerializeTuple`](#serializetuple), [`SerializeTupleStruct`](#serializetuplestruct), [`SerializeTupleVariant`](#serializetuplevariant),
 [`SerializeMap`](#serializemap), [`SerializeStruct`](#serializestruct), and [`SerializeStructVariant`](#serializestructvariant).
 
@@ -229,9 +231,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeMap for Impossible<Ok, Error>`
 
-- <span id="impossible-ok"></span>`type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-error"></span>`type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-key"></span>`fn serialize_key<T>(&mut self, key: &T) -> Result<(), Error>`
 
@@ -241,9 +243,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeSeq for Impossible<Ok, Error>`
 
-- <span id="impossible-ok"></span>`type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-error"></span>`type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
 
@@ -251,9 +253,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeStruct for Impossible<Ok, Error>`
 
-- <span id="impossible-ok"></span>`type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-error"></span>`type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
 
@@ -261,9 +263,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeStructVariant for Impossible<Ok, Error>`
 
-- <span id="impossible-ok"></span>`type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-error"></span>`type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
 
@@ -271,9 +273,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeTuple for Impossible<Ok, Error>`
 
-- <span id="impossible-ok"></span>`type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-error"></span>`type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
 
@@ -281,9 +283,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeTupleStruct for Impossible<Ok, Error>`
 
-- <span id="impossible-ok"></span>`type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-error"></span>`type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
 
@@ -291,9 +293,9 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeTupleVariant for Impossible<Ok, Error>`
 
-- <span id="impossible-ok"></span>`type Ok = Ok`
+- <span id="impossible-type-ok"></span>`type Ok = Ok`
 
-- <span id="impossible-error"></span>`type Error = Error`
+- <span id="impossible-type-error"></span>`type Error = Error`
 
 - <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
 
@@ -306,6 +308,8 @@ impl Serializer for MySerializer {
 ```rust
 trait Error: Sized + StdError { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:192`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L192)*
 
 Trait used by `Serialize` implementations to generically construct
 errors belonging to the `Serializer` against which they are
@@ -321,7 +325,7 @@ type appropriate for a basic JSON data format.
 
 - `fn custom<T>(msg: T) -> Self`
 
-  Used when a [`Serialize`](../index.md) implementation encounters any error
+  Used when a [`Serialize`](#serialize) implementation encounters any error
 
 #### Implementors
 
@@ -333,6 +337,8 @@ type appropriate for a basic JSON data format.
 ```rust
 trait Serialize { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:234-268`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L234-L268)*
 
 A **data structure** that can be serialized into any data format supported
 by Serde.
@@ -507,6 +513,8 @@ provides an implementation of `Serialize` for it.
 ```rust
 trait Serializer: Sized { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:355-1462`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L355-L1462)*
 
 A **data format** that can serialize any data structure supported by Serde.
 
@@ -753,6 +761,8 @@ a basic JSON `Serializer`.
 trait SerializeSeq { ... }
 ```
 
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1518-1532`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L1518-L1532)*
+
 Returned from `Serializer::serialize_seq`.
 
 # Example use
@@ -819,13 +829,15 @@ implementation of `SerializeSeq` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](#impossible)
+- [`Impossible`](impossible/index.md)
 
 ### `SerializeTuple`
 
 ```rust
 trait SerializeTuple { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1624-1638`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L1624-L1638)*
 
 Returned from `Serializer::serialize_tuple`.
 
@@ -929,13 +941,15 @@ implementation of `SerializeTuple` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](#impossible)
+- [`Impossible`](impossible/index.md)
 
 ### `SerializeTupleStruct`
 
 ```rust
 trait SerializeTupleStruct { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1675-1689`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L1675-L1689)*
 
 Returned from `Serializer::serialize_tuple_struct`.
 
@@ -984,13 +998,15 @@ implementation of `SerializeTupleStruct` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](#impossible)
+- [`Impossible`](impossible/index.md)
 
 ### `SerializeTupleVariant`
 
 ```rust
 trait SerializeTupleVariant { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1739-1753`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L1739-L1753)*
 
 Returned from `Serializer::serialize_tuple_variant`.
 
@@ -1052,13 +1068,15 @@ implementation of `SerializeTupleVariant` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](#impossible)
+- [`Impossible`](impossible/index.md)
 
 ### `SerializeMap`
 
 ```rust
 trait SerializeMap { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1811-1866`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L1811-L1866)*
 
 Returned from `Serializer::serialize_map`.
 
@@ -1138,13 +1156,15 @@ implementation of `SerializeMap` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](#impossible)
+- [`Impossible`](impossible/index.md)
 
 ### `SerializeStruct`
 
 ```rust
 trait SerializeStruct { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1907-1930`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L1907-L1930)*
 
 Returned from `Serializer::serialize_struct`.
 
@@ -1203,13 +1223,15 @@ implementation of `SerializeStruct` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](#impossible)
+- [`Impossible`](impossible/index.md)
 
 ### `SerializeStructVariant`
 
 ```rust
 trait SerializeStructVariant { ... }
 ```
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:1977-2000`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L1977-L2000)*
 
 Returned from `Serializer::serialize_struct_variant`.
 
@@ -1274,7 +1296,7 @@ implementation of `SerializeStructVariant` for a basic JSON data format.
 
 #### Implementors
 
-- [`Impossible`](#impossible)
+- [`Impossible`](impossible/index.md)
 
 ## Functions
 
@@ -1286,7 +1308,11 @@ where
     I: Iterator
 ```
 
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:2002-2010`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L2002-L2010)*
+
 ## Macros
 
 ### `declare_error_trait!`
+
+*Defined in [`serde_core-1.0.228/src/ser/mod.rs:130-189`](../../../.source_1765210505/serde_core-1.0.228/src/ser/mod.rs#L130-L189)*
 

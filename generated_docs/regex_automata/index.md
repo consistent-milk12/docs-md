@@ -34,7 +34,7 @@ If you're here because there is something specific you want to do that can't
 be easily done with `regex` crate, then you are perhaps in the right place.
 It's most likely that the first stop you'll want to make is to explore the
 [`meta` regex APIs](meta). Namely, the `regex` crate is just a light wrapper
-over a [`meta::Regex`](meta/index.md), so its API will probably be the easiest to transition
+over a [`meta::Regex`](meta/regex/index.md), so its API will probably be the easiest to transition
 to. In contrast to the `regex` crate, the `meta::Regex` API supports more
 search parameters and does multi-pattern searches. However, it isn't quite as
 ergonomic.
@@ -246,7 +246,7 @@ small regexes due to the memory required to avoid redoing work.
 * [`nfa::thompson::pikevm::PikeVM`](nfa/thompson/pikevm/index.md) is a regex engine that can handle all
 regexes, of all sizes and provides capture group matches. It tends to be a tool
 of last resort because it is also usually the slowest regex engine.
-* [`meta::Regex`](meta/index.md) is the meta regex engine that combines *all* of the above
+* [`meta::Regex`](meta/regex/index.md) is the meta regex engine that combines *all* of the above
 engines into one. The reason for this is that each of the engines above have
 their own caveats such as, "only handles a subset of regexes" or "is generally
 slow." The meta regex engine accounts for all of these caveats and composes
@@ -367,7 +367,7 @@ DFA regex:
 [`util::syntax::Config`](util/syntax/index.md) for configuring the options found in the
 [`regex-syntax`](regex_syntax) crate. For example, whether to match
 case insensitively.
-* `hybrid::regex::Builder::thompson` accepts a [`nfa::thompson::Config`](nfa/thompson/index.md) for
+* `hybrid::regex::Builder::thompson` accepts a [`nfa::thompson::Config`](nfa/thompson/compiler/index.md) for
 configuring construction of a [Thompson NFA](nfa::thompson::NFA). For example,
 whether to build an NFA that matches the reverse language described by the
 regex.
@@ -570,19 +570,19 @@ enables `alloc` and `nfa-thompson`.
 |------|------|-------------|
 | [`macros`](#macros) | mod |  |
 | [`dfa`](#dfa) | mod | A module for building and searching with deterministic finite automata (DFAs). |
-| [`hybrid`](#hybrid) | mod | A module for building and searching with lazy deterministic finite automata |
-| [`meta`](#meta) | mod | Provides a regex matcher that composes several other regex matchers |
-| [`nfa`](#nfa) | mod | Provides non-deterministic finite automata (NFA) and regex engines that use |
-| [`util`](#util) | mod | A collection of modules that provide APIs that are useful across many regex |
+| [`hybrid`](#hybrid) | mod | A module for building and searching with lazy deterministic finite automata (DFAs). |
+| [`meta`](#meta) | mod | Provides a regex matcher that composes several other regex matchers automatically. |
+| [`nfa`](#nfa) | mod | Provides non-deterministic finite automata (NFA) and regex engines that use them. |
+| [`util`](#util) | mod | A collection of modules that provide APIs that are useful across many regex engines. |
 | [`PatternID`](#patternid) | struct |  |
 | [`Input`](#input) | struct | The parameters for a regex search including the haystack to search. |
 | [`Span`](#span) | struct | A representation of a span reported by a regex engine. |
 | [`HalfMatch`](#halfmatch) | struct | A representation of "half" of a match reported by a DFA. |
 | [`Match`](#match) | struct | A representation of a match reported by a regex engine. |
 | [`PatternSet`](#patternset) | struct | A set of `PatternID`s. |
-| [`PatternSetInsertError`](#patternsetinserterror) | struct | An error that occurs when a `PatternID` failed to insert into a |
+| [`PatternSetInsertError`](#patternsetinserterror) | struct | An error that occurs when a `PatternID` failed to insert into a `PatternSet`. |
 | [`PatternSetIter`](#patternsetiter) | struct | An iterator over all pattern identifiers in a [`PatternSet`]. |
-| [`MatchError`](#matcherror) | struct | An error indicating that a search stopped before reporting whether a |
+| [`MatchError`](#matcherror) | struct | An error indicating that a search stopped before reporting whether a match exists or not. |
 | [`Anchored`](#anchored) | enum | The type of anchored search to perform. |
 | [`MatchKind`](#matchkind) | enum | The kind of match semantics to use for a regex pattern. |
 | [`MatchErrorKind`](#matcherrorkind) | enum | The underlying kind of a [`MatchError`]. |
@@ -604,6 +604,8 @@ enables `alloc` and `nfa-thompson`.
 struct PatternID(SmallIndex);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:736`](../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L736)*
+
 The identifier of a regex pattern, represented by a [`SmallIndex`](util/primitives/index.md).
 
 The identifier for a pattern corresponds to its relative position among
@@ -622,19 +624,19 @@ re-exported at the crate root due to how common it is.
 
 #### Implementations
 
-- <span id="patternid-max"></span>`const MAX: PatternID`
+- <span id="patternid-const-max"></span>`const MAX: PatternID`
 
-- <span id="patternid-limit"></span>`const LIMIT: usize`
+- <span id="patternid-const-limit"></span>`const LIMIT: usize`
 
-- <span id="patternid-zero"></span>`const ZERO: PatternID`
+- <span id="patternid-const-zero"></span>`const ZERO: PatternID`
 
-- <span id="patternid-size"></span>`const SIZE: usize`
+- <span id="patternid-const-size"></span>`const SIZE: usize`
 
-- <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](util/primitives/index.md)
+- <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
 
-- <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
-- <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 - <span id="patternid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
@@ -646,9 +648,9 @@ re-exported at the crate root due to how common it is.
 
 - <span id="patternid-one-more"></span>`fn one_more(&self) -> usize`
 
-- <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](util/primitives/index.md)
+- <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
 
-- <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 - <span id="patternid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
@@ -658,7 +660,7 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Clone for PatternID`
 
-- <span id="patternid-clone"></span>`fn clone(&self) -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-clone"></span>`fn clone(&self) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl Copy for PatternID`
 
@@ -668,7 +670,7 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Default for PatternID`
 
-- <span id="patternid-default"></span>`fn default() -> PatternID` — [`PatternID`](#patternid)
+- <span id="patternid-default"></span>`fn default() -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl Eq for PatternID`
 
@@ -676,17 +678,27 @@ re-exported at the crate root due to how common it is.
 
 - <span id="patternid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T> Index for [T]`
+
+- <span id="t-type-output"></span>`type Output = T`
+
+- <span id="t-index"></span>`fn index(&self, index: PatternID) -> &T` — [`PatternID`](util/primitives/index.md)
+
+##### `impl<T> IndexMut for [T]`
+
+- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: PatternID) -> &mut T` — [`PatternID`](util/primitives/index.md)
+
 ##### `impl Ord for PatternID`
 
-- <span id="patternid-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](#patternid)
+- <span id="patternid-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl PartialEq for PatternID`
 
-- <span id="patternid-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](#patternid)
+- <span id="patternid-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl PartialOrd for PatternID`
 
-- <span id="patternid-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](#patternid)
+- <span id="patternid-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](util/primitives/index.md)
 
 ##### `impl StructuralPartialEq for PatternID`
 
@@ -700,6 +712,8 @@ struct Input<'h> {
     earliest: bool,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:102-107`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L102-L107)*
 
 The parameters for a regex search including the haystack to search.
 
@@ -834,11 +848,11 @@ results in no match being reported.
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Input<'h>`
+##### `impl Clone for Input<'h>`
 
 - <span id="input-clone"></span>`fn clone(&self) -> Input<'h>` — [`Input`](#input)
 
-##### `impl<'h> Debug for Input<'h>`
+##### `impl Debug for Input<'h>`
 
 - <span id="input-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -850,6 +864,8 @@ struct Span {
     pub end: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:807-812`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L807-L812)*
 
 A representation of a span reported by a regex engine.
 
@@ -907,6 +923,16 @@ which means things like `Span::from(5..10)` work.
 
 - <span id="span-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl Index for [u8]`
+
+- <span id="u8-type-output"></span>`type Output = [u8]`
+
+- <span id="u8-index"></span>`fn index(&self, index: Span) -> &[u8]` — [`Span`](#span)
+
+##### `impl IndexMut for [u8]`
+
+- <span id="u8-index-mut"></span>`fn index_mut(&mut self, index: Span) -> &mut [u8]` — [`Span`](#span)
+
 ##### `impl PartialEq for Span`
 
 - <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
@@ -921,6 +947,8 @@ struct HalfMatch {
     offset: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:924-932`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L924-L932)*
 
 A representation of "half" of a match reported by a DFA.
 
@@ -950,11 +978,11 @@ have a pattern ID of `0`.
 
 #### Implementations
 
-- <span id="halfmatch-new"></span>`fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](#patternid), [`HalfMatch`](#halfmatch)
+- <span id="halfmatch-new"></span>`fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](util/primitives/index.md), [`HalfMatch`](#halfmatch)
 
 - <span id="halfmatch-must"></span>`fn must(pattern: usize, offset: usize) -> HalfMatch` — [`HalfMatch`](#halfmatch)
 
-- <span id="halfmatch-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](#patternid)
+- <span id="halfmatch-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 - <span id="halfmatch-offset"></span>`fn offset(&self) -> usize`
 
@@ -991,9 +1019,11 @@ struct Match {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:985-990`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L985-L990)*
+
 A representation of a match reported by a regex engine.
 
-A match has two essential pieces of information: the [`PatternID`](#patternid) that
+A match has two essential pieces of information: the [`PatternID`](util/primitives/index.md) that
 matches, and the [`Span`](#span) of the match in a haystack.
 
 The pattern is identified by an ID, which corresponds to its position
@@ -1016,11 +1046,11 @@ start offset as less than or equal to its end offset.
 
 #### Implementations
 
-- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](#patternid), [`Match`](#match)
+- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](util/primitives/index.md), [`Match`](#match)
 
 - <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](#match)
 
-- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](#patternid)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 - <span id="match-start"></span>`fn start(&self) -> usize`
 
@@ -1066,6 +1096,8 @@ struct PatternSet {
     which: alloc::boxed::Box<[bool]>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1149-1172`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L1149-L1172)*
 
 A set of `PatternID`s.
 
@@ -1135,11 +1167,11 @@ assert!(set.is_empty());
 
 - <span id="patternset-clear"></span>`fn clear(&mut self)`
 
-- <span id="patternset-contains"></span>`fn contains(&self, pid: PatternID) -> bool` — [`PatternID`](#patternid)
+- <span id="patternset-contains"></span>`fn contains(&self, pid: PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
 
-- <span id="patternset-insert"></span>`fn insert(&mut self, pid: PatternID) -> bool` — [`PatternID`](#patternid)
+- <span id="patternset-insert"></span>`fn insert(&mut self, pid: PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
 
-- <span id="patternset-try-insert"></span>`fn try_insert(&mut self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](#patternid), [`PatternSetInsertError`](#patternsetinserterror)
+- <span id="patternset-try-insert"></span>`fn try_insert(&mut self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](util/primitives/index.md), [`PatternSetInsertError`](#patternsetinserterror)
 
 - <span id="patternset-is-empty"></span>`fn is_empty(&self) -> bool`
 
@@ -1178,6 +1210,8 @@ struct PatternSetInsertError {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1335-1338`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L1335-L1338)*
+
 An error that occurs when a `PatternID` failed to insert into a
 `PatternSet`.
 
@@ -1202,7 +1236,7 @@ This error is created by the `PatternSet::try_insert` routine.
 
 ##### `impl Error for PatternSetInsertError`
 
-##### `impl<T> ToString for PatternSetInsertError`
+##### `impl ToString for PatternSetInsertError`
 
 - <span id="patternsetinserterror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -1214,6 +1248,8 @@ struct PatternSetIter<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1364-1366`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L1364-L1366)*
+
 An iterator over all pattern identifiers in a [`PatternSet`](#patternset).
 
 The lifetime parameter `'a` refers to the lifetime of the pattern set being
@@ -1223,31 +1259,31 @@ This iterator is created by the `PatternSet::iter` method.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for PatternSetIter<'a>`
+##### `impl Clone for PatternSetIter<'a>`
 
 - <span id="patternsetiter-clone"></span>`fn clone(&self) -> PatternSetIter<'a>` — [`PatternSetIter`](#patternsetiter)
 
-##### `impl<'a> Debug for PatternSetIter<'a>`
+##### `impl Debug for PatternSetIter<'a>`
 
 - <span id="patternsetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for PatternSetIter<'a>`
+##### `impl DoubleEndedIterator for PatternSetIter<'a>`
 
-- <span id="patternsetiter-next-back"></span>`fn next_back(&mut self) -> Option<PatternID>` — [`PatternID`](#patternid)
+- <span id="patternsetiter-next-back"></span>`fn next_back(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md)
 
-##### `impl<I> IntoIterator for PatternSetIter<'a>`
+##### `impl IntoIterator for PatternSetIter<'a>`
 
-- <span id="patternsetiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="patternsetiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="patternsetiter-intoiter"></span>`type IntoIter = I`
+- <span id="patternsetiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="patternsetiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for PatternSetIter<'a>`
+##### `impl Iterator for PatternSetIter<'a>`
 
-- <span id="patternsetiter-item"></span>`type Item = PatternID`
+- <span id="patternsetiter-type-item"></span>`type Item = PatternID`
 
-- <span id="patternsetiter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](#patternid)
+- <span id="patternsetiter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md)
 
 - <span id="patternsetiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -1256,6 +1292,8 @@ This iterator is created by the `PatternSet::iter` method.
 ```rust
 struct MatchError(alloc::boxed::Box<MatchErrorKind>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1778-1781`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L1778-L1781)*
 
 An error indicating that a search stopped before reporting whether a
 match exists or not.
@@ -1343,7 +1381,7 @@ with a [one-pass DFA](crate::dfa::onepass).
 
 ##### `impl StructuralPartialEq for MatchError`
 
-##### `impl<T> ToString for MatchError`
+##### `impl ToString for MatchError`
 
 - <span id="matcherror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -1358,6 +1396,8 @@ enum Anchored {
     Pattern(crate::util::primitives::PatternID),
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1501-1516`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L1501-L1516)*
 
 The type of anchored search to perform.
 
@@ -1480,7 +1520,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="anchored-is-anchored"></span>`fn is_anchored(&self) -> bool`
 
-- <span id="anchored-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](#patternid)
+- <span id="anchored-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md)
 
 #### Trait Implementations
 
@@ -1510,6 +1550,8 @@ enum MatchKind {
     LeftmostFirst,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1698-1721`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L1698-L1721)*
 
 The kind of match semantics to use for a regex pattern.
 
@@ -1705,6 +1747,8 @@ enum MatchErrorKind {
     },
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/search.rs:1849-1890`](../../.source_1765210505/regex-automata-0.4.13/src/util/search.rs#L1849-L1890)*
 
 The underlying kind of a [`MatchError`](#matcherror).
 

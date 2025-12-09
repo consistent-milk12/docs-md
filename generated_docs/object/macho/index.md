@@ -677,7 +677,7 @@ This module is based heavily on header files from MacOSX11.1.sdk.
 | [`CPU_SUBTYPE_MASK`](#cpu_subtype_mask) | const | mask for feature flags |
 | [`CPU_SUBTYPE_LIB64`](#cpu_subtype_lib64) | const | 64 bit libraries |
 | [`CPU_SUBTYPE_PTRAUTH_ABI`](#cpu_subtype_ptrauth_abi) | const | pointer authentication with versioned ABI |
-| [`CPU_SUBTYPE_ANY`](#cpu_subtype_any) | const | When selecting a slice, ANY will pick the slice with the best |
+| [`CPU_SUBTYPE_ANY`](#cpu_subtype_any) | const | When selecting a slice, ANY will pick the slice with the best grading for the selected cpu_type_t, unlike the "ALL" subtypes, which are the slices that can run on any hardware for that cpu type. |
 | [`CPU_SUBTYPE_MULTIPLE`](#cpu_subtype_multiple) | const |  |
 | [`CPU_SUBTYPE_LITTLE_ENDIAN`](#cpu_subtype_little_endian) | const |  |
 | [`CPU_SUBTYPE_BIG_ENDIAN`](#cpu_subtype_big_endian) | const |  |
@@ -836,7 +836,7 @@ This module is based heavily on header files from MacOSX11.1.sdk.
 | [`MH_NO_HEAP_EXECUTION`](#mh_no_heap_execution) | const | When this bit is set, the OS will run the main executable with a non-executable heap even on platforms (e.g. i386) that don't require it. |
 | [`MH_APP_EXTENSION_SAFE`](#mh_app_extension_safe) | const | The code was linked for use in an application extension. |
 | [`MH_NLIST_OUTOFSYNC_WITH_DYLDINFO`](#mh_nlist_outofsync_with_dyldinfo) | const | The external symbols listed in the nlist symbol table do not include all the symbols listed in the dyld info. |
-| [`MH_SIM_SUPPORT`](#mh_sim_support) | const | Allow LC_MIN_VERSION_MACOS and LC_BUILD_VERSION load commands with |
+| [`MH_SIM_SUPPORT`](#mh_sim_support) | const | Allow LC_MIN_VERSION_MACOS and LC_BUILD_VERSION load commands with the platforms macOS, iOSMac, iOSSimulator, tvOSSimulator and watchOSSimulator. |
 | [`MH_DYLIB_IN_CACHE`](#mh_dylib_in_cache) | const | Only for use on dylibs. |
 | [`LC_REQ_DYLD`](#lc_req_dyld) | const |  |
 | [`LC_SEGMENT`](#lc_segment) | const | segment of this file to be mapped |
@@ -862,7 +862,7 @@ This module is based heavily on header files from MacOSX11.1.sdk.
 | [`LC_SUB_LIBRARY`](#lc_sub_library) | const | sub library |
 | [`LC_TWOLEVEL_HINTS`](#lc_twolevel_hints) | const | two-level namespace lookup hints |
 | [`LC_PREBIND_CKSUM`](#lc_prebind_cksum) | const | prebind checksum |
-| [`LC_LOAD_WEAK_DYLIB`](#lc_load_weak_dylib) | const | load a dynamically linked shared library that is allowed to be missing |
+| [`LC_LOAD_WEAK_DYLIB`](#lc_load_weak_dylib) | const | load a dynamically linked shared library that is allowed to be missing (all symbols are weak imported). |
 | [`LC_SEGMENT_64`](#lc_segment_64) | const | 64-bit segment of this file to be mapped |
 | [`LC_ROUTINES_64`](#lc_routines_64) | const | 64-bit image routines |
 | [`LC_UUID`](#lc_uuid) | const | the uuid |
@@ -1124,8 +1124,8 @@ This module is based heavily on header files from MacOSX11.1.sdk.
 | [`PPC_RELOC_BR24`](#ppc_reloc_br24) | const | 24 bit branch displacement (to a word address) |
 | [`PPC_RELOC_HI16`](#ppc_reloc_hi16) | const | a PAIR follows with the low half |
 | [`PPC_RELOC_LO16`](#ppc_reloc_lo16) | const | a PAIR follows with the high half |
-| [`PPC_RELOC_HA16`](#ppc_reloc_ha16) | const | Same as the RELOC_HI16 except the low 16 bits and the high 16 bits are added together |
-| [`PPC_RELOC_LO14`](#ppc_reloc_lo14) | const | Same as the LO16 except that the low 2 bits are not stored in the instruction and are |
+| [`PPC_RELOC_HA16`](#ppc_reloc_ha16) | const | Same as the RELOC_HI16 except the low 16 bits and the high 16 bits are added together with the low 16 bits sign extended first. |
+| [`PPC_RELOC_LO14`](#ppc_reloc_lo14) | const | Same as the LO16 except that the low 2 bits are not stored in the instruction and are always zero. |
 | [`PPC_RELOC_SECTDIFF`](#ppc_reloc_sectdiff) | const | a PAIR follows with subtract symbol value |
 | [`PPC_RELOC_PB_LA_PTR`](#ppc_reloc_pb_la_ptr) | const | prebound lazy pointer |
 | [`PPC_RELOC_HI16_SECTDIFF`](#ppc_reloc_hi16_sectdiff) | const | section difference forms of above. |
@@ -1223,6 +1223,8 @@ struct DyldCacheHeader<E: Endian> {
     pub dynamic_data_max_size: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:314-454`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L314-L454)*
 
 The dyld cache header.
 Corresponds to struct dyld_cache_header from dyld_cache_format.h.
@@ -1545,6 +1547,8 @@ struct DyldCacheMappingInfo<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:459-465`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L459-L465)*
+
 Corresponds to struct dyld_cache_mapping_info from dyld_cache_format.h.
 
 #### Trait Implementations
@@ -1575,6 +1579,8 @@ struct DyldCacheMappingAndSlideInfo<E: Endian> {
     pub init_prot: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:477-486`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L477-L486)*
 
 Corresponds to struct dyld_cache_mapping_and_slide_info from dyld_cache_format.h.
 
@@ -1607,6 +1613,8 @@ struct DyldCacheImageInfo<E: Endian> {
     pub pad: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:491-497`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L491-L497)*
 
 Corresponds to struct dyld_cache_image_info from dyld_cache_format.h.
 
@@ -1643,6 +1651,8 @@ struct DyldCacheSlideInfo2<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:502-511`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L502-L511)*
+
 Corresponds to struct dyld_cache_slide_info2 from dyld_cache_format.h.
 
 #### Trait Implementations
@@ -1671,6 +1681,8 @@ struct DyldCacheSlideInfo3<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:524-530`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L524-L530)*
+
 Corresponds to struct dyld_cache_slide_info3 from dyld_cache_format.h.
 
 #### Trait Implementations
@@ -1692,6 +1704,8 @@ Corresponds to struct dyld_cache_slide_info3 from dyld_cache_format.h.
 ```rust
 struct DyldCacheSlidePointer3(u64);
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:537`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L537)*
 
 Corresponds to union dyld_cache_slide_pointer3 from dyld_cache_format.h.
 
@@ -1737,6 +1751,8 @@ struct DyldCacheSlideInfo5<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:598-604`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L598-L604)*
+
 Corresponds to struct dyld_cache_slide_info5 from dyld_cache_format.h.
 
 #### Trait Implementations
@@ -1758,6 +1774,8 @@ Corresponds to struct dyld_cache_slide_info5 from dyld_cache_format.h.
 ```rust
 struct DyldCacheSlidePointer5(u64);
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:611`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L611)*
 
 Corresponds to struct dyld_cache_slide_pointer5 from dyld_cache_format.h.
 
@@ -1798,6 +1816,8 @@ struct DyldSubCacheEntryV1<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:665-670`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L665-L670)*
+
 Added in dyld-940, which shipped with macOS 12 / iOS 15.
 Originally called `dyld_subcache_entry`, renamed to `dyld_subcache_entry_v1`
 in dyld-1042.1.
@@ -1835,6 +1855,8 @@ struct DyldSubCacheEntryV2<E: Endian> {
     pub file_suffix: [u8; 32],
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:676-683`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L676-L683)*
 
 Added in dyld-1042.1, which shipped with macOS 13 / iOS 16.
 Called `dyld_subcache_entry` as of dyld-1042.1.
@@ -1876,6 +1898,8 @@ struct FatHeader {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:708-713`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L708-L713)*
+
 #### Fields
 
 - **`magic`**: `crate::endian::U32<crate::endian::BigEndian>`
@@ -1911,6 +1935,8 @@ struct FatArch32 {
     pub align: crate::endian::U32<crate::endian::BigEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:717-728`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L717-L728)*
 
 #### Fields
 
@@ -1948,9 +1974,9 @@ struct FatArch32 {
 
 ##### `impl FatArch for FatArch32`
 
-- <span id="fatarch32-word"></span>`type Word = u32`
+- <span id="fatarch32-type-word"></span>`type Word = u32`
 
-- <span id="fatarch32-magic"></span>`const MAGIC: u32`
+- <span id="fatarch32-const-magic"></span>`const MAGIC: u32`
 
 - <span id="fatarch32-cputype"></span>`fn cputype(&self) -> u32`
 
@@ -1976,6 +2002,8 @@ struct FatArch64 {
     pub reserved: crate::endian::U32<crate::endian::BigEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:743-756`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L743-L756)*
 
 #### Fields
 
@@ -2017,9 +2045,9 @@ struct FatArch64 {
 
 ##### `impl FatArch for FatArch64`
 
-- <span id="fatarch64-word"></span>`type Word = u64`
+- <span id="fatarch64-type-word"></span>`type Word = u64`
 
-- <span id="fatarch64-magic"></span>`const MAGIC: u32`
+- <span id="fatarch64-const-magic"></span>`const MAGIC: u32`
 
 - <span id="fatarch64-cputype"></span>`fn cputype(&self) -> u32`
 
@@ -2046,6 +2074,8 @@ struct MachHeader32<E: Endian> {
     pub flags: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:765-780`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L765-L780)*
 
 The 32-bit mach header.
 
@@ -2095,15 +2125,15 @@ Appears at the very beginning of the object file for 32-bit architectures.
 
 ##### `impl<Endian: endian::Endian> MachHeader for macho::MachHeader32<Endian>`
 
-- <span id="machomachheader32-word"></span>`type Word = u32`
+- <span id="machomachheader32-type-word"></span>`type Word = u32`
 
-- <span id="machomachheader32-endian"></span>`type Endian = Endian`
+- <span id="machomachheader32-type-endian"></span>`type Endian = Endian`
 
-- <span id="machomachheader32-segment"></span>`type Segment = SegmentCommand32<Endian>`
+- <span id="machomachheader32-type-segment"></span>`type Segment = SegmentCommand32<Endian>`
 
-- <span id="machomachheader32-section"></span>`type Section = Section32<Endian>`
+- <span id="machomachheader32-type-section"></span>`type Section = Section32<Endian>`
 
-- <span id="machomachheader32-nlist"></span>`type Nlist = Nlist32<Endian>`
+- <span id="machomachheader32-type-nlist"></span>`type Nlist = Nlist32<Endian>`
 
 - <span id="machomachheader32-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -2141,6 +2171,8 @@ struct MachHeader64<E: Endian> {
     pub reserved: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:793-810`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L793-L810)*
 
 The 64-bit mach header.
 
@@ -2194,15 +2226,15 @@ Appears at the very beginning of object files for 64-bit architectures.
 
 ##### `impl<Endian: endian::Endian> MachHeader for macho::MachHeader64<Endian>`
 
-- <span id="machomachheader64-word"></span>`type Word = u64`
+- <span id="machomachheader64-type-word"></span>`type Word = u64`
 
-- <span id="machomachheader64-endian"></span>`type Endian = Endian`
+- <span id="machomachheader64-type-endian"></span>`type Endian = Endian`
 
-- <span id="machomachheader64-segment"></span>`type Segment = SegmentCommand64<Endian>`
+- <span id="machomachheader64-type-segment"></span>`type Segment = SegmentCommand64<Endian>`
 
-- <span id="machomachheader64-section"></span>`type Section = Section64<Endian>`
+- <span id="machomachheader64-type-section"></span>`type Section = Section64<Endian>`
 
-- <span id="machomachheader64-nlist"></span>`type Nlist = Nlist64<Endian>`
+- <span id="machomachheader64-type-nlist"></span>`type Nlist = Nlist64<Endian>`
 
 - <span id="machomachheader64-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -2234,6 +2266,8 @@ struct LoadCommand<E: Endian> {
     pub cmdsize: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:947-954`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L947-L954)*
 
 Common fields at the start of every load command.
 
@@ -2287,6 +2321,8 @@ struct LcStr<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1087-1090`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1087-L1090)*
+
 A variable length string in a load command.
 
 The strings are stored just after the load command structure and
@@ -2332,6 +2368,8 @@ struct SegmentCommand32<E: Endian> {
     pub flags: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1106-1129`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1106-L1129)*
 
 32-bit segment load command.
 
@@ -2408,11 +2446,11 @@ reflected in `cmdsize`.
 
 ##### `impl<Endian: endian::Endian> Segment for macho::SegmentCommand32<Endian>`
 
-- <span id="machosegmentcommand32-word"></span>`type Word = u32`
+- <span id="machosegmentcommand32-type-word"></span>`type Word = u32`
 
-- <span id="machosegmentcommand32-endian"></span>`type Endian = Endian`
+- <span id="machosegmentcommand32-type-endian"></span>`type Endian = Endian`
 
-- <span id="machosegmentcommand32-section"></span>`type Section = Section32<<SegmentCommand32<Endian> as Segment>::Endian>`
+- <span id="machosegmentcommand32-type-section"></span>`type Section = Section32<<SegmentCommand32<Endian> as Segment>::Endian>`
 
 - <span id="machosegmentcommand32-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md), [`Segment`](../read/macho/index.md), [`Result`](../index.md)
 
@@ -2455,6 +2493,8 @@ struct SegmentCommand64<E: Endian> {
     pub flags: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1139-1162`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1139-L1162)*
 
 64-bit segment load command.
 
@@ -2525,11 +2565,11 @@ command and their size is reflected in `cmdsize`.
 
 ##### `impl<Endian: endian::Endian> Segment for macho::SegmentCommand64<Endian>`
 
-- <span id="machosegmentcommand64-word"></span>`type Word = u64`
+- <span id="machosegmentcommand64-type-word"></span>`type Word = u64`
 
-- <span id="machosegmentcommand64-endian"></span>`type Endian = Endian`
+- <span id="machosegmentcommand64-type-endian"></span>`type Endian = Endian`
 
-- <span id="machosegmentcommand64-section"></span>`type Section = Section64<<SegmentCommand64<Endian> as Segment>::Endian>`
+- <span id="machosegmentcommand64-type-section"></span>`type Section = Section64<<SegmentCommand64<Endian> as Segment>::Endian>`
 
 - <span id="machosegmentcommand64-from-command"></span>`fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md), [`Segment`](../read/macho/index.md), [`Result`](../index.md)
 
@@ -2572,6 +2612,8 @@ struct Section32<E: Endian> {
     pub reserved2: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1206-1229`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1206-L1229)*
 
 32-bit section.
 
@@ -2637,9 +2679,9 @@ struct Section32<E: Endian> {
 
 ##### `impl<Endian: endian::Endian> Section for macho::Section32<Endian>`
 
-- <span id="machosection32-word"></span>`type Word = u32`
+- <span id="machosection32-type-word"></span>`type Word = u32`
 
-- <span id="machosection32-endian"></span>`type Endian = Endian`
+- <span id="machosection32-type-endian"></span>`type Endian = Endian`
 
 - <span id="machosection32-sectname"></span>`fn sectname(&self) -> &[u8; 16]`
 
@@ -2677,6 +2719,8 @@ struct Section64<E: Endian> {
     pub reserved3: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1234-1259`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1234-L1259)*
 
 64-bit section.
 
@@ -2746,9 +2790,9 @@ struct Section64<E: Endian> {
 
 ##### `impl<Endian: endian::Endian> Section for macho::Section64<Endian>`
 
-- <span id="machosection64-word"></span>`type Word = u64`
+- <span id="machosection64-type-word"></span>`type Word = u64`
 
-- <span id="machosection64-endian"></span>`type Endian = Endian`
+- <span id="machosection64-type-endian"></span>`type Endian = Endian`
 
 - <span id="machosection64-sectname"></span>`fn sectname(&self) -> &[u8; 16]`
 
@@ -2777,6 +2821,8 @@ struct Fvmlib<E: Endian> {
     pub header_addr: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1448-1455`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1448-L1455)*
 
 #### Fields
 
@@ -2816,6 +2862,8 @@ struct FvmlibCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1466-1473`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1466-L1473)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -2854,6 +2902,8 @@ struct Dylib<E: Endian> {
     pub compatibility_version: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1486-1495`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1486-L1495)*
 
 #### Fields
 
@@ -2897,6 +2947,8 @@ struct DylibCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1506-1513`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1506-L1513)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -2934,6 +2986,8 @@ struct SubFrameworkCommand<E: Endian> {
     pub umbrella: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1527-1534`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1527-L1534)*
 
 #### Fields
 
@@ -2973,6 +3027,8 @@ struct SubClientCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1547-1554`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1547-L1554)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -3011,6 +3067,8 @@ struct SubUmbrellaCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1571-1578`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1571-L1578)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -3048,6 +3106,8 @@ struct SubLibraryCommand<E: Endian> {
     pub sub_library: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1597-1604`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1597-L1604)*
 
 #### Fields
 
@@ -3088,6 +3148,8 @@ struct PreboundDylibCommand<E: Endian> {
     pub linked_modules: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1617-1628`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1617-L1628)*
 
 #### Fields
 
@@ -3135,6 +3197,8 @@ struct DylinkerCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1640-1647`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1640-L1647)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -3171,6 +3235,8 @@ struct ThreadCommand<E: Endian> {
     pub cmdsize: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1672-1681`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1672-L1681)*
 
 #### Fields
 
@@ -3212,6 +3278,8 @@ struct RoutinesCommand32<E: Endian> {
     pub reserved6: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1693-1709`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1693-L1709)*
 
 #### Fields
 
@@ -3262,6 +3330,8 @@ struct RoutinesCommand64<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1716-1732`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1716-L1732)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -3306,6 +3376,8 @@ struct SymtabCommand<E: Endian> {
     pub strsize: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1741-1754`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1741-L1754)*
 
 #### Fields
 
@@ -3377,6 +3449,8 @@ struct DysymtabCommand<E: Endian> {
     pub nlocrel: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1798-1931`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1798-L1931)*
 
 #### Fields
 
@@ -3483,6 +3557,8 @@ struct DylibTableOfContents<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1946-1951`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1946-L1951)*
+
 #### Fields
 
 - **`symbol_index`**: `crate::endian::U32<E>`
@@ -3526,6 +3602,8 @@ struct DylibModule32<E: Endian> {
     pub objc_module_info_size: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1956-1987`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1956-L1987)*
 
 #### Fields
 
@@ -3615,6 +3693,8 @@ struct DylibModule64<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1992-2023`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1992-L2023)*
+
 #### Fields
 
 - **`module_name`**: `crate::endian::U32<E>`
@@ -3691,6 +3771,8 @@ struct DylibReference<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2035-2041`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2035-L2041)*
+
 #### Trait Implementations
 
 ##### `impl<E: clone::Clone + Endian> Clone for DylibReference<E>`
@@ -3715,6 +3797,8 @@ struct TwolevelHintsCommand<E: Endian> {
     pub nhints: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2049-2058`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2049-L2058)*
 
 #### Fields
 
@@ -3756,6 +3840,8 @@ struct TwolevelHint<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2078-2085`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2078-L2085)*
+
 #### Trait Implementations
 
 ##### `impl<E: clone::Clone + Endian> Clone for TwolevelHint<E>`
@@ -3779,6 +3865,8 @@ struct PrebindCksumCommand<E: Endian> {
     pub cksum: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2099-2106`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2099-L2106)*
 
 #### Fields
 
@@ -3818,6 +3906,8 @@ struct UuidCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2114-2121`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2114-L2121)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -3855,6 +3945,8 @@ struct RpathCommand<E: Endian> {
     pub path: LcStr<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2129-2136`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2129-L2136)*
 
 #### Fields
 
@@ -3894,6 +3986,8 @@ struct LinkeditDataCommand<E: Endian> {
     pub datasize: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2144-2155`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2144-L2155)*
 
 #### Fields
 
@@ -3941,6 +4035,8 @@ struct FilesetEntryCommand<E: Endian> {
     pub reserved: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2159-2172`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2159-L2172)*
 
 #### Fields
 
@@ -3990,6 +4086,8 @@ struct EncryptionInfoCommand32<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2180-2191`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2180-L2191)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -4038,6 +4136,8 @@ struct EncryptionInfoCommand64<E: Endian> {
     pub pad: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2199-2212`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2199-L2212)*
 
 #### Fields
 
@@ -4090,6 +4190,8 @@ struct VersionMinCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2220-2229`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2220-L2229)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -4134,6 +4236,8 @@ struct BuildVersionCommand<E: Endian> {
     pub ntools: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2238-2251`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2238-L2251)*
 
 #### Fields
 
@@ -4184,6 +4288,8 @@ struct BuildToolVersion<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2255-2260`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2255-L2260)*
+
 #### Fields
 
 - **`tool`**: `crate::endian::U32<E>`
@@ -4226,6 +4332,8 @@ struct DyldInfoCommand<E: Endian> {
     pub export_size: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2291-2404`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2291-L2404)*
 
 #### Fields
 
@@ -4301,6 +4409,8 @@ struct LinkerOptionCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2476-2484`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2476-L2484)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -4335,6 +4445,8 @@ struct SymsegCommand<E: Endian> {
     pub size: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2497-2506`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2497-L2506)*
 
 #### Fields
 
@@ -4377,6 +4489,8 @@ struct IdentCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2516-2521`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2516-L2521)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -4411,6 +4525,8 @@ struct FvmfileCommand<E: Endian> {
     pub header_addr: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2531-2540`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2531-L2540)*
 
 #### Fields
 
@@ -4455,6 +4571,8 @@ struct EntryPointCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2550-2559`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2550-L2559)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -4497,6 +4615,8 @@ struct SourceVersionCommand<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2567-2574`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2567-L2574)*
+
 #### Fields
 
 - **`cmd`**: `crate::endian::U32<E>`
@@ -4534,6 +4654,8 @@ struct DataInCodeEntry<E: Endian> {
     pub kind: crate::endian::U16<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2583-2590`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2583-L2590)*
 
 #### Fields
 
@@ -4574,6 +4696,8 @@ struct NoteCommand<E: Endian> {
     pub size: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2618-2629`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2618-L2629)*
 
 #### Fields
 
@@ -4623,6 +4747,8 @@ struct Nlist32<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2635-2646`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2635-L2646)*
+
 #### Fields
 
 - **`n_strx`**: `crate::endian::U32<E>`
@@ -4659,9 +4785,9 @@ struct Nlist32<E: Endian> {
 
 ##### `impl<Endian: endian::Endian> Nlist for macho::Nlist32<Endian>`
 
-- <span id="machonlist32-word"></span>`type Word = u32`
+- <span id="machonlist32-type-word"></span>`type Word = u32`
 
-- <span id="machonlist32-endian"></span>`type Endian = Endian`
+- <span id="machonlist32-type-endian"></span>`type Endian = Endian`
 
 - <span id="machonlist32-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md)
 
@@ -4686,6 +4812,8 @@ struct Nlist64<E: Endian> {
     pub n_value: crate::endian::U64Bytes<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2653-2665`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2653-L2665)*
 
 #### Fields
 
@@ -4723,9 +4851,9 @@ struct Nlist64<E: Endian> {
 
 ##### `impl<Endian: endian::Endian> Nlist for macho::Nlist64<Endian>`
 
-- <span id="machonlist64-word"></span>`type Word = u64`
+- <span id="machonlist64-type-word"></span>`type Word = u64`
 
-- <span id="machonlist64-endian"></span>`type Endian = Endian`
+- <span id="machonlist64-type-endian"></span>`type Endian = Endian`
 
 - <span id="machonlist64-n-strx"></span>`fn n_strx(&self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md)
 
@@ -4747,6 +4875,8 @@ struct Relocation<E: Endian> {
     pub r_word1: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:2996-2999`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2996-L2999)*
 
 A relocation entry.
 
@@ -4790,6 +4920,8 @@ struct RelocationInfo {
     pub r_type: u8,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:3061-3074`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3061-L3074)*
 
 #### Fields
 
@@ -4845,6 +4977,8 @@ struct ScatteredRelocationInfo {
 }
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3170-3181`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3170-L3181)*
+
 #### Fields
 
 - **`r_address`**: `u32`
@@ -4895,6 +5029,8 @@ enum PtrauthKey {
     DB,
 }
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:293-302`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L293-L302)*
 
 The key used to sign a pointer for authentication.
 
@@ -4947,11 +5083,15 @@ The variant values correspond to the values used in the
 const fn cpu_subtype_intel(f: u32, m: u32) -> u32
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:126-128`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L126-L128)*
+
 ### `cpu_subtype_intel_family`
 
 ```rust
 const fn cpu_subtype_intel_family(x: u32) -> u32
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:153-155`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L153-L155)*
 
 ### `cpu_subtype_intel_model`
 
@@ -4959,3517 +5099,4009 @@ const fn cpu_subtype_intel_family(x: u32) -> u32
 const fn cpu_subtype_intel_model(x: u32) -> u32
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:159-161`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L159-L161)*
+
 ## Constants
 
 ### `CPU_ARCH_MASK`
-
 ```rust
 const CPU_ARCH_MASK: u32 = 4_278_190_080u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:20`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L20)*
+
 mask for architecture bits
 
 ### `CPU_ARCH_ABI64`
-
 ```rust
 const CPU_ARCH_ABI64: u32 = 16_777_216u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:22`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L22)*
+
 64 bit ABI
 
 ### `CPU_ARCH_ABI64_32`
-
 ```rust
 const CPU_ARCH_ABI64_32: u32 = 33_554_432u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:24`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L24)*
+
 ABI for 64-bit hardware with 32-bit types; LP32
 
 ### `CPU_TYPE_ANY`
-
 ```rust
 const CPU_TYPE_ANY: u32 = 4_294_967_295u32;
 ```
 
-### `CPU_TYPE_VAX`
+*Defined in [`object-0.37.3/src/macho.rs:30`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L30)*
 
+### `CPU_TYPE_VAX`
 ```rust
 const CPU_TYPE_VAX: u32 = 1u32;
 ```
 
-### `CPU_TYPE_MC680X0`
+*Defined in [`object-0.37.3/src/macho.rs:32`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L32)*
 
+### `CPU_TYPE_MC680X0`
 ```rust
 const CPU_TYPE_MC680X0: u32 = 6u32;
 ```
 
-### `CPU_TYPE_X86`
+*Defined in [`object-0.37.3/src/macho.rs:33`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L33)*
 
+### `CPU_TYPE_X86`
 ```rust
 const CPU_TYPE_X86: u32 = 7u32;
 ```
 
-### `CPU_TYPE_X86_64`
+*Defined in [`object-0.37.3/src/macho.rs:34`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L34)*
 
+### `CPU_TYPE_X86_64`
 ```rust
 const CPU_TYPE_X86_64: u32 = 16_777_223u32;
 ```
 
-### `CPU_TYPE_MIPS`
+*Defined in [`object-0.37.3/src/macho.rs:35`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L35)*
 
+### `CPU_TYPE_MIPS`
 ```rust
 const CPU_TYPE_MIPS: u32 = 8u32;
 ```
 
-### `CPU_TYPE_MC98000`
+*Defined in [`object-0.37.3/src/macho.rs:36`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L36)*
 
+### `CPU_TYPE_MC98000`
 ```rust
 const CPU_TYPE_MC98000: u32 = 10u32;
 ```
 
-### `CPU_TYPE_HPPA`
+*Defined in [`object-0.37.3/src/macho.rs:37`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L37)*
 
+### `CPU_TYPE_HPPA`
 ```rust
 const CPU_TYPE_HPPA: u32 = 11u32;
 ```
 
-### `CPU_TYPE_ARM`
+*Defined in [`object-0.37.3/src/macho.rs:38`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L38)*
 
+### `CPU_TYPE_ARM`
 ```rust
 const CPU_TYPE_ARM: u32 = 12u32;
 ```
 
-### `CPU_TYPE_ARM64`
+*Defined in [`object-0.37.3/src/macho.rs:39`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L39)*
 
+### `CPU_TYPE_ARM64`
 ```rust
 const CPU_TYPE_ARM64: u32 = 16_777_228u32;
 ```
 
-### `CPU_TYPE_ARM64_32`
+*Defined in [`object-0.37.3/src/macho.rs:40`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L40)*
 
+### `CPU_TYPE_ARM64_32`
 ```rust
 const CPU_TYPE_ARM64_32: u32 = 33_554_444u32;
 ```
 
-### `CPU_TYPE_MC88000`
+*Defined in [`object-0.37.3/src/macho.rs:41`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L41)*
 
+### `CPU_TYPE_MC88000`
 ```rust
 const CPU_TYPE_MC88000: u32 = 13u32;
 ```
 
-### `CPU_TYPE_SPARC`
+*Defined in [`object-0.37.3/src/macho.rs:42`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L42)*
 
+### `CPU_TYPE_SPARC`
 ```rust
 const CPU_TYPE_SPARC: u32 = 14u32;
 ```
 
-### `CPU_TYPE_I860`
+*Defined in [`object-0.37.3/src/macho.rs:43`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L43)*
 
+### `CPU_TYPE_I860`
 ```rust
 const CPU_TYPE_I860: u32 = 15u32;
 ```
 
-### `CPU_TYPE_ALPHA`
+*Defined in [`object-0.37.3/src/macho.rs:44`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L44)*
 
+### `CPU_TYPE_ALPHA`
 ```rust
 const CPU_TYPE_ALPHA: u32 = 16u32;
 ```
 
-### `CPU_TYPE_POWERPC`
+*Defined in [`object-0.37.3/src/macho.rs:45`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L45)*
 
+### `CPU_TYPE_POWERPC`
 ```rust
 const CPU_TYPE_POWERPC: u32 = 18u32;
 ```
 
-### `CPU_TYPE_POWERPC64`
+*Defined in [`object-0.37.3/src/macho.rs:46`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L46)*
 
+### `CPU_TYPE_POWERPC64`
 ```rust
 const CPU_TYPE_POWERPC64: u32 = 16_777_234u32;
 ```
 
-### `CPU_SUBTYPE_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:47`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L47)*
 
+### `CPU_SUBTYPE_MASK`
 ```rust
 const CPU_SUBTYPE_MASK: u32 = 4_278_190_080u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:53`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L53)*
+
 mask for feature flags
 
 ### `CPU_SUBTYPE_LIB64`
-
 ```rust
 const CPU_SUBTYPE_LIB64: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:55`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L55)*
+
 64 bit libraries
 
 ### `CPU_SUBTYPE_PTRAUTH_ABI`
-
 ```rust
 const CPU_SUBTYPE_PTRAUTH_ABI: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:57`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L57)*
+
 pointer authentication with versioned ABI
 
 ### `CPU_SUBTYPE_ANY`
-
 ```rust
 const CPU_SUBTYPE_ANY: u32 = 4_294_967_295u32;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:62`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L62)*
 
 When selecting a slice, ANY will pick the slice with the best
 grading for the selected cpu_type_t, unlike the "ALL" subtypes,
 which are the slices that can run on any hardware for that cpu type.
 
 ### `CPU_SUBTYPE_MULTIPLE`
-
 ```rust
 const CPU_SUBTYPE_MULTIPLE: u32 = 4_294_967_295u32;
 ```
 
-### `CPU_SUBTYPE_LITTLE_ENDIAN`
+*Defined in [`object-0.37.3/src/macho.rs:75`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L75)*
 
+### `CPU_SUBTYPE_LITTLE_ENDIAN`
 ```rust
 const CPU_SUBTYPE_LITTLE_ENDIAN: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_BIG_ENDIAN`
+*Defined in [`object-0.37.3/src/macho.rs:76`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L76)*
 
+### `CPU_SUBTYPE_BIG_ENDIAN`
 ```rust
 const CPU_SUBTYPE_BIG_ENDIAN: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_VAX_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:77`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L77)*
 
+### `CPU_SUBTYPE_VAX_ALL`
 ```rust
 const CPU_SUBTYPE_VAX_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_VAX780`
+*Defined in [`object-0.37.3/src/macho.rs:84`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L84)*
 
+### `CPU_SUBTYPE_VAX780`
 ```rust
 const CPU_SUBTYPE_VAX780: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_VAX785`
+*Defined in [`object-0.37.3/src/macho.rs:85`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L85)*
 
+### `CPU_SUBTYPE_VAX785`
 ```rust
 const CPU_SUBTYPE_VAX785: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_VAX750`
+*Defined in [`object-0.37.3/src/macho.rs:86`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L86)*
 
+### `CPU_SUBTYPE_VAX750`
 ```rust
 const CPU_SUBTYPE_VAX750: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_VAX730`
+*Defined in [`object-0.37.3/src/macho.rs:87`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L87)*
 
+### `CPU_SUBTYPE_VAX730`
 ```rust
 const CPU_SUBTYPE_VAX730: u32 = 4u32;
 ```
 
-### `CPU_SUBTYPE_UVAXI`
+*Defined in [`object-0.37.3/src/macho.rs:88`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L88)*
 
+### `CPU_SUBTYPE_UVAXI`
 ```rust
 const CPU_SUBTYPE_UVAXI: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_UVAXII`
+*Defined in [`object-0.37.3/src/macho.rs:89`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L89)*
 
+### `CPU_SUBTYPE_UVAXII`
 ```rust
 const CPU_SUBTYPE_UVAXII: u32 = 6u32;
 ```
 
-### `CPU_SUBTYPE_VAX8200`
+*Defined in [`object-0.37.3/src/macho.rs:90`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L90)*
 
+### `CPU_SUBTYPE_VAX8200`
 ```rust
 const CPU_SUBTYPE_VAX8200: u32 = 7u32;
 ```
 
-### `CPU_SUBTYPE_VAX8500`
+*Defined in [`object-0.37.3/src/macho.rs:91`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L91)*
 
+### `CPU_SUBTYPE_VAX8500`
 ```rust
 const CPU_SUBTYPE_VAX8500: u32 = 8u32;
 ```
 
-### `CPU_SUBTYPE_VAX8600`
+*Defined in [`object-0.37.3/src/macho.rs:92`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L92)*
 
+### `CPU_SUBTYPE_VAX8600`
 ```rust
 const CPU_SUBTYPE_VAX8600: u32 = 9u32;
 ```
 
-### `CPU_SUBTYPE_VAX8650`
+*Defined in [`object-0.37.3/src/macho.rs:93`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L93)*
 
+### `CPU_SUBTYPE_VAX8650`
 ```rust
 const CPU_SUBTYPE_VAX8650: u32 = 10u32;
 ```
 
-### `CPU_SUBTYPE_VAX8800`
+*Defined in [`object-0.37.3/src/macho.rs:94`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L94)*
 
+### `CPU_SUBTYPE_VAX8800`
 ```rust
 const CPU_SUBTYPE_VAX8800: u32 = 11u32;
 ```
 
-### `CPU_SUBTYPE_UVAXIII`
+*Defined in [`object-0.37.3/src/macho.rs:95`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L95)*
 
+### `CPU_SUBTYPE_UVAXIII`
 ```rust
 const CPU_SUBTYPE_UVAXIII: u32 = 12u32;
 ```
 
-### `CPU_SUBTYPE_MC680X0_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:96`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L96)*
 
+### `CPU_SUBTYPE_MC680X0_ALL`
 ```rust
 const CPU_SUBTYPE_MC680X0_ALL: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_MC68030`
+*Defined in [`object-0.37.3/src/macho.rs:115`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L115)*
 
+### `CPU_SUBTYPE_MC68030`
 ```rust
 const CPU_SUBTYPE_MC68030: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_MC68040`
+*Defined in [`object-0.37.3/src/macho.rs:117`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L117)*
 
+### `CPU_SUBTYPE_MC68040`
 ```rust
 const CPU_SUBTYPE_MC68040: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_MC68030_ONLY`
+*Defined in [`object-0.37.3/src/macho.rs:118`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L118)*
 
+### `CPU_SUBTYPE_MC68030_ONLY`
 ```rust
 const CPU_SUBTYPE_MC68030_ONLY: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_I386_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:119`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L119)*
 
+### `CPU_SUBTYPE_I386_ALL`
 ```rust
 const CPU_SUBTYPE_I386_ALL: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_386`
+*Defined in [`object-0.37.3/src/macho.rs:130`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L130)*
 
+### `CPU_SUBTYPE_386`
 ```rust
 const CPU_SUBTYPE_386: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_486`
+*Defined in [`object-0.37.3/src/macho.rs:131`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L131)*
 
+### `CPU_SUBTYPE_486`
 ```rust
 const CPU_SUBTYPE_486: u32 = 4u32;
 ```
 
-### `CPU_SUBTYPE_486SX`
+*Defined in [`object-0.37.3/src/macho.rs:132`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L132)*
 
+### `CPU_SUBTYPE_486SX`
 ```rust
 const CPU_SUBTYPE_486SX: u32 = 132u32;
 ```
 
-### `CPU_SUBTYPE_586`
+*Defined in [`object-0.37.3/src/macho.rs:133`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L133)*
 
+### `CPU_SUBTYPE_586`
 ```rust
 const CPU_SUBTYPE_586: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_PENT`
+*Defined in [`object-0.37.3/src/macho.rs:134`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L134)*
 
+### `CPU_SUBTYPE_PENT`
 ```rust
 const CPU_SUBTYPE_PENT: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_PENTPRO`
+*Defined in [`object-0.37.3/src/macho.rs:135`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L135)*
 
+### `CPU_SUBTYPE_PENTPRO`
 ```rust
 const CPU_SUBTYPE_PENTPRO: u32 = 22u32;
 ```
 
-### `CPU_SUBTYPE_PENTII_M3`
+*Defined in [`object-0.37.3/src/macho.rs:136`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L136)*
 
+### `CPU_SUBTYPE_PENTII_M3`
 ```rust
 const CPU_SUBTYPE_PENTII_M3: u32 = 54u32;
 ```
 
-### `CPU_SUBTYPE_PENTII_M5`
+*Defined in [`object-0.37.3/src/macho.rs:137`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L137)*
 
+### `CPU_SUBTYPE_PENTII_M5`
 ```rust
 const CPU_SUBTYPE_PENTII_M5: u32 = 86u32;
 ```
 
-### `CPU_SUBTYPE_CELERON`
+*Defined in [`object-0.37.3/src/macho.rs:138`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L138)*
 
+### `CPU_SUBTYPE_CELERON`
 ```rust
 const CPU_SUBTYPE_CELERON: u32 = 103u32;
 ```
 
-### `CPU_SUBTYPE_CELERON_MOBILE`
+*Defined in [`object-0.37.3/src/macho.rs:139`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L139)*
 
+### `CPU_SUBTYPE_CELERON_MOBILE`
 ```rust
 const CPU_SUBTYPE_CELERON_MOBILE: u32 = 119u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_3`
+*Defined in [`object-0.37.3/src/macho.rs:140`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L140)*
 
+### `CPU_SUBTYPE_PENTIUM_3`
 ```rust
 const CPU_SUBTYPE_PENTIUM_3: u32 = 8u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_3_M`
+*Defined in [`object-0.37.3/src/macho.rs:141`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L141)*
 
+### `CPU_SUBTYPE_PENTIUM_3_M`
 ```rust
 const CPU_SUBTYPE_PENTIUM_3_M: u32 = 24u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_3_XEON`
+*Defined in [`object-0.37.3/src/macho.rs:142`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L142)*
 
+### `CPU_SUBTYPE_PENTIUM_3_XEON`
 ```rust
 const CPU_SUBTYPE_PENTIUM_3_XEON: u32 = 40u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_M`
+*Defined in [`object-0.37.3/src/macho.rs:143`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L143)*
 
+### `CPU_SUBTYPE_PENTIUM_M`
 ```rust
 const CPU_SUBTYPE_PENTIUM_M: u32 = 9u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_4`
+*Defined in [`object-0.37.3/src/macho.rs:144`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L144)*
 
+### `CPU_SUBTYPE_PENTIUM_4`
 ```rust
 const CPU_SUBTYPE_PENTIUM_4: u32 = 10u32;
 ```
 
-### `CPU_SUBTYPE_PENTIUM_4_M`
+*Defined in [`object-0.37.3/src/macho.rs:145`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L145)*
 
+### `CPU_SUBTYPE_PENTIUM_4_M`
 ```rust
 const CPU_SUBTYPE_PENTIUM_4_M: u32 = 26u32;
 ```
 
-### `CPU_SUBTYPE_ITANIUM`
+*Defined in [`object-0.37.3/src/macho.rs:146`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L146)*
 
+### `CPU_SUBTYPE_ITANIUM`
 ```rust
 const CPU_SUBTYPE_ITANIUM: u32 = 11u32;
 ```
 
-### `CPU_SUBTYPE_ITANIUM_2`
+*Defined in [`object-0.37.3/src/macho.rs:147`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L147)*
 
+### `CPU_SUBTYPE_ITANIUM_2`
 ```rust
 const CPU_SUBTYPE_ITANIUM_2: u32 = 27u32;
 ```
 
-### `CPU_SUBTYPE_XEON`
+*Defined in [`object-0.37.3/src/macho.rs:148`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L148)*
 
+### `CPU_SUBTYPE_XEON`
 ```rust
 const CPU_SUBTYPE_XEON: u32 = 12u32;
 ```
 
-### `CPU_SUBTYPE_XEON_MP`
+*Defined in [`object-0.37.3/src/macho.rs:149`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L149)*
 
+### `CPU_SUBTYPE_XEON_MP`
 ```rust
 const CPU_SUBTYPE_XEON_MP: u32 = 28u32;
 ```
 
-### `CPU_SUBTYPE_INTEL_FAMILY_MAX`
+*Defined in [`object-0.37.3/src/macho.rs:150`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L150)*
 
+### `CPU_SUBTYPE_INTEL_FAMILY_MAX`
 ```rust
 const CPU_SUBTYPE_INTEL_FAMILY_MAX: u32 = 15u32;
 ```
 
-### `CPU_SUBTYPE_INTEL_MODEL_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:156`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L156)*
 
+### `CPU_SUBTYPE_INTEL_MODEL_ALL`
 ```rust
 const CPU_SUBTYPE_INTEL_MODEL_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_X86_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:162`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L162)*
 
+### `CPU_SUBTYPE_X86_ALL`
 ```rust
 const CPU_SUBTYPE_X86_ALL: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_X86_64_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:168`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L168)*
 
+### `CPU_SUBTYPE_X86_64_ALL`
 ```rust
 const CPU_SUBTYPE_X86_64_ALL: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_X86_ARCH1`
+*Defined in [`object-0.37.3/src/macho.rs:169`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L169)*
 
+### `CPU_SUBTYPE_X86_ARCH1`
 ```rust
 const CPU_SUBTYPE_X86_ARCH1: u32 = 4u32;
 ```
 
-### `CPU_SUBTYPE_X86_64_H`
+*Defined in [`object-0.37.3/src/macho.rs:170`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L170)*
 
+### `CPU_SUBTYPE_X86_64_H`
 ```rust
 const CPU_SUBTYPE_X86_64_H: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:172`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L172)*
+
 Haswell feature subset
 
 ### `CPU_SUBTYPE_MIPS_ALL`
-
 ```rust
 const CPU_SUBTYPE_MIPS_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_MIPS_R2300`
+*Defined in [`object-0.37.3/src/macho.rs:178`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L178)*
 
+### `CPU_SUBTYPE_MIPS_R2300`
 ```rust
 const CPU_SUBTYPE_MIPS_R2300: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_MIPS_R2600`
+*Defined in [`object-0.37.3/src/macho.rs:179`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L179)*
 
+### `CPU_SUBTYPE_MIPS_R2600`
 ```rust
 const CPU_SUBTYPE_MIPS_R2600: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_MIPS_R2800`
+*Defined in [`object-0.37.3/src/macho.rs:180`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L180)*
 
+### `CPU_SUBTYPE_MIPS_R2800`
 ```rust
 const CPU_SUBTYPE_MIPS_R2800: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_MIPS_R2000A`
+*Defined in [`object-0.37.3/src/macho.rs:181`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L181)*
 
+### `CPU_SUBTYPE_MIPS_R2000A`
 ```rust
 const CPU_SUBTYPE_MIPS_R2000A: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:183`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L183)*
+
 pmax
 
 ### `CPU_SUBTYPE_MIPS_R2000`
-
 ```rust
 const CPU_SUBTYPE_MIPS_R2000: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_MIPS_R3000A`
+*Defined in [`object-0.37.3/src/macho.rs:184`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L184)*
 
+### `CPU_SUBTYPE_MIPS_R3000A`
 ```rust
 const CPU_SUBTYPE_MIPS_R3000A: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:186`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L186)*
+
 3max
 
 ### `CPU_SUBTYPE_MIPS_R3000`
-
 ```rust
 const CPU_SUBTYPE_MIPS_R3000: u32 = 7u32;
 ```
 
-### `CPU_SUBTYPE_MC98000_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:187`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L187)*
 
+### `CPU_SUBTYPE_MC98000_ALL`
 ```rust
 const CPU_SUBTYPE_MC98000_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_MC98601`
+*Defined in [`object-0.37.3/src/macho.rs:192`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L192)*
 
+### `CPU_SUBTYPE_MC98601`
 ```rust
 const CPU_SUBTYPE_MC98601: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_HPPA_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:193`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L193)*
 
+### `CPU_SUBTYPE_HPPA_ALL`
 ```rust
 const CPU_SUBTYPE_HPPA_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_HPPA_7100LC`
+*Defined in [`object-0.37.3/src/macho.rs:200`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L200)*
 
+### `CPU_SUBTYPE_HPPA_7100LC`
 ```rust
 const CPU_SUBTYPE_HPPA_7100LC: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_MC88000_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:201`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L201)*
 
+### `CPU_SUBTYPE_MC88000_ALL`
 ```rust
 const CPU_SUBTYPE_MC88000_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_MC88100`
+*Defined in [`object-0.37.3/src/macho.rs:206`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L206)*
 
+### `CPU_SUBTYPE_MC88100`
 ```rust
 const CPU_SUBTYPE_MC88100: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_MC88110`
+*Defined in [`object-0.37.3/src/macho.rs:207`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L207)*
 
+### `CPU_SUBTYPE_MC88110`
 ```rust
 const CPU_SUBTYPE_MC88110: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_SPARC_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:208`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L208)*
 
+### `CPU_SUBTYPE_SPARC_ALL`
 ```rust
 const CPU_SUBTYPE_SPARC_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_I860_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:213`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L213)*
 
+### `CPU_SUBTYPE_I860_ALL`
 ```rust
 const CPU_SUBTYPE_I860_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_I860_860`
+*Defined in [`object-0.37.3/src/macho.rs:218`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L218)*
 
+### `CPU_SUBTYPE_I860_860`
 ```rust
 const CPU_SUBTYPE_I860_860: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:219`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L219)*
 
+### `CPU_SUBTYPE_POWERPC_ALL`
 ```rust
 const CPU_SUBTYPE_POWERPC_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_601`
+*Defined in [`object-0.37.3/src/macho.rs:224`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L224)*
 
+### `CPU_SUBTYPE_POWERPC_601`
 ```rust
 const CPU_SUBTYPE_POWERPC_601: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_602`
+*Defined in [`object-0.37.3/src/macho.rs:225`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L225)*
 
+### `CPU_SUBTYPE_POWERPC_602`
 ```rust
 const CPU_SUBTYPE_POWERPC_602: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_603`
+*Defined in [`object-0.37.3/src/macho.rs:226`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L226)*
 
+### `CPU_SUBTYPE_POWERPC_603`
 ```rust
 const CPU_SUBTYPE_POWERPC_603: u32 = 3u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_603E`
+*Defined in [`object-0.37.3/src/macho.rs:227`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L227)*
 
+### `CPU_SUBTYPE_POWERPC_603E`
 ```rust
 const CPU_SUBTYPE_POWERPC_603E: u32 = 4u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_603EV`
+*Defined in [`object-0.37.3/src/macho.rs:228`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L228)*
 
+### `CPU_SUBTYPE_POWERPC_603EV`
 ```rust
 const CPU_SUBTYPE_POWERPC_603EV: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_604`
+*Defined in [`object-0.37.3/src/macho.rs:229`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L229)*
 
+### `CPU_SUBTYPE_POWERPC_604`
 ```rust
 const CPU_SUBTYPE_POWERPC_604: u32 = 6u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_604E`
+*Defined in [`object-0.37.3/src/macho.rs:230`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L230)*
 
+### `CPU_SUBTYPE_POWERPC_604E`
 ```rust
 const CPU_SUBTYPE_POWERPC_604E: u32 = 7u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_620`
+*Defined in [`object-0.37.3/src/macho.rs:231`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L231)*
 
+### `CPU_SUBTYPE_POWERPC_620`
 ```rust
 const CPU_SUBTYPE_POWERPC_620: u32 = 8u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_750`
+*Defined in [`object-0.37.3/src/macho.rs:232`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L232)*
 
+### `CPU_SUBTYPE_POWERPC_750`
 ```rust
 const CPU_SUBTYPE_POWERPC_750: u32 = 9u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_7400`
+*Defined in [`object-0.37.3/src/macho.rs:233`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L233)*
 
+### `CPU_SUBTYPE_POWERPC_7400`
 ```rust
 const CPU_SUBTYPE_POWERPC_7400: u32 = 10u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_7450`
+*Defined in [`object-0.37.3/src/macho.rs:234`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L234)*
 
+### `CPU_SUBTYPE_POWERPC_7450`
 ```rust
 const CPU_SUBTYPE_POWERPC_7450: u32 = 11u32;
 ```
 
-### `CPU_SUBTYPE_POWERPC_970`
+*Defined in [`object-0.37.3/src/macho.rs:235`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L235)*
 
+### `CPU_SUBTYPE_POWERPC_970`
 ```rust
 const CPU_SUBTYPE_POWERPC_970: u32 = 100u32;
 ```
 
-### `CPU_SUBTYPE_ARM_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:236`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L236)*
 
+### `CPU_SUBTYPE_ARM_ALL`
 ```rust
 const CPU_SUBTYPE_ARM_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V4T`
+*Defined in [`object-0.37.3/src/macho.rs:241`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L241)*
 
+### `CPU_SUBTYPE_ARM_V4T`
 ```rust
 const CPU_SUBTYPE_ARM_V4T: u32 = 5u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V6`
+*Defined in [`object-0.37.3/src/macho.rs:242`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L242)*
 
+### `CPU_SUBTYPE_ARM_V6`
 ```rust
 const CPU_SUBTYPE_ARM_V6: u32 = 6u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V5TEJ`
+*Defined in [`object-0.37.3/src/macho.rs:243`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L243)*
 
+### `CPU_SUBTYPE_ARM_V5TEJ`
 ```rust
 const CPU_SUBTYPE_ARM_V5TEJ: u32 = 7u32;
 ```
 
-### `CPU_SUBTYPE_ARM_XSCALE`
+*Defined in [`object-0.37.3/src/macho.rs:244`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L244)*
 
+### `CPU_SUBTYPE_ARM_XSCALE`
 ```rust
 const CPU_SUBTYPE_ARM_XSCALE: u32 = 8u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V7`
+*Defined in [`object-0.37.3/src/macho.rs:245`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L245)*
 
+### `CPU_SUBTYPE_ARM_V7`
 ```rust
 const CPU_SUBTYPE_ARM_V7: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:247`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L247)*
+
 ARMv7-A and ARMv7-R
 
 ### `CPU_SUBTYPE_ARM_V7F`
-
 ```rust
 const CPU_SUBTYPE_ARM_V7F: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:249`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L249)*
+
 Cortex A9
 
 ### `CPU_SUBTYPE_ARM_V7S`
-
 ```rust
 const CPU_SUBTYPE_ARM_V7S: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:251`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L251)*
+
 Swift
 
 ### `CPU_SUBTYPE_ARM_V7K`
-
 ```rust
 const CPU_SUBTYPE_ARM_V7K: u32 = 12u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V8`
+*Defined in [`object-0.37.3/src/macho.rs:252`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L252)*
 
+### `CPU_SUBTYPE_ARM_V8`
 ```rust
 const CPU_SUBTYPE_ARM_V8: u32 = 13u32;
 ```
 
-### `CPU_SUBTYPE_ARM_V6M`
+*Defined in [`object-0.37.3/src/macho.rs:253`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L253)*
 
+### `CPU_SUBTYPE_ARM_V6M`
 ```rust
 const CPU_SUBTYPE_ARM_V6M: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:255`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L255)*
+
 Not meant to be run under xnu
 
 ### `CPU_SUBTYPE_ARM_V7M`
-
 ```rust
 const CPU_SUBTYPE_ARM_V7M: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:257`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L257)*
+
 Not meant to be run under xnu
 
 ### `CPU_SUBTYPE_ARM_V7EM`
-
 ```rust
 const CPU_SUBTYPE_ARM_V7EM: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:259`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L259)*
+
 Not meant to be run under xnu
 
 ### `CPU_SUBTYPE_ARM_V8M`
-
 ```rust
 const CPU_SUBTYPE_ARM_V8M: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:261`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L261)*
+
 Not meant to be run under xnu
 
 ### `CPU_SUBTYPE_ARM64_ALL`
-
 ```rust
 const CPU_SUBTYPE_ARM64_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_ARM64_V8`
+*Defined in [`object-0.37.3/src/macho.rs:266`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L266)*
 
+### `CPU_SUBTYPE_ARM64_V8`
 ```rust
 const CPU_SUBTYPE_ARM64_V8: u32 = 1u32;
 ```
 
-### `CPU_SUBTYPE_ARM64E`
+*Defined in [`object-0.37.3/src/macho.rs:267`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L267)*
 
+### `CPU_SUBTYPE_ARM64E`
 ```rust
 const CPU_SUBTYPE_ARM64E: u32 = 2u32;
 ```
 
-### `CPU_SUBTYPE_ARM64_32_ALL`
+*Defined in [`object-0.37.3/src/macho.rs:268`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L268)*
 
+### `CPU_SUBTYPE_ARM64_32_ALL`
 ```rust
 const CPU_SUBTYPE_ARM64_32_ALL: u32 = 0u32;
 ```
 
-### `CPU_SUBTYPE_ARM64_32_V8`
+*Defined in [`object-0.37.3/src/macho.rs:273`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L273)*
 
+### `CPU_SUBTYPE_ARM64_32_V8`
 ```rust
 const CPU_SUBTYPE_ARM64_32_V8: u32 = 1u32;
 ```
 
-### `VM_PROT_READ`
+*Defined in [`object-0.37.3/src/macho.rs:274`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L274)*
 
+### `VM_PROT_READ`
 ```rust
 const VM_PROT_READ: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:279`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L279)*
+
 read permission
 
 ### `VM_PROT_WRITE`
-
 ```rust
 const VM_PROT_WRITE: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:281`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L281)*
+
 write permission
 
 ### `VM_PROT_EXECUTE`
-
 ```rust
 const VM_PROT_EXECUTE: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:283`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L283)*
+
 execute permission
 
 ### `DYLD_CACHE_MAPPING_AUTH_DATA`
-
 ```rust
 const DYLD_CACHE_MAPPING_AUTH_DATA: u64 = 1u64;
 ```
 
-### `DYLD_CACHE_MAPPING_DIRTY_DATA`
+*Defined in [`object-0.37.3/src/macho.rs:468`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L468)*
 
+### `DYLD_CACHE_MAPPING_DIRTY_DATA`
 ```rust
 const DYLD_CACHE_MAPPING_DIRTY_DATA: u64 = 2u64;
 ```
 
-### `DYLD_CACHE_MAPPING_CONST_DATA`
+*Defined in [`object-0.37.3/src/macho.rs:469`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L469)*
 
+### `DYLD_CACHE_MAPPING_CONST_DATA`
 ```rust
 const DYLD_CACHE_MAPPING_CONST_DATA: u64 = 4u64;
 ```
 
-### `DYLD_CACHE_MAPPING_TEXT_STUBS`
+*Defined in [`object-0.37.3/src/macho.rs:470`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L470)*
 
+### `DYLD_CACHE_MAPPING_TEXT_STUBS`
 ```rust
 const DYLD_CACHE_MAPPING_TEXT_STUBS: u64 = 8u64;
 ```
 
-### `DYLD_CACHE_DYNAMIC_CONFIG_DATA`
+*Defined in [`object-0.37.3/src/macho.rs:471`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L471)*
 
+### `DYLD_CACHE_DYNAMIC_CONFIG_DATA`
 ```rust
 const DYLD_CACHE_DYNAMIC_CONFIG_DATA: u64 = 16u64;
 ```
 
-### `DYLD_CACHE_SLIDE_PAGE_ATTRS`
+*Defined in [`object-0.37.3/src/macho.rs:472`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L472)*
 
+### `DYLD_CACHE_SLIDE_PAGE_ATTRS`
 ```rust
 const DYLD_CACHE_SLIDE_PAGE_ATTRS: u16 = 49_152u16;
 ```
 
-### `DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA`
+*Defined in [`object-0.37.3/src/macho.rs:513`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L513)*
 
+### `DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA`
 ```rust
 const DYLD_CACHE_SLIDE_PAGE_ATTR_EXTRA: u16 = 32_768u16;
 ```
 
-### `DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE`
+*Defined in [`object-0.37.3/src/macho.rs:515`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L515)*
 
+### `DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE`
 ```rust
 const DYLD_CACHE_SLIDE_PAGE_ATTR_NO_REBASE: u16 = 16_384u16;
 ```
 
-### `DYLD_CACHE_SLIDE_PAGE_ATTR_END`
+*Defined in [`object-0.37.3/src/macho.rs:517`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L517)*
 
+### `DYLD_CACHE_SLIDE_PAGE_ATTR_END`
 ```rust
 const DYLD_CACHE_SLIDE_PAGE_ATTR_END: u16 = 32_768u16;
 ```
 
-### `DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE`
+*Defined in [`object-0.37.3/src/macho.rs:519`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L519)*
 
+### `DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE`
 ```rust
 const DYLD_CACHE_SLIDE_V3_PAGE_ATTR_NO_REBASE: u16 = 65_535u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:533`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L533)*
+
 Page has no rebasing.
 
 ### `DYLD_CACHE_SLIDE_V5_PAGE_ATTR_NO_REBASE`
-
 ```rust
 const DYLD_CACHE_SLIDE_V5_PAGE_ATTR_NO_REBASE: u16 = 65_535u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:607`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L607)*
+
 Page has no rebasing.
 
 ### `FAT_MAGIC`
-
 ```rust
 const FAT_MAGIC: u32 = 3_405_691_582u32;
 ```
 
-### `FAT_CIGAM`
+*Defined in [`object-0.37.3/src/macho.rs:702`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L702)*
 
+### `FAT_CIGAM`
 ```rust
 const FAT_CIGAM: u32 = 3_199_925_962u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:704`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L704)*
+
 NXSwapLong(FAT_MAGIC)
 
 ### `FAT_MAGIC_64`
-
 ```rust
 const FAT_MAGIC_64: u32 = 3_405_691_583u32;
 ```
 
-### `FAT_CIGAM_64`
+*Defined in [`object-0.37.3/src/macho.rs:737`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L737)*
 
+### `FAT_CIGAM_64`
 ```rust
 const FAT_CIGAM_64: u32 = 3_216_703_178u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:739`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L739)*
+
 NXSwapLong(FAT_MAGIC_64)
 
 ### `MH_MAGIC`
-
 ```rust
 const MH_MAGIC: u32 = 4_277_009_102u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:784`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L784)*
+
 the mach magic number
 
 ### `MH_CIGAM`
-
 ```rust
 const MH_CIGAM: u32 = 3_472_551_422u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:786`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L786)*
+
 NXSwapInt(MH_MAGIC)
 
 ### `MH_MAGIC_64`
-
 ```rust
 const MH_MAGIC_64: u32 = 4_277_009_103u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:814`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L814)*
+
 the 64-bit mach magic number
 
 ### `MH_CIGAM_64`
-
 ```rust
 const MH_CIGAM_64: u32 = 3_489_328_638u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:816`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L816)*
+
 NXSwapInt(MH_MAGIC_64)
 
 ### `MH_OBJECT`
-
 ```rust
 const MH_OBJECT: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:842`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L842)*
+
 relocatable object file
 
 ### `MH_EXECUTE`
-
 ```rust
 const MH_EXECUTE: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:844`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L844)*
+
 demand paged executable file
 
 ### `MH_FVMLIB`
-
 ```rust
 const MH_FVMLIB: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:846`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L846)*
+
 fixed VM shared library file
 
 ### `MH_CORE`
-
 ```rust
 const MH_CORE: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:848`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L848)*
+
 core file
 
 ### `MH_PRELOAD`
-
 ```rust
 const MH_PRELOAD: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:850`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L850)*
+
 preloaded executable file
 
 ### `MH_DYLIB`
-
 ```rust
 const MH_DYLIB: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:852`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L852)*
+
 dynamically bound shared library
 
 ### `MH_DYLINKER`
-
 ```rust
 const MH_DYLINKER: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:854`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L854)*
+
 dynamic link editor
 
 ### `MH_BUNDLE`
-
 ```rust
 const MH_BUNDLE: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:856`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L856)*
+
 dynamically bound bundle file
 
 ### `MH_DYLIB_STUB`
-
 ```rust
 const MH_DYLIB_STUB: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:858`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L858)*
+
 shared library stub for static linking only, no section contents
 
 ### `MH_DSYM`
-
 ```rust
 const MH_DSYM: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:860`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L860)*
+
 companion file with only debug sections
 
 ### `MH_KEXT_BUNDLE`
-
 ```rust
 const MH_KEXT_BUNDLE: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:862`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L862)*
+
 x86_64 kexts
 
 ### `MH_FILESET`
-
 ```rust
 const MH_FILESET: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:864`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L864)*
+
 set of mach-o's
 
 ### `MH_NOUNDEFS`
-
 ```rust
 const MH_NOUNDEFS: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:868`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L868)*
+
 the object file has no undefined references
 
 ### `MH_INCRLINK`
-
 ```rust
 const MH_INCRLINK: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:870`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L870)*
+
 the object file is the output of an incremental link against a base file and can't be link edited again
 
 ### `MH_DYLDLINK`
-
 ```rust
 const MH_DYLDLINK: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:872`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L872)*
+
 the object file is input for the dynamic linker and can't be statically link edited again
 
 ### `MH_BINDATLOAD`
-
 ```rust
 const MH_BINDATLOAD: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:874`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L874)*
+
 the object file's undefined references are bound by the dynamic linker when loaded.
 
 ### `MH_PREBOUND`
-
 ```rust
 const MH_PREBOUND: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:876`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L876)*
+
 the file has its dynamic undefined references prebound.
 
 ### `MH_SPLIT_SEGS`
-
 ```rust
 const MH_SPLIT_SEGS: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:878`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L878)*
+
 the file has its read-only and read-write segments split
 
 ### `MH_LAZY_INIT`
-
 ```rust
 const MH_LAZY_INIT: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:880`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L880)*
+
 the shared library init routine is to be run lazily via catching memory faults to its writeable segments (obsolete)
 
 ### `MH_TWOLEVEL`
-
 ```rust
 const MH_TWOLEVEL: u32 = 128u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:882`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L882)*
+
 the image is using two-level name space bindings
 
 ### `MH_FORCE_FLAT`
-
 ```rust
 const MH_FORCE_FLAT: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:884`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L884)*
+
 the executable is forcing all images to use flat name space bindings
 
 ### `MH_NOMULTIDEFS`
-
 ```rust
 const MH_NOMULTIDEFS: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:886`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L886)*
+
 this umbrella guarantees no multiple definitions of symbols in its sub-images so the two-level namespace hints can always be used.
 
 ### `MH_NOFIXPREBINDING`
-
 ```rust
 const MH_NOFIXPREBINDING: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:888`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L888)*
+
 do not have dyld notify the prebinding agent about this executable
 
 ### `MH_PREBINDABLE`
-
 ```rust
 const MH_PREBINDABLE: u32 = 2_048u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:890`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L890)*
+
 the binary is not prebound but can have its prebinding redone. only used when MH_PREBOUND is not set.
 
 ### `MH_ALLMODSBOUND`
-
 ```rust
 const MH_ALLMODSBOUND: u32 = 4_096u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:892`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L892)*
+
 indicates that this binary binds to all two-level namespace modules of its dependent libraries. only used when MH_PREBINDABLE and MH_TWOLEVEL are both set.
 
 ### `MH_SUBSECTIONS_VIA_SYMBOLS`
-
 ```rust
 const MH_SUBSECTIONS_VIA_SYMBOLS: u32 = 8_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:894`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L894)*
+
 safe to divide up the sections into sub-sections via symbols for dead code stripping
 
 ### `MH_CANONICAL`
-
 ```rust
 const MH_CANONICAL: u32 = 16_384u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:896`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L896)*
+
 the binary has been canonicalized via the unprebind operation
 
 ### `MH_WEAK_DEFINES`
-
 ```rust
 const MH_WEAK_DEFINES: u32 = 32_768u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:898`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L898)*
+
 the final linked image contains external weak symbols
 
 ### `MH_BINDS_TO_WEAK`
-
 ```rust
 const MH_BINDS_TO_WEAK: u32 = 65_536u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:900`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L900)*
+
 the final linked image uses weak symbols
 
 ### `MH_ALLOW_STACK_EXECUTION`
-
 ```rust
 const MH_ALLOW_STACK_EXECUTION: u32 = 131_072u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:902`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L902)*
+
 When this bit is set, all stacks in the task will be given stack execution privilege.  Only used in MH_EXECUTE filetypes.
 
 ### `MH_ROOT_SAFE`
-
 ```rust
 const MH_ROOT_SAFE: u32 = 262_144u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:904`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L904)*
+
 When this bit is set, the binary declares it is safe for use in processes with uid zero
 
 ### `MH_SETUID_SAFE`
-
 ```rust
 const MH_SETUID_SAFE: u32 = 524_288u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:906`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L906)*
+
 When this bit is set, the binary declares it is safe for use in processes when issetugid() is true
 
 ### `MH_NO_REEXPORTED_DYLIBS`
-
 ```rust
 const MH_NO_REEXPORTED_DYLIBS: u32 = 1_048_576u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:908`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L908)*
+
 When this bit is set on a dylib, the static linker does not need to examine dependent dylibs to see if any are re-exported
 
 ### `MH_PIE`
-
 ```rust
 const MH_PIE: u32 = 2_097_152u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:910`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L910)*
+
 When this bit is set, the OS will load the main executable at a random address.  Only used in MH_EXECUTE filetypes.
 
 ### `MH_DEAD_STRIPPABLE_DYLIB`
-
 ```rust
 const MH_DEAD_STRIPPABLE_DYLIB: u32 = 4_194_304u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:912`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L912)*
+
 Only for use on dylibs.  When linking against a dylib that has this bit set, the static linker will automatically not create a LC_LOAD_DYLIB load command to the dylib if no symbols are being referenced from the dylib.
 
 ### `MH_HAS_TLV_DESCRIPTORS`
-
 ```rust
 const MH_HAS_TLV_DESCRIPTORS: u32 = 8_388_608u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:914`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L914)*
+
 Contains a section of type S_THREAD_LOCAL_VARIABLES
 
 ### `MH_NO_HEAP_EXECUTION`
-
 ```rust
 const MH_NO_HEAP_EXECUTION: u32 = 16_777_216u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:916`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L916)*
+
 When this bit is set, the OS will run the main executable with a non-executable heap even on platforms (e.g. i386) that don't require it. Only used in MH_EXECUTE filetypes.
 
 ### `MH_APP_EXTENSION_SAFE`
-
 ```rust
 const MH_APP_EXTENSION_SAFE: u32 = 33_554_432u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:918`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L918)*
+
 The code was linked for use in an application extension.
 
 ### `MH_NLIST_OUTOFSYNC_WITH_DYLDINFO`
-
 ```rust
 const MH_NLIST_OUTOFSYNC_WITH_DYLDINFO: u32 = 67_108_864u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:920`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L920)*
+
 The external symbols listed in the nlist symbol table do not include all the symbols listed in the dyld info.
 
 ### `MH_SIM_SUPPORT`
-
 ```rust
 const MH_SIM_SUPPORT: u32 = 134_217_728u32;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:923`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L923)*
 
 Allow LC_MIN_VERSION_MACOS and LC_BUILD_VERSION load commands with
 the platforms macOS, iOSMac, iOSSimulator, tvOSSimulator and watchOSSimulator.
 
 ### `MH_DYLIB_IN_CACHE`
-
 ```rust
 const MH_DYLIB_IN_CACHE: u32 = 2_147_483_648u32;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:926`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L926)*
 
 Only for use on dylibs. When this bit is set, the dylib is part of the dyld
 shared cache, rather than loose in the filesystem.
 
 ### `LC_REQ_DYLD`
-
 ```rust
 const LC_REQ_DYLD: u32 = 2_147_483_648u32;
 ```
 
-### `LC_SEGMENT`
+*Defined in [`object-0.37.3/src/macho.rs:965`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L965)*
 
+### `LC_SEGMENT`
 ```rust
 const LC_SEGMENT: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:969`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L969)*
+
 segment of this file to be mapped
 
 ### `LC_SYMTAB`
-
 ```rust
 const LC_SYMTAB: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:971`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L971)*
+
 link-edit stab symbol table info
 
 ### `LC_SYMSEG`
-
 ```rust
 const LC_SYMSEG: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:973`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L973)*
+
 link-edit gdb symbol table info (obsolete)
 
 ### `LC_THREAD`
-
 ```rust
 const LC_THREAD: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:975`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L975)*
+
 thread
 
 ### `LC_UNIXTHREAD`
-
 ```rust
 const LC_UNIXTHREAD: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:977`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L977)*
+
 unix thread (includes a stack)
 
 ### `LC_LOADFVMLIB`
-
 ```rust
 const LC_LOADFVMLIB: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:979`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L979)*
+
 load a specified fixed VM shared library
 
 ### `LC_IDFVMLIB`
-
 ```rust
 const LC_IDFVMLIB: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:981`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L981)*
+
 fixed VM shared library identification
 
 ### `LC_IDENT`
-
 ```rust
 const LC_IDENT: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:983`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L983)*
+
 object identification info (obsolete)
 
 ### `LC_FVMFILE`
-
 ```rust
 const LC_FVMFILE: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:985`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L985)*
+
 fixed VM file inclusion (internal use)
 
 ### `LC_PREPAGE`
-
 ```rust
 const LC_PREPAGE: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:987`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L987)*
+
 prepage command (internal use)
 
 ### `LC_DYSYMTAB`
-
 ```rust
 const LC_DYSYMTAB: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:989`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L989)*
+
 dynamic link-edit symbol table info
 
 ### `LC_LOAD_DYLIB`
-
 ```rust
 const LC_LOAD_DYLIB: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:991`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L991)*
+
 load a dynamically linked shared library
 
 ### `LC_ID_DYLIB`
-
 ```rust
 const LC_ID_DYLIB: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:993`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L993)*
+
 dynamically linked shared lib ident
 
 ### `LC_LOAD_DYLINKER`
-
 ```rust
 const LC_LOAD_DYLINKER: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:995`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L995)*
+
 load a dynamic linker
 
 ### `LC_ID_DYLINKER`
-
 ```rust
 const LC_ID_DYLINKER: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:997`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L997)*
+
 dynamic linker identification
 
 ### `LC_PREBOUND_DYLIB`
-
 ```rust
 const LC_PREBOUND_DYLIB: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:999`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L999)*
+
 modules prebound for a dynamically linked shared library
 
 ### `LC_ROUTINES`
-
 ```rust
 const LC_ROUTINES: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1001`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1001)*
+
 image routines
 
 ### `LC_SUB_FRAMEWORK`
-
 ```rust
 const LC_SUB_FRAMEWORK: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1003`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1003)*
+
 sub framework
 
 ### `LC_SUB_UMBRELLA`
-
 ```rust
 const LC_SUB_UMBRELLA: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1005`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1005)*
+
 sub umbrella
 
 ### `LC_SUB_CLIENT`
-
 ```rust
 const LC_SUB_CLIENT: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1007`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1007)*
+
 sub client
 
 ### `LC_SUB_LIBRARY`
-
 ```rust
 const LC_SUB_LIBRARY: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1009`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1009)*
+
 sub library
 
 ### `LC_TWOLEVEL_HINTS`
-
 ```rust
 const LC_TWOLEVEL_HINTS: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1011`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1011)*
+
 two-level namespace lookup hints
 
 ### `LC_PREBIND_CKSUM`
-
 ```rust
 const LC_PREBIND_CKSUM: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1013`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1013)*
+
 prebind checksum
 
 ### `LC_LOAD_WEAK_DYLIB`
-
 ```rust
 const LC_LOAD_WEAK_DYLIB: u32 = 2_147_483_672u32;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:1016`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1016)*
 
 load a dynamically linked shared library that is allowed to be missing
 (all symbols are weak imported).
 
 ### `LC_SEGMENT_64`
-
 ```rust
 const LC_SEGMENT_64: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1018`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1018)*
+
 64-bit segment of this file to be mapped
 
 ### `LC_ROUTINES_64`
-
 ```rust
 const LC_ROUTINES_64: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1020`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1020)*
+
 64-bit image routines
 
 ### `LC_UUID`
-
 ```rust
 const LC_UUID: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1022`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1022)*
+
 the uuid
 
 ### `LC_RPATH`
-
 ```rust
 const LC_RPATH: u32 = 2_147_483_676u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1024`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1024)*
+
 runpath additions
 
 ### `LC_CODE_SIGNATURE`
-
 ```rust
 const LC_CODE_SIGNATURE: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1026`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1026)*
+
 local of code signature
 
 ### `LC_SEGMENT_SPLIT_INFO`
-
 ```rust
 const LC_SEGMENT_SPLIT_INFO: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1028`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1028)*
+
 local of info to split segments
 
 ### `LC_REEXPORT_DYLIB`
-
 ```rust
 const LC_REEXPORT_DYLIB: u32 = 2_147_483_679u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1030`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1030)*
+
 load and re-export dylib
 
 ### `LC_LAZY_LOAD_DYLIB`
-
 ```rust
 const LC_LAZY_LOAD_DYLIB: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1032`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1032)*
+
 delay load of dylib until first use
 
 ### `LC_ENCRYPTION_INFO`
-
 ```rust
 const LC_ENCRYPTION_INFO: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1034`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1034)*
+
 encrypted segment information
 
 ### `LC_DYLD_INFO`
-
 ```rust
 const LC_DYLD_INFO: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1036`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1036)*
+
 compressed dyld information
 
 ### `LC_DYLD_INFO_ONLY`
-
 ```rust
 const LC_DYLD_INFO_ONLY: u32 = 2_147_483_682u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1038`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1038)*
+
 compressed dyld information only
 
 ### `LC_LOAD_UPWARD_DYLIB`
-
 ```rust
 const LC_LOAD_UPWARD_DYLIB: u32 = 2_147_483_683u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1040`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1040)*
+
 load upward dylib
 
 ### `LC_VERSION_MIN_MACOSX`
-
 ```rust
 const LC_VERSION_MIN_MACOSX: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1042`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1042)*
+
 build for MacOSX min OS version
 
 ### `LC_VERSION_MIN_IPHONEOS`
-
 ```rust
 const LC_VERSION_MIN_IPHONEOS: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1044`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1044)*
+
 build for iPhoneOS min OS version
 
 ### `LC_FUNCTION_STARTS`
-
 ```rust
 const LC_FUNCTION_STARTS: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1046`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1046)*
+
 compressed table of function start addresses
 
 ### `LC_DYLD_ENVIRONMENT`
-
 ```rust
 const LC_DYLD_ENVIRONMENT: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1048`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1048)*
+
 string for dyld to treat like environment variable
 
 ### `LC_MAIN`
-
 ```rust
 const LC_MAIN: u32 = 2_147_483_688u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1050`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1050)*
+
 replacement for LC_UNIXTHREAD
 
 ### `LC_DATA_IN_CODE`
-
 ```rust
 const LC_DATA_IN_CODE: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1052`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1052)*
+
 table of non-instructions in __text
 
 ### `LC_SOURCE_VERSION`
-
 ```rust
 const LC_SOURCE_VERSION: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1054`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1054)*
+
 source version used to build binary
 
 ### `LC_DYLIB_CODE_SIGN_DRS`
-
 ```rust
 const LC_DYLIB_CODE_SIGN_DRS: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1056`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1056)*
+
 Code signing DRs copied from linked dylibs
 
 ### `LC_ENCRYPTION_INFO_64`
-
 ```rust
 const LC_ENCRYPTION_INFO_64: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1058`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1058)*
+
 64-bit encrypted segment information
 
 ### `LC_LINKER_OPTION`
-
 ```rust
 const LC_LINKER_OPTION: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1060`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1060)*
+
 linker options in MH_OBJECT files
 
 ### `LC_LINKER_OPTIMIZATION_HINT`
-
 ```rust
 const LC_LINKER_OPTIMIZATION_HINT: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1062`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1062)*
+
 optimization hints in MH_OBJECT files
 
 ### `LC_VERSION_MIN_TVOS`
-
 ```rust
 const LC_VERSION_MIN_TVOS: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1064`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1064)*
+
 build for AppleTV min OS version
 
 ### `LC_VERSION_MIN_WATCHOS`
-
 ```rust
 const LC_VERSION_MIN_WATCHOS: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1066`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1066)*
+
 build for Watch min OS version
 
 ### `LC_NOTE`
-
 ```rust
 const LC_NOTE: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1068`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1068)*
+
 arbitrary data included within a Mach-O file
 
 ### `LC_BUILD_VERSION`
-
 ```rust
 const LC_BUILD_VERSION: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1070`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1070)*
+
 build for platform min OS version
 
 ### `LC_DYLD_EXPORTS_TRIE`
-
 ```rust
 const LC_DYLD_EXPORTS_TRIE: u32 = 2_147_483_699u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1072`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1072)*
+
 used with `LinkeditDataCommand`, payload is trie
 
 ### `LC_DYLD_CHAINED_FIXUPS`
-
 ```rust
 const LC_DYLD_CHAINED_FIXUPS: u32 = 2_147_483_700u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1074`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1074)*
+
 used with `LinkeditDataCommand`
 
 ### `LC_FILESET_ENTRY`
-
 ```rust
 const LC_FILESET_ENTRY: u32 = 2_147_483_701u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1076`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1076)*
+
 used with `FilesetEntryCommand`
 
 ### `SG_HIGHVM`
-
 ```rust
 const SG_HIGHVM: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1166`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1166)*
+
 the file contents for this segment is for the high part of the VM space, the low part is zero filled (for stacks in core files)
 
 ### `SG_FVMLIB`
-
 ```rust
 const SG_FVMLIB: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1168`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1168)*
+
 this segment is the VM that is allocated by a fixed VM library, for overlap checking in the link editor
 
 ### `SG_NORELOC`
-
 ```rust
 const SG_NORELOC: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1170`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1170)*
+
 this segment has nothing that was relocated in it and nothing relocated to it, that is it maybe safely replaced without relocation
 
 ### `SG_PROTECTED_VERSION_1`
-
 ```rust
 const SG_PROTECTED_VERSION_1: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1172`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1172)*
+
 This segment is protected.  If the segment starts at file offset 0, the first page of the segment is not protected.  All other pages of the segment are protected.
 
 ### `SG_READ_ONLY`
-
 ```rust
 const SG_READ_ONLY: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1174`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1174)*
+
 This segment is made read-only after fixups
 
 ### `SECTION_TYPE`
-
 ```rust
 const SECTION_TYPE: u32 = 255u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1268`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1268)*
+
 256 section types
 
 ### `SECTION_ATTRIBUTES`
-
 ```rust
 const SECTION_ATTRIBUTES: u32 = 4_294_967_040u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1270`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1270)*
+
 24 section attributes
 
 ### `S_REGULAR`
-
 ```rust
 const S_REGULAR: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1274`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1274)*
+
 regular section
 
 ### `S_ZEROFILL`
-
 ```rust
 const S_ZEROFILL: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1276`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1276)*
+
 zero fill on demand section
 
 ### `S_CSTRING_LITERALS`
-
 ```rust
 const S_CSTRING_LITERALS: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1278`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1278)*
+
 section with only literal C strings
 
 ### `S_4BYTE_LITERALS`
-
 ```rust
 const S_4BYTE_LITERALS: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1280`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1280)*
+
 section with only 4 byte literals
 
 ### `S_8BYTE_LITERALS`
-
 ```rust
 const S_8BYTE_LITERALS: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1282`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1282)*
+
 section with only 8 byte literals
 
 ### `S_LITERAL_POINTERS`
-
 ```rust
 const S_LITERAL_POINTERS: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1284`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1284)*
+
 section with only pointers to literals
 
 ### `S_NON_LAZY_SYMBOL_POINTERS`
-
 ```rust
 const S_NON_LAZY_SYMBOL_POINTERS: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1298`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1298)*
+
 section with only non-lazy symbol pointers
 
 ### `S_LAZY_SYMBOL_POINTERS`
-
 ```rust
 const S_LAZY_SYMBOL_POINTERS: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1300`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1300)*
+
 section with only lazy symbol pointers
 
 ### `S_SYMBOL_STUBS`
-
 ```rust
 const S_SYMBOL_STUBS: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1302`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1302)*
+
 section with only symbol stubs, byte size of stub in the reserved2 field
 
 ### `S_MOD_INIT_FUNC_POINTERS`
-
 ```rust
 const S_MOD_INIT_FUNC_POINTERS: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1304`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1304)*
+
 section with only function pointers for initialization
 
 ### `S_MOD_TERM_FUNC_POINTERS`
-
 ```rust
 const S_MOD_TERM_FUNC_POINTERS: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1306`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1306)*
+
 section with only function pointers for termination
 
 ### `S_COALESCED`
-
 ```rust
 const S_COALESCED: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1308`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1308)*
+
 section contains symbols that are to be coalesced
 
 ### `S_GB_ZEROFILL`
-
 ```rust
 const S_GB_ZEROFILL: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1310`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1310)*
+
 zero fill on demand section (that can be larger than 4 gigabytes)
 
 ### `S_INTERPOSING`
-
 ```rust
 const S_INTERPOSING: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1312`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1312)*
+
 section with only pairs of function pointers for interposing
 
 ### `S_16BYTE_LITERALS`
-
 ```rust
 const S_16BYTE_LITERALS: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1314`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1314)*
+
 section with only 16 byte literals
 
 ### `S_DTRACE_DOF`
-
 ```rust
 const S_DTRACE_DOF: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1316`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1316)*
+
 section contains DTrace Object Format
 
 ### `S_LAZY_DYLIB_SYMBOL_POINTERS`
-
 ```rust
 const S_LAZY_DYLIB_SYMBOL_POINTERS: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1318`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1318)*
+
 section with only lazy symbol pointers to lazy loaded dylibs
 
 ### `S_THREAD_LOCAL_REGULAR`
-
 ```rust
 const S_THREAD_LOCAL_REGULAR: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1323`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1323)*
+
 template of initial values for TLVs
 
 ### `S_THREAD_LOCAL_ZEROFILL`
-
 ```rust
 const S_THREAD_LOCAL_ZEROFILL: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1325`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1325)*
+
 template of initial values for TLVs
 
 ### `S_THREAD_LOCAL_VARIABLES`
-
 ```rust
 const S_THREAD_LOCAL_VARIABLES: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1327`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1327)*
+
 TLV descriptors
 
 ### `S_THREAD_LOCAL_VARIABLE_POINTERS`
-
 ```rust
 const S_THREAD_LOCAL_VARIABLE_POINTERS: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1329`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1329)*
+
 pointers to TLV descriptors
 
 ### `S_THREAD_LOCAL_INIT_FUNCTION_POINTERS`
-
 ```rust
 const S_THREAD_LOCAL_INIT_FUNCTION_POINTERS: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1331`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1331)*
+
 functions to call to initialize TLV values
 
 ### `S_INIT_FUNC_OFFSETS`
-
 ```rust
 const S_INIT_FUNC_OFFSETS: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1333`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1333)*
+
 32-bit offsets to initializers
 
 ### `SECTION_ATTRIBUTES_USR`
-
 ```rust
 const SECTION_ATTRIBUTES_USR: u32 = 4_278_190_080u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1340`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1340)*
+
 User setable attributes
 
 ### `S_ATTR_PURE_INSTRUCTIONS`
-
 ```rust
 const S_ATTR_PURE_INSTRUCTIONS: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1342`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1342)*
+
 section contains only true machine instructions
 
 ### `S_ATTR_NO_TOC`
-
 ```rust
 const S_ATTR_NO_TOC: u32 = 1_073_741_824u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1344`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1344)*
+
 section contains coalesced symbols that are not to be in a ranlib table of contents
 
 ### `S_ATTR_STRIP_STATIC_SYMS`
-
 ```rust
 const S_ATTR_STRIP_STATIC_SYMS: u32 = 536_870_912u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1346`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1346)*
+
 ok to strip static symbols in this section in files with the MH_DYLDLINK flag
 
 ### `S_ATTR_NO_DEAD_STRIP`
-
 ```rust
 const S_ATTR_NO_DEAD_STRIP: u32 = 268_435_456u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1348`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1348)*
+
 no dead stripping
 
 ### `S_ATTR_LIVE_SUPPORT`
-
 ```rust
 const S_ATTR_LIVE_SUPPORT: u32 = 134_217_728u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1350`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1350)*
+
 blocks are live if they reference live blocks
 
 ### `S_ATTR_SELF_MODIFYING_CODE`
-
 ```rust
 const S_ATTR_SELF_MODIFYING_CODE: u32 = 67_108_864u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1352`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1352)*
+
 Used with i386 code stubs written on by dyld
 
 ### `S_ATTR_DEBUG`
-
 ```rust
 const S_ATTR_DEBUG: u32 = 33_554_432u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1363`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1363)*
+
 a debug section
 
 ### `SECTION_ATTRIBUTES_SYS`
-
 ```rust
 const SECTION_ATTRIBUTES_SYS: u32 = 16_776_960u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1365`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1365)*
+
 system setable attributes
 
 ### `S_ATTR_SOME_INSTRUCTIONS`
-
 ```rust
 const S_ATTR_SOME_INSTRUCTIONS: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1367`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1367)*
+
 section contains some machine instructions
 
 ### `S_ATTR_EXT_RELOC`
-
 ```rust
 const S_ATTR_EXT_RELOC: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1369`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1369)*
+
 section has external relocation entries
 
 ### `S_ATTR_LOC_RELOC`
-
 ```rust
 const S_ATTR_LOC_RELOC: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1371`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1371)*
+
 section has local relocation entries
 
 ### `SEG_PAGEZERO`
-
 ```rust
 const SEG_PAGEZERO: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1390`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1390)*
+
 the pagezero segment which has no protections and catches NULL references for MH_EXECUTE files
 
 ### `SEG_TEXT`
-
 ```rust
 const SEG_TEXT: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1393`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1393)*
+
 the tradition UNIX text segment
 
 ### `SECT_TEXT`
-
 ```rust
 const SECT_TEXT: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1395`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1395)*
+
 the real text part of the text section no headers, and no padding
 
 ### `SECT_FVMLIB_INIT0`
-
 ```rust
 const SECT_FVMLIB_INIT0: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1397`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1397)*
+
 the fvmlib initialization section
 
 ### `SECT_FVMLIB_INIT1`
-
 ```rust
 const SECT_FVMLIB_INIT1: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1399`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1399)*
+
 the section following the fvmlib initialization section
 
 ### `SEG_DATA`
-
 ```rust
 const SEG_DATA: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1402`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1402)*
+
 the tradition UNIX data segment
 
 ### `SECT_DATA`
-
 ```rust
 const SECT_DATA: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1404`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1404)*
+
 the real initialized data section no padding, no bss overlap
 
 ### `SECT_BSS`
-
 ```rust
 const SECT_BSS: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1406`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1406)*
+
 the real uninitialized data section no padding
 
 ### `SECT_COMMON`
-
 ```rust
 const SECT_COMMON: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1408`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1408)*
+
 the section common symbols are allocated in by the link editor
 
 ### `SEG_OBJC`
-
 ```rust
 const SEG_OBJC: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1411`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1411)*
+
 objective-C runtime segment
 
 ### `SECT_OBJC_SYMBOLS`
-
 ```rust
 const SECT_OBJC_SYMBOLS: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1413`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1413)*
+
 symbol table
 
 ### `SECT_OBJC_MODULES`
-
 ```rust
 const SECT_OBJC_MODULES: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1415`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1415)*
+
 module information
 
 ### `SECT_OBJC_STRINGS`
-
 ```rust
 const SECT_OBJC_STRINGS: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1417`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1417)*
+
 string table
 
 ### `SECT_OBJC_REFS`
-
 ```rust
 const SECT_OBJC_REFS: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1419`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1419)*
+
 string table
 
 ### `SEG_ICON`
-
 ```rust
 const SEG_ICON: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1422`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1422)*
+
 the icon segment
 
 ### `SECT_ICON_HEADER`
-
 ```rust
 const SECT_ICON_HEADER: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1424`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1424)*
+
 the icon headers
 
 ### `SECT_ICON_TIFF`
-
 ```rust
 const SECT_ICON_TIFF: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1426`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1426)*
+
 the icons in tiff format
 
 ### `SEG_LINKEDIT`
-
 ```rust
 const SEG_LINKEDIT: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1429`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1429)*
+
 the segment containing all structs created and maintained by the link editor.  Created with -seglinkedit option to ld(1) for MH_EXECUTE and FVMLIB file types only
 
 ### `SEG_LINKINFO`
-
 ```rust
 const SEG_LINKINFO: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1432`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1432)*
+
 the segment overlapping with linkedit containing linking information
 
 ### `SEG_UNIXSTACK`
-
 ```rust
 const SEG_UNIXSTACK: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1435`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1435)*
+
 the unix stack segment
 
 ### `SEG_IMPORT`
-
 ```rust
 const SEG_IMPORT: &str;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:1438`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1438)*
+
 the segment for the self (dyld) modifying code stubs that has read, write and execute permissions
 
 ### `INDIRECT_SYMBOL_LOCAL`
-
 ```rust
 const INDIRECT_SYMBOL_LOCAL: u32 = 2_147_483_648u32;
 ```
 
-### `INDIRECT_SYMBOL_ABS`
+*Defined in [`object-0.37.3/src/macho.rs:1940`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1940)*
 
+### `INDIRECT_SYMBOL_ABS`
 ```rust
 const INDIRECT_SYMBOL_ABS: u32 = 1_073_741_824u32;
 ```
 
-### `PLATFORM_MACOS`
+*Defined in [`object-0.37.3/src/macho.rs:1941`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L1941)*
 
+### `PLATFORM_MACOS`
 ```rust
 const PLATFORM_MACOS: u32 = 1u32;
 ```
 
-### `PLATFORM_IOS`
+*Defined in [`object-0.37.3/src/macho.rs:2263`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2263)*
 
+### `PLATFORM_IOS`
 ```rust
 const PLATFORM_IOS: u32 = 2u32;
 ```
 
-### `PLATFORM_TVOS`
+*Defined in [`object-0.37.3/src/macho.rs:2264`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2264)*
 
+### `PLATFORM_TVOS`
 ```rust
 const PLATFORM_TVOS: u32 = 3u32;
 ```
 
-### `PLATFORM_WATCHOS`
+*Defined in [`object-0.37.3/src/macho.rs:2265`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2265)*
 
+### `PLATFORM_WATCHOS`
 ```rust
 const PLATFORM_WATCHOS: u32 = 4u32;
 ```
 
-### `PLATFORM_BRIDGEOS`
+*Defined in [`object-0.37.3/src/macho.rs:2266`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2266)*
 
+### `PLATFORM_BRIDGEOS`
 ```rust
 const PLATFORM_BRIDGEOS: u32 = 5u32;
 ```
 
-### `PLATFORM_MACCATALYST`
+*Defined in [`object-0.37.3/src/macho.rs:2267`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2267)*
 
+### `PLATFORM_MACCATALYST`
 ```rust
 const PLATFORM_MACCATALYST: u32 = 6u32;
 ```
 
-### `PLATFORM_IOSSIMULATOR`
+*Defined in [`object-0.37.3/src/macho.rs:2268`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2268)*
 
+### `PLATFORM_IOSSIMULATOR`
 ```rust
 const PLATFORM_IOSSIMULATOR: u32 = 7u32;
 ```
 
-### `PLATFORM_TVOSSIMULATOR`
+*Defined in [`object-0.37.3/src/macho.rs:2269`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2269)*
 
+### `PLATFORM_TVOSSIMULATOR`
 ```rust
 const PLATFORM_TVOSSIMULATOR: u32 = 8u32;
 ```
 
-### `PLATFORM_WATCHOSSIMULATOR`
+*Defined in [`object-0.37.3/src/macho.rs:2270`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2270)*
 
+### `PLATFORM_WATCHOSSIMULATOR`
 ```rust
 const PLATFORM_WATCHOSSIMULATOR: u32 = 9u32;
 ```
 
-### `PLATFORM_DRIVERKIT`
+*Defined in [`object-0.37.3/src/macho.rs:2271`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2271)*
 
+### `PLATFORM_DRIVERKIT`
 ```rust
 const PLATFORM_DRIVERKIT: u32 = 10u32;
 ```
 
-### `PLATFORM_XROS`
+*Defined in [`object-0.37.3/src/macho.rs:2272`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2272)*
 
+### `PLATFORM_XROS`
 ```rust
 const PLATFORM_XROS: u32 = 11u32;
 ```
 
-### `PLATFORM_XROSSIMULATOR`
+*Defined in [`object-0.37.3/src/macho.rs:2273`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2273)*
 
+### `PLATFORM_XROSSIMULATOR`
 ```rust
 const PLATFORM_XROSSIMULATOR: u32 = 12u32;
 ```
 
-### `TOOL_CLANG`
+*Defined in [`object-0.37.3/src/macho.rs:2274`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2274)*
 
+### `TOOL_CLANG`
 ```rust
 const TOOL_CLANG: u32 = 1u32;
 ```
 
-### `TOOL_SWIFT`
+*Defined in [`object-0.37.3/src/macho.rs:2277`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2277)*
 
+### `TOOL_SWIFT`
 ```rust
 const TOOL_SWIFT: u32 = 2u32;
 ```
 
-### `TOOL_LD`
+*Defined in [`object-0.37.3/src/macho.rs:2278`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2278)*
 
+### `TOOL_LD`
 ```rust
 const TOOL_LD: u32 = 3u32;
 ```
 
-### `REBASE_TYPE_POINTER`
+*Defined in [`object-0.37.3/src/macho.rs:2279`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2279)*
 
+### `REBASE_TYPE_POINTER`
 ```rust
 const REBASE_TYPE_POINTER: u8 = 1u8;
 ```
 
-### `REBASE_TYPE_TEXT_ABSOLUTE32`
+*Defined in [`object-0.37.3/src/macho.rs:2409`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2409)*
 
+### `REBASE_TYPE_TEXT_ABSOLUTE32`
 ```rust
 const REBASE_TYPE_TEXT_ABSOLUTE32: u8 = 2u8;
 ```
 
-### `REBASE_TYPE_TEXT_PCREL32`
+*Defined in [`object-0.37.3/src/macho.rs:2410`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2410)*
 
+### `REBASE_TYPE_TEXT_PCREL32`
 ```rust
 const REBASE_TYPE_TEXT_PCREL32: u8 = 3u8;
 ```
 
-### `REBASE_OPCODE_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:2411`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2411)*
 
+### `REBASE_OPCODE_MASK`
 ```rust
 const REBASE_OPCODE_MASK: u8 = 240u8;
 ```
 
-### `REBASE_IMMEDIATE_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:2413`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2413)*
 
+### `REBASE_IMMEDIATE_MASK`
 ```rust
 const REBASE_IMMEDIATE_MASK: u8 = 15u8;
 ```
 
-### `REBASE_OPCODE_DONE`
+*Defined in [`object-0.37.3/src/macho.rs:2414`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2414)*
 
+### `REBASE_OPCODE_DONE`
 ```rust
 const REBASE_OPCODE_DONE: u8 = 0u8;
 ```
 
-### `REBASE_OPCODE_SET_TYPE_IMM`
+*Defined in [`object-0.37.3/src/macho.rs:2415`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2415)*
 
+### `REBASE_OPCODE_SET_TYPE_IMM`
 ```rust
 const REBASE_OPCODE_SET_TYPE_IMM: u8 = 16u8;
 ```
 
-### `REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2416`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2416)*
 
+### `REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`
 ```rust
 const REBASE_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB: u8 = 32u8;
 ```
 
-### `REBASE_OPCODE_ADD_ADDR_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2417`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2417)*
 
+### `REBASE_OPCODE_ADD_ADDR_ULEB`
 ```rust
 const REBASE_OPCODE_ADD_ADDR_ULEB: u8 = 48u8;
 ```
 
-### `REBASE_OPCODE_ADD_ADDR_IMM_SCALED`
+*Defined in [`object-0.37.3/src/macho.rs:2418`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2418)*
 
+### `REBASE_OPCODE_ADD_ADDR_IMM_SCALED`
 ```rust
 const REBASE_OPCODE_ADD_ADDR_IMM_SCALED: u8 = 64u8;
 ```
 
-### `REBASE_OPCODE_DO_REBASE_IMM_TIMES`
+*Defined in [`object-0.37.3/src/macho.rs:2419`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2419)*
 
+### `REBASE_OPCODE_DO_REBASE_IMM_TIMES`
 ```rust
 const REBASE_OPCODE_DO_REBASE_IMM_TIMES: u8 = 80u8;
 ```
 
-### `REBASE_OPCODE_DO_REBASE_ULEB_TIMES`
+*Defined in [`object-0.37.3/src/macho.rs:2420`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2420)*
 
+### `REBASE_OPCODE_DO_REBASE_ULEB_TIMES`
 ```rust
 const REBASE_OPCODE_DO_REBASE_ULEB_TIMES: u8 = 96u8;
 ```
 
-### `REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2421`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2421)*
 
+### `REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB`
 ```rust
 const REBASE_OPCODE_DO_REBASE_ADD_ADDR_ULEB: u8 = 112u8;
 ```
 
-### `REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2422`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2422)*
 
+### `REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB`
 ```rust
 const REBASE_OPCODE_DO_REBASE_ULEB_TIMES_SKIPPING_ULEB: u8 = 128u8;
 ```
 
-### `BIND_TYPE_POINTER`
+*Defined in [`object-0.37.3/src/macho.rs:2423`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2423)*
 
+### `BIND_TYPE_POINTER`
 ```rust
 const BIND_TYPE_POINTER: u8 = 1u8;
 ```
 
-### `BIND_TYPE_TEXT_ABSOLUTE32`
+*Defined in [`object-0.37.3/src/macho.rs:2428`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2428)*
 
+### `BIND_TYPE_TEXT_ABSOLUTE32`
 ```rust
 const BIND_TYPE_TEXT_ABSOLUTE32: u8 = 2u8;
 ```
 
-### `BIND_TYPE_TEXT_PCREL32`
+*Defined in [`object-0.37.3/src/macho.rs:2429`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2429)*
 
+### `BIND_TYPE_TEXT_PCREL32`
 ```rust
 const BIND_TYPE_TEXT_PCREL32: u8 = 3u8;
 ```
 
-### `BIND_SPECIAL_DYLIB_SELF`
+*Defined in [`object-0.37.3/src/macho.rs:2430`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2430)*
 
+### `BIND_SPECIAL_DYLIB_SELF`
 ```rust
 const BIND_SPECIAL_DYLIB_SELF: i8 = 0i8;
 ```
 
-### `BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE`
+*Defined in [`object-0.37.3/src/macho.rs:2432`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2432)*
 
+### `BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE`
 ```rust
 const BIND_SPECIAL_DYLIB_MAIN_EXECUTABLE: i8 = -1i8;
 ```
 
-### `BIND_SPECIAL_DYLIB_FLAT_LOOKUP`
+*Defined in [`object-0.37.3/src/macho.rs:2433`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2433)*
 
+### `BIND_SPECIAL_DYLIB_FLAT_LOOKUP`
 ```rust
 const BIND_SPECIAL_DYLIB_FLAT_LOOKUP: i8 = -2i8;
 ```
 
-### `BIND_SPECIAL_DYLIB_WEAK_LOOKUP`
+*Defined in [`object-0.37.3/src/macho.rs:2434`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2434)*
 
+### `BIND_SPECIAL_DYLIB_WEAK_LOOKUP`
 ```rust
 const BIND_SPECIAL_DYLIB_WEAK_LOOKUP: i8 = -3i8;
 ```
 
-### `BIND_SYMBOL_FLAGS_WEAK_IMPORT`
+*Defined in [`object-0.37.3/src/macho.rs:2435`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2435)*
 
+### `BIND_SYMBOL_FLAGS_WEAK_IMPORT`
 ```rust
 const BIND_SYMBOL_FLAGS_WEAK_IMPORT: u8 = 1u8;
 ```
 
-### `BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION`
+*Defined in [`object-0.37.3/src/macho.rs:2437`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2437)*
 
+### `BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION`
 ```rust
 const BIND_SYMBOL_FLAGS_NON_WEAK_DEFINITION: u8 = 8u8;
 ```
 
-### `BIND_OPCODE_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:2438`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2438)*
 
+### `BIND_OPCODE_MASK`
 ```rust
 const BIND_OPCODE_MASK: u8 = 240u8;
 ```
 
-### `BIND_IMMEDIATE_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:2440`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2440)*
 
+### `BIND_IMMEDIATE_MASK`
 ```rust
 const BIND_IMMEDIATE_MASK: u8 = 15u8;
 ```
 
-### `BIND_OPCODE_DONE`
+*Defined in [`object-0.37.3/src/macho.rs:2441`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2441)*
 
+### `BIND_OPCODE_DONE`
 ```rust
 const BIND_OPCODE_DONE: u8 = 0u8;
 ```
 
-### `BIND_OPCODE_SET_DYLIB_ORDINAL_IMM`
+*Defined in [`object-0.37.3/src/macho.rs:2442`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2442)*
 
+### `BIND_OPCODE_SET_DYLIB_ORDINAL_IMM`
 ```rust
 const BIND_OPCODE_SET_DYLIB_ORDINAL_IMM: u8 = 16u8;
 ```
 
-### `BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2443`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2443)*
 
+### `BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB`
 ```rust
 const BIND_OPCODE_SET_DYLIB_ORDINAL_ULEB: u8 = 32u8;
 ```
 
-### `BIND_OPCODE_SET_DYLIB_SPECIAL_IMM`
+*Defined in [`object-0.37.3/src/macho.rs:2444`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2444)*
 
+### `BIND_OPCODE_SET_DYLIB_SPECIAL_IMM`
 ```rust
 const BIND_OPCODE_SET_DYLIB_SPECIAL_IMM: u8 = 48u8;
 ```
 
-### `BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM`
+*Defined in [`object-0.37.3/src/macho.rs:2445`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2445)*
 
+### `BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM`
 ```rust
 const BIND_OPCODE_SET_SYMBOL_TRAILING_FLAGS_IMM: u8 = 64u8;
 ```
 
-### `BIND_OPCODE_SET_TYPE_IMM`
+*Defined in [`object-0.37.3/src/macho.rs:2446`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2446)*
 
+### `BIND_OPCODE_SET_TYPE_IMM`
 ```rust
 const BIND_OPCODE_SET_TYPE_IMM: u8 = 80u8;
 ```
 
-### `BIND_OPCODE_SET_ADDEND_SLEB`
+*Defined in [`object-0.37.3/src/macho.rs:2447`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2447)*
 
+### `BIND_OPCODE_SET_ADDEND_SLEB`
 ```rust
 const BIND_OPCODE_SET_ADDEND_SLEB: u8 = 96u8;
 ```
 
-### `BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2448`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2448)*
 
+### `BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB`
 ```rust
 const BIND_OPCODE_SET_SEGMENT_AND_OFFSET_ULEB: u8 = 112u8;
 ```
 
-### `BIND_OPCODE_ADD_ADDR_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2449`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2449)*
 
+### `BIND_OPCODE_ADD_ADDR_ULEB`
 ```rust
 const BIND_OPCODE_ADD_ADDR_ULEB: u8 = 128u8;
 ```
 
-### `BIND_OPCODE_DO_BIND`
+*Defined in [`object-0.37.3/src/macho.rs:2450`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2450)*
 
+### `BIND_OPCODE_DO_BIND`
 ```rust
 const BIND_OPCODE_DO_BIND: u8 = 144u8;
 ```
 
-### `BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2451`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2451)*
 
+### `BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB`
 ```rust
 const BIND_OPCODE_DO_BIND_ADD_ADDR_ULEB: u8 = 160u8;
 ```
 
-### `BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED`
+*Defined in [`object-0.37.3/src/macho.rs:2452`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2452)*
 
+### `BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED`
 ```rust
 const BIND_OPCODE_DO_BIND_ADD_ADDR_IMM_SCALED: u8 = 176u8;
 ```
 
-### `BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2453`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2453)*
 
+### `BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB`
 ```rust
 const BIND_OPCODE_DO_BIND_ULEB_TIMES_SKIPPING_ULEB: u8 = 192u8;
 ```
 
-### `BIND_OPCODE_THREADED`
+*Defined in [`object-0.37.3/src/macho.rs:2454`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2454)*
 
+### `BIND_OPCODE_THREADED`
 ```rust
 const BIND_OPCODE_THREADED: u8 = 208u8;
 ```
 
-### `BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB`
+*Defined in [`object-0.37.3/src/macho.rs:2455`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2455)*
 
+### `BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB`
 ```rust
 const BIND_SUBOPCODE_THREADED_SET_BIND_ORDINAL_TABLE_SIZE_ULEB: u8 = 0u8;
 ```
 
-### `BIND_SUBOPCODE_THREADED_APPLY`
+*Defined in [`object-0.37.3/src/macho.rs:2456`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2456)*
 
+### `BIND_SUBOPCODE_THREADED_APPLY`
 ```rust
 const BIND_SUBOPCODE_THREADED_APPLY: u8 = 1u8;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_KIND_MASK`
+*Defined in [`object-0.37.3/src/macho.rs:2457`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2457)*
 
+### `EXPORT_SYMBOL_FLAGS_KIND_MASK`
 ```rust
 const EXPORT_SYMBOL_FLAGS_KIND_MASK: u32 = 3u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_KIND_REGULAR`
+*Defined in [`object-0.37.3/src/macho.rs:2463`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2463)*
 
+### `EXPORT_SYMBOL_FLAGS_KIND_REGULAR`
 ```rust
 const EXPORT_SYMBOL_FLAGS_KIND_REGULAR: u32 = 0u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL`
+*Defined in [`object-0.37.3/src/macho.rs:2464`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2464)*
 
+### `EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL`
 ```rust
 const EXPORT_SYMBOL_FLAGS_KIND_THREAD_LOCAL: u32 = 1u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE`
+*Defined in [`object-0.37.3/src/macho.rs:2465`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2465)*
 
+### `EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE`
 ```rust
 const EXPORT_SYMBOL_FLAGS_KIND_ABSOLUTE: u32 = 2u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION`
+*Defined in [`object-0.37.3/src/macho.rs:2466`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2466)*
 
+### `EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION`
 ```rust
 const EXPORT_SYMBOL_FLAGS_WEAK_DEFINITION: u32 = 4u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_REEXPORT`
+*Defined in [`object-0.37.3/src/macho.rs:2467`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2467)*
 
+### `EXPORT_SYMBOL_FLAGS_REEXPORT`
 ```rust
 const EXPORT_SYMBOL_FLAGS_REEXPORT: u32 = 8u32;
 ```
 
-### `EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`
+*Defined in [`object-0.37.3/src/macho.rs:2468`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2468)*
 
+### `EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER`
 ```rust
 const EXPORT_SYMBOL_FLAGS_STUB_AND_RESOLVER: u32 = 16u32;
 ```
 
-### `DICE_KIND_DATA`
+*Defined in [`object-0.37.3/src/macho.rs:2469`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2469)*
 
+### `DICE_KIND_DATA`
 ```rust
 const DICE_KIND_DATA: u32 = 1u32;
 ```
 
-### `DICE_KIND_JUMP_TABLE8`
+*Defined in [`object-0.37.3/src/macho.rs:2591`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2591)*
 
+### `DICE_KIND_JUMP_TABLE8`
 ```rust
 const DICE_KIND_JUMP_TABLE8: u32 = 2u32;
 ```
 
-### `DICE_KIND_JUMP_TABLE16`
+*Defined in [`object-0.37.3/src/macho.rs:2592`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2592)*
 
+### `DICE_KIND_JUMP_TABLE16`
 ```rust
 const DICE_KIND_JUMP_TABLE16: u32 = 3u32;
 ```
 
-### `DICE_KIND_JUMP_TABLE32`
+*Defined in [`object-0.37.3/src/macho.rs:2593`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2593)*
 
+### `DICE_KIND_JUMP_TABLE32`
 ```rust
 const DICE_KIND_JUMP_TABLE32: u32 = 4u32;
 ```
 
-### `DICE_KIND_ABS_JUMP_TABLE32`
+*Defined in [`object-0.37.3/src/macho.rs:2594`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2594)*
 
+### `DICE_KIND_ABS_JUMP_TABLE32`
 ```rust
 const DICE_KIND_ABS_JUMP_TABLE32: u32 = 5u32;
 ```
 
-### `N_STAB`
+*Defined in [`object-0.37.3/src/macho.rs:2595`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2595)*
 
+### `N_STAB`
 ```rust
 const N_STAB: u8 = 224u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2683`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2683)*
+
 if any of these bits set, a symbolic debugging entry
 
 ### `N_PEXT`
-
 ```rust
 const N_PEXT: u8 = 16u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2685`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2685)*
+
 private external symbol bit
 
 ### `N_TYPE`
-
 ```rust
 const N_TYPE: u8 = 14u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2687`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2687)*
+
 mask for the type bits
 
 ### `N_EXT`
-
 ```rust
 const N_EXT: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2689`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2689)*
+
 external symbol bit, set for external symbols
 
 ### `N_UNDF`
-
 ```rust
 const N_UNDF: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2702`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2702)*
+
 undefined, n_sect == NO_SECT
 
 ### `N_ABS`
-
 ```rust
 const N_ABS: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2704`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2704)*
+
 absolute, n_sect == NO_SECT
 
 ### `N_SECT`
-
 ```rust
 const N_SECT: u8 = 14u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2706`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2706)*
+
 defined in section number n_sect
 
 ### `N_PBUD`
-
 ```rust
 const N_PBUD: u8 = 12u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2708`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2708)*
+
 prebound undefined (defined in a dylib)
 
 ### `N_INDR`
-
 ```rust
 const N_INDR: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2710`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2710)*
+
 indirect
 
 ### `NO_SECT`
-
 ```rust
 const NO_SECT: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2732`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2732)*
+
 symbol is not in any section
 
 ### `MAX_SECT`
-
 ```rust
 const MAX_SECT: u8 = 255u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2734`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2734)*
+
 1 thru 255 inclusive
 
 ### `REFERENCE_TYPE`
-
 ```rust
 const REFERENCE_TYPE: u16 = 7u16;
 ```
 
-### `REFERENCE_FLAG_UNDEFINED_NON_LAZY`
+*Defined in [`object-0.37.3/src/macho.rs:2771`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2771)*
 
+### `REFERENCE_FLAG_UNDEFINED_NON_LAZY`
 ```rust
 const REFERENCE_FLAG_UNDEFINED_NON_LAZY: u16 = 0u16;
 ```
 
-### `REFERENCE_FLAG_UNDEFINED_LAZY`
+*Defined in [`object-0.37.3/src/macho.rs:2773`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2773)*
 
+### `REFERENCE_FLAG_UNDEFINED_LAZY`
 ```rust
 const REFERENCE_FLAG_UNDEFINED_LAZY: u16 = 1u16;
 ```
 
-### `REFERENCE_FLAG_DEFINED`
+*Defined in [`object-0.37.3/src/macho.rs:2774`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2774)*
 
+### `REFERENCE_FLAG_DEFINED`
 ```rust
 const REFERENCE_FLAG_DEFINED: u16 = 2u16;
 ```
 
-### `REFERENCE_FLAG_PRIVATE_DEFINED`
+*Defined in [`object-0.37.3/src/macho.rs:2775`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2775)*
 
+### `REFERENCE_FLAG_PRIVATE_DEFINED`
 ```rust
 const REFERENCE_FLAG_PRIVATE_DEFINED: u16 = 3u16;
 ```
 
-### `REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY`
+*Defined in [`object-0.37.3/src/macho.rs:2776`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2776)*
 
+### `REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY`
 ```rust
 const REFERENCE_FLAG_PRIVATE_UNDEFINED_NON_LAZY: u16 = 4u16;
 ```
 
-### `REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY`
+*Defined in [`object-0.37.3/src/macho.rs:2777`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2777)*
 
+### `REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY`
 ```rust
 const REFERENCE_FLAG_PRIVATE_UNDEFINED_LAZY: u16 = 5u16;
 ```
 
-### `REFERENCED_DYNAMICALLY`
+*Defined in [`object-0.37.3/src/macho.rs:2778`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2778)*
 
+### `REFERENCED_DYNAMICALLY`
 ```rust
 const REFERENCED_DYNAMICALLY: u16 = 16u16;
 ```
 
-### `SELF_LIBRARY_ORDINAL`
+*Defined in [`object-0.37.3/src/macho.rs:2786`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2786)*
 
+### `SELF_LIBRARY_ORDINAL`
 ```rust
 const SELF_LIBRARY_ORDINAL: u8 = 0u8;
 ```
 
-### `MAX_LIBRARY_ORDINAL`
+*Defined in [`object-0.37.3/src/macho.rs:2820`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2820)*
 
+### `MAX_LIBRARY_ORDINAL`
 ```rust
 const MAX_LIBRARY_ORDINAL: u8 = 253u8;
 ```
 
-### `DYNAMIC_LOOKUP_ORDINAL`
+*Defined in [`object-0.37.3/src/macho.rs:2821`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2821)*
 
+### `DYNAMIC_LOOKUP_ORDINAL`
 ```rust
 const DYNAMIC_LOOKUP_ORDINAL: u8 = 254u8;
 ```
 
-### `EXECUTABLE_ORDINAL`
+*Defined in [`object-0.37.3/src/macho.rs:2822`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2822)*
 
+### `EXECUTABLE_ORDINAL`
 ```rust
 const EXECUTABLE_ORDINAL: u8 = 255u8;
 ```
 
-### `N_NO_DEAD_STRIP`
+*Defined in [`object-0.37.3/src/macho.rs:2823`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2823)*
 
+### `N_NO_DEAD_STRIP`
 ```rust
 const N_NO_DEAD_STRIP: u16 = 32u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2836`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2836)*
+
 symbol is not to be dead stripped
 
 ### `N_DESC_DISCARDED`
-
 ```rust
 const N_DESC_DISCARDED: u16 = 32u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2844`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2844)*
+
 symbol is discarded
 
 ### `N_WEAK_REF`
-
 ```rust
 const N_WEAK_REF: u16 = 64u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2852`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2852)*
+
 symbol is weak referenced
 
 ### `N_WEAK_DEF`
-
 ```rust
 const N_WEAK_DEF: u16 = 128u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2861`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2861)*
+
 coalesced symbol is a weak definition
 
 ### `N_REF_TO_WEAK`
-
 ```rust
 const N_REF_TO_WEAK: u16 = 128u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2868`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2868)*
+
 reference to a weak symbol
 
 ### `N_ARM_THUMB_DEF`
-
 ```rust
 const N_ARM_THUMB_DEF: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2875`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2875)*
+
 symbol is a Thumb function (ARM)
 
 ### `N_SYMBOL_RESOLVER`
-
 ```rust
 const N_SYMBOL_RESOLVER: u16 = 256u16;
 ```
 
-### `N_ALT_ENTRY`
+*Defined in [`object-0.37.3/src/macho.rs:2883`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2883)*
 
+### `N_ALT_ENTRY`
 ```rust
 const N_ALT_ENTRY: u16 = 512u16;
 ```
 
-### `N_GSYM`
+*Defined in [`object-0.37.3/src/macho.rs:2889`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2889)*
 
+### `N_GSYM`
 ```rust
 const N_GSYM: u8 = 32u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2919`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2919)*
+
 global symbol: name,,NO_SECT,type,0
 
 ### `N_FNAME`
-
 ```rust
 const N_FNAME: u8 = 34u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2921`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2921)*
+
 procedure name (f77 kludge): name,,NO_SECT,0,0
 
 ### `N_FUN`
-
 ```rust
 const N_FUN: u8 = 36u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2923`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2923)*
+
 procedure: name,,n_sect,linenumber,address
 
 ### `N_STSYM`
-
 ```rust
 const N_STSYM: u8 = 38u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2925`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2925)*
+
 static symbol: name,,n_sect,type,address
 
 ### `N_LCSYM`
-
 ```rust
 const N_LCSYM: u8 = 40u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2927`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2927)*
+
 .lcomm symbol: name,,n_sect,type,address
 
 ### `N_BNSYM`
-
 ```rust
 const N_BNSYM: u8 = 46u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2929`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2929)*
+
 begin nsect sym: 0,,n_sect,0,address
 
 ### `N_AST`
-
 ```rust
 const N_AST: u8 = 50u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2931`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2931)*
+
 AST file path: name,,NO_SECT,0,0
 
 ### `N_OPT`
-
 ```rust
 const N_OPT: u8 = 60u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2933`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2933)*
+
 emitted with gcc2_compiled and in gcc source
 
 ### `N_RSYM`
-
 ```rust
 const N_RSYM: u8 = 64u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2935`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2935)*
+
 register sym: name,,NO_SECT,type,register
 
 ### `N_SLINE`
-
 ```rust
 const N_SLINE: u8 = 68u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2937`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2937)*
+
 src line: 0,,n_sect,linenumber,address
 
 ### `N_ENSYM`
-
 ```rust
 const N_ENSYM: u8 = 78u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2939`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2939)*
+
 end nsect sym: 0,,n_sect,0,address
 
 ### `N_SSYM`
-
 ```rust
 const N_SSYM: u8 = 96u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2941`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2941)*
+
 structure elt: name,,NO_SECT,type,struct_offset
 
 ### `N_SO`
-
 ```rust
 const N_SO: u8 = 100u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2943`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2943)*
+
 source file name: name,,n_sect,0,address
 
 ### `N_OSO`
-
 ```rust
 const N_OSO: u8 = 102u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2945`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2945)*
+
 object file name: name,,0,0,st_mtime
 
 ### `N_LSYM`
-
 ```rust
 const N_LSYM: u8 = 128u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2947`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2947)*
+
 local sym: name,,NO_SECT,type,offset
 
 ### `N_BINCL`
-
 ```rust
 const N_BINCL: u8 = 130u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2949`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2949)*
+
 include file beginning: name,,NO_SECT,0,sum
 
 ### `N_SOL`
-
 ```rust
 const N_SOL: u8 = 132u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2951`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2951)*
+
 #included file name: name,,n_sect,0,address
 
 ### `N_PARAMS`
-
 ```rust
 const N_PARAMS: u8 = 134u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2953`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2953)*
+
 compiler parameters: name,,NO_SECT,0,0
 
 ### `N_VERSION`
-
 ```rust
 const N_VERSION: u8 = 136u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2955`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2955)*
+
 compiler version: name,,NO_SECT,0,0
 
 ### `N_OLEVEL`
-
 ```rust
 const N_OLEVEL: u8 = 138u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2957`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2957)*
+
 compiler -O level: name,,NO_SECT,0,0
 
 ### `N_PSYM`
-
 ```rust
 const N_PSYM: u8 = 160u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2959`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2959)*
+
 parameter: name,,NO_SECT,type,offset
 
 ### `N_EINCL`
-
 ```rust
 const N_EINCL: u8 = 162u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2961`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2961)*
+
 include file end: name,,NO_SECT,0,0
 
 ### `N_ENTRY`
-
 ```rust
 const N_ENTRY: u8 = 164u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2963`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2963)*
+
 alternate entry: name,,n_sect,linenumber,address
 
 ### `N_LBRAC`
-
 ```rust
 const N_LBRAC: u8 = 192u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2965`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2965)*
+
 left bracket: 0,,NO_SECT,nesting level,address
 
 ### `N_EXCL`
-
 ```rust
 const N_EXCL: u8 = 194u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2967`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2967)*
+
 deleted include file: name,,NO_SECT,0,sum
 
 ### `N_RBRAC`
-
 ```rust
 const N_RBRAC: u8 = 224u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2969`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2969)*
+
 right bracket: 0,,NO_SECT,nesting level,address
 
 ### `N_BCOMM`
-
 ```rust
 const N_BCOMM: u8 = 226u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2971`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2971)*
+
 begin common: name,,NO_SECT,0,0
 
 ### `N_ECOMM`
-
 ```rust
 const N_ECOMM: u8 = 228u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2973`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2973)*
+
 end common: name,,n_sect,0,0
 
 ### `N_ECOML`
-
 ```rust
 const N_ECOML: u8 = 232u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2975`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2975)*
+
 end common (local name): 0,,n_sect,0,address
 
 ### `N_LENG`
-
 ```rust
 const N_LENG: u8 = 254u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2977`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2977)*
+
 second stab entry with length information
 
 ### `N_PC`
-
 ```rust
 const N_PC: u8 = 48u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:2983`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L2983)*
+
 global pascal symbol: name,,NO_SECT,subtype,line
 
 ### `R_ABS`
-
 ```rust
 const R_ABS: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3101`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3101)*
+
 absolute relocation type for Mach-O files
 
 ### `R_SCATTERED`
-
 ```rust
 const R_SCATTERED: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3167`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3167)*
+
 Bit set in `Relocation::r_word0` for scattered relocations.
 
 ### `GENERIC_RELOC_VANILLA`
-
 ```rust
 const GENERIC_RELOC_VANILLA: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3218`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3218)*
+
 generic relocation as described above
 
 ### `GENERIC_RELOC_PAIR`
-
 ```rust
 const GENERIC_RELOC_PAIR: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3220`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3220)*
+
 Only follows a GENERIC_RELOC_SECTDIFF
 
 ### `GENERIC_RELOC_SECTDIFF`
-
 ```rust
 const GENERIC_RELOC_SECTDIFF: u8 = 2u8;
 ```
 
-### `GENERIC_RELOC_PB_LA_PTR`
+*Defined in [`object-0.37.3/src/macho.rs:3221`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3221)*
 
+### `GENERIC_RELOC_PB_LA_PTR`
 ```rust
 const GENERIC_RELOC_PB_LA_PTR: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3223`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3223)*
+
 prebound lazy pointer
 
 ### `GENERIC_RELOC_LOCAL_SECTDIFF`
-
 ```rust
 const GENERIC_RELOC_LOCAL_SECTDIFF: u8 = 4u8;
 ```
 
-### `GENERIC_RELOC_TLV`
+*Defined in [`object-0.37.3/src/macho.rs:3224`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3224)*
 
+### `GENERIC_RELOC_TLV`
 ```rust
 const GENERIC_RELOC_TLV: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3226`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3226)*
+
 thread local variables
 
 ### `ARM_RELOC_VANILLA`
-
 ```rust
 const ARM_RELOC_VANILLA: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3239`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3239)*
+
 generic relocation as described above
 
 ### `ARM_RELOC_PAIR`
-
 ```rust
 const ARM_RELOC_PAIR: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3241`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3241)*
+
 the second relocation entry of a pair
 
 ### `ARM_RELOC_SECTDIFF`
-
 ```rust
 const ARM_RELOC_SECTDIFF: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3243`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3243)*
+
 a PAIR follows with subtract symbol value
 
 ### `ARM_RELOC_LOCAL_SECTDIFF`
-
 ```rust
 const ARM_RELOC_LOCAL_SECTDIFF: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3245`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3245)*
+
 like ARM_RELOC_SECTDIFF, but the symbol referenced was local.
 
 ### `ARM_RELOC_PB_LA_PTR`
-
 ```rust
 const ARM_RELOC_PB_LA_PTR: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3247`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3247)*
+
 prebound lazy pointer
 
 ### `ARM_RELOC_BR24`
-
 ```rust
 const ARM_RELOC_BR24: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3249`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3249)*
+
 24 bit branch displacement (to a word address)
 
 ### `ARM_THUMB_RELOC_BR22`
-
 ```rust
 const ARM_THUMB_RELOC_BR22: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3251`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3251)*
+
 22 bit branch displacement (to a half-word address)
 
 ### `ARM_THUMB_32BIT_BRANCH`
-
 ```rust
 const ARM_THUMB_32BIT_BRANCH: u8 = 7u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3253`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3253)*
+
 obsolete - a thumb 32-bit branch instruction possibly needing page-spanning branch workaround
 
 ### `ARM_RELOC_HALF`
-
 ```rust
 const ARM_RELOC_HALF: u8 = 8u8;
 ```
 
-### `ARM_RELOC_HALF_SECTDIFF`
+*Defined in [`object-0.37.3/src/macho.rs:3268`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3268)*
 
+### `ARM_RELOC_HALF_SECTDIFF`
 ```rust
 const ARM_RELOC_HALF_SECTDIFF: u8 = 9u8;
 ```
 
-### `ARM64_RELOC_UNSIGNED`
+*Defined in [`object-0.37.3/src/macho.rs:3269`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3269)*
 
+### `ARM64_RELOC_UNSIGNED`
 ```rust
 const ARM64_RELOC_UNSIGNED: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3277`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3277)*
+
 for pointers
 
 ### `ARM64_RELOC_SUBTRACTOR`
-
 ```rust
 const ARM64_RELOC_SUBTRACTOR: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3279`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3279)*
+
 must be followed by a ARM64_RELOC_UNSIGNED
 
 ### `ARM64_RELOC_BRANCH26`
-
 ```rust
 const ARM64_RELOC_BRANCH26: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3281`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3281)*
+
 a B/BL instruction with 26-bit displacement
 
 ### `ARM64_RELOC_PAGE21`
-
 ```rust
 const ARM64_RELOC_PAGE21: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3283`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3283)*
+
 pc-rel distance to page of target
 
 ### `ARM64_RELOC_PAGEOFF12`
-
 ```rust
 const ARM64_RELOC_PAGEOFF12: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3285`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3285)*
+
 offset within page, scaled by r_length
 
 ### `ARM64_RELOC_GOT_LOAD_PAGE21`
-
 ```rust
 const ARM64_RELOC_GOT_LOAD_PAGE21: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3287`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3287)*
+
 pc-rel distance to page of GOT slot
 
 ### `ARM64_RELOC_GOT_LOAD_PAGEOFF12`
-
 ```rust
 const ARM64_RELOC_GOT_LOAD_PAGEOFF12: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3289`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3289)*
+
 offset within page of GOT slot, scaled by r_length
 
 ### `ARM64_RELOC_POINTER_TO_GOT`
-
 ```rust
 const ARM64_RELOC_POINTER_TO_GOT: u8 = 7u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3291`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3291)*
+
 for pointers to GOT slots
 
 ### `ARM64_RELOC_TLVP_LOAD_PAGE21`
-
 ```rust
 const ARM64_RELOC_TLVP_LOAD_PAGE21: u8 = 8u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3293`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3293)*
+
 pc-rel distance to page of TLVP slot
 
 ### `ARM64_RELOC_TLVP_LOAD_PAGEOFF12`
-
 ```rust
 const ARM64_RELOC_TLVP_LOAD_PAGEOFF12: u8 = 9u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3295`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3295)*
+
 offset within page of TLVP slot, scaled by r_length
 
 ### `ARM64_RELOC_ADDEND`
-
 ```rust
 const ARM64_RELOC_ADDEND: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3297`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3297)*
+
 must be followed by PAGE21 or PAGEOFF12
 
 ### `ARM64_RELOC_AUTHENTICATED_POINTER`
-
 ```rust
 const ARM64_RELOC_AUTHENTICATED_POINTER: u8 = 11u8;
 ```
 
-### `PPC_RELOC_VANILLA`
+*Defined in [`object-0.37.3/src/macho.rs:3318`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3318)*
 
+### `PPC_RELOC_VANILLA`
 ```rust
 const PPC_RELOC_VANILLA: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3338`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3338)*
+
 generic relocation as described above
 
 ### `PPC_RELOC_PAIR`
-
 ```rust
 const PPC_RELOC_PAIR: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3340`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3340)*
+
 the second relocation entry of a pair
 
 ### `PPC_RELOC_BR14`
-
 ```rust
 const PPC_RELOC_BR14: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3342`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3342)*
+
 14 bit branch displacement (to a word address)
 
 ### `PPC_RELOC_BR24`
-
 ```rust
 const PPC_RELOC_BR24: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3344`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3344)*
+
 24 bit branch displacement (to a word address)
 
 ### `PPC_RELOC_HI16`
-
 ```rust
 const PPC_RELOC_HI16: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3346`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3346)*
+
 a PAIR follows with the low half
 
 ### `PPC_RELOC_LO16`
-
 ```rust
 const PPC_RELOC_LO16: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3348`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3348)*
+
 a PAIR follows with the high half
 
 ### `PPC_RELOC_HA16`
-
 ```rust
 const PPC_RELOC_HA16: u8 = 6u8;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:3352`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3352)*
 
 Same as the RELOC_HI16 except the low 16 bits and the high 16 bits are added together
 with the low 16 bits sign extended first.  This means if bit 15 of the low 16 bits is
 set the high 16 bits stored in the instruction will be adjusted.
 
 ### `PPC_RELOC_LO14`
-
 ```rust
 const PPC_RELOC_LO14: u8 = 7u8;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:3355`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3355)*
 
 Same as the LO16 except that the low 2 bits are not stored in the instruction and are
 always zero.  This is used in double word load/store instructions.
 
 ### `PPC_RELOC_SECTDIFF`
-
 ```rust
 const PPC_RELOC_SECTDIFF: u8 = 8u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3357`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3357)*
+
 a PAIR follows with subtract symbol value
 
 ### `PPC_RELOC_PB_LA_PTR`
-
 ```rust
 const PPC_RELOC_PB_LA_PTR: u8 = 9u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3359`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3359)*
+
 prebound lazy pointer
 
 ### `PPC_RELOC_HI16_SECTDIFF`
-
 ```rust
 const PPC_RELOC_HI16_SECTDIFF: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3361`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3361)*
+
 section difference forms of above.  a PAIR
 
 ### `PPC_RELOC_LO16_SECTDIFF`
-
 ```rust
 const PPC_RELOC_LO16_SECTDIFF: u8 = 11u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3363`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3363)*
+
 follows these with subtract symbol value
 
 ### `PPC_RELOC_HA16_SECTDIFF`
-
 ```rust
 const PPC_RELOC_HA16_SECTDIFF: u8 = 12u8;
 ```
 
-### `PPC_RELOC_JBSR`
+*Defined in [`object-0.37.3/src/macho.rs:3364`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3364)*
 
+### `PPC_RELOC_JBSR`
 ```rust
 const PPC_RELOC_JBSR: u8 = 13u8;
 ```
 
-### `PPC_RELOC_LO14_SECTDIFF`
+*Defined in [`object-0.37.3/src/macho.rs:3365`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3365)*
 
+### `PPC_RELOC_LO14_SECTDIFF`
 ```rust
 const PPC_RELOC_LO14_SECTDIFF: u8 = 14u8;
 ```
 
-### `PPC_RELOC_LOCAL_SECTDIFF`
+*Defined in [`object-0.37.3/src/macho.rs:3366`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3366)*
 
+### `PPC_RELOC_LOCAL_SECTDIFF`
 ```rust
 const PPC_RELOC_LOCAL_SECTDIFF: u8 = 15u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3368`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3368)*
+
 like PPC_RELOC_SECTDIFF, but the symbol referenced was local.
 
 ### `X86_64_RELOC_UNSIGNED`
-
 ```rust
 const X86_64_RELOC_UNSIGNED: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3523`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3523)*
+
 for absolute addresses
 
 ### `X86_64_RELOC_SIGNED`
-
 ```rust
 const X86_64_RELOC_SIGNED: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3525`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3525)*
+
 for signed 32-bit displacement
 
 ### `X86_64_RELOC_BRANCH`
-
 ```rust
 const X86_64_RELOC_BRANCH: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3527`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3527)*
+
 a CALL/JMP instruction with 32-bit displacement
 
 ### `X86_64_RELOC_GOT_LOAD`
-
 ```rust
 const X86_64_RELOC_GOT_LOAD: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3529`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3529)*
+
 a MOVQ load of a GOT entry
 
 ### `X86_64_RELOC_GOT`
-
 ```rust
 const X86_64_RELOC_GOT: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3531`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3531)*
+
 other GOT references
 
 ### `X86_64_RELOC_SUBTRACTOR`
-
 ```rust
 const X86_64_RELOC_SUBTRACTOR: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3533`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3533)*
+
 must be followed by a X86_64_RELOC_UNSIGNED
 
 ### `X86_64_RELOC_SIGNED_1`
-
 ```rust
 const X86_64_RELOC_SIGNED_1: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3535`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3535)*
+
 for signed 32-bit displacement with a -1 addend
 
 ### `X86_64_RELOC_SIGNED_2`
-
 ```rust
 const X86_64_RELOC_SIGNED_2: u8 = 7u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3537`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3537)*
+
 for signed 32-bit displacement with a -2 addend
 
 ### `X86_64_RELOC_SIGNED_4`
-
 ```rust
 const X86_64_RELOC_SIGNED_4: u8 = 8u8;
 ```
 
+*Defined in [`object-0.37.3/src/macho.rs:3539`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3539)*
+
 for signed 32-bit displacement with a -4 addend
 
 ### `X86_64_RELOC_TLV`
-
 ```rust
 const X86_64_RELOC_TLV: u8 = 9u8;
 ```
+
+*Defined in [`object-0.37.3/src/macho.rs:3541`](../../../.source_1765210505/object-0.37.3/src/macho.rs#L3541)*
 
 for thread local variables
 

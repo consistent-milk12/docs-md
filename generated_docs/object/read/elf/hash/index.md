@@ -22,6 +22,8 @@ struct HashTable<'data, Elf: FileHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:13-16`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/hash.rs#L13-L16)*
+
 A SysV symbol hash table in an ELF file.
 
 Returned by [`SectionHeader::hash`](super::SectionHeader::hash).
@@ -55,6 +57,8 @@ struct GnuHashTable<'data, Elf: FileHeader> {
     values: &'data [crate::endian::U32<<Elf as >::Endian>],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/hash.rs:86-92`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/hash.rs#L86-L92)*
 
 A GNU symbol hash table in an ELF file.
 

@@ -28,9 +28,9 @@
 | [`FindOverlappingIter`](#findoverlappingiter) | struct | An iterator of overlapping matches in a particular haystack. |
 | [`StreamFindIter`](#streamfinditer) | struct | An iterator that reports Aho-Corasick matches in a stream. |
 | [`AhoCorasickBuilder`](#ahocorasickbuilder) | struct | A builder for configuring an Aho-Corasick automaton. |
-| [`AhoCorasickKind`](#ahocorasickkind) | enum | The type of Aho-Corasick implementation to use in an [`AhoCorasick`] |
-| [`AcAutomaton`](#acautomaton) | trait | A trait that effectively gives us practical dynamic dispatch over anything |
-| [`enforce_anchored_consistency`](#enforce_anchored_consistency) | fn | Returns an error if the start state configuration does not support the |
+| [`AhoCorasickKind`](#ahocorasickkind) | enum | The type of Aho-Corasick implementation to use in an [`AhoCorasick`] searcher. |
+| [`AcAutomaton`](#acautomaton) | trait | A trait that effectively gives us practical dynamic dispatch over anything that impls `Automaton`, but without needing to add a bunch of bounds to the core `Automaton` trait. |
+| [`enforce_anchored_consistency`](#enforce_anchored_consistency) | fn | Returns an error if the start state configuration does not support the desired search configuration. |
 
 ## Structs
 
@@ -44,12 +44,14 @@ struct AhoCorasick {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:177-214`](../../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L177-L214)*
+
 An automaton for searching multiple strings in linear time.
 
 The `AhoCorasick` type supports a few basic ways of constructing an
 automaton, with the default being `AhoCorasick::new`. However, there
 are a fair number of configurable options that can be set by using
-[`AhoCorasickBuilder`](../index.md) instead. Such options include, but are not limited
+[`AhoCorasickBuilder`](#ahocorasickbuilder) instead. Such options include, but are not limited
 to, how matches are determined, simple case insensitivity, whether to use a
 DFA or not and various knobs for controlling the space-vs-time trade offs
 taken when building the automaton.
@@ -85,7 +87,7 @@ This experiment very strongly argues that a contiguous NFA is often the
 best balance in terms of resource usage. It takes a little longer to build,
 but its memory usage is quite small. Its search speed (not listed) is
 also often faster than a noncontiguous NFA, but a little slower than a
-DFA. Indeed, when no specific [`AhoCorasickKind`](../index.md) is used (which is the
+DFA. Indeed, when no specific [`AhoCorasickKind`](#ahocorasickkind) is used (which is the
 default), a contiguous NFA is used in most cases.
 
 The only "catch" to using a contiguous NFA is that, because of its variety
@@ -104,7 +106,7 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](../index.md). This includes `&[u8]`, `&str` and `Input` itself.
+to an [`Input`](../util/search/index.md). This includes `&[u8]`, `&str` and `Input` itself.
 
 # Construction failure
 
@@ -247,15 +249,15 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
-- <span id="ahocorasick-new"></span>`fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](../index.md), [`BuildError`](../index.md)
+- <span id="ahocorasick-new"></span>`fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](#ahocorasick), [`BuildError`](../util/error/index.md)
 
-- <span id="ahocorasick-builder"></span>`fn builder() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasick-builder"></span>`fn builder() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for AhoCorasick`
 
-- <span id="ahocorasick-clone"></span>`fn clone(&self) -> AhoCorasick` — [`AhoCorasick`](../index.md)
+- <span id="ahocorasick-clone"></span>`fn clone(&self) -> AhoCorasick` — [`AhoCorasick`](#ahocorasick)
 
 ##### `impl Debug for AhoCorasick`
 
@@ -267,9 +269,11 @@ assert_eq!(result, "The slow grey sloth.");
 struct FindIter<'a, 'h>(automaton::FindIter<'a, 'h, alloc::sync::Arc<dyn AcAutomaton>>);
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2047`](../../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2047)*
+
 An iterator of non-overlapping matches in a particular haystack.
 
-This iterator yields matches according to the [`MatchKind`](../index.md) used by this
+This iterator yields matches according to the [`MatchKind`](../util/search/index.md) used by this
 automaton.
 
 This iterator is constructed via the `AhoCorasick::find_iter` and
@@ -281,29 +285,31 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl<'a, 'h> Debug for FindIter<'a, 'h>`
+##### `impl Debug for FindIter<'a, 'h>`
 
 - <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindIter<'a, 'h>`
+##### `impl IntoIterator for FindIter<'a, 'h>`
 
-- <span id="finditer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="finditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="finditer-intoiter"></span>`type IntoIter = I`
+- <span id="finditer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h> Iterator for FindIter<'a, 'h>`
+##### `impl Iterator for FindIter<'a, 'h>`
 
-- <span id="finditer-item"></span>`type Item = Match`
+- <span id="finditer-type-item"></span>`type Item = Match`
 
-- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md)
 
 ### `FindOverlappingIter<'a, 'h>`
 
 ```rust
 struct FindOverlappingIter<'a, 'h>(automaton::FindOverlappingIter<'a, 'h, alloc::sync::Arc<dyn AcAutomaton>>);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2070-2072`](../../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2070-L2072)*
 
 An iterator of overlapping matches in a particular haystack.
 
@@ -319,29 +325,31 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl<'a, 'h> Debug for FindOverlappingIter<'a, 'h>`
+##### `impl Debug for FindOverlappingIter<'a, 'h>`
 
 - <span id="findoverlappingiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindOverlappingIter<'a, 'h>`
+##### `impl IntoIterator for FindOverlappingIter<'a, 'h>`
 
-- <span id="findoverlappingiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findoverlappingiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findoverlappingiter-intoiter"></span>`type IntoIter = I`
+- <span id="findoverlappingiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findoverlappingiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h> Iterator for FindOverlappingIter<'a, 'h>`
+##### `impl Iterator for FindOverlappingIter<'a, 'h>`
 
-- <span id="findoverlappingiter-item"></span>`type Item = Match`
+- <span id="findoverlappingiter-type-item"></span>`type Item = Match`
 
-- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md)
 
 ### `StreamFindIter<'a, R>`
 
 ```rust
 struct StreamFindIter<'a, R>(automaton::StreamFindIter<'a, alloc::sync::Arc<dyn AcAutomaton>, R>);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2100-2102`](../../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2100-L2102)*
 
 An iterator that reports Aho-Corasick matches in a stream.
 
@@ -357,7 +365,7 @@ The type variable `R` refers to the `io::Read` stream that is being read
 from.
 
 The lifetime `'a` refers to the lifetime of the corresponding
-[`AhoCorasick`](../index.md) searcher.
+[`AhoCorasick`](#ahocorasick) searcher.
 
 #### Trait Implementations
 
@@ -367,17 +375,17 @@ The lifetime `'a` refers to the lifetime of the corresponding
 
 ##### `impl<I> IntoIterator for StreamFindIter<'a, R>`
 
-- <span id="streamfinditer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="streamfinditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="streamfinditer-intoiter"></span>`type IntoIter = I`
+- <span id="streamfinditer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="streamfinditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, R: std::io::Read> Iterator for StreamFindIter<'a, R>`
 
-- <span id="streamfinditer-item"></span>`type Item = Result<Match, Error>`
+- <span id="streamfinditer-type-item"></span>`type Item = Result<Match, Error>`
 
-- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<Result<Match, std::io::Error>>` — [`Match`](../index.md)
+- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<Result<Match, std::io::Error>>` — [`Match`](../util/search/index.md)
 
 ### `AhoCorasickBuilder`
 
@@ -390,6 +398,8 @@ struct AhoCorasickBuilder {
     start_kind: crate::util::search::StartKind,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2135-2141`](../../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2135-L2141)*
 
 A builder for configuring an Aho-Corasick automaton.
 
@@ -415,31 +425,31 @@ usage.
 
 #### Implementations
 
-- <span id="ahocorasickbuilder-new"></span>`fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasickbuilder-new"></span>`fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- <span id="ahocorasickbuilder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](../index.md), [`BuildError`](../index.md)
+- <span id="ahocorasickbuilder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](#ahocorasick), [`BuildError`](../util/error/index.md)
 
-- <span id="ahocorasickbuilder-build-auto"></span>`fn build_auto(&self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](../nfa/noncontiguous/index.md), [`AcAutomaton`](#acautomaton), [`AhoCorasickKind`](../index.md)
+- <span id="ahocorasickbuilder-build-auto"></span>`fn build_auto(&self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](../nfa/noncontiguous/index.md), [`AcAutomaton`](#acautomaton), [`AhoCorasickKind`](#ahocorasickkind)
 
-- <span id="ahocorasickbuilder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](../index.md), [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasickbuilder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](../util/search/index.md), [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- <span id="ahocorasickbuilder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](../index.md), [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasickbuilder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](../util/search/index.md), [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- <span id="ahocorasickbuilder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasickbuilder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- <span id="ahocorasickbuilder-kind"></span>`fn kind(&mut self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](../index.md), [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasickbuilder-kind"></span>`fn kind(&mut self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](#ahocorasickkind), [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- <span id="ahocorasickbuilder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasickbuilder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- <span id="ahocorasickbuilder-dense-depth"></span>`fn dense_depth(&mut self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasickbuilder-dense-depth"></span>`fn dense_depth(&mut self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- <span id="ahocorasickbuilder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasickbuilder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for AhoCorasickBuilder`
 
-- <span id="ahocorasickbuilder-clone"></span>`fn clone(&self) -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasickbuilder-clone"></span>`fn clone(&self) -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
 ##### `impl Debug for AhoCorasickBuilder`
 
@@ -447,7 +457,7 @@ usage.
 
 ##### `impl Default for AhoCorasickBuilder`
 
-- <span id="ahocorasickbuilder-default"></span>`fn default() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](../index.md)
+- <span id="ahocorasickbuilder-default"></span>`fn default() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
 ## Enums
 
@@ -461,7 +471,9 @@ enum AhoCorasickKind {
 }
 ```
 
-The type of Aho-Corasick implementation to use in an [`AhoCorasick`](../index.md)
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2627-2634`](../../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2627-L2634)*
+
+The type of Aho-Corasick implementation to use in an [`AhoCorasick`](#ahocorasick)
 searcher.
 
 This is principally used as an input to the
@@ -486,7 +498,7 @@ detail about each choice.
 
 ##### `impl Clone for AhoCorasickKind`
 
-- <span id="ahocorasickkind-clone"></span>`fn clone(&self) -> AhoCorasickKind` — [`AhoCorasickKind`](../index.md)
+- <span id="ahocorasickkind-clone"></span>`fn clone(&self) -> AhoCorasickKind` — [`AhoCorasickKind`](#ahocorasickkind)
 
 ##### `impl Copy for AhoCorasickKind`
 
@@ -498,7 +510,7 @@ detail about each choice.
 
 ##### `impl PartialEq for AhoCorasickKind`
 
-- <span id="ahocorasickkind-eq"></span>`fn eq(&self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](../index.md)
+- <span id="ahocorasickkind-eq"></span>`fn eq(&self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](#ahocorasickkind)
 
 ##### `impl StructuralPartialEq for AhoCorasickKind`
 
@@ -509,6 +521,8 @@ detail about each choice.
 ```rust
 trait AcAutomaton: Automaton + Debug + Send + Sync + UnwindSafe + RefUnwindSafe + 'static { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2643-2646`](../../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2643-L2646)*
 
 A trait that effectively gives us practical dynamic dispatch over anything
 that impls `Automaton`, but without needing to add a bunch of bounds to
@@ -529,6 +543,8 @@ requiring that all impls of `Automaton` do so, which would be not great.
 ```rust
 fn enforce_anchored_consistency(have: crate::util::search::StartKind, want: crate::util::search::Anchored) -> Result<(), crate::util::error::MatchError>
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2778-2789`](../../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2778-L2789)*
 
 Returns an error if the start state configuration does not support the
 desired search configuration. See the internal 'AhoCorasick::start_kind'

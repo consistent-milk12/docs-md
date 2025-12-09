@@ -69,11 +69,13 @@ struct One {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:35-38`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/memchr.rs#L35-L38)*
+
 Finds all occurrences of a single byte in a haystack.
 
 #### Implementations
 
-- <span id="one-loop-bytes"></span>`const LOOP_BYTES: usize`
+- <span id="one-const-loop-bytes"></span>`const LOOP_BYTES: usize`
 
 - <span id="one-new"></span>`fn new(needle: u8) -> One` — [`One`](#one)
 
@@ -116,6 +118,8 @@ struct OneIter<'a, 'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:303-308`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/memchr.rs#L303-L308)*
+
 An iterator over all occurrences of a single byte in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
@@ -140,29 +144,29 @@ The lifetime parameters are as follows:
 
 #### Trait Implementations
 
-##### `impl<'a, 'h> Clone for OneIter<'a, 'h>`
+##### `impl Clone for OneIter<'a, 'h>`
 
 - <span id="oneiter-clone"></span>`fn clone(&self) -> OneIter<'a, 'h>` — [`OneIter`](#oneiter)
 
-##### `impl<'a, 'h> Debug for OneIter<'a, 'h>`
+##### `impl Debug for OneIter<'a, 'h>`
 
 - <span id="oneiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'h> DoubleEndedIterator for OneIter<'a, 'h>`
+##### `impl DoubleEndedIterator for OneIter<'a, 'h>`
 
 - <span id="oneiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<I> IntoIterator for OneIter<'a, 'h>`
+##### `impl IntoIterator for OneIter<'a, 'h>`
 
-- <span id="oneiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="oneiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="oneiter-intoiter"></span>`type IntoIter = I`
+- <span id="oneiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="oneiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h> Iterator for OneIter<'a, 'h>`
+##### `impl Iterator for OneIter<'a, 'h>`
 
-- <span id="oneiter-item"></span>`type Item = usize`
+- <span id="oneiter-type-item"></span>`type Item = usize`
 
 - <span id="oneiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -180,6 +184,8 @@ struct Two {
     v2: usize,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:352-357`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/memchr.rs#L352-L357)*
 
 Finds all occurrences of two bytes in a haystack.
 
@@ -226,6 +232,8 @@ struct TwoIter<'a, 'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:568-573`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/memchr.rs#L568-L573)*
+
 An iterator over all occurrences of two possible bytes in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
@@ -250,29 +258,29 @@ The lifetime parameters are as follows:
 
 #### Trait Implementations
 
-##### `impl<'a, 'h> Clone for TwoIter<'a, 'h>`
+##### `impl Clone for TwoIter<'a, 'h>`
 
 - <span id="twoiter-clone"></span>`fn clone(&self) -> TwoIter<'a, 'h>` — [`TwoIter`](#twoiter)
 
-##### `impl<'a, 'h> Debug for TwoIter<'a, 'h>`
+##### `impl Debug for TwoIter<'a, 'h>`
 
 - <span id="twoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'h> DoubleEndedIterator for TwoIter<'a, 'h>`
+##### `impl DoubleEndedIterator for TwoIter<'a, 'h>`
 
 - <span id="twoiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<I> IntoIterator for TwoIter<'a, 'h>`
+##### `impl IntoIterator for TwoIter<'a, 'h>`
 
-- <span id="twoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="twoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="twoiter-intoiter"></span>`type IntoIter = I`
+- <span id="twoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="twoiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h> Iterator for TwoIter<'a, 'h>`
+##### `impl Iterator for TwoIter<'a, 'h>`
 
-- <span id="twoiter-item"></span>`type Item = usize`
+- <span id="twoiter-type-item"></span>`type Item = usize`
 
 - <span id="twoiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -290,6 +298,8 @@ struct Three {
     v3: usize,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:608-615`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/memchr.rs#L608-L615)*
 
 Finds all occurrences of three bytes in a haystack.
 
@@ -336,6 +346,8 @@ struct ThreeIter<'a, 'h> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:836-841`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/memchr.rs#L836-L841)*
+
 An iterator over all occurrences of three possible bytes in a haystack.
 
 This iterator implements `DoubleEndedIterator`, which means it can also be
@@ -360,29 +372,29 @@ The lifetime parameters are as follows:
 
 #### Trait Implementations
 
-##### `impl<'a, 'h> Clone for ThreeIter<'a, 'h>`
+##### `impl Clone for ThreeIter<'a, 'h>`
 
 - <span id="threeiter-clone"></span>`fn clone(&self) -> ThreeIter<'a, 'h>` — [`ThreeIter`](#threeiter)
 
-##### `impl<'a, 'h> Debug for ThreeIter<'a, 'h>`
+##### `impl Debug for ThreeIter<'a, 'h>`
 
 - <span id="threeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'h> DoubleEndedIterator for ThreeIter<'a, 'h>`
+##### `impl DoubleEndedIterator for ThreeIter<'a, 'h>`
 
 - <span id="threeiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<I> IntoIterator for ThreeIter<'a, 'h>`
+##### `impl IntoIterator for ThreeIter<'a, 'h>`
 
-- <span id="threeiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="threeiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="threeiter-intoiter"></span>`type IntoIter = I`
+- <span id="threeiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="threeiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a, 'h> Iterator for ThreeIter<'a, 'h>`
+##### `impl Iterator for ThreeIter<'a, 'h>`
 
-- <span id="threeiter-item"></span>`type Item = usize`
+- <span id="threeiter-type-item"></span>`type Item = usize`
 
 - <span id="threeiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -395,6 +407,8 @@ The lifetime parameters are as follows:
 ```rust
 fn has_zero_byte(x: usize) -> bool
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:877-885`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/memchr.rs#L877-L885)*
 
 Return `true` if `x` contains any zero byte.
 
@@ -409,6 +423,8 @@ From "Matters Computational" by J. Arndt.
 const fn splat(b: u8) -> usize
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:892-895`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/memchr.rs#L892-L895)*
+
 Repeat the given byte into a word size number. That is, every 8 bits
 is equivalent to the given byte. For example, if `b` is `\x4E` or
 `01001110` in binary, then the returned value on a 32-bit system would be:
@@ -417,18 +433,20 @@ is equivalent to the given byte. For example, if `b` is `\x4E` or
 ## Constants
 
 ### `USIZE_BYTES`
-
 ```rust
 const USIZE_BYTES: usize = 8usize;
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:29`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/memchr.rs#L29)*
+
 The number of bytes in a single `usize` value.
 
 ### `USIZE_ALIGN`
-
 ```rust
 const USIZE_ALIGN: usize = 7usize;
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/memchr.rs:31`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/memchr.rs#L31)*
 
 The bits that must be zero for a `*const usize` to be properly aligned.
 

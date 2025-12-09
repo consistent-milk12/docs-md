@@ -33,7 +33,7 @@
 | [`atomic_load`](#atomic_load) | fn | Atomically reads data from `src`. |
 | [`atomic_store`](#atomic_store) | fn | Atomically writes `val` to `dst`. |
 | [`atomic_swap`](#atomic_swap) | fn | Atomically swaps data at `dst` with `val`. |
-| [`atomic_compare_exchange_weak`](#atomic_compare_exchange_weak) | fn | Atomically compares data at `dst` to `current` and, if equal byte-for-byte, exchanges data at |
+| [`atomic_compare_exchange_weak`](#atomic_compare_exchange_weak) | fn | Atomically compares data at `dst` to `current` and, if equal byte-for-byte, exchanges data at `dst` with `new`. |
 | [`atomic!`](#atomic) | macro |  |
 | [`impl_arithmetic!`](#impl_arithmetic) | macro |  |
 
@@ -46,6 +46,8 @@ struct AtomicCell<T> {
     value: core::cell::UnsafeCell<core::mem::MaybeUninit<T>>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:30-45`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L30-L45)*
 
 A thread-safe mutable memory location.
 
@@ -81,21 +83,17 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- <span id="atomiccell-fetch-add"></span>`fn fetch_add(&self, val: i32) -> i32`
+- <span id="atomiccell-new"></span>`const fn new(val: T) -> AtomicCell<T>` — [`AtomicCell`](#atomiccell)
 
-- <span id="atomiccell-fetch-sub"></span>`fn fetch_sub(&self, val: i32) -> i32`
+- <span id="atomiccell-into-inner"></span>`fn into_inner(self) -> T`
 
-- <span id="atomiccell-fetch-and"></span>`fn fetch_and(&self, val: i32) -> i32`
+- <span id="atomiccell-is-lock-free"></span>`const fn is_lock_free() -> bool`
 
-- <span id="atomiccell-fetch-nand"></span>`fn fetch_nand(&self, val: i32) -> i32`
+- <span id="atomiccell-store"></span>`fn store(&self, val: T)`
 
-- <span id="atomiccell-fetch-or"></span>`fn fetch_or(&self, val: i32) -> i32`
+- <span id="atomiccell-swap"></span>`fn swap(&self, val: T) -> T`
 
-- <span id="atomiccell-fetch-xor"></span>`fn fetch_xor(&self, val: i32) -> i32`
-
-- <span id="atomiccell-fetch-max"></span>`fn fetch_max(&self, val: i32) -> i32`
-
-- <span id="atomiccell-fetch-min"></span>`fn fetch_min(&self, val: i32) -> i32`
+- <span id="atomiccell-as-ptr"></span>`fn as_ptr(&self) -> *mut T`
 
 #### Trait Implementations
 
@@ -105,7 +103,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 ##### `impl<T: Default> Default for AtomicCell<T>`
 
-- <span id="atomiccell-default"></span>`fn default() -> AtomicCell<T>` — [`AtomicCell`](../index.md)
+- <span id="atomiccell-default"></span>`fn default() -> AtomicCell<T>` — [`AtomicCell`](#atomiccell)
 
 ##### `impl<T> Drop for AtomicCell<T>`
 
@@ -124,6 +122,8 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 ```rust
 struct AtomicUnit;
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1015`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1015)*
 
 An atomic `()`.
 
@@ -147,6 +147,8 @@ All operations are noops.
 const fn can_transmute<A, B>() -> bool
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:965-968`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L965-L968)*
+
 Returns `true` if values of type `A` can be transmuted into values of type `B`.
 
 ### `lock`
@@ -154,6 +156,8 @@ Returns `true` if values of type `A` can be transmuted into values of type `B`.
 ```rust
 fn lock(addr: usize) -> &'static super::seq_lock::SeqLock
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:980-1010`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L980-L1010)*
 
 Returns a reference to the global lock associated with the `AtomicCell` at address `addr`.
 
@@ -170,6 +174,8 @@ scalability.
 const fn atomic_is_lock_free<T>() -> bool
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1040-1042`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1040-L1042)*
+
 Returns `true` if operations on `AtomicCell<T>` are lock-free.
 
 ### `atomic_load`
@@ -179,6 +185,8 @@ unsafe fn atomic_load<T>(src: *mut T) -> T
 where
     T: Copy
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1048-1084`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1048-L1084)*
 
 Atomically reads data from `src`.
 
@@ -191,6 +199,8 @@ global lock otherwise.
 unsafe fn atomic_store<T>(dst: *mut T, val: T)
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1090-1103`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1090-L1103)*
+
 Atomically writes `val` to `dst`.
 
 This operation uses the `Release` ordering. If possible, an atomic instructions is used, and a
@@ -201,6 +211,8 @@ global lock otherwise.
 ```rust
 unsafe fn atomic_swap<T>(dst: *mut T, val: T) -> T
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1109-1123`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1109-L1123)*
 
 Atomically swaps data at `dst` with `val`.
 
@@ -215,6 +227,8 @@ where
     T: Copy + Eq
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:1133-1182`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L1133-L1182)*
+
 Atomically compares data at `dst` to `current` and, if equal byte-for-byte, exchanges data at
 `dst` with `new`.
 
@@ -227,5 +241,9 @@ global lock otherwise.
 
 ### `atomic!`
 
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:321-349`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L321-L349)*
+
 ### `impl_arithmetic!`
+
+*Defined in [`crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs:351-778`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/atomic/atomic_cell.rs#L351-L778)*
 

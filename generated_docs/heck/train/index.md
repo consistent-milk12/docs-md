@@ -19,7 +19,9 @@
 struct AsTrainCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a train case conversion in [`fmt::Display`](../../miette_derive/index.md).
+*Defined in [`heck-0.5.0/src/train.rs:41`](../../../.source_1765210505/heck-0.5.0/src/train.rs#L41)*
+
+This wrapper performs a train case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -47,6 +49,8 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 ```rust
 trait ToTrainCase: ToOwned { ... }
 ```
+
+*Defined in [`heck-0.5.0/src/train.rs:20-23`](../../../.source_1765210505/heck-0.5.0/src/train.rs#L20-L23)*
 
 This trait defines a train case conversion.
 

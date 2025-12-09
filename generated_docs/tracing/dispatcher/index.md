@@ -4,7 +4,7 @@
 
 # Module `dispatcher`
 
-Dispatches trace events to [`Subscriber`](../../tracing_core/index.md)s.
+Dispatches trace events to [`Subscriber`](../../tracing_core/subscriber/index.md)s.
 
 The _dispatcher_ is the component of the tracing system which is responsible
 for forwarding trace data from the instrumentation points that generate it
@@ -26,7 +26,7 @@ duration of a scope, while `set_global_default` sets a default subscriber
 for the entire process.
 
 To use either of these functions, we must first wrap our subscriber in a
-[`Dispatch`](../index.md), a cloneable, type-erased reference to a subscriber. For
+[`Dispatch`](#dispatch), a cloneable, type-erased reference to a subscriber. For
 example:
 ```rust
 pub struct FooSubscriber;
@@ -149,6 +149,8 @@ instrumentation.
 trait DefaultGuard: Automaton + Debug + Send + Sync + UnwindSafe + RefUnwindSafe + 'static { ... }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/ahocorasick.rs:2643-2646`](../../../.source_1765210505/aho-corasick-1.1.4/src/ahocorasick.rs#L2643-L2646)*
+
 A trait that effectively gives us practical dynamic dispatch over anything
 that impls `Automaton`, but without needing to add a bunch of bounds to
 the core `Automaton` trait. Basically, we provide all of the marker traits
@@ -158,4 +160,6 @@ not be able to meaningfully impl `Debug` or the marker traits without also
 requiring that all impls of `Automaton` do so, which would be not great.
 
 ## Type Aliases
+
+*Defined in [`tracing-0.1.43/src/dispatcher.rs:128`](../../../.source_1765210505/tracing-0.1.43/src/dispatcher.rs#L128)*
 

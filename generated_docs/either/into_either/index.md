@@ -4,14 +4,14 @@
 
 # Module `into_either`
 
-The trait [`IntoEither`](../index.md) provides methods for converting a type `Self`, whose
+The trait [`IntoEither`](#intoeither) provides methods for converting a type `Self`, whose
 size is constant and known at compile-time, into an [`Either`](../index.md) variant.
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`IntoEither`](#intoeither) | trait | Provides methods for converting a type `Self` into either a [`Left`] or [`Right`] |
+| [`IntoEither`](#intoeither) | trait | Provides methods for converting a type `Self` into either a [`Left`] or [`Right`] variant of [`Either<Self, Self>`](Either). |
 
 ## Traits
 
@@ -20,6 +20,8 @@ size is constant and known at compile-time, into an [`Either`](../index.md) vari
 ```rust
 trait IntoEither: Sized { ... }
 ```
+
+*Defined in [`either-1.15.0/src/into_either.rs:14-62`](../../../.source_1765210505/either-1.15.0/src/into_either.rs#L14-L62)*
 
 Provides methods for converting a type `Self` into either a [`Left`](../index.md) or [`Right`](../index.md)
 variant of [`Either<Self, Self>`](Either).
@@ -42,7 +44,5 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
 
 #### Implementors
 
-- [`Either`](../index.md)
-- [`IterEither`](../index.md)
 - `T`
 

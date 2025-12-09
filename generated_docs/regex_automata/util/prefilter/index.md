@@ -65,9 +65,9 @@ running the full regex engine.
 | [`memmem`](#memmem) | mod |  |
 | [`teddy`](#teddy) | mod |  |
 | [`Prefilter`](#prefilter) | struct | A prefilter for accelerating regex searches. |
-| [`Choice`](#choice) | enum | A type that encapsulates the selection of a prefilter algorithm from a |
+| [`Choice`](#choice) | enum | A type that encapsulates the selection of a prefilter algorithm from a sequence of needles. |
 | [`PrefilterI`](#prefilteri) | trait | A trait for abstracting over prefilters. |
-| [`prefixes`](#prefixes) | fn | Extracts all of the prefix literals from the given HIR expressions into a |
+| [`prefixes`](#prefixes) | fn | Extracts all of the prefix literals from the given HIR expressions into a single `Seq`. |
 | [`suffixes`](#suffixes) | fn | Like `prefixes`, but for all suffixes of all matches for the given HIRs. |
 
 ## Modules
@@ -89,6 +89,8 @@ struct Prefilter {
     max_needle_len: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:142-151`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/mod.rs#L142-L151)*
 
 A prefilter for accelerating regex searches.
 
@@ -214,6 +216,8 @@ enum Choice {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:546-554`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/mod.rs#L546-L554)*
+
 A type that encapsulates the selection of a prefilter algorithm from a
 sequence of needles.
 
@@ -258,6 +262,8 @@ features enabled.
 ```rust
 trait PrefilterI: Debug + Send + Sync + RefUnwindSafe + UnwindSafe + 'static { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:474-498`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/mod.rs#L474-L498)*
 
 A trait for abstracting over prefilters. Basically, a prefilter is
 something that do an unanchored *and* an anchored search in a haystack
@@ -306,6 +312,8 @@ where
     H: core::borrow::Borrow<regex_syntax::hir::Hir>
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:649-682`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/mod.rs#L649-L682)*
+
 Extracts all of the prefix literals from the given HIR expressions into a
 single `Seq`. The literals in the sequence are ordered with respect to the
 order of the given HIR expressions and consistent with the match semantics
@@ -330,6 +338,8 @@ fn suffixes<H>(kind: crate::util::search::MatchKind, hirs: &[H]) -> literal::Seq
 where
     H: core::borrow::Borrow<regex_syntax::hir::Hir>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/mod.rs:686-719`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/mod.rs#L686-L719)*
 
 Like `prefixes`, but for all suffixes of all matches for the given HIRs.
 

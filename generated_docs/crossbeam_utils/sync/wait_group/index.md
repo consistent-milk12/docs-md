@@ -21,6 +21,8 @@ struct WaitGroup {
 }
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
+
 Enables threads to synchronize the beginning or end of some computation.
 
 # Wait groups vs barriers
@@ -73,7 +75,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 ##### `impl Clone for WaitGroup`
 
-- <span id="waitgroup-clone"></span>`fn clone(&self) -> WaitGroup` — [`WaitGroup`](../index.md)
+- <span id="waitgroup-clone"></span>`fn clone(&self) -> WaitGroup` — [`WaitGroup`](#waitgroup)
 
 ##### `impl Debug for WaitGroup`
 
@@ -95,6 +97,8 @@ struct Inner {
     count: std::sync::Mutex<usize>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:51-54`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L51-L54)*
 
 Inner state of a `WaitGroup`.
 

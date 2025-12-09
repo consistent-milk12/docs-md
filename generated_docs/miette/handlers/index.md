@@ -46,22 +46,22 @@ Reporters included with `miette`.
 | [`narratable`](#narratable) | mod |  |
 | [`theme`](#theme) | mod |  |
 | [`DebugReportHandler`](#debugreporthandler) | struct | [`ReportHandler`] that renders plain text and avoids extraneous graphics. |
-| [`GraphicalReportHandler`](#graphicalreporthandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a |
+| [`GraphicalReportHandler`](#graphicalreporthandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a quasi-graphical way, using terminal colors, unicode drawing characters, and other such things. |
 | [`Line`](#line) | struct |  |
 | [`FancySpan`](#fancyspan) | struct |  |
 | [`JSONReportHandler`](#jsonreporthandler) | struct | [`ReportHandler`] that renders JSON output. |
 | [`Escape`](#escape) | struct |  |
 | [`NarratableReportHandler`](#narratablereporthandler) | struct | [`ReportHandler`] that renders plain text and avoids extraneous graphics. |
 | [`Line`](#line) | struct |  |
-| [`GraphicalTheme`](#graphicaltheme) | struct | Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to |
-| [`ThemeStyles`](#themestyles) | struct | Styles for various parts of graphical rendering for the |
-| [`ThemeCharacters`](#themecharacters) | struct | Characters to be used when drawing when using |
+| [`GraphicalTheme`](#graphicaltheme) | struct | Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to render fancy [`Diagnostic`](crate::Diagnostic) reports. |
+| [`ThemeStyles`](#themestyles) | struct | Styles for various parts of graphical rendering for the [`GraphicalReportHandler`](crate::GraphicalReportHandler). |
+| [`ThemeCharacters`](#themecharacters) | struct | Characters to be used when drawing when using [`GraphicalReportHandler`](crate::GraphicalReportHandler). |
 | [`LinkStyle`](#linkstyle) | enum |  |
 | [`LabelRenderMode`](#labelrendermode) | enum |  |
 | [`SpanAttach`](#spanattach) | enum |  |
 | [`split_label`](#split_label) | fn |  |
 | [`escape`](#escape) | fn |  |
-| [`safe_get_column`](#safe_get_column) | fn | Returns column at offset, and nearest boundary if offset is in the middle of |
+| [`safe_get_column`](#safe_get_column) | fn | Returns column at offset, and nearest boundary if offset is in the middle of the character |
 | [`style`](#style) | fn |  |
 
 ## Modules
@@ -79,6 +79,8 @@ Reporters included with `miette`.
 ```rust
 struct DebugReportHandler;
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/debug.rs:11`](../../../.source_1765210505/miette-7.6.0/src/handlers/debug.rs#L11)*
 
 [`ReportHandler`](../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
@@ -102,7 +104,7 @@ non-graphical environments, such as non-TTY output.
 
 - <span id="debugreporthandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for DebugReportHandler`
+##### `impl OwoColorize for DebugReportHandler`
 
 ##### `impl ReportHandler for DebugReportHandler`
 
@@ -129,6 +131,8 @@ struct GraphicalReportHandler {
     show_related_as_nested: bool,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
 
 A [`ReportHandler`](../index.md) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -200,7 +204,7 @@ printer.
 
 - <span id="graphicalreporthandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for GraphicalReportHandler`
+##### `impl OwoColorize for GraphicalReportHandler`
 
 ##### `impl ReportHandler for GraphicalReportHandler`
 
@@ -216,6 +220,8 @@ struct Line {
     text: String,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
 
 #### Implementations
 
@@ -237,7 +243,7 @@ struct Line {
 
 - <span id="line-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for Line`
+##### `impl OwoColorize for Line`
 
 ### `FancySpan`
 
@@ -248,6 +254,8 @@ struct FancySpan {
     style: owo_colors::Style,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
 
 #### Fields
 
@@ -281,7 +289,7 @@ struct FancySpan {
 
 - <span id="fancyspan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for FancySpan`
+##### `impl OwoColorize for FancySpan`
 
 ##### `impl PartialEq for FancySpan`
 
@@ -292,6 +300,8 @@ struct FancySpan {
 ```rust
 struct JSONReportHandler;
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/json.rs:11`](../../../.source_1765210505/miette-7.6.0/src/handlers/json.rs#L11)*
 
 [`ReportHandler`](../index.md) that renders JSON output. It's a machine-readable output.
 
@@ -313,7 +323,7 @@ struct JSONReportHandler;
 
 - <span id="jsonreporthandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for JSONReportHandler`
+##### `impl OwoColorize for JSONReportHandler`
 
 ##### `impl ReportHandler for JSONReportHandler`
 
@@ -325,15 +335,17 @@ struct JSONReportHandler;
 struct Escape<'a>(&'a str);
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/json.rs:27`](../../../.source_1765210505/miette-7.6.0/src/handlers/json.rs#L27)*
+
 #### Trait Implementations
 
 ##### `impl Display for Escape<'_>`
 
 - <span id="escape-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for Escape<'a>`
+##### `impl OwoColorize for Escape<'a>`
 
-##### `impl<T> ToString for Escape<'a>`
+##### `impl ToString for Escape<'a>`
 
 - <span id="escape-to-string"></span>`fn to_string(&self) -> String`
 
@@ -346,6 +358,8 @@ struct NarratableReportHandler {
     footer: Option<String>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:15-19`](../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L15-L19)*
 
 [`ReportHandler`](../index.md) that renders plain text and avoids extraneous graphics.
 It's optimized for screen readers and braille users, but is also used in any
@@ -377,7 +391,7 @@ non-graphical environments, such as non-TTY output.
 
 - <span id="narratablereporthandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for NarratableReportHandler`
+##### `impl OwoColorize for NarratableReportHandler`
 
 ##### `impl ReportHandler for NarratableReportHandler`
 
@@ -394,13 +408,15 @@ struct Line {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:360-365`](../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L360-L365)*
+
 #### Implementations
 
 - <span id="line-span-attach"></span>`fn span_attach(&self, span: &SourceSpan) -> Option<SpanAttach>` — [`SourceSpan`](../index.md), [`SpanAttach`](narratable/index.md)
 
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for Line`
+##### `impl OwoColorize for Line`
 
 ### `GraphicalTheme`
 
@@ -410,6 +426,8 @@ struct GraphicalTheme {
     pub styles: ThemeStyles,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:17-22`](../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L17-L22)*
 
 Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to
 render fancy [`Diagnostic`](crate::Diagnostic) reports.
@@ -455,7 +473,7 @@ one of the predefined ones using the methods below.
 
 - <span id="graphicaltheme-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for GraphicalTheme`
+##### `impl OwoColorize for GraphicalTheme`
 
 ### `ThemeStyles`
 
@@ -470,6 +488,8 @@ struct ThemeStyles {
     pub highlights: Vec<owo_colors::Style>,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:87-103`](../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L87-L103)*
 
 Styles for various parts of graphical rendering for the
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
@@ -523,7 +543,7 @@ Styles for various parts of graphical rendering for the
 
 - <span id="themestyles-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for ThemeStyles`
+##### `impl OwoColorize for ThemeStyles`
 
 ### `ThemeCharacters`
 
@@ -553,6 +573,8 @@ struct ThemeCharacters {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:167-195`](../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L167-L195)*
+
 Characters to be used when drawing when using
 [`GraphicalReportHandler`](crate::GraphicalReportHandler).
 
@@ -576,7 +598,7 @@ Characters to be used when drawing when using
 
 ##### `impl Eq for ThemeCharacters`
 
-##### `impl<D> OwoColorize for ThemeCharacters`
+##### `impl OwoColorize for ThemeCharacters`
 
 ##### `impl PartialEq for ThemeCharacters`
 
@@ -596,6 +618,8 @@ enum LinkStyle {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
+
 #### Trait Implementations
 
 ##### `impl Clone for LinkStyle`
@@ -610,7 +634,7 @@ enum LinkStyle {
 
 ##### `impl Eq for LinkStyle`
 
-##### `impl<D> OwoColorize for LinkStyle`
+##### `impl OwoColorize for LinkStyle`
 
 ##### `impl PartialEq for LinkStyle`
 
@@ -627,6 +651,8 @@ enum LabelRenderMode {
     MultiLineRest,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
 
 #### Variants
 
@@ -648,7 +674,7 @@ enum LabelRenderMode {
 
 - <span id="labelrendermode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for LabelRenderMode`
+##### `impl OwoColorize for LabelRenderMode`
 
 ##### `impl PartialEq for LabelRenderMode`
 
@@ -673,9 +699,11 @@ enum SpanAttach {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:367-371`](../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L367-L371)*
+
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for SpanAttach`
+##### `impl OwoColorize for SpanAttach`
 
 ## Functions
 
@@ -685,17 +713,23 @@ enum SpanAttach {
 fn split_label(v: String) -> Vec<String>
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
+
 ### `escape`
 
 ```rust
 const fn escape(input: &str) -> Escape<'_>
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/json.rs:52-54`](../../../.source_1765210505/miette-7.6.0/src/handlers/json.rs#L52-L54)*
+
 ### `safe_get_column`
 
 ```rust
 fn safe_get_column(text: &str, offset: usize, start: bool) -> usize
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/narratable.rs:375-392`](../../../.source_1765210505/miette-7.6.0/src/handlers/narratable.rs#L375-L392)*
 
 Returns column at offset, and nearest boundary if offset is in the middle of
 the character
@@ -705,4 +739,6 @@ the character
 ```rust
 fn style() -> owo_colors::Style
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/theme.rs:105-107`](../../../.source_1765210505/miette-7.6.0/src/handlers/theme.rs#L105-L107)*
 

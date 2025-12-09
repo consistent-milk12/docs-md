@@ -6,7 +6,7 @@
 
 In-memory markdown capture for testing.
 
-This module provides [`MarkdownCapture`](../../index.md) for capturing generated markdown
+This module provides [`MarkdownCapture`](#markdowncapture) for capturing generated markdown
 in memory instead of writing to disk, enabling snapshot testing.
 
 ## Quick Reference
@@ -24,6 +24,8 @@ struct MarkdownCapture {
     files: std::collections::HashMap<String, String>,
 }
 ```
+
+*Defined in `src/generator/capture.rs:15-18`*
 
 Captures generated markdown in memory for testing.
 
@@ -64,19 +66,19 @@ side effects.
 
 ##### `impl Default for MarkdownCapture`
 
-- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](../../index.md)
+- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](#markdowncapture)
 
-##### `impl<T> Instrument for MarkdownCapture`
+##### `impl Instrument for MarkdownCapture`
 
-##### `impl<T> IntoEither for MarkdownCapture`
+##### `impl IntoEither for MarkdownCapture`
 
-##### `impl<D> OwoColorize for MarkdownCapture`
+##### `impl OwoColorize for MarkdownCapture`
 
-##### `impl<T> Pointable for MarkdownCapture`
+##### `impl Pointable for MarkdownCapture`
 
-- <span id="markdowncapture-align"></span>`const ALIGN: usize`
+- <span id="markdowncapture-const-align"></span>`const ALIGN: usize`
 
-- <span id="markdowncapture-init"></span>`type Init = T`
+- <span id="markdowncapture-type-init"></span>`type Init = T`
 
 - <span id="markdowncapture-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -86,5 +88,5 @@ side effects.
 
 - <span id="markdowncapture-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MarkdownCapture`
+##### `impl WithSubscriber for MarkdownCapture`
 

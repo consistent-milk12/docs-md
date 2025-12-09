@@ -38,6 +38,8 @@ struct LookSet {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:244-255`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/look.rs#L244-L255)*
+
 LookSet is a memory-efficient set of look-around assertions.
 
 This is useful for efficiently tracking look-around assertions. For
@@ -148,6 +150,8 @@ struct LookSetIter {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:517-519`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/look.rs#L517-L519)*
+
 An iterator over all look-around assertions in a [`LookSet`](#lookset).
 
 This iterator is created by `LookSet::iter`.
@@ -162,17 +166,17 @@ This iterator is created by `LookSet::iter`.
 
 - <span id="looksetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for LookSetIter`
+##### `impl IntoIterator for LookSetIter`
 
-- <span id="looksetiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="looksetiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="looksetiter-intoiter"></span>`type IntoIter = I`
+- <span id="looksetiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="looksetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for LookSetIter`
 
-- <span id="looksetiter-item"></span>`type Item = Look`
+- <span id="looksetiter-type-item"></span>`type Item = Look`
 
 - <span id="looksetiter-next"></span>`fn next(&mut self) -> Option<Look>` — [`Look`](#look)
 
@@ -183,6 +187,8 @@ struct LookMatcher {
     lineterm: crate::util::escape::DebugByte,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:577-579`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/look.rs#L577-L579)*
 
 A matcher for look-around assertions.
 
@@ -297,6 +303,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 struct UnicodeWordBoundaryError(());
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:1280`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/look.rs#L1280)*
+
 An error that occurs when the Unicode-aware `\w` class is unavailable.
 
 This error can occur when the data tables necessary for the Unicode aware
@@ -328,7 +336,7 @@ disabled.
 
 ##### `impl Error for UnicodeWordBoundaryError`
 
-##### `impl<T> ToString for UnicodeWordBoundaryError`
+##### `impl ToString for UnicodeWordBoundaryError`
 
 - <span id="unicodewordboundaryerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -358,6 +366,8 @@ enum Look {
     WordEndHalfUnicode,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/look.rs:62-135`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/look.rs#L62-L135)*
 
 A look-around assertion.
 

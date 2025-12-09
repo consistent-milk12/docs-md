@@ -22,6 +22,8 @@ struct SliceVec<'s, T> {
 }
 ```
 
+*Defined in [`tinyvec-1.10.0/src/slicevec.rs:16-19`](../../../.source_1765210505/tinyvec-1.10.0/src/slicevec.rs#L16-L19)*
+
 A slice-backed vector-like data structure.
 
 This is a very similar concept to `ArrayVec`, but instead
@@ -109,7 +111,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T> Deref for SliceVec<'s, T>`
 
-- <span id="slicevec-target"></span>`type Target = [T]`
+- <span id="slicevec-type-target"></span>`type Target = [T]`
 
 - <span id="slicevec-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -133,7 +135,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T, I> Index for SliceVec<'s, T>`
 
-- <span id="slicevec-output"></span>`type Output = <I as SliceIndex>::Output`
+- <span id="slicevec-type-output"></span>`type Output = <I as SliceIndex>::Output`
 
 - <span id="slicevec-index"></span>`fn index(&self, index: I) -> &<Self as >::Output`
 
@@ -143,9 +145,9 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T> IntoIterator for SliceVec<'s, T>`
 
-- <span id="slicevec-item"></span>`type Item = &'s mut T`
+- <span id="slicevec-type-item"></span>`type Item = &'s mut T`
 
-- <span id="slicevec-intoiter"></span>`type IntoIter = IterMut<'s, T>`
+- <span id="slicevec-type-intoiter"></span>`type IntoIter = IterMut<'s, T>`
 
 - <span id="slicevec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -167,7 +169,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T> PartialEq for SliceVec<'s, T>`
 
-- <span id="slicevec-eq"></span>`fn eq(&self, other: &&[T]) -> bool`
+- <span id="slicevec-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<'s, T> PartialOrd for SliceVec<'s, T>`
 
@@ -179,7 +181,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<P, T> Receiver for SliceVec<'s, T>`
 
-- <span id="slicevec-target"></span>`type Target = T`
+- <span id="slicevec-type-target"></span>`type Target = T`
 
 ##### `impl<T> ToString for SliceVec<'s, T>`
 
@@ -204,6 +206,8 @@ struct SliceVecDrain<'p, 's, T: Default> {
 }
 ```
 
+*Defined in [`tinyvec-1.10.0/src/slicevec.rs:714-719`](../../../.source_1765210505/tinyvec-1.10.0/src/slicevec.rs#L714-L719)*
+
 Draining iterator for [`SliceVec`](../index.md)
 
 See [`SliceVec::drain`](SliceVec::drain)
@@ -218,15 +222,15 @@ See [`SliceVec::drain`](SliceVec::drain)
 
 ##### `impl<I> IntoIterator for SliceVecDrain<'p, 's, T>`
 
-- <span id="slicevecdrain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="slicevecdrain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="slicevecdrain-intoiter"></span>`type IntoIter = I`
+- <span id="slicevecdrain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="slicevecdrain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'p, 's, T: Default> Iterator for SliceVecDrain<'p, 's, T>`
 
-- <span id="slicevecdrain-item"></span>`type Item = T`
+- <span id="slicevecdrain-type-item"></span>`type Item = T`
 
 - <span id="slicevecdrain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

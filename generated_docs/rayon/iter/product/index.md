@@ -23,6 +23,8 @@ struct ProductConsumer<P: Send> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/product.rs:19-21`](../../../../.source_1765210505/rayon-1.11.0/src/iter/product.rs#L19-L21)*
+
 #### Implementations
 
 - <span id="productconsumer-new"></span>`fn new() -> ProductConsumer<P>` — [`ProductConsumer`](#productconsumer)
@@ -31,11 +33,11 @@ struct ProductConsumer<P: Send> {
 
 ##### `impl<P, T> Consumer for ProductConsumer<P>`
 
-- <span id="productconsumer-folder"></span>`type Folder = ProductFolder<P>`
+- <span id="productconsumer-type-folder"></span>`type Folder = ProductFolder<P>`
 
-- <span id="productconsumer-reducer"></span>`type Reducer = ProductConsumer<P>`
+- <span id="productconsumer-type-reducer"></span>`type Reducer = ProductConsumer<P>`
 
-- <span id="productconsumer-result"></span>`type Result = P`
+- <span id="productconsumer-type-result"></span>`type Result = P`
 
 - <span id="productconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
@@ -47,9 +49,9 @@ struct ProductConsumer<P: Send> {
 
 ##### `impl<T> Pointable for ProductConsumer<P>`
 
-- <span id="productconsumer-align"></span>`const ALIGN: usize`
+- <span id="productconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="productconsumer-init"></span>`type Init = T`
+- <span id="productconsumer-type-init"></span>`type Init = T`
 
 - <span id="productconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -79,11 +81,13 @@ struct ProductFolder<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/product.rs:82-84`](../../../../.source_1765210505/rayon-1.11.0/src/iter/product.rs#L82-L84)*
+
 #### Trait Implementations
 
 ##### `impl<P, T> Folder for ProductFolder<P>`
 
-- <span id="productfolder-result"></span>`type Result = P`
+- <span id="productfolder-type-result"></span>`type Result = P`
 
 - <span id="productfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -97,9 +101,9 @@ struct ProductFolder<P> {
 
 ##### `impl<T> Pointable for ProductFolder<P>`
 
-- <span id="productfolder-align"></span>`const ALIGN: usize`
+- <span id="productfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="productfolder-init"></span>`type Init = T`
+- <span id="productfolder-type-init"></span>`type Init = T`
 
 - <span id="productfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -120,9 +124,13 @@ where
     P: Send + Product<<PI as >::Item> + Product
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/product.rs:7-13`](../../../../.source_1765210505/rayon-1.11.0/src/iter/product.rs#L7-L13)*
+
 ### `mul`
 
 ```rust
 fn mul<T: Product>(left: T, right: T) -> T
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/product.rs:15-17`](../../../../.source_1765210505/rayon-1.11.0/src/iter/product.rs#L15-L17)*
 

@@ -18,6 +18,8 @@
 struct IgnoredAny;
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/ignored_any.rs:111`](../../../../.source_1765210505/serde_core-1.0.228/src/de/ignored_any.rs#L111)*
+
 An efficient way of discarding data from a deserializer.
 
 Think of this like `serde_json::Value` in that it can be deserialized from
@@ -126,7 +128,7 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Clone for IgnoredAny`
 
-- <span id="ignoredany-clone"></span>`fn clone(&self) -> IgnoredAny` — [`IgnoredAny`](../index.md)
+- <span id="ignoredany-clone"></span>`fn clone(&self) -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
 
 ##### `impl Copy for IgnoredAny`
 
@@ -136,27 +138,27 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Default for IgnoredAny`
 
-- <span id="ignoredany-default"></span>`fn default() -> IgnoredAny` — [`IgnoredAny`](../index.md)
+- <span id="ignoredany-default"></span>`fn default() -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
 
-##### `impl<'de> Deserialize for IgnoredAny`
+##### `impl Deserialize for IgnoredAny`
 
-- <span id="ignoredany-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](../index.md), [`Deserializer`](../../index.md)
+- <span id="ignoredany-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](#ignoredany), [`Deserializer`](../index.md)
 
-##### `impl<T> DeserializeOwned for IgnoredAny`
+##### `impl DeserializeOwned for IgnoredAny`
 
-##### `impl<'de, T> Expected for IgnoredAny`
+##### `impl Expected for IgnoredAny`
 
 - <span id="ignoredany-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for IgnoredAny`
 
-- <span id="ignoredany-eq"></span>`fn eq(&self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](../index.md)
+- <span id="ignoredany-eq"></span>`fn eq(&self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](#ignoredany)
 
 ##### `impl StructuralPartialEq for IgnoredAny`
 
-##### `impl<'de> Visitor for IgnoredAny`
+##### `impl Visitor for IgnoredAny`
 
-- <span id="ignoredany-value"></span>`type Value = IgnoredAny`
+- <span id="ignoredany-type-value"></span>`type Value = IgnoredAny`
 
 - <span id="ignoredany-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 

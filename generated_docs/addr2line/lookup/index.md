@@ -8,12 +8,12 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`SplitDwarfLoad`](#splitdwarfload) | struct | This struct contains the information needed to find split DWARF data |
+| [`SplitDwarfLoad`](#splitdwarfload) | struct | This struct contains the information needed to find split DWARF data and to produce a `gimli::Dwarf<R>` for it. |
 | [`SimpleLookup`](#simplelookup) | struct |  |
 | [`MappedLookup`](#mappedlookup) | struct |  |
-| [`LoopingLookup`](#loopinglookup) | struct | Some functions (e.g. `find_frames`) require considering multiple |
-| [`LookupResult`](#lookupresult) | enum | Operations that consult debug information may require additional files |
-| [`LookupContinuation`](#lookupcontinuation) | trait | This trait represents a partially complete operation that can be resumed |
+| [`LoopingLookup`](#loopinglookup) | struct | Some functions (e.g. `find_frames`) require considering multiple compilation units, each of which might require their own split DWARF lookup (and thus produce a continuation). |
+| [`LookupResult`](#lookupresult) | enum | Operations that consult debug information may require additional files to be loaded if split DWARF is being used. |
+| [`LookupContinuation`](#lookupcontinuation) | trait | This trait represents a partially complete operation that can be resumed once a load of needed split DWARF data is completed or abandoned by the API consumer. |
 
 ## Structs
 
@@ -27,6 +27,8 @@ struct SplitDwarfLoad<R> {
     pub parent: alloc::sync::Arc<gimli::Dwarf<R>>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/lookup.rs:7-19`](../../../.source_1765210505/addr2line-0.25.1/src/lookup.rs#L7-L19)*
 
 This struct contains the information needed to find split DWARF data
 and to produce a `gimli::Dwarf<R>` for it.
@@ -64,21 +66,23 @@ where
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/lookup.rs:118-125`](../../../.source_1765210505/addr2line-0.25.1/src/lookup.rs#L118-L125)*
+
 #### Implementations
 
-- <span id="simplelookup-new-complete"></span>`fn new_complete(t: <F as >::Output) -> LookupResult<SimpleLookup<T, R, F>>` — [`LookupResult`](../index.md), [`SimpleLookup`](#simplelookup)
+- <span id="simplelookup-new-complete"></span>`fn new_complete(t: <F as >::Output) -> LookupResult<SimpleLookup<T, R, F>>` — [`LookupResult`](#lookupresult), [`SimpleLookup`](#simplelookup)
 
-- <span id="simplelookup-new-needs-load"></span>`fn new_needs_load(load: SplitDwarfLoad<R>, f: F) -> LookupResult<SimpleLookup<T, R, F>>` — [`SplitDwarfLoad`](../index.md), [`LookupResult`](../index.md), [`SimpleLookup`](#simplelookup)
+- <span id="simplelookup-new-needs-load"></span>`fn new_needs_load(load: SplitDwarfLoad<R>, f: F) -> LookupResult<SimpleLookup<T, R, F>>` — [`SplitDwarfLoad`](#splitdwarfload), [`LookupResult`](#lookupresult), [`SimpleLookup`](#simplelookup)
 
 #### Trait Implementations
 
 ##### `impl<T, R, F> LookupContinuation for SimpleLookup<T, R, F>`
 
-- <span id="simplelookup-output"></span>`type Output = T`
+- <span id="simplelookup-type-output"></span>`type Output = T`
 
-- <span id="simplelookup-buf"></span>`type Buf = R`
+- <span id="simplelookup-type-buf"></span>`type Buf = R`
 
-- <span id="simplelookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](../index.md), [`LookupResult`](../index.md)
+- <span id="simplelookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
 
 ### `MappedLookup<T, L, F>`
 
@@ -92,15 +96,17 @@ where
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/lookup.rs:163-170`](../../../.source_1765210505/addr2line-0.25.1/src/lookup.rs#L163-L170)*
+
 #### Trait Implementations
 
 ##### `impl<T, L, F> LookupContinuation for MappedLookup<T, L, F>`
 
-- <span id="mappedlookup-output"></span>`type Output = T`
+- <span id="mappedlookup-type-output"></span>`type Output = T`
 
-- <span id="mappedlookup-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
+- <span id="mappedlookup-type-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
 
-- <span id="mappedlookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](../index.md), [`LookupResult`](../index.md)
+- <span id="mappedlookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
 
 ### `LoopingLookup<T, L, F>`
 
@@ -113,6 +119,8 @@ where
     mutator: F,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/lookup.rs:206-213`](../../../.source_1765210505/addr2line-0.25.1/src/lookup.rs#L206-L213)*
 
 Some functions (e.g. `find_frames`) require considering multiple
 compilation units, each of which might require their own split DWARF
@@ -129,19 +137,19 @@ computation is resumed.
 
 #### Implementations
 
-- <span id="loopinglookup-new-complete"></span>`fn new_complete(t: T) -> LookupResult<Self>` — [`LookupResult`](../index.md)
+- <span id="loopinglookup-new-complete"></span>`fn new_complete(t: T) -> LookupResult<Self>` — [`LookupResult`](#lookupresult)
 
-- <span id="loopinglookup-new-lookup"></span>`fn new_lookup(r: LookupResult<L>, mutator: F) -> LookupResult<Self>` — [`LookupResult`](../index.md)
+- <span id="loopinglookup-new-lookup"></span>`fn new_lookup(r: LookupResult<L>, mutator: F) -> LookupResult<Self>` — [`LookupResult`](#lookupresult)
 
 #### Trait Implementations
 
 ##### `impl<T, L, F> LookupContinuation for LoopingLookup<T, L, F>`
 
-- <span id="loopinglookup-output"></span>`type Output = T`
+- <span id="loopinglookup-type-output"></span>`type Output = T`
 
-- <span id="loopinglookup-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
+- <span id="loopinglookup-type-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
 
-- <span id="loopinglookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](../index.md), [`LookupResult`](../index.md)
+- <span id="loopinglookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](#lookupcontinuation), [`LookupResult`](#lookupresult)
 
 ## Enums
 
@@ -156,6 +164,8 @@ enum LookupResult<L: LookupContinuation> {
     Output(<L as LookupContinuation>::Output),
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/lookup.rs:45-55`](../../../.source_1765210505/addr2line-0.25.1/src/lookup.rs#L45-L55)*
 
 Operations that consult debug information may require additional files
 to be loaded if split DWARF is being used. This enum returns the result
@@ -194,11 +204,11 @@ This enum is intended to be used in a loop like so:
 
 #### Implementations
 
-- <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](../index.md)
+- <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
 
-- <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](../index.md), [`MappedLookup`](#mappedlookup)
+- <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](#lookupresult), [`MappedLookup`](#mappedlookup)
 
-- <span id="lookupresult-unwrap"></span>`fn unwrap(self) -> <L as >::Output` — [`LookupContinuation`](../index.md)
+- <span id="lookupresult-unwrap"></span>`fn unwrap(self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
 
 ## Traits
 
@@ -207,6 +217,8 @@ This enum is intended to be used in a loop like so:
 ```rust
 trait LookupContinuation: Sized { ... }
 ```
+
+*Defined in [`addr2line-0.25.1/src/lookup.rs:60-77`](../../../.source_1765210505/addr2line-0.25.1/src/lookup.rs#L60-L77)*
 
 This trait represents a partially complete operation that can be resumed
 once a load of needed split DWARF data is completed or abandoned by the

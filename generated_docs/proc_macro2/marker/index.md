@@ -19,6 +19,8 @@
 struct ProcMacroAutoTraits(core::marker::PhantomData<alloc::rc::Rc<()>>);
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/marker.rs:12`](../../../.source_1765210505/proc-macro2-1.0.103/src/marker.rs#L12)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ProcMacroAutoTraits`
@@ -34,8 +36,9 @@ struct ProcMacroAutoTraits(core::marker::PhantomData<alloc::rc::Rc<()>>);
 ## Constants
 
 ### `MARKER`
-
 ```rust
 const MARKER: ProcMacroAutoTraits;
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/marker.rs:14`](../../../.source_1765210505/proc-macro2-1.0.103/src/marker.rs#L14)*
 

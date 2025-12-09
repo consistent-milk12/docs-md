@@ -46,18 +46,18 @@ A hash map implemented with quadratic probing and SIMD lookup.
 | [`IntoValues`](#intovalues) | struct | An owning iterator over the values of a `HashMap` in arbitrary order. |
 | [`Keys`](#keys) | struct | An iterator over the keys of a `HashMap` in arbitrary order. |
 | [`Values`](#values) | struct | An iterator over the values of a `HashMap` in arbitrary order. |
-| [`Drain`](#drain) | struct | A draining iterator over the entries of a `HashMap` in arbitrary |
-| [`ExtractIf`](#extractif) | struct | A draining iterator over entries of a `HashMap` which don't satisfy the predicate |
+| [`Drain`](#drain) | struct | A draining iterator over the entries of a `HashMap` in arbitrary order. |
+| [`ExtractIf`](#extractif) | struct | A draining iterator over entries of a `HashMap` which don't satisfy the predicate `f(&k, &mut v)` in arbitrary order. |
 | [`ValuesMut`](#valuesmut) | struct | A mutable iterator over the values of a `HashMap` in arbitrary order. |
 | [`OccupiedEntry`](#occupiedentry) | struct | A view into an occupied entry in a [`HashMap`]. |
 | [`VacantEntry`](#vacantentry) | struct | A view into a vacant entry in a `HashMap`. |
 | [`VacantEntryRef`](#vacantentryref) | struct | A view into a vacant entry in a `HashMap`. |
 | [`OccupiedError`](#occupiederror) | struct | The error returned by [`try_insert`](HashMap::try_insert) when the key already exists. |
 | [`Entry`](#entry) | enum | A view into a single entry in a map, which may either be vacant or occupied. |
-| [`EntryRef`](#entryref) | enum | A view into a single entry in a map, which may either be vacant or occupied |
-| [`make_hasher`](#make_hasher) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple |
-| [`equivalent_key`](#equivalent_key) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple |
-| [`equivalent`](#equivalent) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple |
+| [`EntryRef`](#entryref) | enum | A view into a single entry in a map, which may either be vacant or occupied, with any borrowed form of the map's key type. |
+| [`make_hasher`](#make_hasher) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple instances of any functions like `RawTable::reserve` from being generated |
+| [`equivalent_key`](#equivalent_key) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple instances of any functions like `RawTable::reserve` from being generated |
+| [`equivalent`](#equivalent) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple instances of any functions like `RawTable::reserve` from being generated |
 | [`make_hash`](#make_hash) | fn |  |
 | [`assert_covariance`](#assert_covariance) | fn |  |
 
@@ -71,6 +71,8 @@ struct HashMap<K, V, S, A: Allocator> {
     table: crate::raw::RawTable<(K, V), A>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/map.rs:185-188`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L185-L188)*
 
 A hash map implemented with quadratic probing and SIMD lookup.
 
@@ -242,9 +244,9 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- <span id="cratehashmap-raw-entry-mut"></span>`fn raw_entry_mut(&mut self) -> RawEntryBuilderMut<'_, K, V, S, A>` — [`RawEntryBuilderMut`](../raw_entry/index.md)
+- <span id="hashmap-new"></span>`fn new() -> Self`
 
-- <span id="cratehashmap-raw-entry"></span>`fn raw_entry(&self) -> RawEntryBuilder<'_, K, V, S, A>` — [`RawEntryBuilder`](../raw_entry/index.md)
+- <span id="hashmap-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
@@ -278,17 +280,17 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 ##### `impl<K, Q, V, S, A> Index for HashMap<K, V, S, A>`
 
-- <span id="hashmap-output"></span>`type Output = V`
+- <span id="hashmap-type-output"></span>`type Output = V`
 
 - <span id="hashmap-index"></span>`fn index(&self, key: &Q) -> &V`
 
-##### `impl<K, V, S, A: Allocator> IntoIterator for HashMap<K, V, S, A>`
+##### `impl<'a, K, V, S, A: Allocator> IntoIterator for &'a HashMap<K, V, S, A>`
 
-- <span id="hashmap-item"></span>`type Item = (K, V)`
+- <span id="a-hashmap-type-item"></span>`type Item = (&'a K, &'a V)`
 
-- <span id="hashmap-intoiter"></span>`type IntoIter = IntoIter<K, V, A>`
+- <span id="a-hashmap-type-intoiter"></span>`type IntoIter = Iter<'a, K, V>`
 
-- <span id="hashmap-into-iter"></span>`fn into_iter(self) -> IntoIter<K, V, A>` — [`IntoIter`](#intoiter)
+- <span id="a-hashmap-into-iter"></span>`fn into_iter(self) -> Iter<'a, K, V>` — [`Iter`](#iter)
 
 ##### `impl<K, V, S, A> PartialEq for HashMap<K, V, S, A>`
 
@@ -303,10 +305,12 @@ struct Iter<'a, K, V> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2206-2209`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2206-L2209)*
+
 An iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(&'a K, &'a V)`.
 
-This `struct` is created by the [`iter`](#iter) method on [`HashMap`](../index.md). See its
+This `struct` is created by the [`iter`](#iter) method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -352,15 +356,15 @@ assert_eq!(iter.next(), None);
 
 ##### `impl<I> IntoIterator for Iter<'a, K, V>`
 
-- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-intoiter"></span>`type IntoIter = I`
+- <span id="iter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for Iter<'a, K, V>`
 
-- <span id="iter-item"></span>`type Item = (&'a K, &'a V)`
+- <span id="iter-type-item"></span>`type Item = (&'a K, &'a V)`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a V)>`
 
@@ -377,10 +381,12 @@ struct IterMut<'a, K, V> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2255-2259`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2255-L2259)*
+
 A mutable iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(&'a K, &'a mut V)`.
 
-This `struct` is created by the `iter_mut` method on [`HashMap`](../index.md). See its
+This `struct` is created by the `iter_mut` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -425,15 +431,15 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 ##### `impl<I> IntoIterator for IterMut<'a, K, V>`
 
-- <span id="itermut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itermut-intoiter"></span>`type IntoIter = I`
+- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for IterMut<'a, K, V>`
 
-- <span id="itermut-item"></span>`type Item = (&'a K, &'a mut V)`
+- <span id="itermut-type-item"></span>`type Item = (&'a K, &'a mut V)`
 
 - <span id="itermut-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a mut V)>`
 
@@ -451,10 +457,12 @@ struct IntoIter<K, V, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2307-2309`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2307-L2309)*
+
 An owning iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(K, V)`.
 
-This `struct` is created by the `into_iter` method on [`HashMap`](../index.md)
+This `struct` is created by the `into_iter` method on [`HashMap`](#hashmap)
 (provided by the `IntoIterator` trait). See its documentation for more.
 The map cannot be used after calling that method.
 
@@ -502,15 +510,15 @@ assert_eq!(iter.next(), None);
 
 ##### `impl<I> IntoIterator for IntoIter<K, V, A>`
 
-- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoIter<K, V, A>`
 
-- <span id="intoiter-item"></span>`type Item = (K, V)`
+- <span id="intoiter-type-item"></span>`type Item = (K, V)`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<(K, V)>`
 
@@ -526,10 +534,12 @@ struct IntoKeys<K, V, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2351-2353`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2351-L2353)*
+
 An owning iterator over the keys of a `HashMap` in arbitrary order.
 The iterator element type is `K`.
 
-This `struct` is created by the `into_keys` method on [`HashMap`](../index.md).
+This `struct` is created by the `into_keys` method on [`HashMap`](#hashmap).
 See its documentation for more.
 The map cannot be used after calling that method.
 
@@ -572,15 +582,15 @@ assert_eq!(keys.next(), None);
 
 ##### `impl<I> IntoIterator for IntoKeys<K, V, A>`
 
-- <span id="intokeys-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intokeys-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intokeys-intoiter"></span>`type IntoIter = I`
+- <span id="intokeys-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intokeys-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoKeys<K, V, A>`
 
-- <span id="intokeys-item"></span>`type Item = K`
+- <span id="intokeys-type-item"></span>`type Item = K`
 
 - <span id="intokeys-next"></span>`fn next(&mut self) -> Option<K>`
 
@@ -596,10 +606,12 @@ struct IntoValues<K, V, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2429-2431`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2429-L2431)*
+
 An owning iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `V`.
 
-This `struct` is created by the `into_values` method on [`HashMap`](../index.md).
+This `struct` is created by the `into_values` method on [`HashMap`](#hashmap).
 See its documentation for more. The map cannot be used after calling that method.
 
 
@@ -641,15 +653,15 @@ assert_eq!(values.next(), None);
 
 ##### `impl<I> IntoIterator for IntoValues<K, V, A>`
 
-- <span id="intovalues-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intovalues-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intovalues-intoiter"></span>`type IntoIter = I`
+- <span id="intovalues-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intovalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoValues<K, V, A>`
 
-- <span id="intovalues-item"></span>`type Item = V`
+- <span id="intovalues-type-item"></span>`type Item = V`
 
 - <span id="intovalues-next"></span>`fn next(&mut self) -> Option<V>`
 
@@ -665,10 +677,12 @@ struct Keys<'a, K, V> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2507-2509`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2507-L2509)*
+
 An iterator over the keys of a `HashMap` in arbitrary order.
 The iterator element type is `&'a K`.
 
-This `struct` is created by the `keys` method on [`HashMap`](../index.md). See its
+This `struct` is created by the `keys` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -714,15 +728,15 @@ assert_eq!(keys.next(), None);
 
 ##### `impl<I> IntoIterator for Keys<'a, K, V>`
 
-- <span id="keys-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="keys-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="keys-intoiter"></span>`type IntoIter = I`
+- <span id="keys-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="keys-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for Keys<'a, K, V>`
 
-- <span id="keys-item"></span>`type Item = &'a K`
+- <span id="keys-type-item"></span>`type Item = &'a K`
 
 - <span id="keys-next"></span>`fn next(&mut self) -> Option<&'a K>`
 
@@ -738,10 +752,12 @@ struct Values<'a, K, V> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2555-2557`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2555-L2557)*
+
 An iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `&'a V`.
 
-This `struct` is created by the `values` method on [`HashMap`](../index.md). See its
+This `struct` is created by the `values` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -787,15 +803,15 @@ assert_eq!(values.next(), None);
 
 ##### `impl<I> IntoIterator for Values<'a, K, V>`
 
-- <span id="values-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="values-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="values-intoiter"></span>`type IntoIter = I`
+- <span id="values-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="values-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for Values<'a, K, V>`
 
-- <span id="values-item"></span>`type Item = &'a V`
+- <span id="values-type-item"></span>`type Item = &'a V`
 
 - <span id="values-next"></span>`fn next(&mut self) -> Option<&'a V>`
 
@@ -811,10 +827,12 @@ struct Drain<'a, K, V, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2603-2605`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2603-L2605)*
+
 A draining iterator over the entries of a `HashMap` in arbitrary
 order. The iterator element type is `(K, V)`.
 
-This `struct` is created by the `drain` method on [`HashMap`](../index.md). See its
+This `struct` is created by the `drain` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -856,15 +874,15 @@ assert_eq!(drain_iter.next(), None);
 
 ##### `impl<I> IntoIterator for Drain<'a, K, V, A>`
 
-- <span id="drain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="drain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="drain-intoiter"></span>`type IntoIter = I`
+- <span id="drain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for Drain<'_, K, V, A>`
 
-- <span id="drain-item"></span>`type Item = (K, V)`
+- <span id="drain-type-item"></span>`type Item = (K, V)`
 
 - <span id="drain-next"></span>`fn next(&mut self) -> Option<(K, V)>`
 
@@ -881,10 +899,12 @@ struct ExtractIf<'a, K, V, F, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2650-2653`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2650-L2653)*
+
 A draining iterator over entries of a `HashMap` which don't satisfy the predicate
 `f(&k, &mut v)` in arbitrary order. The iterator element type is `(K, V)`.
 
-This `struct` is created by the `extract_if` method on [`HashMap`](../index.md). See its
+This `struct` is created by the `extract_if` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -917,15 +937,15 @@ assert_eq!(map.len(), 1);
 
 ##### `impl<I> IntoIterator for ExtractIf<'a, K, V, F, A>`
 
-- <span id="extractif-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="extractif-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="extractif-intoiter"></span>`type IntoIter = I`
+- <span id="extractif-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="extractif-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, F, A> Iterator for ExtractIf<'_, K, V, F, A>`
 
-- <span id="extractif-item"></span>`type Item = (K, V)`
+- <span id="extractif-type-item"></span>`type Item = (K, V)`
 
 - <span id="extractif-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -939,10 +959,12 @@ struct ValuesMut<'a, K, V> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2702-2704`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2702-L2704)*
+
 A mutable iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `&'a mut V`.
 
-This `struct` is created by the `values_mut` method on [`HashMap`](../index.md). See its
+This `struct` is created by the `values_mut` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -983,15 +1005,15 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 ##### `impl<I> IntoIterator for ValuesMut<'a, K, V>`
 
-- <span id="valuesmut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="valuesmut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="valuesmut-intoiter"></span>`type IntoIter = I`
+- <span id="valuesmut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="valuesmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for ValuesMut<'a, K, V>`
 
-- <span id="valuesmut-item"></span>`type Item = &'a mut V`
+- <span id="valuesmut-type-item"></span>`type Item = &'a mut V`
 
 - <span id="valuesmut-next"></span>`fn next(&mut self) -> Option<&'a mut V>`
 
@@ -1009,7 +1031,9 @@ struct OccupiedEntry<'a, K, V, S, A: Allocator> {
 }
 ```
 
-A view into an occupied entry in a [`HashMap`](../index.md).
+*Defined in [`hashbrown-0.16.1/src/map.rs:2831-2835`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2831-L2835)*
+
+A view into an occupied entry in a [`HashMap`](#hashmap).
 It is part of the [`Entry`](#entry) and [`EntryRef`](#entryref) enums.
 
 # Examples
@@ -1086,8 +1110,10 @@ struct VacantEntry<'a, K, V, S, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2893-2897`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2893-L2897)*
+
 A view into a vacant entry in a `HashMap`.
-It is part of the [`Entry`](../hash_table/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 
@@ -1140,6 +1166,8 @@ struct VacantEntryRef<'map, 'key, K, Q: ?Sized, V, S, A: Allocator> {
     table: &'map mut HashMap<K, V, S, A>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/map.rs:3037-3041`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L3037-L3041)*
 
 A view into a vacant entry in a `HashMap`.
 It is part of the [`EntryRef`](#entryref) enum.
@@ -1194,6 +1222,8 @@ struct OccupiedError<'a, K, V, S, A: Allocator> {
     pub value: V,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/map.rs:3078-3083`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L3078-L3083)*
 
 The error returned by [`try_insert`](HashMap::try_insert) when the key already exists.
 
@@ -1257,9 +1287,11 @@ where
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2749-2782`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2749-L2782)*
+
 A view into a single entry in a map, which may either be vacant or occupied.
 
-This `enum` is constructed from the `entry` method on [`HashMap`](../index.md).
+This `enum` is constructed from the `entry` method on [`HashMap`](#hashmap).
 
 
 # Examples
@@ -1368,11 +1400,13 @@ where
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:2957-2990`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L2957-L2990)*
+
 A view into a single entry in a map, which may either be vacant or occupied,
 with any borrowed form of the map's key type.
 
 
-This `enum` is constructed from the `entry_ref` method on [`HashMap`](../index.md).
+This `enum` is constructed from the `entry_ref` method on [`HashMap`](#hashmap).
 
 `Hash` and `Eq` on the borrowed form of the map's key type *must* match those
 for the key type. It also require that key may be constructed from the borrowed
@@ -1455,9 +1489,17 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- <span id="entryref-or-default"></span>`fn or_default(self) -> &'a mut V`
+- <span id="entryref-insert"></span>`fn insert(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
 
-- <span id="entryref-or-default-entry"></span>`fn or_default_entry(self) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
+- <span id="entryref-or-insert"></span>`fn or_insert(self, default: V) -> &'a mut V`
+
+- <span id="entryref-or-insert-with"></span>`fn or_insert_with<F: FnOnce() -> V>(self, default: F) -> &'a mut V`
+
+- <span id="entryref-or-insert-with-key"></span>`fn or_insert_with_key<F: FnOnce(&Q) -> V>(self, default: F) -> &'a mut V`
+
+- <span id="entryref-key"></span>`fn key(&self) -> &Q`
+
+- <span id="entryref-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
 
 #### Trait Implementations
 
@@ -1476,6 +1518,8 @@ where
     S: BuildHasher
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:209-215`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L209-L215)*
+
 Ensures that a single closure type across uses of this which, in turn prevents multiple
 instances of any functions like `RawTable::reserve` from being generated
 
@@ -1487,6 +1531,8 @@ where
     Q: Equivalent<K> + ?Sized
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:220-225`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L220-L225)*
+
 Ensures that a single closure type across uses of this which, in turn prevents multiple
 instances of any functions like `RawTable::reserve` from being generated
 
@@ -1497,6 +1543,8 @@ fn equivalent<Q, K>(k: &Q) -> impl Fn(&K) -> bool + '_
 where
     Q: Equivalent<K> + ?Sized
 ```
+
+*Defined in [`hashbrown-0.16.1/src/map.rs:231-236`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L231-L236)*
 
 Ensures that a single closure type across uses of this which, in turn prevents multiple
 instances of any functions like `RawTable::reserve` from being generated
@@ -1510,9 +1558,13 @@ where
     S: BuildHasher
 ```
 
+*Defined in [`hashbrown-0.16.1/src/map.rs:240-249`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L240-L249)*
+
 ### `assert_covariance`
 
 ```rust
 fn assert_covariance()
 ```
+
+*Defined in [`hashbrown-0.16.1/src/map.rs:4814-4854`](../../../.source_1765210505/hashbrown-0.16.1/src/map.rs#L4814-L4854)*
 

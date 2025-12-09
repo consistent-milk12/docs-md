@@ -87,6 +87,8 @@ struct Params {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/params.rs:8-25`](../../.source_1765210505/anstyle-parse-0.2.7/src/params.rs#L8-L25)*
+
 #### Fields
 
 - **`subparams`**: `[u8; 32]`
@@ -116,7 +118,7 @@ struct Params {
 
 - <span id="params-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- <span id="params-iter"></span>`fn iter(&self) -> ParamsIter<'_>` — [`ParamsIter`](#paramsiter)
+- <span id="params-iter"></span>`fn iter(&self) -> ParamsIter<'_>` — [`ParamsIter`](params/index.md)
 
 - <span id="params-is-full"></span>`fn is_full(&self) -> bool`
 
@@ -130,7 +132,7 @@ struct Params {
 
 ##### `impl Clone for Params`
 
-- <span id="params-clone"></span>`fn clone(&self) -> Params` — [`Params`](#params)
+- <span id="params-clone"></span>`fn clone(&self) -> Params` — [`Params`](params/index.md)
 
 ##### `impl Debug for Params`
 
@@ -138,13 +140,21 @@ struct Params {
 
 ##### `impl Default for Params`
 
-- <span id="params-default"></span>`fn default() -> Params` — [`Params`](#params)
+- <span id="params-default"></span>`fn default() -> Params` — [`Params`](params/index.md)
 
 ##### `impl Eq for Params`
 
+##### `impl IntoIterator for &'a Params`
+
+- <span id="a-params-type-intoiter"></span>`type IntoIter = ParamsIter<'a>`
+
+- <span id="a-params-type-item"></span>`type Item = &'a [u16]`
+
+- <span id="a-params-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+
 ##### `impl PartialEq for Params`
 
-- <span id="params-eq"></span>`fn eq(&self, other: &Params) -> bool` — [`Params`](#params)
+- <span id="params-eq"></span>`fn eq(&self, other: &Params) -> bool` — [`Params`](params/index.md)
 
 ##### `impl StructuralPartialEq for Params`
 
@@ -157,25 +167,27 @@ struct ParamsIter<'a> {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/params.rs:88-91`](../../.source_1765210505/anstyle-parse-0.2.7/src/params.rs#L88-L91)*
+
 Immutable subparameter iterator.
 
 #### Implementations
 
-- <span id="paramsiter-new"></span>`fn new(params: &'a Params) -> Self` — [`Params`](#params)
+- <span id="paramsiter-new"></span>`fn new(params: &'a Params) -> Self` — [`Params`](params/index.md)
 
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for ParamsIter<'a>`
+##### `impl IntoIterator for ParamsIter<'a>`
 
-- <span id="paramsiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="paramsiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="paramsiter-intoiter"></span>`type IntoIter = I`
+- <span id="paramsiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="paramsiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ParamsIter<'a>`
+##### `impl Iterator for ParamsIter<'a>`
 
-- <span id="paramsiter-item"></span>`type Item = &'a [u16]`
+- <span id="paramsiter-type-item"></span>`type Item = &'a [u16]`
 
 - <span id="paramsiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -198,13 +210,15 @@ struct Parser<C> {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:62-76`](../../.source_1765210505/anstyle-parse-0.2.7/src/lib.rs#L62-L76)*
+
 Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 #### Implementations
 
 - <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
-- <span id="parser-params"></span>`fn params(&self) -> &Params` — [`Params`](#params)
+- <span id="parser-params"></span>`fn params(&self) -> &Params` — [`Params`](params/index.md)
 
 - <span id="parser-intermediates"></span>`fn intermediates(&self) -> &[u8]`
 
@@ -212,11 +226,11 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 - <span id="parser-process-utf8"></span>`fn process_utf8<P>(&mut self, performer: &mut P, byte: u8)`
 
-- <span id="parser-perform-state-change"></span>`fn perform_state_change<P>(&mut self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](state/index.md), [`Action`](state/index.md)
+- <span id="parser-perform-state-change"></span>`fn perform_state_change<P>(&mut self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](state/definitions/index.md), [`Action`](state/definitions/index.md)
 
 - <span id="parser-osc-dispatch"></span>`fn osc_dispatch<P: Perform>(&self, performer: &mut P, byte: u8)`
 
-- <span id="parser-perform-action"></span>`fn perform_action<P: Perform>(&mut self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/index.md)
+- <span id="parser-perform-action"></span>`fn perform_action<P: Perform>(&mut self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/definitions/index.md)
 
 #### Trait Implementations
 
@@ -245,6 +259,8 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 ```rust
 struct AsciiParser;
 ```
+
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:339`](../../.source_1765210505/anstyle-parse-0.2.7/src/lib.rs#L339)*
 
 Only allow parsing 7-bit ASCII
 
@@ -282,6 +298,8 @@ struct Utf8Parser {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:350-352`](../../.source_1765210505/anstyle-parse-0.2.7/src/lib.rs#L350-L352)*
+
 Allow parsing UTF-8
 
 #### Trait Implementations
@@ -316,6 +334,8 @@ Allow parsing UTF-8
 struct VtUtf8Receiver<'a>(&'a mut Option<char>);
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:365`](../../.source_1765210505/anstyle-parse-0.2.7/src/lib.rs#L365)*
+
 #### Trait Implementations
 
 ##### `impl Receiver for VtUtf8Receiver<'_>`
@@ -331,6 +351,8 @@ struct VtUtf8Receiver<'a>(&'a mut Option<char>);
 ```rust
 trait CharAccumulator: Default { ... }
 ```
+
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:323-328`](../../.source_1765210505/anstyle-parse-0.2.7/src/lib.rs#L323-L328)*
 
 Build a `char` out of bytes
 
@@ -350,6 +372,8 @@ Build a `char` out of bytes
 ```rust
 trait Perform { ... }
 ```
+
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:388-438`](../../.source_1765210505/anstyle-parse-0.2.7/src/lib.rs#L388-L438)*
 
 Performs actions requested by the [`Parser`](#parser)
 
@@ -404,19 +428,23 @@ the future, consider checking archive.org.
 type DefaultCharAccumulator = Utf8Parser;
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:332`](../../.source_1765210505/anstyle-parse-0.2.7/src/lib.rs#L332)*
+
 Most flexible [`CharAccumulator`](#characcumulator) for [`Parser`](#parser) based on active features
 
 ## Constants
 
 ### `MAX_INTERMEDIATES`
-
 ```rust
 const MAX_INTERMEDIATES: usize = 2usize;
 ```
 
-### `MAX_OSC_PARAMS`
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:54`](../../.source_1765210505/anstyle-parse-0.2.7/src/lib.rs#L54)*
 
+### `MAX_OSC_PARAMS`
 ```rust
 const MAX_OSC_PARAMS: usize = 16usize;
 ```
+
+*Defined in [`anstyle-parse-0.2.7/src/lib.rs:55`](../../.source_1765210505/anstyle-parse-0.2.7/src/lib.rs#L55)*
 

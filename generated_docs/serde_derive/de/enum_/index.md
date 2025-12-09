@@ -20,6 +20,8 @@
 fn deserialize(params: &crate::de::Parameters, variants: &[crate::internals::ast::Variant<'_>], cattrs: &attr::Container) -> crate::fragment::Fragment
 ```
 
+*Defined in [`serde_derive-1.0.228/src/de/enum_.rs:15-37`](../../../../.source_1765210505/serde_derive-1.0.228/src/de/enum_.rs#L15-L37)*
+
 Generates `Deserialize::deserialize` body for an `enum Enum {...}`
 
 ### `deserialize_homogeneous_enum`
@@ -28,9 +30,13 @@ Generates `Deserialize::deserialize` body for an `enum Enum {...}`
 fn deserialize_homogeneous_enum(params: &crate::de::Parameters, variants: &[crate::internals::ast::Variant<'_>], cattrs: &attr::Container) -> crate::fragment::Fragment
 ```
 
+*Defined in [`serde_derive-1.0.228/src/de/enum_.rs:39-54`](../../../../.source_1765210505/serde_derive-1.0.228/src/de/enum_.rs#L39-L54)*
+
 ### `prepare_enum_variant_enum`
 
 ```rust
 fn prepare_enum_variant_enum(variants: &[crate::internals::ast::Variant<'_>]) -> (proc_macro2::TokenStream, crate::fragment::Stmts)
 ```
+
+*Defined in [`serde_derive-1.0.228/src/de/enum_.rs:56-96`](../../../../.source_1765210505/serde_derive-1.0.228/src/de/enum_.rs#L56-L96)*
 

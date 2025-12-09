@@ -25,6 +25,8 @@ enum Qualifiers {
 }
 ```
 
+*Defined in [`rustversion-1.0.22/src/constfn.rs:6-12`](../../../.source_1765210505/rustversion-1.0.22/src/constfn.rs#L6-L12)*
+
 #### Implementations
 
 - <span id="qualifiers-from-ident"></span>`fn from_ident(ident: &Ident) -> Self`
@@ -48,4 +50,6 @@ enum Qualifiers {
 ```rust
 fn insert_const(input: proc_macro::TokenStream, const_span: proc_macro::Span) -> std::result::Result<proc_macro::TokenStream, Error>
 ```
+
+*Defined in [`rustversion-1.0.22/src/constfn.rs:25-58`](../../../.source_1765210505/rustversion-1.0.22/src/constfn.rs#L25-L58)*
 

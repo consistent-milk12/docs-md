@@ -99,8 +99,8 @@ assert_eq!(None, finder.find(b"quux baz bar"));
 | [`FinderRev`](#finderrev) | struct | A single substring reverse searcher fixed to a particular needle. |
 | [`FinderBuilder`](#finderbuilder) | struct | A builder for constructing non-default forward or reverse memmem finders. |
 | [`Prefilter`](#prefilter) | enum |  |
-| [`find_iter`](#find_iter) | fn | Returns an iterator over all non-overlapping occurrences of a substring in |
-| [`rfind_iter`](#rfind_iter) | fn | Returns a reverse iterator over all non-overlapping occurrences of a |
+| [`find_iter`](#find_iter) | fn | Returns an iterator over all non-overlapping occurrences of a substring in a haystack. |
+| [`rfind_iter`](#rfind_iter) | fn | Returns a reverse iterator over all non-overlapping occurrences of a substring in a haystack. |
 | [`find`](#find) | fn | Returns the index of the first occurrence of the given needle. |
 | [`rfind`](#rfind) | fn | Returns the index of the last occurrence of the given needle. |
 
@@ -121,6 +121,8 @@ struct FindIter<'h, 'n> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:237-242`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L237-L242)*
+
 An iterator over non-overlapping substring matches.
 
 Matches are reported by the byte offset at which they begin.
@@ -136,25 +138,25 @@ needle.
 
 #### Trait Implementations
 
-##### `impl<'h, 'n> Clone for FindIter<'h, 'n>`
+##### `impl Clone for FindIter<'h, 'n>`
 
 - <span id="finditer-clone"></span>`fn clone(&self) -> FindIter<'h, 'n>` — [`FindIter`](#finditer)
 
-##### `impl<'h, 'n> Debug for FindIter<'h, 'n>`
+##### `impl Debug for FindIter<'h, 'n>`
 
 - <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindIter<'h, 'n>`
+##### `impl IntoIterator for FindIter<'h, 'n>`
 
-- <span id="finditer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="finditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="finditer-intoiter"></span>`type IntoIter = I`
+- <span id="finditer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h, 'n> Iterator for FindIter<'h, 'n>`
+##### `impl Iterator for FindIter<'h, 'n>`
 
-- <span id="finditer-item"></span>`type Item = usize`
+- <span id="finditer-type-item"></span>`type Item = usize`
 
 - <span id="finditer-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -169,6 +171,8 @@ struct FindRevIter<'h, 'n> {
     pos: Option<usize>,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:314-320`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L314-L320)*
 
 An iterator over non-overlapping substring matches in reverse.
 
@@ -192,25 +196,25 @@ needle.
 
 #### Trait Implementations
 
-##### `impl<'h, 'n> Clone for FindRevIter<'h, 'n>`
+##### `impl Clone for FindRevIter<'h, 'n>`
 
 - <span id="findreviter-clone"></span>`fn clone(&self) -> FindRevIter<'h, 'n>` — [`FindRevIter`](#findreviter)
 
-##### `impl<'h, 'n> Debug for FindRevIter<'h, 'n>`
+##### `impl Debug for FindRevIter<'h, 'n>`
 
 - <span id="findreviter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindRevIter<'h, 'n>`
+##### `impl IntoIterator for FindRevIter<'h, 'n>`
 
-- <span id="findreviter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findreviter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findreviter-intoiter"></span>`type IntoIter = I`
+- <span id="findreviter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findreviter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'h, 'n> Iterator for FindRevIter<'h, 'n>`
+##### `impl Iterator for FindRevIter<'h, 'n>`
 
-- <span id="findreviter-item"></span>`type Item = usize`
+- <span id="findreviter-type-item"></span>`type Item = usize`
 
 - <span id="findreviter-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -222,6 +226,8 @@ struct Finder<'n> {
     searcher: crate::memmem::searcher::Searcher,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:387-390`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L387-L390)*
 
 A single substring searcher fixed to a particular needle.
 
@@ -253,11 +259,11 @@ the lifetime of its needle.
 
 #### Trait Implementations
 
-##### `impl<'n> Clone for Finder<'n>`
+##### `impl Clone for Finder<'n>`
 
 - <span id="finder-clone"></span>`fn clone(&self) -> Finder<'n>` — [`Finder`](#finder)
 
-##### `impl<'n> Debug for Finder<'n>`
+##### `impl Debug for Finder<'n>`
 
 - <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -269,6 +275,8 @@ struct FinderRev<'n> {
     searcher: crate::memmem::searcher::SearcherRev,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:524-527`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L524-L527)*
 
 A single substring reverse searcher fixed to a particular needle.
 
@@ -300,11 +308,11 @@ the lifetime of its needle.
 
 #### Trait Implementations
 
-##### `impl<'n> Clone for FinderRev<'n>`
+##### `impl Clone for FinderRev<'n>`
 
 - <span id="finderrev-clone"></span>`fn clone(&self) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
-##### `impl<'n> Debug for FinderRev<'n>`
+##### `impl Debug for FinderRev<'n>`
 
 - <span id="finderrev-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -315,6 +323,8 @@ struct FinderBuilder {
     prefilter: Prefilter,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:654-656`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L654-L656)*
 
 A builder for constructing non-default forward or reverse memmem finders.
 
@@ -332,7 +342,7 @@ heuristic prefilters used to speed up certain searches.
 
 - <span id="finderbuilder-build-reverse"></span>`fn build_reverse<'n, B: ?Sized + AsRef<[u8]>>(&self, needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
-- <span id="finderbuilder-prefilter"></span>`fn prefilter(&mut self, prefilter: Prefilter) -> &mut FinderBuilder` — [`Prefilter`](#prefilter), [`FinderBuilder`](#finderbuilder)
+- <span id="finderbuilder-prefilter"></span>`fn prefilter(&mut self, prefilter: Prefilter) -> &mut FinderBuilder` — [`PrefilterConfig`](searcher/index.md), [`FinderBuilder`](#finderbuilder)
 
 #### Trait Implementations
 
@@ -358,6 +368,8 @@ enum Prefilter {
     Auto,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/memmem/searcher.rs:544-551`](../../../.source_1765210505/memchr-2.7.6/src/memmem/searcher.rs#L544-L551)*
 
 Prefilter controls whether heuristics are used to accelerate searching.
 
@@ -405,7 +417,7 @@ useful.
 
 ##### `impl Clone for PrefilterConfig`
 
-- <span id="prefilterconfig-clone"></span>`fn clone(&self) -> PrefilterConfig` — [`Prefilter`](#prefilter)
+- <span id="prefilterconfig-clone"></span>`fn clone(&self) -> PrefilterConfig` — [`PrefilterConfig`](searcher/index.md)
 
 ##### `impl Copy for PrefilterConfig`
 
@@ -415,7 +427,7 @@ useful.
 
 ##### `impl Default for PrefilterConfig`
 
-- <span id="prefilterconfig-default"></span>`fn default() -> PrefilterConfig` — [`Prefilter`](#prefilter)
+- <span id="prefilterconfig-default"></span>`fn default() -> PrefilterConfig` — [`PrefilterConfig`](searcher/index.md)
 
 ## Functions
 
@@ -424,6 +436,8 @@ useful.
 ```rust
 fn find_iter<'h, 'n, N: 'n + ?Sized + AsRef<[u8]>>(haystack: &'h [u8], needle: &'n N) -> FindIter<'h, 'n>
 ```
+
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:116-121`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L116-L121)*
 
 Returns an iterator over all non-overlapping occurrences of a substring in
 a haystack.
@@ -458,6 +472,8 @@ assert_eq!(None, it.next());
 fn rfind_iter<'h, 'n, N: 'n + ?Sized + AsRef<[u8]>>(haystack: &'h [u8], needle: &'n N) -> FindRevIter<'h, 'n>
 ```
 
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:150-155`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L150-L155)*
+
 Returns a reverse iterator over all non-overlapping occurrences of a
 substring in a haystack.
 
@@ -490,6 +506,8 @@ assert_eq!(None, it.next());
 ```rust
 fn find(haystack: &[u8], needle: &[u8]) -> Option<usize>
 ```
+
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:185-191`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L185-L191)*
 
 Returns the index of the first occurrence of the given needle.
 
@@ -524,6 +542,8 @@ assert_eq!(None, memmem::find(haystack, b"quux"));
 ```rust
 fn rfind(haystack: &[u8], needle: &[u8]) -> Option<usize>
 ```
+
+*Defined in [`memchr-2.7.6/src/memmem/mod.rs:222-228`](../../../.source_1765210505/memchr-2.7.6/src/memmem/mod.rs#L222-L228)*
 
 Returns the index of the last occurrence of the given needle.
 

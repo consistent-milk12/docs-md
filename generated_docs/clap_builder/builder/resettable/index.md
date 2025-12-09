@@ -22,6 +22,8 @@ enum Resettable<T> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:33-38`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/resettable.rs#L33-L38)*
+
 Clearable builder value
 
 This allows a builder function to both accept any value that can `Into::into` `T` (like
@@ -61,7 +63,7 @@ command.mut_arg("input", |arg| arg.short(None));
 
 ##### `impl<T: clone::Clone> Clone for Resettable<T>`
 
-- <span id="resettable-clone"></span>`fn clone(&self) -> Resettable<T>` — [`Resettable`](../index.md)
+- <span id="resettable-clone"></span>`fn clone(&self) -> Resettable<T>` — [`Resettable`](#resettable)
 
 ##### `impl<T: marker::Copy> Copy for Resettable<T>`
 
@@ -77,19 +79,19 @@ command.mut_arg("input", |arg| arg.short(None));
 
 ##### `impl<T> IntoResettable for Resettable<T>`
 
-- <span id="resettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<T>` — [`Resettable`](../index.md)
+- <span id="resettable-into-resettable"></span>`fn into_resettable(self) -> Resettable<T>` — [`Resettable`](#resettable)
 
 ##### `impl<T: cmp::Ord> Ord for Resettable<T>`
 
-- <span id="resettable-cmp"></span>`fn cmp(&self, other: &Resettable<T>) -> cmp::Ordering` — [`Resettable`](../index.md)
+- <span id="resettable-cmp"></span>`fn cmp(&self, other: &Resettable<T>) -> cmp::Ordering` — [`Resettable`](#resettable)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for Resettable<T>`
 
-- <span id="resettable-eq"></span>`fn eq(&self, other: &Resettable<T>) -> bool` — [`Resettable`](../index.md)
+- <span id="resettable-eq"></span>`fn eq(&self, other: &Resettable<T>) -> bool` — [`Resettable`](#resettable)
 
 ##### `impl<T: cmp::PartialOrd> PartialOrd for Resettable<T>`
 
-- <span id="resettable-partial-cmp"></span>`fn partial_cmp(&self, other: &Resettable<T>) -> option::Option<cmp::Ordering>` — [`Resettable`](../index.md)
+- <span id="resettable-partial-cmp"></span>`fn partial_cmp(&self, other: &Resettable<T>) -> option::Option<cmp::Ordering>` — [`Resettable`](#resettable)
 
 ##### `impl<T> StructuralPartialEq for Resettable<T>`
 
@@ -101,6 +103,8 @@ command.mut_arg("input", |arg| arg.short(None));
 trait IntoResettable<T> { ... }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/resettable.rs:65-68`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/resettable.rs#L65-L68)*
+
 Convert to the intended resettable type
 
 #### Required Methods
@@ -111,29 +115,9 @@ Convert to the intended resettable type
 
 #### Implementors
 
-- [`ArgAction`](../../index.md)
-- [`BoolValueParser`](../index.md)
-- [`BoolishValueParser`](../index.md)
-- [`EnumValueParser`](../index.md)
-- [`FalseyValueParser`](../index.md)
-- [`Id`](../../index.md)
-- [`MapValueParser`](../index.md)
-- [`NonEmptyStringValueParser`](../index.md)
-- [`OsStr`](../index.md)
-- [`OsStringValueParser`](../index.md)
-- [`PathBufValueParser`](../index.md)
-- [`PossibleValuesParser`](../index.md)
-- [`RangedI64ValueParser`](../index.md)
-- [`RangedU64ValueParser`](../index.md)
-- [`Resettable`](../index.md)
-- [`Str`](../index.md)
-- [`StringValueParser`](../index.md)
-- [`StyledStr`](../index.md)
-- [`TryMapValueParser`](../index.md)
-- [`UnknownArgumentValueParser`](../index.md)
-- [`ValueHint`](../../index.md)
-- [`ValueParser`](../index.md)
-- [`ValueRange`](../index.md)
+- [`ArgAction`](../action/index.md)
+- [`Resettable`](#resettable)
+- [`ValueHint`](../value_hint/index.md)
 - `I`
 - `Option<&'static str>`
 - `Option<char>`

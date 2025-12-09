@@ -18,22 +18,14 @@
 trait Diag { ... }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/context.rs:12-17`](../../../../../.source_1765210505/miette-7.6.0/src/eyreish/context.rs#L12-L17)*
+
 #### Required Methods
 
 - `fn ext_report<D>(self, msg: D) -> Report`
 
 #### Implementors
 
-- [`BoxedError`](../../wrapper/index.md)
-- [`ContextError`](../../error/index.md)
-- [`DiagnosticError`](../../into_diagnostic/index.md)
-- [`DisplayError`](../../wrapper/index.md)
-- [`InstallError`](../../../index.md)
-- [`MessageError`](../../wrapper/index.md)
-- [`MietteDiagnostic`](../../../index.md)
-- [`MietteError`](../../../index.md)
-- [`Panic`](../../../panic/index.md)
 - [`Report`](../../../index.md)
-- [`WithSourceCode`](../../wrapper/index.md)
 - `E`
 

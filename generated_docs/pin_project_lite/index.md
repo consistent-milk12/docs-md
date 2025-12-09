@@ -118,6 +118,8 @@ pin-project supports this.
 
 ### `pin_project!`
 
+*Defined in [`pin-project-lite-0.2.16/src/lib.rs:382-389`](../../.source_1765210505/pin-project-lite-0.2.16/src/lib.rs#L382-L389)*
+
 A macro that creates a projection type covering all the fields of struct.
 
 This macro creates a projection type according to the following rules:

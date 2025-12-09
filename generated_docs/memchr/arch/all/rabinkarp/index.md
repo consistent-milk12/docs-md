@@ -40,6 +40,8 @@ struct Finder {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/rabinkarp.rs:69-77`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/rabinkarp.rs#L69-L77)*
+
 A forward substring searcher using the Rabin-Karp algorithm.
 
 Note that, as a lower level API, a `Finder` does not have access to the
@@ -88,6 +90,8 @@ substring search algorithms.
 struct FinderRev(Finder);
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/rabinkarp.rs:180`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/rabinkarp.rs#L180)*
+
 A reverse substring searcher using the Rabin-Karp algorithm.
 
 #### Implementations
@@ -113,6 +117,8 @@ A reverse substring searcher using the Rabin-Karp algorithm.
 ```rust
 struct Hash(u32);
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/rabinkarp.rs:285`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/rabinkarp.rs#L285)*
 
 A Rabin-Karp hash. This might represent the hash of a needle, or the hash
 of a rolling window in the haystack.
@@ -163,6 +169,8 @@ of a rolling window in the haystack.
 fn is_fast(haystack: &[u8], _needle: &[u8]) -> bool
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/rabinkarp.rs:278-280`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/rabinkarp.rs#L278-L280)*
+
 Whether RK is believed to be very fast for the given needle/haystack.
 
 ### `is_equal_raw`
@@ -170,6 +178,8 @@ Whether RK is believed to be very fast for the given needle/haystack.
 ```rust
 unsafe fn is_equal_raw(x: *const u8, y: *const u8, n: usize) -> bool
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/rabinkarp.rs:362-364`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/rabinkarp.rs#L362-L364)*
 
 Returns true when `x[i] == y[i]` for all `0 <= i < n`.
 

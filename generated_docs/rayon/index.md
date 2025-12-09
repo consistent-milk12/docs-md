@@ -15,8 +15,8 @@ There are two ways to use Rayon:
   typically the most efficient.
   - [Parallel iterators] make it easy to convert a sequential iterator to
     execute in parallel.
-    - The [`ParallelIterator`](prelude/index.md) trait defines general methods for all parallel iterators.
-    - The [`IndexedParallelIterator`](prelude/index.md) trait adds methods for iterators that support random
+    - The [`ParallelIterator`](iter/index.md) trait defines general methods for all parallel iterators.
+    - The [`IndexedParallelIterator`](iter/index.md) trait adds methods for iterators that support random
       access.
   - The `par_sort` method sorts `&mut [T]` slices (or vectors) in parallel.
   - `par_extend` can be used to efficiently grow collections with items produced
@@ -113,19 +113,19 @@ See [the Rayon FAQ][faq].
 | Item | Kind | Description |
 |------|------|-------------|
 | [`delegate`](#delegate) | mod | Macros for delegating newtype iterators to inner types. |
-| [`private`](#private) | mod | The public parts of this private module are used to create traits |
+| [`private`](#private) | mod | The public parts of this private module are used to create traits that cannot be implemented outside of our own crate. |
 | [`split_producer`](#split_producer) | mod | Common splitter for strings and slices |
 | [`array`](#array) | mod | Parallel iterator types for [arrays] (`[T; N]`) |
 | [`collections`](#collections) | mod | Parallel iterator types for [standard collections] |
 | [`iter`](#iter) | mod | Traits for writing parallel programs using an iterator-style interface |
 | [`option`](#option) | mod | Parallel iterator types for [options] |
 | [`prelude`](#prelude) | mod | The rayon prelude imports the various `ParallelIterator` traits. |
-| [`range`](#range) | mod | Parallel iterator types for [ranges] |
-| [`range_inclusive`](#range_inclusive) | mod | Parallel iterator types for [inclusive ranges] |
+| [`range`](#range) | mod | Parallel iterator types for [ranges], the type for values created by `a..b` expressions |
+| [`range_inclusive`](#range_inclusive) | mod | Parallel iterator types for [inclusive ranges], the type for values created by `a..=b` expressions |
 | [`result`](#result) | mod | Parallel iterator types for [results] |
 | [`slice`](#slice) | mod | Parallel iterator types for [slices] |
 | [`str`](#str) | mod | Parallel iterator types for [strings] |
-| [`string`](#string) | mod | This module contains the parallel iterator types for owned strings |
+| [`string`](#string) | mod | This module contains the parallel iterator types for owned strings (`String`). |
 | [`vec`](#vec) | mod | Parallel iterator types for [vectors] (`Vec<T>`) |
 | [`math`](#math) | mod |  |
 | [`par_either`](#par_either) | mod |  |
@@ -171,6 +171,8 @@ See [the Rayon FAQ][faq].
 struct SendPtr<T>(*mut T);
 ```
 
+*Defined in [`rayon-1.11.0/src/lib.rs:133`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L133)*
+
 We need to transmit raw pointers across threads. It is possible to do this
 without any unsafe code by converting pointers to usize or to AtomicPtr<T>
 then back to a raw pointer for use. We prefer this approach because code
@@ -196,9 +198,9 @@ not unsound on its own, although it does partly lift the unconditional
 
 ##### `impl<T> Pointable for SendPtr<T>`
 
-- <span id="sendptr-align"></span>`const ALIGN: usize`
+- <span id="sendptr-const-align"></span>`const ALIGN: usize`
 
-- <span id="sendptr-init"></span>`type Init = T`
+- <span id="sendptr-type-init"></span>`type Init = T`
 
 - <span id="sendptr-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -213,4 +215,24 @@ not unsound on its own, although it does partly lift the unconditional
 ##### `impl<T: Send> Sync for SendPtr<T>`
 
 ## Functions
+
+*Defined in [`rayon-1.11.0/src/lib.rs:112`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L112)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:113`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L113)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:114`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L114)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:115`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L115)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:116`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L116)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:117`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L117)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:120`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L120)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:120`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L120)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:122`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L122)*
+
+*Defined in [`rayon-1.11.0/src/lib.rs:123`](../../.source_1765210505/rayon-1.11.0/src/lib.rs#L123)*
 

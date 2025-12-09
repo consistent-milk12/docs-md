@@ -25,6 +25,8 @@ enum MatchesError {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/error.rs:7-21`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/error.rs#L7-L21)*
+
 Violation of `ArgMatches` assumptions
 
 #### Variants
@@ -39,13 +41,13 @@ Violation of `ArgMatches` assumptions
 
 #### Implementations
 
-- <span id="matcheserror-unwrap"></span>`fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](../index.md)
+- <span id="matcheserror-unwrap"></span>`fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](#matcheserror)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchesError`
 
-- <span id="matcheserror-clone"></span>`fn clone(&self) -> MatchesError` — [`MatchesError`](../index.md)
+- <span id="matcheserror-clone"></span>`fn clone(&self) -> MatchesError` — [`MatchesError`](#matcheserror)
 
 ##### `impl Debug for MatchesError`
 
@@ -57,7 +59,7 @@ Violation of `ArgMatches` assumptions
 
 ##### `impl Error for MatchesError`
 
-##### `impl<T> ToString for MatchesError`
+##### `impl ToString for MatchesError`
 
 - <span id="matcheserror-to-string"></span>`fn to_string(&self) -> String`
 

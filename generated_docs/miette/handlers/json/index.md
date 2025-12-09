@@ -20,6 +20,8 @@
 struct JSONReportHandler;
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/json.rs:11`](../../../../.source_1765210505/miette-7.6.0/src/handlers/json.rs#L11)*
+
 [`ReportHandler`](../../index.md) that renders JSON output. It's a machine-readable output.
 
 #### Implementations
@@ -40,7 +42,7 @@ struct JSONReportHandler;
 
 - <span id="jsonreporthandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for JSONReportHandler`
+##### `impl OwoColorize for JSONReportHandler`
 
 ##### `impl ReportHandler for JSONReportHandler`
 
@@ -52,15 +54,17 @@ struct JSONReportHandler;
 struct Escape<'a>(&'a str);
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/json.rs:27`](../../../../.source_1765210505/miette-7.6.0/src/handlers/json.rs#L27)*
+
 #### Trait Implementations
 
 ##### `impl Display for Escape<'_>`
 
 - <span id="escape-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for Escape<'a>`
+##### `impl OwoColorize for Escape<'a>`
 
-##### `impl<T> ToString for Escape<'a>`
+##### `impl ToString for Escape<'a>`
 
 - <span id="escape-to-string"></span>`fn to_string(&self) -> String`
 
@@ -71,4 +75,6 @@ struct Escape<'a>(&'a str);
 ```rust
 const fn escape(input: &str) -> Escape<'_>
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/json.rs:52-54`](../../../../.source_1765210505/miette-7.6.0/src/handlers/json.rs#L52-L54)*
 

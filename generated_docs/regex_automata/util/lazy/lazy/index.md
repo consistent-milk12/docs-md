@@ -22,6 +22,8 @@ struct Lazy<T, F> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/lazy.rs:120-131`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/lazy.rs#L120-L131)*
+
 A non-std lazy initialized value.
 
 This might run the initialization function more than once, but will

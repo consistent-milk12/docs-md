@@ -63,6 +63,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/file.rs:37-47`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L37-L47)*
+
 A PE image file.
 
 Most functionality is provided by the [`Object`](../../index.md) trait implementation.
@@ -79,7 +81,7 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - <span id="pefile-rich-header-info"></span>`fn rich_header_info(&self) -> Option<RichHeaderInfo<'_>>` — [`RichHeaderInfo`](../index.md)
 
-- <span id="pefile-section-table"></span>`fn section_table(&self) -> SectionTable<'data>` — [`SectionTable`](../index.md)
+- <span id="pefile-section-table"></span>`fn section_table(&self) -> SectionTable<'data>` — [`SectionTable`](../../coff/index.md)
 
 - <span id="pefile-data-directories"></span>`fn data_directories(&self) -> DataDirectories<'data>` — [`DataDirectories`](../index.md)
 
@@ -99,25 +101,25 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 ##### `impl<'data, Pe, R> Object for PeFile<'data, Pe, R>`
 
-- <span id="pefile-segment"></span>`type Segment = PeSegment<'data, 'file, Pe, R>`
+- <span id="pefile-type-segment"></span>`type Segment = PeSegment<'data, 'file, Pe, R>`
 
-- <span id="pefile-segmentiterator"></span>`type SegmentIterator = PeSegmentIterator<'data, 'file, Pe, R>`
+- <span id="pefile-type-segmentiterator"></span>`type SegmentIterator = PeSegmentIterator<'data, 'file, Pe, R>`
 
-- <span id="pefile-section"></span>`type Section = PeSection<'data, 'file, Pe, R>`
+- <span id="pefile-type-section"></span>`type Section = PeSection<'data, 'file, Pe, R>`
 
-- <span id="pefile-sectioniterator"></span>`type SectionIterator = PeSectionIterator<'data, 'file, Pe, R>`
+- <span id="pefile-type-sectioniterator"></span>`type SectionIterator = PeSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pefile-comdat"></span>`type Comdat = PeComdat<'data, 'file, Pe, R>`
+- <span id="pefile-type-comdat"></span>`type Comdat = PeComdat<'data, 'file, Pe, R>`
 
-- <span id="pefile-comdatiterator"></span>`type ComdatIterator = PeComdatIterator<'data, 'file, Pe, R>`
+- <span id="pefile-type-comdatiterator"></span>`type ComdatIterator = PeComdatIterator<'data, 'file, Pe, R>`
 
-- <span id="pefile-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R>`
+- <span id="pefile-type-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R>`
 
-- <span id="pefile-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R>`
+- <span id="pefile-type-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R>`
 
-- <span id="pefile-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R>`
+- <span id="pefile-type-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R>`
 
-- <span id="pefile-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="pefile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
 - <span id="pefile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md)
 
@@ -178,6 +180,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/file.rs:432-439`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L432-L439)*
+
 An iterator for the COMDAT section groups in a [`PeFile`](../index.md).
 
 This is a stub that doesn't implement any functionality.
@@ -190,15 +194,15 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<I> IntoIterator for PeComdatIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdatiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="pecomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="pecomdatiterator-intoiter"></span>`type IntoIter = I`
+- <span id="pecomdatiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="pecomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Pe, R> Iterator for PeComdatIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdatiterator-item"></span>`type Item = PeComdat<'data, 'file, Pe, R>`
+- <span id="pecomdatiterator-type-item"></span>`type Item = PeComdat<'data, 'file, Pe, R>`
 
 - <span id="pecomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -213,6 +217,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/file.rs:465-472`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L465-L472)*
+
 A COMDAT section group in a [`PeFile`](../index.md).
 
 This is a stub that doesn't implement any functionality.
@@ -225,7 +231,7 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Pe, R> ObjectComdat for PeComdat<'data, 'file, Pe, R>`
 
-- <span id="pecomdat-sectioniterator"></span>`type SectionIterator = PeComdatSectionIterator<'data, 'file, Pe, R>`
+- <span id="pecomdat-type-sectioniterator"></span>`type SectionIterator = PeComdatSectionIterator<'data, 'file, Pe, R>`
 
 - <span id="pecomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md)
 
@@ -250,6 +256,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/file.rs:525-532`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L525-L532)*
+
 An iterator for the sections in a COMDAT section group in a [`PeFile`](../index.md).
 
 This is a stub that doesn't implement any functionality.
@@ -262,15 +270,15 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<I> IntoIterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="pecomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="pecomdatsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="pecomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="pecomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Pe, R> Iterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- <span id="pecomdatsectioniterator-item"></span>`type Item = SectionIndex`
+- <span id="pecomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="pecomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -281,6 +289,8 @@ This is a stub that doesn't implement any functionality.
 ```rust
 trait ImageNtHeaders: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/file.rs:589-671`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L589-L671)*
 
 A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and [`pe::ImageNtHeaders64`](../../../pe/index.md).
 
@@ -336,6 +346,8 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and
 ```rust
 trait ImageOptionalHeader: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/file.rs:675-709`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L675-L709)*
 
 A trait for generic access to [`pe::ImageOptionalHeader32`](../../../pe/index.md) and [`pe::ImageOptionalHeader64`](../../../pe/index.md).
 
@@ -414,6 +426,8 @@ A trait for generic access to [`pe::ImageOptionalHeader32`](../../../pe/index.md
 fn optional_header_magic<'data, R: ReadRef<'data>>(data: R) -> crate::read::Result<u16>
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/file.rs:572-585`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L572-L585)*
+
 Find the optional header and read its `magic` field.
 
 It can be useful to know this magic value before trying to
@@ -427,6 +441,8 @@ fully parse the NT headers.
 type PeFile32<'data, R> = PeFile<'data, pe::ImageNtHeaders32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/file.rs:26`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L26)*
+
 A PE32 (32-bit) image file.
 
 This is a file that starts with [`pe::ImageNtHeaders32`](../../../pe/index.md), and corresponds
@@ -437,6 +453,8 @@ to [`crate::FileKind::Pe32`](../../../index.md).
 ```rust
 type PeFile64<'data, R> = PeFile<'data, pe::ImageNtHeaders64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/file.rs:31`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L31)*
 
 A PE32+ (64-bit) image file.
 
@@ -449,6 +467,8 @@ to [`crate::FileKind::Pe64`](../../../index.md).
 type PeComdatIterator32<'data, 'file, R> = PeComdatIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/file.rs:422-423`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L422-L423)*
+
 An iterator for the COMDAT section groups in a [`PeFile32`](../index.md).
 
 ### `PeComdatIterator64<'data, 'file, R>`
@@ -456,6 +476,8 @@ An iterator for the COMDAT section groups in a [`PeFile32`](../index.md).
 ```rust
 type PeComdatIterator64<'data, 'file, R> = PeComdatIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/file.rs:425-426`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L425-L426)*
 
 An iterator for the COMDAT section groups in a [`PeFile64`](../index.md).
 
@@ -465,6 +487,8 @@ An iterator for the COMDAT section groups in a [`PeFile64`](../index.md).
 type PeComdat32<'data, 'file, R> = PeComdat<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/file.rs:455-456`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L455-L456)*
+
 A COMDAT section group in a [`PeFile32`](../index.md).
 
 ### `PeComdat64<'data, 'file, R>`
@@ -472,6 +496,8 @@ A COMDAT section group in a [`PeFile32`](../index.md).
 ```rust
 type PeComdat64<'data, 'file, R> = PeComdat<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/file.rs:458-459`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L458-L459)*
 
 A COMDAT section group in a [`PeFile64`](../index.md).
 
@@ -481,6 +507,8 @@ A COMDAT section group in a [`PeFile64`](../index.md).
 type PeComdatSectionIterator32<'data, 'file, R> = PeComdatSectionIterator<'data, 'file, pe::ImageNtHeaders32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/file.rs:515-516`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L515-L516)*
+
 An iterator for the sections in a COMDAT section group in a [`PeFile32`](../index.md).
 
 ### `PeComdatSectionIterator64<'data, 'file, R>`
@@ -488,6 +516,8 @@ An iterator for the sections in a COMDAT section group in a [`PeFile32`](../inde
 ```rust
 type PeComdatSectionIterator64<'data, 'file, R> = PeComdatSectionIterator<'data, 'file, pe::ImageNtHeaders64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/file.rs:518-519`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/file.rs#L518-L519)*
 
 An iterator for the sections in a COMDAT section group in a [`PeFile64`](../index.md).
 

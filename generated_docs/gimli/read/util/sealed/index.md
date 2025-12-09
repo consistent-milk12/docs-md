@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`CapacityFull`](#capacityfull) | struct |  |
-| [`Sealed`](#sealed) | trait | # Safety |
+| [`Sealed`](#sealed) | trait | # Safety Implementer must not modify the content in storage. |
 
 ## Structs
 
@@ -18,6 +18,8 @@
 ```rust
 struct CapacityFull;
 ```
+
+*Defined in [`gimli-0.32.3/src/read/util.rs:25`](../../../../../.source_1765210505/gimli-0.32.3/src/read/util.rs#L25)*
 
 #### Trait Implementations
 
@@ -38,6 +40,8 @@ struct CapacityFull;
 ```rust
 trait Sealed { ... }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/util.rs:14-22`](../../../../../.source_1765210505/gimli-0.32.3/src/read/util.rs#L14-L22)*
 
 # Safety
 Implementer must not modify the content in storage.

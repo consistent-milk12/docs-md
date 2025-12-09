@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Positions`](#positions) | struct | `Positions` takes a predicate `predicate` and filters out elements that match |
+| [`Positions`](#positions) | struct | `Positions` takes a predicate `predicate` and filters out elements that match, yielding their indices. |
 | [`PositionsConsumer`](#positionsconsumer) | struct |  |
 | [`PositionsFolder`](#positionsfolder) | struct |  |
 
@@ -23,10 +23,12 @@ struct Positions<I, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/positions.rs:14-17`](../../../../.source_1765210505/rayon-1.11.0/src/iter/positions.rs#L14-L17)*
+
 `Positions` takes a predicate `predicate` and filters out elements that match,
 yielding their indices.
 
-This struct is created by the `positions()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `positions()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -37,7 +39,7 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for Positions<I, P>`
 
-- <span id="positions-clone"></span>`fn clone(&self) -> Positions<I, P>` — [`Positions`](../index.md)
+- <span id="positions-clone"></span>`fn clone(&self) -> Positions<I, P>` — [`Positions`](#positions)
 
 ##### `impl<I: Debug, P> Debug for Positions<I, P>`
 
@@ -47,23 +49,23 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 ##### `impl<T> IntoParallelIterator for Positions<I, P>`
 
-- <span id="positions-iter"></span>`type Iter = T`
+- <span id="positions-type-iter"></span>`type Iter = T`
 
-- <span id="positions-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="positions-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="positions-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for Positions<I, P>`
 
-- <span id="positions-item"></span>`type Item = usize`
+- <span id="positions-type-item"></span>`type Item = usize`
 
 - <span id="positions-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for Positions<I, P>`
 
-- <span id="positions-align"></span>`const ALIGN: usize`
+- <span id="positions-const-align"></span>`const ALIGN: usize`
 
-- <span id="positions-init"></span>`type Init = T`
+- <span id="positions-type-init"></span>`type Init = T`
 
 - <span id="positions-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -83,6 +85,8 @@ struct PositionsConsumer<'p, C, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/positions.rs:53-57`](../../../../.source_1765210505/rayon-1.11.0/src/iter/positions.rs#L53-L57)*
+
 #### Implementations
 
 - <span id="positionsconsumer-new"></span>`fn new(base: C, predicate: &'p P, offset: usize) -> Self`
@@ -91,11 +95,11 @@ struct PositionsConsumer<'p, C, P> {
 
 ##### `impl<'p, T, C, P> Consumer for PositionsConsumer<'p, C, P>`
 
-- <span id="positionsconsumer-folder"></span>`type Folder = PositionsFolder<'p, <C as Consumer>::Folder, P>`
+- <span id="positionsconsumer-type-folder"></span>`type Folder = PositionsFolder<'p, <C as Consumer>::Folder, P>`
 
-- <span id="positionsconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="positionsconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="positionsconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="positionsconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="positionsconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -107,9 +111,9 @@ struct PositionsConsumer<'p, C, P> {
 
 ##### `impl<T> Pointable for PositionsConsumer<'p, C, P>`
 
-- <span id="positionsconsumer-align"></span>`const ALIGN: usize`
+- <span id="positionsconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="positionsconsumer-init"></span>`type Init = T`
+- <span id="positionsconsumer-type-init"></span>`type Init = T`
 
 - <span id="positionsconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -129,11 +133,13 @@ struct PositionsFolder<'p, F, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/positions.rs:100-104`](../../../../.source_1765210505/rayon-1.11.0/src/iter/positions.rs#L100-L104)*
+
 #### Trait Implementations
 
 ##### `impl<F, P, T> Folder for PositionsFolder<'_, F, P>`
 
-- <span id="positionsfolder-result"></span>`type Result = <F as Folder>::Result`
+- <span id="positionsfolder-type-result"></span>`type Result = <F as Folder>::Result`
 
 - <span id="positionsfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -145,9 +151,9 @@ struct PositionsFolder<'p, F, P> {
 
 ##### `impl<T> Pointable for PositionsFolder<'p, F, P>`
 
-- <span id="positionsfolder-align"></span>`const ALIGN: usize`
+- <span id="positionsfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="positionsfolder-init"></span>`type Init = T`
+- <span id="positionsfolder-type-init"></span>`type Init = T`
 
 - <span id="positionsfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

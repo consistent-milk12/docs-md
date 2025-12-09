@@ -27,6 +27,8 @@ we put them in a private modules so they're not actually reachable in our public
 trait RangeInteger: Sized + Send { ... }
 ```
 
+*Defined in [`rayon-1.11.0/src/range.rs:89-97`](../../../../.source_1765210505/rayon-1.11.0/src/range.rs#L89-L97)*
+
 Implementation details of `ParallelIterator for Iter<Self>`
 
 #### Required Methods
@@ -55,6 +57,8 @@ Implementation details of `ParallelIterator for Iter<Self>`
 ```rust
 trait IndexedRangeInteger: RangeInteger { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/range.rs:100-112`](../../../../.source_1765210505/rayon-1.11.0/src/range.rs#L100-L112)*
 
 Implementation details of `IndexedParallelIterator for Iter<Self>`
 

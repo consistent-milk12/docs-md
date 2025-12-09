@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`XtermColors`](#xtermcolors) | enum | Available Xterm colors for use with [`OwoColorize::color`](OwoColorize::color) |
+| [`XtermColors`](#xtermcolors) | enum | Available Xterm colors for use with [`OwoColorize::color`](OwoColorize::color) or [`OwoColorize::on_color`](OwoColorize::on_color) |
 
 ## Enums
 
@@ -275,6 +275,8 @@ enum XtermColors {
 }
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/xterm.rs:123-380`](../../../../../.source_1765210505/owo-colors-4.2.3/src/colors/xterm.rs#L123-L380)*
+
 Available Xterm colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
 
@@ -282,7 +284,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for XtermColors`
 
-- <span id="xtermcolors-clone"></span>`fn clone(&self) -> XtermColors` — [`XtermColors`](../../../index.md)
+- <span id="xtermcolors-clone"></span>`fn clone(&self) -> XtermColors` — [`XtermColors`](#xtermcolors)
 
 ##### `impl Copy for XtermColors`
 
@@ -302,11 +304,11 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Eq for XtermColors`
 
-##### `impl<D> OwoColorize for XtermColors`
+##### `impl OwoColorize for XtermColors`
 
 ##### `impl PartialEq for XtermColors`
 
-- <span id="xtermcolors-eq"></span>`fn eq(&self, other: &XtermColors) -> bool` — [`XtermColors`](../../../index.md)
+- <span id="xtermcolors-eq"></span>`fn eq(&self, other: &XtermColors) -> bool` — [`XtermColors`](#xtermcolors)
 
 ##### `impl StructuralPartialEq for XtermColors`
 

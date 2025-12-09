@@ -48,10 +48,12 @@ struct Arg {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/arg.rs:60-92`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg.rs#L60-L92)*
+
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
 
-There are two methods for constructing [`Arg`](../../index.md)s, using the builder pattern and setting options
+There are two methods for constructing [`Arg`](#arg)s, using the builder pattern and setting options
 manually, or using a usage string which is far less verbose but has fewer options. You can also
 use a combination of the two methods to achieve the best of both worlds.
 
@@ -79,97 +81,55 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- <span id="arg-get-id"></span>`fn get_id(&self) -> &Id` — [`Id`](../../index.md)
+- <span id="arg-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](../../util/id/index.md)
 
-- <span id="arg-get-help"></span>`fn get_help(&self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
+- <span id="arg-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](../../util/id/index.md)
 
-- <span id="arg-get-long-help"></span>`fn get_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
+- <span id="arg-short"></span>`fn short(self, s: impl IntoResettable<char>) -> Self` — [`IntoResettable`](../resettable/index.md)
 
-- <span id="arg-get-display-order"></span>`fn get_display_order(&self) -> usize`
+- <span id="arg-long"></span>`fn long(self, l: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Str`](../str/index.md)
 
-- <span id="arg-get-help-heading"></span>`fn get_help_heading(&self) -> Option<&str>`
+- <span id="arg-alias"></span>`fn alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Str`](../str/index.md)
 
-- <span id="arg-get-short"></span>`fn get_short(&self) -> Option<char>`
+- <span id="arg-short-alias"></span>`fn short_alias(self, name: impl IntoResettable<char>) -> Self` — [`IntoResettable`](../resettable/index.md)
 
-- <span id="arg-get-visible-short-aliases"></span>`fn get_visible_short_aliases(&self) -> Option<Vec<char>>`
+- <span id="arg-aliases"></span>`fn aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](../str/index.md)
 
-- <span id="arg-get-all-short-aliases"></span>`fn get_all_short_aliases(&self) -> Option<Vec<char>>`
+- <span id="arg-short-aliases"></span>`fn short_aliases(self, names: impl IntoIterator<Item = char>) -> Self`
 
-- <span id="arg-get-short-and-visible-aliases"></span>`fn get_short_and_visible_aliases(&self) -> Option<Vec<char>>`
+- <span id="arg-visible-alias"></span>`fn visible_alias(self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Str`](../str/index.md)
 
-- <span id="arg-get-long"></span>`fn get_long(&self) -> Option<&str>`
+- <span id="arg-visible-short-alias"></span>`fn visible_short_alias(self, name: impl IntoResettable<char>) -> Self` — [`IntoResettable`](../resettable/index.md)
 
-- <span id="arg-get-visible-aliases"></span>`fn get_visible_aliases(&self) -> Option<Vec<&str>>`
+- <span id="arg-visible-aliases"></span>`fn visible_aliases(self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](../str/index.md)
 
-- <span id="arg-get-all-aliases"></span>`fn get_all_aliases(&self) -> Option<Vec<&str>>`
+- <span id="arg-visible-short-aliases"></span>`fn visible_short_aliases(self, names: impl IntoIterator<Item = char>) -> Self`
 
-- <span id="arg-get-long-and-visible-aliases"></span>`fn get_long_and_visible_aliases(&self) -> Option<Vec<&str>>`
+- <span id="arg-index"></span>`fn index(self, idx: impl IntoResettable<usize>) -> Self` — [`IntoResettable`](../resettable/index.md)
 
-- <span id="arg-get-aliases"></span>`fn get_aliases(&self) -> Option<Vec<&str>>`
+- <span id="arg-trailing-var-arg"></span>`fn trailing_var_arg(self, yes: bool) -> Self`
 
-- <span id="arg-get-possible-values"></span>`fn get_possible_values(&self) -> Vec<PossibleValue>` — [`PossibleValue`](../index.md)
+- <span id="arg-last"></span>`fn last(self, yes: bool) -> Self`
 
-- <span id="arg-get-value-names"></span>`fn get_value_names(&self) -> Option<&[Str]>` — [`Str`](../index.md)
+- <span id="arg-required"></span>`fn required(self, yes: bool) -> Self`
 
-- <span id="arg-get-num-args"></span>`fn get_num_args(&self) -> Option<ValueRange>` — [`ValueRange`](../index.md)
+- <span id="arg-requires"></span>`fn requires(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Id`](../../util/id/index.md)
 
-- <span id="arg-get-min-vals"></span>`fn get_min_vals(&self) -> usize`
+- <span id="arg-exclusive"></span>`fn exclusive(self, yes: bool) -> Self`
 
-- <span id="arg-get-value-delimiter"></span>`fn get_value_delimiter(&self) -> Option<char>`
+- <span id="arg-global"></span>`fn global(self, yes: bool) -> Self`
 
-- <span id="arg-get-value-terminator"></span>`fn get_value_terminator(&self) -> Option<&Str>` — [`Str`](../index.md)
+- <span id="arg-is-set"></span>`fn is_set(&self, s: ArgSettings) -> bool` — [`ArgSettings`](../arg_settings/index.md)
 
-- <span id="arg-get-index"></span>`fn get_index(&self) -> Option<usize>`
+- <span id="arg-setting"></span>`fn setting(self, setting: ArgSettings) -> Self` — [`ArgSettings`](../arg_settings/index.md)
 
-- <span id="arg-get-value-hint"></span>`fn get_value_hint(&self) -> ValueHint` — [`ValueHint`](../../index.md)
-
-- <span id="arg-get-default-values"></span>`fn get_default_values(&self) -> &[OsStr]` — [`OsStr`](../index.md)
-
-- <span id="arg-is-positional"></span>`fn is_positional(&self) -> bool`
-
-- <span id="arg-is-required-set"></span>`fn is_required_set(&self) -> bool`
-
-- <span id="arg-is-multiple-values-set"></span>`fn is_multiple_values_set(&self) -> bool`
-
-- <span id="arg-is-takes-value-set"></span>`fn is_takes_value_set(&self) -> bool`
-
-- <span id="arg-is-allow-hyphen-values-set"></span>`fn is_allow_hyphen_values_set(&self) -> bool`
-
-- <span id="arg-is-allow-negative-numbers-set"></span>`fn is_allow_negative_numbers_set(&self) -> bool`
-
-- <span id="arg-get-action"></span>`fn get_action(&self) -> &ArgAction` — [`ArgAction`](../../index.md)
-
-- <span id="arg-get-value-parser"></span>`fn get_value_parser(&self) -> &super::ValueParser` — [`ValueParser`](../index.md)
-
-- <span id="arg-is-global-set"></span>`fn is_global_set(&self) -> bool`
-
-- <span id="arg-is-next-line-help-set"></span>`fn is_next_line_help_set(&self) -> bool`
-
-- <span id="arg-is-hide-set"></span>`fn is_hide_set(&self) -> bool`
-
-- <span id="arg-is-hide-default-value-set"></span>`fn is_hide_default_value_set(&self) -> bool`
-
-- <span id="arg-is-hide-possible-values-set"></span>`fn is_hide_possible_values_set(&self) -> bool`
-
-- <span id="arg-is-hide-short-help-set"></span>`fn is_hide_short_help_set(&self) -> bool`
-
-- <span id="arg-is-hide-long-help-set"></span>`fn is_hide_long_help_set(&self) -> bool`
-
-- <span id="arg-is-require-equals-set"></span>`fn is_require_equals_set(&self) -> bool`
-
-- <span id="arg-is-exclusive-set"></span>`fn is_exclusive_set(&self) -> bool`
-
-- <span id="arg-is-trailing-var-arg-set"></span>`fn is_trailing_var_arg_set(&self) -> bool`
-
-- <span id="arg-is-last-set"></span>`fn is_last_set(&self) -> bool`
-
-- <span id="arg-is-ignore-case-set"></span>`fn is_ignore_case_set(&self) -> bool`
+- <span id="arg-unset-setting"></span>`fn unset_setting(self, setting: ArgSettings) -> Self` — [`ArgSettings`](../arg_settings/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Arg`
 
-- <span id="arg-clone"></span>`fn clone(&self) -> Arg` — [`Arg`](../../index.md)
+- <span id="arg-clone"></span>`fn clone(&self) -> Arg` — [`Arg`](#arg)
 
 ##### `impl Debug for Arg`
 
@@ -177,7 +137,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 ##### `impl Default for Arg`
 
-- <span id="arg-default"></span>`fn default() -> Arg` — [`Arg`](../../index.md)
+- <span id="arg-default"></span>`fn default() -> Arg` — [`Arg`](#arg)
 
 ##### `impl Display for Arg`
 
@@ -187,17 +147,17 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 ##### `impl Ord for Arg`
 
-- <span id="arg-cmp"></span>`fn cmp(&self, other: &Arg) -> Ordering` — [`Arg`](../../index.md)
+- <span id="arg-cmp"></span>`fn cmp(&self, other: &Arg) -> Ordering` — [`Arg`](#arg)
 
 ##### `impl PartialEq for Arg`
 
-- <span id="arg-eq"></span>`fn eq(&self, other: &Arg) -> bool` — [`Arg`](../../index.md)
+- <span id="arg-eq"></span>`fn eq(&self, other: &Arg) -> bool` — [`Arg`](#arg)
 
 ##### `impl PartialOrd for Arg`
 
 - <span id="arg-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
-##### `impl<T> ToString for Arg`
+##### `impl ToString for Arg`
 
 - <span id="arg-to-string"></span>`fn to_string(&self) -> String`
 

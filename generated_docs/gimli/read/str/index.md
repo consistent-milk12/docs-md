@@ -8,9 +8,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`DebugStr`](#debugstr) | struct | The `DebugStr` struct represents the DWARF strings |
+| [`DebugStr`](#debugstr) | struct | The `DebugStr` struct represents the DWARF strings found in the `.debug_str` section. |
 | [`DebugStrOffsets`](#debugstroffsets) | struct | The raw contents of the `.debug_str_offsets` section. |
-| [`DebugLineStr`](#debuglinestr) | struct | The `DebugLineStr` struct represents the DWARF strings |
+| [`DebugLineStr`](#debuglinestr) | struct | The `DebugLineStr` struct represents the DWARF strings found in the `.debug_line_str` section. |
 
 ## Structs
 
@@ -21,6 +21,8 @@ struct DebugStr<R> {
     debug_str_section: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/str.rs:12-14`](../../../../.source_1765210505/gimli-0.32.3/src/read/str.rs#L12-L14)*
 
 The `DebugStr` struct represents the DWARF strings
 found in the `.debug_str` section.
@@ -59,6 +61,8 @@ struct DebugStrOffsets<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/str.rs:91-93`](../../../../.source_1765210505/gimli-0.32.3/src/read/str.rs#L91-L93)*
+
 The raw contents of the `.debug_str_offsets` section.
 
 #### Implementations
@@ -95,12 +99,14 @@ struct DebugLineStr<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/str.rs:184-186`](../../../../.source_1765210505/gimli-0.32.3/src/read/str.rs#L184-L186)*
+
 The `DebugLineStr` struct represents the DWARF strings
 found in the `.debug_line_str` section.
 
 #### Implementations
 
-- <span id="debuglinestr-get-str"></span>`fn get_str(&self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="debuglinestr-new"></span>`fn new(debug_line_str_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 

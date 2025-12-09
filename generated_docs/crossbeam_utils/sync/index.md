@@ -6,9 +6,9 @@
 
 Thread synchronization primitives.
 
-* [`Parker`](#parker), a thread parking primitive.
-* [`ShardedLock`](#shardedlock), a sharded reader-writer lock with fast concurrent reads.
-* [`WaitGroup`](#waitgroup), for synchronizing the beginning or end of some computation.
+* [`Parker`](parker/index.md), a thread parking primitive.
+* [`ShardedLock`](sharded_lock/index.md), a sharded reader-writer lock with fast concurrent reads.
+* [`WaitGroup`](wait_group/index.md), for synchronizing the beginning or end of some computation.
 
 ## Contents
 
@@ -58,6 +58,8 @@ struct Parker {
 }
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
+
 A thread parking primitive.
 
 Conceptually, each `Parker` has an associated token which is initially not present:
@@ -106,7 +108,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](#parker)
+- <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](parker/index.md)
 
 - <span id="parker-park"></span>`fn park(&self)`
 
@@ -114,11 +116,11 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 - <span id="parker-park-deadline"></span>`fn park_deadline(&self, deadline: Instant)`
 
-- <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](#unparker)
+- <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](parker/index.md)
 
-- <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](#parker)
+- <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](parker/index.md)
 
-- <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](#parker)
+- <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](parker/index.md)
 
 #### Trait Implementations
 
@@ -140,21 +142,23 @@ struct Unparker {
 }
 ```
 
-Unparks a thread parked by the associated [`Parker`](#parker).
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
+
+Unparks a thread parked by the associated [`Parker`](parker/index.md).
 
 #### Implementations
 
 - <span id="unparker-unpark"></span>`fn unpark(&self)`
 
-- <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](#unparker)
+- <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](parker/index.md)
 
-- <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](#unparker)
+- <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](parker/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Unparker`
 
-- <span id="unparker-clone"></span>`fn clone(&self) -> Unparker` — [`Unparker`](#unparker)
+- <span id="unparker-clone"></span>`fn clone(&self) -> Unparker` — [`Unparker`](parker/index.md)
 
 ##### `impl Debug for Unparker`
 
@@ -172,6 +176,8 @@ struct ShardedLock<T: ?Sized> {
     value: std::cell::UnsafeCell<T>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:78-84`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L78-L84)*
 
 A sharded reader-writer lock.
 
@@ -231,7 +237,7 @@ let lock = ShardedLock::new(5);
 
 #### Implementations
 
-- <span id="shardedlock-new"></span>`fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
+- <span id="shardedlock-new"></span>`fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md)
 
 - <span id="shardedlock-into-inner"></span>`fn into_inner(self) -> LockResult<T>`
 
@@ -243,7 +249,7 @@ let lock = ShardedLock::new(5);
 
 ##### `impl<T: Default> Default for ShardedLock<T>`
 
-- <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
+- <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md)
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
 
@@ -263,7 +269,9 @@ struct ShardedLockReadGuard<'a, T: ?Sized> {
 }
 ```
 
-A guard used to release the shared read access of a [`ShardedLock`](#shardedlock) when dropped.
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:486-490`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L486-L490)*
+
+A guard used to release the shared read access of a [`ShardedLock`](sharded_lock/index.md) when dropped.
 
 #### Trait Implementations
 
@@ -273,7 +281,7 @@ A guard used to release the shared read access of a [`ShardedLock`](#shardedlock
 
 ##### `impl<T: ?Sized> Deref for ShardedLockReadGuard<'_, T>`
 
-- <span id="shardedlockreadguard-target"></span>`type Target = T`
+- <span id="shardedlockreadguard-type-target"></span>`type Target = T`
 
 - <span id="shardedlockreadguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -283,7 +291,7 @@ A guard used to release the shared read access of a [`ShardedLock`](#shardedlock
 
 ##### `impl<P, T> Receiver for ShardedLockReadGuard<'a, T>`
 
-- <span id="shardedlockreadguard-target"></span>`type Target = T`
+- <span id="shardedlockreadguard-type-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockReadGuard<'_, T>`
 
@@ -300,7 +308,9 @@ struct ShardedLockWriteGuard<'a, T: ?Sized> {
 }
 ```
 
-A guard used to release the exclusive write access of a [`ShardedLock`](#shardedlock) when dropped.
+*Defined in [`crossbeam-utils-0.8.21/src/sync/sharded_lock.rs:518-521`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/sharded_lock.rs#L518-L521)*
+
+A guard used to release the exclusive write access of a [`ShardedLock`](sharded_lock/index.md) when dropped.
 
 #### Trait Implementations
 
@@ -310,7 +320,7 @@ A guard used to release the exclusive write access of a [`ShardedLock`](#sharded
 
 ##### `impl<T: ?Sized> Deref for ShardedLockWriteGuard<'_, T>`
 
-- <span id="shardedlockwriteguard-target"></span>`type Target = T`
+- <span id="shardedlockwriteguard-type-target"></span>`type Target = T`
 
 - <span id="shardedlockwriteguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -328,7 +338,7 @@ A guard used to release the exclusive write access of a [`ShardedLock`](#sharded
 
 ##### `impl<P, T> Receiver for ShardedLockWriteGuard<'a, T>`
 
-- <span id="shardedlockwriteguard-target"></span>`type Target = T`
+- <span id="shardedlockwriteguard-type-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockWriteGuard<'_, T>`
 
@@ -343,6 +353,8 @@ struct WaitGroup {
     inner: std::sync::Arc<Inner>,
 }
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/wait_group.rs:46-48`](../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/wait_group.rs#L46-L48)*
 
 Enables threads to synchronize the beginning or end of some computation.
 
@@ -396,7 +408,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 ##### `impl Clone for WaitGroup`
 
-- <span id="waitgroup-clone"></span>`fn clone(&self) -> WaitGroup` — [`WaitGroup`](#waitgroup)
+- <span id="waitgroup-clone"></span>`fn clone(&self) -> WaitGroup` — [`WaitGroup`](wait_group/index.md)
 
 ##### `impl Debug for WaitGroup`
 

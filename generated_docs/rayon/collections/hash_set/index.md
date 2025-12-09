@@ -14,7 +14,7 @@ unless you have need to name one of the iterator types.
 |------|------|-------------|
 | [`IntoIter`](#intoiter) | struct | Parallel iterator over a hash set |
 | [`Iter`](#iter) | struct | Parallel iterator over an immutable reference to a hash set |
-| [`Drain`](#drain) | struct | Draining parallel iterator that moves out of a hash set |
+| [`Drain`](#drain) | struct | Draining parallel iterator that moves out of a hash set, but keeps the total capacity. |
 
 ## Structs
 
@@ -25,6 +25,8 @@ struct IntoIter<T> {
     inner: vec::IntoIter<T>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/collections/hash_set.rs:15-17`](../../../../.source_1765210505/rayon-1.11.0/src/collections/hash_set.rs#L15-L17)*
 
 Parallel iterator over a hash set
 
@@ -38,15 +40,15 @@ Parallel iterator over a hash set
 
 ##### `impl<T> IntoParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-iter"></span>`type Iter = T`
+- <span id="intoiter-type-iter"></span>`type Iter = T`
 
-- <span id="intoiter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-item"></span>`type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
 - <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -54,9 +56,9 @@ Parallel iterator over a hash set
 
 ##### `impl<T> Pointable for IntoIter<T>`
 
-- <span id="intoiter-align"></span>`const ALIGN: usize`
+- <span id="intoiter-const-align"></span>`const ALIGN: usize`
 
-- <span id="intoiter-init"></span>`type Init = T`
+- <span id="intoiter-type-init"></span>`type Init = T`
 
 - <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -74,6 +76,8 @@ struct Iter<'a, T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/collections/hash_set.rs:31-33`](../../../../.source_1765210505/rayon-1.11.0/src/collections/hash_set.rs#L31-L33)*
+
 Parallel iterator over an immutable reference to a hash set
 
 #### Trait Implementations
@@ -90,15 +94,15 @@ Parallel iterator over an immutable reference to a hash set
 
 ##### `impl<T> IntoParallelIterator for Iter<'a, T>`
 
-- <span id="iter-iter"></span>`type Iter = T`
+- <span id="iter-type-iter"></span>`type Iter = T`
 
-- <span id="iter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T: Sync> ParallelIterator for Iter<'a, T>`
 
-- <span id="iter-item"></span>`type Item = &'a T`
+- <span id="iter-type-item"></span>`type Item = &'a T`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -106,9 +110,9 @@ Parallel iterator over an immutable reference to a hash set
 
 ##### `impl<T> Pointable for Iter<'a, T>`
 
-- <span id="iter-align"></span>`const ALIGN: usize`
+- <span id="iter-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-init"></span>`type Init = T`
+- <span id="iter-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -127,6 +131,8 @@ struct Drain<'a, T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/collections/hash_set.rs:58-61`](../../../../.source_1765210505/rayon-1.11.0/src/collections/hash_set.rs#L58-L61)*
+
 Draining parallel iterator that moves out of a hash set,
 but keeps the total capacity.
 
@@ -140,15 +146,15 @@ but keeps the total capacity.
 
 ##### `impl<T> IntoParallelIterator for Drain<'a, T>`
 
-- <span id="drain-iter"></span>`type Iter = T`
+- <span id="drain-type-iter"></span>`type Iter = T`
 
-- <span id="drain-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="drain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="drain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Drain<'_, T>`
 
-- <span id="drain-item"></span>`type Item = T`
+- <span id="drain-type-item"></span>`type Item = T`
 
 - <span id="drain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -156,9 +162,9 @@ but keeps the total capacity.
 
 ##### `impl<T> Pointable for Drain<'a, T>`
 
-- <span id="drain-align"></span>`const ALIGN: usize`
+- <span id="drain-const-align"></span>`const ALIGN: usize`
 
-- <span id="drain-init"></span>`type Init = T`
+- <span id="drain-type-init"></span>`type Init = T`
 
 - <span id="drain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

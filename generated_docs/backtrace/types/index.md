@@ -23,6 +23,8 @@ enum BytesOrWideString<'a> {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/types.rs:17-22`](../../../.source_1765210505/backtrace-0.3.76/src/types.rs#L17-L22)*
+
 A platform independent representation of a string. When working with `std`
 enabled it is recommended to the convenience methods for providing
 conversions to `std` types.
@@ -45,15 +47,15 @@ conversions to `std` types.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for BytesOrWideString<'a>`
+##### `impl Debug for BytesOrWideString<'a>`
 
 - <span id="bytesorwidestring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Display for BytesOrWideString<'a>`
+##### `impl Display for BytesOrWideString<'a>`
 
 - <span id="bytesorwidestring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for BytesOrWideString<'a>`
+##### `impl ToString for BytesOrWideString<'a>`
 
 - <span id="bytesorwidestring-to-string"></span>`fn to_string(&self) -> String`
 

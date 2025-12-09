@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`HeapVisitor`](#heapvisitor) | struct | HeapVisitor visits every item in an `Hir` recursively using constant stack |
-| [`Frame`](#frame) | enum | Represents a single stack frame while performing structural induction over |
+| [`HeapVisitor`](#heapvisitor) | struct | HeapVisitor visits every item in an `Hir` recursively using constant stack size and a heap size proportional to the size of the `Hir`. |
+| [`Frame`](#frame) | enum | Represents a single stack frame while performing structural induction over an `Hir`. |
 | [`Visitor`](#visitor) | trait | A trait for visiting the high-level IR (HIR) in depth first order. |
 | [`visit`](#visit) | fn | Executes an implementation of `Visitor` in constant stack space. |
 
@@ -22,6 +22,8 @@ struct HeapVisitor<'a> {
     stack: alloc::vec::Vec<(&'a crate::hir::Hir, Frame<'a>)>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:71-75`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L71-L75)*
 
 HeapVisitor visits every item in an `Hir` recursively using constant stack
 size and a heap size proportional to the size of the `Hir`.
@@ -37,7 +39,7 @@ size and a heap size proportional to the size of the `Hir`.
 
 - <span id="heapvisitor-new"></span>`fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
 
-- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, hir: &'a Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Hir`](../index.md), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, hir: &'a Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Hir`](../index.md), [`Visitor`](#visitor)
 
 - <span id="heapvisitor-induct"></span>`fn induct(&mut self, hir: &'a Hir) -> Option<Frame<'a>>` — [`Hir`](../index.md), [`Frame`](#frame)
 
@@ -61,6 +63,8 @@ enum Frame<'a> {
     },
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:79-102`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L79-L102)*
 
 Represents a single stack frame while performing structural induction over
 an `Hir`.
@@ -99,6 +103,8 @@ an `Hir`.
 trait Visitor { ... }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:15-49`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L15-L49)*
+
 A trait for visiting the high-level IR (HIR) in depth first order.
 
 The principle aim of this trait is to enable callers to perform case
@@ -108,7 +114,7 @@ callers to do case analysis with constant stack usage, which can be
 important since the size of an HIR may be proportional to end user input.
 
 Typical usage of this trait involves providing an implementation and then
-running it using the [`visit`](../index.md) function.
+running it using the [`visit`](#visit) function.
 
 #### Associated Types
 
@@ -156,10 +162,12 @@ running it using the [`visit`](../index.md) function.
 fn visit<V: Visitor>(hir: &crate::hir::Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/visitor.rs:65-67`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/visitor.rs#L65-L67)*
+
 Executes an implementation of `Visitor` in constant stack space.
 
 This function will visit every node in the given `Hir` while calling
-appropriate methods provided by the [`Visitor`](../index.md) trait.
+appropriate methods provided by the [`Visitor`](#visitor) trait.
 
 The primary use case for this method is when one wants to perform case
 analysis over an `Hir` without using a stack size proportional to the depth

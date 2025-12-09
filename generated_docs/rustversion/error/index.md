@@ -23,6 +23,8 @@ struct Error {
 }
 ```
 
+*Defined in [`rustversion-1.0.22/src/error.rs:7-11`](../../../.source_1765210505/rustversion-1.0.22/src/error.rs#L7-L11)*
+
 #### Implementations
 
 - <span id="error-new"></span>`fn new(span: Span, msg: impl Display) -> Self`
@@ -40,4 +42,6 @@ struct Error {
 ```rust
 type Result<T, E> = std::result::Result<T, E>;
 ```
+
+*Defined in [`rustversion-1.0.22/src/error.rs:5`](../../../.source_1765210505/rustversion-1.0.22/src/error.rs#L5)*
 

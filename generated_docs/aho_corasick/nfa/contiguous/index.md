@@ -19,7 +19,7 @@ necessary when one needs access to the [`Automaton`](../../automaton/index.md) t
 | [`State`](#state) | struct | The "in memory" representation a single dense or sparse state. |
 | [`Builder`](#builder) | struct | A builder for configuring an Aho-Corasick contiguous NFA. |
 | [`StateTrans`](#statetrans) | enum | The underlying representation of sparse or dense transitions for a state. |
-| [`u32_len`](#u32_len) | fn | Computes the number of u32 values needed to represent one byte per the |
+| [`u32_len`](#u32_len) | fn | Computes the number of u32 values needed to represent one byte per the number of transitions given. |
 
 ## Structs
 
@@ -39,6 +39,8 @@ struct NFA {
     special: crate::util::special::Special,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:91-120`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/contiguous.rs#L91-L120)*
 
 A contiguous NFA implementation of Aho-Corasick.
 
@@ -155,7 +157,7 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- <span id="nfa-new"></span>`fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
+- <span id="nfa-new"></span>`fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
 
 - <span id="nfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
@@ -163,9 +165,9 @@ It is also possible to implement your own version of `try_find`. See the
 
 ##### `impl Automaton for NFA`
 
-- <span id="nfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
+- <span id="nfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../util/error/index.md)
 
-- <span id="nfa-next-state"></span>`fn next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-next-state"></span>`fn next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md)
 
 - <span id="nfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
@@ -175,11 +177,11 @@ It is also possible to implement your own version of `try_find`. See the
 
 - <span id="nfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- <span id="nfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="nfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../../util/search/index.md)
 
 - <span id="nfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- <span id="nfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
+- <span id="nfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../util/primitives/index.md)
 
 - <span id="nfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
@@ -187,7 +189,7 @@ It is also possible to implement your own version of `try_find`. See the
 
 - <span id="nfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
 
-- <span id="nfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="nfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
 - <span id="nfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -212,6 +214,8 @@ struct State<'a> {
     trans: StateTrans<'a>,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:390-399`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/contiguous.rs#L390-L399)*
 
 The "in memory" representation a single dense or sparse state.
 
@@ -239,15 +243,15 @@ things from the raw binary encoding of the state.
 
 #### Implementations
 
-- <span id="state-kind"></span>`const KIND: usize`
+- <span id="state-const-kind"></span>`const KIND: usize`
 
-- <span id="state-kind-dense"></span>`const KIND_DENSE: u32`
+- <span id="state-const-kind-dense"></span>`const KIND_DENSE: u32`
 
-- <span id="state-kind-one"></span>`const KIND_ONE: u32`
+- <span id="state-const-kind-one"></span>`const KIND_ONE: u32`
 
-- <span id="state-max-sparse-transitions"></span>`const MAX_SPARSE_TRANSITIONS: usize`
+- <span id="state-const-max-sparse-transitions"></span>`const MAX_SPARSE_TRANSITIONS: usize`
 
-- <span id="state-remap"></span>`fn remap(alphabet_len: usize, old_to_new: &[StateID], state: &mut [u32]) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
+- <span id="state-remap"></span>`fn remap(alphabet_len: usize, old_to_new: &[StateID], state: &mut [u32]) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
 
 - <span id="state-len"></span>`fn len(alphabet_len: usize, is_match: bool, state: &[u32]) -> usize`
 
@@ -257,25 +261,25 @@ things from the raw binary encoding of the state.
 
 - <span id="state-match-len"></span>`fn match_len(alphabet_len: usize, state: &[u32]) -> usize`
 
-- <span id="state-match-pattern"></span>`fn match_pattern(alphabet_len: usize, state: &[u32], index: usize) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="state-match-pattern"></span>`fn match_pattern(alphabet_len: usize, state: &[u32], index: usize) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
 
 - <span id="state-read"></span>`fn read(alphabet_len: usize, is_match: bool, state: &'a [u32]) -> State<'a>` — [`State`](#state)
 
-- <span id="state-write"></span>`fn write(nnfa: &noncontiguous::NFA, oldsid: StateID, old: &noncontiguous::State, classes: &ByteClasses, dst: &mut Vec<u32>, force_dense: bool) -> Result<StateID, BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`State`](../noncontiguous/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../index.md)
+- <span id="state-write"></span>`fn write(nnfa: &noncontiguous::NFA, oldsid: StateID, old: &noncontiguous::State, classes: &ByteClasses, dst: &mut Vec<u32>, force_dense: bool) -> Result<StateID, BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`State`](../noncontiguous/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../util/error/index.md)
 
-- <span id="state-write-sparse-trans"></span>`fn write_sparse_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../index.md)
+- <span id="state-write-sparse-trans"></span>`fn write_sparse_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../util/error/index.md)
 
-- <span id="state-write-dense-trans"></span>`fn write_dense_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../index.md)
+- <span id="state-write-dense-trans"></span>`fn write_dense_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../util/error/index.md)
 
 - <span id="state-transitions"></span>`fn transitions(&self) -> impl Iterator<Item = (u8, StateID)> + '_` — [`StateID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for State<'a>`
+##### `impl Clone for State<'a>`
 
 - <span id="state-clone"></span>`fn clone(&self) -> State<'a>` — [`State`](#state)
 
-##### `impl<'a> Debug for State<'a>`
+##### `impl Debug for State<'a>`
 
 - <span id="state-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -289,6 +293,8 @@ struct Builder {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:894-898`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/contiguous.rs#L894-L898)*
+
 A builder for configuring an Aho-Corasick contiguous NFA.
 
 This builder has a subset of the options available to a
@@ -299,11 +305,11 @@ their behavior is identical.
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
+- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
 
-- <span id="builder-build-from-noncontiguous"></span>`fn build_from_noncontiguous(&self, nnfa: &noncontiguous::NFA) -> Result<NFA, BuildError>` — [`NFA`](../noncontiguous/index.md), [`BuildError`](../../index.md)
+- <span id="builder-build-from-noncontiguous"></span>`fn build_from_noncontiguous(&self, nnfa: &noncontiguous::NFA) -> Result<NFA, BuildError>` — [`NFA`](../noncontiguous/index.md), [`BuildError`](../../util/error/index.md)
 
-- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../index.md), [`Builder`](#builder)
+- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../util/search/index.md), [`Builder`](#builder)
 
 - <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
@@ -347,6 +353,8 @@ enum StateTrans<'a> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:407-446`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/contiguous.rs#L407-L446)*
+
 The underlying representation of sparse or dense transitions for a state.
 
 Note that like `State`, we don't typically construct values of this type
@@ -375,7 +383,7 @@ represent a lot of wasteful work.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for StateTrans<'a>`
+##### `impl Clone for StateTrans<'a>`
 
 - <span id="statetrans-clone"></span>`fn clone(&self) -> StateTrans<'a>` — [`StateTrans`](#statetrans)
 
@@ -386,6 +394,8 @@ represent a lot of wasteful work.
 ```rust
 fn u32_len(ntrans: usize) -> usize
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/nfa/contiguous.rs:1080-1086`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/contiguous.rs#L1080-L1086)*
 
 Computes the number of u32 values needed to represent one byte per the
 number of transitions given.

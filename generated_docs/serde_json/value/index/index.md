@@ -24,15 +24,17 @@
 struct Type<'a>(&'a super::Value);
 ```
 
+*Defined in [`serde_json-1.0.145/src/value/index.rs:144`](../../../../.source_1765210505/serde_json-1.0.145/src/value/index.rs#L144)*
+
 Used in panic messages.
 
 #### Trait Implementations
 
-##### `impl<'a> Display for Type<'a>`
+##### `impl Display for Type<'a>`
 
 - <span id="type-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for Type<'a>`
+##### `impl ToString for Type<'a>`
 
 - <span id="type-to-string"></span>`fn to_string(&self) -> String`
 
@@ -43,6 +45,8 @@ Used in panic messages.
 ```rust
 trait Index: private::Sealed { ... }
 ```
+
+*Defined in [`serde_json-1.0.145/src/value/index.rs:37-52`](../../../../.source_1765210505/serde_json-1.0.145/src/value/index.rs#L37-L52)*
 
 A type that can be used to index into a `serde_json::Value`.
 

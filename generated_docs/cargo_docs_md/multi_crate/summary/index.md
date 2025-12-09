@@ -6,7 +6,7 @@
 
 mdBook SUMMARY.md generator.
 
-This module provides [`SummaryGenerator`](../index.md) which creates a SUMMARY.md file
+This module provides [`SummaryGenerator`](#summarygenerator) which creates a SUMMARY.md file
 compatible with mdBook for multi-crate documentation.
 
 ## Quick Reference
@@ -26,6 +26,8 @@ struct SummaryGenerator<'a> {
     include_private: bool,
 }
 ```
+
+*Defined in `src/multi_crate/summary.rs:31-40`*
 
 Generates mdBook-compatible SUMMARY.md file.
 
@@ -60,7 +62,7 @@ Summary
 
 #### Implementations
 
-- <span id="summarygenerator-new"></span>`const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](../../index.md)
+- <span id="summarygenerator-new"></span>`const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](../collection/index.md)
 
 - <span id="summarygenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
@@ -68,17 +70,17 @@ Summary
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for SummaryGenerator<'a>`
+##### `impl Instrument for SummaryGenerator<'a>`
 
-##### `impl<T> IntoEither for SummaryGenerator<'a>`
+##### `impl IntoEither for SummaryGenerator<'a>`
 
-##### `impl<D> OwoColorize for SummaryGenerator<'a>`
+##### `impl OwoColorize for SummaryGenerator<'a>`
 
-##### `impl<T> Pointable for SummaryGenerator<'a>`
+##### `impl Pointable for SummaryGenerator<'a>`
 
-- <span id="summarygenerator-align"></span>`const ALIGN: usize`
+- <span id="summarygenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="summarygenerator-init"></span>`type Init = T`
+- <span id="summarygenerator-type-init"></span>`type Init = T`
 
 - <span id="summarygenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -88,5 +90,5 @@ Summary
 
 - <span id="summarygenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for SummaryGenerator<'a>`
+##### `impl WithSubscriber for SummaryGenerator<'a>`
 

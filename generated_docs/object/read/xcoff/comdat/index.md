@@ -47,6 +47,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:21-28`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L21-L28)*
+
 An iterator for the COMDAT section groups in a [`XcoffFile`](../index.md).
 
 This is a stub that doesn't implement any functionality.
@@ -59,15 +61,15 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<I> IntoIterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffcomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffcomdatiterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffcomdatiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatiterator-item"></span>`type Item = XcoffComdat<'data, 'file, Xcoff, R>`
+- <span id="xcoffcomdatiterator-type-item"></span>`type Item = XcoffComdat<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -82,6 +84,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:55-62`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L55-L62)*
+
 A COMDAT section group in a [`XcoffFile`](../index.md).
 
 This is a stub that doesn't implement any functionality.
@@ -94,7 +98,7 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Xcoff, R> ObjectComdat for XcoffComdat<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdat-sectioniterator"></span>`type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffcomdat-type-sectioniterator"></span>`type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../../index.md)
 
@@ -119,6 +123,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:115-122`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L115-L122)*
+
 An iterator for the sections in a COMDAT section group in a [`XcoffFile`](../index.md).
 
 This is a stub that doesn't implement any functionality.
@@ -131,15 +137,15 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<I> IntoIterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffcomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffcomdatsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffcomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffcomdatsectioniterator-item"></span>`type Item = SectionIndex`
+- <span id="xcoffcomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="xcoffcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -151,6 +157,8 @@ This is a stub that doesn't implement any functionality.
 type XcoffComdatIterator32<'data, 'file, R> = XcoffComdatIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:11-12`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L11-L12)*
+
 An iterator for the COMDAT section groups in a [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffComdatIterator64<'data, 'file, R>`
@@ -158,6 +166,8 @@ An iterator for the COMDAT section groups in a [`XcoffFile32`](super::XcoffFile3
 ```rust
 type XcoffComdatIterator64<'data, 'file, R> = XcoffComdatIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:14-15`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L14-L15)*
 
 An iterator for the COMDAT section groups in a [`XcoffFile64`](super::XcoffFile64).
 
@@ -167,6 +177,8 @@ An iterator for the COMDAT section groups in a [`XcoffFile64`](super::XcoffFile6
 type XcoffComdat32<'data, 'file, R> = XcoffComdat<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:44-45`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L44-L45)*
+
 A COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffComdat64<'data, 'file, R>`
@@ -174,6 +186,8 @@ A COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffComdat64<'data, 'file, R> = XcoffComdat<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:48-49`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L48-L49)*
 
 A COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 
@@ -183,6 +197,8 @@ A COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 type XcoffComdatSectionIterator32<'data, 'file, R> = XcoffComdatSectionIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:105-106`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L105-L106)*
+
 An iterator for the sections in a COMDAT section group in a [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffComdatSectionIterator64<'data, 'file, R>`
@@ -190,6 +206,8 @@ An iterator for the sections in a COMDAT section group in a [`XcoffFile32`](supe
 ```rust
 type XcoffComdatSectionIterator64<'data, 'file, R> = XcoffComdatSectionIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/comdat.rs:108-109`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/comdat.rs#L108-L109)*
 
 An iterator for the sections in a COMDAT section group in a [`XcoffFile64`](super::XcoffFile64).
 

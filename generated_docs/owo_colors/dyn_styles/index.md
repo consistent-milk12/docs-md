@@ -66,6 +66,8 @@ struct Styled<T> {
 }
 ```
 
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:60-65`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L60-L65)*
+
 A wrapper type which applies a [`Style`](../index.md) when displaying the inner type
 
 #### Fields
@@ -100,7 +102,7 @@ A wrapper type which applies a [`Style`](../index.md) when displaying the inner 
 
 ##### `impl<T: Display> IsStyled for crate::Styled<T>`
 
-- <span id="cratestyled-inner"></span>`type Inner = T`
+- <span id="cratestyled-type-inner"></span>`type Inner = T`
 
 - <span id="cratestyled-style"></span>`fn style(&self) -> &Style` — [`Style`](../index.md)
 
@@ -143,6 +145,8 @@ struct Style {
 }
 ```
 
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:83-88`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L83-L88)*
+
 A pre-computed style that can be applied to a struct using `OwoColorize::style`.
 
 Its interface mimics that of [`OwoColorize`](../index.md), but instead of chaining methods on your
@@ -161,7 +165,147 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 #### Implementations
 
-- <span id="cratestyle-transition-from"></span>`fn transition_from(self: &'a Self, from: &Style) -> Transition<'a>` — [`Style`](../index.md), [`Transition`](../styled_list/index.md)
+- <span id="style-new"></span>`const fn new() -> Self`
+
+- <span id="style-style"></span>`const fn style<T>(&self, target: T) -> Styled<T>` — [`Styled`](../index.md)
+
+- <span id="style-fg"></span>`const fn fg<C: Color>(self) -> Self`
+
+- <span id="style-bg"></span>`const fn bg<C: Color>(self) -> Self`
+
+- <span id="style-remove-fg"></span>`const fn remove_fg(self) -> Self`
+
+- <span id="style-remove-bg"></span>`const fn remove_bg(self) -> Self`
+
+- <span id="style-black"></span>`const fn black(self) -> Self`
+
+- <span id="style-on-black"></span>`const fn on_black(self) -> Self`
+
+- <span id="style-red"></span>`const fn red(self) -> Self`
+
+- <span id="style-on-red"></span>`const fn on_red(self) -> Self`
+
+- <span id="style-green"></span>`const fn green(self) -> Self`
+
+- <span id="style-on-green"></span>`const fn on_green(self) -> Self`
+
+- <span id="style-yellow"></span>`const fn yellow(self) -> Self`
+
+- <span id="style-on-yellow"></span>`const fn on_yellow(self) -> Self`
+
+- <span id="style-blue"></span>`const fn blue(self) -> Self`
+
+- <span id="style-on-blue"></span>`const fn on_blue(self) -> Self`
+
+- <span id="style-magenta"></span>`const fn magenta(self) -> Self`
+
+- <span id="style-on-magenta"></span>`const fn on_magenta(self) -> Self`
+
+- <span id="style-purple"></span>`const fn purple(self) -> Self`
+
+- <span id="style-on-purple"></span>`const fn on_purple(self) -> Self`
+
+- <span id="style-cyan"></span>`const fn cyan(self) -> Self`
+
+- <span id="style-on-cyan"></span>`const fn on_cyan(self) -> Self`
+
+- <span id="style-white"></span>`const fn white(self) -> Self`
+
+- <span id="style-on-white"></span>`const fn on_white(self) -> Self`
+
+- <span id="style-default-color"></span>`const fn default_color(self) -> Self`
+
+- <span id="style-on-default-color"></span>`const fn on_default_color(self) -> Self`
+
+- <span id="style-bright-black"></span>`const fn bright_black(self) -> Self`
+
+- <span id="style-on-bright-black"></span>`const fn on_bright_black(self) -> Self`
+
+- <span id="style-bright-red"></span>`const fn bright_red(self) -> Self`
+
+- <span id="style-on-bright-red"></span>`const fn on_bright_red(self) -> Self`
+
+- <span id="style-bright-green"></span>`const fn bright_green(self) -> Self`
+
+- <span id="style-on-bright-green"></span>`const fn on_bright_green(self) -> Self`
+
+- <span id="style-bright-yellow"></span>`const fn bright_yellow(self) -> Self`
+
+- <span id="style-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> Self`
+
+- <span id="style-bright-blue"></span>`const fn bright_blue(self) -> Self`
+
+- <span id="style-on-bright-blue"></span>`const fn on_bright_blue(self) -> Self`
+
+- <span id="style-bright-magenta"></span>`const fn bright_magenta(self) -> Self`
+
+- <span id="style-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> Self`
+
+- <span id="style-bright-purple"></span>`const fn bright_purple(self) -> Self`
+
+- <span id="style-on-bright-purple"></span>`const fn on_bright_purple(self) -> Self`
+
+- <span id="style-bright-cyan"></span>`const fn bright_cyan(self) -> Self`
+
+- <span id="style-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> Self`
+
+- <span id="style-bright-white"></span>`const fn bright_white(self) -> Self`
+
+- <span id="style-on-bright-white"></span>`const fn on_bright_white(self) -> Self`
+
+- <span id="style-bold"></span>`const fn bold(self) -> Self`
+
+- <span id="style-dimmed"></span>`const fn dimmed(self) -> Self`
+
+- <span id="style-italic"></span>`const fn italic(self) -> Self`
+
+- <span id="style-underline"></span>`const fn underline(self) -> Self`
+
+- <span id="style-blink"></span>`const fn blink(self) -> Self`
+
+- <span id="style-blink-fast"></span>`const fn blink_fast(self) -> Self`
+
+- <span id="style-reversed"></span>`const fn reversed(self) -> Self`
+
+- <span id="style-hidden"></span>`const fn hidden(self) -> Self`
+
+- <span id="style-strikethrough"></span>`const fn strikethrough(self) -> Self`
+
+- <span id="style-set-effect"></span>`const fn set_effect(self, effect: Effect, to: bool) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-set-effects"></span>`const fn set_effects(self, effects: &[Effect], to: bool) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-effect"></span>`const fn effect(self, effect: Effect) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-remove-effect"></span>`const fn remove_effect(self, effect: Effect) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-effects"></span>`const fn effects(self, effects: &[Effect]) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-remove-effects"></span>`const fn remove_effects(self, effects: &[Effect]) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-remove-all-effects"></span>`const fn remove_all_effects(self) -> Self`
+
+- <span id="style-color"></span>`fn color<Color: DynColor>(self, color: Color) -> Self`
+
+- <span id="style-on-color"></span>`fn on_color<Color: DynColor>(self, color: Color) -> Self`
+
+- <span id="style-fg-rgb"></span>`const fn fg_rgb<const R: u8, const G: u8, const B: u8>(self) -> Self`
+
+- <span id="style-bg-rgb"></span>`const fn bg_rgb<const R: u8, const G: u8, const B: u8>(self) -> Self`
+
+- <span id="style-truecolor"></span>`const fn truecolor(self, r: u8, g: u8, b: u8) -> Self`
+
+- <span id="style-on-truecolor"></span>`const fn on_truecolor(self, r: u8, g: u8, b: u8) -> Self`
+
+- <span id="style-is-plain"></span>`const fn is_plain(&self) -> bool`
+
+- <span id="style-prefix-formatter"></span>`const fn prefix_formatter(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](../index.md)
+
+- <span id="style-suffix-formatter"></span>`const fn suffix_formatter(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](../index.md)
+
+- <span id="style-fmt-prefix"></span>`fn fmt_prefix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+- <span id="style-fmt-suffix"></span>`fn fmt_suffix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -179,7 +323,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 - <span id="style-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for Style`
+##### `impl OwoColorize for Style`
 
 ##### `impl PartialEq for Style`
 
@@ -192,6 +336,8 @@ println!("{}", "red text, white background, struck through".style(my_style));
 ```rust
 struct StyleFlags(u8);
 ```
+
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:92`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L92)*
 
 #### Implementations
 
@@ -213,7 +359,7 @@ struct StyleFlags(u8);
 
 - <span id="styleflags-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for StyleFlags`
+##### `impl OwoColorize for StyleFlags`
 
 ##### `impl PartialEq for StyleFlags`
 
@@ -226,6 +372,8 @@ struct StyleFlags(u8);
 ```rust
 struct StylePrefixFormatter(Style);
 ```
+
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:597`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L597)*
 
 Formatter for the prefix of a [`Style`](../index.md).
 
@@ -248,7 +396,7 @@ the suffix, which is useful for formatting the prefix separately.
 
 - <span id="styleprefixformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for StylePrefixFormatter`
+##### `impl OwoColorize for StylePrefixFormatter`
 
 ##### `impl PartialEq for StylePrefixFormatter`
 
@@ -261,6 +409,8 @@ the suffix, which is useful for formatting the prefix separately.
 ```rust
 struct StyleSuffixFormatter(Style);
 ```
+
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:611`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L611)*
 
 Formatter for the suffix of a [`Style`](../index.md).
 
@@ -283,7 +433,7 @@ the prefix, which is useful for formatting the suffix separately.
 
 - <span id="stylesuffixformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for StyleSuffixFormatter`
+##### `impl OwoColorize for StyleSuffixFormatter`
 
 ##### `impl PartialEq for StyleSuffixFormatter`
 
@@ -309,6 +459,8 @@ enum Effect {
 }
 ```
 
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:10-20`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L10-L20)*
+
 A runtime-configurable text effect for use with [`Style`](../index.md)
 
 #### Trait Implementations
@@ -323,7 +475,7 @@ A runtime-configurable text effect for use with [`Style`](../index.md)
 
 - <span id="effect-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for Effect`
+##### `impl OwoColorize for Effect`
 
 ## Functions
 
@@ -333,65 +485,83 @@ A runtime-configurable text effect for use with [`Style`](../index.md)
 const fn style() -> Style
 ```
 
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:626-628`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L626-L628)*
+
 Helper to create [`Style`](../index.md)s more ergonomically
 
 ## Constants
 
 ### `DIMMED_SHIFT`
-
 ```rust
 const DIMMED_SHIFT: u8 = 0u8;
 ```
 
-### `ITALIC_SHIFT`
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:102`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L102)*
 
+### `ITALIC_SHIFT`
 ```rust
 const ITALIC_SHIFT: u8 = 1u8;
 ```
 
-### `UNDERLINE_SHIFT`
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:103`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L103)*
 
+### `UNDERLINE_SHIFT`
 ```rust
 const UNDERLINE_SHIFT: u8 = 2u8;
 ```
 
-### `BLINK_SHIFT`
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:104`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L104)*
 
+### `BLINK_SHIFT`
 ```rust
 const BLINK_SHIFT: u8 = 3u8;
 ```
 
-### `BLINK_FAST_SHIFT`
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:105`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L105)*
 
+### `BLINK_FAST_SHIFT`
 ```rust
 const BLINK_FAST_SHIFT: u8 = 4u8;
 ```
 
-### `REVERSED_SHIFT`
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:106`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L106)*
 
+### `REVERSED_SHIFT`
 ```rust
 const REVERSED_SHIFT: u8 = 5u8;
 ```
 
-### `HIDDEN_SHIFT`
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:107`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L107)*
 
+### `HIDDEN_SHIFT`
 ```rust
 const HIDDEN_SHIFT: u8 = 6u8;
 ```
 
-### `STRIKETHROUGH_SHIFT`
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:108`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L108)*
 
+### `STRIKETHROUGH_SHIFT`
 ```rust
 const STRIKETHROUGH_SHIFT: u8 = 7u8;
 ```
+
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:109`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L109)*
 
 ## Macros
 
 ### `color_methods!`
 
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:22-42`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L22-L42)*
+
 ### `style_methods!`
+
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:44-55`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L44-L55)*
 
 ### `style_flags_methods!`
 
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:111-126`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L111-L126)*
+
 ### `impl_fmt!`
+
+*Defined in [`owo-colors-4.2.3/src/dyn_styles.rs:653-666`](../../../.source_1765210505/owo-colors-4.2.3/src/dyn_styles.rs#L653-L666)*
 

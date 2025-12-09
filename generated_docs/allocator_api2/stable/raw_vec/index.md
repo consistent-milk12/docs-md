@@ -23,7 +23,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`TryReserveError`](#tryreserveerror) | struct | The error type for `try_reserve` methods. |
-| [`RawVec`](#rawvec) | struct | A low-level utility for more ergonomically allocating, reallocating, and deallocating |
+| [`RawVec`](#rawvec) | struct | A low-level utility for more ergonomically allocating, reallocating, and deallocating a buffer of memory on the heap without having to worry about all the corner cases involved. |
 | [`TryReserveErrorKind`](#tryreserveerrorkind) | enum | Details of the allocation that caused a `TryReserveError` |
 | [`AllocInit`](#allocinit) | enum |  |
 | [`finish_grow`](#finish_grow) | fn |  |
@@ -41,17 +41,19 @@ struct TryReserveError {
 }
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:19-21`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L19-L21)*
+
 The error type for `try_reserve` methods.
 
 #### Implementations
 
-- <span id="tryreserveerror-kind"></span>`fn kind(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../collections/index.md)
+- <span id="tryreserveerror-kind"></span>`fn kind(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](#tryreserveerrorkind)
 
 #### Trait Implementations
 
 ##### `impl Clone for TryReserveError`
 
-- <span id="tryreserveerror-clone"></span>`fn clone(&self) -> TryReserveError` — [`TryReserveError`](../collections/index.md)
+- <span id="tryreserveerror-clone"></span>`fn clone(&self) -> TryReserveError` — [`TryReserveError`](#tryreserveerror)
 
 ##### `impl Debug for TryReserveError`
 
@@ -65,11 +67,11 @@ The error type for `try_reserve` methods.
 
 ##### `impl PartialEq for TryReserveError`
 
-- <span id="tryreserveerror-eq"></span>`fn eq(&self, other: &TryReserveError) -> bool` — [`TryReserveError`](../collections/index.md)
+- <span id="tryreserveerror-eq"></span>`fn eq(&self, other: &TryReserveError) -> bool` — [`TryReserveError`](#tryreserveerror)
 
 ##### `impl StructuralPartialEq for TryReserveError`
 
-##### `impl<T> ToString for TryReserveError`
+##### `impl ToString for TryReserveError`
 
 - <span id="tryreserveerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -82,6 +84,8 @@ struct RawVec<T, A: Allocator> {
     alloc: A,
 }
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:116-120`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L116-L120)*
 
 A low-level utility for more ergonomically allocating, reallocating, and deallocating
 a buffer of memory on the heap without having to worry about all the corner cases
@@ -137,6 +141,8 @@ enum TryReserveErrorKind {
 }
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:32-45`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L32-L45)*
+
 Details of the allocation that caused a `TryReserveError`
 
 #### Variants
@@ -154,7 +160,7 @@ Details of the allocation that caused a `TryReserveError`
 
 ##### `impl Clone for TryReserveErrorKind`
 
-- <span id="tryreserveerrorkind-clone"></span>`fn clone(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../collections/index.md)
+- <span id="tryreserveerrorkind-clone"></span>`fn clone(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](#tryreserveerrorkind)
 
 ##### `impl Debug for TryReserveErrorKind`
 
@@ -164,7 +170,7 @@ Details of the allocation that caused a `TryReserveError`
 
 ##### `impl PartialEq for TryReserveErrorKind`
 
-- <span id="tryreserveerrorkind-eq"></span>`fn eq(&self, other: &TryReserveErrorKind) -> bool` — [`TryReserveErrorKind`](../collections/index.md)
+- <span id="tryreserveerrorkind-eq"></span>`fn eq(&self, other: &TryReserveErrorKind) -> bool` — [`TryReserveErrorKind`](#tryreserveerrorkind)
 
 ##### `impl StructuralPartialEq for TryReserveErrorKind`
 
@@ -176,6 +182,8 @@ enum AllocInit {
     Zeroed,
 }
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:86-91`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L86-L91)*
 
 #### Variants
 
@@ -197,11 +205,15 @@ where
     A: Allocator
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:564-595`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L564-L595)*
+
 ### `handle_reserve`
 
 ```rust
 fn handle_reserve(result: Result<(), TryReserveError>)
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:610-616`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L610-L616)*
 
 ### `alloc_guard`
 
@@ -209,9 +221,13 @@ fn handle_reserve(result: Result<(), TryReserveError>)
 fn alloc_guard(alloc_size: usize) -> Result<(), TryReserveError>
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:628-634`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L628-L634)*
+
 ### `capacity_overflow`
 
 ```rust
 fn capacity_overflow() -> never
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/raw_vec.rs:640-642`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/raw_vec.rs#L640-L642)*
 

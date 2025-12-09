@@ -38,6 +38,8 @@ struct SparseSets {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:36-39`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/sparse_set.rs#L36-L39)*
+
 A pair of sparse sets.
 
 This is useful when one needs to compute NFA epsilon closures from a
@@ -83,6 +85,8 @@ struct SparseSet {
     sparse: alloc::vec::Vec<crate::util::primitives::StateID>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:91-106`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/sparse_set.rs#L91-L106)*
 
 A sparse set used for representing ordered NFA states.
 
@@ -155,27 +159,29 @@ other properties listed above are extremely useful.
 struct SparseSetIter<'a>(core::slice::Iter<'a, crate::util::primitives::StateID>);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/sparse_set.rs:230`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/sparse_set.rs#L230)*
+
 An iterator over all elements in a sparse set.
 
 The lifetime `'a` refers to the lifetime of the set being iterated over.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for SparseSetIter<'a>`
+##### `impl Debug for SparseSetIter<'a>`
 
 - <span id="sparsesetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for SparseSetIter<'a>`
+##### `impl IntoIterator for SparseSetIter<'a>`
 
-- <span id="sparsesetiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="sparsesetiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="sparsesetiter-intoiter"></span>`type IntoIter = I`
+- <span id="sparsesetiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="sparsesetiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for SparseSetIter<'a>`
+##### `impl Iterator for SparseSetIter<'a>`
 
-- <span id="sparsesetiter-item"></span>`type Item = StateID`
+- <span id="sparsesetiter-type-item"></span>`type Item = StateID`
 
 - <span id="sparsesetiter-next"></span>`fn next(&mut self) -> Option<StateID>` — [`StateID`](../primitives/index.md)
 

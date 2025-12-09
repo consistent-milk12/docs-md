@@ -25,6 +25,8 @@ struct ArgGroup {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/arg_group.rs:68-75`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg_group.rs#L68-L75)*
+
 Specifies a logical group of [arguments]
 
 You can use this for
@@ -90,15 +92,35 @@ assert_eq!(matches
 
 #### Implementations
 
-- <span id="arggroup-get-id"></span>`fn get_id(&self) -> &Id` — [`Id`](../../index.md)
+- <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](../../util/id/index.md)
 
-- <span id="arggroup-is-required-set"></span>`fn is_required_set(&self) -> bool`
+- <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](../../util/id/index.md)
+
+- <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Id`](../../util/id/index.md)
+
+- <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../util/id/index.md)
+
+- <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](../../util/id/index.md)
+
+- <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
+
+- <span id="arggroup-is-multiple"></span>`fn is_multiple(&mut self) -> bool`
+
+- <span id="arggroup-required"></span>`fn required(self, yes: bool) -> Self`
+
+- <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Id`](../../util/id/index.md)
+
+- <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../util/id/index.md)
+
+- <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Id`](../../util/id/index.md)
+
+- <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../util/id/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgGroup`
 
-- <span id="arggroup-clone"></span>`fn clone(&self) -> ArgGroup` — [`ArgGroup`](../../index.md)
+- <span id="arggroup-clone"></span>`fn clone(&self) -> ArgGroup` — [`ArgGroup`](#arggroup)
 
 ##### `impl Debug for ArgGroup`
 
@@ -106,13 +128,13 @@ assert_eq!(matches
 
 ##### `impl Default for ArgGroup`
 
-- <span id="arggroup-default"></span>`fn default() -> ArgGroup` — [`ArgGroup`](../../index.md)
+- <span id="arggroup-default"></span>`fn default() -> ArgGroup` — [`ArgGroup`](#arggroup)
 
 ##### `impl Eq for ArgGroup`
 
 ##### `impl PartialEq for ArgGroup`
 
-- <span id="arggroup-eq"></span>`fn eq(&self, other: &ArgGroup) -> bool` — [`ArgGroup`](../../index.md)
+- <span id="arggroup-eq"></span>`fn eq(&self, other: &ArgGroup) -> bool` — [`ArgGroup`](#arggroup)
 
 ##### `impl StructuralPartialEq for ArgGroup`
 

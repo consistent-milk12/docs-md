@@ -28,6 +28,8 @@ struct NestedGenerator<'a> {
 }
 ```
 
+*Defined in `src/generator/nested.rs:35-44`*
+
 Generates documentation with nested directory structure.
 
 Each module gets its own directory with an `index.md` file.
@@ -62,7 +64,7 @@ output/
 
 #### Implementations
 
-- <span id="nestedgenerator-new"></span>`const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../index.md)
+- <span id="nestedgenerator-new"></span>`const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../context/index.md)
 
 - <span id="nestedgenerator-generate"></span>`fn generate(&self, root: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
@@ -70,17 +72,17 @@ output/
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for NestedGenerator<'a>`
+##### `impl Instrument for NestedGenerator<'a>`
 
-##### `impl<T> IntoEither for NestedGenerator<'a>`
+##### `impl IntoEither for NestedGenerator<'a>`
 
-##### `impl<D> OwoColorize for NestedGenerator<'a>`
+##### `impl OwoColorize for NestedGenerator<'a>`
 
-##### `impl<T> Pointable for NestedGenerator<'a>`
+##### `impl Pointable for NestedGenerator<'a>`
 
-- <span id="nestedgenerator-align"></span>`const ALIGN: usize`
+- <span id="nestedgenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="nestedgenerator-init"></span>`type Init = T`
+- <span id="nestedgenerator-type-init"></span>`type Init = T`
 
 - <span id="nestedgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -90,5 +92,5 @@ output/
 
 - <span id="nestedgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for NestedGenerator<'a>`
+##### `impl WithSubscriber for NestedGenerator<'a>`
 

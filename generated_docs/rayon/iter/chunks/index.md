@@ -23,9 +23,11 @@ struct Chunks<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chunks.rs:11-14`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chunks.rs#L11-L14)*
+
 `Chunks` is an iterator that groups elements of an underlying iterator.
 
-This struct is created by the `chunks()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `chunks()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -36,7 +38,7 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](.
 
 ##### `impl<I: clone::Clone> Clone for Chunks<I>`
 
-- <span id="chunks-clone"></span>`fn clone(&self) -> Chunks<I>` — [`Chunks`](../index.md)
+- <span id="chunks-clone"></span>`fn clone(&self) -> Chunks<I>` — [`Chunks`](#chunks)
 
 ##### `impl<I: fmt::Debug> Debug for Chunks<I>`
 
@@ -54,15 +56,15 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](.
 
 ##### `impl<T> IntoParallelIterator for Chunks<I>`
 
-- <span id="chunks-iter"></span>`type Iter = T`
+- <span id="chunks-type-iter"></span>`type Iter = T`
 
-- <span id="chunks-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Chunks<I>`
 
-- <span id="chunks-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
+- <span id="chunks-type-item"></span>`type Item = Vec<<I as ParallelIterator>::Item>`
 
 - <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -70,9 +72,9 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](.
 
 ##### `impl<T> Pointable for Chunks<I>`
 
-- <span id="chunks-align"></span>`const ALIGN: usize`
+- <span id="chunks-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunks-init"></span>`type Init = T`
+- <span id="chunks-type-init"></span>`type Init = T`
 
 - <span id="chunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -93,6 +95,8 @@ struct ChunkProducer<P, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chunks.rs:90-95`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chunks.rs#L90-L95)*
+
 #### Implementations
 
 - <span id="chunkproducer-new"></span>`fn new(chunk_size: usize, len: usize, base: P, map: F) -> Self`
@@ -103,9 +107,9 @@ struct ChunkProducer<P, F> {
 
 ##### `impl<T> Pointable for ChunkProducer<P, F>`
 
-- <span id="chunkproducer-align"></span>`const ALIGN: usize`
+- <span id="chunkproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunkproducer-init"></span>`type Init = T`
+- <span id="chunkproducer-type-init"></span>`type Init = T`
 
 - <span id="chunkproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -117,9 +121,9 @@ struct ChunkProducer<P, F> {
 
 ##### `impl<P, F, T> Producer for ChunkProducer<P, F>`
 
-- <span id="chunkproducer-item"></span>`type Item = T`
+- <span id="chunkproducer-type-item"></span>`type Item = T`
 
-- <span id="chunkproducer-intoiter"></span>`type IntoIter = Map<ChunkSeq<P>, F>`
+- <span id="chunkproducer-type-intoiter"></span>`type IntoIter = Map<ChunkSeq<P>, F>`
 
 - <span id="chunkproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
@@ -139,6 +143,8 @@ struct ChunkSeq<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chunks.rs:153-157`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chunks.rs#L153-L157)*
+
 #### Trait Implementations
 
 ##### `impl<P> DoubleEndedIterator for ChunkSeq<P>`
@@ -153,15 +159,15 @@ struct ChunkSeq<P> {
 
 ##### `impl<I> IntoIterator for ChunkSeq<P>`
 
-- <span id="chunkseq-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="chunkseq-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="chunkseq-intoiter"></span>`type IntoIter = I`
+- <span id="chunkseq-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="chunkseq-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<P> Iterator for ChunkSeq<P>`
 
-- <span id="chunkseq-item"></span>`type Item = <P as Producer>::IntoIter`
+- <span id="chunkseq-type-item"></span>`type Item = <P as Producer>::IntoIter`
 
 - <span id="chunkseq-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -169,9 +175,9 @@ struct ChunkSeq<P> {
 
 ##### `impl<T> Pointable for ChunkSeq<P>`
 
-- <span id="chunkseq-align"></span>`const ALIGN: usize`
+- <span id="chunkseq-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunkseq-init"></span>`type Init = T`
+- <span id="chunkseq-type-init"></span>`type Init = T`
 
 - <span id="chunkseq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

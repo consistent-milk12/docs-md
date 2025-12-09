@@ -34,6 +34,8 @@ being quite expensive.
 struct Pool<T, F>(alloc::boxed::Box<inner::Pool<T, F>>);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:154`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L154)*
+
 A thread safe pool that works in an `alloc`-only context.
 
 Getting a value out comes with a guard. When that guard is dropped, the
@@ -99,7 +101,7 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- <span id="pool-get"></span>`fn get(&self) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
+- <span id="pool-new"></span>`fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
 
 #### Trait Implementations
 
@@ -112,6 +114,8 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 ```rust
 struct PoolGuard<'a, T: Send, F: Fn() -> T>(inner::PoolGuard<'a, T, F>);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:196`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L196)*
 
 A guard that is returned when a caller requests a value from the pool.
 
@@ -130,7 +134,7 @@ back in the pool once it's dropped.
 
 ##### `impl<'a, T: Send, F: Fn() -> T> Deref for PoolGuard<'a, T, F>`
 
-- <span id="poolguard-target"></span>`type Target = T`
+- <span id="poolguard-type-target"></span>`type Target = T`
 
 - <span id="poolguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -140,5 +144,5 @@ back in the pool once it's dropped.
 
 ##### `impl<P, T> Receiver for PoolGuard<'a, T, F>`
 
-- <span id="poolguard-target"></span>`type Target = T`
+- <span id="poolguard-type-target"></span>`type Target = T`
 

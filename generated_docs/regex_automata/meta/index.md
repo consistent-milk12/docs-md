@@ -7,7 +7,7 @@
 Provides a regex matcher that composes several other regex matchers
 automatically.
 
-This module is home to a meta [`Regex`](#regex), which provides a convenient high
+This module is home to a meta [`Regex`](regex/index.md), which provides a convenient high
 level API for executing regular expressions in linear time.
 
 # Comparison with the `regex` crate
@@ -42,7 +42,7 @@ pattern, while the latter supports multiple patterns but cannot report the
 offsets of a match.
 * A meta `Regex` provides the explicit capability of bypassing its internal
 memory pool for automatically acquiring mutable scratch space required by its
-internal regex engines. Namely, a [`Cache`](#cache) can be explicitly provided to lower
+internal regex engines. Namely, a [`Cache`](regex/index.md) can be explicitly provided to lower
 level routines such as `Regex::search_with`.
 
 ## Contents
@@ -75,10 +75,10 @@ level routines such as `Regex::search_with`.
 | [`limited`](#limited) | mod | This module defines two bespoke reverse DFA searching routines. |
 | [`literal`](#literal) | mod |  |
 | [`regex`](#regex) | mod |  |
-| [`reverse_inner`](#reverse_inner) | mod | A module dedicated to plucking inner literals out of a regex pattern, and |
+| [`reverse_inner`](#reverse_inner) | mod | A module dedicated to plucking inner literals out of a regex pattern, and then constructing a prefilter for them. |
 | [`stopat`](#stopat) | mod | This module defines two bespoke forward DFA search routines. |
 | [`strategy`](#strategy) | mod |  |
-| [`wrappers`](#wrappers) | mod | This module contains a boat load of wrappers around each of our internal regex |
+| [`wrappers`](#wrappers) | mod | This module contains a boat load of wrappers around each of our internal regex engines. |
 | [`BuildError`](#builderror) | struct |  |
 | [`Builder`](#builder) | struct |  |
 | [`Cache`](#cache) | struct |  |
@@ -110,6 +110,8 @@ struct BuildError {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:27-29`](../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L27-L29)*
+
 An error that occurs when construction of a `Regex` fails.
 
 A build error is generally a result of one of two possible failure
@@ -120,7 +122,7 @@ fails, usually because it gets too big with respect to limits like
 
 This error provides very little introspection capabilities. You can:
 
-* Ask for the [`PatternID`](../index.md) of the pattern that caused an error, if one
+* Ask for the [`PatternID`](../util/primitives/index.md) of the pattern that caused an error, if one
 is available. This is available for things like syntax errors, but not for
 cases where build limits are exceeded.
 * Ask for the underlying syntax error, but only if the error is a syntax
@@ -134,23 +136,23 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 #### Implementations
 
-- <span id="builderror-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../index.md)
+- <span id="builderror-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../util/primitives/index.md)
 
 - <span id="builderror-size-limit"></span>`fn size_limit(&self) -> Option<usize>`
 
 - <span id="builderror-syntax-error"></span>`fn syntax_error(&self) -> Option<&regex_syntax::Error>`
 
-- <span id="builderror-ast"></span>`fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../index.md), [`BuildError`](#builderror)
+- <span id="builderror-ast"></span>`fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builderror-hir"></span>`fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../index.md), [`BuildError`](#builderror)
+- <span id="builderror-hir"></span>`fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/index.md)
+- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](error/index.md)
 
 ##### `impl Debug for BuildError`
 
@@ -164,7 +166,7 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 - <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
-##### `impl<T> ToString for BuildError`
+##### `impl ToString for BuildError`
 
 - <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -178,12 +180,14 @@ struct Builder {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:3380-3384`](../../../.source_1765210505/regex-automata-0.4.13/src/meta/regex.rs#L3380-L3384)*
+
 A builder for configuring and constructing a `Regex`.
 
 The builder permits configuring two different aspects of a `Regex`:
 
 * `Builder::configure` will set high-level configuration options as
-described by a [`Config`](#config).
+described by a [`Config`](regex/index.md).
 * `Builder::syntax` will set the syntax level configuration options
 as described by a [`util::syntax::Config`](crate::util::syntax::Config).
 This only applies when building a `Regex` from pattern strings.
@@ -266,25 +270,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](regex/index.md)
 
-- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](#builderror)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](#builderror)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-build-from-hir"></span>`fn build_from_hir(&self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](#builderror)
+- <span id="builder-build-from-hir"></span>`fn build_from_hir(&self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-build-many-from-hir"></span>`fn build_many_from_hir<H: Borrow<Hir>>(&self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](#builderror)
+- <span id="builder-build-many-from-hir"></span>`fn build_many_from_hir<H: Borrow<Hir>>(&self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
+- <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](regex/index.md), [`Builder`](regex/index.md)
 
-- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../util/syntax/index.md), [`Builder`](#builder)
+- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../util/syntax/index.md), [`Builder`](regex/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](regex/index.md)
 
 ##### `impl Debug for Builder`
 
@@ -302,6 +306,8 @@ struct Cache {
     revhybrid: wrappers::ReverseHybridCache,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2353-2360`](../../../.source_1765210505/regex-automata-0.4.13/src/meta/regex.rs#L2353-L2360)*
 
 Represents mutable scratch space used by regex engines during a search.
 
@@ -352,9 +358,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="cache-new"></span>`fn new(re: &Regex) -> Cache` — [`Regex`](#regex), [`Cache`](#cache)
+- <span id="cache-new"></span>`fn new(re: &Regex) -> Cache` — [`Regex`](regex/index.md), [`Cache`](regex/index.md)
 
-- <span id="cache-reset"></span>`fn reset(&mut self, re: &Regex)` — [`Regex`](#regex)
+- <span id="cache-reset"></span>`fn reset(&mut self, re: &Regex)` — [`Regex`](regex/index.md)
 
 - <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -362,7 +368,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for Cache`
 
-- <span id="cache-clone"></span>`fn clone(&self) -> Cache` — [`Cache`](#cache)
+- <span id="cache-clone"></span>`fn clone(&self) -> Cache` — [`Cache`](regex/index.md)
 
 ##### `impl Debug for Cache`
 
@@ -379,6 +385,8 @@ struct CapturesMatches<'r, 'h> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2138-2143`](../../../.source_1765210505/regex-automata-0.4.13/src/meta/regex.rs#L2138-L2143)*
+
 An iterator over all non-overlapping leftmost matches with their capturing
 groups.
 
@@ -394,29 +402,29 @@ This iterator can be created with the `Regex::captures_iter` method.
 
 #### Implementations
 
-- <span id="capturesmatches-regex"></span>`fn regex(&self) -> &'r Regex` — [`Regex`](#regex)
+- <span id="capturesmatches-regex"></span>`fn regex(&self) -> &'r Regex` — [`Regex`](regex/index.md)
 
 - <span id="capturesmatches-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'r, 'h> Debug for CapturesMatches<'r, 'h>`
+##### `impl Debug for CapturesMatches<'r, 'h>`
 
 - <span id="capturesmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'r, 'h> FusedIterator for CapturesMatches<'r, 'h>`
+##### `impl FusedIterator for CapturesMatches<'r, 'h>`
 
-##### `impl<I> IntoIterator for CapturesMatches<'r, 'h>`
+##### `impl IntoIterator for CapturesMatches<'r, 'h>`
 
-- <span id="capturesmatches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturesmatches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturesmatches-intoiter"></span>`type IntoIter = I`
+- <span id="capturesmatches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturesmatches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'h> Iterator for CapturesMatches<'r, 'h>`
+##### `impl Iterator for CapturesMatches<'r, 'h>`
 
-- <span id="capturesmatches-item"></span>`type Item = Captures`
+- <span id="capturesmatches-type-item"></span>`type Item = Captures`
 
 - <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../util/captures/index.md)
 
@@ -445,6 +453,8 @@ struct Config {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2453-2477`](../../../.source_1765210505/regex-automata-0.4.13/src/meta/regex.rs#L2453-L2477)*
+
 An object describing the configuration of a `Regex`.
 
 This configuration only includes options for the
@@ -472,39 +482,39 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../index.md), [`Config`](#config)
+- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../index.md), [`Config`](regex/index.md)
 
-- <span id="config-utf8-empty"></span>`fn utf8_empty(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-utf8-empty"></span>`fn utf8_empty(self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-auto-prefilter"></span>`fn auto_prefilter(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-auto-prefilter"></span>`fn auto_prefilter(self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../util/prefilter/index.md), [`Config`](#config)
+- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../util/prefilter/index.md), [`Config`](regex/index.md)
 
-- <span id="config-which-captures"></span>`fn which_captures(self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../nfa/thompson/index.md), [`Config`](#config)
+- <span id="config-which-captures"></span>`fn which_captures(self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../nfa/thompson/compiler/index.md), [`Config`](regex/index.md)
 
-- <span id="config-nfa-size-limit"></span>`fn nfa_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](#config)
+- <span id="config-nfa-size-limit"></span>`fn nfa_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-onepass-size-limit"></span>`fn onepass_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](#config)
+- <span id="config-onepass-size-limit"></span>`fn onepass_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-hybrid-cache-capacity"></span>`fn hybrid_cache_capacity(self, limit: usize) -> Config` — [`Config`](#config)
+- <span id="config-hybrid-cache-capacity"></span>`fn hybrid_cache_capacity(self, limit: usize) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-dfa-size-limit"></span>`fn dfa_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](#config)
+- <span id="config-dfa-size-limit"></span>`fn dfa_size_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-dfa-state-limit"></span>`fn dfa_state_limit(self, limit: Option<usize>) -> Config` — [`Config`](#config)
+- <span id="config-dfa-state-limit"></span>`fn dfa_state_limit(self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-byte-classes"></span>`fn byte_classes(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-byte-classes"></span>`fn byte_classes(self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-line-terminator"></span>`fn line_terminator(self, byte: u8) -> Config` — [`Config`](#config)
+- <span id="config-line-terminator"></span>`fn line_terminator(self, byte: u8) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-hybrid"></span>`fn hybrid(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-hybrid"></span>`fn hybrid(self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-dfa"></span>`fn dfa(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-dfa"></span>`fn dfa(self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-onepass"></span>`fn onepass(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-onepass"></span>`fn onepass(self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- <span id="config-backtrack"></span>`fn backtrack(self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-backtrack"></span>`fn backtrack(self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
 - <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../index.md)
 
@@ -514,7 +524,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md)
 
-- <span id="config-get-which-captures"></span>`fn get_which_captures(&self) -> WhichCaptures` — [`WhichCaptures`](../nfa/thompson/index.md)
+- <span id="config-get-which-captures"></span>`fn get_which_captures(&self) -> WhichCaptures` — [`WhichCaptures`](../nfa/thompson/compiler/index.md)
 
 - <span id="config-get-nfa-size-limit"></span>`fn get_nfa_size_limit(&self) -> Option<usize>`
 
@@ -538,13 +548,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="config-get-backtrack"></span>`fn get_backtrack(&self) -> bool`
 
-- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
+- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](regex/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](regex/index.md)
 
 ##### `impl Debug for Config`
 
@@ -552,7 +562,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default for Config`
 
-- <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](regex/index.md)
 
 ### `FindMatches<'r, 'h>`
 
@@ -563,6 +573,8 @@ struct FindMatches<'r, 'h> {
     it: iter::Searcher<'h>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2075-2079`](../../../.source_1765210505/regex-automata-0.4.13/src/meta/regex.rs#L2075-L2079)*
 
 An iterator over all non-overlapping matches.
 
@@ -577,29 +589,29 @@ This iterator can be created with the `Regex::find_iter` method.
 
 #### Implementations
 
-- <span id="findmatches-regex"></span>`fn regex(&self) -> &'r Regex` — [`Regex`](#regex)
+- <span id="findmatches-regex"></span>`fn regex(&self) -> &'r Regex` — [`Regex`](regex/index.md)
 
 - <span id="findmatches-input"></span>`fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'r, 'h> Debug for FindMatches<'r, 'h>`
+##### `impl Debug for FindMatches<'r, 'h>`
 
 - <span id="findmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'r, 'h> FusedIterator for FindMatches<'r, 'h>`
+##### `impl FusedIterator for FindMatches<'r, 'h>`
 
-##### `impl<I> IntoIterator for FindMatches<'r, 'h>`
+##### `impl IntoIterator for FindMatches<'r, 'h>`
 
-- <span id="findmatches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findmatches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findmatches-intoiter"></span>`type IntoIter = I`
+- <span id="findmatches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findmatches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'h> Iterator for FindMatches<'r, 'h>`
+##### `impl Iterator for FindMatches<'r, 'h>`
 
-- <span id="findmatches-item"></span>`type Item = Match`
+- <span id="findmatches-type-item"></span>`type Item = Match`
 
 - <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md)
 
@@ -613,6 +625,8 @@ struct Regex {
     pool: crate::util::pool::Pool<Cache, alloc::boxed::Box<dyn Fn() -> Cache + Send + Sync + UnwindSafe + RefUnwindSafe>>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:235-252`](../../../.source_1765210505/regex-automata-0.4.13/src/meta/regex.rs#L235-L252)*
 
 A regex matcher that works by composing several other regex matchers
 automatically.
@@ -669,7 +683,7 @@ meta regex engine will never use a lazy DFA.
 Most of the regex engines in this crate require some kind of mutable
 "scratch" space to read and write from while performing a search. Since
 a meta regex composes these regex engines, a meta regex also requires
-mutable scratch space. This scratch space is called a [`Cache`](#cache).
+mutable scratch space. This scratch space is called a [`Cache`](regex/index.md).
 
 Most regex engines _also_ usually have a read-only component, typically
 a [Thompson `NFA`](crate::nfa::thompson::NFA).
@@ -829,21 +843,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="regex-search"></span>`fn search(&self, input: &Input<'_>) -> Option<Match>` — [`Input`](../index.md), [`Match`](../index.md)
+- <span id="regex-new"></span>`fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- <span id="regex-search-half"></span>`fn search_half(&self, input: &Input<'_>) -> Option<HalfMatch>` — [`Input`](../index.md), [`HalfMatch`](../index.md)
+- <span id="regex-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- <span id="regex-search-captures"></span>`fn search_captures(&self, input: &Input<'_>, caps: &mut Captures)` — [`Input`](../index.md), [`Captures`](../util/captures/index.md)
+- <span id="regex-config"></span>`fn config() -> Config` — [`Config`](regex/index.md)
 
-- <span id="regex-search-slots"></span>`fn search_slots(&self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Input`](../index.md), [`NonMaxUsize`](../util/primitives/index.md), [`PatternID`](../index.md)
-
-- <span id="regex-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, input: &Input<'_>, patset: &mut PatternSet)` — [`Input`](../index.md), [`PatternSet`](../index.md)
+- <span id="regex-builder"></span>`fn builder() -> Builder` — [`Builder`](regex/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Regex`
 
-- <span id="regex-clone"></span>`fn clone(&self) -> Regex` — [`Regex`](#regex)
+- <span id="regex-clone"></span>`fn clone(&self) -> Regex` — [`Regex`](regex/index.md)
 
 ##### `impl Debug for Regex`
 
@@ -857,6 +869,8 @@ struct Split<'r, 'h> {
     last: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2206-2209`](../../../.source_1765210505/regex-automata-0.4.13/src/meta/regex.rs#L2206-L2209)*
 
 Yields all substrings delimited by a regular expression match.
 
@@ -875,23 +889,23 @@ This iterator can be created with the `Regex::split` method.
 
 #### Trait Implementations
 
-##### `impl<'r, 'h> Debug for Split<'r, 'h>`
+##### `impl Debug for Split<'r, 'h>`
 
 - <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'r, 'h> FusedIterator for Split<'r, 'h>`
+##### `impl FusedIterator for Split<'r, 'h>`
 
-##### `impl<I> IntoIterator for Split<'r, 'h>`
+##### `impl IntoIterator for Split<'r, 'h>`
 
-- <span id="split-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="split-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="split-intoiter"></span>`type IntoIter = I`
+- <span id="split-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="split-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'h> Iterator for Split<'r, 'h>`
+##### `impl Iterator for Split<'r, 'h>`
 
-- <span id="split-item"></span>`type Item = Span`
+- <span id="split-type-item"></span>`type Item = Span`
 
 - <span id="split-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../index.md)
 
@@ -903,6 +917,8 @@ struct SplitN<'r, 'h> {
     limit: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/regex.rs:2260-2263`](../../../.source_1765210505/regex-automata-0.4.13/src/meta/regex.rs#L2260-L2263)*
 
 Yields at most `N` spans delimited by a regular expression match.
 
@@ -922,23 +938,23 @@ This iterator can be created with the `Regex::splitn` method.
 
 #### Trait Implementations
 
-##### `impl<'r, 'h> Debug for SplitN<'r, 'h>`
+##### `impl Debug for SplitN<'r, 'h>`
 
 - <span id="splitn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'r, 'h> FusedIterator for SplitN<'r, 'h>`
+##### `impl FusedIterator for SplitN<'r, 'h>`
 
-##### `impl<I> IntoIterator for SplitN<'r, 'h>`
+##### `impl IntoIterator for SplitN<'r, 'h>`
 
-- <span id="splitn-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splitn-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="splitn-intoiter"></span>`type IntoIter = I`
+- <span id="splitn-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="splitn-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'h> Iterator for SplitN<'r, 'h>`
+##### `impl Iterator for SplitN<'r, 'h>`
 
-- <span id="splitn-item"></span>`type Item = Span`
+- <span id="splitn-type-item"></span>`type Item = Span`
 
 - <span id="splitn-next"></span>`fn next(&mut self) -> Option<Span>` — [`Span`](../index.md)
 

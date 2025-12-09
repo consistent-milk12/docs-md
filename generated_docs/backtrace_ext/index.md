@@ -22,6 +22,8 @@ See [`short_frames_strict`][] for details.
 trait Backtraceish { ... }
 ```
 
+*Defined in [`backtrace-ext-0.2.1/src/lib.rs:243-246`](../../.source_1765210505/backtrace-ext-0.2.1/src/lib.rs#L243-L246)*
+
 #### Associated Types
 
 - `type Frame: 1`
@@ -39,6 +41,8 @@ trait Backtraceish { ... }
 ```rust
 trait Frameish { ... }
 ```
+
+*Defined in [`backtrace-ext-0.2.1/src/lib.rs:248-251`](../../.source_1765210505/backtrace-ext-0.2.1/src/lib.rs#L248-L251)*
 
 #### Associated Types
 
@@ -58,6 +62,8 @@ trait Frameish { ... }
 trait Symbolish { ... }
 ```
 
+*Defined in [`backtrace-ext-0.2.1/src/lib.rs:253-255`](../../.source_1765210505/backtrace-ext-0.2.1/src/lib.rs#L253-L255)*
+
 #### Required Methods
 
 - `fn name_str(&self) -> Option<&str>`
@@ -73,6 +79,8 @@ trait Symbolish { ... }
 ```rust
 fn short_frames_strict(backtrace: &Backtrace) -> impl Iterator<Item = (&BacktraceFrame, std::ops::Range<usize>)>
 ```
+
+*Defined in [`backtrace-ext-0.2.1/src/lib.rs:108-112`](../../.source_1765210505/backtrace-ext-0.2.1/src/lib.rs#L108-L112)*
 
 Gets an iterator over the frames that are part of Rust's "short backtrace" range.
 If no such range is found, the full stack is yielded.
@@ -178,4 +186,6 @@ fn backtrace() -> String {
 ```rust
 fn short_frames_strict_impl<B: Backtraceish>(backtrace: &B) -> impl Iterator<Item = (&<B as >::Frame, std::ops::Range<usize>)>
 ```
+
+*Defined in [`backtrace-ext-0.2.1/src/lib.rs:114-241`](../../.source_1765210505/backtrace-ext-0.2.1/src/lib.rs#L114-L241)*
 

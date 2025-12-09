@@ -22,6 +22,8 @@ struct AnyValue {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/util/any_value.rs:2-7`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/any_value.rs#L2-L7)*
+
 #### Implementations
 
 - <span id="anyvalue-new"></span>`fn new<V: std::any::Any + Clone + Send + Sync + 'static>(inner: V) -> Self`
@@ -50,6 +52,8 @@ struct AnyValueId {
     type_name: &'static str,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/util/any_value.rs:42-46`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/any_value.rs#L42-L46)*
 
 #### Implementations
 

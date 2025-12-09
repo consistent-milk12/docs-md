@@ -21,8 +21,10 @@ struct Enumerate<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:12-14`](../../../../.source_1765210505/rayon-1.11.0/src/iter/enumerate.rs#L12-L14)*
+
 `Enumerate` is an iterator that returns the current count along with the element.
-This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -33,7 +35,7 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 ##### `impl<I: clone::Clone> Clone for Enumerate<I>`
 
-- <span id="enumerate-clone"></span>`fn clone(&self) -> Enumerate<I>` — [`Enumerate`](../index.md)
+- <span id="enumerate-clone"></span>`fn clone(&self) -> Enumerate<I>` — [`Enumerate`](#enumerate)
 
 ##### `impl<I: fmt::Debug> Debug for Enumerate<I>`
 
@@ -51,15 +53,15 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 ##### `impl<T> IntoParallelIterator for Enumerate<I>`
 
-- <span id="enumerate-iter"></span>`type Iter = T`
+- <span id="enumerate-type-iter"></span>`type Iter = T`
 
-- <span id="enumerate-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="enumerate-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="enumerate-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Enumerate<I>`
 
-- <span id="enumerate-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
+- <span id="enumerate-type-item"></span>`type Item = (usize, <I as ParallelIterator>::Item)`
 
 - <span id="enumerate-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -67,9 +69,9 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 ##### `impl<T> Pointable for Enumerate<I>`
 
-- <span id="enumerate-align"></span>`const ALIGN: usize`
+- <span id="enumerate-const-align"></span>`const ALIGN: usize`
 
-- <span id="enumerate-init"></span>`type Init = T`
+- <span id="enumerate-type-init"></span>`type Init = T`
 
 - <span id="enumerate-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -88,15 +90,17 @@ struct EnumerateProducer<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/enumerate.rs:82-85`](../../../../.source_1765210505/rayon-1.11.0/src/iter/enumerate.rs#L82-L85)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for EnumerateProducer<P>`
 
 ##### `impl<T> Pointable for EnumerateProducer<P>`
 
-- <span id="enumerateproducer-align"></span>`const ALIGN: usize`
+- <span id="enumerateproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="enumerateproducer-init"></span>`type Init = T`
+- <span id="enumerateproducer-type-init"></span>`type Init = T`
 
 - <span id="enumerateproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -108,9 +112,9 @@ struct EnumerateProducer<P> {
 
 ##### `impl<P> Producer for EnumerateProducer<P>`
 
-- <span id="enumerateproducer-item"></span>`type Item = (usize, <P as Producer>::Item)`
+- <span id="enumerateproducer-type-item"></span>`type Item = (usize, <P as Producer>::Item)`
 
-- <span id="enumerateproducer-intoiter"></span>`type IntoIter = Zip<Range<usize>, <P as Producer>::IntoIter>`
+- <span id="enumerateproducer-type-intoiter"></span>`type IntoIter = Zip<Range<usize>, <P as Producer>::IntoIter>`
 
 - <span id="enumerateproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 

@@ -16,7 +16,13 @@
 
 ### `format_err!`
 
+*Defined in [`clap_derive-4.5.49/src/macros.rs:1-8`](../../../.source_1765210505/clap_derive-4.5.49/src/macros.rs#L1-L8)*
+
 ### `abort!`
 
+*Defined in [`clap_derive-4.5.49/src/macros.rs:10-14`](../../../.source_1765210505/clap_derive-4.5.49/src/macros.rs#L10-L14)*
+
 ### `abort_call_site!`
+
+*Defined in [`clap_derive-4.5.49/src/macros.rs:16-21`](../../../.source_1765210505/clap_derive-4.5.49/src/macros.rs#L16-L21)*
 

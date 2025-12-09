@@ -18,6 +18,8 @@
 trait SliceExt<T> { ... }
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/slice.rs:7-67`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/slice.rs#L7-L67)*
+
 Slice methods that use `Box` and `Vec` from this crate.
 
 #### Required Methods

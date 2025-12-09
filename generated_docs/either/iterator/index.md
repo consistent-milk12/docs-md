@@ -21,6 +21,8 @@ struct IterEither<L, R> {
 }
 ```
 
+*Defined in [`either-1.15.0/src/iterator.rs:19-21`](../../../.source_1765210505/either-1.15.0/src/iterator.rs#L19-L21)*
+
 Iterator that maps left or right iterators to corresponding `Either`-wrapped items.
 
 This struct is created by the `Either::factor_into_iter`,
@@ -35,7 +37,7 @@ and `factor_iter_mut` methods.
 
 ##### `impl<L: clone::Clone, R: clone::Clone> Clone for IterEither<L, R>`
 
-- <span id="itereither-clone"></span>`fn clone(&self) -> IterEither<L, R>` — [`IterEither`](../index.md)
+- <span id="itereither-clone"></span>`fn clone(&self) -> IterEither<L, R>` — [`IterEither`](#itereither)
 
 ##### `impl<L: fmt::Debug, R: fmt::Debug> Debug for IterEither<L, R>`
 
@@ -61,15 +63,15 @@ and `factor_iter_mut` methods.
 
 ##### `impl<I> IntoIterator for IterEither<L, R>`
 
-- <span id="itereither-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itereither-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itereither-intoiter"></span>`type IntoIter = I`
+- <span id="itereither-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itereither-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<L, R> Iterator for IterEither<L, R>`
 
-- <span id="itereither-item"></span>`type Item = Either<<L as Iterator>::Item, <R as Iterator>::Item>`
+- <span id="itereither-type-item"></span>`type Item = Either<<L as Iterator>::Item, <R as Iterator>::Item>`
 
 - <span id="itereither-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -102,4 +104,6 @@ and `factor_iter_mut` methods.
 ## Macros
 
 ### `wrap_either!`
+
+*Defined in [`either-1.15.0/src/iterator.rs:4-11`](../../../.source_1765210505/either-1.15.0/src/iterator.rs#L4-L11)*
 

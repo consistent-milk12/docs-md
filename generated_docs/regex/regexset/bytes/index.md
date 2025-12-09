@@ -24,6 +24,8 @@ struct RegexSet {
 }
 ```
 
+*Defined in [`regex-1.12.2/src/regexset/bytes.rs:136-139`](../../../../.source_1765210505/regex-1.12.2/src/regexset/bytes.rs#L136-L139)*
+
 Match multiple, possibly overlapping, regexes in a single search.
 
 A regex set corresponds to the union of zero or more regular expressions.
@@ -155,7 +157,7 @@ alternate isn't always obvious to reason about.
 
 #### Implementations
 
-- <span id="regexset-new"></span>`fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](../../index.md)
+- <span id="regexset-new"></span>`fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](../../error/index.md)
 
 - <span id="regexset-empty"></span>`fn empty() -> RegexSet` — [`RegexSet`](#regexset)
 
@@ -193,6 +195,8 @@ alternate isn't always obvious to reason about.
 struct SetMatches(regex_automata::PatternSet);
 ```
 
+*Defined in [`regex-1.12.2/src/regexset/bytes.rs:463`](../../../../.source_1765210505/regex-1.12.2/src/regexset/bytes.rs#L463)*
+
 A set of matches returned by a regex set.
 
 Values of this type are constructed by `RegexSet::matches`.
@@ -221,9 +225,9 @@ Values of this type are constructed by `RegexSet::matches`.
 
 ##### `impl IntoIterator for SetMatches`
 
-- <span id="setmatches-intoiter"></span>`type IntoIter = SetMatchesIntoIter`
+- <span id="setmatches-type-intoiter"></span>`type IntoIter = SetMatchesIntoIter`
 
-- <span id="setmatches-item"></span>`type Item = usize`
+- <span id="setmatches-type-item"></span>`type Item = usize`
 
 - <span id="setmatches-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -235,6 +239,8 @@ struct SetMatchesIntoIter {
     it: core::ops::Range<usize>,
 }
 ```
+
+*Defined in [`regex-1.12.2/src/regexset/bytes.rs:656-659`](../../../../.source_1765210505/regex-1.12.2/src/regexset/bytes.rs#L656-L659)*
 
 An owned iterator over the set of matches from a regex set.
 
@@ -276,17 +282,17 @@ assert_eq!(matches, vec![0, 1, 3]);
 
 ##### `impl FusedIterator for SetMatchesIntoIter`
 
-##### `impl<I> IntoIterator for SetMatchesIntoIter`
+##### `impl IntoIterator for SetMatchesIntoIter`
 
-- <span id="setmatchesintoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="setmatchesintoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="setmatchesintoiter-intoiter"></span>`type IntoIter = I`
+- <span id="setmatchesintoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="setmatchesintoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SetMatchesIntoIter`
 
-- <span id="setmatchesintoiter-item"></span>`type Item = usize`
+- <span id="setmatchesintoiter-type-item"></span>`type Item = usize`
 
 - <span id="setmatchesintoiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -297,6 +303,8 @@ assert_eq!(matches, vec![0, 1, 3]);
 ```rust
 struct SetMatchesIter<'a>(regex_automata::PatternSetIter<'a>);
 ```
+
+*Defined in [`regex-1.12.2/src/regexset/bytes.rs:702`](../../../../.source_1765210505/regex-1.12.2/src/regexset/bytes.rs#L702)*
 
 A borrowed iterator over the set of matches from a regex set.
 
@@ -311,31 +319,31 @@ This iterator is created by the `SetMatches::iter` method.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for SetMatchesIter<'a>`
+##### `impl Clone for SetMatchesIter<'a>`
 
 - <span id="setmatchesiter-clone"></span>`fn clone(&self) -> SetMatchesIter<'a>` — [`SetMatchesIter`](#setmatchesiter)
 
-##### `impl<'a> Debug for SetMatchesIter<'a>`
+##### `impl Debug for SetMatchesIter<'a>`
 
 - <span id="setmatchesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for SetMatchesIter<'a>`
+##### `impl DoubleEndedIterator for SetMatchesIter<'a>`
 
 - <span id="setmatchesiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
-##### `impl<'a> FusedIterator for SetMatchesIter<'a>`
+##### `impl FusedIterator for SetMatchesIter<'a>`
 
-##### `impl<I> IntoIterator for SetMatchesIter<'a>`
+##### `impl IntoIterator for SetMatchesIter<'a>`
 
-- <span id="setmatchesiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="setmatchesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="setmatchesiter-intoiter"></span>`type IntoIter = I`
+- <span id="setmatchesiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="setmatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for SetMatchesIter<'a>`
+##### `impl Iterator for SetMatchesIter<'a>`
 
-- <span id="setmatchesiter-item"></span>`type Item = usize`
+- <span id="setmatchesiter-type-item"></span>`type Item = usize`
 
 - <span id="setmatchesiter-next"></span>`fn next(&mut self) -> Option<usize>`
 

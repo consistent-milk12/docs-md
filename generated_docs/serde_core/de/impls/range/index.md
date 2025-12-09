@@ -23,6 +23,8 @@ struct RangeVisitor<Idx> {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:2524-2527`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L2524-L2527)*
+
 #### Trait Implementations
 
 ##### `impl<'de, T> Expected for RangeVisitor<Idx>`
@@ -31,7 +33,7 @@ struct RangeVisitor<Idx> {
 
 ##### `impl<'de, Idx> Visitor for RangeVisitor<Idx>`
 
-- <span id="rangevisitor-value"></span>`type Value = (Idx, Idx)`
+- <span id="rangevisitor-type-value"></span>`type Value = (Idx, Idx)`
 
 - <span id="rangevisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -50,19 +52,22 @@ enum Field {
 }
 ```
 
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:2475-2478`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L2475-L2478)*
+
 #### Trait Implementations
 
-##### `impl<'de> Deserialize for Field`
+##### `impl Deserialize for Field`
 
-- <span id="field-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../../../index.md)
+- <span id="field-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../../index.md)
 
-##### `impl<T> DeserializeOwned for Field`
+##### `impl DeserializeOwned for Field`
 
 ## Constants
 
 ### `FIELDS`
-
 ```rust
 const FIELDS: &[&str];
 ```
+
+*Defined in [`serde_core-1.0.228/src/de/impls.rs:2469`](../../../../../.source_1765210505/serde_core-1.0.228/src/de/impls.rs#L2469)*
 

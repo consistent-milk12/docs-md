@@ -6,8 +6,8 @@
 
 Configuration for markdown rendering.
 
-This module provides [`RenderConfig`](../../index.md) for controlling how documentation
-is rendered, and [`SourceConfig`](../../index.md) for source code integration options.
+This module provides [`RenderConfig`](#renderconfig) for controlling how documentation
+is rendered, and [`SourceConfig`](#sourceconfig) for source code integration options.
 
 ## Quick Reference
 
@@ -30,6 +30,8 @@ struct RenderConfig {
     pub include_source: SourceConfig,
 }
 ```
+
+*Defined in `src/generator/config.rs:14-32`*
 
 Configuration options for markdown rendering.
 
@@ -63,7 +65,7 @@ Configuration options for markdown rendering.
 
 ##### `impl Clone for RenderConfig`
 
-- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](../../index.md)
+- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](#renderconfig)
 
 ##### `impl Debug for RenderConfig`
 
@@ -73,17 +75,17 @@ Configuration options for markdown rendering.
 
 - <span id="renderconfig-default"></span>`fn default() -> Self`
 
-##### `impl<T> Instrument for RenderConfig`
+##### `impl Instrument for RenderConfig`
 
-##### `impl<T> IntoEither for RenderConfig`
+##### `impl IntoEither for RenderConfig`
 
-##### `impl<D> OwoColorize for RenderConfig`
+##### `impl OwoColorize for RenderConfig`
 
-##### `impl<T> Pointable for RenderConfig`
+##### `impl Pointable for RenderConfig`
 
-- <span id="renderconfig-align"></span>`const ALIGN: usize`
+- <span id="renderconfig-const-align"></span>`const ALIGN: usize`
 
-- <span id="renderconfig-init"></span>`type Init = T`
+- <span id="renderconfig-type-init"></span>`type Init = T`
 
 - <span id="renderconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -93,7 +95,7 @@ Configuration options for markdown rendering.
 
 - <span id="renderconfig-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for RenderConfig`
+##### `impl WithSubscriber for RenderConfig`
 
 ### `SourceConfig`
 
@@ -103,8 +105,11 @@ struct SourceConfig {
     pub const_values: bool,
     pub private_items: bool,
     pub source_locations: bool,
+    pub source_dir: Option<std::path::PathBuf>,
 }
 ```
+
+*Defined in `src/generator/config.rs:42-61`*
 
 Configuration for source code integration.
 
@@ -128,11 +133,19 @@ Requires the `source-parsing` feature to have any effect.
 
   Add <file:line> references to items.
 
+- **`source_dir`**: `Option<std::path::PathBuf>`
+
+  Path to the `.source_*` directory containing collected dependency sources.
+  
+  When set, source location references will use paths relative to this directory
+  and generate clickable links. When `None`, absolute paths from rustdoc JSON
+  are displayed without links.
+
 #### Trait Implementations
 
 ##### `impl Clone for SourceConfig`
 
-- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](../../index.md)
+- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](#sourceconfig)
 
 ##### `impl Debug for SourceConfig`
 
@@ -140,19 +153,19 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Default for SourceConfig`
 
-- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](../../index.md)
+- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](#sourceconfig)
 
-##### `impl<T> Instrument for SourceConfig`
+##### `impl Instrument for SourceConfig`
 
-##### `impl<T> IntoEither for SourceConfig`
+##### `impl IntoEither for SourceConfig`
 
-##### `impl<D> OwoColorize for SourceConfig`
+##### `impl OwoColorize for SourceConfig`
 
-##### `impl<T> Pointable for SourceConfig`
+##### `impl Pointable for SourceConfig`
 
-- <span id="sourceconfig-align"></span>`const ALIGN: usize`
+- <span id="sourceconfig-const-align"></span>`const ALIGN: usize`
 
-- <span id="sourceconfig-init"></span>`type Init = T`
+- <span id="sourceconfig-type-init"></span>`type Init = T`
 
 - <span id="sourceconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -162,5 +175,5 @@ Requires the `source-parsing` feature to have any effect.
 
 - <span id="sourceconfig-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for SourceConfig`
+##### `impl WithSubscriber for SourceConfig`
 

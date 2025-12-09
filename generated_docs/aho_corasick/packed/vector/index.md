@@ -11,7 +11,7 @@
 | [`x86_64_ssse3`](#x86_64_ssse3) | mod |  |
 | [`x86_64_avx2`](#x86_64_avx2) | mod |  |
 | [`Vector`](#vector) | trait | A trait for describing vector operations used by vectorized searchers. |
-| [`FatVector`](#fatvector) | trait | This trait extends the `Vector` trait with additional operations to support |
+| [`FatVector`](#fatvector) | trait | This trait extends the `Vector` trait with additional operations to support Fat Teddy. |
 
 ## Modules
 
@@ -25,6 +25,8 @@
 ```rust
 trait Vector: Copy + Debug + Send + Sync + UnwindSafe + RefUnwindSafe { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/vector.rs:28-207`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/vector.rs#L28-L207)*
 
 A trait for describing vector operations used by vectorized searchers.
 
@@ -109,6 +111,8 @@ them as `#[inline(always)]` to ensure they get appropriately inlined.
 ```rust
 trait FatVector: Vector { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/vector.rs:232-318`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/vector.rs#L232-L318)*
 
 This trait extends the `Vector` trait with additional operations to support
 Fat Teddy.

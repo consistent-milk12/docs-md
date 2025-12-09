@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`FlattenIter`](#flatteniter) | struct | `FlattenIter` turns each element to a serial iterator, then flattens these iterators |
+| [`FlattenIter`](#flatteniter) | struct | `FlattenIter` turns each element to a serial iterator, then flattens these iterators together. |
 | [`FlattenIterConsumer`](#flatteniterconsumer) | struct |  |
 | [`FlattenIterFolder`](#flatteniterfolder) | struct |  |
 
@@ -22,8 +22,10 @@ struct FlattenIter<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:10-12`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flatten_iter.rs#L10-L12)*
+
 `FlattenIter` turns each element to a serial iterator, then flattens these iterators
-together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](../../prelude/index.md).
+together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](../index.md).
 
 
 #### Implementations
@@ -34,7 +36,7 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 ##### `impl<I: clone::Clone> Clone for FlattenIter<I>`
 
-- <span id="flatteniter-clone"></span>`fn clone(&self) -> FlattenIter<I>` — [`FlattenIter`](../index.md)
+- <span id="flatteniter-clone"></span>`fn clone(&self) -> FlattenIter<I>` — [`FlattenIter`](#flatteniter)
 
 ##### `impl<I: fmt::Debug> Debug for FlattenIter<I>`
 
@@ -44,23 +46,23 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 ##### `impl<T> IntoParallelIterator for FlattenIter<I>`
 
-- <span id="flatteniter-iter"></span>`type Iter = T`
+- <span id="flatteniter-type-iter"></span>`type Iter = T`
 
-- <span id="flatteniter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="flatteniter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="flatteniter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for FlattenIter<I>`
 
-- <span id="flatteniter-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
+- <span id="flatteniter-type-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
 
 - <span id="flatteniter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for FlattenIter<I>`
 
-- <span id="flatteniter-align"></span>`const ALIGN: usize`
+- <span id="flatteniter-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatteniter-init"></span>`type Init = T`
+- <span id="flatteniter-type-init"></span>`type Init = T`
 
 - <span id="flatteniter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -78,6 +80,8 @@ struct FlattenIterConsumer<C> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:39-41`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flatten_iter.rs#L39-L41)*
+
 #### Implementations
 
 - <span id="flatteniterconsumer-new"></span>`fn new(base: C) -> Self`
@@ -86,11 +90,11 @@ struct FlattenIterConsumer<C> {
 
 ##### `impl<T, C> Consumer for FlattenIterConsumer<C>`
 
-- <span id="flatteniterconsumer-folder"></span>`type Folder = FlattenIterFolder<<C as Consumer>::Folder>`
+- <span id="flatteniterconsumer-type-folder"></span>`type Folder = FlattenIterFolder<<C as Consumer>::Folder>`
 
-- <span id="flatteniterconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="flatteniterconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="flatteniterconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="flatteniterconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="flatteniterconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -102,9 +106,9 @@ struct FlattenIterConsumer<C> {
 
 ##### `impl<T> Pointable for FlattenIterConsumer<C>`
 
-- <span id="flatteniterconsumer-align"></span>`const ALIGN: usize`
+- <span id="flatteniterconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatteniterconsumer-init"></span>`type Init = T`
+- <span id="flatteniterconsumer-type-init"></span>`type Init = T`
 
 - <span id="flatteniterconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -128,11 +132,13 @@ struct FlattenIterFolder<C> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/flatten_iter.rs:92-94`](../../../../.source_1765210505/rayon-1.11.0/src/iter/flatten_iter.rs#L92-L94)*
+
 #### Trait Implementations
 
 ##### `impl<T, C> Folder for FlattenIterFolder<C>`
 
-- <span id="flatteniterfolder-result"></span>`type Result = <C as Folder>::Result`
+- <span id="flatteniterfolder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="flatteniterfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -146,9 +152,9 @@ struct FlattenIterFolder<C> {
 
 ##### `impl<T> Pointable for FlattenIterFolder<C>`
 
-- <span id="flatteniterfolder-align"></span>`const ALIGN: usize`
+- <span id="flatteniterfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="flatteniterfolder-init"></span>`type Init = T`
+- <span id="flatteniterfolder-type-init"></span>`type Init = T`
 
 - <span id="flatteniterfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

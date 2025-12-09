@@ -14,12 +14,12 @@ documentation for entire dependency trees.
 
 The multi-crate system uses these components:
 
-- [`CrateCollection`](../index.md): Container for parsed crates with processing order
-- [`MultiCrateParser`](../index.md): Scans directories and parses JSON files
-- [`UnifiedLinkRegistry`](../index.md): Cross-crate link resolution
-- [`MultiCrateContext`](../index.md): Shared state during generation
-- [`MultiCrateGenerator`](../index.md): Orchestrates per-crate generation
-- [`SummaryGenerator`](#summarygenerator): Creates mdBook-compatible SUMMARY.md
+- [`CrateCollection`](collection/index.md): Container for parsed crates with processing order
+- [`MultiCrateParser`](parser/index.md): Scans directories and parses JSON files
+- [`UnifiedLinkRegistry`](registry/index.md): Cross-crate link resolution
+- [`MultiCrateContext`](context/index.md): Shared state during generation
+- [`MultiCrateGenerator`](generator/index.md): Orchestrates per-crate generation
+- [`SummaryGenerator`](summary/index.md): Creates mdBook-compatible SUMMARY.md
 
 # Usage
 
@@ -98,6 +98,8 @@ struct CrateCollection {
 }
 ```
 
+*Defined in `src/multi_crate/collection.rs:30-34`*
+
 Collection of parsed crates ready for documentation generation.
 
 Uses `HashMap` for O(1) lookups and sorts keys on-demand when iteration
@@ -153,19 +155,19 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Default for CrateCollection`
 
-- <span id="cratecollection-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](../index.md)
+- <span id="cratecollection-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](collection/index.md)
 
-##### `impl<T> Instrument for CrateCollection`
+##### `impl Instrument for CrateCollection`
 
-##### `impl<T> IntoEither for CrateCollection`
+##### `impl IntoEither for CrateCollection`
 
-##### `impl<D> OwoColorize for CrateCollection`
+##### `impl OwoColorize for CrateCollection`
 
-##### `impl<T> Pointable for CrateCollection`
+##### `impl Pointable for CrateCollection`
 
-- <span id="cratecollection-align"></span>`const ALIGN: usize`
+- <span id="cratecollection-const-align"></span>`const ALIGN: usize`
 
-- <span id="cratecollection-init"></span>`type Init = T`
+- <span id="cratecollection-type-init"></span>`type Init = T`
 
 - <span id="cratecollection-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -175,7 +177,7 @@ for (name, krate) in collection.iter() {
 
 - <span id="cratecollection-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for CrateCollection`
+##### `impl WithSubscriber for CrateCollection`
 
 ### `MultiCrateContext<'a>`
 
@@ -186,13 +188,16 @@ struct MultiCrateContext<'a> {
     args: &'a crate::Args,
     config: crate::generator::config::RenderConfig,
     cross_crate_impls: std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
+    source_path_config: Option<crate::generator::render_shared::SourcePathConfig>,
 }
 ```
+
+*Defined in `src/multi_crate/context.rs:41-64`*
 
 Shared context for multi-crate documentation generation.
 
 Holds references to all crates, the unified link registry, and
-CLI configuration. Used by [`MultiCrateGenerator`](../index.md) to coordinate
+CLI configuration. Used by [`MultiCrateGenerator`](generator/index.md) to coordinate
 generation across crates.
 
 
@@ -221,19 +226,29 @@ generation across crates.
   Maps target crate name -> type name -> impl blocks from other crates.
   This is computed once during construction rather than per-view.
 
+- **`source_path_config`**: `Option<crate::generator::render_shared::SourcePathConfig>`
+
+  Base source path configuration for transforming cargo registry paths.
+  
+  `None` if source locations are disabled or no `.source_*` dir detected.
+
 #### Implementations
 
-- <span id="multicratecontext-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](../index.md), [`Args`](../index.md), [`RenderConfig`](../index.md)
+- <span id="multicratecontext-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](collection/index.md), [`Args`](../index.md), [`RenderConfig`](../generator/config/index.md)
 
-- <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](../index.md)
+- <span id="multicratecontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
 
-- <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](../index.md)
+- <span id="multicratecontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](../generator/render_shared/index.md)
 
-- <span id="multicratecontext-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../index.md)
+- <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](collection/index.md)
+
+- <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](collection/index.md)
+
+- <span id="multicratecontext-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](registry/index.md)
 
 - <span id="multicratecontext-args"></span>`const fn args(&self) -> &Args` — [`Args`](../index.md)
 
-- <span id="multicratecontext-single-crate-view"></span>`fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](#singlecrateview)
+- <span id="multicratecontext-single-crate-view"></span>`fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](context/index.md)
 
 - <span id="multicratecontext-find-item"></span>`fn find_item(&self, id: &Id) -> Option<(&str, &Item)>`
 
@@ -243,17 +258,17 @@ generation across crates.
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for MultiCrateContext<'a>`
+##### `impl Instrument for MultiCrateContext<'a>`
 
-##### `impl<T> IntoEither for MultiCrateContext<'a>`
+##### `impl IntoEither for MultiCrateContext<'a>`
 
-##### `impl<D> OwoColorize for MultiCrateContext<'a>`
+##### `impl OwoColorize for MultiCrateContext<'a>`
 
-##### `impl<T> Pointable for MultiCrateContext<'a>`
+##### `impl Pointable for MultiCrateContext<'a>`
 
-- <span id="multicratecontext-align"></span>`const ALIGN: usize`
+- <span id="multicratecontext-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicratecontext-init"></span>`type Init = T`
+- <span id="multicratecontext-type-init"></span>`type Init = T`
 
 - <span id="multicratecontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -263,7 +278,7 @@ generation across crates.
 
 - <span id="multicratecontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MultiCrateContext<'a>`
+##### `impl WithSubscriber for MultiCrateContext<'a>`
 
 ### `SingleCrateView<'a>`
 
@@ -280,10 +295,12 @@ struct SingleCrateView<'a> {
 }
 ```
 
+*Defined in `src/multi_crate/context.rs:279-304`*
+
 View of a single crate within multi-crate context.
 
-Provides an interface similar to [`GeneratorContext`](../generator/index.md) but uses
-[`UnifiedLinkRegistry`](../index.md) for cross-crate link resolution. This
+Provides an interface similar to [`GeneratorContext`](../generator/context/index.md) but uses
+[`UnifiedLinkRegistry`](registry/index.md) for cross-crate link resolution. This
 allows existing rendering code to work with minimal changes.
 
 
@@ -324,13 +341,11 @@ allows existing rendering code to work with minimal changes.
 
 #### Implementations
 
-- <span id="singlecrateview-new"></span>`fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](../index.md), [`Args`](../index.md), [`MultiCrateContext`](../index.md)
+- <span id="singlecrateview-new"></span>`fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](registry/index.md), [`Args`](../index.md), [`MultiCrateContext`](context/index.md)
 
 - <span id="singlecrateview-build-impl-map"></span>`fn build_impl_map(&mut self)`
 
 - <span id="singlecrateview-build-type-name-map"></span>`fn build_type_name_map(&mut self)`
-
-- <span id="singlecrateview-get-impl-target-id"></span>`const fn get_impl_target_id(impl_block: &Impl) -> Option<Id>`
 
 - <span id="singlecrateview-impl-sort-key"></span>`fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
 
@@ -338,7 +353,7 @@ allows existing rendering code to work with minimal changes.
 
 - <span id="singlecrateview-krate"></span>`const fn krate(&self) -> &Crate`
 
-- <span id="singlecrateview-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../index.md)
+- <span id="singlecrateview-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](registry/index.md)
 
 - <span id="singlecrateview-args"></span>`const fn args(&self) -> &Args` — [`Args`](../index.md)
 
@@ -388,9 +403,9 @@ allows existing rendering code to work with minimal changes.
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for SingleCrateView<'a>`
+##### `impl Instrument for SingleCrateView<'a>`
 
-##### `impl<T> IntoEither for SingleCrateView<'a>`
+##### `impl IntoEither for SingleCrateView<'a>`
 
 ##### `impl ItemAccess for SingleCrateView<'_>`
 
@@ -404,7 +419,9 @@ allows existing rendering code to work with minimal changes.
 
 - <span id="singlecrateview-crate-version"></span>`fn crate_version(&self) -> Option<&str>`
 
-- <span id="singlecrateview-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](../index.md)
+- <span id="singlecrateview-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](../generator/config/index.md)
+
+- <span id="singlecrateview-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](../generator/render_shared/index.md)
 
 ##### `impl ItemFilter for SingleCrateView<'_>`
 
@@ -416,19 +433,19 @@ allows existing rendering code to work with minimal changes.
 
 ##### `impl LinkResolver for SingleCrateView<'_>`
 
-- <span id="singlecrateview-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../index.md)
+- <span id="singlecrateview-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../linker/index.md)
 
 - <span id="singlecrateview-process-docs"></span>`fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
 - <span id="singlecrateview-create-link"></span>`fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
 
-##### `impl<D> OwoColorize for SingleCrateView<'a>`
+##### `impl OwoColorize for SingleCrateView<'a>`
 
-##### `impl<T> Pointable for SingleCrateView<'a>`
+##### `impl Pointable for SingleCrateView<'a>`
 
-- <span id="singlecrateview-align"></span>`const ALIGN: usize`
+- <span id="singlecrateview-const-align"></span>`const ALIGN: usize`
 
-- <span id="singlecrateview-init"></span>`type Init = T`
+- <span id="singlecrateview-type-init"></span>`type Init = T`
 
 - <span id="singlecrateview-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -438,9 +455,9 @@ allows existing rendering code to work with minimal changes.
 
 - <span id="singlecrateview-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> RenderContext for SingleCrateView<'a>`
+##### `impl RenderContext for SingleCrateView<'a>`
 
-##### `impl<T> WithSubscriber for SingleCrateView<'a>`
+##### `impl WithSubscriber for SingleCrateView<'a>`
 
 ### `MultiCrateGenerator<'a>`
 
@@ -450,6 +467,8 @@ struct MultiCrateGenerator<'a> {
     args: &'a crate::Args,
 }
 ```
+
+*Defined in `src/multi_crate/generator.rs:56-62`*
 
 Generator for multi-crate documentation.
 
@@ -483,35 +502,35 @@ output/
 
 #### Implementations
 
-- <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](../index.md), [`Args`](../index.md), [`RenderConfig`](../index.md)
+- <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](collection/index.md), [`Args`](../index.md), [`RenderConfig`](../generator/config/index.md)
 
 - <span id="multicrategenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../error/index.md)
 
 - <span id="multicrategenerator-collect-rendered-items"></span>`fn collect_rendered_items(&self) -> HashMap<String, HashSet<Id>>`
 
-- <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](#singlecrateview)
+- <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](context/index.md)
 
-- <span id="multicrategenerator-collect-module-items"></span>`fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](#singlecrateview)
+- <span id="multicrategenerator-collect-module-items"></span>`fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](context/index.md)
 
-- <span id="multicrategenerator-generate-crate"></span>`fn generate_crate(&self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](#singlecrateview), [`Error`](../error/index.md)
+- <span id="multicrategenerator-generate-crate"></span>`fn generate_crate(&self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](context/index.md), [`Error`](../error/index.md)
 
-- <span id="multicrategenerator-generate-module"></span>`fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](#singlecrateview), [`Error`](../error/index.md)
+- <span id="multicrategenerator-generate-module"></span>`fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](context/index.md), [`Error`](../error/index.md)
 
 - <span id="multicrategenerator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for MultiCrateGenerator<'a>`
+##### `impl Instrument for MultiCrateGenerator<'a>`
 
-##### `impl<T> IntoEither for MultiCrateGenerator<'a>`
+##### `impl IntoEither for MultiCrateGenerator<'a>`
 
-##### `impl<D> OwoColorize for MultiCrateGenerator<'a>`
+##### `impl OwoColorize for MultiCrateGenerator<'a>`
 
-##### `impl<T> Pointable for MultiCrateGenerator<'a>`
+##### `impl Pointable for MultiCrateGenerator<'a>`
 
-- <span id="multicrategenerator-align"></span>`const ALIGN: usize`
+- <span id="multicrategenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrategenerator-init"></span>`type Init = T`
+- <span id="multicrategenerator-type-init"></span>`type Init = T`
 
 - <span id="multicrategenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -521,13 +540,15 @@ output/
 
 - <span id="multicrategenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MultiCrateGenerator<'a>`
+##### `impl WithSubscriber for MultiCrateGenerator<'a>`
 
 ### `MultiCrateParser`
 
 ```rust
 struct MultiCrateParser;
 ```
+
+*Defined in `src/multi_crate/parser.rs:26`*
 
 Parser for multiple rustdoc JSON files in a directory.
 
@@ -543,23 +564,23 @@ println!("Found {} crates", crates.len());
 
 #### Implementations
 
-- <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../index.md), [`Error`](../error/index.md)
+- <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](collection/index.md), [`Error`](../error/index.md)
 
 - <span id="multicrateparser-extract-crate-name"></span>`fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for MultiCrateParser`
+##### `impl Instrument for MultiCrateParser`
 
-##### `impl<T> IntoEither for MultiCrateParser`
+##### `impl IntoEither for MultiCrateParser`
 
-##### `impl<D> OwoColorize for MultiCrateParser`
+##### `impl OwoColorize for MultiCrateParser`
 
-##### `impl<T> Pointable for MultiCrateParser`
+##### `impl Pointable for MultiCrateParser`
 
-- <span id="multicrateparser-align"></span>`const ALIGN: usize`
+- <span id="multicrateparser-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrateparser-init"></span>`type Init = T`
+- <span id="multicrateparser-type-init"></span>`type Init = T`
 
 - <span id="multicrateparser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -569,7 +590,7 @@ println!("Found {} crates", crates.len());
 
 - <span id="multicrateparser-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MultiCrateParser`
+##### `impl WithSubscriber for MultiCrateParser`
 
 ### `UnifiedLinkRegistry`
 
@@ -583,9 +604,11 @@ struct UnifiedLinkRegistry {
 }
 ```
 
+*Defined in `src/multi_crate/registry.rs:94-116`*
+
 Registry mapping item IDs to documentation paths across multiple crates.
 
-Unlike [`LinkRegistry`](../index.md) which handles a single crate, this registry
+Unlike [`LinkRegistry`](../linker/index.md) which handles a single crate, this registry
 spans multiple crates and supports cross-crate link resolution with
 disambiguation based on local/primary crate preference.
 
@@ -641,7 +664,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Implementations
 
-- <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../index.md)
+- <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](collection/index.md)
 
 - <span id="unifiedlinkregistry-register-crate"></span>`fn register_crate(&mut self, crate_name: &str, krate: &Crate)`
 
@@ -685,19 +708,19 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Default for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../index.md)
+- <span id="unifiedlinkregistry-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](registry/index.md)
 
-##### `impl<T> Instrument for UnifiedLinkRegistry`
+##### `impl Instrument for UnifiedLinkRegistry`
 
-##### `impl<T> IntoEither for UnifiedLinkRegistry`
+##### `impl IntoEither for UnifiedLinkRegistry`
 
-##### `impl<D> OwoColorize for UnifiedLinkRegistry`
+##### `impl OwoColorize for UnifiedLinkRegistry`
 
-##### `impl<T> Pointable for UnifiedLinkRegistry`
+##### `impl Pointable for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-align"></span>`const ALIGN: usize`
+- <span id="unifiedlinkregistry-const-align"></span>`const ALIGN: usize`
 
-- <span id="unifiedlinkregistry-init"></span>`type Init = T`
+- <span id="unifiedlinkregistry-type-init"></span>`type Init = T`
 
 - <span id="unifiedlinkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -707,7 +730,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - <span id="unifiedlinkregistry-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for UnifiedLinkRegistry`
+##### `impl WithSubscriber for UnifiedLinkRegistry`
 
 ### `SearchIndex`
 
@@ -716,6 +739,8 @@ struct SearchIndex {
     pub items: Vec<SearchEntry>,
 }
 ```
+
+*Defined in `src/multi_crate/search.rs:75-78`*
 
 The complete search index containing all searchable items.
 
@@ -733,17 +758,17 @@ Serialized to `search_index.json` for client-side consumption.
 
 - <span id="searchindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Instrument for SearchIndex`
+##### `impl Instrument for SearchIndex`
 
-##### `impl<T> IntoEither for SearchIndex`
+##### `impl IntoEither for SearchIndex`
 
-##### `impl<D> OwoColorize for SearchIndex`
+##### `impl OwoColorize for SearchIndex`
 
-##### `impl<T> Pointable for SearchIndex`
+##### `impl Pointable for SearchIndex`
 
-- <span id="searchindex-align"></span>`const ALIGN: usize`
+- <span id="searchindex-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindex-init"></span>`type Init = T`
+- <span id="searchindex-type-init"></span>`type Init = T`
 
 - <span id="searchindex-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -757,7 +782,7 @@ Serialized to `search_index.json` for client-side consumption.
 
 - <span id="searchindex-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
-##### `impl<T> WithSubscriber for SearchIndex`
+##### `impl WithSubscriber for SearchIndex`
 
 ### `SearchIndexGenerator<'a>`
 
@@ -769,9 +794,11 @@ struct SearchIndexGenerator<'a> {
 }
 ```
 
+*Defined in `src/multi_crate/search.rs:93-108`*
+
 Generator for multi-crate search indices.
 
-Traverses all crates in a [`CrateCollection`](../index.md) and builds a comprehensive
+Traverses all crates in a [`CrateCollection`](collection/index.md) and builds a comprehensive
 search index of all public items (or all items if `include_private` is set).
 
 # Example
@@ -805,9 +832,9 @@ generator.write(Path::new("generated_docs/"))?;
 
 #### Implementations
 
-- <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](../index.md)
+- <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](collection/index.md)
 
-- <span id="searchindexgenerator-generate"></span>`fn generate(&self) -> SearchIndex` — [`SearchIndex`](../index.md)
+- <span id="searchindexgenerator-generate"></span>`fn generate(&self) -> SearchIndex` — [`SearchIndex`](search/index.md)
 
 - <span id="searchindexgenerator-write"></span>`fn write(&self, output_dir: &Path) -> std::io::Result<()>`
 
@@ -819,17 +846,17 @@ generator.write(Path::new("generated_docs/"))?;
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for SearchIndexGenerator<'a>`
+##### `impl Instrument for SearchIndexGenerator<'a>`
 
-##### `impl<T> IntoEither for SearchIndexGenerator<'a>`
+##### `impl IntoEither for SearchIndexGenerator<'a>`
 
-##### `impl<D> OwoColorize for SearchIndexGenerator<'a>`
+##### `impl OwoColorize for SearchIndexGenerator<'a>`
 
-##### `impl<T> Pointable for SearchIndexGenerator<'a>`
+##### `impl Pointable for SearchIndexGenerator<'a>`
 
-- <span id="searchindexgenerator-align"></span>`const ALIGN: usize`
+- <span id="searchindexgenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindexgenerator-init"></span>`type Init = T`
+- <span id="searchindexgenerator-type-init"></span>`type Init = T`
 
 - <span id="searchindexgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -839,7 +866,7 @@ generator.write(Path::new("generated_docs/"))?;
 
 - <span id="searchindexgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for SearchIndexGenerator<'a>`
+##### `impl WithSubscriber for SearchIndexGenerator<'a>`
 
 ### `SummaryGenerator<'a>`
 
@@ -850,6 +877,8 @@ struct SummaryGenerator<'a> {
     include_private: bool,
 }
 ```
+
+*Defined in `src/multi_crate/summary.rs:31-40`*
 
 Generates mdBook-compatible SUMMARY.md file.
 
@@ -884,7 +913,7 @@ Summary
 
 #### Implementations
 
-- <span id="summarygenerator-new"></span>`const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](../index.md)
+- <span id="summarygenerator-new"></span>`const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](collection/index.md)
 
 - <span id="summarygenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../error/index.md)
 
@@ -892,17 +921,17 @@ Summary
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for SummaryGenerator<'a>`
+##### `impl Instrument for SummaryGenerator<'a>`
 
-##### `impl<T> IntoEither for SummaryGenerator<'a>`
+##### `impl IntoEither for SummaryGenerator<'a>`
 
-##### `impl<D> OwoColorize for SummaryGenerator<'a>`
+##### `impl OwoColorize for SummaryGenerator<'a>`
 
-##### `impl<T> Pointable for SummaryGenerator<'a>`
+##### `impl Pointable for SummaryGenerator<'a>`
 
-- <span id="summarygenerator-align"></span>`const ALIGN: usize`
+- <span id="summarygenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="summarygenerator-init"></span>`type Init = T`
+- <span id="summarygenerator-type-init"></span>`type Init = T`
 
 - <span id="summarygenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -912,23 +941,25 @@ Summary
 
 - <span id="summarygenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for SummaryGenerator<'a>`
+##### `impl WithSubscriber for SummaryGenerator<'a>`
 
 ## Constants
 
 ### `RUST_PATH_SEP`
-
 ```rust
 const RUST_PATH_SEP: &str;
 ```
 
+*Defined in `src/multi_crate/mod.rs:29`*
+
 Rust module path separator (e.g., `serde_json::de::from_str`).
 
 ### `FILE_PATH_SEP`
-
 ```rust
 const FILE_PATH_SEP: char = '/';
 ```
+
+*Defined in `src/multi_crate/mod.rs:32`*
 
 File system path separator for generated documentation.
 

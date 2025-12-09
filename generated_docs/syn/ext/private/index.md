@@ -20,6 +20,8 @@
 struct PeekFn;
 ```
 
+*Defined in [`syn-2.0.111/src/ext.rs:165`](../../../../.source_1765210505/syn-2.0.111/src/ext.rs#L165)*
+
 #### Trait Implementations
 
 ##### `impl Clone for PeekFn`
@@ -38,11 +40,13 @@ struct PeekFn;
 struct IdentAny;
 ```
 
+*Defined in [`syn-2.0.111/src/ext.rs:168`](../../../../.source_1765210505/syn-2.0.111/src/ext.rs#L168)*
+
 #### Trait Implementations
 
-##### `impl<T> Sealed for IdentAny`
+##### `impl Sealed for IdentAny`
 
-##### `impl<T> Token for IdentAny`
+##### `impl Token for IdentAny`
 
 - <span id="identany-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../../buffer/index.md)
 
@@ -56,7 +60,9 @@ struct IdentAny;
 trait Sealed { ... }
 ```
 
+*Defined in [`syn-2.0.111/src/ext.rs:160`](../../../../.source_1765210505/syn-2.0.111/src/ext.rs#L160)*
+
 #### Implementors
 
-- [`Ident`](../../index.md)
+- [`Ident`](../../ident/index.md)
 

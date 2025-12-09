@@ -10,8 +10,8 @@ Facility for interpreting structured content inside of an `Attribute`.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`ParseNestedMeta`](#parsenestedmeta) | struct | Context for parsing a single property in the conventional syntax for |
-| [`parser`](#parser) | fn | Make a parser that is usable with `parse_macro_input!` in a |
+| [`ParseNestedMeta`](#parsenestedmeta) | struct | Context for parsing a single property in the conventional syntax for structured attributes. |
+| [`parser`](#parser) | fn | Make a parser that is usable with `parse_macro_input!` in a `#[proc_macro_attribute]` macro. |
 | [`parse_nested_meta`](#parse_nested_meta) | fn |  |
 | [`parse_meta_path`](#parse_meta_path) | fn |  |
 
@@ -25,6 +25,8 @@ struct ParseNestedMeta<'a> {
     pub input: crate::parse::ParseStream<'a>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/meta.rs:164-167`](../../../.source_1765210505/syn-2.0.111/src/meta.rs#L164-L167)*
 
 Context for parsing a single property in the conventional syntax for
 structured attributes.
@@ -49,11 +51,11 @@ Refer to usage examples on the following two entry-points:
 
 #### Implementations
 
-- <span id="parsenestedmeta-value"></span>`fn value(&self) -> Result<ParseStream<'a>>` — [`Result`](../index.md), [`ParseStream`](../parse/index.md)
+- <span id="parsenestedmeta-value"></span>`fn value(&self) -> Result<ParseStream<'a>>` — [`Result`](../error/index.md), [`ParseStream`](../parse/index.md)
 
-- <span id="parsenestedmeta-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](#parsenestedmeta), [`Result`](../index.md)
+- <span id="parsenestedmeta-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](#parsenestedmeta), [`Result`](../error/index.md)
 
-- <span id="parsenestedmeta-error"></span>`fn error(&self, msg: impl Display) -> Error` — [`Error`](../index.md)
+- <span id="parsenestedmeta-error"></span>`fn error(&self, msg: impl Display) -> Error` — [`Error`](../error/index.md)
 
 ## Functions
 
@@ -62,6 +64,8 @@ Refer to usage examples on the following two entry-points:
 ```rust
 fn parser(logic: impl FnMut(ParseNestedMeta<'_>) -> crate::error::Result<()>) -> impl Parser<Output = ()>
 ```
+
+*Defined in [`syn-2.0.111/src/meta.rs:132-140`](../../../.source_1765210505/syn-2.0.111/src/meta.rs#L132-L140)*
 
 Make a parser that is usable with `parse_macro_input!` in a
 `#[proc_macro_attribute]` macro.
@@ -188,9 +192,13 @@ impl TeaAttributes {
 fn parse_nested_meta(input: crate::parse::ParseStream<'_>, logic: impl FnMut(ParseNestedMeta<'_>) -> crate::error::Result<()>) -> crate::error::Result<()>
 ```
 
+*Defined in [`syn-2.0.111/src/meta.rs:385-400`](../../../.source_1765210505/syn-2.0.111/src/meta.rs#L385-L400)*
+
 ### `parse_meta_path`
 
 ```rust
 fn parse_meta_path(input: crate::parse::ParseStream<'_>) -> crate::error::Result<crate::path::Path>
 ```
+
+*Defined in [`syn-2.0.111/src/meta.rs:403-427`](../../../.source_1765210505/syn-2.0.111/src/meta.rs#L403-L427)*
 

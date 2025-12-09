@@ -26,6 +26,8 @@ struct MapsEntry {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/parse_running_mmaps_unix.rs:13-56`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/parse_running_mmaps_unix.rs#L13-L56)*
+
 #### Fields
 
 - **`address`**: `(usize, usize)`
@@ -98,7 +100,7 @@ struct MapsEntry {
 
 ##### `impl FromStr for MapsEntry`
 
-- <span id="mapsentry-err"></span>`type Err = &'static str`
+- <span id="mapsentry-type-err"></span>`type Err = &'static str`
 
 - <span id="mapsentry-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 
@@ -115,4 +117,6 @@ struct MapsEntry {
 ```rust
 fn parse_maps() -> Result<alloc::vec::Vec<MapsEntry>, &'static str>
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/parse_running_mmaps_unix.rs:58-71`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/parse_running_mmaps_unix.rs#L58-L71)*
 

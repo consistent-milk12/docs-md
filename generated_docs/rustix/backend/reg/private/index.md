@@ -21,6 +21,8 @@ Seal our various traits using the technique documented [here].
 trait Sealed { ... }
 ```
 
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/reg.rs:242`](../../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/reg.rs#L242)*
+
 #### Implementors
 
 - [`A0`](../index.md)

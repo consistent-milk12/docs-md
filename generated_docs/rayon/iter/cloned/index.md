@@ -23,9 +23,11 @@ struct Cloned<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:13-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/cloned.rs#L13-L15)*
+
 `Cloned` is an iterator that clones the elements of an underlying iterator.
 
-This struct is created by the `cloned()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `cloned()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -36,7 +38,7 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../../pr
 
 ##### `impl<I: clone::Clone> Clone for Cloned<I>`
 
-- <span id="cloned-clone"></span>`fn clone(&self) -> Cloned<I>` — [`Cloned`](../index.md)
+- <span id="cloned-clone"></span>`fn clone(&self) -> Cloned<I>` — [`Cloned`](#cloned)
 
 ##### `impl<I: fmt::Debug> Debug for Cloned<I>`
 
@@ -54,15 +56,15 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../../pr
 
 ##### `impl<T> IntoParallelIterator for Cloned<I>`
 
-- <span id="cloned-iter"></span>`type Iter = T`
+- <span id="cloned-type-iter"></span>`type Iter = T`
 
-- <span id="cloned-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="cloned-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="cloned-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T, I> ParallelIterator for Cloned<I>`
 
-- <span id="cloned-item"></span>`type Item = T`
+- <span id="cloned-type-item"></span>`type Item = T`
 
 - <span id="cloned-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -70,9 +72,9 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../../pr
 
 ##### `impl<T> Pointable for Cloned<I>`
 
-- <span id="cloned-align"></span>`const ALIGN: usize`
+- <span id="cloned-const-align"></span>`const ALIGN: usize`
 
-- <span id="cloned-init"></span>`type Init = T`
+- <span id="cloned-type-init"></span>`type Init = T`
 
 - <span id="cloned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -90,15 +92,17 @@ struct ClonedProducer<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:91-93`](../../../../.source_1765210505/rayon-1.11.0/src/iter/cloned.rs#L91-L93)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for ClonedProducer<P>`
 
 ##### `impl<T> Pointable for ClonedProducer<P>`
 
-- <span id="clonedproducer-align"></span>`const ALIGN: usize`
+- <span id="clonedproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="clonedproducer-init"></span>`type Init = T`
+- <span id="clonedproducer-type-init"></span>`type Init = T`
 
 - <span id="clonedproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -110,9 +114,9 @@ struct ClonedProducer<P> {
 
 ##### `impl<'a, T, P> Producer for ClonedProducer<P>`
 
-- <span id="clonedproducer-item"></span>`type Item = T`
+- <span id="clonedproducer-type-item"></span>`type Item = T`
 
-- <span id="clonedproducer-intoiter"></span>`type IntoIter = Cloned<<P as Producer>::IntoIter>`
+- <span id="clonedproducer-type-intoiter"></span>`type IntoIter = Cloned<<P as Producer>::IntoIter>`
 
 - <span id="clonedproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
@@ -132,6 +136,8 @@ struct ClonedConsumer<C> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:134-136`](../../../../.source_1765210505/rayon-1.11.0/src/iter/cloned.rs#L134-L136)*
+
 #### Implementations
 
 - <span id="clonedconsumer-new"></span>`fn new(base: C) -> Self`
@@ -140,11 +146,11 @@ struct ClonedConsumer<C> {
 
 ##### `impl<'a, T, C> Consumer for ClonedConsumer<C>`
 
-- <span id="clonedconsumer-folder"></span>`type Folder = ClonedFolder<<C as Consumer>::Folder>`
+- <span id="clonedconsumer-type-folder"></span>`type Folder = ClonedFolder<<C as Consumer>::Folder>`
 
-- <span id="clonedconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="clonedconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="clonedconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="clonedconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="clonedconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -156,9 +162,9 @@ struct ClonedConsumer<C> {
 
 ##### `impl<T> Pointable for ClonedConsumer<C>`
 
-- <span id="clonedconsumer-align"></span>`const ALIGN: usize`
+- <span id="clonedconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="clonedconsumer-init"></span>`type Init = T`
+- <span id="clonedconsumer-type-init"></span>`type Init = T`
 
 - <span id="clonedconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -182,11 +188,13 @@ struct ClonedFolder<F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/cloned.rs:187-189`](../../../../.source_1765210505/rayon-1.11.0/src/iter/cloned.rs#L187-L189)*
+
 #### Trait Implementations
 
 ##### `impl<'a, T, F> Folder for ClonedFolder<F>`
 
-- <span id="clonedfolder-result"></span>`type Result = <F as Folder>::Result`
+- <span id="clonedfolder-type-result"></span>`type Result = <F as Folder>::Result`
 
 - <span id="clonedfolder-consume"></span>`fn consume(self, item: &'a T) -> Self`
 
@@ -200,9 +208,9 @@ struct ClonedFolder<F> {
 
 ##### `impl<T> Pointable for ClonedFolder<F>`
 
-- <span id="clonedfolder-align"></span>`const ALIGN: usize`
+- <span id="clonedfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="clonedfolder-init"></span>`type Init = T`
+- <span id="clonedfolder-type-init"></span>`type Init = T`
 
 - <span id="clonedfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -9,12 +9,12 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Match`](#match) | struct | A match type specialized to the Teddy implementations below. |
-| [`Slim`](#slim) | struct | A "slim" Teddy implementation that is generic over both the vector type |
-| [`Fat`](#fat) | struct | A "fat" Teddy implementation that is generic over both the vector type |
+| [`Slim`](#slim) | struct | A "slim" Teddy implementation that is generic over both the vector type and the minimum length of the patterns being searched for. |
+| [`Fat`](#fat) | struct | A "fat" Teddy implementation that is generic over both the vector type and the minimum length of the patterns being searched for. |
 | [`Teddy`](#teddy) | struct | The common elements of all "slim" and "fat" Teddy search implementations. |
 | [`Mask`](#mask) | struct | A vector generic mask for the low and high nybbles in a set of patterns. |
-| [`SlimMaskBuilder`](#slimmaskbuilder) | struct | Represents the low and high nybble masks that will be used during |
-| [`FatMaskBuilder`](#fatmaskbuilder) | struct | Represents the low and high nybble masks that will be used during "fat" |
+| [`SlimMaskBuilder`](#slimmaskbuilder) | struct | Represents the low and high nybble masks that will be used during search. |
+| [`FatMaskBuilder`](#fatmaskbuilder) | struct | Represents the low and high nybble masks that will be used during "fat" Teddy search. |
 
 ## Structs
 
@@ -28,6 +28,8 @@ struct Match {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:26-30`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L26-L30)*
+
 A match type specialized to the Teddy implementations below.
 
 Essentially, instead of representing a match at byte offsets, we use
@@ -39,7 +41,7 @@ Also, the `PatternID` used here is a `u16`.
 
 #### Implementations
 
-- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../../index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
 
 - <span id="match-start"></span>`fn start(&self) -> *const u8`
 
@@ -66,6 +68,8 @@ struct Slim<V, const BYTES: usize> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:54-60`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L54-L60)*
+
 A "slim" Teddy implementation that is generic over both the vector type
 and the minimum length of the patterns being searched for.
 
@@ -84,11 +88,11 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- <span id="slim-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- <span id="slim-new"></span>`unsafe fn new(patterns: Arc<Patterns>) -> Slim<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Slim`](#slim)
 
-- <span id="slim-find-one"></span>`unsafe fn find_one(&self, cur: *const u8, end: *const u8, prev0: &mut V, prev1: &mut V) -> Option<Match>` — [`Match`](#match)
+- <span id="slim-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="slim-candidate"></span>`unsafe fn candidate(&self, cur: *const u8, prev0: &mut V, prev1: &mut V) -> V`
+- <span id="slim-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
 #### Trait Implementations
 
@@ -108,6 +112,8 @@ struct Fat<V, const BYTES: usize> {
     masks: [Mask<V>; BYTES],
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:387-393`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L387-L393)*
 
 A "fat" Teddy implementation that is generic over both the vector type
 and the minimum length of the patterns being searched for.
@@ -152,6 +158,8 @@ struct Teddy<const BUCKETS: usize> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:728-747`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L728-L747)*
+
 The common elements of all "slim" and "fat" Teddy search implementations.
 
 Essentially, this contains the patterns and the buckets. Namely, it
@@ -181,15 +189,23 @@ be quite expensive if `N` is not a multiple of 2.
 
 #### Implementations
 
-- <span id="teddy-verify"></span>`unsafe fn verify<V: FatVector>(&self, cur: *const u8, end: *const u8, candidate: V) -> Option<Match>` — [`Match`](#match)
+- <span id="teddy-new"></span>`fn new(patterns: Arc<Patterns>) -> Teddy<BUCKETS>` — [`Patterns`](../../pattern/index.md), [`Teddy`](#teddy)
+
+- <span id="teddy-verify64"></span>`unsafe fn verify64(&self, cur: *const u8, end: *const u8, candidate_chunk: u64) -> Option<Match>` — [`Match`](#match)
+
+- <span id="teddy-verify-bucket"></span>`unsafe fn verify_bucket(&self, cur: *const u8, end: *const u8, bucket: usize) -> Option<Match>` — [`Match`](#match)
+
+- <span id="teddy-mask-len"></span>`fn mask_len(&self) -> usize`
+
+- <span id="teddy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
-##### `impl<const BUCKETS: usize> Clone for Teddy<BUCKETS>`
+##### `impl Clone for Teddy<BUCKETS>`
 
 - <span id="teddy-clone"></span>`fn clone(&self) -> Teddy<BUCKETS>` — [`Teddy`](#teddy)
 
-##### `impl<const BUCKETS: usize> Debug for Teddy<BUCKETS>`
+##### `impl Debug for Teddy<BUCKETS>`
 
 - <span id="teddy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -201,6 +217,8 @@ struct Mask<V> {
     hi: V,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1016-1019`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1016-L1019)*
 
 A vector generic mask for the low and high nybbles in a set of patterns.
 Each 8-bit lane `j` in a vector corresponds to a bitset where the `i`th bit
@@ -249,6 +267,8 @@ struct SlimMaskBuilder {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1178-1181`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1178-L1181)*
+
 Represents the low and high nybble masks that will be used during
 search. Each mask is 32 bytes wide, although only the first 16 bytes are
 used for 128-bit vectors.
@@ -292,6 +312,8 @@ struct FatMaskBuilder {
     hi: [u8; 32],
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/generic.rs:1288-1291`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/generic.rs#L1288-L1291)*
 
 Represents the low and high nybble masks that will be used during "fat"
 Teddy search.

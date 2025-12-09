@@ -6,7 +6,7 @@
 
 Multi-crate documentation generator.
 
-This module provides [`MultiCrateGenerator`](../../index.md) which orchestrates
+This module provides [`MultiCrateGenerator`](#multicrategenerator) which orchestrates
 documentation generation across multiple crates with cross-crate linking.
 
 ## Quick Reference
@@ -26,6 +26,8 @@ struct MultiCrateGenerator<'a> {
     args: &'a crate::Args,
 }
 ```
+
+*Defined in `src/multi_crate/generator.rs:56-62`*
 
 Generator for multi-crate documentation.
 
@@ -59,35 +61,35 @@ output/
 
 #### Implementations
 
-- <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](../../index.md), [`Args`](../../index.md), [`RenderConfig`](../../index.md)
+- <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](../collection/index.md), [`Args`](../../index.md), [`RenderConfig`](../../generator/config/index.md)
 
 - <span id="multicrategenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
 - <span id="multicrategenerator-collect-rendered-items"></span>`fn collect_rendered_items(&self) -> HashMap<String, HashSet<Id>>`
 
-- <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](../index.md)
+- <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](../context/index.md)
 
-- <span id="multicrategenerator-collect-module-items"></span>`fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](../index.md)
+- <span id="multicrategenerator-collect-module-items"></span>`fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](../context/index.md)
 
-- <span id="multicrategenerator-generate-crate"></span>`fn generate_crate(&self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../index.md), [`Error`](../../error/index.md)
+- <span id="multicrategenerator-generate-crate"></span>`fn generate_crate(&self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../context/index.md), [`Error`](../../error/index.md)
 
-- <span id="multicrategenerator-generate-module"></span>`fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../index.md), [`Error`](../../error/index.md)
+- <span id="multicrategenerator-generate-module"></span>`fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../context/index.md), [`Error`](../../error/index.md)
 
 - <span id="multicrategenerator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../../error/index.md)
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for MultiCrateGenerator<'a>`
+##### `impl Instrument for MultiCrateGenerator<'a>`
 
-##### `impl<T> IntoEither for MultiCrateGenerator<'a>`
+##### `impl IntoEither for MultiCrateGenerator<'a>`
 
-##### `impl<D> OwoColorize for MultiCrateGenerator<'a>`
+##### `impl OwoColorize for MultiCrateGenerator<'a>`
 
-##### `impl<T> Pointable for MultiCrateGenerator<'a>`
+##### `impl Pointable for MultiCrateGenerator<'a>`
 
-- <span id="multicrategenerator-align"></span>`const ALIGN: usize`
+- <span id="multicrategenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrategenerator-init"></span>`type Init = T`
+- <span id="multicrategenerator-type-init"></span>`type Init = T`
 
 - <span id="multicrategenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -97,7 +99,7 @@ output/
 
 - <span id="multicrategenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MultiCrateGenerator<'a>`
+##### `impl WithSubscriber for MultiCrateGenerator<'a>`
 
 ### `MultiCrateModuleRenderer<'a>`
 
@@ -109,6 +111,8 @@ struct MultiCrateModuleRenderer<'a> {
     type_renderer: crate::types::TypeRenderer<'a>,
 }
 ```
+
+*Defined in `src/multi_crate/generator.rs:381-393`*
 
 Module renderer for multi-crate context.
 
@@ -138,13 +142,15 @@ resolve items across crate boundaries.
 
 #### Implementations
 
-- <span id="multicratemodulerenderer-new"></span>`const fn new(view: &'a SingleCrateView<'a>, file_path: &'a str, is_root: bool) -> Self` — [`SingleCrateView`](../index.md)
+- <span id="multicratemodulerenderer-new"></span>`const fn new(view: &'a SingleCrateView<'a>, file_path: &'a str, is_root: bool) -> Self` — [`SingleCrateView`](../context/index.md)
+
+- <span id="multicratemodulerenderer-maybe-render-source-location"></span>`fn maybe_render_source_location(&self, item: &Item) -> String`
 
 - <span id="multicratemodulerenderer-render"></span>`fn render(&self, item: &Item) -> String`
 
 - <span id="multicratemodulerenderer-render-module-contents"></span>`fn render_module_contents(&self, md: &mut String, module: &rustdoc_types::Module, _parent: &Item)`
 
-- <span id="multicratemodulerenderer-render-modules-section"></span>`fn render_modules_section(md: &mut String, modules: &[&Item])`
+- <span id="multicratemodulerenderer-render-modules-section"></span>`fn render_modules_section(md: &mut String, modules: &[&Item], krate: &Crate)`
 
 - <span id="multicratemodulerenderer-render-structs-section"></span>`fn render_structs_section(&self, md: &mut String, structs: &[(&Id, &Item)])`
 
@@ -162,11 +168,13 @@ resolve items across crate boundaries.
 
 - <span id="multicratemodulerenderer-get-item-name-and-summary"></span>`fn get_item_name_and_summary(item: &Item) -> (String, String)`
 
+- <span id="multicratemodulerenderer-get-item-name-and-summary-with-fallback"></span>`fn get_item_name_and_summary_with_fallback(item: &Item, krate: Option<&Crate>) -> (String, String)`
+
 - <span id="multicratemodulerenderer-get-item-name"></span>`fn get_item_name(item: &Item) -> &str`
 
-- <span id="multicratemodulerenderer-build-toc-entries"></span>`fn build_toc_entries(modules: &[&Item], structs: &[(&Id, &Item)], enums: &[(&Id, &Item)], traits: &[(&Id, &Item)], functions: &[&Item], types: &[&Item], constants: &[&Item], macros: &[&Item]) -> Vec<TocEntry>` — [`TocEntry`](../../generator/index.md)
+- <span id="multicratemodulerenderer-build-toc-entries"></span>`fn build_toc_entries(modules: &[&Item], structs: &[(&Id, &Item)], enums: &[(&Id, &Item)], traits: &[(&Id, &Item)], functions: &[&Item], types: &[&Item], constants: &[&Item], macros: &[&Item]) -> Vec<TocEntry>` — [`TocEntry`](../../generator/toc/index.md)
 
-- <span id="multicratemodulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(modules: &[&Item], structs: &[(&Id, &Item)], enums: &[(&Id, &Item)], traits: &[(&Id, &Item)], functions: &[&Item], types: &[&Item], constants: &[&Item], macros: &[&Item]) -> Vec<QuickRefEntry>` — [`QuickRefEntry`](../../generator/index.md)
+- <span id="multicratemodulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(modules: &[&Item], structs: &[(&Id, &Item)], enums: &[(&Id, &Item)], traits: &[(&Id, &Item)], functions: &[&Item], types: &[&Item], constants: &[&Item], macros: &[&Item]) -> Vec<QuickRefEntry>` — [`QuickRefEntry`](../../generator/quick_ref/index.md)
 
 - <span id="multicratemodulerenderer-render-struct"></span>`fn render_struct(&self, md: &mut String, item_id: Id, item: &Item)`
 
@@ -190,17 +198,17 @@ resolve items across crate boundaries.
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for MultiCrateModuleRenderer<'a>`
+##### `impl Instrument for MultiCrateModuleRenderer<'a>`
 
-##### `impl<T> IntoEither for MultiCrateModuleRenderer<'a>`
+##### `impl IntoEither for MultiCrateModuleRenderer<'a>`
 
-##### `impl<D> OwoColorize for MultiCrateModuleRenderer<'a>`
+##### `impl OwoColorize for MultiCrateModuleRenderer<'a>`
 
-##### `impl<T> Pointable for MultiCrateModuleRenderer<'a>`
+##### `impl Pointable for MultiCrateModuleRenderer<'a>`
 
-- <span id="multicratemodulerenderer-align"></span>`const ALIGN: usize`
+- <span id="multicratemodulerenderer-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicratemodulerenderer-init"></span>`type Init = T`
+- <span id="multicratemodulerenderer-type-init"></span>`type Init = T`
 
 - <span id="multicratemodulerenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -210,5 +218,5 @@ resolve items across crate boundaries.
 
 - <span id="multicratemodulerenderer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MultiCrateModuleRenderer<'a>`
+##### `impl WithSubscriber for MultiCrateModuleRenderer<'a>`
 

@@ -63,14 +63,16 @@ Error reporting
 struct KindFormatter;
 ```
 
-Report [`ErrorKind`](#errorkind)
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:36`](../../../.source_1765210505/clap_builder-4.5.53/src/error/format.rs#L36)*
+
+Report [`ErrorKind`](kind/index.md)
 
 No context is included.
 
 <div class="warning">
 
 **NOTE:** Consider removing the `error-context` default feature if using this to remove all
-overhead for [`RichFormatter`](#richformatter).
+overhead for [`RichFormatter`](format/index.md).
 
 </div>
 
@@ -78,7 +80,7 @@ overhead for [`RichFormatter`](#richformatter).
 
 ##### `impl ErrorFormatter for KindFormatter`
 
-- <span id="kindformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/index.md)
+- <span id="kindformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/styled_str/index.md)
 
 ### `RichFormatter`
 
@@ -86,6 +88,8 @@ overhead for [`RichFormatter`](#richformatter).
 struct RichFormatter;
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../.source_1765210505/clap_builder-4.5.53/src/error/format.rs#L62)*
+
 Richly formatted error context
 
 This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lang.org/diagnostics.html#suggestion-style-guide).
@@ -94,7 +98,7 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 ##### `impl ErrorFormatter for RichFormatter`
 
-- <span id="richformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/index.md)
+- <span id="richformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/styled_str/index.md)
 
 ### `DefaultFormatter`
 
@@ -102,6 +106,8 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 struct DefaultFormatter;
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:62`](../../../.source_1765210505/clap_builder-4.5.53/src/error/format.rs#L62)*
+
 Richly formatted error context
 
 This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lang.org/diagnostics.html#suggestion-style-guide).
@@ -110,7 +116,7 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 ##### `impl ErrorFormatter for RichFormatter`
 
-- <span id="richformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/index.md)
+- <span id="richformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](#error), [`StyledStr`](../builder/styled_str/index.md)
 
 ### `Error<F: ErrorFormatter>`
 
@@ -121,6 +127,8 @@ struct Error<F: ErrorFormatter> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:60-63`](../../../.source_1765210505/clap_builder-4.5.53/src/error/mod.rs#L60-L63)*
+
 Command Line Argument Parser Error
 
 See `Command::error` to create an error.
@@ -128,25 +136,25 @@ See `Command::error` to create an error.
 
 #### Implementations
 
-- <span id="error-raw"></span>`fn raw(kind: ErrorKind, message: impl Display) -> Self` — [`ErrorKind`](#errorkind)
+- <span id="error-raw"></span>`fn raw(kind: ErrorKind, message: impl Display) -> Self` — [`ErrorKind`](kind/index.md)
 
-- <span id="error-format"></span>`fn format(self, cmd: &mut Command) -> Self` — [`Command`](../index.md)
+- <span id="error-format"></span>`fn format(self, cmd: &mut Command) -> Self` — [`Command`](../builder/command/index.md)
 
-- <span id="error-new"></span>`fn new(kind: ErrorKind) -> Self` — [`ErrorKind`](#errorkind)
+- <span id="error-new"></span>`fn new(kind: ErrorKind) -> Self` — [`ErrorKind`](kind/index.md)
 
-- <span id="error-with-cmd"></span>`fn with_cmd(self, cmd: &Command) -> Self` — [`Command`](../index.md)
+- <span id="error-with-cmd"></span>`fn with_cmd(self, cmd: &Command) -> Self` — [`Command`](../builder/command/index.md)
 
 - <span id="error-apply"></span>`fn apply<EF: ErrorFormatter>(self) -> Error<EF>` — [`Error`](#error)
 
-- <span id="error-kind"></span>`fn kind(&self) -> ErrorKind` — [`ErrorKind`](#errorkind)
+- <span id="error-kind"></span>`fn kind(&self) -> ErrorKind` — [`ErrorKind`](kind/index.md)
 
-- <span id="error-context"></span>`fn context(&self) -> impl Iterator<Item = (ContextKind, &ContextValue)>` — [`ContextKind`](#contextkind), [`ContextValue`](#contextvalue)
+- <span id="error-context"></span>`fn context(&self) -> impl Iterator<Item = (ContextKind, &ContextValue)>` — [`ContextKind`](context/index.md), [`ContextValue`](context/index.md)
 
-- <span id="error-get"></span>`fn get(&self, kind: ContextKind) -> Option<&ContextValue>` — [`ContextKind`](#contextkind), [`ContextValue`](#contextvalue)
+- <span id="error-get"></span>`fn get(&self, kind: ContextKind) -> Option<&ContextValue>` — [`ContextKind`](context/index.md), [`ContextValue`](context/index.md)
 
-- <span id="error-insert"></span>`fn insert(&mut self, kind: ContextKind, value: ContextValue) -> Option<ContextValue>` — [`ContextKind`](#contextkind), [`ContextValue`](#contextvalue)
+- <span id="error-insert"></span>`fn insert(&mut self, kind: ContextKind, value: ContextValue) -> Option<ContextValue>` — [`ContextKind`](context/index.md), [`ContextValue`](context/index.md)
 
-- <span id="error-remove"></span>`fn remove(&mut self, kind: ContextKind) -> Option<ContextValue>` — [`ContextKind`](#contextkind), [`ContextValue`](#contextvalue)
+- <span id="error-remove"></span>`fn remove(&mut self, kind: ContextKind) -> Option<ContextValue>` — [`ContextKind`](context/index.md), [`ContextValue`](context/index.md)
 
 - <span id="error-use-stderr"></span>`fn use_stderr(&self) -> bool`
 
@@ -158,65 +166,65 @@ See `Command::error` to create an error.
 
 - <span id="error-print"></span>`fn print(&self) -> io::Result<()>`
 
-- <span id="error-render"></span>`fn render(&self) -> StyledStr` — [`StyledStr`](../builder/index.md)
+- <span id="error-render"></span>`fn render(&self) -> StyledStr` — [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-for-app"></span>`fn for_app(kind: ErrorKind, cmd: &Command, styled: StyledStr) -> Self` — [`ErrorKind`](#errorkind), [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-for-app"></span>`fn for_app(kind: ErrorKind, cmd: &Command, styled: StyledStr) -> Self` — [`ErrorKind`](kind/index.md), [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
 - <span id="error-set-message"></span>`fn set_message(self, message: impl Into<Message>) -> Self` — [`Message`](#message)
 
 - <span id="error-set-source"></span>`fn set_source(self, source: Box<dyn error::Error + Send + Sync>) -> Self`
 
-- <span id="error-set-styles"></span>`fn set_styles(self, styles: Styles) -> Self` — [`Styles`](../builder/index.md)
+- <span id="error-set-styles"></span>`fn set_styles(self, styles: Styles) -> Self` — [`Styles`](../builder/styling/index.md)
 
-- <span id="error-set-color"></span>`fn set_color(self, color_when: ColorChoice) -> Self` — [`ColorChoice`](../index.md)
+- <span id="error-set-color"></span>`fn set_color(self, color_when: ColorChoice) -> Self` — [`ColorChoice`](../util/color/index.md)
 
-- <span id="error-set-colored-help"></span>`fn set_colored_help(self, color_help_when: ColorChoice) -> Self` — [`ColorChoice`](../index.md)
+- <span id="error-set-colored-help"></span>`fn set_colored_help(self, color_help_when: ColorChoice) -> Self` — [`ColorChoice`](../util/color/index.md)
 
 - <span id="error-set-help-flag"></span>`fn set_help_flag(self, help_flag: Option<Cow<'static, str>>) -> Self`
 
-- <span id="error-insert-context-unchecked"></span>`fn insert_context_unchecked(self, kind: ContextKind, value: ContextValue) -> Self` — [`ContextKind`](#contextkind), [`ContextValue`](#contextvalue)
+- <span id="error-insert-context-unchecked"></span>`fn insert_context_unchecked(self, kind: ContextKind, value: ContextValue) -> Self` — [`ContextKind`](context/index.md), [`ContextValue`](context/index.md)
 
-- <span id="error-extend-context-unchecked"></span>`fn extend_context_unchecked<const N: usize>(self, context: [(ContextKind, ContextValue); N]) -> Self` — [`ContextKind`](#contextkind), [`ContextValue`](#contextvalue)
+- <span id="error-extend-context-unchecked"></span>`fn extend_context_unchecked<const N: usize>(self, context: [(ContextKind, ContextValue); N]) -> Self` — [`ContextKind`](context/index.md), [`ContextValue`](context/index.md)
 
-- <span id="error-display-help"></span>`fn display_help(cmd: &Command, styled: StyledStr) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-display-help"></span>`fn display_help(cmd: &Command, styled: StyledStr) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-display-help-error"></span>`fn display_help_error(cmd: &Command, styled: StyledStr) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-display-help-error"></span>`fn display_help_error(cmd: &Command, styled: StyledStr) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-display-version"></span>`fn display_version(cmd: &Command, styled: StyledStr) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-display-version"></span>`fn display_version(cmd: &Command, styled: StyledStr) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-argument-conflict"></span>`fn argument_conflict(cmd: &Command, arg: String, others: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-argument-conflict"></span>`fn argument_conflict(cmd: &Command, arg: String, others: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-subcommand-conflict"></span>`fn subcommand_conflict(cmd: &Command, sub: String, others: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-subcommand-conflict"></span>`fn subcommand_conflict(cmd: &Command, sub: String, others: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-empty-value"></span>`fn empty_value(cmd: &Command, good_vals: &[String], arg: String) -> Self` — [`Command`](../index.md)
+- <span id="error-empty-value"></span>`fn empty_value(cmd: &Command, good_vals: &[String], arg: String) -> Self` — [`Command`](../builder/command/index.md)
 
-- <span id="error-no-equals"></span>`fn no_equals(cmd: &Command, arg: String, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-no-equals"></span>`fn no_equals(cmd: &Command, arg: String, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-invalid-value"></span>`fn invalid_value(cmd: &Command, bad_val: String, good_vals: &[String], arg: String) -> Self` — [`Command`](../index.md)
+- <span id="error-invalid-value"></span>`fn invalid_value(cmd: &Command, bad_val: String, good_vals: &[String], arg: String) -> Self` — [`Command`](../builder/command/index.md)
 
-- <span id="error-invalid-subcommand"></span>`fn invalid_subcommand(cmd: &Command, subcmd: String, did_you_mean: Vec<String>, name: String, suggested_trailing_arg: bool, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-invalid-subcommand"></span>`fn invalid_subcommand(cmd: &Command, subcmd: String, did_you_mean: Vec<String>, name: String, suggested_trailing_arg: bool, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-unrecognized-subcommand"></span>`fn unrecognized_subcommand(cmd: &Command, subcmd: String, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-unrecognized-subcommand"></span>`fn unrecognized_subcommand(cmd: &Command, subcmd: String, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-missing-required-argument"></span>`fn missing_required_argument(cmd: &Command, required: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-missing-required-argument"></span>`fn missing_required_argument(cmd: &Command, required: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-missing-subcommand"></span>`fn missing_subcommand(cmd: &Command, parent: String, available: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-missing-subcommand"></span>`fn missing_subcommand(cmd: &Command, parent: String, available: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-invalid-utf8"></span>`fn invalid_utf8(cmd: &Command, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-invalid-utf8"></span>`fn invalid_utf8(cmd: &Command, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-too-many-values"></span>`fn too_many_values(cmd: &Command, val: String, arg: String, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-too-many-values"></span>`fn too_many_values(cmd: &Command, val: String, arg: String, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-too-few-values"></span>`fn too_few_values(cmd: &Command, arg: String, min_vals: usize, curr_vals: usize, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-too-few-values"></span>`fn too_few_values(cmd: &Command, arg: String, min_vals: usize, curr_vals: usize, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
 - <span id="error-value-validation"></span>`fn value_validation(arg: String, val: String, err: Box<dyn error::Error + Send + Sync>) -> Self`
 
-- <span id="error-wrong-number-of-values"></span>`fn wrong_number_of_values(cmd: &Command, arg: String, num_vals: usize, curr_vals: usize, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-wrong-number-of-values"></span>`fn wrong_number_of_values(cmd: &Command, arg: String, num_vals: usize, curr_vals: usize, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-unknown-argument"></span>`fn unknown_argument(cmd: &Command, arg: String, did_you_mean: Option<(String, Option<String>)>, suggested_trailing_arg: bool, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-unknown-argument"></span>`fn unknown_argument(cmd: &Command, arg: String, did_you_mean: Option<(String, Option<String>)>, suggested_trailing_arg: bool, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-unnecessary-double-dash"></span>`fn unnecessary_double_dash(cmd: &Command, arg: String, usage: Option<StyledStr>) -> Self` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="error-unnecessary-double-dash"></span>`fn unnecessary_double_dash(cmd: &Command, arg: String, usage: Option<StyledStr>) -> Self` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="error-formatted"></span>`fn formatted(&self) -> Cow<'_, StyledStr>` — [`StyledStr`](../builder/index.md)
+- <span id="error-formatted"></span>`fn formatted(&self) -> Cow<'_, StyledStr>` — [`StyledStr`](../builder/styled_str/index.md)
 
 #### Trait Implementations
 
@@ -252,6 +260,8 @@ struct ErrorInner {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:66-77`](../../../.source_1765210505/clap_builder-4.5.53/src/error/mod.rs#L66-L77)*
+
 #### Trait Implementations
 
 ##### `impl Debug for ErrorInner`
@@ -263,6 +273,8 @@ struct ErrorInner {
 ```rust
 struct Backtrace;
 ```
+
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:927`](../../../.source_1765210505/clap_builder-4.5.53/src/error/mod.rs#L927)*
 
 #### Implementations
 
@@ -278,7 +290,7 @@ struct Backtrace;
 
 - <span id="backtrace-fmt"></span>`fn fmt(&self, _: &mut Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for Backtrace`
+##### `impl ToString for Backtrace`
 
 - <span id="backtrace-to-string"></span>`fn to_string(&self) -> String`
 
@@ -307,6 +319,8 @@ enum ErrorKind {
     Format,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/error/kind.rs:4-330`](../../../.source_1765210505/clap_builder-4.5.53/src/error/kind.rs#L4-L330)*
 
 Command line argument parser kind of error
 
@@ -348,7 +362,7 @@ Command line argument parser kind of error
 
 - **`InvalidSubcommand`**
 
-  Occurs when the user provides an unrecognized [`Subcommand`](../index.md) which meets the threshold for
+  Occurs when the user provides an unrecognized [`Subcommand`](../derive/index.md) which meets the threshold for
   being similar enough to an existing subcommand.
   If it doesn't meet the threshold, or the 'suggestions' feature is disabled,
   the more general [`UnknownArgument`](../index.md) error is returned.
@@ -596,7 +610,7 @@ Command line argument parser kind of error
 
 - **`DisplayHelpOnMissingArgumentOrSubcommand`**
 
-  Occurs when either an argument or a [`Subcommand`](../index.md) is required, as defined by
+  Occurs when either an argument or a [`Subcommand`](../derive/index.md) is required, as defined by
   `Command::arg_required_else_help` , but the user did not provide
   one.
   
@@ -656,7 +670,7 @@ Command line argument parser kind of error
 
 ##### `impl Clone for ErrorKind`
 
-- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](kind/index.md)
 
 ##### `impl Copy for ErrorKind`
 
@@ -676,11 +690,11 @@ Command line argument parser kind of error
 
 ##### `impl PartialEq for ErrorKind`
 
-- <span id="errorkind-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-eq"></span>`fn eq(&self, other: &ErrorKind) -> bool` — [`ErrorKind`](kind/index.md)
 
 ##### `impl StructuralPartialEq for ErrorKind`
 
-##### `impl<T> ToString for ErrorKind`
+##### `impl ToString for ErrorKind`
 
 - <span id="errorkind-to-string"></span>`fn to_string(&self) -> String`
 
@@ -707,6 +721,8 @@ enum ContextKind {
     Custom,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:5-40`](../../../.source_1765210505/clap_builder-4.5.53/src/error/context.rs#L5-L40)*
 
 Semantics for a piece of error information
 
@@ -788,7 +804,7 @@ Semantics for a piece of error information
 
 ##### `impl Clone for ContextKind`
 
-- <span id="contextkind-clone"></span>`fn clone(&self) -> ContextKind` — [`ContextKind`](#contextkind)
+- <span id="contextkind-clone"></span>`fn clone(&self) -> ContextKind` — [`ContextKind`](context/index.md)
 
 ##### `impl Copy for ContextKind`
 
@@ -808,11 +824,11 @@ Semantics for a piece of error information
 
 ##### `impl PartialEq for ContextKind`
 
-- <span id="contextkind-eq"></span>`fn eq(&self, other: &ContextKind) -> bool` — [`ContextKind`](#contextkind)
+- <span id="contextkind-eq"></span>`fn eq(&self, other: &ContextKind) -> bool` — [`ContextKind`](context/index.md)
 
 ##### `impl StructuralPartialEq for ContextKind`
 
-##### `impl<T> ToString for ContextKind`
+##### `impl ToString for ContextKind`
 
 - <span id="contextkind-to-string"></span>`fn to_string(&self) -> String`
 
@@ -830,13 +846,15 @@ enum ContextValue {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:77-92`](../../../.source_1765210505/clap_builder-4.5.53/src/error/context.rs#L77-L92)*
+
 A piece of error information
 
 #### Variants
 
 - **`None`**
 
-  [`ContextKind`](#contextkind) is self-sufficient, no additional information needed
+  [`ContextKind`](context/index.md) is self-sufficient, no additional information needed
 
 - **`Bool`**
 
@@ -866,7 +884,7 @@ A piece of error information
 
 ##### `impl Clone for ContextValue`
 
-- <span id="contextvalue-clone"></span>`fn clone(&self) -> ContextValue` — [`ContextValue`](#contextvalue)
+- <span id="contextvalue-clone"></span>`fn clone(&self) -> ContextValue` — [`ContextValue`](context/index.md)
 
 ##### `impl Debug for ContextValue`
 
@@ -880,11 +898,11 @@ A piece of error information
 
 ##### `impl PartialEq for ContextValue`
 
-- <span id="contextvalue-eq"></span>`fn eq(&self, other: &ContextValue) -> bool` — [`ContextValue`](#contextvalue)
+- <span id="contextvalue-eq"></span>`fn eq(&self, other: &ContextValue) -> bool` — [`ContextValue`](context/index.md)
 
 ##### `impl StructuralPartialEq for ContextValue`
 
-##### `impl<T> ToString for ContextValue`
+##### `impl ToString for ContextValue`
 
 - <span id="contextvalue-to-string"></span>`fn to_string(&self) -> String`
 
@@ -897,11 +915,13 @@ enum Message {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:857-860`](../../../.source_1765210505/clap_builder-4.5.53/src/error/mod.rs#L857-L860)*
+
 #### Implementations
 
-- <span id="message-format"></span>`fn format(&mut self, cmd: &Command, usage: Option<StyledStr>)` — [`Command`](../index.md), [`StyledStr`](../builder/index.md)
+- <span id="message-format"></span>`fn format(&mut self, cmd: &Command, usage: Option<StyledStr>)` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
-- <span id="message-formatted"></span>`fn formatted(&self, styles: &Styles) -> Cow<'_, StyledStr>` — [`Styles`](../builder/index.md), [`StyledStr`](../builder/index.md)
+- <span id="message-formatted"></span>`fn formatted(&self, styles: &Styles) -> Cow<'_, StyledStr>` — [`Styles`](../builder/styling/index.md), [`StyledStr`](../builder/styled_str/index.md)
 
 #### Trait Implementations
 
@@ -921,6 +941,8 @@ enum Message {
 trait ErrorFormatter: Sized { ... }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/format.rs:20-23`](../../../.source_1765210505/clap_builder-4.5.53/src/error/format.rs#L20-L23)*
+
 Defines how to format an error for displaying to the user
 
 #### Required Methods
@@ -931,8 +953,8 @@ Defines how to format an error for displaying to the user
 
 #### Implementors
 
-- [`DefaultFormatter`](#defaultformatter)
-- [`KindFormatter`](#kindformatter)
+- [`KindFormatter`](format/index.md)
+- [`RichFormatter`](format/index.md)
 
 ## Type Aliases
 
@@ -941,6 +963,8 @@ Defines how to format an error for displaying to the user
 ```rust
 type Result<T, E> = std::result::Result<T, E>;
 ```
+
+*Defined in [`clap_builder-4.5.53/src/error/mod.rs:53`](../../../.source_1765210505/clap_builder-4.5.53/src/error/mod.rs#L53)*
 
 Short hand for [`Result`](#result) type
 

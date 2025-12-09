@@ -23,6 +23,8 @@ struct ReduceConsumer<'r, R, ID> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/reduce.rs:18-21`](../../../../.source_1765210505/rayon-1.11.0/src/iter/reduce.rs#L18-L21)*
+
 #### Trait Implementations
 
 ##### `impl<'r, R, ID> Clone for ReduceConsumer<'r, R, ID>`
@@ -31,11 +33,11 @@ struct ReduceConsumer<'r, R, ID> {
 
 ##### `impl<'r, R, ID, T> Consumer for ReduceConsumer<'r, R, ID>`
 
-- <span id="reduceconsumer-folder"></span>`type Folder = ReduceFolder<'r, R, T>`
+- <span id="reduceconsumer-type-folder"></span>`type Folder = ReduceFolder<'r, R, T>`
 
-- <span id="reduceconsumer-reducer"></span>`type Reducer = ReduceConsumer<'r, R, ID>`
+- <span id="reduceconsumer-type-reducer"></span>`type Reducer = ReduceConsumer<'r, R, ID>`
 
-- <span id="reduceconsumer-result"></span>`type Result = T`
+- <span id="reduceconsumer-type-result"></span>`type Result = T`
 
 - <span id="reduceconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
@@ -49,9 +51,9 @@ struct ReduceConsumer<'r, R, ID> {
 
 ##### `impl<T> Pointable for ReduceConsumer<'r, R, ID>`
 
-- <span id="reduceconsumer-align"></span>`const ALIGN: usize`
+- <span id="reduceconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="reduceconsumer-init"></span>`type Init = T`
+- <span id="reduceconsumer-type-init"></span>`type Init = T`
 
 - <span id="reduceconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -80,11 +82,13 @@ struct ReduceFolder<'r, R, T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/reduce.rs:81-84`](../../../../.source_1765210505/rayon-1.11.0/src/iter/reduce.rs#L81-L84)*
+
 #### Trait Implementations
 
 ##### `impl<'r, R, T> Folder for ReduceFolder<'r, R, T>`
 
-- <span id="reducefolder-result"></span>`type Result = T`
+- <span id="reducefolder-type-result"></span>`type Result = T`
 
 - <span id="reducefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -98,9 +102,9 @@ struct ReduceFolder<'r, R, T> {
 
 ##### `impl<T> Pointable for ReduceFolder<'r, R, T>`
 
-- <span id="reducefolder-align"></span>`const ALIGN: usize`
+- <span id="reducefolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="reducefolder-init"></span>`type Init = T`
+- <span id="reducefolder-type-init"></span>`type Init = T`
 
 - <span id="reducefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -122,4 +126,6 @@ where
     ID: Fn() -> T + Sync,
     T: Send
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/reduce.rs:4-16`](../../../../.source_1765210505/rayon-1.11.0/src/iter/reduce.rs#L4-L16)*
 

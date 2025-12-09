@@ -13,20 +13,20 @@ first looks into its local *worker* queue, and then into the *injector* and *ste
 
 # Queues
 
-[`Injector`](#injector) is a FIFO queue, where tasks are pushed and stolen from opposite ends. It is
+[`Injector`](deque/index.md) is a FIFO queue, where tasks are pushed and stolen from opposite ends. It is
 shared among threads and is usually the entry point for new tasks.
 
-[`Worker`](#worker) has two constructors:
+[`Worker`](deque/index.md) has two constructors:
 
 * `new_fifo()` - Creates a FIFO queue, in which tasks are pushed and popped from opposite
   ends.
 * `new_lifo()` - Creates a LIFO queue, in which tasks are pushed and popped from the same
   end.
 
-Each [`Worker`](#worker) is owned by a single thread and supports only push and pop operations.
+Each [`Worker`](deque/index.md) is owned by a single thread and supports only push and pop operations.
 
-Method `stealer()` creates a [`Stealer`](#stealer) that may be shared among threads and can only steal
-tasks from its [`Worker`](#worker). Tasks are stolen from the end opposite to where they get pushed.
+Method `stealer()` creates a [`Stealer`](deque/index.md) that may be shared among threads and can only steal
+tasks from its [`Worker`](deque/index.md). Tasks are stolen from the end opposite to where they get pushed.
 
 # Stealing
 
@@ -109,6 +109,8 @@ struct Injector<T> {
 }
 ```
 
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:1315-1324`](../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L1315-L1324)*
+
 An injector queue.
 
 This is a FIFO queue that can be shared among multiple threads. Task schedulers typically have
@@ -144,19 +146,19 @@ assert_eq!(q.steal(), Steal::Empty);
 
 #### Implementations
 
-- <span id="injector-new"></span>`fn new() -> Injector<T>` — [`Injector`](#injector)
+- <span id="injector-new"></span>`fn new() -> Injector<T>` — [`Injector`](deque/index.md)
 
 - <span id="injector-push"></span>`fn push(&self, task: T)`
 
-- <span id="injector-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](#steal)
+- <span id="injector-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](deque/index.md)
 
-- <span id="injector-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="injector-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- <span id="injector-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="injector-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- <span id="injector-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="injector-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- <span id="injector-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="injector-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
 - <span id="injector-is-empty"></span>`fn is_empty(&self) -> bool`
 
@@ -178,9 +180,9 @@ assert_eq!(q.steal(), Steal::Empty);
 
 ##### `impl<T> Pointable for Injector<T>`
 
-- <span id="injector-align"></span>`const ALIGN: usize`
+- <span id="injector-const-align"></span>`const ALIGN: usize`
 
-- <span id="injector-init"></span>`type Init = T`
+- <span id="injector-type-init"></span>`type Init = T`
 
 - <span id="injector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -202,6 +204,8 @@ struct Stealer<T> {
     flavor: Flavor,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:566-572`](../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L566-L572)*
 
 A stealer handle of a worker queue.
 
@@ -240,21 +244,21 @@ assert_eq!(s.steal(), Steal::Empty);
 
 - <span id="stealer-len"></span>`fn len(&self) -> usize`
 
-- <span id="stealer-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](#steal)
+- <span id="stealer-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](deque/index.md)
 
-- <span id="stealer-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="stealer-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- <span id="stealer-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="stealer-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- <span id="stealer-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="stealer-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- <span id="stealer-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="stealer-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Stealer<T>`
 
-- <span id="stealer-clone"></span>`fn clone(&self) -> Stealer<T>` — [`Stealer`](#stealer)
+- <span id="stealer-clone"></span>`fn clone(&self) -> Stealer<T>` — [`Stealer`](deque/index.md)
 
 ##### `impl<T> Debug for Stealer<T>`
 
@@ -262,9 +266,9 @@ assert_eq!(s.steal(), Steal::Empty);
 
 ##### `impl<T> Pointable for Stealer<T>`
 
-- <span id="stealer-align"></span>`const ALIGN: usize`
+- <span id="stealer-const-align"></span>`const ALIGN: usize`
 
-- <span id="stealer-init"></span>`type Init = T`
+- <span id="stealer-type-init"></span>`type Init = T`
 
 - <span id="stealer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -288,6 +292,8 @@ struct Worker<T> {
     _marker: std::marker::PhantomData<*mut ()>,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:193-205`](../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L193-L205)*
 
 A worker queue.
 
@@ -350,11 +356,11 @@ assert_eq!(w.pop(), Some(2));
 
 #### Implementations
 
-- <span id="worker-new-fifo"></span>`fn new_fifo() -> Worker<T>` — [`Worker`](#worker)
+- <span id="worker-new-fifo"></span>`fn new_fifo() -> Worker<T>` — [`Worker`](deque/index.md)
 
-- <span id="worker-new-lifo"></span>`fn new_lifo() -> Worker<T>` — [`Worker`](#worker)
+- <span id="worker-new-lifo"></span>`fn new_lifo() -> Worker<T>` — [`Worker`](deque/index.md)
 
-- <span id="worker-stealer"></span>`fn stealer(&self) -> Stealer<T>` — [`Stealer`](#stealer)
+- <span id="worker-stealer"></span>`fn stealer(&self) -> Stealer<T>` — [`Stealer`](deque/index.md)
 
 - <span id="worker-resize"></span>`unsafe fn resize(&self, new_cap: usize)`
 
@@ -376,9 +382,9 @@ assert_eq!(w.pop(), Some(2));
 
 ##### `impl<T> Pointable for Worker<T>`
 
-- <span id="worker-align"></span>`const ALIGN: usize`
+- <span id="worker-const-align"></span>`const ALIGN: usize`
 
-- <span id="worker-init"></span>`type Init = T`
+- <span id="worker-type-init"></span>`type Init = T`
 
 - <span id="worker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -401,6 +407,8 @@ enum Steal<T> {
     Retry,
 }
 ```
+
+*Defined in [`crossbeam-deque-0.8.6/src/deque.rs:2055-2064`](../../.source_1765210505/crossbeam-deque-0.8.6/src/deque.rs#L2055-L2064)*
 
 Possible outcomes of a steal operation.
 
@@ -445,13 +453,13 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 - <span id="steal-success"></span>`fn success(self) -> Option<T>`
 
-- <span id="steal-or-else"></span>`fn or_else<F>(self, f: F) -> Steal<T>` — [`Steal`](#steal)
+- <span id="steal-or-else"></span>`fn or_else<F>(self, f: F) -> Steal<T>` — [`Steal`](deque/index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for Steal<T>`
 
-- <span id="steal-clone"></span>`fn clone(&self) -> Steal<T>` — [`Steal`](#steal)
+- <span id="steal-clone"></span>`fn clone(&self) -> Steal<T>` — [`Steal`](deque/index.md)
 
 ##### `impl<T: marker::Copy> Copy for Steal<T>`
 
@@ -463,17 +471,17 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 ##### `impl<T> FromIterator for Steal<T>`
 
-- <span id="steal-from-iter"></span>`fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](#steal)
+- <span id="steal-from-iter"></span>`fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](deque/index.md)
 
 ##### `impl<T: cmp::PartialEq> PartialEq for Steal<T>`
 
-- <span id="steal-eq"></span>`fn eq(&self, other: &Steal<T>) -> bool` — [`Steal`](#steal)
+- <span id="steal-eq"></span>`fn eq(&self, other: &Steal<T>) -> bool` — [`Steal`](deque/index.md)
 
 ##### `impl<T> Pointable for Steal<T>`
 
-- <span id="steal-align"></span>`const ALIGN: usize`
+- <span id="steal-const-align"></span>`const ALIGN: usize`
 
-- <span id="steal-init"></span>`type Init = T`
+- <span id="steal-type-init"></span>`type Init = T`
 
 - <span id="steal-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

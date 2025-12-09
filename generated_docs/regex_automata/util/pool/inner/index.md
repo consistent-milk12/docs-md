@@ -22,6 +22,8 @@
 struct CacheLine<T>(T);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:365`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L365)*
+
 This puts each stack in the pool below into its own cache line. This is
 an absolutely critical optimization that tends to have the most impact
 in high contention workloads. Without forcing each mutex protected
@@ -46,6 +48,8 @@ struct Pool<T, F> {
     owner_val: core::cell::UnsafeCell<Option<T>>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:374-400`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L374-L400)*
 
 A thread safe pool utilizing std-only features.
 
@@ -116,6 +120,8 @@ struct PoolGuard<'a, T: Send, F: Fn() -> T> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:660-674`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L660-L674)*
+
 A guard that is returned when a caller requests a value from the pool.
 
 #### Fields
@@ -162,10 +168,11 @@ A guard that is returned when a caller requests a value from the pool.
 ## Constants
 
 ### `MAX_POOL_STACKS`
-
 ```rust
 const MAX_POOL_STACKS: usize = 8usize;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:331`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L331)*
 
 The number of stacks we use inside of the pool. These are only used for
 non-owners. That is, these represent the "slow" path.
@@ -225,10 +232,11 @@ See this issue for more context and discussion:
 https://github.com/rust-lang/regex/issues/934
 
 ### `THREAD_ID`
-
 ```rust
 const THREAD_ID: thread::LocalKey<usize>;
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/pool.rs:333-354`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/pool.rs#L333-L354)*
 
 A thread local used to assign an ID to a thread.
 

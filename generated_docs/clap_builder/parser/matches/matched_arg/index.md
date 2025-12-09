@@ -25,13 +25,15 @@ struct MatchedArg {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/matches/matched_arg.rs:16-23`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/matched_arg.rs#L16-L23)*
+
 #### Implementations
 
-- <span id="matchedarg-new-arg"></span>`fn new_arg(arg: &crate::Arg) -> Self` — [`Arg`](../../../index.md)
+- <span id="matchedarg-new-arg"></span>`fn new_arg(arg: &crate::Arg) -> Self` — [`Arg`](../../../builder/arg/index.md)
 
 - <span id="matchedarg-new-group"></span>`fn new_group() -> Self`
 
-- <span id="matchedarg-new-external"></span>`fn new_external(cmd: &crate::Command) -> Self` — [`Command`](../../../index.md)
+- <span id="matchedarg-new-external"></span>`fn new_external(cmd: &crate::Command) -> Self` — [`Command`](../../../builder/command/index.md)
 
 - <span id="matchedarg-indices"></span>`fn indices(&self) -> Cloned<Iter<'_, usize>>`
 
@@ -61,11 +63,11 @@ struct MatchedArg {
 
 - <span id="matchedarg-num-vals-last-group"></span>`fn num_vals_last_group(&self) -> usize`
 
-- <span id="matchedarg-check-explicit"></span>`fn check_explicit(&self, predicate: &ArgPredicate) -> bool` — [`ArgPredicate`](../../../builder/index.md)
+- <span id="matchedarg-check-explicit"></span>`fn check_explicit(&self, predicate: &ArgPredicate) -> bool` — [`ArgPredicate`](../../../builder/arg_predicate/index.md)
 
-- <span id="matchedarg-source"></span>`fn source(&self) -> Option<ValueSource>` — [`ValueSource`](../../index.md)
+- <span id="matchedarg-source"></span>`fn source(&self) -> Option<ValueSource>` — [`ValueSource`](../value_source/index.md)
 
-- <span id="matchedarg-set-source"></span>`fn set_source(&mut self, source: ValueSource)` — [`ValueSource`](../../index.md)
+- <span id="matchedarg-set-source"></span>`fn set_source(&mut self, source: ValueSource)` — [`ValueSource`](../value_source/index.md)
 
 - <span id="matchedarg-type-id"></span>`fn type_id(&self) -> Option<AnyValueId>` — [`AnyValueId`](../../../util/any_value/index.md)
 

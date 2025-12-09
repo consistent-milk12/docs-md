@@ -25,6 +25,8 @@ where
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:5-10`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/ptr.rs#L5-L10)*
+
 A raw pointer that owns its pointee
 
 #### Implementations
@@ -64,6 +66,8 @@ where
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:64-70`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/ptr.rs#L64-L70)*
+
 A raw pointer that represents a shared borrow of its pointee
 
 #### Implementations
@@ -101,11 +105,19 @@ where
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:127-133`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/ptr.rs#L127-L133)*
+
 A raw pointer that represents a unique borrow of its pointee
 
 #### Implementations
 
-- <span id="mut-read"></span>`unsafe fn read(self) -> T`
+- <span id="mut-cast"></span>`fn cast<U: CastTo>(self) -> Mut<'a, <U as >::Target>` — [`Mut`](#mut), [`CastTo`](#castto)
+
+- <span id="mut-by-ref"></span>`const fn by_ref(self) -> Ref<'a, T>` — [`Ref`](#ref)
+
+- <span id="mut-extend"></span>`fn extend<'b>(self) -> Mut<'b, T>` — [`Mut`](#mut)
+
+- <span id="mut-deref-mut"></span>`unsafe fn deref_mut(self) -> &'a mut T`
 
 #### Trait Implementations
 
@@ -124,6 +136,8 @@ A raw pointer that represents a unique borrow of its pointee
 ```rust
 trait CastTo { ... }
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/ptr.rs:182-184`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/ptr.rs#L182-L184)*
 
 #### Associated Types
 

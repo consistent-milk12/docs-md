@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`WhileSome`](#whilesome) | struct | `WhileSome` is an iterator that yields the `Some` elements of an iterator |
+| [`WhileSome`](#whilesome) | struct | `WhileSome` is an iterator that yields the `Some` elements of an iterator, halting as soon as any `None` is produced. |
 | [`WhileSomeConsumer`](#whilesomeconsumer) | struct |  |
 | [`WhileSomeFolder`](#whilesomefolder) | struct |  |
 
@@ -22,10 +22,12 @@ struct WhileSome<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/while_some.rs:13-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/while_some.rs#L13-L15)*
+
 `WhileSome` is an iterator that yields the `Some` elements of an iterator,
 halting as soon as any `None` is produced.
 
-This struct is created by the `while_some()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `while_some()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -36,7 +38,7 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](../.
 
 ##### `impl<I: clone::Clone> Clone for WhileSome<I>`
 
-- <span id="whilesome-clone"></span>`fn clone(&self) -> WhileSome<I>` — [`WhileSome`](../index.md)
+- <span id="whilesome-clone"></span>`fn clone(&self) -> WhileSome<I>` — [`WhileSome`](#whilesome)
 
 ##### `impl<I: fmt::Debug> Debug for WhileSome<I>`
 
@@ -46,23 +48,23 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](../.
 
 ##### `impl<T> IntoParallelIterator for WhileSome<I>`
 
-- <span id="whilesome-iter"></span>`type Iter = T`
+- <span id="whilesome-type-iter"></span>`type Iter = T`
 
-- <span id="whilesome-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="whilesome-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="whilesome-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, T> ParallelIterator for WhileSome<I>`
 
-- <span id="whilesome-item"></span>`type Item = T`
+- <span id="whilesome-type-item"></span>`type Item = T`
 
 - <span id="whilesome-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for WhileSome<I>`
 
-- <span id="whilesome-align"></span>`const ALIGN: usize`
+- <span id="whilesome-const-align"></span>`const ALIGN: usize`
 
-- <span id="whilesome-init"></span>`type Init = T`
+- <span id="whilesome-type-init"></span>`type Init = T`
 
 - <span id="whilesome-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -81,15 +83,17 @@ struct WhileSomeConsumer<'f, C> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/while_some.rs:47-50`](../../../../.source_1765210505/rayon-1.11.0/src/iter/while_some.rs#L47-L50)*
+
 #### Trait Implementations
 
 ##### `impl<'f, T, C> Consumer for WhileSomeConsumer<'f, C>`
 
-- <span id="whilesomeconsumer-folder"></span>`type Folder = WhileSomeFolder<'f, <C as Consumer>::Folder>`
+- <span id="whilesomeconsumer-type-folder"></span>`type Folder = WhileSomeFolder<'f, <C as Consumer>::Folder>`
 
-- <span id="whilesomeconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="whilesomeconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="whilesomeconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="whilesomeconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="whilesomeconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -101,9 +105,9 @@ struct WhileSomeConsumer<'f, C> {
 
 ##### `impl<T> Pointable for WhileSomeConsumer<'f, C>`
 
-- <span id="whilesomeconsumer-align"></span>`const ALIGN: usize`
+- <span id="whilesomeconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="whilesomeconsumer-init"></span>`type Init = T`
+- <span id="whilesomeconsumer-type-init"></span>`type Init = T`
 
 - <span id="whilesomeconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -128,11 +132,13 @@ struct WhileSomeFolder<'f, C> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/while_some.rs:102-105`](../../../../.source_1765210505/rayon-1.11.0/src/iter/while_some.rs#L102-L105)*
+
 #### Trait Implementations
 
 ##### `impl<'f, T, C> Folder for WhileSomeFolder<'f, C>`
 
-- <span id="whilesomefolder-result"></span>`type Result = <C as Folder>::Result`
+- <span id="whilesomefolder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="whilesomefolder-consume"></span>`fn consume(self, item: Option<T>) -> Self`
 
@@ -146,9 +152,9 @@ struct WhileSomeFolder<'f, C> {
 
 ##### `impl<T> Pointable for WhileSomeFolder<'f, C>`
 
-- <span id="whilesomefolder-align"></span>`const ALIGN: usize`
+- <span id="whilesomefolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="whilesomefolder-init"></span>`type Init = T`
+- <span id="whilesomefolder-type-init"></span>`type Init = T`
 
 - <span id="whilesomefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -25,6 +25,8 @@ struct MietteDiagnostic {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/miette_diagnostic.rs:14-39`](../../../.source_1765210505/miette-7.6.0/src/miette_diagnostic.rs#L14-L39)*
+
 Diagnostic that can be created at runtime.
 
 #### Fields
@@ -90,7 +92,7 @@ Diagnostic that can be created at runtime.
 
 - <span id="miettediagnostic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for MietteDiagnostic`
+##### `impl Diag for MietteDiagnostic`
 
 - <span id="miettediagnostic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
 
@@ -114,7 +116,7 @@ Diagnostic that can be created at runtime.
 
 ##### `impl Error for MietteDiagnostic`
 
-##### `impl<D> OwoColorize for MietteDiagnostic`
+##### `impl OwoColorize for MietteDiagnostic`
 
 ##### `impl PartialEq for MietteDiagnostic`
 
@@ -122,9 +124,9 @@ Diagnostic that can be created at runtime.
 
 ##### `impl StructuralPartialEq for MietteDiagnostic`
 
-##### `impl<T> ToString for MietteDiagnostic`
+##### `impl ToString for MietteDiagnostic`
 
 - <span id="miettediagnostic-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for MietteDiagnostic`
+##### `impl TraitKind for MietteDiagnostic`
 

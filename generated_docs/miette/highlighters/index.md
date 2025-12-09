@@ -26,7 +26,7 @@ Currently supported syntax highlighters and their feature flags:
 | [`BlankHighlighter`](#blankhighlighter) | struct | The default syntax highlighter. |
 | [`BlankHighlighterState`](#blankhighlighterstate) | struct | The default highlighter state. |
 | [`Highlighter`](#highlighter) | trait | A syntax highlighter for highlighting miette [`SourceCode`](crate::SourceCode) snippets. |
-| [`HighlighterState`](#highlighterstate) | trait | A stateful highlighter that incrementally highlights lines of a particular |
+| [`HighlighterState`](#highlighterstate) | trait | A stateful highlighter that incrementally highlights lines of a particular source code. |
 
 ## Modules
 
@@ -39,6 +39,8 @@ Currently supported syntax highlighters and their feature flags:
 ```rust
 struct MietteHighlighter(std::sync::Arc<dyn Highlighter + Send + Sync>);
 ```
+
+*Defined in [`miette-7.6.0/src/highlighters/mod.rs:67`](../../../.source_1765210505/miette-7.6.0/src/highlighters/mod.rs#L67)*
 
 Arcified trait object for Highlighter. Used internally by [`GraphicalReportHandler`](../handlers/index.md)
 
@@ -64,21 +66,23 @@ Wrapping the trait object in this way allows us to implement `Debug` and `Clone`
 
 ##### `impl Deref for MietteHighlighter`
 
-- <span id="miettehighlighter-target"></span>`type Target = dyn Highlighter + Send + Sync`
+- <span id="miettehighlighter-type-target"></span>`type Target = dyn Highlighter + Send + Sync`
 
 - <span id="miettehighlighter-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
-##### `impl<D> OwoColorize for MietteHighlighter`
+##### `impl OwoColorize for MietteHighlighter`
 
-##### `impl<P, T> Receiver for MietteHighlighter`
+##### `impl Receiver for MietteHighlighter`
 
-- <span id="miettehighlighter-target"></span>`type Target = T`
+- <span id="miettehighlighter-type-target"></span>`type Target = T`
 
 ### `BlankHighlighter`
 
 ```rust
 struct BlankHighlighter;
 ```
+
+*Defined in [`miette-7.6.0/src/highlighters/blank.rs:10`](../../../.source_1765210505/miette-7.6.0/src/highlighters/blank.rs#L10)*
 
 The default syntax highlighter. It applies `Style::default()` to input text.
 This is used by default when no syntax highlighting features are enabled.
@@ -101,13 +105,15 @@ This is used by default when no syntax highlighting features are enabled.
 
 - <span id="blankhighlighter-start-highlighter-state"></span>`fn start_highlighter_state<'h>(self: &'h Self, _source: &dyn SpanContents<'_>) -> Box<dyn super::HighlighterState>` — [`SpanContents`](../index.md), [`HighlighterState`](#highlighterstate)
 
-##### `impl<D> OwoColorize for BlankHighlighter`
+##### `impl OwoColorize for BlankHighlighter`
 
 ### `BlankHighlighterState`
 
 ```rust
 struct BlankHighlighterState;
 ```
+
+*Defined in [`miette-7.6.0/src/highlighters/blank.rs:30`](../../../.source_1765210505/miette-7.6.0/src/highlighters/blank.rs#L30)*
 
 The default highlighter state. It applies `Style::default()` to input text.
 This is used by default when no syntax highlighting features are enabled.
@@ -126,7 +132,7 @@ This is used by default when no syntax highlighting features are enabled.
 
 - <span id="blankhighlighterstate-highlight-line"></span>`fn highlight_line<'s>(&mut self, line: &'s str) -> Vec<owo_colors::Styled<&'s str>>`
 
-##### `impl<D> OwoColorize for BlankHighlighterState`
+##### `impl OwoColorize for BlankHighlighterState`
 
 ## Traits
 
@@ -135,6 +141,8 @@ This is used by default when no syntax highlighting features are enabled.
 ```rust
 trait Highlighter { ... }
 ```
+
+*Defined in [`miette-7.6.0/src/highlighters/mod.rs:28-44`](../../../.source_1765210505/miette-7.6.0/src/highlighters/mod.rs#L28-L44)*
 
 A syntax highlighter for highlighting miette [`SourceCode`](crate::SourceCode) snippets.
 
@@ -153,6 +161,8 @@ A syntax highlighter for highlighting miette [`SourceCode`](crate::SourceCode) s
 ```rust
 trait HighlighterState { ... }
 ```
+
+*Defined in [`miette-7.6.0/src/highlighters/mod.rs:56-60`](../../../.source_1765210505/miette-7.6.0/src/highlighters/mod.rs#L56-L60)*
 
 A stateful highlighter that incrementally highlights lines of a particular
 source code.

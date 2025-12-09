@@ -23,9 +23,13 @@ struct Colorizer {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/output/fmt.rs:11-16`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/fmt.rs#L11-L16)*
+
 #### Implementations
 
-- <span id="colorizer-print"></span>`fn print(&self) -> std::io::Result<()>`
+- <span id="colorizer-new"></span>`fn new(stream: Stream, color_when: ColorChoice) -> Self` — [`Stream`](#stream), [`ColorChoice`](../../util/color/index.md)
+
+- <span id="colorizer-with-content"></span>`fn with_content(self, content: StyledStr) -> Self` — [`StyledStr`](../../builder/styled_str/index.md)
 
 #### Trait Implementations
 
@@ -41,7 +45,7 @@ struct Colorizer {
 
 - <span id="colorizer-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-##### `impl<T> ToString for Colorizer`
+##### `impl ToString for Colorizer`
 
 - <span id="colorizer-to-string"></span>`fn to_string(&self) -> String`
 
@@ -55,6 +59,8 @@ enum Stream {
     Stderr,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/output/fmt.rs:5-8`](../../../../.source_1765210505/clap_builder-4.5.53/src/output/fmt.rs#L5-L8)*
 
 #### Trait Implementations
 

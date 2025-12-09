@@ -16,7 +16,7 @@ Japanese where there are no spaces between words. Breaking a long
 sequence of emojis is another example where line breaks might be
 wanted even if there are no whitespace to be found.
 
-The [`WordSeparator`](../index.md) enum is responsible for determining where
+The [`WordSeparator`](#wordseparator) enum is responsible for determining where
 there words are in a line of text. Please refer to the enum and
 its variants for more information.
 
@@ -41,6 +41,8 @@ enum WordSeparator {
     Custom(fn(&str) -> Box<dyn Iterator<Item = crate::core::Word<'_>>>),
 }
 ```
+
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:42-123`](../../../.source_1765210505/textwrap-0.16.2/src/word_separators.rs#L42-L123)*
 
 Describes where words occur in a line of text.
 
@@ -158,7 +160,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 
 ##### `impl Clone for WordSeparator`
 
-- <span id="wordseparator-clone"></span>`fn clone(&self) -> WordSeparator` — [`WordSeparator`](../index.md)
+- <span id="wordseparator-clone"></span>`fn clone(&self) -> WordSeparator` — [`WordSeparator`](#wordseparator)
 
 ##### `impl Copy for WordSeparator`
 
@@ -178,11 +180,15 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 fn find_words_ascii_space<'a>(line: &'a str) -> Box<dyn Iterator<Item = crate::core::Word<'a>>>
 ```
 
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:191-216`](../../../.source_1765210505/textwrap-0.16.2/src/word_separators.rs#L191-L216)*
+
 ### `strip_ansi_escape_sequences`
 
 ```rust
 fn strip_ansi_escape_sequences(text: &str) -> String
 ```
+
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:220-232`](../../../.source_1765210505/textwrap-0.16.2/src/word_separators.rs#L220-L232)*
 
 ### `find_words_unicode_break_properties`
 
@@ -190,15 +196,18 @@ fn strip_ansi_escape_sequences(text: &str) -> String
 fn find_words_unicode_break_properties<'a>(line: &'a str) -> Box<dyn Iterator<Item = crate::core::Word<'a>>>
 ```
 
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:243-305`](../../../.source_1765210505/textwrap-0.16.2/src/word_separators.rs#L243-L305)*
+
 Find words in line. ANSI escape sequences are ignored in `line`.
 
 ## Constants
 
 ### `SHY`
-
 ```rust
 const SHY: char = '\u{ad}';
 ```
+
+*Defined in [`textwrap-0.16.2/src/word_separators.rs:239`](../../../.source_1765210505/textwrap-0.16.2/src/word_separators.rs#L239)*
 
 Soft hyphen, also knows as a “shy hyphen”. Should show up as ‘-’
 if a line is broken at this point, and otherwise be invisible.

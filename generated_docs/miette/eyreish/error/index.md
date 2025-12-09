@@ -63,9 +63,11 @@ struct ErrorVTable {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:484-497`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L484-L497)*
+
 #### Trait Implementations
 
-##### `impl<D> OwoColorize for ErrorVTable`
+##### `impl OwoColorize for ErrorVTable`
 
 ### `ErrorImpl<E>`
 
@@ -77,15 +79,11 @@ struct ErrorImpl<E> {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:674-680`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L674-L680)*
+
 #### Implementations
 
-- <span id="errorimpl-error"></span>`unsafe fn error<'a>(this: Ref<'a, Self>) -> &'a dyn StdError + Send + Sync` — [`Ref`](../ptr/index.md)
-
-- <span id="errorimpl-diagnostic"></span>`unsafe fn diagnostic<'a>(this: Ref<'a, Self>) -> &'a dyn Diagnostic + Send + Sync` — [`Ref`](../ptr/index.md), [`Diagnostic`](../../index.md)
-
-- <span id="errorimpl-diagnostic-mut"></span>`unsafe fn diagnostic_mut<'a>(this: Mut<'a, Self>) -> &'a mut dyn Diagnostic + Send + Sync` — [`Mut`](../ptr/index.md), [`Diagnostic`](../../index.md)
-
-- <span id="errorimpl-chain"></span>`unsafe fn chain(this: Ref<'_, Self>) -> Chain<'_>` — [`Ref`](../ptr/index.md), [`Chain`](../../chain/index.md)
+- <span id="errorimpl-erase"></span>`fn erase(&self) -> Ref<'_, ErrorImpl<()>>` — [`Ref`](../ptr/index.md), [`ErrorImpl`](#errorimpl)
 
 #### Trait Implementations
 
@@ -111,6 +109,8 @@ struct ContextError<D, E> {
     error: E,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:685-688`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L685-L688)*
 
 #### Trait Implementations
 
@@ -142,7 +142,7 @@ struct ContextError<D, E> {
 
 - <span id="supererrorcontexterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> Error for super::error::ContextError<D, super::Report>`
+##### `impl<D, E> Error for super::error::ContextError<D, E>`
 
 - <span id="supererrorcontexterror-source"></span>`fn source(&self) -> Option<&dyn StdError>`
 
@@ -162,11 +162,15 @@ struct ContextError<D, E> {
 unsafe fn object_drop<E>(e: super::ptr::Own<ErrorImpl<()>>)
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:500-505`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L500-L505)*
+
 ### `object_drop_front`
 
 ```rust
 unsafe fn object_drop_front<E>(e: super::ptr::Own<ErrorImpl<()>>, target: core::any::TypeId)
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:508-515`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L508-L515)*
 
 ### `object_ref`
 
@@ -176,6 +180,8 @@ where
     E: Diagnostic + Send + Sync + 'static
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:518-530`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L518-L530)*
+
 ### `object_ref_stderr`
 
 ```rust
@@ -183,6 +189,8 @@ unsafe fn object_ref_stderr<E>(e: super::ptr::Ref<'_, ErrorImpl<()>>) -> super::
 where
     E: StdError + Send + Sync + 'static
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:533-545`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L533-L545)*
 
 ### `object_boxed`
 
@@ -192,6 +200,8 @@ where
     E: Diagnostic + Send + Sync + 'static
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:548-555`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L548-L555)*
+
 ### `object_boxed_stderr`
 
 ```rust
@@ -200,6 +210,8 @@ where
     E: StdError + Send + Sync + 'static
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:558-567`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L558-L567)*
+
 ### `object_downcast`
 
 ```rust
@@ -207,6 +219,8 @@ unsafe fn object_downcast<E>(e: super::ptr::Ref<'_, ErrorImpl<()>>, target: core
 where
     E: 'static
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:570-588`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L570-L588)*
 
 ### `context_downcast`
 
@@ -217,6 +231,8 @@ where
     E: 'static
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:591-605`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L591-L605)*
+
 ### `context_drop_rest`
 
 ```rust
@@ -226,6 +242,8 @@ where
     E: 'static
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:608-626`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L608-L626)*
+
 ### `context_chain_downcast`
 
 ```rust
@@ -233,6 +251,8 @@ unsafe fn context_chain_downcast<D>(e: super::ptr::Ref<'_, ErrorImpl<()>>, targe
 where
     D: 'static
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:629-644`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L629-L644)*
 
 ### `context_chain_drop_rest`
 
@@ -242,11 +262,15 @@ where
     D: 'static
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:647-670`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L647-L670)*
+
 ### `vtable`
 
 ```rust
 unsafe fn vtable(p: core::ptr::NonNull<ErrorImpl<()>>) -> &'static ErrorVTable
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:693-695`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L693-L695)*
 
 ## Type Aliases
 
@@ -255,4 +279,6 @@ unsafe fn vtable(p: core::ptr::NonNull<ErrorImpl<()>>) -> &'static ErrorVTable
 ```rust
 type ErasedErrorImpl = ErrorImpl<()>;
 ```
+
+*Defined in [`miette-7.6.0/src/eyreish/error.rs:690`](../../../../.source_1765210505/miette-7.6.0/src/eyreish/error.rs#L690)*
 

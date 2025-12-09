@@ -120,8 +120,8 @@ fn main() -> Result<(), Box<dyn Error>> {
 | [`CoffSection`](#coffsection) | struct | A section in a [`CoffFile`]. |
 | [`SymbolTable`](#symboltable) | struct | A table of symbol entries in a COFF or PE file. |
 | [`SymbolIterator`](#symboliterator) | struct | An iterator for symbol entries in a COFF or PE file. |
-| [`CoffSymbolTable`](#coffsymboltable) | struct | A symbol table in a [`CoffFile`](super::CoffFile) |
-| [`CoffSymbolIterator`](#coffsymboliterator) | struct | An iterator for the symbols in a [`CoffFile`](super::CoffFile) |
+| [`CoffSymbolTable`](#coffsymboltable) | struct | A symbol table in a [`CoffFile`](super::CoffFile) or [`PeFile`](crate::read::pe::PeFile). |
+| [`CoffSymbolIterator`](#coffsymboliterator) | struct | An iterator for the symbols in a [`CoffFile`](super::CoffFile) or [`PeFile`](crate::read::pe::PeFile). |
 | [`CoffSymbol`](#coffsymbol) | struct | A symbol in a [`CoffFile`](super::CoffFile) or [`PeFile`](crate::read::pe::PeFile). |
 | [`CoffRelocationIterator`](#coffrelocationiterator) | struct | An iterator for the relocations in a [`CoffSection`](super::CoffSection). |
 | [`CoffComdatIterator`](#coffcomdatiterator) | struct | An iterator for the COMDAT section groups in a [`CoffFile`]. |
@@ -168,6 +168,8 @@ struct CoffCommon<'data, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/file.rs:20-24`](../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L20-L24)*
+
 The common parts of `PeFile` and `CoffFile`.
 
 #### Trait Implementations
@@ -186,6 +188,8 @@ struct CoffFile<'data, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/file.rs:41-46`](../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L41-L46)*
+
 A COFF object file.
 
 This is a file that starts with [`pe::ImageFileHeader`](../../pe/index.md), and corresponds
@@ -199,9 +203,9 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 - <span id="cofffile-coff-header"></span>`fn coff_header(&self) -> &'data Coff`
 
-- <span id="cofffile-coff-section-table"></span>`fn coff_section_table(&self) -> SectionTable<'data>` — [`SectionTable`](../pe/index.md)
+- <span id="cofffile-coff-section-table"></span>`fn coff_section_table(&self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
-- <span id="cofffile-coff-symbol-table"></span>`fn coff_symbol_table(&self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](../pe/index.md)
+- <span id="cofffile-coff-symbol-table"></span>`fn coff_symbol_table(&self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](#symboltable)
 
 #### Trait Implementations
 
@@ -211,25 +215,25 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 ##### `impl<'data, R, Coff> Object for CoffFile<'data, R, Coff>`
 
-- <span id="cofffile-segment"></span>`type Segment = CoffSegment<'data, 'file, R, Coff>`
+- <span id="cofffile-type-segment"></span>`type Segment = CoffSegment<'data, 'file, R, Coff>`
 
-- <span id="cofffile-segmentiterator"></span>`type SegmentIterator = CoffSegmentIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-type-segmentiterator"></span>`type SegmentIterator = CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-section"></span>`type Section = CoffSection<'data, 'file, R, Coff>`
+- <span id="cofffile-type-section"></span>`type Section = CoffSection<'data, 'file, R, Coff>`
 
-- <span id="cofffile-sectioniterator"></span>`type SectionIterator = CoffSectionIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-type-sectioniterator"></span>`type SectionIterator = CoffSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-comdat"></span>`type Comdat = CoffComdat<'data, 'file, R, Coff>`
+- <span id="cofffile-type-comdat"></span>`type Comdat = CoffComdat<'data, 'file, R, Coff>`
 
-- <span id="cofffile-comdatiterator"></span>`type ComdatIterator = CoffComdatIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-type-comdatiterator"></span>`type ComdatIterator = CoffComdatIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R, Coff>`
+- <span id="cofffile-type-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R, Coff>`
 
-- <span id="cofffile-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-type-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
 
-- <span id="cofffile-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R, Coff>`
+- <span id="cofffile-type-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R, Coff>`
 
-- <span id="cofffile-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="cofffile-type-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
 - <span id="cofffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
 
@@ -285,6 +289,8 @@ struct SectionTable<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/section.rs:19-21`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L19-L21)*
+
 The table of section headers in a COFF or PE file.
 
 Returned by `CoffHeader::sections` and
@@ -292,29 +298,37 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- <span id="supersectiontable-pe-file-range-at"></span>`fn pe_file_range_at(&self, va: u32) -> Option<(u32, u32)>`
+- <span id="sectiontable-parse"></span>`fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md)
 
-- <span id="supersectiontable-pe-data-at"></span>`fn pe_data_at<R: ReadRef<'data>>(&self, data: R, va: u32) -> Option<&'data [u8]>`
+- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
 
-- <span id="supersectiontable-pe-data-containing"></span>`fn pe_data_containing<R: ReadRef<'data>>(&self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
+- <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
 
-- <span id="supersectiontable-section-containing"></span>`fn section_containing(&self, va: u32) -> Option<&'data ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
+- <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
+
+- <span id="sectiontable-len"></span>`fn len(&self) -> usize`
+
+- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+
+- <span id="sectiontable-section-by-name"></span>`fn section_by_name<R: ReadRef<'data>>(&self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md), [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+
+- <span id="sectiontable-max-section-file-offset"></span>`fn max_section_file_offset(&self) -> u64`
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for SectionTable<'data>`
+##### `impl Clone for SectionTable<'data>`
 
-- <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data>` — [`SectionTable`](../pe/index.md)
+- <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
-##### `impl<'data> Copy for SectionTable<'data>`
+##### `impl Copy for SectionTable<'data>`
 
-##### `impl<'data> Debug for SectionTable<'data>`
+##### `impl Debug for SectionTable<'data>`
 
 - <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for SectionTable<'data>`
+##### `impl Default for SectionTable<'data>`
 
-- <span id="sectiontable-default"></span>`fn default() -> SectionTable<'data>` — [`SectionTable`](../pe/index.md)
+- <span id="sectiontable-default"></span>`fn default() -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
 ### `CoffSegmentIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -324,6 +338,8 @@ struct CoffSegmentIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
     iter: slice::Iter<'data, pe::ImageSectionHeader>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/section.rs:121-129`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L121-L129)*
 
 An iterator for the loadable sections in a [`CoffFile`](#cofffile).
 
@@ -335,15 +351,15 @@ An iterator for the loadable sections in a [`CoffFile`](#cofffile).
 
 ##### `impl<I> IntoIterator for CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="coffsegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="coffsegmentiterator-intoiter"></span>`type IntoIter = I`
+- <span id="coffsegmentiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="coffsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsegmentiterator-item"></span>`type Item = CoffSegment<'data, 'file, R, Coff>`
+- <span id="coffsegmentiterator-type-item"></span>`type Item = CoffSegment<'data, 'file, R, Coff>`
 
 - <span id="coffsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -355,6 +371,8 @@ struct CoffSegment<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
     section: &'data pe::ImageSectionHeader,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/section.rs:154-162`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L154-L162)*
 
 A loadable section in a [`CoffFile`](#cofffile).
 
@@ -405,6 +423,8 @@ struct CoffSectionIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/section.rs:253-261`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L253-L261)*
+
 An iterator for the sections in a [`CoffFile`](#cofffile).
 
 #### Trait Implementations
@@ -415,15 +435,15 @@ An iterator for the sections in a [`CoffFile`](#cofffile).
 
 ##### `impl<I> IntoIterator for CoffSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="coffsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="coffsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="coffsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="coffsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsectioniterator-item"></span>`type Item = CoffSection<'data, 'file, R, Coff>`
+- <span id="coffsectioniterator-type-item"></span>`type Item = CoffSection<'data, 'file, R, Coff>`
 
 - <span id="coffsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -436,6 +456,8 @@ struct CoffSection<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
     section: &'data pe::ImageSectionHeader,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/section.rs:287-296`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L287-L296)*
 
 A section in a [`CoffFile`](#cofffile).
 
@@ -459,7 +481,7 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> ObjectSection for CoffSection<'data, 'file, R, Coff>`
 
-- <span id="coffsection-relocationiterator"></span>`type RelocationIterator = CoffRelocationIterator<'data, 'file, R, Coff>`
+- <span id="coffsection-type-relocationiterator"></span>`type RelocationIterator = CoffRelocationIterator<'data, 'file, R, Coff>`
 
 - <span id="coffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
@@ -508,6 +530,8 @@ where
     strings: crate::read::util::StringTable<'data, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:24-31`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L24-L31)*
 
 A table of symbol entries in a COFF or PE file.
 
@@ -564,6 +588,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:181-188`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L181-L188)*
+
 An iterator for symbol entries in a COFF or PE file.
 
 Yields the index and symbol structure for each symbol.
@@ -576,15 +602,15 @@ Yields the index and symbol structure for each symbol.
 
 ##### `impl<I> IntoIterator for SymbolIterator<'data, 'table, R, Coff>`
 
-- <span id="symboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="symboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="symboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="symboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'table, R: ReadRef<'data>, Coff: CoffHeader> Iterator for SymbolIterator<'data, 'table, R, Coff>`
 
-- <span id="symboliterator-item"></span>`type Item = (SymbolIndex, &'data <Coff as CoffHeader>::ImageSymbol)`
+- <span id="symboliterator-type-item"></span>`type Item = (SymbolIndex, &'data <Coff as CoffHeader>::ImageSymbol)`
 
 - <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -598,6 +624,8 @@ where
     file: &'file super::CoffCommon<'data, R, Coff>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:210-216`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L210-L216)*
 
 A symbol table in a [`CoffFile`](super::CoffFile)
 or [`PeFile`](crate::read::pe::PeFile).
@@ -616,9 +644,9 @@ or [`PeFile`](crate::read::pe::PeFile).
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> ObjectSymbolTable for CoffSymbolTable<'data, 'file, R, Coff>`
 
-- <span id="coffsymboltable-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R, Coff>`
+- <span id="coffsymboltable-type-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R, Coff>`
 
-- <span id="coffsymboltable-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
+- <span id="coffsymboltable-type-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
 
 - <span id="coffsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
 
@@ -638,6 +666,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:249-256`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L249-L256)*
+
 An iterator for the symbols in a [`CoffFile`](super::CoffFile)
 or [`PeFile`](crate::read::pe::PeFile).
 
@@ -655,15 +685,15 @@ or [`PeFile`](crate::read::pe::PeFile).
 
 ##### `impl<I> IntoIterator for CoffSymbolIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsymboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="coffsymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="coffsymboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="coffsymboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="coffsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSymbolIterator<'data, 'file, R, Coff>`
 
-- <span id="coffsymboliterator-item"></span>`type Item = CoffSymbol<'data, 'file, R, Coff>`
+- <span id="coffsymboliterator-type-item"></span>`type Item = CoffSymbol<'data, 'file, R, Coff>`
 
 - <span id="coffsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -679,6 +709,8 @@ where
     symbol: &'data <Coff as >::ImageSymbol,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:313-321`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L313-L321)*
 
 A symbol in a [`CoffFile`](super::CoffFile) or [`PeFile`](crate::read::pe::PeFile).
 
@@ -745,6 +777,8 @@ struct CoffRelocationIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/relocation.rs:18-26`](../../../../.source_1765210505/object-0.37.3/src/read/coff/relocation.rs#L18-L26)*
+
 An iterator for the relocations in a [`CoffSection`](super::CoffSection).
 
 #### Trait Implementations
@@ -755,15 +789,15 @@ An iterator for the relocations in a [`CoffSection`](super::CoffSection).
 
 ##### `impl<I> IntoIterator for CoffRelocationIterator<'data, 'file, R, Coff>`
 
-- <span id="coffrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="coffrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="coffrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="coffrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="coffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffRelocationIterator<'data, 'file, R, Coff>`
 
-- <span id="coffrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="coffrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="coffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -775,6 +809,8 @@ struct CoffComdatIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
     index: crate::read::SymbolIndex,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:17-25`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L17-L25)*
 
 An iterator for the COMDAT section groups in a [`CoffFile`](#cofffile).
 
@@ -790,15 +826,15 @@ An iterator for the COMDAT section groups in a [`CoffFile`](#cofffile).
 
 ##### `impl<I> IntoIterator for CoffComdatIterator<'data, 'file, R, Coff>`
 
-- <span id="coffcomdatiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="coffcomdatiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="coffcomdatiterator-intoiter"></span>`type IntoIter = I`
+- <span id="coffcomdatiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="coffcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffComdatIterator<'data, 'file, R, Coff>`
 
-- <span id="coffcomdatiterator-item"></span>`type Item = CoffComdat<'data, 'file, R, Coff>`
+- <span id="coffcomdatiterator-type-item"></span>`type Item = CoffComdat<'data, 'file, R, Coff>`
 
 - <span id="coffcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -812,6 +848,8 @@ struct CoffComdat<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> {
     selection: u8,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:63-73`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L63-L73)*
 
 A COMDAT section group in a [`CoffFile`](#cofffile).
 
@@ -829,7 +867,7 @@ Most functionality is provided by the [`ObjectComdat`](../index.md) trait implem
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> ObjectComdat for CoffComdat<'data, 'file, R, Coff>`
 
-- <span id="coffcomdat-sectioniterator"></span>`type SectionIterator = CoffComdatSectionIterator<'data, 'file, R, Coff>`
+- <span id="coffcomdat-type-sectioniterator"></span>`type SectionIterator = CoffComdatSectionIterator<'data, 'file, R, Coff>`
 
 - <span id="coffcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md)
 
@@ -853,6 +891,8 @@ struct CoffComdatSectionIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHead
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:172-181`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L172-L181)*
+
 An iterator for the sections in a COMDAT section group in a [`CoffFile`](#cofffile).
 
 #### Trait Implementations
@@ -863,15 +903,15 @@ An iterator for the sections in a COMDAT section group in a [`CoffFile`](#cofffi
 
 ##### `impl<I> IntoIterator for CoffComdatSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="coffcomdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="coffcomdatsectioniterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="coffcomdatsectioniterator-intoiter"></span>`type IntoIter = I`
+- <span id="coffcomdatsectioniterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="coffcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffComdatSectionIterator<'data, 'file, R, Coff>`
 
-- <span id="coffcomdatsectioniterator-item"></span>`type Item = SectionIndex`
+- <span id="coffcomdatsectioniterator-type-item"></span>`type Item = SectionIndex`
 
 - <span id="coffcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -886,6 +926,8 @@ struct ImportFile<'data> {
     import: Option<crate::read::ByteString<'data>>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/import.rs:20-26`](../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L20-L26)*
 
 A Windows short form description of a symbol to import.
 
@@ -913,11 +955,11 @@ to [`crate::FileKind::CoffImport`](../../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportFile<'data>`
+##### `impl Clone for ImportFile<'data>`
 
 - <span id="importfile-clone"></span>`fn clone(&self) -> ImportFile<'data>` — [`ImportFile`](#importfile)
 
-##### `impl<'data> Debug for ImportFile<'data>`
+##### `impl Debug for ImportFile<'data>`
 
 - <span id="importfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -931,6 +973,8 @@ struct ImportObjectData<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/import.rs:200-204`](../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L200-L204)*
+
 The data following [`pe::ImportObjectHeader`](../../pe/index.md).
 
 #### Implementations
@@ -943,11 +987,11 @@ The data following [`pe::ImportObjectHeader`](../../pe/index.md).
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportObjectData<'data>`
+##### `impl Clone for ImportObjectData<'data>`
 
 - <span id="importobjectdata-clone"></span>`fn clone(&self) -> ImportObjectData<'data>` — [`ImportObjectData`](#importobjectdata)
 
-##### `impl<'data> Debug for ImportObjectData<'data>`
+##### `impl Debug for ImportObjectData<'data>`
 
 - <span id="importobjectdata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -961,6 +1005,8 @@ enum ImportName<'data> {
     Name(&'data [u8]),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/import.rs:114-119`](../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L114-L119)*
 
 The name or ordinal to import from a DLL.
 
@@ -976,23 +1022,23 @@ The name or ordinal to import from a DLL.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ImportName<'data>`
+##### `impl Clone for ImportName<'data>`
 
 - <span id="importname-clone"></span>`fn clone(&self) -> ImportName<'data>` — [`ImportName`](#importname)
 
-##### `impl<'data> Copy for ImportName<'data>`
+##### `impl Copy for ImportName<'data>`
 
-##### `impl<'data> Debug for ImportName<'data>`
+##### `impl Debug for ImportName<'data>`
 
 - <span id="importname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for ImportName<'data>`
+##### `impl Eq for ImportName<'data>`
 
-##### `impl<'data> PartialEq for ImportName<'data>`
+##### `impl PartialEq for ImportName<'data>`
 
 - <span id="importname-eq"></span>`fn eq(&self, other: &ImportName<'data>) -> bool` — [`ImportName`](#importname)
 
-##### `impl<'data> StructuralPartialEq for ImportName<'data>`
+##### `impl StructuralPartialEq for ImportName<'data>`
 
 ### `ImportType`
 
@@ -1003,6 +1049,8 @@ enum ImportType {
     Const,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/import.rs:123-130`](../../../../.source_1765210505/object-0.37.3/src/read/coff/import.rs#L123-L130)*
 
 The kind of import symbol.
 
@@ -1052,6 +1100,8 @@ The kind of import symbol.
 trait CoffHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/file.rs:293-338`](../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L293-L338)*
+
 A trait for generic access to [`pe::ImageFileHeader`](../../pe/index.md) and [`pe::AnonObjectHeaderBigobj`](../../pe/index.md).
 
 #### Associated Types
@@ -1100,6 +1150,8 @@ A trait for generic access to [`pe::ImageFileHeader`](../../pe/index.md) and [`p
 ```rust
 trait ImageSymbol: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:531-641`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L531-L641)*
 
 A trait for generic access to [`pe::ImageSymbol`](../../pe/index.md) and [`pe::ImageSymbolEx`](../../pe/index.md).
 
@@ -1168,6 +1220,8 @@ A trait for generic access to [`pe::ImageSymbol`](../../pe/index.md) and [`pe::I
 fn anon_object_class_id<'data, R: ReadRef<'data>>(data: R) -> crate::read::Result<pe::ClsId>
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/file.rs:284-289`](../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L284-L289)*
+
 Read the `class_id` field from a [`pe::AnonObjectHeader`](../../pe/index.md).
 
 This can be used to determine the format of the header.
@@ -1179,6 +1233,8 @@ This can be used to determine the format of the header.
 ```rust
 type CoffBigFile<'data, R> = CoffFile<'data, R, pe::AnonObjectHeaderBigobj>;
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/file.rs:32`](../../../../.source_1765210505/object-0.37.3/src/read/coff/file.rs#L32)*
 
 A COFF bigobj object file with 32-bit section numbers.
 
@@ -1193,6 +1249,8 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 type CoffBigSegmentIterator<'data, 'file, R> = CoffSegmentIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/section.rs:116-117`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L116-L117)*
+
 An iterator for the loadable sections in a [`CoffBigFile`](super::CoffBigFile).
 
 ### `CoffBigSegment<'data, 'file, R>`
@@ -1200,6 +1258,8 @@ An iterator for the loadable sections in a [`CoffBigFile`](super::CoffBigFile).
 ```rust
 type CoffBigSegment<'data, 'file, R> = CoffSegment<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/section.rs:147-148`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L147-L148)*
 
 A loadable section in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1211,6 +1271,8 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 type CoffBigSectionIterator<'data, 'file, R> = CoffSectionIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/section.rs:248-249`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L248-L249)*
+
 An iterator for the sections in a [`CoffBigFile`](super::CoffBigFile).
 
 ### `CoffBigSection<'data, 'file, R>`
@@ -1218,6 +1280,8 @@ An iterator for the sections in a [`CoffBigFile`](super::CoffBigFile).
 ```rust
 type CoffBigSection<'data, 'file, R> = CoffSection<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/section.rs:280-281`](../../../../.source_1765210505/object-0.37.3/src/read/coff/section.rs#L280-L281)*
 
 A section in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1229,6 +1293,8 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 type CoffBigSymbolTable<'data, 'file, R> = CoffSymbolTable<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:204-205`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L204-L205)*
+
 A symbol table in a [`CoffBigFile`](super::CoffBigFile).
 
 ### `CoffBigSymbolIterator<'data, 'file, R>`
@@ -1237,6 +1303,8 @@ A symbol table in a [`CoffBigFile`](super::CoffBigFile).
 type CoffBigSymbolIterator<'data, 'file, R> = CoffSymbolIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:244-245`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L244-L245)*
+
 An iterator for the symbols in a [`CoffBigFile`](super::CoffBigFile).
 
 ### `CoffBigSymbol<'data, 'file, R>`
@@ -1244,6 +1312,8 @@ An iterator for the symbols in a [`CoffBigFile`](super::CoffBigFile).
 ```rust
 type CoffBigSymbol<'data, 'file, R> = CoffSymbol<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/symbol.rs:306-307`](../../../../.source_1765210505/object-0.37.3/src/read/coff/symbol.rs#L306-L307)*
 
 A symbol in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1255,6 +1325,8 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 type CoffBigRelocationIterator<'data, 'file, R> = CoffRelocationIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/relocation.rs:14-15`](../../../../.source_1765210505/object-0.37.3/src/read/coff/relocation.rs#L14-L15)*
+
 An iterator for the relocations in a [`CoffBigSection`](super::CoffBigSection).
 
 ### `CoffBigComdatIterator<'data, 'file, R>`
@@ -1263,6 +1335,8 @@ An iterator for the relocations in a [`CoffBigSection`](super::CoffBigSection).
 type CoffBigComdatIterator<'data, 'file, R> = CoffComdatIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
 
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:12-13`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L12-L13)*
+
 An iterator for the COMDAT section groups in a [`CoffBigFile`](super::CoffBigFile).
 
 ### `CoffBigComdat<'data, 'file, R>`
@@ -1270,6 +1344,8 @@ An iterator for the COMDAT section groups in a [`CoffBigFile`](super::CoffBigFil
 ```rust
 type CoffBigComdat<'data, 'file, R> = CoffComdat<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:56-57`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L56-L57)*
 
 A COMDAT section group in a [`CoffBigFile`](super::CoffBigFile).
 
@@ -1280,6 +1356,8 @@ Most functionality is provided by the [`ObjectComdat`](../index.md) trait implem
 ```rust
 type CoffBigComdatSectionIterator<'data, 'file, R> = CoffComdatSectionIterator<'data, 'file, R, pe::AnonObjectHeaderBigobj>;
 ```
+
+*Defined in [`object-0.37.3/src/read/coff/comdat.rs:167-168`](../../../../.source_1765210505/object-0.37.3/src/read/coff/comdat.rs#L167-L168)*
 
 An iterator for the sections in a COMDAT section group in a [`CoffBigFile`](super::CoffBigFile).
 

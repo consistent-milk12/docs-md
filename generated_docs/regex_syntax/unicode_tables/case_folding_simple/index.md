@@ -13,8 +13,9 @@
 ## Constants
 
 ### `CASE_FOLDING_SIMPLE`
-
 ```rust
 const CASE_FOLDING_SIMPLE: &'static [(char, &'static [char])];
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/unicode_tables/case_folding_simple.rs:9-2948`](../../../../.source_1765210505/regex-syntax-0.8.8/src/unicode_tables/case_folding_simple.rs#L9-L2948)*
 

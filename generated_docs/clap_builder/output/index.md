@@ -27,14 +27,16 @@
 ## Constants
 
 ### `TAB`
-
 ```rust
 const TAB: &str;
 ```
 
-### `TAB_WIDTH`
+*Defined in [`clap_builder-4.5.53/src/output/mod.rs:21`](../../../.source_1765210505/clap_builder-4.5.53/src/output/mod.rs#L21)*
 
+### `TAB_WIDTH`
 ```rust
 const TAB_WIDTH: usize = 2usize;
 ```
+
+*Defined in [`clap_builder-4.5.53/src/output/mod.rs:23`](../../../.source_1765210505/clap_builder-4.5.53/src/output/mod.rs#L23)*
 

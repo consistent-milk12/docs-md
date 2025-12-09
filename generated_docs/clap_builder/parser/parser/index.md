@@ -27,6 +27,8 @@ struct Parser<'cmd> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:23-31`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/parser.rs#L23-L31)*
+
 #### Fields
 
 - **`flag_subcmd_at`**: `Option<usize>`
@@ -40,11 +42,7 @@ struct Parser<'cmd> {
 
 #### Implementations
 
-- <span id="parser-did-you-mean-error"></span>`fn did_you_mean_error(&mut self, arg: &str, matcher: &mut ArgMatcher, remaining_args: &[&OsStr], trailing_values: bool) -> ClapError` — [`ArgMatcher`](../arg_matcher/index.md), [`Error`](../../error/index.md)
-
-- <span id="parser-help-err"></span>`fn help_err(&self, use_long: bool) -> ClapError` — [`Error`](../../error/index.md)
-
-- <span id="parser-version-err"></span>`fn version_err(&self, use_long: bool) -> ClapError` — [`Error`](../../error/index.md)
+- <span id="parser-new"></span>`fn new(cmd: &'cmd mut Command) -> Self` — [`Command`](../../builder/command/index.md)
 
 ### `PendingArg`
 
@@ -56,6 +54,8 @@ struct PendingArg {
     trailing_idx: Option<usize>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1666-1671`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/parser.rs#L1666-L1671)*
 
 #### Trait Implementations
 
@@ -86,6 +86,8 @@ enum ParseState {
     Pos(crate::util::Id),
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1629-1633`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/parser.rs#L1629-L1633)*
 
 #### Trait Implementations
 
@@ -124,6 +126,8 @@ enum ParseResult {
     NoArg,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1638-1663`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/parser.rs#L1638-L1663)*
 
 Recoverable Parsing results.
 
@@ -179,6 +183,8 @@ enum Identifier {
     Index,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/parser.rs:1674-1678`](../../../../.source_1765210505/clap_builder-4.5.53/src/parser/parser.rs#L1674-L1678)*
 
 #### Trait Implementations
 

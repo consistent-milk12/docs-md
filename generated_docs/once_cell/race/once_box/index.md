@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`OnceBox`](#oncebox) | struct | A thread-safe cell which can be written to only once. |
-| [`_dummy`](#_dummy) | fn | ```compile_fail |
+| [`_dummy`](#_dummy) | fn | ```compile_fail struct S(*mut ()); unsafe impl Sync for S {} |
 
 ## Structs
 
@@ -21,6 +21,8 @@ struct OnceBox<T> {
     ghost: core::marker::PhantomData<Option<alloc::boxed::Box<T>>>,
 }
 ```
+
+*Defined in [`once_cell-1.21.3/src/race.rs:361-364`](../../../../.source_1765210505/once_cell-1.21.3/src/race.rs#L361-L364)*
 
 A thread-safe cell which can be written to only once.
 
@@ -67,6 +69,8 @@ A thread-safe cell which can be written to only once.
 ```rust
 fn _dummy()
 ```
+
+*Defined in [`once_cell-1.21.3/src/race.rs:497`](../../../../.source_1765210505/once_cell-1.21.3/src/race.rs#L497)*
 
 ```compile_fail
 struct S(*mut ());

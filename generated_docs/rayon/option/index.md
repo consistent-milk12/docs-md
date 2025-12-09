@@ -29,6 +29,8 @@ struct IntoIter<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/option.rs:20-22`](../../../.source_1765210505/rayon-1.11.0/src/option.rs#L20-L22)*
+
 A parallel iterator over the value in [`Some`](#some) variant of an [`Option`](../../clap_derive/index.md).
 
 The iterator yields one value if the [`Option`](../../clap_derive/index.md) is a [`Some`](#some), otherwise none.
@@ -58,15 +60,15 @@ This `struct` is created by the `into_par_iter` function.
 
 ##### `impl<T> IntoParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-iter"></span>`type Iter = T`
+- <span id="intoiter-type-iter"></span>`type Iter = T`
 
-- <span id="intoiter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-item"></span>`type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
 - <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -74,9 +76,9 @@ This `struct` is created by the `into_par_iter` function.
 
 ##### `impl<T> Pointable for IntoIter<T>`
 
-- <span id="intoiter-align"></span>`const ALIGN: usize`
+- <span id="intoiter-const-align"></span>`const ALIGN: usize`
 
-- <span id="intoiter-init"></span>`type Init = T`
+- <span id="intoiter-type-init"></span>`type Init = T`
 
 - <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -93,6 +95,8 @@ struct Iter<'a, T> {
     inner: IntoIter<&'a T>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/option.rs:83-85`](../../../.source_1765210505/rayon-1.11.0/src/option.rs#L83-L85)*
 
 A parallel iterator over a reference to the [`Some`](#some) variant of an [`Option`](../../clap_derive/index.md).
 
@@ -123,15 +127,15 @@ This `struct` is created by the `par_iter` function.
 
 ##### `impl<T> IntoParallelIterator for Iter<'a, T>`
 
-- <span id="iter-iter"></span>`type Iter = T`
+- <span id="iter-type-iter"></span>`type Iter = T`
 
-- <span id="iter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T: Sync> ParallelIterator for Iter<'a, T>`
 
-- <span id="iter-item"></span>`type Item = &'a T`
+- <span id="iter-type-item"></span>`type Item = &'a T`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -139,9 +143,9 @@ This `struct` is created by the `par_iter` function.
 
 ##### `impl<T> Pointable for Iter<'a, T>`
 
-- <span id="iter-align"></span>`const ALIGN: usize`
+- <span id="iter-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-init"></span>`type Init = T`
+- <span id="iter-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -158,6 +162,8 @@ struct IterMut<'a, T> {
     inner: IntoIter<&'a mut T>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/option.rs:119-121`](../../../.source_1765210505/rayon-1.11.0/src/option.rs#L119-L121)*
 
 A parallel iterator over a mutable reference to the [`Some`](#some) variant of an [`Option`](../../clap_derive/index.md).
 
@@ -184,15 +190,15 @@ This `struct` is created by the `par_iter_mut` function.
 
 ##### `impl<T> IntoParallelIterator for IterMut<'a, T>`
 
-- <span id="itermut-iter"></span>`type Iter = T`
+- <span id="itermut-type-iter"></span>`type Iter = T`
 
-- <span id="itermut-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="itermut-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="itermut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T: Send> ParallelIterator for IterMut<'a, T>`
 
-- <span id="itermut-item"></span>`type Item = &'a mut T`
+- <span id="itermut-type-item"></span>`type Item = &'a mut T`
 
 - <span id="itermut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -200,9 +206,9 @@ This `struct` is created by the `par_iter_mut` function.
 
 ##### `impl<T> Pointable for IterMut<'a, T>`
 
-- <span id="itermut-align"></span>`const ALIGN: usize`
+- <span id="itermut-const-align"></span>`const ALIGN: usize`
 
-- <span id="itermut-init"></span>`type Init = T`
+- <span id="itermut-type-init"></span>`type Init = T`
 
 - <span id="itermut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -220,6 +226,8 @@ struct OptionProducer<T: Send> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/option.rs:140-142`](../../../.source_1765210505/rayon-1.11.0/src/option.rs#L140-L142)*
+
 Private producer for an option
 
 #### Trait Implementations
@@ -228,9 +236,9 @@ Private producer for an option
 
 ##### `impl<T> Pointable for OptionProducer<T>`
 
-- <span id="optionproducer-align"></span>`const ALIGN: usize`
+- <span id="optionproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="optionproducer-init"></span>`type Init = T`
+- <span id="optionproducer-type-init"></span>`type Init = T`
 
 - <span id="optionproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -242,9 +250,9 @@ Private producer for an option
 
 ##### `impl<T: Send> Producer for OptionProducer<T>`
 
-- <span id="optionproducer-item"></span>`type Item = T`
+- <span id="optionproducer-type-item"></span>`type Item = T`
 
-- <span id="optionproducer-intoiter"></span>`type IntoIter = IntoIter<T>`
+- <span id="optionproducer-type-intoiter"></span>`type IntoIter = IntoIter<T>`
 
 - <span id="optionproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
 

@@ -20,7 +20,9 @@
 struct AsShoutySnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../../miette_derive/index.md).
+*Defined in [`heck-0.5.0/src/shouty_snake.rs:55`](../../../.source_1765210505/heck-0.5.0/src/shouty_snake.rs#L55)*
+
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -48,6 +50,8 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 ```rust
 trait ToShoutySnakeCase: ToOwned { ... }
 ```
+
+*Defined in [`heck-0.5.0/src/shouty_snake.rs:20-23`](../../../.source_1765210505/heck-0.5.0/src/shouty_snake.rs#L20-L23)*
 
 This trait defines a shouty snake case conversion.
 
@@ -79,7 +83,9 @@ assert_eq!(sentence.to_shouty_snake_case(), "THAT_WORLD_IS_GROWING_IN_THIS_MINUT
 trait ToShoutySnekCase: ToOwned { ... }
 ```
 
-Oh heck, `ToShoutySnekCase` is an alias for [`ToShoutySnakeCase`](../index.md). See
+*Defined in [`heck-0.5.0/src/shouty_snake.rs:27-31`](../../../.source_1765210505/heck-0.5.0/src/shouty_snake.rs#L27-L31)*
+
+Oh heck, `ToShoutySnekCase` is an alias for [`ToShoutySnakeCase`](#toshoutysnakecase). See
 ToShoutySnakeCase for more documentation.
 
 #### Required Methods

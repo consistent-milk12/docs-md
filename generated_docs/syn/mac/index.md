@@ -32,13 +32,15 @@ struct Macro {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/mac.rs:14-23`](../../../.source_1765210505/syn-2.0.111/src/mac.rs#L14-L23)*
+
 A macro invocation: `println!("{}", mac)`.
 
 #### Implementations
 
-- <span id="macro-parse-body"></span>`fn parse_body<T: Parse>(&self) -> Result<T>` — [`Result`](../index.md)
+- <span id="macro-parse-body"></span>`fn parse_body<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md)
 
-- <span id="macro-parse-body-with"></span>`fn parse_body_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../index.md), [`Parser`](../parse/index.md)
+- <span id="macro-parse-body-with"></span>`fn parse_body_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md), [`Parser`](../parse/index.md)
 
 #### Trait Implementations
 
@@ -58,15 +60,15 @@ A macro invocation: `println!("{}", mac)`.
 
 ##### `impl Parse for crate::mac::Macro`
 
-- <span id="cratemacmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratemacmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Macro`
 
 - <span id="cratemacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Macro`
+##### `impl Sealed for Macro`
 
-##### `impl<T> Spanned for Macro`
+##### `impl Spanned for Macro`
 
 - <span id="macro-span"></span>`fn span(&self) -> Span`
 
@@ -86,13 +88,13 @@ enum MacroDelimiter {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/mac.rs:25-33`](../../../.source_1765210505/syn-2.0.111/src/mac.rs#L25-L33)*
+
 A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]`.
 
 #### Implementations
 
-- <span id="macrodelimiter-span"></span>`fn span(&self) -> &DelimSpan`
-
-- <span id="macrodelimiter-is-brace"></span>`fn is_brace(&self) -> bool`
+- <span id="cratemacmacrodelimiter-surround"></span>`fn surround(&self, tokens: &mut TokenStream, inner: TokenStream)`
 
 #### Trait Implementations
 
@@ -121,4 +123,6 @@ A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]
 ```rust
 fn parse_delimiter(input: crate::parse::ParseStream<'_>) -> crate::error::Result<(MacroDelimiter, proc_macro2::TokenStream)>
 ```
+
+*Defined in [`syn-2.0.111/src/mac.rs:153-170`](../../../.source_1765210505/syn-2.0.111/src/mac.rs#L153-L170)*
 

@@ -33,7 +33,7 @@ the CPU supports.
 | [`memchr3_raw`](#memchr3_raw) | fn | memchr3, but using raw pointers to represent the haystack. |
 | [`memrchr3_raw`](#memrchr3_raw) | fn | memrchr3, but using raw pointers to represent the haystack. |
 | [`count_raw`](#count_raw) | fn | Count all matching bytes, but using raw pointers to represent the haystack. |
-| [`unsafe_ifunc!`](#unsafe_ifunc) | macro | Provides a way to run a memchr-like function while amortizing the cost of |
+| [`unsafe_ifunc!`](#unsafe_ifunc) | macro | Provides a way to run a memchr-like function while amortizing the cost of runtime CPU feature detection. |
 
 ## Functions
 
@@ -42,6 +42,8 @@ the CPU supports.
 ```rust
 fn memchr_raw(n1: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/x86_64/memchr.rs:174-189`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/memchr.rs#L174-L189)*
 
 memchr, but using raw pointers to represent the haystack.
 
@@ -55,6 +57,8 @@ Pointers must be valid. See `One::find_raw`.
 fn memrchr_raw(n1: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/x86_64/memchr.rs:197-212`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/memchr.rs#L197-L212)*
+
 memrchr, but using raw pointers to represent the haystack.
 
 # Safety
@@ -66,6 +70,8 @@ Pointers must be valid. See `One::rfind_raw`.
 ```rust
 fn memchr2_raw(n1: u8, n2: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/x86_64/memchr.rs:220-237`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/memchr.rs#L220-L237)*
 
 memchr2, but using raw pointers to represent the haystack.
 
@@ -79,6 +85,8 @@ Pointers must be valid. See `Two::find_raw`.
 fn memrchr2_raw(n1: u8, n2: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/x86_64/memchr.rs:245-262`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/memchr.rs#L245-L262)*
+
 memrchr2, but using raw pointers to represent the haystack.
 
 # Safety
@@ -90,6 +98,8 @@ Pointers must be valid. See `Two::rfind_raw`.
 ```rust
 fn memchr3_raw(n1: u8, n2: u8, n3: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/x86_64/memchr.rs:270-289`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/memchr.rs#L270-L289)*
 
 memchr3, but using raw pointers to represent the haystack.
 
@@ -103,6 +113,8 @@ Pointers must be valid. See `Three::find_raw`.
 fn memrchr3_raw(n1: u8, n2: u8, n3: u8, start: *const u8, end: *const u8) -> Option<*const u8>
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/x86_64/memchr.rs:297-316`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/memchr.rs#L297-L316)*
+
 memrchr3, but using raw pointers to represent the haystack.
 
 # Safety
@@ -115,6 +127,8 @@ Pointers must be valid. See `Three::rfind_raw`.
 fn count_raw(n1: u8, start: *const u8, end: *const u8) -> usize
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/x86_64/memchr.rs:324-335`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/memchr.rs#L324-L335)*
+
 Count all matching bytes, but using raw pointers to represent the haystack.
 
 # Safety
@@ -124,6 +138,8 @@ Pointers must be valid. See `One::count_raw`.
 ## Macros
 
 ### `unsafe_ifunc!`
+
+*Defined in [`memchr-2.7.6/src/arch/x86_64/memchr.rs:58-160`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/x86_64/memchr.rs#L58-L160)*
 
 Provides a way to run a memchr-like function while amortizing the cost of
 runtime CPU feature detection.

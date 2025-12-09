@@ -24,6 +24,8 @@ struct ResourceDirectory<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:12-14`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/resource.rs#L12-L14)*
+
 The `.rsrc` section of a PE file.
 
 Returned by [`DataDirectories::resource_directory`](super::DataDirectories::resource_directory).
@@ -36,13 +38,13 @@ Returned by [`DataDirectories::resource_directory`](super::DataDirectories::reso
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ResourceDirectory<'data>`
+##### `impl Clone for ResourceDirectory<'data>`
 
 - <span id="resourcedirectory-clone"></span>`fn clone(&self) -> ResourceDirectory<'data>` — [`ResourceDirectory`](../index.md)
 
-##### `impl<'data> Copy for ResourceDirectory<'data>`
+##### `impl Copy for ResourceDirectory<'data>`
 
-##### `impl<'data> Debug for ResourceDirectory<'data>`
+##### `impl Debug for ResourceDirectory<'data>`
 
 - <span id="resourcedirectory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -54,6 +56,8 @@ struct ResourceDirectoryTable<'data> {
     pub entries: &'data [pe::ImageResourceDirectoryEntry],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:30-35`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/resource.rs#L30-L35)*
 
 A table of resource entries.
 
@@ -73,11 +77,11 @@ A table of resource entries.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ResourceDirectoryTable<'data>`
+##### `impl Clone for ResourceDirectoryTable<'data>`
 
 - <span id="resourcedirectorytable-clone"></span>`fn clone(&self) -> ResourceDirectoryTable<'data>` — [`ResourceDirectoryTable`](../index.md)
 
-##### `impl<'data> Debug for ResourceDirectoryTable<'data>`
+##### `impl Debug for ResourceDirectoryTable<'data>`
 
 - <span id="resourcedirectorytable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -88,6 +92,8 @@ struct ResourceName {
     offset: u32,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:143-145`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/resource.rs#L143-L145)*
 
 A resource name.
 
@@ -122,6 +128,8 @@ enum ResourceDirectoryEntryData<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:112-117`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/resource.rs#L112-L117)*
+
 Data associated with a resource directory entry.
 
 #### Variants
@@ -142,11 +150,11 @@ Data associated with a resource directory entry.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ResourceDirectoryEntryData<'data>`
+##### `impl Clone for ResourceDirectoryEntryData<'data>`
 
 - <span id="resourcedirectoryentrydata-clone"></span>`fn clone(&self) -> ResourceDirectoryEntryData<'data>` — [`ResourceDirectoryEntryData`](../index.md)
 
-##### `impl<'data> Debug for ResourceDirectoryEntryData<'data>`
+##### `impl Debug for ResourceDirectoryEntryData<'data>`
 
 - <span id="resourcedirectoryentrydata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -158,6 +166,8 @@ enum ResourceNameOrId {
     Id(u16),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/resource.rs:183-188`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/resource.rs#L183-L188)*
 
 A resource name or ID.
 

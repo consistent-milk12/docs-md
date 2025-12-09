@@ -19,6 +19,8 @@
 struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 ```
 
+*Defined in [`syn-2.0.111/src/drops.rs:8`](../../../.source_1765210505/syn-2.0.111/src/drops.rs#L8)*
+
 #### Implementations
 
 - <span id="nodrop-new"></span>`fn new(value: T) -> Self`
@@ -27,7 +29,7 @@ struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 
 ##### `impl<T: ?Sized> Deref for NoDrop<T>`
 
-- <span id="nodrop-target"></span>`type Target = T`
+- <span id="nodrop-type-target"></span>`type Target = T`
 
 - <span id="nodrop-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -37,7 +39,7 @@ struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 
 ##### `impl<P, T> Receiver for NoDrop<T>`
 
-- <span id="nodrop-target"></span>`type Target = T`
+- <span id="nodrop-type-target"></span>`type Target = T`
 
 ## Traits
 
@@ -46,6 +48,8 @@ struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 ```rust
 trait TrivialDrop { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/drops.rs:32`](../../../.source_1765210505/syn-2.0.111/src/drops.rs#L32)*
 
 #### Implementors
 

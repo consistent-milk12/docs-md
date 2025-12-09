@@ -33,12 +33,12 @@ resolving all spans of capturing groups that participate in a match.
 | [`Builder`](#builder) | struct | A builder for a `PikeVM`. |
 | [`PikeVM`](#pikevm) | struct | A virtual machine for executing regex searches with capturing groups. |
 | [`FindMatches`](#findmatches) | struct | An iterator over all non-overlapping matches for a particular search. |
-| [`CapturesMatches`](#capturesmatches) | struct | An iterator over all non-overlapping leftmost matches, with their capturing |
-| [`Cache`](#cache) | struct | A cache represents mutable state that a [`PikeVM`] requires during a |
-| [`ActiveStates`](#activestates) | struct | A set of active states used to "simulate" the execution of an NFA via the |
+| [`CapturesMatches`](#capturesmatches) | struct | An iterator over all non-overlapping leftmost matches, with their capturing groups, for a particular search. |
+| [`Cache`](#cache) | struct | A cache represents mutable state that a [`PikeVM`] requires during a search. |
+| [`ActiveStates`](#activestates) | struct | A set of active states used to "simulate" the execution of an NFA via the PikeVM. |
 | [`SlotTable`](#slottable) | struct | A table of slots, where each row represent a state in an NFA. |
 | [`FollowEpsilon`](#followepsilon) | enum | Represents a stack frame for use while computing an epsilon closure. |
-| [`instrument!`](#instrument) | macro | A simple macro for conditionally executing instrumentation logic when |
+| [`instrument!`](#instrument) | macro | A simple macro for conditionally executing instrumentation logic when the 'trace' log level is enabled. |
 
 ## Structs
 
@@ -50,6 +50,8 @@ struct Config {
     pre: Option<Option<crate::util::prefilter::Prefilter>>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/pikevm.rs:66-69`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/pikevm.rs#L66-L69)*
 
 The configuration used for building a [`PikeVM`](#pikevm).
 
@@ -95,6 +97,8 @@ struct Builder {
     thompson: thompson::Compiler,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/pikevm.rs:239-243`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/pikevm.rs#L239-L243)*
 
 A builder for a `PikeVM`.
 
@@ -153,17 +157,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
 
-- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
 
-- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../index.md), [`PikeVM`](#pikevm), [`BuildError`](../index.md)
+- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../nfa/index.md), [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
 
 - <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
 - <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](#builder)
 
-- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../compiler/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
@@ -183,6 +187,8 @@ struct PikeVM {
     nfa: crate::nfa::thompson::NFA,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/pikevm.rs:387-390`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/pikevm.rs#L387-L390)*
 
 A virtual machine for executing regex searches with capturing groups.
 
@@ -251,15 +257,31 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="pikevm-is-match"></span>`fn is_match<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I) -> bool` — [`Cache`](#cache)
+- <span id="pikevm-new"></span>`fn new(pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
 
-- <span id="pikevm-find"></span>`fn find<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I) -> Option<Match>` — [`Cache`](#cache), [`Match`](../../../index.md)
+- <span id="pikevm-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
 
-- <span id="pikevm-captures"></span>`fn captures<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I, caps: &mut Captures)` — [`Cache`](#cache), [`Captures`](../../../util/captures/index.md)
+- <span id="pikevm-new-from-nfa"></span>`fn new_from_nfa(nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../nfa/index.md), [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
 
-- <span id="pikevm-find-iter"></span>`fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>` — [`Cache`](#cache), [`FindMatches`](#findmatches)
+- <span id="pikevm-always-match"></span>`fn always_match() -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
 
-- <span id="pikevm-captures-iter"></span>`fn captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> CapturesMatches<'r, 'c, 'h>` — [`Cache`](#cache), [`CapturesMatches`](#capturesmatches)
+- <span id="pikevm-never-match"></span>`fn never_match() -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+
+- <span id="pikevm-config"></span>`fn config() -> Config` — [`Config`](#config)
+
+- <span id="pikevm-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
+
+- <span id="pikevm-create-captures"></span>`fn create_captures(&self) -> Captures` — [`Captures`](../../../util/captures/index.md)
+
+- <span id="pikevm-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](#cache)
+
+- <span id="pikevm-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](#cache)
+
+- <span id="pikevm-pattern-len"></span>`fn pattern_len(&self) -> usize`
+
+- <span id="pikevm-get-config"></span>`fn get_config(&self) -> &Config` — [`Config`](#config)
+
+- <span id="pikevm-get-nfa"></span>`fn get_nfa(&self) -> &NFA` — [`NFA`](../nfa/index.md)
 
 #### Trait Implementations
 
@@ -282,6 +304,8 @@ struct FindMatches<'r, 'c, 'h> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/pikevm.rs:1799-1804`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/pikevm.rs#L1799-L1804)*
+
 An iterator over all non-overlapping matches for a particular search.
 
 The iterator yields a [`Match`](../../../index.md) value until no more matches could be found.
@@ -296,21 +320,21 @@ This iterator can be created with the `PikeVM::find_iter` method.
 
 #### Trait Implementations
 
-##### `impl<'r, 'c, 'h> Debug for FindMatches<'r, 'c, 'h>`
+##### `impl Debug for FindMatches<'r, 'c, 'h>`
 
 - <span id="findmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindMatches<'r, 'c, 'h>`
+##### `impl IntoIterator for FindMatches<'r, 'c, 'h>`
 
-- <span id="findmatches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findmatches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findmatches-intoiter"></span>`type IntoIter = I`
+- <span id="findmatches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findmatches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'c, 'h> Iterator for FindMatches<'r, 'c, 'h>`
+##### `impl Iterator for FindMatches<'r, 'c, 'h>`
 
-- <span id="findmatches-item"></span>`type Item = Match`
+- <span id="findmatches-type-item"></span>`type Item = Match`
 
 - <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../../index.md)
 
@@ -324,6 +348,8 @@ struct CapturesMatches<'r, 'c, 'h> {
     it: iter::Searcher<'h>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/pikevm.rs:1837-1842`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/pikevm.rs#L1837-L1842)*
 
 An iterator over all non-overlapping leftmost matches, with their capturing
 groups, for a particular search.
@@ -341,21 +367,21 @@ This iterator can be created with the `PikeVM::captures_iter` method.
 
 #### Trait Implementations
 
-##### `impl<'r, 'c, 'h> Debug for CapturesMatches<'r, 'c, 'h>`
+##### `impl Debug for CapturesMatches<'r, 'c, 'h>`
 
 - <span id="capturesmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for CapturesMatches<'r, 'c, 'h>`
+##### `impl IntoIterator for CapturesMatches<'r, 'c, 'h>`
 
-- <span id="capturesmatches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="capturesmatches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="capturesmatches-intoiter"></span>`type IntoIter = I`
+- <span id="capturesmatches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="capturesmatches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'c, 'h> Iterator for CapturesMatches<'r, 'c, 'h>`
+##### `impl Iterator for CapturesMatches<'r, 'c, 'h>`
 
-- <span id="capturesmatches-item"></span>`type Item = Captures`
+- <span id="capturesmatches-type-item"></span>`type Item = Captures`
 
 - <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../../../util/captures/index.md)
 
@@ -368,6 +394,8 @@ struct Cache {
     next: ActiveStates,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/pikevm.rs:1878-1889`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/pikevm.rs#L1878-L1889)*
 
 A cache represents mutable state that a [`PikeVM`](#pikevm) requires during a
 search.
@@ -427,6 +455,8 @@ struct ActiveStates {
     slot_table: SlotTable,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/pikevm.rs:1996-2005`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/pikevm.rs#L1996-L2005)*
 
 A set of active states used to "simulate" the execution of an NFA via the
 PikeVM.
@@ -489,6 +519,8 @@ struct SlotTable {
     slots_for_captures: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/pikevm.rs:2065-2075`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/pikevm.rs#L2065-L2075)*
 
 A table of slots, where each row represent a state in an NFA. Thus, the
 table has room for storing slots for every single state in an NFA.
@@ -566,6 +598,8 @@ enum FollowEpsilon {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/pikevm.rs:2199-2204`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/pikevm.rs#L2199-L2204)*
+
 Represents a stack frame for use while computing an epsilon closure.
 
 (An "epsilon closure" refers to the set of reachable NFA states from a
@@ -626,6 +660,8 @@ first traversal.
 ## Macros
 
 ### `instrument!`
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/pikevm.rs:36-44`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/pikevm.rs#L36-L44)*
 
 A simple macro for conditionally executing instrumentation logic when
 the 'trace' log level is enabled. This is a compile-time no-op when the

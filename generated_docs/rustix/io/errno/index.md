@@ -26,9 +26,11 @@ want unrecognized values to create undefined behavior.
 struct Errno(u16);
 ```
 
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/errno.rs:51`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/errno.rs#L51)*
+
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../cargo_docs_md/error/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../addr2line/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References
@@ -65,7 +67,7 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl Clone for Errno`
 
-- <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](../index.md)
+- <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](../../backend/io/errno/index.md)
 
 ##### `impl Copy for Errno`
 
@@ -87,11 +89,11 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl PartialEq for Errno`
 
-- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../index.md)
+- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../../backend/io/errno/index.md)
 
 ##### `impl StructuralPartialEq for Errno`
 
-##### `impl<T> ToString for Errno`
+##### `impl ToString for Errno`
 
 - <span id="errno-to-string"></span>`fn to_string(&self) -> String`
 
@@ -103,6 +105,8 @@ but only holds an OS error code, and no extra error value.
 fn retry_on_intr<T, F: FnMut() -> Result<T>>(f: F) -> Result<T>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/errno.rs:67-74`](../../../../.source_1765210505/rustix-1.1.2/src/io/errno.rs#L67-L74)*
+
 Call `f` until it either succeeds or fails other than `Errno::INTR`.
 
 ## Type Aliases
@@ -113,5 +117,7 @@ Call `f` until it either succeeds or fails other than `Errno::INTR`.
 type Result<T> = result::Result<T, Errno>;
 ```
 
-A specialized [`Result`](../index.md) type for `rustix` APIs.
+*Defined in [`rustix-1.1.2/src/io/errno.rs:15`](../../../../.source_1765210505/rustix-1.1.2/src/io/errno.rs#L15)*
+
+A specialized [`Result`](#result) type for `rustix` APIs.
 

@@ -6,7 +6,7 @@
 
 Search index generation for multi-crate documentation.
 
-This module provides [`SearchIndexGenerator`](../../index.md) which creates a JSON search index
+This module provides [`SearchIndexGenerator`](#searchindexgenerator) which creates a JSON search index
 containing all documented items across multiple crates. The index can be used
 with client-side search libraries like Fuse.js, Lunr.js, or `FlexSearch`.
 
@@ -59,6 +59,8 @@ struct SearchEntry {
 }
 ```
 
+*Defined in `src/multi_crate/search.rs:45-69`*
+
 A single searchable item in the index.
 
 Contains all metadata needed for search and display in results.
@@ -99,17 +101,17 @@ Contains all metadata needed for search and display in results.
 
 - <span id="searchentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Instrument for SearchEntry`
+##### `impl Instrument for SearchEntry`
 
-##### `impl<T> IntoEither for SearchEntry`
+##### `impl IntoEither for SearchEntry`
 
-##### `impl<D> OwoColorize for SearchEntry`
+##### `impl OwoColorize for SearchEntry`
 
-##### `impl<T> Pointable for SearchEntry`
+##### `impl Pointable for SearchEntry`
 
-- <span id="searchentry-align"></span>`const ALIGN: usize`
+- <span id="searchentry-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchentry-init"></span>`type Init = T`
+- <span id="searchentry-type-init"></span>`type Init = T`
 
 - <span id="searchentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -123,7 +125,7 @@ Contains all metadata needed for search and display in results.
 
 - <span id="searchentry-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
-##### `impl<T> WithSubscriber for SearchEntry`
+##### `impl WithSubscriber for SearchEntry`
 
 ### `SearchIndex`
 
@@ -132,6 +134,8 @@ struct SearchIndex {
     pub items: Vec<SearchEntry>,
 }
 ```
+
+*Defined in `src/multi_crate/search.rs:75-78`*
 
 The complete search index containing all searchable items.
 
@@ -149,17 +153,17 @@ Serialized to `search_index.json` for client-side consumption.
 
 - <span id="searchindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Instrument for SearchIndex`
+##### `impl Instrument for SearchIndex`
 
-##### `impl<T> IntoEither for SearchIndex`
+##### `impl IntoEither for SearchIndex`
 
-##### `impl<D> OwoColorize for SearchIndex`
+##### `impl OwoColorize for SearchIndex`
 
-##### `impl<T> Pointable for SearchIndex`
+##### `impl Pointable for SearchIndex`
 
-- <span id="searchindex-align"></span>`const ALIGN: usize`
+- <span id="searchindex-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindex-init"></span>`type Init = T`
+- <span id="searchindex-type-init"></span>`type Init = T`
 
 - <span id="searchindex-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -173,7 +177,7 @@ Serialized to `search_index.json` for client-side consumption.
 
 - <span id="searchindex-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
-##### `impl<T> WithSubscriber for SearchIndex`
+##### `impl WithSubscriber for SearchIndex`
 
 ### `SearchIndexGenerator<'a>`
 
@@ -185,9 +189,11 @@ struct SearchIndexGenerator<'a> {
 }
 ```
 
+*Defined in `src/multi_crate/search.rs:93-108`*
+
 Generator for multi-crate search indices.
 
-Traverses all crates in a [`CrateCollection`](../../index.md) and builds a comprehensive
+Traverses all crates in a [`CrateCollection`](../collection/index.md) and builds a comprehensive
 search index of all public items (or all items if `include_private` is set).
 
 # Example
@@ -221,9 +227,9 @@ generator.write(Path::new("generated_docs/"))?;
 
 #### Implementations
 
-- <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](../../index.md)
+- <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](../collection/index.md)
 
-- <span id="searchindexgenerator-generate"></span>`fn generate(&self) -> SearchIndex` — [`SearchIndex`](../../index.md)
+- <span id="searchindexgenerator-generate"></span>`fn generate(&self) -> SearchIndex` — [`SearchIndex`](#searchindex)
 
 - <span id="searchindexgenerator-write"></span>`fn write(&self, output_dir: &Path) -> std::io::Result<()>`
 
@@ -235,17 +241,17 @@ generator.write(Path::new("generated_docs/"))?;
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for SearchIndexGenerator<'a>`
+##### `impl Instrument for SearchIndexGenerator<'a>`
 
-##### `impl<T> IntoEither for SearchIndexGenerator<'a>`
+##### `impl IntoEither for SearchIndexGenerator<'a>`
 
-##### `impl<D> OwoColorize for SearchIndexGenerator<'a>`
+##### `impl OwoColorize for SearchIndexGenerator<'a>`
 
-##### `impl<T> Pointable for SearchIndexGenerator<'a>`
+##### `impl Pointable for SearchIndexGenerator<'a>`
 
-- <span id="searchindexgenerator-align"></span>`const ALIGN: usize`
+- <span id="searchindexgenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindexgenerator-init"></span>`type Init = T`
+- <span id="searchindexgenerator-type-init"></span>`type Init = T`
 
 - <span id="searchindexgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -255,5 +261,5 @@ generator.write(Path::new("generated_docs/"))?;
 
 - <span id="searchindexgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for SearchIndexGenerator<'a>`
+##### `impl WithSubscriber for SearchIndexGenerator<'a>`
 

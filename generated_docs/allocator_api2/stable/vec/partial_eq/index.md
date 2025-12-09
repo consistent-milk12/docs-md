@@ -14,3 +14,5 @@
 
 ### `__impl_slice_eq1!`
 
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/partial_eq.rs:8-21`](../../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/partial_eq.rs#L8-L21)*
+

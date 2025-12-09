@@ -21,6 +21,8 @@ struct OnceLock<T> {
 }
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/once_lock.rs:9-14`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/once_lock.rs#L9-L14)*
+
 #### Implementations
 
 - <span id="oncelock-new"></span>`const fn new() -> Self`

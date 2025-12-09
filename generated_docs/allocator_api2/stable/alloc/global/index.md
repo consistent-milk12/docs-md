@@ -18,6 +18,8 @@
 struct Global;
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/alloc/global.rs:18`](../../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/alloc/global.rs#L18)*
+
 The global memory allocator.
 
 This type implements the [`Allocator`](../index.md) trait by forwarding calls
@@ -51,7 +53,7 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 ##### `impl Clone for Global`
 
-- <span id="global-clone"></span>`fn clone(&self) -> Global` — [`Global`](../index.md)
+- <span id="global-clone"></span>`fn clone(&self) -> Global` — [`Global`](#global)
 
 ##### `impl Copy for Global`
 
@@ -61,5 +63,5 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 ##### `impl Default for Global`
 
-- <span id="global-default"></span>`fn default() -> Global` — [`Global`](../index.md)
+- <span id="global-default"></span>`fn default() -> Global` — [`Global`](#global)
 

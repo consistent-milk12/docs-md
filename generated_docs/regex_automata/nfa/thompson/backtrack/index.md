@@ -36,11 +36,11 @@ because it does less book-keeping.
 |------|------|-------------|
 | [`Config`](#config) | struct | The configuration used for building a bounded backtracker. |
 | [`Builder`](#builder) | struct | A builder for a bounded backtracker. |
-| [`BoundedBacktracker`](#boundedbacktracker) | struct | A backtracking regex engine that bounds its execution to avoid exponential |
+| [`BoundedBacktracker`](#boundedbacktracker) | struct | A backtracking regex engine that bounds its execution to avoid exponential blow-up. |
 | [`TryFindMatches`](#tryfindmatches) | struct | An iterator over all non-overlapping matches for a fallible search. |
-| [`TryCapturesMatches`](#trycapturesmatches) | struct | An iterator over all non-overlapping leftmost matches, with their capturing |
-| [`Cache`](#cache) | struct | A cache represents mutable state that a [`BoundedBacktracker`] requires |
-| [`Visited`](#visited) | struct | A bitset that keeps track of whether a particular (StateID, offset) has |
+| [`TryCapturesMatches`](#trycapturesmatches) | struct | An iterator over all non-overlapping leftmost matches, with their capturing groups, for a fallible search. |
+| [`Cache`](#cache) | struct | A cache represents mutable state that a [`BoundedBacktracker`] requires during a search. |
+| [`Visited`](#visited) | struct | A bitset that keeps track of whether a particular (StateID, offset) has been considered during backtracking. |
 | [`Frame`](#frame) | enum | Represents a stack frame on the heap while doing backtracking. |
 | [`min_visited_capacity`](#min_visited_capacity) | fn | Returns the minimum visited capacity for the given haystack. |
 | [`div_ceil`](#div_ceil) | fn | Integer division, but rounds up instead of down. |
@@ -55,6 +55,8 @@ struct Config {
     visited_capacity: Option<usize>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:50-53`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L50-L53)*
 
 The configuration used for building a bounded backtracker.
 
@@ -97,6 +99,8 @@ struct Builder {
     thompson: thompson::Compiler,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:256-260`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L256-L260)*
 
 A builder for a bounded backtracker.
 
@@ -156,17 +160,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
-- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
-- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../index.md), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
+- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../nfa/index.md), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
 - <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
 - <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](#builder)
 
-- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../compiler/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
@@ -186,6 +190,8 @@ struct BoundedBacktracker {
     nfa: crate::nfa::thompson::NFA,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:427-430`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L427-L430)*
 
 A backtracking regex engine that bounds its execution to avoid exponential
 blow-up.
@@ -270,17 +276,33 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="boundedbacktracker-try-search"></span>`fn try_search(&self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`Captures`](../../../util/captures/index.md), [`MatchError`](../../../index.md)
+- <span id="boundedbacktracker-new"></span>`fn new(pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
-- <span id="boundedbacktracker-try-search-slots"></span>`fn try_search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`PatternID`](../../../index.md), [`MatchError`](../../../index.md)
+- <span id="boundedbacktracker-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
-- <span id="boundedbacktracker-try-search-slots-imp"></span>`fn try_search_slots_imp(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md), [`MatchError`](../../../index.md)
+- <span id="boundedbacktracker-new-from-nfa"></span>`fn new_from_nfa(nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../nfa/index.md), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
-- <span id="boundedbacktracker-search-imp"></span>`fn search_imp(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md), [`MatchError`](../../../index.md)
+- <span id="boundedbacktracker-always-match"></span>`fn always_match() -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
-- <span id="boundedbacktracker-backtrack"></span>`fn backtrack(&self, cache: &mut Cache, input: &Input<'_>, at: usize, start_id: StateID, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
+- <span id="boundedbacktracker-never-match"></span>`fn never_match() -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
-- <span id="boundedbacktracker-step"></span>`fn step(&self, cache: &mut Cache, input: &Input<'_>, sid: StateID, at: usize, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
+- <span id="boundedbacktracker-config"></span>`fn config() -> Config` — [`Config`](#config)
+
+- <span id="boundedbacktracker-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
+
+- <span id="boundedbacktracker-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](#cache)
+
+- <span id="boundedbacktracker-create-captures"></span>`fn create_captures(&self) -> Captures` — [`Captures`](../../../util/captures/index.md)
+
+- <span id="boundedbacktracker-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](#cache)
+
+- <span id="boundedbacktracker-pattern-len"></span>`fn pattern_len(&self) -> usize`
+
+- <span id="boundedbacktracker-get-config"></span>`fn get_config(&self) -> &Config` — [`Config`](#config)
+
+- <span id="boundedbacktracker-get-nfa"></span>`fn get_nfa(&self) -> &NFA` — [`NFA`](../nfa/index.md)
+
+- <span id="boundedbacktracker-max-haystack-len"></span>`fn max_haystack_len(&self) -> usize`
 
 #### Trait Implementations
 
@@ -303,6 +325,8 @@ struct TryFindMatches<'r, 'c, 'h> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1572-1577`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1572-L1577)*
+
 An iterator over all non-overlapping matches for a fallible search.
 
 The iterator yields a `Result<Match, MatchError` value until no more
@@ -319,21 +343,21 @@ method.
 
 #### Trait Implementations
 
-##### `impl<'r, 'c, 'h> Debug for TryFindMatches<'r, 'c, 'h>`
+##### `impl Debug for TryFindMatches<'r, 'c, 'h>`
 
 - <span id="tryfindmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for TryFindMatches<'r, 'c, 'h>`
+##### `impl IntoIterator for TryFindMatches<'r, 'c, 'h>`
 
-- <span id="tryfindmatches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tryfindmatches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tryfindmatches-intoiter"></span>`type IntoIter = I`
+- <span id="tryfindmatches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tryfindmatches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'c, 'h> Iterator for TryFindMatches<'r, 'c, 'h>`
+##### `impl Iterator for TryFindMatches<'r, 'c, 'h>`
 
-- <span id="tryfindmatches-item"></span>`type Item = Result<Match, MatchError>`
+- <span id="tryfindmatches-type-item"></span>`type Item = Result<Match, MatchError>`
 
 - <span id="tryfindmatches-next"></span>`fn next(&mut self) -> Option<Result<Match, MatchError>>` — [`Match`](../../../index.md), [`MatchError`](../../../index.md)
 
@@ -347,6 +371,8 @@ struct TryCapturesMatches<'r, 'c, 'h> {
     it: iter::Searcher<'h>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1610-1615`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1610-L1615)*
 
 An iterator over all non-overlapping leftmost matches, with their capturing
 groups, for a fallible search.
@@ -365,21 +391,21 @@ This iterator can be created with the
 
 #### Trait Implementations
 
-##### `impl<'r, 'c, 'h> Debug for TryCapturesMatches<'r, 'c, 'h>`
+##### `impl Debug for TryCapturesMatches<'r, 'c, 'h>`
 
 - <span id="trycapturesmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for TryCapturesMatches<'r, 'c, 'h>`
+##### `impl IntoIterator for TryCapturesMatches<'r, 'c, 'h>`
 
-- <span id="trycapturesmatches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="trycapturesmatches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="trycapturesmatches-intoiter"></span>`type IntoIter = I`
+- <span id="trycapturesmatches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="trycapturesmatches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'c, 'h> Iterator for TryCapturesMatches<'r, 'c, 'h>`
+##### `impl Iterator for TryCapturesMatches<'r, 'c, 'h>`
 
-- <span id="trycapturesmatches-item"></span>`type Item = Result<Captures, MatchError>`
+- <span id="trycapturesmatches-type-item"></span>`type Item = Result<Captures, MatchError>`
 
 - <span id="trycapturesmatches-next"></span>`fn next(&mut self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../../../util/captures/index.md), [`MatchError`](../../../index.md)
 
@@ -391,6 +417,8 @@ struct Cache {
     visited: Visited,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1653-1664`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1653-L1664)*
 
 A cache represents mutable state that a [`BoundedBacktracker`](#boundedbacktracker) requires
 during a search.
@@ -451,6 +479,8 @@ struct Visited {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1779-1801`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1779-L1801)*
+
 A bitset that keeps track of whether a particular (StateID, offset) has
 been considered during backtracking. If it has already been visited, then
 backtracking skips it. This is what gives backtracking its "bound."
@@ -484,7 +514,7 @@ backtracking skips it. This is what gives backtracking its "bound."
 
 #### Implementations
 
-- <span id="visited-block-size"></span>`const BLOCK_SIZE: usize`
+- <span id="visited-const-block-size"></span>`const BLOCK_SIZE: usize`
 
 - <span id="visited-new"></span>`fn new(re: &BoundedBacktracker) -> Visited` — [`BoundedBacktracker`](#boundedbacktracker), [`Visited`](#visited)
 
@@ -522,6 +552,8 @@ enum Frame {
     },
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1761-1773`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1761-L1773)*
 
 Represents a stack frame on the heap while doing backtracking.
 
@@ -564,6 +596,8 @@ backtracking branch turns out to not lead to a match.
 fn min_visited_capacity(nfa: &crate::nfa::thompson::NFA, input: &crate::util::search::Input<'_>) -> usize
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:41-43`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L41-L43)*
+
 Returns the minimum visited capacity for the given haystack.
 
 This function can be used as the argument to `Config::visited_capacity`
@@ -585,6 +619,8 @@ the size the given NFA and haystack.
 ```rust
 fn div_ceil(lhs: usize, rhs: usize) -> usize
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/backtrack.rs:1881-1887`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/backtrack.rs#L1881-L1887)*
 
 Integer division, but rounds up instead of down.
 

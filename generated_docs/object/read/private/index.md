@@ -18,6 +18,8 @@
 trait Sealed { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:111`](../../../../.source_1765210505/object-0.37.3/src/read/mod.rs#L111)*
+
 #### Implementors
 
 - [`CoffComdat`](../coff/index.md)

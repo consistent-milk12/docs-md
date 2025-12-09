@@ -43,6 +43,8 @@ enum Error {
 }
 ```
 
+*Defined in `src/error.rs:30-205`*
+
 Errors that can occur during documentation generation.
 
 Each variant includes:
@@ -159,17 +161,17 @@ Each variant includes:
 
 - <span id="error-source"></span>`fn source(&self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
 
-##### `impl<T> Instrument for Error`
+##### `impl Instrument for Error`
 
-##### `impl<T> IntoEither for Error`
+##### `impl IntoEither for Error`
 
-##### `impl<D> OwoColorize for Error`
+##### `impl OwoColorize for Error`
 
-##### `impl<T> Pointable for Error`
+##### `impl Pointable for Error`
 
-- <span id="error-align"></span>`const ALIGN: usize`
+- <span id="error-const-align"></span>`const ALIGN: usize`
 
-- <span id="error-init"></span>`type Init = T`
+- <span id="error-type-init"></span>`type Init = T`
 
 - <span id="error-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -179,13 +181,13 @@ Each variant includes:
 
 - <span id="error-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> ToCompactString for Error`
+##### `impl ToCompactString for Error`
 
 - <span id="error-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<T> WithSubscriber for Error`
+##### `impl WithSubscriber for Error`
 

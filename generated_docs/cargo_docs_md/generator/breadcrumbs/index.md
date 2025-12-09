@@ -6,7 +6,7 @@
 
 Breadcrumb navigation generation for nested module pages.
 
-This module provides [`BreadcrumbGenerator`](../index.md) which creates navigation
+This module provides [`BreadcrumbGenerator`](#breadcrumbgenerator) which creates navigation
 links showing the path from crate root to the current module.
 
 ## Quick Reference
@@ -25,6 +25,8 @@ struct BreadcrumbGenerator<'a> {
     crate_name: &'a str,
 }
 ```
+
+*Defined in `src/generator/breadcrumbs.rs:10-16`*
 
 Generates breadcrumb navigation for nested module pages.
 
@@ -49,17 +51,17 @@ the current module, with each segment being a clickable link.
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for BreadcrumbGenerator<'a>`
+##### `impl Instrument for BreadcrumbGenerator<'a>`
 
-##### `impl<T> IntoEither for BreadcrumbGenerator<'a>`
+##### `impl IntoEither for BreadcrumbGenerator<'a>`
 
-##### `impl<D> OwoColorize for BreadcrumbGenerator<'a>`
+##### `impl OwoColorize for BreadcrumbGenerator<'a>`
 
-##### `impl<T> Pointable for BreadcrumbGenerator<'a>`
+##### `impl Pointable for BreadcrumbGenerator<'a>`
 
-- <span id="breadcrumbgenerator-align"></span>`const ALIGN: usize`
+- <span id="breadcrumbgenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="breadcrumbgenerator-init"></span>`type Init = T`
+- <span id="breadcrumbgenerator-type-init"></span>`type Init = T`
 
 - <span id="breadcrumbgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -69,5 +71,5 @@ the current module, with each segment being a clickable link.
 
 - <span id="breadcrumbgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for BreadcrumbGenerator<'a>`
+##### `impl WithSubscriber for BreadcrumbGenerator<'a>`
 

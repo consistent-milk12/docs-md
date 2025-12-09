@@ -48,6 +48,8 @@ struct ReadWritePair {
 }
 ```
 
+*Defined in [`console-0.16.1/src/term.rs:24-29`](../../../.source_1765210505/console-0.16.1/src/term.rs#L24-L29)*
+
 #### Trait Implementations
 
 ##### `impl Clone for ReadWritePair`
@@ -69,6 +71,8 @@ struct TermInner {
 }
 ```
 
+*Defined in [`console-0.16.1/src/term.rs:41-46`](../../../.source_1765210505/console-0.16.1/src/term.rs#L41-L46)*
+
 #### Trait Implementations
 
 ##### `impl Debug for TermInner`
@@ -80,6 +84,8 @@ struct TermInner {
 ```rust
 struct TermFeatures<'a>(&'a Term);
 ```
+
+*Defined in [`console-0.16.1/src/term.rs:63`](../../../.source_1765210505/console-0.16.1/src/term.rs#L63)*
 
 Gives access to the terminal features.
 
@@ -93,15 +99,15 @@ Gives access to the terminal features.
 
 - <span id="termfeatures-wants-emoji"></span>`fn wants_emoji(&self) -> bool`
 
-- <span id="termfeatures-family"></span>`fn family(&self) -> TermFamily` — [`TermFamily`](../index.md)
+- <span id="termfeatures-family"></span>`fn family(&self) -> TermFamily` — [`TermFamily`](#termfamily)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for TermFeatures<'a>`
+##### `impl Clone for TermFeatures<'a>`
 
-- <span id="termfeatures-clone"></span>`fn clone(&self) -> TermFeatures<'a>` — [`TermFeatures`](../index.md)
+- <span id="termfeatures-clone"></span>`fn clone(&self) -> TermFeatures<'a>` — [`TermFeatures`](#termfeatures)
 
-##### `impl<'a> Debug for TermFeatures<'a>`
+##### `impl Debug for TermFeatures<'a>`
 
 - <span id="termfeatures-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -115,6 +121,8 @@ struct Term {
 }
 ```
 
+*Defined in [`console-0.16.1/src/term.rs:129-133`](../../../.source_1765210505/console-0.16.1/src/term.rs#L129-L133)*
+
 Abstraction around a terminal.
 
 A terminal can be cloned.  If a buffer is used it's shared across all
@@ -122,31 +130,31 @@ clones which means it largely acts as a handle.
 
 #### Implementations
 
-- <span id="term-with-inner"></span>`fn with_inner(inner: TermInner) -> Term` — [`TermInner`](#terminner), [`Term`](../index.md)
+- <span id="term-with-inner"></span>`fn with_inner(inner: TermInner) -> Term` — [`TermInner`](#terminner), [`Term`](#term)
 
-- <span id="term-stdout"></span>`fn stdout() -> Term` — [`Term`](../index.md)
+- <span id="term-stdout"></span>`fn stdout() -> Term` — [`Term`](#term)
 
-- <span id="term-stderr"></span>`fn stderr() -> Term` — [`Term`](../index.md)
+- <span id="term-stderr"></span>`fn stderr() -> Term` — [`Term`](#term)
 
-- <span id="term-buffered-stdout"></span>`fn buffered_stdout() -> Term` — [`Term`](../index.md)
+- <span id="term-buffered-stdout"></span>`fn buffered_stdout() -> Term` — [`Term`](#term)
 
-- <span id="term-buffered-stderr"></span>`fn buffered_stderr() -> Term` — [`Term`](../index.md)
+- <span id="term-buffered-stderr"></span>`fn buffered_stderr() -> Term` — [`Term`](#term)
 
-- <span id="term-read-write-pair"></span>`fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](../index.md)
+- <span id="term-read-write-pair"></span>`fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](#term)
 
-- <span id="term-read-write-pair-with-style"></span>`fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](../index.md), [`Term`](../index.md)
+- <span id="term-read-write-pair-with-style"></span>`fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](../utils/index.md), [`Term`](#term)
 
-- <span id="term-style"></span>`fn style(&self) -> Style` — [`Style`](../index.md)
+- <span id="term-style"></span>`fn style(&self) -> Style` — [`Style`](../utils/index.md)
 
-- <span id="term-target"></span>`fn target(&self) -> TermTarget` — [`TermTarget`](../index.md)
+- <span id="term-target"></span>`fn target(&self) -> TermTarget` — [`TermTarget`](#termtarget)
 
 - <span id="term-write-line"></span>`fn write_line(&self, s: &str) -> io::Result<()>`
 
 - <span id="term-read-char"></span>`fn read_char(&self) -> io::Result<char>`
 
-- <span id="term-read-key"></span>`fn read_key(&self) -> io::Result<Key>` — [`Key`](../index.md)
+- <span id="term-read-key"></span>`fn read_key(&self) -> io::Result<Key>` — [`Key`](../kb/index.md)
 
-- <span id="term-read-key-raw"></span>`fn read_key_raw(&self) -> io::Result<Key>` — [`Key`](../index.md)
+- <span id="term-read-key-raw"></span>`fn read_key_raw(&self) -> io::Result<Key>` — [`Key`](../kb/index.md)
 
 - <span id="term-read-line"></span>`fn read_line(&self) -> io::Result<String>`
 
@@ -158,7 +166,7 @@ clones which means it largely acts as a handle.
 
 - <span id="term-is-term"></span>`fn is_term(&self) -> bool`
 
-- <span id="term-features"></span>`fn features(&self) -> TermFeatures<'_>` — [`TermFeatures`](../index.md)
+- <span id="term-features"></span>`fn features(&self) -> TermFeatures<'_>` — [`TermFeatures`](#termfeatures)
 
 - <span id="term-size"></span>`fn size(&self) -> (u16, u16)`
 
@@ -202,7 +210,7 @@ clones which means it largely acts as a handle.
 
 ##### `impl Clone for Term`
 
-- <span id="term-clone"></span>`fn clone(&self) -> Term` — [`Term`](../index.md)
+- <span id="term-clone"></span>`fn clone(&self) -> Term` — [`Term`](#term)
 
 ##### `impl Debug for Term`
 
@@ -232,13 +240,15 @@ enum TermTarget {
 }
 ```
 
+*Defined in [`console-0.16.1/src/term.rs:33-38`](../../../.source_1765210505/console-0.16.1/src/term.rs#L33-L38)*
+
 Where the term is writing.
 
 #### Trait Implementations
 
 ##### `impl Clone for TermTarget`
 
-- <span id="termtarget-clone"></span>`fn clone(&self) -> TermTarget` — [`TermTarget`](../index.md)
+- <span id="termtarget-clone"></span>`fn clone(&self) -> TermTarget` — [`TermTarget`](#termtarget)
 
 ##### `impl Debug for TermTarget`
 
@@ -254,6 +264,8 @@ enum TermFamily {
     Dummy,
 }
 ```
+
+*Defined in [`console-0.16.1/src/term.rs:50-59`](../../../.source_1765210505/console-0.16.1/src/term.rs#L50-L59)*
 
 The family of the terminal.
 
@@ -279,7 +291,7 @@ The family of the terminal.
 
 ##### `impl Clone for TermFamily`
 
-- <span id="termfamily-clone"></span>`fn clone(&self) -> TermFamily` — [`TermFamily`](../index.md)
+- <span id="termfamily-clone"></span>`fn clone(&self) -> TermFamily` — [`TermFamily`](#termfamily)
 
 ##### `impl Copy for TermFamily`
 
@@ -291,7 +303,7 @@ The family of the terminal.
 
 ##### `impl PartialEq for TermFamily`
 
-- <span id="termfamily-eq"></span>`fn eq(&self, other: &TermFamily) -> bool` — [`TermFamily`](../index.md)
+- <span id="termfamily-eq"></span>`fn eq(&self, other: &TermFamily) -> bool` — [`TermFamily`](#termfamily)
 
 ##### `impl StructuralPartialEq for TermFamily`
 
@@ -303,6 +315,8 @@ The family of the terminal.
 trait TermWrite: Write + Debug + AsRawFd + Send { ... }
 ```
 
+*Defined in [`console-0.16.1/src/term.rs:13`](../../../.source_1765210505/console-0.16.1/src/term.rs#L13)*
+
 #### Implementors
 
 - `T`
@@ -312,6 +326,8 @@ trait TermWrite: Write + Debug + AsRawFd + Send { ... }
 ```rust
 trait TermRead: Read + Debug + AsRawFd + Send { ... }
 ```
+
+*Defined in [`console-0.16.1/src/term.rs:18`](../../../.source_1765210505/console-0.16.1/src/term.rs#L18)*
 
 #### Implementors
 
@@ -325,6 +341,8 @@ trait TermRead: Read + Debug + AsRawFd + Send { ... }
 fn user_attended() -> bool
 ```
 
+*Defined in [`console-0.16.1/src/term.rs:578-580`](../../../.source_1765210505/console-0.16.1/src/term.rs#L578-L580)*
+
 A fast way to check if the application has a user attended for stdout.
 
 This means that stdout is connected to a terminal instead of a
@@ -336,6 +354,8 @@ checking the `is_attended` feature on the stdout terminal.
 ```rust
 fn user_attended_stderr() -> bool
 ```
+
+*Defined in [`console-0.16.1/src/term.rs:588-590`](../../../.source_1765210505/console-0.16.1/src/term.rs#L588-L590)*
 
 A fast way to check if the application has a user attended for stderr.
 

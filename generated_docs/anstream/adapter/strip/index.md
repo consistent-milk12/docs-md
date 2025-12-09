@@ -55,7 +55,9 @@ struct StrippedStr<'s> {
 }
 ```
 
-See [`strip_str`](../index.md)
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:28-31`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L28-L31)*
+
+See [`strip_str`](#strip-str)
 
 #### Implementations
 
@@ -65,45 +67,45 @@ See [`strip_str`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'s> Clone for StrippedStr<'s>`
+##### `impl Clone for StrippedStr<'s>`
 
-- <span id="strippedstr-clone"></span>`fn clone(&self) -> StrippedStr<'s>` — [`StrippedStr`](../index.md)
+- <span id="strippedstr-clone"></span>`fn clone(&self) -> StrippedStr<'s>` — [`StrippedStr`](#strippedstr)
 
-##### `impl<'s> Debug for StrippedStr<'s>`
+##### `impl Debug for StrippedStr<'s>`
 
 - <span id="strippedstr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'s> Default for StrippedStr<'s>`
+##### `impl Default for StrippedStr<'s>`
 
-- <span id="strippedstr-default"></span>`fn default() -> StrippedStr<'s>` — [`StrippedStr`](../index.md)
+- <span id="strippedstr-default"></span>`fn default() -> StrippedStr<'s>` — [`StrippedStr`](#strippedstr)
 
 ##### `impl Display for StrippedStr<'_>`
 
 - <span id="strippedstr-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-##### `impl<'s> Eq for StrippedStr<'s>`
+##### `impl Eq for StrippedStr<'s>`
 
-##### `impl<I> IntoIterator for StrippedStr<'s>`
+##### `impl IntoIterator for StrippedStr<'s>`
 
-- <span id="strippedstr-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="strippedstr-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="strippedstr-intoiter"></span>`type IntoIter = I`
+- <span id="strippedstr-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="strippedstr-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'s> Iterator for StrippedStr<'s>`
+##### `impl Iterator for StrippedStr<'s>`
 
-- <span id="strippedstr-item"></span>`type Item = &'s str`
+- <span id="strippedstr-type-item"></span>`type Item = &'s str`
 
 - <span id="strippedstr-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'s> PartialEq for StrippedStr<'s>`
+##### `impl PartialEq for StrippedStr<'s>`
 
-- <span id="strippedstr-eq"></span>`fn eq(&self, other: &StrippedStr<'s>) -> bool` — [`StrippedStr`](../index.md)
+- <span id="strippedstr-eq"></span>`fn eq(&self, other: &StrippedStr<'s>) -> bool` — [`StrippedStr`](#strippedstr)
 
-##### `impl<'s> StructuralPartialEq for StrippedStr<'s>`
+##### `impl StructuralPartialEq for StrippedStr<'s>`
 
-##### `impl<T> ToString for StrippedStr<'s>`
+##### `impl ToString for StrippedStr<'s>`
 
 - <span id="strippedstr-to-string"></span>`fn to_string(&self) -> String`
 
@@ -115,19 +117,21 @@ struct StripStr {
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:79-81`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L79-L81)*
+
 Incrementally strip non-contiguous data
 
 #### Implementations
 
 - <span id="stripstr-new"></span>`fn new() -> Self`
 
-- <span id="stripstr-strip-next"></span>`fn strip_next<'s>(self: &'s mut Self, data: &'s str) -> StripStrIter<'s>` — [`StripStrIter`](../index.md)
+- <span id="stripstr-strip-next"></span>`fn strip_next<'s>(self: &'s mut Self, data: &'s str) -> StripStrIter<'s>` — [`StripStrIter`](#stripstriter)
 
 #### Trait Implementations
 
 ##### `impl Clone for StripStr`
 
-- <span id="stripstr-clone"></span>`fn clone(&self) -> StripStr` — [`StripStr`](../index.md)
+- <span id="stripstr-clone"></span>`fn clone(&self) -> StripStr` — [`StripStr`](#stripstr)
 
 ##### `impl Debug for StripStr`
 
@@ -135,13 +139,13 @@ Incrementally strip non-contiguous data
 
 ##### `impl Default for StripStr`
 
-- <span id="stripstr-default"></span>`fn default() -> StripStr` — [`StripStr`](../index.md)
+- <span id="stripstr-default"></span>`fn default() -> StripStr` — [`StripStr`](#stripstr)
 
 ##### `impl Eq for StripStr`
 
 ##### `impl PartialEq for StripStr`
 
-- <span id="stripstr-eq"></span>`fn eq(&self, other: &StripStr) -> bool` — [`StripStr`](../index.md)
+- <span id="stripstr-eq"></span>`fn eq(&self, other: &StripStr) -> bool` — [`StripStr`](#stripstr)
 
 ##### `impl StructuralPartialEq for StripStr`
 
@@ -154,35 +158,37 @@ struct StripStrIter<'s> {
 }
 ```
 
-See [`StripStr`](../index.md)
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:100-103`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L100-L103)*
+
+See [`StripStr`](#stripstr)
 
 #### Trait Implementations
 
-##### `impl<'s> Debug for StripStrIter<'s>`
+##### `impl Debug for StripStrIter<'s>`
 
 - <span id="stripstriter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'s> Eq for StripStrIter<'s>`
+##### `impl Eq for StripStrIter<'s>`
 
-##### `impl<I> IntoIterator for StripStrIter<'s>`
+##### `impl IntoIterator for StripStrIter<'s>`
 
-- <span id="stripstriter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="stripstriter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="stripstriter-intoiter"></span>`type IntoIter = I`
+- <span id="stripstriter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="stripstriter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'s> Iterator for StripStrIter<'s>`
+##### `impl Iterator for StripStrIter<'s>`
 
-- <span id="stripstriter-item"></span>`type Item = &'s str`
+- <span id="stripstriter-type-item"></span>`type Item = &'s str`
 
 - <span id="stripstriter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'s> PartialEq for StripStrIter<'s>`
+##### `impl PartialEq for StripStrIter<'s>`
 
-- <span id="stripstriter-eq"></span>`fn eq(&self, other: &StripStrIter<'s>) -> bool` — [`StripStrIter`](../index.md)
+- <span id="stripstriter-eq"></span>`fn eq(&self, other: &StripStrIter<'s>) -> bool` — [`StripStrIter`](#stripstriter)
 
-##### `impl<'s> StructuralPartialEq for StripStrIter<'s>`
+##### `impl StructuralPartialEq for StripStrIter<'s>`
 
 ### `StrippedBytes<'s>`
 
@@ -194,7 +200,9 @@ struct StrippedBytes<'s> {
 }
 ```
 
-See [`strip_bytes`](../index.md)
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:184-188`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L184-L188)*
+
+See [`strip_bytes`](#strip-bytes)
 
 #### Implementations
 
@@ -208,39 +216,39 @@ See [`strip_bytes`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'s> Clone for StrippedBytes<'s>`
+##### `impl Clone for StrippedBytes<'s>`
 
-- <span id="strippedbytes-clone"></span>`fn clone(&self) -> StrippedBytes<'s>` — [`StrippedBytes`](../index.md)
+- <span id="strippedbytes-clone"></span>`fn clone(&self) -> StrippedBytes<'s>` — [`StrippedBytes`](#strippedbytes)
 
-##### `impl<'s> Debug for StrippedBytes<'s>`
+##### `impl Debug for StrippedBytes<'s>`
 
 - <span id="strippedbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'s> Default for StrippedBytes<'s>`
+##### `impl Default for StrippedBytes<'s>`
 
-- <span id="strippedbytes-default"></span>`fn default() -> StrippedBytes<'s>` — [`StrippedBytes`](../index.md)
+- <span id="strippedbytes-default"></span>`fn default() -> StrippedBytes<'s>` — [`StrippedBytes`](#strippedbytes)
 
-##### `impl<'s> Eq for StrippedBytes<'s>`
+##### `impl Eq for StrippedBytes<'s>`
 
-##### `impl<I> IntoIterator for StrippedBytes<'s>`
+##### `impl IntoIterator for StrippedBytes<'s>`
 
-- <span id="strippedbytes-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="strippedbytes-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="strippedbytes-intoiter"></span>`type IntoIter = I`
+- <span id="strippedbytes-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="strippedbytes-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'s> Iterator for StrippedBytes<'s>`
+##### `impl Iterator for StrippedBytes<'s>`
 
-- <span id="strippedbytes-item"></span>`type Item = &'s [u8]`
+- <span id="strippedbytes-type-item"></span>`type Item = &'s [u8]`
 
 - <span id="strippedbytes-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'s> PartialEq for StrippedBytes<'s>`
+##### `impl PartialEq for StrippedBytes<'s>`
 
-- <span id="strippedbytes-eq"></span>`fn eq(&self, other: &StrippedBytes<'s>) -> bool` — [`StrippedBytes`](../index.md)
+- <span id="strippedbytes-eq"></span>`fn eq(&self, other: &StrippedBytes<'s>) -> bool` — [`StrippedBytes`](#strippedbytes)
 
-##### `impl<'s> StructuralPartialEq for StrippedBytes<'s>`
+##### `impl StructuralPartialEq for StrippedBytes<'s>`
 
 ### `StripBytes`
 
@@ -251,19 +259,21 @@ struct StripBytes {
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:245-248`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L245-L248)*
+
 Incrementally strip non-contiguous data
 
 #### Implementations
 
 - <span id="stripbytes-new"></span>`fn new() -> Self`
 
-- <span id="stripbytes-strip-next"></span>`fn strip_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> StripBytesIter<'s>` — [`StripBytesIter`](../index.md)
+- <span id="stripbytes-strip-next"></span>`fn strip_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> StripBytesIter<'s>` — [`StripBytesIter`](#stripbytesiter)
 
 #### Trait Implementations
 
 ##### `impl Clone for StripBytes`
 
-- <span id="stripbytes-clone"></span>`fn clone(&self) -> StripBytes` — [`StripBytes`](../index.md)
+- <span id="stripbytes-clone"></span>`fn clone(&self) -> StripBytes` — [`StripBytes`](#stripbytes)
 
 ##### `impl Debug for StripBytes`
 
@@ -271,13 +281,13 @@ Incrementally strip non-contiguous data
 
 ##### `impl Default for StripBytes`
 
-- <span id="stripbytes-default"></span>`fn default() -> StripBytes` — [`StripBytes`](../index.md)
+- <span id="stripbytes-default"></span>`fn default() -> StripBytes` — [`StripBytes`](#stripbytes)
 
 ##### `impl Eq for StripBytes`
 
 ##### `impl PartialEq for StripBytes`
 
-- <span id="stripbytes-eq"></span>`fn eq(&self, other: &StripBytes) -> bool` — [`StripBytes`](../index.md)
+- <span id="stripbytes-eq"></span>`fn eq(&self, other: &StripBytes) -> bool` — [`StripBytes`](#stripbytes)
 
 ##### `impl StructuralPartialEq for StripBytes`
 
@@ -291,35 +301,37 @@ struct StripBytesIter<'s> {
 }
 ```
 
-See [`StripBytes`](../index.md)
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:268-272`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L268-L272)*
+
+See [`StripBytes`](#stripbytes)
 
 #### Trait Implementations
 
-##### `impl<'s> Debug for StripBytesIter<'s>`
+##### `impl Debug for StripBytesIter<'s>`
 
 - <span id="stripbytesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'s> Eq for StripBytesIter<'s>`
+##### `impl Eq for StripBytesIter<'s>`
 
-##### `impl<I> IntoIterator for StripBytesIter<'s>`
+##### `impl IntoIterator for StripBytesIter<'s>`
 
-- <span id="stripbytesiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="stripbytesiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="stripbytesiter-intoiter"></span>`type IntoIter = I`
+- <span id="stripbytesiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="stripbytesiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'s> Iterator for StripBytesIter<'s>`
+##### `impl Iterator for StripBytesIter<'s>`
 
-- <span id="stripbytesiter-item"></span>`type Item = &'s [u8]`
+- <span id="stripbytesiter-type-item"></span>`type Item = &'s [u8]`
 
 - <span id="stripbytesiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-##### `impl<'s> PartialEq for StripBytesIter<'s>`
+##### `impl PartialEq for StripBytesIter<'s>`
 
-- <span id="stripbytesiter-eq"></span>`fn eq(&self, other: &StripBytesIter<'s>) -> bool` — [`StripBytesIter`](../index.md)
+- <span id="stripbytesiter-eq"></span>`fn eq(&self, other: &StripBytesIter<'s>) -> bool` — [`StripBytesIter`](#stripbytesiter)
 
-##### `impl<'s> StructuralPartialEq for StripBytesIter<'s>`
+##### `impl StructuralPartialEq for StripBytesIter<'s>`
 
 ### `Utf8Parser`
 
@@ -328,6 +340,8 @@ struct Utf8Parser {
     utf8_parser: utf8parse::Parser,
 }
 ```
+
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:332-334`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L332-L334)*
 
 #### Implementations
 
@@ -361,6 +375,8 @@ struct Utf8Parser {
 struct VtUtf8Receiver<'a>(&'a mut bool);
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:345`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L345)*
+
 #### Trait Implementations
 
 ##### `impl Receiver for VtUtf8Receiver<'_>`
@@ -377,12 +393,14 @@ struct VtUtf8Receiver<'a>(&'a mut bool);
 fn strip_str(data: &str) -> StrippedStr<'_>
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:22-24`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L22-L24)*
+
 Strip ANSI escapes from a `&str`, returning the printable content
 
 This can be used to take output from a program that includes escape sequences and write it
 somewhere that does not easily support them, such as a log file.
 
-For non-contiguous data, see [`StripStr`](../index.md).
+For non-contiguous data, see [`StripStr`](#stripstr).
 
 # Example
 
@@ -400,11 +418,15 @@ assert_eq!(plain_str, "foo bar");
 fn next_str<'s>(bytes: &mut &'s [u8], state: &mut anstyle_parse::state::State) -> Option<&'s str>
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:115-144`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L115-L144)*
+
 ### `from_utf8_unchecked`
 
 ```rust
 unsafe fn from_utf8_unchecked<'b>(bytes: &'b [u8], safety_justification: &'static str) -> &'b str
 ```
+
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:147-156`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L147-L156)*
 
 ### `is_utf8_continuation`
 
@@ -412,11 +434,15 @@ unsafe fn from_utf8_unchecked<'b>(bytes: &'b [u8], safety_justification: &'stati
 fn is_utf8_continuation(b: u8) -> bool
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:159-161`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L159-L161)*
+
 ### `strip_bytes`
 
 ```rust
 fn strip_bytes(data: &[u8]) -> StrippedBytes<'_>
 ```
+
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:178-180`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L178-L180)*
 
 Strip ANSI escapes from bytes, returning the printable content
 
@@ -439,9 +465,13 @@ assert_eq!(plain_str.as_slice(), &b"foo bar"[..]);
 fn next_bytes<'s>(bytes: &mut &'s [u8], state: &mut anstyle_parse::state::State, utf8parser: &mut Utf8Parser) -> Option<&'s [u8]>
 ```
 
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:284-329`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L284-L329)*
+
 ### `is_printable_bytes`
 
 ```rust
 fn is_printable_bytes(action: anstyle_parse::state::Action, byte: u8) -> bool
 ```
+
+*Defined in [`anstream-0.6.21/src/adapter/strip.rs:358-367`](../../../../.source_1765210505/anstream-0.6.21/src/adapter/strip.rs#L358-L367)*
 

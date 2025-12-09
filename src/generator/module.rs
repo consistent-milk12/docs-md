@@ -133,33 +133,50 @@ impl<'a> ModuleRenderer<'a> {
     }
 
     /// Categorize module items by type for organized rendering.
+    ///
+    /// Items are categorized into groups for structured documentation.
+    /// - Modules (for navigation)
+    /// - Types (structs, enums, unions, type aliases)
+    /// - Traits
+    /// - Functions
+    /// - Constants and statics
+    /// - Macros
     fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a> {
         let mut items = CategorizedItems::default();
         let mut seen_items: HashSet<&Id> = HashSet::new();
 
         for item_id in item_ids {
-            // Skip if already processed (from glob expansion)
+            // Skip: if alredy processed (from glob expansion)
             if !seen_items.insert(item_id) {
                 continue;
             }
 
             if let Some(child) = self.ctx.get_item(item_id) {
+                // Skip: This item should not be included.
                 if !self.ctx.should_include_item(child) {
                     continue;
                 }
 
                 match &child.inner {
+                    // Navigation
                     ItemEnum::Module(_) => items.modules.push((item_id, child)),
+
+                    // Types section
                     ItemEnum::Struct(_) => items.structs.push((item_id, child)),
                     ItemEnum::Enum(_) => items.enums.push((item_id, child)),
+                    ItemEnum::Union(_) => items.unions.push((item_id, child)),
+                    ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
+
+                    // Other sections
                     ItemEnum::Trait(_) => items.traits.push((item_id, child)),
                     ItemEnum::Function(_) => items.functions.push(child),
-                    ItemEnum::Macro(_) => items.macros.push(child),
                     ItemEnum::Constant { .. } => items.constants.push(child),
-                    ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
+                    ItemEnum::Static(_) => items.statics.push(child),
+                    ItemEnum::Macro(_) => items.macros.push(child),
 
                     // Handle re-exports
                     ItemEnum::Use(use_item) => {
+                        // If its a glob re-export
                         if use_item.is_glob {
                             // Glob re-export: expand target module's items
                             self.expand_glob_reexport(&mut items, use_item, &mut seen_items);
@@ -169,23 +186,29 @@ impl<'a> ModuleRenderer<'a> {
                             // Specific re-export: categorize by target type
                             match &target_item.inner {
                                 ItemEnum::Module(_) => items.modules.push((item_id, child)),
+
                                 ItemEnum::Struct(_) => items.structs.push((item_id, child)),
                                 ItemEnum::Enum(_) => items.enums.push((item_id, child)),
+                                ItemEnum::Union(_) => items.unions.push((item_id, child)),
+                                ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
+
                                 ItemEnum::Trait(_) => items.traits.push((item_id, child)),
                                 ItemEnum::Function(_) => items.functions.push(child),
-                                ItemEnum::Macro(_) => items.macros.push(child),
                                 ItemEnum::Constant { .. } => items.constants.push(child),
-                                ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
+                                ItemEnum::Static(_) => items.statics.push(child),
+                                ItemEnum::Macro(_) => items.macros.push(child),
                                 _ => {},
                             }
                         }
                     },
+
                     _ => {},
                 }
             }
         }
 
-        // Sort all categories for deterministic output
+        // Sort all categories for deterministic output.
+        // TODO: See if we can move to an ordered data structure by insertion.
         items.sort();
 
         items
@@ -232,42 +255,181 @@ impl<'a> ModuleRenderer<'a> {
             // Categorize based on item type
             match &child.inner {
                 ItemEnum::Module(_) => items.modules.push((child_id, child)),
+
                 ItemEnum::Struct(_) => items.structs.push((child_id, child)),
                 ItemEnum::Enum(_) => items.enums.push((child_id, child)),
+                ItemEnum::Union(_) => items.unions.push((child_id, child)),
+                ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
+
                 ItemEnum::Trait(_) => items.traits.push((child_id, child)),
                 ItemEnum::Function(_) => items.functions.push(child),
-                ItemEnum::Macro(_) => items.macros.push(child),
                 ItemEnum::Constant { .. } => items.constants.push(child),
-                ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
+                ItemEnum::Static(_) => items.statics.push(child),
+                ItemEnum::Macro(_) => items.macros.push(child),
+
                 _ => {},
             }
         }
     }
 
-    /// Render all item sections in the standard order.
+    /// Render all item sections with horizontal rule separators.
+    ///
+    /// Sections are rendered in this order:
+    /// 1. Modules (navigation, no separator before)
+    /// 2. Types (structs, enums, unions, type aliases)
+    /// 3. Traits
+    /// 4. Functions
+    /// 5. Constants
+    /// 6. Statics
+    /// 7. Macros
+    ///
+    /// Horizontal rules (`---`) are added between major sections for
+    /// visual separation in the rendered output.
     fn render_all_sections(&self, md: &mut String, items: &CategorizedItems) {
-        self.render_modules_section(md, &items.modules);
-        self.render_structs_section(md, &items.structs);
-        self.render_enums_section(md, &items.enums);
-        self.render_traits_section(md, &items.traits);
-        self.render_functions_section(md, &items.functions);
-        self.render_macros_section(md, &items.macros);
-        self.render_constants_section(md, &items.constants);
-        self.render_type_aliases_section(md, &items.type_aliases);
+        // Track if we've rendered any content (for separator logic)
+        // === Modules Section (navigation) ===
+        // No separator before modules - they come first
+        let mut has_content = if items.modules.is_empty() {
+            false
+        } else {
+            self.render_modules_section(md, &items.modules);
+            true
+        };
+
+        // === Types Section (structs, enums, unions, type aliases) ===
+        if items.has_types() {
+            if has_content {
+                _ = writeln!(md, "\n---\n");
+            }
+
+            self.render_types_section(md, items);
+            has_content = true;
+        }
+
+        // === Traits Section ===
+        if !items.traits.is_empty() {
+            if has_content {
+                _ = writeln!(md, "\n---\n");
+            }
+
+            self.render_traits_section(md, &items.traits);
+            has_content = true;
+        }
+
+        // === Functions Section ===
+        if !items.functions.is_empty() {
+            if has_content {
+                _ = writeln!(md, "\n---\n");
+            }
+
+            self.render_functions_section(md, &items.functions);
+            has_content = true;
+        }
+
+        // === Constants Section ===
+        if !items.constants.is_empty() {
+            if has_content {
+                _ = writeln!(md, "\n---\n");
+            }
+
+            self.render_constants_section(md, &items.constants);
+            has_content = true;
+        }
+
+        // === Statics Section ===
+        if !items.statics.is_empty() {
+            if has_content {
+                _ = writeln!(md, "\n---\n");
+            }
+
+            self.render_statics_section(md, &items.statics);
+            has_content = true;
+        }
+
+        // === Macros Section ===
+        if !items.macros.is_empty() {
+            if has_content {
+                _ = writeln!(md, "\n---\n");
+            }
+
+            self.render_macros_section(md, &items.macros);
+        }
+    }
+
+    /// Render the Types section (structs, enums, unions, type aliases).
+    ///
+    /// All type definitions are grouped under a single "Types" heading,
+    /// with each item type rendered in subsections:
+    ///
+    /// ```markdown
+    /// ## Types
+    ///
+    /// ### `MyStruct`
+    /// [struct definition]
+    ///
+    /// ### `MyEnum`
+    /// [enum definition]
+    ///
+    /// ### `MyUnion`
+    /// [union definition]
+    ///
+    /// ### `MyAlias`
+    /// [type alias definition]
+    /// ```
+    fn render_types_section(&self, md: &mut String, items: &CategorizedItems) {
+        md.push_str("## Types\n\n");
+
+        let renderer = ItemRenderer::new(self.ctx, self.current_file);
+
+        // Render structs
+        for (item_id, struct_item) in &items.structs {
+            renderer.render_struct(md, **item_id, struct_item);
+        }
+
+        // Render enums
+        for (item_id, enum_item) in &items.enums {
+            renderer.render_enum(md, **item_id, enum_item);
+        }
+
+        // Render unions
+        for (item_id, union_item) in &items.unions {
+            renderer.render_union(md, **item_id, union_item);
+        }
+
+        // Render type aliases
+        for alias_item in &items.type_aliases {
+            renderer.render_type_alias(md, alias_item);
+        }
+    }
+
+    /// Render the Statics section.
+    fn render_statics_section(&self, md: &mut String, statics: &[&Item]) {
+        if statics.is_empty() {
+            return;
+        }
+
+        md.push_str("## Statics\n\n");
+        let renderer = ItemRenderer::new(self.ctx, self.current_file);
+        for static_item in statics {
+            renderer.render_static(md, static_item);
+        }
     }
 
     /// Build TOC entries from categorized items.
     ///
-    /// Creates a hierarchical structure for the table of contents, with
-    /// section headings as top-level entries and individual items as children.
+    /// Creates a hierarchical structure for the table of contents:
+    /// - Modules section
+    /// - Types section (with children: structs, enums, unions, type aliases)
+    /// - Traits section
+    /// - Functions section
+    /// - Constants section
+    /// - Statics section
+    /// - Macros section
     fn build_toc_entries(items: &CategorizedItems) -> Vec<TocEntry> {
         let mut entries = Vec::new();
 
-        // Helper to create item entries
-        #[expect(
-            clippy::items_after_statements,
-            reason = "Consider rewriting as a struct"
-        )]
+        // Helper to create item entries for items with IDs
+        #[expect(clippy::items_after_statements, reason = "Helper function definition")]
         fn item_entries(items: &[(&Id, &Item)]) -> Vec<TocEntry> {
             items
                 .iter()
@@ -278,10 +440,8 @@ impl<'a> ModuleRenderer<'a> {
                 .collect()
         }
 
-        #[expect(
-            clippy::items_after_statements,
-            reason = "Consider rewriting as a struct"
-        )]
+        // Helper for items without IDs
+        #[expect(clippy::items_after_statements, reason = "Helper function definition")]
         fn simple_item_entries(items: &[&Item]) -> Vec<TocEntry> {
             items
                 .iter()
@@ -292,7 +452,7 @@ impl<'a> ModuleRenderer<'a> {
                 .collect()
         }
 
-        // Add sections with their items
+        // === Modules ===
         if !items.modules.is_empty() {
             entries.push(TocEntry::with_children(
                 "Modules",
@@ -301,22 +461,27 @@ impl<'a> ModuleRenderer<'a> {
             ));
         }
 
-        if !items.structs.is_empty() {
-            entries.push(TocEntry::with_children(
-                "Structs",
-                "structs",
-                item_entries(&items.structs),
-            ));
+        // === Types (combined section) ===
+        if items.has_types() {
+            // Collect all type items as children
+            let mut type_children = Vec::new();
+
+            // Add structs
+            type_children.extend(item_entries(&items.structs));
+
+            // Add enums
+            type_children.extend(item_entries(&items.enums));
+
+            // Add unions
+            type_children.extend(item_entries(&items.unions));
+
+            // Add type aliases
+            type_children.extend(simple_item_entries(&items.type_aliases));
+
+            entries.push(TocEntry::with_children("Types", "types", type_children));
         }
 
-        if !items.enums.is_empty() {
-            entries.push(TocEntry::with_children(
-                "Enums",
-                "enums",
-                item_entries(&items.enums),
-            ));
-        }
-
+        // === Traits ===
         if !items.traits.is_empty() {
             entries.push(TocEntry::with_children(
                 "Traits",
@@ -325,6 +490,7 @@ impl<'a> ModuleRenderer<'a> {
             ));
         }
 
+        // === Functions ===
         if !items.functions.is_empty() {
             entries.push(TocEntry::with_children(
                 "Functions",
@@ -333,14 +499,7 @@ impl<'a> ModuleRenderer<'a> {
             ));
         }
 
-        if !items.macros.is_empty() {
-            entries.push(TocEntry::with_children(
-                "Macros",
-                "macros",
-                simple_item_entries(&items.macros),
-            ));
-        }
-
+        // === Constants ===
         if !items.constants.is_empty() {
             entries.push(TocEntry::with_children(
                 "Constants",
@@ -349,11 +508,21 @@ impl<'a> ModuleRenderer<'a> {
             ));
         }
 
-        if !items.type_aliases.is_empty() {
+        // === Statics ===
+        if !items.statics.is_empty() {
             entries.push(TocEntry::with_children(
-                "Type Aliases",
-                "type-aliases",
-                simple_item_entries(&items.type_aliases),
+                "Statics",
+                "statics",
+                simple_item_entries(&items.statics),
+            ));
+        }
+
+        // === Macros ===
+        if !items.macros.is_empty() {
+            entries.push(TocEntry::with_children(
+                "Macros",
+                "macros",
+                simple_item_entries(&items.macros),
             ));
         }
 
@@ -459,6 +628,30 @@ impl<'a> ModuleRenderer<'a> {
             }
         }
 
+        // Add unions (new)
+        for (id, item) in &items.unions {
+            if let Some(name) = item.name.as_deref() {
+                entries.push(QuickRefEntry::new(
+                    name,
+                    "union",
+                    slugify_anchor(name),
+                    self.get_item_summary(item, **id),
+                ));
+            }
+        }
+
+        // Add statics (new)
+        for item in &items.statics {
+            if let Some(name) = item.name.as_deref() {
+                entries.push(QuickRefEntry::new(
+                    name,
+                    "static",
+                    slugify_anchor(name),
+                    extract_summary(item.docs.as_deref()),
+                ));
+            }
+        }
+
         entries
     }
 
@@ -503,7 +696,8 @@ impl<'a> ModuleRenderer<'a> {
             return;
         }
 
-        md.push_str("## Modules\n\n");
+        _ = writeln!(md, "## Modules\n");
+
         for (module_id, module_item) in modules {
             let module_name = module_item.name.as_deref().unwrap_or("unnamed");
 
@@ -515,11 +709,14 @@ impl<'a> ModuleRenderer<'a> {
 
             // Get summary: try item's own docs, then fall back to target's docs for re-exports
             let summary = self.get_module_summary(module_item, **module_id);
+
             if !summary.is_empty() {
                 _ = write!(md, " — {summary}");
             }
-            md.push('\n');
+
+            _ = writeln!(md);
         }
+
         md.push('\n');
     }
 
@@ -555,41 +752,16 @@ impl<'a> ModuleRenderer<'a> {
         String::new()
     }
 
-    /// Render the Structs section.
-    fn render_structs_section(&self, md: &mut String, structs: &[(&Id, &Item)]) {
-        if structs.is_empty() {
-            return;
-        }
-
-        md.push_str("## Structs\n\n");
-        let renderer = ItemRenderer::new(self.ctx, self.current_file);
-        for (item_id, struct_item) in structs {
-            renderer.render_struct(md, **item_id, struct_item);
-        }
-    }
-
-    /// Render the Enums section.
-    fn render_enums_section(&self, md: &mut String, enums: &[(&Id, &Item)]) {
-        if enums.is_empty() {
-            return;
-        }
-
-        md.push_str("## Enums\n\n");
-        let renderer = ItemRenderer::new(self.ctx, self.current_file);
-        for (item_id, enum_item) in enums {
-            renderer.render_enum(md, **item_id, enum_item);
-        }
-    }
-
     /// Render the Traits section.
     fn render_traits_section(&self, md: &mut String, traits: &[(&Id, &Item)]) {
         if traits.is_empty() {
             return;
         }
 
-        md.push_str("## Traits\n\n");
+        _ = writeln!(md, "## Traits\n");
 
         let renderer = ItemRenderer::new(self.ctx, self.current_file);
+
         for (item_id, trait_item) in traits {
             renderer.render_trait(md, **item_id, trait_item);
         }
@@ -601,8 +773,10 @@ impl<'a> ModuleRenderer<'a> {
             return;
         }
 
-        md.push_str("## Functions\n\n");
+        _ = writeln!(md, "## Functions\n");
+
         let renderer = ItemRenderer::new(self.ctx, self.current_file);
+
         for func_item in functions {
             renderer.render_function(md, func_item);
         }
@@ -614,8 +788,10 @@ impl<'a> ModuleRenderer<'a> {
             return;
         }
 
-        md.push_str("## Macros\n\n");
+        _ = writeln!(md, "## Macros\n");
+
         let renderer = ItemRenderer::new(self.ctx, self.current_file);
+
         for macro_item in macros {
             renderer.render_macro(md, macro_item);
         }
@@ -627,23 +803,12 @@ impl<'a> ModuleRenderer<'a> {
             return;
         }
 
-        md.push_str("## Constants\n\n");
+        _ = writeln!(md, "## Constants\n");
+
         let renderer = ItemRenderer::new(self.ctx, self.current_file);
+
         for const_item in constants {
             renderer.render_constant(md, const_item);
-        }
-    }
-
-    /// Render the Type Aliases section.
-    fn render_type_aliases_section(&self, md: &mut String, type_aliases: &[&Item]) {
-        if type_aliases.is_empty() {
-            return;
-        }
-
-        md.push_str("## Type Aliases\n\n");
-        let renderer = ItemRenderer::new(self.ctx, self.current_file);
-        for alias_item in type_aliases {
-            renderer.render_type_alias(md, alias_item);
         }
     }
 }
@@ -651,35 +816,63 @@ impl<'a> ModuleRenderer<'a> {
 /// Items categorized by type for organized rendering.
 ///
 /// Items are sorted into buckets by their type so they can be rendered
-/// in consistent sections.
+/// in consistent sections. The structure groups related items:
+///
+/// - **Types**: Structs, enums, unions, and type aliases
+/// - **Traits**: Trait definitions
+/// - **Functions**: Standalone functions
+/// - **Constants**: Constants and statics
+/// - **Macros**: Macro definitions
+///
+/// This organization improves navigation by grouping related items together.
 #[derive(Default)]
 struct CategorizedItems<'a> {
     /// Child modules (need ID for linking).
+    /// Rendered first for navigation purposes.
     modules: Vec<(&'a Id, &'a Item)>,
 
+    // === Types Section ===
+    // These are grouped under a single "Types" heading in the output.
     /// Struct definitions (need ID for impl lookup).
     structs: Vec<(&'a Id, &'a Item)>,
 
     /// Enum definitions (need ID for impl lookup).
     enums: Vec<(&'a Id, &'a Item)>,
 
+    /// Union definitions (need ID for impl lookup).
+    unions: Vec<(&'a Id, &'a Item)>,
+
+    /// Type alias definitions.
+    type_aliases: Vec<&'a Item>,
+
+    // === Other Sections ===
     /// Trait definitions (need ID for impl lookup).
     traits: Vec<(&'a Id, &'a Item)>,
 
     /// Standalone functions.
     functions: Vec<&'a Item>,
 
-    /// Macro definitions.
-    macros: Vec<&'a Item>,
-
-    /// Constants and statics.
+    /// Constants.
     constants: Vec<&'a Item>,
 
-    /// Type alias definitions.
-    type_aliases: Vec<&'a Item>,
+    /// Static variables.
+    statics: Vec<&'a Item>,
+
+    /// Macro definitions.
+    macros: Vec<&'a Item>,
 }
 
 impl CategorizedItems<'_> {
+    /// Check if the Types section has any items.
+    ///
+    /// Returns true if there are any structs, enums, unions, or type aliases.
+    pub const fn has_types(&self) -> bool {
+        !self.structs.is_empty()
+            || !self.enums.is_empty()
+            || !self.unions.is_empty()
+            || !self.type_aliases.is_empty()
+    }
+
     /// Sort all item categories alphabetically by name for deterministic output.
     ///
     /// This ensures consistent ordering regardless of `HashMap` iteration order
@@ -697,16 +890,19 @@ impl CategorizedItems<'_> {
             .sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
         self.enums
             .sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
+        self.unions
+            .sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
         self.traits
             .sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
 
         // Sort items without IDs by name
-        self.functions
-            .sort_by(|a, b| item_name(a).cmp(item_name(b)));
-        self.macros.sort_by(|a, b| item_name(a).cmp(item_name(b)));
-        self.constants
-            .sort_by(|a, b| item_name(a).cmp(item_name(b)));
         self.type_aliases
             .sort_by(|a, b| item_name(a).cmp(item_name(b)));
+        self.functions
+            .sort_by(|a, b| item_name(a).cmp(item_name(b)));
+        self.constants
+            .sort_by(|a, b| item_name(a).cmp(item_name(b)));
+        self.statics.sort_by(|a, b| item_name(a).cmp(item_name(b)));
+        self.macros.sort_by(|a, b| item_name(a).cmp(item_name(b)));
     }
 }

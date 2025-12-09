@@ -18,6 +18,8 @@
 trait Sealed { ... }
 ```
 
+*Defined in [`tracing-core-0.1.35/src/lib.rs:310`](../../../.source_1765210505/tracing-core-0.1.35/src/lib.rs#L310)*
+
 #### Implementors
 
 - [`DebugValue`](../field/index.md)

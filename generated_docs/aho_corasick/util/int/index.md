@@ -57,6 +57,8 @@ non-lossy.
 trait U8 { ... }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:25-27`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L25-L27)*
+
 #### Required Methods
 
 - `fn as_usize(self) -> usize`
@@ -70,6 +72,8 @@ trait U8 { ... }
 ```rust
 trait U16 { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:35-39`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L35-L39)*
 
 #### Required Methods
 
@@ -88,6 +92,8 @@ trait U16 { ... }
 ```rust
 trait U32 { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:55-60`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L55-L60)*
 
 #### Required Methods
 
@@ -108,6 +114,8 @@ trait U32 { ... }
 ```rust
 trait U64 { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:88-94`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L88-L94)*
 
 #### Required Methods
 
@@ -131,6 +139,8 @@ trait U64 { ... }
 trait I8 { ... }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:125-129`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L125-L129)*
+
 #### Required Methods
 
 - `fn as_usize(self) -> usize`
@@ -148,6 +158,8 @@ trait I8 { ... }
 ```rust
 trait I32 { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:152-156`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L152-L156)*
 
 #### Required Methods
 
@@ -167,6 +179,8 @@ trait I32 { ... }
 trait I64 { ... }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:179-183`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L179-L183)*
+
 #### Required Methods
 
 - `fn as_usize(self) -> usize`
@@ -184,6 +198,8 @@ trait I64 { ... }
 ```rust
 trait Usize { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:206-211`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L206-L211)*
 
 #### Required Methods
 
@@ -204,6 +220,8 @@ trait Usize { ... }
 ```rust
 trait Pointer { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/int.rs:270-272`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/int.rs#L270-L272)*
 
 #### Required Methods
 

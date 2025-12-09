@@ -7,7 +7,7 @@
 Word splitting functionality.
 
 To wrap text into lines, long words sometimes need to be split
-across lines. The [`WordSplitter`](../index.md) enum defines this
+across lines. The [`WordSplitter`](#wordsplitter) enum defines this
 functionality.
 
 ## Quick Reference
@@ -15,7 +15,7 @@ functionality.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`WordSplitter`](#wordsplitter) | enum | The `WordSplitter` enum describes where words can be split. |
-| [`split_words`](#split_words) | fn | Split words into smaller words according to the split points given |
+| [`split_words`](#split_words) | fn | Split words into smaller words according to the split points given by `word_splitter`. |
 
 ## Enums
 
@@ -28,6 +28,8 @@ enum WordSplitter {
     Custom(fn(&str) -> Vec<usize>),
 }
 ```
+
+*Defined in [`textwrap-0.16.2/src/word_splitters.rs:37-99`](../../../.source_1765210505/textwrap-0.16.2/src/word_splitters.rs#L37-L99)*
 
 The `WordSplitter` enum describes where words can be split.
 
@@ -120,7 +122,7 @@ details.
 
 ##### `impl Clone for WordSplitter`
 
-- <span id="wordsplitter-clone"></span>`fn clone(&self) -> WordSplitter` — [`WordSplitter`](../index.md)
+- <span id="wordsplitter-clone"></span>`fn clone(&self) -> WordSplitter` — [`WordSplitter`](#wordsplitter)
 
 ##### `impl Debug for WordSplitter`
 
@@ -128,7 +130,7 @@ details.
 
 ##### `impl PartialEq for WordSplitter`
 
-- <span id="wordsplitter-eq"></span>`fn eq(&self, other: &WordSplitter) -> bool` — [`WordSplitter`](../index.md)
+- <span id="wordsplitter-eq"></span>`fn eq(&self, other: &WordSplitter) -> bool` — [`WordSplitter`](#wordsplitter)
 
 ## Functions
 
@@ -139,6 +141,8 @@ fn split_words<'a, I>(words: I, word_splitter: &'a WordSplitter) -> impl Iterato
 where
     I: IntoIterator<Item = crate::core::Word<'a>>
 ```
+
+*Defined in [`textwrap-0.16.2/src/word_splitters.rs:169-206`](../../../.source_1765210505/textwrap-0.16.2/src/word_splitters.rs#L169-L206)*
 
 Split words into smaller words according to the split points given
 by `word_splitter`.

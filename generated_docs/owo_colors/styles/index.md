@@ -25,15 +25,15 @@ Different display styles (strikethrough, bold, etc.)
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`BoldDisplay`](#bolddisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does |
-| [`DimDisplay`](#dimdisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does |
-| [`ItalicDisplay`](#italicdisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does |
-| [`UnderlineDisplay`](#underlinedisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does |
-| [`BlinkDisplay`](#blinkdisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does |
-| [`BlinkFastDisplay`](#blinkfastdisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does |
-| [`ReversedDisplay`](#reverseddisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does |
-| [`HiddenDisplay`](#hiddendisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does |
-| [`StrikeThroughDisplay`](#strikethroughdisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does |
+| [`BoldDisplay`](#bolddisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does, with the addition of boldening it. |
+| [`DimDisplay`](#dimdisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does, with the addition of dimming it. |
+| [`ItalicDisplay`](#italicdisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does, with the addition of italics. |
+| [`UnderlineDisplay`](#underlinedisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does, while underlining it. |
+| [`BlinkDisplay`](#blinkdisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does, while blinking. |
+| [`BlinkFastDisplay`](#blinkfastdisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does, with the addition of making it blink fast. |
+| [`ReversedDisplay`](#reverseddisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does, with the addition of swapping fg and bg colors. |
+| [`HiddenDisplay`](#hiddendisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does, with the addition of hiding the text. |
+| [`StrikeThroughDisplay`](#strikethroughdisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does, crossed out. |
 | [`impl_fmt_for_style!`](#impl_fmt_for_style) | macro |  |
 
 ## Structs
@@ -43,6 +43,8 @@ Different display styles (strikethrough, bold, etc.)
 ```rust
 struct BoldDisplay<'a, T: ?Sized>(&'a T);
 ```
+
+*Defined in [`owo-colors-4.2.3/src/styles.rs:26`](../../../.source_1765210505/owo-colors-4.2.3/src/styles.rs#L26)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of boldening it. Recommended to be constructed using
@@ -98,6 +100,8 @@ with the addition of boldening it. Recommended to be constructed using
 struct DimDisplay<'a, T: ?Sized>(&'a T);
 ```
 
+*Defined in [`owo-colors-4.2.3/src/styles.rs:66`](../../../.source_1765210505/owo-colors-4.2.3/src/styles.rs#L66)*
+
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of dimming it. Recommended to be constructed using
 [`OwoColorize`](OwoColorize::dimmed).
@@ -151,6 +155,8 @@ with the addition of dimming it. Recommended to be constructed using
 ```rust
 struct ItalicDisplay<'a, T: ?Sized>(&'a T);
 ```
+
+*Defined in [`owo-colors-4.2.3/src/styles.rs:106`](../../../.source_1765210505/owo-colors-4.2.3/src/styles.rs#L106)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of italics. Recommended to be constructed using
@@ -206,6 +212,8 @@ with the addition of italics. Recommended to be constructed using
 struct UnderlineDisplay<'a, T: ?Sized>(&'a T);
 ```
 
+*Defined in [`owo-colors-4.2.3/src/styles.rs:146`](../../../.source_1765210505/owo-colors-4.2.3/src/styles.rs#L146)*
+
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 while underlining it. Recommended to be constructed using
 [`OwoColorize`](OwoColorize::underline).
@@ -259,6 +267,8 @@ while underlining it. Recommended to be constructed using
 ```rust
 struct BlinkDisplay<'a, T: ?Sized>(&'a T);
 ```
+
+*Defined in [`owo-colors-4.2.3/src/styles.rs:186`](../../../.source_1765210505/owo-colors-4.2.3/src/styles.rs#L186)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 while blinking. Recommended to be constructed using
@@ -314,6 +324,8 @@ while blinking. Recommended to be constructed using
 struct BlinkFastDisplay<'a, T: ?Sized>(&'a T);
 ```
 
+*Defined in [`owo-colors-4.2.3/src/styles.rs:225`](../../../.source_1765210505/owo-colors-4.2.3/src/styles.rs#L225)*
+
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blink_fast)
 
@@ -366,6 +378,8 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
 ```rust
 struct ReversedDisplay<'a, T: ?Sized>(&'a T);
 ```
+
+*Defined in [`owo-colors-4.2.3/src/styles.rs:264`](../../../.source_1765210505/owo-colors-4.2.3/src/styles.rs#L264)*
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize::reversed)
@@ -420,6 +434,8 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
 struct HiddenDisplay<'a, T: ?Sized>(&'a T);
 ```
 
+*Defined in [`owo-colors-4.2.3/src/styles.rs:303`](../../../.source_1765210505/owo-colors-4.2.3/src/styles.rs#L303)*
+
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 
@@ -473,6 +489,8 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 struct StrikeThroughDisplay<'a, T: ?Sized>(&'a T);
 ```
 
+*Defined in [`owo-colors-4.2.3/src/styles.rs:343`](../../../.source_1765210505/owo-colors-4.2.3/src/styles.rs#L343)*
+
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 crossed out. Recommended to be constructed using
 [`OwoColorize`](OwoColorize::strikethrough).
@@ -524,4 +542,6 @@ crossed out. Recommended to be constructed using
 ## Macros
 
 ### `impl_fmt_for_style!`
+
+*Defined in [`owo-colors-4.2.3/src/styles.rs:8-20`](../../../.source_1765210505/owo-colors-4.2.3/src/styles.rs#L8-L20)*
 

@@ -22,6 +22,8 @@ struct Error {
 }
 ```
 
+*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../../.source_1765210505/walkdir-2.5.0/src/error.rs#L28-L31)*
+
 An error produced by recursively walking a directory.
 
 This error type is a light wrapper around `std::io::Error`. In
@@ -55,7 +57,7 @@ accessing the underlying error data in a structured form.
 
 - <span id="error-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
 
-- <span id="error-from-entry"></span>`fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](../index.md)
+- <span id="error-from-entry"></span>`fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](../dent/index.md)
 
 - <span id="error-from-io"></span>`fn from_io(depth: usize, err: io::Error) -> Self`
 
@@ -79,7 +81,7 @@ accessing the underlying error data in a structured form.
 
 - <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
@@ -99,6 +101,8 @@ enum ErrorInner {
     },
 }
 ```
+
+*Defined in [`walkdir-2.5.0/src/error.rs:34-37`](../../../.source_1765210505/walkdir-2.5.0/src/error.rs#L34-L37)*
 
 #### Trait Implementations
 

@@ -23,8 +23,10 @@ struct Chain<A, B> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:12-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chain.rs#L12-L15)*
+
 `Chain` is an iterator that joins `b` after `a` in one continuous iterator.
-This struct is created by the `chain()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `chain()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -35,7 +37,7 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../../pre
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for Chain<A, B>`
 
-- <span id="chain-clone"></span>`fn clone(&self) -> Chain<A, B>` — [`Chain`](../index.md)
+- <span id="chain-clone"></span>`fn clone(&self) -> Chain<A, B>` — [`Chain`](#chain)
 
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for Chain<A, B>`
 
@@ -53,15 +55,15 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../../pre
 
 ##### `impl<T> IntoParallelIterator for Chain<A, B>`
 
-- <span id="chain-iter"></span>`type Iter = T`
+- <span id="chain-type-iter"></span>`type Iter = T`
 
-- <span id="chain-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for Chain<A, B>`
 
-- <span id="chain-item"></span>`type Item = <A as ParallelIterator>::Item`
+- <span id="chain-type-item"></span>`type Item = <A as ParallelIterator>::Item`
 
 - <span id="chain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -69,9 +71,9 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../../pre
 
 ##### `impl<T> Pointable for Chain<A, B>`
 
-- <span id="chain-align"></span>`const ALIGN: usize`
+- <span id="chain-const-align"></span>`const ALIGN: usize`
 
-- <span id="chain-init"></span>`type Init = T`
+- <span id="chain-type-init"></span>`type Init = T`
 
 - <span id="chain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -94,6 +96,8 @@ where
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:138-146`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chain.rs#L138-L146)*
+
 #### Implementations
 
 - <span id="chainproducer-new"></span>`fn new(a_len: usize, a: A, b: B) -> Self`
@@ -104,9 +108,9 @@ where
 
 ##### `impl<T> Pointable for ChainProducer<A, B>`
 
-- <span id="chainproducer-align"></span>`const ALIGN: usize`
+- <span id="chainproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="chainproducer-init"></span>`type Init = T`
+- <span id="chainproducer-type-init"></span>`type Init = T`
 
 - <span id="chainproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -118,9 +122,9 @@ where
 
 ##### `impl<A, B> Producer for ChainProducer<A, B>`
 
-- <span id="chainproducer-item"></span>`type Item = <A as Producer>::Item`
+- <span id="chainproducer-type-item"></span>`type Item = <A as Producer>::Item`
 
-- <span id="chainproducer-intoiter"></span>`type IntoIter = ChainSeq<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
+- <span id="chainproducer-type-intoiter"></span>`type IntoIter = ChainSeq<<A as Producer>::IntoIter, <B as Producer>::IntoIter>`
 
 - <span id="chainproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
@@ -140,6 +144,8 @@ struct ChainSeq<A, B> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/chain.rs:213-215`](../../../../.source_1765210505/rayon-1.11.0/src/iter/chain.rs#L213-L215)*
+
 Wrapper for `Chain` to implement `ExactSizeIterator`
 
 #### Implementations
@@ -158,15 +164,15 @@ Wrapper for `Chain` to implement `ExactSizeIterator`
 
 ##### `impl<I> IntoIterator for ChainSeq<A, B>`
 
-- <span id="chainseq-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="chainseq-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="chainseq-intoiter"></span>`type IntoIter = I`
+- <span id="chainseq-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="chainseq-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A, B> Iterator for ChainSeq<A, B>`
 
-- <span id="chainseq-item"></span>`type Item = <A as Iterator>::Item`
+- <span id="chainseq-type-item"></span>`type Item = <A as Iterator>::Item`
 
 - <span id="chainseq-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -174,9 +180,9 @@ Wrapper for `Chain` to implement `ExactSizeIterator`
 
 ##### `impl<T> Pointable for ChainSeq<A, B>`
 
-- <span id="chainseq-align"></span>`const ALIGN: usize`
+- <span id="chainseq-const-align"></span>`const ALIGN: usize`
 
-- <span id="chainseq-init"></span>`type Init = T`
+- <span id="chainseq-type-init"></span>`type Init = T`
 
 - <span id="chainseq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

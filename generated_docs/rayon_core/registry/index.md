@@ -40,11 +40,11 @@
 | [`RegistryId`](#registryid) | struct |  |
 | [`ThreadInfo`](#threadinfo) | struct |  |
 | [`WorkerThread`](#workerthread) | struct |  |
-| [`XorShift64Star`](#xorshift64star) | struct | [xorshift*] is a fast pseudorandom number generator which will |
+| [`XorShift64Star`](#xorshift64star) | struct | [xorshift*] is a fast pseudorandom number generator which will even tolerate weak seeding, as long as it's not zero. |
 | [`ThreadSpawn`](#threadspawn) | trait | Generalized trait for spawning a thread in the `Registry`. |
 | [`global_registry`](#global_registry) | fn | Starts the worker threads (if that has not already happened). |
-| [`init_global_registry`](#init_global_registry) | fn | Starts the worker threads (if that has not already happened) with |
-| [`set_global_registry`](#set_global_registry) | fn | Starts the worker threads (if that has not already happened) |
+| [`init_global_registry`](#init_global_registry) | fn | Starts the worker threads (if that has not already happened) with the given builder. |
+| [`set_global_registry`](#set_global_registry) | fn | Starts the worker threads (if that has not already happened) by creating a registry with the given callback. |
 | [`default_global_registry`](#default_global_registry) | fn |  |
 | [`main_loop`](#main_loop) | fn |  |
 | [`in_worker`](#in_worker) | fn | If already in a worker-thread, just execute `op`. |
@@ -65,6 +65,8 @@ struct ThreadBuilder {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:22-29`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L22-L29)*
+
 Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
 #### Implementations
@@ -83,11 +85,11 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
 - <span id="threadbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Pointable for ThreadBuilder`
+##### `impl Pointable for ThreadBuilder`
 
-- <span id="threadbuilder-align"></span>`const ALIGN: usize`
+- <span id="threadbuilder-const-align"></span>`const ALIGN: usize`
 
-- <span id="threadbuilder-init"></span>`type Init = T`
+- <span id="threadbuilder-type-init"></span>`type Init = T`
 
 - <span id="threadbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -102,6 +104,8 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 ```rust
 struct DefaultSpawn;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:82`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L82)*
 
 Spawns a thread in the "normal" way with `std::thread::Builder`.
 
@@ -118,11 +122,11 @@ but we don't actually want to expose these details in the API.
 
 - <span id="defaultspawn-default"></span>`fn default() -> DefaultSpawn` — [`DefaultSpawn`](#defaultspawn)
 
-##### `impl<T> Pointable for DefaultSpawn`
+##### `impl Pointable for DefaultSpawn`
 
-- <span id="defaultspawn-align"></span>`const ALIGN: usize`
+- <span id="defaultspawn-const-align"></span>`const ALIGN: usize`
 
-- <span id="defaultspawn-init"></span>`type Init = T`
+- <span id="defaultspawn-type-init"></span>`type Init = T`
 
 - <span id="defaultspawn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -134,13 +138,15 @@ but we don't actually want to expose these details in the API.
 
 ##### `impl ThreadSpawn for DefaultSpawn`
 
-- <span id="defaultspawn-spawn"></span>`fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](../index.md)
+- <span id="defaultspawn-spawn"></span>`fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](#threadbuilder)
 
 ### `CustomSpawn<F>`
 
 ```rust
 struct CustomSpawn<F>(F);
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:105`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L105)*
 
 Spawns a thread with a user's custom callback.
 
@@ -159,9 +165,9 @@ but we don't actually want to expose these details in the API.
 
 ##### `impl<T> Pointable for CustomSpawn<F>`
 
-- <span id="customspawn-align"></span>`const ALIGN: usize`
+- <span id="customspawn-const-align"></span>`const ALIGN: usize`
 
-- <span id="customspawn-init"></span>`type Init = T`
+- <span id="customspawn-type-init"></span>`type Init = T`
 
 - <span id="customspawn-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -173,7 +179,7 @@ but we don't actually want to expose these details in the API.
 
 ##### `impl<F> ThreadSpawn for CustomSpawn<F>`
 
-- <span id="customspawn-spawn"></span>`fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](../index.md)
+- <span id="customspawn-spawn"></span>`fn spawn(&mut self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](#threadbuilder)
 
 ### `Registry`
 
@@ -189,6 +195,8 @@ struct Registry {
     terminate_count: std::sync::atomic::AtomicUsize,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:128-151`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L128-L151)*
 
 #### Implementations
 
@@ -232,11 +240,11 @@ struct Registry {
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for Registry`
+##### `impl Pointable for Registry`
 
-- <span id="registry-align"></span>`const ALIGN: usize`
+- <span id="registry-const-align"></span>`const ALIGN: usize`
 
-- <span id="registry-init"></span>`type Init = T`
+- <span id="registry-type-init"></span>`type Init = T`
 
 - <span id="registry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -252,17 +260,19 @@ struct Registry {
 struct Terminator<'a>(&'a std::sync::Arc<Registry>);
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:230`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L230)*
+
 #### Trait Implementations
 
-##### `impl<'a> Drop for Terminator<'a>`
+##### `impl Drop for Terminator<'a>`
 
 - <span id="terminator-drop"></span>`fn drop(&mut self)`
 
-##### `impl<T> Pointable for Terminator<'a>`
+##### `impl Pointable for Terminator<'a>`
 
-- <span id="terminator-align"></span>`const ALIGN: usize`
+- <span id="terminator-const-align"></span>`const ALIGN: usize`
 
-- <span id="terminator-init"></span>`type Init = T`
+- <span id="terminator-type-init"></span>`type Init = T`
 
 - <span id="terminator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -279,6 +289,8 @@ struct RegistryId {
     addr: usize,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:609-611`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L609-L611)*
 
 #### Trait Implementations
 
@@ -306,11 +318,11 @@ struct RegistryId {
 
 - <span id="registryid-partial-cmp"></span>`fn partial_cmp(&self, other: &RegistryId) -> option::Option<cmp::Ordering>` — [`RegistryId`](#registryid)
 
-##### `impl<T> Pointable for RegistryId`
+##### `impl Pointable for RegistryId`
 
-- <span id="registryid-align"></span>`const ALIGN: usize`
+- <span id="registryid-const-align"></span>`const ALIGN: usize`
 
-- <span id="registryid-init"></span>`type Init = T`
+- <span id="registryid-type-init"></span>`type Init = T`
 
 - <span id="registryid-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -332,6 +344,8 @@ struct ThreadInfo {
     stealer: crossbeam_deque::Stealer<crate::job::JobRef>,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:613-631`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L613-L631)*
 
 #### Fields
 
@@ -363,11 +377,11 @@ struct ThreadInfo {
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for ThreadInfo`
+##### `impl Pointable for ThreadInfo`
 
-- <span id="threadinfo-align"></span>`const ALIGN: usize`
+- <span id="threadinfo-const-align"></span>`const ALIGN: usize`
 
-- <span id="threadinfo-init"></span>`type Init = T`
+- <span id="threadinfo-type-init"></span>`type Init = T`
 
 - <span id="threadinfo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -389,6 +403,8 @@ struct WorkerThread {
     registry: std::sync::Arc<Registry>,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:647-663`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L647-L663)*
 
 #### Fields
 
@@ -436,9 +452,9 @@ struct WorkerThread {
 
 - <span id="workerthread-find-work"></span>`fn find_work(&self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
 
-- <span id="workerthread-yield-now"></span>`fn yield_now(&self) -> Yield` — [`Yield`](../index.md)
+- <span id="workerthread-yield-now"></span>`fn yield_now(&self) -> Yield` — [`Yield`](../thread_pool/index.md)
 
-- <span id="workerthread-yield-local"></span>`fn yield_local(&self) -> Yield` — [`Yield`](../index.md)
+- <span id="workerthread-yield-local"></span>`fn yield_local(&self) -> Yield` — [`Yield`](../thread_pool/index.md)
 
 - <span id="workerthread-execute"></span>`unsafe fn execute(&self, job: JobRef)` — [`JobRef`](../job/index.md)
 
@@ -450,11 +466,11 @@ struct WorkerThread {
 
 - <span id="workerthread-drop"></span>`fn drop(&mut self)`
 
-##### `impl<T> Pointable for WorkerThread`
+##### `impl Pointable for WorkerThread`
 
-- <span id="workerthread-align"></span>`const ALIGN: usize`
+- <span id="workerthread-const-align"></span>`const ALIGN: usize`
 
-- <span id="workerthread-init"></span>`type Init = T`
+- <span id="workerthread-type-init"></span>`type Init = T`
 
 - <span id="workerthread-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -472,6 +488,8 @@ struct XorShift64Star {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:968-970`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L968-L970)*
+
 [xorshift*] is a fast pseudorandom number generator which will
 even tolerate weak seeding, as long as it's not zero.
 
@@ -486,11 +504,11 @@ even tolerate weak seeding, as long as it's not zero.
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for XorShift64Star`
+##### `impl Pointable for XorShift64Star`
 
-- <span id="xorshift64star-align"></span>`const ALIGN: usize`
+- <span id="xorshift64star-const-align"></span>`const ALIGN: usize`
 
-- <span id="xorshift64star-init"></span>`type Init = T`
+- <span id="xorshift64star-type-init"></span>`type Init = T`
 
 - <span id="xorshift64star-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -507,6 +525,8 @@ even tolerate weak seeding, as long as it's not zero.
 ```rust
 trait ThreadSpawn { ... }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:69-75`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L69-L75)*
 
 Generalized trait for spawning a thread in the `Registry`.
 
@@ -532,6 +552,8 @@ but we don't actually want to expose these details in the API.
 fn global_registry() -> &'static std::sync::Arc<Registry>
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:162-172`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L162-L172)*
+
 Starts the worker threads (if that has not already happened). If
 initialization has not already occurred, use the default
 configuration.
@@ -544,6 +566,8 @@ where
     S: ThreadSpawn
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:176-183`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L176-L183)*
+
 Starts the worker threads (if that has not already happened) with
 the given builder.
 
@@ -555,6 +579,8 @@ where
     F: FnOnce() -> Result<std::sync::Arc<Registry>, crate::ThreadPoolBuildError>
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:187-207`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L187-L207)*
+
 Starts the worker threads (if that has not already happened)
 by creating a registry with the given callback.
 
@@ -564,11 +590,15 @@ by creating a registry with the given callback.
 fn default_global_registry() -> Result<std::sync::Arc<Registry>, crate::ThreadPoolBuildError>
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:209-228`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L209-L228)*
+
 ### `main_loop`
 
 ```rust
 unsafe fn main_loop(thread: ThreadBuilder)
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:910-939`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L910-L939)*
 
 ### `in_worker`
 
@@ -579,6 +609,8 @@ where
     R: Send
 ```
 
+*Defined in [`rayon-core-1.13.0/src/registry.rs:946-962`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L946-L962)*
+
 If already in a worker-thread, just execute `op`.  Otherwise,
 execute `op` in the default thread pool. Either way, block until
 `op` completes and return its return value. If `op` panics, that
@@ -588,8 +620,9 @@ panic will be propagated as well.  The second argument indicates
 ## Constants
 
 ### `WORKER_THREAD_STATE`
-
 ```rust
 const WORKER_THREAD_STATE: thread::LocalKey<std::cell::Cell<*const WorkerThread>>;
 ```
+
+*Defined in [`rayon-core-1.13.0/src/registry.rs:670-672`](../../../.source_1765210505/rayon-core-1.13.0/src/registry.rs#L670-L672)*
 

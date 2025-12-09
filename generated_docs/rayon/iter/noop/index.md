@@ -19,15 +19,17 @@
 struct NoopConsumer;
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/noop.rs:3`](../../../../.source_1765210505/rayon-1.11.0/src/iter/noop.rs#L3)*
+
 #### Trait Implementations
 
-##### `impl<T> Consumer for NoopConsumer`
+##### `impl Consumer for NoopConsumer`
 
-- <span id="noopconsumer-folder"></span>`type Folder = NoopConsumer`
+- <span id="noopconsumer-type-folder"></span>`type Folder = NoopConsumer`
 
-- <span id="noopconsumer-reducer"></span>`type Reducer = NoopReducer`
+- <span id="noopconsumer-type-reducer"></span>`type Reducer = NoopReducer`
 
-- <span id="noopconsumer-result"></span>`type Result = ()`
+- <span id="noopconsumer-type-result"></span>`type Result = ()`
 
 - <span id="noopconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, NoopReducer)` — [`NoopReducer`](#noopreducer)
 
@@ -35,9 +37,9 @@ struct NoopConsumer;
 
 - <span id="noopconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> Folder for NoopConsumer`
+##### `impl Folder for NoopConsumer`
 
-- <span id="noopconsumer-result"></span>`type Result = ()`
+- <span id="noopconsumer-type-result"></span>`type Result = ()`
 
 - <span id="noopconsumer-consume"></span>`fn consume(self, _item: T) -> Self`
 
@@ -47,13 +49,13 @@ struct NoopConsumer;
 
 - <span id="noopconsumer-full"></span>`fn full(&self) -> bool`
 
-##### `impl<T> IntoEither for NoopConsumer`
+##### `impl IntoEither for NoopConsumer`
 
-##### `impl<T> Pointable for NoopConsumer`
+##### `impl Pointable for NoopConsumer`
 
-- <span id="noopconsumer-align"></span>`const ALIGN: usize`
+- <span id="noopconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="noopconsumer-init"></span>`type Init = T`
+- <span id="noopconsumer-type-init"></span>`type Init = T`
 
 - <span id="noopconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -63,7 +65,7 @@ struct NoopConsumer;
 
 - <span id="noopconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> UnindexedConsumer for NoopConsumer`
+##### `impl UnindexedConsumer for NoopConsumer`
 
 - <span id="noopconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
@@ -75,15 +77,17 @@ struct NoopConsumer;
 struct NoopReducer;
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/noop.rs:55`](../../../../.source_1765210505/rayon-1.11.0/src/iter/noop.rs#L55)*
+
 #### Trait Implementations
 
-##### `impl<T> IntoEither for NoopReducer`
+##### `impl IntoEither for NoopReducer`
 
-##### `impl<T> Pointable for NoopReducer`
+##### `impl Pointable for NoopReducer`
 
-- <span id="noopreducer-align"></span>`const ALIGN: usize`
+- <span id="noopreducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="noopreducer-init"></span>`type Init = T`
+- <span id="noopreducer-type-init"></span>`type Init = T`
 
 - <span id="noopreducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

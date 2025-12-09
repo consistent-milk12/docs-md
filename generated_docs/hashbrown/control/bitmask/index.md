@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`BitMask`](#bitmask) | struct | A bit mask which contains the result of a `Match` operation on a `Group` and |
-| [`BitMaskIter`](#bitmaskiter) | struct | Iterator over the contents of a `BitMask`, returning the indices of set |
+| [`BitMask`](#bitmask) | struct | A bit mask which contains the result of a `Match` operation on a `Group` and allows iterating through them. |
+| [`BitMaskIter`](#bitmaskiter) | struct | Iterator over the contents of a `BitMask`, returning the indices of set bits. |
 
 ## Structs
 
@@ -18,6 +18,8 @@
 ```rust
 struct BitMask(u16);
 ```
+
+*Defined in [`hashbrown-0.16.1/src/control/bitmask.rs:22`](../../../../.source_1765210505/hashbrown-0.16.1/src/control/bitmask.rs#L22)*
 
 A bit mask which contains the result of a `Match` operation on a `Group` and
 allows iterating through them.
@@ -62,9 +64,9 @@ mask bits.
 
 ##### `impl IntoIterator for BitMask`
 
-- <span id="bitmask-item"></span>`type Item = usize`
+- <span id="bitmask-type-item"></span>`type Item = usize`
 
-- <span id="bitmask-intoiter"></span>`type IntoIter = BitMaskIter`
+- <span id="bitmask-type-intoiter"></span>`type IntoIter = BitMaskIter`
 
 - <span id="bitmask-into-iter"></span>`fn into_iter(self) -> BitMaskIter` — [`BitMaskIter`](#bitmaskiter)
 
@@ -73,6 +75,8 @@ mask bits.
 ```rust
 struct BitMaskIter(BitMask);
 ```
+
+*Defined in [`hashbrown-0.16.1/src/control/bitmask.rs:106`](../../../../.source_1765210505/hashbrown-0.16.1/src/control/bitmask.rs#L106)*
 
 Iterator over the contents of a `BitMask`, returning the indices of set
 bits.
@@ -83,17 +87,17 @@ bits.
 
 - <span id="bitmaskiter-clone"></span>`fn clone(&self) -> BitMaskIter` — [`BitMaskIter`](#bitmaskiter)
 
-##### `impl<I> IntoIterator for BitMaskIter`
+##### `impl IntoIterator for BitMaskIter`
 
-- <span id="bitmaskiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="bitmaskiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="bitmaskiter-intoiter"></span>`type IntoIter = I`
+- <span id="bitmaskiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="bitmaskiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for BitMaskIter`
 
-- <span id="bitmaskiter-item"></span>`type Item = usize`
+- <span id="bitmaskiter-type-item"></span>`type Item = usize`
 
 - <span id="bitmaskiter-next"></span>`fn next(&mut self) -> Option<usize>`
 

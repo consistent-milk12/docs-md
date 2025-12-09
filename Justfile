@@ -16,9 +16,9 @@ help:
     @echo ""
     @echo "{{yellow}}Documentation:{{reset}}"
     @echo "  {{green}}just docs{{reset}}         - Full docs (clean + build + rustdoc + generate)"
-    @echo "  {{green}}just regen{{reset}}        - Regenerate generated_docs/ (quick, no cargo clean)"
+    @echo "  {{green}}just regen{{reset}}        - Regenerate generated_docs/ (quick, uses debug build)"
+    @echo "  {{green}}just quick{{reset}}        - Quick rebuild generated_docs/ (uses release build)"
     @echo "  {{green}}just walkdir{{reset}}      - Generate only walkdir docs (for testing traits)"
-    @echo "  {{green}}just quick{{reset}}        - Quick rebuild docs/ for mdbook"
     @echo ""
     @echo "{{yellow}}Testing:{{reset}}"
     @echo "  {{green}}just test{{reset}}         - Run all tests"
@@ -29,6 +29,7 @@ help:
     @echo "{{yellow}}Development:{{reset}}"
     @echo "  {{green}}just build{{reset}}        - Build debug binary"
     @echo "  {{green}}just release{{reset}}      - Build release binary"
+    @echo "  {{green}}just build-with-sources{{reset}} - Build with source-parsing feature"
     @echo "  {{green}}just check{{reset}}        - Quick cargo check"
     @echo "  {{green}}just lint{{reset}}         - Run clippy (pedantic + nursery)"
     @echo "  {{green}}just errors{{reset}}       - Build and show only errors/warnings"
@@ -60,12 +61,12 @@ check-nightly: check-cargo
 
 # Clean everything and regenerate documentation
 docs: clean release rustdoc generate
-    @echo "{{green}}Documentation generated successfully in docs/{{reset}}"
+    @echo "{{green}}Documentation generated successfully in generated_docs/{{reset}}"
 
-# Remove docs directory and run cargo clean
+# Remove generated_docs directory and run cargo clean
 clean: check-cargo
     @echo "{{yellow}}Cleaning...{{reset}}"
-    rm -rf docs/
+    rm -rf generated_docs/
     cargo clean
     @echo "{{green}}Clean complete{{reset}}"
 
@@ -80,6 +81,12 @@ release: check-cargo
     @echo "{{yellow}}Building release binary...{{reset}}"
     cargo build --release
     @echo "{{green}}Build complete: target/release/cargo-docs-md{{reset}}"
+
+# Build with source-parsing feature (for source location links)
+build-with-sources: check-cargo
+    @echo "{{yellow}}Building with source-parsing feature...{{reset}}"
+    cargo build --features source-parsing
+    @echo "{{green}}Build complete: target/debug/cargo-docs-md (with source-parsing){{reset}}"
 
 # Quick cargo check (fastest feedback)
 check: check-cargo
@@ -113,18 +120,18 @@ generate:
         exit 1
     fi
     echo -e "{{yellow}}Generating markdown documentation...{{reset}}"
-    ./target/release/cargo-docs-md --dir target/doc/ -o docs/ --mdbook --search-index --primary-crate cargo_docs_md
-    echo -e "{{green}}Markdown docs generated in docs/{{reset}}"
+    ./target/release/cargo-docs-md docs-md --dir target/doc/ -o generated_docs/ --mdbook --search-index --primary-crate cargo_docs_md
+    echo -e "{{green}}Markdown docs generated in generated_docs/{{reset}}"
 
 # Quick regenerate (skip cargo clean, just rebuild docs)
 quick: check-nightly
     @echo "{{yellow}}Quick rebuild starting...{{reset}}"
-    rm -rf docs/
+    rm -rf generated_docs/
     @echo "{{yellow}}Building release binary...{{reset}}"
     cargo build --release
     @echo "{{yellow}}Generating markdown documentation...{{reset}}"
-    ./target/release/cargo-docs-md --dir target/doc/ -o docs/ --mdbook --search-index --primary-crate cargo_docs_md
-    @echo "{{green}}Quick rebuild complete - docs in docs/{{reset}}"
+    ./target/release/cargo-docs-md docs-md --dir target/doc/ -o generated_docs/ --mdbook --search-index --primary-crate cargo_docs_md
+    @echo "{{green}}Quick rebuild complete - docs in generated_docs/{{reset}}"
 
 # Run all tests
 test: check-cargo

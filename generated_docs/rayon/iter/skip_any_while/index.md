@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`SkipAnyWhile`](#skipanywhile) | struct | `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I` |
+| [`SkipAnyWhile`](#skipanywhile) | struct | `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I` until the callback returns `false`. |
 | [`SkipAnyWhileConsumer`](#skipanywhileconsumer) | struct |  |
 | [`SkipAnyWhileFolder`](#skipanywhilefolder) | struct |  |
 | [`skip`](#skip) | fn |  |
@@ -24,9 +24,11 @@ struct SkipAnyWhile<I, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:13-16`](../../../../.source_1765210505/rayon-1.11.0/src/iter/skip_any_while.rs#L13-L16)*
+
 `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I`
 until the callback returns `false`.
-This struct is created by the `skip_any_while()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `skip_any_while()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -37,7 +39,7 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-clone"></span>`fn clone(&self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](../index.md)
+- <span id="skipanywhile-clone"></span>`fn clone(&self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](#skipanywhile)
 
 ##### `impl<I: fmt::Debug, P> Debug for SkipAnyWhile<I, P>`
 
@@ -47,23 +49,23 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<T> IntoParallelIterator for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-iter"></span>`type Iter = T`
+- <span id="skipanywhile-type-iter"></span>`type Iter = T`
 
-- <span id="skipanywhile-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="skipanywhile-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="skipanywhile-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="skipanywhile-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="skipanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for SkipAnyWhile<I, P>`
 
-- <span id="skipanywhile-align"></span>`const ALIGN: usize`
+- <span id="skipanywhile-const-align"></span>`const ALIGN: usize`
 
-- <span id="skipanywhile-init"></span>`type Init = T`
+- <span id="skipanywhile-type-init"></span>`type Init = T`
 
 - <span id="skipanywhile-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -83,15 +85,17 @@ struct SkipAnyWhileConsumer<'p, C, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:56-60`](../../../../.source_1765210505/rayon-1.11.0/src/iter/skip_any_while.rs#L56-L60)*
+
 #### Trait Implementations
 
 ##### `impl<'p, T, C, P> Consumer for SkipAnyWhileConsumer<'p, C, P>`
 
-- <span id="skipanywhileconsumer-folder"></span>`type Folder = SkipAnyWhileFolder<'p, <C as Consumer>::Folder, P>`
+- <span id="skipanywhileconsumer-type-folder"></span>`type Folder = SkipAnyWhileFolder<'p, <C as Consumer>::Folder, P>`
 
-- <span id="skipanywhileconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="skipanywhileconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="skipanywhileconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="skipanywhileconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="skipanywhileconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -103,9 +107,9 @@ struct SkipAnyWhileConsumer<'p, C, P> {
 
 ##### `impl<T> Pointable for SkipAnyWhileConsumer<'p, C, P>`
 
-- <span id="skipanywhileconsumer-align"></span>`const ALIGN: usize`
+- <span id="skipanywhileconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="skipanywhileconsumer-init"></span>`type Init = T`
+- <span id="skipanywhileconsumer-type-init"></span>`type Init = T`
 
 - <span id="skipanywhileconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -131,11 +135,13 @@ struct SkipAnyWhileFolder<'p, C, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:113-117`](../../../../.source_1765210505/rayon-1.11.0/src/iter/skip_any_while.rs#L113-L117)*
+
 #### Trait Implementations
 
 ##### `impl<'p, T, C, P> Folder for SkipAnyWhileFolder<'p, C, P>`
 
-- <span id="skipanywhilefolder-result"></span>`type Result = <C as Folder>::Result`
+- <span id="skipanywhilefolder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="skipanywhilefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -149,9 +155,9 @@ struct SkipAnyWhileFolder<'p, C, P> {
 
 ##### `impl<T> Pointable for SkipAnyWhileFolder<'p, C, P>`
 
-- <span id="skipanywhilefolder-align"></span>`const ALIGN: usize`
+- <span id="skipanywhilefolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="skipanywhilefolder-init"></span>`type Init = T`
+- <span id="skipanywhilefolder-type-init"></span>`type Init = T`
 
 - <span id="skipanywhilefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -168,4 +174,6 @@ struct SkipAnyWhileFolder<'p, C, P> {
 ```rust
 fn skip<T>(item: &T, skipping: &std::sync::atomic::AtomicBool, predicate: &impl Fn(&T) -> bool) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/skip_any_while.rs:119-128`](../../../../.source_1765210505/rayon-1.11.0/src/iter/skip_any_while.rs#L119-L128)*
 

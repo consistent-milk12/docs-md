@@ -51,6 +51,7 @@ generator.generate()?;
   - [`context`](#context)
   - [`doc_links`](#doc_links)
   - [`flat`](#flat)
+  - [`impl_category`](#impl_category)
   - [`impls`](#impls)
   - [`items`](#items)
   - [`module`](#module)
@@ -62,27 +63,29 @@ generator.generate()?;
 - [Structs](#structs)
   - [`BreadcrumbGenerator`](#breadcrumbgenerator)
   - [`MarkdownCapture`](#markdowncapture)
-  - [`QuickRefEntry`](#quickrefentry)
-  - [`QuickRefGenerator`](#quickrefgenerator)
-  - [`TocEntry`](#tocentry)
-  - [`TocGenerator`](#tocgenerator)
   - [`RenderConfig`](#renderconfig)
   - [`SourceConfig`](#sourceconfig)
   - [`GeneratorContext`](#generatorcontext)
   - [`DocLinkProcessor`](#doclinkprocessor)
   - [`ModuleRenderer`](#modulerenderer)
+  - [`QuickRefEntry`](#quickrefentry)
+  - [`QuickRefGenerator`](#quickrefgenerator)
+  - [`TocEntry`](#tocentry)
+  - [`TocGenerator`](#tocgenerator)
   - [`Generator`](#generator)
+- [Enums](#enums)
+  - [`ImplCategory`](#implcategory)
 - [Traits](#traits)
   - [`ItemAccess`](#itemaccess)
   - [`ItemFilter`](#itemfilter)
   - [`LinkResolver`](#linkresolver)
   - [`RenderContext`](#rendercontext)
 - [Functions](#functions)
-  - [`extract_summary`](#extract_summary)
   - [`convert_html_links`](#convert_html_links)
   - [`convert_path_reference_links`](#convert_path_reference_links)
   - [`strip_duplicate_title`](#strip_duplicate_title)
   - [`strip_reference_definitions`](#strip_reference_definitions)
+  - [`extract_summary`](#extract_summary)
 
 ## Quick Reference
 
@@ -93,6 +96,7 @@ generator.generate()?;
 | [`context`](#context) | mod | Shared context for documentation generation. |
 | [`doc_links`](#doc_links) | mod | Intra-doc link processing for documentation generation. |
 | [`flat`](#flat) | mod | Flat format documentation generation. |
+| [`impl_category`](#impl_category) | mod | Categorization system for trait implementations. |
 | [`impls`](#impls) | mod | Implementation block rendering for documentation generation. |
 | [`items`](#items) | mod | Item rendering for documentation generation. |
 | [`module`](#module) | mod | Module markdown rendering for documentation generation. |
@@ -103,25 +107,26 @@ generator.generate()?;
 | [`config`](#config) | mod | Configuration for markdown rendering. |
 | [`BreadcrumbGenerator`](#breadcrumbgenerator) | struct |  |
 | [`MarkdownCapture`](#markdowncapture) | struct |  |
-| [`QuickRefEntry`](#quickrefentry) | struct |  |
-| [`QuickRefGenerator`](#quickrefgenerator) | struct |  |
-| [`TocEntry`](#tocentry) | struct |  |
-| [`TocGenerator`](#tocgenerator) | struct |  |
 | [`RenderConfig`](#renderconfig) | struct |  |
 | [`SourceConfig`](#sourceconfig) | struct |  |
 | [`GeneratorContext`](#generatorcontext) | struct |  |
 | [`DocLinkProcessor`](#doclinkprocessor) | struct |  |
 | [`ModuleRenderer`](#modulerenderer) | struct |  |
+| [`QuickRefEntry`](#quickrefentry) | struct |  |
+| [`QuickRefGenerator`](#quickrefgenerator) | struct |  |
+| [`TocEntry`](#tocentry) | struct |  |
+| [`TocGenerator`](#tocgenerator) | struct |  |
 | [`Generator`](#generator) | struct | Main documentation generator. |
+| [`ImplCategory`](#implcategory) | enum |  |
 | [`ItemAccess`](#itemaccess) | trait |  |
 | [`ItemFilter`](#itemfilter) | trait |  |
 | [`LinkResolver`](#linkresolver) | trait |  |
 | [`RenderContext`](#rendercontext) | trait |  |
-| [`extract_summary`](#extract_summary) | fn |  |
 | [`convert_html_links`](#convert_html_links) | fn |  |
 | [`convert_path_reference_links`](#convert_path_reference_links) | fn |  |
 | [`strip_duplicate_title`](#strip_duplicate_title) | fn |  |
 | [`strip_reference_definitions`](#strip_reference_definitions) | fn |  |
+| [`extract_summary`](#extract_summary) | fn |  |
 
 ## Modules
 
@@ -130,6 +135,7 @@ generator.generate()?;
 - [`context`](context/index.md) — Shared context for documentation generation.
 - [`doc_links`](doc_links/index.md) — Intra-doc link processing for documentation generation.
 - [`flat`](flat/index.md) — Flat format documentation generation.
+- [`impl_category`](impl_category/index.md) — Categorization system for trait implementations.
 - [`impls`](impls/index.md) — Implementation block rendering for documentation generation.
 - [`items`](items/index.md) — Item rendering for documentation generation.
 - [`module`](module/index.md) — Module markdown rendering for documentation generation.
@@ -149,6 +155,8 @@ struct BreadcrumbGenerator<'a> {
     crate_name: &'a str,
 }
 ```
+
+*Defined in `src/generator/breadcrumbs.rs:10-16`*
 
 Generates breadcrumb navigation for nested module pages.
 
@@ -173,17 +181,17 @@ the current module, with each segment being a clickable link.
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for BreadcrumbGenerator<'a>`
+##### `impl Instrument for BreadcrumbGenerator<'a>`
 
-##### `impl<T> IntoEither for BreadcrumbGenerator<'a>`
+##### `impl IntoEither for BreadcrumbGenerator<'a>`
 
-##### `impl<D> OwoColorize for BreadcrumbGenerator<'a>`
+##### `impl OwoColorize for BreadcrumbGenerator<'a>`
 
-##### `impl<T> Pointable for BreadcrumbGenerator<'a>`
+##### `impl Pointable for BreadcrumbGenerator<'a>`
 
-- <span id="breadcrumbgenerator-align"></span>`const ALIGN: usize`
+- <span id="breadcrumbgenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="breadcrumbgenerator-init"></span>`type Init = T`
+- <span id="breadcrumbgenerator-type-init"></span>`type Init = T`
 
 - <span id="breadcrumbgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -193,7 +201,7 @@ the current module, with each segment being a clickable link.
 
 - <span id="breadcrumbgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for BreadcrumbGenerator<'a>`
+##### `impl WithSubscriber for BreadcrumbGenerator<'a>`
 
 ### `MarkdownCapture`
 
@@ -202,6 +210,8 @@ struct MarkdownCapture {
     files: std::collections::HashMap<String, String>,
 }
 ```
+
+*Defined in `src/generator/capture.rs:15-18`*
 
 Captures generated markdown in memory for testing.
 
@@ -242,19 +252,19 @@ side effects.
 
 ##### `impl Default for MarkdownCapture`
 
-- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](../index.md)
+- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](capture/index.md)
 
-##### `impl<T> Instrument for MarkdownCapture`
+##### `impl Instrument for MarkdownCapture`
 
-##### `impl<T> IntoEither for MarkdownCapture`
+##### `impl IntoEither for MarkdownCapture`
 
-##### `impl<D> OwoColorize for MarkdownCapture`
+##### `impl OwoColorize for MarkdownCapture`
 
-##### `impl<T> Pointable for MarkdownCapture`
+##### `impl Pointable for MarkdownCapture`
 
-- <span id="markdowncapture-align"></span>`const ALIGN: usize`
+- <span id="markdowncapture-const-align"></span>`const ALIGN: usize`
 
-- <span id="markdowncapture-init"></span>`type Init = T`
+- <span id="markdowncapture-type-init"></span>`type Init = T`
 
 - <span id="markdowncapture-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -264,260 +274,7 @@ side effects.
 
 - <span id="markdowncapture-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MarkdownCapture`
-
-### `QuickRefEntry`
-
-```rust
-struct QuickRefEntry {
-    pub name: String,
-    pub kind: &'static str,
-    pub anchor: String,
-    pub summary: String,
-}
-```
-
-An entry in the quick reference table.
-
-Each entry represents a single public item with its name, kind,
-anchor link, and first-sentence summary.
-
-#### Fields
-
-- **`name`**: `String`
-
-  Display name for this entry.
-
-- **`kind`**: `&'static str`
-
-  Item kind (struct, enum, trait, fn, etc.).
-
-- **`anchor`**: `String`
-
-  Anchor link target (without the `#` prefix).
-
-- **`summary`**: `String`
-
-  First-sentence summary from doc comment.
-
-#### Implementations
-
-- <span id="quickrefentry-new"></span>`fn new(name: impl Into<String>, kind: &'static str, anchor: impl Into<String>, summary: impl Into<String>) -> Self`
-
-#### Trait Implementations
-
-##### `impl Clone for QuickRefEntry`
-
-- <span id="quickrefentry-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](#quickrefentry)
-
-##### `impl Debug for QuickRefEntry`
-
-- <span id="quickrefentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl<T> Instrument for QuickRefEntry`
-
-##### `impl<T> IntoEither for QuickRefEntry`
-
-##### `impl<D> OwoColorize for QuickRefEntry`
-
-##### `impl<T> Pointable for QuickRefEntry`
-
-- <span id="quickrefentry-align"></span>`const ALIGN: usize`
-
-- <span id="quickrefentry-init"></span>`type Init = T`
-
-- <span id="quickrefentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
-
-- <span id="quickrefentry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
-
-- <span id="quickrefentry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
-
-- <span id="quickrefentry-drop"></span>`unsafe fn drop(ptr: usize)`
-
-##### `impl<T> WithSubscriber for QuickRefEntry`
-
-### `QuickRefGenerator`
-
-```rust
-struct QuickRefGenerator;
-```
-
-Generator for markdown quick reference tables.
-
-The generator creates a table summarizing all items with links,
-kinds, and first-sentence descriptions.
-
-#### Implementations
-
-- <span id="quickrefgenerator-new"></span>`const fn new() -> Self`
-
-- <span id="quickrefgenerator-generate"></span>`fn generate(&self, entries: &[QuickRefEntry]) -> String` — [`QuickRefEntry`](#quickrefentry)
-
-#### Trait Implementations
-
-##### `impl Clone for QuickRefGenerator`
-
-- <span id="quickrefgenerator-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](#quickrefgenerator)
-
-##### `impl Debug for QuickRefGenerator`
-
-- <span id="quickrefgenerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Default for QuickRefGenerator`
-
-- <span id="quickrefgenerator-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](#quickrefgenerator)
-
-##### `impl<T> Instrument for QuickRefGenerator`
-
-##### `impl<T> IntoEither for QuickRefGenerator`
-
-##### `impl<D> OwoColorize for QuickRefGenerator`
-
-##### `impl<T> Pointable for QuickRefGenerator`
-
-- <span id="quickrefgenerator-align"></span>`const ALIGN: usize`
-
-- <span id="quickrefgenerator-init"></span>`type Init = T`
-
-- <span id="quickrefgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
-
-- <span id="quickrefgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
-
-- <span id="quickrefgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
-
-- <span id="quickrefgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
-
-##### `impl<T> WithSubscriber for QuickRefGenerator`
-
-### `TocEntry`
-
-```rust
-struct TocEntry {
-    pub title: String,
-    pub anchor: String,
-    pub children: Vec<Self>,
-}
-```
-
-An entry in the table of contents.
-
-Each entry represents either a section heading (like "Structs") or an
-individual item (like a specific struct name). Entries can have children
-for nested navigation.
-
-#### Fields
-
-- **`title`**: `String`
-
-  Display title for this entry.
-
-- **`anchor`**: `String`
-
-  Anchor link target (without the `#` prefix).
-
-- **`children`**: `Vec<Self>`
-
-  Child entries for nested navigation.
-
-#### Implementations
-
-- <span id="tocentry-new"></span>`fn new(title: impl Into<String>, anchor: impl Into<String>) -> Self`
-
-- <span id="tocentry-with-children"></span>`fn with_children(title: impl Into<String>, anchor: impl Into<String>, children: Vec<Self>) -> Self`
-
-- <span id="tocentry-count"></span>`fn count(&self) -> usize`
-
-#### Trait Implementations
-
-##### `impl Clone for TocEntry`
-
-- <span id="tocentry-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](#tocentry)
-
-##### `impl Debug for TocEntry`
-
-- <span id="tocentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl<T> Instrument for TocEntry`
-
-##### `impl<T> IntoEither for TocEntry`
-
-##### `impl<D> OwoColorize for TocEntry`
-
-##### `impl<T> Pointable for TocEntry`
-
-- <span id="tocentry-align"></span>`const ALIGN: usize`
-
-- <span id="tocentry-init"></span>`type Init = T`
-
-- <span id="tocentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
-
-- <span id="tocentry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
-
-- <span id="tocentry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
-
-- <span id="tocentry-drop"></span>`unsafe fn drop(ptr: usize)`
-
-##### `impl<T> WithSubscriber for TocEntry`
-
-### `TocGenerator`
-
-```rust
-struct TocGenerator {
-    threshold: usize,
-}
-```
-
-Generator for markdown table of contents.
-
-The generator only produces output when the total number of items
-exceeds the configured threshold. This prevents cluttering small
-modules with unnecessary navigation.
-
-#### Fields
-
-- **`threshold`**: `usize`
-
-  Minimum items required to generate a TOC.
-
-#### Implementations
-
-- <span id="tocgenerator-new"></span>`const fn new(threshold: usize) -> Self`
-
-- <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](#tocentry)
-
-- <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](#tocentry)
-
-#### Trait Implementations
-
-##### `impl Clone for TocGenerator`
-
-- <span id="tocgenerator-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](#tocgenerator)
-
-##### `impl Debug for TocGenerator`
-
-- <span id="tocgenerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl<T> Instrument for TocGenerator`
-
-##### `impl<T> IntoEither for TocGenerator`
-
-##### `impl<D> OwoColorize for TocGenerator`
-
-##### `impl<T> Pointable for TocGenerator`
-
-- <span id="tocgenerator-align"></span>`const ALIGN: usize`
-
-- <span id="tocgenerator-init"></span>`type Init = T`
-
-- <span id="tocgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
-
-- <span id="tocgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
-
-- <span id="tocgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
-
-- <span id="tocgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
-
-##### `impl<T> WithSubscriber for TocGenerator`
+##### `impl WithSubscriber for MarkdownCapture`
 
 ### `RenderConfig`
 
@@ -531,6 +288,8 @@ struct RenderConfig {
     pub include_source: SourceConfig,
 }
 ```
+
+*Defined in `src/generator/config.rs:14-32`*
 
 Configuration options for markdown rendering.
 
@@ -564,7 +323,7 @@ Configuration options for markdown rendering.
 
 ##### `impl Clone for RenderConfig`
 
-- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](../index.md)
+- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](config/index.md)
 
 ##### `impl Debug for RenderConfig`
 
@@ -574,17 +333,17 @@ Configuration options for markdown rendering.
 
 - <span id="renderconfig-default"></span>`fn default() -> Self`
 
-##### `impl<T> Instrument for RenderConfig`
+##### `impl Instrument for RenderConfig`
 
-##### `impl<T> IntoEither for RenderConfig`
+##### `impl IntoEither for RenderConfig`
 
-##### `impl<D> OwoColorize for RenderConfig`
+##### `impl OwoColorize for RenderConfig`
 
-##### `impl<T> Pointable for RenderConfig`
+##### `impl Pointable for RenderConfig`
 
-- <span id="renderconfig-align"></span>`const ALIGN: usize`
+- <span id="renderconfig-const-align"></span>`const ALIGN: usize`
 
-- <span id="renderconfig-init"></span>`type Init = T`
+- <span id="renderconfig-type-init"></span>`type Init = T`
 
 - <span id="renderconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -594,7 +353,7 @@ Configuration options for markdown rendering.
 
 - <span id="renderconfig-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for RenderConfig`
+##### `impl WithSubscriber for RenderConfig`
 
 ### `SourceConfig`
 
@@ -604,8 +363,11 @@ struct SourceConfig {
     pub const_values: bool,
     pub private_items: bool,
     pub source_locations: bool,
+    pub source_dir: Option<std::path::PathBuf>,
 }
 ```
+
+*Defined in `src/generator/config.rs:42-61`*
 
 Configuration for source code integration.
 
@@ -629,11 +391,19 @@ Requires the `source-parsing` feature to have any effect.
 
   Add <file:line> references to items.
 
+- **`source_dir`**: `Option<std::path::PathBuf>`
+
+  Path to the `.source_*` directory containing collected dependency sources.
+  
+  When set, source location references will use paths relative to this directory
+  and generate clickable links. When `None`, absolute paths from rustdoc JSON
+  are displayed without links.
+
 #### Trait Implementations
 
 ##### `impl Clone for SourceConfig`
 
-- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](../index.md)
+- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](config/index.md)
 
 ##### `impl Debug for SourceConfig`
 
@@ -641,19 +411,19 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Default for SourceConfig`
 
-- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](../index.md)
+- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](config/index.md)
 
-##### `impl<T> Instrument for SourceConfig`
+##### `impl Instrument for SourceConfig`
 
-##### `impl<T> IntoEither for SourceConfig`
+##### `impl IntoEither for SourceConfig`
 
-##### `impl<D> OwoColorize for SourceConfig`
+##### `impl OwoColorize for SourceConfig`
 
-##### `impl<T> Pointable for SourceConfig`
+##### `impl Pointable for SourceConfig`
 
-- <span id="sourceconfig-align"></span>`const ALIGN: usize`
+- <span id="sourceconfig-const-align"></span>`const ALIGN: usize`
 
-- <span id="sourceconfig-init"></span>`type Init = T`
+- <span id="sourceconfig-type-init"></span>`type Init = T`
 
 - <span id="sourceconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -663,7 +433,7 @@ Requires the `source-parsing` feature to have any effect.
 
 - <span id="sourceconfig-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for SourceConfig`
+##### `impl WithSubscriber for SourceConfig`
 
 ### `GeneratorContext<'a>`
 
@@ -675,8 +445,12 @@ struct GeneratorContext<'a> {
     pub link_registry: crate::linker::LinkRegistry,
     pub args: &'a crate::Args,
     pub config: crate::generator::config::RenderConfig,
+    path_name_index: std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>,
+    source_path_config: Option<crate::generator::render_shared::SourcePathConfig>,
 }
 ```
+
+*Defined in `src/generator/context.rs:135-168`*
 
 Shared context containing all data needed for documentation generation.
 
@@ -714,25 +488,42 @@ This struct is passed to all rendering components and provides:
 
   Rendering configuration options.
 
+- **`path_name_index`**: `std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>`
+
+  Pre-built index mapping item names to their IDs for fast lookup.
+  
+  Built once at construction time from `krate.paths` and shared across
+  all `DocLinkProcessor` instances for efficiency.
+
+- **`source_path_config`**: `Option<crate::generator::render_shared::SourcePathConfig>`
+
+  Base source path configuration for transforming cargo registry paths.
+  
+  `None` if source locations are disabled or no `.source_*` dir detected.
+  The `depth` field is set to 0; use `source_path_config_for_file()` to
+  get a config with the correct depth for a specific file.
+
 #### Implementations
 
-- <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../index.md), [`RenderConfig`](../index.md)
+- <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../index.md), [`RenderConfig`](config/index.md)
+
+- <span id="generatorcontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
 
 - <span id="generatorcontext-build-impl-map"></span>`fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>>`
 
 - <span id="generatorcontext-impl-sort-key"></span>`fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
 
-- <span id="generatorcontext-get-type-id"></span>`const fn get_type_id(ty: &rustdoc_types::Type) -> Option<Id>`
-
 - <span id="generatorcontext-should-include-item"></span>`const fn should_include_item(&self, item: &Item) -> bool`
 
 - <span id="generatorcontext-count-modules"></span>`fn count_modules(&self, item: &Item) -> usize`
 
+- <span id="generatorcontext-build-path-name-index"></span>`fn build_path_name_index(krate: &'a Crate) -> HashMap<&'a str, Vec<Id>>`
+
 #### Trait Implementations
 
-##### `impl<T> Instrument for GeneratorContext<'a>`
+##### `impl Instrument for GeneratorContext<'a>`
 
-##### `impl<T> IntoEither for GeneratorContext<'a>`
+##### `impl IntoEither for GeneratorContext<'a>`
 
 ##### `impl ItemAccess for GeneratorContext<'_>`
 
@@ -746,7 +537,9 @@ This struct is passed to all rendering components and provides:
 
 - <span id="generatorcontext-crate-version"></span>`fn crate_version(&self) -> Option<&str>`
 
-- <span id="generatorcontext-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](../index.md)
+- <span id="generatorcontext-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](config/index.md)
+
+- <span id="generatorcontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](render_shared/index.md)
 
 ##### `impl ItemFilter for GeneratorContext<'_>`
 
@@ -758,19 +551,19 @@ This struct is passed to all rendering components and provides:
 
 ##### `impl LinkResolver for GeneratorContext<'_>`
 
-- <span id="generatorcontext-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../index.md)
+- <span id="generatorcontext-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../linker/index.md)
 
 - <span id="generatorcontext-process-docs"></span>`fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
 - <span id="generatorcontext-create-link"></span>`fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
 
-##### `impl<D> OwoColorize for GeneratorContext<'a>`
+##### `impl OwoColorize for GeneratorContext<'a>`
 
-##### `impl<T> Pointable for GeneratorContext<'a>`
+##### `impl Pointable for GeneratorContext<'a>`
 
-- <span id="generatorcontext-align"></span>`const ALIGN: usize`
+- <span id="generatorcontext-const-align"></span>`const ALIGN: usize`
 
-- <span id="generatorcontext-init"></span>`type Init = T`
+- <span id="generatorcontext-type-init"></span>`type Init = T`
 
 - <span id="generatorcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -780,9 +573,9 @@ This struct is passed to all rendering components and provides:
 
 - <span id="generatorcontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> RenderContext for GeneratorContext<'a>`
+##### `impl RenderContext for GeneratorContext<'a>`
 
-##### `impl<T> WithSubscriber for GeneratorContext<'a>`
+##### `impl WithSubscriber for GeneratorContext<'a>`
 
 ### `DocLinkProcessor<'a>`
 
@@ -795,6 +588,8 @@ struct DocLinkProcessor<'a> {
 }
 ```
 
+*Defined in `src/generator/doc_links.rs:416-429`*
+
 Processes doc comments to resolve intra-doc links to markdown links.
 
 Rustdoc JSON includes a `links` field on each Item that maps intra-doc
@@ -803,7 +598,7 @@ link text to item IDs. This processor uses that map along with the
 
 # Supported Patterns
 
-- `` `Name` `` - Backtick code links (most common)
+- `` [`Name`](#name) `` - Backtick code links (most common)
 - `` `path::to::Item` `` - Qualified path links
 - `` `Type::method` `` - Method/associated item links
 - `[name]` - Plain identifier links
@@ -839,7 +634,9 @@ Links inside fenced code blocks are not processed.
 
 #### Implementations
 
-- <span id="doclinkprocessor-new"></span>`fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../index.md)
+- <span id="doclinkprocessor-with-index"></span>`fn with_index(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str, path_name_index: &HashMap<&'a str, Vec<Id>>) -> Self` — [`LinkRegistry`](../linker/index.md)
+
+- <span id="doclinkprocessor-new"></span>`fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../linker/index.md)
 
 - <span id="doclinkprocessor-process"></span>`fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -881,17 +678,17 @@ Links inside fenced code blocks are not processed.
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for DocLinkProcessor<'a>`
+##### `impl Instrument for DocLinkProcessor<'a>`
 
-##### `impl<T> IntoEither for DocLinkProcessor<'a>`
+##### `impl IntoEither for DocLinkProcessor<'a>`
 
-##### `impl<D> OwoColorize for DocLinkProcessor<'a>`
+##### `impl OwoColorize for DocLinkProcessor<'a>`
 
-##### `impl<T> Pointable for DocLinkProcessor<'a>`
+##### `impl Pointable for DocLinkProcessor<'a>`
 
-- <span id="doclinkprocessor-align"></span>`const ALIGN: usize`
+- <span id="doclinkprocessor-const-align"></span>`const ALIGN: usize`
 
-- <span id="doclinkprocessor-init"></span>`type Init = T`
+- <span id="doclinkprocessor-type-init"></span>`type Init = T`
 
 - <span id="doclinkprocessor-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -901,7 +698,7 @@ Links inside fenced code blocks are not processed.
 
 - <span id="doclinkprocessor-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for DocLinkProcessor<'a>`
+##### `impl WithSubscriber for DocLinkProcessor<'a>`
 
 ### `ModuleRenderer<'a>`
 
@@ -913,6 +710,8 @@ struct ModuleRenderer<'a> {
 }
 ```
 
+*Defined in `src/generator/module.rs:28-37`*
+
 Renders a module to markdown.
 
 This struct handles the complete rendering of a module's documentation page,
@@ -921,7 +720,7 @@ including:
 - Module-level documentation
 - Sections for each item type (Modules, Structs, Enums, etc.)
 
-The renderer is generic over [`RenderContext`](#rendercontext), allowing it to work with
+The renderer is generic over [`RenderContext`](context/index.md), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
 #### Fields
@@ -940,7 +739,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- <span id="modulerenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](#rendercontext)
+- <span id="modulerenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](context/index.md)
 
 - <span id="modulerenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
 
@@ -952,15 +751,19 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="modulerenderer-render-all-sections"></span>`fn render_all_sections(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md)
 
-- <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](module/index.md), [`TocEntry`](#tocentry)
+- <span id="modulerenderer-render-types-section"></span>`fn render_types_section(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md)
 
-- <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](module/index.md), [`QuickRefEntry`](#quickrefentry)
+- <span id="modulerenderer-render-statics-section"></span>`fn render_statics_section(&self, md: &mut String, statics: &[&Item])`
+
+- <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](module/index.md), [`TocEntry`](toc/index.md)
+
+- <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](module/index.md), [`QuickRefEntry`](quick_ref/index.md)
+
+- <span id="modulerenderer-get-item-summary"></span>`fn get_item_summary(&self, item: &Item, item_id: Id) -> String`
 
 - <span id="modulerenderer-render-modules-section"></span>`fn render_modules_section(&self, md: &mut String, modules: &[(&Id, &Item)])`
 
-- <span id="modulerenderer-render-structs-section"></span>`fn render_structs_section(&self, md: &mut String, structs: &[(&Id, &Item)])`
-
-- <span id="modulerenderer-render-enums-section"></span>`fn render_enums_section(&self, md: &mut String, enums: &[(&Id, &Item)])`
+- <span id="modulerenderer-get-module-summary"></span>`fn get_module_summary(&self, item: &Item, item_id: Id) -> String`
 
 - <span id="modulerenderer-render-traits-section"></span>`fn render_traits_section(&self, md: &mut String, traits: &[(&Id, &Item)])`
 
@@ -970,21 +773,19 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="modulerenderer-render-constants-section"></span>`fn render_constants_section(&self, md: &mut String, constants: &[&Item])`
 
-- <span id="modulerenderer-render-type-aliases-section"></span>`fn render_type_aliases_section(&self, md: &mut String, type_aliases: &[&Item])`
-
 #### Trait Implementations
 
-##### `impl<T> Instrument for ModuleRenderer<'a>`
+##### `impl Instrument for ModuleRenderer<'a>`
 
-##### `impl<T> IntoEither for ModuleRenderer<'a>`
+##### `impl IntoEither for ModuleRenderer<'a>`
 
-##### `impl<D> OwoColorize for ModuleRenderer<'a>`
+##### `impl OwoColorize for ModuleRenderer<'a>`
 
-##### `impl<T> Pointable for ModuleRenderer<'a>`
+##### `impl Pointable for ModuleRenderer<'a>`
 
-- <span id="modulerenderer-align"></span>`const ALIGN: usize`
+- <span id="modulerenderer-const-align"></span>`const ALIGN: usize`
 
-- <span id="modulerenderer-init"></span>`type Init = T`
+- <span id="modulerenderer-type-init"></span>`type Init = T`
 
 - <span id="modulerenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -994,7 +795,268 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="modulerenderer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for ModuleRenderer<'a>`
+##### `impl WithSubscriber for ModuleRenderer<'a>`
+
+### `QuickRefEntry`
+
+```rust
+struct QuickRefEntry {
+    pub name: String,
+    pub kind: &'static str,
+    pub anchor: String,
+    pub summary: String,
+}
+```
+
+*Defined in `src/generator/quick_ref.rs:26-38`*
+
+An entry in the quick reference table.
+
+Each entry represents a single public item with its name, kind,
+anchor link, and first-sentence summary.
+
+#### Fields
+
+- **`name`**: `String`
+
+  Display name for this entry.
+
+- **`kind`**: `&'static str`
+
+  Item kind (struct, enum, trait, fn, etc.).
+
+- **`anchor`**: `String`
+
+  Anchor link target (without the `#` prefix).
+
+- **`summary`**: `String`
+
+  First-sentence summary from doc comment.
+
+#### Implementations
+
+- <span id="quickrefentry-new"></span>`fn new(name: impl Into<String>, kind: &'static str, anchor: impl Into<String>, summary: impl Into<String>) -> Self`
+
+#### Trait Implementations
+
+##### `impl Clone for QuickRefEntry`
+
+- <span id="quickrefentry-clone"></span>`fn clone(&self) -> QuickRefEntry` — [`QuickRefEntry`](quick_ref/index.md)
+
+##### `impl Debug for QuickRefEntry`
+
+- <span id="quickrefentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Instrument for QuickRefEntry`
+
+##### `impl IntoEither for QuickRefEntry`
+
+##### `impl OwoColorize for QuickRefEntry`
+
+##### `impl Pointable for QuickRefEntry`
+
+- <span id="quickrefentry-const-align"></span>`const ALIGN: usize`
+
+- <span id="quickrefentry-type-init"></span>`type Init = T`
+
+- <span id="quickrefentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="quickrefentry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="quickrefentry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="quickrefentry-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for QuickRefEntry`
+
+### `QuickRefGenerator`
+
+```rust
+struct QuickRefGenerator;
+```
+
+*Defined in `src/generator/quick_ref.rs:70`*
+
+Generator for markdown quick reference tables.
+
+The generator creates a table summarizing all items with links,
+kinds, and first-sentence descriptions.
+
+#### Implementations
+
+- <span id="quickrefgenerator-new"></span>`const fn new() -> Self`
+
+- <span id="quickrefgenerator-generate"></span>`fn generate(&self, entries: &[QuickRefEntry]) -> String` — [`QuickRefEntry`](quick_ref/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for QuickRefGenerator`
+
+- <span id="quickrefgenerator-clone"></span>`fn clone(&self) -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md)
+
+##### `impl Debug for QuickRefGenerator`
+
+- <span id="quickrefgenerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Default for QuickRefGenerator`
+
+- <span id="quickrefgenerator-default"></span>`fn default() -> QuickRefGenerator` — [`QuickRefGenerator`](quick_ref/index.md)
+
+##### `impl Instrument for QuickRefGenerator`
+
+##### `impl IntoEither for QuickRefGenerator`
+
+##### `impl OwoColorize for QuickRefGenerator`
+
+##### `impl Pointable for QuickRefGenerator`
+
+- <span id="quickrefgenerator-const-align"></span>`const ALIGN: usize`
+
+- <span id="quickrefgenerator-type-init"></span>`type Init = T`
+
+- <span id="quickrefgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="quickrefgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="quickrefgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="quickrefgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for QuickRefGenerator`
+
+### `TocEntry`
+
+```rust
+struct TocEntry {
+    pub title: String,
+    pub anchor: String,
+    pub children: Vec<Self>,
+}
+```
+
+*Defined in `src/generator/toc.rs:28-37`*
+
+An entry in the table of contents.
+
+Each entry represents either a section heading (like "Structs") or an
+individual item (like a specific struct name). Entries can have children
+for nested navigation.
+
+#### Fields
+
+- **`title`**: `String`
+
+  Display title for this entry.
+
+- **`anchor`**: `String`
+
+  Anchor link target (without the `#` prefix).
+
+- **`children`**: `Vec<Self>`
+
+  Child entries for nested navigation.
+
+#### Implementations
+
+- <span id="tocentry-new"></span>`fn new(title: impl Into<String>, anchor: impl Into<String>) -> Self`
+
+- <span id="tocentry-with-children"></span>`fn with_children(title: impl Into<String>, anchor: impl Into<String>, children: Vec<Self>) -> Self`
+
+- <span id="tocentry-count"></span>`fn count(&self) -> usize`
+
+#### Trait Implementations
+
+##### `impl Clone for TocEntry`
+
+- <span id="tocentry-clone"></span>`fn clone(&self) -> TocEntry` — [`TocEntry`](toc/index.md)
+
+##### `impl Debug for TocEntry`
+
+- <span id="tocentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Instrument for TocEntry`
+
+##### `impl IntoEither for TocEntry`
+
+##### `impl OwoColorize for TocEntry`
+
+##### `impl Pointable for TocEntry`
+
+- <span id="tocentry-const-align"></span>`const ALIGN: usize`
+
+- <span id="tocentry-type-init"></span>`type Init = T`
+
+- <span id="tocentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="tocentry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="tocentry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="tocentry-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for TocEntry`
+
+### `TocGenerator`
+
+```rust
+struct TocGenerator {
+    threshold: usize,
+}
+```
+
+*Defined in `src/generator/toc.rs:88-91`*
+
+Generator for markdown table of contents.
+
+The generator only produces output when the total number of items
+exceeds the configured threshold. This prevents cluttering small
+modules with unnecessary navigation.
+
+#### Fields
+
+- **`threshold`**: `usize`
+
+  Minimum items required to generate a TOC.
+
+#### Implementations
+
+- <span id="tocgenerator-new"></span>`const fn new(threshold: usize) -> Self`
+
+- <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](toc/index.md)
+
+- <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](toc/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for TocGenerator`
+
+- <span id="tocgenerator-clone"></span>`fn clone(&self) -> TocGenerator` — [`TocGenerator`](toc/index.md)
+
+##### `impl Debug for TocGenerator`
+
+- <span id="tocgenerator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Instrument for TocGenerator`
+
+##### `impl IntoEither for TocGenerator`
+
+##### `impl OwoColorize for TocGenerator`
+
+##### `impl Pointable for TocGenerator`
+
+- <span id="tocgenerator-const-align"></span>`const ALIGN: usize`
+
+- <span id="tocgenerator-type-init"></span>`type Init = T`
+
+- <span id="tocgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="tocgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="tocgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="tocgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl WithSubscriber for TocGenerator`
 
 ### `Generator<'a>`
 
@@ -1005,6 +1067,8 @@ struct Generator<'a> {
     root_item: &'a rustdoc_types::Item,
 }
 ```
+
+*Defined in `src/generator/mod.rs:89-98`*
 
 Main documentation generator.
 
@@ -1035,37 +1099,37 @@ generator.generate()?;
 
 #### Implementations
 
-- <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](../index.md), [`RenderConfig`](../index.md), [`Error`](../error/index.md)
+- <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](../index.md), [`RenderConfig`](config/index.md), [`Error`](../error/index.md)
 
 - <span id="generator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../error/index.md)
 
 - <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
 
-- <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
+- <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
 
-- <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`RenderConfig`](../index.md), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
+- <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`RenderConfig`](config/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
 
-- <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
+- <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
 
-- <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
+- <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
 
-- <span id="generator-generate-nested-to-capture"></span>`fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
+- <span id="generator-generate-nested-to-capture"></span>`fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
 
 - <span id="generator-run"></span>`fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for Generator<'a>`
+##### `impl Instrument for Generator<'a>`
 
-##### `impl<T> IntoEither for Generator<'a>`
+##### `impl IntoEither for Generator<'a>`
 
-##### `impl<D> OwoColorize for Generator<'a>`
+##### `impl OwoColorize for Generator<'a>`
 
-##### `impl<T> Pointable for Generator<'a>`
+##### `impl Pointable for Generator<'a>`
 
-- <span id="generator-align"></span>`const ALIGN: usize`
+- <span id="generator-const-align"></span>`const ALIGN: usize`
 
-- <span id="generator-init"></span>`type Init = T`
+- <span id="generator-type-init"></span>`type Init = T`
 
 - <span id="generator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1075,7 +1139,205 @@ generator.generate()?;
 
 - <span id="generator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for Generator<'a>`
+##### `impl WithSubscriber for Generator<'a>`
+
+## Enums
+
+### `ImplCategory`
+
+```rust
+enum ImplCategory {
+    Inherent,
+    Derive,
+    Conversion,
+    Iterator,
+    Io,
+    Operator,
+    Access,
+    Formatting,
+    Other,
+}
+```
+
+*Defined in `src/generator/impl_category.rs:66-144`*
+
+Logical category for trait implementations.
+
+Each variant represents a group of related traits that serve a similar purpose.
+This categorization enables documentation to be organized by functionality rather
+than alphabetically, making it easier for users to find relevant implementations.
+
+# Variant Order
+
+The variants are ordered by their typical importance/frequency of use:
+1. `Inherent` - Direct methods on the type (most commonly referenced)
+2. `Derive` - Standard derived traits (`Clone`, `Debug`, etc.)
+3. `Conversion` - Type conversion traits (`From`, `Into`, etc.)
+4. `Access` - Smart pointer/indexing traits (`Deref`, `Index`)
+5. `Iterator` - Iteration support
+6. `Operator` - Operator overloading
+7. `Formatting` - Display/formatting traits
+8. `Io` - I/O traits (less common)
+9. `Other` - Catch-all for unrecognized traits
+
+#### Variants
+
+- **`Inherent`**
+
+  Inherent implementations (no trait).
+  
+  These are methods defined directly on the type:
+  ```rust,ignore
+  impl MyType {
+      fn new() -> Self { ... }
+      fn method(&self) { ... }
+  }
+  ```
+
+- **`Derive`**
+
+  Common derived traits from `#[derive(...)]`.
+  
+  Includes: `Clone`, `Copy`, `Debug`, `Default`, `PartialEq`, `Eq`,
+  `Hash`, `PartialOrd`, `Ord`.
+  
+  These traits have standard, predictable implementations that users
+  typically don't need to examine in detail.
+
+- **`Conversion`**
+
+  Type conversion traits.
+  
+  Includes: `From`, `Into`, `TryFrom`, `TryInto`, `AsRef`, `AsMut`,
+  `Borrow`, `BorrowMut`.
+  
+  These traits define how a type can be converted to/from other types,
+  which is essential for understanding type interoperability.
+
+- **`Iterator`**
+
+  Iterator-related traits.
+  
+  Includes: `Iterator`, `IntoIterator`, `FromIterator`, `Extend`,
+  `DoubleEndedIterator`, `ExactSizeIterator`, `FusedIterator`.
+  
+  These traits define how a type participates in Rust's iteration ecosystem.
+
+- **`Io`**
+
+  I/O traits from `std::io`.
+  
+  Includes: `Read`, `Write`, `Seek`, `BufRead`, `BufWrite`.
+  
+  These traits define how a type can be used for input/output operations.
+
+- **`Operator`**
+
+  Operator overloading traits from `std::ops`.
+  
+  Includes all arithmetic, bitwise, and compound assignment operators:
+  `Add`, `Sub`, `Mul`, `Div`, `Rem`, `Neg`, `Not`, `BitAnd`, `BitOr`,
+  `BitXor`, `Shl`, `Shr`, and their `*Assign` variants.
+  
+  These traits define custom behavior for Rust's operators (`+`, `-`, etc.).
+
+- **`Access`**
+
+  Smart pointer and indexing traits.
+  
+  Includes: `Deref`, `DerefMut`, `Index`, `IndexMut`.
+  
+  These traits define how a type can be dereferenced or indexed,
+  which is crucial for wrapper types and collections.
+
+- **`Formatting`**
+
+  Display and formatting traits.
+  
+  Includes: `Display`, `LowerHex`, `UpperHex`, `Octal`, `Binary`,
+  `Pointer`, `LowerExp`, `UpperExp`.
+  
+  These traits define how a type is formatted for output. `Display` is
+  particularly important as it defines user-facing string representation.
+
+- **`Other`**
+
+  Any trait that doesn't fit other categories.
+  
+  This is the fallback for:
+  - Third-party traits (e.g., `serde::Serialize`)
+  - Less common std traits (e.g., `Drop`, `Send`, `Sync`)
+  - Domain-specific traits
+
+#### Implementations
+
+- <span id="implcategory-from-trait-path"></span>`fn from_trait_path(path: Option<&str>) -> Self`
+
+- <span id="implcategory-display-name"></span>`const fn display_name(&self) -> &'static str`
+
+- <span id="implcategory-sort-order"></span>`const fn sort_order(self) -> u8`
+
+#### Trait Implementations
+
+##### `impl Clone for ImplCategory`
+
+- <span id="implcategory-clone"></span>`fn clone(&self) -> ImplCategory` — [`ImplCategory`](impl_category/index.md)
+
+##### `impl Comparable for ImplCategory`
+
+- <span id="implcategory-compare"></span>`fn compare(&self, key: &K) -> Ordering`
+
+##### `impl Copy for ImplCategory`
+
+##### `impl Debug for ImplCategory`
+
+- <span id="implcategory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Eq for ImplCategory`
+
+##### `impl Equivalent for ImplCategory`
+
+- <span id="implcategory-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
+
+##### `impl Hash for ImplCategory`
+
+- <span id="implcategory-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
+
+##### `impl Instrument for ImplCategory`
+
+##### `impl IntoEither for ImplCategory`
+
+##### `impl Ord for ImplCategory`
+
+- <span id="implcategory-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
+
+##### `impl OwoColorize for ImplCategory`
+
+##### `impl PartialEq for ImplCategory`
+
+- <span id="implcategory-eq"></span>`fn eq(&self, other: &ImplCategory) -> bool` — [`ImplCategory`](impl_category/index.md)
+
+##### `impl PartialOrd for ImplCategory`
+
+- <span id="implcategory-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
+
+##### `impl Pointable for ImplCategory`
+
+- <span id="implcategory-const-align"></span>`const ALIGN: usize`
+
+- <span id="implcategory-type-init"></span>`type Init = T`
+
+- <span id="implcategory-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="implcategory-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="implcategory-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="implcategory-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl StructuralPartialEq for ImplCategory`
+
+##### `impl WithSubscriber for ImplCategory`
 
 ## Traits
 
@@ -1084,6 +1346,8 @@ generator.generate()?;
 ```rust
 trait ItemAccess { ... }
 ```
+
+*Defined in `src/generator/context.rs:37-63`*
 
 Core data access for crate documentation.
 
@@ -1115,16 +1379,24 @@ Provides read-only access to the crate structure, items, and impl blocks.
 
   Get the rendering configuration.
 
+#### Provided Methods
+
+- `fn source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig>`
+
+  Get source path config for a specific file.
+
 #### Implementors
 
-- [`GeneratorContext`](#generatorcontext)
-- [`SingleCrateView`](../multi_crate/index.md)
+- [`GeneratorContext`](context/index.md)
+- [`SingleCrateView`](../multi_crate/context/index.md)
 
 ### `ItemFilter`
 
 ```rust
 trait ItemFilter { ... }
 ```
+
+*Defined in `src/generator/context.rs:68-79`*
 
 Item visibility and filtering logic.
 
@@ -1146,14 +1418,16 @@ Determines which items should be included in the generated documentation.
 
 #### Implementors
 
-- [`GeneratorContext`](#generatorcontext)
-- [`SingleCrateView`](../multi_crate/index.md)
+- [`GeneratorContext`](context/index.md)
+- [`SingleCrateView`](../multi_crate/context/index.md)
 
 ### `LinkResolver`
 
 ```rust
 trait LinkResolver { ... }
 ```
+
+*Defined in `src/generator/context.rs:84-113`*
 
 Link creation and documentation processing.
 
@@ -1175,8 +1449,8 @@ Handles intra-doc link resolution and markdown link generation.
 
 #### Implementors
 
-- [`GeneratorContext`](#generatorcontext)
-- [`SingleCrateView`](../multi_crate/index.md)
+- [`GeneratorContext`](context/index.md)
+- [`SingleCrateView`](../multi_crate/context/index.md)
 
 ### `RenderContext`
 
@@ -1184,9 +1458,11 @@ Handles intra-doc link resolution and markdown link generation.
 trait RenderContext: ItemAccess + ItemFilter + LinkResolver { ... }
 ```
 
+*Defined in `src/generator/context.rs:126`*
+
 Combined rendering context trait.
 
-This trait combines [`ItemAccess`](#itemaccess), [`ItemFilter`](#itemfilter), and [`LinkResolver`](#linkresolver)
+This trait combines [`ItemAccess`](context/index.md), [`ItemFilter`](context/index.md), and [`LinkResolver`](context/index.md)
 for components that need full access to the rendering context.
 
 Most renderers should use this trait for convenience, but components
@@ -1194,9 +1470,17 @@ with limited requirements can depend on individual sub-traits.
 
 #### Implementors
 
-- [`GeneratorContext`](#generatorcontext)
-- [`SingleCrateView`](../multi_crate/index.md)
 - `T`
 
 ## Functions
+
+*Defined in `src/generator/mod.rs:60`*
+
+*Defined in `src/generator/mod.rs:60`*
+
+*Defined in `src/generator/mod.rs:60`*
+
+*Defined in `src/generator/mod.rs:61`*
+
+*Defined in `src/generator/mod.rs:69`*
 

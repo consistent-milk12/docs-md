@@ -161,6 +161,8 @@ struct can_frame {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:38-49`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L38-L49)*
+
 #### Trait Implementations
 
 ##### `impl Clone for can_frame`
@@ -185,6 +187,8 @@ struct canfd_frame {
     pub data: [u8; 64],
 }
 ```
+
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:55-65`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L55-L65)*
 
 #### Trait Implementations
 
@@ -211,6 +215,8 @@ struct canxl_frame {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:70-79`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L70-L79)*
+
 #### Trait Implementations
 
 ##### `impl Clone for canxl_frame`
@@ -233,6 +239,8 @@ struct sockaddr_can {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:102-113`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L102-L113)*
+
 #### Trait Implementations
 
 ##### `impl Clone for sockaddr_can`
@@ -253,6 +261,8 @@ struct __c_anonymous_sockaddr_can_tp {
     pub tx_id: canid_t,
 }
 ```
+
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:115-131`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L115-L131)*
 
 #### Trait Implementations
 
@@ -276,6 +286,8 @@ struct __c_anonymous_sockaddr_can_j1939 {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:115-131`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L115-L131)*
+
 #### Trait Implementations
 
 ##### `impl Clone for __c_anonymous_sockaddr_can_j1939`
@@ -297,6 +309,8 @@ struct can_filter {
 }
 ```
 
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:115-131`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L115-L131)*
+
 #### Trait Implementations
 
 ##### `impl Clone for can_filter`
@@ -317,305 +331,358 @@ struct can_filter {
 type canid_t = u32;
 ```
 
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:18`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L18)*
+
 ### `can_err_mask_t`
 
 ```rust
 type can_err_mask_t = u32;
 ```
 
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:24`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L24)*
+
 ## Constants
 
 ### `SOL_CAN_RAW`
-
 ```rust
 const SOL_CAN_RAW: crate::c_int = 101i32;
 ```
 
-### `CAN_RAW_FILTER_MAX`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs:5`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs#L5)*
 
+### `CAN_RAW_FILTER_MAX`
 ```rust
 const CAN_RAW_FILTER_MAX: crate::c_int = 512i32;
 ```
 
-### `CAN_RAW_FILTER`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs:6`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs#L6)*
 
+### `CAN_RAW_FILTER`
 ```rust
 const CAN_RAW_FILTER: crate::c_int = 1i32;
 ```
 
-### `CAN_RAW_ERR_FILTER`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs:9`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs#L9)*
 
+### `CAN_RAW_ERR_FILTER`
 ```rust
 const CAN_RAW_ERR_FILTER: crate::c_int = 2i32;
 ```
 
-### `CAN_RAW_LOOPBACK`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs:10`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs#L10)*
 
+### `CAN_RAW_LOOPBACK`
 ```rust
 const CAN_RAW_LOOPBACK: crate::c_int = 3i32;
 ```
 
-### `CAN_RAW_RECV_OWN_MSGS`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs:11`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs#L11)*
 
+### `CAN_RAW_RECV_OWN_MSGS`
 ```rust
 const CAN_RAW_RECV_OWN_MSGS: crate::c_int = 4i32;
 ```
 
-### `CAN_RAW_FD_FRAMES`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs:12`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs#L12)*
 
+### `CAN_RAW_FD_FRAMES`
 ```rust
 const CAN_RAW_FD_FRAMES: crate::c_int = 5i32;
 ```
 
-### `CAN_RAW_JOIN_FILTERS`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs:13`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs#L13)*
 
+### `CAN_RAW_JOIN_FILTERS`
 ```rust
 const CAN_RAW_JOIN_FILTERS: crate::c_int = 6i32;
 ```
 
-### `CAN_RAW_XL_FRAMES`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs:14`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs#L14)*
 
+### `CAN_RAW_XL_FRAMES`
 ```rust
 const CAN_RAW_XL_FRAMES: crate::c_int = 7i32;
 ```
 
-### `CAN_EFF_FLAG`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs:15`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can/raw.rs#L15)*
 
+### `CAN_EFF_FLAG`
 ```rust
 const CAN_EFF_FLAG: canid_t = 2_147_483_648u32;
 ```
 
-### `CAN_RTR_FLAG`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:9`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L9)*
 
+### `CAN_RTR_FLAG`
 ```rust
 const CAN_RTR_FLAG: canid_t = 1_073_741_824u32;
 ```
 
-### `CAN_ERR_FLAG`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:10`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L10)*
 
+### `CAN_ERR_FLAG`
 ```rust
 const CAN_ERR_FLAG: canid_t = 536_870_912u32;
 ```
 
-### `CAN_SFF_MASK`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:11`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L11)*
 
+### `CAN_SFF_MASK`
 ```rust
 const CAN_SFF_MASK: canid_t = 2_047u32;
 ```
 
-### `CAN_EFF_MASK`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:13`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L13)*
 
+### `CAN_EFF_MASK`
 ```rust
 const CAN_EFF_MASK: canid_t = 536_870_911u32;
 ```
 
-### `CAN_ERR_MASK`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:14`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L14)*
 
+### `CAN_ERR_MASK`
 ```rust
 const CAN_ERR_MASK: canid_t = 536_870_911u32;
 ```
 
-### `CANXL_PRIO_MASK`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:15`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L15)*
 
+### `CANXL_PRIO_MASK`
 ```rust
 const CANXL_PRIO_MASK: crate::canid_t = 2_047u32;
 ```
 
-### `CAN_SFF_ID_BITS`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:16`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L16)*
 
+### `CAN_SFF_ID_BITS`
 ```rust
 const CAN_SFF_ID_BITS: crate::c_int = 11i32;
 ```
 
-### `CAN_EFF_ID_BITS`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:20`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L20)*
 
+### `CAN_EFF_ID_BITS`
 ```rust
 const CAN_EFF_ID_BITS: crate::c_int = 29i32;
 ```
 
-### `CANXL_PRIO_BITS`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:21`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L21)*
 
+### `CANXL_PRIO_BITS`
 ```rust
 const CANXL_PRIO_BITS: crate::c_int = 11i32;
 ```
 
-### `CAN_MAX_DLC`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:22`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L22)*
 
+### `CAN_MAX_DLC`
 ```rust
 const CAN_MAX_DLC: crate::c_int = 8i32;
 ```
 
-### `CAN_MAX_DLEN`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:26`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L26)*
 
+### `CAN_MAX_DLEN`
 ```rust
 const CAN_MAX_DLEN: usize = 8usize;
 ```
 
-### `CANFD_MAX_DLC`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:27`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L27)*
 
+### `CANFD_MAX_DLC`
 ```rust
 const CANFD_MAX_DLC: crate::c_int = 15i32;
 ```
 
-### `CANFD_MAX_DLEN`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:29`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L29)*
 
+### `CANFD_MAX_DLEN`
 ```rust
 const CANFD_MAX_DLEN: usize = 64usize;
 ```
 
-### `CANXL_MIN_DLC`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:30`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L30)*
 
+### `CANXL_MIN_DLC`
 ```rust
 const CANXL_MIN_DLC: crate::c_int = 0i32;
 ```
 
-### `CANXL_MAX_DLC`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:32`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L32)*
 
+### `CANXL_MAX_DLC`
 ```rust
 const CANXL_MAX_DLC: crate::c_int = 2_047i32;
 ```
 
-### `CANXL_MAX_DLC_MASK`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:33`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L33)*
 
+### `CANXL_MAX_DLC_MASK`
 ```rust
 const CANXL_MAX_DLC_MASK: crate::c_int = 2_047i32;
 ```
 
-### `CANXL_MIN_DLEN`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:34`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L34)*
 
+### `CANXL_MIN_DLEN`
 ```rust
 const CANXL_MIN_DLEN: usize = 1usize;
 ```
 
-### `CANXL_MAX_DLEN`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:35`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L35)*
 
+### `CANXL_MAX_DLEN`
 ```rust
 const CANXL_MAX_DLEN: usize = 2_048usize;
 ```
 
-### `CANFD_BRS`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:36`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L36)*
 
+### `CANFD_BRS`
 ```rust
 const CANFD_BRS: crate::c_int = 1i32;
 ```
 
-### `CANFD_ESI`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:51`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L51)*
 
+### `CANFD_ESI`
 ```rust
 const CANFD_ESI: crate::c_int = 2i32;
 ```
 
-### `CANFD_FDF`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:52`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L52)*
 
+### `CANFD_FDF`
 ```rust
 const CANFD_FDF: crate::c_int = 4i32;
 ```
 
-### `CANXL_XLF`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:53`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L53)*
 
+### `CANXL_XLF`
 ```rust
 const CANXL_XLF: crate::c_int = 128i32;
 ```
 
-### `CANXL_SEC`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:67`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L67)*
 
+### `CANXL_SEC`
 ```rust
 const CANXL_SEC: crate::c_int = 1i32;
 ```
 
-### `CAN_MTU`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:68`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L68)*
 
+### `CAN_MTU`
 ```rust
 const CAN_MTU: usize = 16usize;
 ```
 
-### `CANFD_MTU`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:81`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L81)*
 
+### `CANFD_MTU`
 ```rust
 const CANFD_MTU: usize = 72usize;
 ```
 
-### `CANXL_MTU`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:82`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L82)*
 
+### `CANXL_MTU`
 ```rust
 const CANXL_MTU: usize = 2_060usize;
 ```
 
-### `CANXL_HDR_SIZE`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:83`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L83)*
 
+### `CANXL_HDR_SIZE`
 ```rust
 const CANXL_HDR_SIZE: usize = 12usize;
 ```
 
-### `CANXL_MIN_MTU`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:87`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L87)*
 
+### `CANXL_MIN_MTU`
 ```rust
 const CANXL_MIN_MTU: usize = 76usize;
 ```
 
-### `CANXL_MAX_MTU`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:88`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L88)*
 
+### `CANXL_MAX_MTU`
 ```rust
 const CANXL_MAX_MTU: usize = 2_060usize;
 ```
 
-### `CAN_RAW`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:89`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L89)*
 
+### `CAN_RAW`
 ```rust
 const CAN_RAW: crate::c_int = 1i32;
 ```
 
-### `CAN_BCM`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:91`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L91)*
 
+### `CAN_BCM`
 ```rust
 const CAN_BCM: crate::c_int = 2i32;
 ```
 
-### `CAN_TP16`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:92`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L92)*
 
+### `CAN_TP16`
 ```rust
 const CAN_TP16: crate::c_int = 3i32;
 ```
 
-### `CAN_TP20`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:93`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L93)*
 
+### `CAN_TP20`
 ```rust
 const CAN_TP20: crate::c_int = 4i32;
 ```
 
-### `CAN_MCNET`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:94`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L94)*
 
+### `CAN_MCNET`
 ```rust
 const CAN_MCNET: crate::c_int = 5i32;
 ```
 
-### `CAN_ISOTP`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:95`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L95)*
 
+### `CAN_ISOTP`
 ```rust
 const CAN_ISOTP: crate::c_int = 6i32;
 ```
 
-### `CAN_J1939`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:96`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L96)*
 
+### `CAN_J1939`
 ```rust
 const CAN_J1939: crate::c_int = 7i32;
 ```
 
-### `CAN_NPROTO`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:97`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L97)*
 
+### `CAN_NPROTO`
 ```rust
 const CAN_NPROTO: crate::c_int = 8i32;
 ```
 
-### `SOL_CAN_BASE`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:98`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L98)*
 
+### `SOL_CAN_BASE`
 ```rust
 const SOL_CAN_BASE: crate::c_int = 100i32;
 ```
 
-### `CAN_INV_FILTER`
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:100`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L100)*
 
+### `CAN_INV_FILTER`
 ```rust
 const CAN_INV_FILTER: canid_t = 536_870_912u32;
 ```
+
+*Defined in [`libc-0.2.178/src/new/linux_uapi/linux/can.rs:133`](../../../../../../../.source_1765210505/libc-0.2.178/src/new/linux_uapi/linux/can.rs#L133)*
 

@@ -41,11 +41,11 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`alloc`](#alloc) | mod |  |
-| [`ProbeSeq`](#probeseq) | struct | Probe sequence based on triangular numbers, which is guaranteed (since our |
-| [`TableLayout`](#tablelayout) | struct | Helper which allows the max calculation for `ctrl_align` to be statically computed for each `T` |
+| [`ProbeSeq`](#probeseq) | struct | Probe sequence based on triangular numbers, which is guaranteed (since our table size is a power of two) to visit every group of elements exactly once. |
+| [`TableLayout`](#tablelayout) | struct | Helper which allows the max calculation for `ctrl_align` to be statically computed for each `T` while keeping the rest of `calculate_layout_for` independent of `T` |
 | [`Bucket`](#bucket) | struct | A reference to a hash table bucket containing a `T`. |
 | [`RawTable`](#rawtable) | struct | A raw hash table with an unsafe API. |
-| [`RawTableInner`](#rawtableinner) | struct | Non-generic part of `RawTable` which allows functions to be instantiated only once regardless |
+| [`RawTableInner`](#rawtableinner) | struct | Non-generic part of `RawTable` which allows functions to be instantiated only once regardless of how many different key-value types are used. |
 | [`RawIterRange`](#rawiterrange) | struct | Iterator over a sub-range of a table. |
 | [`RawIter`](#rawiter) | struct | Iterator which returns a raw pointer to every full bucket in the table. |
 | [`FullBucketsIndices`](#fullbucketsindices) | struct | Iterator which returns an index of every full bucket in the table. |
@@ -59,11 +59,11 @@
 | [`RawTableClone`](#rawtableclone) | trait | Specialization of `clone_from` for `Copy` types |
 | [`offset_from`](#offset_from) | fn |  |
 | [`h1`](#h1) | fn | Primary hash function, used to select the initial bucket to probe from. |
-| [`capacity_to_buckets`](#capacity_to_buckets) | fn | Returns the number of buckets needed to hold the given number of items |
+| [`capacity_to_buckets`](#capacity_to_buckets) | fn | Returns the number of buckets needed to hold the given number of items, taking the maximum load factor into account. |
 | [`ensure_bucket_bytes_at_least_ctrl_align`](#ensure_bucket_bytes_at_least_ctrl_align) | fn |  |
-| [`bucket_mask_to_capacity`](#bucket_mask_to_capacity) | fn | Returns the maximum effective capacity for the given bucket mask, taking |
+| [`bucket_mask_to_capacity`](#bucket_mask_to_capacity) | fn | Returns the maximum effective capacity for the given bucket mask, taking the maximum load factor into account. |
 | [`prev_pow2`](#prev_pow2) | fn | Find the previous power of 2. |
-| [`maximum_buckets_in`](#maximum_buckets_in) | fn | Finds the largest number of buckets that can fit in `allocation_size` |
+| [`maximum_buckets_in`](#maximum_buckets_in) | fn | Finds the largest number of buckets that can fit in `allocation_size` provided the given TableLayout. |
 
 ## Modules
 
@@ -79,6 +79,8 @@ struct ProbeSeq {
     stride: usize,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:76-79`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L76-L79)*
 
 Probe sequence based on triangular numbers, which is guaranteed (since our
 table size is a power of two) to visit every group of elements exactly once.
@@ -109,6 +111,8 @@ struct TableLayout {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:198-201`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L198-L201)*
+
 Helper which allows the max calculation for `ctrl_align` to be statically computed for each `T`
 while keeping the rest of `calculate_layout_for` independent of `T`
 
@@ -133,6 +137,8 @@ struct Bucket<T> {
     ptr: core::ptr::NonNull<T>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:245-251`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L245-L251)*
 
 A reference to a hash table bucket containing a `T`.
 
@@ -180,11 +186,15 @@ struct RawTable<T, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:600-605`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L600-L605)*
+
 A raw hash table with an unsafe API.
 
 #### Implementations
 
-- <span id="rawtable-clone-from-impl"></span>`unsafe fn clone_from_impl(&mut self, source: &Self)`
+- <span id="rawtable-new"></span>`const fn new() -> Self`
+
+- <span id="rawtable-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
@@ -204,9 +214,9 @@ A raw hash table with an unsafe API.
 
 ##### `impl<T, A: Allocator> IntoIterator for RawTable<T, A>`
 
-- <span id="rawtable-item"></span>`type Item = T`
+- <span id="rawtable-type-item"></span>`type Item = T`
 
-- <span id="rawtable-intoiter"></span>`type IntoIter = RawIntoIter<T, A>`
+- <span id="rawtable-type-intoiter"></span>`type IntoIter = RawIntoIter<T, A>`
 
 - <span id="rawtable-into-iter"></span>`fn into_iter(self) -> RawIntoIter<T, A>` — [`RawIntoIter`](#rawintoiter)
 
@@ -229,12 +239,14 @@ struct RawTableInner {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:609-623`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L609-L623)*
+
 Non-generic part of `RawTable` which allows functions to be instantiated only once regardless
 of how many different key-value types are used.
 
 #### Implementations
 
-- <span id="rawtableinner-new"></span>`const NEW: Self`
+- <span id="rawtableinner-const-new"></span>`const NEW: Self`
 
 - <span id="rawtableinner-new"></span>`const fn new() -> Self`
 
@@ -248,6 +260,8 @@ struct RawIterRange<T> {
     end: *const u8,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3540-3554`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L3540-L3554)*
 
 Iterator over a sub-range of a table. Unlike `RawIter` this iterator does
 not track an item count.
@@ -270,15 +284,15 @@ not track an item count.
 
 ##### `impl<I> IntoIterator for RawIterRange<T>`
 
-- <span id="rawiterrange-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawiterrange-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawiterrange-intoiter"></span>`type IntoIter = I`
+- <span id="rawiterrange-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawiterrange-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RawIterRange<T>`
 
-- <span id="rawiterrange-item"></span>`type Item = Bucket<T>`
+- <span id="rawiterrange-type-item"></span>`type Item = Bucket<T>`
 
 - <span id="rawiterrange-next"></span>`fn next(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
@@ -296,6 +310,8 @@ struct RawIter<T> {
     items: usize,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3812-3815`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L3812-L3815)*
 
 Iterator which returns a raw pointer to every full bucket in the table.
 
@@ -330,15 +346,15 @@ must observe several rules when using it:
 
 ##### `impl<I> IntoIterator for RawIter<T>`
 
-- <span id="rawiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawiter-intoiter"></span>`type IntoIter = I`
+- <span id="rawiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RawIter<T>`
 
-- <span id="rawiter-item"></span>`type Item = Bucket<T>`
+- <span id="rawiter-type-item"></span>`type Item = Bucket<T>`
 
 - <span id="rawiter-next"></span>`fn next(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
@@ -356,6 +372,8 @@ struct FullBucketsIndices {
     items: usize,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3897-3912`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L3897-L3912)*
 
 Iterator which returns an index of every full bucket in the table.
 
@@ -388,17 +406,17 @@ must observe several rules when using it:
 
 ##### `impl FusedIterator for FullBucketsIndices`
 
-##### `impl<I> IntoIterator for FullBucketsIndices`
+##### `impl IntoIterator for FullBucketsIndices`
 
-- <span id="fullbucketsindices-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="fullbucketsindices-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="fullbucketsindices-intoiter"></span>`type IntoIter = I`
+- <span id="fullbucketsindices-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="fullbucketsindices-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FullBucketsIndices`
 
-- <span id="fullbucketsindices-item"></span>`type Item = usize`
+- <span id="fullbucketsindices-type-item"></span>`type Item = usize`
 
 - <span id="fullbucketsindices-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -413,6 +431,8 @@ struct RawIntoIter<T, A: Allocator> {
     marker: core::marker::PhantomData<T>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4013-4017`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L4013-L4017)*
 
 Iterator which consumes a table and returns elements.
 
@@ -436,15 +456,15 @@ Iterator which consumes a table and returns elements.
 
 ##### `impl<I> IntoIterator for RawIntoIter<T, A>`
 
-- <span id="rawintoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawintoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawintoiter-intoiter"></span>`type IntoIter = I`
+- <span id="rawintoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawintoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for RawIntoIter<T, A>`
 
-- <span id="rawintoiter-item"></span>`type Item = T`
+- <span id="rawintoiter-type-item"></span>`type Item = T`
 
 - <span id="rawintoiter-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -465,6 +485,8 @@ struct RawDrain<'a, T, A: Allocator> {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4097-4109`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L4097-L4109)*
+
 Iterator which consumes elements without freeing the table storage.
 
 #### Implementations
@@ -483,15 +505,15 @@ Iterator which consumes elements without freeing the table storage.
 
 ##### `impl<I> IntoIterator for RawDrain<'a, T, A>`
 
-- <span id="rawdrain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawdrain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawdrain-intoiter"></span>`type IntoIter = I`
+- <span id="rawdrain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawdrain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for RawDrain<'_, T, A>`
 
-- <span id="rawdrain-item"></span>`type Item = T`
+- <span id="rawdrain-type-item"></span>`type Item = T`
 
 - <span id="rawdrain-next"></span>`fn next(&mut self) -> Option<T>`
 
@@ -509,6 +531,8 @@ struct RawIterHash<T> {
     _marker: core::marker::PhantomData<T>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4186-4189`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L4186-L4189)*
 
 Iterator over occupied buckets that could match a given hash.
 
@@ -543,15 +567,15 @@ must observe several rules when using it:
 
 ##### `impl<I> IntoIterator for RawIterHash<T>`
 
-- <span id="rawiterhash-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawiterhash-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawiterhash-intoiter"></span>`type IntoIter = I`
+- <span id="rawiterhash-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawiterhash-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RawIterHash<T>`
 
-- <span id="rawiterhash-item"></span>`type Item = Bucket<T>`
+- <span id="rawiterhash-type-item"></span>`type Item = Bucket<T>`
 
 - <span id="rawiterhash-next"></span>`fn next(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
@@ -568,6 +592,8 @@ struct RawIterHashIndices {
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4192-4209`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L4192-L4209)*
+
 #### Implementations
 
 - <span id="rawiterhashindices-new"></span>`unsafe fn new(table: &RawTableInner, hash: u64) -> Self` — [`RawTableInner`](#rawtableinner)
@@ -582,17 +608,17 @@ struct RawIterHashIndices {
 
 - <span id="rawiterhashindices-default"></span>`fn default() -> Self`
 
-##### `impl<I> IntoIterator for RawIterHashIndices`
+##### `impl IntoIterator for RawIterHashIndices`
 
-- <span id="rawiterhashindices-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawiterhashindices-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawiterhashindices-intoiter"></span>`type IntoIter = I`
+- <span id="rawiterhashindices-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawiterhashindices-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RawIterHashIndices`
 
-- <span id="rawiterhashindices-item"></span>`type Item = usize`
+- <span id="rawiterhashindices-type-item"></span>`type Item = usize`
 
 - <span id="rawiterhashindices-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -604,6 +630,8 @@ struct RawExtractIf<'a, T, A: Allocator> {
     pub table: &'a mut RawTable<T, A>,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:4315-4318`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L4315-L4318)*
 
 #### Implementations
 
@@ -619,6 +647,8 @@ enum Fallibility {
     Infallible,
 }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:26-29`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L26-L29)*
 
 Whether memory allocation errors should return an error or abort.
 
@@ -644,6 +674,8 @@ Whether memory allocation errors should return an error or abort.
 trait SizedTypeProperties: Sized { ... }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:51-54`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L51-L54)*
+
 #### Associated Constants
 
 - `const IS_ZERO_SIZED: bool`
@@ -659,6 +691,8 @@ trait SizedTypeProperties: Sized { ... }
 ```rust
 trait RawTableClone { ... }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:3411-3413`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L3411-L3413)*
 
 Specialization of `clone_from` for `Copy` types
 
@@ -678,11 +712,15 @@ Specialization of `clone_from` for `Copy` types
 unsafe fn offset_from<T>(to: *const T, from: *const T) -> usize
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:20-22`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L20-L22)*
+
 ### `h1`
 
 ```rust
 fn h1(hash: u64) -> usize
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:61-64`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L61-L64)*
 
 Primary hash function, used to select the initial bucket to probe from.
 
@@ -691,6 +729,8 @@ Primary hash function, used to select the initial bucket to probe from.
 ```rust
 fn capacity_to_buckets(cap: usize, table_layout: TableLayout) -> Option<usize>
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:105-166`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L105-L166)*
 
 Returns the number of buckets needed to hold the given number of items,
 taking the maximum load factor into account.
@@ -705,11 +745,15 @@ This ensures that `buckets * table_layout.size >= table_layout.ctrl_align`.
 fn ensure_bucket_bytes_at_least_ctrl_align(table_layout: TableLayout, buckets: usize)
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:174-179`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L174-L179)*
+
 ### `bucket_mask_to_capacity`
 
 ```rust
 fn bucket_mask_to_capacity(bucket_mask: usize) -> usize
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:184-193`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L184-L193)*
 
 Returns the maximum effective capacity for the given bucket mask, taking
 the maximum load factor into account.
@@ -720,6 +764,8 @@ the maximum load factor into account.
 fn prev_pow2(z: usize) -> usize
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:1545-1548`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L1545-L1548)*
+
 Find the previous power of 2. If it's already a power of 2, it's unchanged.
 Passing zero is undefined behavior.
 
@@ -728,6 +774,8 @@ Passing zero is undefined behavior.
 ```rust
 fn maximum_buckets_in(allocation_size: usize, table_layout: TableLayout, group_width: usize) -> usize
 ```
+
+*Defined in [`hashbrown-0.16.1/src/raw/mod.rs:1555-1580`](../../../.source_1765210505/hashbrown-0.16.1/src/raw/mod.rs#L1555-L1580)*
 
 Finds the largest number of buckets that can fit in `allocation_size`
 provided the given TableLayout.

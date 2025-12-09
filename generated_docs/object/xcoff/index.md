@@ -222,20 +222,20 @@ This module is the equivalent of /usr/include/xcoff.h, and is based heavily on i
 | [`Rel64`](#rel64) | struct | Relocation table entry |
 | [`MAGIC_64`](#magic_64) | const | the 64-bit mach magic number |
 | [`MAGIC_32`](#magic_32) | const | the 32-bit mach magic number |
-| [`F_RELFLG`](#f_relflg) | const | Indicates that the relocation information for binding has been removed from |
+| [`F_RELFLG`](#f_relflg) | const | Indicates that the relocation information for binding has been removed from the file. |
 | [`F_EXEC`](#f_exec) | const | Indicates that the file is executable. |
 | [`F_LNNO`](#f_lnno) | const | Indicates that line numbers have been stripped from the file by a utility program. |
 | [`F_FDPR_PROF`](#f_fdpr_prof) | const | Indicates that the file was profiled with the fdpr command. |
 | [`F_FDPR_OPTI`](#f_fdpr_opti) | const | Indicates that the file was reordered with the fdpr command. |
 | [`F_DSA`](#f_dsa) | const | Indicates that the file uses Very Large Program Support. |
-| [`F_VARPG`](#f_varpg) | const | Indicates that one of the members of the auxiliary header specifying the |
+| [`F_VARPG`](#f_varpg) | const | Indicates that one of the members of the auxiliary header specifying the medium page sizes is non-zero. |
 | [`F_DYNLOAD`](#f_dynload) | const | Indicates the file is dynamically loadable and executable. |
 | [`F_SHROBJ`](#f_shrobj) | const | Indicates the file is a shared object (shared library). |
-| [`F_LOADONLY`](#f_loadonly) | const | If the object file is a member of an archive, it can be loaded by the system |
-| [`AOUTHSZ_SHORT`](#aouthsz_short) | const | Some AIX programs generate auxiliary headers for 32-bit object files that |
+| [`F_LOADONLY`](#f_loadonly) | const | If the object file is a member of an archive, it can be loaded by the system loader, but the member is ignored by the binder. |
+| [`AOUTHSZ_SHORT`](#aouthsz_short) | const | Some AIX programs generate auxiliary headers for 32-bit object files that end after the data_start field. |
 | [`STYP_REG`](#styp_reg) | const | "regular" section |
 | [`STYP_PAD`](#styp_pad) | const | Specifies a pad section. |
-| [`STYP_DWARF`](#styp_dwarf) | const | Specifies a DWARF debugging section, which provide source file and symbol |
+| [`STYP_DWARF`](#styp_dwarf) | const | Specifies a DWARF debugging section, which provide source file and symbol information for the symbolic debugger. |
 | [`STYP_TEXT`](#styp_text) | const | Specifies an executable text (code) section. |
 | [`STYP_DATA`](#styp_data) | const | Specifies an initialized data section. |
 | [`STYP_BSS`](#styp_bss) | const | Specifies an uninitialized data section. |
@@ -262,7 +262,7 @@ This module is the equivalent of /usr/include/xcoff.h, and is based heavily on i
 | [`N_DEBUG`](#n_debug) | const | A special symbolic debugging symbol. |
 | [`N_ABS`](#n_abs) | const | An absolute symbol. |
 | [`N_UNDEF`](#n_undef) | const | An undefined external symbol. |
-| [`SYM_V_MASK`](#sym_v_mask) | const | Values for visibility as they would appear when encoded in the high 4 bits |
+| [`SYM_V_MASK`](#sym_v_mask) | const | Values for visibility as they would appear when encoded in the high 4 bits of the 16-bit unsigned n_type field of symbol table entries. |
 | [`SYM_V_INTERNAL`](#sym_v_internal) | const |  |
 | [`SYM_V_HIDDEN`](#sym_v_hidden) | const |  |
 | [`SYM_V_PROTECTED`](#sym_v_protected) | const |  |
@@ -391,6 +391,8 @@ struct FileHeader32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:16-31`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L16-L31)*
+
 The header at the start of every 32-bit XCOFF file.
 
 #### Fields
@@ -437,19 +439,19 @@ The header at the start of every 32-bit XCOFF file.
 
 ##### `impl FileHeader for xcoff::FileHeader32`
 
-- <span id="xcofffileheader32-word"></span>`type Word = u32`
+- <span id="xcofffileheader32-type-word"></span>`type Word = u32`
 
-- <span id="xcofffileheader32-auxheader"></span>`type AuxHeader = AuxHeader32`
+- <span id="xcofffileheader32-type-auxheader"></span>`type AuxHeader = AuxHeader32`
 
-- <span id="xcofffileheader32-sectionheader"></span>`type SectionHeader = SectionHeader32`
+- <span id="xcofffileheader32-type-sectionheader"></span>`type SectionHeader = SectionHeader32`
 
-- <span id="xcofffileheader32-symbol"></span>`type Symbol = Symbol32`
+- <span id="xcofffileheader32-type-symbol"></span>`type Symbol = Symbol32`
 
-- <span id="xcofffileheader32-fileaux"></span>`type FileAux = FileAux32`
+- <span id="xcofffileheader32-type-fileaux"></span>`type FileAux = FileAux32`
 
-- <span id="xcofffileheader32-csectaux"></span>`type CsectAux = CsectAux32`
+- <span id="xcofffileheader32-type-csectaux"></span>`type CsectAux = CsectAux32`
 
-- <span id="xcofffileheader32-rel"></span>`type Rel = Rel32`
+- <span id="xcofffileheader32-type-rel"></span>`type Rel = Rel32`
 
 - <span id="xcofffileheader32-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -482,6 +484,8 @@ struct FileHeader64 {
     pub f_nsyms: crate::endian::U32<crate::endian::BigEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:36-51`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L36-L51)*
 
 The header at the start of every 64-bit XCOFF file.
 
@@ -529,19 +533,19 @@ The header at the start of every 64-bit XCOFF file.
 
 ##### `impl FileHeader for xcoff::FileHeader64`
 
-- <span id="xcofffileheader64-word"></span>`type Word = u64`
+- <span id="xcofffileheader64-type-word"></span>`type Word = u64`
 
-- <span id="xcofffileheader64-auxheader"></span>`type AuxHeader = AuxHeader64`
+- <span id="xcofffileheader64-type-auxheader"></span>`type AuxHeader = AuxHeader64`
 
-- <span id="xcofffileheader64-sectionheader"></span>`type SectionHeader = SectionHeader64`
+- <span id="xcofffileheader64-type-sectionheader"></span>`type SectionHeader = SectionHeader64`
 
-- <span id="xcofffileheader64-symbol"></span>`type Symbol = Symbol64`
+- <span id="xcofffileheader64-type-symbol"></span>`type Symbol = Symbol64`
 
-- <span id="xcofffileheader64-fileaux"></span>`type FileAux = FileAux64`
+- <span id="xcofffileheader64-type-fileaux"></span>`type FileAux = FileAux64`
 
-- <span id="xcofffileheader64-csectaux"></span>`type CsectAux = CsectAux64`
+- <span id="xcofffileheader64-type-csectaux"></span>`type CsectAux = CsectAux64`
 
-- <span id="xcofffileheader64-rel"></span>`type Rel = Rel64`
+- <span id="xcofffileheader64-type-rel"></span>`type Rel = Rel64`
 
 - <span id="xcofffileheader64-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -596,6 +600,8 @@ struct AuxHeader32 {
     pub o_sntbss: crate::endian::U16<crate::endian::BigEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:95-154`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L95-L154)*
 
 The auxiliary header immediately following file header. If the value of the
 f_opthdr field in the file header is 0, the auxiliary header does not exist.
@@ -722,7 +728,7 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 ##### `impl AuxHeader for xcoff::AuxHeader32`
 
-- <span id="xcoffauxheader32-word"></span>`type Word = u32`
+- <span id="xcoffauxheader32-type-word"></span>`type Word = u32`
 
 - <span id="xcoffauxheader32-o-mflag"></span>`fn o_mflag(&self) -> u16`
 
@@ -834,6 +840,8 @@ struct AuxHeader64 {
     pub o_resv3: [crate::endian::U32<crate::endian::BigEndian>; 2],
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:160-225`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L160-L225)*
 
 The auxiliary header immediately following file header. If the value of the
 f_opthdr field in the file header is 0, the auxiliary header does not exist.
@@ -972,7 +980,7 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 ##### `impl AuxHeader for xcoff::AuxHeader64`
 
-- <span id="xcoffauxheader64-word"></span>`type Word = u64`
+- <span id="xcoffauxheader64-type-word"></span>`type Word = u64`
 
 - <span id="xcoffauxheader64-o-mflag"></span>`fn o_mflag(&self) -> u16`
 
@@ -1063,6 +1071,8 @@ struct SectionHeader32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:234-255`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L234-L255)*
+
 Section header.
 
 #### Fields
@@ -1123,13 +1133,13 @@ Section header.
 
 ##### `impl SectionHeader for xcoff::SectionHeader32`
 
-- <span id="xcoffsectionheader32-word"></span>`type Word = u32`
+- <span id="xcoffsectionheader32-type-word"></span>`type Word = u32`
 
-- <span id="xcoffsectionheader32-halfword"></span>`type HalfWord = u16`
+- <span id="xcoffsectionheader32-type-halfword"></span>`type HalfWord = u16`
 
-- <span id="xcoffsectionheader32-xcoff"></span>`type Xcoff = FileHeader32`
+- <span id="xcoffsectionheader32-type-xcoff"></span>`type Xcoff = FileHeader32`
 
-- <span id="xcoffsectionheader32-rel"></span>`type Rel = Rel32`
+- <span id="xcoffsectionheader32-type-rel"></span>`type Rel = Rel32`
 
 - <span id="xcoffsectionheader32-s-name"></span>`fn s_name(&self) -> &[u8; 8]`
 
@@ -1170,6 +1180,8 @@ struct SectionHeader64 {
     pub s_reserve: crate::endian::U32<crate::endian::BigEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:260-283`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L260-L283)*
 
 Section header.
 
@@ -1235,13 +1247,13 @@ Section header.
 
 ##### `impl SectionHeader for xcoff::SectionHeader64`
 
-- <span id="xcoffsectionheader64-word"></span>`type Word = u64`
+- <span id="xcoffsectionheader64-type-word"></span>`type Word = u64`
 
-- <span id="xcoffsectionheader64-halfword"></span>`type HalfWord = u32`
+- <span id="xcoffsectionheader64-type-halfword"></span>`type HalfWord = u32`
 
-- <span id="xcoffsectionheader64-xcoff"></span>`type Xcoff = FileHeader64`
+- <span id="xcoffsectionheader64-type-xcoff"></span>`type Xcoff = FileHeader64`
 
-- <span id="xcoffsectionheader64-rel"></span>`type Rel = Rel64`
+- <span id="xcoffsectionheader64-type-rel"></span>`type Rel = Rel64`
 
 - <span id="xcoffsectionheader64-s-name"></span>`fn s_name(&self) -> &[u8; 8]`
 
@@ -1271,6 +1283,8 @@ Section header.
 struct SymbolBytes([u8; 18]);
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:350`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L350)*
+
 #### Trait Implementations
 
 ##### `impl Clone for SymbolBytes`
@@ -1297,6 +1311,8 @@ struct Symbol32 {
     pub n_numaux: u8,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:355-370`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L355-L370)*
 
 Symbol table entry.
 
@@ -1344,7 +1360,7 @@ Symbol table entry.
 
 ##### `impl Symbol for xcoff::Symbol32`
 
-- <span id="xcoffsymbol32-word"></span>`type Word = u32`
+- <span id="xcoffsymbol32-type-word"></span>`type Word = u32`
 
 - <span id="xcoffsymbol32-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md)
 
@@ -1372,6 +1388,8 @@ struct Symbol64 {
     pub n_numaux: u8,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:375-388`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L375-L388)*
 
 Symbol table entry.
 
@@ -1417,7 +1435,7 @@ Symbol table entry.
 
 ##### `impl Symbol for xcoff::Symbol64`
 
-- <span id="xcoffsymbol64-word"></span>`type Word = u64`
+- <span id="xcoffsymbol64-type-word"></span>`type Word = u64`
 
 - <span id="xcoffsymbol64-n-value"></span>`fn n_value(&self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md)
 
@@ -1443,6 +1461,8 @@ struct FileAux32 {
     pub x_freserve: [u8; 3],
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:528-539`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L528-L539)*
 
 File Auxiliary Entry for C_FILE Symbols.
 
@@ -1499,6 +1519,8 @@ struct FileAux64 {
     pub x_auxtype: u8,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:544-557`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L544-L557)*
 
 File Auxiliary Entry for C_FILE Symbols.
 
@@ -1561,6 +1583,8 @@ struct CsectAux32 {
     pub x_snstab: crate::endian::U16<crate::endian::BigEndian>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:573-588`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L573-L588)*
 
 Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
@@ -1640,6 +1664,8 @@ struct CsectAux64 {
     pub x_auxtype: u8,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:593-610`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L593-L610)*
 
 Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
@@ -1721,6 +1747,8 @@ struct FunAux32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:676-687`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L676-L687)*
+
 Function auxiliary entry.
 
 #### Fields
@@ -1770,6 +1798,8 @@ struct FunAux64 {
     pub x_auxtype: u8,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:692-703`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L692-L703)*
 
 Function auxiliary entry.
 
@@ -1821,6 +1851,8 @@ struct ExpAux {
 }
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:708-719`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L708-L719)*
+
 Exception auxiliary entry. (XCOFF64 only)
 
 #### Fields
@@ -1870,6 +1902,8 @@ struct BlockAux32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:724-733`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L724-L733)*
+
 Block auxiliary entry for the C_BLOCK and C_FCN Symbols.
 
 #### Fields
@@ -1914,6 +1948,8 @@ struct BlockAux64 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:738-745`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L738-L745)*
+
 Block auxiliary entry for the C_BLOCK and C_FCN Symbols.
 
 #### Fields
@@ -1954,6 +1990,8 @@ struct StatAux {
     pub pad: [u8; 10],
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:750-759`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L750-L759)*
 
 Section auxiliary entry for the C_STAT Symbol. (XCOFF32 Only)
 
@@ -2000,6 +2038,8 @@ struct DwarfAux32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:764-773`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L764-L773)*
+
 Section auxiliary entry Format for C_DWARF symbols.
 
 #### Fields
@@ -2044,6 +2084,8 @@ struct DwarfAux64 {
     pub x_auxtype: u8,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:778-787`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L778-L787)*
 
 Section auxiliary entry Format for C_DWARF symbols.
 
@@ -2090,6 +2132,8 @@ struct Rel32 {
 }
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:807-816`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L807-L816)*
+
 Relocation table entry
 
 #### Fields
@@ -2126,7 +2170,7 @@ Relocation table entry
 
 ##### `impl Rel for xcoff::Rel32`
 
-- <span id="xcoffrel32-word"></span>`type Word = u32`
+- <span id="xcoffrel32-type-word"></span>`type Word = u32`
 
 - <span id="xcoffrel32-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md)
 
@@ -2146,6 +2190,8 @@ struct Rel64 {
     pub r_rtype: u8,
 }
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:821-830`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L821-L830)*
 
 Relocation table entry
 
@@ -2183,7 +2229,7 @@ Relocation table entry
 
 ##### `impl Rel for xcoff::Rel64`
 
-- <span id="xcoffrel64-word"></span>`type Word = u64`
+- <span id="xcoffrel64-type-word"></span>`type Word = u64`
 
 - <span id="xcoffrel64-r-vaddr"></span>`fn r_vaddr(&self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md)
 
@@ -2196,131 +2242,146 @@ Relocation table entry
 ## Constants
 
 ### `MAGIC_64`
-
 ```rust
 const MAGIC_64: u16 = 503u16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:56`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L56)*
+
 the 64-bit mach magic number
 
 ### `MAGIC_32`
-
 ```rust
 const MAGIC_32: u16 = 479u16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:58`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L58)*
+
 the 32-bit mach magic number
 
 ### `F_RELFLG`
-
 ```rust
 const F_RELFLG: u16 = 1u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:64`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L64)*
 
 Indicates that the relocation information for binding has been removed from
 the file.
 
 ### `F_EXEC`
-
 ```rust
 const F_EXEC: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:66`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L66)*
+
 Indicates that the file is executable. No unresolved external references exist.
 
 ### `F_LNNO`
-
 ```rust
 const F_LNNO: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:68`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L68)*
+
 Indicates that line numbers have been stripped from the file by a utility program.
 
 ### `F_FDPR_PROF`
-
 ```rust
 const F_FDPR_PROF: u16 = 16u16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:70`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L70)*
+
 Indicates that the file was profiled with the fdpr command.
 
 ### `F_FDPR_OPTI`
-
 ```rust
 const F_FDPR_OPTI: u16 = 32u16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:72`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L72)*
+
 Indicates that the file was reordered with the fdpr command.
 
 ### `F_DSA`
-
 ```rust
 const F_DSA: u16 = 64u16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:74`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L74)*
+
 Indicates that the file uses Very Large Program Support.
 
 ### `F_VARPG`
-
 ```rust
 const F_VARPG: u16 = 256u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:77`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L77)*
 
 Indicates that one of the members of the auxiliary header specifying the
 medium page sizes is non-zero.
 
 ### `F_DYNLOAD`
-
 ```rust
 const F_DYNLOAD: u16 = 4_096u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:81`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L81)*
 
 Indicates the file is dynamically loadable and executable. External references
 are resolved by way of imports, and the file might contain exports and loader
 relocation.
 
 ### `F_SHROBJ`
-
 ```rust
 const F_SHROBJ: u16 = 8_192u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:85`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L85)*
 
 Indicates the file is a shared object (shared library). The file is separately
 loadable. That is, it is not normally bound with other objects, and its loader
 exports symbols are used as automatic import symbols for other object files.
 
 ### `F_LOADONLY`
-
 ```rust
 const F_LOADONLY: u16 = 16_384u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:89`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L89)*
 
 If the object file is a member of an archive, it can be loaded by the system
 loader, but the member is ignored by the binder. If the object file is not in
 an archive, this flag has no effect.
 
 ### `AOUTHSZ_SHORT`
-
 ```rust
 const AOUTHSZ_SHORT: u16 = 28u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:229`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L229)*
 
 Some AIX programs generate auxiliary headers for 32-bit object files that
 end after the data_start field.
 
 ### `STYP_REG`
-
 ```rust
 const STYP_REG: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:288`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L288)*
+
 "regular" section
 
 ### `STYP_PAD`
-
 ```rust
 const STYP_PAD: u16 = 8u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:293`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L293)*
 
 Specifies a pad section. A section of this type is used to provide alignment
 padding between sections within an XCOFF executable object file. This section
@@ -2328,81 +2389,90 @@ header type is obsolete since padding is allowed in an XCOFF file without a
 corresponding pad section header.
 
 ### `STYP_DWARF`
-
 ```rust
 const STYP_DWARF: u16 = 16u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:296`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L296)*
 
 Specifies a DWARF debugging section, which provide source file and symbol
 information for the symbolic debugger.
 
 ### `STYP_TEXT`
-
 ```rust
 const STYP_TEXT: u16 = 32u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:299`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L299)*
 
 Specifies an executable text (code) section. A section of this type contains
 the executable instructions of a program.
 
 ### `STYP_DATA`
-
 ```rust
 const STYP_DATA: u16 = 64u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:302`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L302)*
 
 Specifies an initialized data section. A section of this type contains the
 initialized data and the TOC of a program.
 
 ### `STYP_BSS`
-
 ```rust
 const STYP_BSS: u16 = 128u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:305`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L305)*
 
 Specifies an uninitialized data section. A section header of this type
 defines the uninitialized data of a program.
 
 ### `STYP_EXCEPT`
-
 ```rust
 const STYP_EXCEPT: u16 = 256u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:309`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L309)*
 
 Specifies an exception section. A section of this type provides information
 to identify the reason that a trap or exception occurred within an executable
 object program.
 
 ### `STYP_INFO`
-
 ```rust
 const STYP_INFO: u16 = 512u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:312`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L312)*
 
 Specifies a comment section. A section of this type provides comments or data
 to special processing utility programs.
 
 ### `STYP_TDATA`
-
 ```rust
 const STYP_TDATA: u16 = 1_024u16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:314`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L314)*
+
 Specifies an initialized thread-local data section.
 
 ### `STYP_TBSS`
-
 ```rust
 const STYP_TBSS: u16 = 2_048u16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:316`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L316)*
+
 Specifies an uninitialized thread-local data section.
 
 ### `STYP_LOADER`
-
 ```rust
 const STYP_LOADER: u16 = 4_096u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:321`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L321)*
 
 Specifies a loader section. A section of this type contains object file
 information for the system loader to load an XCOFF executable. The information
@@ -2410,28 +2480,31 @@ includes imported symbols, exported symbols, relocation data, type-check
 information, and shared object names.
 
 ### `STYP_DEBUG`
-
 ```rust
 const STYP_DEBUG: u16 = 8_192u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:324`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L324)*
 
 Specifies a debug section. A section of this type contains stabstring
 information used by the symbolic debugger.
 
 ### `STYP_TYPCHK`
-
 ```rust
 const STYP_TYPCHK: u16 = 16_384u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:327`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L327)*
 
 Specifies a type-check section. A section of this type contains
 parameter/argument type-check strings used by the binder.
 
 ### `STYP_OVRFLO`
-
 ```rust
 const STYP_OVRFLO: u16 = 32_768u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:332`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L332)*
 
 Specifies a relocation or line-number field overflow section. A section
 header of this type contains the count of relocation entries and line
@@ -2439,988 +2512,1115 @@ number entries for some other section. This section header is required
 when either of the counts exceeds 65,534.
 
 ### `SSUBTYP_DWINFO`
-
 ```rust
 const SSUBTYP_DWINFO: u32 = 65_536u32;
 ```
 
-### `SSUBTYP_DWLINE`
+*Defined in [`object-0.37.3/src/xcoff.rs:334`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L334)*
 
+### `SSUBTYP_DWLINE`
 ```rust
 const SSUBTYP_DWLINE: u32 = 131_072u32;
 ```
 
-### `SSUBTYP_DWPBNMS`
+*Defined in [`object-0.37.3/src/xcoff.rs:335`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L335)*
 
+### `SSUBTYP_DWPBNMS`
 ```rust
 const SSUBTYP_DWPBNMS: u32 = 196_608u32;
 ```
 
-### `SSUBTYP_DWPBTYP`
+*Defined in [`object-0.37.3/src/xcoff.rs:336`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L336)*
 
+### `SSUBTYP_DWPBTYP`
 ```rust
 const SSUBTYP_DWPBTYP: u32 = 262_144u32;
 ```
 
-### `SSUBTYP_DWARNGE`
+*Defined in [`object-0.37.3/src/xcoff.rs:337`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L337)*
 
+### `SSUBTYP_DWARNGE`
 ```rust
 const SSUBTYP_DWARNGE: u32 = 327_680u32;
 ```
 
-### `SSUBTYP_DWABREV`
+*Defined in [`object-0.37.3/src/xcoff.rs:338`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L338)*
 
+### `SSUBTYP_DWABREV`
 ```rust
 const SSUBTYP_DWABREV: u32 = 393_216u32;
 ```
 
-### `SSUBTYP_DWSTR`
+*Defined in [`object-0.37.3/src/xcoff.rs:339`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L339)*
 
+### `SSUBTYP_DWSTR`
 ```rust
 const SSUBTYP_DWSTR: u32 = 458_752u32;
 ```
 
-### `SSUBTYP_DWRNGES`
+*Defined in [`object-0.37.3/src/xcoff.rs:340`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L340)*
 
+### `SSUBTYP_DWRNGES`
 ```rust
 const SSUBTYP_DWRNGES: u32 = 524_288u32;
 ```
 
-### `SSUBTYP_DWLOC`
+*Defined in [`object-0.37.3/src/xcoff.rs:341`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L341)*
 
+### `SSUBTYP_DWLOC`
 ```rust
 const SSUBTYP_DWLOC: u32 = 589_824u32;
 ```
 
-### `SSUBTYP_DWFRAME`
+*Defined in [`object-0.37.3/src/xcoff.rs:342`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L342)*
 
+### `SSUBTYP_DWFRAME`
 ```rust
 const SSUBTYP_DWFRAME: u32 = 655_360u32;
 ```
 
-### `SSUBTYP_DWMAC`
+*Defined in [`object-0.37.3/src/xcoff.rs:343`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L343)*
 
+### `SSUBTYP_DWMAC`
 ```rust
 const SSUBTYP_DWMAC: u32 = 720_896u32;
 ```
 
-### `SIZEOF_SYMBOL`
+*Defined in [`object-0.37.3/src/xcoff.rs:344`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L344)*
 
+### `SIZEOF_SYMBOL`
 ```rust
 const SIZEOF_SYMBOL: usize = 18usize;
 ```
 
-### `N_DEBUG`
+*Defined in [`object-0.37.3/src/xcoff.rs:346`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L346)*
 
+### `N_DEBUG`
 ```rust
 const N_DEBUG: i16 = -2i16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:393`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L393)*
+
 A special symbolic debugging symbol.
 
 ### `N_ABS`
-
 ```rust
 const N_ABS: i16 = -1i16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:395`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L395)*
+
 An absolute symbol. The symbol has a value but is not relocatable.
 
 ### `N_UNDEF`
-
 ```rust
 const N_UNDEF: i16 = 0i16;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:397`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L397)*
+
 An undefined external symbol.
 
 ### `SYM_V_MASK`
-
 ```rust
 const SYM_V_MASK: u16 = 61_440u16;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:404`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L404)*
 
 Values for visibility as they would appear when encoded in the high 4 bits
 of the 16-bit unsigned n_type field of symbol table entries. Valid for
 32-bit XCOFF only when the o_vstamp in the auxiliary header is greater than 1.
 
 ### `SYM_V_INTERNAL`
-
 ```rust
 const SYM_V_INTERNAL: u16 = 4_096u16;
 ```
 
-### `SYM_V_HIDDEN`
+*Defined in [`object-0.37.3/src/xcoff.rs:405`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L405)*
 
+### `SYM_V_HIDDEN`
 ```rust
 const SYM_V_HIDDEN: u16 = 8_192u16;
 ```
 
-### `SYM_V_PROTECTED`
+*Defined in [`object-0.37.3/src/xcoff.rs:406`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L406)*
 
+### `SYM_V_PROTECTED`
 ```rust
 const SYM_V_PROTECTED: u16 = 12_288u16;
 ```
 
-### `SYM_V_EXPORTED`
+*Defined in [`object-0.37.3/src/xcoff.rs:407`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L407)*
 
+### `SYM_V_EXPORTED`
 ```rust
 const SYM_V_EXPORTED: u16 = 16_384u16;
 ```
 
-### `C_FILE`
+*Defined in [`object-0.37.3/src/xcoff.rs:408`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L408)*
 
+### `C_FILE`
 ```rust
 const C_FILE: u8 = 103u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:415`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L415)*
+
 Source file name and compiler information.
 
 ### `C_BINCL`
-
 ```rust
 const C_BINCL: u8 = 108u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:417`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L417)*
+
 Beginning of include file.
 
 ### `C_EINCL`
-
 ```rust
 const C_EINCL: u8 = 109u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:419`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L419)*
+
 Ending of include file.
 
 ### `C_GSYM`
-
 ```rust
 const C_GSYM: u8 = 128u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:421`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L421)*
+
 Global variable.
 
 ### `C_STSYM`
-
 ```rust
 const C_STSYM: u8 = 133u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:423`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L423)*
+
 Statically allocated symbol.
 
 ### `C_BCOMM`
-
 ```rust
 const C_BCOMM: u8 = 135u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:425`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L425)*
+
 Beginning of common block.
 
 ### `C_ECOMM`
-
 ```rust
 const C_ECOMM: u8 = 137u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:427`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L427)*
+
 End of common block.
 
 ### `C_ENTRY`
-
 ```rust
 const C_ENTRY: u8 = 141u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:429`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L429)*
+
 Alternate entry.
 
 ### `C_BSTAT`
-
 ```rust
 const C_BSTAT: u8 = 143u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:431`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L431)*
+
 Beginning of static block.
 
 ### `C_ESTAT`
-
 ```rust
 const C_ESTAT: u8 = 144u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:433`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L433)*
+
 End of static block.
 
 ### `C_GTLS`
-
 ```rust
 const C_GTLS: u8 = 145u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:435`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L435)*
+
 Global thread-local variable.
 
 ### `C_STTLS`
-
 ```rust
 const C_STTLS: u8 = 146u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:437`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L437)*
+
 Static thread-local variable.
 
 ### `C_DWARF`
-
 ```rust
 const C_DWARF: u8 = 112u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:439`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L439)*
+
 DWARF section symbol.
 
 ### `C_LSYM`
-
 ```rust
 const C_LSYM: u8 = 129u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:444`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L444)*
+
 Automatic variable allocated on stack.
 
 ### `C_PSYM`
-
 ```rust
 const C_PSYM: u8 = 130u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:446`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L446)*
+
 Argument to subroutine allocated on stack.
 
 ### `C_RSYM`
-
 ```rust
 const C_RSYM: u8 = 131u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:448`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L448)*
+
 Register variable.
 
 ### `C_RPSYM`
-
 ```rust
 const C_RPSYM: u8 = 132u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:450`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L450)*
+
 Argument to function or procedure stored in register.
 
 ### `C_ECOML`
-
 ```rust
 const C_ECOML: u8 = 136u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:452`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L452)*
+
 Local member of common block.
 
 ### `C_FUN`
-
 ```rust
 const C_FUN: u8 = 142u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:454`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L454)*
+
 Function or procedure.
 
 ### `C_EXT`
-
 ```rust
 const C_EXT: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:459`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L459)*
+
 External symbol.
 
 ### `C_WEAKEXT`
-
 ```rust
 const C_WEAKEXT: u8 = 111u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:461`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L461)*
+
 Weak external symbol.
 
 ### `C_NULL`
-
 ```rust
 const C_NULL: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:466`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L466)*
+
 Symbol table entry marked for deletion.
 
 ### `C_STAT`
-
 ```rust
 const C_STAT: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:468`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L468)*
+
 Static.
 
 ### `C_BLOCK`
-
 ```rust
 const C_BLOCK: u8 = 100u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:470`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L470)*
+
 Beginning or end of inner block.
 
 ### `C_FCN`
-
 ```rust
 const C_FCN: u8 = 101u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:472`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L472)*
+
 Beginning or end of function.
 
 ### `C_HIDEXT`
-
 ```rust
 const C_HIDEXT: u8 = 107u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:474`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L474)*
+
 Un-named external symbol.
 
 ### `C_INFO`
-
 ```rust
 const C_INFO: u8 = 110u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:476`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L476)*
+
 Comment string in .info section.
 
 ### `C_DECL`
-
 ```rust
 const C_DECL: u8 = 140u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:478`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L478)*
+
 Declaration of object (type).
 
 ### `C_AUTO`
-
 ```rust
 const C_AUTO: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:483`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L483)*
+
 Automatic variable.
 
 ### `C_REG`
-
 ```rust
 const C_REG: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:485`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L485)*
+
 Register variable.
 
 ### `C_EXTDEF`
-
 ```rust
 const C_EXTDEF: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:487`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L487)*
+
 External definition.
 
 ### `C_LABEL`
-
 ```rust
 const C_LABEL: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:489`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L489)*
+
 Label.
 
 ### `C_ULABEL`
-
 ```rust
 const C_ULABEL: u8 = 7u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:491`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L491)*
+
 Undefined label.
 
 ### `C_MOS`
-
 ```rust
 const C_MOS: u8 = 8u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:493`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L493)*
+
 Member of structure.
 
 ### `C_ARG`
-
 ```rust
 const C_ARG: u8 = 9u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:495`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L495)*
+
 Function argument.
 
 ### `C_STRTAG`
-
 ```rust
 const C_STRTAG: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:497`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L497)*
+
 Structure tag.
 
 ### `C_MOU`
-
 ```rust
 const C_MOU: u8 = 11u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:499`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L499)*
+
 Member of union.
 
 ### `C_UNTAG`
-
 ```rust
 const C_UNTAG: u8 = 12u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:501`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L501)*
+
 Union tag.
 
 ### `C_TPDEF`
-
 ```rust
 const C_TPDEF: u8 = 13u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:503`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L503)*
+
 Type definition.
 
 ### `C_USTATIC`
-
 ```rust
 const C_USTATIC: u8 = 14u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:505`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L505)*
+
 Undefined static.
 
 ### `C_ENTAG`
-
 ```rust
 const C_ENTAG: u8 = 15u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:507`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L507)*
+
 Enumeration tag.
 
 ### `C_MOE`
-
 ```rust
 const C_MOE: u8 = 16u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:509`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L509)*
+
 Member of enumeration.
 
 ### `C_REGPARM`
-
 ```rust
 const C_REGPARM: u8 = 17u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:511`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L511)*
+
 Register parameter.
 
 ### `C_FIELD`
-
 ```rust
 const C_FIELD: u8 = 18u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:513`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L513)*
+
 Bit field.
 
 ### `C_EOS`
-
 ```rust
 const C_EOS: u8 = 102u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:515`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L515)*
+
 End of structure.
 
 ### `C_ALIAS`
-
 ```rust
 const C_ALIAS: u8 = 105u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:517`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L517)*
+
 Duplicate tag.
 
 ### `C_HIDDEN`
-
 ```rust
 const C_HIDDEN: u8 = 106u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:519`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L519)*
+
 Special storage class for external.
 
 ### `C_EFCN`
-
 ```rust
 const C_EFCN: u8 = 255u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:521`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L521)*
+
 Physical end of function.
 
 ### `C_TCSYM`
-
 ```rust
 const C_TCSYM: u8 = 134u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:523`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L523)*
+
 Reserved.
 
 ### `XFT_FN`
-
 ```rust
 const XFT_FN: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:562`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L562)*
+
 Specifies the source-file name.
 
 ### `XFT_CT`
-
 ```rust
 const XFT_CT: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:564`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L564)*
+
 Specifies the compiler time stamp.
 
 ### `XFT_CV`
-
 ```rust
 const XFT_CV: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:566`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L566)*
+
 Specifies the compiler version number.
 
 ### `XFT_CD`
-
 ```rust
 const XFT_CD: u8 = 128u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:568`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L568)*
+
 Specifies compiler-defined information.
 
 ### `XTY_ER`
-
 ```rust
 const XTY_ER: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:615`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L615)*
+
 External reference.
 
 ### `XTY_SD`
-
 ```rust
 const XTY_SD: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:617`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L617)*
+
 Csect definition for initialized storage.
 
 ### `XTY_LD`
-
 ```rust
 const XTY_LD: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:619`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L619)*
+
 Defines an entry point to an initialized csect.
 
 ### `XTY_CM`
-
 ```rust
 const XTY_CM: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:621`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L621)*
+
 Common csect definition. For uninitialized storage.
 
 ### `XMC_PR`
-
 ```rust
 const XMC_PR: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:628`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L628)*
+
 Program Code
 
 ### `XMC_RO`
-
 ```rust
 const XMC_RO: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:630`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L630)*
+
 Read Only Constant
 
 ### `XMC_DB`
-
 ```rust
 const XMC_DB: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:632`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L632)*
+
 Debug Dictionary Table
 
 ### `XMC_GL`
-
 ```rust
 const XMC_GL: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:634`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L634)*
+
 Global Linkage (Interfile Interface Code)
 
 ### `XMC_XO`
-
 ```rust
 const XMC_XO: u8 = 7u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:636`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L636)*
+
 Extended Operation (Pseudo Machine Instruction)
 
 ### `XMC_SV`
-
 ```rust
 const XMC_SV: u8 = 8u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:638`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L638)*
+
 Supervisor Call (32-bit process only)
 
 ### `XMC_SV64`
-
 ```rust
 const XMC_SV64: u8 = 17u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:640`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L640)*
+
 Supervisor Call for 64-bit process
 
 ### `XMC_SV3264`
-
 ```rust
 const XMC_SV3264: u8 = 18u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:642`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L642)*
+
 Supervisor Call for both 32- and 64-bit processes
 
 ### `XMC_TI`
-
 ```rust
 const XMC_TI: u8 = 12u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:644`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L644)*
+
 Traceback Index csect
 
 ### `XMC_TB`
-
 ```rust
 const XMC_TB: u8 = 13u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:646`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L646)*
+
 Traceback Table csect
 
 ### `XMC_RW`
-
 ```rust
 const XMC_RW: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:651`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L651)*
+
 Read Write Data
 
 ### `XMC_TC0`
-
 ```rust
 const XMC_TC0: u8 = 15u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:653`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L653)*
+
 TOC Anchor for TOC Addressability
 
 ### `XMC_TC`
-
 ```rust
 const XMC_TC: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:655`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L655)*
+
 General TOC item
 
 ### `XMC_TD`
-
 ```rust
 const XMC_TD: u8 = 16u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:657`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L657)*
+
 Scalar data item in the TOC
 
 ### `XMC_DS`
-
 ```rust
 const XMC_DS: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:659`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L659)*
+
 Descriptor csect
 
 ### `XMC_UA`
-
 ```rust
 const XMC_UA: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:661`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L661)*
+
 Unclassified - Treated as Read Write
 
 ### `XMC_BS`
-
 ```rust
 const XMC_BS: u8 = 9u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:663`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L663)*
+
 BSS class (uninitialized static internal)
 
 ### `XMC_UC`
-
 ```rust
 const XMC_UC: u8 = 11u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:665`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L665)*
+
 Un-named Fortran Common
 
 ### `XMC_TL`
-
 ```rust
 const XMC_TL: u8 = 20u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:667`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L667)*
+
 Initialized thread-local variable
 
 ### `XMC_UL`
-
 ```rust
 const XMC_UL: u8 = 21u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:669`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L669)*
+
 Uninitialized thread-local variable
 
 ### `XMC_TE`
-
 ```rust
 const XMC_TE: u8 = 22u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:671`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L671)*
+
 Symbol mapped at the end of TOC
 
 ### `AUX_EXCEPT`
-
 ```rust
 const AUX_EXCEPT: u8 = 255u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:792`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L792)*
+
 Identifies an exception auxiliary entry.
 
 ### `AUX_FCN`
-
 ```rust
 const AUX_FCN: u8 = 254u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:794`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L794)*
+
 Identifies a function auxiliary entry.
 
 ### `AUX_SYM`
-
 ```rust
 const AUX_SYM: u8 = 253u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:796`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L796)*
+
 Identifies a symbol auxiliary entry.
 
 ### `AUX_FILE`
-
 ```rust
 const AUX_FILE: u8 = 252u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:798`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L798)*
+
 Identifies a file auxiliary entry.
 
 ### `AUX_CSECT`
-
 ```rust
 const AUX_CSECT: u8 = 251u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:800`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L800)*
+
 Identifies a csect auxiliary entry.
 
 ### `AUX_SECT`
-
 ```rust
 const AUX_SECT: u8 = 250u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:802`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L802)*
+
 Identifies a SECT auxiliary entry.
 
 ### `R_POS`
-
 ```rust
 const R_POS: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:835`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L835)*
+
 Positive relocation.
 
 ### `R_RL`
-
 ```rust
 const R_RL: u8 = 12u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:837`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L837)*
+
 Positive indirect load relocation.
 
 ### `R_RLA`
-
 ```rust
 const R_RLA: u8 = 13u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:839`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L839)*
+
 Positive load address relocation. Modifiable instruction.
 
 ### `R_NEG`
-
 ```rust
 const R_NEG: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:841`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L841)*
+
 Negative relocation.
 
 ### `R_REL`
-
 ```rust
 const R_REL: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:843`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L843)*
+
 Relative to self relocation.
 
 ### `R_TOC`
-
 ```rust
 const R_TOC: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:845`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L845)*
+
 Relative to the TOC relocation.
 
 ### `R_TRL`
-
 ```rust
 const R_TRL: u8 = 18u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:847`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L847)*
+
 TOC relative indirect load relocation.
 
 ### `R_TRLA`
-
 ```rust
 const R_TRLA: u8 = 19u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:849`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L849)*
+
 Relative to the TOC or to the thread-local storage base relocation.
 
 ### `R_GL`
-
 ```rust
 const R_GL: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:851`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L851)*
+
 Global linkage-external TOC address relocation.
 
 ### `R_TCL`
-
 ```rust
 const R_TCL: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:853`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L853)*
+
 Local object TOC address relocation.
 
 ### `R_REF`
-
 ```rust
 const R_REF: u8 = 15u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:855`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L855)*
+
 A non-relocating relocation.
 
 ### `R_BA`
-
 ```rust
 const R_BA: u8 = 8u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:857`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L857)*
+
 Branch absolute relocation. References a non-modifiable instruction.
 
 ### `R_BR`
-
 ```rust
 const R_BR: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:859`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L859)*
+
 Branch relative to self relocation. References a non-modifiable instruction.
 
 ### `R_RBA`
-
 ```rust
 const R_RBA: u8 = 24u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:861`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L861)*
+
 Branch absolute relocation. References a modifiable instruction.
 
 ### `R_RBR`
-
 ```rust
 const R_RBR: u8 = 26u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:863`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L863)*
+
 Branch relative to self relocation. References a modifiable instruction.
 
 ### `R_TLS`
-
 ```rust
 const R_TLS: u8 = 32u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:865`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L865)*
+
 General-dynamic reference to TLS symbol.
 
 ### `R_TLS_IE`
-
 ```rust
 const R_TLS_IE: u8 = 33u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:867`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L867)*
+
 Initial-exec reference to TLS symbol.
 
 ### `R_TLS_LD`
-
 ```rust
 const R_TLS_LD: u8 = 34u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:869`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L869)*
+
 Local-dynamic reference to TLS symbol.
 
 ### `R_TLS_LE`
-
 ```rust
 const R_TLS_LE: u8 = 35u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:871`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L871)*
+
 Local-exec reference to TLS symbol.
 
 ### `R_TLSM`
-
 ```rust
 const R_TLSM: u8 = 36u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:873`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L873)*
+
 Module reference to TLS.
 
 ### `R_TLSML`
-
 ```rust
 const R_TLSML: u8 = 37u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:875`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L875)*
+
 Module reference to the local TLS storage.
 
 ### `R_TOCU`
-
 ```rust
 const R_TOCU: u8 = 48u8;
 ```
 
+*Defined in [`object-0.37.3/src/xcoff.rs:877`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L877)*
+
 Relative to TOC upper.
 
 ### `R_TOCL`
-
 ```rust
 const R_TOCL: u8 = 49u8;
 ```
+
+*Defined in [`object-0.37.3/src/xcoff.rs:879`](../../../.source_1765210505/object-0.37.3/src/xcoff.rs#L879)*
 
 Relative to TOC lower.
 

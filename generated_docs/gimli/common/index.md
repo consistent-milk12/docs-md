@@ -57,13 +57,13 @@
 | [`DebugInfoOffset`](#debuginfooffset) | struct | An offset into the `.debug_info` section. |
 | [`DebugLineOffset`](#debuglineoffset) | struct | An offset into the `.debug_line` section. |
 | [`DebugLineStrOffset`](#debuglinestroffset) | struct | An offset into the `.debug_line_str` section. |
-| [`LocationListsOffset`](#locationlistsoffset) | struct | An offset into either the `.debug_loc` section or the `.debug_loclists` section |
+| [`LocationListsOffset`](#locationlistsoffset) | struct | An offset into either the `.debug_loc` section or the `.debug_loclists` section, depending on the version of the unit the offset was contained in. |
 | [`DebugLocListsBase`](#debugloclistsbase) | struct | An offset to a set of location list offsets in the `.debug_loclists` section. |
 | [`DebugLocListsIndex`](#debugloclistsindex) | struct | An index into a set of location list offsets in the `.debug_loclists` section. |
 | [`DebugMacinfoOffset`](#debugmacinfooffset) | struct | An offset into the `.debug_macinfo` section. |
 | [`DebugMacroOffset`](#debugmacrooffset) | struct | An offset into the `.debug_macro` section. |
-| [`RawRangeListsOffset`](#rawrangelistsoffset) | struct | An offset into either the `.debug_ranges` section or the `.debug_rnglists` section |
-| [`RangeListsOffset`](#rangelistsoffset) | struct | An offset into either the `.debug_ranges` section or the `.debug_rnglists` section |
+| [`RawRangeListsOffset`](#rawrangelistsoffset) | struct | An offset into either the `.debug_ranges` section or the `.debug_rnglists` section, depending on the version of the unit the offset was contained in. |
+| [`RangeListsOffset`](#rangelistsoffset) | struct | An offset into either the `.debug_ranges` section or the `.debug_rnglists` section, depending on the version of the unit the offset was contained in. |
 | [`DebugRngListsBase`](#debugrnglistsbase) | struct | An offset to a set of range list offsets in the `.debug_rnglists` section. |
 | [`DebugRngListsIndex`](#debugrnglistsindex) | struct | An index into a set of range list offsets in the `.debug_rnglists` section. |
 | [`DebugStrOffset`](#debugstroffset) | struct | An offset into the `.debug_str` section. |
@@ -73,7 +73,7 @@
 | [`DebugTypeSignature`](#debugtypesignature) | struct | A type signature as used in the `.debug_types` section. |
 | [`DebugFrameOffset`](#debugframeoffset) | struct | An offset into the `.debug_frame` section. |
 | [`EhFrameOffset`](#ehframeoffset) | struct | An offset into the `.eh_frame` section. |
-| [`DwoId`](#dwoid) | struct | An optionally-provided implementation-defined compilation unit ID to enable |
+| [`DwoId`](#dwoid) | struct | An optionally-provided implementation-defined compilation unit ID to enable split DWARF and linking a split compilation unit back together. |
 | [`Format`](#format) | enum | Whether the format of a compilation unit is 32- or 64-bit. |
 | [`Vendor`](#vendor) | enum | Which vendor extensions to support. |
 | [`UnitSectionOffset`](#unitsectionoffset) | enum | An offset into the `.debug_info` or `.debug_types` sections. |
@@ -91,6 +91,8 @@ struct Encoding {
     pub version: u16,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:47-56`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L47-L56)*
 
 Encoding parameters that are commonly used for multiple DWARF sections.
 
@@ -145,6 +147,8 @@ struct LineEncoding {
     pub line_range: u8,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:60-76`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L60-L76)*
 
 Encoding parameters for a line number program.
 
@@ -205,6 +209,8 @@ Encoding parameters for a line number program.
 struct Register(u16);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:96`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L96)*
+
 A DWARF register number.
 
 The meaning of this value is ABI dependent. This is generally encoded as
@@ -252,6 +258,8 @@ a ULEB128, but supported architectures need 16 bits at most.
 struct DebugAbbrevOffset<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:100`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L100)*
+
 An offset into the `.debug_abbrev` section.
 
 #### Trait Implementations
@@ -284,6 +292,8 @@ An offset into the `.debug_abbrev` section.
 struct DebugAddrOffset<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:104`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L104)*
+
 An offset into the `.debug_addr` section.
 
 #### Trait Implementations
@@ -311,6 +321,8 @@ An offset into the `.debug_addr` section.
 ```rust
 struct DebugAddrBase<T>(T);
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:108`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L108)*
 
 An offset to a set of entries in the `.debug_addr` section.
 
@@ -340,6 +352,8 @@ An offset to a set of entries in the `.debug_addr` section.
 struct DebugAddrIndex<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:112`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L112)*
+
 An index into a set of addresses in the `.debug_addr` section.
 
 #### Trait Implementations
@@ -368,6 +382,8 @@ An index into a set of addresses in the `.debug_addr` section.
 struct DebugArangesOffset<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:116`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L116)*
+
 An offset into the `.debug_aranges` section.
 
 #### Trait Implementations
@@ -395,6 +411,8 @@ An offset into the `.debug_aranges` section.
 ```rust
 struct DebugInfoOffset<T>(T);
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:120`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L120)*
 
 An offset into the `.debug_info` section.
 
@@ -440,6 +458,8 @@ An offset into the `.debug_info` section.
 struct DebugLineOffset<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:124`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L124)*
+
 An offset into the `.debug_line` section.
 
 #### Trait Implementations
@@ -468,6 +488,8 @@ An offset into the `.debug_line` section.
 struct DebugLineStrOffset<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:128`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L128)*
+
 An offset into the `.debug_line_str` section.
 
 #### Trait Implementations
@@ -495,6 +517,8 @@ An offset into the `.debug_line_str` section.
 ```rust
 struct LocationListsOffset<T>(T);
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:133`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L133)*
 
 An offset into either the `.debug_loc` section or the `.debug_loclists` section,
 depending on the version of the unit the offset was contained in.
@@ -529,6 +553,8 @@ depending on the version of the unit the offset was contained in.
 struct DebugLocListsBase<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:137`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L137)*
+
 An offset to a set of location list offsets in the `.debug_loclists` section.
 
 #### Implementations
@@ -561,6 +587,8 @@ An offset to a set of location list offsets in the `.debug_loclists` section.
 struct DebugLocListsIndex<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:141`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L141)*
+
 An index into a set of location list offsets in the `.debug_loclists` section.
 
 #### Trait Implementations
@@ -588,6 +616,8 @@ An index into a set of location list offsets in the `.debug_loclists` section.
 ```rust
 struct DebugMacinfoOffset<T>(T);
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:145`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L145)*
 
 An offset into the `.debug_macinfo` section.
 
@@ -621,6 +651,8 @@ An offset into the `.debug_macinfo` section.
 struct DebugMacroOffset<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:149`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L149)*
+
 An offset into the `.debug_macro` section.
 
 #### Trait Implementations
@@ -652,6 +684,8 @@ An offset into the `.debug_macro` section.
 ```rust
 struct RawRangeListsOffset<T>(T);
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:157`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L157)*
 
 An offset into either the `.debug_ranges` section or the `.debug_rnglists` section,
 depending on the version of the unit the offset was contained in.
@@ -689,6 +723,8 @@ value of `DW_AT_GNU_ranges_base`. You can use `Dwarf::ranges_offset_from_raw` to
 struct RangeListsOffset<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:162`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L162)*
+
 An offset into either the `.debug_ranges` section or the `.debug_rnglists` section,
 depending on the version of the unit the offset was contained in.
 
@@ -722,6 +758,8 @@ depending on the version of the unit the offset was contained in.
 struct DebugRngListsBase<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:166`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L166)*
+
 An offset to a set of range list offsets in the `.debug_rnglists` section.
 
 #### Implementations
@@ -754,6 +792,8 @@ An offset to a set of range list offsets in the `.debug_rnglists` section.
 struct DebugRngListsIndex<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:170`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L170)*
+
 An index into a set of range list offsets in the `.debug_rnglists` section.
 
 #### Trait Implementations
@@ -782,6 +822,8 @@ An index into a set of range list offsets in the `.debug_rnglists` section.
 struct DebugStrOffset<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:174`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L174)*
+
 An offset into the `.debug_str` section.
 
 #### Trait Implementations
@@ -809,6 +851,8 @@ An offset into the `.debug_str` section.
 ```rust
 struct DebugStrOffsetsBase<T>(T);
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:178`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L178)*
 
 An offset to a set of entries in the `.debug_str_offsets` section.
 
@@ -842,6 +886,8 @@ An offset to a set of entries in the `.debug_str_offsets` section.
 struct DebugStrOffsetsIndex<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:182`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L182)*
+
 An index into a set of entries in the `.debug_str_offsets` section.
 
 #### Trait Implementations
@@ -869,6 +915,8 @@ An index into a set of entries in the `.debug_str_offsets` section.
 ```rust
 struct DebugTypesOffset<T>(T);
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:186`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L186)*
 
 An offset into the `.debug_types` section.
 
@@ -914,6 +962,8 @@ An offset into the `.debug_types` section.
 struct DebugTypeSignature(u64);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:190`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L190)*
+
 A type signature as used in the `.debug_types` section.
 
 #### Trait Implementations
@@ -945,6 +995,8 @@ A type signature as used in the `.debug_types` section.
 ```rust
 struct DebugFrameOffset<T>(T);
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:194`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L194)*
 
 An offset into the `.debug_frame` section.
 
@@ -982,6 +1034,8 @@ An offset into the `.debug_frame` section.
 struct EhFrameOffset<T>(T);
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:205`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L205)*
+
 An offset into the `.eh_frame` section.
 
 #### Trait Implementations
@@ -1017,6 +1071,8 @@ An offset into the `.eh_frame` section.
 ```rust
 struct DwoId(u64);
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:384`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L384)*
 
 An optionally-provided implementation-defined compilation unit ID to enable
 split DWARF and linking a split compilation unit back together.
@@ -1055,6 +1111,8 @@ enum Format {
     Dwarf32,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:3-8`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L3-L8)*
 
 Whether the format of a compilation unit is 32- or 64-bit.
 
@@ -1107,6 +1165,8 @@ enum Vendor {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/common.rs:33-38`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L33-L38)*
+
 Which vendor extensions to support.
 
 #### Variants
@@ -1147,6 +1207,8 @@ enum UnitSectionOffset<T> {
     DebugTypesOffset(DebugTypesOffset<T>),
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:216-221`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L216-L221)*
 
 An offset into the `.debug_info` or `.debug_types` sections.
 
@@ -1226,6 +1288,8 @@ enum SectionId {
     DebugTypes,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:257-302`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L257-L302)*
 
 An identifier for a DWARF section.
 
@@ -1369,6 +1433,8 @@ enum DwarfFileType {
     Dwo,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/common.rs:389-395`](../../../.source_1765210505/gimli-0.32.3/src/common.rs#L389-L395)*
 
 The "type" of file with DWARF debugging information. This determines, among other things,
 which files DWARF sections should be loaded from.

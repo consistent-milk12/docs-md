@@ -6,9 +6,27 @@
 
 Unified link registry for cross-crate documentation.
 
-This module provides [`UnifiedLinkRegistry`](../../index.md) which maps item IDs across
+This module provides [`UnifiedLinkRegistry`](#unifiedlinkregistry) which maps item IDs across
 multiple crates to their documentation file paths, enabling cross-crate
 linking in the generated markdown.
+
+# `rustdoc_types` Path Types
+
+There are two distinct path representations in `rustdoc_types`:
+
+- **`ItemSummary`**: Contains metadata about items without full content.
+  - `path: Vec<String>` - Structured path segments like `["std", "vec", "Vec"]`
+  - `kind: ItemKind` - The item's kind (Struct, Enum, Trait, etc.)
+  - Use for: kind filtering, path lookups, metadata queries
+
+- **`Item`**: Full item content including inner details.
+  - `inner: ItemEnum` - The actual item content (Struct/Enum/Trait data)
+  - Use for: rendering, accessing item members, documentation content
+
+**Optimization tip**: When only the item kind is needed, prefer
+`krate.paths.get(&id).map(|p| p.kind)` over looking up the full `Item`.
+
+
 
 ## Quick Reference
 
@@ -28,15 +46,17 @@ linking in the generated markdown.
 struct BorrowedKey<'a>(&'a str, rustdoc_types::Id);
 ```
 
+*Defined in `src/multi_crate/registry.rs:51`*
+
 Borrowed key for zero-allocation lookups.
 
 Must hash identically to `RegistryKey` tuple of `(CompactString, Id)`.
 
 #### Trait Implementations
 
-##### `impl<'a> Eq for BorrowedKey<'a>`
+##### `impl Eq for BorrowedKey<'a>`
 
-##### `impl<Q, K> Equivalent for BorrowedKey<'a>`
+##### `impl Equivalent for BorrowedKey<'a>`
 
 - <span id="borrowedkey-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
@@ -44,21 +64,21 @@ Must hash identically to `RegistryKey` tuple of `(CompactString, Id)`.
 
 - <span id="borrowedkey-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<T> Instrument for BorrowedKey<'a>`
+##### `impl Instrument for BorrowedKey<'a>`
 
-##### `impl<T> IntoEither for BorrowedKey<'a>`
+##### `impl IntoEither for BorrowedKey<'a>`
 
-##### `impl<D> OwoColorize for BorrowedKey<'a>`
+##### `impl OwoColorize for BorrowedKey<'a>`
 
-##### `impl<'a> PartialEq for BorrowedKey<'a>`
+##### `impl PartialEq for BorrowedKey<'a>`
 
 - <span id="borrowedkey-eq"></span>`fn eq(&self, other: &BorrowedKey<'a>) -> bool` — [`BorrowedKey`](#borrowedkey)
 
-##### `impl<T> Pointable for BorrowedKey<'a>`
+##### `impl Pointable for BorrowedKey<'a>`
 
-- <span id="borrowedkey-align"></span>`const ALIGN: usize`
+- <span id="borrowedkey-const-align"></span>`const ALIGN: usize`
 
-- <span id="borrowedkey-init"></span>`type Init = T`
+- <span id="borrowedkey-type-init"></span>`type Init = T`
 
 - <span id="borrowedkey-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -68,9 +88,9 @@ Must hash identically to `RegistryKey` tuple of `(CompactString, Id)`.
 
 - <span id="borrowedkey-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<'a> StructuralPartialEq for BorrowedKey<'a>`
+##### `impl StructuralPartialEq for BorrowedKey<'a>`
 
-##### `impl<T> WithSubscriber for BorrowedKey<'a>`
+##### `impl WithSubscriber for BorrowedKey<'a>`
 
 ### `UnifiedLinkRegistry`
 
@@ -84,9 +104,11 @@ struct UnifiedLinkRegistry {
 }
 ```
 
+*Defined in `src/multi_crate/registry.rs:94-116`*
+
 Registry mapping item IDs to documentation paths across multiple crates.
 
-Unlike [`LinkRegistry`](../../index.md) which handles a single crate, this registry
+Unlike [`LinkRegistry`](../../linker/index.md) which handles a single crate, this registry
 spans multiple crates and supports cross-crate link resolution with
 disambiguation based on local/primary crate preference.
 
@@ -142,7 +164,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Implementations
 
-- <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../../index.md)
+- <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../collection/index.md)
 
 - <span id="unifiedlinkregistry-register-crate"></span>`fn register_crate(&mut self, crate_name: &str, krate: &Crate)`
 
@@ -186,19 +208,19 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Default for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../../index.md)
+- <span id="unifiedlinkregistry-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
 
-##### `impl<T> Instrument for UnifiedLinkRegistry`
+##### `impl Instrument for UnifiedLinkRegistry`
 
-##### `impl<T> IntoEither for UnifiedLinkRegistry`
+##### `impl IntoEither for UnifiedLinkRegistry`
 
-##### `impl<D> OwoColorize for UnifiedLinkRegistry`
+##### `impl OwoColorize for UnifiedLinkRegistry`
 
-##### `impl<T> Pointable for UnifiedLinkRegistry`
+##### `impl Pointable for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-align"></span>`const ALIGN: usize`
+- <span id="unifiedlinkregistry-const-align"></span>`const ALIGN: usize`
 
-- <span id="unifiedlinkregistry-init"></span>`type Init = T`
+- <span id="unifiedlinkregistry-type-init"></span>`type Init = T`
 
 - <span id="unifiedlinkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -208,7 +230,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - <span id="unifiedlinkregistry-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for UnifiedLinkRegistry`
+##### `impl WithSubscriber for UnifiedLinkRegistry`
 
 ## Functions
 
@@ -217,6 +239,8 @@ This avoids allocating a `String` for the crate name on every lookup.
 ```rust
 fn keys_match(stored: &(compact_str::CompactString, rustdoc_types::Id), borrowed: &BorrowedKey<'_>) -> bool
 ```
+
+*Defined in `src/multi_crate/registry.rs:63-65`*
 
 Allow comparing `BorrowedKey` with `RegistryKey`.
 
@@ -228,6 +252,8 @@ Allow comparing `BorrowedKey` with `RegistryKey`.
 type Str = compact_str::CompactString;
 ```
 
+*Defined in `src/multi_crate/registry.rs:39`*
+
 Compact string type for memory-efficient storage.
 Strings ≤24 bytes are stored inline (no heap allocation).
 Most crate names, item names, and short paths fit inline.
@@ -237,6 +263,8 @@ Most crate names, item names, and short paths fit inline.
 ```rust
 type RegistryKey = (compact_str::CompactString, rustdoc_types::Id);
 ```
+
+*Defined in `src/multi_crate/registry.rs:45`*
 
 Key type for registry lookups: `(crate_name, item_id)`.
 

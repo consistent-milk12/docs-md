@@ -42,6 +42,8 @@ Low level terminal capability lookups
 fn clicolor() -> Option<bool>
 ```
 
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:23-26`](../../.source_1765210505/anstyle-query-1.1.5/src/lib.rs#L23-L26)*
+
 Check [CLICOLOR] status
 
 - When `true`, ANSI colors are supported and should be used when the program isn't piped,
@@ -60,6 +62,8 @@ See also:
 fn clicolor_force() -> bool
 ```
 
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:34-36`](../../.source_1765210505/anstyle-query-1.1.5/src/lib.rs#L34-L36)*
+
 Check [CLICOLOR_FORCE] status
 
 ANSI colors should be enabled no matter what.
@@ -70,6 +74,8 @@ ANSI colors should be enabled no matter what.
 ```rust
 fn no_color() -> bool
 ```
+
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:49-51`](../../.source_1765210505/anstyle-query-1.1.5/src/lib.rs#L49-L51)*
 
 Check [NO_COLOR] status
 
@@ -87,6 +93,8 @@ color.
 fn term_supports_color() -> bool
 ```
 
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:55-82`](../../.source_1765210505/anstyle-query-1.1.5/src/lib.rs#L55-L82)*
+
 Check `TERM` for color support
 
 ### `term_supports_ansi_color`
@@ -94,6 +102,8 @@ Check `TERM` for color support
 ```rust
 fn term_supports_ansi_color() -> bool
 ```
+
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:89-109`](../../.source_1765210505/anstyle-query-1.1.5/src/lib.rs#L89-L109)*
 
 Check `TERM` for ANSI color support
 
@@ -106,6 +116,8 @@ is opt-in, rather than assumed.
 fn truecolor() -> bool
 ```
 
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:115-119`](../../.source_1765210505/anstyle-query-1.1.5/src/lib.rs#L115-L119)*
+
 Check [COLORTERM] for truecolor support
 
 
@@ -114,6 +126,8 @@ Check [COLORTERM] for truecolor support
 ```rust
 fn is_ci() -> bool
 ```
+
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:128-135`](../../.source_1765210505/anstyle-query-1.1.5/src/lib.rs#L128-L135)*
 
 Report whether this is running in CI
 
@@ -127,4 +141,6 @@ cases.
 ```rust
 fn non_empty(var: Option<&std::ffi::OsStr>) -> bool
 ```
+
+*Defined in [`anstyle-query-1.1.5/src/lib.rs:137-139`](../../.source_1765210505/anstyle-query-1.1.5/src/lib.rs#L137-L139)*
 

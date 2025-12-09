@@ -19,6 +19,8 @@
 struct AppFlags(u32);
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/app_settings.rs:7`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/app_settings.rs#L7)*
+
 #### Implementations
 
 - <span id="appflags-set"></span>`fn set(&mut self, setting: AppSettings)` — [`AppSettings`](#appsettings)
@@ -33,7 +35,7 @@ struct AppFlags(u32);
 
 ##### `impl BitOr for AppFlags`
 
-- <span id="appflags-output"></span>`type Output = AppFlags`
+- <span id="appflags-type-output"></span>`type Output = AppFlags`
 
 - <span id="appflags-bitor"></span>`fn bitor(self, rhs: Self) -> <Self as >::Output`
 
@@ -100,7 +102,9 @@ enum AppSettings {
 }
 ```
 
-Application level settings, which affect how [`Command`](../../index.md) operates
+*Defined in [`clap_builder-4.5.53/src/builder/app_settings.rs:48-82`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/app_settings.rs#L48-L82)*
+
+Application level settings, which affect how [`Command`](../command/index.md) operates
 
 <div class="warning">
 

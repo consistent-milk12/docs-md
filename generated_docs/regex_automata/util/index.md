@@ -60,7 +60,7 @@ with the `regex-syntax` crate.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`alphabet`](#alphabet) | mod | This module provides APIs for dealing with the alphabets of finite state |
+| [`alphabet`](#alphabet) | mod | This module provides APIs for dealing with the alphabets of finite state machines. |
 | [`captures`](#captures) | mod | Provides types for dealing with capturing groups. |
 | [`escape`](#escape) | mod | Provides convenience routines for escaping raw bytes. |
 | [`interpolate`](#interpolate) | mod | Provides routines for interpolating capture group references. |
@@ -75,8 +75,8 @@ with the `regex-syntax` crate.
 | [`wire`](#wire) | mod | Types and routines that support the wire format of finite automata. |
 | [`determinize`](#determinize) | mod | This module contains types and routines for implementing determinization. |
 | [`empty`](#empty) | mod | This module provides helper routines for dealing with zero-width matches. |
-| [`int`](#int) | mod | This module provides several integer oriented traits for converting between |
-| [`memchr`](#memchr) | mod | This module defines simple wrapper routines for the memchr functions from the |
+| [`int`](#int) | mod | This module provides several integer oriented traits for converting between both fixed size integers and integers whose size varies based on the target (like `usize`). |
+| [`memchr`](#memchr) | mod | This module defines simple wrapper routines for the memchr functions from the `memchr` crate. |
 | [`search`](#search) | mod | Types and routines that support the search APIs of most regex engines. |
 | [`sparse_set`](#sparse_set) | mod | This module defines a sparse set data structure. |
 | [`unicode_data`](#unicode_data) | mod |  |

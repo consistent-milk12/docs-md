@@ -3566,7 +3566,7 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`GNU_PROPERTY_UINT32_OR_LO`](#gnu_property_uint32_or_lo) | const |  |
 | [`GNU_PROPERTY_UINT32_OR_HI`](#gnu_property_uint32_or_hi) | const |  |
 | [`GNU_PROPERTY_1_NEEDED`](#gnu_property_1_needed) | const | The needed properties by the object file. |
-| [`GNU_PROPERTY_1_NEEDED_INDIRECT_EXTERN_ACCESS`](#gnu_property_1_needed_indirect_extern_access) | const | Set if the object file requires canonical function pointers and |
+| [`GNU_PROPERTY_1_NEEDED_INDIRECT_EXTERN_ACCESS`](#gnu_property_1_needed_indirect_extern_access) | const | Set if the object file requires canonical function pointers and cannot be used with copy relocation. |
 | [`GNU_PROPERTY_LOPROC`](#gnu_property_loproc) | const | Processor-specific semantics, lo |
 | [`GNU_PROPERTY_HIPROC`](#gnu_property_hiproc) | const | Processor-specific semantics, hi |
 | [`GNU_PROPERTY_LOUSER`](#gnu_property_louser) | const | Application-specific semantics, lo |
@@ -3581,13 +3581,13 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`GNU_PROPERTY_X86_UINT32_OR_HI`](#gnu_property_x86_uint32_or_hi) | const |  |
 | [`GNU_PROPERTY_X86_UINT32_OR_AND_LO`](#gnu_property_x86_uint32_or_and_lo) | const |  |
 | [`GNU_PROPERTY_X86_UINT32_OR_AND_HI`](#gnu_property_x86_uint32_or_and_hi) | const |  |
-| [`GNU_PROPERTY_X86_ISA_1_USED`](#gnu_property_x86_isa_1_used) | const | The x86 instruction sets indicated by the corresponding bits are |
-| [`GNU_PROPERTY_X86_ISA_1_NEEDED`](#gnu_property_x86_isa_1_needed) | const | The x86 instruction sets indicated by the corresponding bits are |
+| [`GNU_PROPERTY_X86_ISA_1_USED`](#gnu_property_x86_isa_1_used) | const | The x86 instruction sets indicated by the corresponding bits are used in program. |
+| [`GNU_PROPERTY_X86_ISA_1_NEEDED`](#gnu_property_x86_isa_1_needed) | const | The x86 instruction sets indicated by the corresponding bits are used in program and they must be supported by the hardware. |
 | [`GNU_PROPERTY_X86_FEATURE_1_AND`](#gnu_property_x86_feature_1_and) | const | X86 processor-specific features used in program. |
-| [`GNU_PROPERTY_X86_ISA_1_BASELINE`](#gnu_property_x86_isa_1_baseline) | const | GNU_PROPERTY_X86_ISA_1_BASELINE: CMOV, CX8 (cmpxchg8b), FPU (fld) |
-| [`GNU_PROPERTY_X86_ISA_1_V2`](#gnu_property_x86_isa_1_v2) | const | GNU_PROPERTY_X86_ISA_1_V2: GNU_PROPERTY_X86_ISA_1_BASELINE |
-| [`GNU_PROPERTY_X86_ISA_1_V3`](#gnu_property_x86_isa_1_v3) | const | GNU_PROPERTY_X86_ISA_1_V3: GNU_PROPERTY_X86_ISA_1_V2, AVX, AVX2, BMI1 |
-| [`GNU_PROPERTY_X86_ISA_1_V4`](#gnu_property_x86_isa_1_v4) | const | GNU_PROPERTY_X86_ISA_1_V4: GNU_PROPERTY_X86_ISA_1_V3, AVX512F |
+| [`GNU_PROPERTY_X86_ISA_1_BASELINE`](#gnu_property_x86_isa_1_baseline) | const | GNU_PROPERTY_X86_ISA_1_BASELINE: CMOV, CX8 (cmpxchg8b), FPU (fld), MMX, OSFXSR (fxsave), SCE (syscall), SSE and SSE2. |
+| [`GNU_PROPERTY_X86_ISA_1_V2`](#gnu_property_x86_isa_1_v2) | const | GNU_PROPERTY_X86_ISA_1_V2: GNU_PROPERTY_X86_ISA_1_BASELINE, CMPXCHG16B (cmpxchg16b), LAHF-SAHF (lahf), POPCNT (popcnt), SSE3, SSSE3, SSE4.1 and SSE4.2. |
+| [`GNU_PROPERTY_X86_ISA_1_V3`](#gnu_property_x86_isa_1_v3) | const | GNU_PROPERTY_X86_ISA_1_V3: GNU_PROPERTY_X86_ISA_1_V2, AVX, AVX2, BMI1, BMI2, F16C, FMA, LZCNT, MOVBE, XSAVE. |
+| [`GNU_PROPERTY_X86_ISA_1_V4`](#gnu_property_x86_isa_1_v4) | const | GNU_PROPERTY_X86_ISA_1_V4: GNU_PROPERTY_X86_ISA_1_V3, AVX512F, AVX512BW, AVX512CD, AVX512DQ and AVX512VL. |
 | [`GNU_PROPERTY_X86_FEATURE_1_IBT`](#gnu_property_x86_feature_1_ibt) | const | This indicates that all executable sections are compatible with IBT. |
 | [`GNU_PROPERTY_X86_FEATURE_1_SHSTK`](#gnu_property_x86_feature_1_shstk) | const | This indicates that all executable sections are compatible with SHSTK. |
 | [`R_68K_NONE`](#r_68k_none) | const | No reloc |
@@ -4342,7 +4342,7 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`R_PPC_REL16_LO`](#r_ppc_rel16_lo) | const | half16   (sym+add-.)@l |
 | [`R_PPC_REL16_HI`](#r_ppc_rel16_hi) | const | half16   (sym+add-.)@h |
 | [`R_PPC_REL16_HA`](#r_ppc_rel16_ha) | const | half16   (sym+add-.)@ha |
-| [`R_PPC_TOC16`](#r_ppc_toc16) | const | This is a phony reloc to handle any old fashioned TOC16 references that may |
+| [`R_PPC_TOC16`](#r_ppc_toc16) | const | This is a phony reloc to handle any old fashioned TOC16 references that may still be in object files. |
 | [`DT_PPC_GOT`](#dt_ppc_got) | const |  |
 | [`DT_PPC_OPT`](#dt_ppc_opt) | const |  |
 | [`PPC_OPT_TLS`](#ppc_opt_tls) | const |  |
@@ -4647,7 +4647,7 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`R_AARCH64_TLSDESC`](#r_aarch64_tlsdesc) | const | TLS Descriptor. |
 | [`R_AARCH64_IRELATIVE`](#r_aarch64_irelative) | const | STT_GNU_IFUNC relocation. |
 | [`EF_AVR_ARCH`](#ef_avr_arch) | const | Bitmask for `EF_AVR_ARCH_*`. |
-| [`EF_AVR_LINKRELAX_PREPARED`](#ef_avr_linkrelax_prepared) | const | If set, it is assumed that the elf file uses local symbols as reference |
+| [`EF_AVR_LINKRELAX_PREPARED`](#ef_avr_linkrelax_prepared) | const | If set, it is assumed that the elf file uses local symbols as reference for the relocations so that linker relaxation is possible. |
 | [`EF_AVR_ARCH_AVR1`](#ef_avr_arch_avr1) | const |  |
 | [`EF_AVR_ARCH_AVR2`](#ef_avr_arch_avr2) | const |  |
 | [`EF_AVR_ARCH_AVR25`](#ef_avr_arch_avr25) | const |  |
@@ -5674,7 +5674,7 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`R_NDS32_RELATIVE`](#r_nds32_relative) | const |  |
 | [`R_NDS32_TLS_TPOFF`](#r_nds32_tls_tpoff) | const |  |
 | [`R_NDS32_TLS_DESC`](#r_nds32_tls_desc) | const |  |
-| [`EF_LARCH_ABI_MODIFIER_MASK`](#ef_larch_abi_modifier_mask) | const | Additional properties of the base ABI type, including the FP calling |
+| [`EF_LARCH_ABI_MODIFIER_MASK`](#ef_larch_abi_modifier_mask) | const | Additional properties of the base ABI type, including the FP calling convention. |
 | [`EF_LARCH_ABI_SOFT_FLOAT`](#ef_larch_abi_soft_float) | const | Uses GPRs and the stack for parameter passing |
 | [`EF_LARCH_ABI_SINGLE_FLOAT`](#ef_larch_abi_single_float) | const | Uses GPRs, 32-bit FPRs and the stack for parameter passing |
 | [`EF_LARCH_ABI_DOUBLE_FLOAT`](#ef_larch_abi_double_float) | const | Uses GPRs, 64-bit FPRs and the stack for parameter passing |
@@ -5714,10 +5714,10 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`R_LARCH_SOP_POP_32_U_10_12`](#r_larch_sop_pop_32_u_10_12) | const | Pop stack top to fill 12-bit unsigned immediate operand |
 | [`R_LARCH_SOP_POP_32_S_10_12`](#r_larch_sop_pop_32_s_10_12) | const | Pop stack top to fill 12-bit signed immediate operand |
 | [`R_LARCH_SOP_POP_32_S_10_16`](#r_larch_sop_pop_32_s_10_16) | const | Pop stack top to fill 16-bit signed immediate operand |
-| [`R_LARCH_SOP_POP_32_S_10_16_S2`](#r_larch_sop_pop_32_s_10_16_s2) | const | Pop stack top to fill 18-bit signed immediate operand with two trailing |
+| [`R_LARCH_SOP_POP_32_S_10_16_S2`](#r_larch_sop_pop_32_s_10_16_s2) | const | Pop stack top to fill 18-bit signed immediate operand with two trailing zeros implied |
 | [`R_LARCH_SOP_POP_32_S_5_20`](#r_larch_sop_pop_32_s_5_20) | const | Pop stack top to fill 20-bit signed immediate operand |
-| [`R_LARCH_SOP_POP_32_S_0_5_10_16_S2`](#r_larch_sop_pop_32_s_0_5_10_16_s2) | const | Pop stack top to fill 23-bit signed immediate operand with two trailing |
-| [`R_LARCH_SOP_POP_32_S_0_10_10_16_S2`](#r_larch_sop_pop_32_s_0_10_10_16_s2) | const | Pop stack top to fill 28-bit signed immediate operand with two trailing |
+| [`R_LARCH_SOP_POP_32_S_0_5_10_16_S2`](#r_larch_sop_pop_32_s_0_5_10_16_s2) | const | Pop stack top to fill 23-bit signed immediate operand with two trailing zeros implied |
+| [`R_LARCH_SOP_POP_32_S_0_10_10_16_S2`](#r_larch_sop_pop_32_s_0_10_10_16_s2) | const | Pop stack top to fill 28-bit signed immediate operand with two trailing zeros implied |
 | [`R_LARCH_SOP_POP_32_U`](#r_larch_sop_pop_32_u) | const | Pop stack top to fill an instruction |
 | [`R_LARCH_ADD8`](#r_larch_add8) | const | 8-bit in-place addition |
 | [`R_LARCH_ADD16`](#r_larch_add16) | const | 16-bit in-place addition |
@@ -5738,14 +5738,14 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`R_LARCH_ABS_LO12`](#r_larch_abs_lo12) | const | 0..=11 bits of 32/64-bit absolute address |
 | [`R_LARCH_ABS64_LO20`](#r_larch_abs64_lo20) | const | 32..=51 bits of 64-bit absolute address |
 | [`R_LARCH_ABS64_HI12`](#r_larch_abs64_hi12) | const | 52..=63 bits of 64-bit absolute address |
-| [`R_LARCH_PCALA_HI20`](#r_larch_pcala_hi20) | const | The signed 32-bit offset `offs` from `PC & 0xfffff000` to |
+| [`R_LARCH_PCALA_HI20`](#r_larch_pcala_hi20) | const | The signed 32-bit offset `offs` from `PC & 0xfffff000` to `(S + A + 0x800) & 0xfffff000`, with 12 trailing zeros removed. |
 | [`R_LARCH_PCALA_LO12`](#r_larch_pcala_lo12) | const | Same as R_LARCH_ABS_LO12. |
-| [`R_LARCH_PCALA64_LO20`](#r_larch_pcala64_lo20) | const | 32..=51 bits of the 64-bit offset from the |
-| [`R_LARCH_PCALA64_HI12`](#r_larch_pcala64_hi12) | const | 52..=63 bits of the 64-bit offset from the |
-| [`R_LARCH_GOT_PC_HI20`](#r_larch_got_pc_hi20) | const | The signed 32-bit offset `offs` from `PC & 0xfffff000` to |
-| [`R_LARCH_GOT_PC_LO12`](#r_larch_got_pc_lo12) | const | 0..=11 bits of the 32/64-bit offset from the |
-| [`R_LARCH_GOT64_PC_LO20`](#r_larch_got64_pc_lo20) | const | 32..=51 bits of the 64-bit offset from the |
-| [`R_LARCH_GOT64_PC_HI12`](#r_larch_got64_pc_hi12) | const | 52..=63 bits of the 64-bit offset from the |
+| [`R_LARCH_PCALA64_LO20`](#r_larch_pcala64_lo20) | const | 32..=51 bits of the 64-bit offset from the [PC relative anchor][R_LARCH_PCALA_HI20]. |
+| [`R_LARCH_PCALA64_HI12`](#r_larch_pcala64_hi12) | const | 52..=63 bits of the 64-bit offset from the [PC relative anchor][R_LARCH_PCALA_HI20]. |
+| [`R_LARCH_GOT_PC_HI20`](#r_larch_got_pc_hi20) | const | The signed 32-bit offset `offs` from `PC & 0xfffff000` to `(GP + G + 0x800) & 0xfffff000`, with 12 trailing zeros removed. |
+| [`R_LARCH_GOT_PC_LO12`](#r_larch_got_pc_lo12) | const | 0..=11 bits of the 32/64-bit offset from the [PC relative anchor][R_LARCH_GOT_PC_HI20] to the GOT entry. |
+| [`R_LARCH_GOT64_PC_LO20`](#r_larch_got64_pc_lo20) | const | 32..=51 bits of the 64-bit offset from the [PC relative anchor][R_LARCH_GOT_PC_HI20] to the GOT entry. |
+| [`R_LARCH_GOT64_PC_HI12`](#r_larch_got64_pc_hi12) | const | 52..=63 bits of the 64-bit offset from the [PC relative anchor][R_LARCH_GOT_PC_HI20] to the GOT entry. |
 | [`R_LARCH_GOT_HI20`](#r_larch_got_hi20) | const | 12..=31 bits of 32/64-bit GOT entry absolute address |
 | [`R_LARCH_GOT_LO12`](#r_larch_got_lo12) | const | 0..=11 bits of 32/64-bit GOT entry absolute address |
 | [`R_LARCH_GOT64_LO20`](#r_larch_got64_lo20) | const | 32..=51 bits of 64-bit GOT entry absolute address |
@@ -5754,22 +5754,22 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`R_LARCH_TLS_LE_LO12`](#r_larch_tls_le_lo12) | const | 0..=11 bits of TLS LE 32/64-bit offset from thread pointer |
 | [`R_LARCH_TLS_LE64_LO20`](#r_larch_tls_le64_lo20) | const | 32..=51 bits of TLS LE 64-bit offset from thread pointer |
 | [`R_LARCH_TLS_LE64_HI12`](#r_larch_tls_le64_hi12) | const | 52..=63 bits of TLS LE 64-bit offset from thread pointer |
-| [`R_LARCH_TLS_IE_PC_HI20`](#r_larch_tls_ie_pc_hi20) | const | The signed 32-bit offset `offs` from `PC & 0xfffff000` to |
-| [`R_LARCH_TLS_IE_PC_LO12`](#r_larch_tls_ie_pc_lo12) | const | 0..=12 bits of the 32/64-bit offset from the |
-| [`R_LARCH_TLS_IE64_PC_LO20`](#r_larch_tls_ie64_pc_lo20) | const | 32..=51 bits of the 64-bit offset from the |
-| [`R_LARCH_TLS_IE64_PC_HI12`](#r_larch_tls_ie64_pc_hi12) | const | 52..=63 bits of the 64-bit offset from the |
+| [`R_LARCH_TLS_IE_PC_HI20`](#r_larch_tls_ie_pc_hi20) | const | The signed 32-bit offset `offs` from `PC & 0xfffff000` to `(GP + IE + 0x800) & 0xfffff000`, with 12 trailing zeros removed. |
+| [`R_LARCH_TLS_IE_PC_LO12`](#r_larch_tls_ie_pc_lo12) | const | 0..=12 bits of the 32/64-bit offset from the [PC-relative anchor][R_LARCH_TLS_IE_PC_HI20] to the TLS IE GOT entry. |
+| [`R_LARCH_TLS_IE64_PC_LO20`](#r_larch_tls_ie64_pc_lo20) | const | 32..=51 bits of the 64-bit offset from the [PC-relative anchor][R_LARCH_TLS_IE_PC_HI20] to the TLS IE GOT entry. |
+| [`R_LARCH_TLS_IE64_PC_HI12`](#r_larch_tls_ie64_pc_hi12) | const | 52..=63 bits of the 64-bit offset from the [PC-relative anchor][R_LARCH_TLS_IE_PC_HI20] to the TLS IE GOT entry. |
 | [`R_LARCH_TLS_IE_HI20`](#r_larch_tls_ie_hi20) | const | 12..=31 bits of TLS IE GOT entry 32/64-bit absolute address |
 | [`R_LARCH_TLS_IE_LO12`](#r_larch_tls_ie_lo12) | const | 0..=11 bits of TLS IE GOT entry 32/64-bit absolute address |
 | [`R_LARCH_TLS_IE64_LO20`](#r_larch_tls_ie64_lo20) | const | 32..=51 bits of TLS IE GOT entry 64-bit absolute address |
 | [`R_LARCH_TLS_IE64_HI12`](#r_larch_tls_ie64_hi12) | const | 51..=63 bits of TLS IE GOT entry 64-bit absolute address |
-| [`R_LARCH_TLS_LD_PC_HI20`](#r_larch_tls_ld_pc_hi20) | const | 12..=31 bits of the offset from `PC` to `GP + GD + 0x800`, where |
+| [`R_LARCH_TLS_LD_PC_HI20`](#r_larch_tls_ld_pc_hi20) | const | 12..=31 bits of the offset from `PC` to `GP + GD + 0x800`, where `GP + GD` is a TLS LD GOT entry |
 | [`R_LARCH_TLS_LD_HI20`](#r_larch_tls_ld_hi20) | const | 12..=31 bits of TLS LD GOT entry 32/64-bit absolute address |
-| [`R_LARCH_TLS_GD_PC_HI20`](#r_larch_tls_gd_pc_hi20) | const | 12..=31 bits of the 32/64-bit PC-relative offset to the PC-relative |
+| [`R_LARCH_TLS_GD_PC_HI20`](#r_larch_tls_gd_pc_hi20) | const | 12..=31 bits of the 32/64-bit PC-relative offset to the PC-relative anchor for the TLE GD GOT entry. |
 | [`R_LARCH_TLS_GD_HI20`](#r_larch_tls_gd_hi20) | const | 12..=31 bits of TLS GD GOT entry 32/64-bit absolute address |
 | [`R_LARCH_32_PCREL`](#r_larch_32_pcrel) | const | 32-bit PC relative |
-| [`R_LARCH_RELAX`](#r_larch_relax) | const | Paired with a normal relocation at the same address to indicate the |
+| [`R_LARCH_RELAX`](#r_larch_relax) | const | Paired with a normal relocation at the same address to indicate the instruction can be relaxed |
 | [`R_LARCH_DELETE`](#r_larch_delete) | const | Reserved |
-| [`R_LARCH_ALIGN`](#r_larch_align) | const | Delete some bytes to ensure the instruction at PC + A aligned to |
+| [`R_LARCH_ALIGN`](#r_larch_align) | const | Delete some bytes to ensure the instruction at PC + A aligned to `A.next_power_of_two()`-byte boundary |
 | [`R_LARCH_PCREL20_S2`](#r_larch_pcrel20_s2) | const | 22-bit PC-relative offset with two trailing zeros |
 | [`R_LARCH_CFA`](#r_larch_cfa) | const | Reserved |
 | [`R_LARCH_ADD6`](#r_larch_add6) | const | 6-bit in-place addition |
@@ -5777,7 +5777,7 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`R_LARCH_ADD_ULEB128`](#r_larch_add_uleb128) | const | LEB128 in-place addition |
 | [`R_LARCH_SUB_ULEB128`](#r_larch_sub_uleb128) | const | LEB128 in-place subtraction |
 | [`R_LARCH_64_PCREL`](#r_larch_64_pcrel) | const | 64-bit PC relative |
-| [`R_LARCH_CALL36`](#r_larch_call36) | const | 18..=37 bits of `S + A - PC` into the `pcaddu18i` instruction at `PC` |
+| [`R_LARCH_CALL36`](#r_larch_call36) | const | 18..=37 bits of `S + A - PC` into the `pcaddu18i` instruction at `PC`, and 2..=17 bits of `S + A - PC` into the `jirl` instruction at `PC + 4` |
 | [`R_LARCH_TLS_DESC_PC_HI20`](#r_larch_tls_desc_pc_hi20) | const | 12..=31 bits of 32/64-bit PC-relative offset to TLS DESC GOT entry |
 | [`R_LARCH_TLS_DESC_PC_LO12`](#r_larch_tls_desc_pc_lo12) | const | 0..=11 bits of 32/64-bit TLS DESC GOT entry address |
 | [`R_LARCH_TLS_DESC64_PC_LO20`](#r_larch_tls_desc64_pc_lo20) | const | 32..=51 bits of 64-bit PC-relative offset to TLS DESC GOT entry |
@@ -5786,11 +5786,11 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`R_LARCH_TLS_DESC_LO12`](#r_larch_tls_desc_lo12) | const | 0..=11 bits of 32/64-bit TLS DESC GOT entry absolute address |
 | [`R_LARCH_TLS_DESC64_LO20`](#r_larch_tls_desc64_lo20) | const | 32..=51 bits of 64-bit TLS DESC GOT entry absolute address |
 | [`R_LARCH_TLS_DESC64_HI12`](#r_larch_tls_desc64_hi12) | const | 52..=63 bits of 64-bit TLS DESC GOT entry absolute address |
-| [`R_LARCH_TLS_DESC_LD`](#r_larch_tls_desc_ld) | const | Used on ld.{w,d} for TLS DESC to get the resolve function address |
+| [`R_LARCH_TLS_DESC_LD`](#r_larch_tls_desc_ld) | const | Used on ld.{w,d} for TLS DESC to get the resolve function address from GOT entry |
 | [`R_LARCH_TLS_DESC_CALL`](#r_larch_tls_desc_call) | const | Used on jirl for TLS DESC to call the resolve function |
 | [`R_LARCH_TLS_LE_HI20_R`](#r_larch_tls_le_hi20_r) | const | 12..=31 bits of TLS LE 32/64-bit offset from TP register, can be relaxed |
 | [`R_LARCH_TLS_LE_ADD_R`](#r_larch_tls_le_add_r) | const | TLS LE thread pointer usage, can be relaxed |
-| [`R_LARCH_TLS_LE_LO12_R`](#r_larch_tls_le_lo12_r) | const | 0..=11 bits of TLS LE 32/64-bit offset from TP register, sign-extended |
+| [`R_LARCH_TLS_LE_LO12_R`](#r_larch_tls_le_lo12_r) | const | 0..=11 bits of TLS LE 32/64-bit offset from TP register, sign-extended, can be relaxed. |
 | [`R_LARCH_TLS_LD_PCREL20_S2`](#r_larch_tls_ld_pcrel20_s2) | const | 22-bit PC-relative offset to TLS LD GOT entry |
 | [`R_LARCH_TLS_GD_PCREL20_S2`](#r_larch_tls_gd_pcrel20_s2) | const | 22-bit PC-relative offset to TLS GD GOT entry |
 | [`R_LARCH_TLS_DESC_PCREL20_S2`](#r_larch_tls_desc_pcrel20_s2) | const | 22-bit PC-relative offset to TLS DESC GOT entry |
@@ -5885,7 +5885,7 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`R_E2K_32_RELATIVE`](#r_e2k_32_relative) | const | Adjust by program base, 32-bit case. |
 | [`R_E2K_32_IRELATIVE`](#r_e2k_32_irelative) | const | Adjust indirectly by program base, 32-bit case. |
 | [`R_E2K_32_SIZE`](#r_e2k_32_size) | const | Size of symbol plus 32-bit addend. |
-| [`R_E2K_32_DYNOPT`](#r_e2k_32_dynopt) | const | Symbol value if resolved by the definition in the same |
+| [`R_E2K_32_DYNOPT`](#r_e2k_32_dynopt) | const | Symbol value if resolved by the definition in the same compilation unit or NULL otherwise, 32-bit case. |
 | [`R_E2K_64_ABS`](#r_e2k_64_abs) | const | Direct 64 bit. |
 | [`R_E2K_64_ABS_LIT`](#r_e2k_64_abs_lit) | const | Direct 64 bit for literal. |
 | [`R_E2K_64_PC_LIT`](#r_e2k_64_pc_lit) | const | PC relative 64 bit for literal. |
@@ -5918,7 +5918,7 @@ This module is the equivalent of /usr/include/elf.h, and is based heavily on it.
 | [`R_E2K_ISLOCAL`](#r_e2k_islocal) | const | Is symbol resolved locally during the link. |
 | [`R_E2K_ISLOCAL32`](#r_e2k_islocal32) | const | Is symbol resloved locally during the link. |
 | [`R_E2K_64_GOTOFF_LIT`](#r_e2k_64_gotoff_lit) | const | The symbol's offset from GOT encoded within a 64-bit literal. |
-| [`R_E2K_64_DYNOPT`](#r_e2k_64_dynopt) | const | Symbol value if resolved by the definition in the same |
+| [`R_E2K_64_DYNOPT`](#r_e2k_64_dynopt) | const | Symbol value if resolved by the definition in the same compilation unit or NULL otherwise, 64-bit case. |
 | [`R_E2K_64_PC`](#r_e2k_64_pc) | const | PC relative 64 bit in data. |
 | [`DT_E2K_LAZY`](#dt_e2k_lazy) | const |  |
 | [`DT_E2K_LAZY_GOT`](#dt_e2k_lazy_got) | const |  |
@@ -5954,6 +5954,8 @@ struct FileHeader32<E: Endian> {
     pub e_shstrndx: crate::endian::U16<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:17-58`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L17-L58)*
 
 The header at the start of every 32-bit ELF file.
 
@@ -6041,29 +6043,29 @@ The header at the start of every 32-bit ELF file.
 
 ##### `impl<Endian: endian::Endian> FileHeader for elf::FileHeader32<Endian>`
 
-- <span id="elffileheader32-word"></span>`type Word = u32`
+- <span id="elffileheader32-type-word"></span>`type Word = u32`
 
-- <span id="elffileheader32-sword"></span>`type Sword = i32`
+- <span id="elffileheader32-type-sword"></span>`type Sword = i32`
 
-- <span id="elffileheader32-endian"></span>`type Endian = Endian`
+- <span id="elffileheader32-type-endian"></span>`type Endian = Endian`
 
-- <span id="elffileheader32-programheader"></span>`type ProgramHeader = ProgramHeader32<Endian>`
+- <span id="elffileheader32-type-programheader"></span>`type ProgramHeader = ProgramHeader32<Endian>`
 
-- <span id="elffileheader32-sectionheader"></span>`type SectionHeader = SectionHeader32<Endian>`
+- <span id="elffileheader32-type-sectionheader"></span>`type SectionHeader = SectionHeader32<Endian>`
 
-- <span id="elffileheader32-compressionheader"></span>`type CompressionHeader = CompressionHeader32<Endian>`
+- <span id="elffileheader32-type-compressionheader"></span>`type CompressionHeader = CompressionHeader32<Endian>`
 
-- <span id="elffileheader32-noteheader"></span>`type NoteHeader = NoteHeader32<Endian>`
+- <span id="elffileheader32-type-noteheader"></span>`type NoteHeader = NoteHeader32<Endian>`
 
-- <span id="elffileheader32-dyn"></span>`type Dyn = Dyn32<Endian>`
+- <span id="elffileheader32-type-dyn"></span>`type Dyn = Dyn32<Endian>`
 
-- <span id="elffileheader32-sym"></span>`type Sym = Sym32<Endian>`
+- <span id="elffileheader32-type-sym"></span>`type Sym = Sym32<Endian>`
 
-- <span id="elffileheader32-rel"></span>`type Rel = Rel32<Endian>`
+- <span id="elffileheader32-type-rel"></span>`type Rel = Rel32<Endian>`
 
-- <span id="elffileheader32-rela"></span>`type Rela = Rela32<Endian>`
+- <span id="elffileheader32-type-rela"></span>`type Rela = Rela32<Endian>`
 
-- <span id="elffileheader32-relr"></span>`type Relr = Relr32<Endian>`
+- <span id="elffileheader32-type-relr"></span>`type Relr = Relr32<Endian>`
 
 - <span id="elffileheader32-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -6119,6 +6121,8 @@ struct FileHeader64<E: Endian> {
     pub e_shstrndx: crate::endian::U16<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:63-104`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L63-L104)*
 
 The header at the start of every 64-bit ELF file.
 
@@ -6206,29 +6210,29 @@ The header at the start of every 64-bit ELF file.
 
 ##### `impl<Endian: endian::Endian> FileHeader for elf::FileHeader64<Endian>`
 
-- <span id="elffileheader64-word"></span>`type Word = u64`
+- <span id="elffileheader64-type-word"></span>`type Word = u64`
 
-- <span id="elffileheader64-sword"></span>`type Sword = i64`
+- <span id="elffileheader64-type-sword"></span>`type Sword = i64`
 
-- <span id="elffileheader64-endian"></span>`type Endian = Endian`
+- <span id="elffileheader64-type-endian"></span>`type Endian = Endian`
 
-- <span id="elffileheader64-programheader"></span>`type ProgramHeader = ProgramHeader64<Endian>`
+- <span id="elffileheader64-type-programheader"></span>`type ProgramHeader = ProgramHeader64<Endian>`
 
-- <span id="elffileheader64-sectionheader"></span>`type SectionHeader = SectionHeader64<Endian>`
+- <span id="elffileheader64-type-sectionheader"></span>`type SectionHeader = SectionHeader64<Endian>`
 
-- <span id="elffileheader64-compressionheader"></span>`type CompressionHeader = CompressionHeader64<Endian>`
+- <span id="elffileheader64-type-compressionheader"></span>`type CompressionHeader = CompressionHeader64<Endian>`
 
-- <span id="elffileheader64-noteheader"></span>`type NoteHeader = NoteHeader32<Endian>`
+- <span id="elffileheader64-type-noteheader"></span>`type NoteHeader = NoteHeader32<Endian>`
 
-- <span id="elffileheader64-dyn"></span>`type Dyn = Dyn64<Endian>`
+- <span id="elffileheader64-type-dyn"></span>`type Dyn = Dyn64<Endian>`
 
-- <span id="elffileheader64-sym"></span>`type Sym = Sym64<Endian>`
+- <span id="elffileheader64-type-sym"></span>`type Sym = Sym64<Endian>`
 
-- <span id="elffileheader64-rel"></span>`type Rel = Rel64<Endian>`
+- <span id="elffileheader64-type-rel"></span>`type Rel = Rel64<Endian>`
 
-- <span id="elffileheader64-rela"></span>`type Rela = Rela64<Endian>`
+- <span id="elffileheader64-type-rela"></span>`type Rela = Rela64<Endian>`
 
-- <span id="elffileheader64-relr"></span>`type Relr = Relr64<Endian>`
+- <span id="elffileheader64-type-relr"></span>`type Relr = Relr64<Endian>`
 
 - <span id="elffileheader64-is-type-64"></span>`fn is_type_64(&self) -> bool`
 
@@ -6277,6 +6281,8 @@ struct Ident {
     pub padding: [u8; 7],
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:111-128`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L111-L128)*
 
 Magic number and other information.
 
@@ -6342,6 +6348,8 @@ struct SectionHeader32<E: Endian> {
     pub sh_entsize: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:594-621`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L594-L621)*
 
 Section header.
 
@@ -6409,11 +6417,11 @@ Section header.
 
 ##### `impl<Endian: endian::Endian> SectionHeader for elf::SectionHeader32<Endian>`
 
-- <span id="elfsectionheader32-elf"></span>`type Elf = FileHeader32<Endian>`
+- <span id="elfsectionheader32-type-elf"></span>`type Elf = FileHeader32<Endian>`
 
-- <span id="elfsectionheader32-word"></span>`type Word = u32`
+- <span id="elfsectionheader32-type-word"></span>`type Word = u32`
 
-- <span id="elfsectionheader32-endian"></span>`type Endian = Endian`
+- <span id="elfsectionheader32-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfsectionheader32-sh-name"></span>`fn sh_name(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
 
@@ -6451,6 +6459,8 @@ struct SectionHeader64<E: Endian> {
     pub sh_entsize: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:626-653`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L626-L653)*
 
 Section header.
 
@@ -6518,11 +6528,11 @@ Section header.
 
 ##### `impl<Endian: endian::Endian> SectionHeader for elf::SectionHeader64<Endian>`
 
-- <span id="elfsectionheader64-word"></span>`type Word = u64`
+- <span id="elfsectionheader64-type-word"></span>`type Word = u64`
 
-- <span id="elfsectionheader64-endian"></span>`type Endian = Endian`
+- <span id="elfsectionheader64-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfsectionheader64-elf"></span>`type Elf = FileHeader64<Endian>`
+- <span id="elfsectionheader64-type-elf"></span>`type Elf = FileHeader64<Endian>`
 
 - <span id="elfsectionheader64-sh-name"></span>`fn sh_name(&self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
 
@@ -6554,6 +6564,8 @@ struct CompressionHeader32<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:805-812`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L805-L812)*
+
 Section compression header.
 
 Used when `SHF_COMPRESSED` is set.
@@ -6583,9 +6595,9 @@ changed in a future version.
 
 ##### `impl<Endian: endian::Endian> CompressionHeader for elf::CompressionHeader32<Endian>`
 
-- <span id="elfcompressionheader32-word"></span>`type Word = u32`
+- <span id="elfcompressionheader32-type-word"></span>`type Word = u32`
 
-- <span id="elfcompressionheader32-endian"></span>`type Endian = Endian`
+- <span id="elfcompressionheader32-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfcompressionheader32-ch-type"></span>`fn ch_type(&self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md)
 
@@ -6615,6 +6627,8 @@ struct CompressionHeader64<E: Endian> {
     pub ch_addralign: crate::endian::U64Bytes<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:822-831`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L822-L831)*
 
 Section compression header.
 
@@ -6649,9 +6663,9 @@ changed in a future version.
 
 ##### `impl<Endian: endian::Endian> CompressionHeader for elf::CompressionHeader64<Endian>`
 
-- <span id="elfcompressionheader64-word"></span>`type Word = u64`
+- <span id="elfcompressionheader64-type-word"></span>`type Word = u64`
 
-- <span id="elfcompressionheader64-endian"></span>`type Endian = Endian`
+- <span id="elfcompressionheader64-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfcompressionheader64-ch-type"></span>`fn ch_type(&self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md)
 
@@ -6683,6 +6697,8 @@ struct Sym32<E: Endian> {
     pub st_shndx: crate::endian::U16<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:853-872`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L853-L872)*
 
 Symbol table entry.
 
@@ -6748,9 +6764,9 @@ Symbol table entry.
 
 ##### `impl<Endian: endian::Endian> Sym for elf::Sym32<Endian>`
 
-- <span id="elfsym32-word"></span>`type Word = u32`
+- <span id="elfsym32-type-word"></span>`type Word = u32`
 
-- <span id="elfsym32-endian"></span>`type Endian = Endian`
+- <span id="elfsym32-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfsym32-st-name"></span>`fn st_name(&self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md)
 
@@ -6782,6 +6798,8 @@ struct Sym64<E: Endian> {
     pub st_size: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:903-922`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L903-L922)*
 
 Symbol table entry.
 
@@ -6847,9 +6865,9 @@ Symbol table entry.
 
 ##### `impl<Endian: endian::Endian> Sym for elf::Sym64<Endian>`
 
-- <span id="elfsym64-word"></span>`type Word = u64`
+- <span id="elfsym64-type-word"></span>`type Word = u64`
 
-- <span id="elfsym64-endian"></span>`type Endian = Endian`
+- <span id="elfsym64-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfsym64-st-name"></span>`fn st_name(&self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md)
 
@@ -6877,6 +6895,8 @@ struct Syminfo32<E: Endian> {
     pub si_flags: crate::endian::U16<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:953-958`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L953-L958)*
 
 Additional information about a `Sym32`.
 
@@ -6913,6 +6933,8 @@ struct Syminfo64<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:963-968`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L963-L968)*
+
 Additional information about a `Sym64`.
 
 #### Fields
@@ -6947,6 +6969,8 @@ struct Rel32<E: Endian> {
     pub r_info: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1050-1055`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1050-L1055)*
 
 Relocation table entry without explicit addend.
 
@@ -6986,11 +7010,11 @@ Relocation table entry without explicit addend.
 
 ##### `impl<Endian: endian::Endian> Rel for elf::Rel32<Endian>`
 
-- <span id="elfrel32-word"></span>`type Word = u32`
+- <span id="elfrel32-type-word"></span>`type Word = u32`
 
-- <span id="elfrel32-sword"></span>`type Sword = i32`
+- <span id="elfrel32-type-sword"></span>`type Sword = i32`
 
-- <span id="elfrel32-endian"></span>`type Endian = Endian`
+- <span id="elfrel32-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfrel32-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md)
 
@@ -7009,6 +7033,8 @@ struct Rela32<E: Endian> {
     pub r_addend: crate::endian::I32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1084-1091`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1084-L1091)*
 
 Relocation table entry with explicit addend.
 
@@ -7052,11 +7078,11 @@ Relocation table entry with explicit addend.
 
 ##### `impl<Endian: endian::Endian> Rela for elf::Rela32<Endian>`
 
-- <span id="elfrela32-word"></span>`type Word = u32`
+- <span id="elfrela32-type-word"></span>`type Word = u32`
 
-- <span id="elfrela32-sword"></span>`type Sword = i32`
+- <span id="elfrela32-type-sword"></span>`type Sword = i32`
 
-- <span id="elfrela32-endian"></span>`type Endian = Endian`
+- <span id="elfrela32-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfrela32-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md)
 
@@ -7076,6 +7102,8 @@ struct Rel64<E: Endian> {
     pub r_info: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1130-1135`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1130-L1135)*
 
 Relocation table entry without explicit addend.
 
@@ -7115,11 +7143,11 @@ Relocation table entry without explicit addend.
 
 ##### `impl<Endian: endian::Endian> Rel for elf::Rel64<Endian>`
 
-- <span id="elfrel64-word"></span>`type Word = u64`
+- <span id="elfrel64-type-word"></span>`type Word = u64`
 
-- <span id="elfrel64-sword"></span>`type Sword = i64`
+- <span id="elfrel64-type-sword"></span>`type Sword = i64`
 
-- <span id="elfrel64-endian"></span>`type Endian = Endian`
+- <span id="elfrel64-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfrel64-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md)
 
@@ -7138,6 +7166,8 @@ struct Rela64<E: Endian> {
     pub r_addend: crate::endian::I64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1174-1181`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1174-L1181)*
 
 Relocation table entry with explicit addend.
 
@@ -7183,11 +7213,11 @@ Relocation table entry with explicit addend.
 
 ##### `impl<Endian: endian::Endian> Rela for elf::Rela64<Endian>`
 
-- <span id="elfrela64-word"></span>`type Word = u64`
+- <span id="elfrela64-type-word"></span>`type Word = u64`
 
-- <span id="elfrela64-sword"></span>`type Sword = i64`
+- <span id="elfrela64-type-sword"></span>`type Sword = i64`
 
-- <span id="elfrela64-endian"></span>`type Endian = Endian`
+- <span id="elfrela64-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfrela64-r-offset"></span>`fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md)
 
@@ -7204,6 +7234,8 @@ Relocation table entry with explicit addend.
 ```rust
 struct Relr32<E: Endian>(crate::endian::U32<E>);
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1230`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1230)*
 
 32-bit relative relocation table entry.
 
@@ -7223,11 +7255,11 @@ struct Relr32<E: Endian>(crate::endian::U32<E>);
 
 ##### `impl<Endian: endian::Endian> Relr for elf::Relr32<Endian>`
 
-- <span id="elfrelr32-word"></span>`type Word = u32`
+- <span id="elfrelr32-type-word"></span>`type Word = u32`
 
-- <span id="elfrelr32-endian"></span>`type Endian = Endian`
+- <span id="elfrelr32-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfrelr32-count"></span>`const COUNT: u8`
+- <span id="elfrelr32-const-count"></span>`const COUNT: u8`
 
 - <span id="elfrelr32-get"></span>`fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md)
 
@@ -7238,6 +7270,8 @@ struct Relr32<E: Endian>(crate::endian::U32<E>);
 ```rust
 struct Relr64<E: Endian>(crate::endian::U64<E>);
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1235`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1235)*
 
 64-bit relative relocation table entry.
 
@@ -7257,11 +7291,11 @@ struct Relr64<E: Endian>(crate::endian::U64<E>);
 
 ##### `impl<Endian: endian::Endian> Relr for elf::Relr64<Endian>`
 
-- <span id="elfrelr64-word"></span>`type Word = u64`
+- <span id="elfrelr64-type-word"></span>`type Word = u64`
 
-- <span id="elfrelr64-endian"></span>`type Endian = Endian`
+- <span id="elfrelr64-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfrelr64-count"></span>`const COUNT: u8`
+- <span id="elfrelr64-const-count"></span>`const COUNT: u8`
 
 - <span id="elfrelr64-get"></span>`fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md)
 
@@ -7281,6 +7315,8 @@ struct ProgramHeader32<E: Endian> {
     pub p_align: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1240-1257`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1240-L1257)*
 
 Program segment header.
 
@@ -7334,11 +7370,11 @@ Program segment header.
 
 ##### `impl<Endian: endian::Endian> ProgramHeader for elf::ProgramHeader32<Endian>`
 
-- <span id="elfprogramheader32-word"></span>`type Word = u32`
+- <span id="elfprogramheader32-type-word"></span>`type Word = u32`
 
-- <span id="elfprogramheader32-endian"></span>`type Endian = Endian`
+- <span id="elfprogramheader32-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfprogramheader32-elf"></span>`type Elf = FileHeader32<Endian>`
+- <span id="elfprogramheader32-type-elf"></span>`type Elf = FileHeader32<Endian>`
 
 - <span id="elfprogramheader32-p-type"></span>`fn p_type(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md)
 
@@ -7370,6 +7406,8 @@ struct ProgramHeader64<E: Endian> {
     pub p_align: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1262-1279`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1262-L1279)*
 
 Program segment header.
 
@@ -7423,11 +7461,11 @@ Program segment header.
 
 ##### `impl<Endian: endian::Endian> ProgramHeader for elf::ProgramHeader64<Endian>`
 
-- <span id="elfprogramheader64-word"></span>`type Word = u64`
+- <span id="elfprogramheader64-type-word"></span>`type Word = u64`
 
-- <span id="elfprogramheader64-endian"></span>`type Endian = Endian`
+- <span id="elfprogramheader64-type-endian"></span>`type Endian = Endian`
 
-- <span id="elfprogramheader64-elf"></span>`type Elf = FileHeader64<Endian>`
+- <span id="elfprogramheader64-type-elf"></span>`type Elf = FileHeader64<Endian>`
 
 - <span id="elfprogramheader64-p-type"></span>`fn p_type(&self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md)
 
@@ -7453,6 +7491,8 @@ struct Dyn32<E: Endian> {
     pub d_val: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1482-1487`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1482-L1487)*
 
 Dynamic section entry.
 
@@ -7480,9 +7520,9 @@ Dynamic section entry.
 
 ##### `impl<Endian: endian::Endian> Dyn for elf::Dyn32<Endian>`
 
-- <span id="elfdyn32-word"></span>`type Word = u32`
+- <span id="elfdyn32-type-word"></span>`type Word = u32`
 
-- <span id="elfdyn32-endian"></span>`type Endian = Endian`
+- <span id="elfdyn32-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfdyn32-d-tag"></span>`fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md)
 
@@ -7498,6 +7538,8 @@ struct Dyn64<E: Endian> {
     pub d_val: crate::endian::U64<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1492-1497`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1492-L1497)*
 
 Dynamic section entry.
 
@@ -7525,9 +7567,9 @@ Dynamic section entry.
 
 ##### `impl<Endian: endian::Endian> Dyn for elf::Dyn64<Endian>`
 
-- <span id="elfdyn64-word"></span>`type Word = u64`
+- <span id="elfdyn64-type-word"></span>`type Word = u64`
 
-- <span id="elfdyn64-endian"></span>`type Endian = Endian`
+- <span id="elfdyn64-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfdyn64-d-tag"></span>`fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md)
 
@@ -7540,6 +7582,8 @@ Dynamic section entry.
 ```rust
 struct Versym<E: Endian>(crate::endian::U16<E>);
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1717`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1717)*
 
 Version symbol information
 
@@ -7570,6 +7614,8 @@ struct Verdef<E: Endian> {
     pub vd_next: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1727-1742`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1727-L1742)*
 
 Version definition sections
 
@@ -7626,6 +7672,8 @@ struct Verdaux<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1766-1771`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1766-L1771)*
+
 Auxiliary version information.
 
 #### Fields
@@ -7667,6 +7715,8 @@ struct Verneed<E: Endian> {
     pub vn_next: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1776-1787`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1776-L1787)*
 
 Version dependency.
 
@@ -7722,6 +7772,8 @@ struct Vernaux<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1798-1809`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1798-L1809)*
+
 Auxiliary needed version information.
 
 #### Fields
@@ -7774,6 +7826,8 @@ struct NoteHeader32<E: Endian> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1818-1832`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1818-L1832)*
+
 Note section entry header.
 
 A note consists of a header followed by a variable length name and descriptor.
@@ -7813,7 +7867,7 @@ A note consists of a header followed by a variable length name and descriptor.
 
 ##### `impl<Endian: endian::Endian> NoteHeader for elf::NoteHeader32<Endian>`
 
-- <span id="elfnoteheader32-endian"></span>`type Endian = Endian`
+- <span id="elfnoteheader32-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfnoteheader32-n-namesz"></span>`fn n_namesz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
 
@@ -7832,6 +7886,8 @@ struct NoteHeader64<E: Endian> {
     pub n_type: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1837-1851`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1837-L1851)*
 
 Note section entry header.
 
@@ -7870,7 +7926,7 @@ Note section entry header.
 
 ##### `impl<Endian: endian::Endian> NoteHeader for elf::NoteHeader64<Endian>`
 
-- <span id="elfnoteheader64-endian"></span>`type Endian = Endian`
+- <span id="elfnoteheader64-type-endian"></span>`type Endian = Endian`
 
 - <span id="elfnoteheader64-n-namesz"></span>`fn n_namesz(&self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
 
@@ -7888,6 +7944,8 @@ struct HashHeader<E: Endian> {
     pub chain_count: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2004-2013`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2004-L2013)*
 
 Header of `SHT_HASH` section.
 
@@ -7925,6 +7983,8 @@ struct GnuHashHeader<E: Endian> {
     pub bloom_shift: crate::endian::U32<E>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2030-2047`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2030-L2047)*
 
 Header of `SHT_GNU_HASH` section.
 
@@ -7970,6 +8030,8 @@ Header of `SHT_GNU_HASH` section.
 fn hash(name: &[u8]) -> u32
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2018-2025`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2018-L2025)*
+
 Calculate the SysV hash for a symbol name.
 
 Used for `SHT_HASH`.
@@ -7979,6 +8041,8 @@ Used for `SHT_HASH`.
 ```rust
 fn gnu_hash(name: &[u8]) -> u32
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2052-2058`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2052-L2058)*
 
 Calculate the GNU hash for a symbol name.
 
@@ -7990,6 +8054,8 @@ Used for `SHT_GNU_HASH`.
 const fn ef_e2k_mach_to_flag(e_flags: u32, x: u32) -> u32
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6339-6341`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6339-L6341)*
+
 Encode `E_E2K_MACH_*` into `FileHeader*::e_flags`.
 
 ### `ef_e2k_flag_to_mach`
@@ -7998,2635 +8064,2966 @@ Encode `E_E2K_MACH_*` into `FileHeader*::e_flags`.
 const fn ef_e2k_flag_to_mach(e_flags: u32) -> u32
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6344-6346`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6344-L6346)*
+
 Decode `E_E2K_MACH_*` from `FileHeader*::e_flags`.
 
 ## Constants
 
 ### `ELFMAG`
-
 ```rust
 const ELFMAG: [u8; 4];
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:131`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L131)*
+
 File identification bytes stored in `Ident::magic`.
 
 ### `ELFCLASSNONE`
-
 ```rust
 const ELFCLASSNONE: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:135`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L135)*
+
 Invalid class.
 
 ### `ELFCLASS32`
-
 ```rust
 const ELFCLASS32: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:137`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L137)*
+
 32-bit object.
 
 ### `ELFCLASS64`
-
 ```rust
 const ELFCLASS64: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:139`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L139)*
+
 64-bit object.
 
 ### `ELFDATANONE`
-
 ```rust
 const ELFDATANONE: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:143`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L143)*
+
 Invalid data encoding.
 
 ### `ELFDATA2LSB`
-
 ```rust
 const ELFDATA2LSB: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:145`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L145)*
+
 2's complement, little endian.
 
 ### `ELFDATA2MSB`
-
 ```rust
 const ELFDATA2MSB: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:147`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L147)*
+
 2's complement, big endian.
 
 ### `ELFOSABI_NONE`
-
 ```rust
 const ELFOSABI_NONE: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:151`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L151)*
+
 UNIX System V ABI.
 
 ### `ELFOSABI_SYSV`
-
 ```rust
 const ELFOSABI_SYSV: u8 = 0u8;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:155`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L155)*
 
 UNIX System V ABI.
 
 Alias.
 
 ### `ELFOSABI_HPUX`
-
 ```rust
 const ELFOSABI_HPUX: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:157`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L157)*
+
 HP-UX.
 
 ### `ELFOSABI_NETBSD`
-
 ```rust
 const ELFOSABI_NETBSD: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:159`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L159)*
+
 NetBSD.
 
 ### `ELFOSABI_GNU`
-
 ```rust
 const ELFOSABI_GNU: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:161`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L161)*
+
 Object uses GNU ELF extensions.
 
 ### `ELFOSABI_LINUX`
-
 ```rust
 const ELFOSABI_LINUX: u8 = 3u8;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:165`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L165)*
 
 Object uses GNU ELF extensions.
 
 Compatibility alias.
 
 ### `ELFOSABI_HURD`
-
 ```rust
 const ELFOSABI_HURD: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:167`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L167)*
+
 GNU/Hurd.
 
 ### `ELFOSABI_SOLARIS`
-
 ```rust
 const ELFOSABI_SOLARIS: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:169`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L169)*
+
 Sun Solaris.
 
 ### `ELFOSABI_AIX`
-
 ```rust
 const ELFOSABI_AIX: u8 = 7u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:171`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L171)*
+
 IBM AIX.
 
 ### `ELFOSABI_IRIX`
-
 ```rust
 const ELFOSABI_IRIX: u8 = 8u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:173`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L173)*
+
 SGI Irix.
 
 ### `ELFOSABI_FREEBSD`
-
 ```rust
 const ELFOSABI_FREEBSD: u8 = 9u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:175`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L175)*
+
 FreeBSD.
 
 ### `ELFOSABI_TRU64`
-
 ```rust
 const ELFOSABI_TRU64: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:177`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L177)*
+
 Compaq TRU64 UNIX.
 
 ### `ELFOSABI_MODESTO`
-
 ```rust
 const ELFOSABI_MODESTO: u8 = 11u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:179`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L179)*
+
 Novell Modesto.
 
 ### `ELFOSABI_OPENBSD`
-
 ```rust
 const ELFOSABI_OPENBSD: u8 = 12u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:181`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L181)*
+
 OpenBSD.
 
 ### `ELFOSABI_OPENVMS`
-
 ```rust
 const ELFOSABI_OPENVMS: u8 = 13u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:183`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L183)*
+
 OpenVMS.
 
 ### `ELFOSABI_NSK`
-
 ```rust
 const ELFOSABI_NSK: u8 = 14u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:185`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L185)*
+
 Hewlett-Packard Non-Stop Kernel.
 
 ### `ELFOSABI_AROS`
-
 ```rust
 const ELFOSABI_AROS: u8 = 15u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:187`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L187)*
+
 AROS
 
 ### `ELFOSABI_FENIXOS`
-
 ```rust
 const ELFOSABI_FENIXOS: u8 = 16u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:189`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L189)*
+
 FenixOS
 
 ### `ELFOSABI_CLOUDABI`
-
 ```rust
 const ELFOSABI_CLOUDABI: u8 = 17u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:191`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L191)*
+
 Nuxi CloudABI
 
 ### `ELFOSABI_ARM_AEABI`
-
 ```rust
 const ELFOSABI_ARM_AEABI: u8 = 64u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:193`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L193)*
+
 ARM EABI.
 
 ### `ELFOSABI_ARM`
-
 ```rust
 const ELFOSABI_ARM: u8 = 97u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:195`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L195)*
+
 ARM.
 
 ### `ELFOSABI_STANDALONE`
-
 ```rust
 const ELFOSABI_STANDALONE: u8 = 255u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:197`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L197)*
+
 Standalone (embedded) application.
 
 ### `ET_NONE`
-
 ```rust
 const ET_NONE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:201`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L201)*
+
 No file type.
 
 ### `ET_REL`
-
 ```rust
 const ET_REL: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:203`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L203)*
+
 Relocatable file.
 
 ### `ET_EXEC`
-
 ```rust
 const ET_EXEC: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:205`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L205)*
+
 Executable file.
 
 ### `ET_DYN`
-
 ```rust
 const ET_DYN: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:207`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L207)*
+
 Shared object file.
 
 ### `ET_CORE`
-
 ```rust
 const ET_CORE: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:209`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L209)*
+
 Core file.
 
 ### `ET_LOOS`
-
 ```rust
 const ET_LOOS: u16 = 65_024u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:211`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L211)*
+
 OS-specific range start.
 
 ### `ET_HIOS`
-
 ```rust
 const ET_HIOS: u16 = 65_279u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:213`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L213)*
+
 OS-specific range end.
 
 ### `ET_LOPROC`
-
 ```rust
 const ET_LOPROC: u16 = 65_280u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:215`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L215)*
+
 Processor-specific range start.
 
 ### `ET_HIPROC`
-
 ```rust
 const ET_HIPROC: u16 = 65_535u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:217`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L217)*
+
 Processor-specific range end.
 
 ### `EM_NONE`
-
 ```rust
 const EM_NONE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:221`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L221)*
+
 No machine
 
 ### `EM_M32`
-
 ```rust
 const EM_M32: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:223`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L223)*
+
 AT&T WE 32100
 
 ### `EM_SPARC`
-
 ```rust
 const EM_SPARC: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:225`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L225)*
+
 SUN SPARC
 
 ### `EM_386`
-
 ```rust
 const EM_386: u16 = 3u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:227`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L227)*
+
 Intel 80386
 
 ### `EM_68K`
-
 ```rust
 const EM_68K: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:229`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L229)*
+
 Motorola m68k family
 
 ### `EM_88K`
-
 ```rust
 const EM_88K: u16 = 5u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:231`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L231)*
+
 Motorola m88k family
 
 ### `EM_IAMCU`
-
 ```rust
 const EM_IAMCU: u16 = 6u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:233`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L233)*
+
 Intel MCU
 
 ### `EM_860`
-
 ```rust
 const EM_860: u16 = 7u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:235`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L235)*
+
 Intel 80860
 
 ### `EM_MIPS`
-
 ```rust
 const EM_MIPS: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:237`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L237)*
+
 MIPS R3000 big-endian
 
 ### `EM_S370`
-
 ```rust
 const EM_S370: u16 = 9u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:239`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L239)*
+
 IBM System/370
 
 ### `EM_MIPS_RS3_LE`
-
 ```rust
 const EM_MIPS_RS3_LE: u16 = 10u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:241`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L241)*
+
 MIPS R3000 little-endian
 
 ### `EM_PARISC`
-
 ```rust
 const EM_PARISC: u16 = 15u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:243`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L243)*
+
 HPPA
 
 ### `EM_VPP500`
-
 ```rust
 const EM_VPP500: u16 = 17u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:245`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L245)*
+
 Fujitsu VPP500
 
 ### `EM_SPARC32PLUS`
-
 ```rust
 const EM_SPARC32PLUS: u16 = 18u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:247`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L247)*
+
 Sun's "v8plus"
 
 ### `EM_960`
-
 ```rust
 const EM_960: u16 = 19u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:249`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L249)*
+
 Intel 80960
 
 ### `EM_PPC`
-
 ```rust
 const EM_PPC: u16 = 20u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:251`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L251)*
+
 PowerPC
 
 ### `EM_PPC64`
-
 ```rust
 const EM_PPC64: u16 = 21u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:253`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L253)*
+
 PowerPC 64-bit
 
 ### `EM_S390`
-
 ```rust
 const EM_S390: u16 = 22u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:255`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L255)*
+
 IBM S390
 
 ### `EM_SPU`
-
 ```rust
 const EM_SPU: u16 = 23u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:257`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L257)*
+
 IBM SPU/SPC
 
 ### `EM_V800`
-
 ```rust
 const EM_V800: u16 = 36u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:259`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L259)*
+
 NEC V800 series
 
 ### `EM_FR20`
-
 ```rust
 const EM_FR20: u16 = 37u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:261`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L261)*
+
 Fujitsu FR20
 
 ### `EM_RH32`
-
 ```rust
 const EM_RH32: u16 = 38u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:263`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L263)*
+
 TRW RH-32
 
 ### `EM_RCE`
-
 ```rust
 const EM_RCE: u16 = 39u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:265`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L265)*
+
 Motorola RCE
 
 ### `EM_ARM`
-
 ```rust
 const EM_ARM: u16 = 40u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:267`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L267)*
+
 ARM
 
 ### `EM_FAKE_ALPHA`
-
 ```rust
 const EM_FAKE_ALPHA: u16 = 41u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:269`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L269)*
+
 Digital Alpha
 
 ### `EM_SH`
-
 ```rust
 const EM_SH: u16 = 42u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:271`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L271)*
+
 Hitachi SH
 
 ### `EM_SPARCV9`
-
 ```rust
 const EM_SPARCV9: u16 = 43u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:273`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L273)*
+
 SPARC v9 64-bit
 
 ### `EM_TRICORE`
-
 ```rust
 const EM_TRICORE: u16 = 44u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:275`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L275)*
+
 Siemens Tricore
 
 ### `EM_ARC`
-
 ```rust
 const EM_ARC: u16 = 45u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:277`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L277)*
+
 Argonaut RISC Core
 
 ### `EM_H8_300`
-
 ```rust
 const EM_H8_300: u16 = 46u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:279`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L279)*
+
 Hitachi H8/300
 
 ### `EM_H8_300H`
-
 ```rust
 const EM_H8_300H: u16 = 47u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:281`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L281)*
+
 Hitachi H8/300H
 
 ### `EM_H8S`
-
 ```rust
 const EM_H8S: u16 = 48u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:283`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L283)*
+
 Hitachi H8S
 
 ### `EM_H8_500`
-
 ```rust
 const EM_H8_500: u16 = 49u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:285`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L285)*
+
 Hitachi H8/500
 
 ### `EM_IA_64`
-
 ```rust
 const EM_IA_64: u16 = 50u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:287`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L287)*
+
 Intel Merced
 
 ### `EM_MIPS_X`
-
 ```rust
 const EM_MIPS_X: u16 = 51u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:289`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L289)*
+
 Stanford MIPS-X
 
 ### `EM_COLDFIRE`
-
 ```rust
 const EM_COLDFIRE: u16 = 52u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:291`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L291)*
+
 Motorola Coldfire
 
 ### `EM_68HC12`
-
 ```rust
 const EM_68HC12: u16 = 53u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:293`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L293)*
+
 Motorola M68HC12
 
 ### `EM_MMA`
-
 ```rust
 const EM_MMA: u16 = 54u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:295`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L295)*
+
 Fujitsu MMA Multimedia Accelerator
 
 ### `EM_PCP`
-
 ```rust
 const EM_PCP: u16 = 55u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:297`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L297)*
+
 Siemens PCP
 
 ### `EM_NCPU`
-
 ```rust
 const EM_NCPU: u16 = 56u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:299`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L299)*
+
 Sony nCPU embeeded RISC
 
 ### `EM_NDR1`
-
 ```rust
 const EM_NDR1: u16 = 57u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:301`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L301)*
+
 Denso NDR1 microprocessor
 
 ### `EM_STARCORE`
-
 ```rust
 const EM_STARCORE: u16 = 58u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:303`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L303)*
+
 Motorola Start*Core processor
 
 ### `EM_ME16`
-
 ```rust
 const EM_ME16: u16 = 59u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:305`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L305)*
+
 Toyota ME16 processor
 
 ### `EM_ST100`
-
 ```rust
 const EM_ST100: u16 = 60u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:307`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L307)*
+
 STMicroelectronic ST100 processor
 
 ### `EM_TINYJ`
-
 ```rust
 const EM_TINYJ: u16 = 61u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:309`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L309)*
+
 Advanced Logic Corp. Tinyj emb.fam
 
 ### `EM_X86_64`
-
 ```rust
 const EM_X86_64: u16 = 62u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:311`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L311)*
+
 AMD x86-64 architecture
 
 ### `EM_PDSP`
-
 ```rust
 const EM_PDSP: u16 = 63u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:313`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L313)*
+
 Sony DSP Processor
 
 ### `EM_PDP10`
-
 ```rust
 const EM_PDP10: u16 = 64u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:315`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L315)*
+
 Digital PDP-10
 
 ### `EM_PDP11`
-
 ```rust
 const EM_PDP11: u16 = 65u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:317`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L317)*
+
 Digital PDP-11
 
 ### `EM_FX66`
-
 ```rust
 const EM_FX66: u16 = 66u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:319`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L319)*
+
 Siemens FX66 microcontroller
 
 ### `EM_ST9PLUS`
-
 ```rust
 const EM_ST9PLUS: u16 = 67u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:321`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L321)*
+
 STMicroelectronics ST9+ 8/16 mc
 
 ### `EM_ST7`
-
 ```rust
 const EM_ST7: u16 = 68u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:323`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L323)*
+
 STmicroelectronics ST7 8 bit mc
 
 ### `EM_68HC16`
-
 ```rust
 const EM_68HC16: u16 = 69u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:325`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L325)*
+
 Motorola MC68HC16 microcontroller
 
 ### `EM_68HC11`
-
 ```rust
 const EM_68HC11: u16 = 70u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:327`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L327)*
+
 Motorola MC68HC11 microcontroller
 
 ### `EM_68HC08`
-
 ```rust
 const EM_68HC08: u16 = 71u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:329`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L329)*
+
 Motorola MC68HC08 microcontroller
 
 ### `EM_68HC05`
-
 ```rust
 const EM_68HC05: u16 = 72u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:331`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L331)*
+
 Motorola MC68HC05 microcontroller
 
 ### `EM_SVX`
-
 ```rust
 const EM_SVX: u16 = 73u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:333`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L333)*
+
 Silicon Graphics SVx
 
 ### `EM_ST19`
-
 ```rust
 const EM_ST19: u16 = 74u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:335`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L335)*
+
 STMicroelectronics ST19 8 bit mc
 
 ### `EM_VAX`
-
 ```rust
 const EM_VAX: u16 = 75u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:337`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L337)*
+
 Digital VAX
 
 ### `EM_CRIS`
-
 ```rust
 const EM_CRIS: u16 = 76u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:339`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L339)*
+
 Axis Communications 32-bit emb.proc
 
 ### `EM_JAVELIN`
-
 ```rust
 const EM_JAVELIN: u16 = 77u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:341`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L341)*
+
 Infineon Technologies 32-bit emb.proc
 
 ### `EM_FIREPATH`
-
 ```rust
 const EM_FIREPATH: u16 = 78u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:343`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L343)*
+
 Element 14 64-bit DSP Processor
 
 ### `EM_ZSP`
-
 ```rust
 const EM_ZSP: u16 = 79u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:345`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L345)*
+
 LSI Logic 16-bit DSP Processor
 
 ### `EM_MMIX`
-
 ```rust
 const EM_MMIX: u16 = 80u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:347`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L347)*
+
 Donald Knuth's educational 64-bit proc
 
 ### `EM_HUANY`
-
 ```rust
 const EM_HUANY: u16 = 81u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:349`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L349)*
+
 Harvard University machine-independent object files
 
 ### `EM_PRISM`
-
 ```rust
 const EM_PRISM: u16 = 82u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:351`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L351)*
+
 SiTera Prism
 
 ### `EM_AVR`
-
 ```rust
 const EM_AVR: u16 = 83u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:353`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L353)*
+
 Atmel AVR 8-bit microcontroller
 
 ### `EM_FR30`
-
 ```rust
 const EM_FR30: u16 = 84u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:355`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L355)*
+
 Fujitsu FR30
 
 ### `EM_D10V`
-
 ```rust
 const EM_D10V: u16 = 85u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:357`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L357)*
+
 Mitsubishi D10V
 
 ### `EM_D30V`
-
 ```rust
 const EM_D30V: u16 = 86u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:359`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L359)*
+
 Mitsubishi D30V
 
 ### `EM_V850`
-
 ```rust
 const EM_V850: u16 = 87u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:361`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L361)*
+
 NEC v850
 
 ### `EM_M32R`
-
 ```rust
 const EM_M32R: u16 = 88u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:363`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L363)*
+
 Mitsubishi M32R
 
 ### `EM_MN10300`
-
 ```rust
 const EM_MN10300: u16 = 89u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:365`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L365)*
+
 Matsushita MN10300
 
 ### `EM_MN10200`
-
 ```rust
 const EM_MN10200: u16 = 90u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:367`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L367)*
+
 Matsushita MN10200
 
 ### `EM_PJ`
-
 ```rust
 const EM_PJ: u16 = 91u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:369`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L369)*
+
 picoJava
 
 ### `EM_OPENRISC`
-
 ```rust
 const EM_OPENRISC: u16 = 92u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:371`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L371)*
+
 OpenRISC 32-bit embedded processor
 
 ### `EM_ARC_COMPACT`
-
 ```rust
 const EM_ARC_COMPACT: u16 = 93u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:373`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L373)*
+
 ARC International ARCompact
 
 ### `EM_XTENSA`
-
 ```rust
 const EM_XTENSA: u16 = 94u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:375`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L375)*
+
 Tensilica Xtensa Architecture
 
 ### `EM_VIDEOCORE`
-
 ```rust
 const EM_VIDEOCORE: u16 = 95u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:377`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L377)*
+
 Alphamosaic VideoCore
 
 ### `EM_TMM_GPP`
-
 ```rust
 const EM_TMM_GPP: u16 = 96u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:379`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L379)*
+
 Thompson Multimedia General Purpose Proc
 
 ### `EM_NS32K`
-
 ```rust
 const EM_NS32K: u16 = 97u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:381`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L381)*
+
 National Semi. 32000
 
 ### `EM_TPC`
-
 ```rust
 const EM_TPC: u16 = 98u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:383`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L383)*
+
 Tenor Network TPC
 
 ### `EM_SNP1K`
-
 ```rust
 const EM_SNP1K: u16 = 99u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:385`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L385)*
+
 Trebia SNP 1000
 
 ### `EM_ST200`
-
 ```rust
 const EM_ST200: u16 = 100u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:387`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L387)*
+
 STMicroelectronics ST200
 
 ### `EM_IP2K`
-
 ```rust
 const EM_IP2K: u16 = 101u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:389`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L389)*
+
 Ubicom IP2xxx
 
 ### `EM_MAX`
-
 ```rust
 const EM_MAX: u16 = 102u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:391`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L391)*
+
 MAX processor
 
 ### `EM_CR`
-
 ```rust
 const EM_CR: u16 = 103u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:393`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L393)*
+
 National Semi. CompactRISC
 
 ### `EM_F2MC16`
-
 ```rust
 const EM_F2MC16: u16 = 104u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:395`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L395)*
+
 Fujitsu F2MC16
 
 ### `EM_MSP430`
-
 ```rust
 const EM_MSP430: u16 = 105u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:397`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L397)*
+
 Texas Instruments msp430
 
 ### `EM_BLACKFIN`
-
 ```rust
 const EM_BLACKFIN: u16 = 106u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:399`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L399)*
+
 Analog Devices Blackfin DSP
 
 ### `EM_SE_C33`
-
 ```rust
 const EM_SE_C33: u16 = 107u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:401`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L401)*
+
 Seiko Epson S1C33 family
 
 ### `EM_SEP`
-
 ```rust
 const EM_SEP: u16 = 108u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:403`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L403)*
+
 Sharp embedded microprocessor
 
 ### `EM_ARCA`
-
 ```rust
 const EM_ARCA: u16 = 109u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:405`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L405)*
+
 Arca RISC
 
 ### `EM_UNICORE`
-
 ```rust
 const EM_UNICORE: u16 = 110u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:407`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L407)*
+
 PKU-Unity & MPRC Peking Uni. mc series
 
 ### `EM_EXCESS`
-
 ```rust
 const EM_EXCESS: u16 = 111u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:409`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L409)*
+
 eXcess configurable cpu
 
 ### `EM_DXP`
-
 ```rust
 const EM_DXP: u16 = 112u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:411`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L411)*
+
 Icera Semi. Deep Execution Processor
 
 ### `EM_ALTERA_NIOS2`
-
 ```rust
 const EM_ALTERA_NIOS2: u16 = 113u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:413`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L413)*
+
 Altera Nios II
 
 ### `EM_CRX`
-
 ```rust
 const EM_CRX: u16 = 114u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:415`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L415)*
+
 National Semi. CompactRISC CRX
 
 ### `EM_XGATE`
-
 ```rust
 const EM_XGATE: u16 = 115u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:417`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L417)*
+
 Motorola XGATE
 
 ### `EM_C166`
-
 ```rust
 const EM_C166: u16 = 116u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:419`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L419)*
+
 Infineon C16x/XC16x
 
 ### `EM_M16C`
-
 ```rust
 const EM_M16C: u16 = 117u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:421`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L421)*
+
 Renesas M16C
 
 ### `EM_DSPIC30F`
-
 ```rust
 const EM_DSPIC30F: u16 = 118u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:423`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L423)*
+
 Microchip Technology dsPIC30F
 
 ### `EM_CE`
-
 ```rust
 const EM_CE: u16 = 119u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:425`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L425)*
+
 Freescale Communication Engine RISC
 
 ### `EM_M32C`
-
 ```rust
 const EM_M32C: u16 = 120u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:427`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L427)*
+
 Renesas M32C
 
 ### `EM_TSK3000`
-
 ```rust
 const EM_TSK3000: u16 = 131u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:429`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L429)*
+
 Altium TSK3000
 
 ### `EM_RS08`
-
 ```rust
 const EM_RS08: u16 = 132u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:431`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L431)*
+
 Freescale RS08
 
 ### `EM_SHARC`
-
 ```rust
 const EM_SHARC: u16 = 133u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:433`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L433)*
+
 Analog Devices SHARC family
 
 ### `EM_ECOG2`
-
 ```rust
 const EM_ECOG2: u16 = 134u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:435`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L435)*
+
 Cyan Technology eCOG2
 
 ### `EM_SCORE7`
-
 ```rust
 const EM_SCORE7: u16 = 135u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:437`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L437)*
+
 Sunplus S+core7 RISC
 
 ### `EM_DSP24`
-
 ```rust
 const EM_DSP24: u16 = 136u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:439`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L439)*
+
 New Japan Radio (NJR) 24-bit DSP
 
 ### `EM_VIDEOCORE3`
-
 ```rust
 const EM_VIDEOCORE3: u16 = 137u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:441`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L441)*
+
 Broadcom VideoCore III
 
 ### `EM_LATTICEMICO32`
-
 ```rust
 const EM_LATTICEMICO32: u16 = 138u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:443`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L443)*
+
 RISC for Lattice FPGA
 
 ### `EM_SE_C17`
-
 ```rust
 const EM_SE_C17: u16 = 139u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:445`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L445)*
+
 Seiko Epson C17
 
 ### `EM_TI_C6000`
-
 ```rust
 const EM_TI_C6000: u16 = 140u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:447`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L447)*
+
 Texas Instruments TMS320C6000 DSP
 
 ### `EM_TI_C2000`
-
 ```rust
 const EM_TI_C2000: u16 = 141u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:449`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L449)*
+
 Texas Instruments TMS320C2000 DSP
 
 ### `EM_TI_C5500`
-
 ```rust
 const EM_TI_C5500: u16 = 142u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:451`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L451)*
+
 Texas Instruments TMS320C55x DSP
 
 ### `EM_TI_ARP32`
-
 ```rust
 const EM_TI_ARP32: u16 = 143u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:453`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L453)*
+
 Texas Instruments App. Specific RISC
 
 ### `EM_TI_PRU`
-
 ```rust
 const EM_TI_PRU: u16 = 144u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:455`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L455)*
+
 Texas Instruments Prog. Realtime Unit
 
 ### `EM_MMDSP_PLUS`
-
 ```rust
 const EM_MMDSP_PLUS: u16 = 160u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:457`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L457)*
+
 STMicroelectronics 64bit VLIW DSP
 
 ### `EM_CYPRESS_M8C`
-
 ```rust
 const EM_CYPRESS_M8C: u16 = 161u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:459`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L459)*
+
 Cypress M8C
 
 ### `EM_R32C`
-
 ```rust
 const EM_R32C: u16 = 162u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:461`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L461)*
+
 Renesas R32C
 
 ### `EM_TRIMEDIA`
-
 ```rust
 const EM_TRIMEDIA: u16 = 163u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:463`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L463)*
+
 NXP Semi. TriMedia
 
 ### `EM_HEXAGON`
-
 ```rust
 const EM_HEXAGON: u16 = 164u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:465`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L465)*
+
 QUALCOMM Hexagon
 
 ### `EM_8051`
-
 ```rust
 const EM_8051: u16 = 165u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:467`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L467)*
+
 Intel 8051 and variants
 
 ### `EM_STXP7X`
-
 ```rust
 const EM_STXP7X: u16 = 166u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:469`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L469)*
+
 STMicroelectronics STxP7x
 
 ### `EM_NDS32`
-
 ```rust
 const EM_NDS32: u16 = 167u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:471`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L471)*
+
 Andes Tech. compact code emb. RISC
 
 ### `EM_ECOG1X`
-
 ```rust
 const EM_ECOG1X: u16 = 168u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:473`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L473)*
+
 Cyan Technology eCOG1X
 
 ### `EM_MAXQ30`
-
 ```rust
 const EM_MAXQ30: u16 = 169u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:475`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L475)*
+
 Dallas Semi. MAXQ30 mc
 
 ### `EM_XIMO16`
-
 ```rust
 const EM_XIMO16: u16 = 170u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:477`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L477)*
+
 New Japan Radio (NJR) 16-bit DSP
 
 ### `EM_MANIK`
-
 ```rust
 const EM_MANIK: u16 = 171u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:479`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L479)*
+
 M2000 Reconfigurable RISC
 
 ### `EM_CRAYNV2`
-
 ```rust
 const EM_CRAYNV2: u16 = 172u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:481`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L481)*
+
 Cray NV2 vector architecture
 
 ### `EM_RX`
-
 ```rust
 const EM_RX: u16 = 173u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:483`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L483)*
+
 Renesas RX
 
 ### `EM_METAG`
-
 ```rust
 const EM_METAG: u16 = 174u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:485`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L485)*
+
 Imagination Tech. META
 
 ### `EM_MCST_ELBRUS`
-
 ```rust
 const EM_MCST_ELBRUS: u16 = 175u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:487`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L487)*
+
 MCST Elbrus
 
 ### `EM_ECOG16`
-
 ```rust
 const EM_ECOG16: u16 = 176u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:489`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L489)*
+
 Cyan Technology eCOG16
 
 ### `EM_CR16`
-
 ```rust
 const EM_CR16: u16 = 177u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:491`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L491)*
+
 National Semi. CompactRISC CR16
 
 ### `EM_ETPU`
-
 ```rust
 const EM_ETPU: u16 = 178u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:493`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L493)*
+
 Freescale Extended Time Processing Unit
 
 ### `EM_SLE9X`
-
 ```rust
 const EM_SLE9X: u16 = 179u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:495`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L495)*
+
 Infineon Tech. SLE9X
 
 ### `EM_L10M`
-
 ```rust
 const EM_L10M: u16 = 180u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:497`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L497)*
+
 Intel L10M
 
 ### `EM_K10M`
-
 ```rust
 const EM_K10M: u16 = 181u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:499`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L499)*
+
 Intel K10M
 
 ### `EM_AARCH64`
-
 ```rust
 const EM_AARCH64: u16 = 183u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:501`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L501)*
+
 ARM AARCH64
 
 ### `EM_AVR32`
-
 ```rust
 const EM_AVR32: u16 = 185u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:503`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L503)*
+
 Amtel 32-bit microprocessor
 
 ### `EM_STM8`
-
 ```rust
 const EM_STM8: u16 = 186u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:505`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L505)*
+
 STMicroelectronics STM8
 
 ### `EM_TILE64`
-
 ```rust
 const EM_TILE64: u16 = 187u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:507`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L507)*
+
 Tileta TILE64
 
 ### `EM_TILEPRO`
-
 ```rust
 const EM_TILEPRO: u16 = 188u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:509`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L509)*
+
 Tilera TILEPro
 
 ### `EM_MICROBLAZE`
-
 ```rust
 const EM_MICROBLAZE: u16 = 189u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:511`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L511)*
+
 Xilinx MicroBlaze
 
 ### `EM_CUDA`
-
 ```rust
 const EM_CUDA: u16 = 190u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:513`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L513)*
+
 NVIDIA CUDA
 
 ### `EM_TILEGX`
-
 ```rust
 const EM_TILEGX: u16 = 191u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:515`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L515)*
+
 Tilera TILE-Gx
 
 ### `EM_CLOUDSHIELD`
-
 ```rust
 const EM_CLOUDSHIELD: u16 = 192u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:517`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L517)*
+
 CloudShield
 
 ### `EM_COREA_1ST`
-
 ```rust
 const EM_COREA_1ST: u16 = 193u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:519`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L519)*
+
 KIPO-KAIST Core-A 1st gen.
 
 ### `EM_COREA_2ND`
-
 ```rust
 const EM_COREA_2ND: u16 = 194u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:521`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L521)*
+
 KIPO-KAIST Core-A 2nd gen.
 
 ### `EM_ARC_COMPACT2`
-
 ```rust
 const EM_ARC_COMPACT2: u16 = 195u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:523`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L523)*
+
 Synopsys ARCompact V2
 
 ### `EM_OPEN8`
-
 ```rust
 const EM_OPEN8: u16 = 196u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:525`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L525)*
+
 Open8 RISC
 
 ### `EM_RL78`
-
 ```rust
 const EM_RL78: u16 = 197u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:527`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L527)*
+
 Renesas RL78
 
 ### `EM_VIDEOCORE5`
-
 ```rust
 const EM_VIDEOCORE5: u16 = 198u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:529`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L529)*
+
 Broadcom VideoCore V
 
 ### `EM_78KOR`
-
 ```rust
 const EM_78KOR: u16 = 199u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:531`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L531)*
+
 Renesas 78KOR
 
 ### `EM_56800EX`
-
 ```rust
 const EM_56800EX: u16 = 200u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:533`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L533)*
+
 Freescale 56800EX DSC
 
 ### `EM_BA1`
-
 ```rust
 const EM_BA1: u16 = 201u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:535`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L535)*
+
 Beyond BA1
 
 ### `EM_BA2`
-
 ```rust
 const EM_BA2: u16 = 202u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:537`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L537)*
+
 Beyond BA2
 
 ### `EM_XCORE`
-
 ```rust
 const EM_XCORE: u16 = 203u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:539`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L539)*
+
 XMOS xCORE
 
 ### `EM_MCHP_PIC`
-
 ```rust
 const EM_MCHP_PIC: u16 = 204u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:541`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L541)*
+
 Microchip 8-bit PIC(r)
 
 ### `EM_KM32`
-
 ```rust
 const EM_KM32: u16 = 210u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:543`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L543)*
+
 KM211 KM32
 
 ### `EM_KMX32`
-
 ```rust
 const EM_KMX32: u16 = 211u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:545`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L545)*
+
 KM211 KMX32
 
 ### `EM_EMX16`
-
 ```rust
 const EM_EMX16: u16 = 212u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:547`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L547)*
+
 KM211 KMX16
 
 ### `EM_EMX8`
-
 ```rust
 const EM_EMX8: u16 = 213u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:549`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L549)*
+
 KM211 KMX8
 
 ### `EM_KVARC`
-
 ```rust
 const EM_KVARC: u16 = 214u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:551`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L551)*
+
 KM211 KVARC
 
 ### `EM_CDP`
-
 ```rust
 const EM_CDP: u16 = 215u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:553`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L553)*
+
 Paneve CDP
 
 ### `EM_COGE`
-
 ```rust
 const EM_COGE: u16 = 216u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:555`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L555)*
+
 Cognitive Smart Memory Processor
 
 ### `EM_COOL`
-
 ```rust
 const EM_COOL: u16 = 217u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:557`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L557)*
+
 Bluechip CoolEngine
 
 ### `EM_NORC`
-
 ```rust
 const EM_NORC: u16 = 218u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:559`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L559)*
+
 Nanoradio Optimized RISC
 
 ### `EM_CSR_KALIMBA`
-
 ```rust
 const EM_CSR_KALIMBA: u16 = 219u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:561`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L561)*
+
 CSR Kalimba
 
 ### `EM_Z80`
-
 ```rust
 const EM_Z80: u16 = 220u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:563`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L563)*
+
 Zilog Z80
 
 ### `EM_VISIUM`
-
 ```rust
 const EM_VISIUM: u16 = 221u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:565`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L565)*
+
 Controls and Data Services VISIUMcore
 
 ### `EM_FT32`
-
 ```rust
 const EM_FT32: u16 = 222u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:567`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L567)*
+
 FTDI Chip FT32
 
 ### `EM_MOXIE`
-
 ```rust
 const EM_MOXIE: u16 = 223u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:569`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L569)*
+
 Moxie processor
 
 ### `EM_AMDGPU`
-
 ```rust
 const EM_AMDGPU: u16 = 224u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:571`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L571)*
+
 AMD GPU
 
 ### `EM_RISCV`
-
 ```rust
 const EM_RISCV: u16 = 243u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:573`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L573)*
+
 RISC-V
 
 ### `EM_BPF`
-
 ```rust
 const EM_BPF: u16 = 247u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:575`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L575)*
+
 Linux BPF -- in-kernel virtual machine
 
 ### `EM_CSKY`
-
 ```rust
 const EM_CSKY: u16 = 252u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:577`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L577)*
+
 C-SKY
 
 ### `EM_LOONGARCH`
-
 ```rust
 const EM_LOONGARCH: u16 = 258u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:579`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L579)*
+
 Loongson LoongArch
 
 ### `EM_SBF`
-
 ```rust
 const EM_SBF: u16 = 263u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:581`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L581)*
+
 Solana Binary Format
 
 ### `EM_ALPHA`
-
 ```rust
 const EM_ALPHA: u16 = 36_902u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:583`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L583)*
+
 Digital Alpha
 
 ### `EV_NONE`
-
 ```rust
 const EV_NONE: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:587`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L587)*
+
 Invalid ELF version.
 
 ### `EV_CURRENT`
-
 ```rust
 const EV_CURRENT: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:589`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L589)*
+
 Current ELF version.
 
 ### `SHN_UNDEF`
-
 ```rust
 const SHN_UNDEF: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:657`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L657)*
+
 Undefined section.
 
 ### `SHN_LORESERVE`
-
 ```rust
 const SHN_LORESERVE: u16 = 65_280u16;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:660`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L660)*
 
 OS-specific range start.
 Start of reserved section indices.
 
 ### `SHN_LOPROC`
-
 ```rust
 const SHN_LOPROC: u16 = 65_280u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:662`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L662)*
+
 Start of processor-specific section indices.
 
 ### `SHN_HIPROC`
-
 ```rust
 const SHN_HIPROC: u16 = 65_311u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:664`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L664)*
+
 End of processor-specific section indices.
 
 ### `SHN_LOOS`
-
 ```rust
 const SHN_LOOS: u16 = 65_312u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:666`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L666)*
+
 Start of OS-specific section indices.
 
 ### `SHN_HIOS`
-
 ```rust
 const SHN_HIOS: u16 = 65_343u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:668`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L668)*
+
 End of OS-specific section indices.
 
 ### `SHN_ABS`
-
 ```rust
 const SHN_ABS: u16 = 65_521u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:670`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L670)*
+
 Associated symbol is absolute.
 
 ### `SHN_COMMON`
-
 ```rust
 const SHN_COMMON: u16 = 65_522u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:672`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L672)*
+
 Associated symbol is common.
 
 ### `SHN_XINDEX`
-
 ```rust
 const SHN_XINDEX: u16 = 65_535u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:674`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L674)*
+
 Section index is in the `SHT_SYMTAB_SHNDX` section.
 
 ### `SHN_HIRESERVE`
-
 ```rust
 const SHN_HIRESERVE: u16 = 65_535u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:676`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L676)*
+
 End of reserved section indices.
 
 ### `SHT_NULL`
-
 ```rust
 const SHT_NULL: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:680`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L680)*
+
 Section header table entry is unused.
 
 ### `SHT_PROGBITS`
-
 ```rust
 const SHT_PROGBITS: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:682`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L682)*
+
 Program data.
 
 ### `SHT_SYMTAB`
-
 ```rust
 const SHT_SYMTAB: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:684`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L684)*
+
 Symbol table.
 
 ### `SHT_STRTAB`
-
 ```rust
 const SHT_STRTAB: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:686`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L686)*
+
 String table.
 
 ### `SHT_RELA`
-
 ```rust
 const SHT_RELA: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:688`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L688)*
+
 Relocation entries with explicit addends.
 
 ### `SHT_HASH`
-
 ```rust
 const SHT_HASH: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:690`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L690)*
+
 Symbol hash table.
 
 ### `SHT_DYNAMIC`
-
 ```rust
 const SHT_DYNAMIC: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:692`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L692)*
+
 Dynamic linking information.
 
 ### `SHT_NOTE`
-
 ```rust
 const SHT_NOTE: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:694`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L694)*
+
 Notes.
 
 ### `SHT_NOBITS`
-
 ```rust
 const SHT_NOBITS: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:696`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L696)*
+
 Program space with no data (bss).
 
 ### `SHT_REL`
-
 ```rust
 const SHT_REL: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:698`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L698)*
+
 Relocation entries without explicit addends.
 
 ### `SHT_SHLIB`
-
 ```rust
 const SHT_SHLIB: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:700`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L700)*
+
 Reserved section type.
 
 ### `SHT_DYNSYM`
-
 ```rust
 const SHT_DYNSYM: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:702`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L702)*
+
 Dynamic linker symbol table.
 
 ### `SHT_INIT_ARRAY`
-
 ```rust
 const SHT_INIT_ARRAY: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:704`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L704)*
+
 Array of constructors.
 
 ### `SHT_FINI_ARRAY`
-
 ```rust
 const SHT_FINI_ARRAY: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:706`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L706)*
+
 Array of destructors.
 
 ### `SHT_PREINIT_ARRAY`
-
 ```rust
 const SHT_PREINIT_ARRAY: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:708`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L708)*
+
 Array of pre-constructors.
 
 ### `SHT_GROUP`
-
 ```rust
 const SHT_GROUP: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:710`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L710)*
+
 Section group.
 
 ### `SHT_SYMTAB_SHNDX`
-
 ```rust
 const SHT_SYMTAB_SHNDX: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:712`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L712)*
+
 Extended section indices for a symbol table.
 
 ### `SHT_RELR`
-
 ```rust
 const SHT_RELR: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:714`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L714)*
+
 Relocation entries; only offsets.
 
 ### `SHT_CREL`
-
 ```rust
 const SHT_CREL: u32 = 1_073_741_844u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:717`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L717)*
 
 Experimental CREL relocations. LLVM will change the value and
 break compatibility in the future.
 
 ### `SHT_LOOS`
-
 ```rust
 const SHT_LOOS: u32 = 1_610_612_736u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:719`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L719)*
+
 Start of OS-specific section types.
 
 ### `SHT_LLVM_DEPENDENT_LIBRARIES`
-
 ```rust
 const SHT_LLVM_DEPENDENT_LIBRARIES: u32 = 1_879_002_116u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:721`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L721)*
+
 LLVM-style dependent libraries.
 
 ### `SHT_GNU_SFRAME`
-
 ```rust
 const SHT_GNU_SFRAME: u32 = 1_879_048_180u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:723`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L723)*
+
 GNU SFrame stack trace format.
 
 ### `SHT_GNU_ATTRIBUTES`
-
 ```rust
 const SHT_GNU_ATTRIBUTES: u32 = 1_879_048_181u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:725`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L725)*
+
 Object attributes.
 
 ### `SHT_GNU_HASH`
-
 ```rust
 const SHT_GNU_HASH: u32 = 1_879_048_182u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:727`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L727)*
+
 GNU-style hash table.
 
 ### `SHT_GNU_LIBLIST`
-
 ```rust
 const SHT_GNU_LIBLIST: u32 = 1_879_048_183u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:729`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L729)*
+
 Prelink library list
 
 ### `SHT_CHECKSUM`
-
 ```rust
 const SHT_CHECKSUM: u32 = 1_879_048_184u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:731`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L731)*
+
 Checksum for DSO content.
 
 ### `SHT_LOSUNW`
-
 ```rust
 const SHT_LOSUNW: u32 = 1_879_048_186u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:733`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L733)*
+
 Sun-specific low bound.
 
 ### `SHT_SUNW_move`
-
 ```rust
 const SHT_SUNW_move: u32 = 1_879_048_186u32;
 ```
 
-### `SHT_SUNW_COMDAT`
+*Defined in [`object-0.37.3/src/elf.rs:735`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L735)*
 
+### `SHT_SUNW_COMDAT`
 ```rust
 const SHT_SUNW_COMDAT: u32 = 1_879_048_187u32;
 ```
 
-### `SHT_SUNW_syminfo`
+*Defined in [`object-0.37.3/src/elf.rs:736`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L736)*
 
+### `SHT_SUNW_syminfo`
 ```rust
 const SHT_SUNW_syminfo: u32 = 1_879_048_188u32;
 ```
 
-### `SHT_GNU_VERDEF`
+*Defined in [`object-0.37.3/src/elf.rs:738`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L738)*
 
+### `SHT_GNU_VERDEF`
 ```rust
 const SHT_GNU_VERDEF: u32 = 1_879_048_189u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:741`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L741)*
+
 Version definition section.
 
 ### `SHT_GNU_VERNEED`
-
 ```rust
 const SHT_GNU_VERNEED: u32 = 1_879_048_190u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:744`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L744)*
+
 Version needs section.
 
 ### `SHT_GNU_VERSYM`
-
 ```rust
 const SHT_GNU_VERSYM: u32 = 1_879_048_191u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:747`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L747)*
+
 Version symbol table.
 
 ### `SHT_HISUNW`
-
 ```rust
 const SHT_HISUNW: u32 = 1_879_048_191u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:749`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L749)*
+
 Sun-specific high bound.
 
 ### `SHT_HIOS`
-
 ```rust
 const SHT_HIOS: u32 = 1_879_048_191u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:751`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L751)*
+
 End of OS-specific section types.
 
 ### `SHT_LOPROC`
-
 ```rust
 const SHT_LOPROC: u32 = 1_879_048_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:753`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L753)*
+
 Start of processor-specific section types.
 
 ### `SHT_HIPROC`
-
 ```rust
 const SHT_HIPROC: u32 = 2_147_483_647u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:755`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L755)*
+
 End of processor-specific section types.
 
 ### `SHT_LOUSER`
-
 ```rust
 const SHT_LOUSER: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:757`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L757)*
+
 Start of application-specific section types.
 
 ### `SHT_HIUSER`
-
 ```rust
 const SHT_HIUSER: u32 = 2_415_919_103u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:759`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L759)*
+
 End of application-specific section types.
 
 ### `SHF_WRITE`
-
 ```rust
 const SHF_WRITE: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:763`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L763)*
+
 Section is writable.
 
 ### `SHF_ALLOC`
-
 ```rust
 const SHF_ALLOC: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:765`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L765)*
+
 Section occupies memory during execution.
 
 ### `SHF_EXECINSTR`
-
 ```rust
 const SHF_EXECINSTR: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:767`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L767)*
+
 Section is executable.
 
 ### `SHF_MERGE`
-
 ```rust
 const SHF_MERGE: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:769`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L769)*
+
 Section may be be merged to eliminate duplication.
 
 ### `SHF_STRINGS`
-
 ```rust
 const SHF_STRINGS: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:771`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L771)*
+
 Section contains nul-terminated strings.
 
 ### `SHF_INFO_LINK`
-
 ```rust
 const SHF_INFO_LINK: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:773`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L773)*
+
 The `sh_info` field contains a section header table index.
 
 ### `SHF_LINK_ORDER`
-
 ```rust
 const SHF_LINK_ORDER: u32 = 128u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:775`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L775)*
+
 Section has special ordering requirements when combining sections.
 
 ### `SHF_OS_NONCONFORMING`
-
 ```rust
 const SHF_OS_NONCONFORMING: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:777`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L777)*
+
 Section requires special OS-specific handling.
 
 ### `SHF_GROUP`
-
 ```rust
 const SHF_GROUP: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:779`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L779)*
+
 Section is a member of a group.
 
 ### `SHF_TLS`
-
 ```rust
 const SHF_TLS: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:781`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L781)*
+
 Section holds thread-local storage.
 
 ### `SHF_COMPRESSED`
-
 ```rust
 const SHF_COMPRESSED: u32 = 2_048u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:785`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L785)*
 
 Section is compressed.
 
 Compressed sections begin with one of the `CompressionHeader*` headers.
 
 ### `SHF_MASKOS`
-
 ```rust
 const SHF_MASKOS: u32 = 267_386_880u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:787`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L787)*
+
 OS-specific section flags.
 
 ### `SHF_GNU_RETAIN`
-
 ```rust
 const SHF_GNU_RETAIN: u32 = 2_097_152u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:789`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L789)*
+
 Section should not be garbage collected by the linker.
 
 ### `SHF_GNU_MBIND`
-
 ```rust
 const SHF_GNU_MBIND: u32 = 16_777_216u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:791`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L791)*
+
 Mbind section.
 
 ### `SHF_MASKPROC`
-
 ```rust
 const SHF_MASKPROC: u32 = 4_026_531_840u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:793`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L793)*
+
 Processor-specific section flags.
 
 ### `SHF_EXCLUDE`
-
 ```rust
 const SHF_EXCLUDE: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:795`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L795)*
+
 This section is excluded from the final executable or shared library.
 
 ### `ELFCOMPRESS_ZLIB`
-
 ```rust
 const ELFCOMPRESS_ZLIB: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:834`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L834)*
+
 ZLIB/DEFLATE algorithm.
 
 ### `ELFCOMPRESS_ZSTD`
-
 ```rust
 const ELFCOMPRESS_ZSTD: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:836`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L836)*
+
 Zstandard algorithm.
 
 ### `ELFCOMPRESS_LOOS`
-
 ```rust
 const ELFCOMPRESS_LOOS: u32 = 1_610_612_736u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:838`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L838)*
+
 Start of OS-specific compression types.
 
 ### `ELFCOMPRESS_HIOS`
-
 ```rust
 const ELFCOMPRESS_HIOS: u32 = 1_879_048_191u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:840`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L840)*
+
 End of OS-specific compression types.
 
 ### `ELFCOMPRESS_LOPROC`
-
 ```rust
 const ELFCOMPRESS_LOPROC: u32 = 1_879_048_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:842`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L842)*
+
 Start of processor-specific compression types.
 
 ### `ELFCOMPRESS_HIPROC`
-
 ```rust
 const ELFCOMPRESS_HIPROC: u32 = 2_147_483_647u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:844`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L844)*
+
 End of processor-specific compression types.
 
 ### `GRP_COMDAT`
-
 ```rust
 const GRP_COMDAT: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:848`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L848)*
+
 Mark group as COMDAT.
 
 ### `SYMINFO_BT_SELF`
-
 ```rust
 const SYMINFO_BT_SELF: u16 = 65_535u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:972`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L972)*
+
 Symbol bound to self
 
 ### `SYMINFO_BT_PARENT`
-
 ```rust
 const SYMINFO_BT_PARENT: u16 = 65_534u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:974`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L974)*
+
 Symbol bound to parent
 
 ### `SYMINFO_BT_LOWRESERVE`
-
 ```rust
 const SYMINFO_BT_LOWRESERVE: u16 = 65_280u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:976`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L976)*
+
 Beginning of reserved entries
 
 ### `SYMINFO_FLG_DIRECT`
-
 ```rust
 const SYMINFO_FLG_DIRECT: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:980`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L980)*
+
 Direct bound symbol
 
 ### `SYMINFO_FLG_PASSTHRU`
-
 ```rust
 const SYMINFO_FLG_PASSTHRU: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:982`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L982)*
+
 Pass-thru symbol for translator
 
 ### `SYMINFO_FLG_COPY`
-
 ```rust
 const SYMINFO_FLG_COPY: u16 = 4u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:984`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L984)*
+
 Symbol is a copy-reloc
 
 ### `SYMINFO_FLG_LAZYLOAD`
-
 ```rust
 const SYMINFO_FLG_LAZYLOAD: u16 = 8u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:986`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L986)*
+
 Symbol bound to object to be lazy loaded
 
 ### `SYMINFO_NONE`
-
 ```rust
 const SYMINFO_NONE: u16 = 0u16;
 ```
 
-### `SYMINFO_CURRENT`
+*Defined in [`object-0.37.3/src/elf.rs:989`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L989)*
 
+### `SYMINFO_CURRENT`
 ```rust
 const SYMINFO_CURRENT: u16 = 1u16;
 ```
 
-### `SYMINFO_NUM`
+*Defined in [`object-0.37.3/src/elf.rs:990`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L990)*
 
+### `SYMINFO_NUM`
 ```rust
 const SYMINFO_NUM: u16 = 2u16;
 ```
 
-### `STB_LOCAL`
+*Defined in [`object-0.37.3/src/elf.rs:991`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L991)*
 
+### `STB_LOCAL`
 ```rust
 const STB_LOCAL: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:995`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L995)*
+
 Local symbol.
 
 ### `STB_GLOBAL`
-
 ```rust
 const STB_GLOBAL: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:997`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L997)*
+
 Global symbol.
 
 ### `STB_WEAK`
-
 ```rust
 const STB_WEAK: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:999`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L999)*
+
 Weak symbol.
 
 ### `STB_LOOS`
-
 ```rust
 const STB_LOOS: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1001`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1001)*
+
 Start of OS-specific symbol binding.
 
 ### `STB_GNU_UNIQUE`
-
 ```rust
 const STB_GNU_UNIQUE: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1003`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1003)*
+
 Unique symbol.
 
 ### `STB_HIOS`
-
 ```rust
 const STB_HIOS: u8 = 12u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1005`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1005)*
+
 End of OS-specific symbol binding.
 
 ### `STB_LOPROC`
-
 ```rust
 const STB_LOPROC: u8 = 13u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1007`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1007)*
+
 Start of processor-specific symbol binding.
 
 ### `STB_HIPROC`
-
 ```rust
 const STB_HIPROC: u8 = 15u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1009`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1009)*
+
 End of processor-specific symbol binding.
 
 ### `STT_NOTYPE`
-
 ```rust
 const STT_NOTYPE: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1013`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1013)*
+
 Symbol type is unspecified.
 
 ### `STT_OBJECT`
-
 ```rust
 const STT_OBJECT: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1015`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1015)*
+
 Symbol is a data object.
 
 ### `STT_FUNC`
-
 ```rust
 const STT_FUNC: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1017`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1017)*
+
 Symbol is a code object.
 
 ### `STT_SECTION`
-
 ```rust
 const STT_SECTION: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1019`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1019)*
+
 Symbol is associated with a section.
 
 ### `STT_FILE`
-
 ```rust
 const STT_FILE: u8 = 4u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1021`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1021)*
+
 Symbol's name is a file name.
 
 ### `STT_COMMON`
-
 ```rust
 const STT_COMMON: u8 = 5u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1023`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1023)*
+
 Symbol is a common data object.
 
 ### `STT_TLS`
-
 ```rust
 const STT_TLS: u8 = 6u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1025`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1025)*
+
 Symbol is a thread-local storage object.
 
 ### `STT_LOOS`
-
 ```rust
 const STT_LOOS: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1027`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1027)*
+
 Start of OS-specific symbol types.
 
 ### `STT_GNU_IFUNC`
-
 ```rust
 const STT_GNU_IFUNC: u8 = 10u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1029`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1029)*
+
 Symbol is an indirect code object.
 
 ### `STT_HIOS`
-
 ```rust
 const STT_HIOS: u8 = 12u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1031`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1031)*
+
 End of OS-specific symbol types.
 
 ### `STT_LOPROC`
-
 ```rust
 const STT_LOPROC: u8 = 13u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1033`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1033)*
+
 Start of processor-specific symbol types.
 
 ### `STT_HIPROC`
-
 ```rust
 const STT_HIPROC: u8 = 15u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1035`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1035)*
+
 End of processor-specific symbol types.
 
 ### `STV_DEFAULT`
-
 ```rust
 const STV_DEFAULT: u8 = 0u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1039`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1039)*
+
 Default symbol visibility rules.
 
 ### `STV_INTERNAL`
-
 ```rust
 const STV_INTERNAL: u8 = 1u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1041`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1041)*
+
 Processor specific hidden class.
 
 ### `STV_HIDDEN`
-
 ```rust
 const STV_HIDDEN: u8 = 2u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1043`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1043)*
+
 Symbol is not visible to other components.
 
 ### `STV_PROTECTED`
-
 ```rust
 const STV_PROTECTED: u8 = 3u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1045`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1045)*
+
 Symbol is visible to other components, but is not preemptible.
 
 ### `PN_XNUM`
-
 ```rust
 const PN_XNUM: u16 = 65_535u16;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1285`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1285)*
 
 Special value for `FileHeader*::e_phnum`.
 
@@ -10634,708 +11031,796 @@ This indicates that the real number of program headers is too large to fit into 
 Instead the real value is in the field `sh_info` of section 0.
 
 ### `PT_NULL`
-
 ```rust
 const PT_NULL: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1289`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1289)*
+
 Program header table entry is unused.
 
 ### `PT_LOAD`
-
 ```rust
 const PT_LOAD: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1291`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1291)*
+
 Loadable program segment.
 
 ### `PT_DYNAMIC`
-
 ```rust
 const PT_DYNAMIC: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1293`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1293)*
+
 Dynamic linking information.
 
 ### `PT_INTERP`
-
 ```rust
 const PT_INTERP: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1295`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1295)*
+
 Program interpreter.
 
 ### `PT_NOTE`
-
 ```rust
 const PT_NOTE: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1297`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1297)*
+
 Auxiliary information.
 
 ### `PT_SHLIB`
-
 ```rust
 const PT_SHLIB: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1299`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1299)*
+
 Reserved.
 
 ### `PT_PHDR`
-
 ```rust
 const PT_PHDR: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1301`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1301)*
+
 Segment contains the program header table.
 
 ### `PT_TLS`
-
 ```rust
 const PT_TLS: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1303`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1303)*
+
 Thread-local storage segment.
 
 ### `PT_LOOS`
-
 ```rust
 const PT_LOOS: u32 = 1_610_612_736u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1305`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1305)*
+
 Start of OS-specific segment types.
 
 ### `PT_GNU_EH_FRAME`
-
 ```rust
 const PT_GNU_EH_FRAME: u32 = 1_685_382_480u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1307`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1307)*
+
 GCC `.eh_frame_hdr` segment.
 
 ### `PT_GNU_STACK`
-
 ```rust
 const PT_GNU_STACK: u32 = 1_685_382_481u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1309`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1309)*
+
 Indicates stack executability.
 
 ### `PT_GNU_RELRO`
-
 ```rust
 const PT_GNU_RELRO: u32 = 1_685_382_482u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1311`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1311)*
+
 Read-only after relocation.
 
 ### `PT_GNU_PROPERTY`
-
 ```rust
 const PT_GNU_PROPERTY: u32 = 1_685_382_483u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1313`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1313)*
+
 Segment containing `.note.gnu.property` section.
 
 ### `PT_GNU_SFRAME`
-
 ```rust
 const PT_GNU_SFRAME: u32 = 1_685_382_484u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1315`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1315)*
+
 GNU SFrame stack trace format.
 
 ### `PT_HIOS`
-
 ```rust
 const PT_HIOS: u32 = 1_879_048_191u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1317`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1317)*
+
 End of OS-specific segment types.
 
 ### `PT_LOPROC`
-
 ```rust
 const PT_LOPROC: u32 = 1_879_048_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1319`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1319)*
+
 Start of processor-specific segment types.
 
 ### `PT_HIPROC`
-
 ```rust
 const PT_HIPROC: u32 = 2_147_483_647u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1321`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1321)*
+
 End of processor-specific segment types.
 
 ### `PF_X`
-
 ```rust
 const PF_X: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1325`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1325)*
+
 Segment is executable.
 
 ### `PF_W`
-
 ```rust
 const PF_W: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1327`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1327)*
+
 Segment is writable.
 
 ### `PF_R`
-
 ```rust
 const PF_R: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1329`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1329)*
+
 Segment is readable.
 
 ### `PF_MASKOS`
-
 ```rust
 const PF_MASKOS: u32 = 267_386_880u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1331`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1331)*
+
 OS-specific segment flags.
 
 ### `PF_MASKPROC`
-
 ```rust
 const PF_MASKPROC: u32 = 4_026_531_840u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1333`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1333)*
+
 Processor-specific segment flags.
 
 ### `ELF_NOTE_CORE`
-
 ```rust
 const ELF_NOTE_CORE: &[u8];
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1336`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1336)*
+
 Note name for core files.
 
 ### `ELF_NOTE_LINUX`
-
 ```rust
 const ELF_NOTE_LINUX: &[u8];
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1340`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1340)*
 
 Note name for linux core files.
 
 Notes in linux core files may also use `ELF_NOTE_CORE`.
 
 ### `NT_PRSTATUS`
-
 ```rust
 const NT_PRSTATUS: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1345`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1345)*
+
 Contains copy of prstatus struct.
 
 ### `NT_PRFPREG`
-
 ```rust
 const NT_PRFPREG: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1347`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1347)*
+
 Contains copy of fpregset struct.
 
 ### `NT_FPREGSET`
-
 ```rust
 const NT_FPREGSET: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1349`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1349)*
+
 Contains copy of fpregset struct.
 
 ### `NT_PRPSINFO`
-
 ```rust
 const NT_PRPSINFO: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1351`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1351)*
+
 Contains copy of prpsinfo struct.
 
 ### `NT_PRXREG`
-
 ```rust
 const NT_PRXREG: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1353`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1353)*
+
 Contains copy of prxregset struct.
 
 ### `NT_TASKSTRUCT`
-
 ```rust
 const NT_TASKSTRUCT: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1355`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1355)*
+
 Contains copy of task structure.
 
 ### `NT_PLATFORM`
-
 ```rust
 const NT_PLATFORM: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1357`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1357)*
+
 String from sysinfo(SI_PLATFORM).
 
 ### `NT_AUXV`
-
 ```rust
 const NT_AUXV: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1359`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1359)*
+
 Contains copy of auxv array.
 
 ### `NT_GWINDOWS`
-
 ```rust
 const NT_GWINDOWS: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1361`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1361)*
+
 Contains copy of gwindows struct.
 
 ### `NT_ASRS`
-
 ```rust
 const NT_ASRS: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1363`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1363)*
+
 Contains copy of asrset struct.
 
 ### `NT_PSTATUS`
-
 ```rust
 const NT_PSTATUS: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1365`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1365)*
+
 Contains copy of pstatus struct.
 
 ### `NT_PSINFO`
-
 ```rust
 const NT_PSINFO: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1367`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1367)*
+
 Contains copy of psinfo struct.
 
 ### `NT_PRCRED`
-
 ```rust
 const NT_PRCRED: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1369`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1369)*
+
 Contains copy of prcred struct.
 
 ### `NT_UTSNAME`
-
 ```rust
 const NT_UTSNAME: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1371`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1371)*
+
 Contains copy of utsname struct.
 
 ### `NT_LWPSTATUS`
-
 ```rust
 const NT_LWPSTATUS: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1373`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1373)*
+
 Contains copy of lwpstatus struct.
 
 ### `NT_LWPSINFO`
-
 ```rust
 const NT_LWPSINFO: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1375`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1375)*
+
 Contains copy of lwpinfo struct.
 
 ### `NT_PRFPXREG`
-
 ```rust
 const NT_PRFPXREG: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1377`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1377)*
+
 Contains copy of fprxregset struct.
 
 ### `NT_SIGINFO`
-
 ```rust
 const NT_SIGINFO: u32 = 1_397_311_305u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1379`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1379)*
+
 Contains copy of siginfo_t, size might increase.
 
 ### `NT_FILE`
-
 ```rust
 const NT_FILE: u32 = 1_179_208_773u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1381`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1381)*
+
 Contains information about mapped files.
 
 ### `NT_PRXFPREG`
-
 ```rust
 const NT_PRXFPREG: u32 = 1_189_489_535u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1383`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1383)*
+
 Contains copy of user_fxsr_struct.
 
 ### `NT_PPC_VMX`
-
 ```rust
 const NT_PPC_VMX: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1385`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1385)*
+
 PowerPC Altivec/VMX registers.
 
 ### `NT_PPC_SPE`
-
 ```rust
 const NT_PPC_SPE: u32 = 257u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1387`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1387)*
+
 PowerPC SPE/EVR registers.
 
 ### `NT_PPC_VSX`
-
 ```rust
 const NT_PPC_VSX: u32 = 258u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1389`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1389)*
+
 PowerPC VSX registers.
 
 ### `NT_PPC_TAR`
-
 ```rust
 const NT_PPC_TAR: u32 = 259u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1391`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1391)*
+
 Target Address Register.
 
 ### `NT_PPC_PPR`
-
 ```rust
 const NT_PPC_PPR: u32 = 260u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1393`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1393)*
+
 Program Priority Register.
 
 ### `NT_PPC_DSCR`
-
 ```rust
 const NT_PPC_DSCR: u32 = 261u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1395`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1395)*
+
 Data Stream Control Register.
 
 ### `NT_PPC_EBB`
-
 ```rust
 const NT_PPC_EBB: u32 = 262u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1397`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1397)*
+
 Event Based Branch Registers.
 
 ### `NT_PPC_PMU`
-
 ```rust
 const NT_PPC_PMU: u32 = 263u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1399`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1399)*
+
 Performance Monitor Registers.
 
 ### `NT_PPC_TM_CGPR`
-
 ```rust
 const NT_PPC_TM_CGPR: u32 = 264u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1401`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1401)*
+
 TM checkpointed GPR Registers.
 
 ### `NT_PPC_TM_CFPR`
-
 ```rust
 const NT_PPC_TM_CFPR: u32 = 265u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1403`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1403)*
+
 TM checkpointed FPR Registers.
 
 ### `NT_PPC_TM_CVMX`
-
 ```rust
 const NT_PPC_TM_CVMX: u32 = 266u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1405`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1405)*
+
 TM checkpointed VMX Registers.
 
 ### `NT_PPC_TM_CVSX`
-
 ```rust
 const NT_PPC_TM_CVSX: u32 = 267u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1407`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1407)*
+
 TM checkpointed VSX Registers.
 
 ### `NT_PPC_TM_SPR`
-
 ```rust
 const NT_PPC_TM_SPR: u32 = 268u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1409`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1409)*
+
 TM Special Purpose Registers.
 
 ### `NT_PPC_TM_CTAR`
-
 ```rust
 const NT_PPC_TM_CTAR: u32 = 269u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1411`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1411)*
+
 TM checkpointed Target Address Register.
 
 ### `NT_PPC_TM_CPPR`
-
 ```rust
 const NT_PPC_TM_CPPR: u32 = 270u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1413`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1413)*
+
 TM checkpointed Program Priority Register.
 
 ### `NT_PPC_TM_CDSCR`
-
 ```rust
 const NT_PPC_TM_CDSCR: u32 = 271u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1415`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1415)*
+
 TM checkpointed Data Stream Control Register.
 
 ### `NT_PPC_PKEY`
-
 ```rust
 const NT_PPC_PKEY: u32 = 272u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1417`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1417)*
+
 Memory Protection Keys registers.
 
 ### `NT_386_TLS`
-
 ```rust
 const NT_386_TLS: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1419`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1419)*
+
 i386 TLS slots (struct user_desc).
 
 ### `NT_386_IOPERM`
-
 ```rust
 const NT_386_IOPERM: u32 = 513u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1421`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1421)*
+
 x86 io permission bitmap (1=deny).
 
 ### `NT_X86_XSTATE`
-
 ```rust
 const NT_X86_XSTATE: u32 = 514u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1423`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1423)*
+
 x86 extended state using xsave.
 
 ### `NT_S390_HIGH_GPRS`
-
 ```rust
 const NT_S390_HIGH_GPRS: u32 = 768u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1425`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1425)*
+
 s390 upper register halves.
 
 ### `NT_S390_TIMER`
-
 ```rust
 const NT_S390_TIMER: u32 = 769u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1427`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1427)*
+
 s390 timer register.
 
 ### `NT_S390_TODCMP`
-
 ```rust
 const NT_S390_TODCMP: u32 = 770u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1429`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1429)*
+
 s390 TOD clock comparator register.
 
 ### `NT_S390_TODPREG`
-
 ```rust
 const NT_S390_TODPREG: u32 = 771u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1431`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1431)*
+
 s390 TOD programmable register.
 
 ### `NT_S390_CTRS`
-
 ```rust
 const NT_S390_CTRS: u32 = 772u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1433`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1433)*
+
 s390 control registers.
 
 ### `NT_S390_PREFIX`
-
 ```rust
 const NT_S390_PREFIX: u32 = 773u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1435`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1435)*
+
 s390 prefix register.
 
 ### `NT_S390_LAST_BREAK`
-
 ```rust
 const NT_S390_LAST_BREAK: u32 = 774u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1437`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1437)*
+
 s390 breaking event address.
 
 ### `NT_S390_SYSTEM_CALL`
-
 ```rust
 const NT_S390_SYSTEM_CALL: u32 = 775u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1439`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1439)*
+
 s390 system call restart data.
 
 ### `NT_S390_TDB`
-
 ```rust
 const NT_S390_TDB: u32 = 776u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1441`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1441)*
+
 s390 transaction diagnostic block.
 
 ### `NT_S390_VXRS_LOW`
-
 ```rust
 const NT_S390_VXRS_LOW: u32 = 777u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1443`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1443)*
+
 s390 vector registers 0-15 upper half.
 
 ### `NT_S390_VXRS_HIGH`
-
 ```rust
 const NT_S390_VXRS_HIGH: u32 = 778u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1445`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1445)*
+
 s390 vector registers 16-31.
 
 ### `NT_S390_GS_CB`
-
 ```rust
 const NT_S390_GS_CB: u32 = 779u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1447`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1447)*
+
 s390 guarded storage registers.
 
 ### `NT_S390_GS_BC`
-
 ```rust
 const NT_S390_GS_BC: u32 = 780u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1449`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1449)*
+
 s390 guarded storage broadcast control block.
 
 ### `NT_S390_RI_CB`
-
 ```rust
 const NT_S390_RI_CB: u32 = 781u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1451`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1451)*
+
 s390 runtime instrumentation.
 
 ### `NT_ARM_VFP`
-
 ```rust
 const NT_ARM_VFP: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1453`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1453)*
+
 ARM VFP/NEON registers.
 
 ### `NT_ARM_TLS`
-
 ```rust
 const NT_ARM_TLS: u32 = 1_025u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1455`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1455)*
+
 ARM TLS register.
 
 ### `NT_ARM_HW_BREAK`
-
 ```rust
 const NT_ARM_HW_BREAK: u32 = 1_026u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1457`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1457)*
+
 ARM hardware breakpoint registers.
 
 ### `NT_ARM_HW_WATCH`
-
 ```rust
 const NT_ARM_HW_WATCH: u32 = 1_027u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1459`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1459)*
+
 ARM hardware watchpoint registers.
 
 ### `NT_ARM_SYSTEM_CALL`
-
 ```rust
 const NT_ARM_SYSTEM_CALL: u32 = 1_028u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1461`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1461)*
+
 ARM system call number.
 
 ### `NT_ARM_SVE`
-
 ```rust
 const NT_ARM_SVE: u32 = 1_029u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1463`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1463)*
+
 ARM Scalable Vector Extension registers.
 
 ### `NT_VMCOREDD`
-
 ```rust
 const NT_VMCOREDD: u32 = 1_792u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1465`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1465)*
+
 Vmcore Device Dump Note.
 
 ### `NT_MIPS_DSP`
-
 ```rust
 const NT_MIPS_DSP: u32 = 2_048u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1467`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1467)*
+
 MIPS DSP ASE registers.
 
 ### `NT_MIPS_FP_MODE`
-
 ```rust
 const NT_MIPS_FP_MODE: u32 = 2_049u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1469`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1469)*
+
 MIPS floating-point mode.
 
 ### `NT_VERSION`
-
 ```rust
 const NT_VERSION: u32 = 1u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1477`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1477)*
 
 Note type for version string.
 
@@ -11345,946 +11830,1069 @@ It must be handled as a special case because it has no descriptor, and instead
 uses the note name as the version string.
 
 ### `DT_NULL`
-
 ```rust
 const DT_NULL: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1502`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1502)*
+
 Marks end of dynamic section
 
 ### `DT_NEEDED`
-
 ```rust
 const DT_NEEDED: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1504`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1504)*
+
 Name of needed library
 
 ### `DT_PLTRELSZ`
-
 ```rust
 const DT_PLTRELSZ: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1506`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1506)*
+
 Size in bytes of PLT relocs
 
 ### `DT_PLTGOT`
-
 ```rust
 const DT_PLTGOT: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1508`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1508)*
+
 Processor defined value
 
 ### `DT_HASH`
-
 ```rust
 const DT_HASH: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1510`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1510)*
+
 Address of symbol hash table
 
 ### `DT_STRTAB`
-
 ```rust
 const DT_STRTAB: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1512`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1512)*
+
 Address of string table
 
 ### `DT_SYMTAB`
-
 ```rust
 const DT_SYMTAB: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1514`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1514)*
+
 Address of symbol table
 
 ### `DT_RELA`
-
 ```rust
 const DT_RELA: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1516`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1516)*
+
 Address of Rela relocs
 
 ### `DT_RELASZ`
-
 ```rust
 const DT_RELASZ: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1518`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1518)*
+
 Total size of Rela relocs
 
 ### `DT_RELAENT`
-
 ```rust
 const DT_RELAENT: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1520`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1520)*
+
 Size of one Rela reloc
 
 ### `DT_STRSZ`
-
 ```rust
 const DT_STRSZ: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1522`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1522)*
+
 Size of string table
 
 ### `DT_SYMENT`
-
 ```rust
 const DT_SYMENT: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1524`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1524)*
+
 Size of one symbol table entry
 
 ### `DT_INIT`
-
 ```rust
 const DT_INIT: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1526`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1526)*
+
 Address of init function
 
 ### `DT_FINI`
-
 ```rust
 const DT_FINI: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1528`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1528)*
+
 Address of termination function
 
 ### `DT_SONAME`
-
 ```rust
 const DT_SONAME: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1530`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1530)*
+
 Name of shared object
 
 ### `DT_RPATH`
-
 ```rust
 const DT_RPATH: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1532`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1532)*
+
 Library search path (deprecated)
 
 ### `DT_SYMBOLIC`
-
 ```rust
 const DT_SYMBOLIC: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1534`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1534)*
+
 Start symbol search here
 
 ### `DT_REL`
-
 ```rust
 const DT_REL: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1536`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1536)*
+
 Address of Rel relocs
 
 ### `DT_RELSZ`
-
 ```rust
 const DT_RELSZ: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1538`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1538)*
+
 Total size of Rel relocs
 
 ### `DT_RELENT`
-
 ```rust
 const DT_RELENT: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1540`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1540)*
+
 Size of one Rel reloc
 
 ### `DT_PLTREL`
-
 ```rust
 const DT_PLTREL: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1542`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1542)*
+
 Type of reloc in PLT
 
 ### `DT_DEBUG`
-
 ```rust
 const DT_DEBUG: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1544`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1544)*
+
 For debugging; unspecified
 
 ### `DT_TEXTREL`
-
 ```rust
 const DT_TEXTREL: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1546`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1546)*
+
 Reloc might modify .text
 
 ### `DT_JMPREL`
-
 ```rust
 const DT_JMPREL: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1548`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1548)*
+
 Address of PLT relocs
 
 ### `DT_BIND_NOW`
-
 ```rust
 const DT_BIND_NOW: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1550`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1550)*
+
 Process relocations of object
 
 ### `DT_INIT_ARRAY`
-
 ```rust
 const DT_INIT_ARRAY: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1552`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1552)*
+
 Array with addresses of init fct
 
 ### `DT_FINI_ARRAY`
-
 ```rust
 const DT_FINI_ARRAY: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1554`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1554)*
+
 Array with addresses of fini fct
 
 ### `DT_INIT_ARRAYSZ`
-
 ```rust
 const DT_INIT_ARRAYSZ: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1556`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1556)*
+
 Size in bytes of DT_INIT_ARRAY
 
 ### `DT_FINI_ARRAYSZ`
-
 ```rust
 const DT_FINI_ARRAYSZ: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1558`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1558)*
+
 Size in bytes of DT_FINI_ARRAY
 
 ### `DT_RUNPATH`
-
 ```rust
 const DT_RUNPATH: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1560`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1560)*
+
 Library search path
 
 ### `DT_FLAGS`
-
 ```rust
 const DT_FLAGS: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1562`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1562)*
+
 Flags for the object being loaded
 
 ### `DT_ENCODING`
-
 ```rust
 const DT_ENCODING: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1564`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1564)*
+
 Start of encoded range
 
 ### `DT_PREINIT_ARRAY`
-
 ```rust
 const DT_PREINIT_ARRAY: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1566`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1566)*
+
 Array with addresses of preinit fct
 
 ### `DT_PREINIT_ARRAYSZ`
-
 ```rust
 const DT_PREINIT_ARRAYSZ: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1568`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1568)*
+
 size in bytes of DT_PREINIT_ARRAY
 
 ### `DT_SYMTAB_SHNDX`
-
 ```rust
 const DT_SYMTAB_SHNDX: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1570`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1570)*
+
 Address of SYMTAB_SHNDX section
 
 ### `DT_LOOS`
-
 ```rust
 const DT_LOOS: u32 = 1_610_612_749u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1572`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1572)*
+
 Start of OS-specific
 
 ### `DT_HIOS`
-
 ```rust
 const DT_HIOS: u32 = 1_879_044_096u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1574`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1574)*
+
 End of OS-specific
 
 ### `DT_LOPROC`
-
 ```rust
 const DT_LOPROC: u32 = 1_879_048_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1576`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1576)*
+
 Start of processor-specific
 
 ### `DT_HIPROC`
-
 ```rust
 const DT_HIPROC: u32 = 2_147_483_647u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1578`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1578)*
+
 End of processor-specific
 
 ### `DT_VALRNGLO`
-
 ```rust
 const DT_VALRNGLO: u32 = 1_879_047_424u32;
 ```
 
-### `DT_GNU_PRELINKED`
+*Defined in [`object-0.37.3/src/elf.rs:1581`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1581)*
 
+### `DT_GNU_PRELINKED`
 ```rust
 const DT_GNU_PRELINKED: u32 = 1_879_047_669u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1583`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1583)*
+
 Prelinking timestamp
 
 ### `DT_GNU_CONFLICTSZ`
-
 ```rust
 const DT_GNU_CONFLICTSZ: u32 = 1_879_047_670u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1585`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1585)*
+
 Size of conflict section
 
 ### `DT_GNU_LIBLISTSZ`
-
 ```rust
 const DT_GNU_LIBLISTSZ: u32 = 1_879_047_671u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1587`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1587)*
+
 Size of library list
 
 ### `DT_CHECKSUM`
-
 ```rust
 const DT_CHECKSUM: u32 = 1_879_047_672u32;
 ```
 
-### `DT_PLTPADSZ`
+*Defined in [`object-0.37.3/src/elf.rs:1588`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1588)*
 
+### `DT_PLTPADSZ`
 ```rust
 const DT_PLTPADSZ: u32 = 1_879_047_673u32;
 ```
 
-### `DT_MOVEENT`
+*Defined in [`object-0.37.3/src/elf.rs:1589`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1589)*
 
+### `DT_MOVEENT`
 ```rust
 const DT_MOVEENT: u32 = 1_879_047_674u32;
 ```
 
-### `DT_MOVESZ`
+*Defined in [`object-0.37.3/src/elf.rs:1590`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1590)*
 
+### `DT_MOVESZ`
 ```rust
 const DT_MOVESZ: u32 = 1_879_047_675u32;
 ```
 
-### `DT_FEATURE_1`
+*Defined in [`object-0.37.3/src/elf.rs:1591`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1591)*
 
+### `DT_FEATURE_1`
 ```rust
 const DT_FEATURE_1: u32 = 1_879_047_676u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1593`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1593)*
+
 Feature selection (DTF_*).
 
 ### `DT_POSFLAG_1`
-
 ```rust
 const DT_POSFLAG_1: u32 = 1_879_047_677u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1595`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1595)*
+
 Flags for DT_* entries, affecting the following DT_* entry.
 
 ### `DT_SYMINSZ`
-
 ```rust
 const DT_SYMINSZ: u32 = 1_879_047_678u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1597`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1597)*
+
 Size of syminfo table (in bytes)
 
 ### `DT_SYMINENT`
-
 ```rust
 const DT_SYMINENT: u32 = 1_879_047_679u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1599`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1599)*
+
 Entry size of syminfo
 
 ### `DT_VALRNGHI`
-
 ```rust
 const DT_VALRNGHI: u32 = 1_879_047_679u32;
 ```
 
-### `DT_ADDRRNGLO`
+*Defined in [`object-0.37.3/src/elf.rs:1600`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1600)*
 
+### `DT_ADDRRNGLO`
 ```rust
 const DT_ADDRRNGLO: u32 = 1_879_047_680u32;
 ```
 
-### `DT_GNU_HASH`
+*Defined in [`object-0.37.3/src/elf.rs:1606`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1606)*
 
+### `DT_GNU_HASH`
 ```rust
 const DT_GNU_HASH: u32 = 1_879_047_925u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1608`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1608)*
+
 GNU-style hash table.
 
 ### `DT_TLSDESC_PLT`
-
 ```rust
 const DT_TLSDESC_PLT: u32 = 1_879_047_926u32;
 ```
 
-### `DT_TLSDESC_GOT`
+*Defined in [`object-0.37.3/src/elf.rs:1609`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1609)*
 
+### `DT_TLSDESC_GOT`
 ```rust
 const DT_TLSDESC_GOT: u32 = 1_879_047_927u32;
 ```
 
-### `DT_GNU_CONFLICT`
+*Defined in [`object-0.37.3/src/elf.rs:1610`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1610)*
 
+### `DT_GNU_CONFLICT`
 ```rust
 const DT_GNU_CONFLICT: u32 = 1_879_047_928u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1612`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1612)*
+
 Start of conflict section
 
 ### `DT_GNU_LIBLIST`
-
 ```rust
 const DT_GNU_LIBLIST: u32 = 1_879_047_929u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1614`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1614)*
+
 Library list
 
 ### `DT_CONFIG`
-
 ```rust
 const DT_CONFIG: u32 = 1_879_047_930u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1616`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1616)*
+
 Configuration information.
 
 ### `DT_DEPAUDIT`
-
 ```rust
 const DT_DEPAUDIT: u32 = 1_879_047_931u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1618`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1618)*
+
 Dependency auditing.
 
 ### `DT_AUDIT`
-
 ```rust
 const DT_AUDIT: u32 = 1_879_047_932u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1620`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1620)*
+
 Object auditing.
 
 ### `DT_PLTPAD`
-
 ```rust
 const DT_PLTPAD: u32 = 1_879_047_933u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1622`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1622)*
+
 PLT padding.
 
 ### `DT_MOVETAB`
-
 ```rust
 const DT_MOVETAB: u32 = 1_879_047_934u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1624`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1624)*
+
 Move table.
 
 ### `DT_SYMINFO`
-
 ```rust
 const DT_SYMINFO: u32 = 1_879_047_935u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1626`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1626)*
+
 Syminfo table.
 
 ### `DT_ADDRRNGHI`
-
 ```rust
 const DT_ADDRRNGHI: u32 = 1_879_047_935u32;
 ```
 
-### `DT_VERSYM`
+*Defined in [`object-0.37.3/src/elf.rs:1627`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1627)*
 
+### `DT_VERSYM`
 ```rust
 const DT_VERSYM: u32 = 1_879_048_176u32;
 ```
 
-### `DT_RELACOUNT`
+*Defined in [`object-0.37.3/src/elf.rs:1631`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1631)*
 
+### `DT_RELACOUNT`
 ```rust
 const DT_RELACOUNT: u32 = 1_879_048_185u32;
 ```
 
-### `DT_RELCOUNT`
+*Defined in [`object-0.37.3/src/elf.rs:1632`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1632)*
 
+### `DT_RELCOUNT`
 ```rust
 const DT_RELCOUNT: u32 = 1_879_048_186u32;
 ```
 
-### `DT_FLAGS_1`
+*Defined in [`object-0.37.3/src/elf.rs:1633`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1633)*
 
+### `DT_FLAGS_1`
 ```rust
 const DT_FLAGS_1: u32 = 1_879_048_187u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1635`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1635)*
+
 State flags, see DF_1_* below.
 
 ### `DT_VERDEF`
-
 ```rust
 const DT_VERDEF: u32 = 1_879_048_188u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1637`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1637)*
+
 Address of version definition table
 
 ### `DT_VERDEFNUM`
-
 ```rust
 const DT_VERDEFNUM: u32 = 1_879_048_189u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1639`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1639)*
+
 Number of version definitions
 
 ### `DT_VERNEED`
-
 ```rust
 const DT_VERNEED: u32 = 1_879_048_190u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1641`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1641)*
+
 Address of table with needed versions
 
 ### `DT_VERNEEDNUM`
-
 ```rust
 const DT_VERNEEDNUM: u32 = 1_879_048_191u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1643`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1643)*
+
 Number of needed versions
 
 ### `DT_AUXILIARY`
-
 ```rust
 const DT_AUXILIARY: u32 = 2_147_483_645u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1647`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1647)*
+
 Shared object to load before self
 
 ### `DT_FILTER`
-
 ```rust
 const DT_FILTER: u32 = 2_147_483_647u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1649`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1649)*
+
 Shared object to get values from
 
 ### `DF_ORIGIN`
-
 ```rust
 const DF_ORIGIN: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1653`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1653)*
+
 Object may use DF_ORIGIN
 
 ### `DF_SYMBOLIC`
-
 ```rust
 const DF_SYMBOLIC: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1655`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1655)*
+
 Symbol resolutions starts here
 
 ### `DF_TEXTREL`
-
 ```rust
 const DF_TEXTREL: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1657`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1657)*
+
 Object contains text relocations
 
 ### `DF_BIND_NOW`
-
 ```rust
 const DF_BIND_NOW: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1659`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1659)*
+
 No lazy binding for this object
 
 ### `DF_STATIC_TLS`
-
 ```rust
 const DF_STATIC_TLS: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1661`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1661)*
+
 Module uses the static TLS model
 
 ### `DF_1_NOW`
-
 ```rust
 const DF_1_NOW: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1665`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1665)*
+
 Set RTLD_NOW for this object.
 
 ### `DF_1_GLOBAL`
-
 ```rust
 const DF_1_GLOBAL: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1667`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1667)*
+
 Set RTLD_GLOBAL for this object.
 
 ### `DF_1_GROUP`
-
 ```rust
 const DF_1_GROUP: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1669`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1669)*
+
 Set RTLD_GROUP for this object.
 
 ### `DF_1_NODELETE`
-
 ```rust
 const DF_1_NODELETE: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1671`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1671)*
+
 Set RTLD_NODELETE for this object.
 
 ### `DF_1_LOADFLTR`
-
 ```rust
 const DF_1_LOADFLTR: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1673`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1673)*
+
 Trigger filtee loading at runtime.
 
 ### `DF_1_INITFIRST`
-
 ```rust
 const DF_1_INITFIRST: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1675`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1675)*
+
 Set RTLD_INITFIRST for this object.
 
 ### `DF_1_NOOPEN`
-
 ```rust
 const DF_1_NOOPEN: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1677`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1677)*
+
 Set RTLD_NOOPEN for this object.
 
 ### `DF_1_ORIGIN`
-
 ```rust
 const DF_1_ORIGIN: u32 = 128u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1679`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1679)*
+
 $ORIGIN must be handled.
 
 ### `DF_1_DIRECT`
-
 ```rust
 const DF_1_DIRECT: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1681`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1681)*
+
 Direct binding enabled.
 
 ### `DF_1_TRANS`
-
 ```rust
 const DF_1_TRANS: u32 = 512u32;
 ```
 
-### `DF_1_INTERPOSE`
+*Defined in [`object-0.37.3/src/elf.rs:1682`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1682)*
 
+### `DF_1_INTERPOSE`
 ```rust
 const DF_1_INTERPOSE: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1684`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1684)*
+
 Object is used to interpose.
 
 ### `DF_1_NODEFLIB`
-
 ```rust
 const DF_1_NODEFLIB: u32 = 2_048u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1686`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1686)*
+
 Ignore default lib search path.
 
 ### `DF_1_NODUMP`
-
 ```rust
 const DF_1_NODUMP: u32 = 4_096u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1688`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1688)*
+
 Object can't be dldump'ed.
 
 ### `DF_1_CONFALT`
-
 ```rust
 const DF_1_CONFALT: u32 = 8_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1690`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1690)*
+
 Configuration alternative created.
 
 ### `DF_1_ENDFILTEE`
-
 ```rust
 const DF_1_ENDFILTEE: u32 = 16_384u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1692`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1692)*
+
 Filtee terminates filters search.
 
 ### `DF_1_DISPRELDNE`
-
 ```rust
 const DF_1_DISPRELDNE: u32 = 32_768u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1694`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1694)*
+
 Disp reloc applied at build time.
 
 ### `DF_1_DISPRELPND`
-
 ```rust
 const DF_1_DISPRELPND: u32 = 65_536u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1696`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1696)*
+
 Disp reloc applied at run-time.
 
 ### `DF_1_NODIRECT`
-
 ```rust
 const DF_1_NODIRECT: u32 = 131_072u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1698`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1698)*
+
 Object has no-direct binding.
 
 ### `DF_1_IGNMULDEF`
-
 ```rust
 const DF_1_IGNMULDEF: u32 = 262_144u32;
 ```
 
-### `DF_1_NOKSYMS`
+*Defined in [`object-0.37.3/src/elf.rs:1699`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1699)*
 
+### `DF_1_NOKSYMS`
 ```rust
 const DF_1_NOKSYMS: u32 = 524_288u32;
 ```
 
-### `DF_1_NOHDR`
+*Defined in [`object-0.37.3/src/elf.rs:1700`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1700)*
 
+### `DF_1_NOHDR`
 ```rust
 const DF_1_NOHDR: u32 = 1_048_576u32;
 ```
 
-### `DF_1_EDITED`
+*Defined in [`object-0.37.3/src/elf.rs:1701`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1701)*
 
+### `DF_1_EDITED`
 ```rust
 const DF_1_EDITED: u32 = 2_097_152u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1703`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1703)*
+
 Object is modified after built.
 
 ### `DF_1_NORELOC`
-
 ```rust
 const DF_1_NORELOC: u32 = 4_194_304u32;
 ```
 
-### `DF_1_SYMINTPOSE`
+*Defined in [`object-0.37.3/src/elf.rs:1704`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1704)*
 
+### `DF_1_SYMINTPOSE`
 ```rust
 const DF_1_SYMINTPOSE: u32 = 8_388_608u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1706`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1706)*
+
 Object has individual interposers.
 
 ### `DF_1_GLOBAUDIT`
-
 ```rust
 const DF_1_GLOBAUDIT: u32 = 16_777_216u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1708`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1708)*
+
 Global auditing required.
 
 ### `DF_1_SINGLETON`
-
 ```rust
 const DF_1_SINGLETON: u32 = 33_554_432u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1710`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1710)*
+
 Singleton symbols are used.
 
 ### `DF_1_STUB`
-
 ```rust
 const DF_1_STUB: u32 = 67_108_864u32;
 ```
 
-### `DF_1_PIE`
+*Defined in [`object-0.37.3/src/elf.rs:1711`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1711)*
 
+### `DF_1_PIE`
 ```rust
 const DF_1_PIE: u32 = 134_217_728u32;
 ```
 
-### `VERSYM_HIDDEN`
+*Defined in [`object-0.37.3/src/elf.rs:1712`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1712)*
 
+### `VERSYM_HIDDEN`
 ```rust
 const VERSYM_HIDDEN: u16 = 32_768u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1720`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1720)*
+
 Symbol is hidden.
 
 ### `VERSYM_VERSION`
-
 ```rust
 const VERSYM_VERSION: u16 = 32_767u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1722`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1722)*
+
 Symbol version index.
 
 ### `VER_DEF_NONE`
-
 ```rust
 const VER_DEF_NONE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1746`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1746)*
+
 No version
 
 ### `VER_DEF_CURRENT`
-
 ```rust
 const VER_DEF_CURRENT: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1748`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1748)*
+
 Current version
 
 ### `VER_FLG_BASE`
-
 ```rust
 const VER_FLG_BASE: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1752`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1752)*
+
 Version definition of file itself
 
 ### `VER_FLG_WEAK`
-
 ```rust
 const VER_FLG_WEAK: u16 = 2u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1755`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1755)*
+
 Weak version identifier
 
 ### `VER_NDX_LOCAL`
-
 ```rust
 const VER_NDX_LOCAL: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1759`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1759)*
+
 Symbol is local.
 
 ### `VER_NDX_GLOBAL`
-
 ```rust
 const VER_NDX_GLOBAL: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1761`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1761)*
+
 Symbol is global.
 
 ### `VER_NEED_NONE`
-
 ```rust
 const VER_NEED_NONE: u16 = 0u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1791`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1791)*
+
 No version
 
 ### `VER_NEED_CURRENT`
-
 ```rust
 const VER_NEED_CURRENT: u16 = 1u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1793`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1793)*
+
 Current version
 
 ### `ELF_NOTE_SOLARIS`
-
 ```rust
 const ELF_NOTE_SOLARIS: &[u8];
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1854`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1854)*
+
 Solaris entries in the note section have this name.
 
 ### `NT_SOLARIS_PAGESIZE_HINT`
-
 ```rust
 const NT_SOLARIS_PAGESIZE_HINT: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1858`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1858)*
+
 Desired pagesize for the binary.
 
 ### `ELF_NOTE_GNU`
-
 ```rust
 const ELF_NOTE_GNU: &[u8];
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1861`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1861)*
+
 GNU entries in the note section have this name.
 
 ### `ELF_NOTE_GO`
-
 ```rust
 const ELF_NOTE_GO: &[u8];
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1865`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1865)*
+
 Go entries in the note section have this name.
 
 ### `NT_GNU_ABI_TAG`
-
 ```rust
 const NT_GNU_ABI_TAG: u32 = 1u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1876`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1876)*
 
 ABI information.
 
@@ -12295,42 +12903,47 @@ The descriptor consists of words:
 - word 3: subminor version of the ABI
 
 ### `ELF_NOTE_OS_LINUX`
-
 ```rust
 const ELF_NOTE_OS_LINUX: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1879`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1879)*
+
 OS descriptor for `NT_GNU_ABI_TAG`.
 
 ### `ELF_NOTE_OS_GNU`
-
 ```rust
 const ELF_NOTE_OS_GNU: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1881`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1881)*
+
 OS descriptor for `NT_GNU_ABI_TAG`.
 
 ### `ELF_NOTE_OS_SOLARIS2`
-
 ```rust
 const ELF_NOTE_OS_SOLARIS2: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1883`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1883)*
+
 OS descriptor for `NT_GNU_ABI_TAG`.
 
 ### `ELF_NOTE_OS_FREEBSD`
-
 ```rust
 const ELF_NOTE_OS_FREEBSD: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1885`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1885)*
+
 OS descriptor for `NT_GNU_ABI_TAG`.
 
 ### `NT_GNU_HWCAP`
-
 ```rust
 const NT_GNU_HWCAP: u32 = 2u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1896`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1896)*
 
 Synthetic hwcap information.
 
@@ -12343,940 +12956,1059 @@ Then follow variable-length entries, one byte followed by a
 number to test if enabled, (1U << bit) & bitmask.  */
 
 ### `NT_GNU_BUILD_ID`
-
 ```rust
 const NT_GNU_BUILD_ID: u32 = 3u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1901`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1901)*
 
 Build ID bits as generated by `ld --build-id`.
 
 The descriptor consists of any nonzero number of bytes.
 
 ### `NT_GO_BUILD_ID`
-
 ```rust
 const NT_GO_BUILD_ID: u32 = 4u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1907`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1907)*
 
 Build ID bits as generated by Go's gc compiler.
 
 The descriptor consists of any nonzero number of bytes.
 
 ### `NT_GNU_GOLD_VERSION`
-
 ```rust
 const NT_GNU_GOLD_VERSION: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1910`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1910)*
+
 Version note generated by GNU gold containing a version string.
 
 ### `NT_GNU_PROPERTY_TYPE_0`
-
 ```rust
 const NT_GNU_PROPERTY_TYPE_0: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1913`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1913)*
+
 Program property.
 
 ### `GNU_PROPERTY_STACK_SIZE`
-
 ```rust
 const GNU_PROPERTY_STACK_SIZE: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1918`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1918)*
+
 Stack size.
 
 ### `GNU_PROPERTY_NO_COPY_ON_PROTECTED`
-
 ```rust
 const GNU_PROPERTY_NO_COPY_ON_PROTECTED: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1920`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1920)*
+
 No copy relocation on protected data symbol.
 
 ### `GNU_PROPERTY_UINT32_AND_LO`
-
 ```rust
 const GNU_PROPERTY_UINT32_AND_LO: u32 = 2_952_790_016u32;
 ```
 
-### `GNU_PROPERTY_UINT32_AND_HI`
+*Defined in [`object-0.37.3/src/elf.rs:1924`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1924)*
 
+### `GNU_PROPERTY_UINT32_AND_HI`
 ```rust
 const GNU_PROPERTY_UINT32_AND_HI: u32 = 2_952_822_783u32;
 ```
 
-### `GNU_PROPERTY_UINT32_OR_LO`
+*Defined in [`object-0.37.3/src/elf.rs:1925`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1925)*
 
+### `GNU_PROPERTY_UINT32_OR_LO`
 ```rust
 const GNU_PROPERTY_UINT32_OR_LO: u32 = 2_952_822_784u32;
 ```
 
-### `GNU_PROPERTY_UINT32_OR_HI`
+*Defined in [`object-0.37.3/src/elf.rs:1929`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1929)*
 
+### `GNU_PROPERTY_UINT32_OR_HI`
 ```rust
 const GNU_PROPERTY_UINT32_OR_HI: u32 = 2_952_855_551u32;
 ```
 
-### `GNU_PROPERTY_1_NEEDED`
+*Defined in [`object-0.37.3/src/elf.rs:1930`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1930)*
 
+### `GNU_PROPERTY_1_NEEDED`
 ```rust
 const GNU_PROPERTY_1_NEEDED: u32 = 2_952_822_784u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1933`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1933)*
+
 The needed properties by the object file.  */
 
 ### `GNU_PROPERTY_1_NEEDED_INDIRECT_EXTERN_ACCESS`
-
 ```rust
 const GNU_PROPERTY_1_NEEDED_INDIRECT_EXTERN_ACCESS: u32 = 1u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1937`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1937)*
 
 Set if the object file requires canonical function pointers and
 cannot be used with copy relocation.
 
 ### `GNU_PROPERTY_LOPROC`
-
 ```rust
 const GNU_PROPERTY_LOPROC: u32 = 3_221_225_472u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1940`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1940)*
+
 Processor-specific semantics, lo
 
 ### `GNU_PROPERTY_HIPROC`
-
 ```rust
 const GNU_PROPERTY_HIPROC: u32 = 3_758_096_383u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1942`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1942)*
+
 Processor-specific semantics, hi
 
 ### `GNU_PROPERTY_LOUSER`
-
 ```rust
 const GNU_PROPERTY_LOUSER: u32 = 3_758_096_384u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1944`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1944)*
+
 Application-specific semantics, lo
 
 ### `GNU_PROPERTY_HIUSER`
-
 ```rust
 const GNU_PROPERTY_HIUSER: u32 = 4_294_967_295u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1946`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1946)*
+
 Application-specific semantics, hi
 
 ### `GNU_PROPERTY_AARCH64_FEATURE_1_AND`
-
 ```rust
 const GNU_PROPERTY_AARCH64_FEATURE_1_AND: u32 = 3_221_225_472u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1949`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1949)*
+
 AArch64 specific GNU properties.
 
 ### `GNU_PROPERTY_AARCH64_FEATURE_PAUTH`
-
 ```rust
 const GNU_PROPERTY_AARCH64_FEATURE_PAUTH: u32 = 3_221_225_473u32;
 ```
 
-### `GNU_PROPERTY_AARCH64_FEATURE_1_BTI`
+*Defined in [`object-0.37.3/src/elf.rs:1950`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1950)*
 
+### `GNU_PROPERTY_AARCH64_FEATURE_1_BTI`
 ```rust
 const GNU_PROPERTY_AARCH64_FEATURE_1_BTI: u32 = 1u32;
 ```
 
-### `GNU_PROPERTY_AARCH64_FEATURE_1_PAC`
+*Defined in [`object-0.37.3/src/elf.rs:1952`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1952)*
 
+### `GNU_PROPERTY_AARCH64_FEATURE_1_PAC`
 ```rust
 const GNU_PROPERTY_AARCH64_FEATURE_1_PAC: u32 = 2u32;
 ```
 
-### `GNU_PROPERTY_X86_UINT32_AND_LO`
+*Defined in [`object-0.37.3/src/elf.rs:1953`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1953)*
 
+### `GNU_PROPERTY_X86_UINT32_AND_LO`
 ```rust
 const GNU_PROPERTY_X86_UINT32_AND_LO: u32 = 3_221_225_474u32;
 ```
 
-### `GNU_PROPERTY_X86_UINT32_AND_HI`
+*Defined in [`object-0.37.3/src/elf.rs:1957`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1957)*
 
+### `GNU_PROPERTY_X86_UINT32_AND_HI`
 ```rust
 const GNU_PROPERTY_X86_UINT32_AND_HI: u32 = 3_221_258_239u32;
 ```
 
-### `GNU_PROPERTY_X86_UINT32_OR_LO`
+*Defined in [`object-0.37.3/src/elf.rs:1958`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1958)*
 
+### `GNU_PROPERTY_X86_UINT32_OR_LO`
 ```rust
 const GNU_PROPERTY_X86_UINT32_OR_LO: u32 = 3_221_258_240u32;
 ```
 
-### `GNU_PROPERTY_X86_UINT32_OR_HI`
+*Defined in [`object-0.37.3/src/elf.rs:1962`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1962)*
 
+### `GNU_PROPERTY_X86_UINT32_OR_HI`
 ```rust
 const GNU_PROPERTY_X86_UINT32_OR_HI: u32 = 3_221_291_007u32;
 ```
 
-### `GNU_PROPERTY_X86_UINT32_OR_AND_LO`
+*Defined in [`object-0.37.3/src/elf.rs:1963`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1963)*
 
+### `GNU_PROPERTY_X86_UINT32_OR_AND_LO`
 ```rust
 const GNU_PROPERTY_X86_UINT32_OR_AND_LO: u32 = 3_221_291_008u32;
 ```
 
-### `GNU_PROPERTY_X86_UINT32_OR_AND_HI`
+*Defined in [`object-0.37.3/src/elf.rs:1968`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1968)*
 
+### `GNU_PROPERTY_X86_UINT32_OR_AND_HI`
 ```rust
 const GNU_PROPERTY_X86_UINT32_OR_AND_HI: u32 = 3_221_323_775u32;
 ```
 
-### `GNU_PROPERTY_X86_ISA_1_USED`
+*Defined in [`object-0.37.3/src/elf.rs:1969`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1969)*
 
+### `GNU_PROPERTY_X86_ISA_1_USED`
 ```rust
 const GNU_PROPERTY_X86_ISA_1_USED: u32 = 3_221_291_010u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1973`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1973)*
 
 The x86 instruction sets indicated by the corresponding bits are
 used in program.  Their support in the hardware is optional.
 
 ### `GNU_PROPERTY_X86_ISA_1_NEEDED`
-
 ```rust
 const GNU_PROPERTY_X86_ISA_1_NEEDED: u32 = 3_221_258_242u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1976`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1976)*
 
 The x86 instruction sets indicated by the corresponding bits are
 used in program and they must be supported by the hardware.
 
 ### `GNU_PROPERTY_X86_FEATURE_1_AND`
-
 ```rust
 const GNU_PROPERTY_X86_FEATURE_1_AND: u32 = 3_221_225_474u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1978`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1978)*
+
 X86 processor-specific features used in program.
 
 ### `GNU_PROPERTY_X86_ISA_1_BASELINE`
-
 ```rust
 const GNU_PROPERTY_X86_ISA_1_BASELINE: u32 = 1u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1982`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1982)*
 
 GNU_PROPERTY_X86_ISA_1_BASELINE: CMOV, CX8 (cmpxchg8b), FPU (fld),
 MMX, OSFXSR (fxsave), SCE (syscall), SSE and SSE2.
 
 ### `GNU_PROPERTY_X86_ISA_1_V2`
-
 ```rust
 const GNU_PROPERTY_X86_ISA_1_V2: u32 = 2u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1986`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1986)*
 
 GNU_PROPERTY_X86_ISA_1_V2: GNU_PROPERTY_X86_ISA_1_BASELINE,
 CMPXCHG16B (cmpxchg16b), LAHF-SAHF (lahf), POPCNT (popcnt), SSE3,
 SSSE3, SSE4.1 and SSE4.2.
 
 ### `GNU_PROPERTY_X86_ISA_1_V3`
-
 ```rust
 const GNU_PROPERTY_X86_ISA_1_V3: u32 = 4u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1989`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1989)*
 
 GNU_PROPERTY_X86_ISA_1_V3: GNU_PROPERTY_X86_ISA_1_V2, AVX, AVX2, BMI1,
 BMI2, F16C, FMA, LZCNT, MOVBE, XSAVE.
 
 ### `GNU_PROPERTY_X86_ISA_1_V4`
-
 ```rust
 const GNU_PROPERTY_X86_ISA_1_V4: u32 = 8u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:1992`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1992)*
 
 GNU_PROPERTY_X86_ISA_1_V4: GNU_PROPERTY_X86_ISA_1_V3, AVX512F,
 AVX512BW, AVX512CD, AVX512DQ and AVX512VL.
 
 ### `GNU_PROPERTY_X86_FEATURE_1_IBT`
-
 ```rust
 const GNU_PROPERTY_X86_FEATURE_1_IBT: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1995`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1995)*
+
 This indicates that all executable sections are compatible with IBT.
 
 ### `GNU_PROPERTY_X86_FEATURE_1_SHSTK`
-
 ```rust
 const GNU_PROPERTY_X86_FEATURE_1_SHSTK: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:1997`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L1997)*
+
 This indicates that all executable sections are compatible with SHSTK.
 
 ### `R_68K_NONE`
-
 ```rust
 const R_68K_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2065`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2065)*
+
 No reloc
 
 ### `R_68K_32`
-
 ```rust
 const R_68K_32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2067`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2067)*
+
 Direct 32 bit
 
 ### `R_68K_16`
-
 ```rust
 const R_68K_16: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2069`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2069)*
+
 Direct 16 bit
 
 ### `R_68K_8`
-
 ```rust
 const R_68K_8: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2071`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2071)*
+
 Direct 8 bit
 
 ### `R_68K_PC32`
-
 ```rust
 const R_68K_PC32: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2073`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2073)*
+
 PC relative 32 bit
 
 ### `R_68K_PC16`
-
 ```rust
 const R_68K_PC16: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2075`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2075)*
+
 PC relative 16 bit
 
 ### `R_68K_PC8`
-
 ```rust
 const R_68K_PC8: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2077`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2077)*
+
 PC relative 8 bit
 
 ### `R_68K_GOT32`
-
 ```rust
 const R_68K_GOT32: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2079`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2079)*
+
 32 bit PC relative GOT entry
 
 ### `R_68K_GOT16`
-
 ```rust
 const R_68K_GOT16: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2081`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2081)*
+
 16 bit PC relative GOT entry
 
 ### `R_68K_GOT8`
-
 ```rust
 const R_68K_GOT8: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2083`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2083)*
+
 8 bit PC relative GOT entry
 
 ### `R_68K_GOT32O`
-
 ```rust
 const R_68K_GOT32O: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2085`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2085)*
+
 32 bit GOT offset
 
 ### `R_68K_GOT16O`
-
 ```rust
 const R_68K_GOT16O: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2087`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2087)*
+
 16 bit GOT offset
 
 ### `R_68K_GOT8O`
-
 ```rust
 const R_68K_GOT8O: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2089`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2089)*
+
 8 bit GOT offset
 
 ### `R_68K_PLT32`
-
 ```rust
 const R_68K_PLT32: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2091`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2091)*
+
 32 bit PC relative PLT address
 
 ### `R_68K_PLT16`
-
 ```rust
 const R_68K_PLT16: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2093`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2093)*
+
 16 bit PC relative PLT address
 
 ### `R_68K_PLT8`
-
 ```rust
 const R_68K_PLT8: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2095`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2095)*
+
 8 bit PC relative PLT address
 
 ### `R_68K_PLT32O`
-
 ```rust
 const R_68K_PLT32O: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2097`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2097)*
+
 32 bit PLT offset
 
 ### `R_68K_PLT16O`
-
 ```rust
 const R_68K_PLT16O: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2099`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2099)*
+
 16 bit PLT offset
 
 ### `R_68K_PLT8O`
-
 ```rust
 const R_68K_PLT8O: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2101`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2101)*
+
 8 bit PLT offset
 
 ### `R_68K_COPY`
-
 ```rust
 const R_68K_COPY: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2103`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2103)*
+
 Copy symbol at runtime
 
 ### `R_68K_GLOB_DAT`
-
 ```rust
 const R_68K_GLOB_DAT: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2105`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2105)*
+
 Create GOT entry
 
 ### `R_68K_JMP_SLOT`
-
 ```rust
 const R_68K_JMP_SLOT: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2107`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2107)*
+
 Create PLT entry
 
 ### `R_68K_RELATIVE`
-
 ```rust
 const R_68K_RELATIVE: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2109`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2109)*
+
 Adjust by program base
 
 ### `R_68K_TLS_GD32`
-
 ```rust
 const R_68K_TLS_GD32: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2111`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2111)*
+
 32 bit GOT offset for GD
 
 ### `R_68K_TLS_GD16`
-
 ```rust
 const R_68K_TLS_GD16: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2113`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2113)*
+
 16 bit GOT offset for GD
 
 ### `R_68K_TLS_GD8`
-
 ```rust
 const R_68K_TLS_GD8: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2115`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2115)*
+
 8 bit GOT offset for GD
 
 ### `R_68K_TLS_LDM32`
-
 ```rust
 const R_68K_TLS_LDM32: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2117`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2117)*
+
 32 bit GOT offset for LDM
 
 ### `R_68K_TLS_LDM16`
-
 ```rust
 const R_68K_TLS_LDM16: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2119`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2119)*
+
 16 bit GOT offset for LDM
 
 ### `R_68K_TLS_LDM8`
-
 ```rust
 const R_68K_TLS_LDM8: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2121`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2121)*
+
 8 bit GOT offset for LDM
 
 ### `R_68K_TLS_LDO32`
-
 ```rust
 const R_68K_TLS_LDO32: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2123`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2123)*
+
 32 bit module-relative offset
 
 ### `R_68K_TLS_LDO16`
-
 ```rust
 const R_68K_TLS_LDO16: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2125`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2125)*
+
 16 bit module-relative offset
 
 ### `R_68K_TLS_LDO8`
-
 ```rust
 const R_68K_TLS_LDO8: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2127`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2127)*
+
 8 bit module-relative offset
 
 ### `R_68K_TLS_IE32`
-
 ```rust
 const R_68K_TLS_IE32: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2129`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2129)*
+
 32 bit GOT offset for IE
 
 ### `R_68K_TLS_IE16`
-
 ```rust
 const R_68K_TLS_IE16: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2131`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2131)*
+
 16 bit GOT offset for IE
 
 ### `R_68K_TLS_IE8`
-
 ```rust
 const R_68K_TLS_IE8: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2133`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2133)*
+
 8 bit GOT offset for IE
 
 ### `R_68K_TLS_LE32`
-
 ```rust
 const R_68K_TLS_LE32: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2135`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2135)*
+
 32 bit offset relative to static TLS block
 
 ### `R_68K_TLS_LE16`
-
 ```rust
 const R_68K_TLS_LE16: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2137`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2137)*
+
 16 bit offset relative to static TLS block
 
 ### `R_68K_TLS_LE8`
-
 ```rust
 const R_68K_TLS_LE8: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2139`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2139)*
+
 8 bit offset relative to static TLS block
 
 ### `R_68K_TLS_DTPMOD32`
-
 ```rust
 const R_68K_TLS_DTPMOD32: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2141`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2141)*
+
 32 bit module number
 
 ### `R_68K_TLS_DTPREL32`
-
 ```rust
 const R_68K_TLS_DTPREL32: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2143`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2143)*
+
 32 bit module-relative offset
 
 ### `R_68K_TLS_TPREL32`
-
 ```rust
 const R_68K_TLS_TPREL32: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2145`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2145)*
+
 32 bit TP-relative offset
 
 ### `R_386_NONE`
-
 ```rust
 const R_386_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2152`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2152)*
+
 No reloc
 
 ### `R_386_32`
-
 ```rust
 const R_386_32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2154`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2154)*
+
 Direct 32 bit
 
 ### `R_386_PC32`
-
 ```rust
 const R_386_PC32: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2156`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2156)*
+
 PC relative 32 bit
 
 ### `R_386_GOT32`
-
 ```rust
 const R_386_GOT32: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2158`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2158)*
+
 32 bit GOT entry
 
 ### `R_386_PLT32`
-
 ```rust
 const R_386_PLT32: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2160`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2160)*
+
 32 bit PLT address
 
 ### `R_386_COPY`
-
 ```rust
 const R_386_COPY: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2162`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2162)*
+
 Copy symbol at runtime
 
 ### `R_386_GLOB_DAT`
-
 ```rust
 const R_386_GLOB_DAT: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2164`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2164)*
+
 Create GOT entry
 
 ### `R_386_JMP_SLOT`
-
 ```rust
 const R_386_JMP_SLOT: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2166`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2166)*
+
 Create PLT entry
 
 ### `R_386_RELATIVE`
-
 ```rust
 const R_386_RELATIVE: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2168`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2168)*
+
 Adjust by program base
 
 ### `R_386_GOTOFF`
-
 ```rust
 const R_386_GOTOFF: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2170`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2170)*
+
 32 bit offset to GOT
 
 ### `R_386_GOTPC`
-
 ```rust
 const R_386_GOTPC: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2172`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2172)*
+
 32 bit PC relative offset to GOT
 
 ### `R_386_32PLT`
-
 ```rust
 const R_386_32PLT: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2174`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2174)*
+
 Direct 32 bit PLT address
 
 ### `R_386_TLS_TPOFF`
-
 ```rust
 const R_386_TLS_TPOFF: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2176`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2176)*
+
 Offset in static TLS block
 
 ### `R_386_TLS_IE`
-
 ```rust
 const R_386_TLS_IE: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2178`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2178)*
+
 Address of GOT entry for static TLS block offset
 
 ### `R_386_TLS_GOTIE`
-
 ```rust
 const R_386_TLS_GOTIE: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2180`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2180)*
+
 GOT entry for static TLS block offset
 
 ### `R_386_TLS_LE`
-
 ```rust
 const R_386_TLS_LE: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2182`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2182)*
+
 Offset relative to static TLS block
 
 ### `R_386_TLS_GD`
-
 ```rust
 const R_386_TLS_GD: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2184`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2184)*
+
 Direct 32 bit for GNU version of general dynamic thread local data
 
 ### `R_386_TLS_LDM`
-
 ```rust
 const R_386_TLS_LDM: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2186`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2186)*
+
 Direct 32 bit for GNU version of local dynamic thread local data in LE code
 
 ### `R_386_16`
-
 ```rust
 const R_386_16: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2188`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2188)*
+
 Direct 16 bit
 
 ### `R_386_PC16`
-
 ```rust
 const R_386_PC16: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2190`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2190)*
+
 PC relative 16 bit
 
 ### `R_386_8`
-
 ```rust
 const R_386_8: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2192`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2192)*
+
 Direct 8 bit
 
 ### `R_386_PC8`
-
 ```rust
 const R_386_PC8: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2194`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2194)*
+
 PC relative 8 bit
 
 ### `R_386_TLS_GD_32`
-
 ```rust
 const R_386_TLS_GD_32: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2196`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2196)*
+
 Direct 32 bit for general dynamic thread local data
 
 ### `R_386_TLS_GD_PUSH`
-
 ```rust
 const R_386_TLS_GD_PUSH: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2198`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2198)*
+
 Tag for pushl in GD TLS code
 
 ### `R_386_TLS_GD_CALL`
-
 ```rust
 const R_386_TLS_GD_CALL: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2200`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2200)*
+
 Relocation for call to __tls_get_addr()
 
 ### `R_386_TLS_GD_POP`
-
 ```rust
 const R_386_TLS_GD_POP: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2202`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2202)*
+
 Tag for popl in GD TLS code
 
 ### `R_386_TLS_LDM_32`
-
 ```rust
 const R_386_TLS_LDM_32: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2204`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2204)*
+
 Direct 32 bit for local dynamic thread local data in LE code
 
 ### `R_386_TLS_LDM_PUSH`
-
 ```rust
 const R_386_TLS_LDM_PUSH: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2206`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2206)*
+
 Tag for pushl in LDM TLS code
 
 ### `R_386_TLS_LDM_CALL`
-
 ```rust
 const R_386_TLS_LDM_CALL: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2208`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2208)*
+
 Relocation for call to __tls_get_addr() in LDM code
 
 ### `R_386_TLS_LDM_POP`
-
 ```rust
 const R_386_TLS_LDM_POP: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2210`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2210)*
+
 Tag for popl in LDM TLS code
 
 ### `R_386_TLS_LDO_32`
-
 ```rust
 const R_386_TLS_LDO_32: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2212`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2212)*
+
 Offset relative to TLS block
 
 ### `R_386_TLS_IE_32`
-
 ```rust
 const R_386_TLS_IE_32: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2214`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2214)*
+
 GOT entry for negated static TLS block offset
 
 ### `R_386_TLS_LE_32`
-
 ```rust
 const R_386_TLS_LE_32: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2216`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2216)*
+
 Negated offset relative to static TLS block
 
 ### `R_386_TLS_DTPMOD32`
-
 ```rust
 const R_386_TLS_DTPMOD32: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2218`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2218)*
+
 ID of module containing symbol
 
 ### `R_386_TLS_DTPOFF32`
-
 ```rust
 const R_386_TLS_DTPOFF32: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2220`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2220)*
+
 Offset in TLS block
 
 ### `R_386_TLS_TPOFF32`
-
 ```rust
 const R_386_TLS_TPOFF32: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2222`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2222)*
+
 Negated offset in static TLS block
 
 ### `R_386_SIZE32`
-
 ```rust
 const R_386_SIZE32: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2224`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2224)*
+
 32-bit symbol size
 
 ### `R_386_TLS_GOTDESC`
-
 ```rust
 const R_386_TLS_GOTDESC: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2226`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2226)*
+
 GOT offset for TLS descriptor.
 
 ### `R_386_TLS_DESC_CALL`
-
 ```rust
 const R_386_TLS_DESC_CALL: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2228`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2228)*
+
 Marker of call through TLS descriptor for relaxation.
 
 ### `R_386_TLS_DESC`
-
 ```rust
 const R_386_TLS_DESC: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2230`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2230)*
+
 TLS descriptor containing pointer to code and to argument, returning the TLS offset for the symbol.
 
 ### `R_386_IRELATIVE`
-
 ```rust
 const R_386_IRELATIVE: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2232`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2232)*
+
 Adjust indirectly by program base
 
 ### `R_386_GOT32X`
-
 ```rust
 const R_386_GOT32X: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2234`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2234)*
+
 Load from 32 bit GOT entry, relaxable.
 
 ### `R_SHARC_ADDR24_V3`
-
 ```rust
 const R_SHARC_ADDR24_V3: u32 = 11u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2245`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2245)*
 
 24-bit absolute address in bits 23:0 of a 48-bit instr
 
@@ -13285,10 +14017,11 @@ Targets:
 * Type 25a (PC_DIRECT)
 
 ### `R_SHARC_ADDR32_V3`
-
 ```rust
 const R_SHARC_ADDR32_V3: u32 = 12u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2258`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2258)*
 
 32-bit absolute address in bits 31:0 of a 48-bit instr
 
@@ -13303,20 +14036,22 @@ Targets:
 * Type 19a
 
 ### `R_SHARC_ADDR_VAR_V3`
-
 ```rust
 const R_SHARC_ADDR_VAR_V3: u32 = 13u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2263`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2263)*
 
 32-bit absolute address in bits 31:0 of a 32-bit data location
 
 Represented with `RelocationEncoding::Generic`
 
 ### `R_SHARC_PCRSHORT_V3`
-
 ```rust
 const R_SHARC_PCRSHORT_V3: u32 = 14u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2271`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2271)*
 
 6-bit PC-relative address in bits 32:27 of a 48-bit instr
 
@@ -13326,10 +14061,11 @@ Targets:
 * Type 10a
 
 ### `R_SHARC_PCRLONG_V3`
-
 ```rust
 const R_SHARC_PCRLONG_V3: u32 = 15u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2281`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2281)*
 
 24-bit PC-relative address in bits 23:0 of a 48-bit instr
 
@@ -13341,10 +14077,11 @@ Targets:
 * Type 25a (PC Relative)
 
 ### `R_SHARC_DATA6_V3`
-
 ```rust
 const R_SHARC_DATA6_V3: u32 = 16u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2290`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2290)*
 
 6-bit absolute address in bits 32:27 of a 48-bit instr
 
@@ -13355,10 +14092,11 @@ Targets:
 * Type 4d
 
 ### `R_SHARC_DATA16_V3`
-
 ```rust
 const R_SHARC_DATA16_V3: u32 = 17u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2297`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2297)*
 
 16-bit absolute address in bits 39:24 of a 48-bit instr
 
@@ -13367,10 +14105,11 @@ Targets:
 * Type 12a
 
 ### `R_SHARC_DATA6_VISA_V3`
-
 ```rust
 const R_SHARC_DATA6_VISA_V3: u32 = 18u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2304`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2304)*
 
 6-bit absolute address into bits 16:11 of a 32-bit instr
 
@@ -13379,26 +14118,29 @@ Targets:
 * Type 4b
 
 ### `R_SHARC_DATA7_VISA_V3`
-
 ```rust
 const R_SHARC_DATA7_VISA_V3: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2307`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2307)*
+
 7-bit absolute address into bits 6:0 of a 32-bit instr
 
 ### `R_SHARC_DATA16_VISA_V3`
-
 ```rust
 const R_SHARC_DATA16_VISA_V3: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2310`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2310)*
+
 16-bit absolute address into bits 15:0 of a 32-bit instr
 
 ### `R_SHARC_PCR6_VISA_V3`
-
 ```rust
 const R_SHARC_PCR6_VISA_V3: u32 = 23u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2317`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2317)*
 
 6-bit PC-relative address into bits 16:11 of a Type B
 
@@ -13407,5659 +14149,6441 @@ Targets:
 * Type 9b
 
 ### `R_SHARC_ADDR_VAR16_V3`
-
 ```rust
 const R_SHARC_ADDR_VAR16_V3: u32 = 25u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:2322`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2322)*
 
 16-bit absolute address into bits 15:0 of a 16-bit location.
 
 Represented with `RelocationEncoding::Generic`
 
 ### `R_SHARC_CALC_PUSH_ADDR`
-
 ```rust
 const R_SHARC_CALC_PUSH_ADDR: u32 = 224u32;
 ```
 
-### `R_SHARC_CALC_PUSH_ADDEND`
+*Defined in [`object-0.37.3/src/elf.rs:2324`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2324)*
 
+### `R_SHARC_CALC_PUSH_ADDEND`
 ```rust
 const R_SHARC_CALC_PUSH_ADDEND: u32 = 225u32;
 ```
 
-### `R_SHARC_CALC_ADD`
+*Defined in [`object-0.37.3/src/elf.rs:2325`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2325)*
 
+### `R_SHARC_CALC_ADD`
 ```rust
 const R_SHARC_CALC_ADD: u32 = 226u32;
 ```
 
-### `R_SHARC_CALC_SUB`
+*Defined in [`object-0.37.3/src/elf.rs:2326`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2326)*
 
+### `R_SHARC_CALC_SUB`
 ```rust
 const R_SHARC_CALC_SUB: u32 = 227u32;
 ```
 
-### `R_SHARC_CALC_MUL`
+*Defined in [`object-0.37.3/src/elf.rs:2327`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2327)*
 
+### `R_SHARC_CALC_MUL`
 ```rust
 const R_SHARC_CALC_MUL: u32 = 228u32;
 ```
 
-### `R_SHARC_CALC_DIV`
+*Defined in [`object-0.37.3/src/elf.rs:2328`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2328)*
 
+### `R_SHARC_CALC_DIV`
 ```rust
 const R_SHARC_CALC_DIV: u32 = 229u32;
 ```
 
-### `R_SHARC_CALC_MOD`
+*Defined in [`object-0.37.3/src/elf.rs:2329`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2329)*
 
+### `R_SHARC_CALC_MOD`
 ```rust
 const R_SHARC_CALC_MOD: u32 = 230u32;
 ```
 
-### `R_SHARC_CALC_LSHIFT`
+*Defined in [`object-0.37.3/src/elf.rs:2330`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2330)*
 
+### `R_SHARC_CALC_LSHIFT`
 ```rust
 const R_SHARC_CALC_LSHIFT: u32 = 231u32;
 ```
 
-### `R_SHARC_CALC_RSHIFT`
+*Defined in [`object-0.37.3/src/elf.rs:2331`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2331)*
 
+### `R_SHARC_CALC_RSHIFT`
 ```rust
 const R_SHARC_CALC_RSHIFT: u32 = 232u32;
 ```
 
-### `R_SHARC_CALC_AND`
+*Defined in [`object-0.37.3/src/elf.rs:2332`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2332)*
 
+### `R_SHARC_CALC_AND`
 ```rust
 const R_SHARC_CALC_AND: u32 = 233u32;
 ```
 
-### `R_SHARC_CALC_OR`
+*Defined in [`object-0.37.3/src/elf.rs:2333`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2333)*
 
+### `R_SHARC_CALC_OR`
 ```rust
 const R_SHARC_CALC_OR: u32 = 234u32;
 ```
 
-### `R_SHARC_CALC_XOR`
+*Defined in [`object-0.37.3/src/elf.rs:2334`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2334)*
 
+### `R_SHARC_CALC_XOR`
 ```rust
 const R_SHARC_CALC_XOR: u32 = 235u32;
 ```
 
-### `R_SHARC_CALC_PUSH_LEN`
+*Defined in [`object-0.37.3/src/elf.rs:2335`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2335)*
 
+### `R_SHARC_CALC_PUSH_LEN`
 ```rust
 const R_SHARC_CALC_PUSH_LEN: u32 = 236u32;
 ```
 
-### `R_SHARC_CALC_NOT`
+*Defined in [`object-0.37.3/src/elf.rs:2336`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2336)*
 
+### `R_SHARC_CALC_NOT`
 ```rust
 const R_SHARC_CALC_NOT: u32 = 246u32;
 ```
 
-### `SHT_SHARC_ADI_ATTRIBUTES`
+*Defined in [`object-0.37.3/src/elf.rs:2337`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2337)*
 
+### `SHT_SHARC_ADI_ATTRIBUTES`
 ```rust
 const SHT_SHARC_ADI_ATTRIBUTES: u32 = 1_879_048_194u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2342`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2342)*
+
 .adi.attributes
 
 ### `STT_SPARC_REGISTER`
-
 ```rust
 const STT_SPARC_REGISTER: u8 = 13u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2349`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2349)*
+
 Global register reserved to app.
 
 ### `EF_SPARCV9_MM`
-
 ```rust
 const EF_SPARCV9_MM: u32 = 3u32;
 ```
 
-### `EF_SPARCV9_TSO`
+*Defined in [`object-0.37.3/src/elf.rs:2353`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2353)*
 
+### `EF_SPARCV9_TSO`
 ```rust
 const EF_SPARCV9_TSO: u32 = 0u32;
 ```
 
-### `EF_SPARCV9_PSO`
+*Defined in [`object-0.37.3/src/elf.rs:2354`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2354)*
 
+### `EF_SPARCV9_PSO`
 ```rust
 const EF_SPARCV9_PSO: u32 = 1u32;
 ```
 
-### `EF_SPARCV9_RMO`
+*Defined in [`object-0.37.3/src/elf.rs:2355`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2355)*
 
+### `EF_SPARCV9_RMO`
 ```rust
 const EF_SPARCV9_RMO: u32 = 2u32;
 ```
 
-### `EF_SPARC_LEDATA`
+*Defined in [`object-0.37.3/src/elf.rs:2356`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2356)*
 
+### `EF_SPARC_LEDATA`
 ```rust
 const EF_SPARC_LEDATA: u32 = 8_388_608u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2358`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2358)*
+
 little endian data
 
 ### `EF_SPARC_EXT_MASK`
-
 ```rust
 const EF_SPARC_EXT_MASK: u32 = 16_776_960u32;
 ```
 
-### `EF_SPARC_32PLUS`
+*Defined in [`object-0.37.3/src/elf.rs:2359`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2359)*
 
+### `EF_SPARC_32PLUS`
 ```rust
 const EF_SPARC_32PLUS: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2361`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2361)*
+
 generic V8+ features
 
 ### `EF_SPARC_SUN_US1`
-
 ```rust
 const EF_SPARC_SUN_US1: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2363`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2363)*
+
 Sun UltraSPARC1 extensions
 
 ### `EF_SPARC_HAL_R1`
-
 ```rust
 const EF_SPARC_HAL_R1: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2365`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2365)*
+
 HAL R1 extensions
 
 ### `EF_SPARC_SUN_US3`
-
 ```rust
 const EF_SPARC_SUN_US3: u32 = 2_048u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2367`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2367)*
+
 Sun UltraSPARCIII extensions
 
 ### `R_SPARC_NONE`
-
 ```rust
 const R_SPARC_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2372`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2372)*
+
 No reloc
 
 ### `R_SPARC_8`
-
 ```rust
 const R_SPARC_8: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2374`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2374)*
+
 Direct 8 bit
 
 ### `R_SPARC_16`
-
 ```rust
 const R_SPARC_16: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2376`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2376)*
+
 Direct 16 bit
 
 ### `R_SPARC_32`
-
 ```rust
 const R_SPARC_32: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2378`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2378)*
+
 Direct 32 bit
 
 ### `R_SPARC_DISP8`
-
 ```rust
 const R_SPARC_DISP8: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2380`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2380)*
+
 PC relative 8 bit
 
 ### `R_SPARC_DISP16`
-
 ```rust
 const R_SPARC_DISP16: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2382`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2382)*
+
 PC relative 16 bit
 
 ### `R_SPARC_DISP32`
-
 ```rust
 const R_SPARC_DISP32: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2384`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2384)*
+
 PC relative 32 bit
 
 ### `R_SPARC_WDISP30`
-
 ```rust
 const R_SPARC_WDISP30: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2386`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2386)*
+
 PC relative 30 bit shifted
 
 ### `R_SPARC_WDISP22`
-
 ```rust
 const R_SPARC_WDISP22: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2388`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2388)*
+
 PC relative 22 bit shifted
 
 ### `R_SPARC_HI22`
-
 ```rust
 const R_SPARC_HI22: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2390`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2390)*
+
 High 22 bit
 
 ### `R_SPARC_22`
-
 ```rust
 const R_SPARC_22: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2392`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2392)*
+
 Direct 22 bit
 
 ### `R_SPARC_13`
-
 ```rust
 const R_SPARC_13: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2394`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2394)*
+
 Direct 13 bit
 
 ### `R_SPARC_LO10`
-
 ```rust
 const R_SPARC_LO10: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2396`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2396)*
+
 Truncated 10 bit
 
 ### `R_SPARC_GOT10`
-
 ```rust
 const R_SPARC_GOT10: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2398`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2398)*
+
 Truncated 10 bit GOT entry
 
 ### `R_SPARC_GOT13`
-
 ```rust
 const R_SPARC_GOT13: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2400`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2400)*
+
 13 bit GOT entry
 
 ### `R_SPARC_GOT22`
-
 ```rust
 const R_SPARC_GOT22: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2402`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2402)*
+
 22 bit GOT entry shifted
 
 ### `R_SPARC_PC10`
-
 ```rust
 const R_SPARC_PC10: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2404`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2404)*
+
 PC relative 10 bit truncated
 
 ### `R_SPARC_PC22`
-
 ```rust
 const R_SPARC_PC22: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2406`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2406)*
+
 PC relative 22 bit shifted
 
 ### `R_SPARC_WPLT30`
-
 ```rust
 const R_SPARC_WPLT30: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2408`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2408)*
+
 30 bit PC relative PLT address
 
 ### `R_SPARC_COPY`
-
 ```rust
 const R_SPARC_COPY: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2410`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2410)*
+
 Copy symbol at runtime
 
 ### `R_SPARC_GLOB_DAT`
-
 ```rust
 const R_SPARC_GLOB_DAT: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2412`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2412)*
+
 Create GOT entry
 
 ### `R_SPARC_JMP_SLOT`
-
 ```rust
 const R_SPARC_JMP_SLOT: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2414`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2414)*
+
 Create PLT entry
 
 ### `R_SPARC_RELATIVE`
-
 ```rust
 const R_SPARC_RELATIVE: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2416`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2416)*
+
 Adjust by program base
 
 ### `R_SPARC_UA32`
-
 ```rust
 const R_SPARC_UA32: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2418`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2418)*
+
 Direct 32 bit unaligned
 
 ### `R_SPARC_PLT32`
-
 ```rust
 const R_SPARC_PLT32: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2423`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2423)*
+
 Direct 32 bit ref to PLT entry
 
 ### `R_SPARC_HIPLT22`
-
 ```rust
 const R_SPARC_HIPLT22: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2425`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2425)*
+
 High 22 bit PLT entry
 
 ### `R_SPARC_LOPLT10`
-
 ```rust
 const R_SPARC_LOPLT10: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2427`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2427)*
+
 Truncated 10 bit PLT entry
 
 ### `R_SPARC_PCPLT32`
-
 ```rust
 const R_SPARC_PCPLT32: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2429`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2429)*
+
 PC rel 32 bit ref to PLT entry
 
 ### `R_SPARC_PCPLT22`
-
 ```rust
 const R_SPARC_PCPLT22: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2431`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2431)*
+
 PC rel high 22 bit PLT entry
 
 ### `R_SPARC_PCPLT10`
-
 ```rust
 const R_SPARC_PCPLT10: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2433`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2433)*
+
 PC rel trunc 10 bit PLT entry
 
 ### `R_SPARC_10`
-
 ```rust
 const R_SPARC_10: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2435`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2435)*
+
 Direct 10 bit
 
 ### `R_SPARC_11`
-
 ```rust
 const R_SPARC_11: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2437`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2437)*
+
 Direct 11 bit
 
 ### `R_SPARC_64`
-
 ```rust
 const R_SPARC_64: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2439`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2439)*
+
 Direct 64 bit
 
 ### `R_SPARC_OLO10`
-
 ```rust
 const R_SPARC_OLO10: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2441`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2441)*
+
 10bit with secondary 13bit addend
 
 ### `R_SPARC_HH22`
-
 ```rust
 const R_SPARC_HH22: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2443`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2443)*
+
 Top 22 bits of direct 64 bit
 
 ### `R_SPARC_HM10`
-
 ```rust
 const R_SPARC_HM10: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2445`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2445)*
+
 High middle 10 bits of ...
 
 ### `R_SPARC_LM22`
-
 ```rust
 const R_SPARC_LM22: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2447`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2447)*
+
 Low middle 22 bits of ...
 
 ### `R_SPARC_PC_HH22`
-
 ```rust
 const R_SPARC_PC_HH22: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2449`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2449)*
+
 Top 22 bits of pc rel 64 bit
 
 ### `R_SPARC_PC_HM10`
-
 ```rust
 const R_SPARC_PC_HM10: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2451`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2451)*
+
 High middle 10 bit of ...
 
 ### `R_SPARC_PC_LM22`
-
 ```rust
 const R_SPARC_PC_LM22: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2453`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2453)*
+
 Low miggle 22 bits of ...
 
 ### `R_SPARC_WDISP16`
-
 ```rust
 const R_SPARC_WDISP16: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2455`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2455)*
+
 PC relative 16 bit shifted
 
 ### `R_SPARC_WDISP19`
-
 ```rust
 const R_SPARC_WDISP19: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2457`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2457)*
+
 PC relative 19 bit shifted
 
 ### `R_SPARC_GLOB_JMP`
-
 ```rust
 const R_SPARC_GLOB_JMP: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2459`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2459)*
+
 was part of v9 ABI but was removed
 
 ### `R_SPARC_7`
-
 ```rust
 const R_SPARC_7: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2461`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2461)*
+
 Direct 7 bit
 
 ### `R_SPARC_5`
-
 ```rust
 const R_SPARC_5: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2463`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2463)*
+
 Direct 5 bit
 
 ### `R_SPARC_6`
-
 ```rust
 const R_SPARC_6: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2465`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2465)*
+
 Direct 6 bit
 
 ### `R_SPARC_DISP64`
-
 ```rust
 const R_SPARC_DISP64: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2467`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2467)*
+
 PC relative 64 bit
 
 ### `R_SPARC_PLT64`
-
 ```rust
 const R_SPARC_PLT64: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2469`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2469)*
+
 Direct 64 bit ref to PLT entry
 
 ### `R_SPARC_HIX22`
-
 ```rust
 const R_SPARC_HIX22: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2471`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2471)*
+
 High 22 bit complemented
 
 ### `R_SPARC_LOX10`
-
 ```rust
 const R_SPARC_LOX10: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2473`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2473)*
+
 Truncated 11 bit complemented
 
 ### `R_SPARC_H44`
-
 ```rust
 const R_SPARC_H44: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2475`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2475)*
+
 Direct high 12 of 44 bit
 
 ### `R_SPARC_M44`
-
 ```rust
 const R_SPARC_M44: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2477`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2477)*
+
 Direct mid 22 of 44 bit
 
 ### `R_SPARC_L44`
-
 ```rust
 const R_SPARC_L44: u32 = 52u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2479`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2479)*
+
 Direct low 10 of 44 bit
 
 ### `R_SPARC_REGISTER`
-
 ```rust
 const R_SPARC_REGISTER: u32 = 53u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2481`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2481)*
+
 Global register usage
 
 ### `R_SPARC_UA64`
-
 ```rust
 const R_SPARC_UA64: u32 = 54u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2483`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2483)*
+
 Direct 64 bit unaligned
 
 ### `R_SPARC_UA16`
-
 ```rust
 const R_SPARC_UA16: u32 = 55u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2485`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2485)*
+
 Direct 16 bit unaligned
 
 ### `R_SPARC_TLS_GD_HI22`
-
 ```rust
 const R_SPARC_TLS_GD_HI22: u32 = 56u32;
 ```
 
-### `R_SPARC_TLS_GD_LO10`
+*Defined in [`object-0.37.3/src/elf.rs:2486`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2486)*
 
+### `R_SPARC_TLS_GD_LO10`
 ```rust
 const R_SPARC_TLS_GD_LO10: u32 = 57u32;
 ```
 
-### `R_SPARC_TLS_GD_ADD`
+*Defined in [`object-0.37.3/src/elf.rs:2487`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2487)*
 
+### `R_SPARC_TLS_GD_ADD`
 ```rust
 const R_SPARC_TLS_GD_ADD: u32 = 58u32;
 ```
 
-### `R_SPARC_TLS_GD_CALL`
+*Defined in [`object-0.37.3/src/elf.rs:2488`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2488)*
 
+### `R_SPARC_TLS_GD_CALL`
 ```rust
 const R_SPARC_TLS_GD_CALL: u32 = 59u32;
 ```
 
-### `R_SPARC_TLS_LDM_HI22`
+*Defined in [`object-0.37.3/src/elf.rs:2489`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2489)*
 
+### `R_SPARC_TLS_LDM_HI22`
 ```rust
 const R_SPARC_TLS_LDM_HI22: u32 = 60u32;
 ```
 
-### `R_SPARC_TLS_LDM_LO10`
+*Defined in [`object-0.37.3/src/elf.rs:2490`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2490)*
 
+### `R_SPARC_TLS_LDM_LO10`
 ```rust
 const R_SPARC_TLS_LDM_LO10: u32 = 61u32;
 ```
 
-### `R_SPARC_TLS_LDM_ADD`
+*Defined in [`object-0.37.3/src/elf.rs:2491`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2491)*
 
+### `R_SPARC_TLS_LDM_ADD`
 ```rust
 const R_SPARC_TLS_LDM_ADD: u32 = 62u32;
 ```
 
-### `R_SPARC_TLS_LDM_CALL`
+*Defined in [`object-0.37.3/src/elf.rs:2492`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2492)*
 
+### `R_SPARC_TLS_LDM_CALL`
 ```rust
 const R_SPARC_TLS_LDM_CALL: u32 = 63u32;
 ```
 
-### `R_SPARC_TLS_LDO_HIX22`
+*Defined in [`object-0.37.3/src/elf.rs:2493`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2493)*
 
+### `R_SPARC_TLS_LDO_HIX22`
 ```rust
 const R_SPARC_TLS_LDO_HIX22: u32 = 64u32;
 ```
 
-### `R_SPARC_TLS_LDO_LOX10`
+*Defined in [`object-0.37.3/src/elf.rs:2494`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2494)*
 
+### `R_SPARC_TLS_LDO_LOX10`
 ```rust
 const R_SPARC_TLS_LDO_LOX10: u32 = 65u32;
 ```
 
-### `R_SPARC_TLS_LDO_ADD`
+*Defined in [`object-0.37.3/src/elf.rs:2495`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2495)*
 
+### `R_SPARC_TLS_LDO_ADD`
 ```rust
 const R_SPARC_TLS_LDO_ADD: u32 = 66u32;
 ```
 
-### `R_SPARC_TLS_IE_HI22`
+*Defined in [`object-0.37.3/src/elf.rs:2496`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2496)*
 
+### `R_SPARC_TLS_IE_HI22`
 ```rust
 const R_SPARC_TLS_IE_HI22: u32 = 67u32;
 ```
 
-### `R_SPARC_TLS_IE_LO10`
+*Defined in [`object-0.37.3/src/elf.rs:2497`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2497)*
 
+### `R_SPARC_TLS_IE_LO10`
 ```rust
 const R_SPARC_TLS_IE_LO10: u32 = 68u32;
 ```
 
-### `R_SPARC_TLS_IE_LD`
+*Defined in [`object-0.37.3/src/elf.rs:2498`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2498)*
 
+### `R_SPARC_TLS_IE_LD`
 ```rust
 const R_SPARC_TLS_IE_LD: u32 = 69u32;
 ```
 
-### `R_SPARC_TLS_IE_LDX`
+*Defined in [`object-0.37.3/src/elf.rs:2499`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2499)*
 
+### `R_SPARC_TLS_IE_LDX`
 ```rust
 const R_SPARC_TLS_IE_LDX: u32 = 70u32;
 ```
 
-### `R_SPARC_TLS_IE_ADD`
+*Defined in [`object-0.37.3/src/elf.rs:2500`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2500)*
 
+### `R_SPARC_TLS_IE_ADD`
 ```rust
 const R_SPARC_TLS_IE_ADD: u32 = 71u32;
 ```
 
-### `R_SPARC_TLS_LE_HIX22`
+*Defined in [`object-0.37.3/src/elf.rs:2501`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2501)*
 
+### `R_SPARC_TLS_LE_HIX22`
 ```rust
 const R_SPARC_TLS_LE_HIX22: u32 = 72u32;
 ```
 
-### `R_SPARC_TLS_LE_LOX10`
+*Defined in [`object-0.37.3/src/elf.rs:2502`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2502)*
 
+### `R_SPARC_TLS_LE_LOX10`
 ```rust
 const R_SPARC_TLS_LE_LOX10: u32 = 73u32;
 ```
 
-### `R_SPARC_TLS_DTPMOD32`
+*Defined in [`object-0.37.3/src/elf.rs:2503`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2503)*
 
+### `R_SPARC_TLS_DTPMOD32`
 ```rust
 const R_SPARC_TLS_DTPMOD32: u32 = 74u32;
 ```
 
-### `R_SPARC_TLS_DTPMOD64`
+*Defined in [`object-0.37.3/src/elf.rs:2504`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2504)*
 
+### `R_SPARC_TLS_DTPMOD64`
 ```rust
 const R_SPARC_TLS_DTPMOD64: u32 = 75u32;
 ```
 
-### `R_SPARC_TLS_DTPOFF32`
+*Defined in [`object-0.37.3/src/elf.rs:2505`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2505)*
 
+### `R_SPARC_TLS_DTPOFF32`
 ```rust
 const R_SPARC_TLS_DTPOFF32: u32 = 76u32;
 ```
 
-### `R_SPARC_TLS_DTPOFF64`
+*Defined in [`object-0.37.3/src/elf.rs:2506`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2506)*
 
+### `R_SPARC_TLS_DTPOFF64`
 ```rust
 const R_SPARC_TLS_DTPOFF64: u32 = 77u32;
 ```
 
-### `R_SPARC_TLS_TPOFF32`
+*Defined in [`object-0.37.3/src/elf.rs:2507`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2507)*
 
+### `R_SPARC_TLS_TPOFF32`
 ```rust
 const R_SPARC_TLS_TPOFF32: u32 = 78u32;
 ```
 
-### `R_SPARC_TLS_TPOFF64`
+*Defined in [`object-0.37.3/src/elf.rs:2508`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2508)*
 
+### `R_SPARC_TLS_TPOFF64`
 ```rust
 const R_SPARC_TLS_TPOFF64: u32 = 79u32;
 ```
 
-### `R_SPARC_GOTDATA_HIX22`
+*Defined in [`object-0.37.3/src/elf.rs:2509`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2509)*
 
+### `R_SPARC_GOTDATA_HIX22`
 ```rust
 const R_SPARC_GOTDATA_HIX22: u32 = 80u32;
 ```
 
-### `R_SPARC_GOTDATA_LOX10`
+*Defined in [`object-0.37.3/src/elf.rs:2510`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2510)*
 
+### `R_SPARC_GOTDATA_LOX10`
 ```rust
 const R_SPARC_GOTDATA_LOX10: u32 = 81u32;
 ```
 
-### `R_SPARC_GOTDATA_OP_HIX22`
+*Defined in [`object-0.37.3/src/elf.rs:2511`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2511)*
 
+### `R_SPARC_GOTDATA_OP_HIX22`
 ```rust
 const R_SPARC_GOTDATA_OP_HIX22: u32 = 82u32;
 ```
 
-### `R_SPARC_GOTDATA_OP_LOX10`
+*Defined in [`object-0.37.3/src/elf.rs:2512`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2512)*
 
+### `R_SPARC_GOTDATA_OP_LOX10`
 ```rust
 const R_SPARC_GOTDATA_OP_LOX10: u32 = 83u32;
 ```
 
-### `R_SPARC_GOTDATA_OP`
+*Defined in [`object-0.37.3/src/elf.rs:2513`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2513)*
 
+### `R_SPARC_GOTDATA_OP`
 ```rust
 const R_SPARC_GOTDATA_OP: u32 = 84u32;
 ```
 
-### `R_SPARC_H34`
+*Defined in [`object-0.37.3/src/elf.rs:2514`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2514)*
 
+### `R_SPARC_H34`
 ```rust
 const R_SPARC_H34: u32 = 85u32;
 ```
 
-### `R_SPARC_SIZE32`
+*Defined in [`object-0.37.3/src/elf.rs:2515`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2515)*
 
+### `R_SPARC_SIZE32`
 ```rust
 const R_SPARC_SIZE32: u32 = 86u32;
 ```
 
-### `R_SPARC_SIZE64`
+*Defined in [`object-0.37.3/src/elf.rs:2516`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2516)*
 
+### `R_SPARC_SIZE64`
 ```rust
 const R_SPARC_SIZE64: u32 = 87u32;
 ```
 
-### `R_SPARC_WDISP10`
+*Defined in [`object-0.37.3/src/elf.rs:2517`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2517)*
 
+### `R_SPARC_WDISP10`
 ```rust
 const R_SPARC_WDISP10: u32 = 88u32;
 ```
 
-### `R_SPARC_JMP_IREL`
+*Defined in [`object-0.37.3/src/elf.rs:2518`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2518)*
 
+### `R_SPARC_JMP_IREL`
 ```rust
 const R_SPARC_JMP_IREL: u32 = 248u32;
 ```
 
-### `R_SPARC_IRELATIVE`
+*Defined in [`object-0.37.3/src/elf.rs:2519`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2519)*
 
+### `R_SPARC_IRELATIVE`
 ```rust
 const R_SPARC_IRELATIVE: u32 = 249u32;
 ```
 
-### `R_SPARC_GNU_VTINHERIT`
+*Defined in [`object-0.37.3/src/elf.rs:2520`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2520)*
 
+### `R_SPARC_GNU_VTINHERIT`
 ```rust
 const R_SPARC_GNU_VTINHERIT: u32 = 250u32;
 ```
 
-### `R_SPARC_GNU_VTENTRY`
+*Defined in [`object-0.37.3/src/elf.rs:2521`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2521)*
 
+### `R_SPARC_GNU_VTENTRY`
 ```rust
 const R_SPARC_GNU_VTENTRY: u32 = 251u32;
 ```
 
-### `R_SPARC_REV32`
+*Defined in [`object-0.37.3/src/elf.rs:2522`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2522)*
 
+### `R_SPARC_REV32`
 ```rust
 const R_SPARC_REV32: u32 = 252u32;
 ```
 
-### `DT_SPARC_REGISTER`
+*Defined in [`object-0.37.3/src/elf.rs:2523`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2523)*
 
+### `DT_SPARC_REGISTER`
 ```rust
 const DT_SPARC_REGISTER: u32 = 1_879_048_193u32;
 ```
 
-### `EF_MIPS_NOREORDER`
+*Defined in [`object-0.37.3/src/elf.rs:2527`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2527)*
 
+### `EF_MIPS_NOREORDER`
 ```rust
 const EF_MIPS_NOREORDER: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2534`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2534)*
+
 A .noreorder directive was used.
 
 ### `EF_MIPS_PIC`
-
 ```rust
 const EF_MIPS_PIC: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2536`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2536)*
+
 Contains PIC code.
 
 ### `EF_MIPS_CPIC`
-
 ```rust
 const EF_MIPS_CPIC: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2538`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2538)*
+
 Uses PIC calling sequence.
 
 ### `EF_MIPS_XGOT`
-
 ```rust
 const EF_MIPS_XGOT: u32 = 8u32;
 ```
 
-### `EF_MIPS_64BIT_WHIRL`
+*Defined in [`object-0.37.3/src/elf.rs:2539`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2539)*
 
+### `EF_MIPS_64BIT_WHIRL`
 ```rust
 const EF_MIPS_64BIT_WHIRL: u32 = 16u32;
 ```
 
-### `EF_MIPS_ABI2`
+*Defined in [`object-0.37.3/src/elf.rs:2540`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2540)*
 
+### `EF_MIPS_ABI2`
 ```rust
 const EF_MIPS_ABI2: u32 = 32u32;
 ```
 
-### `EF_MIPS_ABI_ON32`
+*Defined in [`object-0.37.3/src/elf.rs:2541`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2541)*
 
+### `EF_MIPS_ABI_ON32`
 ```rust
 const EF_MIPS_ABI_ON32: u32 = 64u32;
 ```
 
-### `EF_MIPS_FP64`
+*Defined in [`object-0.37.3/src/elf.rs:2542`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2542)*
 
+### `EF_MIPS_FP64`
 ```rust
 const EF_MIPS_FP64: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2544`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2544)*
+
 Uses FP64 (12 callee-saved).
 
 ### `EF_MIPS_NAN2008`
-
 ```rust
 const EF_MIPS_NAN2008: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2546`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2546)*
+
 Uses IEEE 754-2008 NaN encoding.
 
 ### `EF_MIPS_ARCH`
-
 ```rust
 const EF_MIPS_ARCH: u32 = 4_026_531_840u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2548`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2548)*
+
 MIPS architecture level.
 
 ### `EF_MIPS_ABI_O32`
-
 ```rust
 const EF_MIPS_ABI_O32: u32 = 4_096u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2551`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2551)*
+
 The first MIPS 32 bit ABI
 
 ### `EF_MIPS_ABI_O64`
-
 ```rust
 const EF_MIPS_ABI_O64: u32 = 8_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2553`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2553)*
+
 O32 ABI extended for 64-bit architectures
 
 ### `EF_MIPS_ABI_EABI32`
-
 ```rust
 const EF_MIPS_ABI_EABI32: u32 = 12_288u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2555`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2555)*
+
 EABI in 32-bit mode
 
 ### `EF_MIPS_ABI_EABI64`
-
 ```rust
 const EF_MIPS_ABI_EABI64: u32 = 16_384u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2557`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2557)*
+
 EABI in 64-bit mode
 
 ### `EF_MIPS_ABI`
-
 ```rust
 const EF_MIPS_ABI: u32 = 61_440u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2559`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2559)*
+
 Mask for selecting EF_MIPS_ABI_ variant
 
 ### `EF_MIPS_ARCH_1`
-
 ```rust
 const EF_MIPS_ARCH_1: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2564`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2564)*
+
 -mips1 code.
 
 ### `EF_MIPS_ARCH_2`
-
 ```rust
 const EF_MIPS_ARCH_2: u32 = 268_435_456u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2566`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2566)*
+
 -mips2 code.
 
 ### `EF_MIPS_ARCH_3`
-
 ```rust
 const EF_MIPS_ARCH_3: u32 = 536_870_912u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2568`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2568)*
+
 -mips3 code.
 
 ### `EF_MIPS_ARCH_4`
-
 ```rust
 const EF_MIPS_ARCH_4: u32 = 805_306_368u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2570`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2570)*
+
 -mips4 code.
 
 ### `EF_MIPS_ARCH_5`
-
 ```rust
 const EF_MIPS_ARCH_5: u32 = 1_073_741_824u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2572`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2572)*
+
 -mips5 code.
 
 ### `EF_MIPS_ARCH_32`
-
 ```rust
 const EF_MIPS_ARCH_32: u32 = 1_342_177_280u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2574`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2574)*
+
 MIPS32 code.
 
 ### `EF_MIPS_ARCH_64`
-
 ```rust
 const EF_MIPS_ARCH_64: u32 = 1_610_612_736u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2576`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2576)*
+
 MIPS64 code.
 
 ### `EF_MIPS_ARCH_32R2`
-
 ```rust
 const EF_MIPS_ARCH_32R2: u32 = 1_879_048_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2578`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2578)*
+
 MIPS32r2 code.
 
 ### `EF_MIPS_ARCH_64R2`
-
 ```rust
 const EF_MIPS_ARCH_64R2: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2580`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2580)*
+
 MIPS64r2 code.
 
 ### `EF_MIPS_ARCH_32R6`
-
 ```rust
 const EF_MIPS_ARCH_32R6: u32 = 2_415_919_104u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2582`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2582)*
+
 MIPS32r6 code
 
 ### `EF_MIPS_ARCH_64R6`
-
 ```rust
 const EF_MIPS_ARCH_64R6: u32 = 2_684_354_560u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2584`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2584)*
+
 MIPS64r6 code
 
 ### `SHN_MIPS_ACOMMON`
-
 ```rust
 const SHN_MIPS_ACOMMON: u16 = 65_280u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2589`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2589)*
+
 Allocated common symbols.
 
 ### `SHN_MIPS_TEXT`
-
 ```rust
 const SHN_MIPS_TEXT: u16 = 65_281u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2591`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2591)*
+
 Allocated test symbols.
 
 ### `SHN_MIPS_DATA`
-
 ```rust
 const SHN_MIPS_DATA: u16 = 65_282u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2593`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2593)*
+
 Allocated data symbols.
 
 ### `SHN_MIPS_SCOMMON`
-
 ```rust
 const SHN_MIPS_SCOMMON: u16 = 65_283u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2595`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2595)*
+
 Small common symbols.
 
 ### `SHN_MIPS_SUNDEFINED`
-
 ```rust
 const SHN_MIPS_SUNDEFINED: u16 = 65_284u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2597`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2597)*
+
 Small undefined symbols.
 
 ### `SHT_MIPS_LIBLIST`
-
 ```rust
 const SHT_MIPS_LIBLIST: u32 = 1_879_048_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2602`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2602)*
+
 Shared objects used in link.
 
 ### `SHT_MIPS_MSYM`
-
 ```rust
 const SHT_MIPS_MSYM: u32 = 1_879_048_193u32;
 ```
 
-### `SHT_MIPS_CONFLICT`
+*Defined in [`object-0.37.3/src/elf.rs:2603`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2603)*
 
+### `SHT_MIPS_CONFLICT`
 ```rust
 const SHT_MIPS_CONFLICT: u32 = 1_879_048_194u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2605`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2605)*
+
 Conflicting symbols.
 
 ### `SHT_MIPS_GPTAB`
-
 ```rust
 const SHT_MIPS_GPTAB: u32 = 1_879_048_195u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2607`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2607)*
+
 Global data area sizes.
 
 ### `SHT_MIPS_UCODE`
-
 ```rust
 const SHT_MIPS_UCODE: u32 = 1_879_048_196u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2609`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2609)*
+
 Reserved for SGI/MIPS compilers
 
 ### `SHT_MIPS_DEBUG`
-
 ```rust
 const SHT_MIPS_DEBUG: u32 = 1_879_048_197u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2611`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2611)*
+
 MIPS ECOFF debugging info.
 
 ### `SHT_MIPS_REGINFO`
-
 ```rust
 const SHT_MIPS_REGINFO: u32 = 1_879_048_198u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2613`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2613)*
+
 Register usage information.
 
 ### `SHT_MIPS_PACKAGE`
-
 ```rust
 const SHT_MIPS_PACKAGE: u32 = 1_879_048_199u32;
 ```
 
-### `SHT_MIPS_PACKSYM`
+*Defined in [`object-0.37.3/src/elf.rs:2614`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2614)*
 
+### `SHT_MIPS_PACKSYM`
 ```rust
 const SHT_MIPS_PACKSYM: u32 = 1_879_048_200u32;
 ```
 
-### `SHT_MIPS_RELD`
+*Defined in [`object-0.37.3/src/elf.rs:2615`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2615)*
 
+### `SHT_MIPS_RELD`
 ```rust
 const SHT_MIPS_RELD: u32 = 1_879_048_201u32;
 ```
 
-### `SHT_MIPS_IFACE`
+*Defined in [`object-0.37.3/src/elf.rs:2616`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2616)*
 
+### `SHT_MIPS_IFACE`
 ```rust
 const SHT_MIPS_IFACE: u32 = 1_879_048_203u32;
 ```
 
-### `SHT_MIPS_CONTENT`
+*Defined in [`object-0.37.3/src/elf.rs:2617`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2617)*
 
+### `SHT_MIPS_CONTENT`
 ```rust
 const SHT_MIPS_CONTENT: u32 = 1_879_048_204u32;
 ```
 
-### `SHT_MIPS_OPTIONS`
+*Defined in [`object-0.37.3/src/elf.rs:2618`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2618)*
 
+### `SHT_MIPS_OPTIONS`
 ```rust
 const SHT_MIPS_OPTIONS: u32 = 1_879_048_205u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2620`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2620)*
+
 Miscellaneous options.
 
 ### `SHT_MIPS_SHDR`
-
 ```rust
 const SHT_MIPS_SHDR: u32 = 1_879_048_208u32;
 ```
 
-### `SHT_MIPS_FDESC`
+*Defined in [`object-0.37.3/src/elf.rs:2621`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2621)*
 
+### `SHT_MIPS_FDESC`
 ```rust
 const SHT_MIPS_FDESC: u32 = 1_879_048_209u32;
 ```
 
-### `SHT_MIPS_EXTSYM`
+*Defined in [`object-0.37.3/src/elf.rs:2622`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2622)*
 
+### `SHT_MIPS_EXTSYM`
 ```rust
 const SHT_MIPS_EXTSYM: u32 = 1_879_048_210u32;
 ```
 
-### `SHT_MIPS_DENSE`
+*Defined in [`object-0.37.3/src/elf.rs:2623`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2623)*
 
+### `SHT_MIPS_DENSE`
 ```rust
 const SHT_MIPS_DENSE: u32 = 1_879_048_211u32;
 ```
 
-### `SHT_MIPS_PDESC`
+*Defined in [`object-0.37.3/src/elf.rs:2624`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2624)*
 
+### `SHT_MIPS_PDESC`
 ```rust
 const SHT_MIPS_PDESC: u32 = 1_879_048_212u32;
 ```
 
-### `SHT_MIPS_LOCSYM`
+*Defined in [`object-0.37.3/src/elf.rs:2625`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2625)*
 
+### `SHT_MIPS_LOCSYM`
 ```rust
 const SHT_MIPS_LOCSYM: u32 = 1_879_048_213u32;
 ```
 
-### `SHT_MIPS_AUXSYM`
+*Defined in [`object-0.37.3/src/elf.rs:2626`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2626)*
 
+### `SHT_MIPS_AUXSYM`
 ```rust
 const SHT_MIPS_AUXSYM: u32 = 1_879_048_214u32;
 ```
 
-### `SHT_MIPS_OPTSYM`
+*Defined in [`object-0.37.3/src/elf.rs:2627`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2627)*
 
+### `SHT_MIPS_OPTSYM`
 ```rust
 const SHT_MIPS_OPTSYM: u32 = 1_879_048_215u32;
 ```
 
-### `SHT_MIPS_LOCSTR`
+*Defined in [`object-0.37.3/src/elf.rs:2628`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2628)*
 
+### `SHT_MIPS_LOCSTR`
 ```rust
 const SHT_MIPS_LOCSTR: u32 = 1_879_048_216u32;
 ```
 
-### `SHT_MIPS_LINE`
+*Defined in [`object-0.37.3/src/elf.rs:2629`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2629)*
 
+### `SHT_MIPS_LINE`
 ```rust
 const SHT_MIPS_LINE: u32 = 1_879_048_217u32;
 ```
 
-### `SHT_MIPS_RFDESC`
+*Defined in [`object-0.37.3/src/elf.rs:2630`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2630)*
 
+### `SHT_MIPS_RFDESC`
 ```rust
 const SHT_MIPS_RFDESC: u32 = 1_879_048_218u32;
 ```
 
-### `SHT_MIPS_DELTASYM`
+*Defined in [`object-0.37.3/src/elf.rs:2631`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2631)*
 
+### `SHT_MIPS_DELTASYM`
 ```rust
 const SHT_MIPS_DELTASYM: u32 = 1_879_048_219u32;
 ```
 
-### `SHT_MIPS_DELTAINST`
+*Defined in [`object-0.37.3/src/elf.rs:2632`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2632)*
 
+### `SHT_MIPS_DELTAINST`
 ```rust
 const SHT_MIPS_DELTAINST: u32 = 1_879_048_220u32;
 ```
 
-### `SHT_MIPS_DELTACLASS`
+*Defined in [`object-0.37.3/src/elf.rs:2633`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2633)*
 
+### `SHT_MIPS_DELTACLASS`
 ```rust
 const SHT_MIPS_DELTACLASS: u32 = 1_879_048_221u32;
 ```
 
-### `SHT_MIPS_DWARF`
+*Defined in [`object-0.37.3/src/elf.rs:2634`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2634)*
 
+### `SHT_MIPS_DWARF`
 ```rust
 const SHT_MIPS_DWARF: u32 = 1_879_048_222u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2636`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2636)*
+
 DWARF debugging information.
 
 ### `SHT_MIPS_DELTADECL`
-
 ```rust
 const SHT_MIPS_DELTADECL: u32 = 1_879_048_223u32;
 ```
 
-### `SHT_MIPS_SYMBOL_LIB`
+*Defined in [`object-0.37.3/src/elf.rs:2637`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2637)*
 
+### `SHT_MIPS_SYMBOL_LIB`
 ```rust
 const SHT_MIPS_SYMBOL_LIB: u32 = 1_879_048_224u32;
 ```
 
-### `SHT_MIPS_EVENTS`
+*Defined in [`object-0.37.3/src/elf.rs:2638`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2638)*
 
+### `SHT_MIPS_EVENTS`
 ```rust
 const SHT_MIPS_EVENTS: u32 = 1_879_048_225u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2640`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2640)*
+
 Event section.
 
 ### `SHT_MIPS_TRANSLATE`
-
 ```rust
 const SHT_MIPS_TRANSLATE: u32 = 1_879_048_226u32;
 ```
 
-### `SHT_MIPS_PIXIE`
+*Defined in [`object-0.37.3/src/elf.rs:2641`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2641)*
 
+### `SHT_MIPS_PIXIE`
 ```rust
 const SHT_MIPS_PIXIE: u32 = 1_879_048_227u32;
 ```
 
-### `SHT_MIPS_XLATE`
+*Defined in [`object-0.37.3/src/elf.rs:2642`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2642)*
 
+### `SHT_MIPS_XLATE`
 ```rust
 const SHT_MIPS_XLATE: u32 = 1_879_048_228u32;
 ```
 
-### `SHT_MIPS_XLATE_DEBUG`
+*Defined in [`object-0.37.3/src/elf.rs:2643`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2643)*
 
+### `SHT_MIPS_XLATE_DEBUG`
 ```rust
 const SHT_MIPS_XLATE_DEBUG: u32 = 1_879_048_229u32;
 ```
 
-### `SHT_MIPS_WHIRL`
+*Defined in [`object-0.37.3/src/elf.rs:2644`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2644)*
 
+### `SHT_MIPS_WHIRL`
 ```rust
 const SHT_MIPS_WHIRL: u32 = 1_879_048_230u32;
 ```
 
-### `SHT_MIPS_EH_REGION`
+*Defined in [`object-0.37.3/src/elf.rs:2645`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2645)*
 
+### `SHT_MIPS_EH_REGION`
 ```rust
 const SHT_MIPS_EH_REGION: u32 = 1_879_048_231u32;
 ```
 
-### `SHT_MIPS_XLATE_OLD`
+*Defined in [`object-0.37.3/src/elf.rs:2646`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2646)*
 
+### `SHT_MIPS_XLATE_OLD`
 ```rust
 const SHT_MIPS_XLATE_OLD: u32 = 1_879_048_232u32;
 ```
 
-### `SHT_MIPS_PDR_EXCEPTION`
+*Defined in [`object-0.37.3/src/elf.rs:2647`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2647)*
 
+### `SHT_MIPS_PDR_EXCEPTION`
 ```rust
 const SHT_MIPS_PDR_EXCEPTION: u32 = 1_879_048_233u32;
 ```
 
-### `SHF_MIPS_GPREL`
+*Defined in [`object-0.37.3/src/elf.rs:2648`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2648)*
 
+### `SHF_MIPS_GPREL`
 ```rust
 const SHF_MIPS_GPREL: u32 = 268_435_456u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2653`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2653)*
+
 Must be in global data area.
 
 ### `SHF_MIPS_MERGE`
-
 ```rust
 const SHF_MIPS_MERGE: u32 = 536_870_912u32;
 ```
 
-### `SHF_MIPS_ADDR`
+*Defined in [`object-0.37.3/src/elf.rs:2654`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2654)*
 
+### `SHF_MIPS_ADDR`
 ```rust
 const SHF_MIPS_ADDR: u32 = 1_073_741_824u32;
 ```
 
-### `SHF_MIPS_STRINGS`
+*Defined in [`object-0.37.3/src/elf.rs:2655`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2655)*
 
+### `SHF_MIPS_STRINGS`
 ```rust
 const SHF_MIPS_STRINGS: u32 = 2_147_483_648u32;
 ```
 
-### `SHF_MIPS_NOSTRIP`
+*Defined in [`object-0.37.3/src/elf.rs:2656`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2656)*
 
+### `SHF_MIPS_NOSTRIP`
 ```rust
 const SHF_MIPS_NOSTRIP: u32 = 134_217_728u32;
 ```
 
-### `SHF_MIPS_LOCAL`
+*Defined in [`object-0.37.3/src/elf.rs:2657`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2657)*
 
+### `SHF_MIPS_LOCAL`
 ```rust
 const SHF_MIPS_LOCAL: u32 = 67_108_864u32;
 ```
 
-### `SHF_MIPS_NAMES`
+*Defined in [`object-0.37.3/src/elf.rs:2658`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2658)*
 
+### `SHF_MIPS_NAMES`
 ```rust
 const SHF_MIPS_NAMES: u32 = 33_554_432u32;
 ```
 
-### `SHF_MIPS_NODUPE`
+*Defined in [`object-0.37.3/src/elf.rs:2659`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2659)*
 
+### `SHF_MIPS_NODUPE`
 ```rust
 const SHF_MIPS_NODUPE: u32 = 16_777_216u32;
 ```
 
-### `STO_MIPS_PLT`
+*Defined in [`object-0.37.3/src/elf.rs:2660`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2660)*
 
+### `STO_MIPS_PLT`
 ```rust
 const STO_MIPS_PLT: u8 = 8u8;
 ```
 
-### `STO_MIPS_SC_ALIGN_UNUSED`
+*Defined in [`object-0.37.3/src/elf.rs:2664`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2664)*
 
+### `STO_MIPS_SC_ALIGN_UNUSED`
 ```rust
 const STO_MIPS_SC_ALIGN_UNUSED: u8 = 255u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2666`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2666)*
+
 Only valid for `STB_MIPS_SPLIT_COMMON`.
 
 ### `STB_MIPS_SPLIT_COMMON`
-
 ```rust
 const STB_MIPS_SPLIT_COMMON: u8 = 13u8;
 ```
 
-### `ODK_NULL`
+*Defined in [`object-0.37.3/src/elf.rs:2669`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2669)*
 
+### `ODK_NULL`
 ```rust
 const ODK_NULL: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2678`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2678)*
+
 Undefined.
 
 ### `ODK_REGINFO`
-
 ```rust
 const ODK_REGINFO: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2680`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2680)*
+
 Register usage information.
 
 ### `ODK_EXCEPTIONS`
-
 ```rust
 const ODK_EXCEPTIONS: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2682`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2682)*
+
 Exception processing options.
 
 ### `ODK_PAD`
-
 ```rust
 const ODK_PAD: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2684`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2684)*
+
 Section padding options.
 
 ### `ODK_HWPATCH`
-
 ```rust
 const ODK_HWPATCH: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2686`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2686)*
+
 Hardware workarounds performed
 
 ### `ODK_FILL`
-
 ```rust
 const ODK_FILL: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2688`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2688)*
+
 record the fill value used by the linker.
 
 ### `ODK_TAGS`
-
 ```rust
 const ODK_TAGS: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2690`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2690)*
+
 reserve space for desktop tools to write.
 
 ### `ODK_HWAND`
-
 ```rust
 const ODK_HWAND: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2692`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2692)*
+
 HW workarounds.  'AND' bits when merging.
 
 ### `ODK_HWOR`
-
 ```rust
 const ODK_HWOR: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2694`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2694)*
+
 HW workarounds.  'OR' bits when merging.
 
 ### `OEX_FPU_MIN`
-
 ```rust
 const OEX_FPU_MIN: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2699`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2699)*
+
 FPE's which MUST be enabled.
 
 ### `OEX_FPU_MAX`
-
 ```rust
 const OEX_FPU_MAX: u32 = 7_936u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2701`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2701)*
+
 FPE's which MAY be enabled.
 
 ### `OEX_PAGE0`
-
 ```rust
 const OEX_PAGE0: u32 = 65_536u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2703`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2703)*
+
 page zero must be mapped.
 
 ### `OEX_SMM`
-
 ```rust
 const OEX_SMM: u32 = 131_072u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2705`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2705)*
+
 Force sequential memory mode?
 
 ### `OEX_FPDBUG`
-
 ```rust
 const OEX_FPDBUG: u32 = 262_144u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2707`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2707)*
+
 Force floating point debug mode?
 
 ### `OEX_PRECISEFP`
-
 ```rust
 const OEX_PRECISEFP: u32 = 262_144u32;
 ```
 
-### `OEX_DISMISS`
+*Defined in [`object-0.37.3/src/elf.rs:2708`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2708)*
 
+### `OEX_DISMISS`
 ```rust
 const OEX_DISMISS: u32 = 524_288u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2710`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2710)*
+
 Dismiss invalid address faults?
 
 ### `OEX_FPU_INVAL`
-
 ```rust
 const OEX_FPU_INVAL: u32 = 16u32;
 ```
 
-### `OEX_FPU_DIV0`
+*Defined in [`object-0.37.3/src/elf.rs:2712`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2712)*
 
+### `OEX_FPU_DIV0`
 ```rust
 const OEX_FPU_DIV0: u32 = 8u32;
 ```
 
-### `OEX_FPU_OFLO`
+*Defined in [`object-0.37.3/src/elf.rs:2713`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2713)*
 
+### `OEX_FPU_OFLO`
 ```rust
 const OEX_FPU_OFLO: u32 = 4u32;
 ```
 
-### `OEX_FPU_UFLO`
+*Defined in [`object-0.37.3/src/elf.rs:2714`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2714)*
 
+### `OEX_FPU_UFLO`
 ```rust
 const OEX_FPU_UFLO: u32 = 2u32;
 ```
 
-### `OEX_FPU_INEX`
+*Defined in [`object-0.37.3/src/elf.rs:2715`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2715)*
 
+### `OEX_FPU_INEX`
 ```rust
 const OEX_FPU_INEX: u32 = 1u32;
 ```
 
-### `OHW_R4KEOP`
+*Defined in [`object-0.37.3/src/elf.rs:2716`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2716)*
 
+### `OHW_R4KEOP`
 ```rust
 const OHW_R4KEOP: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2720`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2720)*
+
 R4000 end-of-page patch.
 
 ### `OHW_R8KPFETCH`
-
 ```rust
 const OHW_R8KPFETCH: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2722`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2722)*
+
 may need R8000 prefetch patch.
 
 ### `OHW_R5KEOP`
-
 ```rust
 const OHW_R5KEOP: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2724`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2724)*
+
 R5000 end-of-page patch.
 
 ### `OHW_R5KCVTL`
-
 ```rust
 const OHW_R5KCVTL: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2726`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2726)*
+
 R5000 cvt.\[ds\].l bug.  clean=1.
 
 ### `OPAD_PREFIX`
-
 ```rust
 const OPAD_PREFIX: u32 = 1u32;
 ```
 
-### `OPAD_POSTFIX`
+*Defined in [`object-0.37.3/src/elf.rs:2728`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2728)*
 
+### `OPAD_POSTFIX`
 ```rust
 const OPAD_POSTFIX: u32 = 2u32;
 ```
 
-### `OPAD_SYMBOL`
+*Defined in [`object-0.37.3/src/elf.rs:2729`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2729)*
 
+### `OPAD_SYMBOL`
 ```rust
 const OPAD_SYMBOL: u32 = 4u32;
 ```
 
-### `OHWA0_R4KEOP_CHECKED`
+*Defined in [`object-0.37.3/src/elf.rs:2730`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2730)*
 
+### `OHWA0_R4KEOP_CHECKED`
 ```rust
 const OHWA0_R4KEOP_CHECKED: u32 = 1u32;
 ```
 
-### `OHWA1_R4KEOP_CLEAN`
+*Defined in [`object-0.37.3/src/elf.rs:2738`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2738)*
 
+### `OHWA1_R4KEOP_CLEAN`
 ```rust
 const OHWA1_R4KEOP_CLEAN: u32 = 2u32;
 ```
 
-### `R_MIPS_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:2739`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2739)*
 
+### `R_MIPS_NONE`
 ```rust
 const R_MIPS_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2744`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2744)*
+
 No reloc
 
 ### `R_MIPS_16`
-
 ```rust
 const R_MIPS_16: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2746`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2746)*
+
 Direct 16 bit
 
 ### `R_MIPS_32`
-
 ```rust
 const R_MIPS_32: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2748`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2748)*
+
 Direct 32 bit
 
 ### `R_MIPS_REL32`
-
 ```rust
 const R_MIPS_REL32: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2750`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2750)*
+
 PC relative 32 bit
 
 ### `R_MIPS_26`
-
 ```rust
 const R_MIPS_26: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2752`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2752)*
+
 Direct 26 bit shifted
 
 ### `R_MIPS_HI16`
-
 ```rust
 const R_MIPS_HI16: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2754`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2754)*
+
 High 16 bit
 
 ### `R_MIPS_LO16`
-
 ```rust
 const R_MIPS_LO16: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2756`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2756)*
+
 Low 16 bit
 
 ### `R_MIPS_GPREL16`
-
 ```rust
 const R_MIPS_GPREL16: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2758`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2758)*
+
 GP relative 16 bit
 
 ### `R_MIPS_LITERAL`
-
 ```rust
 const R_MIPS_LITERAL: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2760`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2760)*
+
 16 bit literal entry
 
 ### `R_MIPS_GOT16`
-
 ```rust
 const R_MIPS_GOT16: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2762`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2762)*
+
 16 bit GOT entry
 
 ### `R_MIPS_PC16`
-
 ```rust
 const R_MIPS_PC16: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2764`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2764)*
+
 PC relative 16 bit
 
 ### `R_MIPS_CALL16`
-
 ```rust
 const R_MIPS_CALL16: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2766`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2766)*
+
 16 bit GOT entry for function
 
 ### `R_MIPS_GPREL32`
-
 ```rust
 const R_MIPS_GPREL32: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2768`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2768)*
+
 GP relative 32 bit
 
 ### `R_MIPS_SHIFT5`
-
 ```rust
 const R_MIPS_SHIFT5: u32 = 16u32;
 ```
 
-### `R_MIPS_SHIFT6`
+*Defined in [`object-0.37.3/src/elf.rs:2770`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2770)*
 
+### `R_MIPS_SHIFT6`
 ```rust
 const R_MIPS_SHIFT6: u32 = 17u32;
 ```
 
-### `R_MIPS_64`
+*Defined in [`object-0.37.3/src/elf.rs:2771`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2771)*
 
+### `R_MIPS_64`
 ```rust
 const R_MIPS_64: u32 = 18u32;
 ```
 
-### `R_MIPS_GOT_DISP`
+*Defined in [`object-0.37.3/src/elf.rs:2772`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2772)*
 
+### `R_MIPS_GOT_DISP`
 ```rust
 const R_MIPS_GOT_DISP: u32 = 19u32;
 ```
 
-### `R_MIPS_GOT_PAGE`
+*Defined in [`object-0.37.3/src/elf.rs:2773`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2773)*
 
+### `R_MIPS_GOT_PAGE`
 ```rust
 const R_MIPS_GOT_PAGE: u32 = 20u32;
 ```
 
-### `R_MIPS_GOT_OFST`
+*Defined in [`object-0.37.3/src/elf.rs:2774`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2774)*
 
+### `R_MIPS_GOT_OFST`
 ```rust
 const R_MIPS_GOT_OFST: u32 = 21u32;
 ```
 
-### `R_MIPS_GOT_HI16`
+*Defined in [`object-0.37.3/src/elf.rs:2775`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2775)*
 
+### `R_MIPS_GOT_HI16`
 ```rust
 const R_MIPS_GOT_HI16: u32 = 22u32;
 ```
 
-### `R_MIPS_GOT_LO16`
+*Defined in [`object-0.37.3/src/elf.rs:2776`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2776)*
 
+### `R_MIPS_GOT_LO16`
 ```rust
 const R_MIPS_GOT_LO16: u32 = 23u32;
 ```
 
-### `R_MIPS_SUB`
+*Defined in [`object-0.37.3/src/elf.rs:2777`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2777)*
 
+### `R_MIPS_SUB`
 ```rust
 const R_MIPS_SUB: u32 = 24u32;
 ```
 
-### `R_MIPS_INSERT_A`
+*Defined in [`object-0.37.3/src/elf.rs:2778`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2778)*
 
+### `R_MIPS_INSERT_A`
 ```rust
 const R_MIPS_INSERT_A: u32 = 25u32;
 ```
 
-### `R_MIPS_INSERT_B`
+*Defined in [`object-0.37.3/src/elf.rs:2779`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2779)*
 
+### `R_MIPS_INSERT_B`
 ```rust
 const R_MIPS_INSERT_B: u32 = 26u32;
 ```
 
-### `R_MIPS_DELETE`
+*Defined in [`object-0.37.3/src/elf.rs:2780`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2780)*
 
+### `R_MIPS_DELETE`
 ```rust
 const R_MIPS_DELETE: u32 = 27u32;
 ```
 
-### `R_MIPS_HIGHER`
+*Defined in [`object-0.37.3/src/elf.rs:2781`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2781)*
 
+### `R_MIPS_HIGHER`
 ```rust
 const R_MIPS_HIGHER: u32 = 28u32;
 ```
 
-### `R_MIPS_HIGHEST`
+*Defined in [`object-0.37.3/src/elf.rs:2782`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2782)*
 
+### `R_MIPS_HIGHEST`
 ```rust
 const R_MIPS_HIGHEST: u32 = 29u32;
 ```
 
-### `R_MIPS_CALL_HI16`
+*Defined in [`object-0.37.3/src/elf.rs:2783`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2783)*
 
+### `R_MIPS_CALL_HI16`
 ```rust
 const R_MIPS_CALL_HI16: u32 = 30u32;
 ```
 
-### `R_MIPS_CALL_LO16`
+*Defined in [`object-0.37.3/src/elf.rs:2784`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2784)*
 
+### `R_MIPS_CALL_LO16`
 ```rust
 const R_MIPS_CALL_LO16: u32 = 31u32;
 ```
 
-### `R_MIPS_SCN_DISP`
+*Defined in [`object-0.37.3/src/elf.rs:2785`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2785)*
 
+### `R_MIPS_SCN_DISP`
 ```rust
 const R_MIPS_SCN_DISP: u32 = 32u32;
 ```
 
-### `R_MIPS_REL16`
+*Defined in [`object-0.37.3/src/elf.rs:2786`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2786)*
 
+### `R_MIPS_REL16`
 ```rust
 const R_MIPS_REL16: u32 = 33u32;
 ```
 
-### `R_MIPS_ADD_IMMEDIATE`
+*Defined in [`object-0.37.3/src/elf.rs:2787`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2787)*
 
+### `R_MIPS_ADD_IMMEDIATE`
 ```rust
 const R_MIPS_ADD_IMMEDIATE: u32 = 34u32;
 ```
 
-### `R_MIPS_PJUMP`
+*Defined in [`object-0.37.3/src/elf.rs:2788`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2788)*
 
+### `R_MIPS_PJUMP`
 ```rust
 const R_MIPS_PJUMP: u32 = 35u32;
 ```
 
-### `R_MIPS_RELGOT`
+*Defined in [`object-0.37.3/src/elf.rs:2789`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2789)*
 
+### `R_MIPS_RELGOT`
 ```rust
 const R_MIPS_RELGOT: u32 = 36u32;
 ```
 
-### `R_MIPS_JALR`
+*Defined in [`object-0.37.3/src/elf.rs:2790`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2790)*
 
+### `R_MIPS_JALR`
 ```rust
 const R_MIPS_JALR: u32 = 37u32;
 ```
 
-### `R_MIPS_TLS_DTPMOD32`
+*Defined in [`object-0.37.3/src/elf.rs:2791`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2791)*
 
+### `R_MIPS_TLS_DTPMOD32`
 ```rust
 const R_MIPS_TLS_DTPMOD32: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2793`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2793)*
+
 Module number 32 bit
 
 ### `R_MIPS_TLS_DTPREL32`
-
 ```rust
 const R_MIPS_TLS_DTPREL32: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2795`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2795)*
+
 Module-relative offset 32 bit
 
 ### `R_MIPS_TLS_DTPMOD64`
-
 ```rust
 const R_MIPS_TLS_DTPMOD64: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2797`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2797)*
+
 Module number 64 bit
 
 ### `R_MIPS_TLS_DTPREL64`
-
 ```rust
 const R_MIPS_TLS_DTPREL64: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2799`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2799)*
+
 Module-relative offset 64 bit
 
 ### `R_MIPS_TLS_GD`
-
 ```rust
 const R_MIPS_TLS_GD: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2801`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2801)*
+
 16 bit GOT offset for GD
 
 ### `R_MIPS_TLS_LDM`
-
 ```rust
 const R_MIPS_TLS_LDM: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2803`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2803)*
+
 16 bit GOT offset for LDM
 
 ### `R_MIPS_TLS_DTPREL_HI16`
-
 ```rust
 const R_MIPS_TLS_DTPREL_HI16: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2805`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2805)*
+
 Module-relative offset, high 16 bits
 
 ### `R_MIPS_TLS_DTPREL_LO16`
-
 ```rust
 const R_MIPS_TLS_DTPREL_LO16: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2807`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2807)*
+
 Module-relative offset, low 16 bits
 
 ### `R_MIPS_TLS_GOTTPREL`
-
 ```rust
 const R_MIPS_TLS_GOTTPREL: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2809`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2809)*
+
 16 bit GOT offset for IE
 
 ### `R_MIPS_TLS_TPREL32`
-
 ```rust
 const R_MIPS_TLS_TPREL32: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2811`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2811)*
+
 TP-relative offset, 32 bit
 
 ### `R_MIPS_TLS_TPREL64`
-
 ```rust
 const R_MIPS_TLS_TPREL64: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2813`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2813)*
+
 TP-relative offset, 64 bit
 
 ### `R_MIPS_TLS_TPREL_HI16`
-
 ```rust
 const R_MIPS_TLS_TPREL_HI16: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2815`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2815)*
+
 TP-relative offset, high 16 bits
 
 ### `R_MIPS_TLS_TPREL_LO16`
-
 ```rust
 const R_MIPS_TLS_TPREL_LO16: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2817`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2817)*
+
 TP-relative offset, low 16 bits
 
 ### `R_MIPS_GLOB_DAT`
-
 ```rust
 const R_MIPS_GLOB_DAT: u32 = 51u32;
 ```
 
-### `R_MIPS_COPY`
+*Defined in [`object-0.37.3/src/elf.rs:2818`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2818)*
 
+### `R_MIPS_COPY`
 ```rust
 const R_MIPS_COPY: u32 = 126u32;
 ```
 
-### `R_MIPS_JUMP_SLOT`
+*Defined in [`object-0.37.3/src/elf.rs:2819`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2819)*
 
+### `R_MIPS_JUMP_SLOT`
 ```rust
 const R_MIPS_JUMP_SLOT: u32 = 127u32;
 ```
 
-### `PT_MIPS_REGINFO`
+*Defined in [`object-0.37.3/src/elf.rs:2820`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2820)*
 
+### `PT_MIPS_REGINFO`
 ```rust
 const PT_MIPS_REGINFO: u32 = 1_879_048_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2825`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2825)*
+
 Register usage information.
 
 ### `PT_MIPS_RTPROC`
-
 ```rust
 const PT_MIPS_RTPROC: u32 = 1_879_048_193u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2827`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2827)*
+
 Runtime procedure table.
 
 ### `PT_MIPS_OPTIONS`
-
 ```rust
 const PT_MIPS_OPTIONS: u32 = 1_879_048_194u32;
 ```
 
-### `PT_MIPS_ABIFLAGS`
+*Defined in [`object-0.37.3/src/elf.rs:2828`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2828)*
 
+### `PT_MIPS_ABIFLAGS`
 ```rust
 const PT_MIPS_ABIFLAGS: u32 = 1_879_048_195u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2830`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2830)*
+
 FP mode requirement.
 
 ### `PF_MIPS_LOCAL`
-
 ```rust
 const PF_MIPS_LOCAL: u32 = 268_435_456u32;
 ```
 
-### `DT_MIPS_RLD_VERSION`
+*Defined in [`object-0.37.3/src/elf.rs:2834`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2834)*
 
+### `DT_MIPS_RLD_VERSION`
 ```rust
 const DT_MIPS_RLD_VERSION: u32 = 1_879_048_193u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2839`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2839)*
+
 Runtime linker interface version
 
 ### `DT_MIPS_TIME_STAMP`
-
 ```rust
 const DT_MIPS_TIME_STAMP: u32 = 1_879_048_194u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2841`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2841)*
+
 Timestamp
 
 ### `DT_MIPS_ICHECKSUM`
-
 ```rust
 const DT_MIPS_ICHECKSUM: u32 = 1_879_048_195u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2843`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2843)*
+
 Checksum
 
 ### `DT_MIPS_IVERSION`
-
 ```rust
 const DT_MIPS_IVERSION: u32 = 1_879_048_196u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2845`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2845)*
+
 Version string (string tbl index)
 
 ### `DT_MIPS_FLAGS`
-
 ```rust
 const DT_MIPS_FLAGS: u32 = 1_879_048_197u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2847`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2847)*
+
 Flags
 
 ### `DT_MIPS_BASE_ADDRESS`
-
 ```rust
 const DT_MIPS_BASE_ADDRESS: u32 = 1_879_048_198u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2849`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2849)*
+
 Base address
 
 ### `DT_MIPS_MSYM`
-
 ```rust
 const DT_MIPS_MSYM: u32 = 1_879_048_199u32;
 ```
 
-### `DT_MIPS_CONFLICT`
+*Defined in [`object-0.37.3/src/elf.rs:2850`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2850)*
 
+### `DT_MIPS_CONFLICT`
 ```rust
 const DT_MIPS_CONFLICT: u32 = 1_879_048_200u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2852`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2852)*
+
 Address of CONFLICT section
 
 ### `DT_MIPS_LIBLIST`
-
 ```rust
 const DT_MIPS_LIBLIST: u32 = 1_879_048_201u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2854`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2854)*
+
 Address of LIBLIST section
 
 ### `DT_MIPS_LOCAL_GOTNO`
-
 ```rust
 const DT_MIPS_LOCAL_GOTNO: u32 = 1_879_048_202u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2856`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2856)*
+
 Number of local GOT entries
 
 ### `DT_MIPS_CONFLICTNO`
-
 ```rust
 const DT_MIPS_CONFLICTNO: u32 = 1_879_048_203u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2858`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2858)*
+
 Number of CONFLICT entries
 
 ### `DT_MIPS_LIBLISTNO`
-
 ```rust
 const DT_MIPS_LIBLISTNO: u32 = 1_879_048_208u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2860`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2860)*
+
 Number of LIBLIST entries
 
 ### `DT_MIPS_SYMTABNO`
-
 ```rust
 const DT_MIPS_SYMTABNO: u32 = 1_879_048_209u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2862`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2862)*
+
 Number of DYNSYM entries
 
 ### `DT_MIPS_UNREFEXTNO`
-
 ```rust
 const DT_MIPS_UNREFEXTNO: u32 = 1_879_048_210u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2864`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2864)*
+
 First external DYNSYM
 
 ### `DT_MIPS_GOTSYM`
-
 ```rust
 const DT_MIPS_GOTSYM: u32 = 1_879_048_211u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2866`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2866)*
+
 First GOT entry in DYNSYM
 
 ### `DT_MIPS_HIPAGENO`
-
 ```rust
 const DT_MIPS_HIPAGENO: u32 = 1_879_048_212u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2868`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2868)*
+
 Number of GOT page table entries
 
 ### `DT_MIPS_RLD_MAP`
-
 ```rust
 const DT_MIPS_RLD_MAP: u32 = 1_879_048_214u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2870`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2870)*
+
 Address of run time loader map.
 
 ### `DT_MIPS_DELTA_CLASS`
-
 ```rust
 const DT_MIPS_DELTA_CLASS: u32 = 1_879_048_215u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2872`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2872)*
+
 Delta C++ class definition.
 
 ### `DT_MIPS_DELTA_CLASS_NO`
-
 ```rust
 const DT_MIPS_DELTA_CLASS_NO: u32 = 1_879_048_216u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2874`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2874)*
+
 Number of entries in DT_MIPS_DELTA_CLASS.
 
 ### `DT_MIPS_DELTA_INSTANCE`
-
 ```rust
 const DT_MIPS_DELTA_INSTANCE: u32 = 1_879_048_217u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2876`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2876)*
+
 Delta C++ class instances.
 
 ### `DT_MIPS_DELTA_INSTANCE_NO`
-
 ```rust
 const DT_MIPS_DELTA_INSTANCE_NO: u32 = 1_879_048_218u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2878`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2878)*
+
 Number of entries in DT_MIPS_DELTA_INSTANCE.
 
 ### `DT_MIPS_DELTA_RELOC`
-
 ```rust
 const DT_MIPS_DELTA_RELOC: u32 = 1_879_048_219u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2880`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2880)*
+
 Delta relocations.
 
 ### `DT_MIPS_DELTA_RELOC_NO`
-
 ```rust
 const DT_MIPS_DELTA_RELOC_NO: u32 = 1_879_048_220u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2882`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2882)*
+
 Number of entries in DT_MIPS_DELTA_RELOC.
 
 ### `DT_MIPS_DELTA_SYM`
-
 ```rust
 const DT_MIPS_DELTA_SYM: u32 = 1_879_048_221u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2884`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2884)*
+
 Delta symbols that Delta relocations refer to.
 
 ### `DT_MIPS_DELTA_SYM_NO`
-
 ```rust
 const DT_MIPS_DELTA_SYM_NO: u32 = 1_879_048_222u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2886`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2886)*
+
 Number of entries in DT_MIPS_DELTA_SYM.
 
 ### `DT_MIPS_DELTA_CLASSSYM`
-
 ```rust
 const DT_MIPS_DELTA_CLASSSYM: u32 = 1_879_048_224u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2888`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2888)*
+
 Delta symbols that hold the class declaration.
 
 ### `DT_MIPS_DELTA_CLASSSYM_NO`
-
 ```rust
 const DT_MIPS_DELTA_CLASSSYM_NO: u32 = 1_879_048_225u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2890`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2890)*
+
 Number of entries in DT_MIPS_DELTA_CLASSSYM.
 
 ### `DT_MIPS_CXX_FLAGS`
-
 ```rust
 const DT_MIPS_CXX_FLAGS: u32 = 1_879_048_226u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2892`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2892)*
+
 Flags indicating for C++ flavor.
 
 ### `DT_MIPS_PIXIE_INIT`
-
 ```rust
 const DT_MIPS_PIXIE_INIT: u32 = 1_879_048_227u32;
 ```
 
-### `DT_MIPS_SYMBOL_LIB`
+*Defined in [`object-0.37.3/src/elf.rs:2893`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2893)*
 
+### `DT_MIPS_SYMBOL_LIB`
 ```rust
 const DT_MIPS_SYMBOL_LIB: u32 = 1_879_048_228u32;
 ```
 
-### `DT_MIPS_LOCALPAGE_GOTIDX`
+*Defined in [`object-0.37.3/src/elf.rs:2894`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2894)*
 
+### `DT_MIPS_LOCALPAGE_GOTIDX`
 ```rust
 const DT_MIPS_LOCALPAGE_GOTIDX: u32 = 1_879_048_229u32;
 ```
 
-### `DT_MIPS_LOCAL_GOTIDX`
+*Defined in [`object-0.37.3/src/elf.rs:2895`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2895)*
 
+### `DT_MIPS_LOCAL_GOTIDX`
 ```rust
 const DT_MIPS_LOCAL_GOTIDX: u32 = 1_879_048_230u32;
 ```
 
-### `DT_MIPS_HIDDEN_GOTIDX`
+*Defined in [`object-0.37.3/src/elf.rs:2896`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2896)*
 
+### `DT_MIPS_HIDDEN_GOTIDX`
 ```rust
 const DT_MIPS_HIDDEN_GOTIDX: u32 = 1_879_048_231u32;
 ```
 
-### `DT_MIPS_PROTECTED_GOTIDX`
+*Defined in [`object-0.37.3/src/elf.rs:2897`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2897)*
 
+### `DT_MIPS_PROTECTED_GOTIDX`
 ```rust
 const DT_MIPS_PROTECTED_GOTIDX: u32 = 1_879_048_232u32;
 ```
 
-### `DT_MIPS_OPTIONS`
+*Defined in [`object-0.37.3/src/elf.rs:2898`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2898)*
 
+### `DT_MIPS_OPTIONS`
 ```rust
 const DT_MIPS_OPTIONS: u32 = 1_879_048_233u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2900`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2900)*
+
 Address of .options.
 
 ### `DT_MIPS_INTERFACE`
-
 ```rust
 const DT_MIPS_INTERFACE: u32 = 1_879_048_234u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2902`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2902)*
+
 Address of .interface.
 
 ### `DT_MIPS_DYNSTR_ALIGN`
-
 ```rust
 const DT_MIPS_DYNSTR_ALIGN: u32 = 1_879_048_235u32;
 ```
 
-### `DT_MIPS_INTERFACE_SIZE`
+*Defined in [`object-0.37.3/src/elf.rs:2903`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2903)*
 
+### `DT_MIPS_INTERFACE_SIZE`
 ```rust
 const DT_MIPS_INTERFACE_SIZE: u32 = 1_879_048_236u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2905`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2905)*
+
 Size of the .interface section.
 
 ### `DT_MIPS_RLD_TEXT_RESOLVE_ADDR`
-
 ```rust
 const DT_MIPS_RLD_TEXT_RESOLVE_ADDR: u32 = 1_879_048_237u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2907`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2907)*
+
 Address of rld_text_rsolve function stored in GOT.
 
 ### `DT_MIPS_PERF_SUFFIX`
-
 ```rust
 const DT_MIPS_PERF_SUFFIX: u32 = 1_879_048_238u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2909`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2909)*
+
 Default suffix of dso to be added by rld on dlopen() calls.
 
 ### `DT_MIPS_COMPACT_SIZE`
-
 ```rust
 const DT_MIPS_COMPACT_SIZE: u32 = 1_879_048_239u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2911`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2911)*
+
 (O32)Size of compact rel section.
 
 ### `DT_MIPS_GP_VALUE`
-
 ```rust
 const DT_MIPS_GP_VALUE: u32 = 1_879_048_240u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2913`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2913)*
+
 GP value for aux GOTs.
 
 ### `DT_MIPS_AUX_DYNAMIC`
-
 ```rust
 const DT_MIPS_AUX_DYNAMIC: u32 = 1_879_048_241u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2915`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2915)*
+
 Address of aux .dynamic.
 
 ### `DT_MIPS_PLTGOT`
-
 ```rust
 const DT_MIPS_PLTGOT: u32 = 1_879_048_242u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2917`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2917)*
+
 The address of .got.plt in an executable using the new non-PIC ABI.
 
 ### `DT_MIPS_RWPLT`
-
 ```rust
 const DT_MIPS_RWPLT: u32 = 1_879_048_244u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2919`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2919)*
+
 The base of the PLT in an executable using the new non-PIC ABI if that PLT is writable.  For a non-writable PLT, this is omitted or has a zero value.
 
 ### `DT_MIPS_RLD_MAP_REL`
-
 ```rust
 const DT_MIPS_RLD_MAP_REL: u32 = 1_879_048_245u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2921`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2921)*
+
 An alternative description of the classic MIPS RLD_MAP that is usable in a PIE as it stores a relative offset from the address of the tag rather than an absolute address.
 
 ### `RHF_NONE`
-
 ```rust
 const RHF_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2926`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2926)*
+
 No flags
 
 ### `RHF_QUICKSTART`
-
 ```rust
 const RHF_QUICKSTART: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2928`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2928)*
+
 Use quickstart
 
 ### `RHF_NOTPOT`
-
 ```rust
 const RHF_NOTPOT: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2930`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2930)*
+
 Hash size not power of 2
 
 ### `RHF_NO_LIBRARY_REPLACEMENT`
-
 ```rust
 const RHF_NO_LIBRARY_REPLACEMENT: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2932`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2932)*
+
 Ignore LD_LIBRARY_PATH
 
 ### `RHF_NO_MOVE`
-
 ```rust
 const RHF_NO_MOVE: u32 = 8u32;
 ```
 
-### `RHF_SGI_ONLY`
+*Defined in [`object-0.37.3/src/elf.rs:2933`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2933)*
 
+### `RHF_SGI_ONLY`
 ```rust
 const RHF_SGI_ONLY: u32 = 16u32;
 ```
 
-### `RHF_GUARANTEE_INIT`
+*Defined in [`object-0.37.3/src/elf.rs:2934`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2934)*
 
+### `RHF_GUARANTEE_INIT`
 ```rust
 const RHF_GUARANTEE_INIT: u32 = 32u32;
 ```
 
-### `RHF_DELTA_C_PLUS_PLUS`
+*Defined in [`object-0.37.3/src/elf.rs:2935`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2935)*
 
+### `RHF_DELTA_C_PLUS_PLUS`
 ```rust
 const RHF_DELTA_C_PLUS_PLUS: u32 = 64u32;
 ```
 
-### `RHF_GUARANTEE_START_INIT`
+*Defined in [`object-0.37.3/src/elf.rs:2936`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2936)*
 
+### `RHF_GUARANTEE_START_INIT`
 ```rust
 const RHF_GUARANTEE_START_INIT: u32 = 128u32;
 ```
 
-### `RHF_PIXIE`
+*Defined in [`object-0.37.3/src/elf.rs:2937`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2937)*
 
+### `RHF_PIXIE`
 ```rust
 const RHF_PIXIE: u32 = 256u32;
 ```
 
-### `RHF_DEFAULT_DELAY_LOAD`
+*Defined in [`object-0.37.3/src/elf.rs:2938`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2938)*
 
+### `RHF_DEFAULT_DELAY_LOAD`
 ```rust
 const RHF_DEFAULT_DELAY_LOAD: u32 = 512u32;
 ```
 
-### `RHF_REQUICKSTART`
+*Defined in [`object-0.37.3/src/elf.rs:2939`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2939)*
 
+### `RHF_REQUICKSTART`
 ```rust
 const RHF_REQUICKSTART: u32 = 1_024u32;
 ```
 
-### `RHF_REQUICKSTARTED`
+*Defined in [`object-0.37.3/src/elf.rs:2940`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2940)*
 
+### `RHF_REQUICKSTARTED`
 ```rust
 const RHF_REQUICKSTARTED: u32 = 2_048u32;
 ```
 
-### `RHF_CORD`
+*Defined in [`object-0.37.3/src/elf.rs:2941`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2941)*
 
+### `RHF_CORD`
 ```rust
 const RHF_CORD: u32 = 4_096u32;
 ```
 
-### `RHF_NO_UNRES_UNDEF`
+*Defined in [`object-0.37.3/src/elf.rs:2942`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2942)*
 
+### `RHF_NO_UNRES_UNDEF`
 ```rust
 const RHF_NO_UNRES_UNDEF: u32 = 8_192u32;
 ```
 
-### `RHF_RLD_ORDER_SAFE`
+*Defined in [`object-0.37.3/src/elf.rs:2943`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2943)*
 
+### `RHF_RLD_ORDER_SAFE`
 ```rust
 const RHF_RLD_ORDER_SAFE: u32 = 16_384u32;
 ```
 
-### `LL_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:2944`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2944)*
 
+### `LL_NONE`
 ```rust
 const LL_NONE: u32 = 0u32;
 ```
 
-### `LL_EXACT_MATCH`
+*Defined in [`object-0.37.3/src/elf.rs:2952`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2952)*
 
+### `LL_EXACT_MATCH`
 ```rust
 const LL_EXACT_MATCH: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2954`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2954)*
+
 Require exact match
 
 ### `LL_IGNORE_INT_VER`
-
 ```rust
 const LL_IGNORE_INT_VER: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2956`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2956)*
+
 Ignore interface version
 
 ### `LL_REQUIRE_MINOR`
-
 ```rust
 const LL_REQUIRE_MINOR: u32 = 4u32;
 ```
 
-### `LL_EXPORTS`
+*Defined in [`object-0.37.3/src/elf.rs:2957`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2957)*
 
+### `LL_EXPORTS`
 ```rust
 const LL_EXPORTS: u32 = 8u32;
 ```
 
-### `LL_DELAY_LOAD`
+*Defined in [`object-0.37.3/src/elf.rs:2958`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2958)*
 
+### `LL_DELAY_LOAD`
 ```rust
 const LL_DELAY_LOAD: u32 = 16u32;
 ```
 
-### `LL_DELTA`
+*Defined in [`object-0.37.3/src/elf.rs:2959`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2959)*
 
+### `LL_DELTA`
 ```rust
 const LL_DELTA: u32 = 32u32;
 ```
 
-### `EF_PARISC_TRAPNIL`
+*Defined in [`object-0.37.3/src/elf.rs:2960`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2960)*
 
+### `EF_PARISC_TRAPNIL`
 ```rust
 const EF_PARISC_TRAPNIL: u32 = 65_536u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2969`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2969)*
+
 Trap nil pointer dereference.
 
 ### `EF_PARISC_EXT`
-
 ```rust
 const EF_PARISC_EXT: u32 = 131_072u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2971`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2971)*
+
 Program uses arch. extensions.
 
 ### `EF_PARISC_LSB`
-
 ```rust
 const EF_PARISC_LSB: u32 = 262_144u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2973`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2973)*
+
 Program expects little endian.
 
 ### `EF_PARISC_WIDE`
-
 ```rust
 const EF_PARISC_WIDE: u32 = 524_288u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2975`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2975)*
+
 Program expects wide mode.
 
 ### `EF_PARISC_NO_KABP`
-
 ```rust
 const EF_PARISC_NO_KABP: u32 = 1_048_576u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2977`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2977)*
+
 No kernel assisted branch prediction.
 
 ### `EF_PARISC_LAZYSWAP`
-
 ```rust
 const EF_PARISC_LAZYSWAP: u32 = 4_194_304u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2979`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2979)*
+
 Allow lazy swapping.
 
 ### `EF_PARISC_ARCH`
-
 ```rust
 const EF_PARISC_ARCH: u32 = 65_535u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2981`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2981)*
+
 Architecture version.
 
 ### `EFA_PARISC_1_0`
-
 ```rust
 const EFA_PARISC_1_0: u32 = 523u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2986`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2986)*
+
 PA-RISC 1.0 big-endian.
 
 ### `EFA_PARISC_1_1`
-
 ```rust
 const EFA_PARISC_1_1: u32 = 528u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2988`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2988)*
+
 PA-RISC 1.1 big-endian.
 
 ### `EFA_PARISC_2_0`
-
 ```rust
 const EFA_PARISC_2_0: u32 = 532u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2990`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2990)*
+
 PA-RISC 2.0 big-endian.
 
 ### `SHN_PARISC_ANSI_COMMON`
-
 ```rust
 const SHN_PARISC_ANSI_COMMON: u16 = 65_280u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2995`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2995)*
+
 Section for tentatively declared symbols in ANSI C.
 
 ### `SHN_PARISC_HUGE_COMMON`
-
 ```rust
 const SHN_PARISC_HUGE_COMMON: u16 = 65_281u16;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:2997`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L2997)*
+
 Common blocks in huge model.
 
 ### `SHT_PARISC_EXT`
-
 ```rust
 const SHT_PARISC_EXT: u32 = 1_879_048_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3002`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3002)*
+
 Contains product specific ext.
 
 ### `SHT_PARISC_UNWIND`
-
 ```rust
 const SHT_PARISC_UNWIND: u32 = 1_879_048_193u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3004`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3004)*
+
 Unwind information.
 
 ### `SHT_PARISC_DOC`
-
 ```rust
 const SHT_PARISC_DOC: u32 = 1_879_048_194u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3006`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3006)*
+
 Debug info for optimized code.
 
 ### `SHF_PARISC_SHORT`
-
 ```rust
 const SHF_PARISC_SHORT: u32 = 536_870_912u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3011`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3011)*
+
 Section with short addressing.
 
 ### `SHF_PARISC_HUGE`
-
 ```rust
 const SHF_PARISC_HUGE: u32 = 1_073_741_824u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3013`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3013)*
+
 Section far from gp.
 
 ### `SHF_PARISC_SBP`
-
 ```rust
 const SHF_PARISC_SBP: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3015`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3015)*
+
 Static branch prediction code.
 
 ### `STT_PARISC_MILLICODE`
-
 ```rust
 const STT_PARISC_MILLICODE: u8 = 13u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3020`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3020)*
+
 Millicode function entry point.
 
 ### `STT_HP_OPAQUE`
-
 ```rust
 const STT_HP_OPAQUE: u8 = 11u8;
 ```
 
-### `STT_HP_STUB`
+*Defined in [`object-0.37.3/src/elf.rs:3022`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3022)*
 
+### `STT_HP_STUB`
 ```rust
 const STT_HP_STUB: u8 = 12u8;
 ```
 
-### `R_PARISC_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:3023`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3023)*
 
+### `R_PARISC_NONE`
 ```rust
 const R_PARISC_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3028`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3028)*
+
 No reloc.
 
 ### `R_PARISC_DIR32`
-
 ```rust
 const R_PARISC_DIR32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3030`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3030)*
+
 Direct 32-bit reference.
 
 ### `R_PARISC_DIR21L`
-
 ```rust
 const R_PARISC_DIR21L: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3032`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3032)*
+
 Left 21 bits of eff. address.
 
 ### `R_PARISC_DIR17R`
-
 ```rust
 const R_PARISC_DIR17R: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3034`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3034)*
+
 Right 17 bits of eff. address.
 
 ### `R_PARISC_DIR17F`
-
 ```rust
 const R_PARISC_DIR17F: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3036`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3036)*
+
 17 bits of eff. address.
 
 ### `R_PARISC_DIR14R`
-
 ```rust
 const R_PARISC_DIR14R: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3038`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3038)*
+
 Right 14 bits of eff. address.
 
 ### `R_PARISC_PCREL32`
-
 ```rust
 const R_PARISC_PCREL32: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3040`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3040)*
+
 32-bit rel. address.
 
 ### `R_PARISC_PCREL21L`
-
 ```rust
 const R_PARISC_PCREL21L: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3042`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3042)*
+
 Left 21 bits of rel. address.
 
 ### `R_PARISC_PCREL17R`
-
 ```rust
 const R_PARISC_PCREL17R: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3044`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3044)*
+
 Right 17 bits of rel. address.
 
 ### `R_PARISC_PCREL17F`
-
 ```rust
 const R_PARISC_PCREL17F: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3046`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3046)*
+
 17 bits of rel. address.
 
 ### `R_PARISC_PCREL14R`
-
 ```rust
 const R_PARISC_PCREL14R: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3048`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3048)*
+
 Right 14 bits of rel. address.
 
 ### `R_PARISC_DPREL21L`
-
 ```rust
 const R_PARISC_DPREL21L: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3050`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3050)*
+
 Left 21 bits of rel. address.
 
 ### `R_PARISC_DPREL14R`
-
 ```rust
 const R_PARISC_DPREL14R: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3052`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3052)*
+
 Right 14 bits of rel. address.
 
 ### `R_PARISC_GPREL21L`
-
 ```rust
 const R_PARISC_GPREL21L: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3054`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3054)*
+
 GP-relative, left 21 bits.
 
 ### `R_PARISC_GPREL14R`
-
 ```rust
 const R_PARISC_GPREL14R: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3056`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3056)*
+
 GP-relative, right 14 bits.
 
 ### `R_PARISC_LTOFF21L`
-
 ```rust
 const R_PARISC_LTOFF21L: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3058`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3058)*
+
 LT-relative, left 21 bits.
 
 ### `R_PARISC_LTOFF14R`
-
 ```rust
 const R_PARISC_LTOFF14R: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3060`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3060)*
+
 LT-relative, right 14 bits.
 
 ### `R_PARISC_SECREL32`
-
 ```rust
 const R_PARISC_SECREL32: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3062`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3062)*
+
 32 bits section rel. address.
 
 ### `R_PARISC_SEGBASE`
-
 ```rust
 const R_PARISC_SEGBASE: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3064`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3064)*
+
 No relocation, set segment base.
 
 ### `R_PARISC_SEGREL32`
-
 ```rust
 const R_PARISC_SEGREL32: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3066`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3066)*
+
 32 bits segment rel. address.
 
 ### `R_PARISC_PLTOFF21L`
-
 ```rust
 const R_PARISC_PLTOFF21L: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3068`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3068)*
+
 PLT rel. address, left 21 bits.
 
 ### `R_PARISC_PLTOFF14R`
-
 ```rust
 const R_PARISC_PLTOFF14R: u32 = 54u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3070`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3070)*
+
 PLT rel. address, right 14 bits.
 
 ### `R_PARISC_LTOFF_FPTR32`
-
 ```rust
 const R_PARISC_LTOFF_FPTR32: u32 = 57u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3072`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3072)*
+
 32 bits LT-rel. function pointer.
 
 ### `R_PARISC_LTOFF_FPTR21L`
-
 ```rust
 const R_PARISC_LTOFF_FPTR21L: u32 = 58u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3074`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3074)*
+
 LT-rel. fct ptr, left 21 bits.
 
 ### `R_PARISC_LTOFF_FPTR14R`
-
 ```rust
 const R_PARISC_LTOFF_FPTR14R: u32 = 62u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3076`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3076)*
+
 LT-rel. fct ptr, right 14 bits.
 
 ### `R_PARISC_FPTR64`
-
 ```rust
 const R_PARISC_FPTR64: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3078`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3078)*
+
 64 bits function address.
 
 ### `R_PARISC_PLABEL32`
-
 ```rust
 const R_PARISC_PLABEL32: u32 = 65u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3080`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3080)*
+
 32 bits function address.
 
 ### `R_PARISC_PLABEL21L`
-
 ```rust
 const R_PARISC_PLABEL21L: u32 = 66u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3082`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3082)*
+
 Left 21 bits of fdesc address.
 
 ### `R_PARISC_PLABEL14R`
-
 ```rust
 const R_PARISC_PLABEL14R: u32 = 70u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3084`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3084)*
+
 Right 14 bits of fdesc address.
 
 ### `R_PARISC_PCREL64`
-
 ```rust
 const R_PARISC_PCREL64: u32 = 72u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3086`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3086)*
+
 64 bits PC-rel. address.
 
 ### `R_PARISC_PCREL22F`
-
 ```rust
 const R_PARISC_PCREL22F: u32 = 74u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3088`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3088)*
+
 22 bits PC-rel. address.
 
 ### `R_PARISC_PCREL14WR`
-
 ```rust
 const R_PARISC_PCREL14WR: u32 = 75u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3090`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3090)*
+
 PC-rel. address, right 14 bits.
 
 ### `R_PARISC_PCREL14DR`
-
 ```rust
 const R_PARISC_PCREL14DR: u32 = 76u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3092`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3092)*
+
 PC rel. address, right 14 bits.
 
 ### `R_PARISC_PCREL16F`
-
 ```rust
 const R_PARISC_PCREL16F: u32 = 77u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3094`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3094)*
+
 16 bits PC-rel. address.
 
 ### `R_PARISC_PCREL16WF`
-
 ```rust
 const R_PARISC_PCREL16WF: u32 = 78u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3096`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3096)*
+
 16 bits PC-rel. address.
 
 ### `R_PARISC_PCREL16DF`
-
 ```rust
 const R_PARISC_PCREL16DF: u32 = 79u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3098`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3098)*
+
 16 bits PC-rel. address.
 
 ### `R_PARISC_DIR64`
-
 ```rust
 const R_PARISC_DIR64: u32 = 80u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3100`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3100)*
+
 64 bits of eff. address.
 
 ### `R_PARISC_DIR14WR`
-
 ```rust
 const R_PARISC_DIR14WR: u32 = 83u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3102`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3102)*
+
 14 bits of eff. address.
 
 ### `R_PARISC_DIR14DR`
-
 ```rust
 const R_PARISC_DIR14DR: u32 = 84u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3104`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3104)*
+
 14 bits of eff. address.
 
 ### `R_PARISC_DIR16F`
-
 ```rust
 const R_PARISC_DIR16F: u32 = 85u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3106`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3106)*
+
 16 bits of eff. address.
 
 ### `R_PARISC_DIR16WF`
-
 ```rust
 const R_PARISC_DIR16WF: u32 = 86u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3108`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3108)*
+
 16 bits of eff. address.
 
 ### `R_PARISC_DIR16DF`
-
 ```rust
 const R_PARISC_DIR16DF: u32 = 87u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3110`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3110)*
+
 16 bits of eff. address.
 
 ### `R_PARISC_GPREL64`
-
 ```rust
 const R_PARISC_GPREL64: u32 = 88u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3112`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3112)*
+
 64 bits of GP-rel. address.
 
 ### `R_PARISC_GPREL14WR`
-
 ```rust
 const R_PARISC_GPREL14WR: u32 = 91u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3114`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3114)*
+
 GP-rel. address, right 14 bits.
 
 ### `R_PARISC_GPREL14DR`
-
 ```rust
 const R_PARISC_GPREL14DR: u32 = 92u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3116`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3116)*
+
 GP-rel. address, right 14 bits.
 
 ### `R_PARISC_GPREL16F`
-
 ```rust
 const R_PARISC_GPREL16F: u32 = 93u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3118`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3118)*
+
 16 bits GP-rel. address.
 
 ### `R_PARISC_GPREL16WF`
-
 ```rust
 const R_PARISC_GPREL16WF: u32 = 94u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3120`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3120)*
+
 16 bits GP-rel. address.
 
 ### `R_PARISC_GPREL16DF`
-
 ```rust
 const R_PARISC_GPREL16DF: u32 = 95u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3122`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3122)*
+
 16 bits GP-rel. address.
 
 ### `R_PARISC_LTOFF64`
-
 ```rust
 const R_PARISC_LTOFF64: u32 = 96u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3124`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3124)*
+
 64 bits LT-rel. address.
 
 ### `R_PARISC_LTOFF14WR`
-
 ```rust
 const R_PARISC_LTOFF14WR: u32 = 99u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3126`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3126)*
+
 LT-rel. address, right 14 bits.
 
 ### `R_PARISC_LTOFF14DR`
-
 ```rust
 const R_PARISC_LTOFF14DR: u32 = 100u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3128`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3128)*
+
 LT-rel. address, right 14 bits.
 
 ### `R_PARISC_LTOFF16F`
-
 ```rust
 const R_PARISC_LTOFF16F: u32 = 101u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3130`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3130)*
+
 16 bits LT-rel. address.
 
 ### `R_PARISC_LTOFF16WF`
-
 ```rust
 const R_PARISC_LTOFF16WF: u32 = 102u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3132`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3132)*
+
 16 bits LT-rel. address.
 
 ### `R_PARISC_LTOFF16DF`
-
 ```rust
 const R_PARISC_LTOFF16DF: u32 = 103u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3134`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3134)*
+
 16 bits LT-rel. address.
 
 ### `R_PARISC_SECREL64`
-
 ```rust
 const R_PARISC_SECREL64: u32 = 104u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3136`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3136)*
+
 64 bits section rel. address.
 
 ### `R_PARISC_SEGREL64`
-
 ```rust
 const R_PARISC_SEGREL64: u32 = 112u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3138`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3138)*
+
 64 bits segment rel. address.
 
 ### `R_PARISC_PLTOFF14WR`
-
 ```rust
 const R_PARISC_PLTOFF14WR: u32 = 115u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3140`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3140)*
+
 PLT-rel. address, right 14 bits.
 
 ### `R_PARISC_PLTOFF14DR`
-
 ```rust
 const R_PARISC_PLTOFF14DR: u32 = 116u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3142`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3142)*
+
 PLT-rel. address, right 14 bits.
 
 ### `R_PARISC_PLTOFF16F`
-
 ```rust
 const R_PARISC_PLTOFF16F: u32 = 117u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3144`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3144)*
+
 16 bits LT-rel. address.
 
 ### `R_PARISC_PLTOFF16WF`
-
 ```rust
 const R_PARISC_PLTOFF16WF: u32 = 118u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3146`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3146)*
+
 16 bits PLT-rel. address.
 
 ### `R_PARISC_PLTOFF16DF`
-
 ```rust
 const R_PARISC_PLTOFF16DF: u32 = 119u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3148`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3148)*
+
 16 bits PLT-rel. address.
 
 ### `R_PARISC_LTOFF_FPTR64`
-
 ```rust
 const R_PARISC_LTOFF_FPTR64: u32 = 120u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3150`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3150)*
+
 64 bits LT-rel. function ptr.
 
 ### `R_PARISC_LTOFF_FPTR14WR`
-
 ```rust
 const R_PARISC_LTOFF_FPTR14WR: u32 = 123u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3152`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3152)*
+
 LT-rel. fct. ptr., right 14 bits.
 
 ### `R_PARISC_LTOFF_FPTR14DR`
-
 ```rust
 const R_PARISC_LTOFF_FPTR14DR: u32 = 124u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3154`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3154)*
+
 LT-rel. fct. ptr., right 14 bits.
 
 ### `R_PARISC_LTOFF_FPTR16F`
-
 ```rust
 const R_PARISC_LTOFF_FPTR16F: u32 = 125u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3156`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3156)*
+
 16 bits LT-rel. function ptr.
 
 ### `R_PARISC_LTOFF_FPTR16WF`
-
 ```rust
 const R_PARISC_LTOFF_FPTR16WF: u32 = 126u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3158`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3158)*
+
 16 bits LT-rel. function ptr.
 
 ### `R_PARISC_LTOFF_FPTR16DF`
-
 ```rust
 const R_PARISC_LTOFF_FPTR16DF: u32 = 127u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3160`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3160)*
+
 16 bits LT-rel. function ptr.
 
 ### `R_PARISC_LORESERVE`
-
 ```rust
 const R_PARISC_LORESERVE: u32 = 128u32;
 ```
 
-### `R_PARISC_COPY`
+*Defined in [`object-0.37.3/src/elf.rs:3161`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3161)*
 
+### `R_PARISC_COPY`
 ```rust
 const R_PARISC_COPY: u32 = 128u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3163`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3163)*
+
 Copy relocation.
 
 ### `R_PARISC_IPLT`
-
 ```rust
 const R_PARISC_IPLT: u32 = 129u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3165`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3165)*
+
 Dynamic reloc, imported PLT
 
 ### `R_PARISC_EPLT`
-
 ```rust
 const R_PARISC_EPLT: u32 = 130u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3167`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3167)*
+
 Dynamic reloc, exported PLT
 
 ### `R_PARISC_TPREL32`
-
 ```rust
 const R_PARISC_TPREL32: u32 = 153u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3169`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3169)*
+
 32 bits TP-rel. address.
 
 ### `R_PARISC_TPREL21L`
-
 ```rust
 const R_PARISC_TPREL21L: u32 = 154u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3171`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3171)*
+
 TP-rel. address, left 21 bits.
 
 ### `R_PARISC_TPREL14R`
-
 ```rust
 const R_PARISC_TPREL14R: u32 = 158u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3173`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3173)*
+
 TP-rel. address, right 14 bits.
 
 ### `R_PARISC_LTOFF_TP21L`
-
 ```rust
 const R_PARISC_LTOFF_TP21L: u32 = 162u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3175`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3175)*
+
 LT-TP-rel. address, left 21 bits.
 
 ### `R_PARISC_LTOFF_TP14R`
-
 ```rust
 const R_PARISC_LTOFF_TP14R: u32 = 166u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3177`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3177)*
+
 LT-TP-rel. address, right 14 bits.
 
 ### `R_PARISC_LTOFF_TP14F`
-
 ```rust
 const R_PARISC_LTOFF_TP14F: u32 = 167u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3179`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3179)*
+
 14 bits LT-TP-rel. address.
 
 ### `R_PARISC_TPREL64`
-
 ```rust
 const R_PARISC_TPREL64: u32 = 216u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3181`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3181)*
+
 64 bits TP-rel. address.
 
 ### `R_PARISC_TPREL14WR`
-
 ```rust
 const R_PARISC_TPREL14WR: u32 = 219u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3183`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3183)*
+
 TP-rel. address, right 14 bits.
 
 ### `R_PARISC_TPREL14DR`
-
 ```rust
 const R_PARISC_TPREL14DR: u32 = 220u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3185`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3185)*
+
 TP-rel. address, right 14 bits.
 
 ### `R_PARISC_TPREL16F`
-
 ```rust
 const R_PARISC_TPREL16F: u32 = 221u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3187`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3187)*
+
 16 bits TP-rel. address.
 
 ### `R_PARISC_TPREL16WF`
-
 ```rust
 const R_PARISC_TPREL16WF: u32 = 222u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3189`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3189)*
+
 16 bits TP-rel. address.
 
 ### `R_PARISC_TPREL16DF`
-
 ```rust
 const R_PARISC_TPREL16DF: u32 = 223u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3191`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3191)*
+
 16 bits TP-rel. address.
 
 ### `R_PARISC_LTOFF_TP64`
-
 ```rust
 const R_PARISC_LTOFF_TP64: u32 = 224u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3193`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3193)*
+
 64 bits LT-TP-rel. address.
 
 ### `R_PARISC_LTOFF_TP14WR`
-
 ```rust
 const R_PARISC_LTOFF_TP14WR: u32 = 227u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3195`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3195)*
+
 LT-TP-rel. address, right 14 bits.
 
 ### `R_PARISC_LTOFF_TP14DR`
-
 ```rust
 const R_PARISC_LTOFF_TP14DR: u32 = 228u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3197`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3197)*
+
 LT-TP-rel. address, right 14 bits.
 
 ### `R_PARISC_LTOFF_TP16F`
-
 ```rust
 const R_PARISC_LTOFF_TP16F: u32 = 229u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3199`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3199)*
+
 16 bits LT-TP-rel. address.
 
 ### `R_PARISC_LTOFF_TP16WF`
-
 ```rust
 const R_PARISC_LTOFF_TP16WF: u32 = 230u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3201`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3201)*
+
 16 bits LT-TP-rel. address.
 
 ### `R_PARISC_LTOFF_TP16DF`
-
 ```rust
 const R_PARISC_LTOFF_TP16DF: u32 = 231u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3203`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3203)*
+
 16 bits LT-TP-rel. address.
 
 ### `R_PARISC_GNU_VTENTRY`
-
 ```rust
 const R_PARISC_GNU_VTENTRY: u32 = 232u32;
 ```
 
-### `R_PARISC_GNU_VTINHERIT`
+*Defined in [`object-0.37.3/src/elf.rs:3204`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3204)*
 
+### `R_PARISC_GNU_VTINHERIT`
 ```rust
 const R_PARISC_GNU_VTINHERIT: u32 = 233u32;
 ```
 
-### `R_PARISC_TLS_GD21L`
+*Defined in [`object-0.37.3/src/elf.rs:3205`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3205)*
 
+### `R_PARISC_TLS_GD21L`
 ```rust
 const R_PARISC_TLS_GD21L: u32 = 234u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3207`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3207)*
+
 GD 21-bit left.
 
 ### `R_PARISC_TLS_GD14R`
-
 ```rust
 const R_PARISC_TLS_GD14R: u32 = 235u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3209`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3209)*
+
 GD 14-bit right.
 
 ### `R_PARISC_TLS_GDCALL`
-
 ```rust
 const R_PARISC_TLS_GDCALL: u32 = 236u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3211`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3211)*
+
 GD call to __t_g_a.
 
 ### `R_PARISC_TLS_LDM21L`
-
 ```rust
 const R_PARISC_TLS_LDM21L: u32 = 237u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3213`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3213)*
+
 LD module 21-bit left.
 
 ### `R_PARISC_TLS_LDM14R`
-
 ```rust
 const R_PARISC_TLS_LDM14R: u32 = 238u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3215`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3215)*
+
 LD module 14-bit right.
 
 ### `R_PARISC_TLS_LDMCALL`
-
 ```rust
 const R_PARISC_TLS_LDMCALL: u32 = 239u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3217`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3217)*
+
 LD module call to __t_g_a.
 
 ### `R_PARISC_TLS_LDO21L`
-
 ```rust
 const R_PARISC_TLS_LDO21L: u32 = 240u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3219`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3219)*
+
 LD offset 21-bit left.
 
 ### `R_PARISC_TLS_LDO14R`
-
 ```rust
 const R_PARISC_TLS_LDO14R: u32 = 241u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3221`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3221)*
+
 LD offset 14-bit right.
 
 ### `R_PARISC_TLS_DTPMOD32`
-
 ```rust
 const R_PARISC_TLS_DTPMOD32: u32 = 242u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3223`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3223)*
+
 DTP module 32-bit.
 
 ### `R_PARISC_TLS_DTPMOD64`
-
 ```rust
 const R_PARISC_TLS_DTPMOD64: u32 = 243u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3225`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3225)*
+
 DTP module 64-bit.
 
 ### `R_PARISC_TLS_DTPOFF32`
-
 ```rust
 const R_PARISC_TLS_DTPOFF32: u32 = 244u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3227`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3227)*
+
 DTP offset 32-bit.
 
 ### `R_PARISC_TLS_DTPOFF64`
-
 ```rust
 const R_PARISC_TLS_DTPOFF64: u32 = 245u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3229`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3229)*
+
 DTP offset 32-bit.
 
 ### `R_PARISC_TLS_LE21L`
-
 ```rust
 const R_PARISC_TLS_LE21L: u32 = 154u32;
 ```
 
-### `R_PARISC_TLS_LE14R`
+*Defined in [`object-0.37.3/src/elf.rs:3230`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3230)*
 
+### `R_PARISC_TLS_LE14R`
 ```rust
 const R_PARISC_TLS_LE14R: u32 = 158u32;
 ```
 
-### `R_PARISC_TLS_IE21L`
+*Defined in [`object-0.37.3/src/elf.rs:3231`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3231)*
 
+### `R_PARISC_TLS_IE21L`
 ```rust
 const R_PARISC_TLS_IE21L: u32 = 162u32;
 ```
 
-### `R_PARISC_TLS_IE14R`
+*Defined in [`object-0.37.3/src/elf.rs:3232`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3232)*
 
+### `R_PARISC_TLS_IE14R`
 ```rust
 const R_PARISC_TLS_IE14R: u32 = 166u32;
 ```
 
-### `R_PARISC_TLS_TPREL32`
+*Defined in [`object-0.37.3/src/elf.rs:3233`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3233)*
 
+### `R_PARISC_TLS_TPREL32`
 ```rust
 const R_PARISC_TLS_TPREL32: u32 = 153u32;
 ```
 
-### `R_PARISC_TLS_TPREL64`
+*Defined in [`object-0.37.3/src/elf.rs:3234`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3234)*
 
+### `R_PARISC_TLS_TPREL64`
 ```rust
 const R_PARISC_TLS_TPREL64: u32 = 216u32;
 ```
 
-### `R_PARISC_HIRESERVE`
+*Defined in [`object-0.37.3/src/elf.rs:3235`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3235)*
 
+### `R_PARISC_HIRESERVE`
 ```rust
 const R_PARISC_HIRESERVE: u32 = 255u32;
 ```
 
-### `PT_HP_TLS`
+*Defined in [`object-0.37.3/src/elf.rs:3236`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3236)*
 
+### `PT_HP_TLS`
 ```rust
 const PT_HP_TLS: u32 = 1_610_612_736u32;
 ```
 
-### `PT_HP_CORE_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:3240`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3240)*
 
+### `PT_HP_CORE_NONE`
 ```rust
 const PT_HP_CORE_NONE: u32 = 1_610_612_737u32;
 ```
 
-### `PT_HP_CORE_VERSION`
+*Defined in [`object-0.37.3/src/elf.rs:3241`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3241)*
 
+### `PT_HP_CORE_VERSION`
 ```rust
 const PT_HP_CORE_VERSION: u32 = 1_610_612_738u32;
 ```
 
-### `PT_HP_CORE_KERNEL`
+*Defined in [`object-0.37.3/src/elf.rs:3242`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3242)*
 
+### `PT_HP_CORE_KERNEL`
 ```rust
 const PT_HP_CORE_KERNEL: u32 = 1_610_612_739u32;
 ```
 
-### `PT_HP_CORE_COMM`
+*Defined in [`object-0.37.3/src/elf.rs:3243`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3243)*
 
+### `PT_HP_CORE_COMM`
 ```rust
 const PT_HP_CORE_COMM: u32 = 1_610_612_740u32;
 ```
 
-### `PT_HP_CORE_PROC`
+*Defined in [`object-0.37.3/src/elf.rs:3244`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3244)*
 
+### `PT_HP_CORE_PROC`
 ```rust
 const PT_HP_CORE_PROC: u32 = 1_610_612_741u32;
 ```
 
-### `PT_HP_CORE_LOADABLE`
+*Defined in [`object-0.37.3/src/elf.rs:3245`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3245)*
 
+### `PT_HP_CORE_LOADABLE`
 ```rust
 const PT_HP_CORE_LOADABLE: u32 = 1_610_612_742u32;
 ```
 
-### `PT_HP_CORE_STACK`
+*Defined in [`object-0.37.3/src/elf.rs:3246`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3246)*
 
+### `PT_HP_CORE_STACK`
 ```rust
 const PT_HP_CORE_STACK: u32 = 1_610_612_743u32;
 ```
 
-### `PT_HP_CORE_SHM`
+*Defined in [`object-0.37.3/src/elf.rs:3247`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3247)*
 
+### `PT_HP_CORE_SHM`
 ```rust
 const PT_HP_CORE_SHM: u32 = 1_610_612_744u32;
 ```
 
-### `PT_HP_CORE_MMF`
+*Defined in [`object-0.37.3/src/elf.rs:3248`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3248)*
 
+### `PT_HP_CORE_MMF`
 ```rust
 const PT_HP_CORE_MMF: u32 = 1_610_612_745u32;
 ```
 
-### `PT_HP_PARALLEL`
+*Defined in [`object-0.37.3/src/elf.rs:3249`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3249)*
 
+### `PT_HP_PARALLEL`
 ```rust
 const PT_HP_PARALLEL: u32 = 1_610_612_752u32;
 ```
 
-### `PT_HP_FASTBIND`
+*Defined in [`object-0.37.3/src/elf.rs:3250`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3250)*
 
+### `PT_HP_FASTBIND`
 ```rust
 const PT_HP_FASTBIND: u32 = 1_610_612_753u32;
 ```
 
-### `PT_HP_OPT_ANNOT`
+*Defined in [`object-0.37.3/src/elf.rs:3251`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3251)*
 
+### `PT_HP_OPT_ANNOT`
 ```rust
 const PT_HP_OPT_ANNOT: u32 = 1_610_612_754u32;
 ```
 
-### `PT_HP_HSL_ANNOT`
+*Defined in [`object-0.37.3/src/elf.rs:3252`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3252)*
 
+### `PT_HP_HSL_ANNOT`
 ```rust
 const PT_HP_HSL_ANNOT: u32 = 1_610_612_755u32;
 ```
 
-### `PT_HP_STACK`
+*Defined in [`object-0.37.3/src/elf.rs:3253`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3253)*
 
+### `PT_HP_STACK`
 ```rust
 const PT_HP_STACK: u32 = 1_610_612_756u32;
 ```
 
-### `PT_PARISC_ARCHEXT`
+*Defined in [`object-0.37.3/src/elf.rs:3254`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3254)*
 
+### `PT_PARISC_ARCHEXT`
 ```rust
 const PT_PARISC_ARCHEXT: u32 = 1_879_048_192u32;
 ```
 
-### `PT_PARISC_UNWIND`
+*Defined in [`object-0.37.3/src/elf.rs:3256`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3256)*
 
+### `PT_PARISC_UNWIND`
 ```rust
 const PT_PARISC_UNWIND: u32 = 1_879_048_193u32;
 ```
 
-### `PF_PARISC_SBP`
+*Defined in [`object-0.37.3/src/elf.rs:3257`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3257)*
 
+### `PF_PARISC_SBP`
 ```rust
 const PF_PARISC_SBP: u32 = 134_217_728u32;
 ```
 
-### `PF_HP_PAGE_SIZE`
+*Defined in [`object-0.37.3/src/elf.rs:3261`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3261)*
 
+### `PF_HP_PAGE_SIZE`
 ```rust
 const PF_HP_PAGE_SIZE: u32 = 1_048_576u32;
 ```
 
-### `PF_HP_FAR_SHARED`
+*Defined in [`object-0.37.3/src/elf.rs:3263`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3263)*
 
+### `PF_HP_FAR_SHARED`
 ```rust
 const PF_HP_FAR_SHARED: u32 = 2_097_152u32;
 ```
 
-### `PF_HP_NEAR_SHARED`
+*Defined in [`object-0.37.3/src/elf.rs:3264`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3264)*
 
+### `PF_HP_NEAR_SHARED`
 ```rust
 const PF_HP_NEAR_SHARED: u32 = 4_194_304u32;
 ```
 
-### `PF_HP_CODE`
+*Defined in [`object-0.37.3/src/elf.rs:3265`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3265)*
 
+### `PF_HP_CODE`
 ```rust
 const PF_HP_CODE: u32 = 16_777_216u32;
 ```
 
-### `PF_HP_MODIFY`
+*Defined in [`object-0.37.3/src/elf.rs:3266`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3266)*
 
+### `PF_HP_MODIFY`
 ```rust
 const PF_HP_MODIFY: u32 = 33_554_432u32;
 ```
 
-### `PF_HP_LAZYSWAP`
+*Defined in [`object-0.37.3/src/elf.rs:3267`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3267)*
 
+### `PF_HP_LAZYSWAP`
 ```rust
 const PF_HP_LAZYSWAP: u32 = 67_108_864u32;
 ```
 
-### `PF_HP_SBP`
+*Defined in [`object-0.37.3/src/elf.rs:3268`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3268)*
 
+### `PF_HP_SBP`
 ```rust
 const PF_HP_SBP: u32 = 134_217_728u32;
 ```
 
-### `EF_ALPHA_32BIT`
+*Defined in [`object-0.37.3/src/elf.rs:3269`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3269)*
 
+### `EF_ALPHA_32BIT`
 ```rust
 const EF_ALPHA_32BIT: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3276`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3276)*
+
 All addresses must be < 2GB.
 
 ### `EF_ALPHA_CANRELAX`
-
 ```rust
 const EF_ALPHA_CANRELAX: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3278`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3278)*
+
 Relocations for relaxing exist.
 
 ### `SHT_ALPHA_DEBUG`
-
 ```rust
 const SHT_ALPHA_DEBUG: u32 = 1_879_048_193u32;
 ```
 
-### `SHT_ALPHA_REGINFO`
+*Defined in [`object-0.37.3/src/elf.rs:3283`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3283)*
 
+### `SHT_ALPHA_REGINFO`
 ```rust
 const SHT_ALPHA_REGINFO: u32 = 1_879_048_194u32;
 ```
 
-### `SHF_ALPHA_GPREL`
+*Defined in [`object-0.37.3/src/elf.rs:3284`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3284)*
 
+### `SHF_ALPHA_GPREL`
 ```rust
 const SHF_ALPHA_GPREL: u32 = 268_435_456u32;
 ```
 
-### `STO_ALPHA_NOPV`
+*Defined in [`object-0.37.3/src/elf.rs:3288`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3288)*
 
+### `STO_ALPHA_NOPV`
 ```rust
 const STO_ALPHA_NOPV: u8 = 128u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3292`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3292)*
+
 No PV required.
 
 ### `STO_ALPHA_STD_GPLOAD`
-
 ```rust
 const STO_ALPHA_STD_GPLOAD: u8 = 136u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3294`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3294)*
+
 PV only used for initial ldgp.
 
 ### `R_ALPHA_NONE`
-
 ```rust
 const R_ALPHA_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3299`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3299)*
+
 No reloc
 
 ### `R_ALPHA_REFLONG`
-
 ```rust
 const R_ALPHA_REFLONG: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3301`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3301)*
+
 Direct 32 bit
 
 ### `R_ALPHA_REFQUAD`
-
 ```rust
 const R_ALPHA_REFQUAD: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3303`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3303)*
+
 Direct 64 bit
 
 ### `R_ALPHA_GPREL32`
-
 ```rust
 const R_ALPHA_GPREL32: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3305`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3305)*
+
 GP relative 32 bit
 
 ### `R_ALPHA_LITERAL`
-
 ```rust
 const R_ALPHA_LITERAL: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3307`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3307)*
+
 GP relative 16 bit w/optimization
 
 ### `R_ALPHA_LITUSE`
-
 ```rust
 const R_ALPHA_LITUSE: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3309`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3309)*
+
 Optimization hint for LITERAL
 
 ### `R_ALPHA_GPDISP`
-
 ```rust
 const R_ALPHA_GPDISP: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3311`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3311)*
+
 Add displacement to GP
 
 ### `R_ALPHA_BRADDR`
-
 ```rust
 const R_ALPHA_BRADDR: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3313`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3313)*
+
 PC+4 relative 23 bit shifted
 
 ### `R_ALPHA_HINT`
-
 ```rust
 const R_ALPHA_HINT: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3315`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3315)*
+
 PC+4 relative 16 bit shifted
 
 ### `R_ALPHA_SREL16`
-
 ```rust
 const R_ALPHA_SREL16: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3317`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3317)*
+
 PC relative 16 bit
 
 ### `R_ALPHA_SREL32`
-
 ```rust
 const R_ALPHA_SREL32: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3319`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3319)*
+
 PC relative 32 bit
 
 ### `R_ALPHA_SREL64`
-
 ```rust
 const R_ALPHA_SREL64: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3321`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3321)*
+
 PC relative 64 bit
 
 ### `R_ALPHA_GPRELHIGH`
-
 ```rust
 const R_ALPHA_GPRELHIGH: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3323`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3323)*
+
 GP relative 32 bit, high 16 bits
 
 ### `R_ALPHA_GPRELLOW`
-
 ```rust
 const R_ALPHA_GPRELLOW: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3325`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3325)*
+
 GP relative 32 bit, low 16 bits
 
 ### `R_ALPHA_GPREL16`
-
 ```rust
 const R_ALPHA_GPREL16: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3327`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3327)*
+
 GP relative 16 bit
 
 ### `R_ALPHA_COPY`
-
 ```rust
 const R_ALPHA_COPY: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3329`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3329)*
+
 Copy symbol at runtime
 
 ### `R_ALPHA_GLOB_DAT`
-
 ```rust
 const R_ALPHA_GLOB_DAT: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3331`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3331)*
+
 Create GOT entry
 
 ### `R_ALPHA_JMP_SLOT`
-
 ```rust
 const R_ALPHA_JMP_SLOT: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3333`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3333)*
+
 Create PLT entry
 
 ### `R_ALPHA_RELATIVE`
-
 ```rust
 const R_ALPHA_RELATIVE: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3335`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3335)*
+
 Adjust by program base
 
 ### `R_ALPHA_TLS_GD_HI`
-
 ```rust
 const R_ALPHA_TLS_GD_HI: u32 = 28u32;
 ```
 
-### `R_ALPHA_TLSGD`
+*Defined in [`object-0.37.3/src/elf.rs:3336`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3336)*
 
+### `R_ALPHA_TLSGD`
 ```rust
 const R_ALPHA_TLSGD: u32 = 29u32;
 ```
 
-### `R_ALPHA_TLS_LDM`
+*Defined in [`object-0.37.3/src/elf.rs:3337`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3337)*
 
+### `R_ALPHA_TLS_LDM`
 ```rust
 const R_ALPHA_TLS_LDM: u32 = 30u32;
 ```
 
-### `R_ALPHA_DTPMOD64`
+*Defined in [`object-0.37.3/src/elf.rs:3338`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3338)*
 
+### `R_ALPHA_DTPMOD64`
 ```rust
 const R_ALPHA_DTPMOD64: u32 = 31u32;
 ```
 
-### `R_ALPHA_GOTDTPREL`
+*Defined in [`object-0.37.3/src/elf.rs:3339`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3339)*
 
+### `R_ALPHA_GOTDTPREL`
 ```rust
 const R_ALPHA_GOTDTPREL: u32 = 32u32;
 ```
 
-### `R_ALPHA_DTPREL64`
+*Defined in [`object-0.37.3/src/elf.rs:3340`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3340)*
 
+### `R_ALPHA_DTPREL64`
 ```rust
 const R_ALPHA_DTPREL64: u32 = 33u32;
 ```
 
-### `R_ALPHA_DTPRELHI`
+*Defined in [`object-0.37.3/src/elf.rs:3341`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3341)*
 
+### `R_ALPHA_DTPRELHI`
 ```rust
 const R_ALPHA_DTPRELHI: u32 = 34u32;
 ```
 
-### `R_ALPHA_DTPRELLO`
+*Defined in [`object-0.37.3/src/elf.rs:3342`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3342)*
 
+### `R_ALPHA_DTPRELLO`
 ```rust
 const R_ALPHA_DTPRELLO: u32 = 35u32;
 ```
 
-### `R_ALPHA_DTPREL16`
+*Defined in [`object-0.37.3/src/elf.rs:3343`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3343)*
 
+### `R_ALPHA_DTPREL16`
 ```rust
 const R_ALPHA_DTPREL16: u32 = 36u32;
 ```
 
-### `R_ALPHA_GOTTPREL`
+*Defined in [`object-0.37.3/src/elf.rs:3344`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3344)*
 
+### `R_ALPHA_GOTTPREL`
 ```rust
 const R_ALPHA_GOTTPREL: u32 = 37u32;
 ```
 
-### `R_ALPHA_TPREL64`
+*Defined in [`object-0.37.3/src/elf.rs:3345`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3345)*
 
+### `R_ALPHA_TPREL64`
 ```rust
 const R_ALPHA_TPREL64: u32 = 38u32;
 ```
 
-### `R_ALPHA_TPRELHI`
+*Defined in [`object-0.37.3/src/elf.rs:3346`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3346)*
 
+### `R_ALPHA_TPRELHI`
 ```rust
 const R_ALPHA_TPRELHI: u32 = 39u32;
 ```
 
-### `R_ALPHA_TPRELLO`
+*Defined in [`object-0.37.3/src/elf.rs:3347`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3347)*
 
+### `R_ALPHA_TPRELLO`
 ```rust
 const R_ALPHA_TPRELLO: u32 = 40u32;
 ```
 
-### `R_ALPHA_TPREL16`
+*Defined in [`object-0.37.3/src/elf.rs:3348`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3348)*
 
+### `R_ALPHA_TPREL16`
 ```rust
 const R_ALPHA_TPREL16: u32 = 41u32;
 ```
 
-### `LITUSE_ALPHA_ADDR`
+*Defined in [`object-0.37.3/src/elf.rs:3349`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3349)*
 
+### `LITUSE_ALPHA_ADDR`
 ```rust
 const LITUSE_ALPHA_ADDR: u32 = 0u32;
 ```
 
-### `LITUSE_ALPHA_BASE`
+*Defined in [`object-0.37.3/src/elf.rs:3352`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3352)*
 
+### `LITUSE_ALPHA_BASE`
 ```rust
 const LITUSE_ALPHA_BASE: u32 = 1u32;
 ```
 
-### `LITUSE_ALPHA_BYTOFF`
+*Defined in [`object-0.37.3/src/elf.rs:3353`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3353)*
 
+### `LITUSE_ALPHA_BYTOFF`
 ```rust
 const LITUSE_ALPHA_BYTOFF: u32 = 2u32;
 ```
 
-### `LITUSE_ALPHA_JSR`
+*Defined in [`object-0.37.3/src/elf.rs:3354`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3354)*
 
+### `LITUSE_ALPHA_JSR`
 ```rust
 const LITUSE_ALPHA_JSR: u32 = 3u32;
 ```
 
-### `LITUSE_ALPHA_TLS_GD`
+*Defined in [`object-0.37.3/src/elf.rs:3355`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3355)*
 
+### `LITUSE_ALPHA_TLS_GD`
 ```rust
 const LITUSE_ALPHA_TLS_GD: u32 = 4u32;
 ```
 
-### `LITUSE_ALPHA_TLS_LDM`
+*Defined in [`object-0.37.3/src/elf.rs:3356`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3356)*
 
+### `LITUSE_ALPHA_TLS_LDM`
 ```rust
 const LITUSE_ALPHA_TLS_LDM: u32 = 5u32;
 ```
 
-### `DT_ALPHA_PLTRO`
+*Defined in [`object-0.37.3/src/elf.rs:3357`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3357)*
 
+### `DT_ALPHA_PLTRO`
 ```rust
 const DT_ALPHA_PLTRO: u32 = 1_879_048_192u32;
 ```
 
-### `EF_PPC_EMB`
+*Defined in [`object-0.37.3/src/elf.rs:3360`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3360)*
 
+### `EF_PPC_EMB`
 ```rust
 const EF_PPC_EMB: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3366`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3366)*
+
 PowerPC embedded flag
 
 ### `EF_PPC_RELOCATABLE`
-
 ```rust
 const EF_PPC_RELOCATABLE: u32 = 65_536u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3370`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3370)*
+
 PowerPC -mrelocatable flag
 
 ### `EF_PPC_RELOCATABLE_LIB`
-
 ```rust
 const EF_PPC_RELOCATABLE_LIB: u32 = 32_768u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3372`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3372)*
+
 PowerPC -mrelocatable-lib flag
 
 ### `R_PPC_NONE`
-
 ```rust
 const R_PPC_NONE: u32 = 0u32;
 ```
 
-### `R_PPC_ADDR32`
+*Defined in [`object-0.37.3/src/elf.rs:3375`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3375)*
 
+### `R_PPC_ADDR32`
 ```rust
 const R_PPC_ADDR32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3377`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3377)*
+
 32bit absolute address
 
 ### `R_PPC_ADDR24`
-
 ```rust
 const R_PPC_ADDR24: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3379`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3379)*
+
 26bit address, 2 bits ignored.
 
 ### `R_PPC_ADDR16`
-
 ```rust
 const R_PPC_ADDR16: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3381`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3381)*
+
 16bit absolute address
 
 ### `R_PPC_ADDR16_LO`
-
 ```rust
 const R_PPC_ADDR16_LO: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3383`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3383)*
+
 lower 16bit of absolute address
 
 ### `R_PPC_ADDR16_HI`
-
 ```rust
 const R_PPC_ADDR16_HI: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3385`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3385)*
+
 high 16bit of absolute address
 
 ### `R_PPC_ADDR16_HA`
-
 ```rust
 const R_PPC_ADDR16_HA: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3387`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3387)*
+
 adjusted high 16bit
 
 ### `R_PPC_ADDR14`
-
 ```rust
 const R_PPC_ADDR14: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3389`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3389)*
+
 16bit address, 2 bits ignored
 
 ### `R_PPC_ADDR14_BRTAKEN`
-
 ```rust
 const R_PPC_ADDR14_BRTAKEN: u32 = 8u32;
 ```
 
-### `R_PPC_ADDR14_BRNTAKEN`
+*Defined in [`object-0.37.3/src/elf.rs:3390`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3390)*
 
+### `R_PPC_ADDR14_BRNTAKEN`
 ```rust
 const R_PPC_ADDR14_BRNTAKEN: u32 = 9u32;
 ```
 
-### `R_PPC_REL24`
+*Defined in [`object-0.37.3/src/elf.rs:3391`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3391)*
 
+### `R_PPC_REL24`
 ```rust
 const R_PPC_REL24: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3393`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3393)*
+
 PC relative 26 bit
 
 ### `R_PPC_REL14`
-
 ```rust
 const R_PPC_REL14: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3395`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3395)*
+
 PC relative 16 bit
 
 ### `R_PPC_REL14_BRTAKEN`
-
 ```rust
 const R_PPC_REL14_BRTAKEN: u32 = 12u32;
 ```
 
-### `R_PPC_REL14_BRNTAKEN`
+*Defined in [`object-0.37.3/src/elf.rs:3396`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3396)*
 
+### `R_PPC_REL14_BRNTAKEN`
 ```rust
 const R_PPC_REL14_BRNTAKEN: u32 = 13u32;
 ```
 
-### `R_PPC_GOT16`
+*Defined in [`object-0.37.3/src/elf.rs:3397`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3397)*
 
+### `R_PPC_GOT16`
 ```rust
 const R_PPC_GOT16: u32 = 14u32;
 ```
 
-### `R_PPC_GOT16_LO`
+*Defined in [`object-0.37.3/src/elf.rs:3398`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3398)*
 
+### `R_PPC_GOT16_LO`
 ```rust
 const R_PPC_GOT16_LO: u32 = 15u32;
 ```
 
-### `R_PPC_GOT16_HI`
+*Defined in [`object-0.37.3/src/elf.rs:3399`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3399)*
 
+### `R_PPC_GOT16_HI`
 ```rust
 const R_PPC_GOT16_HI: u32 = 16u32;
 ```
 
-### `R_PPC_GOT16_HA`
+*Defined in [`object-0.37.3/src/elf.rs:3400`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3400)*
 
+### `R_PPC_GOT16_HA`
 ```rust
 const R_PPC_GOT16_HA: u32 = 17u32;
 ```
 
-### `R_PPC_PLTREL24`
+*Defined in [`object-0.37.3/src/elf.rs:3401`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3401)*
 
+### `R_PPC_PLTREL24`
 ```rust
 const R_PPC_PLTREL24: u32 = 18u32;
 ```
 
-### `R_PPC_COPY`
+*Defined in [`object-0.37.3/src/elf.rs:3402`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3402)*
 
+### `R_PPC_COPY`
 ```rust
 const R_PPC_COPY: u32 = 19u32;
 ```
 
-### `R_PPC_GLOB_DAT`
+*Defined in [`object-0.37.3/src/elf.rs:3403`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3403)*
 
+### `R_PPC_GLOB_DAT`
 ```rust
 const R_PPC_GLOB_DAT: u32 = 20u32;
 ```
 
-### `R_PPC_JMP_SLOT`
+*Defined in [`object-0.37.3/src/elf.rs:3404`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3404)*
 
+### `R_PPC_JMP_SLOT`
 ```rust
 const R_PPC_JMP_SLOT: u32 = 21u32;
 ```
 
-### `R_PPC_RELATIVE`
+*Defined in [`object-0.37.3/src/elf.rs:3405`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3405)*
 
+### `R_PPC_RELATIVE`
 ```rust
 const R_PPC_RELATIVE: u32 = 22u32;
 ```
 
-### `R_PPC_LOCAL24PC`
+*Defined in [`object-0.37.3/src/elf.rs:3406`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3406)*
 
+### `R_PPC_LOCAL24PC`
 ```rust
 const R_PPC_LOCAL24PC: u32 = 23u32;
 ```
 
-### `R_PPC_UADDR32`
+*Defined in [`object-0.37.3/src/elf.rs:3407`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3407)*
 
+### `R_PPC_UADDR32`
 ```rust
 const R_PPC_UADDR32: u32 = 24u32;
 ```
 
-### `R_PPC_UADDR16`
+*Defined in [`object-0.37.3/src/elf.rs:3408`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3408)*
 
+### `R_PPC_UADDR16`
 ```rust
 const R_PPC_UADDR16: u32 = 25u32;
 ```
 
-### `R_PPC_REL32`
+*Defined in [`object-0.37.3/src/elf.rs:3409`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3409)*
 
+### `R_PPC_REL32`
 ```rust
 const R_PPC_REL32: u32 = 26u32;
 ```
 
-### `R_PPC_PLT32`
+*Defined in [`object-0.37.3/src/elf.rs:3410`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3410)*
 
+### `R_PPC_PLT32`
 ```rust
 const R_PPC_PLT32: u32 = 27u32;
 ```
 
-### `R_PPC_PLTREL32`
+*Defined in [`object-0.37.3/src/elf.rs:3411`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3411)*
 
+### `R_PPC_PLTREL32`
 ```rust
 const R_PPC_PLTREL32: u32 = 28u32;
 ```
 
-### `R_PPC_PLT16_LO`
+*Defined in [`object-0.37.3/src/elf.rs:3412`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3412)*
 
+### `R_PPC_PLT16_LO`
 ```rust
 const R_PPC_PLT16_LO: u32 = 29u32;
 ```
 
-### `R_PPC_PLT16_HI`
+*Defined in [`object-0.37.3/src/elf.rs:3413`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3413)*
 
+### `R_PPC_PLT16_HI`
 ```rust
 const R_PPC_PLT16_HI: u32 = 30u32;
 ```
 
-### `R_PPC_PLT16_HA`
+*Defined in [`object-0.37.3/src/elf.rs:3414`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3414)*
 
+### `R_PPC_PLT16_HA`
 ```rust
 const R_PPC_PLT16_HA: u32 = 31u32;
 ```
 
-### `R_PPC_SDAREL16`
+*Defined in [`object-0.37.3/src/elf.rs:3415`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3415)*
 
+### `R_PPC_SDAREL16`
 ```rust
 const R_PPC_SDAREL16: u32 = 32u32;
 ```
 
-### `R_PPC_SECTOFF`
+*Defined in [`object-0.37.3/src/elf.rs:3416`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3416)*
 
+### `R_PPC_SECTOFF`
 ```rust
 const R_PPC_SECTOFF: u32 = 33u32;
 ```
 
-### `R_PPC_SECTOFF_LO`
+*Defined in [`object-0.37.3/src/elf.rs:3417`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3417)*
 
+### `R_PPC_SECTOFF_LO`
 ```rust
 const R_PPC_SECTOFF_LO: u32 = 34u32;
 ```
 
-### `R_PPC_SECTOFF_HI`
+*Defined in [`object-0.37.3/src/elf.rs:3418`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3418)*
 
+### `R_PPC_SECTOFF_HI`
 ```rust
 const R_PPC_SECTOFF_HI: u32 = 35u32;
 ```
 
-### `R_PPC_SECTOFF_HA`
+*Defined in [`object-0.37.3/src/elf.rs:3419`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3419)*
 
+### `R_PPC_SECTOFF_HA`
 ```rust
 const R_PPC_SECTOFF_HA: u32 = 36u32;
 ```
 
-### `R_PPC_TLS`
+*Defined in [`object-0.37.3/src/elf.rs:3420`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3420)*
 
+### `R_PPC_TLS`
 ```rust
 const R_PPC_TLS: u32 = 67u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3424`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3424)*
+
 none    (sym+add)@tls
 
 ### `R_PPC_DTPMOD32`
-
 ```rust
 const R_PPC_DTPMOD32: u32 = 68u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3426`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3426)*
+
 word32  (sym+add)@dtpmod
 
 ### `R_PPC_TPREL16`
-
 ```rust
 const R_PPC_TPREL16: u32 = 69u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3428`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3428)*
+
 half16* (sym+add)@tprel
 
 ### `R_PPC_TPREL16_LO`
-
 ```rust
 const R_PPC_TPREL16_LO: u32 = 70u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3430`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3430)*
+
 half16  (sym+add)@tprel@l
 
 ### `R_PPC_TPREL16_HI`
-
 ```rust
 const R_PPC_TPREL16_HI: u32 = 71u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3432`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3432)*
+
 half16  (sym+add)@tprel@h
 
 ### `R_PPC_TPREL16_HA`
-
 ```rust
 const R_PPC_TPREL16_HA: u32 = 72u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3434`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3434)*
+
 half16  (sym+add)@tprel@ha
 
 ### `R_PPC_TPREL32`
-
 ```rust
 const R_PPC_TPREL32: u32 = 73u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3436`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3436)*
+
 word32  (sym+add)@tprel
 
 ### `R_PPC_DTPREL16`
-
 ```rust
 const R_PPC_DTPREL16: u32 = 74u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3438`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3438)*
+
 half16*(sym+add)@dtprel
 
 ### `R_PPC_DTPREL16_LO`
-
 ```rust
 const R_PPC_DTPREL16_LO: u32 = 75u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3440`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3440)*
+
 half16  (sym+add)@dtprel@l
 
 ### `R_PPC_DTPREL16_HI`
-
 ```rust
 const R_PPC_DTPREL16_HI: u32 = 76u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3442`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3442)*
+
 half16  (sym+add)@dtprel@h
 
 ### `R_PPC_DTPREL16_HA`
-
 ```rust
 const R_PPC_DTPREL16_HA: u32 = 77u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3444`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3444)*
+
 half16  (sym+add)@dtprel@ha
 
 ### `R_PPC_DTPREL32`
-
 ```rust
 const R_PPC_DTPREL32: u32 = 78u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3446`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3446)*
+
 word32  (sym+add)@dtprel
 
 ### `R_PPC_GOT_TLSGD16`
-
 ```rust
 const R_PPC_GOT_TLSGD16: u32 = 79u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3448`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3448)*
+
 half16* (sym+add)@got@tlsgd
 
 ### `R_PPC_GOT_TLSGD16_LO`
-
 ```rust
 const R_PPC_GOT_TLSGD16_LO: u32 = 80u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3450`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3450)*
+
 half16  (sym+add)@got@tlsgd@l
 
 ### `R_PPC_GOT_TLSGD16_HI`
-
 ```rust
 const R_PPC_GOT_TLSGD16_HI: u32 = 81u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3452`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3452)*
+
 half16  (sym+add)@got@tlsgd@h
 
 ### `R_PPC_GOT_TLSGD16_HA`
-
 ```rust
 const R_PPC_GOT_TLSGD16_HA: u32 = 82u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3454`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3454)*
+
 half16  (sym+add)@got@tlsgd@ha
 
 ### `R_PPC_GOT_TLSLD16`
-
 ```rust
 const R_PPC_GOT_TLSLD16: u32 = 83u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3456`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3456)*
+
 half16* (sym+add)@got@tlsld
 
 ### `R_PPC_GOT_TLSLD16_LO`
-
 ```rust
 const R_PPC_GOT_TLSLD16_LO: u32 = 84u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3458`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3458)*
+
 half16  (sym+add)@got@tlsld@l
 
 ### `R_PPC_GOT_TLSLD16_HI`
-
 ```rust
 const R_PPC_GOT_TLSLD16_HI: u32 = 85u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3460`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3460)*
+
 half16  (sym+add)@got@tlsld@h
 
 ### `R_PPC_GOT_TLSLD16_HA`
-
 ```rust
 const R_PPC_GOT_TLSLD16_HA: u32 = 86u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3462`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3462)*
+
 half16  (sym+add)@got@tlsld@ha
 
 ### `R_PPC_GOT_TPREL16`
-
 ```rust
 const R_PPC_GOT_TPREL16: u32 = 87u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3464`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3464)*
+
 half16* (sym+add)@got@tprel
 
 ### `R_PPC_GOT_TPREL16_LO`
-
 ```rust
 const R_PPC_GOT_TPREL16_LO: u32 = 88u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3466`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3466)*
+
 half16  (sym+add)@got@tprel@l
 
 ### `R_PPC_GOT_TPREL16_HI`
-
 ```rust
 const R_PPC_GOT_TPREL16_HI: u32 = 89u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3468`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3468)*
+
 half16  (sym+add)@got@tprel@h
 
 ### `R_PPC_GOT_TPREL16_HA`
-
 ```rust
 const R_PPC_GOT_TPREL16_HA: u32 = 90u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3470`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3470)*
+
 half16  (sym+add)@got@tprel@ha
 
 ### `R_PPC_GOT_DTPREL16`
-
 ```rust
 const R_PPC_GOT_DTPREL16: u32 = 91u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3472`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3472)*
+
 half16* (sym+add)@got@dtprel
 
 ### `R_PPC_GOT_DTPREL16_LO`
-
 ```rust
 const R_PPC_GOT_DTPREL16_LO: u32 = 92u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3474`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3474)*
+
 half16* (sym+add)@got@dtprel@l
 
 ### `R_PPC_GOT_DTPREL16_HI`
-
 ```rust
 const R_PPC_GOT_DTPREL16_HI: u32 = 93u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3476`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3476)*
+
 half16* (sym+add)@got@dtprel@h
 
 ### `R_PPC_GOT_DTPREL16_HA`
-
 ```rust
 const R_PPC_GOT_DTPREL16_HA: u32 = 94u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3478`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3478)*
+
 half16* (sym+add)@got@dtprel@ha
 
 ### `R_PPC_TLSGD`
-
 ```rust
 const R_PPC_TLSGD: u32 = 95u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3480`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3480)*
+
 none    (sym+add)@tlsgd
 
 ### `R_PPC_TLSLD`
-
 ```rust
 const R_PPC_TLSLD: u32 = 96u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3482`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3482)*
+
 none    (sym+add)@tlsld
 
 ### `R_PPC_EMB_NADDR32`
-
 ```rust
 const R_PPC_EMB_NADDR32: u32 = 101u32;
 ```
 
-### `R_PPC_EMB_NADDR16`
+*Defined in [`object-0.37.3/src/elf.rs:3485`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3485)*
 
+### `R_PPC_EMB_NADDR16`
 ```rust
 const R_PPC_EMB_NADDR16: u32 = 102u32;
 ```
 
-### `R_PPC_EMB_NADDR16_LO`
+*Defined in [`object-0.37.3/src/elf.rs:3486`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3486)*
 
+### `R_PPC_EMB_NADDR16_LO`
 ```rust
 const R_PPC_EMB_NADDR16_LO: u32 = 103u32;
 ```
 
-### `R_PPC_EMB_NADDR16_HI`
+*Defined in [`object-0.37.3/src/elf.rs:3487`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3487)*
 
+### `R_PPC_EMB_NADDR16_HI`
 ```rust
 const R_PPC_EMB_NADDR16_HI: u32 = 104u32;
 ```
 
-### `R_PPC_EMB_NADDR16_HA`
+*Defined in [`object-0.37.3/src/elf.rs:3488`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3488)*
 
+### `R_PPC_EMB_NADDR16_HA`
 ```rust
 const R_PPC_EMB_NADDR16_HA: u32 = 105u32;
 ```
 
-### `R_PPC_EMB_SDAI16`
+*Defined in [`object-0.37.3/src/elf.rs:3489`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3489)*
 
+### `R_PPC_EMB_SDAI16`
 ```rust
 const R_PPC_EMB_SDAI16: u32 = 106u32;
 ```
 
-### `R_PPC_EMB_SDA2I16`
+*Defined in [`object-0.37.3/src/elf.rs:3490`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3490)*
 
+### `R_PPC_EMB_SDA2I16`
 ```rust
 const R_PPC_EMB_SDA2I16: u32 = 107u32;
 ```
 
-### `R_PPC_EMB_SDA2REL`
+*Defined in [`object-0.37.3/src/elf.rs:3491`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3491)*
 
+### `R_PPC_EMB_SDA2REL`
 ```rust
 const R_PPC_EMB_SDA2REL: u32 = 108u32;
 ```
 
-### `R_PPC_EMB_SDA21`
+*Defined in [`object-0.37.3/src/elf.rs:3492`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3492)*
 
+### `R_PPC_EMB_SDA21`
 ```rust
 const R_PPC_EMB_SDA21: u32 = 109u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3494`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3494)*
+
 16 bit offset in SDA
 
 ### `R_PPC_EMB_MRKREF`
-
 ```rust
 const R_PPC_EMB_MRKREF: u32 = 110u32;
 ```
 
-### `R_PPC_EMB_RELSEC16`
+*Defined in [`object-0.37.3/src/elf.rs:3495`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3495)*
 
+### `R_PPC_EMB_RELSEC16`
 ```rust
 const R_PPC_EMB_RELSEC16: u32 = 111u32;
 ```
 
-### `R_PPC_EMB_RELST_LO`
+*Defined in [`object-0.37.3/src/elf.rs:3496`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3496)*
 
+### `R_PPC_EMB_RELST_LO`
 ```rust
 const R_PPC_EMB_RELST_LO: u32 = 112u32;
 ```
 
-### `R_PPC_EMB_RELST_HI`
+*Defined in [`object-0.37.3/src/elf.rs:3497`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3497)*
 
+### `R_PPC_EMB_RELST_HI`
 ```rust
 const R_PPC_EMB_RELST_HI: u32 = 113u32;
 ```
 
-### `R_PPC_EMB_RELST_HA`
+*Defined in [`object-0.37.3/src/elf.rs:3498`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3498)*
 
+### `R_PPC_EMB_RELST_HA`
 ```rust
 const R_PPC_EMB_RELST_HA: u32 = 114u32;
 ```
 
-### `R_PPC_EMB_BIT_FLD`
+*Defined in [`object-0.37.3/src/elf.rs:3499`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3499)*
 
+### `R_PPC_EMB_BIT_FLD`
 ```rust
 const R_PPC_EMB_BIT_FLD: u32 = 115u32;
 ```
 
-### `R_PPC_EMB_RELSDA`
+*Defined in [`object-0.37.3/src/elf.rs:3500`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3500)*
 
+### `R_PPC_EMB_RELSDA`
 ```rust
 const R_PPC_EMB_RELSDA: u32 = 116u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3502`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3502)*
+
 16 bit relative offset in SDA
 
 ### `R_PPC_DIAB_SDA21_LO`
-
 ```rust
 const R_PPC_DIAB_SDA21_LO: u32 = 180u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3506`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3506)*
+
 like EMB_SDA21, but lower 16 bit
 
 ### `R_PPC_DIAB_SDA21_HI`
-
 ```rust
 const R_PPC_DIAB_SDA21_HI: u32 = 181u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3508`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3508)*
+
 like EMB_SDA21, but high 16 bit
 
 ### `R_PPC_DIAB_SDA21_HA`
-
 ```rust
 const R_PPC_DIAB_SDA21_HA: u32 = 182u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3510`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3510)*
+
 like EMB_SDA21, adjusted high 16
 
 ### `R_PPC_DIAB_RELSDA_LO`
-
 ```rust
 const R_PPC_DIAB_RELSDA_LO: u32 = 183u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3512`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3512)*
+
 like EMB_RELSDA, but lower 16 bit
 
 ### `R_PPC_DIAB_RELSDA_HI`
-
 ```rust
 const R_PPC_DIAB_RELSDA_HI: u32 = 184u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3514`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3514)*
+
 like EMB_RELSDA, but high 16 bit
 
 ### `R_PPC_DIAB_RELSDA_HA`
-
 ```rust
 const R_PPC_DIAB_RELSDA_HA: u32 = 185u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3516`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3516)*
+
 like EMB_RELSDA, adjusted high 16
 
 ### `R_PPC_IRELATIVE`
-
 ```rust
 const R_PPC_IRELATIVE: u32 = 248u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3519`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3519)*
+
 GNU extension to support local ifunc.
 
 ### `R_PPC_REL16`
-
 ```rust
 const R_PPC_REL16: u32 = 249u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3523`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3523)*
+
 half16   (sym+add-.)
 
 ### `R_PPC_REL16_LO`
-
 ```rust
 const R_PPC_REL16_LO: u32 = 250u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3525`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3525)*
+
 half16   (sym+add-.)@l
 
 ### `R_PPC_REL16_HI`
-
 ```rust
 const R_PPC_REL16_HI: u32 = 251u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3527`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3527)*
+
 half16   (sym+add-.)@h
 
 ### `R_PPC_REL16_HA`
-
 ```rust
 const R_PPC_REL16_HA: u32 = 252u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3529`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3529)*
+
 half16   (sym+add-.)@ha
 
 ### `R_PPC_TOC16`
-
 ```rust
 const R_PPC_TOC16: u32 = 255u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:3533`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3533)*
 
 This is a phony reloc to handle any old fashioned TOC16 references that may
 still be in object files.
 
 ### `DT_PPC_GOT`
-
 ```rust
 const DT_PPC_GOT: u32 = 1_879_048_192u32;
 ```
 
-### `DT_PPC_OPT`
+*Defined in [`object-0.37.3/src/elf.rs:3536`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3536)*
 
+### `DT_PPC_OPT`
 ```rust
 const DT_PPC_OPT: u32 = 1_879_048_193u32;
 ```
 
-### `PPC_OPT_TLS`
+*Defined in [`object-0.37.3/src/elf.rs:3537`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3537)*
 
+### `PPC_OPT_TLS`
 ```rust
 const PPC_OPT_TLS: u32 = 1u32;
 ```
 
-### `R_PPC64_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:3540`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3540)*
 
+### `R_PPC64_NONE`
 ```rust
 const R_PPC64_NONE: u32 = 0u32;
 ```
 
-### `R_PPC64_ADDR32`
+*Defined in [`object-0.37.3/src/elf.rs:3543`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3543)*
 
+### `R_PPC64_ADDR32`
 ```rust
 const R_PPC64_ADDR32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3545`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3545)*
+
 32bit absolute address
 
 ### `R_PPC64_ADDR24`
-
 ```rust
 const R_PPC64_ADDR24: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3547`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3547)*
+
 26bit address, word aligned
 
 ### `R_PPC64_ADDR16`
-
 ```rust
 const R_PPC64_ADDR16: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3549`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3549)*
+
 16bit absolute address
 
 ### `R_PPC64_ADDR16_LO`
-
 ```rust
 const R_PPC64_ADDR16_LO: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3551`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3551)*
+
 lower 16bits of address
 
 ### `R_PPC64_ADDR16_HI`
-
 ```rust
 const R_PPC64_ADDR16_HI: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3553`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3553)*
+
 high 16bits of address.
 
 ### `R_PPC64_ADDR16_HA`
-
 ```rust
 const R_PPC64_ADDR16_HA: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3555`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3555)*
+
 adjusted high 16bits.
 
 ### `R_PPC64_ADDR14`
-
 ```rust
 const R_PPC64_ADDR14: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3557`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3557)*
+
 16bit address, word aligned
 
 ### `R_PPC64_ADDR14_BRTAKEN`
-
 ```rust
 const R_PPC64_ADDR14_BRTAKEN: u32 = 8u32;
 ```
 
-### `R_PPC64_ADDR14_BRNTAKEN`
+*Defined in [`object-0.37.3/src/elf.rs:3558`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3558)*
 
+### `R_PPC64_ADDR14_BRNTAKEN`
 ```rust
 const R_PPC64_ADDR14_BRNTAKEN: u32 = 9u32;
 ```
 
-### `R_PPC64_REL24`
+*Defined in [`object-0.37.3/src/elf.rs:3559`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3559)*
 
+### `R_PPC64_REL24`
 ```rust
 const R_PPC64_REL24: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3561`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3561)*
+
 PC-rel. 26 bit, word aligned
 
 ### `R_PPC64_REL14`
-
 ```rust
 const R_PPC64_REL14: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3563`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3563)*
+
 PC relative 16 bit
 
 ### `R_PPC64_REL14_BRTAKEN`
-
 ```rust
 const R_PPC64_REL14_BRTAKEN: u32 = 12u32;
 ```
 
-### `R_PPC64_REL14_BRNTAKEN`
+*Defined in [`object-0.37.3/src/elf.rs:3564`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3564)*
 
+### `R_PPC64_REL14_BRNTAKEN`
 ```rust
 const R_PPC64_REL14_BRNTAKEN: u32 = 13u32;
 ```
 
-### `R_PPC64_GOT16`
+*Defined in [`object-0.37.3/src/elf.rs:3565`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3565)*
 
+### `R_PPC64_GOT16`
 ```rust
 const R_PPC64_GOT16: u32 = 14u32;
 ```
 
-### `R_PPC64_GOT16_LO`
+*Defined in [`object-0.37.3/src/elf.rs:3566`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3566)*
 
+### `R_PPC64_GOT16_LO`
 ```rust
 const R_PPC64_GOT16_LO: u32 = 15u32;
 ```
 
-### `R_PPC64_GOT16_HI`
+*Defined in [`object-0.37.3/src/elf.rs:3567`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3567)*
 
+### `R_PPC64_GOT16_HI`
 ```rust
 const R_PPC64_GOT16_HI: u32 = 16u32;
 ```
 
-### `R_PPC64_GOT16_HA`
+*Defined in [`object-0.37.3/src/elf.rs:3568`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3568)*
 
+### `R_PPC64_GOT16_HA`
 ```rust
 const R_PPC64_GOT16_HA: u32 = 17u32;
 ```
 
-### `R_PPC64_COPY`
+*Defined in [`object-0.37.3/src/elf.rs:3569`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3569)*
 
+### `R_PPC64_COPY`
 ```rust
 const R_PPC64_COPY: u32 = 19u32;
 ```
 
-### `R_PPC64_GLOB_DAT`
+*Defined in [`object-0.37.3/src/elf.rs:3571`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3571)*
 
+### `R_PPC64_GLOB_DAT`
 ```rust
 const R_PPC64_GLOB_DAT: u32 = 20u32;
 ```
 
-### `R_PPC64_JMP_SLOT`
+*Defined in [`object-0.37.3/src/elf.rs:3572`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3572)*
 
+### `R_PPC64_JMP_SLOT`
 ```rust
 const R_PPC64_JMP_SLOT: u32 = 21u32;
 ```
 
-### `R_PPC64_RELATIVE`
+*Defined in [`object-0.37.3/src/elf.rs:3573`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3573)*
 
+### `R_PPC64_RELATIVE`
 ```rust
 const R_PPC64_RELATIVE: u32 = 22u32;
 ```
 
-### `R_PPC64_UADDR32`
+*Defined in [`object-0.37.3/src/elf.rs:3574`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3574)*
 
+### `R_PPC64_UADDR32`
 ```rust
 const R_PPC64_UADDR32: u32 = 24u32;
 ```
 
-### `R_PPC64_UADDR16`
+*Defined in [`object-0.37.3/src/elf.rs:3576`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3576)*
 
+### `R_PPC64_UADDR16`
 ```rust
 const R_PPC64_UADDR16: u32 = 25u32;
 ```
 
-### `R_PPC64_REL32`
+*Defined in [`object-0.37.3/src/elf.rs:3577`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3577)*
 
+### `R_PPC64_REL32`
 ```rust
 const R_PPC64_REL32: u32 = 26u32;
 ```
 
-### `R_PPC64_PLT32`
+*Defined in [`object-0.37.3/src/elf.rs:3578`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3578)*
 
+### `R_PPC64_PLT32`
 ```rust
 const R_PPC64_PLT32: u32 = 27u32;
 ```
 
-### `R_PPC64_PLTREL32`
+*Defined in [`object-0.37.3/src/elf.rs:3579`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3579)*
 
+### `R_PPC64_PLTREL32`
 ```rust
 const R_PPC64_PLTREL32: u32 = 28u32;
 ```
 
-### `R_PPC64_PLT16_LO`
+*Defined in [`object-0.37.3/src/elf.rs:3580`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3580)*
 
+### `R_PPC64_PLT16_LO`
 ```rust
 const R_PPC64_PLT16_LO: u32 = 29u32;
 ```
 
-### `R_PPC64_PLT16_HI`
+*Defined in [`object-0.37.3/src/elf.rs:3581`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3581)*
 
+### `R_PPC64_PLT16_HI`
 ```rust
 const R_PPC64_PLT16_HI: u32 = 30u32;
 ```
 
-### `R_PPC64_PLT16_HA`
+*Defined in [`object-0.37.3/src/elf.rs:3582`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3582)*
 
+### `R_PPC64_PLT16_HA`
 ```rust
 const R_PPC64_PLT16_HA: u32 = 31u32;
 ```
 
-### `R_PPC64_SECTOFF`
+*Defined in [`object-0.37.3/src/elf.rs:3583`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3583)*
 
+### `R_PPC64_SECTOFF`
 ```rust
 const R_PPC64_SECTOFF: u32 = 33u32;
 ```
 
-### `R_PPC64_SECTOFF_LO`
+*Defined in [`object-0.37.3/src/elf.rs:3585`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3585)*
 
+### `R_PPC64_SECTOFF_LO`
 ```rust
 const R_PPC64_SECTOFF_LO: u32 = 34u32;
 ```
 
-### `R_PPC64_SECTOFF_HI`
+*Defined in [`object-0.37.3/src/elf.rs:3586`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3586)*
 
+### `R_PPC64_SECTOFF_HI`
 ```rust
 const R_PPC64_SECTOFF_HI: u32 = 35u32;
 ```
 
-### `R_PPC64_SECTOFF_HA`
+*Defined in [`object-0.37.3/src/elf.rs:3587`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3587)*
 
+### `R_PPC64_SECTOFF_HA`
 ```rust
 const R_PPC64_SECTOFF_HA: u32 = 36u32;
 ```
 
-### `R_PPC64_ADDR30`
+*Defined in [`object-0.37.3/src/elf.rs:3588`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3588)*
 
+### `R_PPC64_ADDR30`
 ```rust
 const R_PPC64_ADDR30: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3590`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3590)*
+
 word30 (S + A - P) >> 2
 
 ### `R_PPC64_ADDR64`
-
 ```rust
 const R_PPC64_ADDR64: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3592`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3592)*
+
 doubleword64 S + A
 
 ### `R_PPC64_ADDR16_HIGHER`
-
 ```rust
 const R_PPC64_ADDR16_HIGHER: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3594`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3594)*
+
 half16 #higher(S + A)
 
 ### `R_PPC64_ADDR16_HIGHERA`
-
 ```rust
 const R_PPC64_ADDR16_HIGHERA: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3596`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3596)*
+
 half16 #highera(S + A)
 
 ### `R_PPC64_ADDR16_HIGHEST`
-
 ```rust
 const R_PPC64_ADDR16_HIGHEST: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3598`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3598)*
+
 half16 #highest(S + A)
 
 ### `R_PPC64_ADDR16_HIGHESTA`
-
 ```rust
 const R_PPC64_ADDR16_HIGHESTA: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3600`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3600)*
+
 half16 #highesta(S + A)
 
 ### `R_PPC64_UADDR64`
-
 ```rust
 const R_PPC64_UADDR64: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3602`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3602)*
+
 doubleword64 S + A
 
 ### `R_PPC64_REL64`
-
 ```rust
 const R_PPC64_REL64: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3604`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3604)*
+
 doubleword64 S + A - P
 
 ### `R_PPC64_PLT64`
-
 ```rust
 const R_PPC64_PLT64: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3606`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3606)*
+
 doubleword64 L + A
 
 ### `R_PPC64_PLTREL64`
-
 ```rust
 const R_PPC64_PLTREL64: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3608`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3608)*
+
 doubleword64 L + A - P
 
 ### `R_PPC64_TOC16`
-
 ```rust
 const R_PPC64_TOC16: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3610`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3610)*
+
 half16* S + A - .TOC
 
 ### `R_PPC64_TOC16_LO`
-
 ```rust
 const R_PPC64_TOC16_LO: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3612`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3612)*
+
 half16 #lo(S + A - .TOC.)
 
 ### `R_PPC64_TOC16_HI`
-
 ```rust
 const R_PPC64_TOC16_HI: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3614`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3614)*
+
 half16 #hi(S + A - .TOC.)
 
 ### `R_PPC64_TOC16_HA`
-
 ```rust
 const R_PPC64_TOC16_HA: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3616`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3616)*
+
 half16 #ha(S + A - .TOC.)
 
 ### `R_PPC64_TOC`
-
 ```rust
 const R_PPC64_TOC: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3618`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3618)*
+
 doubleword64 .TOC
 
 ### `R_PPC64_PLTGOT16`
-
 ```rust
 const R_PPC64_PLTGOT16: u32 = 52u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3620`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3620)*
+
 half16* M + A
 
 ### `R_PPC64_PLTGOT16_LO`
-
 ```rust
 const R_PPC64_PLTGOT16_LO: u32 = 53u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3622`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3622)*
+
 half16 #lo(M + A)
 
 ### `R_PPC64_PLTGOT16_HI`
-
 ```rust
 const R_PPC64_PLTGOT16_HI: u32 = 54u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3624`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3624)*
+
 half16 #hi(M + A)
 
 ### `R_PPC64_PLTGOT16_HA`
-
 ```rust
 const R_PPC64_PLTGOT16_HA: u32 = 55u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3626`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3626)*
+
 half16 #ha(M + A)
 
 ### `R_PPC64_ADDR16_DS`
-
 ```rust
 const R_PPC64_ADDR16_DS: u32 = 56u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3629`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3629)*
+
 half16ds* (S + A) >> 2
 
 ### `R_PPC64_ADDR16_LO_DS`
-
 ```rust
 const R_PPC64_ADDR16_LO_DS: u32 = 57u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3631`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3631)*
+
 half16ds  #lo(S + A) >> 2
 
 ### `R_PPC64_GOT16_DS`
-
 ```rust
 const R_PPC64_GOT16_DS: u32 = 58u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3633`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3633)*
+
 half16ds* (G + A) >> 2
 
 ### `R_PPC64_GOT16_LO_DS`
-
 ```rust
 const R_PPC64_GOT16_LO_DS: u32 = 59u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3635`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3635)*
+
 half16ds  #lo(G + A) >> 2
 
 ### `R_PPC64_PLT16_LO_DS`
-
 ```rust
 const R_PPC64_PLT16_LO_DS: u32 = 60u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3637`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3637)*
+
 half16ds  #lo(L + A) >> 2
 
 ### `R_PPC64_SECTOFF_DS`
-
 ```rust
 const R_PPC64_SECTOFF_DS: u32 = 61u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3639`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3639)*
+
 half16ds* (R + A) >> 2
 
 ### `R_PPC64_SECTOFF_LO_DS`
-
 ```rust
 const R_PPC64_SECTOFF_LO_DS: u32 = 62u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3641`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3641)*
+
 half16ds  #lo(R + A) >> 2
 
 ### `R_PPC64_TOC16_DS`
-
 ```rust
 const R_PPC64_TOC16_DS: u32 = 63u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3643`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3643)*
+
 half16ds* (S + A - .TOC.) >> 2
 
 ### `R_PPC64_TOC16_LO_DS`
-
 ```rust
 const R_PPC64_TOC16_LO_DS: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3645`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3645)*
+
 half16ds  #lo(S + A - .TOC.) >> 2
 
 ### `R_PPC64_PLTGOT16_DS`
-
 ```rust
 const R_PPC64_PLTGOT16_DS: u32 = 65u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3647`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3647)*
+
 half16ds* (M + A) >> 2
 
 ### `R_PPC64_PLTGOT16_LO_DS`
-
 ```rust
 const R_PPC64_PLTGOT16_LO_DS: u32 = 66u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3649`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3649)*
+
 half16ds  #lo(M + A) >> 2
 
 ### `R_PPC64_TLS`
-
 ```rust
 const R_PPC64_TLS: u32 = 67u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3653`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3653)*
+
 none    (sym+add)@tls
 
 ### `R_PPC64_DTPMOD64`
-
 ```rust
 const R_PPC64_DTPMOD64: u32 = 68u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3655`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3655)*
+
 doubleword64 (sym+add)@dtpmod
 
 ### `R_PPC64_TPREL16`
-
 ```rust
 const R_PPC64_TPREL16: u32 = 69u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3657`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3657)*
+
 half16* (sym+add)@tprel
 
 ### `R_PPC64_TPREL16_LO`
-
 ```rust
 const R_PPC64_TPREL16_LO: u32 = 70u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3659`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3659)*
+
 half16  (sym+add)@tprel@l
 
 ### `R_PPC64_TPREL16_HI`
-
 ```rust
 const R_PPC64_TPREL16_HI: u32 = 71u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3661`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3661)*
+
 half16  (sym+add)@tprel@h
 
 ### `R_PPC64_TPREL16_HA`
-
 ```rust
 const R_PPC64_TPREL16_HA: u32 = 72u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3663`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3663)*
+
 half16  (sym+add)@tprel@ha
 
 ### `R_PPC64_TPREL64`
-
 ```rust
 const R_PPC64_TPREL64: u32 = 73u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3665`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3665)*
+
 doubleword64 (sym+add)@tprel
 
 ### `R_PPC64_DTPREL16`
-
 ```rust
 const R_PPC64_DTPREL16: u32 = 74u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3667`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3667)*
+
 half16* (sym+add)@dtprel
 
 ### `R_PPC64_DTPREL16_LO`
-
 ```rust
 const R_PPC64_DTPREL16_LO: u32 = 75u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3669`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3669)*
+
 half16  (sym+add)@dtprel@l
 
 ### `R_PPC64_DTPREL16_HI`
-
 ```rust
 const R_PPC64_DTPREL16_HI: u32 = 76u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3671`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3671)*
+
 half16  (sym+add)@dtprel@h
 
 ### `R_PPC64_DTPREL16_HA`
-
 ```rust
 const R_PPC64_DTPREL16_HA: u32 = 77u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3673`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3673)*
+
 half16  (sym+add)@dtprel@ha
 
 ### `R_PPC64_DTPREL64`
-
 ```rust
 const R_PPC64_DTPREL64: u32 = 78u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3675`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3675)*
+
 doubleword64 (sym+add)@dtprel
 
 ### `R_PPC64_GOT_TLSGD16`
-
 ```rust
 const R_PPC64_GOT_TLSGD16: u32 = 79u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3677`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3677)*
+
 half16* (sym+add)@got@tlsgd
 
 ### `R_PPC64_GOT_TLSGD16_LO`
-
 ```rust
 const R_PPC64_GOT_TLSGD16_LO: u32 = 80u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3679`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3679)*
+
 half16  (sym+add)@got@tlsgd@l
 
 ### `R_PPC64_GOT_TLSGD16_HI`
-
 ```rust
 const R_PPC64_GOT_TLSGD16_HI: u32 = 81u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3681`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3681)*
+
 half16  (sym+add)@got@tlsgd@h
 
 ### `R_PPC64_GOT_TLSGD16_HA`
-
 ```rust
 const R_PPC64_GOT_TLSGD16_HA: u32 = 82u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3683`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3683)*
+
 half16  (sym+add)@got@tlsgd@ha
 
 ### `R_PPC64_GOT_TLSLD16`
-
 ```rust
 const R_PPC64_GOT_TLSLD16: u32 = 83u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3685`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3685)*
+
 half16* (sym+add)@got@tlsld
 
 ### `R_PPC64_GOT_TLSLD16_LO`
-
 ```rust
 const R_PPC64_GOT_TLSLD16_LO: u32 = 84u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3687`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3687)*
+
 half16  (sym+add)@got@tlsld@l
 
 ### `R_PPC64_GOT_TLSLD16_HI`
-
 ```rust
 const R_PPC64_GOT_TLSLD16_HI: u32 = 85u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3689`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3689)*
+
 half16  (sym+add)@got@tlsld@h
 
 ### `R_PPC64_GOT_TLSLD16_HA`
-
 ```rust
 const R_PPC64_GOT_TLSLD16_HA: u32 = 86u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3691`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3691)*
+
 half16  (sym+add)@got@tlsld@ha
 
 ### `R_PPC64_GOT_TPREL16_DS`
-
 ```rust
 const R_PPC64_GOT_TPREL16_DS: u32 = 87u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3693`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3693)*
+
 half16ds* (sym+add)@got@tprel
 
 ### `R_PPC64_GOT_TPREL16_LO_DS`
-
 ```rust
 const R_PPC64_GOT_TPREL16_LO_DS: u32 = 88u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3695`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3695)*
+
 half16ds (sym+add)@got@tprel@l
 
 ### `R_PPC64_GOT_TPREL16_HI`
-
 ```rust
 const R_PPC64_GOT_TPREL16_HI: u32 = 89u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3697`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3697)*
+
 half16  (sym+add)@got@tprel@h
 
 ### `R_PPC64_GOT_TPREL16_HA`
-
 ```rust
 const R_PPC64_GOT_TPREL16_HA: u32 = 90u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3699`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3699)*
+
 half16  (sym+add)@got@tprel@ha
 
 ### `R_PPC64_GOT_DTPREL16_DS`
-
 ```rust
 const R_PPC64_GOT_DTPREL16_DS: u32 = 91u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3701`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3701)*
+
 half16ds* (sym+add)@got@dtprel
 
 ### `R_PPC64_GOT_DTPREL16_LO_DS`
-
 ```rust
 const R_PPC64_GOT_DTPREL16_LO_DS: u32 = 92u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3703`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3703)*
+
 half16ds (sym+add)@got@dtprel@l
 
 ### `R_PPC64_GOT_DTPREL16_HI`
-
 ```rust
 const R_PPC64_GOT_DTPREL16_HI: u32 = 93u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3705`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3705)*
+
 half16  (sym+add)@got@dtprel@h
 
 ### `R_PPC64_GOT_DTPREL16_HA`
-
 ```rust
 const R_PPC64_GOT_DTPREL16_HA: u32 = 94u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3707`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3707)*
+
 half16  (sym+add)@got@dtprel@ha
 
 ### `R_PPC64_TPREL16_DS`
-
 ```rust
 const R_PPC64_TPREL16_DS: u32 = 95u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3709`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3709)*
+
 half16ds* (sym+add)@tprel
 
 ### `R_PPC64_TPREL16_LO_DS`
-
 ```rust
 const R_PPC64_TPREL16_LO_DS: u32 = 96u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3711`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3711)*
+
 half16ds (sym+add)@tprel@l
 
 ### `R_PPC64_TPREL16_HIGHER`
-
 ```rust
 const R_PPC64_TPREL16_HIGHER: u32 = 97u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3713`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3713)*
+
 half16  (sym+add)@tprel@higher
 
 ### `R_PPC64_TPREL16_HIGHERA`
-
 ```rust
 const R_PPC64_TPREL16_HIGHERA: u32 = 98u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3715`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3715)*
+
 half16  (sym+add)@tprel@highera
 
 ### `R_PPC64_TPREL16_HIGHEST`
-
 ```rust
 const R_PPC64_TPREL16_HIGHEST: u32 = 99u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3717`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3717)*
+
 half16  (sym+add)@tprel@highest
 
 ### `R_PPC64_TPREL16_HIGHESTA`
-
 ```rust
 const R_PPC64_TPREL16_HIGHESTA: u32 = 100u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3719`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3719)*
+
 half16  (sym+add)@tprel@highesta
 
 ### `R_PPC64_DTPREL16_DS`
-
 ```rust
 const R_PPC64_DTPREL16_DS: u32 = 101u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3721`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3721)*
+
 half16ds* (sym+add)@dtprel
 
 ### `R_PPC64_DTPREL16_LO_DS`
-
 ```rust
 const R_PPC64_DTPREL16_LO_DS: u32 = 102u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3723`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3723)*
+
 half16ds (sym+add)@dtprel@l
 
 ### `R_PPC64_DTPREL16_HIGHER`
-
 ```rust
 const R_PPC64_DTPREL16_HIGHER: u32 = 103u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3725`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3725)*
+
 half16  (sym+add)@dtprel@higher
 
 ### `R_PPC64_DTPREL16_HIGHERA`
-
 ```rust
 const R_PPC64_DTPREL16_HIGHERA: u32 = 104u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3727`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3727)*
+
 half16  (sym+add)@dtprel@highera
 
 ### `R_PPC64_DTPREL16_HIGHEST`
-
 ```rust
 const R_PPC64_DTPREL16_HIGHEST: u32 = 105u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3729`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3729)*
+
 half16  (sym+add)@dtprel@highest
 
 ### `R_PPC64_DTPREL16_HIGHESTA`
-
 ```rust
 const R_PPC64_DTPREL16_HIGHESTA: u32 = 106u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3731`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3731)*
+
 half16  (sym+add)@dtprel@highesta
 
 ### `R_PPC64_TLSGD`
-
 ```rust
 const R_PPC64_TLSGD: u32 = 107u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3733`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3733)*
+
 none    (sym+add)@tlsgd
 
 ### `R_PPC64_TLSLD`
-
 ```rust
 const R_PPC64_TLSLD: u32 = 108u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3735`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3735)*
+
 none    (sym+add)@tlsld
 
 ### `R_PPC64_TOCSAVE`
-
 ```rust
 const R_PPC64_TOCSAVE: u32 = 109u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3737`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3737)*
+
 none
 
 ### `R_PPC64_ADDR16_HIGH`
-
 ```rust
 const R_PPC64_ADDR16_HIGH: u32 = 110u32;
 ```
 
-### `R_PPC64_ADDR16_HIGHA`
+*Defined in [`object-0.37.3/src/elf.rs:3740`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3740)*
 
+### `R_PPC64_ADDR16_HIGHA`
 ```rust
 const R_PPC64_ADDR16_HIGHA: u32 = 111u32;
 ```
 
-### `R_PPC64_TPREL16_HIGH`
+*Defined in [`object-0.37.3/src/elf.rs:3741`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3741)*
 
+### `R_PPC64_TPREL16_HIGH`
 ```rust
 const R_PPC64_TPREL16_HIGH: u32 = 112u32;
 ```
 
-### `R_PPC64_TPREL16_HIGHA`
+*Defined in [`object-0.37.3/src/elf.rs:3742`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3742)*
 
+### `R_PPC64_TPREL16_HIGHA`
 ```rust
 const R_PPC64_TPREL16_HIGHA: u32 = 113u32;
 ```
 
-### `R_PPC64_DTPREL16_HIGH`
+*Defined in [`object-0.37.3/src/elf.rs:3743`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3743)*
 
+### `R_PPC64_DTPREL16_HIGH`
 ```rust
 const R_PPC64_DTPREL16_HIGH: u32 = 114u32;
 ```
 
-### `R_PPC64_DTPREL16_HIGHA`
+*Defined in [`object-0.37.3/src/elf.rs:3744`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3744)*
 
+### `R_PPC64_DTPREL16_HIGHA`
 ```rust
 const R_PPC64_DTPREL16_HIGHA: u32 = 115u32;
 ```
 
-### `R_PPC64_JMP_IREL`
+*Defined in [`object-0.37.3/src/elf.rs:3745`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3745)*
 
+### `R_PPC64_JMP_IREL`
 ```rust
 const R_PPC64_JMP_IREL: u32 = 247u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3748`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3748)*
+
 GNU extension to support local ifunc.
 
 ### `R_PPC64_IRELATIVE`
-
 ```rust
 const R_PPC64_IRELATIVE: u32 = 248u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3750`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3750)*
+
 GNU extension to support local ifunc.
 
 ### `R_PPC64_REL16`
-
 ```rust
 const R_PPC64_REL16: u32 = 249u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3752`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3752)*
+
 half16   (sym+add-.)
 
 ### `R_PPC64_REL16_LO`
-
 ```rust
 const R_PPC64_REL16_LO: u32 = 250u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3754`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3754)*
+
 half16   (sym+add-.)@l
 
 ### `R_PPC64_REL16_HI`
-
 ```rust
 const R_PPC64_REL16_HI: u32 = 251u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3756`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3756)*
+
 half16   (sym+add-.)@h
 
 ### `R_PPC64_REL16_HA`
-
 ```rust
 const R_PPC64_REL16_HA: u32 = 252u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3758`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3758)*
+
 half16   (sym+add-.)@ha
 
 ### `EF_PPC64_ABI`
-
 ```rust
 const EF_PPC64_ABI: u32 = 3u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:3766`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3766)*
 
 PowerPC64 bits specifying ABI.
 
@@ -19068,9515 +20592,10788 @@ PowerPC64 bits specifying ABI.
 0 for unspecified or not using any features affected by the differences.
 
 ### `DT_PPC64_GLINK`
-
 ```rust
 const DT_PPC64_GLINK: u32 = 1_879_048_192u32;
 ```
 
-### `DT_PPC64_OPD`
+*Defined in [`object-0.37.3/src/elf.rs:3769`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3769)*
 
+### `DT_PPC64_OPD`
 ```rust
 const DT_PPC64_OPD: u32 = 1_879_048_193u32;
 ```
 
-### `DT_PPC64_OPDSZ`
+*Defined in [`object-0.37.3/src/elf.rs:3770`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3770)*
 
+### `DT_PPC64_OPDSZ`
 ```rust
 const DT_PPC64_OPDSZ: u32 = 1_879_048_194u32;
 ```
 
-### `DT_PPC64_OPT`
+*Defined in [`object-0.37.3/src/elf.rs:3771`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3771)*
 
+### `DT_PPC64_OPT`
 ```rust
 const DT_PPC64_OPT: u32 = 1_879_048_195u32;
 ```
 
-### `PPC64_OPT_TLS`
+*Defined in [`object-0.37.3/src/elf.rs:3772`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3772)*
 
+### `PPC64_OPT_TLS`
 ```rust
 const PPC64_OPT_TLS: u32 = 1u32;
 ```
 
-### `PPC64_OPT_MULTI_TOC`
+*Defined in [`object-0.37.3/src/elf.rs:3775`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3775)*
 
+### `PPC64_OPT_MULTI_TOC`
 ```rust
 const PPC64_OPT_MULTI_TOC: u32 = 2u32;
 ```
 
-### `PPC64_OPT_LOCALENTRY`
+*Defined in [`object-0.37.3/src/elf.rs:3776`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3776)*
 
+### `PPC64_OPT_LOCALENTRY`
 ```rust
 const PPC64_OPT_LOCALENTRY: u32 = 4u32;
 ```
 
-### `STO_PPC64_LOCAL_BIT`
+*Defined in [`object-0.37.3/src/elf.rs:3777`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3777)*
 
+### `STO_PPC64_LOCAL_BIT`
 ```rust
 const STO_PPC64_LOCAL_BIT: u8 = 5u8;
 ```
 
-### `STO_PPC64_LOCAL_MASK`
+*Defined in [`object-0.37.3/src/elf.rs:3780`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3780)*
 
+### `STO_PPC64_LOCAL_MASK`
 ```rust
 const STO_PPC64_LOCAL_MASK: u8 = 224u8;
 ```
 
-### `EF_ARM_RELEXEC`
+*Defined in [`object-0.37.3/src/elf.rs:3781`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3781)*
 
+### `EF_ARM_RELEXEC`
 ```rust
 const EF_ARM_RELEXEC: u32 = 1u32;
 ```
 
-### `EF_ARM_HASENTRY`
+*Defined in [`object-0.37.3/src/elf.rs:3786`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3786)*
 
+### `EF_ARM_HASENTRY`
 ```rust
 const EF_ARM_HASENTRY: u32 = 2u32;
 ```
 
-### `EF_ARM_INTERWORK`
+*Defined in [`object-0.37.3/src/elf.rs:3787`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3787)*
 
+### `EF_ARM_INTERWORK`
 ```rust
 const EF_ARM_INTERWORK: u32 = 4u32;
 ```
 
-### `EF_ARM_APCS_26`
+*Defined in [`object-0.37.3/src/elf.rs:3788`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3788)*
 
+### `EF_ARM_APCS_26`
 ```rust
 const EF_ARM_APCS_26: u32 = 8u32;
 ```
 
-### `EF_ARM_APCS_FLOAT`
+*Defined in [`object-0.37.3/src/elf.rs:3789`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3789)*
 
+### `EF_ARM_APCS_FLOAT`
 ```rust
 const EF_ARM_APCS_FLOAT: u32 = 16u32;
 ```
 
-### `EF_ARM_PIC`
+*Defined in [`object-0.37.3/src/elf.rs:3790`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3790)*
 
+### `EF_ARM_PIC`
 ```rust
 const EF_ARM_PIC: u32 = 32u32;
 ```
 
-### `EF_ARM_ALIGN8`
+*Defined in [`object-0.37.3/src/elf.rs:3791`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3791)*
 
+### `EF_ARM_ALIGN8`
 ```rust
 const EF_ARM_ALIGN8: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3793`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3793)*
+
 8-bit structure alignment is in use
 
 ### `EF_ARM_NEW_ABI`
-
 ```rust
 const EF_ARM_NEW_ABI: u32 = 128u32;
 ```
 
-### `EF_ARM_OLD_ABI`
+*Defined in [`object-0.37.3/src/elf.rs:3794`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3794)*
 
+### `EF_ARM_OLD_ABI`
 ```rust
 const EF_ARM_OLD_ABI: u32 = 256u32;
 ```
 
-### `EF_ARM_SOFT_FLOAT`
+*Defined in [`object-0.37.3/src/elf.rs:3795`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3795)*
 
+### `EF_ARM_SOFT_FLOAT`
 ```rust
 const EF_ARM_SOFT_FLOAT: u32 = 512u32;
 ```
 
-### `EF_ARM_VFP_FLOAT`
+*Defined in [`object-0.37.3/src/elf.rs:3796`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3796)*
 
+### `EF_ARM_VFP_FLOAT`
 ```rust
 const EF_ARM_VFP_FLOAT: u32 = 1_024u32;
 ```
 
-### `EF_ARM_MAVERICK_FLOAT`
+*Defined in [`object-0.37.3/src/elf.rs:3797`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3797)*
 
+### `EF_ARM_MAVERICK_FLOAT`
 ```rust
 const EF_ARM_MAVERICK_FLOAT: u32 = 2_048u32;
 ```
 
-### `EF_ARM_ABI_FLOAT_SOFT`
+*Defined in [`object-0.37.3/src/elf.rs:3798`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3798)*
 
+### `EF_ARM_ABI_FLOAT_SOFT`
 ```rust
 const EF_ARM_ABI_FLOAT_SOFT: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3801`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3801)*
+
 NB conflicts with EF_ARM_SOFT_FLOAT
 
 ### `EF_ARM_ABI_FLOAT_HARD`
-
 ```rust
 const EF_ARM_ABI_FLOAT_HARD: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3803`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3803)*
+
 NB conflicts with EF_ARM_VFP_FLOAT
 
 ### `EF_ARM_SYMSARESORTED`
-
 ```rust
 const EF_ARM_SYMSARESORTED: u32 = 4u32;
 ```
 
-### `EF_ARM_DYNSYMSUSESEGIDX`
+*Defined in [`object-0.37.3/src/elf.rs:3807`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3807)*
 
+### `EF_ARM_DYNSYMSUSESEGIDX`
 ```rust
 const EF_ARM_DYNSYMSUSESEGIDX: u32 = 8u32;
 ```
 
-### `EF_ARM_MAPSYMSFIRST`
+*Defined in [`object-0.37.3/src/elf.rs:3808`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3808)*
 
+### `EF_ARM_MAPSYMSFIRST`
 ```rust
 const EF_ARM_MAPSYMSFIRST: u32 = 16u32;
 ```
 
-### `EF_ARM_BE8`
+*Defined in [`object-0.37.3/src/elf.rs:3809`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3809)*
 
+### `EF_ARM_BE8`
 ```rust
 const EF_ARM_BE8: u32 = 8_388_608u32;
 ```
 
-### `EF_ARM_LE8`
+*Defined in [`object-0.37.3/src/elf.rs:3812`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3812)*
 
+### `EF_ARM_LE8`
 ```rust
 const EF_ARM_LE8: u32 = 4_194_304u32;
 ```
 
-### `EF_ARM_EABIMASK`
+*Defined in [`object-0.37.3/src/elf.rs:3813`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3813)*
 
+### `EF_ARM_EABIMASK`
 ```rust
 const EF_ARM_EABIMASK: u32 = 4_278_190_080u32;
 ```
 
-### `EF_ARM_EABI_UNKNOWN`
+*Defined in [`object-0.37.3/src/elf.rs:3815`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3815)*
 
+### `EF_ARM_EABI_UNKNOWN`
 ```rust
 const EF_ARM_EABI_UNKNOWN: u32 = 0u32;
 ```
 
-### `EF_ARM_EABI_VER1`
+*Defined in [`object-0.37.3/src/elf.rs:3816`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3816)*
 
+### `EF_ARM_EABI_VER1`
 ```rust
 const EF_ARM_EABI_VER1: u32 = 16_777_216u32;
 ```
 
-### `EF_ARM_EABI_VER2`
+*Defined in [`object-0.37.3/src/elf.rs:3817`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3817)*
 
+### `EF_ARM_EABI_VER2`
 ```rust
 const EF_ARM_EABI_VER2: u32 = 33_554_432u32;
 ```
 
-### `EF_ARM_EABI_VER3`
+*Defined in [`object-0.37.3/src/elf.rs:3818`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3818)*
 
+### `EF_ARM_EABI_VER3`
 ```rust
 const EF_ARM_EABI_VER3: u32 = 50_331_648u32;
 ```
 
-### `EF_ARM_EABI_VER4`
+*Defined in [`object-0.37.3/src/elf.rs:3819`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3819)*
 
+### `EF_ARM_EABI_VER4`
 ```rust
 const EF_ARM_EABI_VER4: u32 = 67_108_864u32;
 ```
 
-### `EF_ARM_EABI_VER5`
+*Defined in [`object-0.37.3/src/elf.rs:3820`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3820)*
 
+### `EF_ARM_EABI_VER5`
 ```rust
 const EF_ARM_EABI_VER5: u32 = 83_886_080u32;
 ```
 
-### `STT_ARM_TFUNC`
+*Defined in [`object-0.37.3/src/elf.rs:3821`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3821)*
 
+### `STT_ARM_TFUNC`
 ```rust
 const STT_ARM_TFUNC: u8 = 13u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3825`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3825)*
+
 A Thumb function.
 
 ### `STT_ARM_16BIT`
-
 ```rust
 const STT_ARM_16BIT: u8 = 15u8;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3827`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3827)*
+
 A Thumb label.
 
 ### `SHF_ARM_ENTRYSECT`
-
 ```rust
 const SHF_ARM_ENTRYSECT: u32 = 268_435_456u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3831`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3831)*
+
 Section contains an entry point
 
 ### `SHF_ARM_COMDEF`
-
 ```rust
 const SHF_ARM_COMDEF: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3833`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3833)*
+
 Section may be multiply defined in the input to a link step.
 
 ### `PF_ARM_SB`
-
 ```rust
 const PF_ARM_SB: u32 = 268_435_456u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3837`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3837)*
+
 Segment contains the location addressed by the static base.
 
 ### `PF_ARM_PI`
-
 ```rust
 const PF_ARM_PI: u32 = 536_870_912u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3839`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3839)*
+
 Position-independent segment.
 
 ### `PF_ARM_ABS`
-
 ```rust
 const PF_ARM_ABS: u32 = 1_073_741_824u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3841`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3841)*
+
 Absolute segment.
 
 ### `PT_ARM_EXIDX`
-
 ```rust
 const PT_ARM_EXIDX: u32 = 1_879_048_193u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3845`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3845)*
+
 ARM unwind segment.
 
 ### `SHT_ARM_EXIDX`
-
 ```rust
 const SHT_ARM_EXIDX: u32 = 1_879_048_193u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3849`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3849)*
+
 ARM unwind section.
 
 ### `SHT_ARM_PREEMPTMAP`
-
 ```rust
 const SHT_ARM_PREEMPTMAP: u32 = 1_879_048_194u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3851`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3851)*
+
 Preemption details.
 
 ### `SHT_ARM_ATTRIBUTES`
-
 ```rust
 const SHT_ARM_ATTRIBUTES: u32 = 1_879_048_195u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3853`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3853)*
+
 ARM attributes section.
 
 ### `SHT_AARCH64_ATTRIBUTES`
-
 ```rust
 const SHT_AARCH64_ATTRIBUTES: u32 = 1_879_048_195u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3857`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3857)*
+
 AArch64 attributes section.
 
 ### `R_AARCH64_NONE`
-
 ```rust
 const R_AARCH64_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3862`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3862)*
+
 No relocation.
 
 ### `R_AARCH64_P32_ABS32`
-
 ```rust
 const R_AARCH64_P32_ABS32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3866`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3866)*
+
 Direct 32 bit.
 
 ### `R_AARCH64_P32_COPY`
-
 ```rust
 const R_AARCH64_P32_COPY: u32 = 180u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3868`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3868)*
+
 Copy symbol at runtime.
 
 ### `R_AARCH64_P32_GLOB_DAT`
-
 ```rust
 const R_AARCH64_P32_GLOB_DAT: u32 = 181u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3870`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3870)*
+
 Create GOT entry.
 
 ### `R_AARCH64_P32_JUMP_SLOT`
-
 ```rust
 const R_AARCH64_P32_JUMP_SLOT: u32 = 182u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3872`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3872)*
+
 Create PLT entry.
 
 ### `R_AARCH64_P32_RELATIVE`
-
 ```rust
 const R_AARCH64_P32_RELATIVE: u32 = 183u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3874`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3874)*
+
 Adjust by program base.
 
 ### `R_AARCH64_P32_TLS_DTPMOD`
-
 ```rust
 const R_AARCH64_P32_TLS_DTPMOD: u32 = 184u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3876`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3876)*
+
 Module number, 32 bit.
 
 ### `R_AARCH64_P32_TLS_DTPREL`
-
 ```rust
 const R_AARCH64_P32_TLS_DTPREL: u32 = 185u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3878`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3878)*
+
 Module-relative offset, 32 bit.
 
 ### `R_AARCH64_P32_TLS_TPREL`
-
 ```rust
 const R_AARCH64_P32_TLS_TPREL: u32 = 186u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3880`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3880)*
+
 TP-relative offset, 32 bit.
 
 ### `R_AARCH64_P32_TLSDESC`
-
 ```rust
 const R_AARCH64_P32_TLSDESC: u32 = 187u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3882`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3882)*
+
 TLS Descriptor.
 
 ### `R_AARCH64_P32_IRELATIVE`
-
 ```rust
 const R_AARCH64_P32_IRELATIVE: u32 = 188u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3884`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3884)*
+
 STT_GNU_IFUNC relocation.
 
 ### `R_AARCH64_ABS64`
-
 ```rust
 const R_AARCH64_ABS64: u32 = 257u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3888`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3888)*
+
 Direct 64 bit.
 
 ### `R_AARCH64_ABS32`
-
 ```rust
 const R_AARCH64_ABS32: u32 = 258u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3890`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3890)*
+
 Direct 32 bit.
 
 ### `R_AARCH64_ABS16`
-
 ```rust
 const R_AARCH64_ABS16: u32 = 259u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3892`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3892)*
+
 Direct 16-bit.
 
 ### `R_AARCH64_PREL64`
-
 ```rust
 const R_AARCH64_PREL64: u32 = 260u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3894`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3894)*
+
 PC-relative 64-bit.
 
 ### `R_AARCH64_PREL32`
-
 ```rust
 const R_AARCH64_PREL32: u32 = 261u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3896`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3896)*
+
 PC-relative 32-bit.
 
 ### `R_AARCH64_PREL16`
-
 ```rust
 const R_AARCH64_PREL16: u32 = 262u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3898`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3898)*
+
 PC-relative 16-bit.
 
 ### `R_AARCH64_MOVW_UABS_G0`
-
 ```rust
 const R_AARCH64_MOVW_UABS_G0: u32 = 263u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3900`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3900)*
+
 Dir. MOVZ imm. from bits 15:0.
 
 ### `R_AARCH64_MOVW_UABS_G0_NC`
-
 ```rust
 const R_AARCH64_MOVW_UABS_G0_NC: u32 = 264u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3902`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3902)*
+
 Likewise for MOVK; no check.
 
 ### `R_AARCH64_MOVW_UABS_G1`
-
 ```rust
 const R_AARCH64_MOVW_UABS_G1: u32 = 265u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3904`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3904)*
+
 Dir. MOVZ imm. from bits 31:16.
 
 ### `R_AARCH64_MOVW_UABS_G1_NC`
-
 ```rust
 const R_AARCH64_MOVW_UABS_G1_NC: u32 = 266u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3906`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3906)*
+
 Likewise for MOVK; no check.
 
 ### `R_AARCH64_MOVW_UABS_G2`
-
 ```rust
 const R_AARCH64_MOVW_UABS_G2: u32 = 267u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3908`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3908)*
+
 Dir. MOVZ imm. from bits 47:32.
 
 ### `R_AARCH64_MOVW_UABS_G2_NC`
-
 ```rust
 const R_AARCH64_MOVW_UABS_G2_NC: u32 = 268u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3910`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3910)*
+
 Likewise for MOVK; no check.
 
 ### `R_AARCH64_MOVW_UABS_G3`
-
 ```rust
 const R_AARCH64_MOVW_UABS_G3: u32 = 269u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3912`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3912)*
+
 Dir. MOV{K,Z} imm. from 63:48.
 
 ### `R_AARCH64_MOVW_SABS_G0`
-
 ```rust
 const R_AARCH64_MOVW_SABS_G0: u32 = 270u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3914`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3914)*
+
 Dir. MOV{N,Z} imm. from 15:0.
 
 ### `R_AARCH64_MOVW_SABS_G1`
-
 ```rust
 const R_AARCH64_MOVW_SABS_G1: u32 = 271u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3916`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3916)*
+
 Dir. MOV{N,Z} imm. from 31:16.
 
 ### `R_AARCH64_MOVW_SABS_G2`
-
 ```rust
 const R_AARCH64_MOVW_SABS_G2: u32 = 272u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3918`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3918)*
+
 Dir. MOV{N,Z} imm. from 47:32.
 
 ### `R_AARCH64_LD_PREL_LO19`
-
 ```rust
 const R_AARCH64_LD_PREL_LO19: u32 = 273u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3920`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3920)*
+
 PC-rel. LD imm. from bits 20:2.
 
 ### `R_AARCH64_ADR_PREL_LO21`
-
 ```rust
 const R_AARCH64_ADR_PREL_LO21: u32 = 274u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3922`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3922)*
+
 PC-rel. ADR imm. from bits 20:0.
 
 ### `R_AARCH64_ADR_PREL_PG_HI21`
-
 ```rust
 const R_AARCH64_ADR_PREL_PG_HI21: u32 = 275u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3924`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3924)*
+
 Page-rel. ADRP imm. from 32:12.
 
 ### `R_AARCH64_ADR_PREL_PG_HI21_NC`
-
 ```rust
 const R_AARCH64_ADR_PREL_PG_HI21_NC: u32 = 276u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3926`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3926)*
+
 Likewise; no overflow check.
 
 ### `R_AARCH64_ADD_ABS_LO12_NC`
-
 ```rust
 const R_AARCH64_ADD_ABS_LO12_NC: u32 = 277u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3928`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3928)*
+
 Dir. ADD imm. from bits 11:0.
 
 ### `R_AARCH64_LDST8_ABS_LO12_NC`
-
 ```rust
 const R_AARCH64_LDST8_ABS_LO12_NC: u32 = 278u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3930`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3930)*
+
 Likewise for LD/ST; no check.
 
 ### `R_AARCH64_TSTBR14`
-
 ```rust
 const R_AARCH64_TSTBR14: u32 = 279u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3932`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3932)*
+
 PC-rel. TBZ/TBNZ imm. from 15:2.
 
 ### `R_AARCH64_CONDBR19`
-
 ```rust
 const R_AARCH64_CONDBR19: u32 = 280u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3934`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3934)*
+
 PC-rel. cond. br. imm. from 20:2.
 
 ### `R_AARCH64_JUMP26`
-
 ```rust
 const R_AARCH64_JUMP26: u32 = 282u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3936`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3936)*
+
 PC-rel. B imm. from bits 27:2.
 
 ### `R_AARCH64_CALL26`
-
 ```rust
 const R_AARCH64_CALL26: u32 = 283u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3938`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3938)*
+
 Likewise for CALL.
 
 ### `R_AARCH64_LDST16_ABS_LO12_NC`
-
 ```rust
 const R_AARCH64_LDST16_ABS_LO12_NC: u32 = 284u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3940`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3940)*
+
 Dir. ADD imm. from bits 11:1.
 
 ### `R_AARCH64_LDST32_ABS_LO12_NC`
-
 ```rust
 const R_AARCH64_LDST32_ABS_LO12_NC: u32 = 285u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3942`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3942)*
+
 Likewise for bits 11:2.
 
 ### `R_AARCH64_LDST64_ABS_LO12_NC`
-
 ```rust
 const R_AARCH64_LDST64_ABS_LO12_NC: u32 = 286u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3944`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3944)*
+
 Likewise for bits 11:3.
 
 ### `R_AARCH64_MOVW_PREL_G0`
-
 ```rust
 const R_AARCH64_MOVW_PREL_G0: u32 = 287u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3946`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3946)*
+
 PC-rel. MOV{N,Z} imm. from 15:0.
 
 ### `R_AARCH64_MOVW_PREL_G0_NC`
-
 ```rust
 const R_AARCH64_MOVW_PREL_G0_NC: u32 = 288u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3948`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3948)*
+
 Likewise for MOVK; no check.
 
 ### `R_AARCH64_MOVW_PREL_G1`
-
 ```rust
 const R_AARCH64_MOVW_PREL_G1: u32 = 289u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3950`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3950)*
+
 PC-rel. MOV{N,Z} imm. from 31:16.
 
 ### `R_AARCH64_MOVW_PREL_G1_NC`
-
 ```rust
 const R_AARCH64_MOVW_PREL_G1_NC: u32 = 290u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3952`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3952)*
+
 Likewise for MOVK; no check.
 
 ### `R_AARCH64_MOVW_PREL_G2`
-
 ```rust
 const R_AARCH64_MOVW_PREL_G2: u32 = 291u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3954`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3954)*
+
 PC-rel. MOV{N,Z} imm. from 47:32.
 
 ### `R_AARCH64_MOVW_PREL_G2_NC`
-
 ```rust
 const R_AARCH64_MOVW_PREL_G2_NC: u32 = 292u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3956`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3956)*
+
 Likewise for MOVK; no check.
 
 ### `R_AARCH64_MOVW_PREL_G3`
-
 ```rust
 const R_AARCH64_MOVW_PREL_G3: u32 = 293u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3958`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3958)*
+
 PC-rel. MOV{N,Z} imm. from 63:48.
 
 ### `R_AARCH64_LDST128_ABS_LO12_NC`
-
 ```rust
 const R_AARCH64_LDST128_ABS_LO12_NC: u32 = 299u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3960`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3960)*
+
 Dir. ADD imm. from bits 11:4.
 
 ### `R_AARCH64_MOVW_GOTOFF_G0`
-
 ```rust
 const R_AARCH64_MOVW_GOTOFF_G0: u32 = 300u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3962`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3962)*
+
 GOT-rel. off. MOV{N,Z} imm. 15:0.
 
 ### `R_AARCH64_MOVW_GOTOFF_G0_NC`
-
 ```rust
 const R_AARCH64_MOVW_GOTOFF_G0_NC: u32 = 301u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3964`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3964)*
+
 Likewise for MOVK; no check.
 
 ### `R_AARCH64_MOVW_GOTOFF_G1`
-
 ```rust
 const R_AARCH64_MOVW_GOTOFF_G1: u32 = 302u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3966`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3966)*
+
 GOT-rel. o. MOV{N,Z} imm. 31:16.
 
 ### `R_AARCH64_MOVW_GOTOFF_G1_NC`
-
 ```rust
 const R_AARCH64_MOVW_GOTOFF_G1_NC: u32 = 303u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3968`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3968)*
+
 Likewise for MOVK; no check.
 
 ### `R_AARCH64_MOVW_GOTOFF_G2`
-
 ```rust
 const R_AARCH64_MOVW_GOTOFF_G2: u32 = 304u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3970`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3970)*
+
 GOT-rel. o. MOV{N,Z} imm. 47:32.
 
 ### `R_AARCH64_MOVW_GOTOFF_G2_NC`
-
 ```rust
 const R_AARCH64_MOVW_GOTOFF_G2_NC: u32 = 305u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3972`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3972)*
+
 Likewise for MOVK; no check.
 
 ### `R_AARCH64_MOVW_GOTOFF_G3`
-
 ```rust
 const R_AARCH64_MOVW_GOTOFF_G3: u32 = 306u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3974`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3974)*
+
 GOT-rel. o. MOV{N,Z} imm. 63:48.
 
 ### `R_AARCH64_GOTREL64`
-
 ```rust
 const R_AARCH64_GOTREL64: u32 = 307u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3976`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3976)*
+
 GOT-relative 64-bit.
 
 ### `R_AARCH64_GOTREL32`
-
 ```rust
 const R_AARCH64_GOTREL32: u32 = 308u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3978`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3978)*
+
 GOT-relative 32-bit.
 
 ### `R_AARCH64_GOT_LD_PREL19`
-
 ```rust
 const R_AARCH64_GOT_LD_PREL19: u32 = 309u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3980`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3980)*
+
 PC-rel. GOT off. load imm. 20:2.
 
 ### `R_AARCH64_LD64_GOTOFF_LO15`
-
 ```rust
 const R_AARCH64_LD64_GOTOFF_LO15: u32 = 310u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3982`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3982)*
+
 GOT-rel. off. LD/ST imm. 14:3.
 
 ### `R_AARCH64_ADR_GOT_PAGE`
-
 ```rust
 const R_AARCH64_ADR_GOT_PAGE: u32 = 311u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3984`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3984)*
+
 P-page-rel. GOT off. ADRP 32:12.
 
 ### `R_AARCH64_LD64_GOT_LO12_NC`
-
 ```rust
 const R_AARCH64_LD64_GOT_LO12_NC: u32 = 312u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3986`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3986)*
+
 Dir. GOT off. LD/ST imm. 11:3.
 
 ### `R_AARCH64_LD64_GOTPAGE_LO15`
-
 ```rust
 const R_AARCH64_LD64_GOTPAGE_LO15: u32 = 313u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3988`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3988)*
+
 GOT-page-rel. GOT off. LD/ST 14:3
 
 ### `R_AARCH64_TLSGD_ADR_PREL21`
-
 ```rust
 const R_AARCH64_TLSGD_ADR_PREL21: u32 = 512u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3990`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3990)*
+
 PC-relative ADR imm. 20:0.
 
 ### `R_AARCH64_TLSGD_ADR_PAGE21`
-
 ```rust
 const R_AARCH64_TLSGD_ADR_PAGE21: u32 = 513u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3992`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3992)*
+
 page-rel. ADRP imm. 32:12.
 
 ### `R_AARCH64_TLSGD_ADD_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSGD_ADD_LO12_NC: u32 = 514u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3994`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3994)*
+
 direct ADD imm. from 11:0.
 
 ### `R_AARCH64_TLSGD_MOVW_G1`
-
 ```rust
 const R_AARCH64_TLSGD_MOVW_G1: u32 = 515u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3996`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3996)*
+
 GOT-rel. MOV{N,Z} 31:16.
 
 ### `R_AARCH64_TLSGD_MOVW_G0_NC`
-
 ```rust
 const R_AARCH64_TLSGD_MOVW_G0_NC: u32 = 516u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:3998`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L3998)*
+
 GOT-rel. MOVK imm. 15:0.
 
 ### `R_AARCH64_TLSLD_ADR_PREL21`
-
 ```rust
 const R_AARCH64_TLSLD_ADR_PREL21: u32 = 517u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4000`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4000)*
+
 Like 512; local dynamic model.
 
 ### `R_AARCH64_TLSLD_ADR_PAGE21`
-
 ```rust
 const R_AARCH64_TLSLD_ADR_PAGE21: u32 = 518u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4002`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4002)*
+
 Like 513; local dynamic model.
 
 ### `R_AARCH64_TLSLD_ADD_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLD_ADD_LO12_NC: u32 = 519u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4004`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4004)*
+
 Like 514; local dynamic model.
 
 ### `R_AARCH64_TLSLD_MOVW_G1`
-
 ```rust
 const R_AARCH64_TLSLD_MOVW_G1: u32 = 520u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4006`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4006)*
+
 Like 515; local dynamic model.
 
 ### `R_AARCH64_TLSLD_MOVW_G0_NC`
-
 ```rust
 const R_AARCH64_TLSLD_MOVW_G0_NC: u32 = 521u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4008`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4008)*
+
 Like 516; local dynamic model.
 
 ### `R_AARCH64_TLSLD_LD_PREL19`
-
 ```rust
 const R_AARCH64_TLSLD_LD_PREL19: u32 = 522u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4010`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4010)*
+
 TLS PC-rel. load imm. 20:2.
 
 ### `R_AARCH64_TLSLD_MOVW_DTPREL_G2`
-
 ```rust
 const R_AARCH64_TLSLD_MOVW_DTPREL_G2: u32 = 523u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4012`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4012)*
+
 TLS DTP-rel. MOV{N,Z} 47:32.
 
 ### `R_AARCH64_TLSLD_MOVW_DTPREL_G1`
-
 ```rust
 const R_AARCH64_TLSLD_MOVW_DTPREL_G1: u32 = 524u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4014`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4014)*
+
 TLS DTP-rel. MOV{N,Z} 31:16.
 
 ### `R_AARCH64_TLSLD_MOVW_DTPREL_G1_NC`
-
 ```rust
 const R_AARCH64_TLSLD_MOVW_DTPREL_G1_NC: u32 = 525u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4016`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4016)*
+
 Likewise; MOVK; no check.
 
 ### `R_AARCH64_TLSLD_MOVW_DTPREL_G0`
-
 ```rust
 const R_AARCH64_TLSLD_MOVW_DTPREL_G0: u32 = 526u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4018`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4018)*
+
 TLS DTP-rel. MOV{N,Z} 15:0.
 
 ### `R_AARCH64_TLSLD_MOVW_DTPREL_G0_NC`
-
 ```rust
 const R_AARCH64_TLSLD_MOVW_DTPREL_G0_NC: u32 = 527u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4020`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4020)*
+
 Likewise; MOVK; no check.
 
 ### `R_AARCH64_TLSLD_ADD_DTPREL_HI12`
-
 ```rust
 const R_AARCH64_TLSLD_ADD_DTPREL_HI12: u32 = 528u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4022`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4022)*
+
 DTP-rel. ADD imm. from 23:12.
 
 ### `R_AARCH64_TLSLD_ADD_DTPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLD_ADD_DTPREL_LO12: u32 = 529u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4024`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4024)*
+
 DTP-rel. ADD imm. from 11:0.
 
 ### `R_AARCH64_TLSLD_ADD_DTPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLD_ADD_DTPREL_LO12_NC: u32 = 530u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4026`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4026)*
+
 Likewise; no ovfl. check.
 
 ### `R_AARCH64_TLSLD_LDST8_DTPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLD_LDST8_DTPREL_LO12: u32 = 531u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4028`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4028)*
+
 DTP-rel. LD/ST imm. 11:0.
 
 ### `R_AARCH64_TLSLD_LDST8_DTPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLD_LDST8_DTPREL_LO12_NC: u32 = 532u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4030`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4030)*
+
 Likewise; no check.
 
 ### `R_AARCH64_TLSLD_LDST16_DTPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLD_LDST16_DTPREL_LO12: u32 = 533u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4032`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4032)*
+
 DTP-rel. LD/ST imm. 11:1.
 
 ### `R_AARCH64_TLSLD_LDST16_DTPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLD_LDST16_DTPREL_LO12_NC: u32 = 534u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4034`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4034)*
+
 Likewise; no check.
 
 ### `R_AARCH64_TLSLD_LDST32_DTPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLD_LDST32_DTPREL_LO12: u32 = 535u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4036`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4036)*
+
 DTP-rel. LD/ST imm. 11:2.
 
 ### `R_AARCH64_TLSLD_LDST32_DTPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLD_LDST32_DTPREL_LO12_NC: u32 = 536u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4038`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4038)*
+
 Likewise; no check.
 
 ### `R_AARCH64_TLSLD_LDST64_DTPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLD_LDST64_DTPREL_LO12: u32 = 537u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4040`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4040)*
+
 DTP-rel. LD/ST imm. 11:3.
 
 ### `R_AARCH64_TLSLD_LDST64_DTPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLD_LDST64_DTPREL_LO12_NC: u32 = 538u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4042`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4042)*
+
 Likewise; no check.
 
 ### `R_AARCH64_TLSIE_MOVW_GOTTPREL_G1`
-
 ```rust
 const R_AARCH64_TLSIE_MOVW_GOTTPREL_G1: u32 = 539u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4044`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4044)*
+
 GOT-rel. MOV{N,Z} 31:16.
 
 ### `R_AARCH64_TLSIE_MOVW_GOTTPREL_G0_NC`
-
 ```rust
 const R_AARCH64_TLSIE_MOVW_GOTTPREL_G0_NC: u32 = 540u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4046`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4046)*
+
 GOT-rel. MOVK 15:0.
 
 ### `R_AARCH64_TLSIE_ADR_GOTTPREL_PAGE21`
-
 ```rust
 const R_AARCH64_TLSIE_ADR_GOTTPREL_PAGE21: u32 = 541u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4048`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4048)*
+
 Page-rel. ADRP 32:12.
 
 ### `R_AARCH64_TLSIE_LD64_GOTTPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSIE_LD64_GOTTPREL_LO12_NC: u32 = 542u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4050`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4050)*
+
 Direct LD off. 11:3.
 
 ### `R_AARCH64_TLSIE_LD_GOTTPREL_PREL19`
-
 ```rust
 const R_AARCH64_TLSIE_LD_GOTTPREL_PREL19: u32 = 543u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4052`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4052)*
+
 PC-rel. load imm. 20:2.
 
 ### `R_AARCH64_TLSLE_MOVW_TPREL_G2`
-
 ```rust
 const R_AARCH64_TLSLE_MOVW_TPREL_G2: u32 = 544u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4054`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4054)*
+
 TLS TP-rel. MOV{N,Z} 47:32.
 
 ### `R_AARCH64_TLSLE_MOVW_TPREL_G1`
-
 ```rust
 const R_AARCH64_TLSLE_MOVW_TPREL_G1: u32 = 545u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4056`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4056)*
+
 TLS TP-rel. MOV{N,Z} 31:16.
 
 ### `R_AARCH64_TLSLE_MOVW_TPREL_G1_NC`
-
 ```rust
 const R_AARCH64_TLSLE_MOVW_TPREL_G1_NC: u32 = 546u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4058`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4058)*
+
 Likewise; MOVK; no check.
 
 ### `R_AARCH64_TLSLE_MOVW_TPREL_G0`
-
 ```rust
 const R_AARCH64_TLSLE_MOVW_TPREL_G0: u32 = 547u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4060`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4060)*
+
 TLS TP-rel. MOV{N,Z} 15:0.
 
 ### `R_AARCH64_TLSLE_MOVW_TPREL_G0_NC`
-
 ```rust
 const R_AARCH64_TLSLE_MOVW_TPREL_G0_NC: u32 = 548u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4062`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4062)*
+
 Likewise; MOVK; no check.
 
 ### `R_AARCH64_TLSLE_ADD_TPREL_HI12`
-
 ```rust
 const R_AARCH64_TLSLE_ADD_TPREL_HI12: u32 = 549u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4064`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4064)*
+
 TP-rel. ADD imm. 23:12.
 
 ### `R_AARCH64_TLSLE_ADD_TPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLE_ADD_TPREL_LO12: u32 = 550u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4066`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4066)*
+
 TP-rel. ADD imm. 11:0.
 
 ### `R_AARCH64_TLSLE_ADD_TPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLE_ADD_TPREL_LO12_NC: u32 = 551u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4068`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4068)*
+
 Likewise; no ovfl. check.
 
 ### `R_AARCH64_TLSLE_LDST8_TPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLE_LDST8_TPREL_LO12: u32 = 552u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4070`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4070)*
+
 TP-rel. LD/ST off. 11:0.
 
 ### `R_AARCH64_TLSLE_LDST8_TPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLE_LDST8_TPREL_LO12_NC: u32 = 553u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4072`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4072)*
+
 Likewise; no ovfl. check.
 
 ### `R_AARCH64_TLSLE_LDST16_TPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLE_LDST16_TPREL_LO12: u32 = 554u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4074`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4074)*
+
 TP-rel. LD/ST off. 11:1.
 
 ### `R_AARCH64_TLSLE_LDST16_TPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLE_LDST16_TPREL_LO12_NC: u32 = 555u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4076`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4076)*
+
 Likewise; no check.
 
 ### `R_AARCH64_TLSLE_LDST32_TPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLE_LDST32_TPREL_LO12: u32 = 556u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4078`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4078)*
+
 TP-rel. LD/ST off. 11:2.
 
 ### `R_AARCH64_TLSLE_LDST32_TPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLE_LDST32_TPREL_LO12_NC: u32 = 557u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4080`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4080)*
+
 Likewise; no check.
 
 ### `R_AARCH64_TLSLE_LDST64_TPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLE_LDST64_TPREL_LO12: u32 = 558u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4082`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4082)*
+
 TP-rel. LD/ST off. 11:3.
 
 ### `R_AARCH64_TLSLE_LDST64_TPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLE_LDST64_TPREL_LO12_NC: u32 = 559u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4084`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4084)*
+
 Likewise; no check.
 
 ### `R_AARCH64_TLSDESC_LD_PREL19`
-
 ```rust
 const R_AARCH64_TLSDESC_LD_PREL19: u32 = 560u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4086`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4086)*
+
 PC-rel. load immediate 20:2.
 
 ### `R_AARCH64_TLSDESC_ADR_PREL21`
-
 ```rust
 const R_AARCH64_TLSDESC_ADR_PREL21: u32 = 561u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4088`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4088)*
+
 PC-rel. ADR immediate 20:0.
 
 ### `R_AARCH64_TLSDESC_ADR_PAGE21`
-
 ```rust
 const R_AARCH64_TLSDESC_ADR_PAGE21: u32 = 562u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4090`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4090)*
+
 Page-rel. ADRP imm. 32:12.
 
 ### `R_AARCH64_TLSDESC_LD64_LO12`
-
 ```rust
 const R_AARCH64_TLSDESC_LD64_LO12: u32 = 563u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4092`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4092)*
+
 Direct LD off. from 11:3.
 
 ### `R_AARCH64_TLSDESC_ADD_LO12`
-
 ```rust
 const R_AARCH64_TLSDESC_ADD_LO12: u32 = 564u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4094`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4094)*
+
 Direct ADD imm. from 11:0.
 
 ### `R_AARCH64_TLSDESC_OFF_G1`
-
 ```rust
 const R_AARCH64_TLSDESC_OFF_G1: u32 = 565u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4096`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4096)*
+
 GOT-rel. MOV{N,Z} imm. 31:16.
 
 ### `R_AARCH64_TLSDESC_OFF_G0_NC`
-
 ```rust
 const R_AARCH64_TLSDESC_OFF_G0_NC: u32 = 566u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4098`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4098)*
+
 GOT-rel. MOVK imm. 15:0; no ck.
 
 ### `R_AARCH64_TLSDESC_LDR`
-
 ```rust
 const R_AARCH64_TLSDESC_LDR: u32 = 567u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4100`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4100)*
+
 Relax LDR.
 
 ### `R_AARCH64_TLSDESC_ADD`
-
 ```rust
 const R_AARCH64_TLSDESC_ADD: u32 = 568u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4102`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4102)*
+
 Relax ADD.
 
 ### `R_AARCH64_TLSDESC_CALL`
-
 ```rust
 const R_AARCH64_TLSDESC_CALL: u32 = 569u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4104`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4104)*
+
 Relax BLR.
 
 ### `R_AARCH64_TLSLE_LDST128_TPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLE_LDST128_TPREL_LO12: u32 = 570u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4106`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4106)*
+
 TP-rel. LD/ST off. 11:4.
 
 ### `R_AARCH64_TLSLE_LDST128_TPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLE_LDST128_TPREL_LO12_NC: u32 = 571u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4108`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4108)*
+
 Likewise; no check.
 
 ### `R_AARCH64_TLSLD_LDST128_DTPREL_LO12`
-
 ```rust
 const R_AARCH64_TLSLD_LDST128_DTPREL_LO12: u32 = 572u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4110`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4110)*
+
 DTP-rel. LD/ST imm. 11:4.
 
 ### `R_AARCH64_TLSLD_LDST128_DTPREL_LO12_NC`
-
 ```rust
 const R_AARCH64_TLSLD_LDST128_DTPREL_LO12_NC: u32 = 573u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4112`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4112)*
+
 Likewise; no check.
 
 ### `R_AARCH64_COPY`
-
 ```rust
 const R_AARCH64_COPY: u32 = 1_024u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4114`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4114)*
+
 Copy symbol at runtime.
 
 ### `R_AARCH64_GLOB_DAT`
-
 ```rust
 const R_AARCH64_GLOB_DAT: u32 = 1_025u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4116`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4116)*
+
 Create GOT entry.
 
 ### `R_AARCH64_JUMP_SLOT`
-
 ```rust
 const R_AARCH64_JUMP_SLOT: u32 = 1_026u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4118`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4118)*
+
 Create PLT entry.
 
 ### `R_AARCH64_RELATIVE`
-
 ```rust
 const R_AARCH64_RELATIVE: u32 = 1_027u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4120`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4120)*
+
 Adjust by program base.
 
 ### `R_AARCH64_TLS_DTPMOD`
-
 ```rust
 const R_AARCH64_TLS_DTPMOD: u32 = 1_028u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4122`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4122)*
+
 Module number, 64 bit.
 
 ### `R_AARCH64_TLS_DTPREL`
-
 ```rust
 const R_AARCH64_TLS_DTPREL: u32 = 1_029u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4124`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4124)*
+
 Module-relative offset, 64 bit.
 
 ### `R_AARCH64_TLS_TPREL`
-
 ```rust
 const R_AARCH64_TLS_TPREL: u32 = 1_030u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4126`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4126)*
+
 TP-relative offset, 64 bit.
 
 ### `R_AARCH64_TLSDESC`
-
 ```rust
 const R_AARCH64_TLSDESC: u32 = 1_031u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4128`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4128)*
+
 TLS Descriptor.
 
 ### `R_AARCH64_IRELATIVE`
-
 ```rust
 const R_AARCH64_IRELATIVE: u32 = 1_032u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4130`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4130)*
+
 STT_GNU_IFUNC relocation.
 
 ### `EF_AVR_ARCH`
-
 ```rust
 const EF_AVR_ARCH: u32 = 127u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4135`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4135)*
+
 Bitmask for `EF_AVR_ARCH_*`.
 
 ### `EF_AVR_LINKRELAX_PREPARED`
-
 ```rust
 const EF_AVR_LINKRELAX_PREPARED: u32 = 128u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:4139`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4139)*
 
 If set, it is assumed that the elf file uses local symbols as reference
 for the relocations so that linker relaxation is possible.
 
 ### `EF_AVR_ARCH_AVR1`
-
 ```rust
 const EF_AVR_ARCH_AVR1: u32 = 1u32;
 ```
 
-### `EF_AVR_ARCH_AVR2`
+*Defined in [`object-0.37.3/src/elf.rs:4141`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4141)*
 
+### `EF_AVR_ARCH_AVR2`
 ```rust
 const EF_AVR_ARCH_AVR2: u32 = 2u32;
 ```
 
-### `EF_AVR_ARCH_AVR25`
+*Defined in [`object-0.37.3/src/elf.rs:4142`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4142)*
 
+### `EF_AVR_ARCH_AVR25`
 ```rust
 const EF_AVR_ARCH_AVR25: u32 = 25u32;
 ```
 
-### `EF_AVR_ARCH_AVR3`
+*Defined in [`object-0.37.3/src/elf.rs:4143`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4143)*
 
+### `EF_AVR_ARCH_AVR3`
 ```rust
 const EF_AVR_ARCH_AVR3: u32 = 3u32;
 ```
 
-### `EF_AVR_ARCH_AVR31`
+*Defined in [`object-0.37.3/src/elf.rs:4144`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4144)*
 
+### `EF_AVR_ARCH_AVR31`
 ```rust
 const EF_AVR_ARCH_AVR31: u32 = 31u32;
 ```
 
-### `EF_AVR_ARCH_AVR35`
+*Defined in [`object-0.37.3/src/elf.rs:4145`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4145)*
 
+### `EF_AVR_ARCH_AVR35`
 ```rust
 const EF_AVR_ARCH_AVR35: u32 = 35u32;
 ```
 
-### `EF_AVR_ARCH_AVR4`
+*Defined in [`object-0.37.3/src/elf.rs:4146`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4146)*
 
+### `EF_AVR_ARCH_AVR4`
 ```rust
 const EF_AVR_ARCH_AVR4: u32 = 4u32;
 ```
 
-### `EF_AVR_ARCH_AVR5`
+*Defined in [`object-0.37.3/src/elf.rs:4147`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4147)*
 
+### `EF_AVR_ARCH_AVR5`
 ```rust
 const EF_AVR_ARCH_AVR5: u32 = 5u32;
 ```
 
-### `EF_AVR_ARCH_AVR51`
+*Defined in [`object-0.37.3/src/elf.rs:4148`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4148)*
 
+### `EF_AVR_ARCH_AVR51`
 ```rust
 const EF_AVR_ARCH_AVR51: u32 = 51u32;
 ```
 
-### `EF_AVR_ARCH_AVR6`
+*Defined in [`object-0.37.3/src/elf.rs:4149`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4149)*
 
+### `EF_AVR_ARCH_AVR6`
 ```rust
 const EF_AVR_ARCH_AVR6: u32 = 6u32;
 ```
 
-### `EF_AVR_ARCH_AVRTINY`
+*Defined in [`object-0.37.3/src/elf.rs:4150`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4150)*
 
+### `EF_AVR_ARCH_AVRTINY`
 ```rust
 const EF_AVR_ARCH_AVRTINY: u32 = 100u32;
 ```
 
-### `EF_AVR_ARCH_XMEGA1`
+*Defined in [`object-0.37.3/src/elf.rs:4151`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4151)*
 
+### `EF_AVR_ARCH_XMEGA1`
 ```rust
 const EF_AVR_ARCH_XMEGA1: u32 = 101u32;
 ```
 
-### `EF_AVR_ARCH_XMEGA2`
+*Defined in [`object-0.37.3/src/elf.rs:4152`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4152)*
 
+### `EF_AVR_ARCH_XMEGA2`
 ```rust
 const EF_AVR_ARCH_XMEGA2: u32 = 102u32;
 ```
 
-### `EF_AVR_ARCH_XMEGA3`
+*Defined in [`object-0.37.3/src/elf.rs:4153`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4153)*
 
+### `EF_AVR_ARCH_XMEGA3`
 ```rust
 const EF_AVR_ARCH_XMEGA3: u32 = 103u32;
 ```
 
-### `EF_AVR_ARCH_XMEGA4`
+*Defined in [`object-0.37.3/src/elf.rs:4154`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4154)*
 
+### `EF_AVR_ARCH_XMEGA4`
 ```rust
 const EF_AVR_ARCH_XMEGA4: u32 = 104u32;
 ```
 
-### `EF_AVR_ARCH_XMEGA5`
+*Defined in [`object-0.37.3/src/elf.rs:4155`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4155)*
 
+### `EF_AVR_ARCH_XMEGA5`
 ```rust
 const EF_AVR_ARCH_XMEGA5: u32 = 105u32;
 ```
 
-### `EF_AVR_ARCH_XMEGA6`
+*Defined in [`object-0.37.3/src/elf.rs:4156`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4156)*
 
+### `EF_AVR_ARCH_XMEGA6`
 ```rust
 const EF_AVR_ARCH_XMEGA6: u32 = 106u32;
 ```
 
-### `EF_AVR_ARCH_XMEGA7`
+*Defined in [`object-0.37.3/src/elf.rs:4157`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4157)*
 
+### `EF_AVR_ARCH_XMEGA7`
 ```rust
 const EF_AVR_ARCH_XMEGA7: u32 = 107u32;
 ```
 
-### `R_AVR_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:4158`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4158)*
 
+### `R_AVR_NONE`
 ```rust
 const R_AVR_NONE: u32 = 0u32;
 ```
 
-### `R_AVR_32`
+*Defined in [`object-0.37.3/src/elf.rs:4162`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4162)*
 
+### `R_AVR_32`
 ```rust
 const R_AVR_32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4164`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4164)*
+
 Direct 32 bit
 
 ### `R_AVR_7_PCREL`
-
 ```rust
 const R_AVR_7_PCREL: u32 = 2u32;
 ```
 
-### `R_AVR_13_PCREL`
+*Defined in [`object-0.37.3/src/elf.rs:4165`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4165)*
 
+### `R_AVR_13_PCREL`
 ```rust
 const R_AVR_13_PCREL: u32 = 3u32;
 ```
 
-### `R_AVR_16`
+*Defined in [`object-0.37.3/src/elf.rs:4166`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4166)*
 
+### `R_AVR_16`
 ```rust
 const R_AVR_16: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4168`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4168)*
+
 Direct 16 bit
 
 ### `R_AVR_16_PM`
-
 ```rust
 const R_AVR_16_PM: u32 = 5u32;
 ```
 
-### `R_AVR_LO8_LDI`
+*Defined in [`object-0.37.3/src/elf.rs:4169`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4169)*
 
+### `R_AVR_LO8_LDI`
 ```rust
 const R_AVR_LO8_LDI: u32 = 6u32;
 ```
 
-### `R_AVR_HI8_LDI`
+*Defined in [`object-0.37.3/src/elf.rs:4170`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4170)*
 
+### `R_AVR_HI8_LDI`
 ```rust
 const R_AVR_HI8_LDI: u32 = 7u32;
 ```
 
-### `R_AVR_HH8_LDI`
+*Defined in [`object-0.37.3/src/elf.rs:4171`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4171)*
 
+### `R_AVR_HH8_LDI`
 ```rust
 const R_AVR_HH8_LDI: u32 = 8u32;
 ```
 
-### `R_AVR_LO8_LDI_NEG`
+*Defined in [`object-0.37.3/src/elf.rs:4172`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4172)*
 
+### `R_AVR_LO8_LDI_NEG`
 ```rust
 const R_AVR_LO8_LDI_NEG: u32 = 9u32;
 ```
 
-### `R_AVR_HI8_LDI_NEG`
+*Defined in [`object-0.37.3/src/elf.rs:4173`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4173)*
 
+### `R_AVR_HI8_LDI_NEG`
 ```rust
 const R_AVR_HI8_LDI_NEG: u32 = 10u32;
 ```
 
-### `R_AVR_HH8_LDI_NEG`
+*Defined in [`object-0.37.3/src/elf.rs:4174`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4174)*
 
+### `R_AVR_HH8_LDI_NEG`
 ```rust
 const R_AVR_HH8_LDI_NEG: u32 = 11u32;
 ```
 
-### `R_AVR_LO8_LDI_PM`
+*Defined in [`object-0.37.3/src/elf.rs:4175`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4175)*
 
+### `R_AVR_LO8_LDI_PM`
 ```rust
 const R_AVR_LO8_LDI_PM: u32 = 12u32;
 ```
 
-### `R_AVR_HI8_LDI_PM`
+*Defined in [`object-0.37.3/src/elf.rs:4176`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4176)*
 
+### `R_AVR_HI8_LDI_PM`
 ```rust
 const R_AVR_HI8_LDI_PM: u32 = 13u32;
 ```
 
-### `R_AVR_HH8_LDI_PM`
+*Defined in [`object-0.37.3/src/elf.rs:4177`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4177)*
 
+### `R_AVR_HH8_LDI_PM`
 ```rust
 const R_AVR_HH8_LDI_PM: u32 = 14u32;
 ```
 
-### `R_AVR_LO8_LDI_PM_NEG`
+*Defined in [`object-0.37.3/src/elf.rs:4178`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4178)*
 
+### `R_AVR_LO8_LDI_PM_NEG`
 ```rust
 const R_AVR_LO8_LDI_PM_NEG: u32 = 15u32;
 ```
 
-### `R_AVR_HI8_LDI_PM_NEG`
+*Defined in [`object-0.37.3/src/elf.rs:4179`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4179)*
 
+### `R_AVR_HI8_LDI_PM_NEG`
 ```rust
 const R_AVR_HI8_LDI_PM_NEG: u32 = 16u32;
 ```
 
-### `R_AVR_HH8_LDI_PM_NEG`
+*Defined in [`object-0.37.3/src/elf.rs:4180`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4180)*
 
+### `R_AVR_HH8_LDI_PM_NEG`
 ```rust
 const R_AVR_HH8_LDI_PM_NEG: u32 = 17u32;
 ```
 
-### `R_AVR_CALL`
+*Defined in [`object-0.37.3/src/elf.rs:4181`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4181)*
 
+### `R_AVR_CALL`
 ```rust
 const R_AVR_CALL: u32 = 18u32;
 ```
 
-### `R_AVR_LDI`
+*Defined in [`object-0.37.3/src/elf.rs:4182`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4182)*
 
+### `R_AVR_LDI`
 ```rust
 const R_AVR_LDI: u32 = 19u32;
 ```
 
-### `R_AVR_6`
+*Defined in [`object-0.37.3/src/elf.rs:4183`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4183)*
 
+### `R_AVR_6`
 ```rust
 const R_AVR_6: u32 = 20u32;
 ```
 
-### `R_AVR_6_ADIW`
+*Defined in [`object-0.37.3/src/elf.rs:4184`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4184)*
 
+### `R_AVR_6_ADIW`
 ```rust
 const R_AVR_6_ADIW: u32 = 21u32;
 ```
 
-### `R_AVR_MS8_LDI`
+*Defined in [`object-0.37.3/src/elf.rs:4185`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4185)*
 
+### `R_AVR_MS8_LDI`
 ```rust
 const R_AVR_MS8_LDI: u32 = 22u32;
 ```
 
-### `R_AVR_MS8_LDI_NEG`
+*Defined in [`object-0.37.3/src/elf.rs:4186`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4186)*
 
+### `R_AVR_MS8_LDI_NEG`
 ```rust
 const R_AVR_MS8_LDI_NEG: u32 = 23u32;
 ```
 
-### `R_AVR_LO8_LDI_GS`
+*Defined in [`object-0.37.3/src/elf.rs:4187`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4187)*
 
+### `R_AVR_LO8_LDI_GS`
 ```rust
 const R_AVR_LO8_LDI_GS: u32 = 24u32;
 ```
 
-### `R_AVR_HI8_LDI_GS`
+*Defined in [`object-0.37.3/src/elf.rs:4188`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4188)*
 
+### `R_AVR_HI8_LDI_GS`
 ```rust
 const R_AVR_HI8_LDI_GS: u32 = 25u32;
 ```
 
-### `R_AVR_8`
+*Defined in [`object-0.37.3/src/elf.rs:4189`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4189)*
 
+### `R_AVR_8`
 ```rust
 const R_AVR_8: u32 = 26u32;
 ```
 
-### `R_AVR_8_LO8`
+*Defined in [`object-0.37.3/src/elf.rs:4190`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4190)*
 
+### `R_AVR_8_LO8`
 ```rust
 const R_AVR_8_LO8: u32 = 27u32;
 ```
 
-### `R_AVR_8_HI8`
+*Defined in [`object-0.37.3/src/elf.rs:4191`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4191)*
 
+### `R_AVR_8_HI8`
 ```rust
 const R_AVR_8_HI8: u32 = 28u32;
 ```
 
-### `R_AVR_8_HLO8`
+*Defined in [`object-0.37.3/src/elf.rs:4192`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4192)*
 
+### `R_AVR_8_HLO8`
 ```rust
 const R_AVR_8_HLO8: u32 = 29u32;
 ```
 
-### `R_AVR_DIFF8`
+*Defined in [`object-0.37.3/src/elf.rs:4193`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4193)*
 
+### `R_AVR_DIFF8`
 ```rust
 const R_AVR_DIFF8: u32 = 30u32;
 ```
 
-### `R_AVR_DIFF16`
+*Defined in [`object-0.37.3/src/elf.rs:4194`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4194)*
 
+### `R_AVR_DIFF16`
 ```rust
 const R_AVR_DIFF16: u32 = 31u32;
 ```
 
-### `R_AVR_DIFF32`
+*Defined in [`object-0.37.3/src/elf.rs:4195`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4195)*
 
+### `R_AVR_DIFF32`
 ```rust
 const R_AVR_DIFF32: u32 = 32u32;
 ```
 
-### `R_AVR_LDS_STS_16`
+*Defined in [`object-0.37.3/src/elf.rs:4196`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4196)*
 
+### `R_AVR_LDS_STS_16`
 ```rust
 const R_AVR_LDS_STS_16: u32 = 33u32;
 ```
 
-### `R_AVR_PORT6`
+*Defined in [`object-0.37.3/src/elf.rs:4197`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4197)*
 
+### `R_AVR_PORT6`
 ```rust
 const R_AVR_PORT6: u32 = 34u32;
 ```
 
-### `R_AVR_PORT5`
+*Defined in [`object-0.37.3/src/elf.rs:4198`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4198)*
 
+### `R_AVR_PORT5`
 ```rust
 const R_AVR_PORT5: u32 = 35u32;
 ```
 
-### `R_AVR_32_PCREL`
+*Defined in [`object-0.37.3/src/elf.rs:4199`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4199)*
 
+### `R_AVR_32_PCREL`
 ```rust
 const R_AVR_32_PCREL: u32 = 36u32;
 ```
 
-### `R_MSP430_32`
+*Defined in [`object-0.37.3/src/elf.rs:4200`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4200)*
 
+### `R_MSP430_32`
 ```rust
 const R_MSP430_32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4205`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4205)*
+
 Direct 32 bit
 
 ### `R_MSP430_16_BYTE`
-
 ```rust
 const R_MSP430_16_BYTE: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4207`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4207)*
+
 Direct 16 bit
 
 ### `R_HEX_32`
-
 ```rust
 const R_HEX_32: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4212`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4212)*
+
 Direct 32 bit
 
 ### `R_ARM_NONE`
-
 ```rust
 const R_ARM_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4217`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4217)*
+
 No reloc
 
 ### `R_ARM_PC24`
-
 ```rust
 const R_ARM_PC24: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4219`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4219)*
+
 Deprecated PC relative 26 bit branch.
 
 ### `R_ARM_ABS32`
-
 ```rust
 const R_ARM_ABS32: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4221`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4221)*
+
 Direct 32 bit
 
 ### `R_ARM_REL32`
-
 ```rust
 const R_ARM_REL32: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4223`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4223)*
+
 PC relative 32 bit
 
 ### `R_ARM_PC13`
-
 ```rust
 const R_ARM_PC13: u32 = 4u32;
 ```
 
-### `R_ARM_ABS16`
+*Defined in [`object-0.37.3/src/elf.rs:4224`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4224)*
 
+### `R_ARM_ABS16`
 ```rust
 const R_ARM_ABS16: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4226`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4226)*
+
 Direct 16 bit
 
 ### `R_ARM_ABS12`
-
 ```rust
 const R_ARM_ABS12: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4228`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4228)*
+
 Direct 12 bit
 
 ### `R_ARM_THM_ABS5`
-
 ```rust
 const R_ARM_THM_ABS5: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4230`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4230)*
+
 Direct & 0x7C (`LDR`, `STR`).
 
 ### `R_ARM_ABS8`
-
 ```rust
 const R_ARM_ABS8: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4232`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4232)*
+
 Direct 8 bit
 
 ### `R_ARM_SBREL32`
-
 ```rust
 const R_ARM_SBREL32: u32 = 9u32;
 ```
 
-### `R_ARM_THM_PC22`
+*Defined in [`object-0.37.3/src/elf.rs:4233`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4233)*
 
+### `R_ARM_THM_PC22`
 ```rust
 const R_ARM_THM_PC22: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4235`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4235)*
+
 PC relative 24 bit (Thumb32 `BL`).
 
 ### `R_ARM_THM_PC8`
-
 ```rust
 const R_ARM_THM_PC8: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4237`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4237)*
+
 PC relative & 0x3FC (Thumb16 `LDR`, `ADD`, `ADR`).
 
 ### `R_ARM_AMP_VCALL9`
-
 ```rust
 const R_ARM_AMP_VCALL9: u32 = 12u32;
 ```
 
-### `R_ARM_SWI24`
+*Defined in [`object-0.37.3/src/elf.rs:4238`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4238)*
 
+### `R_ARM_SWI24`
 ```rust
 const R_ARM_SWI24: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4240`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4240)*
+
 Obsolete static relocation.
 
 ### `R_ARM_TLS_DESC`
-
 ```rust
 const R_ARM_TLS_DESC: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4242`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4242)*
+
 Dynamic relocation.
 
 ### `R_ARM_THM_SWI8`
-
 ```rust
 const R_ARM_THM_SWI8: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4244`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4244)*
+
 Reserved.
 
 ### `R_ARM_XPC25`
-
 ```rust
 const R_ARM_XPC25: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4246`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4246)*
+
 Reserved.
 
 ### `R_ARM_THM_XPC22`
-
 ```rust
 const R_ARM_THM_XPC22: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4248`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4248)*
+
 Reserved.
 
 ### `R_ARM_TLS_DTPMOD32`
-
 ```rust
 const R_ARM_TLS_DTPMOD32: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4250`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4250)*
+
 ID of module containing symbol
 
 ### `R_ARM_TLS_DTPOFF32`
-
 ```rust
 const R_ARM_TLS_DTPOFF32: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4252`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4252)*
+
 Offset in TLS block
 
 ### `R_ARM_TLS_TPOFF32`
-
 ```rust
 const R_ARM_TLS_TPOFF32: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4254`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4254)*
+
 Offset in static TLS block
 
 ### `R_ARM_COPY`
-
 ```rust
 const R_ARM_COPY: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4256`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4256)*
+
 Copy symbol at runtime
 
 ### `R_ARM_GLOB_DAT`
-
 ```rust
 const R_ARM_GLOB_DAT: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4258`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4258)*
+
 Create GOT entry
 
 ### `R_ARM_JUMP_SLOT`
-
 ```rust
 const R_ARM_JUMP_SLOT: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4260`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4260)*
+
 Create PLT entry
 
 ### `R_ARM_RELATIVE`
-
 ```rust
 const R_ARM_RELATIVE: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4262`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4262)*
+
 Adjust by program base
 
 ### `R_ARM_GOTOFF`
-
 ```rust
 const R_ARM_GOTOFF: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4264`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4264)*
+
 32 bit offset to GOT
 
 ### `R_ARM_GOTPC`
-
 ```rust
 const R_ARM_GOTPC: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4266`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4266)*
+
 32 bit PC relative offset to GOT
 
 ### `R_ARM_GOT32`
-
 ```rust
 const R_ARM_GOT32: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4268`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4268)*
+
 32 bit GOT entry
 
 ### `R_ARM_PLT32`
-
 ```rust
 const R_ARM_PLT32: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4270`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4270)*
+
 Deprecated, 32 bit PLT address.
 
 ### `R_ARM_CALL`
-
 ```rust
 const R_ARM_CALL: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4272`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4272)*
+
 PC relative 24 bit (`BL`, `BLX`).
 
 ### `R_ARM_JUMP24`
-
 ```rust
 const R_ARM_JUMP24: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4274`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4274)*
+
 PC relative 24 bit (`B`, `BL<cond>`).
 
 ### `R_ARM_THM_JUMP24`
-
 ```rust
 const R_ARM_THM_JUMP24: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4276`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4276)*
+
 PC relative 24 bit (Thumb32 `B.W`).
 
 ### `R_ARM_BASE_ABS`
-
 ```rust
 const R_ARM_BASE_ABS: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4278`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4278)*
+
 Adjust by program base.
 
 ### `R_ARM_ALU_PCREL_7_0`
-
 ```rust
 const R_ARM_ALU_PCREL_7_0: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4280`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4280)*
+
 Obsolete.
 
 ### `R_ARM_ALU_PCREL_15_8`
-
 ```rust
 const R_ARM_ALU_PCREL_15_8: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4282`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4282)*
+
 Obsolete.
 
 ### `R_ARM_ALU_PCREL_23_15`
-
 ```rust
 const R_ARM_ALU_PCREL_23_15: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4284`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4284)*
+
 Obsolete.
 
 ### `R_ARM_LDR_SBREL_11_0`
-
 ```rust
 const R_ARM_LDR_SBREL_11_0: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4286`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4286)*
+
 Deprecated, prog. base relative.
 
 ### `R_ARM_ALU_SBREL_19_12`
-
 ```rust
 const R_ARM_ALU_SBREL_19_12: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4288`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4288)*
+
 Deprecated, prog. base relative.
 
 ### `R_ARM_ALU_SBREL_27_20`
-
 ```rust
 const R_ARM_ALU_SBREL_27_20: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4290`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4290)*
+
 Deprecated, prog. base relative.
 
 ### `R_ARM_TARGET1`
-
 ```rust
 const R_ARM_TARGET1: u32 = 38u32;
 ```
 
-### `R_ARM_SBREL31`
+*Defined in [`object-0.37.3/src/elf.rs:4291`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4291)*
 
+### `R_ARM_SBREL31`
 ```rust
 const R_ARM_SBREL31: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4293`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4293)*
+
 Program base relative.
 
 ### `R_ARM_V4BX`
-
 ```rust
 const R_ARM_V4BX: u32 = 40u32;
 ```
 
-### `R_ARM_TARGET2`
+*Defined in [`object-0.37.3/src/elf.rs:4294`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4294)*
 
+### `R_ARM_TARGET2`
 ```rust
 const R_ARM_TARGET2: u32 = 41u32;
 ```
 
-### `R_ARM_PREL31`
+*Defined in [`object-0.37.3/src/elf.rs:4295`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4295)*
 
+### `R_ARM_PREL31`
 ```rust
 const R_ARM_PREL31: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4297`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4297)*
+
 32 bit PC relative.
 
 ### `R_ARM_MOVW_ABS_NC`
-
 ```rust
 const R_ARM_MOVW_ABS_NC: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4299`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4299)*
+
 Direct 16-bit (`MOVW`).
 
 ### `R_ARM_MOVT_ABS`
-
 ```rust
 const R_ARM_MOVT_ABS: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4301`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4301)*
+
 Direct high 16-bit (`MOVT`).
 
 ### `R_ARM_MOVW_PREL_NC`
-
 ```rust
 const R_ARM_MOVW_PREL_NC: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4303`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4303)*
+
 PC relative 16-bit (`MOVW`).
 
 ### `R_ARM_MOVT_PREL`
-
 ```rust
 const R_ARM_MOVT_PREL: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4305`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4305)*
+
 PC relative (MOVT).
 
 ### `R_ARM_THM_MOVW_ABS_NC`
-
 ```rust
 const R_ARM_THM_MOVW_ABS_NC: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4307`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4307)*
+
 Direct 16 bit (Thumb32 `MOVW`).
 
 ### `R_ARM_THM_MOVT_ABS`
-
 ```rust
 const R_ARM_THM_MOVT_ABS: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4309`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4309)*
+
 Direct high 16 bit (Thumb32 `MOVT`).
 
 ### `R_ARM_THM_MOVW_PREL_NC`
-
 ```rust
 const R_ARM_THM_MOVW_PREL_NC: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4311`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4311)*
+
 PC relative 16 bit (Thumb32 `MOVW`).
 
 ### `R_ARM_THM_MOVT_PREL`
-
 ```rust
 const R_ARM_THM_MOVT_PREL: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4313`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4313)*
+
 PC relative high 16 bit (Thumb32 `MOVT`).
 
 ### `R_ARM_THM_JUMP19`
-
 ```rust
 const R_ARM_THM_JUMP19: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4315`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4315)*
+
 PC relative 20 bit (Thumb32 `B<cond>.W`).
 
 ### `R_ARM_THM_JUMP6`
-
 ```rust
 const R_ARM_THM_JUMP6: u32 = 52u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4317`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4317)*
+
 PC relative X & 0x7E (Thumb16 `CBZ`, `CBNZ`).
 
 ### `R_ARM_THM_ALU_PREL_11_0`
-
 ```rust
 const R_ARM_THM_ALU_PREL_11_0: u32 = 53u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4319`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4319)*
+
 PC relative 12 bit (Thumb32 `ADR.W`).
 
 ### `R_ARM_THM_PC12`
-
 ```rust
 const R_ARM_THM_PC12: u32 = 54u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4321`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4321)*
+
 PC relative 12 bit (Thumb32 `LDR{D,SB,H,SH}`).
 
 ### `R_ARM_ABS32_NOI`
-
 ```rust
 const R_ARM_ABS32_NOI: u32 = 55u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4323`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4323)*
+
 Direct 32-bit.
 
 ### `R_ARM_REL32_NOI`
-
 ```rust
 const R_ARM_REL32_NOI: u32 = 56u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4325`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4325)*
+
 PC relative 32-bit.
 
 ### `R_ARM_ALU_PC_G0_NC`
-
 ```rust
 const R_ARM_ALU_PC_G0_NC: u32 = 57u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4327`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4327)*
+
 PC relative (`ADD`, `SUB`).
 
 ### `R_ARM_ALU_PC_G0`
-
 ```rust
 const R_ARM_ALU_PC_G0: u32 = 58u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4329`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4329)*
+
 PC relative (`ADD`, `SUB`).
 
 ### `R_ARM_ALU_PC_G1_NC`
-
 ```rust
 const R_ARM_ALU_PC_G1_NC: u32 = 59u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4331`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4331)*
+
 PC relative (`ADD`, `SUB`).
 
 ### `R_ARM_ALU_PC_G1`
-
 ```rust
 const R_ARM_ALU_PC_G1: u32 = 60u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4333`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4333)*
+
 PC relative (`ADD`, `SUB`).
 
 ### `R_ARM_ALU_PC_G2`
-
 ```rust
 const R_ARM_ALU_PC_G2: u32 = 61u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4335`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4335)*
+
 PC relative (`ADD`, `SUB`).
 
 ### `R_ARM_LDR_PC_G1`
-
 ```rust
 const R_ARM_LDR_PC_G1: u32 = 62u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4337`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4337)*
+
 PC relative (`LDR`,`STR`,`LDRB`,`STRB`).
 
 ### `R_ARM_LDR_PC_G2`
-
 ```rust
 const R_ARM_LDR_PC_G2: u32 = 63u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4339`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4339)*
+
 PC relative (`LDR`,`STR`,`LDRB`,`STRB`).
 
 ### `R_ARM_LDRS_PC_G0`
-
 ```rust
 const R_ARM_LDRS_PC_G0: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4341`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4341)*
+
 PC relative (`STR{D,H}`, `LDR{D,SB,H,SH}`).
 
 ### `R_ARM_LDRS_PC_G1`
-
 ```rust
 const R_ARM_LDRS_PC_G1: u32 = 65u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4343`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4343)*
+
 PC relative (`STR{D,H}`, `LDR{D,SB,H,SH}`).
 
 ### `R_ARM_LDRS_PC_G2`
-
 ```rust
 const R_ARM_LDRS_PC_G2: u32 = 66u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4345`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4345)*
+
 PC relative (`STR{D,H}`, `LDR{D,SB,H,SH}`).
 
 ### `R_ARM_LDC_PC_G0`
-
 ```rust
 const R_ARM_LDC_PC_G0: u32 = 67u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4347`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4347)*
+
 PC relative (`LDC`, `STC`).
 
 ### `R_ARM_LDC_PC_G1`
-
 ```rust
 const R_ARM_LDC_PC_G1: u32 = 68u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4349`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4349)*
+
 PC relative (`LDC`, `STC`).
 
 ### `R_ARM_LDC_PC_G2`
-
 ```rust
 const R_ARM_LDC_PC_G2: u32 = 69u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4351`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4351)*
+
 PC relative (`LDC`, `STC`).
 
 ### `R_ARM_ALU_SB_G0_NC`
-
 ```rust
 const R_ARM_ALU_SB_G0_NC: u32 = 70u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4353`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4353)*
+
 Program base relative (`ADD`,`SUB`).
 
 ### `R_ARM_ALU_SB_G0`
-
 ```rust
 const R_ARM_ALU_SB_G0: u32 = 71u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4355`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4355)*
+
 Program base relative (`ADD`,`SUB`).
 
 ### `R_ARM_ALU_SB_G1_NC`
-
 ```rust
 const R_ARM_ALU_SB_G1_NC: u32 = 72u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4357`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4357)*
+
 Program base relative (`ADD`,`SUB`).
 
 ### `R_ARM_ALU_SB_G1`
-
 ```rust
 const R_ARM_ALU_SB_G1: u32 = 73u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4359`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4359)*
+
 Program base relative (`ADD`,`SUB`).
 
 ### `R_ARM_ALU_SB_G2`
-
 ```rust
 const R_ARM_ALU_SB_G2: u32 = 74u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4361`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4361)*
+
 Program base relative (`ADD`,`SUB`).
 
 ### `R_ARM_LDR_SB_G0`
-
 ```rust
 const R_ARM_LDR_SB_G0: u32 = 75u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4363`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4363)*
+
 Program base relative (`LDR`, `STR`, `LDRB`, `STRB`).
 
 ### `R_ARM_LDR_SB_G1`
-
 ```rust
 const R_ARM_LDR_SB_G1: u32 = 76u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4365`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4365)*
+
 Program base relative (`LDR`, `STR`, `LDRB`, `STRB`).
 
 ### `R_ARM_LDR_SB_G2`
-
 ```rust
 const R_ARM_LDR_SB_G2: u32 = 77u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4367`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4367)*
+
 Program base relative (`LDR`, `STR`, `LDRB`, `STRB`).
 
 ### `R_ARM_LDRS_SB_G0`
-
 ```rust
 const R_ARM_LDRS_SB_G0: u32 = 78u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4369`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4369)*
+
 Program base relative (`LDR`, `STR`, `LDRB`, `STRB`).
 
 ### `R_ARM_LDRS_SB_G1`
-
 ```rust
 const R_ARM_LDRS_SB_G1: u32 = 79u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4371`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4371)*
+
 Program base relative (`LDR`, `STR`, `LDRB`, `STRB`).
 
 ### `R_ARM_LDRS_SB_G2`
-
 ```rust
 const R_ARM_LDRS_SB_G2: u32 = 80u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4373`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4373)*
+
 Program base relative (`LDR`, `STR`, `LDRB`, `STRB`).
 
 ### `R_ARM_LDC_SB_G0`
-
 ```rust
 const R_ARM_LDC_SB_G0: u32 = 81u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4375`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4375)*
+
 Program base relative (`LDC`,`STC`).
 
 ### `R_ARM_LDC_SB_G1`
-
 ```rust
 const R_ARM_LDC_SB_G1: u32 = 82u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4377`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4377)*
+
 Program base relative (`LDC`,`STC`).
 
 ### `R_ARM_LDC_SB_G2`
-
 ```rust
 const R_ARM_LDC_SB_G2: u32 = 83u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4379`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4379)*
+
 Program base relative (`LDC`,`STC`).
 
 ### `R_ARM_MOVW_BREL_NC`
-
 ```rust
 const R_ARM_MOVW_BREL_NC: u32 = 84u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4381`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4381)*
+
 Program base relative 16 bit (`MOVW`).
 
 ### `R_ARM_MOVT_BREL`
-
 ```rust
 const R_ARM_MOVT_BREL: u32 = 85u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4383`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4383)*
+
 Program base relative high 16 bit (`MOVT`).
 
 ### `R_ARM_MOVW_BREL`
-
 ```rust
 const R_ARM_MOVW_BREL: u32 = 86u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4385`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4385)*
+
 Program base relative 16 bit (`MOVW`).
 
 ### `R_ARM_THM_MOVW_BREL_NC`
-
 ```rust
 const R_ARM_THM_MOVW_BREL_NC: u32 = 87u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4387`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4387)*
+
 Program base relative 16 bit (Thumb32 `MOVW`).
 
 ### `R_ARM_THM_MOVT_BREL`
-
 ```rust
 const R_ARM_THM_MOVT_BREL: u32 = 88u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4389`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4389)*
+
 Program base relative high 16 bit (Thumb32 `MOVT`).
 
 ### `R_ARM_THM_MOVW_BREL`
-
 ```rust
 const R_ARM_THM_MOVW_BREL: u32 = 89u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4391`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4391)*
+
 Program base relative 16 bit (Thumb32 `MOVW`).
 
 ### `R_ARM_TLS_GOTDESC`
-
 ```rust
 const R_ARM_TLS_GOTDESC: u32 = 90u32;
 ```
 
-### `R_ARM_TLS_CALL`
+*Defined in [`object-0.37.3/src/elf.rs:4392`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4392)*
 
+### `R_ARM_TLS_CALL`
 ```rust
 const R_ARM_TLS_CALL: u32 = 91u32;
 ```
 
-### `R_ARM_TLS_DESCSEQ`
+*Defined in [`object-0.37.3/src/elf.rs:4393`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4393)*
 
+### `R_ARM_TLS_DESCSEQ`
 ```rust
 const R_ARM_TLS_DESCSEQ: u32 = 92u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4395`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4395)*
+
 TLS relaxation.
 
 ### `R_ARM_THM_TLS_CALL`
-
 ```rust
 const R_ARM_THM_TLS_CALL: u32 = 93u32;
 ```
 
-### `R_ARM_PLT32_ABS`
+*Defined in [`object-0.37.3/src/elf.rs:4396`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4396)*
 
+### `R_ARM_PLT32_ABS`
 ```rust
 const R_ARM_PLT32_ABS: u32 = 94u32;
 ```
 
-### `R_ARM_GOT_ABS`
+*Defined in [`object-0.37.3/src/elf.rs:4397`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4397)*
 
+### `R_ARM_GOT_ABS`
 ```rust
 const R_ARM_GOT_ABS: u32 = 95u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4399`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4399)*
+
 GOT entry.
 
 ### `R_ARM_GOT_PREL`
-
 ```rust
 const R_ARM_GOT_PREL: u32 = 96u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4401`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4401)*
+
 PC relative GOT entry.
 
 ### `R_ARM_GOT_BREL12`
-
 ```rust
 const R_ARM_GOT_BREL12: u32 = 97u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4403`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4403)*
+
 GOT entry relative to GOT origin (`LDR`).
 
 ### `R_ARM_GOTOFF12`
-
 ```rust
 const R_ARM_GOTOFF12: u32 = 98u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4405`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4405)*
+
 12 bit, GOT entry relative to GOT origin (`LDR`, `STR`).
 
 ### `R_ARM_GOTRELAX`
-
 ```rust
 const R_ARM_GOTRELAX: u32 = 99u32;
 ```
 
-### `R_ARM_GNU_VTENTRY`
+*Defined in [`object-0.37.3/src/elf.rs:4406`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4406)*
 
+### `R_ARM_GNU_VTENTRY`
 ```rust
 const R_ARM_GNU_VTENTRY: u32 = 100u32;
 ```
 
-### `R_ARM_GNU_VTINHERIT`
+*Defined in [`object-0.37.3/src/elf.rs:4407`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4407)*
 
+### `R_ARM_GNU_VTINHERIT`
 ```rust
 const R_ARM_GNU_VTINHERIT: u32 = 101u32;
 ```
 
-### `R_ARM_THM_PC11`
+*Defined in [`object-0.37.3/src/elf.rs:4408`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4408)*
 
+### `R_ARM_THM_PC11`
 ```rust
 const R_ARM_THM_PC11: u32 = 102u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4410`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4410)*
+
 PC relative & 0xFFE (Thumb16 `B`).
 
 ### `R_ARM_THM_PC9`
-
 ```rust
 const R_ARM_THM_PC9: u32 = 103u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4412`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4412)*
+
 PC relative & 0x1FE (Thumb16 `B`/`B<cond>`).
 
 ### `R_ARM_TLS_GD32`
-
 ```rust
 const R_ARM_TLS_GD32: u32 = 104u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4414`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4414)*
+
 PC-rel 32 bit for global dynamic thread local data
 
 ### `R_ARM_TLS_LDM32`
-
 ```rust
 const R_ARM_TLS_LDM32: u32 = 105u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4416`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4416)*
+
 PC-rel 32 bit for local dynamic thread local data
 
 ### `R_ARM_TLS_LDO32`
-
 ```rust
 const R_ARM_TLS_LDO32: u32 = 106u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4418`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4418)*
+
 32 bit offset relative to TLS block
 
 ### `R_ARM_TLS_IE32`
-
 ```rust
 const R_ARM_TLS_IE32: u32 = 107u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4420`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4420)*
+
 PC-rel 32 bit for GOT entry of static TLS block offset
 
 ### `R_ARM_TLS_LE32`
-
 ```rust
 const R_ARM_TLS_LE32: u32 = 108u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4422`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4422)*
+
 32 bit offset relative to static TLS block
 
 ### `R_ARM_TLS_LDO12`
-
 ```rust
 const R_ARM_TLS_LDO12: u32 = 109u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4424`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4424)*
+
 12 bit relative to TLS block (`LDR`, `STR`).
 
 ### `R_ARM_TLS_LE12`
-
 ```rust
 const R_ARM_TLS_LE12: u32 = 110u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4426`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4426)*
+
 12 bit relative to static TLS block (`LDR`, `STR`).
 
 ### `R_ARM_TLS_IE12GP`
-
 ```rust
 const R_ARM_TLS_IE12GP: u32 = 111u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4428`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4428)*
+
 12 bit GOT entry relative to GOT origin (`LDR`).
 
 ### `R_ARM_ME_TOO`
-
 ```rust
 const R_ARM_ME_TOO: u32 = 128u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4430`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4430)*
+
 Obsolete.
 
 ### `R_ARM_THM_TLS_DESCSEQ`
-
 ```rust
 const R_ARM_THM_TLS_DESCSEQ: u32 = 129u32;
 ```
 
-### `R_ARM_THM_TLS_DESCSEQ16`
+*Defined in [`object-0.37.3/src/elf.rs:4431`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4431)*
 
+### `R_ARM_THM_TLS_DESCSEQ16`
 ```rust
 const R_ARM_THM_TLS_DESCSEQ16: u32 = 129u32;
 ```
 
-### `R_ARM_THM_TLS_DESCSEQ32`
+*Defined in [`object-0.37.3/src/elf.rs:4432`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4432)*
 
+### `R_ARM_THM_TLS_DESCSEQ32`
 ```rust
 const R_ARM_THM_TLS_DESCSEQ32: u32 = 130u32;
 ```
 
-### `R_ARM_THM_GOT_BREL12`
+*Defined in [`object-0.37.3/src/elf.rs:4433`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4433)*
 
+### `R_ARM_THM_GOT_BREL12`
 ```rust
 const R_ARM_THM_GOT_BREL12: u32 = 131u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4435`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4435)*
+
 GOT entry relative to GOT origin, 12 bit (Thumb32 `LDR`).
 
 ### `R_ARM_IRELATIVE`
-
 ```rust
 const R_ARM_IRELATIVE: u32 = 160u32;
 ```
 
-### `R_ARM_RXPC25`
+*Defined in [`object-0.37.3/src/elf.rs:4436`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4436)*
 
+### `R_ARM_RXPC25`
 ```rust
 const R_ARM_RXPC25: u32 = 249u32;
 ```
 
-### `R_ARM_RSBREL32`
+*Defined in [`object-0.37.3/src/elf.rs:4437`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4437)*
 
+### `R_ARM_RSBREL32`
 ```rust
 const R_ARM_RSBREL32: u32 = 250u32;
 ```
 
-### `R_ARM_THM_RPC22`
+*Defined in [`object-0.37.3/src/elf.rs:4438`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4438)*
 
+### `R_ARM_THM_RPC22`
 ```rust
 const R_ARM_THM_RPC22: u32 = 251u32;
 ```
 
-### `R_ARM_RREL32`
+*Defined in [`object-0.37.3/src/elf.rs:4439`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4439)*
 
+### `R_ARM_RREL32`
 ```rust
 const R_ARM_RREL32: u32 = 252u32;
 ```
 
-### `R_ARM_RABS22`
+*Defined in [`object-0.37.3/src/elf.rs:4440`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4440)*
 
+### `R_ARM_RABS22`
 ```rust
 const R_ARM_RABS22: u32 = 253u32;
 ```
 
-### `R_ARM_RPC24`
+*Defined in [`object-0.37.3/src/elf.rs:4441`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4441)*
 
+### `R_ARM_RPC24`
 ```rust
 const R_ARM_RPC24: u32 = 254u32;
 ```
 
-### `R_ARM_RBASE`
+*Defined in [`object-0.37.3/src/elf.rs:4442`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4442)*
 
+### `R_ARM_RBASE`
 ```rust
 const R_ARM_RBASE: u32 = 255u32;
 ```
 
-### `R_CKCORE_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:4443`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4443)*
 
+### `R_CKCORE_NONE`
 ```rust
 const R_CKCORE_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4447`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4447)*
+
 no reloc
 
 ### `R_CKCORE_ADDR32`
-
 ```rust
 const R_CKCORE_ADDR32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4449`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4449)*
+
 direct 32 bit (S + A)
 
 ### `R_CKCORE_PCRELIMM8BY4`
-
 ```rust
 const R_CKCORE_PCRELIMM8BY4: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4451`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4451)*
+
 disp ((S + A - P) >> 2) & 0xff
 
 ### `R_CKCORE_PCRELIMM11BY2`
-
 ```rust
 const R_CKCORE_PCRELIMM11BY2: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4453`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4453)*
+
 disp ((S + A - P) >> 1) & 0x7ff
 
 ### `R_CKCORE_PCREL32`
-
 ```rust
 const R_CKCORE_PCREL32: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4455`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4455)*
+
 32-bit rel (S + A - P)
 
 ### `R_CKCORE_PCRELJSR_IMM11BY2`
-
 ```rust
 const R_CKCORE_PCRELJSR_IMM11BY2: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4457`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4457)*
+
 disp ((S + A - P) >>1) & 0x7ff
 
 ### `R_CKCORE_RELATIVE`
-
 ```rust
 const R_CKCORE_RELATIVE: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4459`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4459)*
+
 32 bit adjust program base(B + A)
 
 ### `R_CKCORE_COPY`
-
 ```rust
 const R_CKCORE_COPY: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4461`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4461)*
+
 32 bit adjust by program base
 
 ### `R_CKCORE_GLOB_DAT`
-
 ```rust
 const R_CKCORE_GLOB_DAT: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4463`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4463)*
+
 off between got and sym (S)
 
 ### `R_CKCORE_JUMP_SLOT`
-
 ```rust
 const R_CKCORE_JUMP_SLOT: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4465`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4465)*
+
 PLT entry (S)
 
 ### `R_CKCORE_GOTOFF`
-
 ```rust
 const R_CKCORE_GOTOFF: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4467`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4467)*
+
 offset to GOT (S + A - GOT)
 
 ### `R_CKCORE_GOTPC`
-
 ```rust
 const R_CKCORE_GOTPC: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4469`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4469)*
+
 PC offset to GOT (GOT + A - P)
 
 ### `R_CKCORE_GOT32`
-
 ```rust
 const R_CKCORE_GOT32: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4471`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4471)*
+
 32 bit GOT entry (G)
 
 ### `R_CKCORE_PLT32`
-
 ```rust
 const R_CKCORE_PLT32: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4473`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4473)*
+
 32 bit PLT entry (G)
 
 ### `R_CKCORE_ADDRGOT`
-
 ```rust
 const R_CKCORE_ADDRGOT: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4475`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4475)*
+
 GOT entry in GLOB_DAT (GOT + G)
 
 ### `R_CKCORE_ADDRPLT`
-
 ```rust
 const R_CKCORE_ADDRPLT: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4477`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4477)*
+
 PLT entry in GLOB_DAT (GOT + G)
 
 ### `R_CKCORE_PCREL_IMM26BY2`
-
 ```rust
 const R_CKCORE_PCREL_IMM26BY2: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4479`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4479)*
+
 ((S + A - P) >> 1) & 0x3ff_ffff
 
 ### `R_CKCORE_PCREL_IMM16BY2`
-
 ```rust
 const R_CKCORE_PCREL_IMM16BY2: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4481`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4481)*
+
 disp ((S + A - P) >> 1) & 0xffff
 
 ### `R_CKCORE_PCREL_IMM16BY4`
-
 ```rust
 const R_CKCORE_PCREL_IMM16BY4: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4483`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4483)*
+
 disp ((S + A - P) >> 2) & 0xffff
 
 ### `R_CKCORE_PCREL_IMM10BY2`
-
 ```rust
 const R_CKCORE_PCREL_IMM10BY2: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4485`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4485)*
+
 disp ((S + A - P) >> 1) & 0x3ff
 
 ### `R_CKCORE_PCREL_IMM10BY4`
-
 ```rust
 const R_CKCORE_PCREL_IMM10BY4: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4487`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4487)*
+
 disp ((S + A - P) >> 2) & 0x3ff
 
 ### `R_CKCORE_ADDR_HI16`
-
 ```rust
 const R_CKCORE_ADDR_HI16: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4489`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4489)*
+
 high & low 16 bit ADDR, ((S + A) >> 16) & 0xffff
 
 ### `R_CKCORE_ADDR_LO16`
-
 ```rust
 const R_CKCORE_ADDR_LO16: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4491`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4491)*
+
 (S + A) & 0xffff
 
 ### `R_CKCORE_GOTPC_HI16`
-
 ```rust
 const R_CKCORE_GOTPC_HI16: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4493`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4493)*
+
 high & low 16 bit GOTPC, ((GOT + A - P) >> 16) & 0xffff
 
 ### `R_CKCORE_GOTPC_LO16`
-
 ```rust
 const R_CKCORE_GOTPC_LO16: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4495`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4495)*
+
 (GOT + A - P) & 0xffff
 
 ### `R_CKCORE_GOTOFF_HI16`
-
 ```rust
 const R_CKCORE_GOTOFF_HI16: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4497`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4497)*
+
 high & low 16 bit GOTOFF, ((S + A - GOT) >> 16) & 0xffff
 
 ### `R_CKCORE_GOTOFF_LO16`
-
 ```rust
 const R_CKCORE_GOTOFF_LO16: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4499`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4499)*
+
 (S + A - GOT) & 0xffff
 
 ### `R_CKCORE_GOT12`
-
 ```rust
 const R_CKCORE_GOT12: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4501`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4501)*
+
 12 bit disp GOT entry (G)
 
 ### `R_CKCORE_GOT_HI16`
-
 ```rust
 const R_CKCORE_GOT_HI16: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4503`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4503)*
+
 high & low 16 bit GOT, (G >> 16) & 0xffff
 
 ### `R_CKCORE_GOT_LO16`
-
 ```rust
 const R_CKCORE_GOT_LO16: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4505`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4505)*
+
 (G & 0xffff)
 
 ### `R_CKCORE_PLT12`
-
 ```rust
 const R_CKCORE_PLT12: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4507`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4507)*
+
 12 bit disp PLT entry (G)
 
 ### `R_CKCORE_PLT_HI16`
-
 ```rust
 const R_CKCORE_PLT_HI16: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4509`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4509)*
+
 high & low 16 bit PLT, (G >> 16) & 0xffff
 
 ### `R_CKCORE_PLT_LO16`
-
 ```rust
 const R_CKCORE_PLT_LO16: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4511`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4511)*
+
 G & 0xffff
 
 ### `R_CKCORE_ADDRGOT_HI16`
-
 ```rust
 const R_CKCORE_ADDRGOT_HI16: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4513`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4513)*
+
 high & low 16 bit ADDRGOT, (GOT + G * 4) & 0xffff
 
 ### `R_CKCORE_ADDRGOT_LO16`
-
 ```rust
 const R_CKCORE_ADDRGOT_LO16: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4515`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4515)*
+
 (GOT + G * 4) & 0xffff
 
 ### `R_CKCORE_ADDRPLT_HI16`
-
 ```rust
 const R_CKCORE_ADDRPLT_HI16: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4517`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4517)*
+
 high & low 16 bit ADDRPLT, ((GOT + G * 4) >> 16) & 0xFFFF
 
 ### `R_CKCORE_ADDRPLT_LO16`
-
 ```rust
 const R_CKCORE_ADDRPLT_LO16: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4519`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4519)*
+
 (GOT+G*4) & 0xffff
 
 ### `R_CKCORE_PCREL_JSR_IMM26BY2`
-
 ```rust
 const R_CKCORE_PCREL_JSR_IMM26BY2: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4521`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4521)*
+
 disp ((S+A-P) >>1) & x3ff_ffff
 
 ### `R_CKCORE_TOFFSET_LO16`
-
 ```rust
 const R_CKCORE_TOFFSET_LO16: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4523`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4523)*
+
 (S+A-BTEXT) & 0xffff
 
 ### `R_CKCORE_DOFFSET_LO16`
-
 ```rust
 const R_CKCORE_DOFFSET_LO16: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4525`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4525)*
+
 (S+A-BTEXT) & 0xffff
 
 ### `R_CKCORE_PCREL_IMM18BY2`
-
 ```rust
 const R_CKCORE_PCREL_IMM18BY2: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4527`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4527)*
+
 disp ((S+A-P) >>1) & 0x3ffff
 
 ### `R_CKCORE_DOFFSET_IMM18`
-
 ```rust
 const R_CKCORE_DOFFSET_IMM18: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4529`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4529)*
+
 disp (S+A-BDATA) & 0x3ffff
 
 ### `R_CKCORE_DOFFSET_IMM18BY2`
-
 ```rust
 const R_CKCORE_DOFFSET_IMM18BY2: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4531`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4531)*
+
 disp ((S+A-BDATA)>>1) & 0x3ffff
 
 ### `R_CKCORE_DOFFSET_IMM18BY4`
-
 ```rust
 const R_CKCORE_DOFFSET_IMM18BY4: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4533`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4533)*
+
 disp ((S+A-BDATA)>>2) & 0x3ffff
 
 ### `R_CKCORE_GOT_IMM18BY4`
-
 ```rust
 const R_CKCORE_GOT_IMM18BY4: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4535`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4535)*
+
 disp (G >> 2)
 
 ### `R_CKCORE_PLT_IMM18BY4`
-
 ```rust
 const R_CKCORE_PLT_IMM18BY4: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4537`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4537)*
+
 disp (G >> 2)
 
 ### `R_CKCORE_PCREL_IMM7BY4`
-
 ```rust
 const R_CKCORE_PCREL_IMM7BY4: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4539`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4539)*
+
 disp ((S+A-P) >>2) & 0x7f
 
 ### `R_CKCORE_TLS_LE32`
-
 ```rust
 const R_CKCORE_TLS_LE32: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4541`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4541)*
+
 32 bit offset to TLS block
 
 ### `R_CKCORE_TLS_IE32`
-
 ```rust
 const R_CKCORE_TLS_IE32: u32 = 52u32;
 ```
 
-### `R_CKCORE_TLS_GD32`
+*Defined in [`object-0.37.3/src/elf.rs:4542`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4542)*
 
+### `R_CKCORE_TLS_GD32`
 ```rust
 const R_CKCORE_TLS_GD32: u32 = 53u32;
 ```
 
-### `R_CKCORE_TLS_LDM32`
+*Defined in [`object-0.37.3/src/elf.rs:4543`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4543)*
 
+### `R_CKCORE_TLS_LDM32`
 ```rust
 const R_CKCORE_TLS_LDM32: u32 = 54u32;
 ```
 
-### `R_CKCORE_TLS_LDO32`
+*Defined in [`object-0.37.3/src/elf.rs:4544`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4544)*
 
+### `R_CKCORE_TLS_LDO32`
 ```rust
 const R_CKCORE_TLS_LDO32: u32 = 55u32;
 ```
 
-### `R_CKCORE_TLS_DTPMOD32`
+*Defined in [`object-0.37.3/src/elf.rs:4545`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4545)*
 
+### `R_CKCORE_TLS_DTPMOD32`
 ```rust
 const R_CKCORE_TLS_DTPMOD32: u32 = 56u32;
 ```
 
-### `R_CKCORE_TLS_DTPOFF32`
+*Defined in [`object-0.37.3/src/elf.rs:4546`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4546)*
 
+### `R_CKCORE_TLS_DTPOFF32`
 ```rust
 const R_CKCORE_TLS_DTPOFF32: u32 = 57u32;
 ```
 
-### `R_CKCORE_TLS_TPOFF32`
+*Defined in [`object-0.37.3/src/elf.rs:4547`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4547)*
 
+### `R_CKCORE_TLS_TPOFF32`
 ```rust
 const R_CKCORE_TLS_TPOFF32: u32 = 58u32;
 ```
 
-### `EF_CSKY_ABIMASK`
+*Defined in [`object-0.37.3/src/elf.rs:4548`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4548)*
 
+### `EF_CSKY_ABIMASK`
 ```rust
 const EF_CSKY_ABIMASK: u32 = 4_026_531_840u32;
 ```
 
-### `EF_CSKY_OTHER`
+*Defined in [`object-0.37.3/src/elf.rs:4551`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4551)*
 
+### `EF_CSKY_OTHER`
 ```rust
 const EF_CSKY_OTHER: u32 = 268_369_920u32;
 ```
 
-### `EF_CSKY_PROCESSOR`
+*Defined in [`object-0.37.3/src/elf.rs:4552`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4552)*
 
+### `EF_CSKY_PROCESSOR`
 ```rust
 const EF_CSKY_PROCESSOR: u32 = 65_535u32;
 ```
 
-### `EF_CSKY_ABIV1`
+*Defined in [`object-0.37.3/src/elf.rs:4553`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4553)*
 
+### `EF_CSKY_ABIV1`
 ```rust
 const EF_CSKY_ABIV1: u32 = 268_435_456u32;
 ```
 
-### `EF_CSKY_ABIV2`
+*Defined in [`object-0.37.3/src/elf.rs:4555`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4555)*
 
+### `EF_CSKY_ABIV2`
 ```rust
 const EF_CSKY_ABIV2: u32 = 536_870_912u32;
 ```
 
-### `SHT_CSKY_ATTRIBUTES`
+*Defined in [`object-0.37.3/src/elf.rs:4556`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4556)*
 
+### `SHT_CSKY_ATTRIBUTES`
 ```rust
 const SHT_CSKY_ATTRIBUTES: u32 = 1_879_048_193u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4560`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4560)*
+
 C-SKY attributes section.
 
 ### `EF_IA_64_MASKOS`
-
 ```rust
 const EF_IA_64_MASKOS: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4566`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4566)*
+
 os-specific flags
 
 ### `EF_IA_64_ABI64`
-
 ```rust
 const EF_IA_64_ABI64: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4568`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4568)*
+
 64-bit ABI
 
 ### `EF_IA_64_ARCH`
-
 ```rust
 const EF_IA_64_ARCH: u32 = 4_278_190_080u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4570`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4570)*
+
 arch. version mask
 
 ### `PT_IA_64_ARCHEXT`
-
 ```rust
 const PT_IA_64_ARCHEXT: u32 = 1_879_048_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4574`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4574)*
+
 arch extension bits
 
 ### `PT_IA_64_UNWIND`
-
 ```rust
 const PT_IA_64_UNWIND: u32 = 1_879_048_193u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4576`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4576)*
+
 ia64 unwind bits
 
 ### `PT_IA_64_HP_OPT_ANOT`
-
 ```rust
 const PT_IA_64_HP_OPT_ANOT: u32 = 1_610_612_754u32;
 ```
 
-### `PT_IA_64_HP_HSL_ANOT`
+*Defined in [`object-0.37.3/src/elf.rs:4577`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4577)*
 
+### `PT_IA_64_HP_HSL_ANOT`
 ```rust
 const PT_IA_64_HP_HSL_ANOT: u32 = 1_610_612_755u32;
 ```
 
-### `PT_IA_64_HP_STACK`
+*Defined in [`object-0.37.3/src/elf.rs:4578`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4578)*
 
+### `PT_IA_64_HP_STACK`
 ```rust
 const PT_IA_64_HP_STACK: u32 = 1_610_612_756u32;
 ```
 
-### `PF_IA_64_NORECOV`
+*Defined in [`object-0.37.3/src/elf.rs:4579`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4579)*
 
+### `PF_IA_64_NORECOV`
 ```rust
 const PF_IA_64_NORECOV: u32 = 2_147_483_648u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4583`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4583)*
+
 spec insns w/o recovery
 
 ### `SHT_IA_64_EXT`
-
 ```rust
 const SHT_IA_64_EXT: u32 = 1_879_048_192u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4587`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4587)*
+
 extension bits
 
 ### `SHT_IA_64_UNWIND`
-
 ```rust
 const SHT_IA_64_UNWIND: u32 = 1_879_048_193u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4589`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4589)*
+
 unwind bits
 
 ### `SHF_IA_64_SHORT`
-
 ```rust
 const SHF_IA_64_SHORT: u32 = 268_435_456u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4593`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4593)*
+
 section near gp
 
 ### `SHF_IA_64_NORECOV`
-
 ```rust
 const SHF_IA_64_NORECOV: u32 = 536_870_912u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4595`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4595)*
+
 spec insns w/o recovery
 
 ### `DT_IA_64_PLT_RESERVE`
-
 ```rust
 const DT_IA_64_PLT_RESERVE: u32 = 1_879_048_192u32;
 ```
 
-### `R_IA64_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:4598`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4598)*
 
+### `R_IA64_NONE`
 ```rust
 const R_IA64_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4602`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4602)*
+
 none
 
 ### `R_IA64_IMM14`
-
 ```rust
 const R_IA64_IMM14: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4604`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4604)*
+
 symbol + addend, add imm14
 
 ### `R_IA64_IMM22`
-
 ```rust
 const R_IA64_IMM22: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4606`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4606)*
+
 symbol + addend, add imm22
 
 ### `R_IA64_IMM64`
-
 ```rust
 const R_IA64_IMM64: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4608`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4608)*
+
 symbol + addend, mov imm64
 
 ### `R_IA64_DIR32MSB`
-
 ```rust
 const R_IA64_DIR32MSB: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4610`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4610)*
+
 symbol + addend, data4 MSB
 
 ### `R_IA64_DIR32LSB`
-
 ```rust
 const R_IA64_DIR32LSB: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4612`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4612)*
+
 symbol + addend, data4 LSB
 
 ### `R_IA64_DIR64MSB`
-
 ```rust
 const R_IA64_DIR64MSB: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4614`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4614)*
+
 symbol + addend, data8 MSB
 
 ### `R_IA64_DIR64LSB`
-
 ```rust
 const R_IA64_DIR64LSB: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4616`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4616)*
+
 symbol + addend, data8 LSB
 
 ### `R_IA64_GPREL22`
-
 ```rust
 const R_IA64_GPREL22: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4618`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4618)*
+
 @gprel(sym + add), add imm22
 
 ### `R_IA64_GPREL64I`
-
 ```rust
 const R_IA64_GPREL64I: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4620`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4620)*
+
 @gprel(sym + add), mov imm64
 
 ### `R_IA64_GPREL32MSB`
-
 ```rust
 const R_IA64_GPREL32MSB: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4622`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4622)*
+
 @gprel(sym + add), data4 MSB
 
 ### `R_IA64_GPREL32LSB`
-
 ```rust
 const R_IA64_GPREL32LSB: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4624`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4624)*
+
 @gprel(sym + add), data4 LSB
 
 ### `R_IA64_GPREL64MSB`
-
 ```rust
 const R_IA64_GPREL64MSB: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4626`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4626)*
+
 @gprel(sym + add), data8 MSB
 
 ### `R_IA64_GPREL64LSB`
-
 ```rust
 const R_IA64_GPREL64LSB: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4628`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4628)*
+
 @gprel(sym + add), data8 LSB
 
 ### `R_IA64_LTOFF22`
-
 ```rust
 const R_IA64_LTOFF22: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4630`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4630)*
+
 @ltoff(sym + add), add imm22
 
 ### `R_IA64_LTOFF64I`
-
 ```rust
 const R_IA64_LTOFF64I: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4632`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4632)*
+
 @ltoff(sym + add), mov imm64
 
 ### `R_IA64_PLTOFF22`
-
 ```rust
 const R_IA64_PLTOFF22: u32 = 58u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4634`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4634)*
+
 @pltoff(sym + add), add imm22
 
 ### `R_IA64_PLTOFF64I`
-
 ```rust
 const R_IA64_PLTOFF64I: u32 = 59u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4636`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4636)*
+
 @pltoff(sym + add), mov imm64
 
 ### `R_IA64_PLTOFF64MSB`
-
 ```rust
 const R_IA64_PLTOFF64MSB: u32 = 62u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4638`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4638)*
+
 @pltoff(sym + add), data8 MSB
 
 ### `R_IA64_PLTOFF64LSB`
-
 ```rust
 const R_IA64_PLTOFF64LSB: u32 = 63u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4640`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4640)*
+
 @pltoff(sym + add), data8 LSB
 
 ### `R_IA64_FPTR64I`
-
 ```rust
 const R_IA64_FPTR64I: u32 = 67u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4642`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4642)*
+
 @fptr(sym + add), mov imm64
 
 ### `R_IA64_FPTR32MSB`
-
 ```rust
 const R_IA64_FPTR32MSB: u32 = 68u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4644`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4644)*
+
 @fptr(sym + add), data4 MSB
 
 ### `R_IA64_FPTR32LSB`
-
 ```rust
 const R_IA64_FPTR32LSB: u32 = 69u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4646`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4646)*
+
 @fptr(sym + add), data4 LSB
 
 ### `R_IA64_FPTR64MSB`
-
 ```rust
 const R_IA64_FPTR64MSB: u32 = 70u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4648`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4648)*
+
 @fptr(sym + add), data8 MSB
 
 ### `R_IA64_FPTR64LSB`
-
 ```rust
 const R_IA64_FPTR64LSB: u32 = 71u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4650`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4650)*
+
 @fptr(sym + add), data8 LSB
 
 ### `R_IA64_PCREL60B`
-
 ```rust
 const R_IA64_PCREL60B: u32 = 72u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4652`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4652)*
+
 @pcrel(sym + add), brl
 
 ### `R_IA64_PCREL21B`
-
 ```rust
 const R_IA64_PCREL21B: u32 = 73u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4654`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4654)*
+
 @pcrel(sym + add), ptb, call
 
 ### `R_IA64_PCREL21M`
-
 ```rust
 const R_IA64_PCREL21M: u32 = 74u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4656`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4656)*
+
 @pcrel(sym + add), chk.s
 
 ### `R_IA64_PCREL21F`
-
 ```rust
 const R_IA64_PCREL21F: u32 = 75u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4658`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4658)*
+
 @pcrel(sym + add), fchkf
 
 ### `R_IA64_PCREL32MSB`
-
 ```rust
 const R_IA64_PCREL32MSB: u32 = 76u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4660`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4660)*
+
 @pcrel(sym + add), data4 MSB
 
 ### `R_IA64_PCREL32LSB`
-
 ```rust
 const R_IA64_PCREL32LSB: u32 = 77u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4662`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4662)*
+
 @pcrel(sym + add), data4 LSB
 
 ### `R_IA64_PCREL64MSB`
-
 ```rust
 const R_IA64_PCREL64MSB: u32 = 78u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4664`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4664)*
+
 @pcrel(sym + add), data8 MSB
 
 ### `R_IA64_PCREL64LSB`
-
 ```rust
 const R_IA64_PCREL64LSB: u32 = 79u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4666`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4666)*
+
 @pcrel(sym + add), data8 LSB
 
 ### `R_IA64_LTOFF_FPTR22`
-
 ```rust
 const R_IA64_LTOFF_FPTR22: u32 = 82u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4668`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4668)*
+
 @ltoff(@fptr(s+a)), imm22
 
 ### `R_IA64_LTOFF_FPTR64I`
-
 ```rust
 const R_IA64_LTOFF_FPTR64I: u32 = 83u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4670`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4670)*
+
 @ltoff(@fptr(s+a)), imm64
 
 ### `R_IA64_LTOFF_FPTR32MSB`
-
 ```rust
 const R_IA64_LTOFF_FPTR32MSB: u32 = 84u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4672`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4672)*
+
 @ltoff(@fptr(s+a)), data4 MSB
 
 ### `R_IA64_LTOFF_FPTR32LSB`
-
 ```rust
 const R_IA64_LTOFF_FPTR32LSB: u32 = 85u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4674`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4674)*
+
 @ltoff(@fptr(s+a)), data4 LSB
 
 ### `R_IA64_LTOFF_FPTR64MSB`
-
 ```rust
 const R_IA64_LTOFF_FPTR64MSB: u32 = 86u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4676`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4676)*
+
 @ltoff(@fptr(s+a)), data8 MSB
 
 ### `R_IA64_LTOFF_FPTR64LSB`
-
 ```rust
 const R_IA64_LTOFF_FPTR64LSB: u32 = 87u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4678`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4678)*
+
 @ltoff(@fptr(s+a)), data8 LSB
 
 ### `R_IA64_SEGREL32MSB`
-
 ```rust
 const R_IA64_SEGREL32MSB: u32 = 92u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4680`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4680)*
+
 @segrel(sym + add), data4 MSB
 
 ### `R_IA64_SEGREL32LSB`
-
 ```rust
 const R_IA64_SEGREL32LSB: u32 = 93u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4682`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4682)*
+
 @segrel(sym + add), data4 LSB
 
 ### `R_IA64_SEGREL64MSB`
-
 ```rust
 const R_IA64_SEGREL64MSB: u32 = 94u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4684`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4684)*
+
 @segrel(sym + add), data8 MSB
 
 ### `R_IA64_SEGREL64LSB`
-
 ```rust
 const R_IA64_SEGREL64LSB: u32 = 95u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4686`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4686)*
+
 @segrel(sym + add), data8 LSB
 
 ### `R_IA64_SECREL32MSB`
-
 ```rust
 const R_IA64_SECREL32MSB: u32 = 100u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4688`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4688)*
+
 @secrel(sym + add), data4 MSB
 
 ### `R_IA64_SECREL32LSB`
-
 ```rust
 const R_IA64_SECREL32LSB: u32 = 101u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4690`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4690)*
+
 @secrel(sym + add), data4 LSB
 
 ### `R_IA64_SECREL64MSB`
-
 ```rust
 const R_IA64_SECREL64MSB: u32 = 102u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4692`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4692)*
+
 @secrel(sym + add), data8 MSB
 
 ### `R_IA64_SECREL64LSB`
-
 ```rust
 const R_IA64_SECREL64LSB: u32 = 103u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4694`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4694)*
+
 @secrel(sym + add), data8 LSB
 
 ### `R_IA64_REL32MSB`
-
 ```rust
 const R_IA64_REL32MSB: u32 = 108u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4696`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4696)*
+
 data 4 + REL
 
 ### `R_IA64_REL32LSB`
-
 ```rust
 const R_IA64_REL32LSB: u32 = 109u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4698`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4698)*
+
 data 4 + REL
 
 ### `R_IA64_REL64MSB`
-
 ```rust
 const R_IA64_REL64MSB: u32 = 110u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4700`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4700)*
+
 data 8 + REL
 
 ### `R_IA64_REL64LSB`
-
 ```rust
 const R_IA64_REL64LSB: u32 = 111u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4702`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4702)*
+
 data 8 + REL
 
 ### `R_IA64_LTV32MSB`
-
 ```rust
 const R_IA64_LTV32MSB: u32 = 116u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4704`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4704)*
+
 symbol + addend, data4 MSB
 
 ### `R_IA64_LTV32LSB`
-
 ```rust
 const R_IA64_LTV32LSB: u32 = 117u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4706`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4706)*
+
 symbol + addend, data4 LSB
 
 ### `R_IA64_LTV64MSB`
-
 ```rust
 const R_IA64_LTV64MSB: u32 = 118u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4708`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4708)*
+
 symbol + addend, data8 MSB
 
 ### `R_IA64_LTV64LSB`
-
 ```rust
 const R_IA64_LTV64LSB: u32 = 119u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4710`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4710)*
+
 symbol + addend, data8 LSB
 
 ### `R_IA64_PCREL21BI`
-
 ```rust
 const R_IA64_PCREL21BI: u32 = 121u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4712`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4712)*
+
 @pcrel(sym + add), 21bit inst
 
 ### `R_IA64_PCREL22`
-
 ```rust
 const R_IA64_PCREL22: u32 = 122u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4714`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4714)*
+
 @pcrel(sym + add), 22bit inst
 
 ### `R_IA64_PCREL64I`
-
 ```rust
 const R_IA64_PCREL64I: u32 = 123u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4716`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4716)*
+
 @pcrel(sym + add), 64bit inst
 
 ### `R_IA64_IPLTMSB`
-
 ```rust
 const R_IA64_IPLTMSB: u32 = 128u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4718`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4718)*
+
 dynamic reloc, imported PLT, MSB
 
 ### `R_IA64_IPLTLSB`
-
 ```rust
 const R_IA64_IPLTLSB: u32 = 129u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4720`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4720)*
+
 dynamic reloc, imported PLT, LSB
 
 ### `R_IA64_COPY`
-
 ```rust
 const R_IA64_COPY: u32 = 132u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4722`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4722)*
+
 copy relocation
 
 ### `R_IA64_SUB`
-
 ```rust
 const R_IA64_SUB: u32 = 133u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4724`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4724)*
+
 Addend and symbol difference
 
 ### `R_IA64_LTOFF22X`
-
 ```rust
 const R_IA64_LTOFF22X: u32 = 134u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4726`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4726)*
+
 LTOFF22, relaxable.
 
 ### `R_IA64_LDXMOV`
-
 ```rust
 const R_IA64_LDXMOV: u32 = 135u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4728`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4728)*
+
 Use of LTOFF22X.
 
 ### `R_IA64_TPREL14`
-
 ```rust
 const R_IA64_TPREL14: u32 = 145u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4730`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4730)*
+
 @tprel(sym + add), imm14
 
 ### `R_IA64_TPREL22`
-
 ```rust
 const R_IA64_TPREL22: u32 = 146u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4732`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4732)*
+
 @tprel(sym + add), imm22
 
 ### `R_IA64_TPREL64I`
-
 ```rust
 const R_IA64_TPREL64I: u32 = 147u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4734`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4734)*
+
 @tprel(sym + add), imm64
 
 ### `R_IA64_TPREL64MSB`
-
 ```rust
 const R_IA64_TPREL64MSB: u32 = 150u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4736`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4736)*
+
 @tprel(sym + add), data8 MSB
 
 ### `R_IA64_TPREL64LSB`
-
 ```rust
 const R_IA64_TPREL64LSB: u32 = 151u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4738`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4738)*
+
 @tprel(sym + add), data8 LSB
 
 ### `R_IA64_LTOFF_TPREL22`
-
 ```rust
 const R_IA64_LTOFF_TPREL22: u32 = 154u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4740`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4740)*
+
 @ltoff(@tprel(s+a)), imm2
 
 ### `R_IA64_DTPMOD64MSB`
-
 ```rust
 const R_IA64_DTPMOD64MSB: u32 = 166u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4742`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4742)*
+
 @dtpmod(sym + add), data8 MSB
 
 ### `R_IA64_DTPMOD64LSB`
-
 ```rust
 const R_IA64_DTPMOD64LSB: u32 = 167u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4744`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4744)*
+
 @dtpmod(sym + add), data8 LSB
 
 ### `R_IA64_LTOFF_DTPMOD22`
-
 ```rust
 const R_IA64_LTOFF_DTPMOD22: u32 = 170u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4746`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4746)*
+
 @ltoff(@dtpmod(sym + add)), imm22
 
 ### `R_IA64_DTPREL14`
-
 ```rust
 const R_IA64_DTPREL14: u32 = 177u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4748`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4748)*
+
 @dtprel(sym + add), imm14
 
 ### `R_IA64_DTPREL22`
-
 ```rust
 const R_IA64_DTPREL22: u32 = 178u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4750`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4750)*
+
 @dtprel(sym + add), imm22
 
 ### `R_IA64_DTPREL64I`
-
 ```rust
 const R_IA64_DTPREL64I: u32 = 179u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4752`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4752)*
+
 @dtprel(sym + add), imm64
 
 ### `R_IA64_DTPREL32MSB`
-
 ```rust
 const R_IA64_DTPREL32MSB: u32 = 180u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4754`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4754)*
+
 @dtprel(sym + add), data4 MSB
 
 ### `R_IA64_DTPREL32LSB`
-
 ```rust
 const R_IA64_DTPREL32LSB: u32 = 181u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4756`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4756)*
+
 @dtprel(sym + add), data4 LSB
 
 ### `R_IA64_DTPREL64MSB`
-
 ```rust
 const R_IA64_DTPREL64MSB: u32 = 182u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4758`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4758)*
+
 @dtprel(sym + add), data8 MSB
 
 ### `R_IA64_DTPREL64LSB`
-
 ```rust
 const R_IA64_DTPREL64LSB: u32 = 183u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4760`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4760)*
+
 @dtprel(sym + add), data8 LSB
 
 ### `R_IA64_LTOFF_DTPREL22`
-
 ```rust
 const R_IA64_LTOFF_DTPREL22: u32 = 186u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4762`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4762)*
+
 @ltoff(@dtprel(s+a)), imm22
 
 ### `EF_SH_MACH_MASK`
-
 ```rust
 const EF_SH_MACH_MASK: u32 = 31u32;
 ```
 
-### `EF_SH_UNKNOWN`
+*Defined in [`object-0.37.3/src/elf.rs:4767`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4767)*
 
+### `EF_SH_UNKNOWN`
 ```rust
 const EF_SH_UNKNOWN: u32 = 0u32;
 ```
 
-### `EF_SH1`
+*Defined in [`object-0.37.3/src/elf.rs:4768`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4768)*
 
+### `EF_SH1`
 ```rust
 const EF_SH1: u32 = 1u32;
 ```
 
-### `EF_SH2`
+*Defined in [`object-0.37.3/src/elf.rs:4769`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4769)*
 
+### `EF_SH2`
 ```rust
 const EF_SH2: u32 = 2u32;
 ```
 
-### `EF_SH3`
+*Defined in [`object-0.37.3/src/elf.rs:4770`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4770)*
 
+### `EF_SH3`
 ```rust
 const EF_SH3: u32 = 3u32;
 ```
 
-### `EF_SH_DSP`
+*Defined in [`object-0.37.3/src/elf.rs:4771`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4771)*
 
+### `EF_SH_DSP`
 ```rust
 const EF_SH_DSP: u32 = 4u32;
 ```
 
-### `EF_SH3_DSP`
+*Defined in [`object-0.37.3/src/elf.rs:4772`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4772)*
 
+### `EF_SH3_DSP`
 ```rust
 const EF_SH3_DSP: u32 = 5u32;
 ```
 
-### `EF_SH4AL_DSP`
+*Defined in [`object-0.37.3/src/elf.rs:4773`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4773)*
 
+### `EF_SH4AL_DSP`
 ```rust
 const EF_SH4AL_DSP: u32 = 6u32;
 ```
 
-### `EF_SH3E`
+*Defined in [`object-0.37.3/src/elf.rs:4774`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4774)*
 
+### `EF_SH3E`
 ```rust
 const EF_SH3E: u32 = 8u32;
 ```
 
-### `EF_SH4`
+*Defined in [`object-0.37.3/src/elf.rs:4775`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4775)*
 
+### `EF_SH4`
 ```rust
 const EF_SH4: u32 = 9u32;
 ```
 
-### `EF_SH2E`
+*Defined in [`object-0.37.3/src/elf.rs:4776`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4776)*
 
+### `EF_SH2E`
 ```rust
 const EF_SH2E: u32 = 11u32;
 ```
 
-### `EF_SH4A`
+*Defined in [`object-0.37.3/src/elf.rs:4777`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4777)*
 
+### `EF_SH4A`
 ```rust
 const EF_SH4A: u32 = 12u32;
 ```
 
-### `EF_SH2A`
+*Defined in [`object-0.37.3/src/elf.rs:4778`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4778)*
 
+### `EF_SH2A`
 ```rust
 const EF_SH2A: u32 = 13u32;
 ```
 
-### `EF_SH4_NOFPU`
+*Defined in [`object-0.37.3/src/elf.rs:4779`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4779)*
 
+### `EF_SH4_NOFPU`
 ```rust
 const EF_SH4_NOFPU: u32 = 16u32;
 ```
 
-### `EF_SH4A_NOFPU`
+*Defined in [`object-0.37.3/src/elf.rs:4780`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4780)*
 
+### `EF_SH4A_NOFPU`
 ```rust
 const EF_SH4A_NOFPU: u32 = 17u32;
 ```
 
-### `EF_SH4_NOMMU_NOFPU`
+*Defined in [`object-0.37.3/src/elf.rs:4781`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4781)*
 
+### `EF_SH4_NOMMU_NOFPU`
 ```rust
 const EF_SH4_NOMMU_NOFPU: u32 = 18u32;
 ```
 
-### `EF_SH2A_NOFPU`
+*Defined in [`object-0.37.3/src/elf.rs:4782`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4782)*
 
+### `EF_SH2A_NOFPU`
 ```rust
 const EF_SH2A_NOFPU: u32 = 19u32;
 ```
 
-### `EF_SH3_NOMMU`
+*Defined in [`object-0.37.3/src/elf.rs:4783`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4783)*
 
+### `EF_SH3_NOMMU`
 ```rust
 const EF_SH3_NOMMU: u32 = 20u32;
 ```
 
-### `EF_SH2A_SH4_NOFPU`
+*Defined in [`object-0.37.3/src/elf.rs:4784`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4784)*
 
+### `EF_SH2A_SH4_NOFPU`
 ```rust
 const EF_SH2A_SH4_NOFPU: u32 = 21u32;
 ```
 
-### `EF_SH2A_SH3_NOFPU`
+*Defined in [`object-0.37.3/src/elf.rs:4785`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4785)*
 
+### `EF_SH2A_SH3_NOFPU`
 ```rust
 const EF_SH2A_SH3_NOFPU: u32 = 22u32;
 ```
 
-### `EF_SH2A_SH4`
+*Defined in [`object-0.37.3/src/elf.rs:4786`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4786)*
 
+### `EF_SH2A_SH4`
 ```rust
 const EF_SH2A_SH4: u32 = 23u32;
 ```
 
-### `EF_SH2A_SH3E`
+*Defined in [`object-0.37.3/src/elf.rs:4787`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4787)*
 
+### `EF_SH2A_SH3E`
 ```rust
 const EF_SH2A_SH3E: u32 = 24u32;
 ```
 
-### `R_SH_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:4788`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4788)*
 
+### `R_SH_NONE`
 ```rust
 const R_SH_NONE: u32 = 0u32;
 ```
 
-### `R_SH_DIR32`
+*Defined in [`object-0.37.3/src/elf.rs:4791`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4791)*
 
+### `R_SH_DIR32`
 ```rust
 const R_SH_DIR32: u32 = 1u32;
 ```
 
-### `R_SH_REL32`
+*Defined in [`object-0.37.3/src/elf.rs:4792`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4792)*
 
+### `R_SH_REL32`
 ```rust
 const R_SH_REL32: u32 = 2u32;
 ```
 
-### `R_SH_DIR8WPN`
+*Defined in [`object-0.37.3/src/elf.rs:4793`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4793)*
 
+### `R_SH_DIR8WPN`
 ```rust
 const R_SH_DIR8WPN: u32 = 3u32;
 ```
 
-### `R_SH_IND12W`
+*Defined in [`object-0.37.3/src/elf.rs:4794`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4794)*
 
+### `R_SH_IND12W`
 ```rust
 const R_SH_IND12W: u32 = 4u32;
 ```
 
-### `R_SH_DIR8WPL`
+*Defined in [`object-0.37.3/src/elf.rs:4795`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4795)*
 
+### `R_SH_DIR8WPL`
 ```rust
 const R_SH_DIR8WPL: u32 = 5u32;
 ```
 
-### `R_SH_DIR8WPZ`
+*Defined in [`object-0.37.3/src/elf.rs:4796`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4796)*
 
+### `R_SH_DIR8WPZ`
 ```rust
 const R_SH_DIR8WPZ: u32 = 6u32;
 ```
 
-### `R_SH_DIR8BP`
+*Defined in [`object-0.37.3/src/elf.rs:4797`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4797)*
 
+### `R_SH_DIR8BP`
 ```rust
 const R_SH_DIR8BP: u32 = 7u32;
 ```
 
-### `R_SH_DIR8W`
+*Defined in [`object-0.37.3/src/elf.rs:4798`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4798)*
 
+### `R_SH_DIR8W`
 ```rust
 const R_SH_DIR8W: u32 = 8u32;
 ```
 
-### `R_SH_DIR8L`
+*Defined in [`object-0.37.3/src/elf.rs:4799`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4799)*
 
+### `R_SH_DIR8L`
 ```rust
 const R_SH_DIR8L: u32 = 9u32;
 ```
 
-### `R_SH_SWITCH16`
+*Defined in [`object-0.37.3/src/elf.rs:4800`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4800)*
 
+### `R_SH_SWITCH16`
 ```rust
 const R_SH_SWITCH16: u32 = 25u32;
 ```
 
-### `R_SH_SWITCH32`
+*Defined in [`object-0.37.3/src/elf.rs:4801`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4801)*
 
+### `R_SH_SWITCH32`
 ```rust
 const R_SH_SWITCH32: u32 = 26u32;
 ```
 
-### `R_SH_USES`
+*Defined in [`object-0.37.3/src/elf.rs:4802`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4802)*
 
+### `R_SH_USES`
 ```rust
 const R_SH_USES: u32 = 27u32;
 ```
 
-### `R_SH_COUNT`
+*Defined in [`object-0.37.3/src/elf.rs:4803`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4803)*
 
+### `R_SH_COUNT`
 ```rust
 const R_SH_COUNT: u32 = 28u32;
 ```
 
-### `R_SH_ALIGN`
+*Defined in [`object-0.37.3/src/elf.rs:4804`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4804)*
 
+### `R_SH_ALIGN`
 ```rust
 const R_SH_ALIGN: u32 = 29u32;
 ```
 
-### `R_SH_CODE`
+*Defined in [`object-0.37.3/src/elf.rs:4805`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4805)*
 
+### `R_SH_CODE`
 ```rust
 const R_SH_CODE: u32 = 30u32;
 ```
 
-### `R_SH_DATA`
+*Defined in [`object-0.37.3/src/elf.rs:4806`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4806)*
 
+### `R_SH_DATA`
 ```rust
 const R_SH_DATA: u32 = 31u32;
 ```
 
-### `R_SH_LABEL`
+*Defined in [`object-0.37.3/src/elf.rs:4807`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4807)*
 
+### `R_SH_LABEL`
 ```rust
 const R_SH_LABEL: u32 = 32u32;
 ```
 
-### `R_SH_SWITCH8`
+*Defined in [`object-0.37.3/src/elf.rs:4808`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4808)*
 
+### `R_SH_SWITCH8`
 ```rust
 const R_SH_SWITCH8: u32 = 33u32;
 ```
 
-### `R_SH_GNU_VTINHERIT`
+*Defined in [`object-0.37.3/src/elf.rs:4809`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4809)*
 
+### `R_SH_GNU_VTINHERIT`
 ```rust
 const R_SH_GNU_VTINHERIT: u32 = 34u32;
 ```
 
-### `R_SH_GNU_VTENTRY`
+*Defined in [`object-0.37.3/src/elf.rs:4810`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4810)*
 
+### `R_SH_GNU_VTENTRY`
 ```rust
 const R_SH_GNU_VTENTRY: u32 = 35u32;
 ```
 
-### `R_SH_TLS_GD_32`
+*Defined in [`object-0.37.3/src/elf.rs:4811`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4811)*
 
+### `R_SH_TLS_GD_32`
 ```rust
 const R_SH_TLS_GD_32: u32 = 144u32;
 ```
 
-### `R_SH_TLS_LD_32`
+*Defined in [`object-0.37.3/src/elf.rs:4812`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4812)*
 
+### `R_SH_TLS_LD_32`
 ```rust
 const R_SH_TLS_LD_32: u32 = 145u32;
 ```
 
-### `R_SH_TLS_LDO_32`
+*Defined in [`object-0.37.3/src/elf.rs:4813`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4813)*
 
+### `R_SH_TLS_LDO_32`
 ```rust
 const R_SH_TLS_LDO_32: u32 = 146u32;
 ```
 
-### `R_SH_TLS_IE_32`
+*Defined in [`object-0.37.3/src/elf.rs:4814`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4814)*
 
+### `R_SH_TLS_IE_32`
 ```rust
 const R_SH_TLS_IE_32: u32 = 147u32;
 ```
 
-### `R_SH_TLS_LE_32`
+*Defined in [`object-0.37.3/src/elf.rs:4815`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4815)*
 
+### `R_SH_TLS_LE_32`
 ```rust
 const R_SH_TLS_LE_32: u32 = 148u32;
 ```
 
-### `R_SH_TLS_DTPMOD32`
+*Defined in [`object-0.37.3/src/elf.rs:4816`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4816)*
 
+### `R_SH_TLS_DTPMOD32`
 ```rust
 const R_SH_TLS_DTPMOD32: u32 = 149u32;
 ```
 
-### `R_SH_TLS_DTPOFF32`
+*Defined in [`object-0.37.3/src/elf.rs:4817`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4817)*
 
+### `R_SH_TLS_DTPOFF32`
 ```rust
 const R_SH_TLS_DTPOFF32: u32 = 150u32;
 ```
 
-### `R_SH_TLS_TPOFF32`
+*Defined in [`object-0.37.3/src/elf.rs:4818`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4818)*
 
+### `R_SH_TLS_TPOFF32`
 ```rust
 const R_SH_TLS_TPOFF32: u32 = 151u32;
 ```
 
-### `R_SH_GOT32`
+*Defined in [`object-0.37.3/src/elf.rs:4819`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4819)*
 
+### `R_SH_GOT32`
 ```rust
 const R_SH_GOT32: u32 = 160u32;
 ```
 
-### `R_SH_PLT32`
+*Defined in [`object-0.37.3/src/elf.rs:4820`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4820)*
 
+### `R_SH_PLT32`
 ```rust
 const R_SH_PLT32: u32 = 161u32;
 ```
 
-### `R_SH_COPY`
+*Defined in [`object-0.37.3/src/elf.rs:4821`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4821)*
 
+### `R_SH_COPY`
 ```rust
 const R_SH_COPY: u32 = 162u32;
 ```
 
-### `R_SH_GLOB_DAT`
+*Defined in [`object-0.37.3/src/elf.rs:4822`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4822)*
 
+### `R_SH_GLOB_DAT`
 ```rust
 const R_SH_GLOB_DAT: u32 = 163u32;
 ```
 
-### `R_SH_JMP_SLOT`
+*Defined in [`object-0.37.3/src/elf.rs:4823`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4823)*
 
+### `R_SH_JMP_SLOT`
 ```rust
 const R_SH_JMP_SLOT: u32 = 164u32;
 ```
 
-### `R_SH_RELATIVE`
+*Defined in [`object-0.37.3/src/elf.rs:4824`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4824)*
 
+### `R_SH_RELATIVE`
 ```rust
 const R_SH_RELATIVE: u32 = 165u32;
 ```
 
-### `R_SH_GOTOFF`
+*Defined in [`object-0.37.3/src/elf.rs:4825`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4825)*
 
+### `R_SH_GOTOFF`
 ```rust
 const R_SH_GOTOFF: u32 = 166u32;
 ```
 
-### `R_SH_GOTPC`
+*Defined in [`object-0.37.3/src/elf.rs:4826`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4826)*
 
+### `R_SH_GOTPC`
 ```rust
 const R_SH_GOTPC: u32 = 167u32;
 ```
 
-### `EF_S390_HIGH_GPRS`
+*Defined in [`object-0.37.3/src/elf.rs:4827`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4827)*
 
+### `EF_S390_HIGH_GPRS`
 ```rust
 const EF_S390_HIGH_GPRS: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4834`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4834)*
+
 High GPRs kernel facility needed.
 
 ### `R_390_NONE`
-
 ```rust
 const R_390_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4839`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4839)*
+
 No reloc.
 
 ### `R_390_8`
-
 ```rust
 const R_390_8: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4841`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4841)*
+
 Direct 8 bit.
 
 ### `R_390_12`
-
 ```rust
 const R_390_12: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4843`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4843)*
+
 Direct 12 bit.
 
 ### `R_390_16`
-
 ```rust
 const R_390_16: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4845`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4845)*
+
 Direct 16 bit.
 
 ### `R_390_32`
-
 ```rust
 const R_390_32: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4847`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4847)*
+
 Direct 32 bit.
 
 ### `R_390_PC32`
-
 ```rust
 const R_390_PC32: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4849`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4849)*
+
 PC relative 32 bit.
 
 ### `R_390_GOT12`
-
 ```rust
 const R_390_GOT12: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4851`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4851)*
+
 12 bit GOT offset.
 
 ### `R_390_GOT32`
-
 ```rust
 const R_390_GOT32: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4853`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4853)*
+
 32 bit GOT offset.
 
 ### `R_390_PLT32`
-
 ```rust
 const R_390_PLT32: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4855`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4855)*
+
 32 bit PC relative PLT address.
 
 ### `R_390_COPY`
-
 ```rust
 const R_390_COPY: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4857`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4857)*
+
 Copy symbol at runtime.
 
 ### `R_390_GLOB_DAT`
-
 ```rust
 const R_390_GLOB_DAT: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4859`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4859)*
+
 Create GOT entry.
 
 ### `R_390_JMP_SLOT`
-
 ```rust
 const R_390_JMP_SLOT: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4861`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4861)*
+
 Create PLT entry.
 
 ### `R_390_RELATIVE`
-
 ```rust
 const R_390_RELATIVE: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4863`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4863)*
+
 Adjust by program base.
 
 ### `R_390_GOTOFF32`
-
 ```rust
 const R_390_GOTOFF32: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4865`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4865)*
+
 32 bit offset to GOT.
 
 ### `R_390_GOTPC`
-
 ```rust
 const R_390_GOTPC: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4867`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4867)*
+
 32 bit PC relative offset to GOT.
 
 ### `R_390_GOT16`
-
 ```rust
 const R_390_GOT16: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4869`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4869)*
+
 16 bit GOT offset.
 
 ### `R_390_PC16`
-
 ```rust
 const R_390_PC16: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4871`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4871)*
+
 PC relative 16 bit.
 
 ### `R_390_PC16DBL`
-
 ```rust
 const R_390_PC16DBL: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4873`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4873)*
+
 PC relative 16 bit shifted by 1.
 
 ### `R_390_PLT16DBL`
-
 ```rust
 const R_390_PLT16DBL: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4875`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4875)*
+
 16 bit PC rel. PLT shifted by 1.
 
 ### `R_390_PC32DBL`
-
 ```rust
 const R_390_PC32DBL: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4877`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4877)*
+
 PC relative 32 bit shifted by 1.
 
 ### `R_390_PLT32DBL`
-
 ```rust
 const R_390_PLT32DBL: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4879`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4879)*
+
 32 bit PC rel. PLT shifted by 1.
 
 ### `R_390_GOTPCDBL`
-
 ```rust
 const R_390_GOTPCDBL: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4881`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4881)*
+
 32 bit PC rel. GOT shifted by 1.
 
 ### `R_390_64`
-
 ```rust
 const R_390_64: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4883`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4883)*
+
 Direct 64 bit.
 
 ### `R_390_PC64`
-
 ```rust
 const R_390_PC64: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4885`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4885)*
+
 PC relative 64 bit.
 
 ### `R_390_GOT64`
-
 ```rust
 const R_390_GOT64: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4887`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4887)*
+
 64 bit GOT offset.
 
 ### `R_390_PLT64`
-
 ```rust
 const R_390_PLT64: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4889`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4889)*
+
 64 bit PC relative PLT address.
 
 ### `R_390_GOTENT`
-
 ```rust
 const R_390_GOTENT: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4891`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4891)*
+
 32 bit PC rel. to GOT entry >> 1.
 
 ### `R_390_GOTOFF16`
-
 ```rust
 const R_390_GOTOFF16: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4893`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4893)*
+
 16 bit offset to GOT.
 
 ### `R_390_GOTOFF64`
-
 ```rust
 const R_390_GOTOFF64: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4895`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4895)*
+
 64 bit offset to GOT.
 
 ### `R_390_GOTPLT12`
-
 ```rust
 const R_390_GOTPLT12: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4897`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4897)*
+
 12 bit offset to jump slot.
 
 ### `R_390_GOTPLT16`
-
 ```rust
 const R_390_GOTPLT16: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4899`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4899)*
+
 16 bit offset to jump slot.
 
 ### `R_390_GOTPLT32`
-
 ```rust
 const R_390_GOTPLT32: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4901`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4901)*
+
 32 bit offset to jump slot.
 
 ### `R_390_GOTPLT64`
-
 ```rust
 const R_390_GOTPLT64: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4903`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4903)*
+
 64 bit offset to jump slot.
 
 ### `R_390_GOTPLTENT`
-
 ```rust
 const R_390_GOTPLTENT: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4905`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4905)*
+
 32 bit rel. offset to jump slot.
 
 ### `R_390_PLTOFF16`
-
 ```rust
 const R_390_PLTOFF16: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4907`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4907)*
+
 16 bit offset from GOT to PLT.
 
 ### `R_390_PLTOFF32`
-
 ```rust
 const R_390_PLTOFF32: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4909`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4909)*
+
 32 bit offset from GOT to PLT.
 
 ### `R_390_PLTOFF64`
-
 ```rust
 const R_390_PLTOFF64: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4911`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4911)*
+
 16 bit offset from GOT to PLT.
 
 ### `R_390_TLS_LOAD`
-
 ```rust
 const R_390_TLS_LOAD: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4913`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4913)*
+
 Tag for load insn in TLS code.
 
 ### `R_390_TLS_GDCALL`
-
 ```rust
 const R_390_TLS_GDCALL: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4915`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4915)*
+
 Tag for function call in general dynamic TLS code.
 
 ### `R_390_TLS_LDCALL`
-
 ```rust
 const R_390_TLS_LDCALL: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4917`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4917)*
+
 Tag for function call in local dynamic TLS code.
 
 ### `R_390_TLS_GD32`
-
 ```rust
 const R_390_TLS_GD32: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4919`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4919)*
+
 Direct 32 bit for general dynamic thread local data.
 
 ### `R_390_TLS_GD64`
-
 ```rust
 const R_390_TLS_GD64: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4921`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4921)*
+
 Direct 64 bit for general dynamic thread local data.
 
 ### `R_390_TLS_GOTIE12`
-
 ```rust
 const R_390_TLS_GOTIE12: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4923`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4923)*
+
 12 bit GOT offset for static TLS block offset.
 
 ### `R_390_TLS_GOTIE32`
-
 ```rust
 const R_390_TLS_GOTIE32: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4925`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4925)*
+
 32 bit GOT offset for static TLS block offset.
 
 ### `R_390_TLS_GOTIE64`
-
 ```rust
 const R_390_TLS_GOTIE64: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4927`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4927)*
+
 64 bit GOT offset for static TLS block offset.
 
 ### `R_390_TLS_LDM32`
-
 ```rust
 const R_390_TLS_LDM32: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4929`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4929)*
+
 Direct 32 bit for local dynamic thread local data in LE code.
 
 ### `R_390_TLS_LDM64`
-
 ```rust
 const R_390_TLS_LDM64: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4931`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4931)*
+
 Direct 64 bit for local dynamic thread local data in LE code.
 
 ### `R_390_TLS_IE32`
-
 ```rust
 const R_390_TLS_IE32: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4933`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4933)*
+
 32 bit address of GOT entry for negated static TLS block offset.
 
 ### `R_390_TLS_IE64`
-
 ```rust
 const R_390_TLS_IE64: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4935`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4935)*
+
 64 bit address of GOT entry for negated static TLS block offset.
 
 ### `R_390_TLS_IEENT`
-
 ```rust
 const R_390_TLS_IEENT: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4937`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4937)*
+
 32 bit rel. offset to GOT entry for negated static TLS block offset.
 
 ### `R_390_TLS_LE32`
-
 ```rust
 const R_390_TLS_LE32: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4939`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4939)*
+
 32 bit negated offset relative to static TLS block.
 
 ### `R_390_TLS_LE64`
-
 ```rust
 const R_390_TLS_LE64: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4941`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4941)*
+
 64 bit negated offset relative to static TLS block.
 
 ### `R_390_TLS_LDO32`
-
 ```rust
 const R_390_TLS_LDO32: u32 = 52u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4943`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4943)*
+
 32 bit offset relative to TLS block.
 
 ### `R_390_TLS_LDO64`
-
 ```rust
 const R_390_TLS_LDO64: u32 = 53u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4945`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4945)*
+
 64 bit offset relative to TLS block.
 
 ### `R_390_TLS_DTPMOD`
-
 ```rust
 const R_390_TLS_DTPMOD: u32 = 54u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4947`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4947)*
+
 ID of module containing symbol.
 
 ### `R_390_TLS_DTPOFF`
-
 ```rust
 const R_390_TLS_DTPOFF: u32 = 55u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4949`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4949)*
+
 Offset in TLS block.
 
 ### `R_390_TLS_TPOFF`
-
 ```rust
 const R_390_TLS_TPOFF: u32 = 56u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4951`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4951)*
+
 Negated offset in static TLS block.
 
 ### `R_390_20`
-
 ```rust
 const R_390_20: u32 = 57u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4953`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4953)*
+
 Direct 20 bit.
 
 ### `R_390_GOT20`
-
 ```rust
 const R_390_GOT20: u32 = 58u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4955`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4955)*
+
 20 bit GOT offset.
 
 ### `R_390_GOTPLT20`
-
 ```rust
 const R_390_GOTPLT20: u32 = 59u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4957`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4957)*
+
 20 bit offset to jump slot.
 
 ### `R_390_TLS_GOTIE20`
-
 ```rust
 const R_390_TLS_GOTIE20: u32 = 60u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4959`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4959)*
+
 20 bit GOT offset for static TLS block offset.
 
 ### `R_390_IRELATIVE`
-
 ```rust
 const R_390_IRELATIVE: u32 = 61u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4961`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4961)*
+
 STT_GNU_IFUNC relocation.
 
 ### `R_CRIS_NONE`
-
 ```rust
 const R_CRIS_NONE: u32 = 0u32;
 ```
 
-### `R_CRIS_8`
+*Defined in [`object-0.37.3/src/elf.rs:4964`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4964)*
 
+### `R_CRIS_8`
 ```rust
 const R_CRIS_8: u32 = 1u32;
 ```
 
-### `R_CRIS_16`
+*Defined in [`object-0.37.3/src/elf.rs:4965`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4965)*
 
+### `R_CRIS_16`
 ```rust
 const R_CRIS_16: u32 = 2u32;
 ```
 
-### `R_CRIS_32`
+*Defined in [`object-0.37.3/src/elf.rs:4966`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4966)*
 
+### `R_CRIS_32`
 ```rust
 const R_CRIS_32: u32 = 3u32;
 ```
 
-### `R_CRIS_8_PCREL`
+*Defined in [`object-0.37.3/src/elf.rs:4967`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4967)*
 
+### `R_CRIS_8_PCREL`
 ```rust
 const R_CRIS_8_PCREL: u32 = 4u32;
 ```
 
-### `R_CRIS_16_PCREL`
+*Defined in [`object-0.37.3/src/elf.rs:4968`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4968)*
 
+### `R_CRIS_16_PCREL`
 ```rust
 const R_CRIS_16_PCREL: u32 = 5u32;
 ```
 
-### `R_CRIS_32_PCREL`
+*Defined in [`object-0.37.3/src/elf.rs:4969`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4969)*
 
+### `R_CRIS_32_PCREL`
 ```rust
 const R_CRIS_32_PCREL: u32 = 6u32;
 ```
 
-### `R_CRIS_GNU_VTINHERIT`
+*Defined in [`object-0.37.3/src/elf.rs:4970`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4970)*
 
+### `R_CRIS_GNU_VTINHERIT`
 ```rust
 const R_CRIS_GNU_VTINHERIT: u32 = 7u32;
 ```
 
-### `R_CRIS_GNU_VTENTRY`
+*Defined in [`object-0.37.3/src/elf.rs:4971`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4971)*
 
+### `R_CRIS_GNU_VTENTRY`
 ```rust
 const R_CRIS_GNU_VTENTRY: u32 = 8u32;
 ```
 
-### `R_CRIS_COPY`
+*Defined in [`object-0.37.3/src/elf.rs:4972`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4972)*
 
+### `R_CRIS_COPY`
 ```rust
 const R_CRIS_COPY: u32 = 9u32;
 ```
 
-### `R_CRIS_GLOB_DAT`
+*Defined in [`object-0.37.3/src/elf.rs:4973`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4973)*
 
+### `R_CRIS_GLOB_DAT`
 ```rust
 const R_CRIS_GLOB_DAT: u32 = 10u32;
 ```
 
-### `R_CRIS_JUMP_SLOT`
+*Defined in [`object-0.37.3/src/elf.rs:4974`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4974)*
 
+### `R_CRIS_JUMP_SLOT`
 ```rust
 const R_CRIS_JUMP_SLOT: u32 = 11u32;
 ```
 
-### `R_CRIS_RELATIVE`
+*Defined in [`object-0.37.3/src/elf.rs:4975`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4975)*
 
+### `R_CRIS_RELATIVE`
 ```rust
 const R_CRIS_RELATIVE: u32 = 12u32;
 ```
 
-### `R_CRIS_16_GOT`
+*Defined in [`object-0.37.3/src/elf.rs:4976`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4976)*
 
+### `R_CRIS_16_GOT`
 ```rust
 const R_CRIS_16_GOT: u32 = 13u32;
 ```
 
-### `R_CRIS_32_GOT`
+*Defined in [`object-0.37.3/src/elf.rs:4977`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4977)*
 
+### `R_CRIS_32_GOT`
 ```rust
 const R_CRIS_32_GOT: u32 = 14u32;
 ```
 
-### `R_CRIS_16_GOTPLT`
+*Defined in [`object-0.37.3/src/elf.rs:4978`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4978)*
 
+### `R_CRIS_16_GOTPLT`
 ```rust
 const R_CRIS_16_GOTPLT: u32 = 15u32;
 ```
 
-### `R_CRIS_32_GOTPLT`
+*Defined in [`object-0.37.3/src/elf.rs:4979`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4979)*
 
+### `R_CRIS_32_GOTPLT`
 ```rust
 const R_CRIS_32_GOTPLT: u32 = 16u32;
 ```
 
-### `R_CRIS_32_GOTREL`
+*Defined in [`object-0.37.3/src/elf.rs:4980`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4980)*
 
+### `R_CRIS_32_GOTREL`
 ```rust
 const R_CRIS_32_GOTREL: u32 = 17u32;
 ```
 
-### `R_CRIS_32_PLT_GOTREL`
+*Defined in [`object-0.37.3/src/elf.rs:4981`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4981)*
 
+### `R_CRIS_32_PLT_GOTREL`
 ```rust
 const R_CRIS_32_PLT_GOTREL: u32 = 18u32;
 ```
 
-### `R_CRIS_32_PLT_PCREL`
+*Defined in [`object-0.37.3/src/elf.rs:4982`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4982)*
 
+### `R_CRIS_32_PLT_PCREL`
 ```rust
 const R_CRIS_32_PLT_PCREL: u32 = 19u32;
 ```
 
-### `R_X86_64_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:4983`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4983)*
 
+### `R_X86_64_NONE`
 ```rust
 const R_X86_64_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4987`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4987)*
+
 No reloc
 
 ### `R_X86_64_64`
-
 ```rust
 const R_X86_64_64: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4989`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4989)*
+
 Direct 64 bit
 
 ### `R_X86_64_PC32`
-
 ```rust
 const R_X86_64_PC32: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4991`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4991)*
+
 PC relative 32 bit signed
 
 ### `R_X86_64_GOT32`
-
 ```rust
 const R_X86_64_GOT32: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4993`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4993)*
+
 32 bit GOT entry
 
 ### `R_X86_64_PLT32`
-
 ```rust
 const R_X86_64_PLT32: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4995`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4995)*
+
 32 bit PLT address
 
 ### `R_X86_64_COPY`
-
 ```rust
 const R_X86_64_COPY: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4997`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4997)*
+
 Copy symbol at runtime
 
 ### `R_X86_64_GLOB_DAT`
-
 ```rust
 const R_X86_64_GLOB_DAT: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:4999`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L4999)*
+
 Create GOT entry
 
 ### `R_X86_64_JUMP_SLOT`
-
 ```rust
 const R_X86_64_JUMP_SLOT: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5001`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5001)*
+
 Create PLT entry
 
 ### `R_X86_64_RELATIVE`
-
 ```rust
 const R_X86_64_RELATIVE: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5003`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5003)*
+
 Adjust by program base
 
 ### `R_X86_64_GOTPCREL`
-
 ```rust
 const R_X86_64_GOTPCREL: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5005`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5005)*
+
 32 bit signed PC relative offset to GOT
 
 ### `R_X86_64_32`
-
 ```rust
 const R_X86_64_32: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5007`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5007)*
+
 Direct 32 bit zero extended
 
 ### `R_X86_64_32S`
-
 ```rust
 const R_X86_64_32S: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5009`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5009)*
+
 Direct 32 bit sign extended
 
 ### `R_X86_64_16`
-
 ```rust
 const R_X86_64_16: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5011`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5011)*
+
 Direct 16 bit zero extended
 
 ### `R_X86_64_PC16`
-
 ```rust
 const R_X86_64_PC16: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5013`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5013)*
+
 16 bit sign extended pc relative
 
 ### `R_X86_64_8`
-
 ```rust
 const R_X86_64_8: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5015`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5015)*
+
 Direct 8 bit sign extended
 
 ### `R_X86_64_PC8`
-
 ```rust
 const R_X86_64_PC8: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5017`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5017)*
+
 8 bit sign extended pc relative
 
 ### `R_X86_64_DTPMOD64`
-
 ```rust
 const R_X86_64_DTPMOD64: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5019`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5019)*
+
 ID of module containing symbol
 
 ### `R_X86_64_DTPOFF64`
-
 ```rust
 const R_X86_64_DTPOFF64: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5021`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5021)*
+
 Offset in module's TLS block
 
 ### `R_X86_64_TPOFF64`
-
 ```rust
 const R_X86_64_TPOFF64: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5023`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5023)*
+
 Offset in initial TLS block
 
 ### `R_X86_64_TLSGD`
-
 ```rust
 const R_X86_64_TLSGD: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5025`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5025)*
+
 32 bit signed PC relative offset to two GOT entries for GD symbol
 
 ### `R_X86_64_TLSLD`
-
 ```rust
 const R_X86_64_TLSLD: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5027`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5027)*
+
 32 bit signed PC relative offset to two GOT entries for LD symbol
 
 ### `R_X86_64_DTPOFF32`
-
 ```rust
 const R_X86_64_DTPOFF32: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5029`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5029)*
+
 Offset in TLS block
 
 ### `R_X86_64_GOTTPOFF`
-
 ```rust
 const R_X86_64_GOTTPOFF: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5031`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5031)*
+
 32 bit signed PC relative offset to GOT entry for IE symbol
 
 ### `R_X86_64_TPOFF32`
-
 ```rust
 const R_X86_64_TPOFF32: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5033`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5033)*
+
 Offset in initial TLS block
 
 ### `R_X86_64_PC64`
-
 ```rust
 const R_X86_64_PC64: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5035`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5035)*
+
 PC relative 64 bit
 
 ### `R_X86_64_GOTOFF64`
-
 ```rust
 const R_X86_64_GOTOFF64: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5037`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5037)*
+
 64 bit offset to GOT
 
 ### `R_X86_64_GOTPC32`
-
 ```rust
 const R_X86_64_GOTPC32: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5039`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5039)*
+
 32 bit signed pc relative offset to GOT
 
 ### `R_X86_64_GOT64`
-
 ```rust
 const R_X86_64_GOT64: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5041`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5041)*
+
 64-bit GOT entry offset
 
 ### `R_X86_64_GOTPCREL64`
-
 ```rust
 const R_X86_64_GOTPCREL64: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5043`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5043)*
+
 64-bit PC relative offset to GOT entry
 
 ### `R_X86_64_GOTPC64`
-
 ```rust
 const R_X86_64_GOTPC64: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5045`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5045)*
+
 64-bit PC relative offset to GOT
 
 ### `R_X86_64_GOTPLT64`
-
 ```rust
 const R_X86_64_GOTPLT64: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5047`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5047)*
+
 like GOT64, says PLT entry needed
 
 ### `R_X86_64_PLTOFF64`
-
 ```rust
 const R_X86_64_PLTOFF64: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5049`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5049)*
+
 64-bit GOT relative offset to PLT entry
 
 ### `R_X86_64_SIZE32`
-
 ```rust
 const R_X86_64_SIZE32: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5051`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5051)*
+
 Size of symbol plus 32-bit addend
 
 ### `R_X86_64_SIZE64`
-
 ```rust
 const R_X86_64_SIZE64: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5053`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5053)*
+
 Size of symbol plus 64-bit addend
 
 ### `R_X86_64_GOTPC32_TLSDESC`
-
 ```rust
 const R_X86_64_GOTPC32_TLSDESC: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5055`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5055)*
+
 GOT offset for TLS descriptor.
 
 ### `R_X86_64_TLSDESC_CALL`
-
 ```rust
 const R_X86_64_TLSDESC_CALL: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5057`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5057)*
+
 Marker for call through TLS descriptor.
 
 ### `R_X86_64_TLSDESC`
-
 ```rust
 const R_X86_64_TLSDESC: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5059`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5059)*
+
 TLS descriptor.
 
 ### `R_X86_64_IRELATIVE`
-
 ```rust
 const R_X86_64_IRELATIVE: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5061`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5061)*
+
 Adjust indirectly by program base
 
 ### `R_X86_64_RELATIVE64`
-
 ```rust
 const R_X86_64_RELATIVE64: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5063`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5063)*
+
 64-bit adjust by program base
 
 ### `R_X86_64_GOTPCRELX`
-
 ```rust
 const R_X86_64_GOTPCRELX: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5067`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5067)*
+
 Load from 32 bit signed pc relative offset to GOT entry without REX prefix, relaxable.
 
 ### `R_X86_64_REX_GOTPCRELX`
-
 ```rust
 const R_X86_64_REX_GOTPCRELX: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5069`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5069)*
+
 Load from 32 bit signed pc relative offset to GOT entry with REX prefix, relaxable.
 
 ### `SHT_X86_64_UNWIND`
-
 ```rust
 const SHT_X86_64_UNWIND: u32 = 1_879_048_193u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5073`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5073)*
+
 Unwind information.
 
 ### `R_MN10300_NONE`
-
 ```rust
 const R_MN10300_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5077`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5077)*
+
 No reloc.
 
 ### `R_MN10300_32`
-
 ```rust
 const R_MN10300_32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5079`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5079)*
+
 Direct 32 bit.
 
 ### `R_MN10300_16`
-
 ```rust
 const R_MN10300_16: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5081`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5081)*
+
 Direct 16 bit.
 
 ### `R_MN10300_8`
-
 ```rust
 const R_MN10300_8: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5083`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5083)*
+
 Direct 8 bit.
 
 ### `R_MN10300_PCREL32`
-
 ```rust
 const R_MN10300_PCREL32: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5085`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5085)*
+
 PC-relative 32-bit.
 
 ### `R_MN10300_PCREL16`
-
 ```rust
 const R_MN10300_PCREL16: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5087`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5087)*
+
 PC-relative 16-bit signed.
 
 ### `R_MN10300_PCREL8`
-
 ```rust
 const R_MN10300_PCREL8: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5089`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5089)*
+
 PC-relative 8-bit signed.
 
 ### `R_MN10300_GNU_VTINHERIT`
-
 ```rust
 const R_MN10300_GNU_VTINHERIT: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5091`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5091)*
+
 Ancient C++ vtable garbage...
 
 ### `R_MN10300_GNU_VTENTRY`
-
 ```rust
 const R_MN10300_GNU_VTENTRY: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5093`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5093)*
+
 ... collection annotation.
 
 ### `R_MN10300_24`
-
 ```rust
 const R_MN10300_24: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5095`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5095)*
+
 Direct 24 bit.
 
 ### `R_MN10300_GOTPC32`
-
 ```rust
 const R_MN10300_GOTPC32: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5097`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5097)*
+
 32-bit PCrel offset to GOT.
 
 ### `R_MN10300_GOTPC16`
-
 ```rust
 const R_MN10300_GOTPC16: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5099`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5099)*
+
 16-bit PCrel offset to GOT.
 
 ### `R_MN10300_GOTOFF32`
-
 ```rust
 const R_MN10300_GOTOFF32: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5101`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5101)*
+
 32-bit offset from GOT.
 
 ### `R_MN10300_GOTOFF24`
-
 ```rust
 const R_MN10300_GOTOFF24: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5103`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5103)*
+
 24-bit offset from GOT.
 
 ### `R_MN10300_GOTOFF16`
-
 ```rust
 const R_MN10300_GOTOFF16: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5105`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5105)*
+
 16-bit offset from GOT.
 
 ### `R_MN10300_PLT32`
-
 ```rust
 const R_MN10300_PLT32: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5107`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5107)*
+
 32-bit PCrel to PLT entry.
 
 ### `R_MN10300_PLT16`
-
 ```rust
 const R_MN10300_PLT16: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5109`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5109)*
+
 16-bit PCrel to PLT entry.
 
 ### `R_MN10300_GOT32`
-
 ```rust
 const R_MN10300_GOT32: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5111`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5111)*
+
 32-bit offset to GOT entry.
 
 ### `R_MN10300_GOT24`
-
 ```rust
 const R_MN10300_GOT24: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5113`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5113)*
+
 24-bit offset to GOT entry.
 
 ### `R_MN10300_GOT16`
-
 ```rust
 const R_MN10300_GOT16: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5115`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5115)*
+
 16-bit offset to GOT entry.
 
 ### `R_MN10300_COPY`
-
 ```rust
 const R_MN10300_COPY: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5117`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5117)*
+
 Copy symbol at runtime.
 
 ### `R_MN10300_GLOB_DAT`
-
 ```rust
 const R_MN10300_GLOB_DAT: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5119`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5119)*
+
 Create GOT entry.
 
 ### `R_MN10300_JMP_SLOT`
-
 ```rust
 const R_MN10300_JMP_SLOT: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5121`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5121)*
+
 Create PLT entry.
 
 ### `R_MN10300_RELATIVE`
-
 ```rust
 const R_MN10300_RELATIVE: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5123`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5123)*
+
 Adjust by program base.
 
 ### `R_MN10300_TLS_GD`
-
 ```rust
 const R_MN10300_TLS_GD: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5125`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5125)*
+
 32-bit offset for global dynamic.
 
 ### `R_MN10300_TLS_LD`
-
 ```rust
 const R_MN10300_TLS_LD: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5127`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5127)*
+
 32-bit offset for local dynamic.
 
 ### `R_MN10300_TLS_LDO`
-
 ```rust
 const R_MN10300_TLS_LDO: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5129`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5129)*
+
 Module-relative offset.
 
 ### `R_MN10300_TLS_GOTIE`
-
 ```rust
 const R_MN10300_TLS_GOTIE: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5131`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5131)*
+
 GOT offset for static TLS block offset.
 
 ### `R_MN10300_TLS_IE`
-
 ```rust
 const R_MN10300_TLS_IE: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5133`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5133)*
+
 GOT address for static TLS block offset.
 
 ### `R_MN10300_TLS_LE`
-
 ```rust
 const R_MN10300_TLS_LE: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5135`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5135)*
+
 Offset relative to static TLS block.
 
 ### `R_MN10300_TLS_DTPMOD`
-
 ```rust
 const R_MN10300_TLS_DTPMOD: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5137`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5137)*
+
 ID of module containing symbol.
 
 ### `R_MN10300_TLS_DTPOFF`
-
 ```rust
 const R_MN10300_TLS_DTPOFF: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5139`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5139)*
+
 Offset in module TLS block.
 
 ### `R_MN10300_TLS_TPOFF`
-
 ```rust
 const R_MN10300_TLS_TPOFF: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5141`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5141)*
+
 Offset in static TLS block.
 
 ### `R_MN10300_SYM_DIFF`
-
 ```rust
 const R_MN10300_SYM_DIFF: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5143`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5143)*
+
 Adjustment for next reloc as needed by linker relaxation.
 
 ### `R_MN10300_ALIGN`
-
 ```rust
 const R_MN10300_ALIGN: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5145`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5145)*
+
 Alignment requirement for linker relaxation.
 
 ### `R_M32R_NONE`
-
 ```rust
 const R_M32R_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5149`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5149)*
+
 No reloc.
 
 ### `R_M32R_16`
-
 ```rust
 const R_M32R_16: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5151`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5151)*
+
 Direct 16 bit.
 
 ### `R_M32R_32`
-
 ```rust
 const R_M32R_32: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5153`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5153)*
+
 Direct 32 bit.
 
 ### `R_M32R_24`
-
 ```rust
 const R_M32R_24: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5155`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5155)*
+
 Direct 24 bit.
 
 ### `R_M32R_10_PCREL`
-
 ```rust
 const R_M32R_10_PCREL: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5157`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5157)*
+
 PC relative 10 bit shifted.
 
 ### `R_M32R_18_PCREL`
-
 ```rust
 const R_M32R_18_PCREL: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5159`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5159)*
+
 PC relative 18 bit shifted.
 
 ### `R_M32R_26_PCREL`
-
 ```rust
 const R_M32R_26_PCREL: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5161`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5161)*
+
 PC relative 26 bit shifted.
 
 ### `R_M32R_HI16_ULO`
-
 ```rust
 const R_M32R_HI16_ULO: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5163`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5163)*
+
 High 16 bit with unsigned low.
 
 ### `R_M32R_HI16_SLO`
-
 ```rust
 const R_M32R_HI16_SLO: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5165`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5165)*
+
 High 16 bit with signed low.
 
 ### `R_M32R_LO16`
-
 ```rust
 const R_M32R_LO16: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5167`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5167)*
+
 Low 16 bit.
 
 ### `R_M32R_SDA16`
-
 ```rust
 const R_M32R_SDA16: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5169`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5169)*
+
 16 bit offset in SDA.
 
 ### `R_M32R_GNU_VTINHERIT`
-
 ```rust
 const R_M32R_GNU_VTINHERIT: u32 = 11u32;
 ```
 
-### `R_M32R_GNU_VTENTRY`
+*Defined in [`object-0.37.3/src/elf.rs:5170`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5170)*
 
+### `R_M32R_GNU_VTENTRY`
 ```rust
 const R_M32R_GNU_VTENTRY: u32 = 12u32;
 ```
 
-### `R_M32R_16_RELA`
+*Defined in [`object-0.37.3/src/elf.rs:5171`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5171)*
 
+### `R_M32R_16_RELA`
 ```rust
 const R_M32R_16_RELA: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5174`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5174)*
+
 Direct 16 bit.
 
 ### `R_M32R_32_RELA`
-
 ```rust
 const R_M32R_32_RELA: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5176`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5176)*
+
 Direct 32 bit.
 
 ### `R_M32R_24_RELA`
-
 ```rust
 const R_M32R_24_RELA: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5178`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5178)*
+
 Direct 24 bit.
 
 ### `R_M32R_10_PCREL_RELA`
-
 ```rust
 const R_M32R_10_PCREL_RELA: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5180`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5180)*
+
 PC relative 10 bit shifted.
 
 ### `R_M32R_18_PCREL_RELA`
-
 ```rust
 const R_M32R_18_PCREL_RELA: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5182`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5182)*
+
 PC relative 18 bit shifted.
 
 ### `R_M32R_26_PCREL_RELA`
-
 ```rust
 const R_M32R_26_PCREL_RELA: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5184`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5184)*
+
 PC relative 26 bit shifted.
 
 ### `R_M32R_HI16_ULO_RELA`
-
 ```rust
 const R_M32R_HI16_ULO_RELA: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5186`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5186)*
+
 High 16 bit with unsigned low
 
 ### `R_M32R_HI16_SLO_RELA`
-
 ```rust
 const R_M32R_HI16_SLO_RELA: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5188`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5188)*
+
 High 16 bit with signed low
 
 ### `R_M32R_LO16_RELA`
-
 ```rust
 const R_M32R_LO16_RELA: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5190`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5190)*
+
 Low 16 bit
 
 ### `R_M32R_SDA16_RELA`
-
 ```rust
 const R_M32R_SDA16_RELA: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5192`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5192)*
+
 16 bit offset in SDA
 
 ### `R_M32R_RELA_GNU_VTINHERIT`
-
 ```rust
 const R_M32R_RELA_GNU_VTINHERIT: u32 = 43u32;
 ```
 
-### `R_M32R_RELA_GNU_VTENTRY`
+*Defined in [`object-0.37.3/src/elf.rs:5193`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5193)*
 
+### `R_M32R_RELA_GNU_VTENTRY`
 ```rust
 const R_M32R_RELA_GNU_VTENTRY: u32 = 44u32;
 ```
 
-### `R_M32R_REL32`
+*Defined in [`object-0.37.3/src/elf.rs:5194`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5194)*
 
+### `R_M32R_REL32`
 ```rust
 const R_M32R_REL32: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5196`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5196)*
+
 PC relative 32 bit.
 
 ### `R_M32R_GOT24`
-
 ```rust
 const R_M32R_GOT24: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5199`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5199)*
+
 24 bit GOT entry
 
 ### `R_M32R_26_PLTREL`
-
 ```rust
 const R_M32R_26_PLTREL: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5201`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5201)*
+
 26 bit PC relative to PLT shifted
 
 ### `R_M32R_COPY`
-
 ```rust
 const R_M32R_COPY: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5203`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5203)*
+
 Copy symbol at runtime
 
 ### `R_M32R_GLOB_DAT`
-
 ```rust
 const R_M32R_GLOB_DAT: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5205`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5205)*
+
 Create GOT entry
 
 ### `R_M32R_JMP_SLOT`
-
 ```rust
 const R_M32R_JMP_SLOT: u32 = 52u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5207`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5207)*
+
 Create PLT entry
 
 ### `R_M32R_RELATIVE`
-
 ```rust
 const R_M32R_RELATIVE: u32 = 53u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5209`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5209)*
+
 Adjust by program base
 
 ### `R_M32R_GOTOFF`
-
 ```rust
 const R_M32R_GOTOFF: u32 = 54u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5211`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5211)*
+
 24 bit offset to GOT
 
 ### `R_M32R_GOTPC24`
-
 ```rust
 const R_M32R_GOTPC24: u32 = 55u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5213`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5213)*
+
 24 bit PC relative offset to GOT
 
 ### `R_M32R_GOT16_HI_ULO`
-
 ```rust
 const R_M32R_GOT16_HI_ULO: u32 = 56u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5215`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5215)*
+
 High 16 bit GOT entry with unsigned low
 
 ### `R_M32R_GOT16_HI_SLO`
-
 ```rust
 const R_M32R_GOT16_HI_SLO: u32 = 57u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5217`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5217)*
+
 High 16 bit GOT entry with signed low
 
 ### `R_M32R_GOT16_LO`
-
 ```rust
 const R_M32R_GOT16_LO: u32 = 58u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5219`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5219)*
+
 Low 16 bit GOT entry
 
 ### `R_M32R_GOTPC_HI_ULO`
-
 ```rust
 const R_M32R_GOTPC_HI_ULO: u32 = 59u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5221`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5221)*
+
 High 16 bit PC relative offset to GOT with unsigned low
 
 ### `R_M32R_GOTPC_HI_SLO`
-
 ```rust
 const R_M32R_GOTPC_HI_SLO: u32 = 60u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5223`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5223)*
+
 High 16 bit PC relative offset to GOT with signed low
 
 ### `R_M32R_GOTPC_LO`
-
 ```rust
 const R_M32R_GOTPC_LO: u32 = 61u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5225`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5225)*
+
 Low 16 bit PC relative offset to GOT
 
 ### `R_M32R_GOTOFF_HI_ULO`
-
 ```rust
 const R_M32R_GOTOFF_HI_ULO: u32 = 62u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5227`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5227)*
+
 High 16 bit offset to GOT with unsigned low
 
 ### `R_M32R_GOTOFF_HI_SLO`
-
 ```rust
 const R_M32R_GOTOFF_HI_SLO: u32 = 63u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5229`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5229)*
+
 High 16 bit offset to GOT with signed low
 
 ### `R_M32R_GOTOFF_LO`
-
 ```rust
 const R_M32R_GOTOFF_LO: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5231`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5231)*
+
 Low 16 bit offset to GOT
 
 ### `R_M32R_NUM`
-
 ```rust
 const R_M32R_NUM: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5233`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5233)*
+
 Keep this the last entry.
 
 ### `R_MICROBLAZE_NONE`
-
 ```rust
 const R_MICROBLAZE_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5237`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5237)*
+
 No reloc.
 
 ### `R_MICROBLAZE_32`
-
 ```rust
 const R_MICROBLAZE_32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5239`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5239)*
+
 Direct 32 bit.
 
 ### `R_MICROBLAZE_32_PCREL`
-
 ```rust
 const R_MICROBLAZE_32_PCREL: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5241`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5241)*
+
 PC relative 32 bit.
 
 ### `R_MICROBLAZE_64_PCREL`
-
 ```rust
 const R_MICROBLAZE_64_PCREL: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5243`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5243)*
+
 PC relative 64 bit.
 
 ### `R_MICROBLAZE_32_PCREL_LO`
-
 ```rust
 const R_MICROBLAZE_32_PCREL_LO: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5245`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5245)*
+
 Low 16 bits of PCREL32.
 
 ### `R_MICROBLAZE_64`
-
 ```rust
 const R_MICROBLAZE_64: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5247`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5247)*
+
 Direct 64 bit.
 
 ### `R_MICROBLAZE_32_LO`
-
 ```rust
 const R_MICROBLAZE_32_LO: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5249`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5249)*
+
 Low 16 bit.
 
 ### `R_MICROBLAZE_SRO32`
-
 ```rust
 const R_MICROBLAZE_SRO32: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5251`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5251)*
+
 Read-only small data area.
 
 ### `R_MICROBLAZE_SRW32`
-
 ```rust
 const R_MICROBLAZE_SRW32: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5253`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5253)*
+
 Read-write small data area.
 
 ### `R_MICROBLAZE_64_NONE`
-
 ```rust
 const R_MICROBLAZE_64_NONE: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5255`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5255)*
+
 No reloc.
 
 ### `R_MICROBLAZE_32_SYM_OP_SYM`
-
 ```rust
 const R_MICROBLAZE_32_SYM_OP_SYM: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5257`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5257)*
+
 Symbol Op Symbol relocation.
 
 ### `R_MICROBLAZE_GNU_VTINHERIT`
-
 ```rust
 const R_MICROBLAZE_GNU_VTINHERIT: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5259`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5259)*
+
 GNU C++ vtable hierarchy.
 
 ### `R_MICROBLAZE_GNU_VTENTRY`
-
 ```rust
 const R_MICROBLAZE_GNU_VTENTRY: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5261`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5261)*
+
 GNU C++ vtable member usage.
 
 ### `R_MICROBLAZE_GOTPC_64`
-
 ```rust
 const R_MICROBLAZE_GOTPC_64: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5263`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5263)*
+
 PC-relative GOT offset.
 
 ### `R_MICROBLAZE_GOT_64`
-
 ```rust
 const R_MICROBLAZE_GOT_64: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5265`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5265)*
+
 GOT entry offset.
 
 ### `R_MICROBLAZE_PLT_64`
-
 ```rust
 const R_MICROBLAZE_PLT_64: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5267`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5267)*
+
 PLT offset (PC-relative).
 
 ### `R_MICROBLAZE_REL`
-
 ```rust
 const R_MICROBLAZE_REL: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5269`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5269)*
+
 Adjust by program base.
 
 ### `R_MICROBLAZE_JUMP_SLOT`
-
 ```rust
 const R_MICROBLAZE_JUMP_SLOT: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5271`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5271)*
+
 Create PLT entry.
 
 ### `R_MICROBLAZE_GLOB_DAT`
-
 ```rust
 const R_MICROBLAZE_GLOB_DAT: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5273`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5273)*
+
 Create GOT entry.
 
 ### `R_MICROBLAZE_GOTOFF_64`
-
 ```rust
 const R_MICROBLAZE_GOTOFF_64: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5275`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5275)*
+
 64 bit offset to GOT.
 
 ### `R_MICROBLAZE_GOTOFF_32`
-
 ```rust
 const R_MICROBLAZE_GOTOFF_32: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5277`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5277)*
+
 32 bit offset to GOT.
 
 ### `R_MICROBLAZE_COPY`
-
 ```rust
 const R_MICROBLAZE_COPY: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5279`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5279)*
+
 Runtime copy.
 
 ### `R_MICROBLAZE_TLS`
-
 ```rust
 const R_MICROBLAZE_TLS: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5281`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5281)*
+
 TLS Reloc.
 
 ### `R_MICROBLAZE_TLSGD`
-
 ```rust
 const R_MICROBLAZE_TLSGD: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5283`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5283)*
+
 TLS General Dynamic.
 
 ### `R_MICROBLAZE_TLSLD`
-
 ```rust
 const R_MICROBLAZE_TLSLD: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5285`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5285)*
+
 TLS Local Dynamic.
 
 ### `R_MICROBLAZE_TLSDTPMOD32`
-
 ```rust
 const R_MICROBLAZE_TLSDTPMOD32: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5287`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5287)*
+
 TLS Module ID.
 
 ### `R_MICROBLAZE_TLSDTPREL32`
-
 ```rust
 const R_MICROBLAZE_TLSDTPREL32: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5289`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5289)*
+
 TLS Offset Within TLS Block.
 
 ### `R_MICROBLAZE_TLSDTPREL64`
-
 ```rust
 const R_MICROBLAZE_TLSDTPREL64: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5291`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5291)*
+
 TLS Offset Within TLS Block.
 
 ### `R_MICROBLAZE_TLSGOTTPREL32`
-
 ```rust
 const R_MICROBLAZE_TLSGOTTPREL32: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5293`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5293)*
+
 TLS Offset From Thread Pointer.
 
 ### `R_MICROBLAZE_TLSTPREL32`
-
 ```rust
 const R_MICROBLAZE_TLSTPREL32: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5295`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5295)*
+
 TLS Offset From Thread Pointer.
 
 ### `DT_NIOS2_GP`
-
 ```rust
 const DT_NIOS2_GP: u32 = 1_879_048_194u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5299`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5299)*
+
 Address of _gp.
 
 ### `R_NIOS2_NONE`
-
 ```rust
 const R_NIOS2_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5303`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5303)*
+
 No reloc.
 
 ### `R_NIOS2_S16`
-
 ```rust
 const R_NIOS2_S16: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5305`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5305)*
+
 Direct signed 16 bit.
 
 ### `R_NIOS2_U16`
-
 ```rust
 const R_NIOS2_U16: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5307`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5307)*
+
 Direct unsigned 16 bit.
 
 ### `R_NIOS2_PCREL16`
-
 ```rust
 const R_NIOS2_PCREL16: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5309`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5309)*
+
 PC relative 16 bit.
 
 ### `R_NIOS2_CALL26`
-
 ```rust
 const R_NIOS2_CALL26: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5311`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5311)*
+
 Direct call.
 
 ### `R_NIOS2_IMM5`
-
 ```rust
 const R_NIOS2_IMM5: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5313`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5313)*
+
 5 bit constant expression.
 
 ### `R_NIOS2_CACHE_OPX`
-
 ```rust
 const R_NIOS2_CACHE_OPX: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5315`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5315)*
+
 5 bit expression, shift 22.
 
 ### `R_NIOS2_IMM6`
-
 ```rust
 const R_NIOS2_IMM6: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5317`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5317)*
+
 6 bit constant expression.
 
 ### `R_NIOS2_IMM8`
-
 ```rust
 const R_NIOS2_IMM8: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5319`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5319)*
+
 8 bit constant expression.
 
 ### `R_NIOS2_HI16`
-
 ```rust
 const R_NIOS2_HI16: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5321`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5321)*
+
 High 16 bit.
 
 ### `R_NIOS2_LO16`
-
 ```rust
 const R_NIOS2_LO16: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5323`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5323)*
+
 Low 16 bit.
 
 ### `R_NIOS2_HIADJ16`
-
 ```rust
 const R_NIOS2_HIADJ16: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5325`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5325)*
+
 High 16 bit, adjusted.
 
 ### `R_NIOS2_BFD_RELOC_32`
-
 ```rust
 const R_NIOS2_BFD_RELOC_32: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5327`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5327)*
+
 32 bit symbol value + addend.
 
 ### `R_NIOS2_BFD_RELOC_16`
-
 ```rust
 const R_NIOS2_BFD_RELOC_16: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5329`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5329)*
+
 16 bit symbol value + addend.
 
 ### `R_NIOS2_BFD_RELOC_8`
-
 ```rust
 const R_NIOS2_BFD_RELOC_8: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5331`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5331)*
+
 8 bit symbol value + addend.
 
 ### `R_NIOS2_GPREL`
-
 ```rust
 const R_NIOS2_GPREL: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5333`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5333)*
+
 16 bit GP pointer offset.
 
 ### `R_NIOS2_GNU_VTINHERIT`
-
 ```rust
 const R_NIOS2_GNU_VTINHERIT: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5335`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5335)*
+
 GNU C++ vtable hierarchy.
 
 ### `R_NIOS2_GNU_VTENTRY`
-
 ```rust
 const R_NIOS2_GNU_VTENTRY: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5337`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5337)*
+
 GNU C++ vtable member usage.
 
 ### `R_NIOS2_UJMP`
-
 ```rust
 const R_NIOS2_UJMP: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5339`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5339)*
+
 Unconditional branch.
 
 ### `R_NIOS2_CJMP`
-
 ```rust
 const R_NIOS2_CJMP: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5341`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5341)*
+
 Conditional branch.
 
 ### `R_NIOS2_CALLR`
-
 ```rust
 const R_NIOS2_CALLR: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5343`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5343)*
+
 Indirect call through register.
 
 ### `R_NIOS2_ALIGN`
-
 ```rust
 const R_NIOS2_ALIGN: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5345`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5345)*
+
 Alignment requirement for linker relaxation.
 
 ### `R_NIOS2_GOT16`
-
 ```rust
 const R_NIOS2_GOT16: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5347`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5347)*
+
 16 bit GOT entry.
 
 ### `R_NIOS2_CALL16`
-
 ```rust
 const R_NIOS2_CALL16: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5349`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5349)*
+
 16 bit GOT entry for function.
 
 ### `R_NIOS2_GOTOFF_LO`
-
 ```rust
 const R_NIOS2_GOTOFF_LO: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5351`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5351)*
+
 %lo of offset to GOT pointer.
 
 ### `R_NIOS2_GOTOFF_HA`
-
 ```rust
 const R_NIOS2_GOTOFF_HA: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5353`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5353)*
+
 %hiadj of offset to GOT pointer.
 
 ### `R_NIOS2_PCREL_LO`
-
 ```rust
 const R_NIOS2_PCREL_LO: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5355`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5355)*
+
 %lo of PC relative offset.
 
 ### `R_NIOS2_PCREL_HA`
-
 ```rust
 const R_NIOS2_PCREL_HA: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5357`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5357)*
+
 %hiadj of PC relative offset.
 
 ### `R_NIOS2_TLS_GD16`
-
 ```rust
 const R_NIOS2_TLS_GD16: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5359`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5359)*
+
 16 bit GOT offset for TLS GD.
 
 ### `R_NIOS2_TLS_LDM16`
-
 ```rust
 const R_NIOS2_TLS_LDM16: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5361`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5361)*
+
 16 bit GOT offset for TLS LDM.
 
 ### `R_NIOS2_TLS_LDO16`
-
 ```rust
 const R_NIOS2_TLS_LDO16: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5363`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5363)*
+
 16 bit module relative offset.
 
 ### `R_NIOS2_TLS_IE16`
-
 ```rust
 const R_NIOS2_TLS_IE16: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5365`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5365)*
+
 16 bit GOT offset for TLS IE.
 
 ### `R_NIOS2_TLS_LE16`
-
 ```rust
 const R_NIOS2_TLS_LE16: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5367`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5367)*
+
 16 bit LE TP-relative offset.
 
 ### `R_NIOS2_TLS_DTPMOD`
-
 ```rust
 const R_NIOS2_TLS_DTPMOD: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5369`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5369)*
+
 Module number.
 
 ### `R_NIOS2_TLS_DTPREL`
-
 ```rust
 const R_NIOS2_TLS_DTPREL: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5371`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5371)*
+
 Module-relative offset.
 
 ### `R_NIOS2_TLS_TPREL`
-
 ```rust
 const R_NIOS2_TLS_TPREL: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5373`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5373)*
+
 TP-relative offset.
 
 ### `R_NIOS2_COPY`
-
 ```rust
 const R_NIOS2_COPY: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5375`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5375)*
+
 Copy symbol at runtime.
 
 ### `R_NIOS2_GLOB_DAT`
-
 ```rust
 const R_NIOS2_GLOB_DAT: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5377`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5377)*
+
 Create GOT entry.
 
 ### `R_NIOS2_JUMP_SLOT`
-
 ```rust
 const R_NIOS2_JUMP_SLOT: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5379`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5379)*
+
 Create PLT entry.
 
 ### `R_NIOS2_RELATIVE`
-
 ```rust
 const R_NIOS2_RELATIVE: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5381`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5381)*
+
 Adjust by program base.
 
 ### `R_NIOS2_GOTOFF`
-
 ```rust
 const R_NIOS2_GOTOFF: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5383`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5383)*
+
 16 bit offset to GOT pointer.
 
 ### `R_NIOS2_CALL26_NOAT`
-
 ```rust
 const R_NIOS2_CALL26_NOAT: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5385`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5385)*
+
 Direct call in .noat section.
 
 ### `R_NIOS2_GOT_LO`
-
 ```rust
 const R_NIOS2_GOT_LO: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5387`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5387)*
+
 %lo() of GOT entry.
 
 ### `R_NIOS2_GOT_HA`
-
 ```rust
 const R_NIOS2_GOT_HA: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5389`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5389)*
+
 %hiadj() of GOT entry.
 
 ### `R_NIOS2_CALL_LO`
-
 ```rust
 const R_NIOS2_CALL_LO: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5391`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5391)*
+
 %lo() of function GOT entry.
 
 ### `R_NIOS2_CALL_HA`
-
 ```rust
 const R_NIOS2_CALL_HA: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5393`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5393)*
+
 %hiadj() of function GOT entry.
 
 ### `R_TILEPRO_NONE`
-
 ```rust
 const R_TILEPRO_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5397`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5397)*
+
 No reloc
 
 ### `R_TILEPRO_32`
-
 ```rust
 const R_TILEPRO_32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5399`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5399)*
+
 Direct 32 bit
 
 ### `R_TILEPRO_16`
-
 ```rust
 const R_TILEPRO_16: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5401`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5401)*
+
 Direct 16 bit
 
 ### `R_TILEPRO_8`
-
 ```rust
 const R_TILEPRO_8: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5403`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5403)*
+
 Direct 8 bit
 
 ### `R_TILEPRO_32_PCREL`
-
 ```rust
 const R_TILEPRO_32_PCREL: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5405`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5405)*
+
 PC relative 32 bit
 
 ### `R_TILEPRO_16_PCREL`
-
 ```rust
 const R_TILEPRO_16_PCREL: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5407`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5407)*
+
 PC relative 16 bit
 
 ### `R_TILEPRO_8_PCREL`
-
 ```rust
 const R_TILEPRO_8_PCREL: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5409`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5409)*
+
 PC relative 8 bit
 
 ### `R_TILEPRO_LO16`
-
 ```rust
 const R_TILEPRO_LO16: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5411`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5411)*
+
 Low 16 bit
 
 ### `R_TILEPRO_HI16`
-
 ```rust
 const R_TILEPRO_HI16: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5413`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5413)*
+
 High 16 bit
 
 ### `R_TILEPRO_HA16`
-
 ```rust
 const R_TILEPRO_HA16: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5415`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5415)*
+
 High 16 bit, adjusted
 
 ### `R_TILEPRO_COPY`
-
 ```rust
 const R_TILEPRO_COPY: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5417`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5417)*
+
 Copy relocation
 
 ### `R_TILEPRO_GLOB_DAT`
-
 ```rust
 const R_TILEPRO_GLOB_DAT: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5419`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5419)*
+
 Create GOT entry
 
 ### `R_TILEPRO_JMP_SLOT`
-
 ```rust
 const R_TILEPRO_JMP_SLOT: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5421`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5421)*
+
 Create PLT entry
 
 ### `R_TILEPRO_RELATIVE`
-
 ```rust
 const R_TILEPRO_RELATIVE: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5423`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5423)*
+
 Adjust by program base
 
 ### `R_TILEPRO_BROFF_X1`
-
 ```rust
 const R_TILEPRO_BROFF_X1: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5425`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5425)*
+
 X1 pipe branch offset
 
 ### `R_TILEPRO_JOFFLONG_X1`
-
 ```rust
 const R_TILEPRO_JOFFLONG_X1: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5427`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5427)*
+
 X1 pipe jump offset
 
 ### `R_TILEPRO_JOFFLONG_X1_PLT`
-
 ```rust
 const R_TILEPRO_JOFFLONG_X1_PLT: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5429`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5429)*
+
 X1 pipe jump offset to PLT
 
 ### `R_TILEPRO_IMM8_X0`
-
 ```rust
 const R_TILEPRO_IMM8_X0: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5431`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5431)*
+
 X0 pipe 8-bit
 
 ### `R_TILEPRO_IMM8_Y0`
-
 ```rust
 const R_TILEPRO_IMM8_Y0: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5433`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5433)*
+
 Y0 pipe 8-bit
 
 ### `R_TILEPRO_IMM8_X1`
-
 ```rust
 const R_TILEPRO_IMM8_X1: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5435`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5435)*
+
 X1 pipe 8-bit
 
 ### `R_TILEPRO_IMM8_Y1`
-
 ```rust
 const R_TILEPRO_IMM8_Y1: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5437`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5437)*
+
 Y1 pipe 8-bit
 
 ### `R_TILEPRO_MT_IMM15_X1`
-
 ```rust
 const R_TILEPRO_MT_IMM15_X1: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5439`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5439)*
+
 X1 pipe mtspr
 
 ### `R_TILEPRO_MF_IMM15_X1`
-
 ```rust
 const R_TILEPRO_MF_IMM15_X1: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5441`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5441)*
+
 X1 pipe mfspr
 
 ### `R_TILEPRO_IMM16_X0`
-
 ```rust
 const R_TILEPRO_IMM16_X0: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5443`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5443)*
+
 X0 pipe 16-bit
 
 ### `R_TILEPRO_IMM16_X1`
-
 ```rust
 const R_TILEPRO_IMM16_X1: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5445`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5445)*
+
 X1 pipe 16-bit
 
 ### `R_TILEPRO_IMM16_X0_LO`
-
 ```rust
 const R_TILEPRO_IMM16_X0_LO: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5447`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5447)*
+
 X0 pipe low 16-bit
 
 ### `R_TILEPRO_IMM16_X1_LO`
-
 ```rust
 const R_TILEPRO_IMM16_X1_LO: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5449`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5449)*
+
 X1 pipe low 16-bit
 
 ### `R_TILEPRO_IMM16_X0_HI`
-
 ```rust
 const R_TILEPRO_IMM16_X0_HI: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5451`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5451)*
+
 X0 pipe high 16-bit
 
 ### `R_TILEPRO_IMM16_X1_HI`
-
 ```rust
 const R_TILEPRO_IMM16_X1_HI: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5453`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5453)*
+
 X1 pipe high 16-bit
 
 ### `R_TILEPRO_IMM16_X0_HA`
-
 ```rust
 const R_TILEPRO_IMM16_X0_HA: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5455`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5455)*
+
 X0 pipe high 16-bit, adjusted
 
 ### `R_TILEPRO_IMM16_X1_HA`
-
 ```rust
 const R_TILEPRO_IMM16_X1_HA: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5457`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5457)*
+
 X1 pipe high 16-bit, adjusted
 
 ### `R_TILEPRO_IMM16_X0_PCREL`
-
 ```rust
 const R_TILEPRO_IMM16_X0_PCREL: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5459`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5459)*
+
 X0 pipe PC relative 16 bit
 
 ### `R_TILEPRO_IMM16_X1_PCREL`
-
 ```rust
 const R_TILEPRO_IMM16_X1_PCREL: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5461`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5461)*
+
 X1 pipe PC relative 16 bit
 
 ### `R_TILEPRO_IMM16_X0_LO_PCREL`
-
 ```rust
 const R_TILEPRO_IMM16_X0_LO_PCREL: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5463`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5463)*
+
 X0 pipe PC relative low 16 bit
 
 ### `R_TILEPRO_IMM16_X1_LO_PCREL`
-
 ```rust
 const R_TILEPRO_IMM16_X1_LO_PCREL: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5465`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5465)*
+
 X1 pipe PC relative low 16 bit
 
 ### `R_TILEPRO_IMM16_X0_HI_PCREL`
-
 ```rust
 const R_TILEPRO_IMM16_X0_HI_PCREL: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5467`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5467)*
+
 X0 pipe PC relative high 16 bit
 
 ### `R_TILEPRO_IMM16_X1_HI_PCREL`
-
 ```rust
 const R_TILEPRO_IMM16_X1_HI_PCREL: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5469`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5469)*
+
 X1 pipe PC relative high 16 bit
 
 ### `R_TILEPRO_IMM16_X0_HA_PCREL`
-
 ```rust
 const R_TILEPRO_IMM16_X0_HA_PCREL: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5471`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5471)*
+
 X0 pipe PC relative ha() 16 bit
 
 ### `R_TILEPRO_IMM16_X1_HA_PCREL`
-
 ```rust
 const R_TILEPRO_IMM16_X1_HA_PCREL: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5473`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5473)*
+
 X1 pipe PC relative ha() 16 bit
 
 ### `R_TILEPRO_IMM16_X0_GOT`
-
 ```rust
 const R_TILEPRO_IMM16_X0_GOT: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5475`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5475)*
+
 X0 pipe 16-bit GOT offset
 
 ### `R_TILEPRO_IMM16_X1_GOT`
-
 ```rust
 const R_TILEPRO_IMM16_X1_GOT: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5477`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5477)*
+
 X1 pipe 16-bit GOT offset
 
 ### `R_TILEPRO_IMM16_X0_GOT_LO`
-
 ```rust
 const R_TILEPRO_IMM16_X0_GOT_LO: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5479`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5479)*
+
 X0 pipe low 16-bit GOT offset
 
 ### `R_TILEPRO_IMM16_X1_GOT_LO`
-
 ```rust
 const R_TILEPRO_IMM16_X1_GOT_LO: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5481`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5481)*
+
 X1 pipe low 16-bit GOT offset
 
 ### `R_TILEPRO_IMM16_X0_GOT_HI`
-
 ```rust
 const R_TILEPRO_IMM16_X0_GOT_HI: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5483`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5483)*
+
 X0 pipe high 16-bit GOT offset
 
 ### `R_TILEPRO_IMM16_X1_GOT_HI`
-
 ```rust
 const R_TILEPRO_IMM16_X1_GOT_HI: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5485`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5485)*
+
 X1 pipe high 16-bit GOT offset
 
 ### `R_TILEPRO_IMM16_X0_GOT_HA`
-
 ```rust
 const R_TILEPRO_IMM16_X0_GOT_HA: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5487`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5487)*
+
 X0 pipe ha() 16-bit GOT offset
 
 ### `R_TILEPRO_IMM16_X1_GOT_HA`
-
 ```rust
 const R_TILEPRO_IMM16_X1_GOT_HA: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5489`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5489)*
+
 X1 pipe ha() 16-bit GOT offset
 
 ### `R_TILEPRO_MMSTART_X0`
-
 ```rust
 const R_TILEPRO_MMSTART_X0: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5491`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5491)*
+
 X0 pipe mm "start"
 
 ### `R_TILEPRO_MMEND_X0`
-
 ```rust
 const R_TILEPRO_MMEND_X0: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5493`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5493)*
+
 X0 pipe mm "end"
 
 ### `R_TILEPRO_MMSTART_X1`
-
 ```rust
 const R_TILEPRO_MMSTART_X1: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5495`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5495)*
+
 X1 pipe mm "start"
 
 ### `R_TILEPRO_MMEND_X1`
-
 ```rust
 const R_TILEPRO_MMEND_X1: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5497`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5497)*
+
 X1 pipe mm "end"
 
 ### `R_TILEPRO_SHAMT_X0`
-
 ```rust
 const R_TILEPRO_SHAMT_X0: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5499`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5499)*
+
 X0 pipe shift amount
 
 ### `R_TILEPRO_SHAMT_X1`
-
 ```rust
 const R_TILEPRO_SHAMT_X1: u32 = 52u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5501`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5501)*
+
 X1 pipe shift amount
 
 ### `R_TILEPRO_SHAMT_Y0`
-
 ```rust
 const R_TILEPRO_SHAMT_Y0: u32 = 53u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5503`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5503)*
+
 Y0 pipe shift amount
 
 ### `R_TILEPRO_SHAMT_Y1`
-
 ```rust
 const R_TILEPRO_SHAMT_Y1: u32 = 54u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5505`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5505)*
+
 Y1 pipe shift amount
 
 ### `R_TILEPRO_DEST_IMM8_X1`
-
 ```rust
 const R_TILEPRO_DEST_IMM8_X1: u32 = 55u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5507`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5507)*
+
 X1 pipe destination 8-bit
 
 ### `R_TILEPRO_TLS_GD_CALL`
-
 ```rust
 const R_TILEPRO_TLS_GD_CALL: u32 = 60u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5510`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5510)*
+
 "jal" for TLS GD
 
 ### `R_TILEPRO_IMM8_X0_TLS_GD_ADD`
-
 ```rust
 const R_TILEPRO_IMM8_X0_TLS_GD_ADD: u32 = 61u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5512`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5512)*
+
 X0 pipe "addi" for TLS GD
 
 ### `R_TILEPRO_IMM8_X1_TLS_GD_ADD`
-
 ```rust
 const R_TILEPRO_IMM8_X1_TLS_GD_ADD: u32 = 62u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5514`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5514)*
+
 X1 pipe "addi" for TLS GD
 
 ### `R_TILEPRO_IMM8_Y0_TLS_GD_ADD`
-
 ```rust
 const R_TILEPRO_IMM8_Y0_TLS_GD_ADD: u32 = 63u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5516`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5516)*
+
 Y0 pipe "addi" for TLS GD
 
 ### `R_TILEPRO_IMM8_Y1_TLS_GD_ADD`
-
 ```rust
 const R_TILEPRO_IMM8_Y1_TLS_GD_ADD: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5518`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5518)*
+
 Y1 pipe "addi" for TLS GD
 
 ### `R_TILEPRO_TLS_IE_LOAD`
-
 ```rust
 const R_TILEPRO_TLS_IE_LOAD: u32 = 65u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5520`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5520)*
+
 "lw_tls" for TLS IE
 
 ### `R_TILEPRO_IMM16_X0_TLS_GD`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_GD: u32 = 66u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5522`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5522)*
+
 X0 pipe 16-bit TLS GD offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_GD`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_GD: u32 = 67u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5524`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5524)*
+
 X1 pipe 16-bit TLS GD offset
 
 ### `R_TILEPRO_IMM16_X0_TLS_GD_LO`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_GD_LO: u32 = 68u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5526`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5526)*
+
 X0 pipe low 16-bit TLS GD offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_GD_LO`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_GD_LO: u32 = 69u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5528`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5528)*
+
 X1 pipe low 16-bit TLS GD offset
 
 ### `R_TILEPRO_IMM16_X0_TLS_GD_HI`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_GD_HI: u32 = 70u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5530`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5530)*
+
 X0 pipe high 16-bit TLS GD offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_GD_HI`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_GD_HI: u32 = 71u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5532`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5532)*
+
 X1 pipe high 16-bit TLS GD offset
 
 ### `R_TILEPRO_IMM16_X0_TLS_GD_HA`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_GD_HA: u32 = 72u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5534`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5534)*
+
 X0 pipe ha() 16-bit TLS GD offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_GD_HA`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_GD_HA: u32 = 73u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5536`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5536)*
+
 X1 pipe ha() 16-bit TLS GD offset
 
 ### `R_TILEPRO_IMM16_X0_TLS_IE`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_IE: u32 = 74u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5538`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5538)*
+
 X0 pipe 16-bit TLS IE offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_IE`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_IE: u32 = 75u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5540`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5540)*
+
 X1 pipe 16-bit TLS IE offset
 
 ### `R_TILEPRO_IMM16_X0_TLS_IE_LO`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_IE_LO: u32 = 76u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5542`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5542)*
+
 X0 pipe low 16-bit TLS IE offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_IE_LO`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_IE_LO: u32 = 77u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5544`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5544)*
+
 X1 pipe low 16-bit TLS IE offset
 
 ### `R_TILEPRO_IMM16_X0_TLS_IE_HI`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_IE_HI: u32 = 78u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5546`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5546)*
+
 X0 pipe high 16-bit TLS IE offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_IE_HI`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_IE_HI: u32 = 79u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5548`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5548)*
+
 X1 pipe high 16-bit TLS IE offset
 
 ### `R_TILEPRO_IMM16_X0_TLS_IE_HA`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_IE_HA: u32 = 80u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5550`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5550)*
+
 X0 pipe ha() 16-bit TLS IE offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_IE_HA`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_IE_HA: u32 = 81u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5552`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5552)*
+
 X1 pipe ha() 16-bit TLS IE offset
 
 ### `R_TILEPRO_TLS_DTPMOD32`
-
 ```rust
 const R_TILEPRO_TLS_DTPMOD32: u32 = 82u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5554`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5554)*
+
 ID of module containing symbol
 
 ### `R_TILEPRO_TLS_DTPOFF32`
-
 ```rust
 const R_TILEPRO_TLS_DTPOFF32: u32 = 83u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5556`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5556)*
+
 Offset in TLS block
 
 ### `R_TILEPRO_TLS_TPOFF32`
-
 ```rust
 const R_TILEPRO_TLS_TPOFF32: u32 = 84u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5558`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5558)*
+
 Offset in static TLS block
 
 ### `R_TILEPRO_IMM16_X0_TLS_LE`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_LE: u32 = 85u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5560`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5560)*
+
 X0 pipe 16-bit TLS LE offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_LE`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_LE: u32 = 86u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5562`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5562)*
+
 X1 pipe 16-bit TLS LE offset
 
 ### `R_TILEPRO_IMM16_X0_TLS_LE_LO`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_LE_LO: u32 = 87u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5564`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5564)*
+
 X0 pipe low 16-bit TLS LE offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_LE_LO`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_LE_LO: u32 = 88u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5566`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5566)*
+
 X1 pipe low 16-bit TLS LE offset
 
 ### `R_TILEPRO_IMM16_X0_TLS_LE_HI`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_LE_HI: u32 = 89u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5568`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5568)*
+
 X0 pipe high 16-bit TLS LE offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_LE_HI`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_LE_HI: u32 = 90u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5570`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5570)*
+
 X1 pipe high 16-bit TLS LE offset
 
 ### `R_TILEPRO_IMM16_X0_TLS_LE_HA`
-
 ```rust
 const R_TILEPRO_IMM16_X0_TLS_LE_HA: u32 = 91u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5572`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5572)*
+
 X0 pipe ha() 16-bit TLS LE offset
 
 ### `R_TILEPRO_IMM16_X1_TLS_LE_HA`
-
 ```rust
 const R_TILEPRO_IMM16_X1_TLS_LE_HA: u32 = 92u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5574`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5574)*
+
 X1 pipe ha() 16-bit TLS LE offset
 
 ### `R_TILEPRO_GNU_VTINHERIT`
-
 ```rust
 const R_TILEPRO_GNU_VTINHERIT: u32 = 128u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5577`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5577)*
+
 GNU C++ vtable hierarchy
 
 ### `R_TILEPRO_GNU_VTENTRY`
-
 ```rust
 const R_TILEPRO_GNU_VTENTRY: u32 = 129u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5579`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5579)*
+
 GNU C++ vtable member usage
 
 ### `R_TILEGX_NONE`
-
 ```rust
 const R_TILEGX_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5583`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5583)*
+
 No reloc
 
 ### `R_TILEGX_64`
-
 ```rust
 const R_TILEGX_64: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5585`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5585)*
+
 Direct 64 bit
 
 ### `R_TILEGX_32`
-
 ```rust
 const R_TILEGX_32: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5587`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5587)*
+
 Direct 32 bit
 
 ### `R_TILEGX_16`
-
 ```rust
 const R_TILEGX_16: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5589`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5589)*
+
 Direct 16 bit
 
 ### `R_TILEGX_8`
-
 ```rust
 const R_TILEGX_8: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5591`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5591)*
+
 Direct 8 bit
 
 ### `R_TILEGX_64_PCREL`
-
 ```rust
 const R_TILEGX_64_PCREL: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5593`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5593)*
+
 PC relative 64 bit
 
 ### `R_TILEGX_32_PCREL`
-
 ```rust
 const R_TILEGX_32_PCREL: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5595`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5595)*
+
 PC relative 32 bit
 
 ### `R_TILEGX_16_PCREL`
-
 ```rust
 const R_TILEGX_16_PCREL: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5597`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5597)*
+
 PC relative 16 bit
 
 ### `R_TILEGX_8_PCREL`
-
 ```rust
 const R_TILEGX_8_PCREL: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5599`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5599)*
+
 PC relative 8 bit
 
 ### `R_TILEGX_HW0`
-
 ```rust
 const R_TILEGX_HW0: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5601`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5601)*
+
 hword 0 16-bit
 
 ### `R_TILEGX_HW1`
-
 ```rust
 const R_TILEGX_HW1: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5603`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5603)*
+
 hword 1 16-bit
 
 ### `R_TILEGX_HW2`
-
 ```rust
 const R_TILEGX_HW2: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5605`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5605)*
+
 hword 2 16-bit
 
 ### `R_TILEGX_HW3`
-
 ```rust
 const R_TILEGX_HW3: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5607`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5607)*
+
 hword 3 16-bit
 
 ### `R_TILEGX_HW0_LAST`
-
 ```rust
 const R_TILEGX_HW0_LAST: u32 = 13u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5609`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5609)*
+
 last hword 0 16-bit
 
 ### `R_TILEGX_HW1_LAST`
-
 ```rust
 const R_TILEGX_HW1_LAST: u32 = 14u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5611`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5611)*
+
 last hword 1 16-bit
 
 ### `R_TILEGX_HW2_LAST`
-
 ```rust
 const R_TILEGX_HW2_LAST: u32 = 15u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5613`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5613)*
+
 last hword 2 16-bit
 
 ### `R_TILEGX_COPY`
-
 ```rust
 const R_TILEGX_COPY: u32 = 16u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5615`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5615)*
+
 Copy relocation
 
 ### `R_TILEGX_GLOB_DAT`
-
 ```rust
 const R_TILEGX_GLOB_DAT: u32 = 17u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5617`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5617)*
+
 Create GOT entry
 
 ### `R_TILEGX_JMP_SLOT`
-
 ```rust
 const R_TILEGX_JMP_SLOT: u32 = 18u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5619`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5619)*
+
 Create PLT entry
 
 ### `R_TILEGX_RELATIVE`
-
 ```rust
 const R_TILEGX_RELATIVE: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5621`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5621)*
+
 Adjust by program base
 
 ### `R_TILEGX_BROFF_X1`
-
 ```rust
 const R_TILEGX_BROFF_X1: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5623`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5623)*
+
 X1 pipe branch offset
 
 ### `R_TILEGX_JUMPOFF_X1`
-
 ```rust
 const R_TILEGX_JUMPOFF_X1: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5625`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5625)*
+
 X1 pipe jump offset
 
 ### `R_TILEGX_JUMPOFF_X1_PLT`
-
 ```rust
 const R_TILEGX_JUMPOFF_X1_PLT: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5627`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5627)*
+
 X1 pipe jump offset to PLT
 
 ### `R_TILEGX_IMM8_X0`
-
 ```rust
 const R_TILEGX_IMM8_X0: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5629`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5629)*
+
 X0 pipe 8-bit
 
 ### `R_TILEGX_IMM8_Y0`
-
 ```rust
 const R_TILEGX_IMM8_Y0: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5631`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5631)*
+
 Y0 pipe 8-bit
 
 ### `R_TILEGX_IMM8_X1`
-
 ```rust
 const R_TILEGX_IMM8_X1: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5633`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5633)*
+
 X1 pipe 8-bit
 
 ### `R_TILEGX_IMM8_Y1`
-
 ```rust
 const R_TILEGX_IMM8_Y1: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5635`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5635)*
+
 Y1 pipe 8-bit
 
 ### `R_TILEGX_DEST_IMM8_X1`
-
 ```rust
 const R_TILEGX_DEST_IMM8_X1: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5637`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5637)*
+
 X1 pipe destination 8-bit
 
 ### `R_TILEGX_MT_IMM14_X1`
-
 ```rust
 const R_TILEGX_MT_IMM14_X1: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5639`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5639)*
+
 X1 pipe mtspr
 
 ### `R_TILEGX_MF_IMM14_X1`
-
 ```rust
 const R_TILEGX_MF_IMM14_X1: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5641`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5641)*
+
 X1 pipe mfspr
 
 ### `R_TILEGX_MMSTART_X0`
-
 ```rust
 const R_TILEGX_MMSTART_X0: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5643`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5643)*
+
 X0 pipe mm "start"
 
 ### `R_TILEGX_MMEND_X0`
-
 ```rust
 const R_TILEGX_MMEND_X0: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5645`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5645)*
+
 X0 pipe mm "end"
 
 ### `R_TILEGX_SHAMT_X0`
-
 ```rust
 const R_TILEGX_SHAMT_X0: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5647`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5647)*
+
 X0 pipe shift amount
 
 ### `R_TILEGX_SHAMT_X1`
-
 ```rust
 const R_TILEGX_SHAMT_X1: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5649`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5649)*
+
 X1 pipe shift amount
 
 ### `R_TILEGX_SHAMT_Y0`
-
 ```rust
 const R_TILEGX_SHAMT_Y0: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5651`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5651)*
+
 Y0 pipe shift amount
 
 ### `R_TILEGX_SHAMT_Y1`
-
 ```rust
 const R_TILEGX_SHAMT_Y1: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5653`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5653)*
+
 Y1 pipe shift amount
 
 ### `R_TILEGX_IMM16_X0_HW0`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5655`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5655)*
+
 X0 pipe hword 0
 
 ### `R_TILEGX_IMM16_X1_HW0`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5657`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5657)*
+
 X1 pipe hword 0
 
 ### `R_TILEGX_IMM16_X0_HW1`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW1: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5659`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5659)*
+
 X0 pipe hword 1
 
 ### `R_TILEGX_IMM16_X1_HW1`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW1: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5661`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5661)*
+
 X1 pipe hword 1
 
 ### `R_TILEGX_IMM16_X0_HW2`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW2: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5663`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5663)*
+
 X0 pipe hword 2
 
 ### `R_TILEGX_IMM16_X1_HW2`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW2: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5665`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5665)*
+
 X1 pipe hword 2
 
 ### `R_TILEGX_IMM16_X0_HW3`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW3: u32 = 42u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5667`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5667)*
+
 X0 pipe hword 3
 
 ### `R_TILEGX_IMM16_X1_HW3`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW3: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5669`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5669)*
+
 X1 pipe hword 3
 
 ### `R_TILEGX_IMM16_X0_HW0_LAST`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_LAST: u32 = 44u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5671`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5671)*
+
 X0 pipe last hword 0
 
 ### `R_TILEGX_IMM16_X1_HW0_LAST`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_LAST: u32 = 45u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5673`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5673)*
+
 X1 pipe last hword 0
 
 ### `R_TILEGX_IMM16_X0_HW1_LAST`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW1_LAST: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5675`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5675)*
+
 X0 pipe last hword 1
 
 ### `R_TILEGX_IMM16_X1_HW1_LAST`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW1_LAST: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5677`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5677)*
+
 X1 pipe last hword 1
 
 ### `R_TILEGX_IMM16_X0_HW2_LAST`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW2_LAST: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5679`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5679)*
+
 X0 pipe last hword 2
 
 ### `R_TILEGX_IMM16_X1_HW2_LAST`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW2_LAST: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5681`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5681)*
+
 X1 pipe last hword 2
 
 ### `R_TILEGX_IMM16_X0_HW0_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_PCREL: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5683`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5683)*
+
 X0 pipe PC relative hword 0
 
 ### `R_TILEGX_IMM16_X1_HW0_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_PCREL: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5685`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5685)*
+
 X1 pipe PC relative hword 0
 
 ### `R_TILEGX_IMM16_X0_HW1_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW1_PCREL: u32 = 52u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5687`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5687)*
+
 X0 pipe PC relative hword 1
 
 ### `R_TILEGX_IMM16_X1_HW1_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW1_PCREL: u32 = 53u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5689`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5689)*
+
 X1 pipe PC relative hword 1
 
 ### `R_TILEGX_IMM16_X0_HW2_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW2_PCREL: u32 = 54u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5691`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5691)*
+
 X0 pipe PC relative hword 2
 
 ### `R_TILEGX_IMM16_X1_HW2_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW2_PCREL: u32 = 55u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5693`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5693)*
+
 X1 pipe PC relative hword 2
 
 ### `R_TILEGX_IMM16_X0_HW3_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW3_PCREL: u32 = 56u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5695`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5695)*
+
 X0 pipe PC relative hword 3
 
 ### `R_TILEGX_IMM16_X1_HW3_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW3_PCREL: u32 = 57u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5697`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5697)*
+
 X1 pipe PC relative hword 3
 
 ### `R_TILEGX_IMM16_X0_HW0_LAST_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_LAST_PCREL: u32 = 58u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5699`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5699)*
+
 X0 pipe PC-rel last hword 0
 
 ### `R_TILEGX_IMM16_X1_HW0_LAST_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_LAST_PCREL: u32 = 59u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5701`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5701)*
+
 X1 pipe PC-rel last hword 0
 
 ### `R_TILEGX_IMM16_X0_HW1_LAST_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW1_LAST_PCREL: u32 = 60u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5703`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5703)*
+
 X0 pipe PC-rel last hword 1
 
 ### `R_TILEGX_IMM16_X1_HW1_LAST_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW1_LAST_PCREL: u32 = 61u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5705`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5705)*
+
 X1 pipe PC-rel last hword 1
 
 ### `R_TILEGX_IMM16_X0_HW2_LAST_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW2_LAST_PCREL: u32 = 62u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5707`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5707)*
+
 X0 pipe PC-rel last hword 2
 
 ### `R_TILEGX_IMM16_X1_HW2_LAST_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW2_LAST_PCREL: u32 = 63u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5709`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5709)*
+
 X1 pipe PC-rel last hword 2
 
 ### `R_TILEGX_IMM16_X0_HW0_GOT`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_GOT: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5711`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5711)*
+
 X0 pipe hword 0 GOT offset
 
 ### `R_TILEGX_IMM16_X1_HW0_GOT`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_GOT: u32 = 65u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5713`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5713)*
+
 X1 pipe hword 0 GOT offset
 
 ### `R_TILEGX_IMM16_X0_HW0_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_PLT_PCREL: u32 = 66u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5715`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5715)*
+
 X0 pipe PC-rel PLT hword 0
 
 ### `R_TILEGX_IMM16_X1_HW0_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_PLT_PCREL: u32 = 67u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5717`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5717)*
+
 X1 pipe PC-rel PLT hword 0
 
 ### `R_TILEGX_IMM16_X0_HW1_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW1_PLT_PCREL: u32 = 68u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5719`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5719)*
+
 X0 pipe PC-rel PLT hword 1
 
 ### `R_TILEGX_IMM16_X1_HW1_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW1_PLT_PCREL: u32 = 69u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5721`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5721)*
+
 X1 pipe PC-rel PLT hword 1
 
 ### `R_TILEGX_IMM16_X0_HW2_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW2_PLT_PCREL: u32 = 70u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5723`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5723)*
+
 X0 pipe PC-rel PLT hword 2
 
 ### `R_TILEGX_IMM16_X1_HW2_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW2_PLT_PCREL: u32 = 71u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5725`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5725)*
+
 X1 pipe PC-rel PLT hword 2
 
 ### `R_TILEGX_IMM16_X0_HW0_LAST_GOT`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_LAST_GOT: u32 = 72u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5727`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5727)*
+
 X0 pipe last hword 0 GOT offset
 
 ### `R_TILEGX_IMM16_X1_HW0_LAST_GOT`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_LAST_GOT: u32 = 73u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5729`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5729)*
+
 X1 pipe last hword 0 GOT offset
 
 ### `R_TILEGX_IMM16_X0_HW1_LAST_GOT`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW1_LAST_GOT: u32 = 74u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5731`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5731)*
+
 X0 pipe last hword 1 GOT offset
 
 ### `R_TILEGX_IMM16_X1_HW1_LAST_GOT`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW1_LAST_GOT: u32 = 75u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5733`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5733)*
+
 X1 pipe last hword 1 GOT offset
 
 ### `R_TILEGX_IMM16_X0_HW3_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW3_PLT_PCREL: u32 = 76u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5735`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5735)*
+
 X0 pipe PC-rel PLT hword 3
 
 ### `R_TILEGX_IMM16_X1_HW3_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW3_PLT_PCREL: u32 = 77u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5737`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5737)*
+
 X1 pipe PC-rel PLT hword 3
 
 ### `R_TILEGX_IMM16_X0_HW0_TLS_GD`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_TLS_GD: u32 = 78u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5739`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5739)*
+
 X0 pipe hword 0 TLS GD offset
 
 ### `R_TILEGX_IMM16_X1_HW0_TLS_GD`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_TLS_GD: u32 = 79u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5741`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5741)*
+
 X1 pipe hword 0 TLS GD offset
 
 ### `R_TILEGX_IMM16_X0_HW0_TLS_LE`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_TLS_LE: u32 = 80u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5743`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5743)*
+
 X0 pipe hword 0 TLS LE offset
 
 ### `R_TILEGX_IMM16_X1_HW0_TLS_LE`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_TLS_LE: u32 = 81u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5745`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5745)*
+
 X1 pipe hword 0 TLS LE offset
 
 ### `R_TILEGX_IMM16_X0_HW0_LAST_TLS_LE`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_LAST_TLS_LE: u32 = 82u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5747`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5747)*
+
 X0 pipe last hword 0 LE off
 
 ### `R_TILEGX_IMM16_X1_HW0_LAST_TLS_LE`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_LAST_TLS_LE: u32 = 83u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5749`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5749)*
+
 X1 pipe last hword 0 LE off
 
 ### `R_TILEGX_IMM16_X0_HW1_LAST_TLS_LE`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW1_LAST_TLS_LE: u32 = 84u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5751`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5751)*
+
 X0 pipe last hword 1 LE off
 
 ### `R_TILEGX_IMM16_X1_HW1_LAST_TLS_LE`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW1_LAST_TLS_LE: u32 = 85u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5753`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5753)*
+
 X1 pipe last hword 1 LE off
 
 ### `R_TILEGX_IMM16_X0_HW0_LAST_TLS_GD`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_LAST_TLS_GD: u32 = 86u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5755`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5755)*
+
 X0 pipe last hword 0 GD off
 
 ### `R_TILEGX_IMM16_X1_HW0_LAST_TLS_GD`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_LAST_TLS_GD: u32 = 87u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5757`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5757)*
+
 X1 pipe last hword 0 GD off
 
 ### `R_TILEGX_IMM16_X0_HW1_LAST_TLS_GD`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW1_LAST_TLS_GD: u32 = 88u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5759`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5759)*
+
 X0 pipe last hword 1 GD off
 
 ### `R_TILEGX_IMM16_X1_HW1_LAST_TLS_GD`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW1_LAST_TLS_GD: u32 = 89u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5761`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5761)*
+
 X1 pipe last hword 1 GD off
 
 ### `R_TILEGX_IMM16_X0_HW0_TLS_IE`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_TLS_IE: u32 = 92u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5764`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5764)*
+
 X0 pipe hword 0 TLS IE offset
 
 ### `R_TILEGX_IMM16_X1_HW0_TLS_IE`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_TLS_IE: u32 = 93u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5766`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5766)*
+
 X1 pipe hword 0 TLS IE offset
 
 ### `R_TILEGX_IMM16_X0_HW0_LAST_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_LAST_PLT_PCREL: u32 = 94u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5768`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5768)*
+
 X0 pipe PC-rel PLT last hword 0
 
 ### `R_TILEGX_IMM16_X1_HW0_LAST_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_LAST_PLT_PCREL: u32 = 95u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5770`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5770)*
+
 X1 pipe PC-rel PLT last hword 0
 
 ### `R_TILEGX_IMM16_X0_HW1_LAST_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW1_LAST_PLT_PCREL: u32 = 96u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5772`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5772)*
+
 X0 pipe PC-rel PLT last hword 1
 
 ### `R_TILEGX_IMM16_X1_HW1_LAST_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW1_LAST_PLT_PCREL: u32 = 97u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5774`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5774)*
+
 X1 pipe PC-rel PLT last hword 1
 
 ### `R_TILEGX_IMM16_X0_HW2_LAST_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW2_LAST_PLT_PCREL: u32 = 98u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5776`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5776)*
+
 X0 pipe PC-rel PLT last hword 2
 
 ### `R_TILEGX_IMM16_X1_HW2_LAST_PLT_PCREL`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW2_LAST_PLT_PCREL: u32 = 99u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5778`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5778)*
+
 X1 pipe PC-rel PLT last hword 2
 
 ### `R_TILEGX_IMM16_X0_HW0_LAST_TLS_IE`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW0_LAST_TLS_IE: u32 = 100u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5780`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5780)*
+
 X0 pipe last hword 0 IE off
 
 ### `R_TILEGX_IMM16_X1_HW0_LAST_TLS_IE`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW0_LAST_TLS_IE: u32 = 101u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5782`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5782)*
+
 X1 pipe last hword 0 IE off
 
 ### `R_TILEGX_IMM16_X0_HW1_LAST_TLS_IE`
-
 ```rust
 const R_TILEGX_IMM16_X0_HW1_LAST_TLS_IE: u32 = 102u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5784`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5784)*
+
 X0 pipe last hword 1 IE off
 
 ### `R_TILEGX_IMM16_X1_HW1_LAST_TLS_IE`
-
 ```rust
 const R_TILEGX_IMM16_X1_HW1_LAST_TLS_IE: u32 = 103u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5786`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5786)*
+
 X1 pipe last hword 1 IE off
 
 ### `R_TILEGX_TLS_DTPMOD64`
-
 ```rust
 const R_TILEGX_TLS_DTPMOD64: u32 = 106u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5789`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5789)*
+
 64-bit ID of symbol's module
 
 ### `R_TILEGX_TLS_DTPOFF64`
-
 ```rust
 const R_TILEGX_TLS_DTPOFF64: u32 = 107u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5791`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5791)*
+
 64-bit offset in TLS block
 
 ### `R_TILEGX_TLS_TPOFF64`
-
 ```rust
 const R_TILEGX_TLS_TPOFF64: u32 = 108u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5793`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5793)*
+
 64-bit offset in static TLS block
 
 ### `R_TILEGX_TLS_DTPMOD32`
-
 ```rust
 const R_TILEGX_TLS_DTPMOD32: u32 = 109u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5795`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5795)*
+
 32-bit ID of symbol's module
 
 ### `R_TILEGX_TLS_DTPOFF32`
-
 ```rust
 const R_TILEGX_TLS_DTPOFF32: u32 = 110u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5797`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5797)*
+
 32-bit offset in TLS block
 
 ### `R_TILEGX_TLS_TPOFF32`
-
 ```rust
 const R_TILEGX_TLS_TPOFF32: u32 = 111u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5799`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5799)*
+
 32-bit offset in static TLS block
 
 ### `R_TILEGX_TLS_GD_CALL`
-
 ```rust
 const R_TILEGX_TLS_GD_CALL: u32 = 112u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5801`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5801)*
+
 "jal" for TLS GD
 
 ### `R_TILEGX_IMM8_X0_TLS_GD_ADD`
-
 ```rust
 const R_TILEGX_IMM8_X0_TLS_GD_ADD: u32 = 113u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5803`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5803)*
+
 X0 pipe "addi" for TLS GD
 
 ### `R_TILEGX_IMM8_X1_TLS_GD_ADD`
-
 ```rust
 const R_TILEGX_IMM8_X1_TLS_GD_ADD: u32 = 114u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5805`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5805)*
+
 X1 pipe "addi" for TLS GD
 
 ### `R_TILEGX_IMM8_Y0_TLS_GD_ADD`
-
 ```rust
 const R_TILEGX_IMM8_Y0_TLS_GD_ADD: u32 = 115u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5807`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5807)*
+
 Y0 pipe "addi" for TLS GD
 
 ### `R_TILEGX_IMM8_Y1_TLS_GD_ADD`
-
 ```rust
 const R_TILEGX_IMM8_Y1_TLS_GD_ADD: u32 = 116u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5809`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5809)*
+
 Y1 pipe "addi" for TLS GD
 
 ### `R_TILEGX_TLS_IE_LOAD`
-
 ```rust
 const R_TILEGX_TLS_IE_LOAD: u32 = 117u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5811`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5811)*
+
 "ld_tls" for TLS IE
 
 ### `R_TILEGX_IMM8_X0_TLS_ADD`
-
 ```rust
 const R_TILEGX_IMM8_X0_TLS_ADD: u32 = 118u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5813`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5813)*
+
 X0 pipe "addi" for TLS GD/IE
 
 ### `R_TILEGX_IMM8_X1_TLS_ADD`
-
 ```rust
 const R_TILEGX_IMM8_X1_TLS_ADD: u32 = 119u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5815`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5815)*
+
 X1 pipe "addi" for TLS GD/IE
 
 ### `R_TILEGX_IMM8_Y0_TLS_ADD`
-
 ```rust
 const R_TILEGX_IMM8_Y0_TLS_ADD: u32 = 120u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5817`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5817)*
+
 Y0 pipe "addi" for TLS GD/IE
 
 ### `R_TILEGX_IMM8_Y1_TLS_ADD`
-
 ```rust
 const R_TILEGX_IMM8_Y1_TLS_ADD: u32 = 121u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5819`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5819)*
+
 Y1 pipe "addi" for TLS GD/IE
 
 ### `R_TILEGX_GNU_VTINHERIT`
-
 ```rust
 const R_TILEGX_GNU_VTINHERIT: u32 = 128u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5822`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5822)*
+
 GNU C++ vtable hierarchy
 
 ### `R_TILEGX_GNU_VTENTRY`
-
 ```rust
 const R_TILEGX_GNU_VTENTRY: u32 = 129u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5824`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5824)*
+
 GNU C++ vtable member usage
 
 ### `EF_RISCV_RVC`
-
 ```rust
 const EF_RISCV_RVC: u32 = 1u32;
 ```
 
-### `EF_RISCV_FLOAT_ABI`
+*Defined in [`object-0.37.3/src/elf.rs:5827`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5827)*
 
+### `EF_RISCV_FLOAT_ABI`
 ```rust
 const EF_RISCV_FLOAT_ABI: u32 = 6u32;
 ```
 
-### `EF_RISCV_FLOAT_ABI_SOFT`
+*Defined in [`object-0.37.3/src/elf.rs:5828`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5828)*
 
+### `EF_RISCV_FLOAT_ABI_SOFT`
 ```rust
 const EF_RISCV_FLOAT_ABI_SOFT: u32 = 0u32;
 ```
 
-### `EF_RISCV_FLOAT_ABI_SINGLE`
+*Defined in [`object-0.37.3/src/elf.rs:5829`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5829)*
 
+### `EF_RISCV_FLOAT_ABI_SINGLE`
 ```rust
 const EF_RISCV_FLOAT_ABI_SINGLE: u32 = 2u32;
 ```
 
-### `EF_RISCV_FLOAT_ABI_DOUBLE`
+*Defined in [`object-0.37.3/src/elf.rs:5830`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5830)*
 
+### `EF_RISCV_FLOAT_ABI_DOUBLE`
 ```rust
 const EF_RISCV_FLOAT_ABI_DOUBLE: u32 = 4u32;
 ```
 
-### `EF_RISCV_FLOAT_ABI_QUAD`
+*Defined in [`object-0.37.3/src/elf.rs:5831`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5831)*
 
+### `EF_RISCV_FLOAT_ABI_QUAD`
 ```rust
 const EF_RISCV_FLOAT_ABI_QUAD: u32 = 6u32;
 ```
 
-### `EF_RISCV_RVE`
+*Defined in [`object-0.37.3/src/elf.rs:5832`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5832)*
 
+### `EF_RISCV_RVE`
 ```rust
 const EF_RISCV_RVE: u32 = 8u32;
 ```
 
-### `EF_RISCV_TSO`
+*Defined in [`object-0.37.3/src/elf.rs:5833`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5833)*
 
+### `EF_RISCV_TSO`
 ```rust
 const EF_RISCV_TSO: u32 = 16u32;
 ```
 
-### `EF_RISCV_RV64ILP32`
+*Defined in [`object-0.37.3/src/elf.rs:5834`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5834)*
 
+### `EF_RISCV_RV64ILP32`
 ```rust
 const EF_RISCV_RV64ILP32: u32 = 32u32;
 ```
 
-### `SHT_RISCV_ATTRIBUTES`
+*Defined in [`object-0.37.3/src/elf.rs:5835`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5835)*
 
+### `SHT_RISCV_ATTRIBUTES`
 ```rust
 const SHT_RISCV_ATTRIBUTES: u32 = 1_879_048_195u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5839`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5839)*
+
 RISC-V attributes section.
 
 ### `R_RISCV_NONE`
-
 ```rust
 const R_RISCV_NONE: u32 = 0u32;
 ```
 
-### `R_RISCV_32`
+*Defined in [`object-0.37.3/src/elf.rs:5842`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5842)*
 
+### `R_RISCV_32`
 ```rust
 const R_RISCV_32: u32 = 1u32;
 ```
 
-### `R_RISCV_64`
+*Defined in [`object-0.37.3/src/elf.rs:5843`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5843)*
 
+### `R_RISCV_64`
 ```rust
 const R_RISCV_64: u32 = 2u32;
 ```
 
-### `R_RISCV_RELATIVE`
+*Defined in [`object-0.37.3/src/elf.rs:5844`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5844)*
 
+### `R_RISCV_RELATIVE`
 ```rust
 const R_RISCV_RELATIVE: u32 = 3u32;
 ```
 
-### `R_RISCV_COPY`
+*Defined in [`object-0.37.3/src/elf.rs:5845`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5845)*
 
+### `R_RISCV_COPY`
 ```rust
 const R_RISCV_COPY: u32 = 4u32;
 ```
 
-### `R_RISCV_JUMP_SLOT`
+*Defined in [`object-0.37.3/src/elf.rs:5846`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5846)*
 
+### `R_RISCV_JUMP_SLOT`
 ```rust
 const R_RISCV_JUMP_SLOT: u32 = 5u32;
 ```
 
-### `R_RISCV_TLS_DTPMOD32`
+*Defined in [`object-0.37.3/src/elf.rs:5847`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5847)*
 
+### `R_RISCV_TLS_DTPMOD32`
 ```rust
 const R_RISCV_TLS_DTPMOD32: u32 = 6u32;
 ```
 
-### `R_RISCV_TLS_DTPMOD64`
+*Defined in [`object-0.37.3/src/elf.rs:5848`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5848)*
 
+### `R_RISCV_TLS_DTPMOD64`
 ```rust
 const R_RISCV_TLS_DTPMOD64: u32 = 7u32;
 ```
 
-### `R_RISCV_TLS_DTPREL32`
+*Defined in [`object-0.37.3/src/elf.rs:5849`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5849)*
 
+### `R_RISCV_TLS_DTPREL32`
 ```rust
 const R_RISCV_TLS_DTPREL32: u32 = 8u32;
 ```
 
-### `R_RISCV_TLS_DTPREL64`
+*Defined in [`object-0.37.3/src/elf.rs:5850`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5850)*
 
+### `R_RISCV_TLS_DTPREL64`
 ```rust
 const R_RISCV_TLS_DTPREL64: u32 = 9u32;
 ```
 
-### `R_RISCV_TLS_TPREL32`
+*Defined in [`object-0.37.3/src/elf.rs:5851`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5851)*
 
+### `R_RISCV_TLS_TPREL32`
 ```rust
 const R_RISCV_TLS_TPREL32: u32 = 10u32;
 ```
 
-### `R_RISCV_TLS_TPREL64`
+*Defined in [`object-0.37.3/src/elf.rs:5852`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5852)*
 
+### `R_RISCV_TLS_TPREL64`
 ```rust
 const R_RISCV_TLS_TPREL64: u32 = 11u32;
 ```
 
-### `R_RISCV_TLSDESC`
+*Defined in [`object-0.37.3/src/elf.rs:5853`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5853)*
 
+### `R_RISCV_TLSDESC`
 ```rust
 const R_RISCV_TLSDESC: u32 = 12u32;
 ```
 
-### `R_RISCV_BRANCH`
+*Defined in [`object-0.37.3/src/elf.rs:5854`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5854)*
 
+### `R_RISCV_BRANCH`
 ```rust
 const R_RISCV_BRANCH: u32 = 16u32;
 ```
 
-### `R_RISCV_JAL`
+*Defined in [`object-0.37.3/src/elf.rs:5855`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5855)*
 
+### `R_RISCV_JAL`
 ```rust
 const R_RISCV_JAL: u32 = 17u32;
 ```
 
-### `R_RISCV_CALL`
+*Defined in [`object-0.37.3/src/elf.rs:5856`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5856)*
 
+### `R_RISCV_CALL`
 ```rust
 const R_RISCV_CALL: u32 = 18u32;
 ```
 
-### `R_RISCV_CALL_PLT`
+*Defined in [`object-0.37.3/src/elf.rs:5857`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5857)*
 
+### `R_RISCV_CALL_PLT`
 ```rust
 const R_RISCV_CALL_PLT: u32 = 19u32;
 ```
 
-### `R_RISCV_GOT_HI20`
+*Defined in [`object-0.37.3/src/elf.rs:5858`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5858)*
 
+### `R_RISCV_GOT_HI20`
 ```rust
 const R_RISCV_GOT_HI20: u32 = 20u32;
 ```
 
-### `R_RISCV_TLS_GOT_HI20`
+*Defined in [`object-0.37.3/src/elf.rs:5859`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5859)*
 
+### `R_RISCV_TLS_GOT_HI20`
 ```rust
 const R_RISCV_TLS_GOT_HI20: u32 = 21u32;
 ```
 
-### `R_RISCV_TLS_GD_HI20`
+*Defined in [`object-0.37.3/src/elf.rs:5860`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5860)*
 
+### `R_RISCV_TLS_GD_HI20`
 ```rust
 const R_RISCV_TLS_GD_HI20: u32 = 22u32;
 ```
 
-### `R_RISCV_PCREL_HI20`
+*Defined in [`object-0.37.3/src/elf.rs:5861`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5861)*
 
+### `R_RISCV_PCREL_HI20`
 ```rust
 const R_RISCV_PCREL_HI20: u32 = 23u32;
 ```
 
-### `R_RISCV_PCREL_LO12_I`
+*Defined in [`object-0.37.3/src/elf.rs:5862`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5862)*
 
+### `R_RISCV_PCREL_LO12_I`
 ```rust
 const R_RISCV_PCREL_LO12_I: u32 = 24u32;
 ```
 
-### `R_RISCV_PCREL_LO12_S`
+*Defined in [`object-0.37.3/src/elf.rs:5863`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5863)*
 
+### `R_RISCV_PCREL_LO12_S`
 ```rust
 const R_RISCV_PCREL_LO12_S: u32 = 25u32;
 ```
 
-### `R_RISCV_HI20`
+*Defined in [`object-0.37.3/src/elf.rs:5864`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5864)*
 
+### `R_RISCV_HI20`
 ```rust
 const R_RISCV_HI20: u32 = 26u32;
 ```
 
-### `R_RISCV_LO12_I`
+*Defined in [`object-0.37.3/src/elf.rs:5865`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5865)*
 
+### `R_RISCV_LO12_I`
 ```rust
 const R_RISCV_LO12_I: u32 = 27u32;
 ```
 
-### `R_RISCV_LO12_S`
+*Defined in [`object-0.37.3/src/elf.rs:5866`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5866)*
 
+### `R_RISCV_LO12_S`
 ```rust
 const R_RISCV_LO12_S: u32 = 28u32;
 ```
 
-### `R_RISCV_TPREL_HI20`
+*Defined in [`object-0.37.3/src/elf.rs:5867`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5867)*
 
+### `R_RISCV_TPREL_HI20`
 ```rust
 const R_RISCV_TPREL_HI20: u32 = 29u32;
 ```
 
-### `R_RISCV_TPREL_LO12_I`
+*Defined in [`object-0.37.3/src/elf.rs:5868`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5868)*
 
+### `R_RISCV_TPREL_LO12_I`
 ```rust
 const R_RISCV_TPREL_LO12_I: u32 = 30u32;
 ```
 
-### `R_RISCV_TPREL_LO12_S`
+*Defined in [`object-0.37.3/src/elf.rs:5869`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5869)*
 
+### `R_RISCV_TPREL_LO12_S`
 ```rust
 const R_RISCV_TPREL_LO12_S: u32 = 31u32;
 ```
 
-### `R_RISCV_TPREL_ADD`
+*Defined in [`object-0.37.3/src/elf.rs:5870`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5870)*
 
+### `R_RISCV_TPREL_ADD`
 ```rust
 const R_RISCV_TPREL_ADD: u32 = 32u32;
 ```
 
-### `R_RISCV_ADD8`
+*Defined in [`object-0.37.3/src/elf.rs:5871`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5871)*
 
+### `R_RISCV_ADD8`
 ```rust
 const R_RISCV_ADD8: u32 = 33u32;
 ```
 
-### `R_RISCV_ADD16`
+*Defined in [`object-0.37.3/src/elf.rs:5872`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5872)*
 
+### `R_RISCV_ADD16`
 ```rust
 const R_RISCV_ADD16: u32 = 34u32;
 ```
 
-### `R_RISCV_ADD32`
+*Defined in [`object-0.37.3/src/elf.rs:5873`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5873)*
 
+### `R_RISCV_ADD32`
 ```rust
 const R_RISCV_ADD32: u32 = 35u32;
 ```
 
-### `R_RISCV_ADD64`
+*Defined in [`object-0.37.3/src/elf.rs:5874`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5874)*
 
+### `R_RISCV_ADD64`
 ```rust
 const R_RISCV_ADD64: u32 = 36u32;
 ```
 
-### `R_RISCV_SUB8`
+*Defined in [`object-0.37.3/src/elf.rs:5875`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5875)*
 
+### `R_RISCV_SUB8`
 ```rust
 const R_RISCV_SUB8: u32 = 37u32;
 ```
 
-### `R_RISCV_SUB16`
+*Defined in [`object-0.37.3/src/elf.rs:5876`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5876)*
 
+### `R_RISCV_SUB16`
 ```rust
 const R_RISCV_SUB16: u32 = 38u32;
 ```
 
-### `R_RISCV_SUB32`
+*Defined in [`object-0.37.3/src/elf.rs:5877`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5877)*
 
+### `R_RISCV_SUB32`
 ```rust
 const R_RISCV_SUB32: u32 = 39u32;
 ```
 
-### `R_RISCV_SUB64`
+*Defined in [`object-0.37.3/src/elf.rs:5878`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5878)*
 
+### `R_RISCV_SUB64`
 ```rust
 const R_RISCV_SUB64: u32 = 40u32;
 ```
 
-### `R_RISCV_GOT32_PCREL`
+*Defined in [`object-0.37.3/src/elf.rs:5879`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5879)*
 
+### `R_RISCV_GOT32_PCREL`
 ```rust
 const R_RISCV_GOT32_PCREL: u32 = 41u32;
 ```
 
-### `R_RISCV_ALIGN`
+*Defined in [`object-0.37.3/src/elf.rs:5880`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5880)*
 
+### `R_RISCV_ALIGN`
 ```rust
 const R_RISCV_ALIGN: u32 = 43u32;
 ```
 
-### `R_RISCV_RVC_BRANCH`
+*Defined in [`object-0.37.3/src/elf.rs:5882`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5882)*
 
+### `R_RISCV_RVC_BRANCH`
 ```rust
 const R_RISCV_RVC_BRANCH: u32 = 44u32;
 ```
 
-### `R_RISCV_RVC_JUMP`
+*Defined in [`object-0.37.3/src/elf.rs:5883`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5883)*
 
+### `R_RISCV_RVC_JUMP`
 ```rust
 const R_RISCV_RVC_JUMP: u32 = 45u32;
 ```
 
-### `R_RISCV_RVC_LUI`
+*Defined in [`object-0.37.3/src/elf.rs:5884`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5884)*
 
+### `R_RISCV_RVC_LUI`
 ```rust
 const R_RISCV_RVC_LUI: u32 = 46u32;
 ```
 
-### `R_RISCV_GPREL_I`
+*Defined in [`object-0.37.3/src/elf.rs:5885`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5885)*
 
+### `R_RISCV_GPREL_I`
 ```rust
 const R_RISCV_GPREL_I: u32 = 47u32;
 ```
 
-### `R_RISCV_GPREL_S`
+*Defined in [`object-0.37.3/src/elf.rs:5886`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5886)*
 
+### `R_RISCV_GPREL_S`
 ```rust
 const R_RISCV_GPREL_S: u32 = 48u32;
 ```
 
-### `R_RISCV_TPREL_I`
+*Defined in [`object-0.37.3/src/elf.rs:5887`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5887)*
 
+### `R_RISCV_TPREL_I`
 ```rust
 const R_RISCV_TPREL_I: u32 = 49u32;
 ```
 
-### `R_RISCV_TPREL_S`
+*Defined in [`object-0.37.3/src/elf.rs:5888`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5888)*
 
+### `R_RISCV_TPREL_S`
 ```rust
 const R_RISCV_TPREL_S: u32 = 50u32;
 ```
 
-### `R_RISCV_RELAX`
+*Defined in [`object-0.37.3/src/elf.rs:5889`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5889)*
 
+### `R_RISCV_RELAX`
 ```rust
 const R_RISCV_RELAX: u32 = 51u32;
 ```
 
-### `R_RISCV_SUB6`
+*Defined in [`object-0.37.3/src/elf.rs:5890`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5890)*
 
+### `R_RISCV_SUB6`
 ```rust
 const R_RISCV_SUB6: u32 = 52u32;
 ```
 
-### `R_RISCV_SET6`
+*Defined in [`object-0.37.3/src/elf.rs:5891`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5891)*
 
+### `R_RISCV_SET6`
 ```rust
 const R_RISCV_SET6: u32 = 53u32;
 ```
 
-### `R_RISCV_SET8`
+*Defined in [`object-0.37.3/src/elf.rs:5892`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5892)*
 
+### `R_RISCV_SET8`
 ```rust
 const R_RISCV_SET8: u32 = 54u32;
 ```
 
-### `R_RISCV_SET16`
+*Defined in [`object-0.37.3/src/elf.rs:5893`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5893)*
 
+### `R_RISCV_SET16`
 ```rust
 const R_RISCV_SET16: u32 = 55u32;
 ```
 
-### `R_RISCV_SET32`
+*Defined in [`object-0.37.3/src/elf.rs:5894`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5894)*
 
+### `R_RISCV_SET32`
 ```rust
 const R_RISCV_SET32: u32 = 56u32;
 ```
 
-### `R_RISCV_32_PCREL`
+*Defined in [`object-0.37.3/src/elf.rs:5895`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5895)*
 
+### `R_RISCV_32_PCREL`
 ```rust
 const R_RISCV_32_PCREL: u32 = 57u32;
 ```
 
-### `R_RISCV_IRELATIVE`
+*Defined in [`object-0.37.3/src/elf.rs:5896`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5896)*
 
+### `R_RISCV_IRELATIVE`
 ```rust
 const R_RISCV_IRELATIVE: u32 = 58u32;
 ```
 
-### `R_RISCV_PLT32`
+*Defined in [`object-0.37.3/src/elf.rs:5897`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5897)*
 
+### `R_RISCV_PLT32`
 ```rust
 const R_RISCV_PLT32: u32 = 59u32;
 ```
 
-### `R_RISCV_SET_ULEB128`
+*Defined in [`object-0.37.3/src/elf.rs:5898`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5898)*
 
+### `R_RISCV_SET_ULEB128`
 ```rust
 const R_RISCV_SET_ULEB128: u32 = 60u32;
 ```
 
-### `R_RISCV_SUB_ULEB128`
+*Defined in [`object-0.37.3/src/elf.rs:5899`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5899)*
 
+### `R_RISCV_SUB_ULEB128`
 ```rust
 const R_RISCV_SUB_ULEB128: u32 = 61u32;
 ```
 
-### `R_RISCV_TLSDESC_HI20`
+*Defined in [`object-0.37.3/src/elf.rs:5900`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5900)*
 
+### `R_RISCV_TLSDESC_HI20`
 ```rust
 const R_RISCV_TLSDESC_HI20: u32 = 62u32;
 ```
 
-### `R_RISCV_TLSDESC_LOAD_LO12`
+*Defined in [`object-0.37.3/src/elf.rs:5901`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5901)*
 
+### `R_RISCV_TLSDESC_LOAD_LO12`
 ```rust
 const R_RISCV_TLSDESC_LOAD_LO12: u32 = 63u32;
 ```
 
-### `R_RISCV_TLSDESC_ADD_LO12`
+*Defined in [`object-0.37.3/src/elf.rs:5902`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5902)*
 
+### `R_RISCV_TLSDESC_ADD_LO12`
 ```rust
 const R_RISCV_TLSDESC_ADD_LO12: u32 = 64u32;
 ```
 
-### `R_RISCV_TLSDESC_CALL`
+*Defined in [`object-0.37.3/src/elf.rs:5903`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5903)*
 
+### `R_RISCV_TLSDESC_CALL`
 ```rust
 const R_RISCV_TLSDESC_CALL: u32 = 65u32;
 ```
 
-### `R_BPF_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:5904`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5904)*
 
+### `R_BPF_NONE`
 ```rust
 const R_BPF_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5908`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5908)*
+
 No reloc
 
 ### `R_BPF_64_64`
-
 ```rust
 const R_BPF_64_64: u32 = 1u32;
 ```
 
-### `R_BPF_64_32`
+*Defined in [`object-0.37.3/src/elf.rs:5909`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5909)*
 
+### `R_BPF_64_32`
 ```rust
 const R_BPF_64_32: u32 = 10u32;
 ```
 
-### `R_SBF_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:5910`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5910)*
 
+### `R_SBF_NONE`
 ```rust
 const R_SBF_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5914`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5914)*
+
 No reloc
 
 ### `R_SBF_64_64`
-
 ```rust
 const R_SBF_64_64: u32 = 1u32;
 ```
 
-### `R_SBF_64_32`
+*Defined in [`object-0.37.3/src/elf.rs:5915`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5915)*
 
+### `R_SBF_64_32`
 ```rust
 const R_SBF_64_32: u32 = 10u32;
 ```
 
-### `R_METAG_HIADDR16`
+*Defined in [`object-0.37.3/src/elf.rs:5916`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5916)*
 
+### `R_METAG_HIADDR16`
 ```rust
 const R_METAG_HIADDR16: u32 = 0u32;
 ```
 
-### `R_METAG_LOADDR16`
+*Defined in [`object-0.37.3/src/elf.rs:5920`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5920)*
 
+### `R_METAG_LOADDR16`
 ```rust
 const R_METAG_LOADDR16: u32 = 1u32;
 ```
 
-### `R_METAG_ADDR32`
+*Defined in [`object-0.37.3/src/elf.rs:5921`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5921)*
 
+### `R_METAG_ADDR32`
 ```rust
 const R_METAG_ADDR32: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5923`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5923)*
+
 32bit absolute address
 
 ### `R_METAG_NONE`
-
 ```rust
 const R_METAG_NONE: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5925`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5925)*
+
 No reloc
 
 ### `R_METAG_RELBRANCH`
-
 ```rust
 const R_METAG_RELBRANCH: u32 = 4u32;
 ```
 
-### `R_METAG_GETSETOFF`
+*Defined in [`object-0.37.3/src/elf.rs:5926`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5926)*
 
+### `R_METAG_GETSETOFF`
 ```rust
 const R_METAG_GETSETOFF: u32 = 5u32;
 ```
 
-### `R_METAG_REG32OP1`
+*Defined in [`object-0.37.3/src/elf.rs:5927`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5927)*
 
+### `R_METAG_REG32OP1`
 ```rust
 const R_METAG_REG32OP1: u32 = 6u32;
 ```
 
-### `R_METAG_REG32OP2`
+*Defined in [`object-0.37.3/src/elf.rs:5930`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5930)*
 
+### `R_METAG_REG32OP2`
 ```rust
 const R_METAG_REG32OP2: u32 = 7u32;
 ```
 
-### `R_METAG_REG32OP3`
+*Defined in [`object-0.37.3/src/elf.rs:5931`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5931)*
 
+### `R_METAG_REG32OP3`
 ```rust
 const R_METAG_REG32OP3: u32 = 8u32;
 ```
 
-### `R_METAG_REG16OP1`
+*Defined in [`object-0.37.3/src/elf.rs:5932`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5932)*
 
+### `R_METAG_REG16OP1`
 ```rust
 const R_METAG_REG16OP1: u32 = 9u32;
 ```
 
-### `R_METAG_REG16OP2`
+*Defined in [`object-0.37.3/src/elf.rs:5933`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5933)*
 
+### `R_METAG_REG16OP2`
 ```rust
 const R_METAG_REG16OP2: u32 = 10u32;
 ```
 
-### `R_METAG_REG16OP3`
+*Defined in [`object-0.37.3/src/elf.rs:5934`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5934)*
 
+### `R_METAG_REG16OP3`
 ```rust
 const R_METAG_REG16OP3: u32 = 11u32;
 ```
 
-### `R_METAG_REG32OP4`
+*Defined in [`object-0.37.3/src/elf.rs:5935`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5935)*
 
+### `R_METAG_REG32OP4`
 ```rust
 const R_METAG_REG32OP4: u32 = 12u32;
 ```
 
-### `R_METAG_HIOG`
+*Defined in [`object-0.37.3/src/elf.rs:5936`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5936)*
 
+### `R_METAG_HIOG`
 ```rust
 const R_METAG_HIOG: u32 = 13u32;
 ```
 
-### `R_METAG_LOOG`
+*Defined in [`object-0.37.3/src/elf.rs:5938`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5938)*
 
+### `R_METAG_LOOG`
 ```rust
 const R_METAG_LOOG: u32 = 14u32;
 ```
 
-### `R_METAG_REL8`
+*Defined in [`object-0.37.3/src/elf.rs:5939`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5939)*
 
+### `R_METAG_REL8`
 ```rust
 const R_METAG_REL8: u32 = 15u32;
 ```
 
-### `R_METAG_REL16`
+*Defined in [`object-0.37.3/src/elf.rs:5941`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5941)*
 
+### `R_METAG_REL16`
 ```rust
 const R_METAG_REL16: u32 = 16u32;
 ```
 
-### `R_METAG_GNU_VTINHERIT`
+*Defined in [`object-0.37.3/src/elf.rs:5942`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5942)*
 
+### `R_METAG_GNU_VTINHERIT`
 ```rust
 const R_METAG_GNU_VTINHERIT: u32 = 30u32;
 ```
 
-### `R_METAG_GNU_VTENTRY`
+*Defined in [`object-0.37.3/src/elf.rs:5944`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5944)*
 
+### `R_METAG_GNU_VTENTRY`
 ```rust
 const R_METAG_GNU_VTENTRY: u32 = 31u32;
 ```
 
-### `R_METAG_HI16_GOTOFF`
+*Defined in [`object-0.37.3/src/elf.rs:5945`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5945)*
 
+### `R_METAG_HI16_GOTOFF`
 ```rust
 const R_METAG_HI16_GOTOFF: u32 = 32u32;
 ```
 
-### `R_METAG_LO16_GOTOFF`
+*Defined in [`object-0.37.3/src/elf.rs:5948`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5948)*
 
+### `R_METAG_LO16_GOTOFF`
 ```rust
 const R_METAG_LO16_GOTOFF: u32 = 33u32;
 ```
 
-### `R_METAG_GETSET_GOTOFF`
+*Defined in [`object-0.37.3/src/elf.rs:5949`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5949)*
 
+### `R_METAG_GETSET_GOTOFF`
 ```rust
 const R_METAG_GETSET_GOTOFF: u32 = 34u32;
 ```
 
-### `R_METAG_GETSET_GOT`
+*Defined in [`object-0.37.3/src/elf.rs:5950`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5950)*
 
+### `R_METAG_GETSET_GOT`
 ```rust
 const R_METAG_GETSET_GOT: u32 = 35u32;
 ```
 
-### `R_METAG_HI16_GOTPC`
+*Defined in [`object-0.37.3/src/elf.rs:5951`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5951)*
 
+### `R_METAG_HI16_GOTPC`
 ```rust
 const R_METAG_HI16_GOTPC: u32 = 36u32;
 ```
 
-### `R_METAG_LO16_GOTPC`
+*Defined in [`object-0.37.3/src/elf.rs:5952`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5952)*
 
+### `R_METAG_LO16_GOTPC`
 ```rust
 const R_METAG_LO16_GOTPC: u32 = 37u32;
 ```
 
-### `R_METAG_HI16_PLT`
+*Defined in [`object-0.37.3/src/elf.rs:5953`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5953)*
 
+### `R_METAG_HI16_PLT`
 ```rust
 const R_METAG_HI16_PLT: u32 = 38u32;
 ```
 
-### `R_METAG_LO16_PLT`
+*Defined in [`object-0.37.3/src/elf.rs:5954`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5954)*
 
+### `R_METAG_LO16_PLT`
 ```rust
 const R_METAG_LO16_PLT: u32 = 39u32;
 ```
 
-### `R_METAG_RELBRANCH_PLT`
+*Defined in [`object-0.37.3/src/elf.rs:5955`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5955)*
 
+### `R_METAG_RELBRANCH_PLT`
 ```rust
 const R_METAG_RELBRANCH_PLT: u32 = 40u32;
 ```
 
-### `R_METAG_GOTOFF`
+*Defined in [`object-0.37.3/src/elf.rs:5956`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5956)*
 
+### `R_METAG_GOTOFF`
 ```rust
 const R_METAG_GOTOFF: u32 = 41u32;
 ```
 
-### `R_METAG_PLT`
+*Defined in [`object-0.37.3/src/elf.rs:5957`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5957)*
 
+### `R_METAG_PLT`
 ```rust
 const R_METAG_PLT: u32 = 42u32;
 ```
 
-### `R_METAG_COPY`
+*Defined in [`object-0.37.3/src/elf.rs:5958`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5958)*
 
+### `R_METAG_COPY`
 ```rust
 const R_METAG_COPY: u32 = 43u32;
 ```
 
-### `R_METAG_JMP_SLOT`
+*Defined in [`object-0.37.3/src/elf.rs:5959`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5959)*
 
+### `R_METAG_JMP_SLOT`
 ```rust
 const R_METAG_JMP_SLOT: u32 = 44u32;
 ```
 
-### `R_METAG_RELATIVE`
+*Defined in [`object-0.37.3/src/elf.rs:5960`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5960)*
 
+### `R_METAG_RELATIVE`
 ```rust
 const R_METAG_RELATIVE: u32 = 45u32;
 ```
 
-### `R_METAG_GLOB_DAT`
+*Defined in [`object-0.37.3/src/elf.rs:5961`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5961)*
 
+### `R_METAG_GLOB_DAT`
 ```rust
 const R_METAG_GLOB_DAT: u32 = 46u32;
 ```
 
-### `R_METAG_TLS_GD`
+*Defined in [`object-0.37.3/src/elf.rs:5962`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5962)*
 
+### `R_METAG_TLS_GD`
 ```rust
 const R_METAG_TLS_GD: u32 = 47u32;
 ```
 
-### `R_METAG_TLS_LDM`
+*Defined in [`object-0.37.3/src/elf.rs:5965`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5965)*
 
+### `R_METAG_TLS_LDM`
 ```rust
 const R_METAG_TLS_LDM: u32 = 48u32;
 ```
 
-### `R_METAG_TLS_LDO_HI16`
+*Defined in [`object-0.37.3/src/elf.rs:5966`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5966)*
 
+### `R_METAG_TLS_LDO_HI16`
 ```rust
 const R_METAG_TLS_LDO_HI16: u32 = 49u32;
 ```
 
-### `R_METAG_TLS_LDO_LO16`
+*Defined in [`object-0.37.3/src/elf.rs:5967`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5967)*
 
+### `R_METAG_TLS_LDO_LO16`
 ```rust
 const R_METAG_TLS_LDO_LO16: u32 = 50u32;
 ```
 
-### `R_METAG_TLS_LDO`
+*Defined in [`object-0.37.3/src/elf.rs:5968`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5968)*
 
+### `R_METAG_TLS_LDO`
 ```rust
 const R_METAG_TLS_LDO: u32 = 51u32;
 ```
 
-### `R_METAG_TLS_IE`
+*Defined in [`object-0.37.3/src/elf.rs:5969`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5969)*
 
+### `R_METAG_TLS_IE`
 ```rust
 const R_METAG_TLS_IE: u32 = 52u32;
 ```
 
-### `R_METAG_TLS_IENONPIC`
+*Defined in [`object-0.37.3/src/elf.rs:5970`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5970)*
 
+### `R_METAG_TLS_IENONPIC`
 ```rust
 const R_METAG_TLS_IENONPIC: u32 = 53u32;
 ```
 
-### `R_METAG_TLS_IENONPIC_HI16`
+*Defined in [`object-0.37.3/src/elf.rs:5971`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5971)*
 
+### `R_METAG_TLS_IENONPIC_HI16`
 ```rust
 const R_METAG_TLS_IENONPIC_HI16: u32 = 54u32;
 ```
 
-### `R_METAG_TLS_IENONPIC_LO16`
+*Defined in [`object-0.37.3/src/elf.rs:5972`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5972)*
 
+### `R_METAG_TLS_IENONPIC_LO16`
 ```rust
 const R_METAG_TLS_IENONPIC_LO16: u32 = 55u32;
 ```
 
-### `R_METAG_TLS_TPOFF`
+*Defined in [`object-0.37.3/src/elf.rs:5973`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5973)*
 
+### `R_METAG_TLS_TPOFF`
 ```rust
 const R_METAG_TLS_TPOFF: u32 = 56u32;
 ```
 
-### `R_METAG_TLS_DTPMOD`
+*Defined in [`object-0.37.3/src/elf.rs:5974`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5974)*
 
+### `R_METAG_TLS_DTPMOD`
 ```rust
 const R_METAG_TLS_DTPMOD: u32 = 57u32;
 ```
 
-### `R_METAG_TLS_DTPOFF`
+*Defined in [`object-0.37.3/src/elf.rs:5975`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5975)*
 
+### `R_METAG_TLS_DTPOFF`
 ```rust
 const R_METAG_TLS_DTPOFF: u32 = 58u32;
 ```
 
-### `R_METAG_TLS_LE`
+*Defined in [`object-0.37.3/src/elf.rs:5976`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5976)*
 
+### `R_METAG_TLS_LE`
 ```rust
 const R_METAG_TLS_LE: u32 = 59u32;
 ```
 
-### `R_METAG_TLS_LE_HI16`
+*Defined in [`object-0.37.3/src/elf.rs:5977`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5977)*
 
+### `R_METAG_TLS_LE_HI16`
 ```rust
 const R_METAG_TLS_LE_HI16: u32 = 60u32;
 ```
 
-### `R_METAG_TLS_LE_LO16`
+*Defined in [`object-0.37.3/src/elf.rs:5978`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5978)*
 
+### `R_METAG_TLS_LE_LO16`
 ```rust
 const R_METAG_TLS_LE_LO16: u32 = 61u32;
 ```
 
-### `R_NDS32_NONE`
+*Defined in [`object-0.37.3/src/elf.rs:5979`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5979)*
 
+### `R_NDS32_NONE`
 ```rust
 const R_NDS32_NONE: u32 = 0u32;
 ```
 
-### `R_NDS32_32_RELA`
+*Defined in [`object-0.37.3/src/elf.rs:5982`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5982)*
 
+### `R_NDS32_32_RELA`
 ```rust
 const R_NDS32_32_RELA: u32 = 20u32;
 ```
 
-### `R_NDS32_COPY`
+*Defined in [`object-0.37.3/src/elf.rs:5983`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5983)*
 
+### `R_NDS32_COPY`
 ```rust
 const R_NDS32_COPY: u32 = 39u32;
 ```
 
-### `R_NDS32_GLOB_DAT`
+*Defined in [`object-0.37.3/src/elf.rs:5984`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5984)*
 
+### `R_NDS32_GLOB_DAT`
 ```rust
 const R_NDS32_GLOB_DAT: u32 = 40u32;
 ```
 
-### `R_NDS32_JMP_SLOT`
+*Defined in [`object-0.37.3/src/elf.rs:5985`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5985)*
 
+### `R_NDS32_JMP_SLOT`
 ```rust
 const R_NDS32_JMP_SLOT: u32 = 41u32;
 ```
 
-### `R_NDS32_RELATIVE`
+*Defined in [`object-0.37.3/src/elf.rs:5986`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5986)*
 
+### `R_NDS32_RELATIVE`
 ```rust
 const R_NDS32_RELATIVE: u32 = 42u32;
 ```
 
-### `R_NDS32_TLS_TPOFF`
+*Defined in [`object-0.37.3/src/elf.rs:5987`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5987)*
 
+### `R_NDS32_TLS_TPOFF`
 ```rust
 const R_NDS32_TLS_TPOFF: u32 = 102u32;
 ```
 
-### `R_NDS32_TLS_DESC`
+*Defined in [`object-0.37.3/src/elf.rs:5988`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5988)*
 
+### `R_NDS32_TLS_DESC`
 ```rust
 const R_NDS32_TLS_DESC: u32 = 119u32;
 ```
 
-### `EF_LARCH_ABI_MODIFIER_MASK`
+*Defined in [`object-0.37.3/src/elf.rs:5989`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5989)*
 
+### `EF_LARCH_ABI_MODIFIER_MASK`
 ```rust
 const EF_LARCH_ABI_MODIFIER_MASK: u32 = 7u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:5994`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5994)*
 
 Additional properties of the base ABI type, including the FP calling
 convention.
 
 ### `EF_LARCH_ABI_SOFT_FLOAT`
-
 ```rust
 const EF_LARCH_ABI_SOFT_FLOAT: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5996`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5996)*
+
 Uses GPRs and the stack for parameter passing
 
 ### `EF_LARCH_ABI_SINGLE_FLOAT`
-
 ```rust
 const EF_LARCH_ABI_SINGLE_FLOAT: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:5998`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L5998)*
+
 Uses GPRs, 32-bit FPRs and the stack for parameter passing
 
 ### `EF_LARCH_ABI_DOUBLE_FLOAT`
-
 ```rust
 const EF_LARCH_ABI_DOUBLE_FLOAT: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6000`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6000)*
+
 Uses GPRs, 64-bit FPRs and the stack for parameter passing
 
 ### `EF_LARCH_OBJABI_V1`
-
 ```rust
 const EF_LARCH_OBJABI_V1: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6002`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6002)*
+
 Uses relocation types directly writing to immediate slots
 
 ### `R_LARCH_NONE`
-
 ```rust
 const R_LARCH_NONE: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6006`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6006)*
+
 No reloc
 
 ### `R_LARCH_32`
-
 ```rust
 const R_LARCH_32: u32 = 1u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6008`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6008)*
+
 Runtime address resolving
 
 ### `R_LARCH_64`
-
 ```rust
 const R_LARCH_64: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6010`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6010)*
+
 Runtime address resolving
 
 ### `R_LARCH_RELATIVE`
-
 ```rust
 const R_LARCH_RELATIVE: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6012`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6012)*
+
 Runtime fixup for load-address
 
 ### `R_LARCH_COPY`
-
 ```rust
 const R_LARCH_COPY: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6014`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6014)*
+
 Runtime memory copy in executable
 
 ### `R_LARCH_JUMP_SLOT`
-
 ```rust
 const R_LARCH_JUMP_SLOT: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6016`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6016)*
+
 Runtime PLT supporting
 
 ### `R_LARCH_TLS_DTPMOD32`
-
 ```rust
 const R_LARCH_TLS_DTPMOD32: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6018`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6018)*
+
 Runtime relocation for TLS-GD
 
 ### `R_LARCH_TLS_DTPMOD64`
-
 ```rust
 const R_LARCH_TLS_DTPMOD64: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6020`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6020)*
+
 Runtime relocation for TLS-GD
 
 ### `R_LARCH_TLS_DTPREL32`
-
 ```rust
 const R_LARCH_TLS_DTPREL32: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6022`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6022)*
+
 Runtime relocation for TLS-GD
 
 ### `R_LARCH_TLS_DTPREL64`
-
 ```rust
 const R_LARCH_TLS_DTPREL64: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6024`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6024)*
+
 Runtime relocation for TLS-GD
 
 ### `R_LARCH_TLS_TPREL32`
-
 ```rust
 const R_LARCH_TLS_TPREL32: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6026`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6026)*
+
 Runtime relocation for TLE-IE
 
 ### `R_LARCH_TLS_TPREL64`
-
 ```rust
 const R_LARCH_TLS_TPREL64: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6028`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6028)*
+
 Runtime relocation for TLE-IE
 
 ### `R_LARCH_IRELATIVE`
-
 ```rust
 const R_LARCH_IRELATIVE: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6030`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6030)*
+
 Runtime local indirect function resolving
 
 ### `R_LARCH_MARK_LA`
-
 ```rust
 const R_LARCH_MARK_LA: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6032`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6032)*
+
 Mark la.abs: load absolute address for static link.
 
 ### `R_LARCH_MARK_PCREL`
-
 ```rust
 const R_LARCH_MARK_PCREL: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6034`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6034)*
+
 Mark external label branch: access PC relative address for static link.
 
 ### `R_LARCH_SOP_PUSH_PCREL`
-
 ```rust
 const R_LARCH_SOP_PUSH_PCREL: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6036`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6036)*
+
 Push PC-relative offset
 
 ### `R_LARCH_SOP_PUSH_ABSOLUTE`
-
 ```rust
 const R_LARCH_SOP_PUSH_ABSOLUTE: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6038`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6038)*
+
 Push constant or absolute address
 
 ### `R_LARCH_SOP_PUSH_DUP`
-
 ```rust
 const R_LARCH_SOP_PUSH_DUP: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6040`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6040)*
+
 Duplicate stack top
 
 ### `R_LARCH_SOP_PUSH_GPREL`
-
 ```rust
 const R_LARCH_SOP_PUSH_GPREL: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6042`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6042)*
+
 Push for access GOT entry
 
 ### `R_LARCH_SOP_PUSH_TLS_TPREL`
-
 ```rust
 const R_LARCH_SOP_PUSH_TLS_TPREL: u32 = 26u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6044`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6044)*
+
 Push for TLS-LE
 
 ### `R_LARCH_SOP_PUSH_TLS_GOT`
-
 ```rust
 const R_LARCH_SOP_PUSH_TLS_GOT: u32 = 27u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6046`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6046)*
+
 Push for TLS-IE
 
 ### `R_LARCH_SOP_PUSH_TLS_GD`
-
 ```rust
 const R_LARCH_SOP_PUSH_TLS_GD: u32 = 28u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6048`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6048)*
+
 Push for TLS-GD
 
 ### `R_LARCH_SOP_PUSH_PLT_PCREL`
-
 ```rust
 const R_LARCH_SOP_PUSH_PLT_PCREL: u32 = 29u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6050`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6050)*
+
 Push for external function calling
 
 ### `R_LARCH_SOP_ASSERT`
-
 ```rust
 const R_LARCH_SOP_ASSERT: u32 = 30u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6052`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6052)*
+
 Assert stack top
 
 ### `R_LARCH_SOP_NOT`
-
 ```rust
 const R_LARCH_SOP_NOT: u32 = 31u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6054`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6054)*
+
 Stack top logical not (unary)
 
 ### `R_LARCH_SOP_SUB`
-
 ```rust
 const R_LARCH_SOP_SUB: u32 = 32u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6056`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6056)*
+
 Stack top subtraction (binary)
 
 ### `R_LARCH_SOP_SL`
-
 ```rust
 const R_LARCH_SOP_SL: u32 = 33u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6058`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6058)*
+
 Stack top left shift (binary)
 
 ### `R_LARCH_SOP_SR`
-
 ```rust
 const R_LARCH_SOP_SR: u32 = 34u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6060`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6060)*
+
 Stack top right shift (binary)
 
 ### `R_LARCH_SOP_ADD`
-
 ```rust
 const R_LARCH_SOP_ADD: u32 = 35u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6062`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6062)*
+
 Stack top addition (binary)
 
 ### `R_LARCH_SOP_AND`
-
 ```rust
 const R_LARCH_SOP_AND: u32 = 36u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6064`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6064)*
+
 Stack top bitwise and (binary)
 
 ### `R_LARCH_SOP_IF_ELSE`
-
 ```rust
 const R_LARCH_SOP_IF_ELSE: u32 = 37u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6066`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6066)*
+
 Stack top selection (tertiary)
 
 ### `R_LARCH_SOP_POP_32_S_10_5`
-
 ```rust
 const R_LARCH_SOP_POP_32_S_10_5: u32 = 38u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6068`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6068)*
+
 Pop stack top to fill 5-bit signed immediate operand
 
 ### `R_LARCH_SOP_POP_32_U_10_12`
-
 ```rust
 const R_LARCH_SOP_POP_32_U_10_12: u32 = 39u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6070`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6070)*
+
 Pop stack top to fill 12-bit unsigned immediate operand
 
 ### `R_LARCH_SOP_POP_32_S_10_12`
-
 ```rust
 const R_LARCH_SOP_POP_32_S_10_12: u32 = 40u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6072`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6072)*
+
 Pop stack top to fill 12-bit signed immediate operand
 
 ### `R_LARCH_SOP_POP_32_S_10_16`
-
 ```rust
 const R_LARCH_SOP_POP_32_S_10_16: u32 = 41u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6074`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6074)*
+
 Pop stack top to fill 16-bit signed immediate operand
 
 ### `R_LARCH_SOP_POP_32_S_10_16_S2`
-
 ```rust
 const R_LARCH_SOP_POP_32_S_10_16_S2: u32 = 42u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6077`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6077)*
 
 Pop stack top to fill 18-bit signed immediate operand with two trailing
 zeros implied
 
 ### `R_LARCH_SOP_POP_32_S_5_20`
-
 ```rust
 const R_LARCH_SOP_POP_32_S_5_20: u32 = 43u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6079`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6079)*
+
 Pop stack top to fill 20-bit signed immediate operand
 
 ### `R_LARCH_SOP_POP_32_S_0_5_10_16_S2`
-
 ```rust
 const R_LARCH_SOP_POP_32_S_0_5_10_16_S2: u32 = 44u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6082`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6082)*
 
 Pop stack top to fill 23-bit signed immediate operand with two trailing
 zeros implied
 
 ### `R_LARCH_SOP_POP_32_S_0_10_10_16_S2`
-
 ```rust
 const R_LARCH_SOP_POP_32_S_0_10_10_16_S2: u32 = 45u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6085`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6085)*
 
 Pop stack top to fill 28-bit signed immediate operand with two trailing
 zeros implied
 
 ### `R_LARCH_SOP_POP_32_U`
-
 ```rust
 const R_LARCH_SOP_POP_32_U: u32 = 46u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6087`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6087)*
+
 Pop stack top to fill an instruction
 
 ### `R_LARCH_ADD8`
-
 ```rust
 const R_LARCH_ADD8: u32 = 47u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6089`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6089)*
+
 8-bit in-place addition
 
 ### `R_LARCH_ADD16`
-
 ```rust
 const R_LARCH_ADD16: u32 = 48u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6091`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6091)*
+
 16-bit in-place addition
 
 ### `R_LARCH_ADD24`
-
 ```rust
 const R_LARCH_ADD24: u32 = 49u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6093`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6093)*
+
 24-bit in-place addition
 
 ### `R_LARCH_ADD32`
-
 ```rust
 const R_LARCH_ADD32: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6095`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6095)*
+
 32-bit in-place addition
 
 ### `R_LARCH_ADD64`
-
 ```rust
 const R_LARCH_ADD64: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6097`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6097)*
+
 64-bit in-place addition
 
 ### `R_LARCH_SUB8`
-
 ```rust
 const R_LARCH_SUB8: u32 = 52u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6099`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6099)*
+
 8-bit in-place subtraction
 
 ### `R_LARCH_SUB16`
-
 ```rust
 const R_LARCH_SUB16: u32 = 53u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6101`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6101)*
+
 16-bit in-place subtraction
 
 ### `R_LARCH_SUB24`
-
 ```rust
 const R_LARCH_SUB24: u32 = 54u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6103`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6103)*
+
 24-bit in-place subtraction
 
 ### `R_LARCH_SUB32`
-
 ```rust
 const R_LARCH_SUB32: u32 = 55u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6105`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6105)*
+
 32-bit in-place subtraction
 
 ### `R_LARCH_SUB64`
-
 ```rust
 const R_LARCH_SUB64: u32 = 56u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6107`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6107)*
+
 64-bit in-place subtraction
 
 ### `R_LARCH_GNU_VTINHERIT`
-
 ```rust
 const R_LARCH_GNU_VTINHERIT: u32 = 57u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6109`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6109)*
+
 GNU C++ vtable hierarchy
 
 ### `R_LARCH_GNU_VTENTRY`
-
 ```rust
 const R_LARCH_GNU_VTENTRY: u32 = 58u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6111`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6111)*
+
 GNU C++ vtable member usage
 
 ### `R_LARCH_B16`
-
 ```rust
 const R_LARCH_B16: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6113`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6113)*
+
 18-bit PC-relative jump offset with two trailing zeros
 
 ### `R_LARCH_B21`
-
 ```rust
 const R_LARCH_B21: u32 = 65u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6115`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6115)*
+
 23-bit PC-relative jump offset with two trailing zeros
 
 ### `R_LARCH_B26`
-
 ```rust
 const R_LARCH_B26: u32 = 66u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6117`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6117)*
+
 28-bit PC-relative jump offset with two trailing zeros
 
 ### `R_LARCH_ABS_HI20`
-
 ```rust
 const R_LARCH_ABS_HI20: u32 = 67u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6119`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6119)*
+
 12..=31 bits of 32/64-bit absolute address
 
 ### `R_LARCH_ABS_LO12`
-
 ```rust
 const R_LARCH_ABS_LO12: u32 = 68u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6121`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6121)*
+
 0..=11 bits of 32/64-bit absolute address
 
 ### `R_LARCH_ABS64_LO20`
-
 ```rust
 const R_LARCH_ABS64_LO20: u32 = 69u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6123`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6123)*
+
 32..=51 bits of 64-bit absolute address
 
 ### `R_LARCH_ABS64_HI12`
-
 ```rust
 const R_LARCH_ABS64_HI12: u32 = 70u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6125`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6125)*
+
 52..=63 bits of 64-bit absolute address
 
 ### `R_LARCH_PCALA_HI20`
-
 ```rust
 const R_LARCH_PCALA_HI20: u32 = 71u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6131`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6131)*
 
 The signed 32-bit offset `offs` from `PC & 0xfffff000` to
 `(S + A + 0x800) & 0xfffff000`, with 12 trailing zeros removed.
@@ -28585,37 +31382,41 @@ We define the *PC relative anchor* for `S + A` as `PC + offs` (`offs`
 is sign-extended to VA bits).
 
 ### `R_LARCH_PCALA_LO12`
-
 ```rust
 const R_LARCH_PCALA_LO12: u32 = 72u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6134`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6134)*
 
 Same as R_LARCH_ABS_LO12.  0..=11 bits of the 32/64-bit offset from the
 [PC relative anchor][R_LARCH_PCALA_HI20].
 
 ### `R_LARCH_PCALA64_LO20`
-
 ```rust
 const R_LARCH_PCALA64_LO20: u32 = 73u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6137`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6137)*
 
 32..=51 bits of the 64-bit offset from the
 [PC relative anchor][R_LARCH_PCALA_HI20].
 
 ### `R_LARCH_PCALA64_HI12`
-
 ```rust
 const R_LARCH_PCALA64_HI12: u32 = 74u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6140`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6140)*
 
 52..=63 bits of the 64-bit offset from the
 [PC relative anchor][R_LARCH_PCALA_HI20].
 
 ### `R_LARCH_GOT_PC_HI20`
-
 ```rust
 const R_LARCH_GOT_PC_HI20: u32 = 75u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6146`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6146)*
 
 The signed 32-bit offset `offs` from `PC & 0xfffff000` to
 `(GP + G + 0x800) & 0xfffff000`, with 12 trailing zeros removed.
@@ -28624,101 +31425,113 @@ We define the *PC relative anchor* for the GOT entry at `GP + G` as
 `PC + offs` (`offs` is sign-extended to VA bits).
 
 ### `R_LARCH_GOT_PC_LO12`
-
 ```rust
 const R_LARCH_GOT_PC_LO12: u32 = 76u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6149`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6149)*
 
 0..=11 bits of the 32/64-bit offset from the
 [PC relative anchor][R_LARCH_GOT_PC_HI20] to the GOT entry.
 
 ### `R_LARCH_GOT64_PC_LO20`
-
 ```rust
 const R_LARCH_GOT64_PC_LO20: u32 = 77u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6152`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6152)*
 
 32..=51 bits of the 64-bit offset from the
 [PC relative anchor][R_LARCH_GOT_PC_HI20] to the GOT entry.
 
 ### `R_LARCH_GOT64_PC_HI12`
-
 ```rust
 const R_LARCH_GOT64_PC_HI12: u32 = 78u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6155`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6155)*
 
 52..=63 bits of the 64-bit offset from the
 [PC relative anchor][R_LARCH_GOT_PC_HI20] to the GOT entry.
 
 ### `R_LARCH_GOT_HI20`
-
 ```rust
 const R_LARCH_GOT_HI20: u32 = 79u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6157`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6157)*
+
 12..=31 bits of 32/64-bit GOT entry absolute address
 
 ### `R_LARCH_GOT_LO12`
-
 ```rust
 const R_LARCH_GOT_LO12: u32 = 80u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6159`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6159)*
+
 0..=11 bits of 32/64-bit GOT entry absolute address
 
 ### `R_LARCH_GOT64_LO20`
-
 ```rust
 const R_LARCH_GOT64_LO20: u32 = 81u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6161`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6161)*
+
 32..=51 bits of 64-bit GOT entry absolute address
 
 ### `R_LARCH_GOT64_HI12`
-
 ```rust
 const R_LARCH_GOT64_HI12: u32 = 82u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6163`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6163)*
+
 52..=63 bits of 64-bit GOT entry absolute address
 
 ### `R_LARCH_TLS_LE_HI20`
-
 ```rust
 const R_LARCH_TLS_LE_HI20: u32 = 83u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6165`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6165)*
+
 12..=31 bits of TLS LE 32/64-bit offset from thread pointer
 
 ### `R_LARCH_TLS_LE_LO12`
-
 ```rust
 const R_LARCH_TLS_LE_LO12: u32 = 84u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6167`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6167)*
+
 0..=11 bits of TLS LE 32/64-bit offset from thread pointer
 
 ### `R_LARCH_TLS_LE64_LO20`
-
 ```rust
 const R_LARCH_TLS_LE64_LO20: u32 = 85u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6169`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6169)*
+
 32..=51 bits of TLS LE 64-bit offset from thread pointer
 
 ### `R_LARCH_TLS_LE64_HI12`
-
 ```rust
 const R_LARCH_TLS_LE64_HI12: u32 = 86u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6171`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6171)*
+
 52..=63 bits of TLS LE 64-bit offset from thread pointer
 
 ### `R_LARCH_TLS_IE_PC_HI20`
-
 ```rust
 const R_LARCH_TLS_IE_PC_HI20: u32 = 87u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6177`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6177)*
 
 The signed 32-bit offset `offs` from `PC & 0xfffff000` to
 `(GP + IE + 0x800) & 0xfffff000`, with 12 trailing zeros removed.
@@ -28727,1272 +31540,1448 @@ We define the *PC relative anchor* for the TLS IE GOT entry at
 `GP + IE` as `PC + offs` (`offs` is sign-extended to VA bits).
 
 ### `R_LARCH_TLS_IE_PC_LO12`
-
 ```rust
 const R_LARCH_TLS_IE_PC_LO12: u32 = 88u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6180`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6180)*
 
 0..=12 bits of the 32/64-bit offset from the
 [PC-relative anchor][R_LARCH_TLS_IE_PC_HI20] to the TLS IE GOT entry.
 
 ### `R_LARCH_TLS_IE64_PC_LO20`
-
 ```rust
 const R_LARCH_TLS_IE64_PC_LO20: u32 = 89u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6183`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6183)*
 
 32..=51 bits of the 64-bit offset from the
 [PC-relative anchor][R_LARCH_TLS_IE_PC_HI20] to the TLS IE GOT entry.
 
 ### `R_LARCH_TLS_IE64_PC_HI12`
-
 ```rust
 const R_LARCH_TLS_IE64_PC_HI12: u32 = 90u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6186`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6186)*
 
 52..=63 bits of the 64-bit offset from the
 [PC-relative anchor][R_LARCH_TLS_IE_PC_HI20] to the TLS IE GOT entry.
 
 ### `R_LARCH_TLS_IE_HI20`
-
 ```rust
 const R_LARCH_TLS_IE_HI20: u32 = 91u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6188`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6188)*
+
 12..=31 bits of TLS IE GOT entry 32/64-bit absolute address
 
 ### `R_LARCH_TLS_IE_LO12`
-
 ```rust
 const R_LARCH_TLS_IE_LO12: u32 = 92u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6190`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6190)*
+
 0..=11 bits of TLS IE GOT entry 32/64-bit absolute address
 
 ### `R_LARCH_TLS_IE64_LO20`
-
 ```rust
 const R_LARCH_TLS_IE64_LO20: u32 = 93u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6192`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6192)*
+
 32..=51 bits of TLS IE GOT entry 64-bit absolute address
 
 ### `R_LARCH_TLS_IE64_HI12`
-
 ```rust
 const R_LARCH_TLS_IE64_HI12: u32 = 94u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6194`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6194)*
+
 51..=63 bits of TLS IE GOT entry 64-bit absolute address
 
 ### `R_LARCH_TLS_LD_PC_HI20`
-
 ```rust
 const R_LARCH_TLS_LD_PC_HI20: u32 = 95u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6197`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6197)*
 
 12..=31 bits of the offset from `PC` to `GP + GD + 0x800`, where
 `GP + GD` is a TLS LD GOT entry
 
 ### `R_LARCH_TLS_LD_HI20`
-
 ```rust
 const R_LARCH_TLS_LD_HI20: u32 = 96u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6199`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6199)*
+
 12..=31 bits of TLS LD GOT entry 32/64-bit absolute address
 
 ### `R_LARCH_TLS_GD_PC_HI20`
-
 ```rust
 const R_LARCH_TLS_GD_PC_HI20: u32 = 97u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6202`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6202)*
 
 12..=31 bits of the 32/64-bit PC-relative offset to the PC-relative
 anchor for the TLE GD GOT entry.
 
 ### `R_LARCH_TLS_GD_HI20`
-
 ```rust
 const R_LARCH_TLS_GD_HI20: u32 = 98u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6204`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6204)*
+
 12..=31 bits of TLS GD GOT entry 32/64-bit absolute address
 
 ### `R_LARCH_32_PCREL`
-
 ```rust
 const R_LARCH_32_PCREL: u32 = 99u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6206`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6206)*
+
 32-bit PC relative
 
 ### `R_LARCH_RELAX`
-
 ```rust
 const R_LARCH_RELAX: u32 = 100u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6209`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6209)*
 
 Paired with a normal relocation at the same address to indicate the
 instruction can be relaxed
 
 ### `R_LARCH_DELETE`
-
 ```rust
 const R_LARCH_DELETE: u32 = 101u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6211`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6211)*
+
 Reserved
 
 ### `R_LARCH_ALIGN`
-
 ```rust
 const R_LARCH_ALIGN: u32 = 102u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6214`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6214)*
 
 Delete some bytes to ensure the instruction at PC + A aligned to
 `A.next_power_of_two()`-byte boundary
 
 ### `R_LARCH_PCREL20_S2`
-
 ```rust
 const R_LARCH_PCREL20_S2: u32 = 103u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6216`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6216)*
+
 22-bit PC-relative offset with two trailing zeros
 
 ### `R_LARCH_CFA`
-
 ```rust
 const R_LARCH_CFA: u32 = 104u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6218`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6218)*
+
 Reserved
 
 ### `R_LARCH_ADD6`
-
 ```rust
 const R_LARCH_ADD6: u32 = 105u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6220`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6220)*
+
 6-bit in-place addition
 
 ### `R_LARCH_SUB6`
-
 ```rust
 const R_LARCH_SUB6: u32 = 106u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6222`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6222)*
+
 6-bit in-place subtraction
 
 ### `R_LARCH_ADD_ULEB128`
-
 ```rust
 const R_LARCH_ADD_ULEB128: u32 = 107u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6224`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6224)*
+
 LEB128 in-place addition
 
 ### `R_LARCH_SUB_ULEB128`
-
 ```rust
 const R_LARCH_SUB_ULEB128: u32 = 108u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6226`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6226)*
+
 LEB128 in-place subtraction
 
 ### `R_LARCH_64_PCREL`
-
 ```rust
 const R_LARCH_64_PCREL: u32 = 109u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6228`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6228)*
+
 64-bit PC relative
 
 ### `R_LARCH_CALL36`
-
 ```rust
 const R_LARCH_CALL36: u32 = 110u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6231`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6231)*
 
 18..=37 bits of `S + A - PC` into the `pcaddu18i` instruction at `PC`,
 and 2..=17 bits of `S + A - PC` into the `jirl` instruction at `PC + 4`
 
 ### `R_LARCH_TLS_DESC_PC_HI20`
-
 ```rust
 const R_LARCH_TLS_DESC_PC_HI20: u32 = 111u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6233`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6233)*
+
 12..=31 bits of 32/64-bit PC-relative offset to TLS DESC GOT entry
 
 ### `R_LARCH_TLS_DESC_PC_LO12`
-
 ```rust
 const R_LARCH_TLS_DESC_PC_LO12: u32 = 112u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6235`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6235)*
+
 0..=11 bits of 32/64-bit TLS DESC GOT entry address
 
 ### `R_LARCH_TLS_DESC64_PC_LO20`
-
 ```rust
 const R_LARCH_TLS_DESC64_PC_LO20: u32 = 113u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6237`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6237)*
+
 32..=51 bits of 64-bit PC-relative offset to TLS DESC GOT entry
 
 ### `R_LARCH_TLS_DESC64_PC_HI12`
-
 ```rust
 const R_LARCH_TLS_DESC64_PC_HI12: u32 = 114u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6239`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6239)*
+
 52..=63 bits of 64-bit PC-relative offset to TLS DESC GOT entry
 
 ### `R_LARCH_TLS_DESC_HI20`
-
 ```rust
 const R_LARCH_TLS_DESC_HI20: u32 = 115u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6241`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6241)*
+
 12..=31 bits of 32/64-bit TLS DESC GOT entry absolute address
 
 ### `R_LARCH_TLS_DESC_LO12`
-
 ```rust
 const R_LARCH_TLS_DESC_LO12: u32 = 116u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6243`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6243)*
+
 0..=11 bits of 32/64-bit TLS DESC GOT entry absolute address
 
 ### `R_LARCH_TLS_DESC64_LO20`
-
 ```rust
 const R_LARCH_TLS_DESC64_LO20: u32 = 117u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6245`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6245)*
+
 32..=51 bits of 64-bit TLS DESC GOT entry absolute address
 
 ### `R_LARCH_TLS_DESC64_HI12`
-
 ```rust
 const R_LARCH_TLS_DESC64_HI12: u32 = 118u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6247`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6247)*
+
 52..=63 bits of 64-bit TLS DESC GOT entry absolute address
 
 ### `R_LARCH_TLS_DESC_LD`
-
 ```rust
 const R_LARCH_TLS_DESC_LD: u32 = 119u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6250`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6250)*
 
 Used on ld.{w,d} for TLS DESC to get the resolve function address
 from GOT entry
 
 ### `R_LARCH_TLS_DESC_CALL`
-
 ```rust
 const R_LARCH_TLS_DESC_CALL: u32 = 120u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6252`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6252)*
+
 Used on jirl for TLS DESC to call the resolve function
 
 ### `R_LARCH_TLS_LE_HI20_R`
-
 ```rust
 const R_LARCH_TLS_LE_HI20_R: u32 = 121u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6254`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6254)*
+
 12..=31 bits of TLS LE 32/64-bit offset from TP register, can be relaxed
 
 ### `R_LARCH_TLS_LE_ADD_R`
-
 ```rust
 const R_LARCH_TLS_LE_ADD_R: u32 = 122u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6256`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6256)*
+
 TLS LE thread pointer usage, can be relaxed
 
 ### `R_LARCH_TLS_LE_LO12_R`
-
 ```rust
 const R_LARCH_TLS_LE_LO12_R: u32 = 123u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6259`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6259)*
 
 0..=11 bits of TLS LE 32/64-bit offset from TP register, sign-extended,
 can be relaxed.
 
 ### `R_LARCH_TLS_LD_PCREL20_S2`
-
 ```rust
 const R_LARCH_TLS_LD_PCREL20_S2: u32 = 124u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6261`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6261)*
+
 22-bit PC-relative offset to TLS LD GOT entry
 
 ### `R_LARCH_TLS_GD_PCREL20_S2`
-
 ```rust
 const R_LARCH_TLS_GD_PCREL20_S2: u32 = 125u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6263`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6263)*
+
 22-bit PC-relative offset to TLS GD GOT entry
 
 ### `R_LARCH_TLS_DESC_PCREL20_S2`
-
 ```rust
 const R_LARCH_TLS_DESC_PCREL20_S2: u32 = 126u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6265`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6265)*
+
 22-bit PC-relative offset to TLS DESC GOT entry
 
 ### `R_XTENSA_NONE`
-
 ```rust
 const R_XTENSA_NONE: u32 = 0u32;
 ```
 
-### `R_XTENSA_32`
+*Defined in [`object-0.37.3/src/elf.rs:6268`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6268)*
 
+### `R_XTENSA_32`
 ```rust
 const R_XTENSA_32: u32 = 1u32;
 ```
 
-### `R_XTENSA_RTLD`
+*Defined in [`object-0.37.3/src/elf.rs:6269`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6269)*
 
+### `R_XTENSA_RTLD`
 ```rust
 const R_XTENSA_RTLD: u32 = 2u32;
 ```
 
-### `R_XTENSA_GLOB_DAT`
+*Defined in [`object-0.37.3/src/elf.rs:6270`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6270)*
 
+### `R_XTENSA_GLOB_DAT`
 ```rust
 const R_XTENSA_GLOB_DAT: u32 = 3u32;
 ```
 
-### `R_XTENSA_JMP_SLOT`
+*Defined in [`object-0.37.3/src/elf.rs:6271`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6271)*
 
+### `R_XTENSA_JMP_SLOT`
 ```rust
 const R_XTENSA_JMP_SLOT: u32 = 4u32;
 ```
 
-### `R_XTENSA_RELATIVE`
+*Defined in [`object-0.37.3/src/elf.rs:6272`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6272)*
 
+### `R_XTENSA_RELATIVE`
 ```rust
 const R_XTENSA_RELATIVE: u32 = 5u32;
 ```
 
-### `R_XTENSA_PLT`
+*Defined in [`object-0.37.3/src/elf.rs:6273`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6273)*
 
+### `R_XTENSA_PLT`
 ```rust
 const R_XTENSA_PLT: u32 = 6u32;
 ```
 
-### `R_XTENSA_OP0`
+*Defined in [`object-0.37.3/src/elf.rs:6274`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6274)*
 
+### `R_XTENSA_OP0`
 ```rust
 const R_XTENSA_OP0: u32 = 8u32;
 ```
 
-### `R_XTENSA_OP1`
+*Defined in [`object-0.37.3/src/elf.rs:6275`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6275)*
 
+### `R_XTENSA_OP1`
 ```rust
 const R_XTENSA_OP1: u32 = 9u32;
 ```
 
-### `R_XTENSA_OP2`
+*Defined in [`object-0.37.3/src/elf.rs:6276`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6276)*
 
+### `R_XTENSA_OP2`
 ```rust
 const R_XTENSA_OP2: u32 = 10u32;
 ```
 
-### `R_XTENSA_ASM_EXPAND`
+*Defined in [`object-0.37.3/src/elf.rs:6277`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6277)*
 
+### `R_XTENSA_ASM_EXPAND`
 ```rust
 const R_XTENSA_ASM_EXPAND: u32 = 11u32;
 ```
 
-### `R_XTENSA_ASM_SIMPLIFY`
+*Defined in [`object-0.37.3/src/elf.rs:6278`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6278)*
 
+### `R_XTENSA_ASM_SIMPLIFY`
 ```rust
 const R_XTENSA_ASM_SIMPLIFY: u32 = 12u32;
 ```
 
-### `R_XTENSA_32_PCREL`
+*Defined in [`object-0.37.3/src/elf.rs:6279`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6279)*
 
+### `R_XTENSA_32_PCREL`
 ```rust
 const R_XTENSA_32_PCREL: u32 = 14u32;
 ```
 
-### `R_XTENSA_GNU_VTINHERIT`
+*Defined in [`object-0.37.3/src/elf.rs:6280`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6280)*
 
+### `R_XTENSA_GNU_VTINHERIT`
 ```rust
 const R_XTENSA_GNU_VTINHERIT: u32 = 15u32;
 ```
 
-### `R_XTENSA_GNU_VTENTRY`
+*Defined in [`object-0.37.3/src/elf.rs:6281`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6281)*
 
+### `R_XTENSA_GNU_VTENTRY`
 ```rust
 const R_XTENSA_GNU_VTENTRY: u32 = 16u32;
 ```
 
-### `R_XTENSA_DIFF8`
+*Defined in [`object-0.37.3/src/elf.rs:6282`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6282)*
 
+### `R_XTENSA_DIFF8`
 ```rust
 const R_XTENSA_DIFF8: u32 = 17u32;
 ```
 
-### `R_XTENSA_DIFF16`
+*Defined in [`object-0.37.3/src/elf.rs:6283`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6283)*
 
+### `R_XTENSA_DIFF16`
 ```rust
 const R_XTENSA_DIFF16: u32 = 18u32;
 ```
 
-### `R_XTENSA_DIFF32`
+*Defined in [`object-0.37.3/src/elf.rs:6284`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6284)*
 
+### `R_XTENSA_DIFF32`
 ```rust
 const R_XTENSA_DIFF32: u32 = 19u32;
 ```
 
-### `R_XTENSA_SLOT0_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6285`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6285)*
 
+### `R_XTENSA_SLOT0_OP`
 ```rust
 const R_XTENSA_SLOT0_OP: u32 = 20u32;
 ```
 
-### `R_XTENSA_SLOT1_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6286`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6286)*
 
+### `R_XTENSA_SLOT1_OP`
 ```rust
 const R_XTENSA_SLOT1_OP: u32 = 21u32;
 ```
 
-### `R_XTENSA_SLOT2_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6287`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6287)*
 
+### `R_XTENSA_SLOT2_OP`
 ```rust
 const R_XTENSA_SLOT2_OP: u32 = 22u32;
 ```
 
-### `R_XTENSA_SLOT3_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6288`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6288)*
 
+### `R_XTENSA_SLOT3_OP`
 ```rust
 const R_XTENSA_SLOT3_OP: u32 = 23u32;
 ```
 
-### `R_XTENSA_SLOT4_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6289`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6289)*
 
+### `R_XTENSA_SLOT4_OP`
 ```rust
 const R_XTENSA_SLOT4_OP: u32 = 24u32;
 ```
 
-### `R_XTENSA_SLOT5_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6290`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6290)*
 
+### `R_XTENSA_SLOT5_OP`
 ```rust
 const R_XTENSA_SLOT5_OP: u32 = 25u32;
 ```
 
-### `R_XTENSA_SLOT6_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6291`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6291)*
 
+### `R_XTENSA_SLOT6_OP`
 ```rust
 const R_XTENSA_SLOT6_OP: u32 = 26u32;
 ```
 
-### `R_XTENSA_SLOT7_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6292`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6292)*
 
+### `R_XTENSA_SLOT7_OP`
 ```rust
 const R_XTENSA_SLOT7_OP: u32 = 27u32;
 ```
 
-### `R_XTENSA_SLOT8_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6293`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6293)*
 
+### `R_XTENSA_SLOT8_OP`
 ```rust
 const R_XTENSA_SLOT8_OP: u32 = 28u32;
 ```
 
-### `R_XTENSA_SLOT9_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6294`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6294)*
 
+### `R_XTENSA_SLOT9_OP`
 ```rust
 const R_XTENSA_SLOT9_OP: u32 = 29u32;
 ```
 
-### `R_XTENSA_SLOT10_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6295`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6295)*
 
+### `R_XTENSA_SLOT10_OP`
 ```rust
 const R_XTENSA_SLOT10_OP: u32 = 30u32;
 ```
 
-### `R_XTENSA_SLOT11_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6296`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6296)*
 
+### `R_XTENSA_SLOT11_OP`
 ```rust
 const R_XTENSA_SLOT11_OP: u32 = 31u32;
 ```
 
-### `R_XTENSA_SLOT12_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6297`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6297)*
 
+### `R_XTENSA_SLOT12_OP`
 ```rust
 const R_XTENSA_SLOT12_OP: u32 = 32u32;
 ```
 
-### `R_XTENSA_SLOT13_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6298`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6298)*
 
+### `R_XTENSA_SLOT13_OP`
 ```rust
 const R_XTENSA_SLOT13_OP: u32 = 33u32;
 ```
 
-### `R_XTENSA_SLOT14_OP`
+*Defined in [`object-0.37.3/src/elf.rs:6299`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6299)*
 
+### `R_XTENSA_SLOT14_OP`
 ```rust
 const R_XTENSA_SLOT14_OP: u32 = 34u32;
 ```
 
-### `R_XTENSA_SLOT0_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6300`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6300)*
 
+### `R_XTENSA_SLOT0_ALT`
 ```rust
 const R_XTENSA_SLOT0_ALT: u32 = 35u32;
 ```
 
-### `R_XTENSA_SLOT1_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6301`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6301)*
 
+### `R_XTENSA_SLOT1_ALT`
 ```rust
 const R_XTENSA_SLOT1_ALT: u32 = 36u32;
 ```
 
-### `R_XTENSA_SLOT2_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6302`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6302)*
 
+### `R_XTENSA_SLOT2_ALT`
 ```rust
 const R_XTENSA_SLOT2_ALT: u32 = 37u32;
 ```
 
-### `R_XTENSA_SLOT3_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6303`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6303)*
 
+### `R_XTENSA_SLOT3_ALT`
 ```rust
 const R_XTENSA_SLOT3_ALT: u32 = 38u32;
 ```
 
-### `R_XTENSA_SLOT4_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6304`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6304)*
 
+### `R_XTENSA_SLOT4_ALT`
 ```rust
 const R_XTENSA_SLOT4_ALT: u32 = 39u32;
 ```
 
-### `R_XTENSA_SLOT5_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6305`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6305)*
 
+### `R_XTENSA_SLOT5_ALT`
 ```rust
 const R_XTENSA_SLOT5_ALT: u32 = 40u32;
 ```
 
-### `R_XTENSA_SLOT6_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6306`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6306)*
 
+### `R_XTENSA_SLOT6_ALT`
 ```rust
 const R_XTENSA_SLOT6_ALT: u32 = 41u32;
 ```
 
-### `R_XTENSA_SLOT7_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6307`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6307)*
 
+### `R_XTENSA_SLOT7_ALT`
 ```rust
 const R_XTENSA_SLOT7_ALT: u32 = 42u32;
 ```
 
-### `R_XTENSA_SLOT8_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6308`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6308)*
 
+### `R_XTENSA_SLOT8_ALT`
 ```rust
 const R_XTENSA_SLOT8_ALT: u32 = 43u32;
 ```
 
-### `R_XTENSA_SLOT9_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6309`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6309)*
 
+### `R_XTENSA_SLOT9_ALT`
 ```rust
 const R_XTENSA_SLOT9_ALT: u32 = 44u32;
 ```
 
-### `R_XTENSA_SLOT10_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6310`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6310)*
 
+### `R_XTENSA_SLOT10_ALT`
 ```rust
 const R_XTENSA_SLOT10_ALT: u32 = 45u32;
 ```
 
-### `R_XTENSA_SLOT11_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6311`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6311)*
 
+### `R_XTENSA_SLOT11_ALT`
 ```rust
 const R_XTENSA_SLOT11_ALT: u32 = 46u32;
 ```
 
-### `R_XTENSA_SLOT12_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6312`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6312)*
 
+### `R_XTENSA_SLOT12_ALT`
 ```rust
 const R_XTENSA_SLOT12_ALT: u32 = 47u32;
 ```
 
-### `R_XTENSA_SLOT13_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6313`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6313)*
 
+### `R_XTENSA_SLOT13_ALT`
 ```rust
 const R_XTENSA_SLOT13_ALT: u32 = 48u32;
 ```
 
-### `R_XTENSA_SLOT14_ALT`
+*Defined in [`object-0.37.3/src/elf.rs:6314`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6314)*
 
+### `R_XTENSA_SLOT14_ALT`
 ```rust
 const R_XTENSA_SLOT14_ALT: u32 = 49u32;
 ```
 
-### `R_XTENSA_TLSDESC_FN`
+*Defined in [`object-0.37.3/src/elf.rs:6315`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6315)*
 
+### `R_XTENSA_TLSDESC_FN`
 ```rust
 const R_XTENSA_TLSDESC_FN: u32 = 50u32;
 ```
 
-### `R_XTENSA_TLSDESC_ARG`
+*Defined in [`object-0.37.3/src/elf.rs:6316`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6316)*
 
+### `R_XTENSA_TLSDESC_ARG`
 ```rust
 const R_XTENSA_TLSDESC_ARG: u32 = 51u32;
 ```
 
-### `R_XTENSA_TLS_DTPOFF`
+*Defined in [`object-0.37.3/src/elf.rs:6317`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6317)*
 
+### `R_XTENSA_TLS_DTPOFF`
 ```rust
 const R_XTENSA_TLS_DTPOFF: u32 = 52u32;
 ```
 
-### `R_XTENSA_TLS_TPOFF`
+*Defined in [`object-0.37.3/src/elf.rs:6318`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6318)*
 
+### `R_XTENSA_TLS_TPOFF`
 ```rust
 const R_XTENSA_TLS_TPOFF: u32 = 53u32;
 ```
 
-### `R_XTENSA_TLS_FUNC`
+*Defined in [`object-0.37.3/src/elf.rs:6319`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6319)*
 
+### `R_XTENSA_TLS_FUNC`
 ```rust
 const R_XTENSA_TLS_FUNC: u32 = 54u32;
 ```
 
-### `R_XTENSA_TLS_ARG`
+*Defined in [`object-0.37.3/src/elf.rs:6320`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6320)*
 
+### `R_XTENSA_TLS_ARG`
 ```rust
 const R_XTENSA_TLS_ARG: u32 = 55u32;
 ```
 
-### `R_XTENSA_TLS_CALL`
+*Defined in [`object-0.37.3/src/elf.rs:6321`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6321)*
 
+### `R_XTENSA_TLS_CALL`
 ```rust
 const R_XTENSA_TLS_CALL: u32 = 56u32;
 ```
 
-### `R_XTENSA_PDIFF8`
+*Defined in [`object-0.37.3/src/elf.rs:6322`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6322)*
 
+### `R_XTENSA_PDIFF8`
 ```rust
 const R_XTENSA_PDIFF8: u32 = 57u32;
 ```
 
-### `R_XTENSA_PDIFF16`
+*Defined in [`object-0.37.3/src/elf.rs:6323`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6323)*
 
+### `R_XTENSA_PDIFF16`
 ```rust
 const R_XTENSA_PDIFF16: u32 = 58u32;
 ```
 
-### `R_XTENSA_PDIFF32`
+*Defined in [`object-0.37.3/src/elf.rs:6324`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6324)*
 
+### `R_XTENSA_PDIFF32`
 ```rust
 const R_XTENSA_PDIFF32: u32 = 59u32;
 ```
 
-### `R_XTENSA_NDIFF8`
+*Defined in [`object-0.37.3/src/elf.rs:6325`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6325)*
 
+### `R_XTENSA_NDIFF8`
 ```rust
 const R_XTENSA_NDIFF8: u32 = 60u32;
 ```
 
-### `R_XTENSA_NDIFF16`
+*Defined in [`object-0.37.3/src/elf.rs:6326`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6326)*
 
+### `R_XTENSA_NDIFF16`
 ```rust
 const R_XTENSA_NDIFF16: u32 = 61u32;
 ```
 
-### `R_XTENSA_NDIFF32`
+*Defined in [`object-0.37.3/src/elf.rs:6327`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6327)*
 
+### `R_XTENSA_NDIFF32`
 ```rust
 const R_XTENSA_NDIFF32: u32 = 62u32;
 ```
 
-### `EF_E2K_IPD`
+*Defined in [`object-0.37.3/src/elf.rs:6328`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6328)*
 
+### `EF_E2K_IPD`
 ```rust
 const EF_E2K_IPD: u32 = 3u32;
 ```
 
-### `EF_E2K_X86APP`
+*Defined in [`object-0.37.3/src/elf.rs:6331`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6331)*
 
+### `EF_E2K_X86APP`
 ```rust
 const EF_E2K_X86APP: u32 = 4u32;
 ```
 
-### `EF_E2K_4MB_PAGES`
+*Defined in [`object-0.37.3/src/elf.rs:6332`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6332)*
 
+### `EF_E2K_4MB_PAGES`
 ```rust
 const EF_E2K_4MB_PAGES: u32 = 8u32;
 ```
 
-### `EF_E2K_INCOMPAT`
+*Defined in [`object-0.37.3/src/elf.rs:6333`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6333)*
 
+### `EF_E2K_INCOMPAT`
 ```rust
 const EF_E2K_INCOMPAT: u32 = 16u32;
 ```
 
-### `EF_E2K_PM`
+*Defined in [`object-0.37.3/src/elf.rs:6334`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6334)*
 
+### `EF_E2K_PM`
 ```rust
 const EF_E2K_PM: u32 = 32u32;
 ```
 
-### `EF_E2K_PACK_SEGMENTS`
+*Defined in [`object-0.37.3/src/elf.rs:6335`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6335)*
 
+### `EF_E2K_PACK_SEGMENTS`
 ```rust
 const EF_E2K_PACK_SEGMENTS: u32 = 64u32;
 ```
 
-### `E_E2K_MACH_BASE`
+*Defined in [`object-0.37.3/src/elf.rs:6336`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6336)*
 
+### `E_E2K_MACH_BASE`
 ```rust
 const E_E2K_MACH_BASE: u32 = 0u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6353`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6353)*
 
 -march=generic code.
 
 Legacy. Shouldn't be created nowadays.
 
 ### `E_E2K_MACH_EV1`
-
 ```rust
 const E_E2K_MACH_EV1: u32 = 1u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6357`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6357)*
 
 -march=elbrus-v1 code.
 
 Legacy. Shouldn't be created nowadays.
 
 ### `E_E2K_MACH_EV2`
-
 ```rust
 const E_E2K_MACH_EV2: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6359`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6359)*
+
 -march=elbrus-v2 code.
 
 ### `E_E2K_MACH_EV3`
-
 ```rust
 const E_E2K_MACH_EV3: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6361`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6361)*
+
 -march=elbrus-v3 code.
 
 ### `E_E2K_MACH_EV4`
-
 ```rust
 const E_E2K_MACH_EV4: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6363`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6363)*
+
 -march=elbrus-v4 code.
 
 ### `E_E2K_MACH_EV5`
-
 ```rust
 const E_E2K_MACH_EV5: u32 = 5u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6365`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6365)*
+
 -march=elbrus-v5 code.
 
 ### `E_E2K_MACH_EV6`
-
 ```rust
 const E_E2K_MACH_EV6: u32 = 6u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6367`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6367)*
+
 -march=elbrus-v6 code.
 
 ### `E_E2K_MACH_EV7`
-
 ```rust
 const E_E2K_MACH_EV7: u32 = 7u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6369`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6369)*
+
 -march=elbrus-v7 code.
 
 ### `E_E2K_MACH_8C`
-
 ```rust
 const E_E2K_MACH_8C: u32 = 19u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6371`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6371)*
+
 -mtune=elbrus-8c code.
 
 ### `E_E2K_MACH_1CPLUS`
-
 ```rust
 const E_E2K_MACH_1CPLUS: u32 = 20u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6373`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6373)*
+
 -mtune=elbrus-1c+ code.
 
 ### `E_E2K_MACH_12C`
-
 ```rust
 const E_E2K_MACH_12C: u32 = 21u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6375`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6375)*
+
 -mtune=elbrus-12c code.
 
 ### `E_E2K_MACH_16C`
-
 ```rust
 const E_E2K_MACH_16C: u32 = 22u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6377`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6377)*
+
 -mtune=elbrus-16c code.
 
 ### `E_E2K_MACH_2C3`
-
 ```rust
 const E_E2K_MACH_2C3: u32 = 23u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6379`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6379)*
+
 -mtune=elbrus-2c3 code.
 
 ### `E_E2K_MACH_48C`
-
 ```rust
 const E_E2K_MACH_48C: u32 = 24u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6381`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6381)*
+
 -mtune=elbrus-48c code.
 
 ### `E_E2K_MACH_8V7`
-
 ```rust
 const E_E2K_MACH_8V7: u32 = 25u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6383`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6383)*
+
 -mtune=elbrus-8v7 code.
 
 ### `R_E2K_32_ABS`
-
 ```rust
 const R_E2K_32_ABS: u32 = 0u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6388`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6388)*
+
 Direct 32 bit.
 
 ### `R_E2K_32_PC`
-
 ```rust
 const R_E2K_32_PC: u32 = 2u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6390`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6390)*
+
 PC relative 32 bit.
 
 ### `R_E2K_AP_GOT`
-
 ```rust
 const R_E2K_AP_GOT: u32 = 3u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6392`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6392)*
+
 32-bit offset of AP GOT entry.
 
 ### `R_E2K_PL_GOT`
-
 ```rust
 const R_E2K_PL_GOT: u32 = 4u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6394`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6394)*
+
 32-bit offset of PL GOT entry.
 
 ### `R_E2K_32_JMP_SLOT`
-
 ```rust
 const R_E2K_32_JMP_SLOT: u32 = 8u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6396`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6396)*
+
 Create PLT entry.
 
 ### `R_E2K_32_COPY`
-
 ```rust
 const R_E2K_32_COPY: u32 = 9u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6398`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6398)*
+
 Copy relocation, 32-bit case.
 
 ### `R_E2K_32_RELATIVE`
-
 ```rust
 const R_E2K_32_RELATIVE: u32 = 10u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6400`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6400)*
+
 Adjust by program base, 32-bit case.
 
 ### `R_E2K_32_IRELATIVE`
-
 ```rust
 const R_E2K_32_IRELATIVE: u32 = 11u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6402`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6402)*
+
 Adjust indirectly by program base, 32-bit case.
 
 ### `R_E2K_32_SIZE`
-
 ```rust
 const R_E2K_32_SIZE: u32 = 12u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6404`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6404)*
+
 Size of symbol plus 32-bit addend.
 
 ### `R_E2K_32_DYNOPT`
-
 ```rust
 const R_E2K_32_DYNOPT: u32 = 13u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6407`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6407)*
 
 Symbol value if resolved by the definition in the same
 compilation unit or NULL otherwise, 32-bit case.
 
 ### `R_E2K_64_ABS`
-
 ```rust
 const R_E2K_64_ABS: u32 = 50u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6409`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6409)*
+
 Direct 64 bit.
 
 ### `R_E2K_64_ABS_LIT`
-
 ```rust
 const R_E2K_64_ABS_LIT: u32 = 51u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6411`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6411)*
+
 Direct 64 bit for literal.
 
 ### `R_E2K_64_PC_LIT`
-
 ```rust
 const R_E2K_64_PC_LIT: u32 = 54u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6413`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6413)*
+
 PC relative 64 bit for literal.
 
 ### `R_E2K_64_JMP_SLOT`
-
 ```rust
 const R_E2K_64_JMP_SLOT: u32 = 63u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6415`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6415)*
+
 Create PLT entry, 64-bit case.
 
 ### `R_E2K_64_COPY`
-
 ```rust
 const R_E2K_64_COPY: u32 = 64u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6417`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6417)*
+
 Copy relocation, 64-bit case.
 
 ### `R_E2K_64_RELATIVE`
-
 ```rust
 const R_E2K_64_RELATIVE: u32 = 65u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6419`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6419)*
+
 Adjust by program base, 64-bit case.
 
 ### `R_E2K_64_RELATIVE_LIT`
-
 ```rust
 const R_E2K_64_RELATIVE_LIT: u32 = 66u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6421`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6421)*
+
 Adjust by program base for literal, 64-bit case.
 
 ### `R_E2K_64_IRELATIVE`
-
 ```rust
 const R_E2K_64_IRELATIVE: u32 = 67u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6423`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6423)*
+
 Adjust indirectly by program base, 64-bit case.
 
 ### `R_E2K_64_SIZE`
-
 ```rust
 const R_E2K_64_SIZE: u32 = 68u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6425`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6425)*
+
 Size of symbol plus 64-bit addend.
 
 ### `R_E2K_64_GOTOFF`
-
 ```rust
 const R_E2K_64_GOTOFF: u32 = 69u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6427`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6427)*
+
 64-bit offset of the symbol from GOT.
 
 ### `R_E2K_TLS_GDMOD`
-
 ```rust
 const R_E2K_TLS_GDMOD: u32 = 70u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6430`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6430)*
+
 GOT entry for ID of module containing symbol.
 
 ### `R_E2K_TLS_GDREL`
-
 ```rust
 const R_E2K_TLS_GDREL: u32 = 71u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6432`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6432)*
+
 GOT entry for offset in module TLS block.
 
 ### `R_E2K_TLS_IE`
-
 ```rust
 const R_E2K_TLS_IE: u32 = 74u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6434`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6434)*
+
 Static TLS block offset GOT entry.
 
 ### `R_E2K_32_TLS_LE`
-
 ```rust
 const R_E2K_32_TLS_LE: u32 = 75u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6436`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6436)*
+
 Offset relative to static TLS block, 32-bit case.
 
 ### `R_E2K_64_TLS_LE`
-
 ```rust
 const R_E2K_64_TLS_LE: u32 = 76u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6438`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6438)*
+
 Offset relative to static TLS block, 64-bit case.
 
 ### `R_E2K_TLS_32_DTPMOD`
-
 ```rust
 const R_E2K_TLS_32_DTPMOD: u32 = 80u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6440`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6440)*
+
 ID of module containing symbol, 32-bit case.
 
 ### `R_E2K_TLS_32_DTPREL`
-
 ```rust
 const R_E2K_TLS_32_DTPREL: u32 = 81u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6442`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6442)*
+
 Offset in module TLS block, 32-bit case.
 
 ### `R_E2K_TLS_64_DTPMOD`
-
 ```rust
 const R_E2K_TLS_64_DTPMOD: u32 = 82u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6444`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6444)*
+
 ID of module containing symbol, 64-bit case.
 
 ### `R_E2K_TLS_64_DTPREL`
-
 ```rust
 const R_E2K_TLS_64_DTPREL: u32 = 83u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6446`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6446)*
+
 Offset in module TLS block, 64-bit case.
 
 ### `R_E2K_TLS_32_TPREL`
-
 ```rust
 const R_E2K_TLS_32_TPREL: u32 = 84u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6448`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6448)*
+
 Offset in static TLS block, 32-bit case.
 
 ### `R_E2K_TLS_64_TPREL`
-
 ```rust
 const R_E2K_TLS_64_TPREL: u32 = 85u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6450`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6450)*
+
 Offset in static TLS block, 64-bit case.
 
 ### `R_E2K_AP`
-
 ```rust
 const R_E2K_AP: u32 = 100u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6453`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6453)*
+
 Direct AP.
 
 ### `R_E2K_PL`
-
 ```rust
 const R_E2K_PL: u32 = 101u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6455`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6455)*
+
 Direct PL.
 
 ### `R_E2K_GOT`
-
 ```rust
 const R_E2K_GOT: u32 = 108u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6458`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6458)*
+
 32-bit offset of the symbol's entry in GOT.
 
 ### `R_E2K_GOTOFF`
-
 ```rust
 const R_E2K_GOTOFF: u32 = 109u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6460`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6460)*
+
 32-bit offset of the symbol from GOT.
 
 ### `R_E2K_DISP`
-
 ```rust
 const R_E2K_DISP: u32 = 110u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6462`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6462)*
+
 PC relative 28 bit for DISP.
 
 ### `R_E2K_PREF`
-
 ```rust
 const R_E2K_PREF: u32 = 111u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6464`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6464)*
+
 Prefetch insn line containing the label (symbol).
 
 ### `R_E2K_NONE`
-
 ```rust
 const R_E2K_NONE: u32 = 112u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6466`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6466)*
+
 No reloc.
 
 ### `R_E2K_GOTPLT`
-
 ```rust
 const R_E2K_GOTPLT: u32 = 114u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6468`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6468)*
+
 32-bit offset of the symbol's entry in .got.plt.
 
 ### `R_E2K_ISLOCAL`
-
 ```rust
 const R_E2K_ISLOCAL: u32 = 115u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6471`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6471)*
 
 Is symbol resolved locally during the link.
 The result is encoded in 5-bit ALS.src1.
 
 ### `R_E2K_ISLOCAL32`
-
 ```rust
 const R_E2K_ISLOCAL32: u32 = 118u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6474`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6474)*
 
 Is symbol resloved locally during the link.
 The result is encoded in a long 32-bit LTS.
 
 ### `R_E2K_64_GOTOFF_LIT`
-
 ```rust
 const R_E2K_64_GOTOFF_LIT: u32 = 256u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6476`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6476)*
+
 The symbol's offset from GOT encoded within a 64-bit literal.
 
 ### `R_E2K_64_DYNOPT`
-
 ```rust
 const R_E2K_64_DYNOPT: u32 = 257u32;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6479`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6479)*
 
 Symbol value if resolved by the definition in the same
 compilation unit or NULL otherwise, 64-bit case.
 
 ### `R_E2K_64_PC`
-
 ```rust
 const R_E2K_64_PC: u32 = 258u32;
 ```
 
+*Defined in [`object-0.37.3/src/elf.rs:6481`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6481)*
+
 PC relative 64 bit in data.
 
 ### `DT_E2K_LAZY`
-
 ```rust
 const DT_E2K_LAZY: u32 = 1_879_048_193u32;
 ```
 
-### `DT_E2K_LAZY_GOT`
+*Defined in [`object-0.37.3/src/elf.rs:6485`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6485)*
 
+### `DT_E2K_LAZY_GOT`
 ```rust
 const DT_E2K_LAZY_GOT: u32 = 1_879_048_195u32;
 ```
 
-### `DT_E2K_INIT_GOT`
+*Defined in [`object-0.37.3/src/elf.rs:6486`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6486)*
 
+### `DT_E2K_INIT_GOT`
 ```rust
 const DT_E2K_INIT_GOT: u32 = 1_879_052_316u32;
 ```
 
-### `DT_E2K_EXPORT_PL`
+*Defined in [`object-0.37.3/src/elf.rs:6488`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6488)*
 
+### `DT_E2K_EXPORT_PL`
 ```rust
 const DT_E2K_EXPORT_PL: u32 = 1_879_052_317u32;
 ```
 
-### `DT_E2K_EXPORT_PLSZ`
+*Defined in [`object-0.37.3/src/elf.rs:6489`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6489)*
 
+### `DT_E2K_EXPORT_PLSZ`
 ```rust
 const DT_E2K_EXPORT_PLSZ: u32 = 1_879_052_318u32;
 ```
 
-### `DT_E2K_REAL_PLTGOT`
+*Defined in [`object-0.37.3/src/elf.rs:6490`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6490)*
 
+### `DT_E2K_REAL_PLTGOT`
 ```rust
 const DT_E2K_REAL_PLTGOT: u32 = 1_879_052_319u32;
 ```
 
-### `DT_E2K_NO_SELFINIT`
+*Defined in [`object-0.37.3/src/elf.rs:6491`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6491)*
 
+### `DT_E2K_NO_SELFINIT`
 ```rust
 const DT_E2K_NO_SELFINIT: u32 = 1_879_052_320u32;
 ```
 
-### `DT_E2K_NUM`
+*Defined in [`object-0.37.3/src/elf.rs:6492`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6492)*
 
+### `DT_E2K_NUM`
 ```rust
 const DT_E2K_NUM: u32 = 4_129u32;
 ```
 
-### `Tag_File`
+*Defined in [`object-0.37.3/src/elf.rs:6494`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6494)*
 
+### `Tag_File`
 ```rust
 const Tag_File: u8 = 1u8;
 ```
 
-### `Tag_Section`
+*Defined in [`object-0.37.3/src/elf.rs:6497`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6497)*
 
+### `Tag_Section`
 ```rust
 const Tag_Section: u8 = 2u8;
 ```
 
-### `Tag_Symbol`
+*Defined in [`object-0.37.3/src/elf.rs:6499`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6499)*
 
+### `Tag_Symbol`
 ```rust
 const Tag_Symbol: u8 = 3u8;
 ```
+
+*Defined in [`object-0.37.3/src/elf.rs:6501`](../../../.source_1765210505/object-0.37.3/src/elf.rs#L6501)*
 

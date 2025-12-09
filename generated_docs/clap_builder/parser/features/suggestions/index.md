@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`did_you_mean`](#did_you_mean) | fn | Find strings from an iterable of `possible_values` similar to a given value `v` |
+| [`did_you_mean`](#did_you_mean) | fn | Find strings from an iterable of `possible_values` similar to a given value `v` Returns a Vec of all possible values that exceed a similarity threshold sorted by ascending similarity, most similar comes last |
 | [`did_you_mean_flag`](#did_you_mean_flag) | fn | Returns a suffix that can be empty, or is the standard 'did you mean' phrase |
 
 ## Functions
@@ -21,6 +21,8 @@ where
     T: AsRef<str>,
     I: IntoIterator<Item = T>
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/features/suggestions.rs:8-37`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/features/suggestions.rs#L8-L37)*
 
 Find strings from an iterable of `possible_values` similar to a given value `v`
 Returns a Vec of all possible values that exceed a similarity threshold
@@ -35,6 +37,8 @@ where
     I: IntoIterator<Item = T>,
     'help: 'a
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/features/suggestions.rs:49-86`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/features/suggestions.rs#L49-L86)*
 
 Returns a suffix that can be empty, or is the standard 'did you mean' phrase
 

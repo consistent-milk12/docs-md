@@ -22,6 +22,8 @@ struct CachePadded<T> {
 }
 ```
 
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/utils.rs:92-94`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/utils.rs#L92-L94)*
+
 Pads and aligns a value to the length of a cache line.
 
 #### Implementations
@@ -32,13 +34,13 @@ Pads and aligns a value to the length of a cache line.
 
 ##### `impl<T> Deref for CachePadded<T>`
 
-- <span id="cachepadded-target"></span>`type Target = T`
+- <span id="cachepadded-type-target"></span>`type Target = T`
 
 - <span id="cachepadded-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<P, T> Receiver for CachePadded<T>`
 
-- <span id="cachepadded-target"></span>`type Target = T`
+- <span id="cachepadded-type-target"></span>`type Target = T`
 
 ### `Backoff`
 
@@ -47,6 +49,8 @@ struct Backoff {
     step: u32,
 }
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/utils.rs:115-117`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/utils.rs#L115-L117)*
 
 Performs exponential backoff in spin loops.
 
@@ -59,8 +63,9 @@ Performs exponential backoff in spin loops.
 ## Constants
 
 ### `SPIN_LIMIT`
-
 ```rust
 const SPIN_LIMIT: u32 = 4u32;
 ```
+
+*Defined in [`portable-atomic-1.11.1/src/imp/fallback/utils.rs:120`](../../../../../.source_1765210505/portable-atomic-1.11.1/src/imp/fallback/utils.rs#L120)*
 

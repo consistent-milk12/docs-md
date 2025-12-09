@@ -25,6 +25,8 @@ struct IntoIter<T, A: Allocator> {
 }
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/into_iter.rs:27-36`](../../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/into_iter.rs#L27-L36)*
+
 An iterator that moves out of a vector.
 
 This `struct` is created by the `into_iter` method on [`Vec`](super::Vec)
@@ -75,15 +77,15 @@ let iter: std::vec::IntoIter<_> = v.into_iter();
 
 ##### `impl<I> IntoIterator for IntoIter<T, A>`
 
-- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for IntoIter<T, A>`
 
-- <span id="intoiter-item"></span>`type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
 - <span id="intoiter-next"></span>`fn next(&mut self) -> Option<T>`
 

@@ -8,10 +8,10 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`spawn`](#spawn) | fn | Puts the task into the Rayon thread pool's job queue in the "static" |
+| [`spawn`](#spawn) | fn | Puts the task into the Rayon thread pool's job queue in the "static" or "global" scope. |
 | [`spawn_in`](#spawn_in) | fn | Spawns an asynchronous job in `registry.` |
 | [`spawn_job`](#spawn_job) | fn |  |
-| [`spawn_fifo`](#spawn_fifo) | fn | Fires off a task into the Rayon thread pool in the "static" or |
+| [`spawn_fifo`](#spawn_fifo) | fn | Fires off a task into the Rayon thread pool in the "static" or "global" scope. |
 | [`spawn_fifo_in`](#spawn_fifo_in) | fn | Spawns an asynchronous FIFO job in `registry.` |
 
 ## Functions
@@ -23,6 +23,8 @@ fn spawn<F>(func: F)
 where
     F: FnOnce() + Send + 'static
 ```
+
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:58-64`](../../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L58-L64)*
 
 Puts the task into the Rayon thread pool's job queue in the "static"
 or "global" scope. Just like a standard thread, this task is not
@@ -48,7 +50,7 @@ they were spawned. Other threads always steal from the other end of
 the deque, like FIFO order.  The idea is that "recent" tasks are
 most likely to be fresh in the local CPU's cache, while other
 threads can steal older "stale" tasks.  For an alternate approach,
-consider [`spawn_fifo()`](../index.md) instead.
+consider [`spawn_fifo()`](#spawn-fifo) instead.
 
 # Panic handling
 
@@ -80,6 +82,8 @@ where
     F: FnOnce() + Send + 'static
 ```
 
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:69-82`](../../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L69-L82)*
+
 Spawns an asynchronous job in `registry.`
 
 Unsafe because `registry` must not yet have terminated.
@@ -92,6 +96,8 @@ where
     F: FnOnce() + Send + 'static
 ```
 
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:84-100`](../../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L84-L100)*
+
 ### `spawn_fifo`
 
 ```rust
@@ -99,6 +105,8 @@ fn spawn_fifo<F>(func: F)
 where
     F: FnOnce() + Send + 'static
 ```
+
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:130-136`](../../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L130-L136)*
 
 Fires off a task into the Rayon thread pool in the "static" or
 "global" scope.  Just like a standard thread, this task is not
@@ -133,6 +141,8 @@ unsafe fn spawn_fifo_in<F>(func: F, registry: &std::sync::Arc<crate::registry::R
 where
     F: FnOnce() + Send + 'static
 ```
+
+*Defined in [`rayon-core-1.13.0/src/spawn/mod.rs:141-160`](../../../.source_1765210505/rayon-core-1.13.0/src/spawn/mod.rs#L141-L160)*
 
 Spawns an asynchronous FIFO job in `registry.`
 

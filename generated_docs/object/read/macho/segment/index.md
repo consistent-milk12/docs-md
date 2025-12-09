@@ -45,6 +45,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:20-27`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/segment.rs#L20-L27)*
+
 An iterator for the segments in a [`MachOFile`](../index.md).
 
 #### Trait Implementations
@@ -55,15 +57,15 @@ An iterator for the segments in a [`MachOFile`](../index.md).
 
 ##### `impl<I> IntoIterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machosegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="machosegmentiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="machosegmentiterator-intoiter"></span>`type IntoIter = I`
+- <span id="machosegmentiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="machosegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Mach, R> Iterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- <span id="machosegmentiterator-item"></span>`type Item = MachOSegment<'data, 'file, Mach, R>`
+- <span id="machosegmentiterator-type-item"></span>`type Item = MachOSegment<'data, 'file, Mach, R>`
 
 - <span id="machosegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -78,6 +80,8 @@ where
     internal: &'file MachOSegmentInternal<'data, Mach, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:55-62`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/segment.rs#L55-L62)*
 
 A segment in a [`MachOFile`](../index.md).
 
@@ -128,6 +132,8 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:161-168`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/segment.rs#L161-L168)*
+
 #### Fields
 
 - **`data`**: `R`
@@ -156,6 +162,8 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 ```rust
 trait Segment: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:172-229`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/segment.rs#L172-L229)*
 
 A trait for generic access to [`macho::SegmentCommand32`](../../../macho/index.md) and [`macho::SegmentCommand64`](../../../macho/index.md).
 
@@ -224,6 +232,8 @@ A trait for generic access to [`macho::SegmentCommand32`](../../../macho/index.m
 type MachOSegmentIterator32<'data, 'file, Endian, R> = MachOSegmentIterator<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:12-13`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/segment.rs#L12-L13)*
+
 An iterator for the segments in a [`MachOFile32`](super::MachOFile32).
 
 ### `MachOSegmentIterator64<'data, 'file, Endian, R>`
@@ -231,6 +241,8 @@ An iterator for the segments in a [`MachOFile32`](super::MachOFile32).
 ```rust
 type MachOSegmentIterator64<'data, 'file, Endian, R> = MachOSegmentIterator<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:15-16`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/segment.rs#L15-L16)*
 
 An iterator for the segments in a [`MachOFile64`](super::MachOFile64).
 
@@ -240,6 +252,8 @@ An iterator for the segments in a [`MachOFile64`](super::MachOFile64).
 type MachOSegment32<'data, 'file, Endian, R> = MachOSegment<'data, 'file, macho::MachHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:45-46`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/segment.rs#L45-L46)*
+
 A segment in a [`MachOFile32`](super::MachOFile32).
 
 ### `MachOSegment64<'data, 'file, Endian, R>`
@@ -247,6 +261,8 @@ A segment in a [`MachOFile32`](super::MachOFile32).
 ```rust
 type MachOSegment64<'data, 'file, Endian, R> = MachOSegment<'data, 'file, macho::MachHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/macho/segment.rs:48-49`](../../../../../.source_1765210505/object-0.37.3/src/read/macho/segment.rs#L48-L49)*
 
 A segment in a [`MachOFile64`](super::MachOFile64).
 

@@ -39,11 +39,13 @@ enum State {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:8-26`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L8-L26)*
+
 #### Trait Implementations
 
 ##### `impl Clone for State`
 
-- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](../index.md)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
 ##### `impl Copy for State`
 
@@ -53,13 +55,13 @@ enum State {
 
 ##### `impl Default for State`
 
-- <span id="state-default"></span>`fn default() -> State` — [`State`](../index.md)
+- <span id="state-default"></span>`fn default() -> State` — [`State`](#state)
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](../index.md)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
 
@@ -86,11 +88,13 @@ enum Action {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:59-77`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L59-L77)*
+
 #### Trait Implementations
 
 ##### `impl Clone for Action`
 
-- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](../index.md)
+- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](#action)
 
 ##### `impl Copy for Action`
 
@@ -100,13 +104,13 @@ enum Action {
 
 ##### `impl Default for Action`
 
-- <span id="action-default"></span>`fn default() -> Action` — [`Action`](../index.md)
+- <span id="action-default"></span>`fn default() -> Action` — [`Action`](#action)
 
 ##### `impl Eq for Action`
 
 ##### `impl PartialEq for Action`
 
-- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](../index.md)
+- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](#action)
 
 ##### `impl StructuralPartialEq for Action`
 
@@ -117,6 +121,8 @@ enum Action {
 ```rust
 const fn unpack(delta: u8) -> (State, Action)
 ```
+
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:115-124`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L115-L124)*
 
 Unpack a u8 into a State and Action
 
@@ -129,14 +135,16 @@ Bad things will happen if those invariants are violated.
 ## Constants
 
 ### `STATES`
-
 ```rust
 const STATES: [State; 16];
 ```
 
-### `ACTIONS`
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:37-54`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L37-L54)*
 
+### `ACTIONS`
 ```rust
 const ACTIONS: [Action; 16];
 ```
+
+*Defined in [`anstyle-parse-0.2.7/src/state/definitions.rs:88-105`](../../../../.source_1765210505/anstyle-parse-0.2.7/src/state/definitions.rs#L88-L105)*
 

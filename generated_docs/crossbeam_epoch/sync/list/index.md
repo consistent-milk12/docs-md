@@ -17,7 +17,7 @@ Ideas from Michael.  High Performance Dynamic Lock-Free Hash Tables and List-Bas
 | [`List`](#list) | struct | A lock-free, intrusive linked list of type `T`. |
 | [`Iter`](#iter) | struct | An iterator used for retrieving values from the list. |
 | [`IterError`](#itererror) | enum | An error that occurs during iteration over the list. |
-| [`IsElement`](#iselement) | trait | Implementing this trait asserts that the type `T` can be used as an element in the intrusive |
+| [`IsElement`](#iselement) | trait | Implementing this trait asserts that the type `T` can be used as an element in the intrusive linked list defined in this module. |
 
 ## Structs
 
@@ -28,6 +28,8 @@ struct Entry {
     next: crate::Atomic<Entry>,
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:16-20`](../../../../.source_1765210505/crossbeam-epoch-0.9.18/src/sync/list.rs#L16-L20)*
 
 An entry in a linked list.
 
@@ -43,7 +45,7 @@ cache-line than thread-local data in terms of performance.
 
 #### Implementations
 
-- <span id="entry-delete"></span>`unsafe fn delete(&self, guard: &Guard)` — [`Guard`](../../index.md)
+- <span id="entry-delete"></span>`unsafe fn delete(&self, guard: &Guard)` — [`Guard`](../../guard/index.md)
 
 #### Trait Implementations
 
@@ -55,13 +57,13 @@ cache-line than thread-local data in terms of performance.
 
 - <span id="entry-default"></span>`fn default() -> Self`
 
-##### `impl<T> Pointable for Entry`
+##### `impl Pointable for Entry`
 
-- <span id="entry-align"></span>`const ALIGN: usize`
+- <span id="entry-const-align"></span>`const ALIGN: usize`
 
-- <span id="entry-init"></span>`type Init = T`
+- <span id="entry-type-init"></span>`type Init = T`
 
-- <span id="entry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
+- <span id="entry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
 
 - <span id="entry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -77,6 +79,8 @@ struct List<T, C: IsElement<T>> {
     _marker: core::marker::PhantomData<(T, C)>,
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:96-102`](../../../../.source_1765210505/crossbeam-epoch-0.9.18/src/sync/list.rs#L96-L102)*
 
 A lock-free, intrusive linked list of type `T`.
 
@@ -94,9 +98,9 @@ A lock-free, intrusive linked list of type `T`.
 
 - <span id="list-new"></span>`fn new() -> Self`
 
-- <span id="list-insert"></span>`unsafe fn insert<'g>(self: &'g Self, container: Shared<'g, T>, guard: &'g Guard)` — [`Shared`](../../index.md), [`Guard`](../../index.md)
+- <span id="list-insert"></span>`unsafe fn insert<'g>(self: &'g Self, container: Shared<'g, T>, guard: &'g Guard)` — [`Shared`](../../atomic/index.md), [`Guard`](../../guard/index.md)
 
-- <span id="list-iter"></span>`fn iter<'g>(self: &'g Self, guard: &'g Guard) -> Iter<'g, T, C>` — [`Guard`](../../index.md), [`Iter`](#iter)
+- <span id="list-iter"></span>`fn iter<'g>(self: &'g Self, guard: &'g Guard) -> Iter<'g, T, C>` — [`Guard`](../../guard/index.md), [`Iter`](#iter)
 
 #### Trait Implementations
 
@@ -110,11 +114,11 @@ A lock-free, intrusive linked list of type `T`.
 
 ##### `impl<T> Pointable for List<T, C>`
 
-- <span id="list-align"></span>`const ALIGN: usize`
+- <span id="list-const-align"></span>`const ALIGN: usize`
 
-- <span id="list-init"></span>`type Init = T`
+- <span id="list-type-init"></span>`type Init = T`
 
-- <span id="list-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
+- <span id="list-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
 
 - <span id="list-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -133,6 +137,8 @@ struct Iter<'g, T, C: IsElement<T>> {
     _marker: core::marker::PhantomData<(&'g T, C)>,
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:105-121`](../../../../.source_1765210505/crossbeam-epoch-0.9.18/src/sync/list.rs#L105-L121)*
 
 An iterator used for retrieving values from the list.
 
@@ -163,25 +169,25 @@ An iterator used for retrieving values from the list.
 
 ##### `impl<I> IntoIterator for Iter<'g, T, C>`
 
-- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-intoiter"></span>`type IntoIter = I`
+- <span id="iter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'g, T: 'g, C: IsElement<T>> Iterator for Iter<'g, T, C>`
 
-- <span id="iter-item"></span>`type Item = Result<&'g T, IterError>`
+- <span id="iter-type-item"></span>`type Item = Result<&'g T, IterError>`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<T> Pointable for Iter<'g, T, C>`
 
-- <span id="iter-align"></span>`const ALIGN: usize`
+- <span id="iter-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-init"></span>`type Init = T`
+- <span id="iter-type-init"></span>`type Init = T`
 
-- <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
+- <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
 
 - <span id="iter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -198,6 +204,8 @@ enum IterError {
     Stalled,
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:125-129`](../../../../.source_1765210505/crossbeam-epoch-0.9.18/src/sync/list.rs#L125-L129)*
 
 An error that occurs during iteration over the list.
 
@@ -218,13 +226,13 @@ An error that occurs during iteration over the list.
 
 - <span id="itererror-eq"></span>`fn eq(&self, other: &IterError) -> bool` — [`IterError`](#itererror)
 
-##### `impl<T> Pointable for IterError`
+##### `impl Pointable for IterError`
 
-- <span id="itererror-align"></span>`const ALIGN: usize`
+- <span id="itererror-const-align"></span>`const ALIGN: usize`
 
-- <span id="itererror-init"></span>`type Init = T`
+- <span id="itererror-type-init"></span>`type Init = T`
 
-- <span id="itererror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
+- <span id="itererror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
 
 - <span id="itererror-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -241,6 +249,8 @@ An error that occurs during iteration over the list.
 ```rust
 trait IsElement<T> { ... }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/list.rs:67-92`](../../../../.source_1765210505/crossbeam-epoch-0.9.18/src/sync/list.rs#L67-L92)*
 
 Implementing this trait asserts that the type `T` can be used as an element in the intrusive
 linked list defined in this module. `T` has to contain (or otherwise be linked to) an instance

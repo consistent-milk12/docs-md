@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`PubTypesEntry`](#pubtypesentry) | struct | A single parsed pubtype. |
-| [`DebugPubTypes`](#debugpubtypes) | struct | The `DebugPubTypes` struct represents the DWARF public types information |
+| [`DebugPubTypes`](#debugpubtypes) | struct | The `DebugPubTypes` struct represents the DWARF public types information found in the `.debug_info` section. |
 | [`PubTypesEntryIter`](#pubtypesentryiter) | struct | An iterator over the pubtypes from a `.debug_pubtypes` section. |
 
 ## Structs
@@ -23,6 +23,8 @@ struct PubTypesEntry<R: Reader> {
     name: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:8-12`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubtypes.rs#L8-L12)*
 
 A single parsed pubtype.
 
@@ -54,12 +56,14 @@ A single parsed pubtype.
 struct DebugPubTypes<R: Reader>(crate::read::lookup::DebugLookup<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
 
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:50`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubtypes.rs#L50)*
+
 The `DebugPubTypes` struct represents the DWARF public types information
 found in the `.debug_info` section.
 
 #### Implementations
 
-- <span id="debugpubtypes-items"></span>`fn items(&self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](../index.md)
+- <span id="debugpubtypes-new"></span>`fn new(debug_pubtypes_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -82,6 +86,8 @@ found in the `.debug_info` section.
 ```rust
 struct PubTypesEntryIter<R: Reader>(crate::read::lookup::LookupEntryIter<R, crate::read::lookup::PubStuffParser<R, PubTypesEntry<R>>>);
 ```
+
+*Defined in [`gimli-0.32.3/src/read/pubtypes.rs:118`](../../../../.source_1765210505/gimli-0.32.3/src/read/pubtypes.rs#L118)*
 
 An iterator over the pubtypes from a `.debug_pubtypes` section.
 

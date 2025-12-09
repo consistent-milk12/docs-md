@@ -26,6 +26,8 @@ Adapted from the implementation in the `std` library at
 trait NumChars { ... }
 ```
 
+*Defined in [`compact_str-0.9.0/src/repr/num.rs:207-209`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/num.rs#L207-L209)*
+
 All of these `num_chars(...)` methods are kind of crazy, but they are necessary.
 
 An alternate way to calculate the number of digits in a value is to do:
@@ -88,18 +90,23 @@ assert_eq!(num_digits, 20);
 ## Constants
 
 ### `DEC_DIGITS_LUT`
-
 ```rust
 const DEC_DIGITS_LUT: &[u8];
 ```
+
+*Defined in [`compact_str-0.9.0/src/repr/num.rs:12-17`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/num.rs#L12-L17)*
 
 ## Macros
 
 ### `impl_IntoRepr!`
 
+*Defined in [`compact_str-0.9.0/src/repr/num.rs:20-101`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/num.rs#L20-L101)*
+
 Defines the implementation of [`IntoRepr`](../traits/index.md) for integer types
 
 ### `impl_NonZero_IntoRepr!`
+
+*Defined in [`compact_str-0.9.0/src/repr/num.rs:142-151`](../../../../.source_1765210505/compact_str-0.9.0/src/repr/num.rs#L142-L151)*
 
 Defines the implementation of [`IntoRepr`](../traits/index.md) for NonZero integer types
 

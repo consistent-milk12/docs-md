@@ -30,6 +30,8 @@ struct Epoch {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:17-20`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/epoch.rs#L17-L20)*
+
 An epoch that can be marked as pinned or unpinned.
 
 Internally, the epoch is represented as an integer that wraps around at some unspecified point
@@ -77,13 +79,13 @@ and a flag that represents whether it is pinned or unpinned.
 
 - <span id="epoch-eq"></span>`fn eq(&self, other: &Epoch) -> bool` — [`Epoch`](#epoch)
 
-##### `impl<T> Pointable for Epoch`
+##### `impl Pointable for Epoch`
 
-- <span id="epoch-align"></span>`const ALIGN: usize`
+- <span id="epoch-const-align"></span>`const ALIGN: usize`
 
-- <span id="epoch-init"></span>`type Init = T`
+- <span id="epoch-type-init"></span>`type Init = T`
 
-- <span id="epoch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="epoch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
 - <span id="epoch-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -100,6 +102,8 @@ struct AtomicEpoch {
     data: core::sync::atomic::AtomicUsize,
 }
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/epoch.rs:75-79`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/epoch.rs#L75-L79)*
 
 An atomic value that holds an `Epoch`.
 
@@ -130,13 +134,13 @@ An atomic value that holds an `Epoch`.
 
 - <span id="atomicepoch-default"></span>`fn default() -> AtomicEpoch` — [`AtomicEpoch`](#atomicepoch)
 
-##### `impl<T> Pointable for AtomicEpoch`
+##### `impl Pointable for AtomicEpoch`
 
-- <span id="atomicepoch-align"></span>`const ALIGN: usize`
+- <span id="atomicepoch-const-align"></span>`const ALIGN: usize`
 
-- <span id="atomicepoch-init"></span>`type Init = T`
+- <span id="atomicepoch-type-init"></span>`type Init = T`
 
-- <span id="atomicepoch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="atomicepoch-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
 - <span id="atomicepoch-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

@@ -18,6 +18,8 @@
 struct Inner(&'static str);
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/str.rs:277`](../../../../../.source_1765210505/clap_builder-4.5.53/src/builder/str.rs#L277)*
+
 #### Implementations
 
 - <span id="inner-from-static-ref"></span>`fn from_static_ref(name: &'static str) -> Self`

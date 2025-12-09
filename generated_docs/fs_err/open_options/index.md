@@ -23,21 +23,33 @@
 struct OpenOptions(fs::OpenOptions);
 ```
 
+*Defined in [`fs-err-3.2.0/src/open_options.rs:7`](../../../.source_1765210505/fs-err-3.2.0/src/open_options.rs#L7)*
+
 Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html)
 
 #### Implementations
 
-- <span id="openoptions-from-options"></span>`fn from_options(options: fs::OpenOptions) -> Self`
+- <span id="openoptions-new"></span>`fn new() -> Self`
 
-- <span id="openoptions-options"></span>`fn options(&self) -> &fs::OpenOptions`
+- <span id="openoptions-read"></span>`fn read(&mut self, read: bool) -> &mut Self`
 
-- <span id="openoptions-options-mut"></span>`fn options_mut(&mut self) -> &mut fs::OpenOptions`
+- <span id="openoptions-write"></span>`fn write(&mut self, write: bool) -> &mut Self`
+
+- <span id="openoptions-append"></span>`fn append(&mut self, append: bool) -> &mut Self`
+
+- <span id="openoptions-truncate"></span>`fn truncate(&mut self, truncate: bool) -> &mut Self`
+
+- <span id="openoptions-create"></span>`fn create(&mut self, create: bool) -> &mut Self`
+
+- <span id="openoptions-create-new"></span>`fn create_new(&mut self, create_new: bool) -> &mut Self`
+
+- <span id="openoptions-open"></span>`fn open<P>(&self, path: P) -> io::Result<crate::File>` — [`File`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for OpenOptions`
 
-- <span id="openoptions-clone"></span>`fn clone(&self) -> OpenOptions` — [`OpenOptions`](../index.md)
+- <span id="openoptions-clone"></span>`fn clone(&self) -> OpenOptions` — [`OpenOptions`](#openoptions)
 
 ##### `impl Debug for OpenOptions`
 

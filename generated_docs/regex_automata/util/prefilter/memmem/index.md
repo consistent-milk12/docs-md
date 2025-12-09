@@ -20,6 +20,8 @@ struct Memmem {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/memmem.rs:7-12`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/memmem.rs#L7-L12)*
+
 #### Implementations
 
 - <span id="memmem-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<Memmem>` — [`MatchKind`](../../../index.md), [`Memmem`](#memmem)

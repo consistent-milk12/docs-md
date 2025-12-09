@@ -25,9 +25,9 @@ cheaply copyable cursor.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`TokenBuffer`](#tokenbuffer) | struct | A buffer that can be efficiently traversed multiple times, unlike |
+| [`TokenBuffer`](#tokenbuffer) | struct | A buffer that can be efficiently traversed multiple times, unlike `TokenStream` which requires a deep copy in order to traverse more than once. |
 | [`Cursor`](#cursor) | struct | A cheaply copyable cursor into a `TokenBuffer`. |
-| [`Entry`](#entry) | enum | Internal type which is used instead of `TokenTree` to represent a token tree |
+| [`Entry`](#entry) | enum | Internal type which is used instead of `TokenTree` to represent a token tree within a `TokenBuffer`. |
 | [`same_scope`](#same_scope) | fn |  |
 | [`same_buffer`](#same_buffer) | fn |  |
 | [`start_of_buffer`](#start_of_buffer) | fn |  |
@@ -43,6 +43,8 @@ struct TokenBuffer {
     entries: Box<[Entry]>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/buffer.rs:33-37`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L33-L37)*
 
 A buffer that can be efficiently traversed multiple times, unlike
 `TokenStream` which requires a deep copy in order to traverse more than
@@ -68,6 +70,8 @@ struct Cursor<'a> {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/buffer.rs:97-106`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L97-L106)*
+
 A cheaply copyable cursor into a `TokenBuffer`.
 
 This cursor holds a shared reference into the immutable data which is used
@@ -91,13 +95,13 @@ object and get a cursor to its first token with `begin()`.
 
 - <span id="cursor-eof"></span>`fn eof(self) -> bool`
 
-- <span id="cursor-ident"></span>`fn ident(self) -> Option<(Ident, Cursor<'a>)>` — [`Ident`](../index.md), [`Cursor`](#cursor)
+- <span id="cursor-ident"></span>`fn ident(self) -> Option<(Ident, Cursor<'a>)>` — [`Ident`](../ident/index.md), [`Cursor`](#cursor)
 
 - <span id="cursor-punct"></span>`fn punct(self) -> Option<(Punct, Cursor<'a>)>` — [`Cursor`](#cursor)
 
 - <span id="cursor-literal"></span>`fn literal(self) -> Option<(Literal, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- <span id="cursor-lifetime"></span>`fn lifetime(self) -> Option<(Lifetime, Cursor<'a>)>` — [`Lifetime`](../index.md), [`Cursor`](#cursor)
+- <span id="cursor-lifetime"></span>`fn lifetime(self) -> Option<(Lifetime, Cursor<'a>)>` — [`Lifetime`](../lifetime/index.md), [`Cursor`](#cursor)
 
 - <span id="cursor-group"></span>`fn group(self, delim: Delimiter) -> Option<(Cursor<'a>, DelimSpan, Cursor<'a>)>` — [`Cursor`](#cursor)
 
@@ -119,19 +123,19 @@ object and get a cursor to its first token with `begin()`.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Cursor<'a>`
+##### `impl Clone for Cursor<'a>`
 
 - <span id="cursor-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a> Copy for Cursor<'a>`
+##### `impl Copy for Cursor<'a>`
 
-##### `impl<'a> Eq for Cursor<'a>`
+##### `impl Eq for Cursor<'a>`
 
-##### `impl<'a> PartialEq for Cursor<'a>`
+##### `impl PartialEq for Cursor<'a>`
 
 - <span id="cursor-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<'a> PartialOrd for Cursor<'a>`
+##### `impl PartialOrd for Cursor<'a>`
 
 - <span id="cursor-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
@@ -149,6 +153,8 @@ enum Entry {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/buffer.rs:18-28`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L18-L28)*
+
 Internal type which is used instead of `TokenTree` to represent a token tree
 within a `TokenBuffer`.
 
@@ -160,11 +166,15 @@ within a `TokenBuffer`.
 fn same_scope(a: Cursor<'_>, b: Cursor<'_>) -> bool
 ```
 
+*Defined in [`syn-2.0.111/src/buffer.rs:409-411`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L409-L411)*
+
 ### `same_buffer`
 
 ```rust
 fn same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> bool
 ```
+
+*Defined in [`syn-2.0.111/src/buffer.rs:413-415`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L413-L415)*
 
 ### `start_of_buffer`
 
@@ -172,15 +182,21 @@ fn same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> bool
 fn start_of_buffer(cursor: Cursor<'_>) -> *const Entry
 ```
 
+*Defined in [`syn-2.0.111/src/buffer.rs:417-424`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L417-L424)*
+
 ### `cmp_assuming_same_buffer`
 
 ```rust
 fn cmp_assuming_same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> std::cmp::Ordering
 ```
 
+*Defined in [`syn-2.0.111/src/buffer.rs:426-428`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L426-L428)*
+
 ### `open_span_of_group`
 
 ```rust
 fn open_span_of_group(cursor: Cursor<'_>) -> proc_macro2::Span
 ```
+
+*Defined in [`syn-2.0.111/src/buffer.rs:430-435`](../../../.source_1765210505/syn-2.0.111/src/buffer.rs#L430-L435)*
 

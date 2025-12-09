@@ -18,6 +18,8 @@
 trait Sealed { ... }
 ```
 
+*Defined in [`miette-7.6.0/src/eyreish/context.rs:251`](../../../../../.source_1765210505/miette-7.6.0/src/eyreish/context.rs#L251)*
+
 #### Implementors
 
 - `Option<T>`

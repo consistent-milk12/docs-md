@@ -187,6 +187,8 @@ enum Prefix {
 }
 ```
 
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:171-235`](../../.source_1765210505/unit-prefix-0.5.2/src/lib.rs#L171-L235)*
+
 A numeric prefix, either binary or decimal.
 
 #### Variants
@@ -305,7 +307,7 @@ A numeric prefix, either binary or decimal.
 
 ##### `impl StructuralPartialEq for Prefix`
 
-##### `impl<T> ToString for Prefix`
+##### `impl ToString for Prefix`
 
 - <span id="prefix-to-string"></span>`fn to_string(&self) -> String`
 
@@ -317,6 +319,8 @@ enum NumberPrefix<F> {
     Prefixed(Prefix, F),
 }
 ```
+
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:240-249`](../../.source_1765210505/unit-prefix-0.5.2/src/lib.rs#L240-L249)*
 
 The result of trying to apply a prefix to a floating-point value.
 
@@ -355,7 +359,7 @@ The result of trying to apply a prefix to a floating-point value.
 
 ##### `impl<T: str::FromStr> FromStr for super::NumberPrefix<T>`
 
-- <span id="supernumberprefix-err"></span>`type Err = NumberPrefixParseError`
+- <span id="supernumberprefix-type-err"></span>`type Err = NumberPrefixParseError`
 
 - <span id="supernumberprefix-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 
@@ -372,6 +376,8 @@ The result of trying to apply a prefix to a floating-point value.
 ```rust
 trait Amounts: Copy + Sized + PartialOrd + Div<Output = Self> + Neg<Output = Self> { ... }
 ```
+
+*Defined in [`unit-prefix-0.5.2/src/lib.rs:467-477`](../../.source_1765210505/unit-prefix-0.5.2/src/lib.rs#L467-L477)*
 
 Traits for floating-point values for both the possible multipliers. They
 need to be Copy, have defined 1000 and 1024s, and implement a bunch of

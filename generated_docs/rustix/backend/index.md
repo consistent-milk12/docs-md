@@ -30,7 +30,7 @@ parameters, which integers are owned or borrowed file descriptors, etc.
 | [`io`](#io) | mod |  |
 | [`termios`](#termios) | mod |  |
 | [`c`](#c) | mod | Adapt the Linux API to resemble a POSIX-style libc API. |
-| [`MAX_IOV`](#max_iov) | const | The maximum number of buffers that can be passed into a vectored I/O system |
+| [`MAX_IOV`](#max_iov) | const | The maximum number of buffers that can be passed into a vectored I/O system call on the current platform. |
 
 ## Modules
 
@@ -44,10 +44,11 @@ parameters, which integers are owned or borrowed file descriptors, etc.
 ## Constants
 
 ### `MAX_IOV`
-
 ```rust
 const MAX_IOV: usize = 1_024usize;
 ```
+
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/mod.rs:112`](../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/mod.rs#L112)*
 
 The maximum number of buffers that can be passed into a vectored I/O system
 call on the current platform.

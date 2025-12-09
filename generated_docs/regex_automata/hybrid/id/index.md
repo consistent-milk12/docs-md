@@ -19,6 +19,8 @@
 struct LazyStateID(u32);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:169`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/id.rs#L169)*
+
 A state identifier specifically tailored for lazy DFAs.
 
 A lazy state ID logically represents a pointer to a DFA state. In practice,
@@ -187,37 +189,37 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="lazystateid-max-bit"></span>`const MAX_BIT: usize`
+- <span id="lazystateid-const-max-bit"></span>`const MAX_BIT: usize`
 
-- <span id="lazystateid-mask-unknown"></span>`const MASK_UNKNOWN: usize`
+- <span id="lazystateid-const-mask-unknown"></span>`const MASK_UNKNOWN: usize`
 
-- <span id="lazystateid-mask-dead"></span>`const MASK_DEAD: usize`
+- <span id="lazystateid-const-mask-dead"></span>`const MASK_DEAD: usize`
 
-- <span id="lazystateid-mask-quit"></span>`const MASK_QUIT: usize`
+- <span id="lazystateid-const-mask-quit"></span>`const MASK_QUIT: usize`
 
-- <span id="lazystateid-mask-start"></span>`const MASK_START: usize`
+- <span id="lazystateid-const-mask-start"></span>`const MASK_START: usize`
 
-- <span id="lazystateid-mask-match"></span>`const MASK_MATCH: usize`
+- <span id="lazystateid-const-mask-match"></span>`const MASK_MATCH: usize`
 
-- <span id="lazystateid-max"></span>`const MAX: usize`
+- <span id="lazystateid-const-max"></span>`const MAX: usize`
 
-- <span id="lazystateid-new"></span>`fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](../index.md), [`LazyStateIDError`](#lazystateiderror)
+- <span id="lazystateid-new"></span>`fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](#lazystateid), [`LazyStateIDError`](#lazystateiderror)
 
-- <span id="lazystateid-new-unchecked"></span>`const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-new-unchecked"></span>`const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
 - <span id="lazystateid-as-usize-untagged"></span>`fn as_usize_untagged(&self) -> usize`
 
 - <span id="lazystateid-as-usize-unchecked"></span>`const fn as_usize_unchecked(&self) -> usize`
 
-- <span id="lazystateid-to-unknown"></span>`const fn to_unknown(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-to-unknown"></span>`const fn to_unknown(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
-- <span id="lazystateid-to-dead"></span>`const fn to_dead(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-to-dead"></span>`const fn to_dead(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
-- <span id="lazystateid-to-quit"></span>`const fn to_quit(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-to-quit"></span>`const fn to_quit(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
-- <span id="lazystateid-to-start"></span>`const fn to_start(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-to-start"></span>`const fn to_start(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
-- <span id="lazystateid-to-match"></span>`const fn to_match(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-to-match"></span>`const fn to_match(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
 - <span id="lazystateid-is-tagged"></span>`const fn is_tagged(&self) -> bool`
 
@@ -235,7 +237,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for LazyStateID`
 
-- <span id="lazystateid-clone"></span>`fn clone(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-clone"></span>`fn clone(&self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
 ##### `impl Copy for LazyStateID`
 
@@ -245,7 +247,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default for LazyStateID`
 
-- <span id="lazystateid-default"></span>`fn default() -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-default"></span>`fn default() -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
 ##### `impl Eq for LazyStateID`
 
@@ -255,15 +257,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Ord for LazyStateID`
 
-- <span id="lazystateid-cmp"></span>`fn cmp(&self, other: &LazyStateID) -> cmp::Ordering` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-cmp"></span>`fn cmp(&self, other: &LazyStateID) -> cmp::Ordering` — [`LazyStateID`](#lazystateid)
 
 ##### `impl PartialEq for LazyStateID`
 
-- <span id="lazystateid-eq"></span>`fn eq(&self, other: &LazyStateID) -> bool` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-eq"></span>`fn eq(&self, other: &LazyStateID) -> bool` — [`LazyStateID`](#lazystateid)
 
 ##### `impl PartialOrd for LazyStateID`
 
-- <span id="lazystateid-partial-cmp"></span>`fn partial_cmp(&self, other: &LazyStateID) -> option::Option<cmp::Ordering>` — [`LazyStateID`](../index.md)
+- <span id="lazystateid-partial-cmp"></span>`fn partial_cmp(&self, other: &LazyStateID) -> option::Option<cmp::Ordering>` — [`LazyStateID`](#lazystateid)
 
 ##### `impl StructuralPartialEq for LazyStateID`
 
@@ -274,6 +276,8 @@ struct LazyStateIDError {
     attempted: u64,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/id.rs:331-333`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/id.rs#L331-L333)*
 
 This error occurs when a lazy state ID could not be constructed.
 
@@ -310,7 +314,7 @@ When the `std` feature is enabled, this implements the `Error` trait.
 
 ##### `impl StructuralPartialEq for LazyStateIDError`
 
-##### `impl<T> ToString for LazyStateIDError`
+##### `impl ToString for LazyStateIDError`
 
 - <span id="lazystateiderror-to-string"></span>`fn to_string(&self) -> String`
 

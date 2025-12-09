@@ -58,6 +58,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:23-31`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L23-L31)*
+
 A table of symbol entries in an XCOFF file.
 
 Also includes the string table used for the symbol names.
@@ -110,6 +112,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:182-189`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L182-L189)*
+
 An iterator for symbol entries in an XCOFF file.
 
 Yields the index and symbol structure for each symbol.
@@ -122,15 +126,15 @@ Yields the index and symbol structure for each symbol.
 
 ##### `impl<I> IntoIterator for SymbolIterator<'data, 'table, Xcoff, R>`
 
-- <span id="symboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="symboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="symboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="symboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'table, Xcoff: FileHeader, R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'table, Xcoff, R>`
 
-- <span id="symboliterator-item"></span>`type Item = (SymbolIndex, &'data <Xcoff as FileHeader>::Symbol)`
+- <span id="symboliterator-type-item"></span>`type Item = (SymbolIndex, &'data <Xcoff as FileHeader>::Symbol)`
 
 - <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -145,6 +149,8 @@ where
     symbols: &'file SymbolTable<'data, Xcoff, R>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:217-224`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L217-L224)*
 
 A symbol table in an [`XcoffFile`](../index.md).
 
@@ -162,9 +168,9 @@ A symbol table in an [`XcoffFile`](../index.md).
 
 ##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboltable-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboltable-type-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboltable-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboltable-type-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md)
 
@@ -184,6 +190,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:263-270`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L263-L270)*
+
 An iterator for the symbols in an [`XcoffFile`](../index.md).
 
 #### Trait Implementations
@@ -194,15 +202,15 @@ An iterator for the symbols in an [`XcoffFile`](../index.md).
 
 ##### `impl<I> IntoIterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffsymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffsymboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffsymboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> Iterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffsymboliterator-item"></span>`type Item = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboliterator-type-item"></span>`type Item = XcoffSymbol<'data, 'file, Xcoff, R>`
 
 - <span id="xcoffsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -219,6 +227,8 @@ where
     symbol: &'data <Xcoff as >::Symbol,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:307-316`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L307-L316)*
 
 A symbol in an [`XcoffFile`](../index.md).
 
@@ -284,6 +294,8 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 trait Symbol: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:540-593`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L540-L593)*
+
 A trait for generic access to [`xcoff::Symbol32`](../../../xcoff/index.md) and [`xcoff::Symbol64`](../../../xcoff/index.md).
 
 #### Associated Types
@@ -339,6 +351,8 @@ A trait for generic access to [`xcoff::Symbol32`](../../../xcoff/index.md) and [
 trait FileAux: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:687-720`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L687-L720)*
+
 A trait for generic access to [`xcoff::FileAux32`](../../../xcoff/index.md) and [`xcoff::FileAux64`](../../../xcoff/index.md).
 
 #### Required Methods
@@ -367,6 +381,8 @@ A trait for generic access to [`xcoff::FileAux32`](../../../xcoff/index.md) and 
 ```rust
 trait CsectAux: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:752-768`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L752-L768)*
 
 A trait for generic access to [`xcoff::CsectAux32`](../../../xcoff/index.md) and [`xcoff::CsectAux64`](../../../xcoff/index.md).
 
@@ -407,6 +423,8 @@ A trait for generic access to [`xcoff::CsectAux32`](../../../xcoff/index.md) and
 type XcoffSymbolTable32<'data, 'file, R> = XcoffSymbolTable<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:209-210`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L209-L210)*
+
 A symbol table in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSymbolTable64<'data, 'file, R>`
@@ -414,6 +432,8 @@ A symbol table in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSymbolTable64<'data, 'file, R> = XcoffSymbolTable<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:212-213`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L212-L213)*
 
 A symbol table in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -423,6 +443,8 @@ A symbol table in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSymbolIterator32<'data, 'file, R> = XcoffSymbolIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:256-257`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L256-L257)*
+
 An iterator for the symbols in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSymbolIterator64<'data, 'file, R>`
@@ -430,6 +452,8 @@ An iterator for the symbols in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSymbolIterator64<'data, 'file, R> = XcoffSymbolIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:259-260`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L259-L260)*
 
 An iterator for the symbols in an [`XcoffFile64`](super::XcoffFile64).
 
@@ -439,6 +463,8 @@ An iterator for the symbols in an [`XcoffFile64`](super::XcoffFile64).
 type XcoffSymbol32<'data, 'file, R> = XcoffSymbol<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:297-298`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L297-L298)*
+
 A symbol in an [`XcoffFile32`](super::XcoffFile32).
 
 ### `XcoffSymbol64<'data, 'file, R>`
@@ -446,6 +472,8 @@ A symbol in an [`XcoffFile32`](super::XcoffFile32).
 ```rust
 type XcoffSymbol64<'data, 'file, R> = XcoffSymbol<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/symbol.rs:300-301`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/symbol.rs#L300-L301)*
 
 A symbol in an [`XcoffFile64`](super::XcoffFile64).
 

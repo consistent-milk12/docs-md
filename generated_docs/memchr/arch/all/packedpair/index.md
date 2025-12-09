@@ -23,7 +23,7 @@ however can be good enough in many circumstances.
 | [`Finder`](#finder) | struct | An architecture independent "packed pair" finder. |
 | [`Pair`](#pair) | struct | A pair of byte offsets into a needle to use as a predicate. |
 | [`DefaultFrequencyRank`](#defaultfrequencyrank) | struct | The default byte frequency heuristic that is good for most haystacks. |
-| [`HeuristicFrequencyRank`](#heuristicfrequencyrank) | trait | This trait allows the user to customize the heuristic used to determine the |
+| [`HeuristicFrequencyRank`](#heuristicfrequencyrank) | trait | This trait allows the user to customize the heuristic used to determine the relative frequency of a given byte in the dataset being searched. |
 
 ## Modules
 
@@ -40,6 +40,8 @@ struct Finder {
     byte2: u8,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:35-39`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L35-L39)*
 
 An architecture independent "packed pair" finder.
 
@@ -87,6 +89,8 @@ struct Pair {
     index2: u8,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:135-138`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L135-L138)*
 
 A pair of byte offsets into a needle to use as a predicate.
 
@@ -141,6 +145,8 @@ needles with length at least 2.
 struct DefaultFrequencyRank;
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:321`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L321)*
+
 The default byte frequency heuristic that is good for most haystacks.
 
 #### Trait Implementations
@@ -157,12 +163,14 @@ The default byte frequency heuristic that is good for most haystacks.
 trait HeuristicFrequencyRank { ... }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/packedpair/mod.rs:309-318`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/packedpair/mod.rs#L309-L318)*
+
 This trait allows the user to customize the heuristic used to determine the
 relative frequency of a given byte in the dataset being searched.
 
 The use of this trait can have a dramatic impact on performance depending
 on the type of data being searched. The details of why are explained in the
-docs of [`crate::memmem::Prefilter`](../../../memmem/index.md). To summarize, the core algorithm uses
+docs of [`crate::memmem::Prefilter`](../../../memmem/searcher/index.md). To summarize, the core algorithm uses
 a prefilter to quickly identify candidate matches that are later verified
 more slowly. This prefilter is implemented in terms of trying to find
 `rare` bytes at specific offsets that will occur less frequently in the

@@ -287,7 +287,8 @@ impl ImplCategory {
 
         // Extract the trait name (last segment of the path)
         // e.g., "std::clone::Clone" -> "Clone"
-        let trait_name = path.split("::").last().unwrap_or(path);
+        // Using rsplit().next() is more efficient than split().last()
+        let trait_name = path.rsplit("::").next().unwrap_or(path);
 
         // Check each category in order of specificity
         // Note: We check Operator before others because std::ops traits

@@ -94,6 +94,8 @@ struct Generator<'a> {
 }
 ```
 
+*Defined in `src/generator/mod.rs:89-98`*
+
 Main documentation generator.
 
 This struct orchestrates the entire documentation generation process,
@@ -123,37 +125,37 @@ generator.generate()?;
 
 #### Implementations
 
-- <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](#args), [`RenderConfig`](#renderconfig), [`Error`](error/index.md)
+- <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](#args), [`RenderConfig`](generator/config/index.md), [`Error`](error/index.md)
 
 - <span id="generator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](error/index.md)
 
 - <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
 
-- <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
+- <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
 
-- <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`RenderConfig`](#renderconfig), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
+- <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`RenderConfig`](generator/config/index.md), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
 
-- <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
+- <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/context/index.md), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
 
-- <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
+- <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/context/index.md), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
 
-- <span id="generator-generate-nested-to-capture"></span>`fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
+- <span id="generator-generate-nested-to-capture"></span>`fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/context/index.md), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
 
 - <span id="generator-run"></span>`fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](#args), [`Error`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for Generator<'a>`
+##### `impl Instrument for Generator<'a>`
 
-##### `impl<T> IntoEither for Generator<'a>`
+##### `impl IntoEither for Generator<'a>`
 
-##### `impl<D> OwoColorize for Generator<'a>`
+##### `impl OwoColorize for Generator<'a>`
 
-##### `impl<T> Pointable for Generator<'a>`
+##### `impl Pointable for Generator<'a>`
 
-- <span id="generator-align"></span>`const ALIGN: usize`
+- <span id="generator-const-align"></span>`const ALIGN: usize`
 
-- <span id="generator-init"></span>`type Init = T`
+- <span id="generator-type-init"></span>`type Init = T`
 
 - <span id="generator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -163,7 +165,7 @@ generator.generate()?;
 
 - <span id="generator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for Generator<'a>`
+##### `impl WithSubscriber for Generator<'a>`
 
 ### `MarkdownCapture`
 
@@ -172,6 +174,8 @@ struct MarkdownCapture {
     files: std::collections::HashMap<String, String>,
 }
 ```
+
+*Defined in `src/generator/capture.rs:15-18`*
 
 Captures generated markdown in memory for testing.
 
@@ -212,19 +216,19 @@ side effects.
 
 ##### `impl Default for MarkdownCapture`
 
-- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](#markdowncapture)
+- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](generator/capture/index.md)
 
-##### `impl<T> Instrument for MarkdownCapture`
+##### `impl Instrument for MarkdownCapture`
 
-##### `impl<T> IntoEither for MarkdownCapture`
+##### `impl IntoEither for MarkdownCapture`
 
-##### `impl<D> OwoColorize for MarkdownCapture`
+##### `impl OwoColorize for MarkdownCapture`
 
-##### `impl<T> Pointable for MarkdownCapture`
+##### `impl Pointable for MarkdownCapture`
 
-- <span id="markdowncapture-align"></span>`const ALIGN: usize`
+- <span id="markdowncapture-const-align"></span>`const ALIGN: usize`
 
-- <span id="markdowncapture-init"></span>`type Init = T`
+- <span id="markdowncapture-type-init"></span>`type Init = T`
 
 - <span id="markdowncapture-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -234,7 +238,7 @@ side effects.
 
 - <span id="markdowncapture-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MarkdownCapture`
+##### `impl WithSubscriber for MarkdownCapture`
 
 ### `RenderConfig`
 
@@ -248,6 +252,8 @@ struct RenderConfig {
     pub include_source: SourceConfig,
 }
 ```
+
+*Defined in `src/generator/config.rs:14-32`*
 
 Configuration options for markdown rendering.
 
@@ -281,7 +287,7 @@ Configuration options for markdown rendering.
 
 ##### `impl Clone for RenderConfig`
 
-- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](#renderconfig)
+- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](generator/config/index.md)
 
 ##### `impl Debug for RenderConfig`
 
@@ -291,17 +297,17 @@ Configuration options for markdown rendering.
 
 - <span id="renderconfig-default"></span>`fn default() -> Self`
 
-##### `impl<T> Instrument for RenderConfig`
+##### `impl Instrument for RenderConfig`
 
-##### `impl<T> IntoEither for RenderConfig`
+##### `impl IntoEither for RenderConfig`
 
-##### `impl<D> OwoColorize for RenderConfig`
+##### `impl OwoColorize for RenderConfig`
 
-##### `impl<T> Pointable for RenderConfig`
+##### `impl Pointable for RenderConfig`
 
-- <span id="renderconfig-align"></span>`const ALIGN: usize`
+- <span id="renderconfig-const-align"></span>`const ALIGN: usize`
 
-- <span id="renderconfig-init"></span>`type Init = T`
+- <span id="renderconfig-type-init"></span>`type Init = T`
 
 - <span id="renderconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -311,7 +317,7 @@ Configuration options for markdown rendering.
 
 - <span id="renderconfig-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for RenderConfig`
+##### `impl WithSubscriber for RenderConfig`
 
 ### `SourceConfig`
 
@@ -321,8 +327,11 @@ struct SourceConfig {
     pub const_values: bool,
     pub private_items: bool,
     pub source_locations: bool,
+    pub source_dir: Option<std::path::PathBuf>,
 }
 ```
+
+*Defined in `src/generator/config.rs:42-61`*
 
 Configuration for source code integration.
 
@@ -346,11 +355,19 @@ Requires the `source-parsing` feature to have any effect.
 
   Add <file:line> references to items.
 
+- **`source_dir`**: `Option<std::path::PathBuf>`
+
+  Path to the `.source_*` directory containing collected dependency sources.
+  
+  When set, source location references will use paths relative to this directory
+  and generate clickable links. When `None`, absolute paths from rustdoc JSON
+  are displayed without links.
+
 #### Trait Implementations
 
 ##### `impl Clone for SourceConfig`
 
-- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](#sourceconfig)
+- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](generator/config/index.md)
 
 ##### `impl Debug for SourceConfig`
 
@@ -358,19 +375,19 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Default for SourceConfig`
 
-- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](#sourceconfig)
+- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](generator/config/index.md)
 
-##### `impl<T> Instrument for SourceConfig`
+##### `impl Instrument for SourceConfig`
 
-##### `impl<T> IntoEither for SourceConfig`
+##### `impl IntoEither for SourceConfig`
 
-##### `impl<D> OwoColorize for SourceConfig`
+##### `impl OwoColorize for SourceConfig`
 
-##### `impl<T> Pointable for SourceConfig`
+##### `impl Pointable for SourceConfig`
 
-- <span id="sourceconfig-align"></span>`const ALIGN: usize`
+- <span id="sourceconfig-const-align"></span>`const ALIGN: usize`
 
-- <span id="sourceconfig-init"></span>`type Init = T`
+- <span id="sourceconfig-type-init"></span>`type Init = T`
 
 - <span id="sourceconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -380,7 +397,7 @@ Requires the `source-parsing` feature to have any effect.
 
 - <span id="sourceconfig-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for SourceConfig`
+##### `impl WithSubscriber for SourceConfig`
 
 ### `LinkRegistry`
 
@@ -390,6 +407,8 @@ struct LinkRegistry {
     item_names: std::collections::HashMap<rustdoc_types::Id, String>,
 }
 ```
+
+*Defined in `src/linker.rs:257-269`*
 
 Registry mapping item IDs to their documentation file paths.
 
@@ -437,19 +456,19 @@ create links between items.
 
 ##### `impl Default for LinkRegistry`
 
-- <span id="linkregistry-default"></span>`fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
+- <span id="linkregistry-default"></span>`fn default() -> LinkRegistry` — [`LinkRegistry`](linker/index.md)
 
-##### `impl<T> Instrument for LinkRegistry`
+##### `impl Instrument for LinkRegistry`
 
-##### `impl<T> IntoEither for LinkRegistry`
+##### `impl IntoEither for LinkRegistry`
 
-##### `impl<D> OwoColorize for LinkRegistry`
+##### `impl OwoColorize for LinkRegistry`
 
-##### `impl<T> Pointable for LinkRegistry`
+##### `impl Pointable for LinkRegistry`
 
-- <span id="linkregistry-align"></span>`const ALIGN: usize`
+- <span id="linkregistry-const-align"></span>`const ALIGN: usize`
 
-- <span id="linkregistry-init"></span>`type Init = T`
+- <span id="linkregistry-type-init"></span>`type Init = T`
 
 - <span id="linkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -459,7 +478,7 @@ create links between items.
 
 - <span id="linkregistry-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for LinkRegistry`
+##### `impl WithSubscriber for LinkRegistry`
 
 ### `CrateCollection`
 
@@ -468,6 +487,8 @@ struct CrateCollection {
     crates: std::collections::HashMap<String, rustdoc_types::Crate>,
 }
 ```
+
+*Defined in `src/multi_crate/collection.rs:30-34`*
 
 Collection of parsed crates ready for documentation generation.
 
@@ -524,19 +545,19 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Default for CrateCollection`
 
-- <span id="cratecollection-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](#cratecollection)
+- <span id="cratecollection-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](multi_crate/collection/index.md)
 
-##### `impl<T> Instrument for CrateCollection`
+##### `impl Instrument for CrateCollection`
 
-##### `impl<T> IntoEither for CrateCollection`
+##### `impl IntoEither for CrateCollection`
 
-##### `impl<D> OwoColorize for CrateCollection`
+##### `impl OwoColorize for CrateCollection`
 
-##### `impl<T> Pointable for CrateCollection`
+##### `impl Pointable for CrateCollection`
 
-- <span id="cratecollection-align"></span>`const ALIGN: usize`
+- <span id="cratecollection-const-align"></span>`const ALIGN: usize`
 
-- <span id="cratecollection-init"></span>`type Init = T`
+- <span id="cratecollection-type-init"></span>`type Init = T`
 
 - <span id="cratecollection-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -546,7 +567,7 @@ for (name, krate) in collection.iter() {
 
 - <span id="cratecollection-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for CrateCollection`
+##### `impl WithSubscriber for CrateCollection`
 
 ### `MultiCrateContext<'a>`
 
@@ -557,13 +578,16 @@ struct MultiCrateContext<'a> {
     args: &'a crate::Args,
     config: crate::generator::config::RenderConfig,
     cross_crate_impls: std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
+    source_path_config: Option<crate::generator::render_shared::SourcePathConfig>,
 }
 ```
+
+*Defined in `src/multi_crate/context.rs:41-64`*
 
 Shared context for multi-crate documentation generation.
 
 Holds references to all crates, the unified link registry, and
-CLI configuration. Used by [`MultiCrateGenerator`](#multicrategenerator) to coordinate
+CLI configuration. Used by [`MultiCrateGenerator`](multi_crate/generator/index.md) to coordinate
 generation across crates.
 
 
@@ -592,19 +616,29 @@ generation across crates.
   Maps target crate name -> type name -> impl blocks from other crates.
   This is computed once during construction rather than per-view.
 
+- **`source_path_config`**: `Option<crate::generator::render_shared::SourcePathConfig>`
+
+  Base source path configuration for transforming cargo registry paths.
+  
+  `None` if source locations are disabled or no `.source_*` dir detected.
+
 #### Implementations
 
-- <span id="multicratecontext-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](#cratecollection), [`Args`](#args), [`RenderConfig`](#renderconfig)
+- <span id="multicratecontext-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](multi_crate/collection/index.md), [`Args`](#args), [`RenderConfig`](generator/config/index.md)
 
-- <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](#cratecollection)
+- <span id="multicratecontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
 
-- <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](#cratecollection)
+- <span id="multicratecontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](generator/render_shared/index.md)
 
-- <span id="multicratecontext-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
+- <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](multi_crate/collection/index.md)
+
+- <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](multi_crate/collection/index.md)
+
+- <span id="multicratecontext-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate/registry/index.md)
 
 - <span id="multicratecontext-args"></span>`const fn args(&self) -> &Args` — [`Args`](#args)
 
-- <span id="multicratecontext-single-crate-view"></span>`fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](multi_crate/index.md)
+- <span id="multicratecontext-single-crate-view"></span>`fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](multi_crate/context/index.md)
 
 - <span id="multicratecontext-find-item"></span>`fn find_item(&self, id: &Id) -> Option<(&str, &Item)>`
 
@@ -614,17 +648,17 @@ generation across crates.
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for MultiCrateContext<'a>`
+##### `impl Instrument for MultiCrateContext<'a>`
 
-##### `impl<T> IntoEither for MultiCrateContext<'a>`
+##### `impl IntoEither for MultiCrateContext<'a>`
 
-##### `impl<D> OwoColorize for MultiCrateContext<'a>`
+##### `impl OwoColorize for MultiCrateContext<'a>`
 
-##### `impl<T> Pointable for MultiCrateContext<'a>`
+##### `impl Pointable for MultiCrateContext<'a>`
 
-- <span id="multicratecontext-align"></span>`const ALIGN: usize`
+- <span id="multicratecontext-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicratecontext-init"></span>`type Init = T`
+- <span id="multicratecontext-type-init"></span>`type Init = T`
 
 - <span id="multicratecontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -634,7 +668,7 @@ generation across crates.
 
 - <span id="multicratecontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MultiCrateContext<'a>`
+##### `impl WithSubscriber for MultiCrateContext<'a>`
 
 ### `MultiCrateGenerator<'a>`
 
@@ -644,6 +678,8 @@ struct MultiCrateGenerator<'a> {
     args: &'a crate::Args,
 }
 ```
+
+*Defined in `src/multi_crate/generator.rs:56-62`*
 
 Generator for multi-crate documentation.
 
@@ -677,35 +713,35 @@ output/
 
 #### Implementations
 
-- <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](#cratecollection), [`Args`](#args), [`RenderConfig`](#renderconfig)
+- <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](multi_crate/collection/index.md), [`Args`](#args), [`RenderConfig`](generator/config/index.md)
 
 - <span id="multicrategenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](error/index.md)
 
 - <span id="multicrategenerator-collect-rendered-items"></span>`fn collect_rendered_items(&self) -> HashMap<String, HashSet<Id>>`
 
-- <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/index.md)
+- <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/context/index.md)
 
-- <span id="multicrategenerator-collect-module-items"></span>`fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/index.md)
+- <span id="multicrategenerator-collect-module-items"></span>`fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/context/index.md)
 
-- <span id="multicrategenerator-generate-crate"></span>`fn generate_crate(&self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/index.md), [`Error`](error/index.md)
+- <span id="multicrategenerator-generate-crate"></span>`fn generate_crate(&self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/context/index.md), [`Error`](error/index.md)
 
-- <span id="multicrategenerator-generate-module"></span>`fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/index.md), [`Error`](error/index.md)
+- <span id="multicrategenerator-generate-module"></span>`fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/context/index.md), [`Error`](error/index.md)
 
 - <span id="multicrategenerator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for MultiCrateGenerator<'a>`
+##### `impl Instrument for MultiCrateGenerator<'a>`
 
-##### `impl<T> IntoEither for MultiCrateGenerator<'a>`
+##### `impl IntoEither for MultiCrateGenerator<'a>`
 
-##### `impl<D> OwoColorize for MultiCrateGenerator<'a>`
+##### `impl OwoColorize for MultiCrateGenerator<'a>`
 
-##### `impl<T> Pointable for MultiCrateGenerator<'a>`
+##### `impl Pointable for MultiCrateGenerator<'a>`
 
-- <span id="multicrategenerator-align"></span>`const ALIGN: usize`
+- <span id="multicrategenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrategenerator-init"></span>`type Init = T`
+- <span id="multicrategenerator-type-init"></span>`type Init = T`
 
 - <span id="multicrategenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -715,13 +751,15 @@ output/
 
 - <span id="multicrategenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MultiCrateGenerator<'a>`
+##### `impl WithSubscriber for MultiCrateGenerator<'a>`
 
 ### `MultiCrateParser`
 
 ```rust
 struct MultiCrateParser;
 ```
+
+*Defined in `src/multi_crate/parser.rs:26`*
 
 Parser for multiple rustdoc JSON files in a directory.
 
@@ -737,23 +775,23 @@ println!("Found {} crates", crates.len());
 
 #### Implementations
 
-- <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](#cratecollection), [`Error`](error/index.md)
+- <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](multi_crate/collection/index.md), [`Error`](error/index.md)
 
 - <span id="multicrateparser-extract-crate-name"></span>`fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for MultiCrateParser`
+##### `impl Instrument for MultiCrateParser`
 
-##### `impl<T> IntoEither for MultiCrateParser`
+##### `impl IntoEither for MultiCrateParser`
 
-##### `impl<D> OwoColorize for MultiCrateParser`
+##### `impl OwoColorize for MultiCrateParser`
 
-##### `impl<T> Pointable for MultiCrateParser`
+##### `impl Pointable for MultiCrateParser`
 
-- <span id="multicrateparser-align"></span>`const ALIGN: usize`
+- <span id="multicrateparser-const-align"></span>`const ALIGN: usize`
 
-- <span id="multicrateparser-init"></span>`type Init = T`
+- <span id="multicrateparser-type-init"></span>`type Init = T`
 
 - <span id="multicrateparser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -763,7 +801,7 @@ println!("Found {} crates", crates.len());
 
 - <span id="multicrateparser-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for MultiCrateParser`
+##### `impl WithSubscriber for MultiCrateParser`
 
 ### `SearchIndex`
 
@@ -772,6 +810,8 @@ struct SearchIndex {
     pub items: Vec<SearchEntry>,
 }
 ```
+
+*Defined in `src/multi_crate/search.rs:75-78`*
 
 The complete search index containing all searchable items.
 
@@ -789,17 +829,17 @@ Serialized to `search_index.json` for client-side consumption.
 
 - <span id="searchindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> Instrument for SearchIndex`
+##### `impl Instrument for SearchIndex`
 
-##### `impl<T> IntoEither for SearchIndex`
+##### `impl IntoEither for SearchIndex`
 
-##### `impl<D> OwoColorize for SearchIndex`
+##### `impl OwoColorize for SearchIndex`
 
-##### `impl<T> Pointable for SearchIndex`
+##### `impl Pointable for SearchIndex`
 
-- <span id="searchindex-align"></span>`const ALIGN: usize`
+- <span id="searchindex-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindex-init"></span>`type Init = T`
+- <span id="searchindex-type-init"></span>`type Init = T`
 
 - <span id="searchindex-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -813,7 +853,7 @@ Serialized to `search_index.json` for client-side consumption.
 
 - <span id="searchindex-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
-##### `impl<T> WithSubscriber for SearchIndex`
+##### `impl WithSubscriber for SearchIndex`
 
 ### `SearchIndexGenerator<'a>`
 
@@ -825,9 +865,11 @@ struct SearchIndexGenerator<'a> {
 }
 ```
 
+*Defined in `src/multi_crate/search.rs:93-108`*
+
 Generator for multi-crate search indices.
 
-Traverses all crates in a [`CrateCollection`](#cratecollection) and builds a comprehensive
+Traverses all crates in a [`CrateCollection`](multi_crate/collection/index.md) and builds a comprehensive
 search index of all public items (or all items if `include_private` is set).
 
 # Example
@@ -861,9 +903,9 @@ generator.write(Path::new("generated_docs/"))?;
 
 #### Implementations
 
-- <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](#cratecollection)
+- <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](multi_crate/collection/index.md)
 
-- <span id="searchindexgenerator-generate"></span>`fn generate(&self) -> SearchIndex` — [`SearchIndex`](#searchindex)
+- <span id="searchindexgenerator-generate"></span>`fn generate(&self) -> SearchIndex` — [`SearchIndex`](multi_crate/search/index.md)
 
 - <span id="searchindexgenerator-write"></span>`fn write(&self, output_dir: &Path) -> std::io::Result<()>`
 
@@ -875,17 +917,17 @@ generator.write(Path::new("generated_docs/"))?;
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for SearchIndexGenerator<'a>`
+##### `impl Instrument for SearchIndexGenerator<'a>`
 
-##### `impl<T> IntoEither for SearchIndexGenerator<'a>`
+##### `impl IntoEither for SearchIndexGenerator<'a>`
 
-##### `impl<D> OwoColorize for SearchIndexGenerator<'a>`
+##### `impl OwoColorize for SearchIndexGenerator<'a>`
 
-##### `impl<T> Pointable for SearchIndexGenerator<'a>`
+##### `impl Pointable for SearchIndexGenerator<'a>`
 
-- <span id="searchindexgenerator-align"></span>`const ALIGN: usize`
+- <span id="searchindexgenerator-const-align"></span>`const ALIGN: usize`
 
-- <span id="searchindexgenerator-init"></span>`type Init = T`
+- <span id="searchindexgenerator-type-init"></span>`type Init = T`
 
 - <span id="searchindexgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -895,7 +937,7 @@ generator.write(Path::new("generated_docs/"))?;
 
 - <span id="searchindexgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for SearchIndexGenerator<'a>`
+##### `impl WithSubscriber for SearchIndexGenerator<'a>`
 
 ### `UnifiedLinkRegistry`
 
@@ -909,9 +951,11 @@ struct UnifiedLinkRegistry {
 }
 ```
 
+*Defined in `src/multi_crate/registry.rs:94-116`*
+
 Registry mapping item IDs to documentation paths across multiple crates.
 
-Unlike [`LinkRegistry`](#linkregistry) which handles a single crate, this registry
+Unlike [`LinkRegistry`](linker/index.md) which handles a single crate, this registry
 spans multiple crates and supports cross-crate link resolution with
 disambiguation based on local/primary crate preference.
 
@@ -967,7 +1011,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Implementations
 
-- <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](#cratecollection)
+- <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](multi_crate/collection/index.md)
 
 - <span id="unifiedlinkregistry-register-crate"></span>`fn register_crate(&mut self, crate_name: &str, krate: &Crate)`
 
@@ -1011,19 +1055,19 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Default for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
+- <span id="unifiedlinkregistry-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate/registry/index.md)
 
-##### `impl<T> Instrument for UnifiedLinkRegistry`
+##### `impl Instrument for UnifiedLinkRegistry`
 
-##### `impl<T> IntoEither for UnifiedLinkRegistry`
+##### `impl IntoEither for UnifiedLinkRegistry`
 
-##### `impl<D> OwoColorize for UnifiedLinkRegistry`
+##### `impl OwoColorize for UnifiedLinkRegistry`
 
-##### `impl<T> Pointable for UnifiedLinkRegistry`
+##### `impl Pointable for UnifiedLinkRegistry`
 
-- <span id="unifiedlinkregistry-align"></span>`const ALIGN: usize`
+- <span id="unifiedlinkregistry-const-align"></span>`const ALIGN: usize`
 
-- <span id="unifiedlinkregistry-init"></span>`type Init = T`
+- <span id="unifiedlinkregistry-type-init"></span>`type Init = T`
 
 - <span id="unifiedlinkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1033,7 +1077,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - <span id="unifiedlinkregistry-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for UnifiedLinkRegistry`
+##### `impl WithSubscriber for UnifiedLinkRegistry`
 
 ### `Cli`
 
@@ -1043,6 +1087,8 @@ struct Cli {
     pub args: GenerateArgs,
 }
 ```
+
+*Defined in `src/lib.rs:74-98`*
 
 Top-level CLI for docs-md.
 
@@ -1086,19 +1132,19 @@ Top-level CLI for docs-md.
 
 - <span id="cli-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-##### `impl<T> Instrument for Cli`
+##### `impl Instrument for Cli`
 
-##### `impl<T> IntoEither for Cli`
+##### `impl IntoEither for Cli`
 
-##### `impl<D> OwoColorize for Cli`
+##### `impl OwoColorize for Cli`
 
 ##### `impl Parser for Cli`
 
-##### `impl<T> Pointable for Cli`
+##### `impl Pointable for Cli`
 
-- <span id="cli-align"></span>`const ALIGN: usize`
+- <span id="cli-const-align"></span>`const ALIGN: usize`
 
-- <span id="cli-init"></span>`type Init = T`
+- <span id="cli-type-init"></span>`type Init = T`
 
 - <span id="cli-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1108,7 +1154,7 @@ Top-level CLI for docs-md.
 
 - <span id="cli-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for Cli`
+##### `impl WithSubscriber for Cli`
 
 ### `DocsArgs`
 
@@ -1125,6 +1171,8 @@ struct DocsArgs {
     pub cargo_args: Vec<String>,
 }
 ```
+
+*Defined in `src/lib.rs:127-172`*
 
 Arguments for the `docs` subcommand (build + generate).
 
@@ -1205,19 +1253,19 @@ Arguments for the `docs` subcommand (build + generate).
 
 - <span id="docsargs-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-##### `impl<T> Instrument for DocsArgs`
+##### `impl Instrument for DocsArgs`
 
-##### `impl<T> IntoEither for DocsArgs`
+##### `impl IntoEither for DocsArgs`
 
-##### `impl<D> OwoColorize for DocsArgs`
+##### `impl OwoColorize for DocsArgs`
 
 ##### `impl Parser for DocsArgs`
 
-##### `impl<T> Pointable for DocsArgs`
+##### `impl Pointable for DocsArgs`
 
-- <span id="docsargs-align"></span>`const ALIGN: usize`
+- <span id="docsargs-const-align"></span>`const ALIGN: usize`
 
-- <span id="docsargs-init"></span>`type Init = T`
+- <span id="docsargs-type-init"></span>`type Init = T`
 
 - <span id="docsargs-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1227,7 +1275,7 @@ Arguments for the `docs` subcommand (build + generate).
 
 - <span id="docsargs-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for DocsArgs`
+##### `impl WithSubscriber for DocsArgs`
 
 ### `GenerateArgs`
 
@@ -1244,6 +1292,8 @@ struct GenerateArgs {
     pub include_blanket_impls: bool,
 }
 ```
+
+*Defined in `src/lib.rs:209-296`*
 
 Command-line arguments for direct generation (no subcommand).
 
@@ -1365,19 +1415,19 @@ The tool accepts input from two mutually exclusive sources:
 
 - <span id="generateargs-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-##### `impl<T> Instrument for GenerateArgs`
+##### `impl Instrument for GenerateArgs`
 
-##### `impl<T> IntoEither for GenerateArgs`
+##### `impl IntoEither for GenerateArgs`
 
-##### `impl<D> OwoColorize for GenerateArgs`
+##### `impl OwoColorize for GenerateArgs`
 
 ##### `impl Parser for GenerateArgs`
 
-##### `impl<T> Pointable for GenerateArgs`
+##### `impl Pointable for GenerateArgs`
 
-- <span id="generateargs-align"></span>`const ALIGN: usize`
+- <span id="generateargs-const-align"></span>`const ALIGN: usize`
 
-- <span id="generateargs-init"></span>`type Init = T`
+- <span id="generateargs-type-init"></span>`type Init = T`
 
 - <span id="generateargs-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1387,7 +1437,7 @@ The tool accepts input from two mutually exclusive sources:
 
 - <span id="generateargs-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for GenerateArgs`
+##### `impl WithSubscriber for GenerateArgs`
 
 ## Enums
 
@@ -1399,6 +1449,8 @@ enum OutputFormat {
     Nested,
 }
 ```
+
+*Defined in `src/lib.rs:39-52`*
 
 Output format for the generated markdown documentation.
 
@@ -1436,17 +1488,17 @@ Controls how module files are organized in the output directory.
 
 - <span id="outputformat-default"></span>`fn default() -> OutputFormat` — [`OutputFormat`](#outputformat)
 
-##### `impl<T> Instrument for OutputFormat`
+##### `impl Instrument for OutputFormat`
 
-##### `impl<T> IntoEither for OutputFormat`
+##### `impl IntoEither for OutputFormat`
 
-##### `impl<D> OwoColorize for OutputFormat`
+##### `impl OwoColorize for OutputFormat`
 
-##### `impl<T> Pointable for OutputFormat`
+##### `impl Pointable for OutputFormat`
 
-- <span id="outputformat-align"></span>`const ALIGN: usize`
+- <span id="outputformat-const-align"></span>`const ALIGN: usize`
 
-- <span id="outputformat-init"></span>`type Init = T`
+- <span id="outputformat-type-init"></span>`type Init = T`
 
 - <span id="outputformat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1462,7 +1514,7 @@ Controls how module files are organized in the output directory.
 
 - <span id="outputformat-to-possible-value"></span>`fn to_possible_value<'a>(&self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
-##### `impl<T> WithSubscriber for OutputFormat`
+##### `impl WithSubscriber for OutputFormat`
 
 ### `Cargo`
 
@@ -1471,6 +1523,8 @@ enum Cargo {
     DocsMd(Cli),
 }
 ```
+
+*Defined in `src/lib.rs:60-64`*
 
 Cargo wrapper for subcommand invocation.
 
@@ -1505,19 +1559,19 @@ This wrapper handles that by making `docs-md` a subcommand that contains the rea
 
 - <span id="cargo-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut<'b>(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-##### `impl<T> Instrument for Cargo`
+##### `impl Instrument for Cargo`
 
-##### `impl<T> IntoEither for Cargo`
+##### `impl IntoEither for Cargo`
 
-##### `impl<D> OwoColorize for Cargo`
+##### `impl OwoColorize for Cargo`
 
 ##### `impl Parser for Cargo`
 
-##### `impl<T> Pointable for Cargo`
+##### `impl Pointable for Cargo`
 
-- <span id="cargo-align"></span>`const ALIGN: usize`
+- <span id="cargo-const-align"></span>`const ALIGN: usize`
 
-- <span id="cargo-init"></span>`type Init = T`
+- <span id="cargo-type-init"></span>`type Init = T`
 
 - <span id="cargo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1535,7 +1589,7 @@ This wrapper handles that by making `docs-md` a subcommand that contains the rea
 
 - <span id="cargo-has-subcommand"></span>`fn has_subcommand(__clap_name: &str) -> bool`
 
-##### `impl<T> WithSubscriber for Cargo`
+##### `impl WithSubscriber for Cargo`
 
 ### `Command`
 
@@ -1544,6 +1598,8 @@ enum Command {
     Docs(DocsArgs),
 }
 ```
+
+*Defined in `src/lib.rs:102-119`*
 
 Available subcommands
 
@@ -1574,17 +1630,17 @@ Available subcommands
 
 - <span id="command-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut<'b>(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-##### `impl<T> Instrument for Command`
+##### `impl Instrument for Command`
 
-##### `impl<T> IntoEither for Command`
+##### `impl IntoEither for Command`
 
-##### `impl<D> OwoColorize for Command`
+##### `impl OwoColorize for Command`
 
-##### `impl<T> Pointable for Command`
+##### `impl Pointable for Command`
 
-- <span id="command-align"></span>`const ALIGN: usize`
+- <span id="command-const-align"></span>`const ALIGN: usize`
 
-- <span id="command-init"></span>`type Init = T`
+- <span id="command-type-init"></span>`type Init = T`
 
 - <span id="command-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1602,7 +1658,7 @@ Available subcommands
 
 - <span id="command-has-subcommand"></span>`fn has_subcommand(__clap_name: &str) -> bool`
 
-##### `impl<T> WithSubscriber for Command`
+##### `impl WithSubscriber for Command`
 
 ### `CliOutputFormat`
 
@@ -1612,6 +1668,8 @@ enum CliOutputFormat {
     Nested,
 }
 ```
+
+*Defined in `src/lib.rs:303-310`*
 
 CLI-compatible output format enum (for clap `ValueEnum` derive).
 
@@ -1641,17 +1699,17 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 - <span id="clioutputformat-default"></span>`fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
 
-##### `impl<T> Instrument for CliOutputFormat`
+##### `impl Instrument for CliOutputFormat`
 
-##### `impl<T> IntoEither for CliOutputFormat`
+##### `impl IntoEither for CliOutputFormat`
 
-##### `impl<D> OwoColorize for CliOutputFormat`
+##### `impl OwoColorize for CliOutputFormat`
 
-##### `impl<T> Pointable for CliOutputFormat`
+##### `impl Pointable for CliOutputFormat`
 
-- <span id="clioutputformat-align"></span>`const ALIGN: usize`
+- <span id="clioutputformat-const-align"></span>`const ALIGN: usize`
 
-- <span id="clioutputformat-init"></span>`type Init = T`
+- <span id="clioutputformat-type-init"></span>`type Init = T`
 
 - <span id="clioutputformat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -1667,9 +1725,11 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 - <span id="clioutputformat-to-possible-value"></span>`fn to_possible_value<'a>(&self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
-##### `impl<T> WithSubscriber for CliOutputFormat`
+##### `impl WithSubscriber for CliOutputFormat`
 
 ## Functions
+
+*Defined in `src/lib.rs:27`*
 
 ## Type Aliases
 
@@ -1678,6 +1738,8 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 ```rust
 type Args = GenerateArgs;
 ```
+
+*Defined in `src/lib.rs:299`*
 
 Backwards-compatible type alias for existing code.
 

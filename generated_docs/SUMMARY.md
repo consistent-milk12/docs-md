@@ -117,6 +117,7 @@
     - [context](cargo_docs_md/generator/context/index.md)
     - [doc_links](cargo_docs_md/generator/doc_links/index.md)
     - [flat](cargo_docs_md/generator/flat/index.md)
+    - [impl_category](cargo_docs_md/generator/impl_category/index.md)
     - [impls](cargo_docs_md/generator/impls/index.md)
     - [items](cargo_docs_md/generator/items/index.md)
     - [module](cargo_docs_md/generator/module/index.md)

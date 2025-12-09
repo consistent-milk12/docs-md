@@ -65,6 +65,8 @@ explicitly want to panic or when we want to return an error for overflow.
 trait U8 { ... }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:48-50`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L48-L50)*
+
 #### Required Methods
 
 - `fn as_usize(self) -> usize`
@@ -78,6 +80,8 @@ trait U8 { ... }
 ```rust
 trait U16 { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:58-62`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L58-L62)*
 
 #### Required Methods
 
@@ -96,6 +100,8 @@ trait U16 { ... }
 ```rust
 trait U32 { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:78-83`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L78-L83)*
 
 #### Required Methods
 
@@ -116,6 +122,8 @@ trait U32 { ... }
 ```rust
 trait U64 { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:110-116`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L110-L116)*
 
 #### Required Methods
 
@@ -139,6 +147,8 @@ trait U64 { ... }
 trait I32 { ... }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:147-151`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L147-L151)*
+
 #### Required Methods
 
 - `fn as_usize(self) -> usize`
@@ -156,6 +166,8 @@ trait I32 { ... }
 ```rust
 trait Usize { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:174-179`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L174-L179)*
 
 #### Required Methods
 
@@ -176,6 +188,8 @@ trait Usize { ... }
 ```rust
 trait Pointer { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/int.rs:238-240`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/int.rs#L238-L240)*
 
 #### Required Methods
 

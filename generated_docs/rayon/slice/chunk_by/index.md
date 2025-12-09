@@ -10,7 +10,7 @@
 |------|------|-------------|
 | [`ChunkByProducer`](#chunkbyproducer) | struct |  |
 | [`ChunkBy`](#chunkby) | struct | Parallel iterator over slice in (non-overlapping) chunks separated by a predicate. |
-| [`ChunkByMut`](#chunkbymut) | struct | Parallel iterator over slice in (non-overlapping) mutable chunks |
+| [`ChunkByMut`](#chunkbymut) | struct | Parallel iterator over slice in (non-overlapping) mutable chunks separated by a predicate. |
 | [`ChunkBySlice`](#chunkbyslice) | trait |  |
 
 ## Structs
@@ -26,15 +26,17 @@ struct ChunkByProducer<'p, T, Slice, Pred> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:45-50`](../../../../.source_1765210505/rayon-1.11.0/src/slice/chunk_by.rs#L45-L50)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for ChunkByProducer<'p, T, Slice, Pred>`
 
 ##### `impl<T> Pointable for ChunkByProducer<'p, T, Slice, Pred>`
 
-- <span id="chunkbyproducer-align"></span>`const ALIGN: usize`
+- <span id="chunkbyproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunkbyproducer-init"></span>`type Init = T`
+- <span id="chunkbyproducer-type-init"></span>`type Init = T`
 
 - <span id="chunkbyproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -46,7 +48,7 @@ struct ChunkByProducer<'p, T, Slice, Pred> {
 
 ##### `impl<T, Slice, Pred> UnindexedProducer for ChunkByProducer<'_, T, Slice, Pred>`
 
-- <span id="chunkbyproducer-item"></span>`type Item = Slice`
+- <span id="chunkbyproducer-type-item"></span>`type Item = Slice`
 
 - <span id="chunkbyproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
@@ -60,6 +62,8 @@ struct ChunkBy<'data, T, P> {
     slice: &'data [T],
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:142-145`](../../../../.source_1765210505/rayon-1.11.0/src/slice/chunk_by.rs#L142-L145)*
 
 Parallel iterator over slice in (non-overlapping) chunks separated by a predicate.
 
@@ -84,23 +88,23 @@ This struct is created by the `par_chunk_by` method on `&[T]`.
 
 ##### `impl<T> IntoParallelIterator for ChunkBy<'data, T, P>`
 
-- <span id="chunkby-iter"></span>`type Iter = T`
+- <span id="chunkby-type-iter"></span>`type Iter = T`
 
-- <span id="chunkby-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunkby-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunkby-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T, P> ParallelIterator for ChunkBy<'data, T, P>`
 
-- <span id="chunkby-item"></span>`type Item = &'data [T]`
+- <span id="chunkby-type-item"></span>`type Item = &'data [T]`
 
 - <span id="chunkby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for ChunkBy<'data, T, P>`
 
-- <span id="chunkby-align"></span>`const ALIGN: usize`
+- <span id="chunkby-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunkby-init"></span>`type Init = T`
+- <span id="chunkby-type-init"></span>`type Init = T`
 
 - <span id="chunkby-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -118,6 +122,8 @@ struct ChunkByMut<'data, T, P> {
     slice: &'data mut [T],
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:199-202`](../../../../.source_1765210505/rayon-1.11.0/src/slice/chunk_by.rs#L199-L202)*
 
 Parallel iterator over slice in (non-overlapping) mutable chunks
 separated by a predicate.
@@ -139,23 +145,23 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 
 ##### `impl<T> IntoParallelIterator for ChunkByMut<'data, T, P>`
 
-- <span id="chunkbymut-iter"></span>`type Iter = T`
+- <span id="chunkbymut-type-iter"></span>`type Iter = T`
 
-- <span id="chunkbymut-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="chunkbymut-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="chunkbymut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T, P> ParallelIterator for ChunkByMut<'data, T, P>`
 
-- <span id="chunkbymut-item"></span>`type Item = &'data mut [T]`
+- <span id="chunkbymut-type-item"></span>`type Item = &'data mut [T]`
 
 - <span id="chunkbymut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for ChunkByMut<'data, T, P>`
 
-- <span id="chunkbymut-align"></span>`const ALIGN: usize`
+- <span id="chunkbymut-const-align"></span>`const ALIGN: usize`
 
-- <span id="chunkbymut-init"></span>`type Init = T`
+- <span id="chunkbymut-type-init"></span>`type Init = T`
 
 - <span id="chunkbymut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -172,6 +178,8 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 ```rust
 trait ChunkBySlice<T>: AsRef<[T]> + Default + Send { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/slice/chunk_by.rs:6-23`](../../../../.source_1765210505/rayon-1.11.0/src/slice/chunk_by.rs#L6-L23)*
 
 #### Required Methods
 

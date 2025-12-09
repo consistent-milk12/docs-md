@@ -24,8 +24,10 @@ struct MinLen<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/len.rs:10-13`](../../../../.source_1765210505/rayon-1.11.0/src/iter/len.rs#L10-L13)*
+
 `MinLen` is an iterator that imposes a minimum length on iterator splits.
-This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -36,7 +38,7 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I: clone::Clone> Clone for MinLen<I>`
 
-- <span id="minlen-clone"></span>`fn clone(&self) -> MinLen<I>` — [`MinLen`](../index.md)
+- <span id="minlen-clone"></span>`fn clone(&self) -> MinLen<I>` — [`MinLen`](#minlen)
 
 ##### `impl<I: fmt::Debug> Debug for MinLen<I>`
 
@@ -54,15 +56,15 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<T> IntoParallelIterator for MinLen<I>`
 
-- <span id="minlen-iter"></span>`type Iter = T`
+- <span id="minlen-type-iter"></span>`type Iter = T`
 
-- <span id="minlen-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="minlen-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="minlen-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for MinLen<I>`
 
-- <span id="minlen-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="minlen-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="minlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -70,9 +72,9 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<T> Pointable for MinLen<I>`
 
-- <span id="minlen-align"></span>`const ALIGN: usize`
+- <span id="minlen-const-align"></span>`const ALIGN: usize`
 
-- <span id="minlen-init"></span>`type Init = T`
+- <span id="minlen-type-init"></span>`type Init = T`
 
 - <span id="minlen-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -91,15 +93,17 @@ struct MinLenProducer<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/len.rs:88-91`](../../../../.source_1765210505/rayon-1.11.0/src/iter/len.rs#L88-L91)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for MinLenProducer<P>`
 
 ##### `impl<T> Pointable for MinLenProducer<P>`
 
-- <span id="minlenproducer-align"></span>`const ALIGN: usize`
+- <span id="minlenproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="minlenproducer-init"></span>`type Init = T`
+- <span id="minlenproducer-type-init"></span>`type Init = T`
 
 - <span id="minlenproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -111,9 +115,9 @@ struct MinLenProducer<P> {
 
 ##### `impl<P> Producer for MinLenProducer<P>`
 
-- <span id="minlenproducer-item"></span>`type Item = <P as Producer>::Item`
+- <span id="minlenproducer-type-item"></span>`type Item = <P as Producer>::Item`
 
-- <span id="minlenproducer-intoiter"></span>`type IntoIter = <P as Producer>::IntoIter`
+- <span id="minlenproducer-type-intoiter"></span>`type IntoIter = <P as Producer>::IntoIter`
 
 - <span id="minlenproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
@@ -134,8 +138,10 @@ struct MaxLen<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/len.rs:140-143`](../../../../.source_1765210505/rayon-1.11.0/src/iter/len.rs#L140-L143)*
+
 `MaxLen` is an iterator that imposes a maximum length on iterator splits.
-This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -146,7 +152,7 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I: clone::Clone> Clone for MaxLen<I>`
 
-- <span id="maxlen-clone"></span>`fn clone(&self) -> MaxLen<I>` — [`MaxLen`](../index.md)
+- <span id="maxlen-clone"></span>`fn clone(&self) -> MaxLen<I>` — [`MaxLen`](#maxlen)
 
 ##### `impl<I: fmt::Debug> Debug for MaxLen<I>`
 
@@ -164,15 +170,15 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<T> IntoParallelIterator for MaxLen<I>`
 
-- <span id="maxlen-iter"></span>`type Iter = T`
+- <span id="maxlen-type-iter"></span>`type Iter = T`
 
-- <span id="maxlen-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="maxlen-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="maxlen-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for MaxLen<I>`
 
-- <span id="maxlen-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="maxlen-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="maxlen-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -180,9 +186,9 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<T> Pointable for MaxLen<I>`
 
-- <span id="maxlen-align"></span>`const ALIGN: usize`
+- <span id="maxlen-const-align"></span>`const ALIGN: usize`
 
-- <span id="maxlen-init"></span>`type Init = T`
+- <span id="maxlen-type-init"></span>`type Init = T`
 
 - <span id="maxlen-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -201,15 +207,17 @@ struct MaxLenProducer<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/len.rs:218-221`](../../../../.source_1765210505/rayon-1.11.0/src/iter/len.rs#L218-L221)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for MaxLenProducer<P>`
 
 ##### `impl<T> Pointable for MaxLenProducer<P>`
 
-- <span id="maxlenproducer-align"></span>`const ALIGN: usize`
+- <span id="maxlenproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="maxlenproducer-init"></span>`type Init = T`
+- <span id="maxlenproducer-type-init"></span>`type Init = T`
 
 - <span id="maxlenproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -221,9 +229,9 @@ struct MaxLenProducer<P> {
 
 ##### `impl<P> Producer for MaxLenProducer<P>`
 
-- <span id="maxlenproducer-item"></span>`type Item = <P as Producer>::Item`
+- <span id="maxlenproducer-type-item"></span>`type Item = <P as Producer>::Item`
 
-- <span id="maxlenproducer-intoiter"></span>`type IntoIter = <P as Producer>::IntoIter`
+- <span id="maxlenproducer-type-intoiter"></span>`type IntoIter = <P as Producer>::IntoIter`
 
 - <span id="maxlenproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 

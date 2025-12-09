@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`FoldChunks`](#foldchunks) | struct | `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a |
+| [`FoldChunks`](#foldchunks) | struct | `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a function over them, producing a single value for each group. |
 
 ## Structs
 
@@ -23,10 +23,12 @@ struct FoldChunks<I, ID, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold_chunks.rs:15-20`](../../../../.source_1765210505/rayon-1.11.0/src/iter/fold_chunks.rs#L15-L20)*
+
 `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
 
-This struct is created by the `fold_chunks()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `fold_chunks()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -37,7 +39,7 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 ##### `impl<I: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-clone"></span>`fn clone(&self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](../index.md)
+- <span id="foldchunks-clone"></span>`fn clone(&self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](#foldchunks)
 
 ##### `impl<I: Debug, ID, F> Debug for FoldChunks<I, ID, F>`
 
@@ -55,15 +57,15 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 ##### `impl<T> IntoParallelIterator for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-iter"></span>`type Iter = T`
+- <span id="foldchunks-type-iter"></span>`type Iter = T`
 
-- <span id="foldchunks-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldchunks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldchunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, ID, U, F> ParallelIterator for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-item"></span>`type Item = U`
+- <span id="foldchunks-type-item"></span>`type Item = U`
 
 - <span id="foldchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -71,9 +73,9 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 ##### `impl<T> Pointable for FoldChunks<I, ID, F>`
 
-- <span id="foldchunks-align"></span>`const ALIGN: usize`
+- <span id="foldchunks-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldchunks-init"></span>`type Init = T`
+- <span id="foldchunks-type-init"></span>`type Init = T`
 
 - <span id="foldchunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

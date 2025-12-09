@@ -23,6 +23,8 @@ struct TryReduceWithConsumer<'r, R> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_reduce_with.rs:22-25`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_reduce_with.rs#L22-L25)*
+
 #### Trait Implementations
 
 ##### `impl<'r, R> Clone for TryReduceWithConsumer<'r, R>`
@@ -31,11 +33,11 @@ struct TryReduceWithConsumer<'r, R> {
 
 ##### `impl<'r, R, T> Consumer for TryReduceWithConsumer<'r, R>`
 
-- <span id="tryreducewithconsumer-folder"></span>`type Folder = TryReduceWithFolder<'r, R, T>`
+- <span id="tryreducewithconsumer-type-folder"></span>`type Folder = TryReduceWithFolder<'r, R, T>`
 
-- <span id="tryreducewithconsumer-reducer"></span>`type Reducer = TryReduceWithConsumer<'r, R>`
+- <span id="tryreducewithconsumer-type-reducer"></span>`type Reducer = TryReduceWithConsumer<'r, R>`
 
-- <span id="tryreducewithconsumer-result"></span>`type Result = Option<T>`
+- <span id="tryreducewithconsumer-type-result"></span>`type Result = Option<T>`
 
 - <span id="tryreducewithconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
@@ -49,9 +51,9 @@ struct TryReduceWithConsumer<'r, R> {
 
 ##### `impl<T> Pointable for TryReduceWithConsumer<'r, R>`
 
-- <span id="tryreducewithconsumer-align"></span>`const ALIGN: usize`
+- <span id="tryreducewithconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryreducewithconsumer-init"></span>`type Init = T`
+- <span id="tryreducewithconsumer-type-init"></span>`type Init = T`
 
 - <span id="tryreducewithconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -81,11 +83,13 @@ struct TryReduceWithFolder<'r, R, T: Try> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/try_reduce_with.rs:92-96`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_reduce_with.rs#L92-L96)*
+
 #### Trait Implementations
 
 ##### `impl<'r, R, T> Folder for TryReduceWithFolder<'r, R, T>`
 
-- <span id="tryreducewithfolder-result"></span>`type Result = Option<T>`
+- <span id="tryreducewithfolder-type-result"></span>`type Result = Option<T>`
 
 - <span id="tryreducewithfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -97,9 +101,9 @@ struct TryReduceWithFolder<'r, R, T: Try> {
 
 ##### `impl<T> Pointable for TryReduceWithFolder<'r, R, T>`
 
-- <span id="tryreducewithfolder-align"></span>`const ALIGN: usize`
+- <span id="tryreducewithfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="tryreducewithfolder-init"></span>`type Init = T`
+- <span id="tryreducewithfolder-type-init"></span>`type Init = T`
 
 - <span id="tryreducewithfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -120,4 +124,6 @@ where
     R: Fn(<T as >::Output, <T as >::Output) -> T + Sync,
     T: Try + Send
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/try_reduce_with.rs:8-20`](../../../../.source_1765210505/rayon-1.11.0/src/iter/try_reduce_with.rs#L8-L20)*
 

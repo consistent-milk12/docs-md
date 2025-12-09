@@ -148,7 +148,7 @@ let b = ab - Flags::A;
 let c = !ab;
 ```
 
-See the docs for the [`Flags`](#flags) trait for more details on operators and how they behave.
+See the docs for the [`Flags`](traits/index.md) trait for more details on operators and how they behave.
 
 # Formatting and parsing
 
@@ -258,20 +258,20 @@ The result of `Flags::A ^ Flags::B` is `0b0000_0010`, which doesn't correspond t
 
 ## Quick Reference
 
-| Item                                 | Kind   | Description                                                                |
-| ------------------------------------ | ------ | -------------------------------------------------------------------------- |
-| [`iter`](#iter)                      | mod    | Yield the bits of a source flags value in a set of contained flags values. |
-| [`parser`](#parser)                  | mod    | Parsing flags from text.                                                   |
-| [`traits`](#traits)                  | mod    |                                                                            |
-| [`public`](#public)                  | mod    | Generate the user-facing flags type.                                       |
-| [`internal`](#internal)              | mod    | Generate the internal `bitflags`-facing flags type.                        |
-| [`external`](#external)              | mod    | Conditional trait implementations for external libraries.                  |
-| [`__private`](#__private)            | mod    |                                                                            |
-| [`Flag`](#flag)                      | struct |                                                                            |
-| [`Bits`](#bits)                      | trait  |                                                                            |
-| [`Flags`](#flags)                    | trait  |                                                                            |
-| [`bitflags!`](#bitflags)             | macro  | Generate a flags type.                                                     |
-| [`bitflags_match!`](#bitflags_match) | macro  | A macro that matches flags values, similar to Rust's `match` statement.    |
+| Item | Kind | Description |
+|------|------|-------------|
+| [`iter`](#iter) | mod | Yield the bits of a source flags value in a set of contained flags values. |
+| [`parser`](#parser) | mod | Parsing flags from text. |
+| [`traits`](#traits) | mod |  |
+| [`public`](#public) | mod | Generate the user-facing flags type. |
+| [`internal`](#internal) | mod | Generate the internal `bitflags`-facing flags type. |
+| [`external`](#external) | mod | Conditional trait implementations for external libraries. |
+| [`__private`](#__private) | mod |  |
+| [`Flag`](#flag) | struct |  |
+| [`Bits`](#bits) | trait |  |
+| [`Flags`](#flags) | trait |  |
+| [`bitflags!`](#bitflags) | macro | Generate a flags type. |
+| [`bitflags_match!`](#bitflags_match) | macro | A macro that matches flags values, similar to Rust's `match` statement. |
 
 ## Modules
 
@@ -293,6 +293,8 @@ struct Flag<B> {
     value: B,
 }
 ```
+
+*Defined in [`bitflags-2.10.0/src/traits.rs:15-18`](../../.source_1765210505/bitflags-2.10.0/src/traits.rs#L15-L18)*
 
 A defined flags value that may be named or unnamed.
 
@@ -322,6 +324,8 @@ A defined flags value that may be named or unnamed.
 trait Bits: Clone + Copy + PartialEq + BitAnd<Output = Self> + BitOr<Output = Self> + BitXor<Output = Self> + Not<Output = Self> + Sized + 'static { ... }
 ```
 
+*Defined in [`bitflags-2.10.0/src/traits.rs:346-362`](../../.source_1765210505/bitflags-2.10.0/src/traits.rs#L346-L362)*
+
 A bits type that can be used as storage for a flags type.
 
 #### Associated Constants
@@ -350,6 +354,8 @@ A bits type that can be used as storage for a flags type.
 ```rust
 trait Flags: Sized + 'static { ... }
 ```
+
+*Defined in [`bitflags-2.10.0/src/traits.rs:132-341`](../../.source_1765210505/bitflags-2.10.0/src/traits.rs#L132-L341)*
 
 A set of defined flags using a bits type as storage.
 
@@ -537,6 +543,8 @@ assert_eq!(3, defined_flags::<MyFlags>());
 
 ### `bitflags!`
 
+*Defined in [`bitflags-2.10.0/src/lib.rs:456-597`](../../.source_1765210505/bitflags-2.10.0/src/lib.rs#L456-L597)*
+
 Generate a flags type.
 
 # `struct` mode
@@ -665,6 +673,8 @@ bitflags! {
 
 ### `bitflags_match!`
 
+*Defined in [`bitflags-2.10.0/src/lib.rs:817-827`](../../.source_1765210505/bitflags-2.10.0/src/lib.rs#L817-L827)*
+
 A macro that matches flags values, similar to Rust's `match` statement.
 
 In a regular `match` statement, the syntax `Flag::A | Flag::B` is interpreted as an or-pattern,
@@ -721,3 +731,4 @@ and each pattern. This allows for correct matching of bitflag combinations, whic
 with a regular match expression due to the way bitflags are implemented.
 
 Patterns are evaluated in the order they appear in the macro.
+

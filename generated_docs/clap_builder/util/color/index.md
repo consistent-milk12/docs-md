@@ -22,6 +22,8 @@ enum ColorChoice {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/util/color.rs:6-58`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/color.rs#L6-L58)*
+
 Represents the color preferences for program output
 
 #### Variants
@@ -82,13 +84,13 @@ Represents the color preferences for program output
 
 #### Implementations
 
-- <span id="colorchoice-possible-values"></span>`fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](../../builder/index.md)
+- <span id="colorchoice-possible-values"></span>`fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](../../builder/possible_value/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ColorChoice`
 
-- <span id="colorchoice-clone"></span>`fn clone(&self) -> ColorChoice` — [`ColorChoice`](../../index.md)
+- <span id="colorchoice-clone"></span>`fn clone(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 ##### `impl Copy for ColorChoice`
 
@@ -98,7 +100,7 @@ Represents the color preferences for program output
 
 ##### `impl Default for ColorChoice`
 
-- <span id="colorchoice-default"></span>`fn default() -> ColorChoice` — [`ColorChoice`](../../index.md)
+- <span id="colorchoice-default"></span>`fn default() -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 ##### `impl Display for ColorChoice`
 
@@ -108,17 +110,17 @@ Represents the color preferences for program output
 
 ##### `impl FromStr for ColorChoice`
 
-- <span id="colorchoice-err"></span>`type Err = String`
+- <span id="colorchoice-type-err"></span>`type Err = String`
 
 - <span id="colorchoice-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl PartialEq for ColorChoice`
 
-- <span id="colorchoice-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](../../index.md)
+- <span id="colorchoice-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
 
 ##### `impl StructuralPartialEq for ColorChoice`
 
-##### `impl<T> ToString for ColorChoice`
+##### `impl ToString for ColorChoice`
 
 - <span id="colorchoice-to-string"></span>`fn to_string(&self) -> String`
 
@@ -126,5 +128,5 @@ Represents the color preferences for program output
 
 - <span id="colorchoice-value-variants"></span>`fn value_variants<'a>() -> &'a [Self]`
 
-- <span id="colorchoice-to-possible-value"></span>`fn to_possible_value(&self) -> Option<PossibleValue>` — [`PossibleValue`](../../builder/index.md)
+- <span id="colorchoice-to-possible-value"></span>`fn to_possible_value(&self) -> Option<PossibleValue>` — [`PossibleValue`](../../builder/possible_value/index.md)
 

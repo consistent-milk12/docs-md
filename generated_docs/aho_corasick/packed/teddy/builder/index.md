@@ -11,7 +11,7 @@
 | [`x86_64`](#x86_64) | mod |  |
 | [`Builder`](#builder) | struct | A builder for constructing a Teddy matcher. |
 | [`Searcher`](#searcher) | struct | A searcher that dispatches to one of several possible Teddy variants. |
-| [`SearcherT`](#searchert) | trait | A trait that provides dynamic dispatch over the different possible Teddy |
+| [`SearcherT`](#searchert) | trait | A trait that provides dynamic dispatch over the different possible Teddy variants on the same algorithm. |
 
 ## Modules
 
@@ -28,6 +28,8 @@ struct Builder {
     heuristic_pattern_limits: bool,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:17-34`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L17-L34)*
 
 A builder for constructing a Teddy matcher.
 
@@ -98,6 +100,8 @@ struct Searcher {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:322-337`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L322-L337)*
+
 A searcher that dispatches to one of several possible Teddy variants.
 
 #### Fields
@@ -124,7 +128,7 @@ A searcher that dispatches to one of several possible Teddy variants.
 
 #### Implementations
 
-- <span id="searcher-find"></span>`fn find(&self, haystack: &[u8], at: usize) -> Option<crate::Match>` — [`Match`](../../../index.md)
+- <span id="searcher-find"></span>`fn find(&self, haystack: &[u8], at: usize) -> Option<crate::Match>` — [`Match`](../../../util/search/index.md)
 
 - <span id="searcher-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -147,6 +151,8 @@ A searcher that dispatches to one of several possible Teddy variants.
 ```rust
 trait SearcherT: Debug + Send + Sync + UnwindSafe + RefUnwindSafe + 'static { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/teddy/builder.rs:416-448`](../../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/teddy/builder.rs#L416-L448)*
 
 A trait that provides dynamic dispatch over the different possible Teddy
 variants on the same algorithm.

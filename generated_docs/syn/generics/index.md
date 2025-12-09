@@ -44,7 +44,7 @@
 |------|------|-------------|
 | [`parsing`](#parsing) | mod |  |
 | [`printing`](#printing) | mod |  |
-| [`Generics`](#generics) | struct | Lifetimes and type parameters attached to a declaration of a function |
+| [`Generics`](#generics) | struct | Lifetimes and type parameters attached to a declaration of a function, enum, trait, etc. |
 | [`LifetimeParam`](#lifetimeparam) | struct | A lifetime definition: `'a: 'b + 'c + 'd`. |
 | [`TypeParam`](#typeparam) | struct | A generic type parameter: `T: Into<String>`. |
 | [`ConstParam`](#constparam) | struct | A const generic parameter: `const LENGTH: usize`. |
@@ -59,13 +59,13 @@
 | [`Turbofish`](#turbofish) | struct | Returned by `TypeGenerics::as_turbofish`. |
 | [`BoundLifetimes`](#boundlifetimes) | struct | A set of bound lifetimes: `for<'a, 'b, 'c>`. |
 | [`TraitBound`](#traitbound) | struct | A trait used as a bound on a type parameter. |
-| [`PreciseCapture`](#precisecapture) | struct | Precise capturing bound: the 'use&lt;&hellip;&gt;' in `impl Trait + |
-| [`WhereClause`](#whereclause) | struct | A `where` clause in a definition: `where T: Deserialize<'de>, D |
+| [`PreciseCapture`](#precisecapture) | struct | Precise capturing bound: the 'use&lt;&hellip;&gt;' in `impl Trait + use<'a, T>`. |
+| [`WhereClause`](#whereclause) | struct | A `where` clause in a definition: `where T: Deserialize<'de>, D: 'static`. |
 | [`PredicateLifetime`](#predicatelifetime) | struct | A lifetime predicate in a `where` clause: `'a: 'b + 'c`. |
 | [`PredicateType`](#predicatetype) | struct | A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`. |
-| [`GenericParam`](#genericparam) | enum | A generic type parameter, lifetime, or const generic: `T: Into<String>` |
+| [`GenericParam`](#genericparam) | enum | A generic type parameter, lifetime, or const generic: `T: Into<String>`, `'a: 'b`, `const LEN: usize`. |
 | [`TypeParamBound`](#typeparambound) | enum | A trait or lifetime used as a bound on a type parameter. |
-| [`TraitBoundModifier`](#traitboundmodifier) | enum | A modifier on a trait bound, currently only used for the `?` in |
+| [`TraitBoundModifier`](#traitboundmodifier) | enum | A modifier on a trait bound, currently only used for the `?` in `?Sized`. |
 | [`CapturedParam`](#capturedparam) | enum | Single parameter in a precise capturing bound. |
 | [`WherePredicate`](#wherepredicate) | enum | A single predicate in a `where` clause: `T: Deserialize<'de>`. |
 | [`generics_wrapper_impls!`](#generics_wrapper_impls) | macro |  |
@@ -87,6 +87,8 @@ struct Generics {
     pub where_clause: Option<WhereClause>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:15-32`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L15-L32)*
 
 Lifetimes and type parameters attached to a declaration of a function,
 enum, trait, etc.
@@ -111,9 +113,9 @@ grammar, there may be other tokens in between these two things.
 
 - <span id="generics-const-params-mut"></span>`fn const_params_mut(&mut self) -> ConstParamsMut<'_>` — [`ConstParamsMut`](#constparamsmut)
 
-- <span id="generics-make-where-clause"></span>`fn make_where_clause(&mut self) -> &mut WhereClause` — [`WhereClause`](../index.md)
+- <span id="generics-make-where-clause"></span>`fn make_where_clause(&mut self) -> &mut WhereClause` — [`WhereClause`](#whereclause)
 
-- <span id="generics-split-for-impl"></span>`fn split_for_impl(&self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](../index.md), [`TypeGenerics`](../index.md), [`WhereClause`](../index.md)
+- <span id="generics-split-for-impl"></span>`fn split_for_impl(&self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](#implgenerics), [`TypeGenerics`](#typegenerics), [`WhereClause`](#whereclause)
 
 #### Trait Implementations
 
@@ -137,15 +139,15 @@ grammar, there may be other tokens in between these two things.
 
 ##### `impl Parse for crate::generics::Generics`
 
-- <span id="crategenericsgenerics-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericsgenerics-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Generics`
 
 - <span id="crategenerics-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Generics`
+##### `impl Sealed for Generics`
 
-##### `impl<T> Spanned for Generics`
+##### `impl Spanned for Generics`
 
 - <span id="generics-span"></span>`fn span(&self) -> Span`
 
@@ -164,11 +166,13 @@ struct LifetimeParam {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:56-65`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L56-L65)*
+
 A lifetime definition: `'a: 'b + 'c + 'd`.
 
 #### Implementations
 
-- <span id="lifetimeparam-new"></span>`fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](../index.md)
+- <span id="lifetimeparam-new"></span>`fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](../lifetime/index.md)
 
 #### Trait Implementations
 
@@ -188,15 +192,15 @@ A lifetime definition: `'a: 'b + 'c + 'd`.
 
 ##### `impl Parse for crate::generics::LifetimeParam`
 
-- <span id="crategenericslifetimeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericslifetimeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::LifetimeParam`
 
 - <span id="cratelifetimeparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LifetimeParam`
+##### `impl Sealed for LifetimeParam`
 
-##### `impl<T> Spanned for LifetimeParam`
+##### `impl Spanned for LifetimeParam`
 
 - <span id="lifetimeparam-span"></span>`fn span(&self) -> Span`
 
@@ -216,6 +220,8 @@ struct TypeParam {
     pub default: Option<crate::ty::Type>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:67-78`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L67-L78)*
 
 A generic type parameter: `T: Into<String>`.
 
@@ -237,15 +243,15 @@ A generic type parameter: `T: Into<String>`.
 
 ##### `impl Parse for crate::generics::TypeParam`
 
-- <span id="crategenericstypeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstypeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::TypeParam`
 
 - <span id="cratetypeparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeParam`
+##### `impl Sealed for TypeParam`
 
-##### `impl<T> Spanned for TypeParam`
+##### `impl Spanned for TypeParam`
 
 - <span id="typeparam-span"></span>`fn span(&self) -> Span`
 
@@ -267,6 +273,8 @@ struct ConstParam {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:80-92`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L80-L92)*
+
 A const generic parameter: `const LENGTH: usize`.
 
 #### Trait Implementations
@@ -287,15 +295,15 @@ A const generic parameter: `const LENGTH: usize`.
 
 ##### `impl Parse for crate::generics::ConstParam`
 
-- <span id="crategenericsconstparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericsconstparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::ConstParam`
 
 - <span id="crateconstparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ConstParam`
+##### `impl Sealed for ConstParam`
 
-##### `impl<T> Spanned for ConstParam`
+##### `impl Spanned for ConstParam`
 
 - <span id="constparam-span"></span>`fn span(&self) -> Span`
 
@@ -309,19 +317,21 @@ A const generic parameter: `const LENGTH: usize`.
 struct Lifetimes<'a>(crate::punctuated::Iter<'a, GenericParam>);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:185`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L185)*
+
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for Lifetimes<'a>`
+##### `impl IntoIterator for Lifetimes<'a>`
 
-- <span id="lifetimes-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="lifetimes-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="lifetimes-intoiter"></span>`type IntoIter = I`
+- <span id="lifetimes-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="lifetimes-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Lifetimes<'a>`
+##### `impl Iterator for Lifetimes<'a>`
 
-- <span id="lifetimes-item"></span>`type Item = &'a LifetimeParam`
+- <span id="lifetimes-type-item"></span>`type Item = &'a LifetimeParam`
 
 - <span id="lifetimes-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -331,19 +341,21 @@ struct Lifetimes<'a>(crate::punctuated::Iter<'a, GenericParam>);
 struct LifetimesMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:199`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L199)*
+
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for LifetimesMut<'a>`
+##### `impl IntoIterator for LifetimesMut<'a>`
 
-- <span id="lifetimesmut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="lifetimesmut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="lifetimesmut-intoiter"></span>`type IntoIter = I`
+- <span id="lifetimesmut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="lifetimesmut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for LifetimesMut<'a>`
+##### `impl Iterator for LifetimesMut<'a>`
 
-- <span id="lifetimesmut-item"></span>`type Item = &'a mut LifetimeParam`
+- <span id="lifetimesmut-type-item"></span>`type Item = &'a mut LifetimeParam`
 
 - <span id="lifetimesmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -353,19 +365,21 @@ struct LifetimesMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 struct TypeParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:213`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L213)*
+
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for TypeParams<'a>`
+##### `impl IntoIterator for TypeParams<'a>`
 
-- <span id="typeparams-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="typeparams-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="typeparams-intoiter"></span>`type IntoIter = I`
+- <span id="typeparams-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="typeparams-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for TypeParams<'a>`
+##### `impl Iterator for TypeParams<'a>`
 
-- <span id="typeparams-item"></span>`type Item = &'a TypeParam`
+- <span id="typeparams-type-item"></span>`type Item = &'a TypeParam`
 
 - <span id="typeparams-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -375,19 +389,21 @@ struct TypeParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 struct TypeParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:227`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L227)*
+
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for TypeParamsMut<'a>`
+##### `impl IntoIterator for TypeParamsMut<'a>`
 
-- <span id="typeparamsmut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="typeparamsmut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="typeparamsmut-intoiter"></span>`type IntoIter = I`
+- <span id="typeparamsmut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="typeparamsmut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for TypeParamsMut<'a>`
+##### `impl Iterator for TypeParamsMut<'a>`
 
-- <span id="typeparamsmut-item"></span>`type Item = &'a mut TypeParam`
+- <span id="typeparamsmut-type-item"></span>`type Item = &'a mut TypeParam`
 
 - <span id="typeparamsmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -397,19 +413,21 @@ struct TypeParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 struct ConstParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:241`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L241)*
+
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for ConstParams<'a>`
+##### `impl IntoIterator for ConstParams<'a>`
 
-- <span id="constparams-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="constparams-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="constparams-intoiter"></span>`type IntoIter = I`
+- <span id="constparams-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="constparams-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ConstParams<'a>`
+##### `impl Iterator for ConstParams<'a>`
 
-- <span id="constparams-item"></span>`type Item = &'a ConstParam`
+- <span id="constparams-type-item"></span>`type Item = &'a ConstParam`
 
 - <span id="constparams-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -419,19 +437,21 @@ struct ConstParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 struct ConstParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:255`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L255)*
+
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for ConstParamsMut<'a>`
+##### `impl IntoIterator for ConstParamsMut<'a>`
 
-- <span id="constparamsmut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="constparamsmut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="constparamsmut-intoiter"></span>`type IntoIter = I`
+- <span id="constparamsmut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="constparamsmut-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ConstParamsMut<'a>`
+##### `impl Iterator for ConstParamsMut<'a>`
 
-- <span id="constparamsmut-item"></span>`type Item = &'a mut ConstParam`
+- <span id="constparamsmut-type-item"></span>`type Item = &'a mut ConstParam`
 
 - <span id="constparamsmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -441,35 +461,37 @@ struct ConstParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 struct ImplGenerics<'a>(&'a Generics);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:275`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L275)*
+
 Returned by `Generics::split_for_impl`.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for ImplGenerics<'a>`
+##### `impl Clone for ImplGenerics<'a>`
 
 - <span id="implgenerics-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a> Debug for ImplGenerics<'a>`
+##### `impl Debug for ImplGenerics<'a>`
 
 - <span id="implgenerics-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Eq for ImplGenerics<'a>`
+##### `impl Eq for ImplGenerics<'a>`
 
-##### `impl<'a> Hash for ImplGenerics<'a>`
+##### `impl Hash for ImplGenerics<'a>`
 
 - <span id="implgenerics-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<'a> PartialEq for ImplGenerics<'a>`
+##### `impl PartialEq for ImplGenerics<'a>`
 
 - <span id="implgenerics-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for ImplGenerics<'a>`
+##### `impl Sealed for ImplGenerics<'a>`
 
-##### `impl<T> Spanned for ImplGenerics<'a>`
+##### `impl Spanned for ImplGenerics<'a>`
 
 - <span id="implgenerics-span"></span>`fn span(&self) -> Span`
 
-##### `impl<'a> ToTokens for crate::generics::ImplGenerics<'a>`
+##### `impl ToTokens for crate::generics::ImplGenerics<'a>`
 
 - <span id="crategenericsimplgenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
@@ -479,39 +501,41 @@ Returned by `Generics::split_for_impl`.
 struct TypeGenerics<'a>(&'a Generics);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:283`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L283)*
+
 Returned by `Generics::split_for_impl`.
 
 #### Implementations
 
-- <span id="typegenerics-as-turbofish"></span>`fn as_turbofish(&self) -> Turbofish<'a>` — [`Turbofish`](../index.md)
+- <span id="typegenerics-as-turbofish"></span>`fn as_turbofish(&self) -> Turbofish<'a>` — [`Turbofish`](#turbofish)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for TypeGenerics<'a>`
+##### `impl Clone for TypeGenerics<'a>`
 
 - <span id="typegenerics-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a> Debug for TypeGenerics<'a>`
+##### `impl Debug for TypeGenerics<'a>`
 
 - <span id="typegenerics-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Eq for TypeGenerics<'a>`
+##### `impl Eq for TypeGenerics<'a>`
 
-##### `impl<'a> Hash for TypeGenerics<'a>`
+##### `impl Hash for TypeGenerics<'a>`
 
 - <span id="typegenerics-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<'a> PartialEq for TypeGenerics<'a>`
+##### `impl PartialEq for TypeGenerics<'a>`
 
 - <span id="typegenerics-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeGenerics<'a>`
+##### `impl Sealed for TypeGenerics<'a>`
 
-##### `impl<T> Spanned for TypeGenerics<'a>`
+##### `impl Spanned for TypeGenerics<'a>`
 
 - <span id="typegenerics-span"></span>`fn span(&self) -> Span`
 
-##### `impl<'a> ToTokens for crate::generics::TypeGenerics<'a>`
+##### `impl ToTokens for crate::generics::TypeGenerics<'a>`
 
 - <span id="crategenericstypegenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
@@ -521,35 +545,37 @@ Returned by `Generics::split_for_impl`.
 struct Turbofish<'a>(&'a Generics);
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:291`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L291)*
+
 Returned by `TypeGenerics::as_turbofish`.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Turbofish<'a>`
+##### `impl Clone for Turbofish<'a>`
 
 - <span id="turbofish-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'a> Debug for Turbofish<'a>`
+##### `impl Debug for Turbofish<'a>`
 
 - <span id="turbofish-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Eq for Turbofish<'a>`
+##### `impl Eq for Turbofish<'a>`
 
-##### `impl<'a> Hash for Turbofish<'a>`
+##### `impl Hash for Turbofish<'a>`
 
 - <span id="turbofish-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<'a> PartialEq for Turbofish<'a>`
+##### `impl PartialEq for Turbofish<'a>`
 
 - <span id="turbofish-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Turbofish<'a>`
+##### `impl Sealed for Turbofish<'a>`
 
-##### `impl<T> Spanned for Turbofish<'a>`
+##### `impl Spanned for Turbofish<'a>`
 
 - <span id="turbofish-span"></span>`fn span(&self) -> Span`
 
-##### `impl<'a> ToTokens for crate::generics::Turbofish<'a>`
+##### `impl ToTokens for crate::generics::Turbofish<'a>`
 
 - <span id="crategenericsturbofish-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
@@ -563,6 +589,8 @@ struct BoundLifetimes {
     pub gt_token: token::Gt,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:352-361`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L352-L361)*
 
 A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
@@ -588,15 +616,15 @@ A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
 ##### `impl Parse for crate::generics::BoundLifetimes`
 
-- <span id="crategenericsboundlifetimes-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericsboundlifetimes-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::BoundLifetimes`
 
 - <span id="crateboundlifetimes-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for BoundLifetimes`
+##### `impl Sealed for BoundLifetimes`
 
-##### `impl<T> Spanned for BoundLifetimes`
+##### `impl Spanned for BoundLifetimes`
 
 - <span id="boundlifetimes-span"></span>`fn span(&self) -> Span`
 
@@ -615,6 +643,8 @@ struct TraitBound {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:410-421`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L410-L421)*
+
 A trait used as a bound on a type parameter.
 
 #### Fields
@@ -629,7 +659,7 @@ A trait used as a bound on a type parameter.
 
 #### Implementations
 
-- <span id="crategenericstraitbound-do-parse"></span>`fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstraitbound-do-parse"></span>`fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
@@ -649,15 +679,15 @@ A trait used as a bound on a type parameter.
 
 ##### `impl Parse for crate::generics::TraitBound`
 
-- <span id="crategenericstraitbound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstraitbound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::TraitBound`
 
 - <span id="cratetraitbound-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TraitBound`
+##### `impl Sealed for TraitBound`
 
-##### `impl<T> Spanned for TraitBound`
+##### `impl Spanned for TraitBound`
 
 - <span id="traitbound-span"></span>`fn span(&self) -> Span`
 
@@ -675,6 +705,8 @@ struct PreciseCapture {
     pub gt_token: token::Gt,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:433-443`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L433-L443)*
 
 Precise capturing bound: the 'use&lt;&hellip;&gt;' in `impl Trait +
 use<'a, T>`.
@@ -697,15 +729,15 @@ use<'a, T>`.
 
 ##### `impl Parse for crate::generics::PreciseCapture`
 
-- <span id="crategenericsprecisecapture-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericsprecisecapture-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::PreciseCapture`
 
 - <span id="crateprecisecapture-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PreciseCapture`
+##### `impl Sealed for PreciseCapture`
 
-##### `impl<T> Spanned for PreciseCapture`
+##### `impl Spanned for PreciseCapture`
 
 - <span id="precisecapture-span"></span>`fn span(&self) -> Span`
 
@@ -721,6 +753,8 @@ struct WhereClause {
     pub predicates: crate::punctuated::Punctuated<WherePredicate, token::Comma>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:461-469`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L461-L469)*
 
 A `where` clause in a definition: `where T: Deserialize<'de>, D:
 'static`.
@@ -743,15 +777,15 @@ A `where` clause in a definition: `where T: Deserialize<'de>, D:
 
 ##### `impl Parse for crate::generics::WhereClause`
 
-- <span id="crategenericswhereclause-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericswhereclause-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::WhereClause`
 
 - <span id="cratewhereclause-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for WhereClause`
+##### `impl Sealed for WhereClause`
 
-##### `impl<T> Spanned for WhereClause`
+##### `impl Spanned for WhereClause`
 
 - <span id="whereclause-span"></span>`fn span(&self) -> Span`
 
@@ -768,6 +802,8 @@ struct PredicateLifetime {
     pub bounds: crate::punctuated::Punctuated<crate::lifetime::Lifetime, token::Plus>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:490-498`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L490-L498)*
 
 A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 
@@ -791,9 +827,9 @@ A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 
 - <span id="cratepredicatelifetime-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PredicateLifetime`
+##### `impl Sealed for PredicateLifetime`
 
-##### `impl<T> Spanned for PredicateLifetime`
+##### `impl Spanned for PredicateLifetime`
 
 - <span id="predicatelifetime-span"></span>`fn span(&self) -> Span`
 
@@ -811,6 +847,8 @@ struct PredicateType {
     pub bounds: crate::punctuated::Punctuated<TypeParamBound, token::Plus>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:500-512`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L500-L512)*
 
 A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
@@ -848,9 +886,9 @@ A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
 - <span id="cratepredicatetype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for PredicateType`
+##### `impl Sealed for PredicateType`
 
-##### `impl<T> Spanned for PredicateType`
+##### `impl Spanned for PredicateType`
 
 - <span id="predicatetype-span"></span>`fn span(&self) -> Span`
 
@@ -869,6 +907,8 @@ enum GenericParam {
     Const(ConstParam),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:34-54`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L34-L54)*
 
 A generic type parameter, lifetime, or const generic: `T: Into<String>`,
 `'a: 'b`, `const LEN: usize`.
@@ -910,15 +950,15 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::generics::GenericParam`
 
-- <span id="crategenericsgenericparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericsgenericparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::GenericParam`
 
 - <span id="crategenericparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for GenericParam`
+##### `impl Sealed for GenericParam`
 
-##### `impl<T> Spanned for GenericParam`
+##### `impl Spanned for GenericParam`
 
 - <span id="genericparam-span"></span>`fn span(&self) -> Span`
 
@@ -937,13 +977,15 @@ enum TypeParamBound {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/generics.rs:398-408`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L398-L408)*
+
 A trait or lifetime used as a bound on a type parameter.
 
 #### Implementations
 
-- <span id="crategenericstypeparambound-parse-single"></span>`fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstypeparambound-parse-single"></span>`fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-- <span id="crategenericstypeparambound-parse-multiple"></span>`fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, token::Plus>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Punctuated`](../punctuated/index.md), [`Plus`](../token/index.md)
+- <span id="crategenericstypeparambound-parse-multiple"></span>`fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, token::Plus>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Punctuated`](../punctuated/index.md), [`Plus`](../token/index.md)
 
 #### Trait Implementations
 
@@ -963,15 +1005,15 @@ A trait or lifetime used as a bound on a type parameter.
 
 ##### `impl Parse for crate::generics::TypeParamBound`
 
-- <span id="crategenericstypeparambound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstypeparambound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::TypeParamBound`
 
 - <span id="cratetypeparambound-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TypeParamBound`
+##### `impl Sealed for TypeParamBound`
 
-##### `impl<T> Spanned for TypeParamBound`
+##### `impl Spanned for TypeParamBound`
 
 - <span id="typeparambound-span"></span>`fn span(&self) -> Span`
 
@@ -987,6 +1029,8 @@ enum TraitBoundModifier {
     Maybe(token::Question),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:423-431`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L423-L431)*
 
 A modifier on a trait bound, currently only used for the `?` in
 `?Sized`.
@@ -1011,15 +1055,15 @@ A modifier on a trait bound, currently only used for the `?` in
 
 ##### `impl Parse for crate::generics::TraitBoundModifier`
 
-- <span id="crategenericstraitboundmodifier-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstraitboundmodifier-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::TraitBoundModifier`
 
 - <span id="cratetraitboundmodifier-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for TraitBoundModifier`
+##### `impl Sealed for TraitBoundModifier`
 
-##### `impl<T> Spanned for TraitBoundModifier`
+##### `impl Spanned for TraitBoundModifier`
 
 - <span id="traitboundmodifier-span"></span>`fn span(&self) -> Span`
 
@@ -1035,6 +1079,8 @@ enum CapturedParam {
     Ident(crate::ident::Ident),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:446-459`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L446-L459)*
 
 Single parameter in a precise capturing bound.
 
@@ -1069,15 +1115,15 @@ Single parameter in a precise capturing bound.
 
 ##### `impl Parse for crate::generics::CapturedParam`
 
-- <span id="crategenericscapturedparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericscapturedparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::CapturedParam`
 
 - <span id="cratecapturedparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for CapturedParam`
+##### `impl Sealed for CapturedParam`
 
-##### `impl<T> Spanned for CapturedParam`
+##### `impl Spanned for CapturedParam`
 
 - <span id="capturedparam-span"></span>`fn span(&self) -> Span`
 
@@ -1093,6 +1139,8 @@ enum WherePredicate {
     Type(PredicateType),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/generics.rs:471-488`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L471-L488)*
 
 A single predicate in a `where` clause: `T: Deserialize<'de>`.
 
@@ -1129,15 +1177,15 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::generics::WherePredicate`
 
-- <span id="crategenericswherepredicate-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericswherepredicate-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::WherePredicate`
 
 - <span id="cratewherepredicate-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for WherePredicate`
+##### `impl Sealed for WherePredicate`
 
-##### `impl<T> Spanned for WherePredicate`
+##### `impl Spanned for WherePredicate`
 
 - <span id="wherepredicate-span"></span>`fn span(&self) -> Span`
 
@@ -1148,4 +1196,6 @@ This type is a [syntax tree enum].
 ## Macros
 
 ### `generics_wrapper_impls!`
+
+*Defined in [`syn-2.0.111/src/generics.rs:294-335`](../../../.source_1765210505/syn-2.0.111/src/generics.rs#L294-L335)*
 

@@ -10,7 +10,7 @@ Platform-agnostic support types.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Padding`](#padding) | struct | A transparent wrapper over `MaybeUninit<T>` to represent uninitialized padding |
+| [`Padding`](#padding) | struct | A transparent wrapper over `MaybeUninit<T>` to represent uninitialized padding while providing `Default`. |
 | [`CEnumRepr`](#cenumrepr) | type |  |
 
 ## Structs
@@ -20,6 +20,8 @@ Platform-agnostic support types.
 ```rust
 struct Padding<T: Copy>(core::mem::MaybeUninit<T>);
 ```
+
+*Defined in [`libc-0.2.178/src/types.rs:17`](../../../.source_1765210505/libc-0.2.178/src/types.rs#L17)*
 
 A transparent wrapper over `MaybeUninit<T>` to represent uninitialized padding
 while providing `Default`.
@@ -47,4 +49,6 @@ while providing `Default`.
 ```rust
 type CEnumRepr = crate::c_uint;
 ```
+
+*Defined in [`libc-0.2.178/src/types.rs:59`](../../../.source_1765210505/libc-0.2.178/src/types.rs#L59)*
 

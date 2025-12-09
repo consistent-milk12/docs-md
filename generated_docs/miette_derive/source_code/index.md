@@ -21,6 +21,8 @@ struct SourceCode {
 }
 ```
 
+*Defined in [`miette-derive-7.6.0/src/source_code.rs:11-14`](../../../.source_1765210505/miette-derive-7.6.0/src/source_code.rs#L11-L14)*
+
 #### Implementations
 
 - <span id="sourcecode-from-fields"></span>`fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`

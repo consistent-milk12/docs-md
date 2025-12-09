@@ -64,13 +64,15 @@ Please refer to [https://serde.rs/derive.html] for how to set this up.
 struct private;
 ```
 
+*Defined in [`serde_derive-1.0.228/src/lib.rs:96`](../../.source_1765210505/serde_derive-1.0.228/src/lib.rs#L96)*
+
 #### Implementations
 
 - <span id="private-ident"></span>`fn ident(&self) -> Ident`
 
 #### Trait Implementations
 
-##### `impl<T> Spanned for private`
+##### `impl Spanned for private`
 
 - <span id="private-span"></span>`fn span(&self) -> Span`
 

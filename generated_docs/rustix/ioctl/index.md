@@ -52,7 +52,7 @@ to make the `ioctl` call.
 | [`opcode`](#opcode) | mod | Const functions for computing opcode values. |
 | [`NoArg`](#noarg) | struct | Implements an `ioctl` with no real arguments. |
 | [`Getter`](#getter) | struct | Implements the traditional “getter” pattern for `ioctl`s. |
-| [`Setter`](#setter) | struct | Implements the pattern for `ioctl`s where a pointer argument is given to |
+| [`Setter`](#setter) | struct | Implements the pattern for `ioctl`s where a pointer argument is given to the `ioctl`. |
 | [`Updater`](#updater) | struct | Implements an “updater” pattern for `ioctl`s. |
 | [`IntegerSetter`](#integersetter) | struct | Implements an `ioctl` that passes an integer into the `ioctl`. |
 | [`Direction`](#direction) | enum | The direction that an `ioctl` is going. |
@@ -79,6 +79,8 @@ struct NoArg<const OPCODE: super::Opcode> {
 }
 ```
 
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:17`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/patterns.rs#L17)*
+
 Implements an `ioctl` with no real arguments.
 
 To compute a value for the `OPCODE` argument, see the functions in the
@@ -91,21 +93,21 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Trait Implementations
 
-##### `impl<const OPCODE: super::Opcode> Debug for NoArg<OPCODE>`
+##### `impl Debug for NoArg<OPCODE>`
 
 - <span id="noarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<const OPCODE: super::Opcode> Ioctl for NoArg<OPCODE>`
+##### `impl Ioctl for NoArg<OPCODE>`
 
-- <span id="noarg-output"></span>`type Output = ()`
+- <span id="noarg-type-output"></span>`type Output = ()`
 
-- <span id="noarg-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="noarg-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="noarg-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
 - <span id="noarg-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- <span id="noarg-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
+- <span id="noarg-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
 
 ### `Getter<const OPCODE: super::Opcode, Output>`
 
@@ -114,6 +116,8 @@ struct Getter<const OPCODE: super::Opcode, Output> {
     output: mem::MaybeUninit<Output>,
 }
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:64-67`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/patterns.rs#L64-L67)*
 
 Implements the traditional “getter” pattern for `ioctl`s.
 
@@ -142,15 +146,15 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 ##### `impl<const OPCODE: super::Opcode, Output> Ioctl for Getter<OPCODE, Output>`
 
-- <span id="getter-output"></span>`type Output = Output`
+- <span id="getter-type-output"></span>`type Output = Output`
 
-- <span id="getter-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="getter-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="getter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
 - <span id="getter-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- <span id="getter-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, ptr: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
+- <span id="getter-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, ptr: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
 
 ### `Setter<const OPCODE: super::Opcode, Input>`
 
@@ -159,6 +163,8 @@ struct Setter<const OPCODE: super::Opcode, Input> {
     input: Input,
 }
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:118-121`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/patterns.rs#L118-L121)*
 
 Implements the pattern for `ioctl`s where a pointer argument is given to
 the `ioctl`.
@@ -187,15 +193,15 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 ##### `impl<const OPCODE: super::Opcode, Input> Ioctl for Setter<OPCODE, Input>`
 
-- <span id="setter-output"></span>`type Output = ()`
+- <span id="setter-type-output"></span>`type Output = ()`
 
-- <span id="setter-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="setter-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="setter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
 - <span id="setter-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- <span id="setter-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
+- <span id="setter-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
 
 ### `Updater<'a, const OPCODE: super::Opcode, Value>`
 
@@ -204,6 +210,8 @@ struct Updater<'a, const OPCODE: super::Opcode, Value> {
     value: &'a mut Value,
 }
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:173-176`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/patterns.rs#L173-L176)*
 
 Implements an “updater” pattern for `ioctl`s.
 
@@ -228,15 +236,15 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 ##### `impl<'a, const OPCODE: super::Opcode, T> Ioctl for Updater<'a, OPCODE, T>`
 
-- <span id="updater-output"></span>`type Output = ()`
+- <span id="updater-type-output"></span>`type Output = ()`
 
-- <span id="updater-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="updater-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="updater-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
 - <span id="updater-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- <span id="updater-output-from-ptr"></span>`unsafe fn output_from_ptr(_output: IoctlOutput, _ptr: *mut c::c_void) -> Result<()>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md)
+- <span id="updater-output-from-ptr"></span>`unsafe fn output_from_ptr(_output: IoctlOutput, _ptr: *mut c::c_void) -> Result<()>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md)
 
 ### `IntegerSetter<const OPCODE: super::Opcode>`
 
@@ -245,6 +253,8 @@ struct IntegerSetter<const OPCODE: super::Opcode> {
     value: *mut c::c_void,
 }
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/patterns.rs:216-221`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/patterns.rs#L216-L221)*
 
 Implements an `ioctl` that passes an integer into the `ioctl`.
 
@@ -268,17 +278,17 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Trait Implementations
 
-##### `impl<const OPCODE: super::Opcode> Ioctl for IntegerSetter<OPCODE>`
+##### `impl Ioctl for IntegerSetter<OPCODE>`
 
-- <span id="integersetter-output"></span>`type Output = ()`
+- <span id="integersetter-type-output"></span>`type Output = ()`
 
-- <span id="integersetter-is-mutating"></span>`const IS_MUTATING: bool`
+- <span id="integersetter-const-is-mutating"></span>`const IS_MUTATING: bool`
 
 - <span id="integersetter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
 - <span id="integersetter-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- <span id="integersetter-output-from-ptr"></span>`unsafe fn output_from_ptr(_out: IoctlOutput, _extract_output: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
+- <span id="integersetter-output-from-ptr"></span>`unsafe fn output_from_ptr(_out: IoctlOutput, _extract_output: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
 
 ## Enums
 
@@ -292,6 +302,8 @@ enum Direction {
     ReadWrite,
 }
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:271-283`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L271-L283)*
 
 The direction that an `ioctl` is going.
 
@@ -355,6 +367,8 @@ kernel, and `Write` means the kernel writing data to userspace.
 ```rust
 trait Ioctl { ... }
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:147-190`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L147-L190)*
 
 A trait defining the properties of an `ioctl` command.
 
@@ -421,6 +435,8 @@ By implementing this trait, you guarantee that:
 unsafe fn ioctl<F: AsFd, I: Ioctl>(fd: F, ioctl: I) -> crate::io::Result<<I as >::Output>
 ```
 
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:91-107`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L91-L107)*
+
 Perform an `ioctl` call.
 
 `ioctl` was originally intended to act as a way of modifying the behavior
@@ -475,11 +491,15 @@ are compatible with Rust language invariants.
 unsafe fn _ioctl(fd: crate::fd::BorrowedFd<'_>, request: Opcode, arg: *mut c::c_void) -> crate::io::Result<IoctlOutput>
 ```
 
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:109-111`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L109-L111)*
+
 ### `_ioctl_readonly`
 
 ```rust
 unsafe fn _ioctl_readonly(fd: crate::fd::BorrowedFd<'_>, request: Opcode, arg: *mut c::c_void) -> crate::io::Result<IoctlOutput>
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:113-119`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L113-L119)*
 
 ## Type Aliases
 
@@ -489,6 +509,8 @@ unsafe fn _ioctl_readonly(fd: crate::fd::BorrowedFd<'_>, request: Opcode, arg: *
 type IoctlOutput = c::c_int;
 ```
 
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:286`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L286)*
+
 The type used by the `ioctl` to signify the output.
 
 ### `Opcode`
@@ -497,6 +519,8 @@ The type used by the `ioctl` to signify the output.
 type Opcode = c::c_uint;
 ```
 
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:289`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L289)*
+
 The type used by the `ioctl` to signify the command.
 
 ### `_Opcode`
@@ -504,4 +528,6 @@ The type used by the `ioctl` to signify the command.
 ```rust
 type _Opcode = c::c_uint;
 ```
+
+*Defined in [`rustix-1.1.2/src/ioctl/mod.rs:293`](../../../.source_1765210505/rustix-1.1.2/src/ioctl/mod.rs#L293)*
 

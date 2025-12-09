@@ -18,13 +18,13 @@ use crate::Args;
 use crate::error::Error;
 use crate::generator::breadcrumbs::BreadcrumbGenerator;
 use crate::generator::config::RenderConfig;
-use crate::generator::impls::is_blanket_impl;
+use crate::generator::impls::{is_blanket_impl, is_generic_type};
 use crate::generator::quick_ref::{QuickRefEntry, QuickRefGenerator, extract_summary};
 use crate::generator::render_shared::{
     CategorizedTraitItems, TraitRenderer, append_docs, impl_sort_key, render_constant_definition,
     render_enum_definition, render_enum_variants_docs, render_function_definition,
-    render_impl_items, render_macro_heading, render_struct_definition, render_struct_fields,
-    render_type_alias_definition,
+    render_impl_items, render_macro_heading, render_source_location, render_struct_definition,
+    render_struct_fields, render_type_alias_definition,
 };
 use crate::generator::toc::{TocEntry, TocGenerator};
 use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
@@ -403,6 +403,20 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
     }
 
+    /// Render source location if enabled in config.
+    ///
+    /// Returns the source location string if `source_locations` is enabled,
+    /// otherwise returns an empty string. Uses the source path config to
+    /// generate clickable links to the `.source_*` directory when available.
+    fn maybe_render_source_location(&self, item: &Item) -> String {
+        if self.view.render_config().include_source.source_locations {
+            let source_config = self.view.source_path_config_for_file(self.file_path);
+            render_source_location(item.span.as_ref(), source_config.as_ref())
+        } else {
+            String::new()
+        }
+    }
+
     /// Render a module item to markdown.
     fn render(&self, item: &Item) -> String {
         let mut md = String::new();
@@ -755,7 +769,10 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     ///
     /// For re-exports (Use items), if the Use item has no docs, falls back to
     /// the target item's docs when a crate reference is provided.
-    #[expect(dead_code, reason = "Kept for API consistency, use _with_fallback for docs")]
+    #[expect(
+        dead_code,
+        reason = "Kept for API consistency, use _with_fallback for docs"
+    )]
     fn get_item_name_and_summary(item: &Item) -> (String, String) {
         Self::get_item_name_and_summary_with_fallback(item, None)
     }
@@ -1107,6 +1124,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             // Struct definition (heading + code block)
             render_struct_definition(md, name, s, render_krate, &type_renderer);
 
+            // Source location (if enabled)
+            md.push_str(&self.maybe_render_source_location(actual_item));
+
             // Add re-export annotation for external re-exports
             if let Some(src_crate) = source_crate_name {
                 _ = writeln!(md, "*Re-exported from `{src_crate}`*\n");
@@ -1193,6 +1213,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             // Enum definition (heading + code block with variants)
             render_enum_definition(md, name, e, render_krate, &type_renderer);
 
+            // Source location (if enabled)
+            md.push_str(&self.maybe_render_source_location(actual_item));
+
             // Add re-export annotation for external re-exports
             if let Some(src_crate) = source_crate_name {
                 _ = writeln!(md, "*Re-exported from `{src_crate}`*\n");
@@ -1216,42 +1239,40 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         let current_krate = self.view.krate();
 
         // Handle re-exports: resolve to actual trait item
-        let (name, actual_item, actual_id): (&str, &Item, Id) =
-            if let ItemEnum::Use(use_item) = &item.inner {
-                let name = use_item.name.as_str();
+        let (name, actual_item, actual_id): (&str, &Item, Id) = if let ItemEnum::Use(use_item) =
+            &item.inner
+        {
+            let name = use_item.name.as_str();
 
-                if let Some(ref target_id) = use_item.id {
-                    // Has ID - try local crate first, then search all crates
-                    if let Some(target) = current_krate.index.get(target_id) {
-                        (name, target, *target_id)
-                    } else if let Some((_, target)) =
-                        self.view.lookup_item_across_crates(target_id)
-                    {
-                        (name, target, *target_id)
-                    } else {
-                        return;
-                    }
+            if let Some(ref target_id) = use_item.id {
+                // Has ID - try local crate first, then search all crates
+                if let Some(target) = current_krate.index.get(target_id) {
+                    (name, target, *target_id)
+                } else if let Some((_, target)) = self.view.lookup_item_across_crates(target_id) {
+                    (name, target, *target_id)
                 } else {
-                    // No ID - try to resolve by path (external re-export)
-                    if let Some((_, target, target_id)) =
-                        self.view.resolve_external_path(&use_item.source)
-                    {
-                        (name, target, target_id)
-                    } else {
-                        return;
-                    }
+                    return;
                 }
             } else {
-                (
-                    item.name.as_deref().unwrap_or("unnamed"),
-                    item,
-                    item_id,
-                )
-            };
+                // No ID - try to resolve by path (external re-export)
+                if let Some((_, target, target_id)) =
+                    self.view.resolve_external_path(&use_item.source)
+                {
+                    (name, target, target_id)
+                } else {
+                    return;
+                }
+            }
+        } else {
+            (item.name.as_deref().unwrap_or("unnamed"), item, item_id)
+        };
 
         if let ItemEnum::Trait(t) = &actual_item.inner {
             // Trait definition (heading + code block)
             TraitRenderer::render_trait_definition(md, name, t, &self.type_renderer);
+
+            // Source location (if enabled)
+            md.push_str(&self.maybe_render_source_location(actual_item));
 
             // Documentation
             append_docs(md, self.view.process_docs(actual_item, self.file_path));
@@ -1309,27 +1330,41 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Render the implementors section for a trait.
+    ///
+    /// Uses `Trait.implementations` field for direct lookup instead of scanning
+    /// all items in the crate index, providing O(k) performance where k is the
+    /// number of implementors.
     fn render_trait_implementors(&self, md: &mut String, trait_id: Id) {
         let krate = self.view.krate();
+
+        // Get the trait item to access its implementations list
+        let Some(trait_item) = krate.index.get(&trait_id) else {
+            return;
+        };
+        let ItemEnum::Trait(trait_data) = &trait_item.inner else {
+            return;
+        };
+
         let mut implementors: BTreeSet<String> = BTreeSet::new();
 
-        for item in krate.index.values() {
-            if let ItemEnum::Impl(impl_block) = &item.inner
-                && let Some(trait_path) = &impl_block.trait_
-                && trait_path.id == trait_id
-            {
-                let for_type = self.type_renderer.render_type(&impl_block.for_);
+        // Use Trait.implementations for direct lookup instead of scanning all items
+        for impl_id in &trait_data.implementations {
+            let Some(impl_item) = krate.index.get(impl_id) else {
+                continue;
+            };
+            let ItemEnum::Impl(impl_block) = &impl_item.inner else {
+                continue;
+            };
 
-                let entry = self
-                    .type_renderer
-                    .get_type_id(&impl_block.for_)
-                    .and_then(|type_id| {
-                        LinkResolver::create_link(self.view, type_id, self.file_path)
-                    })
-                    .unwrap_or_else(|| format!("`{for_type}`"));
+            let for_type = self.type_renderer.render_type(&impl_block.for_);
 
-                implementors.insert(entry);
-            }
+            let entry = self
+                .type_renderer
+                .get_type_id(&impl_block.for_)
+                .and_then(|type_id| LinkResolver::create_link(self.view, type_id, self.file_path))
+                .unwrap_or_else(|| format!("`{for_type}`"));
+
+            implementors.insert(entry);
         }
 
         if !implementors.is_empty() {
@@ -1349,6 +1384,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             render_function_definition(md, name, f, &self.type_renderer);
         }
 
+        // Source location (if enabled)
+        md.push_str(&self.maybe_render_source_location(item));
+
         append_docs(md, self.view.process_docs(item, self.file_path));
     }
 
@@ -1359,6 +1397,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         if let ItemEnum::Constant { type_, const_ } = &item.inner {
             render_constant_definition(md, name, type_, const_, &self.type_renderer);
         }
+
+        // Source location (if enabled)
+        md.push_str(&self.maybe_render_source_location(item));
 
         append_docs(md, self.view.process_docs(item, self.file_path));
     }
@@ -1371,6 +1412,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             render_type_alias_definition(md, name, ta, &self.type_renderer);
         }
 
+        // Source location (if enabled)
+        md.push_str(&self.maybe_render_source_location(item));
+
         append_docs(md, self.view.process_docs(item, self.file_path));
     }
 
@@ -1378,6 +1422,10 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     fn render_macro(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
         render_macro_heading(md, name);
+
+        // Source location (if enabled)
+        md.push_str(&self.maybe_render_source_location(item));
+
         append_docs(md, self.view.process_docs(item, self.file_path));
     }
 
@@ -1538,7 +1586,14 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         .last()
                         .unwrap_or(&trait_path.path);
 
-                    let generics = type_renderer.render_generics(&impl_block.generics.params);
+                    // Only show generic parameters if the `for_` type is itself generic.
+                    // For concrete types like `TocEntry`, we don't want to show `impl<T>` even
+                    // if the original blanket impl was defined as `impl<T> Trait for T`.
+                    let generics = if is_generic_type(&impl_block.for_) {
+                        type_renderer.render_generics(&impl_block.generics.params)
+                    } else {
+                        String::new()
+                    };
 
                     // Include unsafe/negative markers like single-crate mode
                     let unsafe_str = if impl_block.is_unsafe { "unsafe " } else { "" };

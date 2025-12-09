@@ -22,7 +22,7 @@ See the [parent module](crate::hybrid) for examples.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Regex`](#regex) | struct | A regular expression that uses hybrid NFA/DFAs (also called "lazy DFAs") |
+| [`Regex`](#regex) | struct | A regular expression that uses hybrid NFA/DFAs (also called "lazy DFAs") for searching. |
 | [`FindMatches`](#findmatches) | struct | An iterator over all non-overlapping matches for an infallible search. |
 | [`Cache`](#cache) | struct | A cache represents a partially computed forward and reverse DFA. |
 | [`Builder`](#builder) | struct | A builder for a regex based on a hybrid NFA/DFA. |
@@ -37,6 +37,8 @@ struct Regex {
     reverse: crate::hybrid::dfa::DFA,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:82-96`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/regex.rs#L82-L96)*
 
 A regular expression that uses hybrid NFA/DFAs (also called "lazy DFAs")
 for searching.
@@ -112,11 +114,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="regex-is-match"></span>`fn is_match<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I) -> bool` — [`Cache`](#cache)
+- <span id="regex-new"></span>`fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
 
-- <span id="regex-find"></span>`fn find<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I) -> Option<Match>` — [`Cache`](#cache), [`Match`](../../index.md)
+- <span id="regex-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
 
-- <span id="regex-find-iter"></span>`fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>` — [`Cache`](#cache), [`FindMatches`](#findmatches)
+- <span id="regex-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
+
+- <span id="regex-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](#cache)
+
+- <span id="regex-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](#cache)
 
 #### Trait Implementations
 
@@ -134,6 +140,8 @@ struct FindMatches<'r, 'c, 'h> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:569-573`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/regex.rs#L569-L573)*
+
 An iterator over all non-overlapping matches for an infallible search.
 
 The iterator yields a [`Match`](../../index.md) value until no more matches could be found.
@@ -149,21 +157,21 @@ This iterator can be created with the `Regex::find_iter` method.
 
 #### Trait Implementations
 
-##### `impl<'r, 'c, 'h> Debug for FindMatches<'r, 'c, 'h>`
+##### `impl Debug for FindMatches<'r, 'c, 'h>`
 
 - <span id="findmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for FindMatches<'r, 'c, 'h>`
+##### `impl IntoIterator for FindMatches<'r, 'c, 'h>`
 
-- <span id="findmatches-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findmatches-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findmatches-intoiter"></span>`type IntoIter = I`
+- <span id="findmatches-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findmatches-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'r, 'c, 'h> Iterator for FindMatches<'r, 'c, 'h>`
+##### `impl Iterator for FindMatches<'r, 'c, 'h>`
 
-- <span id="findmatches-item"></span>`type Item = Match`
+- <span id="findmatches-type-item"></span>`type Item = Match`
 
 - <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../index.md)
 
@@ -175,6 +183,8 @@ struct Cache {
     reverse: dfa::Cache,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:601-604`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/regex.rs#L601-L604)*
 
 A cache represents a partially computed forward and reverse DFA.
 
@@ -229,6 +239,8 @@ struct Builder {
     dfa: dfa::Builder,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/hybrid/regex.rs:767-769`](../../../../.source_1765210505/regex-automata-0.4.13/src/hybrid/regex.rs#L767-L769)*
 
 A builder for a regex based on a hybrid NFA/DFA.
 
@@ -290,15 +302,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
 
-- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
 
 - <span id="builder-build-from-dfas"></span>`fn build_from_dfas(&self, forward: DFA, reverse: DFA) -> Regex` — [`DFA`](../dfa/index.md), [`Regex`](#regex)
 
 - <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
 
-- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md), [`Builder`](#builder)
 
 - <span id="builder-dfa"></span>`fn dfa(&mut self, config: dfa::Config) -> &mut Builder` — [`Config`](../dfa/index.md), [`Builder`](#builder)
 

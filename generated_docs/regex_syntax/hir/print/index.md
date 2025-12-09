@@ -11,7 +11,7 @@ This module provides a regular expression printer for `Hir`.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`PrinterBuilder`](#printerbuilder) | struct | A builder for constructing a printer. |
-| [`Printer`](#printer) | struct | A printer for a regular expression's high-level intermediate |
+| [`Printer`](#printer) | struct | A printer for a regular expression's high-level intermediate representation. |
 | [`Writer`](#writer) | struct |  |
 
 ## Structs
@@ -23,6 +23,8 @@ struct PrinterBuilder {
     _priv: (),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/print.rs:21-23`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/print.rs#L21-L23)*
 
 A builder for constructing a printer.
 
@@ -56,6 +58,8 @@ struct Printer {
     _priv: (),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/print.rs:58-60`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/print.rs#L58-L60)*
 
 A printer for a regular expression's high-level intermediate
 representation.
@@ -94,6 +98,8 @@ struct Writer<W> {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/print.rs:78-80`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/print.rs#L78-L80)*
+
 #### Implementations
 
 - <span id="writer-write-literal-char"></span>`fn write_literal_char(&mut self, c: char) -> fmt::Result`
@@ -110,9 +116,9 @@ struct Writer<W> {
 
 ##### `impl<W: fmt::Write> Visitor for Writer<W>`
 
-- <span id="writer-output"></span>`type Output = ()`
+- <span id="writer-type-output"></span>`type Output = ()`
 
-- <span id="writer-err"></span>`type Err = Error`
+- <span id="writer-type-err"></span>`type Err = Error`
 
 - <span id="writer-finish"></span>`fn finish(self) -> fmt::Result`
 

@@ -159,6 +159,8 @@ struct SeekFrom<R: gimli::Reader> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/function.rs:67-74`](../../.source_1765210505/addr2line-0.25.1/src/function.rs#L67-L74)*
+
 *Re-exported from `addr2line`*
 
 #### Fields
@@ -188,6 +190,8 @@ struct RawArgs {
     items: Vec<std::ffi::OsString>,
 }
 ```
+
+*Defined in [`clap_lex-0.7.6/src/lib.rs:129-131`](../../.source_1765210505/clap_lex-0.7.6/src/lib.rs#L129-L131)*
 
 Command-line arguments
 
@@ -245,6 +249,8 @@ struct ArgCursor {
 }
 ```
 
+*Defined in [`clap_lex-0.7.6/src/lib.rs:276-278`](../../.source_1765210505/clap_lex-0.7.6/src/lib.rs#L276-L278)*
+
 Position within [`RawArgs`](#rawargs)
 
 #### Implementations
@@ -285,6 +291,8 @@ struct ParsedArg<'s> {
 }
 ```
 
+*Defined in [`clap_lex-0.7.6/src/lib.rs:288-290`](../../.source_1765210505/clap_lex-0.7.6/src/lib.rs#L288-L290)*
+
 Command-line Argument
 
 #### Implementations
@@ -315,33 +323,33 @@ Command-line Argument
 
 #### Trait Implementations
 
-##### `impl<'s> Clone for ParsedArg<'s>`
+##### `impl Clone for ParsedArg<'s>`
 
 - <span id="parsedarg-clone"></span>`fn clone(&self) -> ParsedArg<'s>` — [`ParsedArg`](#parsedarg)
 
-##### `impl<'s> Debug for ParsedArg<'s>`
+##### `impl Debug for ParsedArg<'s>`
 
 - <span id="parsedarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'s> Eq for ParsedArg<'s>`
+##### `impl Eq for ParsedArg<'s>`
 
-##### `impl<'s> Hash for ParsedArg<'s>`
+##### `impl Hash for ParsedArg<'s>`
 
 - <span id="parsedarg-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'s> Ord for ParsedArg<'s>`
+##### `impl Ord for ParsedArg<'s>`
 
 - <span id="parsedarg-cmp"></span>`fn cmp(&self, other: &ParsedArg<'s>) -> cmp::Ordering` — [`ParsedArg`](#parsedarg)
 
-##### `impl<'s> PartialEq for ParsedArg<'s>`
+##### `impl PartialEq for ParsedArg<'s>`
 
 - <span id="parsedarg-eq"></span>`fn eq(&self, other: &ParsedArg<'s>) -> bool` — [`ParsedArg`](#parsedarg)
 
-##### `impl<'s> PartialOrd for ParsedArg<'s>`
+##### `impl PartialOrd for ParsedArg<'s>`
 
 - <span id="parsedarg-partial-cmp"></span>`fn partial_cmp(&self, other: &ParsedArg<'s>) -> option::Option<cmp::Ordering>` — [`ParsedArg`](#parsedarg)
 
-##### `impl<'s> StructuralPartialEq for ParsedArg<'s>`
+##### `impl StructuralPartialEq for ParsedArg<'s>`
 
 ### `ShortFlags<'s>`
 
@@ -352,6 +360,8 @@ struct ShortFlags<'s> {
     invalid_suffix: Option<&'s std::ffi::OsStr>,
 }
 ```
+
+*Defined in [`clap_lex-0.7.6/src/lib.rs:399-403`](../../.source_1765210505/clap_lex-0.7.6/src/lib.rs#L399-L403)*
 
 Walk through short flags within a [`ParsedArg`](#parsedarg)
 
@@ -371,25 +381,25 @@ Walk through short flags within a [`ParsedArg`](#parsedarg)
 
 #### Trait Implementations
 
-##### `impl<'s> Clone for ShortFlags<'s>`
+##### `impl Clone for ShortFlags<'s>`
 
 - <span id="shortflags-clone"></span>`fn clone(&self) -> ShortFlags<'s>` — [`ShortFlags`](#shortflags)
 
-##### `impl<'s> Debug for ShortFlags<'s>`
+##### `impl Debug for ShortFlags<'s>`
 
 - <span id="shortflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ShortFlags<'s>`
+##### `impl IntoIterator for ShortFlags<'s>`
 
-- <span id="shortflags-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="shortflags-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="shortflags-intoiter"></span>`type IntoIter = I`
+- <span id="shortflags-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="shortflags-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'s> Iterator for ShortFlags<'s>`
+##### `impl Iterator for ShortFlags<'s>`
 
-- <span id="shortflags-item"></span>`type Item = Result<char, &'s OsStr>`
+- <span id="shortflags-type-item"></span>`type Item = Result<char, &'s OsStr>`
 
 - <span id="shortflags-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -401,7 +411,9 @@ Walk through short flags within a [`ParsedArg`](#parsedarg)
 trait OsStrExt: private::Sealed { ... }
 ```
 
-String-like methods for [`OsStr`](../clap_builder/builder/index.md)
+*Defined in [`clap_lex-0.7.6/src/ext.rs:4-183`](../../.source_1765210505/clap_lex-0.7.6/src/ext.rs#L4-L183)*
+
+String-like methods for [`OsStr`](../clap_builder/builder/os_str/index.md)
 
 #### Required Methods
 
@@ -445,9 +457,13 @@ String-like methods for [`OsStr`](../clap_builder/builder/index.md)
 fn split_nonutf8_once(b: &std::ffi::OsStr) -> (&str, Option<&std::ffi::OsStr>)
 ```
 
+*Defined in [`clap_lex-0.7.6/src/lib.rs:479-490`](../../.source_1765210505/clap_lex-0.7.6/src/lib.rs#L479-L490)*
+
 ### `is_number`
 
 ```rust
 fn is_number(arg: &str) -> bool
 ```
+
+*Defined in [`clap_lex-0.7.6/src/lib.rs:492-522`](../../.source_1765210505/clap_lex-0.7.6/src/lib.rs#L492-L522)*
 

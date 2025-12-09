@@ -22,6 +22,8 @@ struct RelocationBlockIterator<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:11-13`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/relocation.rs#L11-L13)*
+
 An iterator over the relocation blocks in the `.reloc` section of a PE file.
 
 Returned by [`DataDirectories::relocation_blocks`](super::DataDirectories::relocation_blocks).
@@ -36,31 +38,31 @@ Returned by [`DataDirectories::relocation_blocks`](super::DataDirectories::reloc
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for RelocationBlockIterator<'data>`
+##### `impl Clone for RelocationBlockIterator<'data>`
 
 - <span id="relocationblockiterator-clone"></span>`fn clone(&self) -> RelocationBlockIterator<'data>` — [`RelocationBlockIterator`](../index.md)
 
-##### `impl<'data> Copy for RelocationBlockIterator<'data>`
+##### `impl Copy for RelocationBlockIterator<'data>`
 
-##### `impl<'data> Debug for RelocationBlockIterator<'data>`
+##### `impl Debug for RelocationBlockIterator<'data>`
 
 - <span id="relocationblockiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for RelocationBlockIterator<'data>`
+##### `impl Default for RelocationBlockIterator<'data>`
 
 - <span id="relocationblockiterator-default"></span>`fn default() -> RelocationBlockIterator<'data>` — [`RelocationBlockIterator`](../index.md)
 
-##### `impl<I> IntoIterator for RelocationBlockIterator<'data>`
+##### `impl IntoIterator for RelocationBlockIterator<'data>`
 
-- <span id="relocationblockiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="relocationblockiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="relocationblockiterator-intoiter"></span>`type IntoIter = I`
+- <span id="relocationblockiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="relocationblockiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data> Iterator for RelocationBlockIterator<'data>`
+##### `impl Iterator for RelocationBlockIterator<'data>`
 
-- <span id="relocationblockiterator-item"></span>`type Item = Result<RelocationIterator<'data>, Error>`
+- <span id="relocationblockiterator-type-item"></span>`type Item = Result<RelocationIterator<'data>, Error>`
 
 - <span id="relocationblockiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -74,6 +76,8 @@ struct RelocationIterator<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:68-72`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/relocation.rs#L68-L72)*
+
 An iterator of the relocations in a block in the `.reloc` section of a PE file.
 
 #### Implementations
@@ -84,25 +88,25 @@ An iterator of the relocations in a block in the `.reloc` section of a PE file.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for RelocationIterator<'data>`
+##### `impl Clone for RelocationIterator<'data>`
 
 - <span id="relocationiterator-clone"></span>`fn clone(&self) -> RelocationIterator<'data>` — [`RelocationIterator`](../index.md)
 
-##### `impl<'data> Debug for RelocationIterator<'data>`
+##### `impl Debug for RelocationIterator<'data>`
 
 - <span id="relocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for RelocationIterator<'data>`
+##### `impl IntoIterator for RelocationIterator<'data>`
 
-- <span id="relocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="relocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="relocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="relocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="relocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'data> Iterator for RelocationIterator<'data>`
+##### `impl Iterator for RelocationIterator<'data>`
 
-- <span id="relocationiterator-item"></span>`type Item = Relocation`
+- <span id="relocationiterator-type-item"></span>`type Item = Relocation`
 
 - <span id="relocationiterator-next"></span>`fn next(&mut self) -> Option<Relocation>` — [`Relocation`](../index.md)
 
@@ -114,6 +118,8 @@ struct Relocation {
     pub typ: u16,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/relocation.rs:104-109`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/relocation.rs#L104-L109)*
 
 A relocation in the `.reloc` section of a PE file.
 

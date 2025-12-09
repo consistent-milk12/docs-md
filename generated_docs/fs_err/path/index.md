@@ -18,6 +18,8 @@
 trait PathExt: crate::Sealed { ... }
 ```
 
+*Defined in [`fs-err-3.2.0/src/path.rs:12-39`](../../../.source_1765210505/fs-err-3.2.0/src/path.rs#L12-L39)*
+
 Defines aliases on [`Path`](https://doc.rust-lang.org/std/path/struct.Path.html) for `fs_err` functions.
 
 This trait is sealed and can not be implemented by other crates.

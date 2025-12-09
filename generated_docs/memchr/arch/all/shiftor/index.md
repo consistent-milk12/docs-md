@@ -25,11 +25,13 @@ struct Finder {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/all/shiftor.rs:20-23`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/shiftor.rs#L20-L23)*
+
 A forward substring searcher using the Shift-Or algorithm.
 
 #### Implementations
 
-- <span id="finder-max-needle-len"></span>`const MAX_NEEDLE_LEN: usize`
+- <span id="finder-const-max-needle-len"></span>`const MAX_NEEDLE_LEN: usize`
 
 - <span id="finder-new"></span>`fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
 
@@ -48,6 +50,8 @@ A forward substring searcher using the Shift-Or algorithm.
 ```rust
 type Mask = u16;
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/all/shiftor.rs:16`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/all/shiftor.rs#L16)*
 
 The type of our mask.
 

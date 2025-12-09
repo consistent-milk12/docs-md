@@ -21,6 +21,8 @@ struct Extensions {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/ext.rs:6-8`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/ext.rs#L6-L8)*
+
 #### Implementations
 
 - <span id="extensions-get"></span>`fn get<T: Extension>(&self) -> Option<&T>`
@@ -52,6 +54,8 @@ struct Extensions {
 ```rust
 trait Extension: std::fmt::Debug + Clone + std::any::Any + Send + Sync + 'static { ... }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/builder/ext.rs:44`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/ext.rs#L44)*
 
 #### Implementors
 

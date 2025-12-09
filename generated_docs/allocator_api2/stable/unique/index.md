@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Unique`](#unique) | struct | A wrapper around a raw non-null `*mut T` that indicates that the possessor |
+| [`Unique`](#unique) | struct | A wrapper around a raw non-null `*mut T` that indicates that the possessor of this wrapper owns the referent. |
 
 ## Structs
 
@@ -20,6 +20,8 @@ struct Unique<T: ?Sized> {
     _marker: core::marker::PhantomData<T>,
 }
 ```
+
+*Defined in [`allocator-api2-0.2.21/src/stable/unique.rs:22-25`](../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/unique.rs#L22-L25)*
 
 A wrapper around a raw non-null `*mut T` that indicates that the possessor
 of this wrapper owns the referent. Useful for building abstractions like

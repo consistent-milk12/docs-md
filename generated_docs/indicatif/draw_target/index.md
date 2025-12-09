@@ -35,7 +35,7 @@
 | [`Drawable`](#drawable) | enum |  |
 | [`LineAdjust`](#lineadjust) | enum |  |
 | [`LineType`](#linetype) | enum |  |
-| [`visual_line_count`](#visual_line_count) | fn | Calculate the number of visual lines in the given lines, after |
+| [`visual_line_count`](#visual_line_count) | fn | Calculate the number of visual lines in the given lines, after accounting for line wrapping and non-printable characters. |
 | [`MAX_BURST`](#max_burst) | const |  |
 
 ## Structs
@@ -47,6 +47,8 @@ struct ProgressDrawTarget {
     kind: TargetKind,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:25-27`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L25-L27)*
 
 Target for draw operations
 
@@ -70,9 +72,9 @@ device.
 
 - <span id="progressdrawtarget-term"></span>`fn term(term: Term, refresh_rate: u8) -> Self`
 
-- <span id="progressdrawtarget-term-like"></span>`fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](../index.md)
+- <span id="progressdrawtarget-term-like"></span>`fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](../term_like/index.md)
 
-- <span id="progressdrawtarget-term-like-with-hz"></span>`fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](../index.md)
+- <span id="progressdrawtarget-term-like-with-hz"></span>`fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](../term_like/index.md)
 
 - <span id="progressdrawtarget-hidden"></span>`fn hidden() -> Self`
 
@@ -109,6 +111,8 @@ struct DrawStateWrapper<'a> {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:380-383`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L380-L383)*
+
 #### Implementations
 
 - <span id="drawstatewrapper-for-term"></span>`fn for_term(state: &'a mut DrawState) -> Self` — [`DrawState`](#drawstate)
@@ -119,7 +123,7 @@ struct DrawStateWrapper<'a> {
 
 ##### `impl Deref for DrawStateWrapper<'_>`
 
-- <span id="drawstatewrapper-target"></span>`type Target = DrawState`
+- <span id="drawstatewrapper-type-target"></span>`type Target = DrawState`
 
 - <span id="drawstatewrapper-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
@@ -131,9 +135,9 @@ struct DrawStateWrapper<'a> {
 
 - <span id="drawstatewrapper-drop"></span>`fn drop(&mut self)`
 
-##### `impl<P, T> Receiver for DrawStateWrapper<'a>`
+##### `impl Receiver for DrawStateWrapper<'a>`
 
-- <span id="drawstatewrapper-target"></span>`type Target = T`
+- <span id="drawstatewrapper-type-target"></span>`type Target = T`
 
 ### `RateLimiter`
 
@@ -144,6 +148,8 @@ struct RateLimiter {
     prev: std::time::Instant,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:435-439`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L435-L439)*
 
 #### Implementations
 
@@ -167,6 +173,8 @@ struct DrawState {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:488-495`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L488-L495)*
+
 The drawn state of an element.
 
 #### Fields
@@ -185,7 +193,7 @@ The drawn state of an element.
 
 #### Implementations
 
-- <span id="drawstate-draw-to-term"></span>`fn draw_to_term(&mut self, term: &impl TermLike + ?Sized, bar_count: &mut VisualLines) -> io::Result<()>` — [`TermLike`](../index.md), [`VisualLines`](#visuallines)
+- <span id="drawstate-draw-to-term"></span>`fn draw_to_term(&mut self, term: &impl TermLike + ?Sized, bar_count: &mut VisualLines) -> io::Result<()>` — [`TermLike`](../term_like/index.md), [`VisualLines`](#visuallines)
 
 - <span id="drawstate-reset"></span>`fn reset(&mut self)`
 
@@ -211,6 +219,8 @@ The drawn state of an element.
 struct VisualLines(usize);
 ```
 
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:600`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L600)*
+
 #### Implementations
 
 - <span id="visuallines-saturating-add"></span>`fn saturating_add(&self, other: Self) -> Self`
@@ -223,7 +233,7 @@ struct VisualLines(usize);
 
 ##### `impl Add for VisualLines`
 
-- <span id="visuallines-output"></span>`type Output = VisualLines`
+- <span id="visuallines-type-output"></span>`type Output = VisualLines`
 
 - <span id="visuallines-add"></span>`fn add(self, rhs: Self) -> <Self as >::Output`
 
@@ -263,7 +273,7 @@ struct VisualLines(usize);
 
 ##### `impl Sub for VisualLines`
 
-- <span id="visuallines-output"></span>`type Output = VisualLines`
+- <span id="visuallines-type-output"></span>`type Output = VisualLines`
 
 - <span id="visuallines-sub"></span>`fn sub(self, rhs: Self) -> <Self as >::Output`
 
@@ -292,6 +302,8 @@ enum TargetKind {
     },
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:248-266`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L248-L266)*
 
 #### Implementations
 
@@ -326,6 +338,8 @@ enum Drawable<'a> {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:288-305`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L288-L305)*
+
 #### Implementations
 
 - <span id="drawable-adjust-last-line-count"></span>`fn adjust_last_line_count(&mut self, adjust: LineAdjust)` — [`LineAdjust`](#lineadjust)
@@ -347,6 +361,8 @@ enum LineAdjust {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:373-378`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L373-L378)*
+
 #### Variants
 
 - **`Clear`**
@@ -366,6 +382,8 @@ enum LineType {
     Empty,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:653-657`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L653-L657)*
 
 #### Implementations
 
@@ -399,14 +417,17 @@ enum LineType {
 fn visual_line_count(lines: &[LineType], width: usize) -> VisualLines
 ```
 
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:646-650`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L646-L650)*
+
 Calculate the number of visual lines in the given lines, after
 accounting for line wrapping and non-printable characters.
 
 ## Constants
 
 ### `MAX_BURST`
-
 ```rust
 const MAX_BURST: u8 = 20u8;
 ```
+
+*Defined in [`indicatif-0.18.3/src/draw_target.rs:484`](../../../.source_1765210505/indicatif-0.18.3/src/draw_target.rs#L484)*
 

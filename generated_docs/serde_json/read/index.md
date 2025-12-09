@@ -72,6 +72,8 @@ struct Position {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:119-122`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L119-L122)*
+
 ### `IoRead<R>`
 
 ```rust
@@ -82,6 +84,8 @@ where
     ch: Option<u8>,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/read.rs:149-158`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L149-L158)*
 
 JSON input source that reads from a std::io input stream.
 
@@ -110,6 +114,8 @@ struct SliceRead<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:164-170`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L164-L170)*
+
 JSON input source that reads from a slice of bytes.
 
 #### Fields
@@ -128,15 +134,15 @@ JSON input source that reads from a slice of bytes.
 
 - <span id="sliceread-skip-to-escape-slow"></span>`fn skip_to_escape_slow(&mut self)`
 
-- <span id="sliceread-parse-str-bytes"></span>`fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../index.md), [`Reference`](#reference)
+- <span id="sliceread-parse-str-bytes"></span>`fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../error/index.md), [`Reference`](#reference)
 
 #### Trait Implementations
 
-##### `impl<'a> Fused for SliceRead<'a>`
+##### `impl Fused for SliceRead<'a>`
 
-##### `impl<'a> Read for SliceRead<'a>`
+##### `impl Read for SliceRead<'a>`
 
-##### `impl<'a> Sealed for SliceRead<'a>`
+##### `impl Sealed for SliceRead<'a>`
 
 ### `StrRead<'a>`
 
@@ -146,6 +152,8 @@ struct StrRead<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:175-179`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L175-L179)*
+
 JSON input source that reads from a UTF-8 string.
 
 #### Implementations
@@ -154,11 +162,11 @@ JSON input source that reads from a UTF-8 string.
 
 #### Trait Implementations
 
-##### `impl<'a> Fused for StrRead<'a>`
+##### `impl Fused for StrRead<'a>`
 
-##### `impl<'a> Read for StrRead<'a>`
+##### `impl Read for StrRead<'a>`
 
-##### `impl<'a> Sealed for StrRead<'a>`
+##### `impl Sealed for StrRead<'a>`
 
 ## Enums
 
@@ -173,17 +181,19 @@ where
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:124-130`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L124-L130)*
+
 #### Trait Implementations
 
 ##### `impl<'b, 'c, T> Deref for Reference<'b, 'c, T>`
 
-- <span id="reference-target"></span>`type Target = T`
+- <span id="reference-type-target"></span>`type Target = T`
 
 - <span id="reference-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<P, T> Receiver for Reference<'b, 'c, T>`
 
-- <span id="reference-target"></span>`type Target = T`
+- <span id="reference-type-target"></span>`type Target = T`
 
 ## Traits
 
@@ -192,6 +202,8 @@ where
 ```rust
 trait Read<'de>: private::Sealed { ... }
 ```
+
+*Defined in [`serde_json-1.0.145/src/read.rs:28-117`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L28-L117)*
 
 Trait used by the deserializer for iterating over input. This is manually
 "specialized" for iterating over `&[u8]`. Once feature(specialization) is
@@ -213,6 +225,8 @@ This trait is sealed and cannot be implemented for types outside of
 trait Fused: private::Sealed { ... }
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:832`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L832)*
+
 Marker for whether StreamDeserializer can implement FusedIterator.
 
 #### Implementors
@@ -228,6 +242,8 @@ Marker for whether StreamDeserializer can implement FusedIterator.
 fn is_escape(ch: u8, including_control_characters: bool) -> bool
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:836-838`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L836-L838)*
+
 ### `next_or_eof`
 
 ```rust
@@ -235,6 +251,8 @@ fn next_or_eof<'de, R>(read: &mut R) -> crate::error::Result<u8>
 where
     R: ?Sized + Read<'de>
 ```
+
+*Defined in [`serde_json-1.0.145/src/read.rs:840-848`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L840-L848)*
 
 ### `peek_or_eof`
 
@@ -244,6 +262,8 @@ where
     R: ?Sized + Read<'de>
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:850-858`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L850-L858)*
+
 ### `error`
 
 ```rust
@@ -252,17 +272,23 @@ where
     R: ?Sized + Read<'de>
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:860-866`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L860-L866)*
+
 ### `as_str`
 
 ```rust
 fn as_str<'de, 's, R: Read<'de>>(read: &R, slice: &'s [u8]) -> crate::error::Result<&'s str>
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:868-870`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L868-L870)*
+
 ### `parse_escape`
 
 ```rust
 fn parse_escape<'de, R: Read<'de>>(read: &mut R, validate: bool, scratch: &mut alloc::vec::Vec<u8>) -> crate::error::Result<()>
 ```
+
+*Defined in [`serde_json-1.0.145/src/read.rs:874-895`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L874-L895)*
 
 Parses a JSON escape sequence and appends it into the scratch space. Assumes
 the previous byte read was a backslash.
@@ -273,6 +299,8 @@ the previous byte read was a backslash.
 fn parse_unicode_escape<'de, R: Read<'de>>(read: &mut R, validate: bool, scratch: &mut alloc::vec::Vec<u8>) -> crate::error::Result<()>
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:900-973`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L900-L973)*
+
 Parses a JSON \u escape and appends it into the scratch space. Assumes `\u`
 has just been read.
 
@@ -281,6 +309,8 @@ has just been read.
 ```rust
 fn push_wtf8_codepoint(n: u32, scratch: &mut alloc::vec::Vec<u8>)
 ```
+
+*Defined in [`serde_json-1.0.145/src/read.rs:978-1021`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L978-L1021)*
 
 Adds a WTF-8 codepoint to the end of the buffer. This is a more efficient
 implementation of String::push. The codepoint may be a surrogate.
@@ -293,6 +323,8 @@ where
     R: ?Sized + Read<'de>
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:1025-1048`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L1025-L1048)*
+
 Parses a JSON escape sequence and discards the value. Assumes the previous
 byte read was a backslash.
 
@@ -302,15 +334,21 @@ byte read was a backslash.
 const fn decode_hex_val_slow(val: u8) -> Option<u8>
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:1050-1057`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L1050-L1057)*
+
 ### `build_hex_table`
 
 ```rust
 const fn build_hex_table(shift: usize) -> [i16; 256]
 ```
 
+*Defined in [`serde_json-1.0.145/src/read.rs:1059-1070`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L1059-L1070)*
+
 ### `decode_four_hex_digits`
 
 ```rust
 fn decode_four_hex_digits(a: u8, b: u8, c: u8, d: u8) -> Option<u16>
 ```
+
+*Defined in [`serde_json-1.0.145/src/read.rs:1075-1089`](../../../.source_1765210505/serde_json-1.0.145/src/read.rs#L1075-L1089)*
 

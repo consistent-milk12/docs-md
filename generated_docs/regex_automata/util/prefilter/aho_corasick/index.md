@@ -20,6 +20,8 @@ struct AhoCorasick {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/aho_corasick.rs:7-12`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/aho_corasick.rs#L7-L12)*
+
 #### Implementations
 
 - <span id="ahocorasick-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<AhoCorasick>` — [`MatchKind`](../../../index.md), [`AhoCorasick`](#ahocorasick)

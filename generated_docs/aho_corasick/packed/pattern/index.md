@@ -28,6 +28,8 @@ struct Patterns {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:20-41`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L20-L41)*
+
 A non-empty collection of non-empty patterns to search for.
 
 This collection of patterns is what is passed around to both execute
@@ -76,7 +78,7 @@ than once.
 
 - <span id="patterns-add"></span>`fn add(&mut self, bytes: &[u8])`
 
-- <span id="patterns-set-match-kind"></span>`fn set_match_kind(&mut self, kind: MatchKind)` — [`MatchKind`](../index.md)
+- <span id="patterns-set-match-kind"></span>`fn set_match_kind(&mut self, kind: MatchKind)` — [`MatchKind`](../api/index.md)
 
 - <span id="patterns-len"></span>`fn len(&self) -> usize`
 
@@ -88,11 +90,11 @@ than once.
 
 - <span id="patterns-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
-- <span id="patterns-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`MatchKind`](../index.md)
+- <span id="patterns-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`MatchKind`](../api/index.md)
 
-- <span id="patterns-get"></span>`fn get(&self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
+- <span id="patterns-get"></span>`fn get(&self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../util/primitives/index.md), [`Pattern`](#pattern)
 
-- <span id="patterns-get-unchecked"></span>`unsafe fn get_unchecked(&self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
+- <span id="patterns-get-unchecked"></span>`unsafe fn get_unchecked(&self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../util/primitives/index.md), [`Pattern`](#pattern)
 
 - <span id="patterns-iter"></span>`fn iter(&self) -> PatternIter<'_>` — [`PatternIter`](#patterniter)
 
@@ -115,6 +117,8 @@ struct PatternIter<'p> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:188-191`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L188-L191)*
+
 An iterator over the patterns in the `Patterns` collection.
 
 The order of the patterns provided by this iterator is consistent with the
@@ -125,29 +129,31 @@ this is iterating over.
 
 #### Trait Implementations
 
-##### `impl<'p> Debug for PatternIter<'p>`
+##### `impl Debug for PatternIter<'p>`
 
 - <span id="patterniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for PatternIter<'p>`
+##### `impl IntoIterator for PatternIter<'p>`
 
-- <span id="patterniter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="patterniter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="patterniter-intoiter"></span>`type IntoIter = I`
+- <span id="patterniter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="patterniter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'p> Iterator for PatternIter<'p>`
+##### `impl Iterator for PatternIter<'p>`
 
-- <span id="patterniter-item"></span>`type Item = (PatternID, Pattern<'p>)`
+- <span id="patterniter-type-item"></span>`type Item = (PatternID, Pattern<'p>)`
 
-- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<(PatternID, Pattern<'p>)>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
+- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<(PatternID, Pattern<'p>)>` — [`PatternID`](../../util/primitives/index.md), [`Pattern`](#pattern)
 
 ### `Pattern<'a>`
 
 ```rust
 struct Pattern<'a>(&'a [u8]);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:209`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L209)*
 
 A pattern that is used in packed searching.
 
@@ -165,11 +171,11 @@ A pattern that is used in packed searching.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Pattern<'a>`
+##### `impl Clone for Pattern<'a>`
 
 - <span id="pattern-clone"></span>`fn clone(&self) -> Pattern<'a>` — [`Pattern`](#pattern)
 
-##### `impl<'a> Debug for Pattern<'a>`
+##### `impl Debug for Pattern<'a>`
 
 - <span id="pattern-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -180,6 +186,8 @@ A pattern that is used in packed searching.
 ```rust
 fn is_prefix(haystack: &[u8], needle: &[u8]) -> bool
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:293-301`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L293-L301)*
 
 Returns true if and only if `needle` is a prefix of `haystack`.
 
@@ -197,6 +205,8 @@ another function that is marked as `inline(never)` or just `inline`.
 ```rust
 unsafe fn is_equal_raw(x: *const u8, y: *const u8, n: usize) -> bool
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/packed/pattern.rs:368-416`](../../../../.source_1765210505/aho-corasick-1.1.4/src/packed/pattern.rs#L368-L416)*
 
 Compare `n` bytes at the given pointers for equality.
 

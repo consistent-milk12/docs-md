@@ -22,11 +22,13 @@ struct ProgressBarIter<T> {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/iter.rs:62-65`](../../../.source_1765210505/indicatif-0.18.3/src/iter.rs#L62-L65)*
+
 Wraps an iterator to display its progress.
 
 #### Implementations
 
-- <span id="progressbariter-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../index.md)
+- <span id="progressbariter-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../style/index.md)
 
 - <span id="progressbariter-with-prefix"></span>`fn with_prefix(self, prefix: impl Into<Cow<'static, str>>) -> Self`
 
@@ -36,7 +38,7 @@ Wraps an iterator to display its progress.
 
 - <span id="progressbariter-with-elapsed"></span>`fn with_elapsed(self, elapsed: Duration) -> Self`
 
-- <span id="progressbariter-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../index.md)
+- <span id="progressbariter-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../state/index.md)
 
 #### Trait Implementations
 
@@ -62,21 +64,21 @@ Wraps an iterator to display its progress.
 
 ##### `impl<I> IntoIterator for ProgressBarIter<T>`
 
-- <span id="progressbariter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="progressbariter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="progressbariter-intoiter"></span>`type IntoIter = I`
+- <span id="progressbariter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="progressbariter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<S, T: Iterator<Item = S>> Iterator for ProgressBarIter<T>`
 
-- <span id="progressbariter-item"></span>`type Item = S`
+- <span id="progressbariter-type-item"></span>`type Item = S`
 
 - <span id="progressbariter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<S, T> ProgressIterator for ProgressBarIter<T>`
 
-- <span id="progressbariter-progress-with"></span>`fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<T>` — [`ProgressBar`](../index.md), [`ProgressBarIter`](../index.md)
+- <span id="progressbariter-progress-with"></span>`fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<T>` — [`ProgressBar`](../progress_bar/index.md), [`ProgressBarIter`](#progressbariter)
 
 ##### `impl<R: io::Read> Read for ProgressBarIter<R>`
 
@@ -112,6 +114,8 @@ where
     Self: Sized + Iterator { ... }
 ```
 
+*Defined in [`indicatif-0.18.3/src/iter.rs:18-58`](../../../.source_1765210505/indicatif-0.18.3/src/iter.rs#L18-L58)*
+
 Wraps an iterator to display its progress.
 
 #### Required Methods
@@ -140,6 +144,5 @@ Wraps an iterator to display its progress.
 
 #### Implementors
 
-- [`ProgressBarIter`](../index.md)
 - `T`
 

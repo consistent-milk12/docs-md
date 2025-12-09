@@ -49,13 +49,13 @@ Serialize a Rust data structure into JSON data.
 | [`CompactFormatter`](#compactformatter) | struct | This structure compacts a JSON value with no extra whitespace. |
 | [`PrettyFormatter`](#prettyformatter) | struct | This structure pretty prints a JSON value to make it human readable. |
 | [`CharEscape`](#charescape) | enum | Represents a character escape code in a type-safe manner. |
-| [`Formatter`](#formatter) | trait | This trait abstracts away serializing the JSON control characters, which allows the user to |
+| [`Formatter`](#formatter) | trait | This trait abstracts away serializing the JSON control characters, which allows the user to optionally pretty print the JSON output. |
 | [`key_must_be_a_string`](#key_must_be_a_string) | fn |  |
 | [`float_key_must_be_finite`](#float_key_must_be_finite) | fn |  |
 | [`format_escaped_str`](#format_escaped_str) | fn |  |
 | [`format_escaped_str_contents`](#format_escaped_str_contents) | fn |  |
 | [`to_writer`](#to_writer) | fn | Serialize the given data structure as JSON into the I/O stream. |
-| [`to_writer_pretty`](#to_writer_pretty) | fn | Serialize the given data structure as pretty-printed JSON into the I/O |
+| [`to_writer_pretty`](#to_writer_pretty) | fn | Serialize the given data structure as pretty-printed JSON into the I/O stream. |
 | [`to_vec`](#to_vec) | fn | Serialize the given data structure as a JSON byte vector. |
 | [`to_vec_pretty`](#to_vec_pretty) | fn | Serialize the given data structure as a pretty-printed JSON byte vector. |
 | [`to_string`](#to_string) | fn | Serialize the given data structure as a String of JSON. |
@@ -82,11 +82,97 @@ struct Serializer<W, F> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:17-20`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L17-L20)*
+
 A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- <span id="serializer-pretty"></span>`fn pretty(writer: W) -> Self`
+- <span id="serializer-new"></span>`fn new(writer: W) -> Self`
+
+#### Trait Implementations
+
+##### `impl<'a, W, F> Serializer for &'a mut Serializer<W, F>`
+
+- <span id="a-mut-serializer-type-ok"></span>`type Ok = ()`
+
+- <span id="a-mut-serializer-type-error"></span>`type Error = Error`
+
+- <span id="a-mut-serializer-type-serializeseq"></span>`type SerializeSeq = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializetuple"></span>`type SerializeTuple = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializemap"></span>`type SerializeMap = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializestruct"></span>`type SerializeStruct = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-i8"></span>`fn serialize_i8(self, value: i8) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-i16"></span>`fn serialize_i16(self, value: i16) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-i32"></span>`fn serialize_i32(self, value: i32) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-i64"></span>`fn serialize_i64(self, value: i64) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-i128"></span>`fn serialize_i128(self, value: i128) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-u8"></span>`fn serialize_u8(self, value: u8) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-u16"></span>`fn serialize_u16(self, value: u16) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-u32"></span>`fn serialize_u32(self, value: u32) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-u64"></span>`fn serialize_u64(self, value: u64) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-u128"></span>`fn serialize_u128(self, value: u128) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-f32"></span>`fn serialize_f32(self, value: f32) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-f64"></span>`fn serialize_f64(self, value: f64) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-char"></span>`fn serialize_char(self, value: char) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-str"></span>`fn serialize_str(self, value: &str) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-bytes"></span>`fn serialize_bytes(self, value: &[u8]) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-unit"></span>`fn serialize_unit(self) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-unit-struct"></span>`fn serialize_unit_struct(self, _name: &'static str) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-unit-variant"></span>`fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-newtype-struct"></span>`fn serialize_newtype_struct<T>(self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-newtype-variant"></span>`fn serialize_newtype_variant<T>(self, _name: &'static str, _variant_index: u32, variant: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-none"></span>`fn serialize_none(self) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-some"></span>`fn serialize_some<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-seq"></span>`fn serialize_seq(self, len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-tuple"></span>`fn serialize_tuple(self, len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-tuple-struct"></span>`fn serialize_tuple_struct(self, _name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-tuple-variant"></span>`fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-map"></span>`fn serialize_map(self, len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-struct"></span>`fn serialize_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-serialize-struct-variant"></span>`fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../error/index.md)
+
+- <span id="a-mut-serializer-collect-str"></span>`fn collect_str<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md)
 
 ### `MapKeySerializer<'a, W: 'a, F: 'a>`
 
@@ -96,95 +182,99 @@ struct MapKeySerializer<'a, W: 'a, F: 'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:773-775`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L773-L775)*
+
 #### Trait Implementations
 
 ##### `impl<'a, W, F> Serializer for MapKeySerializer<'a, W, F>`
 
-- <span id="mapkeyserializer-ok"></span>`type Ok = ()`
+- <span id="mapkeyserializer-type-ok"></span>`type Ok = ()`
 
-- <span id="mapkeyserializer-error"></span>`type Error = Error`
+- <span id="mapkeyserializer-type-error"></span>`type Error = Error`
 
-- <span id="mapkeyserializer-serialize-str"></span>`fn serialize_str(self, value: &str) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-str"></span>`fn serialize_str(self, value: &str) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-unit-variant"></span>`fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-unit-variant"></span>`fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-newtype-struct"></span>`fn serialize_newtype_struct<T>(self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-newtype-struct"></span>`fn serialize_newtype_struct<T>(self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serializeseq"></span>`type SerializeSeq = Impossible<(), Error>`
+- <span id="mapkeyserializer-type-serializeseq"></span>`type SerializeSeq = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-serializetuple"></span>`type SerializeTuple = Impossible<(), Error>`
+- <span id="mapkeyserializer-type-serializetuple"></span>`type SerializeTuple = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-serializetuplestruct"></span>`type SerializeTupleStruct = Impossible<(), Error>`
+- <span id="mapkeyserializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-serializetuplevariant"></span>`type SerializeTupleVariant = Impossible<(), Error>`
+- <span id="mapkeyserializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-serializemap"></span>`type SerializeMap = Impossible<(), Error>`
+- <span id="mapkeyserializer-type-serializemap"></span>`type SerializeMap = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-serializestruct"></span>`type SerializeStruct = Impossible<(), Error>`
+- <span id="mapkeyserializer-type-serializestruct"></span>`type SerializeStruct = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-serializestructvariant"></span>`type SerializeStructVariant = Impossible<(), Error>`
+- <span id="mapkeyserializer-type-serializestructvariant"></span>`type SerializeStructVariant = Impossible<(), Error>`
 
-- <span id="mapkeyserializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-i8"></span>`fn serialize_i8(self, value: i8) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-i8"></span>`fn serialize_i8(self, value: i8) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-i16"></span>`fn serialize_i16(self, value: i16) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-i16"></span>`fn serialize_i16(self, value: i16) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-i32"></span>`fn serialize_i32(self, value: i32) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-i32"></span>`fn serialize_i32(self, value: i32) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-i64"></span>`fn serialize_i64(self, value: i64) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-i64"></span>`fn serialize_i64(self, value: i64) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-i128"></span>`fn serialize_i128(self, value: i128) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-i128"></span>`fn serialize_i128(self, value: i128) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-u8"></span>`fn serialize_u8(self, value: u8) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-u8"></span>`fn serialize_u8(self, value: u8) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-u16"></span>`fn serialize_u16(self, value: u16) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-u16"></span>`fn serialize_u16(self, value: u16) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-u32"></span>`fn serialize_u32(self, value: u32) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-u32"></span>`fn serialize_u32(self, value: u32) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-u64"></span>`fn serialize_u64(self, value: u64) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-u64"></span>`fn serialize_u64(self, value: u64) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-u128"></span>`fn serialize_u128(self, value: u128) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-u128"></span>`fn serialize_u128(self, value: u128) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-f32"></span>`fn serialize_f32(self, value: f32) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-f32"></span>`fn serialize_f32(self, value: f32) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-f64"></span>`fn serialize_f64(self, value: f64) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-f64"></span>`fn serialize_f64(self, value: f64) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-char"></span>`fn serialize_char(self, value: char) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-char"></span>`fn serialize_char(self, value: char) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-bytes"></span>`fn serialize_bytes(self, _value: &[u8]) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-bytes"></span>`fn serialize_bytes(self, _value: &[u8]) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-unit"></span>`fn serialize_unit(self) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-unit"></span>`fn serialize_unit(self) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-unit-struct"></span>`fn serialize_unit_struct(self, _name: &'static str) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-unit-struct"></span>`fn serialize_unit_struct(self, _name: &'static str) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-newtype-variant"></span>`fn serialize_newtype_variant<T>(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-newtype-variant"></span>`fn serialize_newtype_variant<T>(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-none"></span>`fn serialize_none(self) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-none"></span>`fn serialize_none(self) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-some"></span>`fn serialize_some<T>(self, value: &T) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-some"></span>`fn serialize_some<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-seq"></span>`fn serialize_seq(self, _len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-seq"></span>`fn serialize_seq(self, _len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-tuple"></span>`fn serialize_tuple(self, _len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-tuple"></span>`fn serialize_tuple(self, _len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-tuple-struct"></span>`fn serialize_tuple_struct(self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-tuple-struct"></span>`fn serialize_tuple_struct(self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-tuple-variant"></span>`fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-tuple-variant"></span>`fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-map"></span>`fn serialize_map(self, _len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-map"></span>`fn serialize_map(self, _len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-struct"></span>`fn serialize_struct(self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-struct"></span>`fn serialize_struct(self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-serialize-struct-variant"></span>`fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-struct-variant"></span>`fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../error/index.md)
 
-- <span id="mapkeyserializer-collect-str"></span>`fn collect_str<T>(self, value: &T) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-collect-str"></span>`fn collect_str<T>(self, value: &T) -> Result<()>` — [`Result`](../error/index.md)
 
 ### `CompactFormatter`
 
 ```rust
 struct CompactFormatter;
 ```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:1939`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L1939)*
 
 This structure compacts a JSON value with no extra whitespace.
 
@@ -214,6 +304,8 @@ struct PrettyFormatter<'a> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:1945-1949`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L1945-L1949)*
+
 This structure pretty prints a JSON value to make it human readable.
 
 #### Implementations
@@ -224,19 +316,19 @@ This structure pretty prints a JSON value to make it human readable.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for PrettyFormatter<'a>`
+##### `impl Clone for PrettyFormatter<'a>`
 
 - <span id="prettyformatter-clone"></span>`fn clone(&self) -> PrettyFormatter<'a>` — [`PrettyFormatter`](#prettyformatter)
 
-##### `impl<'a> Debug for PrettyFormatter<'a>`
+##### `impl Debug for PrettyFormatter<'a>`
 
 - <span id="prettyformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Default for PrettyFormatter<'a>`
+##### `impl Default for PrettyFormatter<'a>`
 
 - <span id="prettyformatter-default"></span>`fn default() -> Self`
 
-##### `impl<'a> Formatter for PrettyFormatter<'a>`
+##### `impl Formatter for PrettyFormatter<'a>`
 
 - <span id="prettyformatter-begin-array"></span>`fn begin_array<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
 
@@ -273,6 +365,8 @@ enum CharEscape {
     AsciiControl(u8),
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:1517-1537`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L1517-L1537)*
 
 Represents a character escape code in a type-safe manner.
 
@@ -322,6 +416,8 @@ Represents a character escape code in a type-safe manner.
 ```rust
 trait Formatter { ... }
 ```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:1541-1935`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L1541-L1935)*
 
 This trait abstracts away serializing the JSON control characters, which allows the user to
 optionally pretty print the JSON output.
@@ -465,11 +561,15 @@ optionally pretty print the JSON output.
 fn key_must_be_a_string() -> crate::error::Error
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:787-789`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L787-L789)*
+
 ### `float_key_must_be_finite`
 
 ```rust
 fn float_key_must_be_finite() -> crate::error::Error
 ```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:791-793`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L791-L793)*
 
 ### `format_escaped_str`
 
@@ -480,6 +580,8 @@ where
     F: ?Sized + Formatter
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:2069-2077`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2069-L2077)*
+
 ### `format_escaped_str_contents`
 
 ```rust
@@ -489,6 +591,8 @@ where
     F: ?Sized + Formatter
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:2079-2133`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2079-L2133)*
+
 ### `to_writer`
 
 ```rust
@@ -497,6 +601,8 @@ where
     W: io::Write,
     T: ?Sized + Serialize
 ```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:2177-2184`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2177-L2184)*
 
 Serialize the given data structure as JSON into the I/O stream.
 
@@ -516,6 +622,8 @@ where
     T: ?Sized + Serialize
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:2197-2204`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2197-L2204)*
+
 Serialize the given data structure as pretty-printed JSON into the I/O
 stream.
 
@@ -534,6 +642,8 @@ where
     T: ?Sized + Serialize
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:2213-2220`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2213-L2220)*
+
 Serialize the given data structure as a JSON byte vector.
 
 # Errors
@@ -548,6 +658,8 @@ fn to_vec_pretty<T>(value: &T) -> crate::error::Result<alloc::vec::Vec<u8>>
 where
     T: ?Sized + Serialize
 ```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:2229-2236`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2229-L2236)*
 
 Serialize the given data structure as a pretty-printed JSON byte vector.
 
@@ -564,6 +676,8 @@ where
     T: ?Sized + Serialize
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:2245-2255`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2245-L2255)*
+
 Serialize the given data structure as a String of JSON.
 
 # Errors
@@ -578,6 +692,8 @@ fn to_string_pretty<T>(value: &T) -> crate::error::Result<alloc::string::String>
 where
     T: ?Sized + Serialize
 ```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:2264-2274`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2264-L2274)*
 
 Serialize the given data structure as a pretty-printed String of JSON.
 
@@ -594,59 +710,70 @@ where
     W: ?Sized + io::Write
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:2276-2285`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2276-L2285)*
+
 ## Constants
 
 ### `BB`
-
 ```rust
 const BB: u8 = 98u8;
 ```
 
-### `TT`
+*Defined in [`serde_json-1.0.145/src/ser.rs:2135`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2135)*
 
+### `TT`
 ```rust
 const TT: u8 = 116u8;
 ```
 
-### `NN`
+*Defined in [`serde_json-1.0.145/src/ser.rs:2136`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2136)*
 
+### `NN`
 ```rust
 const NN: u8 = 110u8;
 ```
 
-### `FF`
+*Defined in [`serde_json-1.0.145/src/ser.rs:2137`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2137)*
 
+### `FF`
 ```rust
 const FF: u8 = 102u8;
 ```
 
-### `RR`
+*Defined in [`serde_json-1.0.145/src/ser.rs:2138`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2138)*
 
+### `RR`
 ```rust
 const RR: u8 = 114u8;
 ```
 
-### `QU`
+*Defined in [`serde_json-1.0.145/src/ser.rs:2139`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2139)*
 
+### `QU`
 ```rust
 const QU: u8 = 34u8;
 ```
 
-### `BS`
+*Defined in [`serde_json-1.0.145/src/ser.rs:2140`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2140)*
 
+### `BS`
 ```rust
 const BS: u8 = 92u8;
 ```
 
-### `UU`
+*Defined in [`serde_json-1.0.145/src/ser.rs:2141`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2141)*
 
+### `UU`
 ```rust
 const UU: u8 = 117u8;
 ```
 
-### `__`
+*Defined in [`serde_json-1.0.145/src/ser.rs:2142`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2142)*
 
+### `__`
 ```rust
 const __: u8 = 0u8;
 ```
+
+*Defined in [`serde_json-1.0.145/src/ser.rs:2143`](../../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L2143)*
 

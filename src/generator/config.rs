@@ -3,6 +3,8 @@
 //! This module provides [`RenderConfig`] for controlling how documentation
 //! is rendered, and [`SourceConfig`] for source code integration options.
 
+use std::path::PathBuf;
+
 /// Configuration options for markdown rendering.
 #[derive(Debug, Clone)]
 #[expect(
@@ -49,6 +51,13 @@ pub struct SourceConfig {
 
     /// Add <file:line> references to items.
     pub source_locations: bool,
+
+    /// Path to the `.source_*` directory containing collected dependency sources.
+    ///
+    /// When set, source location references will use paths relative to this directory
+    /// and generate clickable links. When `None`, absolute paths from rustdoc JSON
+    /// are displayed without links.
+    pub source_dir: Option<PathBuf>,
 }
 
 impl Default for RenderConfig {
@@ -114,6 +123,7 @@ mod tests {
                 const_values: true,
                 private_items: true,
                 source_locations: true,
+                source_dir: Some(PathBuf::from(".source_12345")),
             },
         };
 
@@ -126,5 +136,6 @@ mod tests {
         assert!(config.include_source.const_values);
         assert!(config.include_source.private_items);
         assert!(config.include_source.source_locations);
+        assert!(config.include_source.source_dir.is_some());
     }
 }

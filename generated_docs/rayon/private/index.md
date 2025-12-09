@@ -13,7 +13,7 @@ being a breaking change for other implementations.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`PrivateMarker`](#privatemarker) | struct | If this type is pub but not publicly reachable, third parties |
+| [`PrivateMarker`](#privatemarker) | struct | If this type is pub but not publicly reachable, third parties can't name it and can't implement traits using it. |
 | [`private_decl!`](#private_decl) | macro |  |
 | [`private_impl!`](#private_impl) | macro |  |
 
@@ -25,18 +25,20 @@ being a breaking change for other implementations.
 struct PrivateMarker;
 ```
 
+*Defined in [`rayon-1.11.0/src/private.rs:9`](../../../.source_1765210505/rayon-1.11.0/src/private.rs#L9)*
+
 If this type is pub but not publicly reachable, third parties
 can't name it and can't implement traits using it.
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for PrivateMarker`
+##### `impl IntoEither for PrivateMarker`
 
-##### `impl<T> Pointable for PrivateMarker`
+##### `impl Pointable for PrivateMarker`
 
-- <span id="privatemarker-align"></span>`const ALIGN: usize`
+- <span id="privatemarker-const-align"></span>`const ALIGN: usize`
 
-- <span id="privatemarker-init"></span>`type Init = T`
+- <span id="privatemarker-type-init"></span>`type Init = T`
 
 - <span id="privatemarker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -50,5 +52,9 @@ can't name it and can't implement traits using it.
 
 ### `private_decl!`
 
+*Defined in [`rayon-1.11.0/src/private.rs:11-18`](../../../.source_1765210505/rayon-1.11.0/src/private.rs#L11-L18)*
+
 ### `private_impl!`
+
+*Defined in [`rayon-1.11.0/src/private.rs:20-26`](../../../.source_1765210505/rayon-1.11.0/src/private.rs#L20-L26)*
 

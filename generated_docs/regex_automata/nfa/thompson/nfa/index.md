@@ -24,6 +24,8 @@
 struct NFA(alloc::sync::Arc<Inner>);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:190-202`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L190-L202)*
+
 A byte oriented Thompson non-deterministic finite automaton (NFA).
 
 A Thompson NFA is a finite state machine that permits unconditional epsilon
@@ -193,19 +195,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="nfa-new"></span>`fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
+- <span id="nfa-new"></span>`fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../error/index.md)
 
-- <span id="nfa-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
+- <span id="nfa-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../error/index.md)
 
-- <span id="nfa-always-match"></span>`fn always_match() -> NFA` — [`NFA`](../index.md)
+- <span id="nfa-always-match"></span>`fn always_match() -> NFA` — [`NFA`](#nfa)
 
-- <span id="nfa-never-match"></span>`fn never_match() -> NFA` — [`NFA`](../index.md)
+- <span id="nfa-never-match"></span>`fn never_match() -> NFA` — [`NFA`](#nfa)
 
-- <span id="nfa-config"></span>`fn config() -> Config` — [`Config`](../index.md)
+- <span id="nfa-config"></span>`fn config() -> Config` — [`Config`](../compiler/index.md)
 
-- <span id="nfa-compiler"></span>`fn compiler() -> Compiler` — [`Compiler`](../index.md)
+- <span id="nfa-compiler"></span>`fn compiler() -> Compiler` — [`Compiler`](../compiler/index.md)
 
-- <span id="nfa-patterns"></span>`fn patterns(&self) -> PatternIter<'_>` — [`PatternIter`](../index.md)
+- <span id="nfa-patterns"></span>`fn patterns(&self) -> PatternIter<'_>` — [`PatternIter`](#patterniter)
 
 - <span id="nfa-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
@@ -213,15 +215,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - <span id="nfa-start-unanchored"></span>`fn start_unanchored(&self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
-- <span id="nfa-start-pattern"></span>`fn start_pattern(&self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../../index.md), [`StateID`](../../../util/primitives/index.md)
+- <span id="nfa-start-pattern"></span>`fn start_pattern(&self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../../util/primitives/index.md), [`StateID`](../../../util/primitives/index.md)
 
 - <span id="nfa-byte-class-set"></span>`fn byte_class_set(&self) -> &ByteClassSet` — [`ByteClassSet`](../../../util/alphabet/index.md)
 
 - <span id="nfa-byte-classes"></span>`fn byte_classes(&self) -> &ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
 
-- <span id="nfa-state"></span>`fn state(&self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md), [`State`](../index.md)
+- <span id="nfa-state"></span>`fn state(&self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md), [`State`](#state)
 
-- <span id="nfa-states"></span>`fn states(&self) -> &[State]` — [`State`](../index.md)
+- <span id="nfa-states"></span>`fn states(&self) -> &[State]` — [`State`](#state)
 
 - <span id="nfa-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
 
@@ -247,7 +249,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for NFA`
 
-- <span id="nfa-clone"></span>`fn clone(&self) -> NFA` — [`NFA`](../index.md)
+- <span id="nfa-clone"></span>`fn clone(&self) -> NFA` — [`NFA`](#nfa)
 
 ##### `impl Debug for NFA`
 
@@ -274,6 +276,8 @@ struct Inner {
     memory_extra: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1195-1268`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1195-L1268)*
 
 The "inner" part of the NFA. We split this part out so that we can easily
 wrap it in an `Arc` above in the definition of `NFA`.
@@ -385,11 +389,11 @@ get its own module.)
 
 #### Implementations
 
-- <span id="inner-into-nfa"></span>`fn into_nfa(self) -> NFA` — [`NFA`](../index.md)
+- <span id="inner-into-nfa"></span>`fn into_nfa(self) -> NFA` — [`NFA`](#nfa)
 
 - <span id="inner-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
 
-- <span id="inner-add"></span>`fn add(&mut self, state: State) -> StateID` — [`State`](../index.md), [`StateID`](../../../util/primitives/index.md)
+- <span id="inner-add"></span>`fn add(&mut self, state: State) -> StateID` — [`State`](#state), [`StateID`](../../../util/primitives/index.md)
 
 - <span id="inner-set-starts"></span>`fn set_starts(&mut self, start_anchored: StateID, start_unanchored: StateID, start_pattern: &[StateID])` — [`StateID`](../../../util/primitives/index.md)
 
@@ -421,6 +425,8 @@ struct SparseTransitions {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1795-1798`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1795-L1798)*
+
 A sequence of transitions used to represent a sparse state.
 
 This is the primary representation of a [`Sparse`](State::Sparse) state.
@@ -447,7 +453,7 @@ corresponding transition.
 
 ##### `impl Clone for SparseTransitions`
 
-- <span id="sparsetransitions-clone"></span>`fn clone(&self) -> SparseTransitions` — [`SparseTransitions`](../index.md)
+- <span id="sparsetransitions-clone"></span>`fn clone(&self) -> SparseTransitions` — [`SparseTransitions`](#sparsetransitions)
 
 ##### `impl Debug for SparseTransitions`
 
@@ -457,7 +463,7 @@ corresponding transition.
 
 ##### `impl PartialEq for SparseTransitions`
 
-- <span id="sparsetransitions-eq"></span>`fn eq(&self, other: &SparseTransitions) -> bool` — [`SparseTransitions`](../index.md)
+- <span id="sparsetransitions-eq"></span>`fn eq(&self, other: &SparseTransitions) -> bool` — [`SparseTransitions`](#sparsetransitions)
 
 ##### `impl StructuralPartialEq for SparseTransitions`
 
@@ -468,6 +474,8 @@ struct DenseTransitions {
     pub transitions: alloc::boxed::Box<[crate::util::primitives::StateID]>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1882-1886`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1882-L1886)*
 
 A sequence of transitions used to represent a dense state.
 
@@ -495,13 +503,13 @@ usually requires (much) more heap memory.
 
 - <span id="densetransitions-matches-byte"></span>`fn matches_byte(&self, byte: u8) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
 
-- <span id="densetransitions-iter"></span>`fn iter(&self) -> impl Iterator<Item = Transition> + '_` — [`Transition`](../index.md)
+- <span id="densetransitions-iter"></span>`fn iter(&self) -> impl Iterator<Item = Transition> + '_` — [`Transition`](#transition)
 
 #### Trait Implementations
 
 ##### `impl Clone for DenseTransitions`
 
-- <span id="densetransitions-clone"></span>`fn clone(&self) -> DenseTransitions` — [`DenseTransitions`](../index.md)
+- <span id="densetransitions-clone"></span>`fn clone(&self) -> DenseTransitions` — [`DenseTransitions`](#densetransitions)
 
 ##### `impl Debug for DenseTransitions`
 
@@ -511,7 +519,7 @@ usually requires (much) more heap memory.
 
 ##### `impl PartialEq for DenseTransitions`
 
-- <span id="densetransitions-eq"></span>`fn eq(&self, other: &DenseTransitions) -> bool` — [`DenseTransitions`](../index.md)
+- <span id="densetransitions-eq"></span>`fn eq(&self, other: &DenseTransitions) -> bool` — [`DenseTransitions`](#densetransitions)
 
 ##### `impl StructuralPartialEq for DenseTransitions`
 
@@ -524,6 +532,8 @@ struct Transition {
     pub next: crate::util::primitives::StateID,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1965-1972`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1965-L1972)*
 
 A single transition to another state.
 
@@ -556,7 +566,7 @@ falls in the inclusive range of bytes specified.
 
 ##### `impl Clone for Transition`
 
-- <span id="transition-clone"></span>`fn clone(&self) -> Transition` — [`Transition`](../index.md)
+- <span id="transition-clone"></span>`fn clone(&self) -> Transition` — [`Transition`](#transition)
 
 ##### `impl Copy for Transition`
 
@@ -572,7 +582,7 @@ falls in the inclusive range of bytes specified.
 
 ##### `impl PartialEq for Transition`
 
-- <span id="transition-eq"></span>`fn eq(&self, other: &Transition) -> bool` — [`Transition`](../index.md)
+- <span id="transition-eq"></span>`fn eq(&self, other: &Transition) -> bool` — [`Transition`](#transition)
 
 ##### `impl StructuralPartialEq for Transition`
 
@@ -584,6 +594,8 @@ struct PatternIter<'a> {
     _marker: core::marker::PhantomData<&'a ()>,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:2023-2031`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L2023-L2031)*
 
 An iterator over all pattern IDs in an NFA.
 
@@ -604,23 +616,23 @@ this pattern iterator was created.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for PatternIter<'a>`
+##### `impl Debug for PatternIter<'a>`
 
 - <span id="patterniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for PatternIter<'a>`
+##### `impl IntoIterator for PatternIter<'a>`
 
-- <span id="patterniter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="patterniter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="patterniter-intoiter"></span>`type IntoIter = I`
+- <span id="patterniter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="patterniter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for PatternIter<'a>`
+##### `impl Iterator for PatternIter<'a>`
 
-- <span id="patterniter-item"></span>`type Item = PatternID`
+- <span id="patterniter-type-item"></span>`type Item = PatternID`
 
-- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../../../index.md)
+- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../../../util/primitives/index.md)
 
 ## Enums
 
@@ -656,6 +668,8 @@ enum State {
     },
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/nfa/thompson/nfa.rs:1514-1621`](../../../../../.source_1765210505/regex-automata-0.4.13/src/nfa/thompson/nfa.rs#L1514-L1621)*
 
 A state in an NFA.
 
@@ -774,7 +788,7 @@ need to do some kind of analysis on the NFA.
 
 ##### `impl Clone for State`
 
-- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](../index.md)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
 ##### `impl Debug for State`
 
@@ -784,7 +798,7 @@ need to do some kind of analysis on the NFA.
 
 ##### `impl PartialEq for State`
 
-- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](../index.md)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
 

@@ -19,6 +19,8 @@
 struct Panic(String);
 ```
 
+*Defined in [`miette-7.6.0/src/panic.rs:30`](../../../.source_1765210505/miette-7.6.0/src/panic.rs#L30)*
+
 #### Implementations
 
 - <span id="panic-backtrace"></span>`fn backtrace() -> String`
@@ -29,7 +31,7 @@ struct Panic(String);
 
 - <span id="panic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E> Diag for Panic`
+##### `impl Diag for Panic`
 
 - <span id="panic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
 
@@ -43,13 +45,13 @@ struct Panic(String);
 
 ##### `impl Error for Panic`
 
-##### `impl<D> OwoColorize for Panic`
+##### `impl OwoColorize for Panic`
 
-##### `impl<T> ToString for Panic`
+##### `impl ToString for Panic`
 
 - <span id="panic-to-string"></span>`fn to_string(&self) -> String`
 
-##### `impl<E> TraitKind for Panic`
+##### `impl TraitKind for Panic`
 
 ## Functions
 
@@ -58,6 +60,8 @@ struct Panic(String);
 ```rust
 fn set_panic_hook()
 ```
+
+*Defined in [`miette-7.6.0/src/panic.rs:8-27`](../../../.source_1765210505/miette-7.6.0/src/panic.rs#L8-L27)*
 
 Tells miette to render panics using its rendering engine.
 

@@ -28,6 +28,8 @@ struct IntoIter<T> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/result.rs:16-18`](../../../.source_1765210505/rayon-1.11.0/src/result.rs#L16-L18)*
+
 Parallel iterator over a result
 
 #### Trait Implementations
@@ -52,15 +54,15 @@ Parallel iterator over a result
 
 ##### `impl<T> IntoParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-iter"></span>`type Iter = T`
+- <span id="intoiter-type-iter"></span>`type Iter = T`
 
-- <span id="intoiter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-item"></span>`type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
 - <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -68,9 +70,9 @@ Parallel iterator over a result
 
 ##### `impl<T> Pointable for IntoIter<T>`
 
-- <span id="intoiter-align"></span>`const ALIGN: usize`
+- <span id="intoiter-const-align"></span>`const ALIGN: usize`
 
-- <span id="intoiter-init"></span>`type Init = T`
+- <span id="intoiter-type-init"></span>`type Init = T`
 
 - <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -87,6 +89,8 @@ struct Iter<'a, T> {
     inner: option::IntoIter<&'a T>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/result.rs:38-40`](../../../.source_1765210505/rayon-1.11.0/src/result.rs#L38-L40)*
 
 Parallel iterator over an immutable reference to a result
 
@@ -112,15 +116,15 @@ Parallel iterator over an immutable reference to a result
 
 ##### `impl<T> IntoParallelIterator for Iter<'a, T>`
 
-- <span id="iter-iter"></span>`type Iter = T`
+- <span id="iter-type-iter"></span>`type Iter = T`
 
-- <span id="iter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T: Sync> ParallelIterator for Iter<'a, T>`
 
-- <span id="iter-item"></span>`type Item = &'a T`
+- <span id="iter-type-item"></span>`type Item = &'a T`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -128,9 +132,9 @@ Parallel iterator over an immutable reference to a result
 
 ##### `impl<T> Pointable for Iter<'a, T>`
 
-- <span id="iter-align"></span>`const ALIGN: usize`
+- <span id="iter-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-init"></span>`type Init = T`
+- <span id="iter-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -147,6 +151,8 @@ struct IterMut<'a, T> {
     inner: option::IntoIter<&'a mut T>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/result.rs:68-70`](../../../.source_1765210505/rayon-1.11.0/src/result.rs#L68-L70)*
 
 Parallel iterator over a mutable reference to a result
 
@@ -168,15 +174,15 @@ Parallel iterator over a mutable reference to a result
 
 ##### `impl<T> IntoParallelIterator for IterMut<'a, T>`
 
-- <span id="itermut-iter"></span>`type Iter = T`
+- <span id="itermut-type-iter"></span>`type Iter = T`
 
-- <span id="itermut-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="itermut-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="itermut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T: Send> ParallelIterator for IterMut<'a, T>`
 
-- <span id="itermut-item"></span>`type Item = &'a mut T`
+- <span id="itermut-type-item"></span>`type Item = &'a mut T`
 
 - <span id="itermut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -184,9 +190,9 @@ Parallel iterator over a mutable reference to a result
 
 ##### `impl<T> Pointable for IterMut<'a, T>`
 
-- <span id="itermut-align"></span>`const ALIGN: usize`
+- <span id="itermut-const-align"></span>`const ALIGN: usize`
 
-- <span id="itermut-init"></span>`type Init = T`
+- <span id="itermut-type-init"></span>`type Init = T`
 
 - <span id="itermut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

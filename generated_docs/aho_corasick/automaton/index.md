@@ -59,7 +59,7 @@ permit walking the state transitions of an Aho-Corasick automaton manually.
 | [`try_find_overlapping_fwd_imp`](#try_find_overlapping_fwd_imp) | fn |  |
 | [`get_match`](#get_match) | fn |  |
 | [`fmt_state_indicator`](#fmt_state_indicator) | fn | Write a prefix "state" indicator for fmt::Debug impls. |
-| [`sparse_transitions`](#sparse_transitions) | fn | Return an iterator of transitions in a sparse format given an iterator |
+| [`sparse_transitions`](#sparse_transitions) | fn | Return an iterator of transitions in a sparse format given an iterator of all explicitly defined transitions. |
 
 ## Modules
 
@@ -75,6 +75,8 @@ struct Prefilter {
     memory_usage: usize,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:33-36`](../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L33-L36)*
 
 A prefilter for accelerating a search.
 
@@ -93,7 +95,7 @@ much else. If you have a use case for more APIs, please submit an issue.
 
 #### Implementations
 
-- <span id="prefilter-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../index.md), [`Candidate`](../util/prefilter/index.md)
+- <span id="prefilter-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../util/search/index.md), [`Candidate`](../util/prefilter/index.md)
 
 - <span id="prefilter-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -112,6 +114,8 @@ much else. If you have a use case for more APIs, please submit an issue.
 ```rust
 struct StateID(SmallIndex);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:734`](../../../.source_1765210505/aho-corasick-1.1.4/src/util/primitives.rs#L734)*
 
 The identifier of a finite automaton state.
 
@@ -133,13 +137,13 @@ panics or silent logical errors.
 
 #### Implementations
 
-- <span id="stateid-max"></span>`const MAX: StateID`
+- <span id="stateid-const-max"></span>`const MAX: StateID`
 
-- <span id="stateid-limit"></span>`const LIMIT: usize`
+- <span id="stateid-const-limit"></span>`const LIMIT: usize`
 
-- <span id="stateid-zero"></span>`const ZERO: StateID`
+- <span id="stateid-const-zero"></span>`const ZERO: StateID`
 
-- <span id="stateid-size"></span>`const SIZE: usize`
+- <span id="stateid-const-size"></span>`const SIZE: usize`
 
 - <span id="stateid-new"></span>`fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md), [`StateIDError`](../util/primitives/index.md)
 
@@ -189,6 +193,16 @@ panics or silent logical errors.
 
 - <span id="stateid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T> Index for [T]`
+
+- <span id="t-type-output"></span>`type Output = T`
+
+- <span id="t-index"></span>`fn index(&self, index: StateID) -> &T` — [`StateID`](../util/primitives/index.md)
+
+##### `impl<T> IndexMut for [T]`
+
+- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: StateID) -> &mut T` — [`StateID`](../util/primitives/index.md)
+
 ##### `impl Ord for StateID`
 
 - <span id="stateid-cmp"></span>`fn cmp(&self, other: &StateID) -> cmp::Ordering` — [`StateID`](../util/primitives/index.md)
@@ -208,6 +222,8 @@ panics or silent logical errors.
 ```rust
 struct StateIDError(SmallIndexError);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/primitives.rs:737`](../../../.source_1765210505/aho-corasick-1.1.4/src/util/primitives.rs#L737)*
 
 This error occurs when an ID could not be constructed.
 
@@ -245,7 +261,7 @@ trait.
 
 ##### `impl StructuralPartialEq for StateIDError`
 
-##### `impl<T> ToString for StateIDError`
+##### `impl ToString for StateIDError`
 
 - <span id="stateiderror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -259,6 +275,8 @@ struct OverlappingState {
     next_match_index: Option<usize>,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:782-811`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L782-L811)*
 
 Represents the current state of an overlapping search.
 
@@ -361,7 +379,7 @@ assert_eq!(expected, matches);
 
 - <span id="overlappingstate-start"></span>`fn start() -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
-- <span id="overlappingstate-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="overlappingstate-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../util/search/index.md)
 
 #### Trait Implementations
 
@@ -383,9 +401,11 @@ struct FindIter<'a, 'h, A> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:844-855`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L844-L855)*
+
 An iterator of non-overlapping matches in a particular haystack.
 
-This iterator yields matches according to the [`MatchKind`](../index.md) used by this
+This iterator yields matches according to the [`MatchKind`](../util/search/index.md) used by this
 automaton.
 
 This iterator is constructed via the `Automaton::try_find_iter` method.
@@ -418,11 +438,11 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Implementations
 
-- <span id="finditer-new"></span>`fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../index.md), [`FindIter`](#finditer), [`MatchError`](../index.md)
+- <span id="finditer-new"></span>`fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../util/search/index.md), [`FindIter`](#finditer), [`MatchError`](../util/error/index.md)
 
-- <span id="finditer-search"></span>`fn search(&self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="finditer-search"></span>`fn search(&self) -> Option<Match>` — [`Match`](../util/search/index.md)
 
-- <span id="finditer-handle-overlapping-empty-match"></span>`fn handle_overlapping_empty_match(&mut self, m: Match) -> Option<Match>` — [`Match`](../index.md)
+- <span id="finditer-handle-overlapping-empty-match"></span>`fn handle_overlapping_empty_match(&mut self, m: Match) -> Option<Match>` — [`Match`](../util/search/index.md)
 
 #### Trait Implementations
 
@@ -432,17 +452,17 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 ##### `impl<I> IntoIterator for FindIter<'a, 'h, A>`
 
-- <span id="finditer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="finditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="finditer-intoiter"></span>`type IntoIter = I`
+- <span id="finditer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, 'h, A: Automaton> Iterator for FindIter<'a, 'h, A>`
 
-- <span id="finditer-item"></span>`type Item = Match`
+- <span id="finditer-type-item"></span>`type Item = Match`
 
-- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md)
 
 ### `FindOverlappingIter<'a, 'h, A>`
 
@@ -453,6 +473,8 @@ struct FindOverlappingIter<'a, 'h, A> {
     state: OverlappingState,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:954-958`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L954-L958)*
 
 An iterator of overlapping matches in a particular haystack.
 
@@ -478,17 +500,17 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 ##### `impl<I> IntoIterator for FindOverlappingIter<'a, 'h, A>`
 
-- <span id="findoverlappingiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="findoverlappingiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="findoverlappingiter-intoiter"></span>`type IntoIter = I`
+- <span id="findoverlappingiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="findoverlappingiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, 'h, A: Automaton> Iterator for FindOverlappingIter<'a, 'h, A>`
 
-- <span id="findoverlappingiter-item"></span>`type Item = Match`
+- <span id="findoverlappingiter-type-item"></span>`type Item = Match`
 
-- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../util/search/index.md)
 
 ### `StreamFindIter<'a, A, R>`
 
@@ -497,6 +519,8 @@ struct StreamFindIter<'a, A, R> {
     it: StreamChunkIter<'a, A, R>,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:991-993`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L991-L993)*
 
 An iterator that reports matches in a stream.
 
@@ -524,17 +548,17 @@ implementation.
 
 ##### `impl<I> IntoIterator for StreamFindIter<'a, A, R>`
 
-- <span id="streamfinditer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="streamfinditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="streamfinditer-intoiter"></span>`type IntoIter = I`
+- <span id="streamfinditer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="streamfinditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, A: Automaton, R: std::io::Read> Iterator for StreamFindIter<'a, A, R>`
 
-- <span id="streamfinditer-item"></span>`type Item = Result<Match, Error>`
+- <span id="streamfinditer-type-item"></span>`type Item = Result<Match, Error>`
 
-- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<std::io::Result<Match>>` — [`Match`](../index.md)
+- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<std::io::Result<Match>>` — [`Match`](../util/search/index.md)
 
 ### `StreamChunkIter<'a, A, R>`
 
@@ -550,6 +574,8 @@ struct StreamChunkIter<'a, A, R> {
     buffer_reported_pos: usize,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1036-1063`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1036-L1063)*
 
 An iterator that reports matches in a stream.
 
@@ -617,19 +643,19 @@ chunks it can copy and which it needs to replace.
 
 #### Implementations
 
-- <span id="streamchunkiter-new"></span>`fn new(aut: &'a A, rdr: R) -> Result<StreamChunkIter<'a, A, R>, MatchError>` — [`StreamChunkIter`](#streamchunkiter), [`MatchError`](../index.md)
+- <span id="streamchunkiter-new"></span>`fn new(aut: &'a A, rdr: R) -> Result<StreamChunkIter<'a, A, R>, MatchError>` — [`StreamChunkIter`](#streamchunkiter), [`MatchError`](../util/error/index.md)
 
 - <span id="streamchunkiter-next"></span>`fn next(&mut self) -> Option<std::io::Result<StreamChunk<'_>>>` — [`StreamChunk`](#streamchunk)
 
-- <span id="streamchunkiter-get-match-chunk"></span>`fn get_match_chunk(&self, mat: Match) -> core::ops::Range<usize>` — [`Match`](../index.md)
+- <span id="streamchunkiter-get-match-chunk"></span>`fn get_match_chunk(&self, mat: Match) -> core::ops::Range<usize>` — [`Match`](../util/search/index.md)
 
-- <span id="streamchunkiter-get-non-match-chunk"></span>`fn get_non_match_chunk(&self, mat: Match) -> Option<core::ops::Range<usize>>` — [`Match`](../index.md)
+- <span id="streamchunkiter-get-non-match-chunk"></span>`fn get_non_match_chunk(&self, mat: Match) -> Option<core::ops::Range<usize>>` — [`Match`](../util/search/index.md)
 
 - <span id="streamchunkiter-get-pre-roll-non-match-chunk"></span>`fn get_pre_roll_non_match_chunk(&self) -> Option<core::ops::Range<usize>>`
 
 - <span id="streamchunkiter-get-eof-non-match-chunk"></span>`fn get_eof_non_match_chunk(&self) -> Option<core::ops::Range<usize>>`
 
-- <span id="streamchunkiter-get-match"></span>`fn get_match(&self) -> Match` — [`Match`](../index.md)
+- <span id="streamchunkiter-get-match"></span>`fn get_match(&self) -> Match` — [`Match`](../util/search/index.md)
 
 #### Trait Implementations
 
@@ -648,6 +674,8 @@ enum Candidate {
     PossibleStartOfMatch(usize),
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/prefilter.rs:72-81`](../../../.source_1765210505/aho-corasick-1.1.4/src/util/prefilter.rs#L72-L81)*
 
 A candidate is the result of running a prefilter on a haystack at a
 particular position.
@@ -709,6 +737,8 @@ enum StreamChunk<'r> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1251-1256`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1251-L1256)*
+
 A single chunk yielded by the stream chunk iterator.
 
 The `'r` lifetime refers to the lifetime of the stream chunk iterator.
@@ -725,7 +755,7 @@ The `'r` lifetime refers to the lifetime of the stream chunk iterator.
 
 #### Trait Implementations
 
-##### `impl<'r> Debug for StreamChunk<'r>`
+##### `impl Debug for StreamChunk<'r>`
 
 - <span id="streamchunk-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -736,6 +766,8 @@ The `'r` lifetime refers to the lifetime of the stream chunk iterator.
 ```rust
 trait Automaton: private::Sealed { ... }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:198-637`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L198-L637)*
 
 A trait that abstracts over Aho-Corasick automata.
 
@@ -776,7 +808,7 @@ on a dead state lead back to itself. The dead state is meant to be treated
 as a sentinel indicating that the search should stop and return a match if
 one has been found, and nothing otherwise.
 * A match state is a state that indicates one or more patterns have
-matched. Depending on the [`MatchKind`](../index.md) of the automaton, a search may
+matched. Depending on the [`MatchKind`](../util/search/index.md) of the automaton, a search may
 stop once a match is seen, or it may continue looking for matches until
 it enters a dead state or sees the end of the haystack.
 * A start state is a state that a search begins in. It is useful to know
@@ -830,7 +862,7 @@ _possible_ to do in the future.
 This example shows how one might implement a basic but correct search
 routine. We keep things simple by not using prefilters or worrying about
 anchored searches, but do make sure our search is correct for all possible
-[`MatchKind`](../index.md) semantics. (The comments in the code below note the parts
+[`MatchKind`](../util/search/index.md) semantics. (The comments in the code below note the parts
 that are needed to support certain `MatchKind` semantics.)
 
 ```rust
@@ -1022,11 +1054,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 fn try_find_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>) -> Result<Option<crate::util::search::Match>, crate::util::error::MatchError>
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1259-1282`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1259-L1282)*
+
 ### `try_find_fwd_imp`
 
 ```rust
 fn try_find_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, pre: Option<&Prefilter>, anchored: crate::util::search::Anchored, earliest: bool) -> Result<Option<crate::util::search::Match>, crate::util::error::MatchError>
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1285-1420`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1285-L1420)*
 
 ### `try_find_overlapping_fwd`
 
@@ -1034,11 +1070,15 @@ fn try_find_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search:
 fn try_find_overlapping_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, state: &mut OverlappingState) -> Result<(), crate::util::error::MatchError>
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1423-1440`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1423-L1440)*
+
 ### `try_find_overlapping_fwd_imp`
 
 ```rust
 fn try_find_overlapping_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, pre: Option<&Prefilter>, state: &mut OverlappingState) -> Result<(), crate::util::error::MatchError>
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1443-1537`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1443-L1537)*
 
 ### `get_match`
 
@@ -1046,11 +1086,15 @@ fn try_find_overlapping_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::u
 fn get_match<A: Automaton + ?Sized>(aut: &A, sid: StateID, index: usize, at: usize) -> crate::util::search::Match
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1540-1549`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1540-L1549)*
+
 ### `fmt_state_indicator`
 
 ```rust
 fn fmt_state_indicator<A: Automaton>(f: &mut core::fmt::Formatter<'_>, aut: A, id: StateID) -> core::fmt::Result
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1558-1577`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1558-L1577)*
 
 Write a prefix "state" indicator for fmt::Debug impls. It always writes
 exactly two printable bytes to the given formatter.
@@ -1065,6 +1109,8 @@ overlapping is that of match and start states.)
 ```rust
 fn sparse_transitions<'a>(it: impl Iterator<Item = (u8, StateID)> + 'a) -> impl Iterator<Item = (u8, u8, StateID)> + 'a
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/automaton.rs:1583-1608`](../../../.source_1765210505/aho-corasick-1.1.4/src/automaton.rs#L1583-L1608)*
 
 Return an iterator of transitions in a sparse format given an iterator
 of all explicitly defined transitions. The iterator yields ranges of

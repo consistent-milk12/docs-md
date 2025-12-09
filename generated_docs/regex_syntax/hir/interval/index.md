@@ -24,6 +24,8 @@ struct IntervalSet<I> {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:34-54`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L34-L54)*
+
 #### Fields
 
 - **`ranges`**: `alloc::vec::Vec<I>`
@@ -97,6 +99,8 @@ struct IntervalSet<I> {
 struct IntervalSetIter<'a, I>(slice::Iter<'a, I>);
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:386`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L386)*
+
 An iterator over intervals.
 
 #### Trait Implementations
@@ -107,15 +111,15 @@ An iterator over intervals.
 
 ##### `impl<I> IntoIterator for IntervalSetIter<'a, I>`
 
-- <span id="intervalsetiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intervalsetiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intervalsetiter-intoiter"></span>`type IntoIter = I`
+- <span id="intervalsetiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intervalsetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, I> Iterator for IntervalSetIter<'a, I>`
 
-- <span id="intervalsetiter-item"></span>`type Item = &'a I`
+- <span id="intervalsetiter-type-item"></span>`type Item = &'a I`
 
 - <span id="intervalsetiter-next"></span>`fn next(&mut self) -> Option<&'a I>`
 
@@ -126,6 +130,8 @@ An iterator over intervals.
 ```rust
 trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:396-508`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L396-L508)*
 
 #### Associated Types
 
@@ -183,6 +189,8 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
 ```rust
 trait Bound: Copy + Clone + Debug + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/hir/interval.rs:510-518`](../../../../.source_1765210505/regex-syntax-0.8.8/src/hir/interval.rs#L510-L518)*
 
 #### Required Methods
 

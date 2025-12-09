@@ -54,6 +54,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:24-34`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L24-L34)*
+
 A table of symbol entries in an ELF file.
 
 Also includes the string table used for the symbol names.
@@ -120,6 +122,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:229-236`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L229-L236)*
+
 A symbol table in an [`ElfFile`](super::ElfFile).
 
 #### Trait Implementations
@@ -136,9 +140,9 @@ A symbol table in an [`ElfFile`](super::ElfFile).
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for ElfSymbolTable<'data, 'file, Elf, R>`
 
-- <span id="elfsymboltable-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elfsymboltable-type-symbol"></span>`type Symbol = ElfSymbol<'data, 'file, Elf, R>`
 
-- <span id="elfsymboltable-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
+- <span id="elfsymboltable-type-symboliterator"></span>`type SymbolIterator = ElfSymbolIterator<'data, 'file, Elf, R>`
 
 - <span id="elfsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../../index.md)
 
@@ -159,6 +163,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:272-280`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L272-L280)*
+
 An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
 #### Implementations
@@ -173,15 +179,15 @@ An iterator for the symbols in an [`ElfFile`](super::ElfFile).
 
 ##### `impl<I> IntoIterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsymboliterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="elfsymboliterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="elfsymboliterator-intoiter"></span>`type IntoIter = I`
+- <span id="elfsymboliterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="elfsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf: FileHeader, R: ReadRef<'data>> Iterator for ElfSymbolIterator<'data, 'file, Elf, R>`
 
-- <span id="elfsymboliterator-item"></span>`type Item = ElfSymbol<'data, 'file, Elf, R>`
+- <span id="elfsymboliterator-type-item"></span>`type Item = ElfSymbol<'data, 'file, Elf, R>`
 
 - <span id="elfsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -198,6 +204,8 @@ where
     symbol: &'data <Elf as >::Sym,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:333-342`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L333-L342)*
 
 A symbol in an [`ElfFile`](super::ElfFile).
 
@@ -264,6 +272,8 @@ Most functionality is provided by the [`ObjectSymbol`](../../index.md) trait imp
 ```rust
 trait Sym: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:491-554`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L491-L554)*
 
 A trait for generic access to [`elf::Sym32`](../../../elf/index.md) and [`elf::Sym64`](../../../elf/index.md).
 
@@ -336,6 +346,8 @@ A trait for generic access to [`elf::Sym32`](../../../elf/index.md) and [`elf::S
 type ElfSymbolTable32<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:221-222`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L221-L222)*
+
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbolTable64<'data, 'file, Endian, R>`
@@ -343,6 +355,8 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbolTable64<'data, 'file, Endian, R> = ElfSymbolTable<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:224-225`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L224-L225)*
 
 A symbol table in an [`ElfFile32`](super::ElfFile32).
 
@@ -352,6 +366,8 @@ A symbol table in an [`ElfFile32`](super::ElfFile32).
 type ElfSymbolIterator32<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:265-266`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L265-L266)*
+
 An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbolIterator64<'data, 'file, Endian, R>`
@@ -359,6 +375,8 @@ An iterator for the symbols in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbolIterator64<'data, 'file, Endian, R> = ElfSymbolIterator<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:268-269`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L268-L269)*
 
 An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 
@@ -368,6 +386,8 @@ An iterator for the symbols in an [`ElfFile64`](super::ElfFile64).
 type ElfSymbol32<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader32<Endian>, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:323-324`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L323-L324)*
+
 A symbol in an [`ElfFile32`](super::ElfFile32).
 
 ### `ElfSymbol64<'data, 'file, Endian, R>`
@@ -375,6 +395,8 @@ A symbol in an [`ElfFile32`](super::ElfFile32).
 ```rust
 type ElfSymbol64<'data, 'file, Endian, R> = ElfSymbol<'data, 'file, elf::FileHeader64<Endian>, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/elf/symbol.rs:326-327`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/symbol.rs#L326-L327)*
 
 A symbol in an [`ElfFile64`](super::ElfFile64).
 

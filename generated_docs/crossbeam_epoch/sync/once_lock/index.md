@@ -21,6 +21,8 @@ struct OnceLock<T> {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/sync/once_lock.rs:9-14`](../../../../.source_1765210505/crossbeam-epoch-0.9.18/src/sync/once_lock.rs#L9-L14)*
+
 #### Implementations
 
 - <span id="oncelock-new"></span>`const fn new() -> Self`
@@ -39,11 +41,11 @@ struct OnceLock<T> {
 
 ##### `impl<T> Pointable for OnceLock<T>`
 
-- <span id="oncelock-align"></span>`const ALIGN: usize`
+- <span id="oncelock-const-align"></span>`const ALIGN: usize`
 
-- <span id="oncelock-init"></span>`type Init = T`
+- <span id="oncelock-type-init"></span>`type Init = T`
 
-- <span id="oncelock-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
+- <span id="oncelock-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
 
 - <span id="oncelock-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

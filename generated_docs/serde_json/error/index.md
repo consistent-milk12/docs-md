@@ -26,7 +26,7 @@ When serializing or deserializing JSON goes wrong.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Error`](#error) | struct | This type represents all possible errors that can occur when serializing or |
+| [`Error`](#error) | struct | This type represents all possible errors that can occur when serializing or deserializing JSON data. |
 | [`ErrorImpl`](#errorimpl) | struct |  |
 | [`JsonUnexpected`](#jsonunexpected) | struct |  |
 | [`Category`](#category) | enum | Categorizes the cause of a `serde_json::Error`. |
@@ -45,6 +45,8 @@ struct Error {
     err: alloc::boxed::Box<ErrorImpl>,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:17-22`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L17-L22)*
 
 This type represents all possible errors that can occur when serializing or
 deserializing JSON data.
@@ -89,7 +91,13 @@ deserializing JSON data.
 
 - <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
 
-##### `impl<T> ToString for Error`
+##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
+
+- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
+
+- <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
+
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
@@ -103,13 +111,15 @@ struct ErrorImpl {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/error.rs:230-234`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L230-L234)*
+
 #### Trait Implementations
 
 ##### `impl Display for ErrorImpl`
 
 - <span id="errorimpl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for ErrorImpl`
+##### `impl ToString for ErrorImpl`
 
 - <span id="errorimpl-to-string"></span>`fn to_string(&self) -> String`
 
@@ -119,13 +129,15 @@ struct ErrorImpl {
 struct JsonUnexpected<'a>(de::Unexpected<'a>);
 ```
 
+*Defined in [`serde_json-1.0.145/src/error.rs:465`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L465)*
+
 #### Trait Implementations
 
-##### `impl<'a> Display for JsonUnexpected<'a>`
+##### `impl Display for JsonUnexpected<'a>`
 
 - <span id="jsonunexpected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for JsonUnexpected<'a>`
+##### `impl ToString for JsonUnexpected<'a>`
 
 - <span id="jsonunexpected-to-string"></span>`fn to_string(&self) -> String`
 
@@ -141,6 +153,8 @@ enum Category {
     Eof,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:166-185`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L166-L185)*
 
 Categorizes the cause of a `serde_json::Error`.
 
@@ -220,6 +234,8 @@ enum ErrorCode {
     RecursionLimitExceeded,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:236-311`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L236-L311)*
 
 #### Variants
 
@@ -329,7 +345,7 @@ enum ErrorCode {
 
 - <span id="errorcode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for ErrorCode`
+##### `impl ToString for ErrorCode`
 
 - <span id="errorcode-to-string"></span>`fn to_string(&self) -> String`
 
@@ -341,17 +357,23 @@ enum ErrorCode {
 fn make_error(msg: alloc::string::String) -> Error
 ```
 
+*Defined in [`serde_json-1.0.145/src/error.rs:483-492`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L483-L492)*
+
 ### `parse_line_col`
 
 ```rust
 fn parse_line_col(msg: &mut alloc::string::String) -> Option<(usize, usize)>
 ```
 
+*Defined in [`serde_json-1.0.145/src/error.rs:494-534`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L494-L534)*
+
 ### `starts_with_digit`
 
 ```rust
 fn starts_with_digit(slice: &str) -> bool
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:536-541`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L536-L541)*
 
 ## Type Aliases
 
@@ -360,6 +382,8 @@ fn starts_with_digit(slice: &str) -> bool
 ```rust
 type Result<T> = result::Result<T, Error>;
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:25`](../../../.source_1765210505/serde_json-1.0.145/src/error.rs#L25)*
 
 Alias for a `Result` with the error type `serde_json::Error`.
 

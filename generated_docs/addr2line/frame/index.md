@@ -43,6 +43,8 @@ struct Location<'a> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:8-17`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L8-L17)*
+
 A source location.
 
 #### Fields
@@ -71,6 +73,8 @@ struct Frame<'ctx, R: gimli::Reader> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:20-27`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L20-L27)*
+
 A function frame.
 
 #### Fields
@@ -95,17 +99,19 @@ where
     R: gimli::Reader;
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:30-32`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L30-L32)*
+
 An iterator over function frames.
 
 #### Implementations
 
 - <span id="frameiter-new-empty"></span>`fn new_empty() -> Self`
 
-- <span id="frameiter-new-location"></span>`fn new_location(location: Location<'ctx>) -> Self` — [`Location`](../index.md)
+- <span id="frameiter-new-location"></span>`fn new_location(location: Location<'ctx>) -> Self` — [`Location`](#location)
 
-- <span id="frameiter-new-frames"></span>`fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](../unit/index.md), [`Function`](../function/index.md), [`InlinedFunction`](../function/index.md), [`Location`](../index.md)
+- <span id="frameiter-new-frames"></span>`fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](../unit/index.md), [`Function`](../function/index.md), [`InlinedFunction`](../function/index.md), [`Location`](#location)
 
-- <span id="frameiter-next"></span>`fn next(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](../index.md)
+- <span id="frameiter-next"></span>`fn next(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](#frame)
 
 ### `FrameIterFrames<'ctx, R>`
 
@@ -121,6 +127,8 @@ where
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:43-52`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L43-L52)*
+
 ### `FunctionName<R: gimli::Reader>`
 
 ```rust
@@ -129,6 +137,8 @@ struct FunctionName<R: gimli::Reader> {
     pub language: Option<gimli::DwLang>,
 }
 ```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:163-168`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L163-L168)*
 
 A function name.
 
@@ -162,6 +172,8 @@ where
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:34-41`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L34-L41)*
+
 ## Functions
 
 ### `demangle`
@@ -169,6 +181,8 @@ where
 ```rust
 fn demangle(name: &str, language: gimli::DwLang) -> Option<alloc::string::String>
 ```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:186-202`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L186-L202)*
 
 Demangle a symbol name using the demangling scheme for the given language.
 
@@ -179,6 +193,8 @@ Returns `None` if demangling failed or is not required.
 ```rust
 fn demangle_auto(name: alloc::borrow::Cow<'_, str>, language: Option<gimli::DwLang>) -> alloc::borrow::Cow<'_, str>
 ```
+
+*Defined in [`addr2line-0.25.1/src/frame.rs:213-221`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L213-L221)*
 
 Apply 'best effort' demangling of a symbol name.
 

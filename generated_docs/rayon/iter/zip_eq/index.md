@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`ZipEq`](#zipeq) | struct | An [`IndexedParallelIterator`] that iterates over two parallel iterators of equal |
+| [`ZipEq`](#zipeq) | struct | An [`IndexedParallelIterator`] that iterates over two parallel iterators of equal length simultaneously. |
 
 ## Structs
 
@@ -20,10 +20,12 @@ struct ZipEq<A, B> {
 }
 ```
 
-An [`IndexedParallelIterator`](../../prelude/index.md) that iterates over two parallel iterators of equal
+*Defined in [`rayon-1.11.0/src/iter/zip_eq.rs:13-15`](../../../../.source_1765210505/rayon-1.11.0/src/iter/zip_eq.rs#L13-L15)*
+
+An [`IndexedParallelIterator`](../index.md) that iterates over two parallel iterators of equal
 length simultaneously.
 
-This struct is created by the [`zip_eq`](#zip-eq) method on [`IndexedParallelIterator`](../../prelude/index.md),
+This struct is created by the [`zip_eq`](#zip-eq) method on [`IndexedParallelIterator`](../index.md),
 see its documentation for more information.
 
 
@@ -35,7 +37,7 @@ see its documentation for more information.
 
 ##### `impl<A: clone::Clone, B: clone::Clone> Clone for ZipEq<A, B>`
 
-- <span id="zipeq-clone"></span>`fn clone(&self) -> ZipEq<A, B>` — [`ZipEq`](../index.md)
+- <span id="zipeq-clone"></span>`fn clone(&self) -> ZipEq<A, B>` — [`ZipEq`](#zipeq)
 
 ##### `impl<A: fmt::Debug, B: fmt::Debug> Debug for ZipEq<A, B>`
 
@@ -53,15 +55,15 @@ see its documentation for more information.
 
 ##### `impl<T> IntoParallelIterator for ZipEq<A, B>`
 
-- <span id="zipeq-iter"></span>`type Iter = T`
+- <span id="zipeq-type-iter"></span>`type Iter = T`
 
-- <span id="zipeq-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="zipeq-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="zipeq-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<A, B> ParallelIterator for ZipEq<A, B>`
 
-- <span id="zipeq-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
+- <span id="zipeq-type-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
 - <span id="zipeq-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -69,9 +71,9 @@ see its documentation for more information.
 
 ##### `impl<T> Pointable for ZipEq<A, B>`
 
-- <span id="zipeq-align"></span>`const ALIGN: usize`
+- <span id="zipeq-const-align"></span>`const ALIGN: usize`
 
-- <span id="zipeq-init"></span>`type Init = T`
+- <span id="zipeq-type-init"></span>`type Init = T`
 
 - <span id="zipeq-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`visit_mut`](#visit_mut) | mod | Syntax tree traversal to mutate an exclusive borrow of a syntax tree in |
+| [`visit_mut`](#visit_mut) | mod | Syntax tree traversal to mutate an exclusive borrow of a syntax tree in place. |
 | [`clone`](#clone) | mod |  |
 | [`debug`](#debug) | mod |  |
 | [`eq`](#eq) | mod |  |

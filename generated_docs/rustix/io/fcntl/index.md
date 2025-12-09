@@ -20,7 +20,7 @@ the [`io`](../../maybe_polyfill/io/index.md) module instead.
 | [`FdFlags`](#fdflags) | struct |  |
 | [`fcntl_getfd`](#fcntl_getfd) | fn | `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags. |
 | [`fcntl_setfd`](#fcntl_setfd) | fn | `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags. |
-| [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec) | fn | `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value |
+| [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec) | fn | `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value at least `min`, that has `O_CLOEXEC` set and that shares the same underlying [file description] as `fd`. |
 
 ## Structs
 
@@ -30,13 +30,15 @@ the [`io`](../../maybe_polyfill/io/index.md) module instead.
 struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 ```
 
-`FD_*` constants for use with [`fcntl_getfd`](../index.md) and [`fcntl_setfd`](../../backend/io/syscalls/index.md).
+*Defined in [`rustix-1.1.2/src/backend/linux_raw/io/types.rs:4-18`](../../../../.source_1765210505/rustix-1.1.2/src/backend/linux_raw/io/types.rs#L4-L18)*
+
+`FD_*` constants for use with [`fcntl_getfd`](../../backend/io/syscalls/index.md) and [`fcntl_setfd`](../../backend/io/syscalls/index.md).
 
 
 
 #### Implementations
 
-- <span id="fdflags-cloexec"></span>`const CLOEXEC: Self`
+- <span id="fdflags-const-cloexec"></span>`const CLOEXEC: Self`
 
 #### Trait Implementations
 
@@ -46,7 +48,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitAnd for FdFlags`
 
-- <span id="fdflags-output"></span>`type Output = FdFlags`
+- <span id="fdflags-type-output"></span>`type Output = FdFlags`
 
 - <span id="fdflags-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
@@ -56,9 +58,9 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitOr for FdFlags`
 
-- <span id="fdflags-output"></span>`type Output = FdFlags`
+- <span id="fdflags-type-output"></span>`type Output = FdFlags`
 
-- <span id="fdflags-bitor"></span>`fn bitor(self, other: FdFlags) -> Self` — [`FdFlags`](#fdflags)
+- <span id="fdflags-bitor"></span>`fn bitor(self, other: FdFlags) -> Self` — [`FdFlags`](../../backend/io/types/index.md)
 
 ##### `impl BitOrAssign for FdFlags`
 
@@ -66,7 +68,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl BitXor for FdFlags`
 
-- <span id="fdflags-output"></span>`type Output = FdFlags`
+- <span id="fdflags-type-output"></span>`type Output = FdFlags`
 
 - <span id="fdflags-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
@@ -76,7 +78,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Clone for FdFlags`
 
-- <span id="fdflags-clone"></span>`fn clone(&self) -> FdFlags` — [`FdFlags`](#fdflags)
+- <span id="fdflags-clone"></span>`fn clone(&self) -> FdFlags` — [`FdFlags`](../../backend/io/types/index.md)
 
 ##### `impl Copy for FdFlags`
 
@@ -92,13 +94,13 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Flags for FdFlags`
 
-- <span id="fdflags-flags"></span>`const FLAGS: &'static [Flag<FdFlags>]`
+- <span id="fdflags-const-flags"></span>`const FLAGS: &'static [Flag<FdFlags>]`
 
-- <span id="fdflags-bits"></span>`type Bits = u32`
+- <span id="fdflags-type-bits"></span>`type Bits = u32`
 
 - <span id="fdflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- <span id="fdflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> FdFlags` — [`c_uint`](../../ffi/index.md), [`FdFlags`](#fdflags)
+- <span id="fdflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> FdFlags` — [`c_uint`](../../ffi/index.md), [`FdFlags`](../../backend/io/types/index.md)
 
 ##### `impl FromIterator for FdFlags`
 
@@ -110,9 +112,9 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl IntoIterator for FdFlags`
 
-- <span id="fdflags-item"></span>`type Item = FdFlags`
+- <span id="fdflags-type-item"></span>`type Item = FdFlags`
 
-- <span id="fdflags-intoiter"></span>`type IntoIter = Iter<FdFlags>`
+- <span id="fdflags-type-intoiter"></span>`type IntoIter = Iter<FdFlags>`
 
 - <span id="fdflags-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -122,7 +124,7 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl Not for FdFlags`
 
-- <span id="fdflags-output"></span>`type Output = FdFlags`
+- <span id="fdflags-type-output"></span>`type Output = FdFlags`
 
 - <span id="fdflags-not"></span>`fn not(self) -> Self`
 
@@ -132,19 +134,19 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 
 ##### `impl PartialEq for FdFlags`
 
-- <span id="fdflags-eq"></span>`fn eq(&self, other: &FdFlags) -> bool` — [`FdFlags`](#fdflags)
+- <span id="fdflags-eq"></span>`fn eq(&self, other: &FdFlags) -> bool` — [`FdFlags`](../../backend/io/types/index.md)
 
 ##### `impl PublicFlags for FdFlags`
 
-- <span id="fdflags-primitive"></span>`type Primitive = u32`
+- <span id="fdflags-type-primitive"></span>`type Primitive = u32`
 
-- <span id="fdflags-internal"></span>`type Internal = InternalBitFlags`
+- <span id="fdflags-type-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for FdFlags`
 
 ##### `impl Sub for FdFlags`
 
-- <span id="fdflags-output"></span>`type Output = FdFlags`
+- <span id="fdflags-type-output"></span>`type Output = FdFlags`
 
 - <span id="fdflags-sub"></span>`fn sub(self, other: Self) -> Self`
 
@@ -163,6 +165,8 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 ```rust
 fn fcntl_getfd<Fd: AsFd>(fd: Fd) -> io::Result<FdFlags>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:40-42`](../../../../.source_1765210505/rustix-1.1.2/src/io/fcntl.rs#L40-L42)*
 
 `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags.
 
@@ -192,6 +196,8 @@ fn fcntl_getfd<Fd: AsFd>(fd: Fd) -> io::Result<FdFlags>
 fn fcntl_setfd<Fd: AsFd>(fd: Fd, flags: FdFlags) -> io::Result<()>
 ```
 
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:68-70`](../../../../.source_1765210505/rustix-1.1.2/src/io/fcntl.rs#L68-L70)*
+
 `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags.
 
 # References
@@ -219,6 +225,8 @@ fn fcntl_setfd<Fd: AsFd>(fd: Fd, flags: FdFlags) -> io::Result<()>
 ```rust
 fn fcntl_dupfd_cloexec<Fd: AsFd>(fd: Fd, min: backend::fd::RawFd) -> io::Result<backend::fd::OwnedFd>
 ```
+
+*Defined in [`rustix-1.1.2/src/io/fcntl.rs:105-107`](../../../../.source_1765210505/rustix-1.1.2/src/io/fcntl.rs#L105-L107)*
 
 `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value
 at least `min`, that has `O_CLOEXEC` set and that shares the same

@@ -26,6 +26,8 @@ language features, even with `unsafe`.
 fn vfork()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:276`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L276)*
+
 See the [module comment](self).
 
 ### `sigreturn`
@@ -33,6 +35,8 @@ See the [module comment](self).
 ```rust
 fn sigreturn()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:277`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L277)*
 
 See the [module comment](self).
 
@@ -42,6 +46,8 @@ See the [module comment](self).
 fn setjmp()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:278`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L278)*
+
 See the [module comment](self).
 
 ### `longjmp`
@@ -49,6 +55,8 @@ See the [module comment](self).
 ```rust
 fn longjmp()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:279`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L279)*
 
 See the [module comment](self).
 
@@ -58,6 +66,8 @@ See the [module comment](self).
 fn sigsetjmp()
 ```
 
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:280`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L280)*
+
 See the [module comment](self).
 
 ### `siglongjmp`
@@ -65,6 +75,8 @@ See the [module comment](self).
 ```rust
 fn siglongjmp()
 ```
+
+*Defined in [`rustix-1.1.2/src/not_implemented.rs:281`](../../../../.source_1765210505/rustix-1.1.2/src/not_implemented.rs#L281)*
 
 See the [module comment](self).
 

@@ -9,7 +9,7 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`Buffer`](#buffer) | struct | Safe API for formatting floating point numbers to text. |
-| [`Float`](#float) | trait | A floating point number, f32 or f64, that can be written into a |
+| [`Float`](#float) | trait | A floating point number, f32 or f64, that can be written into a [`ryu::Buffer`][Buffer]. |
 | [`Sealed`](#sealed) | trait |  |
 | [`NAN`](#nan) | const |  |
 | [`INFINITY`](#infinity) | const |  |
@@ -24,6 +24,8 @@ struct Buffer {
     bytes: [core::mem::MaybeUninit<u8>; 24],
 }
 ```
+
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:20-22`](../../../.source_1765210505/ryu-1.0.20/src/buffer/mod.rs#L20-L22)*
 
 Safe API for formatting floating point numbers to text.
 
@@ -63,6 +65,8 @@ assert_eq!(printed, "1.234");
 trait Float: Sealed { ... }
 ```
 
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:105`](../../../.source_1765210505/ryu-1.0.20/src/buffer/mod.rs#L105)*
+
 A floating point number, f32 or f64, that can be written into a
 [`ryu::Buffer`][Buffer].
 
@@ -80,6 +84,8 @@ This trait is sealed and cannot be implemented for types outside of the
 trait Sealed: Copy { ... }
 ```
 
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:109-113`](../../../.source_1765210505/ryu-1.0.20/src/buffer/mod.rs#L109-L113)*
+
 #### Required Methods
 
 - `fn is_nonfinite(self) -> bool`
@@ -96,20 +102,23 @@ trait Sealed: Copy { ... }
 ## Constants
 
 ### `NAN`
-
 ```rust
 const NAN: &str;
 ```
 
-### `INFINITY`
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:7`](../../../.source_1765210505/ryu-1.0.20/src/buffer/mod.rs#L7)*
 
+### `INFINITY`
 ```rust
 const INFINITY: &str;
 ```
 
-### `NEG_INFINITY`
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:8`](../../../.source_1765210505/ryu-1.0.20/src/buffer/mod.rs#L8)*
 
+### `NEG_INFINITY`
 ```rust
 const NEG_INFINITY: &str;
 ```
+
+*Defined in [`ryu-1.0.20/src/buffer/mod.rs:9`](../../../.source_1765210505/ryu-1.0.20/src/buffer/mod.rs#L9)*
 

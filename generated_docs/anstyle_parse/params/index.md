@@ -27,6 +27,8 @@ struct Params {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/params.rs:8-25`](../../../.source_1765210505/anstyle-parse-0.2.7/src/params.rs#L8-L25)*
+
 #### Fields
 
 - **`subparams`**: `[u8; 32]`
@@ -56,7 +58,7 @@ struct Params {
 
 - <span id="params-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- <span id="params-iter"></span>`fn iter(&self) -> ParamsIter<'_>` — [`ParamsIter`](../index.md)
+- <span id="params-iter"></span>`fn iter(&self) -> ParamsIter<'_>` — [`ParamsIter`](#paramsiter)
 
 - <span id="params-is-full"></span>`fn is_full(&self) -> bool`
 
@@ -70,7 +72,7 @@ struct Params {
 
 ##### `impl Clone for Params`
 
-- <span id="params-clone"></span>`fn clone(&self) -> Params` — [`Params`](../index.md)
+- <span id="params-clone"></span>`fn clone(&self) -> Params` — [`Params`](#params)
 
 ##### `impl Debug for Params`
 
@@ -78,13 +80,21 @@ struct Params {
 
 ##### `impl Default for Params`
 
-- <span id="params-default"></span>`fn default() -> Params` — [`Params`](../index.md)
+- <span id="params-default"></span>`fn default() -> Params` — [`Params`](#params)
 
 ##### `impl Eq for Params`
 
+##### `impl IntoIterator for &'a Params`
+
+- <span id="a-params-type-intoiter"></span>`type IntoIter = ParamsIter<'a>`
+
+- <span id="a-params-type-item"></span>`type Item = &'a [u16]`
+
+- <span id="a-params-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+
 ##### `impl PartialEq for Params`
 
-- <span id="params-eq"></span>`fn eq(&self, other: &Params) -> bool` — [`Params`](../index.md)
+- <span id="params-eq"></span>`fn eq(&self, other: &Params) -> bool` — [`Params`](#params)
 
 ##### `impl StructuralPartialEq for Params`
 
@@ -97,25 +107,27 @@ struct ParamsIter<'a> {
 }
 ```
 
+*Defined in [`anstyle-parse-0.2.7/src/params.rs:88-91`](../../../.source_1765210505/anstyle-parse-0.2.7/src/params.rs#L88-L91)*
+
 Immutable subparameter iterator.
 
 #### Implementations
 
-- <span id="paramsiter-new"></span>`fn new(params: &'a Params) -> Self` — [`Params`](../index.md)
+- <span id="paramsiter-new"></span>`fn new(params: &'a Params) -> Self` — [`Params`](#params)
 
 #### Trait Implementations
 
-##### `impl<I> IntoIterator for ParamsIter<'a>`
+##### `impl IntoIterator for ParamsIter<'a>`
 
-- <span id="paramsiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="paramsiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="paramsiter-intoiter"></span>`type IntoIter = I`
+- <span id="paramsiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="paramsiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ParamsIter<'a>`
+##### `impl Iterator for ParamsIter<'a>`
 
-- <span id="paramsiter-item"></span>`type Item = &'a [u16]`
+- <span id="paramsiter-type-item"></span>`type Item = &'a [u16]`
 
 - <span id="paramsiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -124,8 +136,9 @@ Immutable subparameter iterator.
 ## Constants
 
 ### `MAX_PARAMS`
-
 ```rust
 const MAX_PARAMS: usize = 32usize;
 ```
+
+*Defined in [`anstyle-parse-0.2.7/src/params.rs:5`](../../../.source_1765210505/anstyle-parse-0.2.7/src/params.rs#L5)*
 

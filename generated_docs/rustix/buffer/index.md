@@ -11,7 +11,7 @@ Utilities for functions that return data via buffers.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`private`](#private) | mod |  |
-| [`SpareCapacity`](#sparecapacity) | struct | A type that implements [`Buffer`] by appending to a `Vec`, up to its |
+| [`SpareCapacity`](#sparecapacity) | struct | A type that implements [`Buffer`] by appending to a `Vec`, up to its capacity. |
 | [`Buffer`](#buffer) | trait | A memory buffer that may be uninitialized. |
 | [`spare_capacity`](#spare_capacity) | fn | Construct an [`SpareCapacity`], which implements [`Buffer`]. |
 
@@ -27,6 +27,8 @@ Utilities for functions that return data via buffers.
 struct SpareCapacity<'a, T>(&'a mut alloc::vec::Vec<T>);
 ```
 
+*Defined in [`rustix-1.1.2/src/buffer.rs:233`](../../../.source_1765210505/rustix-1.1.2/src/buffer.rs#L233)*
+
 A type that implements [`Buffer`](#buffer) by appending to a `Vec`, up to its
 capacity.
 
@@ -41,7 +43,7 @@ have some non-empty spare capacity.
 
 ##### `impl<'a, T> Sealed for SpareCapacity<'a, T>`
 
-- <span id="sparecapacity-output"></span>`type Output = usize`
+- <span id="sparecapacity-type-output"></span>`type Output = usize`
 
 - <span id="sparecapacity-parts-mut"></span>`fn parts_mut(&mut self) -> (*mut T, usize)`
 
@@ -54,6 +56,8 @@ have some non-empty spare capacity.
 ```rust
 trait Buffer<T>: private::Sealed<T> { ... }
 ```
+
+*Defined in [`rustix-1.1.2/src/buffer.rs:106`](../../../.source_1765210505/rustix-1.1.2/src/buffer.rs#L106)*
 
 A memory buffer that may be uninitialized.
 
@@ -160,6 +164,8 @@ that. See `error_retry_closure_uninit` in examples/buffer_errors.rs.
 ```rust
 fn spare_capacity<'a, T>(v: &'a mut alloc::vec::Vec<T>) -> SpareCapacity<'a, T>
 ```
+
+*Defined in [`rustix-1.1.2/src/buffer.rs:266-275`](../../../.source_1765210505/rustix-1.1.2/src/buffer.rs#L266-L275)*
 
 Construct an [`SpareCapacity`](#sparecapacity), which implements [`Buffer`](#buffer).
 

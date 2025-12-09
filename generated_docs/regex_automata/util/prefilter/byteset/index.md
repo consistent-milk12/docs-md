@@ -18,6 +18,8 @@
 struct ByteSet([bool; 256]);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/prefilter/byteset.rs:7`](../../../../../.source_1765210505/regex-automata-0.4.13/src/util/prefilter/byteset.rs#L7)*
+
 #### Implementations
 
 - <span id="byteset-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<ByteSet>` — [`MatchKind`](../../../index.md), [`ByteSet`](#byteset)

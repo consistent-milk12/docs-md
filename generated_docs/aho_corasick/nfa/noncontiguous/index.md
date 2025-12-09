@@ -20,8 +20,8 @@ only necessary when one needs access to the [`Automaton`](../../automaton/index.
 | [`Transition`](#transition) | struct | A single transition in a non-contiguous NFA. |
 | [`Match`](#match) | struct | A single match in a non-contiguous NFA. |
 | [`Builder`](#builder) | struct | A builder for configuring an Aho-Corasick noncontiguous NFA. |
-| [`Compiler`](#compiler) | struct | A compiler uses a builder configuration and builds up the NFA formulation |
-| [`QueuedSet`](#queuedset) | struct | A set of state identifiers used to avoid revisiting the same state multiple |
+| [`Compiler`](#compiler) | struct | A compiler uses a builder configuration and builds up the NFA formulation of an Aho-Corasick automaton. |
+| [`QueuedSet`](#queuedset) | struct | A set of state identifiers used to avoid revisiting the same state multiple times when filling in failure transitions. |
 
 ## Structs
 
@@ -42,6 +42,8 @@ struct NFA {
     special: crate::util::special::Special,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:82-175`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L82-L175)*
 
 A noncontiguous NFA implementation of Aho-Corasick.
 
@@ -212,7 +214,7 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- <span id="nfa-new"></span>`fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
+- <span id="nfa-new"></span>`fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
 
 - <span id="nfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
@@ -220,9 +222,9 @@ It is also possible to implement your own version of `try_find`. See the
 
 ##### `impl Automaton for NFA`
 
-- <span id="nfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
+- <span id="nfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../util/error/index.md)
 
-- <span id="nfa-next-state"></span>`fn next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-next-state"></span>`fn next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md)
 
 - <span id="nfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
@@ -232,11 +234,11 @@ It is also possible to implement your own version of `try_find`. See the
 
 - <span id="nfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- <span id="nfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="nfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../../util/search/index.md)
 
 - <span id="nfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- <span id="nfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
+- <span id="nfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../util/primitives/index.md)
 
 - <span id="nfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
@@ -244,7 +246,7 @@ It is also possible to implement your own version of `try_find`. See the
 
 - <span id="nfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
 
-- <span id="nfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="nfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
 - <span id="nfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
@@ -279,6 +281,8 @@ struct State {
     depth: crate::util::primitives::SmallIndex,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:710-748`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L710-L748)*
 
 A representation of a sparse NFA state for an Aho-Corasick automaton.
 
@@ -363,6 +367,8 @@ struct Transition {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:771-775`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L771-L775)*
+
 A single transition in a non-contiguous NFA.
 
 #### Implementations
@@ -398,11 +404,13 @@ struct Match {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:808-811`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L808-L811)*
+
 A single match in a non-contiguous NFA.
 
 #### Implementations
 
-- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
 
 - <span id="match-link"></span>`fn link(&self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
@@ -433,6 +441,8 @@ struct Builder {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:842-847`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L842-L847)*
+
 A builder for configuring an Aho-Corasick noncontiguous NFA.
 
 This builder has a subset of the options available to a
@@ -443,9 +453,9 @@ their behavior is identical.
 
 - <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
+- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
 
-- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../index.md), [`Builder`](#builder)
+- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../util/search/index.md), [`Builder`](#builder)
 
 - <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
@@ -478,6 +488,8 @@ struct Compiler<'a> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:932-937`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L932-L937)*
+
 A compiler uses a builder configuration and builds up the NFA formulation
 of an Aho-Corasick automaton. This roughly corresponds to the standard
 formulation described in textbooks, with some tweaks to support leftmost
@@ -485,33 +497,33 @@ searching.
 
 #### Implementations
 
-- <span id="compiler-new"></span>`fn new(builder: &'a Builder) -> Result<Compiler<'a>, BuildError>` — [`Builder`](#builder), [`Compiler`](#compiler), [`BuildError`](../../index.md)
+- <span id="compiler-new"></span>`fn new(builder: &'a Builder) -> Result<Compiler<'a>, BuildError>` — [`Builder`](#builder), [`Compiler`](#compiler), [`BuildError`](../../util/error/index.md)
 
-- <span id="compiler-compile"></span>`fn compile<I, P>(self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
+- <span id="compiler-compile"></span>`fn compile<I, P>(self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
 
-- <span id="compiler-build-trie"></span>`fn build_trie<I, P>(&mut self, patterns: I) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-build-trie"></span>`fn build_trie<I, P>(&mut self, patterns: I) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
-- <span id="compiler-fill-failure-transitions"></span>`fn fill_failure_transitions(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-fill-failure-transitions"></span>`fn fill_failure_transitions(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
 - <span id="compiler-shuffle"></span>`fn shuffle(&mut self)`
 
-- <span id="compiler-densify"></span>`fn densify(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-densify"></span>`fn densify(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
 - <span id="compiler-queued-set"></span>`fn queued_set(&self) -> QueuedSet` — [`QueuedSet`](#queuedset)
 
-- <span id="compiler-init-unanchored-start-state"></span>`fn init_unanchored_start_state(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-init-unanchored-start-state"></span>`fn init_unanchored_start_state(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
-- <span id="compiler-set-anchored-start-state"></span>`fn set_anchored_start_state(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-set-anchored-start-state"></span>`fn set_anchored_start_state(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
 - <span id="compiler-add-unanchored-start-state-loop"></span>`fn add_unanchored_start_state_loop(&mut self)`
 
 - <span id="compiler-close-start-state-loop-for-leftmost"></span>`fn close_start_state_loop_for_leftmost(&mut self)`
 
-- <span id="compiler-add-dead-state-loop"></span>`fn add_dead_state_loop(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
+- <span id="compiler-add-dead-state-loop"></span>`fn add_dead_state_loop(&mut self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Compiler<'a>`
+##### `impl Debug for Compiler<'a>`
 
 - <span id="compiler-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -522,6 +534,8 @@ struct QueuedSet {
     set: Option<alloc::collections::BTreeSet<crate::util::primitives::StateID>>,
 }
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/nfa/noncontiguous.rs:1657-1659`](../../../../.source_1765210505/aho-corasick-1.1.4/src/nfa/noncontiguous.rs#L1657-L1659)*
 
 A set of state identifiers used to avoid revisiting the same state multiple
 times when filling in failure transitions.

@@ -49,7 +49,7 @@ fn main() {
 |------|------|-------------|
 | [`udiv128`](#udiv128) | mod |  |
 | [`private`](#private) | mod |  |
-| [`Buffer`](#buffer) | struct | A correctly sized stack allocation for the formatted integer to be written |
+| [`Buffer`](#buffer) | struct | A correctly sized stack allocation for the formatted integer to be written into. |
 | [`Integer`](#integer) | trait | An integer that can be written into an [`itoa::Buffer`][Buffer]. |
 | [`DEC_DIGITS_LUT`](#dec_digits_lut) | const |  |
 | [`impl_Integer!`](#impl_integer) | macro |  |
@@ -70,6 +70,8 @@ struct Buffer {
     bytes: [core::mem::MaybeUninit<u8>; 40],
 }
 ```
+
+*Defined in [`itoa-1.0.15/src/lib.rs:63-65`](../../.source_1765210505/itoa-1.0.15/src/lib.rs#L63-L65)*
 
 A correctly sized stack allocation for the formatted integer to be written
 into.
@@ -108,6 +110,8 @@ assert_eq!(printed, "1234");
 trait Integer: private::Sealed { ... }
 ```
 
+*Defined in [`itoa-1.0.15/src/lib.rs:112-116`](../../.source_1765210505/itoa-1.0.15/src/lib.rs#L112-L116)*
+
 An integer that can be written into an [`itoa::Buffer`][Buffer].
 
 This trait is sealed and cannot be implemented for types outside of itoa.
@@ -134,16 +138,23 @@ This trait is sealed and cannot be implemented for types outside of itoa.
 ## Constants
 
 ### `DEC_DIGITS_LUT`
-
 ```rust
 const DEC_DIGITS_LUT: [u8; 200];
 ```
+
+*Defined in [`itoa-1.0.15/src/lib.rs:128-133`](../../.source_1765210505/itoa-1.0.15/src/lib.rs#L128-L133)*
 
 ## Macros
 
 ### `impl_Integer!`
 
+*Defined in [`itoa-1.0.15/src/lib.rs:137-212`](../../.source_1765210505/itoa-1.0.15/src/lib.rs#L137-L212)*
+
 ### `impl_Integer_size!`
 
+*Defined in [`itoa-1.0.15/src/lib.rs:223-241`](../../.source_1765210505/itoa-1.0.15/src/lib.rs#L223-L241)*
+
 ### `impl_Integer128!`
+
+*Defined in [`itoa-1.0.15/src/lib.rs:250-326`](../../.source_1765210505/itoa-1.0.15/src/lib.rs#L250-L326)*
 

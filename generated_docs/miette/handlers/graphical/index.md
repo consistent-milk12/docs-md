@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`GraphicalReportHandler`](#graphicalreporthandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a |
+| [`GraphicalReportHandler`](#graphicalreporthandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a quasi-graphical way, using terminal colors, unicode drawing characters, and other such things. |
 | [`Line`](#line) | struct |  |
 | [`FancySpan`](#fancyspan) | struct |  |
 | [`LinkStyle`](#linkstyle) | enum |  |
@@ -38,6 +38,8 @@ struct GraphicalReportHandler {
     show_related_as_nested: bool,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:26-42`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L26-L42)*
 
 A [`ReportHandler`](../../index.md) that displays a given [`Report`](crate::Report) in a
 quasi-graphical way, using terminal colors, unicode drawing characters, and
@@ -109,7 +111,7 @@ printer.
 
 - <span id="graphicalreporthandler-default"></span>`fn default() -> Self`
 
-##### `impl<D> OwoColorize for GraphicalReportHandler`
+##### `impl OwoColorize for GraphicalReportHandler`
 
 ##### `impl ReportHandler for GraphicalReportHandler`
 
@@ -125,6 +127,8 @@ struct Line {
     text: String,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1388-1393`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1388-L1393)*
 
 #### Implementations
 
@@ -146,7 +150,7 @@ struct Line {
 
 - <span id="line-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for Line`
+##### `impl OwoColorize for Line`
 
 ### `FancySpan`
 
@@ -157,6 +161,8 @@ struct FancySpan {
     style: owo_colors::Style,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1453-1460`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1453-L1460)*
 
 #### Fields
 
@@ -190,7 +196,7 @@ struct FancySpan {
 
 - <span id="fancyspan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for FancySpan`
+##### `impl OwoColorize for FancySpan`
 
 ##### `impl PartialEq for FancySpan`
 
@@ -208,6 +214,8 @@ enum LinkStyle {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:45-49`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L45-L49)*
+
 #### Trait Implementations
 
 ##### `impl Clone for LinkStyle`
@@ -222,7 +230,7 @@ enum LinkStyle {
 
 ##### `impl Eq for LinkStyle`
 
-##### `impl<D> OwoColorize for LinkStyle`
+##### `impl OwoColorize for LinkStyle`
 
 ##### `impl PartialEq for LinkStyle`
 
@@ -239,6 +247,8 @@ enum LabelRenderMode {
     MultiLineRest,
 }
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1378-1385`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1378-L1385)*
 
 #### Variants
 
@@ -260,7 +270,7 @@ enum LabelRenderMode {
 
 - <span id="labelrendermode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> OwoColorize for LabelRenderMode`
+##### `impl OwoColorize for LabelRenderMode`
 
 ##### `impl PartialEq for LabelRenderMode`
 
@@ -275,4 +285,6 @@ enum LabelRenderMode {
 ```rust
 fn split_label(v: String) -> Vec<String>
 ```
+
+*Defined in [`miette-7.6.0/src/handlers/graphical.rs:1468-1470`](../../../../.source_1765210505/miette-7.6.0/src/handlers/graphical.rs#L1468-L1470)*
 

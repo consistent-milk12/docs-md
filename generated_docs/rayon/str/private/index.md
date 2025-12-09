@@ -13,7 +13,7 @@ keeping all of the methods private.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Pattern`](#pattern) | trait | Pattern-matching trait for `ParallelString`, somewhat like a mix of |
+| [`Pattern`](#pattern) | trait | Pattern-matching trait for `ParallelString`, somewhat like a mix of `std::str::pattern::{Pattern, Searcher}`. |
 
 ## Traits
 
@@ -22,6 +22,8 @@ keeping all of the methods private.
 ```rust
 trait Pattern: Sized + Sync + Send { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/str.rs:364-381`](../../../../.source_1765210505/rayon-1.11.0/src/str.rs#L364-L381)*
 
 Pattern-matching trait for `ParallelString`, somewhat like a mix of
 `std::str::pattern::{Pattern, Searcher}`.

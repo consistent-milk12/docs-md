@@ -23,6 +23,8 @@ struct DiagnosticChain<'a> {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:10-12`](../../../.source_1765210505/miette-7.6.0/src/diagnostic_chain.rs#L10-L12)*
+
 Iterator of a chain of cause errors.
 
 #### Implementations
@@ -33,11 +35,11 @@ Iterator of a chain of cause errors.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for DiagnosticChain<'a>`
+##### `impl Clone for DiagnosticChain<'a>`
 
 - <span id="diagnosticchain-clone"></span>`fn clone(&self) -> DiagnosticChain<'a>` — [`DiagnosticChain`](#diagnosticchain)
 
-##### `impl<'a> Default for DiagnosticChain<'a>`
+##### `impl Default for DiagnosticChain<'a>`
 
 - <span id="diagnosticchain-default"></span>`fn default() -> DiagnosticChain<'a>` — [`DiagnosticChain`](#diagnosticchain)
 
@@ -45,23 +47,23 @@ Iterator of a chain of cause errors.
 
 - <span id="diagnosticchain-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for DiagnosticChain<'a>`
+##### `impl IntoIterator for DiagnosticChain<'a>`
 
-- <span id="diagnosticchain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="diagnosticchain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="diagnosticchain-intoiter"></span>`type IntoIter = I`
+- <span id="diagnosticchain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="diagnosticchain-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for DiagnosticChain<'a>`
+##### `impl Iterator for DiagnosticChain<'a>`
 
-- <span id="diagnosticchain-item"></span>`type Item = ErrorKind<'a>`
+- <span id="diagnosticchain-type-item"></span>`type Item = ErrorKind<'a>`
 
 - <span id="diagnosticchain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 - <span id="diagnosticchain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<D> OwoColorize for DiagnosticChain<'a>`
+##### `impl OwoColorize for DiagnosticChain<'a>`
 
 ## Enums
 
@@ -74,13 +76,15 @@ enum ErrorKind<'a> {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/diagnostic_chain.rs:60-63`](../../../.source_1765210505/miette-7.6.0/src/diagnostic_chain.rs#L60-L63)*
+
 #### Implementations
 
 - <span id="errorkind-get-nested"></span>`fn get_nested(&self) -> Option<ErrorKind<'a>>` — [`ErrorKind`](#errorkind)
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for ErrorKind<'a>`
+##### `impl Clone for ErrorKind<'a>`
 
 - <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind<'a>` — [`ErrorKind`](#errorkind)
 
@@ -92,9 +96,9 @@ enum ErrorKind<'a> {
 
 - <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-##### `impl<D> OwoColorize for ErrorKind<'a>`
+##### `impl OwoColorize for ErrorKind<'a>`
 
-##### `impl<T> ToString for ErrorKind<'a>`
+##### `impl ToString for ErrorKind<'a>`
 
 - <span id="errorkind-to-string"></span>`fn to_string(&self) -> String`
 

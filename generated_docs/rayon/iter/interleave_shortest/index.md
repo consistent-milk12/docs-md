@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`InterleaveShortest`](#interleaveshortest) | struct | `InterleaveShortest` is an iterator that works similarly to |
+| [`InterleaveShortest`](#interleaveshortest) | struct | `InterleaveShortest` is an iterator that works similarly to `Interleave`, but this version stops returning elements once one of the iterators run out. |
 
 ## Structs
 
@@ -20,12 +20,14 @@ struct InterleaveShortest<I, J> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/interleave_shortest.rs:14-16`](../../../../.source_1765210505/rayon-1.11.0/src/iter/interleave_shortest.rs#L14-L16)*
+
 `InterleaveShortest` is an iterator that works similarly to
 `Interleave`, but this version stops returning elements once one
 of the iterators run out.
 
 This struct is created by the `interleave_shortest()` method on
-[`IndexedParallelIterator`](../../prelude/index.md).
+[`IndexedParallelIterator`](../index.md).
 
 
 #### Implementations
@@ -36,7 +38,7 @@ This struct is created by the `interleave_shortest()` method on
 
 ##### `impl<I: clone::Clone, J: clone::Clone> Clone for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-clone"></span>`fn clone(&self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](../index.md)
+- <span id="interleaveshortest-clone"></span>`fn clone(&self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](#interleaveshortest)
 
 ##### `impl<I: fmt::Debug, J: fmt::Debug> Debug for InterleaveShortest<I, J>`
 
@@ -54,15 +56,15 @@ This struct is created by the `interleave_shortest()` method on
 
 ##### `impl<T> IntoParallelIterator for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-iter"></span>`type Iter = T`
+- <span id="interleaveshortest-type-iter"></span>`type Iter = T`
 
-- <span id="interleaveshortest-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="interleaveshortest-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="interleaveshortest-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, J> ParallelIterator for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="interleaveshortest-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="interleaveshortest-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -70,9 +72,9 @@ This struct is created by the `interleave_shortest()` method on
 
 ##### `impl<T> Pointable for InterleaveShortest<I, J>`
 
-- <span id="interleaveshortest-align"></span>`const ALIGN: usize`
+- <span id="interleaveshortest-const-align"></span>`const ALIGN: usize`
 
-- <span id="interleaveshortest-init"></span>`type Init = T`
+- <span id="interleaveshortest-type-init"></span>`type Init = T`
 
 - <span id="interleaveshortest-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

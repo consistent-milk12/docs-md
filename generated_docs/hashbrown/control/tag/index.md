@@ -19,13 +19,15 @@
 struct Tag(u8);
 ```
 
+*Defined in [`hashbrown-0.16.1/src/control/tag.rs:6`](../../../../.source_1765210505/hashbrown-0.16.1/src/control/tag.rs#L6)*
+
 Single tag in a control group.
 
 #### Implementations
 
-- <span id="tag-empty"></span>`const EMPTY: Tag`
+- <span id="tag-const-empty"></span>`const EMPTY: Tag`
 
-- <span id="tag-deleted"></span>`const DELETED: Tag`
+- <span id="tag-const-deleted"></span>`const DELETED: Tag`
 
 - <span id="tag-is-full"></span>`const fn is_full(self) -> bool`
 
@@ -49,7 +51,7 @@ Single tag in a control group.
 
 ##### `impl Eq for Tag`
 
-##### `impl<Q, K> Equivalent for Tag`
+##### `impl Equivalent for Tag`
 
 - <span id="tag-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
@@ -66,6 +68,8 @@ Single tag in a control group.
 ```rust
 trait TagSliceExt { ... }
 ```
+
+*Defined in [`hashbrown-0.16.1/src/control/tag.rs:67-76`](../../../../.source_1765210505/hashbrown-0.16.1/src/control/tag.rs#L67-L76)*
 
 Extension trait for slices of tags.
 

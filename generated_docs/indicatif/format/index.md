@@ -50,6 +50,8 @@
 struct FormattedDuration(std::time::Duration);
 ```
 
+*Defined in [`indicatif-0.18.3/src/format.rs:15`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L15)*
+
 Wraps an std duration for human basic formatting.
 
 #### Trait Implementations
@@ -62,7 +64,7 @@ Wraps an std duration for human basic formatting.
 
 - <span id="formattedduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for FormattedDuration`
+##### `impl ToString for FormattedDuration`
 
 - <span id="formattedduration-to-string"></span>`fn to_string(&self) -> String`
 
@@ -71,6 +73,8 @@ Wraps an std duration for human basic formatting.
 ```rust
 struct HumanDuration(std::time::Duration);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:19`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L19)*
 
 Wraps an std duration for human readable formatting.
 
@@ -84,7 +88,7 @@ Wraps an std duration for human readable formatting.
 
 - <span id="humanduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for HumanDuration`
+##### `impl ToString for HumanDuration`
 
 - <span id="humanduration-to-string"></span>`fn to_string(&self) -> String`
 
@@ -93,6 +97,8 @@ Wraps an std duration for human readable formatting.
 ```rust
 struct HumanBytes(u64);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:34`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L34)*
 
 Formats bytes for human readability
 
@@ -117,7 +123,7 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 
 - <span id="humanbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for HumanBytes`
+##### `impl ToString for HumanBytes`
 
 - <span id="humanbytes-to-string"></span>`fn to_string(&self) -> String`
 
@@ -126,6 +132,8 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 ```rust
 struct DecimalBytes(u64);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:49`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L49)*
 
 Formats bytes for human readability using SI prefixes
 
@@ -150,7 +158,7 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 
 - <span id="decimalbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for DecimalBytes`
+##### `impl ToString for DecimalBytes`
 
 - <span id="decimalbytes-to-string"></span>`fn to_string(&self) -> String`
 
@@ -159,6 +167,8 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 ```rust
 struct BinaryBytes(u64);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:64`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L64)*
 
 Formats bytes for human readability using ISO/IEC prefixes
 
@@ -183,7 +193,7 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 
 - <span id="binarybytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for BinaryBytes`
+##### `impl ToString for BinaryBytes`
 
 - <span id="binarybytes-to-string"></span>`fn to_string(&self) -> String`
 
@@ -192,6 +202,8 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 ```rust
 struct HumanCount(u64);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:68`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L68)*
 
 Formats counts for human readability using commas
 
@@ -205,7 +217,7 @@ Formats counts for human readability using commas
 
 - <span id="humancount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for HumanCount`
+##### `impl ToString for HumanCount`
 
 - <span id="humancount-to-string"></span>`fn to_string(&self) -> String`
 
@@ -214,6 +226,8 @@ Formats counts for human readability using commas
 ```rust
 struct HumanFloatCount(f64);
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:72`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L72)*
 
 Formats counts for human readability using commas for floats
 
@@ -227,51 +241,58 @@ Formats counts for human readability using commas for floats
 
 - <span id="humanfloatcount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for HumanFloatCount`
+##### `impl ToString for HumanFloatCount`
 
 - <span id="humanfloatcount-to-string"></span>`fn to_string(&self) -> String`
 
 ## Constants
 
 ### `SECOND`
-
 ```rust
 const SECOND: std::time::Duration;
 ```
 
-### `MINUTE`
+*Defined in [`indicatif-0.18.3/src/format.rs:6`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L6)*
 
+### `MINUTE`
 ```rust
 const MINUTE: std::time::Duration;
 ```
 
-### `HOUR`
+*Defined in [`indicatif-0.18.3/src/format.rs:7`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L7)*
 
+### `HOUR`
 ```rust
 const HOUR: std::time::Duration;
 ```
 
-### `DAY`
+*Defined in [`indicatif-0.18.3/src/format.rs:8`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L8)*
 
+### `DAY`
 ```rust
 const DAY: std::time::Duration;
 ```
 
-### `WEEK`
+*Defined in [`indicatif-0.18.3/src/format.rs:9`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L9)*
 
+### `WEEK`
 ```rust
 const WEEK: std::time::Duration;
 ```
 
-### `YEAR`
+*Defined in [`indicatif-0.18.3/src/format.rs:10`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L10)*
 
+### `YEAR`
 ```rust
 const YEAR: std::time::Duration;
 ```
 
-### `UNITS`
+*Defined in [`indicatif-0.18.3/src/format.rs:11`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L11)*
 
+### `UNITS`
 ```rust
 const UNITS: &[(std::time::Duration, &str, &str)];
 ```
+
+*Defined in [`indicatif-0.18.3/src/format.rs:133-140`](../../../.source_1765210505/indicatif-0.18.3/src/format.rs#L133-L140)*
 

@@ -21,6 +21,8 @@ struct Splice<'a, I: Iterator + 'a, A: Allocator + 'a> {
 }
 ```
 
+*Defined in [`allocator-api2-0.2.21/src/stable/vec/splice.rs:21-24`](../../../../../.source_1765210505/allocator-api2-0.2.21/src/stable/vec/splice.rs#L21-L24)*
+
 A splicing iterator for `Vec`.
 
 This struct is created by `Vec::splice()`.
@@ -52,15 +54,15 @@ let iter: std::vec::Splice<_> = v.splice(1.., new);
 
 ##### `impl<I> IntoIterator for Splice<'a, I, A>`
 
-- <span id="splice-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splice-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="splice-intoiter"></span>`type IntoIter = I`
+- <span id="splice-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="splice-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator, A: Allocator> Iterator for Splice<'_, I, A>`
 
-- <span id="splice-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="splice-type-item"></span>`type Item = <I as Iterator>::Item`
 
 - <span id="splice-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

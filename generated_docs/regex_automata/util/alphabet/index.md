@@ -71,7 +71,7 @@ but it could be potentially very wasteful.
 | [`ByteClassIter`](#byteclassiter) | struct | An iterator over each equivalence class. |
 | [`ByteClassRepresentatives`](#byteclassrepresentatives) | struct | An iterator over representative bytes from each equivalence class. |
 | [`ByteClassElements`](#byteclasselements) | struct | An iterator over all elements in an equivalence class. |
-| [`ByteClassElementRanges`](#byteclasselementranges) | struct | An iterator over all elements in an equivalence class expressed as a |
+| [`ByteClassElementRanges`](#byteclasselementranges) | struct | An iterator over all elements in an equivalence class expressed as a sequence of contiguous ranges. |
 | [`ByteClassSet`](#byteclassset) | struct | A partitioning of bytes into equivalence classes. |
 | [`ByteSet`](#byteset) | struct | A simple set of bytes that is reasonably cheap to copy and allocation free. |
 | [`BitSet`](#bitset) | struct | The representation of a byte set. |
@@ -86,6 +86,8 @@ but it could be potentially very wasteful.
 ```rust
 struct Unit(UnitKind);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:79`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L79)*
 
 Unit represents a single unit of haystack for DFA based regex engines.
 
@@ -169,6 +171,8 @@ singleton equivalence class.
 ```rust
 struct ByteClasses([u8; 256]);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:215`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L215)*
 
 A representation of byte oriented equivalence classes.
 
@@ -259,6 +263,8 @@ struct ByteClassIter<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:525-528`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L525-L528)*
+
 An iterator over each equivalence class.
 
 The last element in this iterator always corresponds to `Unit::eoi`.
@@ -270,21 +276,21 @@ iterator was created from.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ByteClassIter<'a>`
+##### `impl Debug for ByteClassIter<'a>`
 
 - <span id="byteclassiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteClassIter<'a>`
+##### `impl IntoIterator for ByteClassIter<'a>`
 
-- <span id="byteclassiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclassiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclassiter-intoiter"></span>`type IntoIter = I`
+- <span id="byteclassiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclassiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ByteClassIter<'a>`
+##### `impl Iterator for ByteClassIter<'a>`
 
-- <span id="byteclassiter-item"></span>`type Item = Unit`
+- <span id="byteclassiter-type-item"></span>`type Item = Unit`
 
 - <span id="byteclassiter-next"></span>`fn next(&mut self) -> Option<Unit>` — [`Unit`](#unit)
 
@@ -299,6 +305,8 @@ struct ByteClassRepresentatives<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:554-559`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L554-L559)*
+
 An iterator over representative bytes from each equivalence class.
 
 This is created by the `ByteClasses::representatives` method.
@@ -308,21 +316,21 @@ iterator was created from.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ByteClassRepresentatives<'a>`
+##### `impl Debug for ByteClassRepresentatives<'a>`
 
 - <span id="byteclassrepresentatives-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteClassRepresentatives<'a>`
+##### `impl IntoIterator for ByteClassRepresentatives<'a>`
 
-- <span id="byteclassrepresentatives-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclassrepresentatives-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclassrepresentatives-intoiter"></span>`type IntoIter = I`
+- <span id="byteclassrepresentatives-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclassrepresentatives-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ByteClassRepresentatives<'a>`
+##### `impl Iterator for ByteClassRepresentatives<'a>`
 
-- <span id="byteclassrepresentatives-item"></span>`type Item = Unit`
+- <span id="byteclassrepresentatives-type-item"></span>`type Item = Unit`
 
 - <span id="byteclassrepresentatives-next"></span>`fn next(&mut self) -> Option<Unit>` — [`Unit`](#unit)
 
@@ -336,6 +344,8 @@ struct ByteClassElements<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:599-603`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L599-L603)*
+
 An iterator over all elements in an equivalence class.
 
 This is created by the `ByteClasses::elements` method.
@@ -345,21 +355,21 @@ iterator was created from.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ByteClassElements<'a>`
+##### `impl Debug for ByteClassElements<'a>`
 
 - <span id="byteclasselements-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteClassElements<'a>`
+##### `impl IntoIterator for ByteClassElements<'a>`
 
-- <span id="byteclasselements-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclasselements-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclasselements-intoiter"></span>`type IntoIter = I`
+- <span id="byteclasselements-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclasselements-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ByteClassElements<'a>`
+##### `impl Iterator for ByteClassElements<'a>`
 
-- <span id="byteclasselements-item"></span>`type Item = Unit`
+- <span id="byteclasselements-type-item"></span>`type Item = Unit`
 
 - <span id="byteclasselements-next"></span>`fn next(&mut self) -> Option<Unit>` — [`Unit`](#unit)
 
@@ -372,26 +382,28 @@ struct ByteClassElementRanges<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:629-632`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L629-L632)*
+
 An iterator over all elements in an equivalence class expressed as a
 sequence of contiguous ranges.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ByteClassElementRanges<'a>`
+##### `impl Debug for ByteClassElementRanges<'a>`
 
 - <span id="byteclasselementranges-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteClassElementRanges<'a>`
+##### `impl IntoIterator for ByteClassElementRanges<'a>`
 
-- <span id="byteclasselementranges-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclasselementranges-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclasselementranges-intoiter"></span>`type IntoIter = I`
+- <span id="byteclasselementranges-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclasselementranges-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ByteClassElementRanges<'a>`
+##### `impl Iterator for ByteClassElementRanges<'a>`
 
-- <span id="byteclasselementranges-item"></span>`type Item = (Unit, Unit)`
+- <span id="byteclasselementranges-type-item"></span>`type Item = (Unit, Unit)`
 
 - <span id="byteclasselementranges-next"></span>`fn next(&mut self) -> Option<(Unit, Unit)>` — [`Unit`](#unit)
 
@@ -400,6 +412,8 @@ sequence of contiguous ranges.
 ```rust
 struct ByteClassSet(ByteSet);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:685`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L685)*
 
 A partitioning of bytes into equivalence classes.
 
@@ -455,6 +469,8 @@ struct ByteSet {
     bits: BitSet,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:742-744`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L742-L744)*
 
 A simple set of bytes that is reasonably cheap to copy and allocation free.
 
@@ -512,6 +528,8 @@ A simple set of bytes that is reasonably cheap to copy and allocation free.
 struct BitSet([u128; 2]);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:749`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L749)*
+
 The representation of a byte set. Split out so that we can define a
 convenient Debug impl for it while keeping "ByteSet" in the output.
 
@@ -548,23 +566,25 @@ struct ByteSetIter<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:869-872`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L869-L872)*
+
 #### Trait Implementations
 
-##### `impl<'a> Debug for ByteSetIter<'a>`
+##### `impl Debug for ByteSetIter<'a>`
 
 - <span id="bytesetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteSetIter<'a>`
+##### `impl IntoIterator for ByteSetIter<'a>`
 
-- <span id="bytesetiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="bytesetiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="bytesetiter-intoiter"></span>`type IntoIter = I`
+- <span id="bytesetiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="bytesetiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ByteSetIter<'a>`
+##### `impl Iterator for ByteSetIter<'a>`
 
-- <span id="bytesetiter-item"></span>`type Item = u8`
+- <span id="bytesetiter-type-item"></span>`type Item = u8`
 
 - <span id="bytesetiter-next"></span>`fn next(&mut self) -> Option<u8>`
 
@@ -577,23 +597,25 @@ struct ByteSetRangeIter<'a> {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:890-893`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L890-L893)*
+
 #### Trait Implementations
 
-##### `impl<'a> Debug for ByteSetRangeIter<'a>`
+##### `impl Debug for ByteSetRangeIter<'a>`
 
 - <span id="bytesetrangeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteSetRangeIter<'a>`
+##### `impl IntoIterator for ByteSetRangeIter<'a>`
 
-- <span id="bytesetrangeiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="bytesetrangeiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="bytesetrangeiter-intoiter"></span>`type IntoIter = I`
+- <span id="bytesetrangeiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="bytesetrangeiter-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ByteSetRangeIter<'a>`
+##### `impl Iterator for ByteSetRangeIter<'a>`
 
-- <span id="bytesetrangeiter-item"></span>`type Item = (u8, u8)`
+- <span id="bytesetrangeiter-type-item"></span>`type Item = (u8, u8)`
 
 - <span id="bytesetrangeiter-next"></span>`fn next(&mut self) -> Option<(u8, u8)>`
 
@@ -607,6 +629,8 @@ enum UnitKind {
     EOI(u16),
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/alphabet.rs:82-91`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/alphabet.rs#L82-L91)*
 
 #### Variants
 

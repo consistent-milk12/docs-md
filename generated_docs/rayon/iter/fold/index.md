@@ -26,8 +26,10 @@ struct Fold<I, ID, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:22-26`](../../../../.source_1765210505/rayon-1.11.0/src/iter/fold.rs#L22-L26)*
+
 `Fold` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `fold()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `fold()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -38,7 +40,7 @@ This struct is created by the `fold()` method on [`ParallelIterator`](../../prel
 
 ##### `impl<I: clone::Clone, ID: clone::Clone, F: clone::Clone> Clone for Fold<I, ID, F>`
 
-- <span id="fold-clone"></span>`fn clone(&self) -> Fold<I, ID, F>` — [`Fold`](../index.md)
+- <span id="fold-clone"></span>`fn clone(&self) -> Fold<I, ID, F>` — [`Fold`](#fold)
 
 ##### `impl<I: Debug, ID, F> Debug for Fold<I, ID, F>`
 
@@ -48,23 +50,23 @@ This struct is created by the `fold()` method on [`ParallelIterator`](../../prel
 
 ##### `impl<T> IntoParallelIterator for Fold<I, ID, F>`
 
-- <span id="fold-iter"></span>`type Iter = T`
+- <span id="fold-type-iter"></span>`type Iter = T`
 
-- <span id="fold-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="fold-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="fold-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, ID, F> ParallelIterator for Fold<I, ID, F>`
 
-- <span id="fold-item"></span>`type Item = U`
+- <span id="fold-type-item"></span>`type Item = U`
 
 - <span id="fold-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for Fold<I, ID, F>`
 
-- <span id="fold-align"></span>`const ALIGN: usize`
+- <span id="fold-const-align"></span>`const ALIGN: usize`
 
-- <span id="fold-init"></span>`type Init = T`
+- <span id="fold-type-init"></span>`type Init = T`
 
 - <span id="fold-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -84,15 +86,17 @@ struct FoldConsumer<'c, C, ID, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:56-60`](../../../../.source_1765210505/rayon-1.11.0/src/iter/fold.rs#L56-L60)*
+
 #### Trait Implementations
 
 ##### `impl<'r, U, T, C, ID, F> Consumer for FoldConsumer<'r, C, ID, F>`
 
-- <span id="foldconsumer-folder"></span>`type Folder = FoldFolder<'r, <C as Consumer>::Folder, U, F>`
+- <span id="foldconsumer-type-folder"></span>`type Folder = FoldFolder<'r, <C as Consumer>::Folder, U, F>`
 
-- <span id="foldconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="foldconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="foldconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="foldconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="foldconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -104,9 +108,9 @@ struct FoldConsumer<'c, C, ID, F> {
 
 ##### `impl<T> Pointable for FoldConsumer<'c, C, ID, F>`
 
-- <span id="foldconsumer-align"></span>`const ALIGN: usize`
+- <span id="foldconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldconsumer-init"></span>`type Init = T`
+- <span id="foldconsumer-type-init"></span>`type Init = T`
 
 - <span id="foldconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -132,11 +136,13 @@ struct FoldFolder<'r, C, ID, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:117-121`](../../../../.source_1765210505/rayon-1.11.0/src/iter/fold.rs#L117-L121)*
+
 #### Trait Implementations
 
 ##### `impl<'r, C, ID, F, T> Folder for FoldFolder<'r, C, ID, F>`
 
-- <span id="foldfolder-result"></span>`type Result = <C as Folder>::Result`
+- <span id="foldfolder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="foldfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -150,9 +156,9 @@ struct FoldFolder<'r, C, ID, F> {
 
 ##### `impl<T> Pointable for FoldFolder<'r, C, ID, F>`
 
-- <span id="foldfolder-align"></span>`const ALIGN: usize`
+- <span id="foldfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldfolder-init"></span>`type Init = T`
+- <span id="foldfolder-type-init"></span>`type Init = T`
 
 - <span id="foldfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -172,8 +178,10 @@ struct FoldWith<I, U, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:191-195`](../../../../.source_1765210505/rayon-1.11.0/src/iter/fold.rs#L191-L195)*
+
 `FoldWith` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `fold_with()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `fold_with()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -184,7 +192,7 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](../..
 
 ##### `impl<I: clone::Clone, U: clone::Clone, F: clone::Clone> Clone for FoldWith<I, U, F>`
 
-- <span id="foldwith-clone"></span>`fn clone(&self) -> FoldWith<I, U, F>` — [`FoldWith`](../index.md)
+- <span id="foldwith-clone"></span>`fn clone(&self) -> FoldWith<I, U, F>` — [`FoldWith`](#foldwith)
 
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldWith<I, U, F>`
 
@@ -194,23 +202,23 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](../..
 
 ##### `impl<T> IntoParallelIterator for FoldWith<I, U, F>`
 
-- <span id="foldwith-iter"></span>`type Iter = T`
+- <span id="foldwith-type-iter"></span>`type Iter = T`
 
-- <span id="foldwith-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="foldwith-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="foldwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<U, I, F> ParallelIterator for FoldWith<I, U, F>`
 
-- <span id="foldwith-item"></span>`type Item = U`
+- <span id="foldwith-type-item"></span>`type Item = U`
 
 - <span id="foldwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for FoldWith<I, U, F>`
 
-- <span id="foldwith-align"></span>`const ALIGN: usize`
+- <span id="foldwith-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldwith-init"></span>`type Init = T`
+- <span id="foldwith-type-init"></span>`type Init = T`
 
 - <span id="foldwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -230,15 +238,17 @@ struct FoldWithConsumer<'c, C, U, F> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/fold.rs:227-231`](../../../../.source_1765210505/rayon-1.11.0/src/iter/fold.rs#L227-L231)*
+
 #### Trait Implementations
 
 ##### `impl<'r, U, T, C, F> Consumer for FoldWithConsumer<'r, C, U, F>`
 
-- <span id="foldwithconsumer-folder"></span>`type Folder = FoldFolder<'r, <C as Consumer>::Folder, U, F>`
+- <span id="foldwithconsumer-type-folder"></span>`type Folder = FoldFolder<'r, <C as Consumer>::Folder, U, F>`
 
-- <span id="foldwithconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="foldwithconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="foldwithconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="foldwithconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="foldwithconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -250,9 +260,9 @@ struct FoldWithConsumer<'c, C, U, F> {
 
 ##### `impl<T> Pointable for FoldWithConsumer<'c, C, U, F>`
 
-- <span id="foldwithconsumer-align"></span>`const ALIGN: usize`
+- <span id="foldwithconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="foldwithconsumer-init"></span>`type Init = T`
+- <span id="foldwithconsumer-type-init"></span>`type Init = T`
 
 - <span id="foldwithconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

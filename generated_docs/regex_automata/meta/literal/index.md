@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`alternation_literals`](#alternation_literals) | fn | Pull out an alternation of literals from the given sequence of HIR |
+| [`alternation_literals`](#alternation_literals) | fn | Pull out an alternation of literals from the given sequence of HIR expressions. |
 
 ## Functions
 
@@ -17,6 +17,8 @@
 ```rust
 fn alternation_literals(info: &crate::meta::regex::RegexInfo, hirs: &[&regex_syntax::hir::Hir]) -> Option<alloc::vec::Vec<alloc::vec::Vec<u8>>>
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/literal.rs:15-81`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/literal.rs#L15-L81)*
 
 Pull out an alternation of literals from the given sequence of HIR
 expressions.

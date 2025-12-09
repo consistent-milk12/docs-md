@@ -55,6 +55,8 @@ struct ptr<'a> {
 }
 ```
 
+*Defined in [`addr2line-0.25.1/src/frame.rs:8-17`](../../../.source_1765210505/addr2line-0.25.1/src/frame.rs#L8-L17)*
+
 *Re-exported from `addr2line`*
 
 A source location.
@@ -95,6 +97,8 @@ struct default {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/dfa.rs:91-132`](../../../.source_1765210505/aho-corasick-1.1.4/src/dfa.rs#L91-L132)*
+
 *Re-exported from `aho_corasick`*
 
 A DFA implementation of Aho-Corasick.
@@ -104,7 +108,7 @@ this type directly. Using a `DFA` directly is typically only necessary when
 one needs access to the `Automaton` trait implementation.
 
 This DFA can only be built by first constructing a [`noncontiguous::NFA`](#noncontiguousnfa).
-Both [`DFA::new`](../../cargo_docs_md/error/index.md) and `Builder::build` do this for you automatically, but
+Both [`DFA::new`](../../addr2line/index.md) and `Builder::build` do this for you automatically, but
 [`Builder::build_from_noncontiguous`](../../clap_builder/index.md) permits doing it explicitly.
 
 A DFA provides the best possible search performance (in this crate) via two
@@ -230,13 +234,13 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- <span id="dfa-dead"></span>`const DEAD: StateID`
-
-- <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
-
 - <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
 
 - <span id="dfa-builder"></span>`fn builder() -> Builder`
+
+- <span id="dfa-const-dead"></span>`const DEAD: StateID`
+
+- <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
 
 #### Trait Implementations
 
@@ -283,4 +287,18 @@ It is also possible to implement your own version of `try_find`. See the
 ##### `impl Sealed for crate::dfa::DFA`
 
 ## Functions
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
+
+*Defined in [`serde-1.0.228/src/lib.rs:264`](../../../.source_1765210505/serde-1.0.228/src/lib.rs#L264)*
 

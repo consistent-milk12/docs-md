@@ -24,6 +24,8 @@ struct PrinterBuilder {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/ast/print.rs:18-20`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/print.rs#L18-L20)*
+
 A builder for constructing a printer.
 
 Note that since a printer doesn't have any configuration knobs, this type
@@ -57,6 +59,8 @@ struct Printer {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/ast/print.rs:48-50`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/print.rs#L48-L50)*
+
 A printer for a regular expression abstract syntax tree.
 
 A printer converts an abstract syntax tree (AST) to a regular expression
@@ -86,6 +90,8 @@ struct Writer<W> {
     wtr: W,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/ast/print.rs:68-70`](../../../../.source_1765210505/regex-syntax-0.8.8/src/ast/print.rs#L68-L70)*
 
 #### Implementations
 
@@ -125,9 +131,9 @@ struct Writer<W> {
 
 ##### `impl<W: fmt::Write> Visitor for Writer<W>`
 
-- <span id="writer-output"></span>`type Output = ()`
+- <span id="writer-type-output"></span>`type Output = ()`
 
-- <span id="writer-err"></span>`type Err = Error`
+- <span id="writer-type-err"></span>`type Err = Error`
 
 - <span id="writer-finish"></span>`fn finish(self) -> fmt::Result`
 
@@ -137,9 +143,9 @@ struct Writer<W> {
 
 - <span id="writer-visit-alternation-in"></span>`fn visit_alternation_in(&mut self) -> fmt::Result`
 
-- <span id="writer-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md), [`Visitor`](../index.md)
+- <span id="writer-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md), [`Visitor`](../visitor/index.md)
 
-- <span id="writer-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md), [`Visitor`](../index.md)
+- <span id="writer-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md), [`Visitor`](../visitor/index.md)
 
-- <span id="writer-visit-class-set-binary-op-in"></span>`fn visit_class_set_binary_op_in(&mut self, ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>` — [`ClassSetBinaryOp`](../index.md), [`Visitor`](../index.md)
+- <span id="writer-visit-class-set-binary-op-in"></span>`fn visit_class_set_binary_op_in(&mut self, ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>` — [`ClassSetBinaryOp`](../index.md), [`Visitor`](../visitor/index.md)
 

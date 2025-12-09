@@ -5,7 +5,7 @@
 # Module `thread_pool`
 
 Contains support for user-managed thread pools, represented by the
-the [`ThreadPool`](../index.md) type (see that struct for details).
+the [`ThreadPool`](#threadpool) type (see that struct for details).
 
 ## Quick Reference
 
@@ -13,8 +13,8 @@ the [`ThreadPool`](../index.md) type (see that struct for details).
 |------|------|-------------|
 | [`ThreadPool`](#threadpool) | struct | Represents a user-created [thread pool]. |
 | [`Yield`](#yield) | enum | Result of [`yield_now()`] or [`yield_local()`]. |
-| [`current_thread_index`](#current_thread_index) | fn | If called from a Rayon worker thread, returns the index of that |
-| [`current_thread_has_pending_tasks`](#current_thread_has_pending_tasks) | fn | If called from a Rayon worker thread, indicates whether that |
+| [`current_thread_index`](#current_thread_index) | fn | If called from a Rayon worker thread, returns the index of that thread within its current pool; if not called from a Rayon thread, returns `None`. |
+| [`current_thread_has_pending_tasks`](#current_thread_has_pending_tasks) | fn | If called from a Rayon worker thread, indicates whether that thread's local deque still has pending tasks. |
 | [`yield_now`](#yield_now) | fn | Cooperatively yields execution to Rayon. |
 | [`yield_local`](#yield_local) | fn | Cooperatively yields execution to local Rayon work. |
 
@@ -28,11 +28,13 @@ struct ThreadPool {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:46-48`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L46-L48)*
+
 Represents a user-created [thread pool].
 
 Use a [`ThreadPoolBuilder`](../index.md) to specify the number and/or names of threads
 in the pool. After calling `ThreadPoolBuilder::build()`, you can then
-execute functions explicitly within this [`ThreadPool`](../index.md) using
+execute functions explicitly within this [`ThreadPool`](#threadpool) using
 `ThreadPool::install()`. By contrast, top-level rayon functions
 (like `join()`) will execute implicitly within the current thread pool.
 
@@ -57,9 +59,9 @@ terminate.
 
 #### Implementations
 
-- <span id="threadpool-new"></span>`fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](../index.md), [`ThreadPool`](../index.md)
+- <span id="threadpool-new"></span>`fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](../index.md), [`ThreadPool`](#threadpool)
 
-- <span id="threadpool-build"></span>`fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md), [`ThreadPool`](../index.md), [`ThreadPoolBuildError`](../index.md)
+- <span id="threadpool-build"></span>`fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md), [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](../index.md)
 
 - <span id="threadpool-install"></span>`fn install<OP, R>(&self, op: OP) -> R`
 
@@ -87,9 +89,9 @@ terminate.
 
 - <span id="threadpool-spawn-broadcast"></span>`fn spawn_broadcast<OP>(&self, op: OP)`
 
-- <span id="threadpool-yield-now"></span>`fn yield_now(&self) -> Option<Yield>` — [`Yield`](../index.md)
+- <span id="threadpool-yield-now"></span>`fn yield_now(&self) -> Option<Yield>` — [`Yield`](#yield)
 
-- <span id="threadpool-yield-local"></span>`fn yield_local(&self) -> Option<Yield>` — [`Yield`](../index.md)
+- <span id="threadpool-yield-local"></span>`fn yield_local(&self) -> Option<Yield>` — [`Yield`](#yield)
 
 #### Trait Implementations
 
@@ -101,11 +103,11 @@ terminate.
 
 - <span id="threadpool-drop"></span>`fn drop(&mut self)`
 
-##### `impl<T> Pointable for ThreadPool`
+##### `impl Pointable for ThreadPool`
 
-- <span id="threadpool-align"></span>`const ALIGN: usize`
+- <span id="threadpool-const-align"></span>`const ALIGN: usize`
 
-- <span id="threadpool-init"></span>`type Init = T`
+- <span id="threadpool-type-init"></span>`type Init = T`
 
 - <span id="threadpool-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -126,7 +128,9 @@ enum Yield {
 }
 ```
 
-Result of [`yield_now()`](../index.md) or [`yield_local()`](../index.md).
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:497-502`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L497-L502)*
+
+Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 
 #### Variants
 
@@ -142,7 +146,7 @@ Result of [`yield_now()`](../index.md) or [`yield_local()`](../index.md).
 
 ##### `impl Clone for Yield`
 
-- <span id="yield-clone"></span>`fn clone(&self) -> Yield` — [`Yield`](../index.md)
+- <span id="yield-clone"></span>`fn clone(&self) -> Yield` — [`Yield`](#yield)
 
 ##### `impl Copy for Yield`
 
@@ -154,13 +158,13 @@ Result of [`yield_now()`](../index.md) or [`yield_local()`](../index.md).
 
 ##### `impl PartialEq for Yield`
 
-- <span id="yield-eq"></span>`fn eq(&self, other: &Yield) -> bool` — [`Yield`](../index.md)
+- <span id="yield-eq"></span>`fn eq(&self, other: &Yield) -> bool` — [`Yield`](#yield)
 
-##### `impl<T> Pointable for Yield`
+##### `impl Pointable for Yield`
 
-- <span id="yield-align"></span>`const ALIGN: usize`
+- <span id="yield-const-align"></span>`const ALIGN: usize`
 
-- <span id="yield-init"></span>`type Init = T`
+- <span id="yield-type-init"></span>`type Init = T`
 
 - <span id="yield-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -179,6 +183,8 @@ Result of [`yield_now()`](../index.md) or [`yield_local()`](../index.md).
 ```rust
 fn current_thread_index() -> Option<usize>
 ```
+
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:438-443`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L438-L443)*
 
 If called from a Rayon worker thread, returns the index of that
 thread within its current pool; if not called from a Rayon thread,
@@ -207,6 +213,8 @@ restarted.
 fn current_thread_has_pending_tasks() -> Option<bool>
 ```
 
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:452-457`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L452-L457)*
+
 If called from a Rayon worker thread, indicates whether that
 thread's local deque still has pending tasks. Otherwise, returns
 `None`. For more information, see [the
@@ -218,6 +226,8 @@ thread's local deque still has pending tasks. Otherwise, returns
 ```rust
 fn yield_now() -> Option<Yield>
 ```
+
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:471-476`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L471-L476)*
 
 Cooperatively yields execution to Rayon.
 
@@ -238,13 +248,15 @@ nothing was available, or `None` if this thread is not part of any pool at all.
 fn yield_local() -> Option<Yield>
 ```
 
+*Defined in [`rayon-core-1.13.0/src/thread_pool/mod.rs:488-493`](../../../.source_1765210505/rayon-core-1.13.0/src/thread_pool/mod.rs#L488-L493)*
+
 Cooperatively yields execution to local Rayon work.
 
 If the current thread is part of a rayon thread pool, this looks for a
 single unit of pending work in this thread's queue, then executes it.
 Completion of that work might include nested work or further work stealing.
 
-This is similar to [`yield_now()`](../index.md), but does not steal from other threads.
+This is similar to [`yield_now()`](#yield-now), but does not steal from other threads.
 
 Returns `Some(Yield::Executed)` if anything was executed, `Some(Yield::Idle)` if
 nothing was available, or `None` if this thread is not part of any pool at all.

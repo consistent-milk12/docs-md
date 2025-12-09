@@ -23,6 +23,8 @@ struct Handle {
 }
 ```
 
+*Defined in [`same-file-1.0.6/src/unix.rs:9-16`](../../../.source_1765210505/same-file-1.0.6/src/unix.rs#L9-L16)*
+
 #### Implementations
 
 - <span id="handle-from-path"></span>`fn from_path<P: AsRef<Path>>(p: P) -> io::Result<Handle>` — [`Handle`](#handle)

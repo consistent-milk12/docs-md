@@ -28,6 +28,8 @@ struct Lifetime {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lifetime.rs:18-21`](../../../.source_1765210505/syn-2.0.111/src/lifetime.rs#L18-L21)*
+
 A Rust lifetime: `'a`.
 
 Lifetime names must conform to the following rules:
@@ -41,7 +43,11 @@ Lifetime names must conform to the following rules:
 
 #### Implementations
 
-- <span id="cratelifetime-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="lifetime-new"></span>`fn new(symbol: &str, span: Span) -> Self`
+
+- <span id="lifetime-span"></span>`fn span(&self) -> Span`
+
+- <span id="lifetime-set-span"></span>`fn set_span(&mut self, span: Span)`
 
 #### Trait Implementations
 
@@ -65,27 +71,27 @@ Lifetime names must conform to the following rules:
 
 ##### `impl Ord for Lifetime`
 
-- <span id="lifetime-cmp"></span>`fn cmp(&self, other: &Lifetime) -> Ordering` — [`Lifetime`](../index.md)
+- <span id="lifetime-cmp"></span>`fn cmp(&self, other: &Lifetime) -> Ordering` — [`Lifetime`](#lifetime)
 
 ##### `impl Parse for crate::lifetime::Lifetime`
 
-- <span id="cratelifetimelifetime-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelifetimelifetime-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for Lifetime`
 
-- <span id="lifetime-eq"></span>`fn eq(&self, other: &Lifetime) -> bool` — [`Lifetime`](../index.md)
+- <span id="lifetime-eq"></span>`fn eq(&self, other: &Lifetime) -> bool` — [`Lifetime`](#lifetime)
 
 ##### `impl PartialOrd for Lifetime`
 
-- <span id="lifetime-partial-cmp"></span>`fn partial_cmp(&self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](../index.md)
+- <span id="lifetime-partial-cmp"></span>`fn partial_cmp(&self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](#lifetime)
 
-##### `impl Sealed for crate::lifetime::Lifetime`
+##### `impl Sealed for Lifetime`
 
-##### `impl<T> Spanned for Lifetime`
+##### `impl Spanned for Lifetime`
 
 - <span id="lifetime-span"></span>`fn span(&self) -> Span`
 
-##### `impl<T> ToString for Lifetime`
+##### `impl ToString for Lifetime`
 
 - <span id="lifetime-to-string"></span>`fn to_string(&self) -> String`
 

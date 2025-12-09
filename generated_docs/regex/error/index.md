@@ -21,6 +21,8 @@ enum Error {
 }
 ```
 
+*Defined in [`regex-1.12.2/src/error.rs:8-32`](../../../.source_1765210505/regex-1.12.2/src/error.rs#L8-L32)*
+
 An error that occurred during parsing or compiling a regular expression.
 
 #### Variants
@@ -54,13 +56,13 @@ An error that occurred during parsing or compiling a regular expression.
 
 #### Implementations
 
-- <span id="error-from-meta-build-error"></span>`fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](../index.md)
+- <span id="error-from-meta-build-error"></span>`fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](#error)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](../index.md)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](#error)
 
 ##### `impl Debug for Error`
 
@@ -76,11 +78,11 @@ An error that occurred during parsing or compiling a regular expression.
 
 ##### `impl PartialEq for Error`
 
-- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](../index.md)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 

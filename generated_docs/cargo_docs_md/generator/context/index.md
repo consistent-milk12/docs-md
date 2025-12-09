@@ -6,7 +6,7 @@
 
 Shared context for documentation generation.
 
-This module provides the [`GeneratorContext`](../index.md) struct which holds all shared
+This module provides the [`GeneratorContext`](#generatorcontext) struct which holds all shared
 state needed during markdown generation, including the crate data, lookup
 maps, and configuration options.
 
@@ -14,10 +14,10 @@ maps, and configuration options.
 
 The rendering context is split into focused traits for better abstraction:
 
-- [`ItemAccess`](../index.md) - Core data access (crate, items, impls)
-- [`ItemFilter`](../index.md) - Visibility and filtering logic
-- [`LinkResolver`](../index.md) - Link creation and documentation processing
-- [`RenderContext`](../index.md) - Combined super-trait for convenience
+- [`ItemAccess`](#itemaccess) - Core data access (crate, items, impls)
+- [`ItemFilter`](#itemfilter) - Visibility and filtering logic
+- [`LinkResolver`](#linkresolver) - Link creation and documentation processing
+- [`RenderContext`](#rendercontext) - Combined super-trait for convenience
 
 This allows components to depend only on the traits they need, improving
 testability and reducing coupling.
@@ -44,8 +44,12 @@ struct GeneratorContext<'a> {
     pub link_registry: crate::linker::LinkRegistry,
     pub args: &'a crate::Args,
     pub config: crate::generator::config::RenderConfig,
+    path_name_index: std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>,
+    source_path_config: Option<crate::generator::render_shared::SourcePathConfig>,
 }
 ```
+
+*Defined in `src/generator/context.rs:135-168`*
 
 Shared context containing all data needed for documentation generation.
 
@@ -83,25 +87,42 @@ This struct is passed to all rendering components and provides:
 
   Rendering configuration options.
 
+- **`path_name_index`**: `std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>`
+
+  Pre-built index mapping item names to their IDs for fast lookup.
+  
+  Built once at construction time from `krate.paths` and shared across
+  all `DocLinkProcessor` instances for efficiency.
+
+- **`source_path_config`**: `Option<crate::generator::render_shared::SourcePathConfig>`
+
+  Base source path configuration for transforming cargo registry paths.
+  
+  `None` if source locations are disabled or no `.source_*` dir detected.
+  The `depth` field is set to 0; use `source_path_config_for_file()` to
+  get a config with the correct depth for a specific file.
+
 #### Implementations
 
-- <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../../index.md), [`RenderConfig`](../../index.md)
+- <span id="generatorcontext-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self` — [`Args`](../../index.md), [`RenderConfig`](../config/index.md)
+
+- <span id="generatorcontext-set-source-dir"></span>`fn set_source_dir(&mut self, source_dir: &Path)`
 
 - <span id="generatorcontext-build-impl-map"></span>`fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>>`
 
 - <span id="generatorcontext-impl-sort-key"></span>`fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
 
-- <span id="generatorcontext-get-type-id"></span>`const fn get_type_id(ty: &rustdoc_types::Type) -> Option<Id>`
-
 - <span id="generatorcontext-should-include-item"></span>`const fn should_include_item(&self, item: &Item) -> bool`
 
 - <span id="generatorcontext-count-modules"></span>`fn count_modules(&self, item: &Item) -> usize`
 
+- <span id="generatorcontext-build-path-name-index"></span>`fn build_path_name_index(krate: &'a Crate) -> HashMap<&'a str, Vec<Id>>`
+
 #### Trait Implementations
 
-##### `impl<T> Instrument for GeneratorContext<'a>`
+##### `impl Instrument for GeneratorContext<'a>`
 
-##### `impl<T> IntoEither for GeneratorContext<'a>`
+##### `impl IntoEither for GeneratorContext<'a>`
 
 ##### `impl ItemAccess for GeneratorContext<'_>`
 
@@ -115,7 +136,9 @@ This struct is passed to all rendering components and provides:
 
 - <span id="generatorcontext-crate-version"></span>`fn crate_version(&self) -> Option<&str>`
 
-- <span id="generatorcontext-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](../../index.md)
+- <span id="generatorcontext-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](../config/index.md)
+
+- <span id="generatorcontext-source-path-config-for-file"></span>`fn source_path_config_for_file(&self, current_file: &str) -> Option<SourcePathConfig>` — [`SourcePathConfig`](../render_shared/index.md)
 
 ##### `impl ItemFilter for GeneratorContext<'_>`
 
@@ -127,19 +150,19 @@ This struct is passed to all rendering components and provides:
 
 ##### `impl LinkResolver for GeneratorContext<'_>`
 
-- <span id="generatorcontext-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../index.md)
+- <span id="generatorcontext-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../linker/index.md)
 
 - <span id="generatorcontext-process-docs"></span>`fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
 - <span id="generatorcontext-create-link"></span>`fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
 
-##### `impl<D> OwoColorize for GeneratorContext<'a>`
+##### `impl OwoColorize for GeneratorContext<'a>`
 
-##### `impl<T> Pointable for GeneratorContext<'a>`
+##### `impl Pointable for GeneratorContext<'a>`
 
-- <span id="generatorcontext-align"></span>`const ALIGN: usize`
+- <span id="generatorcontext-const-align"></span>`const ALIGN: usize`
 
-- <span id="generatorcontext-init"></span>`type Init = T`
+- <span id="generatorcontext-type-init"></span>`type Init = T`
 
 - <span id="generatorcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -149,9 +172,9 @@ This struct is passed to all rendering components and provides:
 
 - <span id="generatorcontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> RenderContext for GeneratorContext<'a>`
+##### `impl RenderContext for GeneratorContext<'a>`
 
-##### `impl<T> WithSubscriber for GeneratorContext<'a>`
+##### `impl WithSubscriber for GeneratorContext<'a>`
 
 ## Traits
 
@@ -160,6 +183,8 @@ This struct is passed to all rendering components and provides:
 ```rust
 trait ItemAccess { ... }
 ```
+
+*Defined in `src/generator/context.rs:37-63`*
 
 Core data access for crate documentation.
 
@@ -191,16 +216,24 @@ Provides read-only access to the crate structure, items, and impl blocks.
 
   Get the rendering configuration.
 
+#### Provided Methods
+
+- `fn source_path_config_for_file(&self, _current_file: &str) -> Option<SourcePathConfig>`
+
+  Get source path config for a specific file.
+
 #### Implementors
 
-- [`GeneratorContext`](../index.md)
-- [`SingleCrateView`](../../multi_crate/index.md)
+- [`GeneratorContext`](#generatorcontext)
+- [`SingleCrateView`](../../multi_crate/context/index.md)
 
 ### `ItemFilter`
 
 ```rust
 trait ItemFilter { ... }
 ```
+
+*Defined in `src/generator/context.rs:68-79`*
 
 Item visibility and filtering logic.
 
@@ -222,14 +255,16 @@ Determines which items should be included in the generated documentation.
 
 #### Implementors
 
-- [`GeneratorContext`](../index.md)
-- [`SingleCrateView`](../../multi_crate/index.md)
+- [`GeneratorContext`](#generatorcontext)
+- [`SingleCrateView`](../../multi_crate/context/index.md)
 
 ### `LinkResolver`
 
 ```rust
 trait LinkResolver { ... }
 ```
+
+*Defined in `src/generator/context.rs:84-113`*
 
 Link creation and documentation processing.
 
@@ -251,8 +286,8 @@ Handles intra-doc link resolution and markdown link generation.
 
 #### Implementors
 
-- [`GeneratorContext`](../index.md)
-- [`SingleCrateView`](../../multi_crate/index.md)
+- [`GeneratorContext`](#generatorcontext)
+- [`SingleCrateView`](../../multi_crate/context/index.md)
 
 ### `RenderContext`
 
@@ -260,9 +295,11 @@ Handles intra-doc link resolution and markdown link generation.
 trait RenderContext: ItemAccess + ItemFilter + LinkResolver { ... }
 ```
 
+*Defined in `src/generator/context.rs:126`*
+
 Combined rendering context trait.
 
-This trait combines [`ItemAccess`](../index.md), [`ItemFilter`](../index.md), and [`LinkResolver`](../index.md)
+This trait combines [`ItemAccess`](#itemaccess), [`ItemFilter`](#itemfilter), and [`LinkResolver`](#linkresolver)
 for components that need full access to the rendering context.
 
 Most renderers should use this trait for convenience, but components
@@ -270,7 +307,5 @@ with limited requirements can depend on individual sub-traits.
 
 #### Implementors
 
-- [`GeneratorContext`](../index.md)
-- [`SingleCrateView`](../../multi_crate/index.md)
 - `T`
 

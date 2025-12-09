@@ -119,6 +119,8 @@ struct Utf8Range {
 }
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:218-223`](../../../.source_1765210505/regex-syntax-0.8.8/src/utf8.rs#L218-L223)*
+
 A single inclusive range of UTF-8 bytes.
 
 #### Fields
@@ -172,6 +174,8 @@ struct Utf8Sequences {
     range_stack: alloc::vec::Vec<ScalarRange>,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:297-299`](../../../.source_1765210505/regex-syntax-0.8.8/src/utf8.rs#L297-L299)*
 
 An iterator over ranges of matching UTF-8 byte sequences.
 
@@ -238,17 +242,17 @@ always possible (for example, in a byte based automaton).
 
 ##### `impl FusedIterator for Utf8Sequences`
 
-##### `impl<I> IntoIterator for Utf8Sequences`
+##### `impl IntoIterator for Utf8Sequences`
 
-- <span id="utf8sequences-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="utf8sequences-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="utf8sequences-intoiter"></span>`type IntoIter = I`
+- <span id="utf8sequences-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="utf8sequences-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Utf8Sequences`
 
-- <span id="utf8sequences-item"></span>`type Item = Utf8Sequence`
+- <span id="utf8sequences-type-item"></span>`type Item = Utf8Sequence`
 
 - <span id="utf8sequences-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -260,6 +264,8 @@ struct ScalarRange {
     end: u32,
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:325-328`](../../../.source_1765210505/regex-syntax-0.8.8/src/utf8.rs#L325-L328)*
 
 #### Implementations
 
@@ -291,6 +297,8 @@ enum Utf8Sequence {
     Four([Utf8Range; 4]),
 }
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:97-106`](../../../.source_1765210505/regex-syntax-0.8.8/src/utf8.rs#L97-L106)*
 
 Utf8Sequence represents a sequence of byte ranges.
 
@@ -344,6 +352,14 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 
 ##### `impl Eq for Utf8Sequence`
 
+##### `impl IntoIterator for &'a Utf8Sequence`
+
+- <span id="a-utf8sequence-type-intoiter"></span>`type IntoIter = Iter<'a, Utf8Range>`
+
+- <span id="a-utf8sequence-type-item"></span>`type Item = &'a Utf8Range`
+
+- <span id="a-utf8sequence-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+
 ##### `impl Ord for Utf8Sequence`
 
 - <span id="utf8sequence-cmp"></span>`fn cmp(&self, other: &Utf8Sequence) -> cmp::Ordering` — [`Utf8Sequence`](#utf8sequence)
@@ -366,11 +382,14 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 fn max_scalar_value(nbytes: usize) -> u32
 ```
 
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:445-453`](../../../.source_1765210505/regex-syntax-0.8.8/src/utf8.rs#L445-L453)*
+
 ## Constants
 
 ### `MAX_UTF8_BYTES`
-
 ```rust
 const MAX_UTF8_BYTES: usize = 4usize;
 ```
+
+*Defined in [`regex-syntax-0.8.8/src/utf8.rs:87`](../../../.source_1765210505/regex-syntax-0.8.8/src/utf8.rs#L87)*
 

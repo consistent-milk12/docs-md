@@ -11,7 +11,7 @@
 | [`ByteClasses`](#byteclasses) | struct | A representation of byte oriented equivalence classes. |
 | [`ByteClassIter`](#byteclassiter) | struct | An iterator over each equivalence class. |
 | [`ByteClassElements`](#byteclasselements) | struct | An iterator over all elements in a specific equivalence class. |
-| [`ByteClassElementRanges`](#byteclasselementranges) | struct | An iterator over all elements in an equivalence class expressed as a |
+| [`ByteClassElementRanges`](#byteclasselementranges) | struct | An iterator over all elements in an equivalence class expressed as a sequence of contiguous ranges. |
 | [`ByteClassSet`](#byteclassset) | struct | A partitioning of bytes into equivalence classes. |
 | [`ByteSet`](#byteset) | struct | A simple set of bytes that is reasonably cheap to copy and allocation free. |
 | [`BitSet`](#bitset) | struct | The representation of a byte set. |
@@ -23,6 +23,8 @@
 ```rust
 struct ByteClasses([u8; 256]);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:10`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L10)*
 
 A representation of byte oriented equivalence classes.
 
@@ -75,6 +77,8 @@ struct ByteClassIter {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:125-127`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L125-L127)*
+
 An iterator over each equivalence class.
 
 #### Trait Implementations
@@ -83,17 +87,17 @@ An iterator over each equivalence class.
 
 - <span id="byteclassiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteClassIter`
+##### `impl IntoIterator for ByteClassIter`
 
-- <span id="byteclassiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclassiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclassiter-intoiter"></span>`type IntoIter = I`
+- <span id="byteclassiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclassiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ByteClassIter`
 
-- <span id="byteclassiter-item"></span>`type Item = u8`
+- <span id="byteclassiter-type-item"></span>`type Item = u8`
 
 - <span id="byteclassiter-next"></span>`fn next(&mut self) -> Option<u8>`
 
@@ -107,25 +111,27 @@ struct ByteClassElements<'a> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:139-143`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L139-L143)*
+
 An iterator over all elements in a specific equivalence class.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ByteClassElements<'a>`
+##### `impl Debug for ByteClassElements<'a>`
 
 - <span id="byteclasselements-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteClassElements<'a>`
+##### `impl IntoIterator for ByteClassElements<'a>`
 
-- <span id="byteclasselements-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclasselements-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclasselements-intoiter"></span>`type IntoIter = I`
+- <span id="byteclasselements-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclasselements-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ByteClassElements<'a>`
+##### `impl Iterator for ByteClassElements<'a>`
 
-- <span id="byteclasselements-item"></span>`type Item = u8`
+- <span id="byteclasselements-type-item"></span>`type Item = u8`
 
 - <span id="byteclasselements-next"></span>`fn next(&mut self) -> Option<u8>`
 
@@ -138,26 +144,28 @@ struct ByteClassElementRanges<'a> {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:161-164`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L161-L164)*
+
 An iterator over all elements in an equivalence class expressed as a
 sequence of contiguous ranges.
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for ByteClassElementRanges<'a>`
+##### `impl Debug for ByteClassElementRanges<'a>`
 
 - <span id="byteclasselementranges-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for ByteClassElementRanges<'a>`
+##### `impl IntoIterator for ByteClassElementRanges<'a>`
 
-- <span id="byteclasselementranges-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="byteclasselementranges-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="byteclasselementranges-intoiter"></span>`type IntoIter = I`
+- <span id="byteclasselementranges-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="byteclasselementranges-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for ByteClassElementRanges<'a>`
+##### `impl Iterator for ByteClassElementRanges<'a>`
 
-- <span id="byteclasselementranges-item"></span>`type Item = (u8, u8)`
+- <span id="byteclasselementranges-type-item"></span>`type Item = (u8, u8)`
 
 - <span id="byteclasselementranges-next"></span>`fn next(&mut self) -> Option<(u8, u8)>`
 
@@ -166,6 +174,8 @@ sequence of contiguous ranges.
 ```rust
 struct ByteClassSet(ByteSet);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:207`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L207)*
 
 A partitioning of bytes into equivalence classes.
 
@@ -213,6 +223,8 @@ struct ByteSet {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:255-257`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L255-L257)*
+
 A simple set of bytes that is reasonably cheap to copy and allocation free.
 
 #### Implementations
@@ -252,6 +264,8 @@ A simple set of bytes that is reasonably cheap to copy and allocation free.
 ```rust
 struct BitSet([u128; 2]);
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/alphabet.rs:262`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/alphabet.rs#L262)*
 
 The representation of a byte set. Split out so that we can define a
 convenient Debug impl for it while keeping "ByteSet" in the output.

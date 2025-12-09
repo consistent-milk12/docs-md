@@ -67,6 +67,8 @@ struct LitStr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:58-63`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L58-L63)*
+
 A UTF-8 string literal: `"foo"`.
 
 #### Implementations
@@ -91,15 +93,15 @@ A UTF-8 string literal: `"foo"`.
 
 ##### `impl Parse for crate::lit::LitStr`
 
-- <span id="cratelitlitstr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitstr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitStr`
 
 - <span id="litstr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitStr`
+##### `impl Sealed for LitStr`
 
-##### `impl<T> Spanned for LitStr`
+##### `impl Spanned for LitStr`
 
 - <span id="litstr-span"></span>`fn span(&self) -> Span`
 
@@ -117,21 +119,13 @@ struct LitByteStr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:65-70`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L65-L70)*
+
 A byte string literal: `b"foo"`.
 
 #### Implementations
 
-- <span id="litbytestr-new"></span>`fn new(value: &[u8], span: Span) -> Self`
-
-- <span id="litbytestr-value"></span>`fn value(&self) -> Vec<u8>`
-
-- <span id="litbytestr-span"></span>`fn span(&self) -> Span`
-
-- <span id="litbytestr-set-span"></span>`fn set_span(&mut self, span: Span)`
-
-- <span id="litbytestr-suffix"></span>`fn suffix(&self) -> &str`
-
-- <span id="litbytestr-token"></span>`fn token(&self) -> Literal`
+- <span id="cratelitlitbytestr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -151,15 +145,15 @@ A byte string literal: `b"foo"`.
 
 ##### `impl Parse for crate::lit::LitByteStr`
 
-- <span id="cratelitlitbytestr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitbytestr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitByteStr`
 
 - <span id="litbytestr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitByteStr`
+##### `impl Sealed for LitByteStr`
 
-##### `impl<T> Spanned for LitByteStr`
+##### `impl Spanned for LitByteStr`
 
 - <span id="litbytestr-span"></span>`fn span(&self) -> Span`
 
@@ -176,6 +170,8 @@ struct LitCStr {
     repr: Box<LitRepr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lit.rs:72-77`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L72-L77)*
 
 A nul-terminated C-string literal: `c"foo"`.
 
@@ -201,15 +197,15 @@ A nul-terminated C-string literal: `c"foo"`.
 
 ##### `impl Parse for crate::lit::LitCStr`
 
-- <span id="cratelitlitcstr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitcstr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitCStr`
 
 - <span id="litcstr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitCStr`
+##### `impl Sealed for LitCStr`
 
-##### `impl<T> Spanned for LitCStr`
+##### `impl Spanned for LitCStr`
 
 - <span id="litcstr-span"></span>`fn span(&self) -> Span`
 
@@ -226,6 +222,8 @@ struct LitByte {
     repr: Box<LitRepr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lit.rs:79-84`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L79-L84)*
 
 A byte literal: `b'f'`.
 
@@ -251,15 +249,15 @@ A byte literal: `b'f'`.
 
 ##### `impl Parse for crate::lit::LitByte`
 
-- <span id="cratelitlitbyte-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitbyte-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitByte`
 
 - <span id="litbyte-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitByte`
+##### `impl Sealed for LitByte`
 
-##### `impl<T> Spanned for LitByte`
+##### `impl Spanned for LitByte`
 
 - <span id="litbyte-span"></span>`fn span(&self) -> Span`
 
@@ -276,6 +274,8 @@ struct LitChar {
     repr: Box<LitRepr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lit.rs:86-91`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L86-L91)*
 
 A character literal: `'a'`.
 
@@ -301,15 +301,15 @@ A character literal: `'a'`.
 
 ##### `impl Parse for crate::lit::LitChar`
 
-- <span id="cratelitlitchar-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitchar-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitChar`
 
 - <span id="litchar-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitChar`
+##### `impl Sealed for LitChar`
 
-##### `impl<T> Spanned for LitChar`
+##### `impl Spanned for LitChar`
 
 - <span id="litchar-span"></span>`fn span(&self) -> Span`
 
@@ -328,6 +328,8 @@ struct LitRepr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:93-96`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L93-L96)*
+
 #### Trait Implementations
 
 ##### `impl Clone for LitRepr`
@@ -342,23 +344,13 @@ struct LitInt {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:98-103`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L98-L103)*
+
 An integer literal: `1` or `1u16`.
 
 #### Implementations
 
-- <span id="litint-new"></span>`fn new(repr: &str, span: Span) -> Self`
-
-- <span id="litint-base10-digits"></span>`fn base10_digits(&self) -> &str`
-
-- <span id="litint-base10-parse"></span>`fn base10_parse<N>(&self) -> Result<N>` — [`Result`](../index.md)
-
-- <span id="litint-suffix"></span>`fn suffix(&self) -> &str`
-
-- <span id="litint-span"></span>`fn span(&self) -> Span`
-
-- <span id="litint-set-span"></span>`fn set_span(&mut self, span: Span)`
-
-- <span id="litint-token"></span>`fn token(&self) -> Literal`
+- <span id="cratelitlitint-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -382,19 +374,19 @@ An integer literal: `1` or `1u16`.
 
 ##### `impl Parse for crate::lit::LitInt`
 
-- <span id="cratelitlitint-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitint-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitInt`
 
 - <span id="litint-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitInt`
+##### `impl Sealed for LitInt`
 
-##### `impl<T> Spanned for LitInt`
+##### `impl Spanned for LitInt`
 
 - <span id="litint-span"></span>`fn span(&self) -> Span`
 
-##### `impl<T> ToString for LitInt`
+##### `impl ToString for LitInt`
 
 - <span id="litint-to-string"></span>`fn to_string(&self) -> String`
 
@@ -414,6 +406,8 @@ struct LitIntRepr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:105-109`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L105-L109)*
+
 #### Trait Implementations
 
 ##### `impl Clone for LitIntRepr`
@@ -427,6 +421,8 @@ struct LitFloat {
     repr: Box<LitFloatRepr>,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lit.rs:111-118`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L111-L118)*
 
 A floating point literal: `1f64` or `1.0e10f64`.
 
@@ -458,19 +454,19 @@ Must be finite. May not be infinite or NaN.
 
 ##### `impl Parse for crate::lit::LitFloat`
 
-- <span id="cratelitlitfloat-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitfloat-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for LitFloat`
 
 - <span id="litfloat-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitFloat`
+##### `impl Sealed for LitFloat`
 
-##### `impl<T> Spanned for LitFloat`
+##### `impl Spanned for LitFloat`
 
 - <span id="litfloat-span"></span>`fn span(&self) -> Span`
 
-##### `impl<T> ToString for LitFloat`
+##### `impl ToString for LitFloat`
 
 - <span id="litfloat-to-string"></span>`fn to_string(&self) -> String`
 
@@ -490,6 +486,8 @@ struct LitFloatRepr {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/lit.rs:120-124`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L120-L124)*
+
 #### Trait Implementations
 
 ##### `impl Clone for LitFloatRepr`
@@ -504,6 +502,8 @@ struct LitBool {
     pub span: proc_macro2::Span,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lit.rs:126-132`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L126-L132)*
 
 A boolean literal: `true` or `false`.
 
@@ -529,15 +529,15 @@ A boolean literal: `true` or `false`.
 
 ##### `impl Parse for crate::lit::LitBool`
 
-- <span id="cratelitlitbool-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlitbool-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::LitBool`
 
 - <span id="cratelitbool-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitBool`
+##### `impl Sealed for LitBool`
 
-##### `impl<T> Spanned for LitBool`
+##### `impl Spanned for LitBool`
 
 - <span id="litbool-span"></span>`fn span(&self) -> Span`
 
@@ -564,6 +564,8 @@ enum Lit {
     Verbatim(proc_macro2::Literal),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/lit.rs:17-56`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L17-L56)*
 
 A Rust literal such as a string or integer or boolean.
 
@@ -642,15 +644,15 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::lit::Lit`
 
-- <span id="cratelitlit-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelitlit-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Lit`
 
 - <span id="cratelit-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::Lit`
+##### `impl Sealed for Lit`
 
-##### `impl<T> Spanned for Lit`
+##### `impl Spanned for Lit`
 
 - <span id="lit-span"></span>`fn span(&self) -> Span`
 
@@ -663,4 +665,6 @@ This type is a [syntax tree enum].
 ## Macros
 
 ### `lit_extra_traits!`
+
+*Defined in [`syn-2.0.111/src/lit.rs:778-818`](../../../.source_1765210505/syn-2.0.111/src/lit.rs#L778-L818)*
 

@@ -28,9 +28,9 @@ Generic crate-internal routines for the `memchr` family of functions.
 | [`Three`](#three) | struct | Finds all occurrences of two bytes in a haystack. |
 | [`Iter`](#iter) | struct | An iterator over all occurrences of a set of bytes in a haystack. |
 | [`search_slice_with_raw`](#search_slice_with_raw) | fn | Search a slice using a function that operates on raw pointers. |
-| [`fwd_byte_by_byte`](#fwd_byte_by_byte) | fn | Performs a forward byte-at-a-time loop until either `ptr >= end_ptr` or |
-| [`rev_byte_by_byte`](#rev_byte_by_byte) | fn | Performs a reverse byte-at-a-time loop until either `ptr < start_ptr` or |
-| [`count_byte_by_byte`](#count_byte_by_byte) | fn | Performs a forward byte-at-a-time loop until `ptr >= end_ptr` and returns |
+| [`fwd_byte_by_byte`](#fwd_byte_by_byte) | fn | Performs a forward byte-at-a-time loop until either `ptr >= end_ptr` or until `confirm(*ptr)` returns `true`. |
+| [`rev_byte_by_byte`](#rev_byte_by_byte) | fn | Performs a reverse byte-at-a-time loop until either `ptr < start_ptr` or until `confirm(*ptr)` returns `true`. |
+| [`count_byte_by_byte`](#count_byte_by_byte) | fn | Performs a forward byte-at-a-time loop until `ptr >= end_ptr` and returns the number of times `confirm(*ptr)` returns `true`. |
 
 ## Structs
 
@@ -43,11 +43,13 @@ struct One<V> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:100-103`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L100-L103)*
+
 Finds all occurrences of a single byte in a haystack.
 
 #### Implementations
 
-- <span id="one-loop-size"></span>`const LOOP_SIZE: usize`
+- <span id="one-const-loop-size"></span>`const LOOP_SIZE: usize`
 
 - <span id="one-new"></span>`unsafe fn new(needle: u8) -> One<V>` — [`One`](#one)
 
@@ -84,6 +86,8 @@ struct Two<V> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:437-442`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L437-L442)*
+
 Finds all occurrences of two bytes in a haystack.
 
 That is, this reports matches of one of two possible bytes. For example,
@@ -92,7 +96,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 #### Implementations
 
-- <span id="two-loop-size"></span>`const LOOP_SIZE: usize`
+- <span id="two-const-loop-size"></span>`const LOOP_SIZE: usize`
 
 - <span id="two-new"></span>`unsafe fn new(needle1: u8, needle2: u8) -> Two<V>` — [`Two`](#two)
 
@@ -131,6 +135,8 @@ struct Three<V> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:695-702`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L695-L702)*
+
 Finds all occurrences of two bytes in a haystack.
 
 That is, this reports matches of one of two possible bytes. For example,
@@ -139,7 +145,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 #### Implementations
 
-- <span id="three-loop-size"></span>`const LOOP_SIZE: usize`
+- <span id="three-const-loop-size"></span>`const LOOP_SIZE: usize`
 
 - <span id="three-new"></span>`unsafe fn new(needle1: u8, needle2: u8, needle3: u8) -> Three<V>` — [`Three`](#three)
 
@@ -177,6 +183,8 @@ struct Iter<'h> {
     haystack: core::marker::PhantomData<&'h [u8]>,
 }
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:999-1012`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L999-L1012)*
 
 An iterator over all occurrences of a set of bytes in a haystack.
 
@@ -230,17 +238,17 @@ respectively.
 
 #### Trait Implementations
 
-##### `impl<'h> Clone for Iter<'h>`
+##### `impl Clone for Iter<'h>`
 
 - <span id="iter-clone"></span>`fn clone(&self) -> Iter<'h>` — [`Iter`](#iter)
 
-##### `impl<'h> Debug for Iter<'h>`
+##### `impl Debug for Iter<'h>`
 
 - <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'h> Send for Iter<'h>`
+##### `impl Send for Iter<'h>`
 
-##### `impl<'h> Sync for Iter<'h>`
+##### `impl Sync for Iter<'h>`
 
 ## Functions
 
@@ -249,6 +257,8 @@ respectively.
 ```rust
 unsafe fn search_slice_with_raw(haystack: &[u8], find_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1125-1136`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L1125-L1136)*
 
 Search a slice using a function that operates on raw pointers.
 
@@ -273,6 +283,8 @@ the end pointer.
 unsafe fn fwd_byte_by_byte<F: Fn(u8) -> bool>(start: *const u8, end: *const u8, confirm: F) -> Option<*const u8>
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1148-1162`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L1148-L1162)*
+
 Performs a forward byte-at-a-time loop until either `ptr >= end_ptr` or
 until `confirm(*ptr)` returns `true`. If the former occurs, then `None` is
 returned. If the latter occurs, then the pointer at which `confirm` returns
@@ -289,6 +301,8 @@ ptr` and `ptr <= end_ptr`.
 unsafe fn rev_byte_by_byte<F: Fn(u8) -> bool>(start: *const u8, end: *const u8, confirm: F) -> Option<*const u8>
 ```
 
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1174-1189`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L1174-L1189)*
+
 Performs a reverse byte-at-a-time loop until either `ptr < start_ptr` or
 until `confirm(*ptr)` returns `true`. If the former occurs, then `None` is
 returned. If the latter occurs, then the pointer at which `confirm` returns
@@ -304,6 +318,8 @@ ptr` and `ptr <= end_ptr`.
 ```rust
 unsafe fn count_byte_by_byte<F: Fn(u8) -> bool>(start: *const u8, end: *const u8, confirm: F) -> usize
 ```
+
+*Defined in [`memchr-2.7.6/src/arch/generic/memchr.rs:1199-1214`](../../../../../.source_1765210505/memchr-2.7.6/src/arch/generic/memchr.rs#L1199-L1214)*
 
 Performs a forward byte-at-a-time loop until `ptr >= end_ptr` and returns
 the number of times `confirm(*ptr)` returns `true`.

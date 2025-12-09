@@ -11,7 +11,7 @@ Lower level primitive types that are useful in a variety of circumstances.
 This list represents the principle types in this module and briefly describes
 when you might want to use them.
 
-* [`PatternID`](../../index.md) - A type that represents the identifier of a regex pattern.
+* [`PatternID`](#patternid) - A type that represents the identifier of a regex pattern.
 This is probably the most widely used type in this module (which is why it's
 also re-exported in the crate root).
 * [`StateID`](#stateid) - A type the represents the identifier of a finite automaton
@@ -62,14 +62,14 @@ guarantees that slices never have a length that exceeds `isize::MAX`.
 | [`SmallIndexError`](#smallindexerror) | struct | This error occurs when a small index could not be constructed. |
 | [`SmallIndexIter`](#smallindexiter) | struct |  |
 | [`PatternID`](#patternid) | struct | The identifier of a regex pattern, represented by a [`SmallIndex`]. |
-| [`StateID`](#stateid) | struct | The identifier of a finite automaton state, represented by a |
+| [`StateID`](#stateid) | struct | The identifier of a finite automaton state, represented by a [`SmallIndex`]. |
 | [`PatternIDError`](#patterniderror) | struct | This error occurs when a value could not be constructed. |
 | [`PatternIDIter`](#patterniditer) | struct |  |
-| [`WithPatternIDIter`](#withpatterniditer) | struct | An iterator adapter that is like std::iter::Enumerate, but attaches |
+| [`WithPatternIDIter`](#withpatterniditer) | struct | An iterator adapter that is like std::iter::Enumerate, but attaches small index values instead. |
 | [`StateIDError`](#stateiderror) | struct | This error occurs when a value could not be constructed. |
 | [`StateIDIter`](#stateiditer) | struct |  |
-| [`WithStateIDIter`](#withstateiditer) | struct | An iterator adapter that is like std::iter::Enumerate, but attaches |
-| [`IteratorIndexExt`](#iteratorindexext) | trait | A utility trait that defines a couple of adapters for making it convenient |
+| [`WithStateIDIter`](#withstateiditer) | struct | An iterator adapter that is like std::iter::Enumerate, but attaches small index values instead. |
+| [`IteratorIndexExt`](#iteratorindexext) | trait | A utility trait that defines a couple of adapters for making it convenient to access indices as "small index" types. |
 | [`index_type_impls!`](#index_type_impls) | macro |  |
 
 ## Structs
@@ -79,6 +79,8 @@ guarantees that slices never have a length that exceeds `isize::MAX`.
 ```rust
 struct NonMaxUsize(core::num::NonZeroUsize);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:56`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L56)*
 
 A `usize` that can never be `usize::MAX`.
 
@@ -140,6 +142,8 @@ This type is defined to be `repr(transparent)` for
 struct SmallIndex(u32);
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:144`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L144)*
+
 A type that represents a "small" index.
 
 The main idea of this type is to provide something that can index memory,
@@ -175,7 +179,7 @@ for delta encoding.
 
 The following types wrap `SmallIndex` to provide a more focused use case:
 
-* [`PatternID`](../../index.md) is for representing the identifiers of patterns.
+* [`PatternID`](#patternid) is for representing the identifiers of patterns.
 * [`StateID`](#stateid) is for representing the identifiers of states in finite
 automata. It is used for both NFAs and DFAs.
 
@@ -200,13 +204,13 @@ in panics or silent logical errors.
 
 #### Implementations
 
-- <span id="smallindex-max"></span>`const MAX: SmallIndex`
+- <span id="smallindex-const-max"></span>`const MAX: SmallIndex`
 
-- <span id="smallindex-limit"></span>`const LIMIT: usize`
+- <span id="smallindex-const-limit"></span>`const LIMIT: usize`
 
-- <span id="smallindex-zero"></span>`const ZERO: SmallIndex`
+- <span id="smallindex-const-zero"></span>`const ZERO: SmallIndex`
 
-- <span id="smallindex-size"></span>`const SIZE: usize`
+- <span id="smallindex-const-size"></span>`const SIZE: usize`
 
 - <span id="smallindex-new"></span>`fn new(index: usize) -> Result<SmallIndex, SmallIndexError>` — [`SmallIndex`](#smallindex), [`SmallIndexError`](#smallindexerror)
 
@@ -252,6 +256,16 @@ in panics or silent logical errors.
 
 - <span id="smallindex-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T> Index for [T]`
+
+- <span id="t-type-output"></span>`type Output = T`
+
+- <span id="t-index"></span>`fn index(&self, index: SmallIndex) -> &T` — [`SmallIndex`](#smallindex)
+
+##### `impl<T> IndexMut for [T]`
+
+- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: SmallIndex) -> &mut T` — [`SmallIndex`](#smallindex)
+
 ##### `impl Ord for SmallIndex`
 
 - <span id="smallindex-cmp"></span>`fn cmp(&self, other: &SmallIndex) -> cmp::Ordering` — [`SmallIndex`](#smallindex)
@@ -273,6 +287,8 @@ struct SmallIndexError {
     attempted: u64,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:376-378`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L376-L378)*
 
 This error occurs when a small index could not be constructed.
 
@@ -308,7 +324,7 @@ When the `std` feature is enabled, this implements the `Error` trait.
 
 ##### `impl StructuralPartialEq for SmallIndexError`
 
-##### `impl<T> ToString for SmallIndexError`
+##### `impl ToString for SmallIndexError`
 
 - <span id="smallindexerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -320,6 +336,8 @@ struct SmallIndexIter {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:402-404`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L402-L404)*
+
 #### Trait Implementations
 
 ##### `impl Clone for SmallIndexIter`
@@ -330,17 +348,17 @@ struct SmallIndexIter {
 
 - <span id="smallindexiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for SmallIndexIter`
+##### `impl IntoIterator for SmallIndexIter`
 
-- <span id="smallindexiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="smallindexiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="smallindexiter-intoiter"></span>`type IntoIter = I`
+- <span id="smallindexiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="smallindexiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SmallIndexIter`
 
-- <span id="smallindexiter-item"></span>`type Item = SmallIndex`
+- <span id="smallindexiter-type-item"></span>`type Item = SmallIndex`
 
 - <span id="smallindexiter-next"></span>`fn next(&mut self) -> Option<SmallIndex>` — [`SmallIndex`](#smallindex)
 
@@ -349,6 +367,8 @@ struct SmallIndexIter {
 ```rust
 struct PatternID(SmallIndex);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:736`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L736)*
 
 The identifier of a regex pattern, represented by a [`SmallIndex`](#smallindex).
 
@@ -368,19 +388,19 @@ re-exported at the crate root due to how common it is.
 
 #### Implementations
 
-- <span id="patternid-max"></span>`const MAX: PatternID`
+- <span id="patternid-const-max"></span>`const MAX: PatternID`
 
-- <span id="patternid-limit"></span>`const LIMIT: usize`
+- <span id="patternid-const-limit"></span>`const LIMIT: usize`
 
-- <span id="patternid-zero"></span>`const ZERO: PatternID`
+- <span id="patternid-const-zero"></span>`const ZERO: PatternID`
 
-- <span id="patternid-size"></span>`const SIZE: usize`
+- <span id="patternid-const-size"></span>`const SIZE: usize`
 
-- <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](../../index.md), [`PatternIDError`](#patterniderror)
+- <span id="patternid-new"></span>`fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
 
-- <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="patternid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](#patternid)
 
-- <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="patternid-must"></span>`fn must(value: usize) -> PatternID` — [`PatternID`](#patternid)
 
 - <span id="patternid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
@@ -392,9 +412,9 @@ re-exported at the crate root due to how common it is.
 
 - <span id="patternid-one-more"></span>`fn one_more(&self) -> usize`
 
-- <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](../../index.md), [`PatternIDError`](#patterniderror)
+- <span id="patternid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
 
-- <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="patternid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](#patternid)
 
 - <span id="patternid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
@@ -404,7 +424,7 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Clone for PatternID`
 
-- <span id="patternid-clone"></span>`fn clone(&self) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="patternid-clone"></span>`fn clone(&self) -> PatternID` — [`PatternID`](#patternid)
 
 ##### `impl Copy for PatternID`
 
@@ -414,7 +434,7 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Default for PatternID`
 
-- <span id="patternid-default"></span>`fn default() -> PatternID` — [`PatternID`](../../index.md)
+- <span id="patternid-default"></span>`fn default() -> PatternID` — [`PatternID`](#patternid)
 
 ##### `impl Eq for PatternID`
 
@@ -422,17 +442,27 @@ re-exported at the crate root due to how common it is.
 
 - <span id="patternid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T> Index for [T]`
+
+- <span id="t-type-output"></span>`type Output = T`
+
+- <span id="t-index"></span>`fn index(&self, index: PatternID) -> &T` — [`PatternID`](#patternid)
+
+##### `impl<T> IndexMut for [T]`
+
+- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: PatternID) -> &mut T` — [`PatternID`](#patternid)
+
 ##### `impl Ord for PatternID`
 
-- <span id="patternid-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](../../index.md)
+- <span id="patternid-cmp"></span>`fn cmp(&self, other: &PatternID) -> cmp::Ordering` — [`PatternID`](#patternid)
 
 ##### `impl PartialEq for PatternID`
 
-- <span id="patternid-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](../../index.md)
+- <span id="patternid-eq"></span>`fn eq(&self, other: &PatternID) -> bool` — [`PatternID`](#patternid)
 
 ##### `impl PartialOrd for PatternID`
 
-- <span id="patternid-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](../../index.md)
+- <span id="patternid-partial-cmp"></span>`fn partial_cmp(&self, other: &PatternID) -> option::Option<cmp::Ordering>` — [`PatternID`](#patternid)
 
 ##### `impl StructuralPartialEq for PatternID`
 
@@ -441,6 +471,8 @@ re-exported at the crate root due to how common it is.
 ```rust
 struct StateID(SmallIndex);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:751`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L751)*
 
 The identifier of a finite automaton state, represented by a
 [`SmallIndex`](#smallindex).
@@ -456,13 +488,13 @@ a state ID to be a "small index."
 
 #### Implementations
 
-- <span id="stateid-max"></span>`const MAX: StateID`
+- <span id="stateid-const-max"></span>`const MAX: StateID`
 
-- <span id="stateid-limit"></span>`const LIMIT: usize`
+- <span id="stateid-const-limit"></span>`const LIMIT: usize`
 
-- <span id="stateid-zero"></span>`const ZERO: StateID`
+- <span id="stateid-const-zero"></span>`const ZERO: StateID`
 
-- <span id="stateid-size"></span>`const SIZE: usize`
+- <span id="stateid-const-size"></span>`const SIZE: usize`
 
 - <span id="stateid-new"></span>`fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](#stateid), [`StateIDError`](#stateiderror)
 
@@ -510,6 +542,16 @@ a state ID to be a "small index."
 
 - <span id="stateid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
+##### `impl<T> Index for [T]`
+
+- <span id="t-type-output"></span>`type Output = T`
+
+- <span id="t-index"></span>`fn index(&self, index: StateID) -> &T` — [`StateID`](#stateid)
+
+##### `impl<T> IndexMut for [T]`
+
+- <span id="t-index-mut"></span>`fn index_mut(&mut self, index: StateID) -> &mut T` — [`StateID`](#stateid)
+
 ##### `impl Ord for StateID`
 
 - <span id="stateid-cmp"></span>`fn cmp(&self, other: &StateID) -> cmp::Ordering` — [`StateID`](#stateid)
@@ -529,6 +571,8 @@ a state ID to be a "small index."
 ```rust
 struct PatternIDError(SmallIndexError);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L753)*
 
 This error occurs when a value could not be constructed.
 
@@ -566,7 +610,7 @@ trait.
 
 ##### `impl StructuralPartialEq for PatternIDError`
 
-##### `impl<T> ToString for PatternIDError`
+##### `impl ToString for PatternIDError`
 
 - <span id="patterniderror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -575,6 +619,8 @@ trait.
 ```rust
 struct PatternIDIter(SmallIndexIter);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L753)*
 
 #### Implementations
 
@@ -590,19 +636,19 @@ struct PatternIDIter(SmallIndexIter);
 
 - <span id="patterniditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for PatternIDIter`
+##### `impl IntoIterator for PatternIDIter`
 
-- <span id="patterniditer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="patterniditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="patterniditer-intoiter"></span>`type IntoIter = I`
+- <span id="patterniditer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="patterniditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for PatternIDIter`
 
-- <span id="patterniditer-item"></span>`type Item = PatternID`
+- <span id="patterniditer-type-item"></span>`type Item = PatternID`
 
-- <span id="patterniditer-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../../index.md)
+- <span id="patterniditer-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](#patternid)
 
 ### `WithPatternIDIter<I>`
 
@@ -612,6 +658,8 @@ struct WithPatternIDIter<I> {
     ids: PatternIDIter,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:753`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L753)*
 
 An iterator adapter that is like std::iter::Enumerate, but attaches
 small index values instead. It requires `ExactSizeIterator`. At
@@ -634,23 +682,25 @@ iterator is representable in the corresponding small index type.
 
 ##### `impl<I> IntoIterator for WithPatternIDIter<I>`
 
-- <span id="withpatterniditer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="withpatterniditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="withpatterniditer-intoiter"></span>`type IntoIter = I`
+- <span id="withpatterniditer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="withpatterniditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator + ExactSizeIterator> Iterator for WithPatternIDIter<I>`
 
-- <span id="withpatterniditer-item"></span>`type Item = (PatternID, <I as Iterator>::Item)`
+- <span id="withpatterniditer-type-item"></span>`type Item = (PatternID, <I as Iterator>::Item)`
 
-- <span id="withpatterniditer-next"></span>`fn next(&mut self) -> Option<(PatternID, <I as >::Item)>` — [`PatternID`](../../index.md)
+- <span id="withpatterniditer-next"></span>`fn next(&mut self) -> Option<(PatternID, <I as >::Item)>` — [`PatternID`](#patternid)
 
 ### `StateIDError`
 
 ```rust
 struct StateIDError(SmallIndexError);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L754)*
 
 This error occurs when a value could not be constructed.
 
@@ -688,7 +738,7 @@ trait.
 
 ##### `impl StructuralPartialEq for StateIDError`
 
-##### `impl<T> ToString for StateIDError`
+##### `impl ToString for StateIDError`
 
 - <span id="stateiderror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -697,6 +747,8 @@ trait.
 ```rust
 struct StateIDIter(SmallIndexIter);
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L754)*
 
 #### Implementations
 
@@ -712,17 +764,17 @@ struct StateIDIter(SmallIndexIter);
 
 - <span id="stateiditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for StateIDIter`
+##### `impl IntoIterator for StateIDIter`
 
-- <span id="stateiditer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="stateiditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="stateiditer-intoiter"></span>`type IntoIter = I`
+- <span id="stateiditer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="stateiditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for StateIDIter`
 
-- <span id="stateiditer-item"></span>`type Item = StateID`
+- <span id="stateiditer-type-item"></span>`type Item = StateID`
 
 - <span id="stateiditer-next"></span>`fn next(&mut self) -> Option<StateID>` — [`StateID`](#stateid)
 
@@ -734,6 +786,8 @@ struct WithStateIDIter<I> {
     ids: StateIDIter,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:754`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L754)*
 
 An iterator adapter that is like std::iter::Enumerate, but attaches
 small index values instead. It requires `ExactSizeIterator`. At
@@ -756,15 +810,15 @@ iterator is representable in the corresponding small index type.
 
 ##### `impl<I> IntoIterator for WithStateIDIter<I>`
 
-- <span id="withstateiditer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="withstateiditer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="withstateiditer-intoiter"></span>`type IntoIter = I`
+- <span id="withstateiditer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="withstateiditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator + ExactSizeIterator> Iterator for WithStateIDIter<I>`
 
-- <span id="withstateiditer-item"></span>`type Item = (StateID, <I as Iterator>::Item)`
+- <span id="withstateiditer-type-item"></span>`type Item = (StateID, <I as Iterator>::Item)`
 
 - <span id="withstateiditer-next"></span>`fn next(&mut self) -> Option<(StateID, <I as >::Item)>` — [`StateID`](#stateid)
 
@@ -775,6 +829,8 @@ iterator is representable in the corresponding small index type.
 ```rust
 trait IteratorIndexExt: Iterator { ... }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:760-774`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L760-L774)*
 
 A utility trait that defines a couple of adapters for making it convenient
 to access indices as "small index" types. We require ExactSizeIterator so
@@ -794,4 +850,6 @@ each element is representable by its small index type.
 ## Macros
 
 ### `index_type_impls!`
+
+*Defined in [`regex-automata-0.4.13/src/util/primitives.rs:421-717`](../../../../.source_1765210505/regex-automata-0.4.13/src/util/primitives.rs#L421-L717)*
 

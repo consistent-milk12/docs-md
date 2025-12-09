@@ -48,6 +48,8 @@ struct ParsedSym {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:145-149`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L145-L149)*
+
 ### `Object<'a>`
 
 ```rust
@@ -59,6 +61,8 @@ struct Object<'a> {
     syms: alloc::vec::Vec<ParsedSym>,
 }
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:151-162`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L151-L162)*
 
 #### Fields
 
@@ -102,17 +106,23 @@ struct Object<'a> {
 fn decompress_zlib(input: &[u8], output: &mut [u8]) -> Option<()>
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:342-361`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L342-L361)*
+
 ### `debug_path_exists`
 
 ```rust
 fn debug_path_exists() -> bool
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:399-419`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L399-L419)*
+
 ### `locate_build_id`
 
 ```rust
 fn locate_build_id(build_id: &[u8]) -> Option<super::mystd::path::PathBuf>
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:425-449`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L425-L449)*
 
 Locate a debug file based on its build ID.
 
@@ -124,6 +134,8 @@ https://sourceware.org/gdb/onlinedocs/gdb/Separate-Debug-Files.html
 ```rust
 fn locate_debuglink(path: &super::mystd::path::Path, filename: &super::mystd::ffi::OsStr) -> Option<super::mystd::path::PathBuf>
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:462-497`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L462-L497)*
 
 Locate a file specified in a `.gnu_debuglink` section.
 
@@ -142,6 +154,8 @@ gdb also supports debuginfod, but we don't yet.
 ```rust
 fn locate_debugaltlink(path: &super::mystd::path::Path, filename: &super::mystd::ffi::OsStr, build_id: &[u8]) -> Option<super::mystd::path::PathBuf>
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:511-528`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L511-L528)*
 
 Locate a file specified in a `.gnu_debugaltlink` section.
 
@@ -162,6 +176,8 @@ gdb also supports debuginfod, but we don't yet.
 fn handle_split_dwarf<'data>(package: Option<&gimli::DwarfPackage<self::gimli::read::EndianSlice<'data, self::gimli::NativeEndian>>>, stash: &'data self::stash::Stash, load: addr2line::SplitDwarfLoad<self::gimli::read::EndianSlice<'data, self::gimli::NativeEndian>>) -> Option<alloc::sync::Arc<gimli::Dwarf<self::gimli::read::EndianSlice<'data, self::gimli::NativeEndian>>>>
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:530-567`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L530-L567)*
+
 ## Type Aliases
 
 ### `Elf`
@@ -170,11 +186,14 @@ fn handle_split_dwarf<'data>(package: Option<&gimli::DwarfPackage<self::gimli::r
 type Elf = object::elf::FileHeader64<object::NativeEndian>;
 ```
 
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:24`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L24)*
+
 ## Constants
 
 ### `DEBUG_PATH`
-
 ```rust
 const DEBUG_PATH: &str;
 ```
+
+*Defined in [`backtrace-0.3.76/src/symbolize/gimli/elf.rs:397`](../../../../../.source_1765210505/backtrace-0.3.76/src/symbolize/gimli/elf.rs#L397)*
 

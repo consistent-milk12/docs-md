@@ -13,7 +13,7 @@ accidental panics in the rayon code itself.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`AbortIfPanic`](#abortifpanic) | struct |  |
-| [`halt_unwinding`](#halt_unwinding) | fn | Executes `f` and captures any panic, translating that panic into a |
+| [`halt_unwinding`](#halt_unwinding) | fn | Executes `f` and captures any panic, translating that panic into a `Err` result. |
 | [`resume_unwinding`](#resume_unwinding) | fn |  |
 
 ## Structs
@@ -24,17 +24,19 @@ accidental panics in the rayon code itself.
 struct AbortIfPanic;
 ```
 
+*Defined in [`rayon-core-1.13.0/src/unwind.rs:24`](../../../.source_1765210505/rayon-core-1.13.0/src/unwind.rs#L24)*
+
 #### Trait Implementations
 
 ##### `impl Drop for AbortIfPanic`
 
 - <span id="abortifpanic-drop"></span>`fn drop(&mut self)`
 
-##### `impl<T> Pointable for AbortIfPanic`
+##### `impl Pointable for AbortIfPanic`
 
-- <span id="abortifpanic-align"></span>`const ALIGN: usize`
+- <span id="abortifpanic-const-align"></span>`const ALIGN: usize`
 
-- <span id="abortifpanic-init"></span>`type Init = T`
+- <span id="abortifpanic-type-init"></span>`type Init = T`
 
 - <span id="abortifpanic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -54,6 +56,8 @@ where
     F: FnOnce() -> R
 ```
 
+*Defined in [`rayon-core-1.13.0/src/unwind.rs:13-18`](../../../.source_1765210505/rayon-core-1.13.0/src/unwind.rs#L13-L18)*
+
 Executes `f` and captures any panic, translating that panic into a
 `Err` result. The assumption is that any panic will be propagated
 later with `resume_unwinding`, and hence `f` can be treated as
@@ -64,4 +68,6 @@ exception safe.
 ```rust
 fn resume_unwinding(payload: Box<dyn Any + Send>) -> never
 ```
+
+*Defined in [`rayon-core-1.13.0/src/unwind.rs:20-22`](../../../.source_1765210505/rayon-core-1.13.0/src/unwind.rs#L20-L22)*
 

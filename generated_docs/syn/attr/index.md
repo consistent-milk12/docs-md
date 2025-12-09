@@ -28,7 +28,7 @@
 | [`Attribute`](#attribute) | struct | An attribute, like `#[repr(transparent)]`. |
 | [`MetaList`](#metalist) | struct | A structured list within an attribute, like `derive(Copy, Clone)`. |
 | [`MetaNameValue`](#metanamevalue) | struct | A name-value pair within an attribute, like `feature = "nightly"`. |
-| [`AttrStyle`](#attrstyle) | enum | Distinguishes between attributes that decorate an item and attributes |
+| [`AttrStyle`](#attrstyle) | enum | Distinguishes between attributes that decorate an item and attributes that are contained within an item. |
 | [`Meta`](#meta) | enum | Content of a compile-time structured attribute. |
 | [`FilterAttrs`](#filterattrs) | trait |  |
 
@@ -49,6 +49,8 @@ struct Attribute {
     pub meta: Meta,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/attr.rs:19-179`](../../../.source_1765210505/syn-2.0.111/src/attr.rs#L19-L179)*
 
 An attribute, like `#[repr(transparent)]`.
 
@@ -201,17 +203,17 @@ assert_eq!(doc, attr);
 
 #### Implementations
 
-- <span id="attribute-path"></span>`fn path(&self) -> &Path` — [`Path`](../index.md)
+- <span id="attribute-path"></span>`fn path(&self) -> &Path` — [`Path`](../path/index.md)
 
-- <span id="attribute-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](../index.md)
+- <span id="attribute-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md)
 
-- <span id="attribute-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../index.md), [`Parser`](../parse/index.md)
+- <span id="attribute-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md), [`Parser`](../parse/index.md)
 
-- <span id="attribute-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md), [`Result`](../index.md)
+- <span id="attribute-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md), [`Result`](../error/index.md)
 
-- <span id="attribute-parse-outer"></span>`fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="attribute-parse-outer"></span>`fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-- <span id="attribute-parse-inner"></span>`fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="attribute-parse-inner"></span>`fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
@@ -233,9 +235,9 @@ assert_eq!(doc, attr);
 
 - <span id="crateattribute-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Attribute`
+##### `impl Sealed for Attribute`
 
-##### `impl<T> Spanned for Attribute`
+##### `impl Spanned for Attribute`
 
 - <span id="attribute-span"></span>`fn span(&self) -> Span`
 
@@ -253,11 +255,17 @@ struct MetaList {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/attr.rs:484-492`](../../../.source_1765210505/syn-2.0.111/src/attr.rs#L484-L492)*
+
 A structured list within an attribute, like `derive(Copy, Clone)`.
 
 #### Implementations
 
-- <span id="cratemetalist-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="metalist-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](../error/index.md)
+
+- <span id="metalist-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md), [`Parser`](../parse/index.md)
+
+- <span id="metalist-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
@@ -277,15 +285,15 @@ A structured list within an attribute, like `derive(Copy, Clone)`.
 
 ##### `impl Parse for crate::attr::MetaList`
 
-- <span id="crateattrmetalist-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateattrmetalist-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::MetaList`
 
 - <span id="cratemetalist-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for MetaList`
+##### `impl Sealed for MetaList`
 
-##### `impl<T> Spanned for MetaList`
+##### `impl Spanned for MetaList`
 
 - <span id="metalist-span"></span>`fn span(&self) -> Span`
 
@@ -302,6 +310,8 @@ struct MetaNameValue {
     pub value: crate::expr::Expr,
 }
 ```
+
+*Defined in [`syn-2.0.111/src/attr.rs:494-502`](../../../.source_1765210505/syn-2.0.111/src/attr.rs#L494-L502)*
 
 A name-value pair within an attribute, like `feature = "nightly"`.
 
@@ -327,15 +337,15 @@ A name-value pair within an attribute, like `feature = "nightly"`.
 
 ##### `impl Parse for crate::attr::MetaNameValue`
 
-- <span id="crateattrmetanamevalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateattrmetanamevalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::MetaNameValue`
 
 - <span id="cratemetanamevalue-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for MetaNameValue`
+##### `impl Sealed for MetaNameValue`
 
-##### `impl<T> Spanned for MetaNameValue`
+##### `impl Spanned for MetaNameValue`
 
 - <span id="metanamevalue-span"></span>`fn span(&self) -> Span`
 
@@ -353,6 +363,8 @@ enum AttrStyle {
     Inner(token::Not),
 }
 ```
+
+*Defined in [`syn-2.0.111/src/attr.rs:429-449`](../../../.source_1765210505/syn-2.0.111/src/attr.rs#L429-L449)*
 
 Distinguishes between attributes that decorate an item and attributes
 that are contained within an item.
@@ -401,6 +413,8 @@ enum Meta {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/attr.rs:451-482`](../../../.source_1765210505/syn-2.0.111/src/attr.rs#L451-L482)*
+
 Content of a compile-time structured attribute.
 
 ## Path
@@ -433,13 +447,13 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- <span id="meta-path"></span>`fn path(&self) -> &Path` — [`Path`](../index.md)
+- <span id="meta-path"></span>`fn path(&self) -> &Path` — [`Path`](../path/index.md)
 
-- <span id="meta-require-path-only"></span>`fn require_path_only(&self) -> Result<&Path>` — [`Result`](../index.md), [`Path`](../index.md)
+- <span id="meta-require-path-only"></span>`fn require_path_only(&self) -> Result<&Path>` — [`Result`](../error/index.md), [`Path`](../path/index.md)
 
-- <span id="meta-require-list"></span>`fn require_list(&self) -> Result<&MetaList>` — [`Result`](../index.md), [`MetaList`](../index.md)
+- <span id="meta-require-list"></span>`fn require_list(&self) -> Result<&MetaList>` — [`Result`](../error/index.md), [`MetaList`](#metalist)
 
-- <span id="meta-require-name-value"></span>`fn require_name_value(&self) -> Result<&MetaNameValue>` — [`Result`](../index.md), [`MetaNameValue`](../index.md)
+- <span id="meta-require-name-value"></span>`fn require_name_value(&self) -> Result<&MetaNameValue>` — [`Result`](../error/index.md), [`MetaNameValue`](#metanamevalue)
 
 #### Trait Implementations
 
@@ -459,15 +473,15 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::attr::Meta`
 
-- <span id="crateattrmeta-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateattrmeta-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 ##### `impl PartialEq for crate::Meta`
 
 - <span id="cratemeta-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for Meta`
+##### `impl Sealed for Meta`
 
-##### `impl<T> Spanned for Meta`
+##### `impl Spanned for Meta`
 
 - <span id="meta-span"></span>`fn span(&self) -> Span`
 
@@ -482,6 +496,8 @@ This type is a [syntax tree enum].
 ```rust
 trait FilterAttrs<'a> { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/attr.rs:594-600`](../../../.source_1765210505/syn-2.0.111/src/attr.rs#L594-L600)*
 
 #### Associated Types
 

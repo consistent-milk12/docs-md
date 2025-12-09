@@ -53,6 +53,8 @@ struct DeferredTokenStream {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:31-34`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L31-L34)*
+
 #### Implementations
 
 - <span id="deferredtokenstream-new"></span>`fn new(stream: proc_macro::TokenStream) -> Self`
@@ -79,6 +81,8 @@ enum TokenStream {
     Fallback(fallback::TokenStream),
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:21-24`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L21-L24)*
 
 #### Implementations
 
@@ -116,9 +120,9 @@ enum TokenStream {
 
 ##### `impl IntoIterator for TokenStream`
 
-- <span id="tokenstream-item"></span>`type Item = TokenTree`
+- <span id="tokenstream-type-item"></span>`type Item = TokenTree`
 
-- <span id="tokenstream-intoiter"></span>`type IntoIter = TokenTreeIter`
+- <span id="tokenstream-type-intoiter"></span>`type IntoIter = TokenTreeIter`
 
 - <span id="tokenstream-into-iter"></span>`fn into_iter(self) -> TokenTreeIter` — [`TokenTreeIter`](#tokentreeiter)
 
@@ -126,7 +130,7 @@ enum TokenStream {
 
 ##### `impl Sealed for proc_macro2::TokenStream`
 
-##### `impl<T> ToString for TokenStream`
+##### `impl ToString for TokenStream`
 
 - <span id="tokenstream-to-string"></span>`fn to_string(&self) -> String`
 
@@ -150,6 +154,8 @@ enum LexError {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:36-43`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L36-L43)*
+
 #### Implementations
 
 - <span id="lexerror-span"></span>`fn span(&self) -> Span` — [`Span`](#span)
@@ -164,7 +170,7 @@ enum LexError {
 
 - <span id="lexerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T> ToString for LexError`
+##### `impl ToString for LexError`
 
 - <span id="lexerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -177,23 +183,25 @@ enum TokenTreeIter {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:312-315`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L312-L315)*
+
 #### Trait Implementations
 
 ##### `impl Clone for TokenTreeIter`
 
 - <span id="tokentreeiter-clone"></span>`fn clone(&self) -> TokenTreeIter` — [`TokenTreeIter`](#tokentreeiter)
 
-##### `impl<I> IntoIterator for TokenTreeIter`
+##### `impl IntoIterator for TokenTreeIter`
 
-- <span id="tokentreeiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="tokentreeiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="tokentreeiter-intoiter"></span>`type IntoIter = I`
+- <span id="tokentreeiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="tokentreeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for TokenTreeIter`
 
-- <span id="tokentreeiter-item"></span>`type Item = TokenTree`
+- <span id="tokentreeiter-type-item"></span>`type Item = TokenTree`
 
 - <span id="tokentreeiter-next"></span>`fn next(&mut self) -> Option<TokenTree>` — [`TokenTree`](../index.md)
 
@@ -207,6 +215,8 @@ enum Span {
     Fallback(fallback::Span),
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:370-373`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L370-L373)*
 
 #### Implementations
 
@@ -249,6 +259,8 @@ enum Group {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:558-561`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L558-L561)*
+
 #### Implementations
 
 - <span id="group-new"></span>`fn new(delimiter: Delimiter, stream: TokenStream) -> Self` — [`Delimiter`](../index.md), [`TokenStream`](#tokenstream)
@@ -285,7 +297,7 @@ enum Group {
 
 ##### `impl Sealed for proc_macro2::Group`
 
-##### `impl<T> ToString for Group`
+##### `impl ToString for Group`
 
 - <span id="group-to-string"></span>`fn to_string(&self) -> String`
 
@@ -303,6 +315,8 @@ enum Ident {
     Fallback(fallback::Ident),
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:663-666`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L663-L666)*
 
 #### Implementations
 
@@ -334,7 +348,7 @@ enum Ident {
 
 ##### `impl IdentFragment for proc_macro2::Ident`
 
-- <span id="proc-macro2ident-error"></span>`type Error = Infallible`
+- <span id="proc-macro2ident-type-error"></span>`type Error = Infallible`
 
 ##### `impl Parse for proc_macro2::Ident`
 
@@ -344,7 +358,7 @@ enum Ident {
 
 ##### `impl Sealed for proc_macro2::Ident`
 
-##### `impl<T> ToString for Ident`
+##### `impl ToString for Ident`
 
 - <span id="ident-to-string"></span>`fn to_string(&self) -> String`
 
@@ -360,6 +374,8 @@ enum Literal {
     Fallback(fallback::Literal),
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:758-761`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L758-L761)*
 
 #### Implementations
 
@@ -459,7 +475,7 @@ enum Literal {
 
 ##### `impl Sealed for proc_macro2::Literal`
 
-##### `impl<T> ToString for Literal`
+##### `impl ToString for Literal`
 
 - <span id="literal-to-string"></span>`fn to_string(&self) -> String`
 
@@ -477,11 +493,15 @@ enum Literal {
 fn mismatch(line: u32) -> never
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:46-56`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L46-L56)*
+
 ### `into_compiler_token`
 
 ```rust
 fn into_compiler_token(token: crate::TokenTree) -> proc_macro::TokenTree
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:161-176`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L161-L176)*
 
 ### `debug_span_field_if_nontrivial`
 
@@ -489,9 +509,15 @@ fn into_compiler_token(token: crate::TokenTree) -> proc_macro::TokenTree
 fn debug_span_field_if_nontrivial(debug: &mut fmt::DebugStruct<'_, '_>, span: Span)
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:548-555`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L548-L555)*
+
 ## Macros
 
 ### `suffixed_numbers!`
 
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:763-773`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L763-L773)*
+
 ### `unsuffixed_integers!`
+
+*Defined in [`proc-macro2-1.0.103/src/wrapper.rs:775-785`](../../../.source_1765210505/proc-macro2-1.0.103/src/wrapper.rs#L775-L785)*
 

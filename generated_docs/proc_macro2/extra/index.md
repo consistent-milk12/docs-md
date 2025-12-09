@@ -11,7 +11,7 @@ but are necessary to include in proc-macro2.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`DelimSpan`](#delimspan) | struct | An object that holds a [`Group`]'s `span_open()` and `span_close()` together |
+| [`DelimSpan`](#delimspan) | struct | An object that holds a [`Group`]'s `span_open()` and `span_close()` together in a more compact representation than holding those 2 spans individually. |
 | [`DelimSpanEnum`](#delimspanenum) | enum |  |
 
 ## Structs
@@ -25,7 +25,9 @@ struct DelimSpan {
 }
 ```
 
-An object that holds a [`Group`](../imp/index.md)'s `span_open()` and `span_close()` together
+*Defined in [`proc-macro2-1.0.103/src/extra.rs:82-85`](../../../.source_1765210505/proc-macro2-1.0.103/src/extra.rs#L82-L85)*
+
+An object that holds a [`Group`](../index.md)'s `span_open()` and `span_close()` together
 in a more compact representation than holding those 2 spans individually.
 
 
@@ -65,6 +67,8 @@ enum DelimSpanEnum {
     Fallback(fallback::Span),
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/extra.rs:88-96`](../../../.source_1765210505/proc-macro2-1.0.103/src/extra.rs#L88-L96)*
 
 #### Trait Implementations
 

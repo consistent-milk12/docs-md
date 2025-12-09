@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`TakeAnyWhile`](#takeanywhile) | struct | `TakeAnyWhile` is an iterator that iterates over elements from anywhere in `I` |
+| [`TakeAnyWhile`](#takeanywhile) | struct | `TakeAnyWhile` is an iterator that iterates over elements from anywhere in `I` until the callback returns `false`. |
 | [`TakeAnyWhileConsumer`](#takeanywhileconsumer) | struct |  |
 | [`TakeAnyWhileFolder`](#takeanywhilefolder) | struct |  |
 | [`take`](#take) | fn |  |
@@ -24,9 +24,11 @@ struct TakeAnyWhile<I, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/take_any_while.rs:13-16`](../../../../.source_1765210505/rayon-1.11.0/src/iter/take_any_while.rs#L13-L16)*
+
 `TakeAnyWhile` is an iterator that iterates over elements from anywhere in `I`
 until the callback returns `false`.
-This struct is created by the `take_any_while()` method on [`ParallelIterator`](../../prelude/index.md)
+This struct is created by the `take_any_while()` method on [`ParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -37,7 +39,7 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<I: clone::Clone, P: clone::Clone> Clone for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-clone"></span>`fn clone(&self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](../index.md)
+- <span id="takeanywhile-clone"></span>`fn clone(&self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](#takeanywhile)
 
 ##### `impl<I: fmt::Debug, P> Debug for TakeAnyWhile<I, P>`
 
@@ -47,23 +49,23 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<T> IntoParallelIterator for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-iter"></span>`type Iter = T`
+- <span id="takeanywhile-type-iter"></span>`type Iter = T`
 
-- <span id="takeanywhile-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="takeanywhile-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="takeanywhile-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="takeanywhile-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="takeanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for TakeAnyWhile<I, P>`
 
-- <span id="takeanywhile-align"></span>`const ALIGN: usize`
+- <span id="takeanywhile-const-align"></span>`const ALIGN: usize`
 
-- <span id="takeanywhile-init"></span>`type Init = T`
+- <span id="takeanywhile-type-init"></span>`type Init = T`
 
 - <span id="takeanywhile-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -83,15 +85,17 @@ struct TakeAnyWhileConsumer<'p, C, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/take_any_while.rs:56-60`](../../../../.source_1765210505/rayon-1.11.0/src/iter/take_any_while.rs#L56-L60)*
+
 #### Trait Implementations
 
 ##### `impl<'p, T, C, P> Consumer for TakeAnyWhileConsumer<'p, C, P>`
 
-- <span id="takeanywhileconsumer-folder"></span>`type Folder = TakeAnyWhileFolder<'p, <C as Consumer>::Folder, P>`
+- <span id="takeanywhileconsumer-type-folder"></span>`type Folder = TakeAnyWhileFolder<'p, <C as Consumer>::Folder, P>`
 
-- <span id="takeanywhileconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
+- <span id="takeanywhileconsumer-type-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- <span id="takeanywhileconsumer-result"></span>`type Result = <C as Consumer>::Result`
+- <span id="takeanywhileconsumer-type-result"></span>`type Result = <C as Consumer>::Result`
 
 - <span id="takeanywhileconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -103,9 +107,9 @@ struct TakeAnyWhileConsumer<'p, C, P> {
 
 ##### `impl<T> Pointable for TakeAnyWhileConsumer<'p, C, P>`
 
-- <span id="takeanywhileconsumer-align"></span>`const ALIGN: usize`
+- <span id="takeanywhileconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="takeanywhileconsumer-init"></span>`type Init = T`
+- <span id="takeanywhileconsumer-type-init"></span>`type Init = T`
 
 - <span id="takeanywhileconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -131,11 +135,13 @@ struct TakeAnyWhileFolder<'p, C, P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/take_any_while.rs:113-117`](../../../../.source_1765210505/rayon-1.11.0/src/iter/take_any_while.rs#L113-L117)*
+
 #### Trait Implementations
 
 ##### `impl<'p, T, C, P> Folder for TakeAnyWhileFolder<'p, C, P>`
 
-- <span id="takeanywhilefolder-result"></span>`type Result = <C as Folder>::Result`
+- <span id="takeanywhilefolder-type-result"></span>`type Result = <C as Folder>::Result`
 
 - <span id="takeanywhilefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -149,9 +155,9 @@ struct TakeAnyWhileFolder<'p, C, P> {
 
 ##### `impl<T> Pointable for TakeAnyWhileFolder<'p, C, P>`
 
-- <span id="takeanywhilefolder-align"></span>`const ALIGN: usize`
+- <span id="takeanywhilefolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="takeanywhilefolder-init"></span>`type Init = T`
+- <span id="takeanywhilefolder-type-init"></span>`type Init = T`
 
 - <span id="takeanywhilefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -168,4 +174,6 @@ struct TakeAnyWhileFolder<'p, C, P> {
 ```rust
 fn take<T>(item: &T, taking: &std::sync::atomic::AtomicBool, predicate: &impl Fn(&T) -> bool) -> bool
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/take_any_while.rs:119-128`](../../../../.source_1765210505/rayon-1.11.0/src/iter/take_any_while.rs#L119-L128)*
 

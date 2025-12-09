@@ -429,7 +429,29 @@ pub struct DocLinkProcessor<'a> {
 }
 
 impl<'a> DocLinkProcessor<'a> {
+    /// Create a new processor with a pre-built path name index.
+    ///
+    /// This is the preferred constructor when the index has already been built
+    /// (e.g., in `GeneratorContext`), avoiding redundant index construction.
+    #[must_use]
+    pub fn with_index(
+        krate: &'a Crate,
+        link_registry: &'a LinkRegistry,
+        current_file: &'a str,
+        path_name_index: &HashMap<&'a str, Vec<Id>>,
+    ) -> Self {
+        Self {
+            krate,
+            link_registry,
+            current_file,
+            path_name_index: path_name_index.clone(),
+        }
+    }
+
     /// Create a new processor for the given context.
+    ///
+    /// Builds the path name index internally. Prefer [`Self::with_index`] when
+    /// the index has already been built to avoid redundant computation.
     #[must_use]
     pub fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self {
         // Build path name index for O(1) lookups
@@ -441,10 +463,11 @@ impl<'a> DocLinkProcessor<'a> {
         }
 
         // Sort each Vec by full path for deterministic resolution order
+        // Using direct Vec<String> comparison (lexicographic) instead of joining
         for ids in path_name_index.values_mut() {
             ids.sort_by(|a, b| {
-                let path_a = krate.paths.get(a).map(|p| p.path.join("::"));
-                let path_b = krate.paths.get(b).map(|p| p.path.join("::"));
+                let path_a = krate.paths.get(a).map(|p| &p.path);
+                let path_b = krate.paths.get(b).map(|p| &p.path);
                 path_a.cmp(&path_b)
             });
         }
@@ -755,7 +778,8 @@ impl<'a> DocLinkProcessor<'a> {
             .collect();
 
         // Sort by full path for deterministic selection
-        matches.sort_by(|a, b| a.path.join("::").cmp(&b.path.join("::")));
+        // Using direct Vec<String> comparison (lexicographic) instead of joining
+        matches.sort_by(|a, b| a.path.cmp(&b.path));
 
         matches
             .first()
@@ -800,10 +824,22 @@ impl<'a> DocLinkProcessor<'a> {
     // =========================================================================
     // Resolution Methods
     // =========================================================================
+    //
+    // # Link Resolution Strategy
+    //
+    // `Item.links: HashMap<String, Id>` is rustdoc's pre-resolved intra-doc link map.
+    // It maps link text to item IDs for all `[`foo`]` style links in the doc comments.
+    // We use this as our primary source (Strategy 1 and 2), falling back to the
+    // path_name_index only when item_links doesn't contain the reference.
+    //
+    // Strategy order (short-circuit on first success):
+    // 1. Exact match in item_links - rustdoc already resolved this link
+    // 2. Short name match in item_links - handle qualified vs unqualified references
+    // 3. Path name index lookup - fallback for cross-references not in item_links
 
     /// Resolve a link reference to a URL.
     fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String> {
-        // Strategy 1: Exact match in item_links
+        // Strategy 1: Exact match in item_links (rustdoc pre-resolved)
         if let Some(id) = item_links.get(link_text)
             && let Some(url) = self.get_url_for_id(*id)
         {
@@ -811,17 +847,19 @@ impl<'a> DocLinkProcessor<'a> {
         }
 
         // Strategy 2: Short name match in item_links
-        let short_name = link_text.split("::").last().unwrap_or(link_text);
+        // Handles cases where doc uses qualified path but item_links has unqualified key
+        let short_name = link_text.rsplit("::").next().unwrap_or(link_text);
 
         for (key, id) in item_links {
-            if key.split("::").last() == Some(short_name)
+            if key.rsplit("::").next() == Some(short_name)
                 && let Some(url) = self.get_url_for_id(*id)
             {
                 return Some(url);
             }
         }
 
-        // Strategy 3: Use path name index
+        // Strategy 3: Use path name index (for items not in this item's links map)
+        // Only reached when item_links doesn't contain a matching reference
         if let Some(ids) = self.path_name_index.get(short_name) {
             for id in ids {
                 if let Some(url) = self.get_url_for_id(*id) {
@@ -837,6 +875,14 @@ impl<'a> DocLinkProcessor<'a> {
     fn get_url_for_id(&self, id: Id) -> Option<String> {
         // Try local first
         if let Some(path) = self.link_registry.get_path(id) {
+            // Check if target is on the same page - use anchor instead of relative path
+            if path == self.current_file {
+                // Get the item name for anchor generation
+                if let Some(name) = self.link_registry.get_name(id) {
+                    return Some(format!("#{}", crate::linker::slugify_anchor(name)));
+                }
+            }
+
             let relative = LinkRegistry::compute_relative_path(self.current_file, path);
             return Some(relative);
         }
@@ -920,29 +966,41 @@ impl<'a> DocLinkProcessor<'a> {
         item_links: &HashMap<String, Id>,
     ) -> Option<String> {
         // Try to find the type
+        // Using rsplit().next() is more efficient than split().last()
         let type_id = item_links.get(type_name).or_else(|| {
-            let short_type = type_name.split("::").last().unwrap_or(type_name);
+            let short_type = type_name.rsplit("::").next().unwrap_or(type_name);
             item_links
                 .iter()
-                .find(|(k, _)| k.split("::").last() == Some(short_type))
+                .find(|(k, _)| k.rsplit("::").next() == Some(short_type))
                 .map(|(_, id)| id)
         })?;
 
         let type_path = self.link_registry.get_path(*type_id)?;
-        let relative = LinkRegistry::compute_relative_path(self.current_file, type_path);
         let display = format!("{type_name}::{method_name}");
 
         // Extract the short type name for anchor generation
-        let short_type = type_name.split("::").last().unwrap_or(type_name);
+        let short_type = type_name.rsplit("::").next().unwrap_or(type_name);
         let anchor = method_anchor(short_type, method_name);
+
+        // Check if type is on the same page - just use anchor
+        if type_path == self.current_file {
+            return Some(format!("[`{display}`](#{anchor})"));
+        }
+
+        let relative = LinkRegistry::compute_relative_path(self.current_file, type_path);
 
         // Link to the type page with method anchor for deep linking
         Some(format!("[`{display}`]({relative}#{anchor})"))
     }
 
     /// Try to resolve link text to a markdown link.
+    ///
+    /// Uses the same three-strategy approach as `resolve_to_url`:
+    /// 1. Exact match in `item_links` (rustdoc pre-resolved)
+    /// 2. Short name match in `item_links`
+    /// 3. Path name index fallback
     fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>) -> String {
-        // Strategy 1: Exact match
+        // Strategy 1: Exact match in item_links (rustdoc pre-resolved)
         if let Some(id) = item_links.get(link_text)
             && let Some(md_link) = self.create_link_for_id(*id, link_text)
         {
@@ -950,17 +1008,17 @@ impl<'a> DocLinkProcessor<'a> {
         }
 
         // Strategy 2: Short name match in item_links
-        let short_name = link_text.split("::").last().unwrap_or(link_text);
+        let short_name = link_text.rsplit("::").next().unwrap_or(link_text);
 
         for (key, id) in item_links {
-            if key.split("::").last() == Some(short_name)
+            if key.rsplit("::").next() == Some(short_name)
                 && let Some(md_link) = self.create_link_for_id(*id, short_name)
             {
                 return md_link;
             }
         }
 
-        // Strategy 3: Use path name index
+        // Strategy 3: Use path name index (for items not in this item's links map)
         if let Some(ids) = self.path_name_index.get(short_name) {
             for id in ids {
                 if let Some(md_link) = self.create_link_for_id(*id, short_name) {
@@ -969,20 +1027,28 @@ impl<'a> DocLinkProcessor<'a> {
             }
         }
 
-        // Fallback: return original
+        // Fallback: return original (unresolved link)
         format!("[`{link_text}`]")
     }
 
     /// Create a markdown link for an ID.
     fn create_link_for_id(&self, id: Id, display_name: &str) -> Option<String> {
-        // Try local link
+        // Try local link (handles same-file anchor links automatically)
         if let Some(link) = self.link_registry.create_link(id, self.current_file) {
             return Some(link);
         }
 
+        // Fallback: try to get path and compute relative link
         if let Some(path) = self.link_registry.get_path(id) {
+            let clean_name = display_name.rsplit("::").next().unwrap_or(display_name);
+
+            // Check if target is on the same page - use anchor instead of relative path
+            if path == self.current_file {
+                let anchor = crate::linker::slugify_anchor(clean_name);
+                return Some(format!("[`{clean_name}`](#{anchor})"));
+            }
+
             let relative = LinkRegistry::compute_relative_path(self.current_file, path);
-            let clean_name = display_name.split("::").last().unwrap_or(display_name);
             return Some(format!("[`{clean_name}`]({relative})"));
         }
 
@@ -1002,7 +1068,7 @@ impl<'a> DocLinkProcessor<'a> {
         display_name: &str,
     ) -> Option<String> {
         let url = Self::get_docs_rs_url(path_info)?;
-        let clean_name = display_name.split("::").last().unwrap_or(display_name);
+        let clean_name = display_name.rsplit("::").next().unwrap_or(display_name);
         Some(format!("[`{clean_name}`]({url})"))
     }
 }

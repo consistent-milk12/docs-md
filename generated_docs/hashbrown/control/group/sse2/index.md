@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Group`](#group) | struct | Abstraction over a group of control tags which can be scanned in |
+| [`Group`](#group) | struct | Abstraction over a group of control tags which can be scanned in parallel. |
 | [`BitMaskWord`](#bitmaskword) | type |  |
 | [`NonZeroBitMaskWord`](#nonzerobitmaskword) | type |  |
 | [`BITMASK_STRIDE`](#bitmask_stride) | const |  |
@@ -23,6 +23,8 @@
 struct Group(x86::__m128i);
 ```
 
+*Defined in [`hashbrown-0.16.1/src/control/group/sse2.rs:21`](../../../../../.source_1765210505/hashbrown-0.16.1/src/control/group/sse2.rs#L21)*
+
 Abstraction over a group of control tags which can be scanned in
 parallel.
 
@@ -30,7 +32,7 @@ This implementation uses a 128-bit SSE value.
 
 #### Implementations
 
-- <span id="group-width"></span>`const WIDTH: usize`
+- <span id="group-const-width"></span>`const WIDTH: usize`
 
 - <span id="group-static-empty"></span>`const fn static_empty() -> &'static [Tag; 16]` — [`Tag`](../../tag/index.md)
 
@@ -66,29 +68,36 @@ This implementation uses a 128-bit SSE value.
 type BitMaskWord = u16;
 ```
 
+*Defined in [`hashbrown-0.16.1/src/control/group/sse2.rs:10`](../../../../../.source_1765210505/hashbrown-0.16.1/src/control/group/sse2.rs#L10)*
+
 ### `NonZeroBitMaskWord`
 
 ```rust
 type NonZeroBitMaskWord = core::num::NonZeroU16;
 ```
 
+*Defined in [`hashbrown-0.16.1/src/control/group/sse2.rs:11`](../../../../../.source_1765210505/hashbrown-0.16.1/src/control/group/sse2.rs#L11)*
+
 ## Constants
 
 ### `BITMASK_STRIDE`
-
 ```rust
 const BITMASK_STRIDE: usize = 1usize;
 ```
 
-### `BITMASK_MASK`
+*Defined in [`hashbrown-0.16.1/src/control/group/sse2.rs:12`](../../../../../.source_1765210505/hashbrown-0.16.1/src/control/group/sse2.rs#L12)*
 
+### `BITMASK_MASK`
 ```rust
 const BITMASK_MASK: u16 = 65_535u16;
 ```
 
-### `BITMASK_ITER_MASK`
+*Defined in [`hashbrown-0.16.1/src/control/group/sse2.rs:13`](../../../../../.source_1765210505/hashbrown-0.16.1/src/control/group/sse2.rs#L13)*
 
+### `BITMASK_ITER_MASK`
 ```rust
 const BITMASK_ITER_MASK: u16 = 65_535u16;
 ```
+
+*Defined in [`hashbrown-0.16.1/src/control/group/sse2.rs:14`](../../../../../.source_1765210505/hashbrown-0.16.1/src/control/group/sse2.rs#L14)*
 

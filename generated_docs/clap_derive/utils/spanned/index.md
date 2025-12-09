@@ -21,6 +21,8 @@ struct Sp<T> {
 }
 ```
 
+*Defined in [`clap_derive-4.5.49/src/utils/spanned.rs:9-12`](../../../../.source_1765210505/clap_derive-4.5.49/src/utils/spanned.rs#L9-L12)*
+
 An entity with a span attached.
 
 #### Implementations
@@ -49,7 +51,7 @@ An entity with a span attached.
 
 ##### `impl<T> Deref for Sp<T>`
 
-- <span id="sp-target"></span>`type Target = T`
+- <span id="sp-type-target"></span>`type Target = T`
 
 - <span id="sp-deref"></span>`fn deref(&self) -> &T`
 
@@ -63,7 +65,7 @@ An entity with a span attached.
 
 ##### `impl<P, T> Receiver for Sp<T>`
 
-- <span id="sp-target"></span>`type Target = T`
+- <span id="sp-type-target"></span>`type Target = T`
 
 ##### `impl<T> Spanned for Sp<T>`
 

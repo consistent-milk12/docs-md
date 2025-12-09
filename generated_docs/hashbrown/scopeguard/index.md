@@ -24,6 +24,8 @@ where
 }
 ```
 
+*Defined in [`hashbrown-0.16.1/src/scopeguard.rs:8-14`](../../../.source_1765210505/hashbrown-0.16.1/src/scopeguard.rs#L8-L14)*
+
 #### Implementations
 
 - <span id="scopeguard-into-inner"></span>`fn into_inner(guard: Self) -> T`
@@ -32,7 +34,7 @@ where
 
 ##### `impl<T, F> Deref for ScopeGuard<T, F>`
 
-- <span id="scopeguard-target"></span>`type Target = T`
+- <span id="scopeguard-type-target"></span>`type Target = T`
 
 - <span id="scopeguard-deref"></span>`fn deref(&self) -> &T`
 
@@ -46,7 +48,7 @@ where
 
 ##### `impl<P, T> Receiver for ScopeGuard<T, F>`
 
-- <span id="scopeguard-target"></span>`type Target = T`
+- <span id="scopeguard-type-target"></span>`type Target = T`
 
 ## Functions
 
@@ -57,4 +59,6 @@ fn guard<T, F>(value: T, dropfn: F) -> ScopeGuard<T, F>
 where
     F: FnMut(&mut T)
 ```
+
+*Defined in [`hashbrown-0.16.1/src/scopeguard.rs:17-22`](../../../.source_1765210505/hashbrown-0.16.1/src/scopeguard.rs#L17-L22)*
 

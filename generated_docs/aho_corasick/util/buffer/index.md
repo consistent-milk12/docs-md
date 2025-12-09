@@ -23,6 +23,8 @@ struct Buffer {
 }
 ```
 
+*Defined in [`aho-corasick-1.1.4/src/util/buffer.rs:35-44`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/buffer.rs#L35-L44)*
+
 A fairly simple roll buffer for supporting stream searches.
 
 This buffer acts as a temporary place to store a fixed amount of data when
@@ -91,10 +93,11 @@ second read call whether a match exists or not.
 ## Constants
 
 ### `DEFAULT_BUFFER_CAPACITY`
-
 ```rust
 const DEFAULT_BUFFER_CAPACITY: usize = 65_536usize;
 ```
+
+*Defined in [`aho-corasick-1.1.4/src/util/buffer.rs:4`](../../../../.source_1765210505/aho-corasick-1.1.4/src/util/buffer.rs#L4)*
 
 The default buffer capacity that we use for the stream buffer.
 

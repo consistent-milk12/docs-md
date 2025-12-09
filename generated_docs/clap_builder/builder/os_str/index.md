@@ -25,6 +25,8 @@ struct OsStr {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/os_str.rs:14-16`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/os_str.rs#L14-L16)*
+
 A UTF-8-encoded fixed string
 
 <div class="warning">
@@ -50,7 +52,7 @@ feature
 
 ##### `impl Clone for OsStr`
 
-- <span id="osstr-clone"></span>`fn clone(&self) -> OsStr` — [`OsStr`](../index.md)
+- <span id="osstr-clone"></span>`fn clone(&self) -> OsStr` — [`OsStr`](#osstr)
 
 ##### `impl Debug for OsStr`
 
@@ -58,11 +60,11 @@ feature
 
 ##### `impl Default for OsStr`
 
-- <span id="osstr-default"></span>`fn default() -> OsStr` — [`OsStr`](../index.md)
+- <span id="osstr-default"></span>`fn default() -> OsStr` — [`OsStr`](#osstr)
 
 ##### `impl Deref for OsStr`
 
-- <span id="osstr-target"></span>`type Target = OsStr`
+- <span id="osstr-type-target"></span>`type Target = OsStr`
 
 - <span id="osstr-deref"></span>`fn deref(&self) -> &std::ffi::OsStr`
 
@@ -72,25 +74,25 @@ feature
 
 - <span id="osstr-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<I> IntoResettable for OsStr`
+##### `impl IntoResettable for OsStr`
 
-- <span id="osstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](../index.md), [`OsStr`](../index.md)
+- <span id="osstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](../resettable/index.md), [`OsStr`](#osstr)
 
 ##### `impl Ord for OsStr`
 
-- <span id="osstr-cmp"></span>`fn cmp(&self, other: &OsStr) -> cmp::Ordering` — [`OsStr`](../index.md)
+- <span id="osstr-cmp"></span>`fn cmp(&self, other: &OsStr) -> cmp::Ordering` — [`OsStr`](#osstr)
 
 ##### `impl PartialEq for OsStr`
 
-- <span id="osstr-eq"></span>`fn eq(&self, other: &&std::ffi::OsStr) -> bool`
+- <span id="osstr-eq"></span>`fn eq(&self, other: &OsStr) -> bool` — [`OsStr`](#osstr)
 
 ##### `impl PartialOrd for OsStr`
 
-- <span id="osstr-partial-cmp"></span>`fn partial_cmp(&self, other: &OsStr) -> option::Option<cmp::Ordering>` — [`OsStr`](../index.md)
+- <span id="osstr-partial-cmp"></span>`fn partial_cmp(&self, other: &OsStr) -> option::Option<cmp::Ordering>` — [`OsStr`](#osstr)
 
-##### `impl<P, T> Receiver for OsStr`
+##### `impl Receiver for OsStr`
 
-- <span id="osstr-target"></span>`type Target = T`
+- <span id="osstr-type-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for OsStr`
 

@@ -37,6 +37,19 @@ When the `simd-json` feature is enabled, parsing uses SIMD-accelerated
 JSON parsing which is significantly faster for large rustdoc JSON files
 (10-50MB+). This requires AVX2/SSE4.2 on x86 platforms.
 
+# Memory Usage
+
+The entire rustdoc JSON file is loaded into memory and deserialized into
+a `Crate` structure. For typical crates (1-20MB JSON), this works well.
+
+For very large crates (e.g., `aws_sdk_ec2` at ~500MB), memory usage will be:
+- JSON file size in memory during parsing
+- Plus the deserialized `Crate` structure (usually similar size)
+- Peak memory ≈ 2x JSON file size
+
+Future optimization: For extremely large crates, `serde_json::StreamDeserializer`
+could be used for incremental parsing, trading some simplicity for lower peak memory.
+
 ## Quick Reference
 
 | Item | Kind | Description |
@@ -50,6 +63,8 @@ JSON parsing which is significantly faster for large rustdoc JSON files
 ```rust
 struct Parser;
 ```
+
+*Defined in `src/parser.rs:57`*
 
 Parser for rustdoc JSON files.
 
@@ -66,17 +81,17 @@ into the `rustdoc_types::Crate` structure.
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for Parser`
+##### `impl Instrument for Parser`
 
-##### `impl<T> IntoEither for Parser`
+##### `impl IntoEither for Parser`
 
-##### `impl<D> OwoColorize for Parser`
+##### `impl OwoColorize for Parser`
 
-##### `impl<T> Pointable for Parser`
+##### `impl Pointable for Parser`
 
-- <span id="parser-align"></span>`const ALIGN: usize`
+- <span id="parser-const-align"></span>`const ALIGN: usize`
 
-- <span id="parser-init"></span>`type Init = T`
+- <span id="parser-type-init"></span>`type Init = T`
 
 - <span id="parser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -86,5 +101,5 @@ into the `rustdoc_types::Crate` structure.
 
 - <span id="parser-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for Parser`
+##### `impl WithSubscriber for Parser`
 

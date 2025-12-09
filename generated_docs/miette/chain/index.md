@@ -25,6 +25,8 @@ struct Chain<'a> {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/chain.rs:32-34`](../../../.source_1765210505/miette-7.6.0/src/chain.rs#L32-L34)*
+
 Iterator of a chain of source errors.
 
 This type is the iterator returned by `Report::chain`.
@@ -51,7 +53,7 @@ pub fn underlying_io_error_kind(error: &Report) -> Option<io::ErrorKind> {
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Chain<'a>`
+##### `impl Clone for Chain<'a>`
 
 - <span id="chain-clone"></span>`fn clone(&self) -> Chain<'a>` — [`Chain`](#chain)
 
@@ -67,23 +69,23 @@ pub fn underlying_io_error_kind(error: &Report) -> Option<io::ErrorKind> {
 
 - <span id="chain-len"></span>`fn len(&self) -> usize`
 
-##### `impl<I> IntoIterator for Chain<'a>`
+##### `impl IntoIterator for Chain<'a>`
 
-- <span id="chain-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="chain-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="chain-intoiter"></span>`type IntoIter = I`
+- <span id="chain-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="chain-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for Chain<'a>`
+##### `impl Iterator for Chain<'a>`
 
-- <span id="chain-item"></span>`type Item = &'a dyn Error`
+- <span id="chain-type-item"></span>`type Item = &'a dyn Error`
 
 - <span id="chain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 - <span id="chain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-##### `impl<D> OwoColorize for Chain<'a>`
+##### `impl OwoColorize for Chain<'a>`
 
 ## Enums
 
@@ -100,11 +102,13 @@ enum ChainState<'a> {
 }
 ```
 
+*Defined in [`miette-7.6.0/src/chain.rs:37-44`](../../../.source_1765210505/miette-7.6.0/src/chain.rs#L37-L44)*
+
 #### Trait Implementations
 
-##### `impl<'a> Clone for ChainState<'a>`
+##### `impl Clone for ChainState<'a>`
 
 - <span id="chainstate-clone"></span>`fn clone(&self) -> ChainState<'a>` — [`ChainState`](#chainstate)
 
-##### `impl<D> OwoColorize for ChainState<'a>`
+##### `impl OwoColorize for ChainState<'a>`
 

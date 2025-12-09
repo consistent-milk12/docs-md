@@ -55,8 +55,8 @@ enum Value {
 ```
 
 A string of JSON data can be parsed into a `serde_json::Value` by the
-[`serde_json::from_str`][from_str](#from-str) function. There is also [`from_slice`](#from-slice)
-for parsing from a byte slice `&[u8]` and [`from_reader`](#from-reader) for parsing from
+[`serde_json::from_str`][`from_str`](de/index.md) function. There is also [`from_slice`](de/index.md)
+for parsing from a byte slice `&[u8]` and [`from_reader`](de/index.md) for parsing from
 any `io::Read` like a File or a TCP stream.
 
 ```rust
@@ -232,9 +232,9 @@ into JSON text.
 # Creating JSON by serializing data structures
 
 A data structure can be converted to a JSON string by
-[`serde_json::to_string`][to_string](#to-string). There is also
-[`serde_json::to_vec`][to_vec](#to-vec) which serializes to a `Vec<u8>` and
-[`serde_json::to_writer`][to_writer](#to-writer) which serializes to any `io::Write`
+[`serde_json::to_string`][`to_string`](ser/index.md). There is also
+[`serde_json::to_vec`][`to_vec`](ser/index.md) which serializes to a `Vec<u8>` and
+[`serde_json::to_writer`][`to_writer`](ser/index.md) which serializes to any `io::Write`
 such as a File or a TCP stream.
 
 ```rust
@@ -397,11 +397,81 @@ struct Deserializer<R> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/de.rs:31-39`](../../.source_1765210505/serde_json-1.0.145/src/de.rs#L31-L39)*
+
 A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- <span id="deserializer-from-slice"></span>`fn from_slice(bytes: &'a [u8]) -> Self`
+- <span id="deserializer-new"></span>`fn new(read: R) -> Self`
+
+#### Trait Implementations
+
+##### `impl<'de, R: Read<'de>> Deserializer for &mut Deserializer<R>`
+
+- <span id="mut-deserializer-type-error"></span>`type Error = Error`
+
+- <span id="mut-deserializer-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, _name: &'static str, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &str, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, _len: usize, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, _name: &'static str, _len: usize, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-struct"></span>`fn deserialize_struct<V>(self, _name: &'static str, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-enum"></span>`fn deserialize_enum<V>(self, _name: &str, _variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
+
+- <span id="mut-deserializer-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](error/index.md)
 
 ### `StreamDeserializer<'de, R, T>`
 
@@ -414,6 +484,8 @@ struct StreamDeserializer<'de, R, T> {
     lifetime: core::marker::PhantomData<&'de ()>,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/de.rs:2349-2355`](../../.source_1765210505/serde_json-1.0.145/src/de.rs#L2349-L2355)*
 
 Iterator that deserializes a stream into multiple JSON values.
 
@@ -443,7 +515,7 @@ fn main() {
 
 - <span id="streamdeserializer-byte-offset"></span>`fn byte_offset(&self) -> usize`
 
-- <span id="streamdeserializer-peek-end-of-value"></span>`fn peek_end_of_value(&mut self) -> Result<()>` — [`Result`](#result)
+- <span id="streamdeserializer-peek-end-of-value"></span>`fn peek_end_of_value(&mut self) -> Result<()>` — [`Result`](error/index.md)
 
 #### Trait Implementations
 
@@ -451,17 +523,17 @@ fn main() {
 
 ##### `impl<I> IntoIterator for StreamDeserializer<'de, R, T>`
 
-- <span id="streamdeserializer-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="streamdeserializer-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="streamdeserializer-intoiter"></span>`type IntoIter = I`
+- <span id="streamdeserializer-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="streamdeserializer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'de, R, T> Iterator for StreamDeserializer<'de, R, T>`
 
-- <span id="streamdeserializer-item"></span>`type Item = Result<T, Error>`
+- <span id="streamdeserializer-type-item"></span>`type Item = Result<T, Error>`
 
-- <span id="streamdeserializer-next"></span>`fn next(&mut self) -> Option<Result<T>>` — [`Result`](#result)
+- <span id="streamdeserializer-next"></span>`fn next(&mut self) -> Option<Result<T>>` — [`Result`](error/index.md)
 
 ### `Error`
 
@@ -470,6 +542,8 @@ struct Error {
     err: alloc::boxed::Box<ErrorImpl>,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/error.rs:17-22`](../../.source_1765210505/serde_json-1.0.145/src/error.rs#L17-L22)*
 
 This type represents all possible errors that can occur when serializing or
 deserializing JSON data.
@@ -514,7 +588,13 @@ deserializing JSON data.
 
 - <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
 
-##### `impl<T> ToString for Error`
+##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
+
+- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
+
+- <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
+
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
@@ -527,11 +607,97 @@ struct Serializer<W, F> {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/ser.rs:17-20`](../../.source_1765210505/serde_json-1.0.145/src/ser.rs#L17-L20)*
+
 A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- <span id="serializer-pretty"></span>`fn pretty(writer: W) -> Self`
+- <span id="serializer-new"></span>`fn new(writer: W) -> Self`
+
+#### Trait Implementations
+
+##### `impl<'a, W, F> Serializer for &'a mut Serializer<W, F>`
+
+- <span id="a-mut-serializer-type-ok"></span>`type Ok = ()`
+
+- <span id="a-mut-serializer-type-error"></span>`type Error = Error`
+
+- <span id="a-mut-serializer-type-serializeseq"></span>`type SerializeSeq = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializetuple"></span>`type SerializeTuple = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializetuplestruct"></span>`type SerializeTupleStruct = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializetuplevariant"></span>`type SerializeTupleVariant = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializemap"></span>`type SerializeMap = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializestruct"></span>`type SerializeStruct = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-type-serializestructvariant"></span>`type SerializeStructVariant = Compound<'a, W, F>`
+
+- <span id="a-mut-serializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-i8"></span>`fn serialize_i8(self, value: i8) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-i16"></span>`fn serialize_i16(self, value: i16) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-i32"></span>`fn serialize_i32(self, value: i32) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-i64"></span>`fn serialize_i64(self, value: i64) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-i128"></span>`fn serialize_i128(self, value: i128) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-u8"></span>`fn serialize_u8(self, value: u8) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-u16"></span>`fn serialize_u16(self, value: u16) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-u32"></span>`fn serialize_u32(self, value: u32) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-u64"></span>`fn serialize_u64(self, value: u64) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-u128"></span>`fn serialize_u128(self, value: u128) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-f32"></span>`fn serialize_f32(self, value: f32) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-f64"></span>`fn serialize_f64(self, value: f64) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-char"></span>`fn serialize_char(self, value: char) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-str"></span>`fn serialize_str(self, value: &str) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-bytes"></span>`fn serialize_bytes(self, value: &[u8]) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-unit"></span>`fn serialize_unit(self) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-unit-struct"></span>`fn serialize_unit_struct(self, _name: &'static str) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-unit-variant"></span>`fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-newtype-struct"></span>`fn serialize_newtype_struct<T>(self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-newtype-variant"></span>`fn serialize_newtype_variant<T>(self, _name: &'static str, _variant_index: u32, variant: &'static str, value: &T) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-none"></span>`fn serialize_none(self) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-some"></span>`fn serialize_some<T>(self, value: &T) -> Result<()>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-seq"></span>`fn serialize_seq(self, len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-tuple"></span>`fn serialize_tuple(self, len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-tuple-struct"></span>`fn serialize_tuple_struct(self, _name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-tuple-variant"></span>`fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-map"></span>`fn serialize_map(self, len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-struct"></span>`fn serialize_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-serialize-struct-variant"></span>`fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](error/index.md)
+
+- <span id="a-mut-serializer-collect-str"></span>`fn collect_str<T>(self, value: &T) -> Result<()>` — [`Result`](error/index.md)
 
 ### `Map<K, V>`
 
@@ -540,6 +706,8 @@ struct Map<K, V> {
     map: alloc::collections::BTreeMap<K, V>,
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/map.rs:29-31`](../../.source_1765210505/serde_json-1.0.145/src/map.rs#L29-L31)*
 
 Represents a JSON key/value type.
 
@@ -551,19 +719,19 @@ Represents a JSON key/value type.
 
 - <span id="map-clear"></span>`fn clear(&mut self)`
 
-- <span id="map-get"></span>`fn get<Q>(&self, key: &Q) -> Option<&Value>` — [`Value`](#value)
+- <span id="map-get"></span>`fn get<Q>(&self, key: &Q) -> Option<&Value>` — [`Value`](value/index.md)
 
 - <span id="map-contains-key"></span>`fn contains_key<Q>(&self, key: &Q) -> bool`
 
-- <span id="map-get-mut"></span>`fn get_mut<Q>(&mut self, key: &Q) -> Option<&mut Value>` — [`Value`](#value)
+- <span id="map-get-mut"></span>`fn get_mut<Q>(&mut self, key: &Q) -> Option<&mut Value>` — [`Value`](value/index.md)
 
-- <span id="map-get-key-value"></span>`fn get_key_value<Q>(&self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](#value)
+- <span id="map-get-key-value"></span>`fn get_key_value<Q>(&self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](value/index.md)
 
-- <span id="map-insert"></span>`fn insert(&mut self, k: String, v: Value) -> Option<Value>` — [`Value`](#value)
+- <span id="map-insert"></span>`fn insert(&mut self, k: String, v: Value) -> Option<Value>` — [`Value`](value/index.md)
 
-- <span id="map-remove"></span>`fn remove<Q>(&mut self, key: &Q) -> Option<Value>` — [`Value`](#value)
+- <span id="map-remove"></span>`fn remove<Q>(&mut self, key: &Q) -> Option<Value>` — [`Value`](value/index.md)
 
-- <span id="map-remove-entry"></span>`fn remove_entry<Q>(&mut self, key: &Q) -> Option<(String, Value)>` — [`Value`](#value)
+- <span id="map-remove-entry"></span>`fn remove_entry<Q>(&mut self, key: &Q) -> Option<(String, Value)>` — [`Value`](value/index.md)
 
 - <span id="map-append"></span>`fn append(&mut self, other: &mut Self)`
 
@@ -605,15 +773,15 @@ Represents a JSON key/value type.
 
 - <span id="map-default"></span>`fn default() -> Self`
 
-##### `impl<'de> Deserialize for Map<alloc::string::String, crate::value::Value>`
+##### `impl Deserialize for Map<alloc::string::String, crate::value::Value>`
 
 - <span id="map-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Map<K, V>`
 
-##### `impl<'de> Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
+##### `impl Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- <span id="cratemapmap-error"></span>`type Error = Error`
+- <span id="cratemapmap-type-error"></span>`type Error = Error`
 
 - <span id="cratemapmap-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -689,37 +857,37 @@ Represents a JSON key/value type.
 
 ##### `impl FromStr for crate::map::Map<alloc::string::String, crate::value::Value>`
 
-- <span id="cratemapmap-err"></span>`type Err = Error`
+- <span id="cratemapmap-type-err"></span>`type Err = Error`
 
-- <span id="cratemapmap-from-str"></span>`fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](#error)
+- <span id="cratemapmap-from-str"></span>`fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](error/index.md)
 
 ##### `impl Hash for Map<alloc::string::String, crate::value::Value>`
 
 - <span id="map-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
-##### `impl<Q> Index for Map<alloc::string::String, crate::value::Value>`
+##### `impl Index for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-output"></span>`type Output = Value`
+- <span id="map-type-output"></span>`type Output = Value`
 
-- <span id="map-index"></span>`fn index(&self, index: &Q) -> &Value` — [`Value`](#value)
+- <span id="map-index"></span>`fn index(&self, index: &Q) -> &Value` — [`Value`](value/index.md)
 
-##### `impl<Q> IndexMut for Map<alloc::string::String, crate::value::Value>`
+##### `impl IndexMut for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-index-mut"></span>`fn index_mut(&mut self, index: &Q) -> &mut Value` — [`Value`](#value)
+- <span id="map-index-mut"></span>`fn index_mut(&mut self, index: &Q) -> &mut Value` — [`Value`](value/index.md)
 
-##### `impl<'de> IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
+##### `impl IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-deserializer"></span>`type Deserializer = Map<String, Value>`
+- <span id="map-type-deserializer"></span>`type Deserializer = Map<String, Value>`
 
 - <span id="map-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 
-##### `impl IntoIterator for Map<alloc::string::String, crate::value::Value>`
+##### `impl IntoIterator for &'a Map<alloc::string::String, crate::value::Value>`
 
-- <span id="map-item"></span>`type Item = (String, Value)`
+- <span id="a-map-type-item"></span>`type Item = (&'a String, &'a Value)`
 
-- <span id="map-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="a-map-type-intoiter"></span>`type IntoIter = Iter<'a>`
 
-- <span id="map-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
+- <span id="a-map-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl PartialEq for Map<alloc::string::String, crate::value::Value>`
 
@@ -737,57 +905,83 @@ struct Number {
 }
 ```
 
+*Defined in [`serde_json-1.0.145/src/number.rs:22-24`](../../.source_1765210505/serde_json-1.0.145/src/number.rs#L22-L24)*
+
 Represents a JSON number, whether integer or floating point.
 
 #### Implementations
 
-- <span id="number-unexpected"></span>`fn unexpected(&self) -> Unexpected<'_>`
+- <span id="number-is-i64"></span>`fn is_i64(&self) -> bool`
+
+- <span id="number-is-u64"></span>`fn is_u64(&self) -> bool`
+
+- <span id="number-is-f64"></span>`fn is_f64(&self) -> bool`
+
+- <span id="number-as-i64"></span>`fn as_i64(&self) -> Option<i64>`
+
+- <span id="number-as-u64"></span>`fn as_u64(&self) -> Option<u64>`
+
+- <span id="number-as-f64"></span>`fn as_f64(&self) -> Option<f64>`
+
+- <span id="number-from-f64"></span>`fn from_f64(f: f64) -> Option<Number>` — [`Number`](number/index.md)
+
+- <span id="number-as-i128"></span>`fn as_i128(&self) -> Option<i128>`
+
+- <span id="number-as-u128"></span>`fn as_u128(&self) -> Option<u128>`
+
+- <span id="number-from-i128"></span>`fn from_i128(i: i128) -> Option<Number>` — [`Number`](number/index.md)
+
+- <span id="number-from-u128"></span>`fn from_u128(i: u128) -> Option<Number>` — [`Number`](number/index.md)
+
+- <span id="number-as-f32"></span>`fn as_f32(&self) -> Option<f32>`
+
+- <span id="number-from-f32"></span>`fn from_f32(f: f32) -> Option<Number>` — [`Number`](number/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Number`
 
-- <span id="number-clone"></span>`fn clone(&self) -> Number` — [`Number`](#number)
+- <span id="number-clone"></span>`fn clone(&self) -> Number` — [`Number`](number/index.md)
 
 ##### `impl Debug for Number`
 
 - <span id="number-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de> Deserialize for Number`
+##### `impl Deserialize for Number`
 
-- <span id="number-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Number, <D as >::Error>` — [`Number`](#number)
+- <span id="number-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Number, <D as >::Error>` — [`Number`](number/index.md)
 
-##### `impl<T> DeserializeOwned for Number`
+##### `impl DeserializeOwned for Number`
 
-##### `impl<'de> Deserializer for Number`
+##### `impl Deserializer for Number`
 
-- <span id="number-error"></span>`type Error = Error`
+- <span id="number-type-error"></span>`type Error = Error`
 
-- <span id="number-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="number-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="number-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
 - <span id="number-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
@@ -833,7 +1027,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl FromStr for crate::number::Number`
 
-- <span id="cratenumbernumber-err"></span>`type Err = Error`
+- <span id="cratenumbernumber-type-err"></span>`type Err = Error`
 
 - <span id="cratenumbernumber-from-str"></span>`fn from_str(s: &str) -> result::Result<Self, <Self as >::Err>`
 
@@ -843,7 +1037,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl PartialEq for Number`
 
-- <span id="number-eq"></span>`fn eq(&self, other: &Number) -> bool` — [`Number`](#number)
+- <span id="number-eq"></span>`fn eq(&self, other: &Number) -> bool` — [`Number`](number/index.md)
 
 ##### `impl Serialize for Number`
 
@@ -851,7 +1045,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl StructuralPartialEq for Number`
 
-##### `impl<T> ToString for Number`
+##### `impl ToString for Number`
 
 - <span id="number-to-string"></span>`fn to_string(&self) -> String`
 
@@ -869,6 +1063,8 @@ enum Value {
     Object(Map<alloc::string::String, Value>),
 }
 ```
+
+*Defined in [`serde_json-1.0.145/src/value/mod.rs:116-176`](../../.source_1765210505/serde_json-1.0.145/src/value/mod.rs#L116-L176)*
 
 Represents any valid JSON value.
 
@@ -952,7 +1148,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl Clone for Value`
 
-- <span id="value-clone"></span>`fn clone(&self) -> Value` — [`Value`](#value)
+- <span id="value-clone"></span>`fn clone(&self) -> Value` — [`Value`](value/index.md)
 
 ##### `impl Debug for Value`
 
@@ -960,79 +1156,79 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl Default for Value`
 
-- <span id="value-default"></span>`fn default() -> Value` — [`Value`](#value)
+- <span id="value-default"></span>`fn default() -> Value` — [`Value`](value/index.md)
 
-##### `impl<'de> Deserialize for crate::value::Value`
+##### `impl Deserialize for crate::value::Value`
 
-- <span id="cratevaluevalue-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Value, <D as >::Error>` — [`Value`](#value)
+- <span id="cratevaluevalue-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Value, <D as >::Error>` — [`Value`](value/index.md)
 
-##### `impl<T> DeserializeOwned for Value`
+##### `impl DeserializeOwned for Value`
 
-##### `impl<'de> Deserializer for crate::value::Value`
+##### `impl Deserializer for crate::value::Value`
 
-- <span id="cratevaluevalue-error"></span>`type Error = Error`
+- <span id="cratevaluevalue-type-error"></span>`type Error = Error`
 
-- <span id="cratevaluevalue-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, _name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, _name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, _name: &'static str, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, _name: &'static str, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-struct"></span>`fn deserialize_struct<V>(self, _name: &'static str, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-struct"></span>`fn deserialize_struct<V>(self, _name: &'static str, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
-- <span id="cratevaluevalue-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](#error)
+- <span id="cratevaluevalue-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](error/index.md)
 
 ##### `impl Display for Value`
 
@@ -1040,39 +1236,39 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl Eq for Value`
 
-##### `impl<K: Into<alloc::string::String>, V: Into<super::Value>> FromIterator for super::Value`
+##### `impl FromIterator for super::Value`
 
-- <span id="supervalue-from-iter"></span>`fn from_iter<I: IntoIterator<Item = (K, V)>>(iter: I) -> Self`
+- <span id="supervalue-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
 ##### `impl FromStr for crate::value::Value`
 
-- <span id="cratevaluevalue-err"></span>`type Err = Error`
+- <span id="cratevaluevalue-type-err"></span>`type Err = Error`
 
-- <span id="cratevaluevalue-from-str"></span>`fn from_str(s: &str) -> Result<Value, Error>` — [`Value`](#value), [`Error`](#error)
+- <span id="cratevaluevalue-from-str"></span>`fn from_str(s: &str) -> Result<Value, Error>` — [`Value`](value/index.md), [`Error`](error/index.md)
 
 ##### `impl Hash for Value`
 
 - <span id="value-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<I> Index for super::Value`
+##### `impl Index for super::Value`
 
-- <span id="supervalue-output"></span>`type Output = Value`
+- <span id="supervalue-type-output"></span>`type Output = Value`
 
-- <span id="supervalue-index"></span>`fn index(&self, index: I) -> &Value` — [`Value`](#value)
+- <span id="supervalue-index"></span>`fn index(&self, index: I) -> &Value` — [`Value`](value/index.md)
 
-##### `impl<I> IndexMut for super::Value`
+##### `impl IndexMut for super::Value`
 
-- <span id="supervalue-index-mut"></span>`fn index_mut(&mut self, index: I) -> &mut Value` — [`Value`](#value)
+- <span id="supervalue-index-mut"></span>`fn index_mut(&mut self, index: I) -> &mut Value` — [`Value`](value/index.md)
 
-##### `impl<'de> IntoDeserializer for crate::value::Value`
+##### `impl IntoDeserializer for crate::value::Value`
 
-- <span id="cratevaluevalue-deserializer"></span>`type Deserializer = Value`
+- <span id="cratevaluevalue-type-deserializer"></span>`type Deserializer = Value`
 
 - <span id="cratevaluevalue-into-deserializer"></span>`fn into_deserializer(self) -> <Self as >::Deserializer`
 
 ##### `impl PartialEq for Value`
 
-- <span id="value-eq"></span>`fn eq(&self, other: &i32) -> bool`
+- <span id="value-eq"></span>`fn eq(&self, other: &Value) -> bool` — [`Value`](value/index.md)
 
 ##### `impl Serialize for crate::value::Value`
 
@@ -1080,19 +1276,47 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl StructuralPartialEq for Value`
 
-##### `impl<T> ToString for Value`
+##### `impl ToString for Value`
 
 - <span id="value-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
 
+*Defined in [`serde_json-1.0.145/src/lib.rs:394`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L394)*
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:396`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L396)*
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:396`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L396)*
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:400`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L400)*
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:400`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L400)*
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:400`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L400)*
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:400`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L400)*
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:404`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L404)*
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:404`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L404)*
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:406`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L406)*
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:406`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L406)*
+
 ## Type Aliases
+
+*Defined in [`serde_json-1.0.145/src/lib.rs:398`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L398)*
 
 ## Macros
 
 ### `tri!`
 
+*Defined in [`serde_json-1.0.145/src/lib.rs:410-417`](../../.source_1765210505/serde_json-1.0.145/src/lib.rs#L410-L417)*
+
 ### `json!`
+
+*Defined in [`serde_json-1.0.145/src/macros.rs:54-59`](../../.source_1765210505/serde_json-1.0.145/src/macros.rs#L54-L59)*
 
 Construct a `serde_json::Value` from a JSON literal.
 

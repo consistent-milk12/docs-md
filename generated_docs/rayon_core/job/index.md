@@ -24,10 +24,10 @@
 | [`JobRef`](#jobref) | struct | Effectively a Job trait object. |
 | [`StackJob`](#stackjob) | struct | A job that will be owned by a stack slot. |
 | [`HeapJob`](#heapjob) | struct | Represents a job stored in the heap. |
-| [`ArcJob`](#arcjob) | struct | Represents a job stored in an `Arc` -- like `HeapJob`, but may |
+| [`ArcJob`](#arcjob) | struct | Represents a job stored in an `Arc` -- like `HeapJob`, but may be turned into multiple `JobRef`s and called multiple times. |
 | [`JobFifo`](#jobfifo) | struct | Indirect queue to provide FIFO job priority. |
 | [`JobResult`](#jobresult) | enum |  |
-| [`Job`](#job) | trait | A `Job` is used to advertise work for other threads that they may |
+| [`Job`](#job) | trait | A `Job` is used to advertise work for other threads that they may want to steal. |
 
 ## Structs
 
@@ -39,6 +39,8 @@ struct JobRef {
     execute_fn: fn(*const ()),
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/job.rs:33-36`](../../../.source_1765210505/rayon-core-1.13.0/src/job.rs#L33-L36)*
 
 Effectively a Job trait object. Each JobRef **must** be executed
 exactly once, or else data may leak.
@@ -57,11 +59,11 @@ it. We also carry the "execute fn" from the `Job` trait.
 
 #### Trait Implementations
 
-##### `impl<T> Pointable for JobRef`
+##### `impl Pointable for JobRef`
 
-- <span id="jobref-align"></span>`const ALIGN: usize`
+- <span id="jobref-const-align"></span>`const ALIGN: usize`
 
-- <span id="jobref-init"></span>`type Init = T`
+- <span id="jobref-type-init"></span>`type Init = T`
 
 - <span id="jobref-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -89,6 +91,8 @@ where
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/job.rs:72-81`](../../../.source_1765210505/rayon-core-1.13.0/src/job.rs#L72-L81)*
+
 A job that will be owned by a stack slot. This means that when it
 executes it need not free any heap data, the cleanup occurs when
 the stack frame is later popped.  The function parameter indicates
@@ -112,9 +116,9 @@ the stack frame is later popped.  The function parameter indicates
 
 ##### `impl<T> Pointable for StackJob<L, F, R>`
 
-- <span id="stackjob-align"></span>`const ALIGN: usize`
+- <span id="stackjob-const-align"></span>`const ALIGN: usize`
 
-- <span id="stackjob-init"></span>`type Init = T`
+- <span id="stackjob-type-init"></span>`type Init = T`
 
 - <span id="stackjob-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -133,6 +137,8 @@ where
     job: BODY,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/job.rs:132-137`](../../../.source_1765210505/rayon-core-1.13.0/src/job.rs#L132-L137)*
 
 Represents a job stored in the heap. Used to implement
 `scope`. Unlike `StackJob`, when executed, `HeapJob` simply
@@ -157,9 +163,9 @@ signal that the job executed.
 
 ##### `impl<T> Pointable for HeapJob<BODY>`
 
-- <span id="heapjob-align"></span>`const ALIGN: usize`
+- <span id="heapjob-const-align"></span>`const ALIGN: usize`
 
-- <span id="heapjob-init"></span>`type Init = T`
+- <span id="heapjob-type-init"></span>`type Init = T`
 
 - <span id="heapjob-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -178,6 +184,8 @@ where
     job: BODY,
 }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/job.rs:175-180`](../../../.source_1765210505/rayon-core-1.13.0/src/job.rs#L175-L180)*
 
 Represents a job stored in an `Arc` -- like `HeapJob`, but may
 be turned into multiple `JobRef`s and called multiple times.
@@ -198,9 +206,9 @@ be turned into multiple `JobRef`s and called multiple times.
 
 ##### `impl<T> Pointable for ArcJob<BODY>`
 
-- <span id="arcjob-align"></span>`const ALIGN: usize`
+- <span id="arcjob-const-align"></span>`const ALIGN: usize`
 
-- <span id="arcjob-init"></span>`type Init = T`
+- <span id="arcjob-type-init"></span>`type Init = T`
 
 - <span id="arcjob-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -218,6 +226,8 @@ struct JobFifo {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/job.rs:238-240`](../../../.source_1765210505/rayon-core-1.13.0/src/job.rs#L238-L240)*
+
 Indirect queue to provide FIFO job priority.
 
 #### Implementations
@@ -232,11 +242,11 @@ Indirect queue to provide FIFO job priority.
 
 - <span id="jobfifo-execute"></span>`unsafe fn execute(this: *const ())`
 
-##### `impl<T> Pointable for JobFifo`
+##### `impl Pointable for JobFifo`
 
-- <span id="jobfifo-align"></span>`const ALIGN: usize`
+- <span id="jobfifo-const-align"></span>`const ALIGN: usize`
 
-- <span id="jobfifo-init"></span>`type Init = T`
+- <span id="jobfifo-type-init"></span>`type Init = T`
 
 - <span id="jobfifo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -258,6 +268,8 @@ enum JobResult<T> {
 }
 ```
 
+*Defined in [`rayon-core-1.13.0/src/job.rs:9-13`](../../../.source_1765210505/rayon-core-1.13.0/src/job.rs#L9-L13)*
+
 #### Implementations
 
 - <span id="jobresult-call"></span>`fn call(func: impl FnOnce(bool) -> T) -> Self`
@@ -268,9 +280,9 @@ enum JobResult<T> {
 
 ##### `impl<T> Pointable for JobResult<T>`
 
-- <span id="jobresult-align"></span>`const ALIGN: usize`
+- <span id="jobresult-const-align"></span>`const ALIGN: usize`
 
-- <span id="jobresult-init"></span>`type Init = T`
+- <span id="jobresult-type-init"></span>`type Init = T`
 
 - <span id="jobresult-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -287,6 +299,8 @@ enum JobResult<T> {
 ```rust
 trait Job { ... }
 ```
+
+*Defined in [`rayon-core-1.13.0/src/job.rs:20-25`](../../../.source_1765210505/rayon-core-1.13.0/src/job.rs#L20-L25)*
 
 A `Job` is used to advertise work for other threads that they may
 want to steal. In accordance with time honored tradition, jobs are

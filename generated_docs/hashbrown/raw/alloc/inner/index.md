@@ -18,3 +18,5 @@
 fn do_alloc<A: Allocator>(alloc: &A, layout: crate::alloc::alloc::Layout) -> Result<core::ptr::NonNull<[u8]>, ()>
 ```
 
+*Defined in [`hashbrown-0.16.1/src/raw/alloc.rs:41-46`](../../../../../.source_1765210505/hashbrown-0.16.1/src/raw/alloc.rs#L41-L46)*
+

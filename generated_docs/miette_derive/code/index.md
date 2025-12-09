@@ -18,6 +18,8 @@
 struct Code(String);
 ```
 
+*Defined in [`miette-derive-7.6.0/src/code.rs:16`](../../../.source_1765210505/miette-derive-7.6.0/src/code.rs#L16)*
+
 #### Implementations
 
 - <span id="code-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)

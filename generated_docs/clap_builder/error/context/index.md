@@ -37,6 +37,8 @@ enum ContextKind {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:5-40`](../../../../.source_1765210505/clap_builder-4.5.53/src/error/context.rs#L5-L40)*
+
 Semantics for a piece of error information
 
 #### Variants
@@ -117,7 +119,7 @@ Semantics for a piece of error information
 
 ##### `impl Clone for ContextKind`
 
-- <span id="contextkind-clone"></span>`fn clone(&self) -> ContextKind` — [`ContextKind`](../index.md)
+- <span id="contextkind-clone"></span>`fn clone(&self) -> ContextKind` — [`ContextKind`](#contextkind)
 
 ##### `impl Copy for ContextKind`
 
@@ -137,11 +139,11 @@ Semantics for a piece of error information
 
 ##### `impl PartialEq for ContextKind`
 
-- <span id="contextkind-eq"></span>`fn eq(&self, other: &ContextKind) -> bool` — [`ContextKind`](../index.md)
+- <span id="contextkind-eq"></span>`fn eq(&self, other: &ContextKind) -> bool` — [`ContextKind`](#contextkind)
 
 ##### `impl StructuralPartialEq for ContextKind`
 
-##### `impl<T> ToString for ContextKind`
+##### `impl ToString for ContextKind`
 
 - <span id="contextkind-to-string"></span>`fn to_string(&self) -> String`
 
@@ -159,13 +161,15 @@ enum ContextValue {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/error/context.rs:77-92`](../../../../.source_1765210505/clap_builder-4.5.53/src/error/context.rs#L77-L92)*
+
 A piece of error information
 
 #### Variants
 
 - **`None`**
 
-  [`ContextKind`](../index.md) is self-sufficient, no additional information needed
+  [`ContextKind`](#contextkind) is self-sufficient, no additional information needed
 
 - **`Bool`**
 
@@ -195,7 +199,7 @@ A piece of error information
 
 ##### `impl Clone for ContextValue`
 
-- <span id="contextvalue-clone"></span>`fn clone(&self) -> ContextValue` — [`ContextValue`](../index.md)
+- <span id="contextvalue-clone"></span>`fn clone(&self) -> ContextValue` — [`ContextValue`](#contextvalue)
 
 ##### `impl Debug for ContextValue`
 
@@ -209,11 +213,11 @@ A piece of error information
 
 ##### `impl PartialEq for ContextValue`
 
-- <span id="contextvalue-eq"></span>`fn eq(&self, other: &ContextValue) -> bool` — [`ContextValue`](../index.md)
+- <span id="contextvalue-eq"></span>`fn eq(&self, other: &ContextValue) -> bool` — [`ContextValue`](#contextvalue)
 
 ##### `impl StructuralPartialEq for ContextValue`
 
-##### `impl<T> ToString for ContextValue`
+##### `impl ToString for ContextValue`
 
 - <span id="contextvalue-to-string"></span>`fn to_string(&self) -> String`
 

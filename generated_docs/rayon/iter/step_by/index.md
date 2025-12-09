@@ -22,8 +22,10 @@ struct StepBy<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/step_by.rs:11-14`](../../../../.source_1765210505/rayon-1.11.0/src/iter/step_by.rs#L11-L14)*
+
 `StepBy` is an iterator that skips `n` elements between each yield, where `n` is the given step.
-This struct is created by the `step_by()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `step_by()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -34,7 +36,7 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<I: clone::Clone> Clone for StepBy<I>`
 
-- <span id="stepby-clone"></span>`fn clone(&self) -> StepBy<I>` — [`StepBy`](../index.md)
+- <span id="stepby-clone"></span>`fn clone(&self) -> StepBy<I>` — [`StepBy`](#stepby)
 
 ##### `impl<I: fmt::Debug> Debug for StepBy<I>`
 
@@ -52,15 +54,15 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<T> IntoParallelIterator for StepBy<I>`
 
-- <span id="stepby-iter"></span>`type Iter = T`
+- <span id="stepby-type-iter"></span>`type Iter = T`
 
-- <span id="stepby-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="stepby-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="stepby-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for StepBy<I>`
 
-- <span id="stepby-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="stepby-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="stepby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -68,9 +70,9 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<T> Pointable for StepBy<I>`
 
-- <span id="stepby-align"></span>`const ALIGN: usize`
+- <span id="stepby-const-align"></span>`const ALIGN: usize`
 
-- <span id="stepby-init"></span>`type Init = T`
+- <span id="stepby-type-init"></span>`type Init = T`
 
 - <span id="stepby-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -90,15 +92,17 @@ struct StepByProducer<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/step_by.rs:93-97`](../../../../.source_1765210505/rayon-1.11.0/src/iter/step_by.rs#L93-L97)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for StepByProducer<P>`
 
 ##### `impl<T> Pointable for StepByProducer<P>`
 
-- <span id="stepbyproducer-align"></span>`const ALIGN: usize`
+- <span id="stepbyproducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="stepbyproducer-init"></span>`type Init = T`
+- <span id="stepbyproducer-type-init"></span>`type Init = T`
 
 - <span id="stepbyproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -110,9 +114,9 @@ struct StepByProducer<P> {
 
 ##### `impl<P> Producer for StepByProducer<P>`
 
-- <span id="stepbyproducer-item"></span>`type Item = <P as Producer>::Item`
+- <span id="stepbyproducer-type-item"></span>`type Item = <P as Producer>::Item`
 
-- <span id="stepbyproducer-intoiter"></span>`type IntoIter = StepBy<<P as Producer>::IntoIter>`
+- <span id="stepbyproducer-type-intoiter"></span>`type IntoIter = StepBy<<P as Producer>::IntoIter>`
 
 - <span id="stepbyproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 

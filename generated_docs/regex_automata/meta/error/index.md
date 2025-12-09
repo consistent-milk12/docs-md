@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`BuildError`](#builderror) | struct | An error that occurs when construction of a `Regex` fails. |
-| [`RetryQuadraticError`](#retryquadraticerror) | struct | An error that occurs when potential quadratic behavior has been detected |
-| [`RetryFailError`](#retryfailerror) | struct | An error that occurs when a regex engine "gives up" for some reason before |
+| [`RetryQuadraticError`](#retryquadraticerror) | struct | An error that occurs when potential quadratic behavior has been detected when applying either the "reverse suffix" or "reverse inner" optimizations. |
+| [`RetryFailError`](#retryfailerror) | struct | An error that occurs when a regex engine "gives up" for some reason before finishing a search. |
 | [`BuildErrorKind`](#builderrorkind) | enum |  |
 | [`RetryError`](#retryerror) | enum | An error that occurs when a search should be retried. |
 
@@ -24,6 +24,8 @@ struct BuildError {
 }
 ```
 
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:27-29`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L27-L29)*
+
 An error that occurs when construction of a `Regex` fails.
 
 A build error is generally a result of one of two possible failure
@@ -34,7 +36,7 @@ fails, usually because it gets too big with respect to limits like
 
 This error provides very little introspection capabilities. You can:
 
-* Ask for the [`PatternID`](../../index.md) of the pattern that caused an error, if one
+* Ask for the [`PatternID`](../../util/primitives/index.md) of the pattern that caused an error, if one
 is available. This is available for things like syntax errors, but not for
 cases where build limits are exceeded.
 * Ask for the underlying syntax error, but only if the error is a syntax
@@ -48,23 +50,23 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 #### Implementations
 
-- <span id="builderror-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../../index.md)
+- <span id="builderror-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md)
 
 - <span id="builderror-size-limit"></span>`fn size_limit(&self) -> Option<usize>`
 
 - <span id="builderror-syntax-error"></span>`fn syntax_error(&self) -> Option<&regex_syntax::Error>`
 
-- <span id="builderror-ast"></span>`fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../index.md)
+- <span id="builderror-ast"></span>`fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../../util/primitives/index.md), [`BuildError`](#builderror)
 
-- <span id="builderror-hir"></span>`fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../index.md)
+- <span id="builderror-hir"></span>`fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../../util/primitives/index.md), [`BuildError`](#builderror)
 
-- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
+- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
 
 ##### `impl Debug for BuildError`
 
@@ -78,7 +80,7 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 - <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
-##### `impl<T> ToString for BuildError`
+##### `impl ToString for BuildError`
 
 - <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -87,6 +89,8 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 ```rust
 struct RetryQuadraticError(());
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:164`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L164)*
 
 An error that occurs when potential quadratic behavior has been detected
 when applying either the "reverse suffix" or "reverse inner" optimizations.
@@ -110,7 +114,7 @@ and use a normal forward search.
 
 ##### `impl Error for RetryQuadraticError`
 
-##### `impl<T> ToString for RetryQuadraticError`
+##### `impl ToString for RetryQuadraticError`
 
 - <span id="retryquadraticerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -121,6 +125,8 @@ struct RetryFailError {
     offset: usize,
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:200-202`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L200-L202)*
 
 An error that occurs when a regex engine "gives up" for some reason before
 finishing a search. Usually this occurs because of heuristic Unicode word
@@ -151,7 +157,7 @@ regex engine internals guarantee that errors like `HaystackTooLong` and
 
 ##### `impl Error for RetryFailError`
 
-##### `impl<T> ToString for RetryFailError`
+##### `impl ToString for RetryFailError`
 
 - <span id="retryfailerror-to-string"></span>`fn to_string(&self) -> String`
 
@@ -168,6 +174,8 @@ enum BuildErrorKind {
     NFA(nfa::thompson::BuildError),
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:32-35`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L32-L35)*
 
 #### Trait Implementations
 
@@ -187,6 +195,8 @@ enum RetryError {
     Fail(RetryFailError),
 }
 ```
+
+*Defined in [`regex-automata-0.4.13/src/meta/error.rs:135-138`](../../../../.source_1765210505/regex-automata-0.4.13/src/meta/error.rs#L135-L138)*
 
 An error that occurs when a search should be retried.
 
@@ -218,7 +228,7 @@ API.
 
 ##### `impl Error for RetryError`
 
-##### `impl<T> ToString for RetryError`
+##### `impl ToString for RetryError`
 
 - <span id="retryerror-to-string"></span>`fn to_string(&self) -> String`
 

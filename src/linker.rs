@@ -33,6 +33,55 @@ use std::path::Path;
 use rustdoc_types::{Crate, Id, ItemEnum, ItemKind, Visibility};
 use unicode_normalization::UnicodeNormalization;
 
+/// Kind of associated item for anchor generation.
+///
+/// Used to disambiguate anchors when multiple items share the same name
+/// (e.g., `type Init` and `fn init` in the same impl block).
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum AssocItemKind {
+    /// A method or function (`fn`)
+    Method,
+    /// An associated constant (`const`)
+    Const,
+    /// An associated type (`type`)
+    Type,
+}
+
+/// Generate a compound anchor for an associated item on a type.
+///
+/// This creates a unique anchor that combines the type name, item kind, and item name,
+/// enabling deep linking to specific items. The format is `typename-itemname` for methods
+/// (backward compatible), and `typename-kind-itemname` for constants and types to avoid
+/// collisions.
+///
+/// # Arguments
+///
+/// * `type_name` - The name of the type (struct, enum, trait, etc.)
+/// * `item_name` - The name of the method or associated item
+/// * `kind` - The kind of associated item (method, const, or type)
+///
+/// # Examples
+///
+/// ```ignore
+/// assert_eq!(assoc_item_anchor("Parser", "parse", AssocItemKind::Method), "parser-parse");
+/// assert_eq!(assoc_item_anchor("HashMap", "new", AssocItemKind::Method), "hashmap-new");
+/// assert_eq!(assoc_item_anchor("Vec", "Item", AssocItemKind::Type), "vec-type-item");
+/// assert_eq!(assoc_item_anchor("Vec", "ALIGN", AssocItemKind::Const), "vec-const-align");
+/// ```
+#[must_use]
+pub fn assoc_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind) -> String {
+    let type_slug = slugify_anchor(type_name);
+    let item_slug = slugify_anchor(item_name);
+
+    match kind {
+        // Methods use the simple format for backward compatibility
+        AssocItemKind::Method => format!("{type_slug}-{item_slug}"),
+        // Constants and types include the kind to disambiguate from methods
+        AssocItemKind::Const => format!("{type_slug}-const-{item_slug}"),
+        AssocItemKind::Type => format!("{type_slug}-type-{item_slug}"),
+    }
+}
+
 /// Generate a compound anchor for a method on a type.
 ///
 /// This creates a unique anchor that combines the type name and method name,
@@ -53,7 +102,7 @@ use unicode_normalization::UnicodeNormalization;
 /// ```
 #[must_use]
 pub fn method_anchor(type_name: &str, method_name: &str) -> String {
-    format!("{}-{}", slugify_anchor(type_name), slugify_anchor(method_name))
+    assoc_item_anchor(type_name, method_name, AssocItemKind::Method)
 }
 
 /// Convert a name to a GitHub-style markdown anchor slug.

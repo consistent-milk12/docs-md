@@ -21,6 +21,8 @@ enum ArgPredicate {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/builder/arg_predicate.rs:8-13`](../../../../.source_1765210505/clap_builder-4.5.53/src/builder/arg_predicate.rs#L8-L13)*
+
 Operations to perform on argument values
 
 These do not apply to `ValueSource::DefaultValue`
@@ -39,7 +41,7 @@ These do not apply to `ValueSource::DefaultValue`
 
 ##### `impl Clone for ArgPredicate`
 
-- <span id="argpredicate-clone"></span>`fn clone(&self) -> ArgPredicate` — [`ArgPredicate`](../index.md)
+- <span id="argpredicate-clone"></span>`fn clone(&self) -> ArgPredicate` — [`ArgPredicate`](#argpredicate)
 
 ##### `impl Debug for ArgPredicate`
 
@@ -49,7 +51,7 @@ These do not apply to `ValueSource::DefaultValue`
 
 ##### `impl PartialEq for ArgPredicate`
 
-- <span id="argpredicate-eq"></span>`fn eq(&self, other: &ArgPredicate) -> bool` — [`ArgPredicate`](../index.md)
+- <span id="argpredicate-eq"></span>`fn eq(&self, other: &ArgPredicate) -> bool` — [`ArgPredicate`](#argpredicate)
 
 ##### `impl StructuralPartialEq for ArgPredicate`
 

@@ -26,6 +26,8 @@ struct FlatMap<K, V> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/util/flat_map.rs:9-12`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/flat_map.rs#L9-L12)*
+
 Flat (Vec) backed map
 
 This preserves insertion order
@@ -93,6 +95,8 @@ struct VacantEntry<'a, K, V> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/util/flat_map.rs:178-181`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/flat_map.rs#L178-L181)*
+
 ### `OccupiedEntry<'a, K, V>`
 
 ```rust
@@ -102,6 +106,8 @@ struct OccupiedEntry<'a, K, V> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/util/flat_map.rs:183-186`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/flat_map.rs#L183-L186)*
+
 ### `Iter<'a, K, V>`
 
 ```rust
@@ -110,6 +116,8 @@ struct Iter<'a, K, V> {
     values: std::slice::Iter<'a, V>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/util/flat_map.rs:188-191`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/flat_map.rs#L188-L191)*
 
 #### Trait Implementations
 
@@ -121,15 +129,15 @@ struct Iter<'a, K, V> {
 
 ##### `impl<I> IntoIterator for Iter<'a, K, V>`
 
-- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="iter-intoiter"></span>`type IntoIter = I`
+- <span id="iter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for Iter<'a, K, V>`
 
-- <span id="iter-item"></span>`type Item = (&'a K, &'a V)`
+- <span id="iter-type-item"></span>`type Item = (&'a K, &'a V)`
 
 - <span id="iter-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a V)>`
 
@@ -144,6 +152,8 @@ struct IterMut<'a, K, V> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/util/flat_map.rs:224-227`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/flat_map.rs#L224-L227)*
+
 #### Trait Implementations
 
 ##### `impl<'a, K, V> DoubleEndedIterator for IterMut<'a, K, V>`
@@ -154,15 +164,15 @@ struct IterMut<'a, K, V> {
 
 ##### `impl<I> IntoIterator for IterMut<'a, K, V>`
 
-- <span id="itermut-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="itermut-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="itermut-intoiter"></span>`type IntoIter = I`
+- <span id="itermut-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for IterMut<'a, K, V>`
 
-- <span id="itermut-item"></span>`type Item = (&'a K, &'a mut V)`
+- <span id="itermut-type-item"></span>`type Item = (&'a K, &'a mut V)`
 
 - <span id="itermut-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a mut V)>`
 
@@ -178,6 +188,8 @@ enum Entry<'a, K, V> {
     Occupied(OccupiedEntry<'a, K, V>),
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/util/flat_map.rs:149-152`](../../../../.source_1765210505/clap_builder-4.5.53/src/util/flat_map.rs#L149-L152)*
 
 #### Implementations
 

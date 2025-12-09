@@ -18,6 +18,8 @@
 struct NumberPrefixParseError(());
 ```
 
+*Defined in [`unit-prefix-0.5.2/src/parse.rs:50`](../../../.source_1765210505/unit-prefix-0.5.2/src/parse.rs#L50)*
+
 The error returned when a `NumberPrefix` is failed to be parsed.
 
 #### Trait Implementations
@@ -46,7 +48,7 @@ The error returned when a `NumberPrefix` is failed to be parsed.
 
 ##### `impl StructuralPartialEq for NumberPrefixParseError`
 
-##### `impl<T> ToString for NumberPrefixParseError`
+##### `impl ToString for NumberPrefixParseError`
 
 - <span id="numberprefixparseerror-to-string"></span>`fn to_string(&self) -> String`
 

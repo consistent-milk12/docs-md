@@ -41,13 +41,13 @@
 | [`UnzipReducer`](#unzipreducer) | struct | `Reducer` that unzips into two other `Reducer`s |
 | [`UnEither`](#uneither) | struct | An `UnzipOp` that routes items depending on their `Either` variant. |
 | [`Collector`](#collector) | struct | Shim to implement a one-time `ParallelExtend` using `FromParallelIterator`. |
-| [`UnzipOp`](#unzipop) | trait | This trait abstracts the different ways we can "unzip" one parallel |
+| [`UnzipOp`](#unzipop) | trait | This trait abstracts the different ways we can "unzip" one parallel iterator into two distinct consumers, which we can handle almost identically apart from how to process the individual items. |
 | [`execute`](#execute) | fn | Runs an unzip-like operation into default `ParallelExtend` collections. |
 | [`execute_into`](#execute_into) | fn | Runs an unzip-like operation into `ParallelExtend` collections. |
-| [`unzip`](#unzip) | fn | Unzips the items of a parallel iterator into a pair of arbitrary |
+| [`unzip`](#unzip) | fn | Unzips the items of a parallel iterator into a pair of arbitrary `ParallelExtend` containers. |
 | [`unzip_indexed`](#unzip_indexed) | fn | Unzips an `IndexedParallelIterator` into two arbitrary `Consumer`s. |
-| [`partition`](#partition) | fn | Partitions the items of a parallel iterator into a pair of arbitrary |
-| [`partition_map`](#partition_map) | fn | Partitions and maps the items of a parallel iterator into a pair of |
+| [`partition`](#partition) | fn | Partitions the items of a parallel iterator into a pair of arbitrary `ParallelExtend` containers. |
+| [`partition_map`](#partition_map) | fn | Partitions and maps the items of a parallel iterator into a pair of arbitrary `ParallelExtend` containers. |
 
 ## Structs
 
@@ -57,17 +57,19 @@
 struct Unzip;
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:92`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L92)*
+
 An `UnzipOp` that splits a tuple directly into the two consumers.
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for Unzip`
+##### `impl IntoEither for Unzip`
 
-##### `impl<T> Pointable for Unzip`
+##### `impl Pointable for Unzip`
 
-- <span id="unzip-align"></span>`const ALIGN: usize`
+- <span id="unzip-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzip-init"></span>`type Init = T`
+- <span id="unzip-type-init"></span>`type Init = T`
 
 - <span id="unzip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -77,11 +79,11 @@ An `UnzipOp` that splits a tuple directly into the two consumers.
 
 - <span id="unzip-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<A: Send, B: Send> UnzipOp for Unzip`
+##### `impl UnzipOp for Unzip`
 
-- <span id="unzip-left"></span>`type Left = A`
+- <span id="unzip-type-left"></span>`type Left = A`
 
-- <span id="unzip-right"></span>`type Right = B`
+- <span id="unzip-type-right"></span>`type Right = B`
 
 - <span id="unzip-consume"></span>`fn consume<FA, FB>(&self, item: (A, B), left: FA, right: FB) -> (FA, FB)`
 
@@ -95,6 +97,8 @@ struct Partition<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:126-128`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L126-L128)*
+
 An `UnzipOp` that routes items depending on a predicate function.
 
 #### Trait Implementations
@@ -103,9 +107,9 @@ An `UnzipOp` that routes items depending on a predicate function.
 
 ##### `impl<T> Pointable for Partition<P>`
 
-- <span id="partition-align"></span>`const ALIGN: usize`
+- <span id="partition-const-align"></span>`const ALIGN: usize`
 
-- <span id="partition-init"></span>`type Init = T`
+- <span id="partition-type-init"></span>`type Init = T`
 
 - <span id="partition-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -117,9 +121,9 @@ An `UnzipOp` that routes items depending on a predicate function.
 
 ##### `impl<P, T> UnzipOp for Partition<P>`
 
-- <span id="partition-left"></span>`type Left = T`
+- <span id="partition-type-left"></span>`type Left = T`
 
-- <span id="partition-right"></span>`type Right = T`
+- <span id="partition-type-right"></span>`type Right = T`
 
 - <span id="partition-consume"></span>`fn consume<FA, FB>(&self, item: T, left: FA, right: FB) -> (FA, FB)`
 
@@ -131,6 +135,8 @@ struct PartitionMap<P> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:168-170`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L168-L170)*
+
 An `UnzipOp` that routes items depending on how they are mapped `Either`.
 
 #### Trait Implementations
@@ -139,9 +145,9 @@ An `UnzipOp` that routes items depending on how they are mapped `Either`.
 
 ##### `impl<T> Pointable for PartitionMap<P>`
 
-- <span id="partitionmap-align"></span>`const ALIGN: usize`
+- <span id="partitionmap-const-align"></span>`const ALIGN: usize`
 
-- <span id="partitionmap-init"></span>`type Init = T`
+- <span id="partitionmap-type-init"></span>`type Init = T`
 
 - <span id="partitionmap-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -153,9 +159,9 @@ An `UnzipOp` that routes items depending on how they are mapped `Either`.
 
 ##### `impl<P, L, R, T> UnzipOp for PartitionMap<P>`
 
-- <span id="partitionmap-left"></span>`type Left = L`
+- <span id="partitionmap-type-left"></span>`type Left = L`
 
-- <span id="partitionmap-right"></span>`type Right = R`
+- <span id="partitionmap-type-right"></span>`type Right = R`
 
 - <span id="partitionmap-consume"></span>`fn consume<FA, FB>(&self, item: T, left: FA, right: FB) -> (FA, FB)`
 
@@ -169,6 +175,8 @@ struct UnzipA<'b, I, OP, FromB> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:194-198`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L194-L198)*
+
 A fake iterator to intercept the `Consumer` for type `A`.
 
 #### Trait Implementations
@@ -177,15 +185,15 @@ A fake iterator to intercept the `Consumer` for type `A`.
 
 ##### `impl<T> IntoParallelIterator for UnzipA<'b, I, OP, FromB>`
 
-- <span id="unzipa-iter"></span>`type Iter = T`
+- <span id="unzipa-type-iter"></span>`type Iter = T`
 
-- <span id="unzipa-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="unzipa-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="unzipa-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'b, I, OP, FromB> ParallelIterator for UnzipA<'b, I, OP, FromB>`
 
-- <span id="unzipa-item"></span>`type Item = <OP as UnzipOp>::Left`
+- <span id="unzipa-type-item"></span>`type Item = <OP as UnzipOp>::Left`
 
 - <span id="unzipa-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -193,9 +201,9 @@ A fake iterator to intercept the `Consumer` for type `A`.
 
 ##### `impl<T> Pointable for UnzipA<'b, I, OP, FromB>`
 
-- <span id="unzipa-align"></span>`const ALIGN: usize`
+- <span id="unzipa-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzipa-init"></span>`type Init = T`
+- <span id="unzipa-type-init"></span>`type Init = T`
 
 - <span id="unzipa-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -220,6 +228,8 @@ where
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:239-249`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L239-L249)*
+
 A fake iterator to intercept the `Consumer` for type `B`.
 
 #### Trait Implementations
@@ -228,15 +238,15 @@ A fake iterator to intercept the `Consumer` for type `B`.
 
 ##### `impl<T> IntoParallelIterator for UnzipB<'r, I, OP, CA>`
 
-- <span id="unzipb-iter"></span>`type Iter = T`
+- <span id="unzipb-type-iter"></span>`type Iter = T`
 
-- <span id="unzipb-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="unzipb-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="unzipb-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'r, I, OP, CA> ParallelIterator for UnzipB<'r, I, OP, CA>`
 
-- <span id="unzipb-item"></span>`type Item = <OP as UnzipOp>::Right`
+- <span id="unzipb-type-item"></span>`type Item = <OP as UnzipOp>::Right`
 
 - <span id="unzipb-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -244,9 +254,9 @@ A fake iterator to intercept the `Consumer` for type `B`.
 
 ##### `impl<T> Pointable for UnzipB<'r, I, OP, CA>`
 
-- <span id="unzipb-align"></span>`const ALIGN: usize`
+- <span id="unzipb-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzipb-init"></span>`type Init = T`
+- <span id="unzipb-type-init"></span>`type Init = T`
 
 - <span id="unzipb-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -266,17 +276,19 @@ struct UnzipConsumer<'a, OP, CA, CB> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:285-289`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L285-L289)*
+
 `Consumer` that unzips into two other `Consumer`s
 
 #### Trait Implementations
 
 ##### `impl<'a, T, OP, CA, CB> Consumer for UnzipConsumer<'a, OP, CA, CB>`
 
-- <span id="unzipconsumer-folder"></span>`type Folder = UnzipFolder<'a, OP, <CA as Consumer>::Folder, <CB as Consumer>::Folder>`
+- <span id="unzipconsumer-type-folder"></span>`type Folder = UnzipFolder<'a, OP, <CA as Consumer>::Folder, <CB as Consumer>::Folder>`
 
-- <span id="unzipconsumer-reducer"></span>`type Reducer = UnzipReducer<<CA as Consumer>::Reducer, <CB as Consumer>::Reducer>`
+- <span id="unzipconsumer-type-reducer"></span>`type Reducer = UnzipReducer<<CA as Consumer>::Reducer, <CB as Consumer>::Reducer>`
 
-- <span id="unzipconsumer-result"></span>`type Result = (<CA as Consumer>::Result, <CB as Consumer>::Result)`
+- <span id="unzipconsumer-type-result"></span>`type Result = (<CA as Consumer>::Result, <CB as Consumer>::Result)`
 
 - <span id="unzipconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
@@ -288,9 +300,9 @@ struct UnzipConsumer<'a, OP, CA, CB> {
 
 ##### `impl<T> Pointable for UnzipConsumer<'a, OP, CA, CB>`
 
-- <span id="unzipconsumer-align"></span>`const ALIGN: usize`
+- <span id="unzipconsumer-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzipconsumer-init"></span>`type Init = T`
+- <span id="unzipconsumer-type-init"></span>`type Init = T`
 
 - <span id="unzipconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -316,13 +328,15 @@ struct UnzipFolder<'a, OP, FA, FB> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:360-364`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L360-L364)*
+
 `Folder` that unzips into two other `Folder`s
 
 #### Trait Implementations
 
 ##### `impl<'a, T, OP, FA, FB> Folder for UnzipFolder<'a, OP, FA, FB>`
 
-- <span id="unzipfolder-result"></span>`type Result = (<FA as Folder>::Result, <FB as Folder>::Result)`
+- <span id="unzipfolder-type-result"></span>`type Result = (<FA as Folder>::Result, <FB as Folder>::Result)`
 
 - <span id="unzipfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
@@ -334,9 +348,9 @@ struct UnzipFolder<'a, OP, FA, FB> {
 
 ##### `impl<T> Pointable for UnzipFolder<'a, OP, FA, FB>`
 
-- <span id="unzipfolder-align"></span>`const ALIGN: usize`
+- <span id="unzipfolder-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzipfolder-init"></span>`type Init = T`
+- <span id="unzipfolder-type-init"></span>`type Init = T`
 
 - <span id="unzipfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -355,6 +369,8 @@ struct UnzipReducer<RA, RB> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:394-397`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L394-L397)*
+
 `Reducer` that unzips into two other `Reducer`s
 
 #### Trait Implementations
@@ -363,9 +379,9 @@ struct UnzipReducer<RA, RB> {
 
 ##### `impl<T> Pointable for UnzipReducer<RA, RB>`
 
-- <span id="unzipreducer-align"></span>`const ALIGN: usize`
+- <span id="unzipreducer-const-align"></span>`const ALIGN: usize`
 
-- <span id="unzipreducer-init"></span>`type Init = T`
+- <span id="unzipreducer-type-init"></span>`type Init = T`
 
 - <span id="unzipreducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -385,17 +401,19 @@ struct UnzipReducer<RA, RB> {
 struct UnEither;
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:443`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L443)*
+
 An `UnzipOp` that routes items depending on their `Either` variant.
 
 #### Trait Implementations
 
-##### `impl<T> IntoEither for UnEither`
+##### `impl IntoEither for UnEither`
 
-##### `impl<T> Pointable for UnEither`
+##### `impl Pointable for UnEither`
 
-- <span id="uneither-align"></span>`const ALIGN: usize`
+- <span id="uneither-const-align"></span>`const ALIGN: usize`
 
-- <span id="uneither-init"></span>`type Init = T`
+- <span id="uneither-type-init"></span>`type Init = T`
 
 - <span id="uneither-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -405,11 +423,11 @@ An `UnzipOp` that routes items depending on their `Either` variant.
 
 - <span id="uneither-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<L, R> UnzipOp for UnEither`
+##### `impl UnzipOp for UnEither`
 
-- <span id="uneither-left"></span>`type Left = L`
+- <span id="uneither-type-left"></span>`type Left = L`
 
-- <span id="uneither-right"></span>`type Right = R`
+- <span id="uneither-type-right"></span>`type Right = R`
 
 - <span id="uneither-consume"></span>`fn consume<FL, FR>(&self, item: Either<L, R>, left: FL, right: FR) -> (FL, FR)` — [`Either`](../index.md)
 
@@ -420,6 +438,8 @@ struct Collector<FromT> {
     result: Option<FromT>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:502-504`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L502-L504)*
 
 Shim to implement a one-time `ParallelExtend` using `FromParallelIterator`.
 
@@ -437,9 +457,9 @@ Shim to implement a one-time `ParallelExtend` using `FromParallelIterator`.
 
 ##### `impl<T> Pointable for Collector<FromT>`
 
-- <span id="collector-align"></span>`const ALIGN: usize`
+- <span id="collector-const-align"></span>`const ALIGN: usize`
 
-- <span id="collector-init"></span>`type Init = T`
+- <span id="collector-type-init"></span>`type Init = T`
 
 - <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -456,6 +476,8 @@ Shim to implement a one-time `ParallelExtend` using `FromParallelIterator`.
 ```rust
 trait UnzipOp<T>: Sync + Send { ... }
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:7-26`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L7-L26)*
 
 This trait abstracts the different ways we can "unzip" one parallel
 iterator into two distinct consumers, which we can handle almost
@@ -499,6 +521,8 @@ where
     FromB: Default + Send + ParallelExtend<<OP as >::Right>
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:29-40`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L29-L40)*
+
 Runs an unzip-like operation into default `ParallelExtend` collections.
 
 ### `execute_into`
@@ -511,6 +535,8 @@ where
     FromA: Send + ParallelExtend<<OP as >::Left>,
     FromB: Send + ParallelExtend<<OP as >::Right>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:43-55`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L43-L55)*
 
 Runs an unzip-like operation into `ParallelExtend` collections.
 
@@ -525,6 +551,8 @@ where
     A: Send,
     B: Send
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:61-70`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L61-L70)*
 
 Unzips the items of a parallel iterator into a pair of arbitrary
 `ParallelExtend` containers.
@@ -543,6 +571,8 @@ where
     B: Send
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:75-89`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L75-L89)*
+
 Unzips an `IndexedParallelIterator` into two arbitrary `Consumer`s.
 
 This is called by `super::collect::unzip_into_vecs`.
@@ -557,6 +587,8 @@ where
     B: Default + Send + ParallelExtend<<I as >::Item>,
     P: Fn(&<I as >::Item) -> bool + Sync + Send
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:115-123`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L115-L123)*
 
 Partitions the items of a parallel iterator into a pair of arbitrary
 `ParallelExtend` containers.
@@ -575,6 +607,8 @@ where
     L: Send,
     R: Send
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/unzip.rs:155-165`](../../../../.source_1765210505/rayon-1.11.0/src/iter/unzip.rs#L155-L165)*
 
 Partitions and maps the items of a parallel iterator into a pair of
 arbitrary `ParallelExtend` containers.

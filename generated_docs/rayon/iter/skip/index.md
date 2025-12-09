@@ -21,8 +21,10 @@ struct Skip<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/skip.rs:11-14`](../../../../.source_1765210505/rayon-1.11.0/src/iter/skip.rs#L11-L14)*
+
 `Skip` is an iterator that skips over the first `n` elements.
-This struct is created by the `skip()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `skip()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -33,7 +35,7 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<I: clone::Clone> Clone for Skip<I>`
 
-- <span id="skip-clone"></span>`fn clone(&self) -> Skip<I>` — [`Skip`](../index.md)
+- <span id="skip-clone"></span>`fn clone(&self) -> Skip<I>` — [`Skip`](#skip)
 
 ##### `impl<I: fmt::Debug> Debug for Skip<I>`
 
@@ -51,15 +53,15 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<T> IntoParallelIterator for Skip<I>`
 
-- <span id="skip-iter"></span>`type Iter = T`
+- <span id="skip-type-iter"></span>`type Iter = T`
 
-- <span id="skip-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="skip-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="skip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for Skip<I>`
 
-- <span id="skip-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="skip-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="skip-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -67,9 +69,9 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<T> Pointable for Skip<I>`
 
-- <span id="skip-align"></span>`const ALIGN: usize`
+- <span id="skip-const-align"></span>`const ALIGN: usize`
 
-- <span id="skip-init"></span>`type Init = T`
+- <span id="skip-type-init"></span>`type Init = T`
 
 - <span id="skip-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

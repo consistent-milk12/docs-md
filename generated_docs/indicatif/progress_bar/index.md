@@ -25,6 +25,8 @@ struct ProgressBar {
 }
 ```
 
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:25-29`](../../../.source_1765210505/indicatif-0.18.3/src/progress_bar.rs#L25-L29)*
+
 A progress bar or spinner
 
 The progress bar is an `Arc` around its internal state. When the progress bar is cloned it
@@ -38,11 +40,11 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-hidden"></span>`fn hidden() -> Self`
 
-- <span id="progressbar-with-draw-target"></span>`fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
+- <span id="progressbar-with-draw-target"></span>`fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
 
-- <span id="progressbar-style"></span>`fn style(&self) -> ProgressStyle` — [`ProgressStyle`](../index.md)
+- <span id="progressbar-style"></span>`fn style(&self) -> ProgressStyle` — [`ProgressStyle`](../style/index.md)
 
-- <span id="progressbar-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../index.md)
+- <span id="progressbar-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../style/index.md)
 
 - <span id="progressbar-with-tab-width"></span>`fn with_tab_width(self, tab_width: usize) -> Self`
 
@@ -54,11 +56,11 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-with-elapsed"></span>`fn with_elapsed(self, elapsed: Duration) -> Self`
 
-- <span id="progressbar-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../index.md)
+- <span id="progressbar-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../state/index.md)
 
 - <span id="progressbar-new-spinner"></span>`fn new_spinner() -> Self`
 
-- <span id="progressbar-set-style"></span>`fn set_style(&self, style: ProgressStyle)` — [`ProgressStyle`](../index.md)
+- <span id="progressbar-set-style"></span>`fn set_style(&self, style: ProgressStyle)` — [`ProgressStyle`](../style/index.md)
 
 - <span id="progressbar-set-tab-width"></span>`fn set_tab_width(&self, tab_width: usize)`
 
@@ -82,7 +84,7 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-println"></span>`fn println<I: AsRef<str>>(&self, msg: I)`
 
-- <span id="progressbar-update"></span>`fn update(&self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](../index.md)
+- <span id="progressbar-update"></span>`fn update(&self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](../state/index.md)
 
 - <span id="progressbar-set-position"></span>`fn set_position(&self, pos: u64)`
 
@@ -100,7 +102,7 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-set-elapsed"></span>`fn set_elapsed(&self, elapsed: Duration)`
 
-- <span id="progressbar-downgrade"></span>`fn downgrade(&self) -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
+- <span id="progressbar-downgrade"></span>`fn downgrade(&self) -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
 
 - <span id="progressbar-reset-eta"></span>`fn reset_eta(&self)`
 
@@ -120,17 +122,17 @@ just increments the refcount (so the original and its clone share the same state
 
 - <span id="progressbar-finish-using-style"></span>`fn finish_using_style(&self)`
 
-- <span id="progressbar-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../index.md)
+- <span id="progressbar-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md)
 
 - <span id="progressbar-force-draw"></span>`fn force_draw(&self)`
 
 - <span id="progressbar-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&self, f: F) -> R`
 
-- <span id="progressbar-wrap-iter"></span>`fn wrap_iter<It: Iterator>(&self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](../index.md)
+- <span id="progressbar-wrap-iter"></span>`fn wrap_iter<It: Iterator>(&self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](../iter/index.md)
 
-- <span id="progressbar-wrap-read"></span>`fn wrap_read<R: io::Read>(&self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](../index.md)
+- <span id="progressbar-wrap-read"></span>`fn wrap_read<R: io::Read>(&self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](../iter/index.md)
 
-- <span id="progressbar-wrap-write"></span>`fn wrap_write<W: io::Write>(&self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](../index.md)
+- <span id="progressbar-wrap-write"></span>`fn wrap_write<W: io::Write>(&self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](../iter/index.md)
 
 - <span id="progressbar-position"></span>`fn position(&self) -> u64`
 
@@ -156,7 +158,7 @@ just increments the refcount (so the original and its clone share the same state
 
 ##### `impl Clone for ProgressBar`
 
-- <span id="progressbar-clone"></span>`fn clone(&self) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="progressbar-clone"></span>`fn clone(&self) -> ProgressBar` — [`ProgressBar`](#progressbar)
 
 ##### `impl Debug for ProgressBar`
 
@@ -172,7 +174,9 @@ struct WeakProgressBar {
 }
 ```
 
-A weak reference to a [`ProgressBar`](../index.md).
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:651-655`](../../../.source_1765210505/indicatif-0.18.3/src/progress_bar.rs#L651-L655)*
+
+A weak reference to a [`ProgressBar`](#progressbar).
 
 Useful for creating custom steady tick implementations
 
@@ -180,17 +184,17 @@ Useful for creating custom steady tick implementations
 
 - <span id="weakprogressbar-new"></span>`fn new() -> Self`
 
-- <span id="weakprogressbar-upgrade"></span>`fn upgrade(&self) -> Option<ProgressBar>` — [`ProgressBar`](../index.md)
+- <span id="weakprogressbar-upgrade"></span>`fn upgrade(&self) -> Option<ProgressBar>` — [`ProgressBar`](#progressbar)
 
 #### Trait Implementations
 
 ##### `impl Clone for WeakProgressBar`
 
-- <span id="weakprogressbar-clone"></span>`fn clone(&self) -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
+- <span id="weakprogressbar-clone"></span>`fn clone(&self) -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
 
 ##### `impl Default for WeakProgressBar`
 
-- <span id="weakprogressbar-default"></span>`fn default() -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
+- <span id="weakprogressbar-default"></span>`fn default() -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
 
 ### `Ticker`
 
@@ -200,6 +204,8 @@ struct Ticker {
     join_handle: Option<thread::JoinHandle<()>>,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:677-680`](../../../.source_1765210505/indicatif-0.18.3/src/progress_bar.rs#L677-L680)*
 
 #### Implementations
 
@@ -221,6 +227,8 @@ struct TickerControl {
     state: std::sync::Weak<std::sync::Mutex<crate::state::BarState>>,
 }
 ```
+
+*Defined in [`indicatif-0.18.3/src/progress_bar.rs:719-722`](../../../.source_1765210505/indicatif-0.18.3/src/progress_bar.rs#L719-L722)*
 
 #### Implementations
 

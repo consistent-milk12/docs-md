@@ -23,11 +23,15 @@ struct DebugAddr<R> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/addr.rs:6-8`](../../../../.source_1765210505/gimli-0.32.3/src/read/addr.rs#L6-L8)*
+
 The raw contents of the `.debug_addr` section.
 
 #### Implementations
 
-- <span id="debugaddr-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugAddr<R>` — [`DebugAddr`](../index.md)
+- <span id="debugaddr-get-address"></span>`fn get_address(&self, address_size: u8, base: DebugAddrBase<<R as >::Offset>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`DebugAddrIndex`](../../index.md), [`Result`](../../index.md)
+
+- <span id="debugaddr-headers"></span>`fn headers(&self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md)
 
 #### Trait Implementations
 
@@ -60,6 +64,8 @@ struct AddrHeaderIter<R: Reader> {
 }
 ```
 
+*Defined in [`gimli-0.32.3/src/read/addr.rs:82-85`](../../../../.source_1765210505/gimli-0.32.3/src/read/addr.rs#L82-L85)*
+
 An iterator over the headers of a `.debug_addr` section.
 
 #### Implementations
@@ -89,6 +95,8 @@ where
     entries: R,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/addr.rs:122-131`](../../../../.source_1765210505/gimli-0.32.3/src/read/addr.rs#L122-L131)*
 
 A header for a set of entries in the `.debug_addr` section.
 
@@ -132,6 +140,8 @@ struct AddrEntryIter<R: Reader> {
     encoding: crate::common::Encoding,
 }
 ```
+
+*Defined in [`gimli-0.32.3/src/read/addr.rs:217-220`](../../../../.source_1765210505/gimli-0.32.3/src/read/addr.rs#L217-L220)*
 
 An iterator over the addresses from a `.debug_addr` section.
 

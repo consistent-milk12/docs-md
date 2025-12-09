@@ -6,7 +6,7 @@
 
 Intra-doc link processing for documentation generation.
 
-This module provides [`DocLinkProcessor`](../index.md) which transforms rustdoc
+This module provides [`DocLinkProcessor`](#doclinkprocessor) which transforms rustdoc
 intra-doc link syntax into proper markdown links.
 
 # Processing Pipeline
@@ -16,7 +16,7 @@ The processor applies transformations in this order:
 3. Process reference-style links `[text]`ref``
 4. Process path reference links ``text``
 5. Process method links `[Type::method]`
-6. Process backtick links ``Name``
+6. Process backtick links `[`Name`](#name)`
 7. Process plain links `[name]`
 8. Convert HTML-style rustdoc links
 9. Clean up blank lines
@@ -64,6 +64,8 @@ struct DocLinkProcessor<'a> {
 }
 ```
 
+*Defined in `src/generator/doc_links.rs:416-429`*
+
 Processes doc comments to resolve intra-doc links to markdown links.
 
 Rustdoc JSON includes a `links` field on each Item that maps intra-doc
@@ -72,7 +74,7 @@ link text to item IDs. This processor uses that map along with the
 
 # Supported Patterns
 
-- `` `Name` `` - Backtick code links (most common)
+- `` [`Name`](#name) `` - Backtick code links (most common)
 - `` `path::to::Item` `` - Qualified path links
 - `` `Type::method` `` - Method/associated item links
 - `[name]` - Plain identifier links
@@ -108,7 +110,9 @@ Links inside fenced code blocks are not processed.
 
 #### Implementations
 
-- <span id="doclinkprocessor-new"></span>`fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../index.md)
+- <span id="doclinkprocessor-with-index"></span>`fn with_index(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str, path_name_index: &HashMap<&'a str, Vec<Id>>) -> Self` — [`LinkRegistry`](../../linker/index.md)
+
+- <span id="doclinkprocessor-new"></span>`fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../linker/index.md)
 
 - <span id="doclinkprocessor-process"></span>`fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -150,17 +154,17 @@ Links inside fenced code blocks are not processed.
 
 #### Trait Implementations
 
-##### `impl<T> Instrument for DocLinkProcessor<'a>`
+##### `impl Instrument for DocLinkProcessor<'a>`
 
-##### `impl<T> IntoEither for DocLinkProcessor<'a>`
+##### `impl IntoEither for DocLinkProcessor<'a>`
 
-##### `impl<D> OwoColorize for DocLinkProcessor<'a>`
+##### `impl OwoColorize for DocLinkProcessor<'a>`
 
-##### `impl<T> Pointable for DocLinkProcessor<'a>`
+##### `impl Pointable for DocLinkProcessor<'a>`
 
-- <span id="doclinkprocessor-align"></span>`const ALIGN: usize`
+- <span id="doclinkprocessor-const-align"></span>`const ALIGN: usize`
 
-- <span id="doclinkprocessor-init"></span>`type Init = T`
+- <span id="doclinkprocessor-type-init"></span>`type Init = T`
 
 - <span id="doclinkprocessor-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -170,7 +174,7 @@ Links inside fenced code blocks are not processed.
 
 - <span id="doclinkprocessor-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl<T> WithSubscriber for DocLinkProcessor<'a>`
+##### `impl WithSubscriber for DocLinkProcessor<'a>`
 
 ## Functions
 
@@ -179,6 +183,8 @@ Links inside fenced code blocks are not processed.
 ```rust
 fn convert_html_links(docs: &str) -> String
 ```
+
+*Defined in `src/generator/doc_links.rs:219-233`*
 
 Convert HTML-style rustdoc links to markdown anchors.
 
@@ -194,6 +200,8 @@ context may not be available.
 ```rust
 fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str
 ```
+
+*Defined in `src/generator/doc_links.rs:250-278`*
 
 Strip duplicate title from documentation.
 
@@ -216,9 +224,11 @@ otherwise the original docs unchanged.
 fn strip_reference_definitions(docs: &str) -> String
 ```
 
+*Defined in `src/generator/doc_links.rs:284-286`*
+
 Strip markdown reference definition lines.
 
-Removes lines like ``Name`: path::to::item` which are no longer needed
+Removes lines like `[`Name`](#name): path::to::item` which are no longer needed
 after intra-doc links are processed.
 
 ### `unhide_code_lines`
@@ -226,6 +236,8 @@ after intra-doc links are processed.
 ```rust
 fn unhide_code_lines(docs: &str) -> String
 ```
+
+*Defined in `src/generator/doc_links.rs:296-357`*
 
 Unhide rustdoc hidden lines in code blocks and add language identifiers.
 
@@ -241,6 +253,8 @@ This function performs two transformations on code blocks:
 fn detect_fence(trimmed: &str) -> Option<&'static str>
 ```
 
+*Defined in `src/generator/doc_links.rs:360-368`*
+
 Detect a code fence and return the fence string.
 
 ### `convert_path_reference_links`
@@ -248,6 +262,8 @@ Detect a code fence and return the fence string.
 ```rust
 fn convert_path_reference_links(docs: &str) -> String
 ```
+
+*Defined in `src/generator/doc_links.rs:378-388`*
 
 Convert path-style reference links to inline code.
 
@@ -265,6 +281,8 @@ where
     F: Fn(&regex::Captures<'_>) -> String
 ```
 
+*Defined in `src/generator/doc_links.rs:1081-1097`*
+
 Replace regex matches using a closure.
 
 ### `replace_with_regex_checked`
@@ -274,6 +292,8 @@ fn replace_with_regex_checked<F>(text: &str, re: &regex::Regex, replacer: F) -> 
 where
     F: Fn(&regex::Captures<'_>, &str) -> String
 ```
+
+*Defined in `src/generator/doc_links.rs:1100-1117`*
 
 Replace regex matches with access to the text after the match.
 

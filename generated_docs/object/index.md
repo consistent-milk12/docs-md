@@ -276,6 +276,8 @@ points of the crate.
 struct LittleEndian;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:317`](../../.source_1765210505/object-0.37.3/src/endian.rs#L317)*
+
 Compile-time little endian byte order.
 
 #### Trait Implementations
@@ -318,6 +320,8 @@ Compile-time little endian byte order.
 struct BigEndian;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:344`](../../.source_1765210505/object-0.37.3/src/endian.rs#L344)*
+
 Compile-time big endian byte order.
 
 #### Trait Implementations
@@ -359,6 +363,8 @@ Compile-time big endian byte order.
 ```rust
 struct U16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:620`](../../.source_1765210505/object-0.37.3/src/endian.rs#L620)*
 
 An unaligned `u16` value with an externally specified endianness of type `E`.
 
@@ -416,6 +422,8 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 struct U32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:647`](../../.source_1765210505/object-0.37.3/src/endian.rs#L647)*
+
 An unaligned `u32` value with an externally specified endianness of type `E`.
 
 #### Implementations
@@ -471,6 +479,8 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 ```rust
 struct U64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:674`](../../.source_1765210505/object-0.37.3/src/endian.rs#L674)*
 
 An unaligned `u64` value with an externally specified endianness of type `E`.
 
@@ -528,6 +538,8 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 struct I16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:701`](../../.source_1765210505/object-0.37.3/src/endian.rs#L701)*
+
 An unaligned `i16` value with an externally specified endianness of type `E`.
 
 #### Implementations
@@ -583,6 +595,8 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 ```rust
 struct I32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:728`](../../.source_1765210505/object-0.37.3/src/endian.rs#L728)*
 
 An unaligned `i32` value with an externally specified endianness of type `E`.
 
@@ -640,6 +654,8 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 struct I64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:755`](../../.source_1765210505/object-0.37.3/src/endian.rs#L755)*
+
 An unaligned `i64` value with an externally specified endianness of type `E`.
 
 #### Implementations
@@ -696,6 +712,8 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 struct Error(&'static str);
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:116`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L116)*
+
 The error type used within the read module.
 
 #### Trait Implementations
@@ -724,7 +742,7 @@ The error type used within the read module.
 
 ##### `impl StructuralPartialEq for Error`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
@@ -733,6 +751,8 @@ The error type used within the read module.
 ```rust
 struct SectionIndex(usize);
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:389`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L389)*
 
 The index used to identify a section in a file.
 
@@ -764,7 +784,7 @@ The index used to identify a section in a file.
 
 ##### `impl StructuralPartialEq for SectionIndex`
 
-##### `impl<T> ToString for SectionIndex`
+##### `impl ToString for SectionIndex`
 
 - <span id="sectionindex-to-string"></span>`fn to_string(&self) -> String`
 
@@ -773,6 +793,8 @@ The index used to identify a section in a file.
 ```rust
 struct SymbolIndex(usize);
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:399`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L399)*
 
 The index used to identify a symbol in a symbol table.
 
@@ -804,7 +826,7 @@ The index used to identify a symbol in a symbol table.
 
 ##### `impl StructuralPartialEq for SymbolIndex`
 
-##### `impl<T> ToString for SymbolIndex`
+##### `impl ToString for SymbolIndex`
 
 - <span id="symbolindex-to-string"></span>`fn to_string(&self) -> String`
 
@@ -815,6 +837,8 @@ struct SymbolMap<T: SymbolMapEntry> {
     symbols: alloc::vec::Vec<T>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:451-453`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L451-L453)*
 
 A map from addresses to symbol information.
 
@@ -853,6 +877,8 @@ struct SymbolMapName<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:485-488`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L485-L488)*
+
 The type used for entries in a [`SymbolMap`](#symbolmap) that maps from addresses to names.
 
 #### Implementations
@@ -865,29 +891,29 @@ The type used for entries in a [`SymbolMap`](#symbolmap) that maps from addresse
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for SymbolMapName<'data>`
+##### `impl Clone for SymbolMapName<'data>`
 
 - <span id="symbolmapname-clone"></span>`fn clone(&self) -> SymbolMapName<'data>` — [`SymbolMapName`](#symbolmapname)
 
-##### `impl<'data> Copy for SymbolMapName<'data>`
+##### `impl Copy for SymbolMapName<'data>`
 
-##### `impl<'data> Debug for SymbolMapName<'data>`
+##### `impl Debug for SymbolMapName<'data>`
 
 - <span id="symbolmapname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for SymbolMapName<'data>`
+##### `impl Eq for SymbolMapName<'data>`
 
-##### `impl<'data> Hash for SymbolMapName<'data>`
+##### `impl Hash for SymbolMapName<'data>`
 
 - <span id="symbolmapname-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'data> PartialEq for SymbolMapName<'data>`
+##### `impl PartialEq for SymbolMapName<'data>`
 
 - <span id="symbolmapname-eq"></span>`fn eq(&self, other: &SymbolMapName<'data>) -> bool` — [`SymbolMapName`](#symbolmapname)
 
-##### `impl<'data> StructuralPartialEq for SymbolMapName<'data>`
+##### `impl StructuralPartialEq for SymbolMapName<'data>`
 
-##### `impl<'data> SymbolMapEntry for SymbolMapName<'data>`
+##### `impl SymbolMapEntry for SymbolMapName<'data>`
 
 - <span id="symbolmapname-address"></span>`fn address(&self) -> u64`
 
@@ -899,6 +925,8 @@ struct ObjectMap<'data> {
     objects: alloc::vec::Vec<ObjectMapFile<'data>>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:522-525`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L522-L525)*
 
 A map from addresses to symbol names and object files.
 
@@ -916,15 +944,15 @@ Returned by `Object::object_map`.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ObjectMap<'data>`
+##### `impl Clone for ObjectMap<'data>`
 
 - <span id="objectmap-clone"></span>`fn clone(&self) -> ObjectMap<'data>` — [`ObjectMap`](#objectmap)
 
-##### `impl<'data> Debug for ObjectMap<'data>`
+##### `impl Debug for ObjectMap<'data>`
 
 - <span id="objectmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for ObjectMap<'data>`
+##### `impl Default for ObjectMap<'data>`
 
 - <span id="objectmap-default"></span>`fn default() -> ObjectMap<'data>` — [`ObjectMap`](#objectmap)
 
@@ -938,6 +966,8 @@ struct ObjectMapEntry<'data> {
     object: usize,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:550-555`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L550-L555)*
 
 A symbol in an [`ObjectMap`](#objectmap).
 
@@ -955,33 +985,33 @@ A symbol in an [`ObjectMap`](#objectmap).
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ObjectMapEntry<'data>`
+##### `impl Clone for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-clone"></span>`fn clone(&self) -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](#objectmapentry)
 
-##### `impl<'data> Copy for ObjectMapEntry<'data>`
+##### `impl Copy for ObjectMapEntry<'data>`
 
-##### `impl<'data> Debug for ObjectMapEntry<'data>`
+##### `impl Debug for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Default for ObjectMapEntry<'data>`
+##### `impl Default for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-default"></span>`fn default() -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](#objectmapentry)
 
-##### `impl<'data> Eq for ObjectMapEntry<'data>`
+##### `impl Eq for ObjectMapEntry<'data>`
 
-##### `impl<'data> Hash for ObjectMapEntry<'data>`
+##### `impl Hash for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'data> PartialEq for ObjectMapEntry<'data>`
+##### `impl PartialEq for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-eq"></span>`fn eq(&self, other: &ObjectMapEntry<'data>) -> bool` — [`ObjectMapEntry`](#objectmapentry)
 
-##### `impl<'data> StructuralPartialEq for ObjectMapEntry<'data>`
+##### `impl StructuralPartialEq for ObjectMapEntry<'data>`
 
-##### `impl<'data> SymbolMapEntry for ObjectMapEntry<'data>`
+##### `impl SymbolMapEntry for ObjectMapEntry<'data>`
 
 - <span id="objectmapentry-address"></span>`fn address(&self) -> u64`
 
@@ -993,6 +1023,8 @@ struct ObjectMapFile<'data> {
     member: Option<&'data [u8]>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:600-603`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L600-L603)*
 
 An object file name in an [`ObjectMap`](#objectmap).
 
@@ -1006,27 +1038,27 @@ An object file name in an [`ObjectMap`](#objectmap).
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ObjectMapFile<'data>`
+##### `impl Clone for ObjectMapFile<'data>`
 
 - <span id="objectmapfile-clone"></span>`fn clone(&self) -> ObjectMapFile<'data>` — [`ObjectMapFile`](#objectmapfile)
 
-##### `impl<'data> Copy for ObjectMapFile<'data>`
+##### `impl Copy for ObjectMapFile<'data>`
 
-##### `impl<'data> Debug for ObjectMapFile<'data>`
+##### `impl Debug for ObjectMapFile<'data>`
 
 - <span id="objectmapfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for ObjectMapFile<'data>`
+##### `impl Eq for ObjectMapFile<'data>`
 
-##### `impl<'data> Hash for ObjectMapFile<'data>`
+##### `impl Hash for ObjectMapFile<'data>`
 
 - <span id="objectmapfile-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'data> PartialEq for ObjectMapFile<'data>`
+##### `impl PartialEq for ObjectMapFile<'data>`
 
 - <span id="objectmapfile-eq"></span>`fn eq(&self, other: &ObjectMapFile<'data>) -> bool` — [`ObjectMapFile`](#objectmapfile)
 
-##### `impl<'data> StructuralPartialEq for ObjectMapFile<'data>`
+##### `impl StructuralPartialEq for ObjectMapFile<'data>`
 
 ### `Import<'data>`
 
@@ -1036,6 +1068,8 @@ struct Import<'data> {
     name: ByteString<'data>,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:628-632`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L628-L632)*
 
 An imported symbol.
 
@@ -1049,23 +1083,23 @@ Returned by `Object::imports`.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Import<'data>`
+##### `impl Clone for Import<'data>`
 
 - <span id="import-clone"></span>`fn clone(&self) -> Import<'data>` — [`Import`](#import)
 
-##### `impl<'data> Copy for Import<'data>`
+##### `impl Copy for Import<'data>`
 
-##### `impl<'data> Debug for Import<'data>`
+##### `impl Debug for Import<'data>`
 
 - <span id="import-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for Import<'data>`
+##### `impl Eq for Import<'data>`
 
-##### `impl<'data> PartialEq for Import<'data>`
+##### `impl PartialEq for Import<'data>`
 
 - <span id="import-eq"></span>`fn eq(&self, other: &Import<'data>) -> bool` — [`Import`](#import)
 
-##### `impl<'data> StructuralPartialEq for Import<'data>`
+##### `impl StructuralPartialEq for Import<'data>`
 
 ### `Export<'data>`
 
@@ -1075,6 +1109,8 @@ struct Export<'data> {
     address: u64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:652-656`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L652-L656)*
 
 An exported symbol.
 
@@ -1088,23 +1124,23 @@ Returned by `Object::exports`.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Export<'data>`
+##### `impl Clone for Export<'data>`
 
 - <span id="export-clone"></span>`fn clone(&self) -> Export<'data>` — [`Export`](#export)
 
-##### `impl<'data> Copy for Export<'data>`
+##### `impl Copy for Export<'data>`
 
-##### `impl<'data> Debug for Export<'data>`
+##### `impl Debug for Export<'data>`
 
 - <span id="export-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for Export<'data>`
+##### `impl Eq for Export<'data>`
 
-##### `impl<'data> PartialEq for Export<'data>`
+##### `impl PartialEq for Export<'data>`
 
 - <span id="export-eq"></span>`fn eq(&self, other: &Export<'data>) -> bool` — [`Export`](#export)
 
-##### `impl<'data> StructuralPartialEq for Export<'data>`
+##### `impl StructuralPartialEq for Export<'data>`
 
 ### `CodeView<'data>`
 
@@ -1115,6 +1151,8 @@ struct CodeView<'data> {
     age: u32,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:674-678`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L674-L678)*
 
 PDB information from the debug directory in a PE file.
 
@@ -1128,23 +1166,23 @@ PDB information from the debug directory in a PE file.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for CodeView<'data>`
+##### `impl Clone for CodeView<'data>`
 
 - <span id="codeview-clone"></span>`fn clone(&self) -> CodeView<'data>` — [`CodeView`](#codeview)
 
-##### `impl<'data> Copy for CodeView<'data>`
+##### `impl Copy for CodeView<'data>`
 
-##### `impl<'data> Debug for CodeView<'data>`
+##### `impl Debug for CodeView<'data>`
 
 - <span id="codeview-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for CodeView<'data>`
+##### `impl Eq for CodeView<'data>`
 
-##### `impl<'data> PartialEq for CodeView<'data>`
+##### `impl PartialEq for CodeView<'data>`
 
 - <span id="codeview-eq"></span>`fn eq(&self, other: &CodeView<'data>) -> bool` — [`CodeView`](#codeview)
 
-##### `impl<'data> StructuralPartialEq for CodeView<'data>`
+##### `impl StructuralPartialEq for CodeView<'data>`
 
 ### `Relocation`
 
@@ -1159,6 +1197,8 @@ struct Relocation {
     flags: RelocationFlags,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:716-724`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L716-L724)*
 
 A relocation entry.
 
@@ -1193,6 +1233,8 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 ```rust
 struct RelocationMap(alloc::collections::btree_map::BTreeMap<u64, RelocationMapEntry>);
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:790`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L790)*
 
 A map from section offsets to relocation information.
 
@@ -1229,6 +1271,8 @@ struct RelocationMapEntry {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:871-874`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L871-L874)*
+
 #### Trait Implementations
 
 ##### `impl Clone for RelocationMapEntry`
@@ -1263,6 +1307,8 @@ struct CompressedFileRange {
     pub uncompressed_size: u64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:898-907`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L898-L907)*
 
 A range in a file that may be compressed.
 
@@ -1326,6 +1372,8 @@ struct CompressedData<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:947-954`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L947-L954)*
+
 Data that may be compressed.
 
 Returned by `ObjectSection::compressed_data`.
@@ -1352,27 +1400,27 @@ Returned by `ObjectSection::compressed_data`.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for CompressedData<'data>`
+##### `impl Clone for CompressedData<'data>`
 
 - <span id="compresseddata-clone"></span>`fn clone(&self) -> CompressedData<'data>` — [`CompressedData`](#compresseddata)
 
-##### `impl<'data> Copy for CompressedData<'data>`
+##### `impl Copy for CompressedData<'data>`
 
-##### `impl<'data> Debug for CompressedData<'data>`
+##### `impl Debug for CompressedData<'data>`
 
 - <span id="compresseddata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'data> Eq for CompressedData<'data>`
+##### `impl Eq for CompressedData<'data>`
 
-##### `impl<'data> Hash for CompressedData<'data>`
+##### `impl Hash for CompressedData<'data>`
 
 - <span id="compresseddata-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<'data> PartialEq for CompressedData<'data>`
+##### `impl PartialEq for CompressedData<'data>`
 
 - <span id="compresseddata-eq"></span>`fn eq(&self, other: &CompressedData<'data>) -> bool` — [`CompressedData`](#compresseddata)
 
-##### `impl<'data> StructuralPartialEq for CompressedData<'data>`
+##### `impl StructuralPartialEq for CompressedData<'data>`
 
 ## Enums
 
@@ -1419,6 +1467,8 @@ enum Architecture {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:5-45`](../../.source_1765210505/object-0.37.3/src/common.rs#L5-L45)*
+
 A CPU architecture.
 
 #### Implementations
@@ -1458,6 +1508,8 @@ enum SubArchitecture {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:51-54`](../../.source_1765210505/object-0.37.3/src/common.rs#L51-L54)*
+
 A CPU sub-architecture.
 
 #### Trait Implementations
@@ -1494,6 +1546,8 @@ enum AddressSize {
     U64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:109-114`](../../.source_1765210505/object-0.37.3/src/common.rs#L109-L114)*
 
 The size of an address value for an architecture.
 
@@ -1539,6 +1593,8 @@ enum BinaryFormat {
     Xcoff,
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:128-135`](../../.source_1765210505/object-0.37.3/src/common.rs#L128-L135)*
 
 A binary file format.
 
@@ -1595,6 +1651,8 @@ enum SectionKind {
     Elf(u32),
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:155-247`](../../.source_1765210505/object-0.37.3/src/common.rs#L155-L247)*
 
 The kind of a section.
 
@@ -1771,6 +1829,8 @@ enum ComdatKind {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:264-291`](../../.source_1765210505/object-0.37.3/src/common.rs#L264-L291)*
+
 The selection kind for a COMDAT section group.
 
 This determines the way in which the linker resolves multiple definitions of the COMDAT
@@ -1856,6 +1916,8 @@ enum SymbolKind {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:296-311`](../../.source_1765210505/object-0.37.3/src/common.rs#L296-L311)*
+
 The kind of a symbol.
 
 #### Variants
@@ -1923,6 +1985,8 @@ enum SymbolScope {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:315-324`](../../.source_1765210505/object-0.37.3/src/common.rs#L315-L324)*
+
 A symbol scope.
 
 #### Variants
@@ -1984,6 +2048,8 @@ enum RelocationKind {
     SectionIndex,
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:343-366`](../../.source_1765210505/object-0.37.3/src/common.rs#L343-L366)*
 
 The operation used to calculate the result of the relocation.
 
@@ -2090,6 +2156,8 @@ enum RelocationEncoding {
     E2KDisp,
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:374-447`](../../.source_1765210505/object-0.37.3/src/common.rs#L374-L447)*
 
 Information about how the result of the relocation operation is encoded in the place.
 
@@ -2234,6 +2302,8 @@ enum FileFlags {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:452-479`](../../.source_1765210505/object-0.37.3/src/common.rs#L452-L479)*
+
 File flags that are specific to each file format.
 
 #### Variants
@@ -2301,6 +2371,8 @@ enum SegmentFlags {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:484-506`](../../.source_1765210505/object-0.37.3/src/common.rs#L484-L506)*
+
 Segment flags that are specific to each file format.
 
 #### Variants
@@ -2364,6 +2436,8 @@ enum SectionFlags {
     },
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:511-534`](../../.source_1765210505/object-0.37.3/src/common.rs#L511-L534)*
 
 Section flags that are specific to each file format.
 
@@ -2437,6 +2511,8 @@ enum SymbolFlags<Section, Symbol> {
     },
 }
 ```
+
+*Defined in [`object-0.37.3/src/common.rs:539-578`](../../.source_1765210505/object-0.37.3/src/common.rs#L539-L578)*
 
 Symbol flags that are specific to each file format.
 
@@ -2513,6 +2589,8 @@ enum RelocationFlags {
 }
 ```
 
+*Defined in [`object-0.37.3/src/common.rs:583-619`](../../.source_1765210505/object-0.37.3/src/common.rs#L583-L619)*
+
 Relocation fields that are specific to each file format and architecture.
 
 #### Variants
@@ -2569,6 +2647,8 @@ enum Endianness {
     Big,
 }
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:278-283`](../../.source_1765210505/object-0.37.3/src/endian.rs#L278-L283)*
 
 An endianness that is selectable at run-time.
 
@@ -2637,6 +2717,8 @@ enum FileKind {
     Xcoff64,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:198-281`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L198-L281)*
 
 A file format kind.
 
@@ -2776,6 +2858,8 @@ enum ObjectKind {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:374-385`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L374-L385)*
+
 An object kind.
 
 Returned by `Object::kind`.
@@ -2838,6 +2922,8 @@ enum SymbolSection {
     Section(SectionIndex),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:410-423`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L410-L423)*
 
 The section where an [`ObjectSymbol`](read/index.md) is defined.
 
@@ -2905,6 +2991,8 @@ enum RelocationTarget {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:703-710`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L703-L710)*
+
 The target referenced by a [`Relocation`](#relocation).
 
 #### Variants
@@ -2955,6 +3043,8 @@ enum CompressionFormat {
     Zstandard,
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:879-892`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L879-L892)*
 
 A data compression format.
 
@@ -3011,6 +3101,8 @@ A data compression format.
 ```rust
 trait Endian: Debug + Default + Clone + Copy + PartialEq + Eq + 'static { ... }
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:13-274`](../../.source_1765210505/object-0.37.3/src/endian.rs#L13-L274)*
 
 A trait for using an endianness specification.
 
@@ -3147,6 +3239,8 @@ This trait does not require that the endianness is known at compile time.
 trait Pod: Copy + 'static { ... }
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:22`](../../.source_1765210505/object-0.37.3/src/pod.rs#L22)*
+
 A trait for types that can safely be converted from and to byte slices.
 
 # Safety
@@ -3169,7 +3263,6 @@ A type that is `Pod` must:
 - [`BlockAux64`](xcoff/index.md)
 - [`BuildToolVersion`](macho/index.md)
 - [`BuildVersionCommand`](macho/index.md)
-- [`ClsId`](pe/index.md)
 - [`CompressionHeader32`](elf/index.md)
 - [`CompressionHeader64`](elf/index.md)
 - [`CsectAux32`](xcoff/index.md)
@@ -3217,6 +3310,7 @@ A type that is `Pod` must:
 - [`FvmlibCommand`](macho/index.md)
 - [`Fvmlib`](macho/index.md)
 - [`GnuHashHeader`](elf/index.md)
+- [`Guid`](pe/index.md)
 - [`HashHeader`](elf/index.md)
 - [`Header`](archive/index.md)
 - [`I16Bytes`](#i16bytes)
@@ -3371,6 +3465,8 @@ A type that is `Pod` must:
 trait ReadError<T> { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:133-135`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L133-L135)*
+
 #### Required Methods
 
 - `fn read_error(self, error: &'static str) -> Result<T>`
@@ -3386,6 +3482,8 @@ trait ReadError<T> { ... }
 ```rust
 trait SymbolMapEntry { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:440-443`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L440-L443)*
 
 An entry in a [`SymbolMap`](#symbolmap).
 
@@ -3408,6 +3506,8 @@ An entry in a [`SymbolMap`](#symbolmap).
 fn from_bytes<T: Pod>(data: &[u8]) -> result::Result<(&T, &[u8]), ()>
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:30-42`](../../.source_1765210505/object-0.37.3/src/pod.rs#L30-L42)*
+
 Cast the head of a byte slice to a `Pod` type.
 
 Returns the type and the tail of the byte slice.
@@ -3419,6 +3519,8 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 ```rust
 fn from_bytes_mut<T: Pod>(data: &mut [u8]) -> result::Result<(&mut T, &mut [u8]), ()>
 ```
+
+*Defined in [`object-0.37.3/src/pod.rs:50-65`](../../.source_1765210505/object-0.37.3/src/pod.rs#L50-L65)*
 
 Cast the head of a mutable byte slice to a `Pod` type.
 
@@ -3432,6 +3534,8 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 fn slice_from_bytes<T: Pod>(data: &[u8], count: usize) -> result::Result<(&[T], &[u8]), ()>
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:73-85`](../../.source_1765210505/object-0.37.3/src/pod.rs#L73-L85)*
+
 Cast the head of a byte slice to a slice of a `Pod` type.
 
 Returns the type slice and the tail of the byte slice.
@@ -3444,6 +3548,8 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 fn slice_from_bytes_mut<T: Pod>(data: &mut [u8], count: usize) -> result::Result<(&mut [T], &mut [u8]), ()>
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:93-111`](../../.source_1765210505/object-0.37.3/src/pod.rs#L93-L111)*
+
 Cast the head of a mutable byte slice to a slice of a `Pod` type.
 
 Returns the type slice and the tail of the byte slice.
@@ -3455,6 +3561,8 @@ Returns an error if the byte slice is too short or the alignment is invalid.
 ```rust
 fn slice_from_all_bytes<T: Pod>(data: &[u8]) -> result::Result<&[T], ()>
 ```
+
+*Defined in [`object-0.37.3/src/pod.rs:120-127`](../../.source_1765210505/object-0.37.3/src/pod.rs#L120-L127)*
 
 Cast all of a byte slice to a slice of a `Pod` type.
 
@@ -3469,6 +3577,8 @@ of the type size, or the alignment is invalid.
 fn slice_from_all_bytes_mut<T: Pod>(data: &mut [u8]) -> result::Result<&mut [T], ()>
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:136-143`](../../.source_1765210505/object-0.37.3/src/pod.rs#L136-L143)*
+
 Cast all of a byte slice to a slice of a `Pod` type.
 
 Returns the type slice.
@@ -3482,6 +3592,8 @@ of the type size, or the alignment is invalid.
 fn bytes_of<T: Pod>(val: &T) -> &[u8]
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:147-154`](../../.source_1765210505/object-0.37.3/src/pod.rs#L147-L154)*
+
 Cast a `Pod` type to a byte slice.
 
 ### `bytes_of_mut`
@@ -3489,6 +3601,8 @@ Cast a `Pod` type to a byte slice.
 ```rust
 fn bytes_of_mut<T: Pod>(val: &mut T) -> &mut [u8]
 ```
+
+*Defined in [`object-0.37.3/src/pod.rs:158-165`](../../.source_1765210505/object-0.37.3/src/pod.rs#L158-L165)*
 
 Cast a `Pod` type to a mutable byte slice.
 
@@ -3498,6 +3612,8 @@ Cast a `Pod` type to a mutable byte slice.
 fn bytes_of_slice<T: Pod>(val: &[T]) -> &[u8]
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:169-176`](../../.source_1765210505/object-0.37.3/src/pod.rs#L169-L176)*
+
 Cast a slice of a `Pod` type to a byte slice.
 
 ### `bytes_of_slice_mut`
@@ -3505,6 +3621,8 @@ Cast a slice of a `Pod` type to a byte slice.
 ```rust
 fn bytes_of_slice_mut<T: Pod>(val: &mut [T]) -> &mut [u8]
 ```
+
+*Defined in [`object-0.37.3/src/pod.rs:180-187`](../../.source_1765210505/object-0.37.3/src/pod.rs#L180-L187)*
 
 Cast a slice of a `Pod` type to a mutable byte slice.
 
@@ -3516,6 +3634,8 @@ Cast a slice of a `Pod` type to a mutable byte slice.
 type NativeEndian = LittleEndian;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:371`](../../.source_1765210505/object-0.37.3/src/endian.rs#L371)*
+
 The native endianness for the target platform.
 
 ### `U16<E>`
@@ -3523,6 +3643,8 @@ The native endianness for the target platform.
 ```rust
 type U16<E> = U16Bytes<E>;
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:595`](../../.source_1765210505/object-0.37.3/src/endian.rs#L595)*
 
 A `u16` value with an externally specified endianness of type `E`.
 
@@ -3532,6 +3654,8 @@ A `u16` value with an externally specified endianness of type `E`.
 type U32<E> = U32Bytes<E>;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:599`](../../.source_1765210505/object-0.37.3/src/endian.rs#L599)*
+
 A `u32` value with an externally specified endianness of type `E`.
 
 ### `U64<E>`
@@ -3539,6 +3663,8 @@ A `u32` value with an externally specified endianness of type `E`.
 ```rust
 type U64<E> = U64Bytes<E>;
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:603`](../../.source_1765210505/object-0.37.3/src/endian.rs#L603)*
 
 A `u64` value with an externally specified endianness of type `E`.
 
@@ -3548,6 +3674,8 @@ A `u64` value with an externally specified endianness of type `E`.
 type I16<E> = I16Bytes<E>;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:607`](../../.source_1765210505/object-0.37.3/src/endian.rs#L607)*
+
 An `i16` value with an externally specified endianness of type `E`.
 
 ### `I32<E>`
@@ -3555,6 +3683,8 @@ An `i16` value with an externally specified endianness of type `E`.
 ```rust
 type I32<E> = I32Bytes<E>;
 ```
+
+*Defined in [`object-0.37.3/src/endian.rs:611`](../../.source_1765210505/object-0.37.3/src/endian.rs#L611)*
 
 An `i32` value with an externally specified endianness of type `E`.
 
@@ -3564,6 +3694,8 @@ An `i32` value with an externally specified endianness of type `E`.
 type I64<E> = I64Bytes<E>;
 ```
 
+*Defined in [`object-0.37.3/src/endian.rs:615`](../../.source_1765210505/object-0.37.3/src/endian.rs#L615)*
+
 An `i64` value with an externally specified endianness of type `E`.
 
 ### `Result<T>`
@@ -3572,11 +3704,15 @@ An `i64` value with an externally specified endianness of type `E`.
 type Result<T> = result::Result<T, ()>;
 ```
 
+*Defined in [`object-0.37.3/src/pod.rs:13`](../../.source_1765210505/object-0.37.3/src/pod.rs#L13)*
+
 ### `Result<T>`
 
 ```rust
 type Result<T> = result::Result<T, Error>;
 ```
+
+*Defined in [`object-0.37.3/src/read/mod.rs:131`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L131)*
 
 The result type used within the read module.
 
@@ -3586,11 +3722,17 @@ The result type used within the read module.
 type NativeFile<'data, R> = elf::ElfFile64<'data, crate::endian::Endianness, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/mod.rs:171`](../../.source_1765210505/object-0.37.3/src/read/mod.rs#L171)*
+
 The native executable file for the target platform.
 
 ## Macros
 
 ### `unsafe_impl_endian_pod!`
 
+*Defined in [`object-0.37.3/src/endian.rs:387-393`](../../.source_1765210505/object-0.37.3/src/endian.rs#L387-L393)*
+
 ### `unsafe_impl_pod!`
+
+*Defined in [`object-0.37.3/src/pod.rs:189-195`](../../.source_1765210505/object-0.37.3/src/pod.rs#L189-L195)*
 

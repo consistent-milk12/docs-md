@@ -24,13 +24,15 @@ struct Deferred {
 }
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:19-23`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/deferred.rs#L19-L23)*
+
 A `FnOnce()` that is stored inline if small, or otherwise boxed on the heap.
 
 This is a handy way of keeping an unsized `FnOnce()` within a sized structure.
 
 #### Implementations
 
-- <span id="deferred-no-op"></span>`const NO_OP: Self`
+- <span id="deferred-const-no-op"></span>`const NO_OP: Self`
 
 - <span id="deferred-new"></span>`fn new<F: FnOnce()>(f: F) -> Self`
 
@@ -42,13 +44,13 @@ This is a handy way of keeping an unsized `FnOnce()` within a sized structure.
 
 - <span id="deferred-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl<T> Pointable for Deferred`
+##### `impl Pointable for Deferred`
 
-- <span id="deferred-align"></span>`const ALIGN: usize`
+- <span id="deferred-const-align"></span>`const ALIGN: usize`
 
-- <span id="deferred-init"></span>`type Init = T`
+- <span id="deferred-type-init"></span>`type Init = T`
 
-- <span id="deferred-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="deferred-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
 
 - <span id="deferred-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -64,15 +66,18 @@ This is a handy way of keeping an unsized `FnOnce()` within a sized structure.
 type Data = [usize; 3];
 ```
 
+*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:14`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/deferred.rs#L14)*
+
 Some space to keep a `FnOnce()` object on the stack.
 
 ## Constants
 
 ### `DATA_WORDS`
-
 ```rust
 const DATA_WORDS: usize = 3usize;
 ```
+
+*Defined in [`crossbeam-epoch-0.9.18/src/deferred.rs:11`](../../../.source_1765210505/crossbeam-epoch-0.9.18/src/deferred.rs#L11)*
 
 Number of words a piece of `Data` can hold.
 

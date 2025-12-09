@@ -27,6 +27,8 @@ where
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:23-32`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L23-L32)*
+
 An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 #### Trait Implementations
@@ -37,15 +39,15 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 ##### `impl<I> IntoIterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="xcoffrelocationiterator-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="xcoffrelocationiterator-intoiter"></span>`type IntoIter = I`
+- <span id="xcoffrelocationiterator-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="xcoffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- <span id="xcoffrelocationiterator-item"></span>`type Item = (u64, Relocation)`
+- <span id="xcoffrelocationiterator-type-item"></span>`type Item = (u64, Relocation)`
 
 - <span id="xcoffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -56,6 +58,8 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 ```rust
 trait Rel: Debug + Pod { ... }
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:88-98`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L88-L98)*
 
 A trait for generic access to [`xcoff::Rel32`](../../../xcoff/index.md) and [`xcoff::Rel64`](../../../xcoff/index.md).
 
@@ -90,6 +94,8 @@ A trait for generic access to [`xcoff::Rel32`](../../../xcoff/index.md) and [`xc
 type XcoffRelocationIterator32<'data, 'file, R> = XcoffRelocationIterator<'data, 'file, xcoff::FileHeader32, R>;
 ```
 
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:16-17`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L16-L17)*
+
 An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32).
 
 ### `XcoffRelocationIterator64<'data, 'file, R>`
@@ -97,6 +103,8 @@ An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32).
 ```rust
 type XcoffRelocationIterator64<'data, 'file, R> = XcoffRelocationIterator<'data, 'file, xcoff::FileHeader64, R>;
 ```
+
+*Defined in [`object-0.37.3/src/read/xcoff/relocation.rs:19-20`](../../../../../.source_1765210505/object-0.37.3/src/read/xcoff/relocation.rs#L19-L20)*
 
 An iterator for the relocations in an [`XcoffSection64`](super::XcoffSection64).
 

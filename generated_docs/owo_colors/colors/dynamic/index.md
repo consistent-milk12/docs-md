@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Rgb`](#rgb) | struct | Available RGB colors for use with [`OwoColorize::color`](OwoColorize::color) |
+| [`Rgb`](#rgb) | struct | Available RGB colors for use with [`OwoColorize::color`](OwoColorize::color) or [`OwoColorize::on_color`](OwoColorize::on_color) |
 
 ## Structs
 
@@ -18,6 +18,8 @@
 struct Rgb(u8, u8, u8);
 ```
 
+*Defined in [`owo-colors-4.2.3/src/colors/dynamic.rs:10`](../../../../.source_1765210505/owo-colors-4.2.3/src/colors/dynamic.rs#L10)*
+
 Available RGB colors for use with [`OwoColorize::color`](OwoColorize::color)
 or [`OwoColorize::on_color`](OwoColorize::on_color)
 
@@ -25,7 +27,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for Rgb`
 
-- <span id="rgb-clone"></span>`fn clone(&self) -> Rgb` — [`Rgb`](../../index.md)
+- <span id="rgb-clone"></span>`fn clone(&self) -> Rgb` — [`Rgb`](#rgb)
 
 ##### `impl Copy for Rgb`
 
@@ -45,11 +47,11 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Eq for Rgb`
 
-##### `impl<D> OwoColorize for Rgb`
+##### `impl OwoColorize for Rgb`
 
 ##### `impl PartialEq for Rgb`
 
-- <span id="rgb-eq"></span>`fn eq(&self, other: &Rgb) -> bool` — [`Rgb`](../../index.md)
+- <span id="rgb-eq"></span>`fn eq(&self, other: &Rgb) -> bool` — [`Rgb`](#rgb)
 
 ##### `impl StructuralPartialEq for Rgb`
 

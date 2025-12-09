@@ -18,6 +18,8 @@
 trait Sealed { ... }
 ```
 
+*Defined in [`anstream-0.6.21/src/stream.rs:262`](../../../../.source_1765210505/anstream-0.6.21/src/stream.rs#L262)*
+
 #### Implementors
 
 - `&T`

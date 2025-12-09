@@ -9,8 +9,8 @@
 | Item | Kind | Description |
 |------|------|-------------|
 | [`BlocksCallback`](#blockscallback) | struct |  |
-| [`ExponentialBlocks`](#exponentialblocks) | struct | `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence |
-| [`UniformBlocks`](#uniformblocks) | struct | `UniformBlocks` is a parallel iterator that consumes itself as a sequence |
+| [`ExponentialBlocks`](#exponentialblocks) | struct | `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence of parallel blocks of increasing sizes (exponentially). |
+| [`UniformBlocks`](#uniformblocks) | struct | `UniformBlocks` is a parallel iterator that consumes itself as a sequence of parallel blocks of constant sizes. |
 | [`exponential_size`](#exponential_size) | fn |  |
 
 ## Structs
@@ -25,15 +25,17 @@ struct BlocksCallback<S, C> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:4-8`](../../../../.source_1765210505/rayon-1.11.0/src/iter/blocks.rs#L4-L8)*
+
 #### Trait Implementations
 
 ##### `impl<T> IntoEither for BlocksCallback<S, C>`
 
 ##### `impl<T> Pointable for BlocksCallback<S, C>`
 
-- <span id="blockscallback-align"></span>`const ALIGN: usize`
+- <span id="blockscallback-const-align"></span>`const ALIGN: usize`
 
-- <span id="blockscallback-init"></span>`type Init = T`
+- <span id="blockscallback-type-init"></span>`type Init = T`
 
 - <span id="blockscallback-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -45,7 +47,7 @@ struct BlocksCallback<S, C> {
 
 ##### `impl<T, S, C> ProducerCallback for BlocksCallback<S, C>`
 
-- <span id="blockscallback-output"></span>`type Output = <C as Consumer>::Result`
+- <span id="blockscallback-type-output"></span>`type Output = <C as Consumer>::Result`
 
 - <span id="blockscallback-callback"></span>`fn callback<P: Producer<Item = T>>(self, producer: P) -> <Self as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
@@ -57,10 +59,12 @@ struct ExponentialBlocks<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:59-61`](../../../../.source_1765210505/rayon-1.11.0/src/iter/blocks.rs#L59-L61)*
+
 `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of increasing sizes (exponentially).
 
-This struct is created by the `by_exponential_blocks()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `by_exponential_blocks()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -71,7 +75,7 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 ##### `impl<I: clone::Clone> Clone for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-clone"></span>`fn clone(&self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](../index.md)
+- <span id="exponentialblocks-clone"></span>`fn clone(&self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](#exponentialblocks)
 
 ##### `impl<I: fmt::Debug> Debug for ExponentialBlocks<I>`
 
@@ -81,23 +85,23 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 ##### `impl<T> IntoParallelIterator for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-iter"></span>`type Iter = T`
+- <span id="exponentialblocks-type-iter"></span>`type Iter = T`
 
-- <span id="exponentialblocks-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="exponentialblocks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="exponentialblocks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="exponentialblocks-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="exponentialblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for ExponentialBlocks<I>`
 
-- <span id="exponentialblocks-align"></span>`const ALIGN: usize`
+- <span id="exponentialblocks-const-align"></span>`const ALIGN: usize`
 
-- <span id="exponentialblocks-init"></span>`type Init = T`
+- <span id="exponentialblocks-type-init"></span>`type Init = T`
 
 - <span id="exponentialblocks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -116,10 +120,12 @@ struct UniformBlocks<I> {
 }
 ```
 
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:101-104`](../../../../.source_1765210505/rayon-1.11.0/src/iter/blocks.rs#L101-L104)*
+
 `UniformBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of constant sizes.
 
-This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelIterator`](../../prelude/index.md)
+This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelIterator`](../index.md)
 
 
 #### Implementations
@@ -130,7 +136,7 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 ##### `impl<I: clone::Clone> Clone for UniformBlocks<I>`
 
-- <span id="uniformblocks-clone"></span>`fn clone(&self) -> UniformBlocks<I>` — [`UniformBlocks`](../index.md)
+- <span id="uniformblocks-clone"></span>`fn clone(&self) -> UniformBlocks<I>` — [`UniformBlocks`](#uniformblocks)
 
 ##### `impl<I: fmt::Debug> Debug for UniformBlocks<I>`
 
@@ -140,23 +146,23 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 ##### `impl<T> IntoParallelIterator for UniformBlocks<I>`
 
-- <span id="uniformblocks-iter"></span>`type Iter = T`
+- <span id="uniformblocks-type-iter"></span>`type Iter = T`
 
-- <span id="uniformblocks-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="uniformblocks-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="uniformblocks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for UniformBlocks<I>`
 
-- <span id="uniformblocks-item"></span>`type Item = <I as ParallelIterator>::Item`
+- <span id="uniformblocks-type-item"></span>`type Item = <I as ParallelIterator>::Item`
 
 - <span id="uniformblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for UniformBlocks<I>`
 
-- <span id="uniformblocks-align"></span>`const ALIGN: usize`
+- <span id="uniformblocks-const-align"></span>`const ALIGN: usize`
 
-- <span id="uniformblocks-init"></span>`type Init = T`
+- <span id="uniformblocks-type-init"></span>`type Init = T`
 
 - <span id="uniformblocks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -173,4 +179,6 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 ```rust
 fn exponential_size(size: &usize) -> Option<usize>
 ```
+
+*Defined in [`rayon-1.11.0/src/iter/blocks.rs:89-91`](../../../../.source_1765210505/rayon-1.11.0/src/iter/blocks.rs#L89-L91)*
 

@@ -43,7 +43,7 @@
 | [`MAX_SIZE`](#max_size) | const | The max size of a string we can fit inline |
 | [`HEAP_MASK`](#heap_mask) | const | Used as a discriminant to identify different variants |
 | [`STATIC_STR_MASK`](#static_str_mask) | const | Used for `StaticStr` variant |
-| [`LENGTH_MASK`](#length_mask) | const | When our string is stored inline, we represent the length of the string in the last byte, offset |
+| [`LENGTH_MASK`](#length_mask) | const | When our string is stored inline, we represent the length of the string in the last byte, offset by `LENGTH_MASK` |
 | [`EMPTY`](#empty) | const |  |
 
 ## Modules
@@ -64,6 +64,8 @@
 ```rust
 struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 ```
+
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:44-57`](../../../.source_1765210505/compact_str-0.9.0/src/repr/mod.rs#L44-L57)*
 
 #### Implementations
 
@@ -141,11 +143,11 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
 ##### `impl Extend for Repr`
 
-- <span id="repr-extend"></span>`fn extend<T: IntoIterator<Item = Box<str>>>(&mut self, iter: T)`
+- <span id="repr-extend"></span>`fn extend<T: IntoIterator<Item = char>>(&mut self, iter: T)`
 
 ##### `impl FromIterator for super::Repr`
 
-- <span id="superrepr-from-iter"></span>`fn from_iter<T: IntoIterator<Item = Box<str>>>(iter: T) -> Self`
+- <span id="superrepr-from-iter"></span>`fn from_iter<T: IntoIterator<Item = char>>(iter: T) -> Self`
 
 ##### `impl LifetimeFree for super::repr::Repr`
 
@@ -161,46 +163,53 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 fn ensure_read(value: usize) -> usize
 ```
 
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:841-863`](../../../.source_1765210505/compact_str-0.9.0/src/repr/mod.rs#L841-L863)*
+
 Returns the supplied value, and ensures that the value is eagerly loaded into a register.
 
 ## Constants
 
 ### `MAX_SIZE`
-
 ```rust
 const MAX_SIZE: usize = 24usize;
 ```
 
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:32`](../../../.source_1765210505/compact_str-0.9.0/src/repr/mod.rs#L32)*
+
 The max size of a string we can fit inline
 
 ### `HEAP_MASK`
-
 ```rust
 const HEAP_MASK: u8 = 216u8;
 ```
 
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:34`](../../../.source_1765210505/compact_str-0.9.0/src/repr/mod.rs#L34)*
+
 Used as a discriminant to identify different variants
 
 ### `STATIC_STR_MASK`
-
 ```rust
 const STATIC_STR_MASK: u8 = 217u8;
 ```
 
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:36`](../../../.source_1765210505/compact_str-0.9.0/src/repr/mod.rs#L36)*
+
 Used for `StaticStr` variant
 
 ### `LENGTH_MASK`
-
 ```rust
 const LENGTH_MASK: u8 = 192u8;
 ```
+
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:39`](../../../.source_1765210505/compact_str-0.9.0/src/repr/mod.rs#L39)*
 
 When our string is stored inline, we represent the length of the string in the last byte, offset
 by `LENGTH_MASK`
 
 ### `EMPTY`
-
 ```rust
 const EMPTY: Repr;
 ```
+
+*Defined in [`compact_str-0.9.0/src/repr/mod.rs:41`](../../../.source_1765210505/compact_str-0.9.0/src/repr/mod.rs#L41)*
 

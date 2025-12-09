@@ -44,6 +44,8 @@ struct Bomb {
 }
 ```
 
+*Defined in [`backtrace-0.3.76/src/backtrace/libunwind.rs:102-104`](../../../../.source_1765210505/backtrace-0.3.76/src/backtrace/libunwind.rs#L102-L104)*
+
 #### Trait Implementations
 
 ##### `impl Drop for Bomb`
@@ -64,6 +66,8 @@ enum Frame {
     },
 }
 ```
+
+*Defined in [`backtrace-0.3.76/src/backtrace/libunwind.rs:21-28`](../../../../.source_1765210505/backtrace-0.3.76/src/backtrace/libunwind.rs#L21-L28)*
 
 #### Implementations
 
@@ -92,4 +96,6 @@ enum Frame {
 ```rust
 unsafe fn trace(cb: &mut dyn FnMut(&super::Frame) -> bool)
 ```
+
+*Defined in [`backtrace-0.3.76/src/backtrace/libunwind.rs:115-139`](../../../../.source_1765210505/backtrace-0.3.76/src/backtrace/libunwind.rs#L115-L139)*
 

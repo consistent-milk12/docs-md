@@ -25,6 +25,8 @@ struct Export<'data> {
 }
 ```
 
+*Defined in [`object-0.37.3/src/read/pe/export.rs:42-51`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/export.rs#L42-L51)*
+
 An export from a PE file.
 
 There are multiple kinds of PE exports (with or without a name, and local or forwarded).
@@ -47,13 +49,13 @@ There are multiple kinds of PE exports (with or without a name, and local or for
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for Export<'data>`
+##### `impl Clone for Export<'data>`
 
 - <span id="export-clone"></span>`fn clone(&self) -> Export<'data>` — [`Export`](../index.md)
 
-##### `impl<'data> Copy for Export<'data>`
+##### `impl Copy for Export<'data>`
 
-##### `impl<'a> Debug for Export<'a>`
+##### `impl Debug for Export<'a>`
 
 - <span id="export-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
 
@@ -69,6 +71,8 @@ struct ExportTable<'data> {
     name_ordinals: &'data [crate::endian::U16Bytes<crate::endian::LittleEndian>],
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/export.rs:87-94`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/export.rs#L87-L94)*
 
 A partially parsed PE export table.
 
@@ -114,11 +118,11 @@ Returned by [`DataDirectories::export_table`](super::DataDirectories::export_tab
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ExportTable<'data>`
+##### `impl Clone for ExportTable<'data>`
 
 - <span id="exporttable-clone"></span>`fn clone(&self) -> ExportTable<'data>` — [`ExportTable`](../index.md)
 
-##### `impl<'data> Debug for ExportTable<'data>`
+##### `impl Debug for ExportTable<'data>`
 
 - <span id="exporttable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -133,6 +137,8 @@ enum ExportTarget<'data> {
     ForwardByName(&'data [u8], &'data [u8]),
 }
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/export.rs:10-21`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/export.rs#L10-L21)*
 
 Where an export is pointing to.
 
@@ -162,13 +168,13 @@ Where an export is pointing to.
 
 #### Trait Implementations
 
-##### `impl<'data> Clone for ExportTarget<'data>`
+##### `impl Clone for ExportTarget<'data>`
 
 - <span id="exporttarget-clone"></span>`fn clone(&self) -> ExportTarget<'data>` — [`ExportTarget`](../index.md)
 
-##### `impl<'data> Copy for ExportTarget<'data>`
+##### `impl Copy for ExportTarget<'data>`
 
-##### `impl<'a> Debug for ExportTarget<'a>`
+##### `impl Debug for ExportTarget<'a>`
 
 - <span id="exporttarget-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
 
@@ -179,4 +185,6 @@ Where an export is pointing to.
 ```rust
 fn parse_ordinal(digits: &[u8]) -> Option<u32>
 ```
+
+*Defined in [`object-0.37.3/src/read/pe/export.rs:324-334`](../../../../../.source_1765210505/object-0.37.3/src/read/pe/export.rs#L324-L334)*
 

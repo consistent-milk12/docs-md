@@ -57,6 +57,8 @@ struct ArgMatches {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:67-74`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L67-L74)*
+
 Container for parse results.
 
 Used to get information about the arguments that were supplied to the program at runtime by
@@ -106,19 +108,43 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- <span id="argmatches-subcommand"></span>`fn subcommand(&self) -> Option<(&str, &ArgMatches)>` — [`ArgMatches`](../../../index.md)
+- <span id="argmatches-get-one"></span>`fn get_one<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<&T>`
 
-- <span id="argmatches-remove-subcommand"></span>`fn remove_subcommand(&mut self) -> Option<(String, ArgMatches)>` — [`ArgMatches`](../../../index.md)
+- <span id="argmatches-get-count"></span>`fn get_count(&self, id: &str) -> u8`
 
-- <span id="argmatches-subcommand-matches"></span>`fn subcommand_matches(&self, name: &str) -> Option<&ArgMatches>` — [`ArgMatches`](../../../index.md)
+- <span id="argmatches-get-flag"></span>`fn get_flag(&self, id: &str) -> bool`
 
-- <span id="argmatches-subcommand-name"></span>`fn subcommand_name(&self) -> Option<&str>`
+- <span id="argmatches-get-many"></span>`fn get_many<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](#valuesref)
+
+- <span id="argmatches-get-occurrences"></span>`fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](#occurrencesref)
+
+- <span id="argmatches-get-raw"></span>`fn get_raw(&self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](#rawvalues)
+
+- <span id="argmatches-get-raw-occurrences"></span>`fn get_raw_occurrences(&self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](#rawoccurrences)
+
+- <span id="argmatches-remove-one"></span>`fn remove_one<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<T>`
+
+- <span id="argmatches-remove-many"></span>`fn remove_many<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Values<T>>` — [`Values`](#values)
+
+- <span id="argmatches-remove-occurrences"></span>`fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](#occurrences)
+
+- <span id="argmatches-contains-id"></span>`fn contains_id(&self, id: &str) -> bool`
+
+- <span id="argmatches-ids"></span>`fn ids(&self) -> IdsRef<'_>` — [`IdsRef`](#idsref)
+
+- <span id="argmatches-args-present"></span>`fn args_present(&self) -> bool`
+
+- <span id="argmatches-value-source"></span>`fn value_source(&self, id: &str) -> Option<ValueSource>` — [`ValueSource`](../value_source/index.md)
+
+- <span id="argmatches-index-of"></span>`fn index_of(&self, id: &str) -> Option<usize>`
+
+- <span id="argmatches-indices-of"></span>`fn indices_of(&self, id: &str) -> Option<Indices<'_>>` — [`Indices`](#indices)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgMatches`
 
-- <span id="argmatches-clone"></span>`fn clone(&self) -> ArgMatches` — [`ArgMatches`](../../../index.md)
+- <span id="argmatches-clone"></span>`fn clone(&self) -> ArgMatches` — [`ArgMatches`](#argmatches)
 
 ##### `impl Debug for ArgMatches`
 
@@ -126,13 +152,13 @@ if matches.contains_id("out") {
 
 ##### `impl Default for ArgMatches`
 
-- <span id="argmatches-default"></span>`fn default() -> ArgMatches` — [`ArgMatches`](../../../index.md)
+- <span id="argmatches-default"></span>`fn default() -> ArgMatches` — [`ArgMatches`](#argmatches)
 
 ##### `impl Eq for ArgMatches`
 
 ##### `impl PartialEq for ArgMatches`
 
-- <span id="argmatches-eq"></span>`fn eq(&self, other: &ArgMatches) -> bool` — [`ArgMatches`](../../../index.md)
+- <span id="argmatches-eq"></span>`fn eq(&self, other: &ArgMatches) -> bool` — [`ArgMatches`](#argmatches)
 
 ##### `impl StructuralPartialEq for ArgMatches`
 
@@ -144,6 +170,8 @@ struct SubCommand {
     matches: ArgMatches,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1357-1360`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1357-L1360)*
 
 #### Trait Implementations
 
@@ -171,7 +199,9 @@ struct IdsRef<'a> {
 }
 ```
 
-Iterate over `Arg` and `ArgGroup` [`Id`](../../../index.md)s via `ArgMatches::ids`.
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1384-1386`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1384-L1386)*
+
+Iterate over `Arg` and `ArgGroup` [`Id`](../../../util/id/index.md)s via `ArgMatches::ids`.
 
 # Examples
 
@@ -195,33 +225,33 @@ assert_eq!(
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for IdsRef<'a>`
+##### `impl Clone for IdsRef<'a>`
 
-- <span id="idsref-clone"></span>`fn clone(&self) -> IdsRef<'a>` — [`IdsRef`](../../index.md)
+- <span id="idsref-clone"></span>`fn clone(&self) -> IdsRef<'a>` — [`IdsRef`](#idsref)
 
-##### `impl<'a> Debug for IdsRef<'a>`
+##### `impl Debug for IdsRef<'a>`
 
 - <span id="idsref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for IdsRef<'a>`
+##### `impl DoubleEndedIterator for IdsRef<'a>`
 
-- <span id="idsref-next-back"></span>`fn next_back(&mut self) -> Option<&'a Id>` — [`Id`](../../../index.md)
+- <span id="idsref-next-back"></span>`fn next_back(&mut self) -> Option<&'a Id>` — [`Id`](../../../util/id/index.md)
 
 ##### `impl ExactSizeIterator for IdsRef<'_>`
 
-##### `impl<I> IntoIterator for IdsRef<'a>`
+##### `impl IntoIterator for IdsRef<'a>`
 
-- <span id="idsref-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="idsref-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="idsref-intoiter"></span>`type IntoIter = I`
+- <span id="idsref-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="idsref-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for IdsRef<'a>`
+##### `impl Iterator for IdsRef<'a>`
 
-- <span id="idsref-item"></span>`type Item = &'a Id`
+- <span id="idsref-type-item"></span>`type Item = &'a Id`
 
-- <span id="idsref-next"></span>`fn next(&mut self) -> Option<&'a Id>` — [`Id`](../../../index.md)
+- <span id="idsref-next"></span>`fn next(&mut self) -> Option<&'a Id>` — [`Id`](../../../util/id/index.md)
 
 - <span id="idsref-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
@@ -233,6 +263,8 @@ struct Values<T> {
     len: usize,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1428-1432`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1428-L1432)*
 
 Iterate over multiple values for an argument via `ArgMatches::remove_many`.
 
@@ -259,7 +291,7 @@ assert_eq!(values.next(), None);
 
 ##### `impl<T: clone::Clone> Clone for Values<T>`
 
-- <span id="values-clone"></span>`fn clone(&self) -> Values<T>` — [`Values`](../../index.md)
+- <span id="values-clone"></span>`fn clone(&self) -> Values<T>` — [`Values`](#values)
 
 ##### `impl<T: fmt::Debug> Debug for Values<T>`
 
@@ -277,15 +309,15 @@ assert_eq!(values.next(), None);
 
 ##### `impl<I> IntoIterator for Values<T>`
 
-- <span id="values-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="values-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="values-intoiter"></span>`type IntoIter = I`
+- <span id="values-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="values-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for Values<T>`
 
-- <span id="values-item"></span>`type Item = T`
+- <span id="values-type-item"></span>`type Item = T`
 
 - <span id="values-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -299,6 +331,8 @@ struct ValuesRef<'a, T> {
     len: usize,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1496-1500`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1496-L1500)*
 
 Iterate over multiple values for an argument via `ArgMatches::get_many`.
 
@@ -326,7 +360,7 @@ assert_eq!(values.next(), None);
 
 ##### `impl<'a, T: clone::Clone> Clone for ValuesRef<'a, T>`
 
-- <span id="valuesref-clone"></span>`fn clone(&self) -> ValuesRef<'a, T>` — [`ValuesRef`](../../index.md)
+- <span id="valuesref-clone"></span>`fn clone(&self) -> ValuesRef<'a, T>` — [`ValuesRef`](#valuesref)
 
 ##### `impl<'a, T: fmt::Debug> Debug for ValuesRef<'a, T>`
 
@@ -344,15 +378,15 @@ assert_eq!(values.next(), None);
 
 ##### `impl<I> IntoIterator for ValuesRef<'a, T>`
 
-- <span id="valuesref-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="valuesref-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="valuesref-intoiter"></span>`type IntoIter = I`
+- <span id="valuesref-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="valuesref-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T: 'a> Iterator for ValuesRef<'a, T>`
 
-- <span id="valuesref-item"></span>`type Item = &'a T`
+- <span id="valuesref-type-item"></span>`type Item = &'a T`
 
 - <span id="valuesref-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -366,6 +400,8 @@ struct RawValues<'a> {
     len: usize,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1569-1573`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1569-L1573)*
 
 Iterate over raw argument values via `ArgMatches::get_raw`.
 
@@ -396,11 +432,11 @@ assert_eq!(
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for RawValues<'a>`
+##### `impl Clone for RawValues<'a>`
 
-- <span id="rawvalues-clone"></span>`fn clone(&self) -> RawValues<'a>` — [`RawValues`](../../index.md)
+- <span id="rawvalues-clone"></span>`fn clone(&self) -> RawValues<'a>` — [`RawValues`](#rawvalues)
 
-##### `impl<'a> Debug for RawValues<'a>`
+##### `impl Debug for RawValues<'a>`
 
 - <span id="rawvalues-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -408,23 +444,23 @@ assert_eq!(
 
 - <span id="rawvalues-default"></span>`fn default() -> Self`
 
-##### `impl<'a> DoubleEndedIterator for RawValues<'a>`
+##### `impl DoubleEndedIterator for RawValues<'a>`
 
 - <span id="rawvalues-next-back"></span>`fn next_back(&mut self) -> Option<&'a OsStr>`
 
 ##### `impl ExactSizeIterator for RawValues<'_>`
 
-##### `impl<I> IntoIterator for RawValues<'a>`
+##### `impl IntoIterator for RawValues<'a>`
 
-- <span id="rawvalues-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawvalues-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawvalues-intoiter"></span>`type IntoIter = I`
+- <span id="rawvalues-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawvalues-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for RawValues<'a>`
+##### `impl Iterator for RawValues<'a>`
 
-- <span id="rawvalues-item"></span>`type Item = &'a OsStr`
+- <span id="rawvalues-type-item"></span>`type Item = &'a OsStr`
 
 - <span id="rawvalues-next"></span>`fn next(&mut self) -> Option<&'a OsStr>`
 
@@ -437,6 +473,8 @@ struct Occurrences<T> {
     iter: std::iter::Map<std::vec::IntoIter<Vec<self::any_value::AnyValue>>, fn(Vec<self::any_value::AnyValue>) -> OccurrenceValues<T>>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1621-1624`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1621-L1624)*
 
 #### Trait Implementations
 
@@ -460,15 +498,15 @@ struct Occurrences<T> {
 
 ##### `impl<I> IntoIterator for Occurrences<T>`
 
-- <span id="occurrences-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="occurrences-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="occurrences-intoiter"></span>`type IntoIter = I`
+- <span id="occurrences-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="occurrences-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for Occurrences<T>`
 
-- <span id="occurrences-item"></span>`type Item = OccurrenceValues<T>`
+- <span id="occurrences-type-item"></span>`type Item = OccurrenceValues<T>`
 
 - <span id="occurrences-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -481,6 +519,8 @@ struct OccurrenceValues<T> {
     iter: std::iter::Map<std::vec::IntoIter<self::any_value::AnyValue>, fn(self::any_value::AnyValue) -> T>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1656-1659`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1656-L1659)*
 
 #### Trait Implementations
 
@@ -500,15 +540,15 @@ struct OccurrenceValues<T> {
 
 ##### `impl<I> IntoIterator for OccurrenceValues<T>`
 
-- <span id="occurrencevalues-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="occurrencevalues-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="occurrencevalues-intoiter"></span>`type IntoIter = I`
+- <span id="occurrencevalues-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="occurrencevalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for OccurrenceValues<T>`
 
-- <span id="occurrencevalues-item"></span>`type Item = T`
+- <span id="occurrencevalues-type-item"></span>`type Item = T`
 
 - <span id="occurrencevalues-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -521,6 +561,8 @@ struct OccurrencesRef<'a, T> {
     iter: std::iter::Map<std::slice::Iter<'a, Vec<self::any_value::AnyValue>>, fn(&Vec<self::any_value::AnyValue>) -> OccurrenceValuesRef<'_, T>>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1682-1685`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1682-L1685)*
 
 #### Trait Implementations
 
@@ -544,15 +586,15 @@ struct OccurrencesRef<'a, T> {
 
 ##### `impl<I> IntoIterator for OccurrencesRef<'a, T>`
 
-- <span id="occurrencesref-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="occurrencesref-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="occurrencesref-intoiter"></span>`type IntoIter = I`
+- <span id="occurrencesref-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="occurrencesref-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for OccurrencesRef<'a, T>`
 
-- <span id="occurrencesref-item"></span>`type Item = OccurrenceValuesRef<'a, T>`
+- <span id="occurrencesref-type-item"></span>`type Item = OccurrenceValuesRef<'a, T>`
 
 - <span id="occurrencesref-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -565,6 +607,8 @@ struct OccurrenceValuesRef<'a, T> {
     iter: std::iter::Map<std::slice::Iter<'a, self::any_value::AnyValue>, fn(&self::any_value::AnyValue) -> &T>,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1722-1725`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1722-L1725)*
 
 #### Trait Implementations
 
@@ -584,15 +628,15 @@ struct OccurrenceValuesRef<'a, T> {
 
 ##### `impl<I> IntoIterator for OccurrenceValuesRef<'a, T>`
 
-- <span id="occurrencevaluesref-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="occurrencevaluesref-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="occurrencevaluesref-intoiter"></span>`type IntoIter = I`
+- <span id="occurrencevaluesref-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="occurrencevaluesref-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for OccurrenceValuesRef<'a, T>`
 
-- <span id="occurrencevaluesref-item"></span>`type Item = &'a T`
+- <span id="occurrencevaluesref-type-item"></span>`type Item = &'a T`
 
 - <span id="occurrencevaluesref-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -606,13 +650,15 @@ struct RawOccurrences<'a> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1754-1757`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1754-L1757)*
+
 #### Trait Implementations
 
-##### `impl<'a> Clone for RawOccurrences<'a>`
+##### `impl Clone for RawOccurrences<'a>`
 
 - <span id="rawoccurrences-clone"></span>`fn clone(&self) -> RawOccurrences<'a>` — [`RawOccurrences`](#rawoccurrences)
 
-##### `impl<'a> Debug for RawOccurrences<'a>`
+##### `impl Debug for RawOccurrences<'a>`
 
 - <span id="rawoccurrences-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -626,17 +672,17 @@ struct RawOccurrences<'a> {
 
 ##### `impl ExactSizeIterator for RawOccurrences<'_>`
 
-##### `impl<I> IntoIterator for RawOccurrences<'a>`
+##### `impl IntoIterator for RawOccurrences<'a>`
 
-- <span id="rawoccurrences-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawoccurrences-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawoccurrences-intoiter"></span>`type IntoIter = I`
+- <span id="rawoccurrences-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawoccurrences-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for RawOccurrences<'a>`
+##### `impl Iterator for RawOccurrences<'a>`
 
-- <span id="rawoccurrences-item"></span>`type Item = RawOccurrenceValues<'a>`
+- <span id="rawoccurrences-type-item"></span>`type Item = RawOccurrenceValues<'a>`
 
 - <span id="rawoccurrences-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -650,33 +696,35 @@ struct RawOccurrenceValues<'a> {
 }
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1789-1792`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1789-L1792)*
+
 #### Trait Implementations
 
-##### `impl<'a> Clone for RawOccurrenceValues<'a>`
+##### `impl Clone for RawOccurrenceValues<'a>`
 
 - <span id="rawoccurrencevalues-clone"></span>`fn clone(&self) -> RawOccurrenceValues<'a>` — [`RawOccurrenceValues`](#rawoccurrencevalues)
 
-##### `impl<'a> Debug for RawOccurrenceValues<'a>`
+##### `impl Debug for RawOccurrenceValues<'a>`
 
 - <span id="rawoccurrencevalues-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> DoubleEndedIterator for RawOccurrenceValues<'a>`
+##### `impl DoubleEndedIterator for RawOccurrenceValues<'a>`
 
 - <span id="rawoccurrencevalues-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl ExactSizeIterator for RawOccurrenceValues<'_>`
 
-##### `impl<I> IntoIterator for RawOccurrenceValues<'a>`
+##### `impl IntoIterator for RawOccurrenceValues<'a>`
 
-- <span id="rawoccurrencevalues-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rawoccurrencevalues-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rawoccurrencevalues-intoiter"></span>`type IntoIter = I`
+- <span id="rawoccurrencevalues-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rawoccurrencevalues-into-iter"></span>`fn into_iter(self) -> I`
 
-##### `impl<'a> Iterator for RawOccurrenceValues<'a>`
+##### `impl Iterator for RawOccurrenceValues<'a>`
 
-- <span id="rawoccurrencevalues-item"></span>`type Item = &'a OsStr`
+- <span id="rawoccurrencevalues-type-item"></span>`type Item = &'a OsStr`
 
 - <span id="rawoccurrencevalues-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
@@ -690,6 +738,8 @@ struct Indices<'a> {
     len: usize,
 }
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1842-1845`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1842-L1845)*
 
 Iterate over indices for where an argument appeared when parsing, via `ArgMatches::indices_of`
 
@@ -715,11 +765,11 @@ assert_eq!(indices.next(), None);
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Indices<'a>`
+##### `impl Clone for Indices<'a>`
 
-- <span id="indices-clone"></span>`fn clone(&self) -> Indices<'a>` — [`Indices`](../../index.md)
+- <span id="indices-clone"></span>`fn clone(&self) -> Indices<'a>` — [`Indices`](#indices)
 
-##### `impl<'a> Debug for Indices<'a>`
+##### `impl Debug for Indices<'a>`
 
 - <span id="indices-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -733,17 +783,17 @@ assert_eq!(indices.next(), None);
 
 ##### `impl ExactSizeIterator for Indices<'_>`
 
-##### `impl<I> IntoIterator for Indices<'a>`
+##### `impl IntoIterator for Indices<'a>`
 
-- <span id="indices-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="indices-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="indices-intoiter"></span>`type IntoIter = I`
+- <span id="indices-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="indices-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Indices<'_>`
 
-- <span id="indices-item"></span>`type Item = usize`
+- <span id="indices-type-item"></span>`type Item = usize`
 
 - <span id="indices-next"></span>`fn next(&mut self) -> Option<usize>`
 
@@ -757,9 +807,13 @@ assert_eq!(indices.next(), None);
 fn unwrap_downcast_ref<T: Any + Clone + Send + Sync + 'static>(value: &self::any_value::AnyValue) -> &T
 ```
 
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1889-1891`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1889-L1891)*
+
 ### `unwrap_downcast_into`
 
 ```rust
 fn unwrap_downcast_into<T: Any + Clone + Send + Sync + 'static>(value: self::any_value::AnyValue) -> T
 ```
+
+*Defined in [`clap_builder-4.5.53/src/parser/matches/arg_matches.rs:1894-1896`](../../../../../.source_1765210505/clap_builder-4.5.53/src/parser/matches/arg_matches.rs#L1894-L1896)*
 

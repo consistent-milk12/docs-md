@@ -15,7 +15,7 @@ unless you have need to name one of the iterator types.
 | [`IntoIter`](#intoiter) | struct | Parallel iterator over a double-ended queue |
 | [`Iter`](#iter) | struct | Parallel iterator over an immutable reference to a double-ended queue |
 | [`IterMut`](#itermut) | struct | Parallel iterator over a mutable reference to a double-ended queue |
-| [`Drain`](#drain) | struct | Draining parallel iterator that moves a range out of a double-ended queue |
+| [`Drain`](#drain) | struct | Draining parallel iterator that moves a range out of a double-ended queue, but keeps the total capacity. |
 
 ## Structs
 
@@ -26,6 +26,8 @@ struct IntoIter<T: Send> {
     inner: vec::IntoIter<T>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:17-19`](../../../../.source_1765210505/rayon-1.11.0/src/collections/vec_deque.rs#L17-L19)*
 
 Parallel iterator over a double-ended queue
 
@@ -51,15 +53,15 @@ Parallel iterator over a double-ended queue
 
 ##### `impl<T> IntoParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-iter"></span>`type Iter = T`
+- <span id="intoiter-type-iter"></span>`type Iter = T`
 
-- <span id="intoiter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for IntoIter<T>`
 
-- <span id="intoiter-item"></span>`type Item = T`
+- <span id="intoiter-type-item"></span>`type Item = T`
 
 - <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -67,9 +69,9 @@ Parallel iterator over a double-ended queue
 
 ##### `impl<T> Pointable for IntoIter<T>`
 
-- <span id="intoiter-align"></span>`const ALIGN: usize`
+- <span id="intoiter-const-align"></span>`const ALIGN: usize`
 
-- <span id="intoiter-init"></span>`type Init = T`
+- <span id="intoiter-type-init"></span>`type Init = T`
 
 - <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -86,6 +88,8 @@ struct Iter<'a, T> {
     inner: Chain<slice::Iter<'a, T>, slice::Iter<'a, T>>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:39-41`](../../../../.source_1765210505/rayon-1.11.0/src/collections/vec_deque.rs#L39-L41)*
 
 Parallel iterator over an immutable reference to a double-ended queue
 
@@ -111,15 +115,15 @@ Parallel iterator over an immutable reference to a double-ended queue
 
 ##### `impl<T> IntoParallelIterator for Iter<'a, T>`
 
-- <span id="iter-iter"></span>`type Iter = T`
+- <span id="iter-type-iter"></span>`type Iter = T`
 
-- <span id="iter-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="iter-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T: Sync> ParallelIterator for Iter<'a, T>`
 
-- <span id="iter-item"></span>`type Item = &'a T`
+- <span id="iter-type-item"></span>`type Item = &'a T`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -127,9 +131,9 @@ Parallel iterator over an immutable reference to a double-ended queue
 
 ##### `impl<T> Pointable for Iter<'a, T>`
 
-- <span id="iter-align"></span>`const ALIGN: usize`
+- <span id="iter-const-align"></span>`const ALIGN: usize`
 
-- <span id="iter-init"></span>`type Init = T`
+- <span id="iter-type-init"></span>`type Init = T`
 
 - <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -146,6 +150,8 @@ struct IterMut<'a, T> {
     inner: Chain<slice::IterMut<'a, T>, slice::IterMut<'a, T>>,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:70-72`](../../../../.source_1765210505/rayon-1.11.0/src/collections/vec_deque.rs#L70-L72)*
 
 Parallel iterator over a mutable reference to a double-ended queue
 
@@ -167,15 +173,15 @@ Parallel iterator over a mutable reference to a double-ended queue
 
 ##### `impl<T> IntoParallelIterator for IterMut<'a, T>`
 
-- <span id="itermut-iter"></span>`type Iter = T`
+- <span id="itermut-type-iter"></span>`type Iter = T`
 
-- <span id="itermut-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="itermut-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="itermut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T: Send> ParallelIterator for IterMut<'a, T>`
 
-- <span id="itermut-item"></span>`type Item = &'a mut T`
+- <span id="itermut-type-item"></span>`type Item = &'a mut T`
 
 - <span id="itermut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -183,9 +189,9 @@ Parallel iterator over a mutable reference to a double-ended queue
 
 ##### `impl<T> Pointable for IterMut<'a, T>`
 
-- <span id="itermut-align"></span>`const ALIGN: usize`
+- <span id="itermut-const-align"></span>`const ALIGN: usize`
 
-- <span id="itermut-init"></span>`type Init = T`
+- <span id="itermut-type-init"></span>`type Init = T`
 
 - <span id="itermut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
@@ -204,6 +210,8 @@ struct Drain<'a, T> {
     orig_len: usize,
 }
 ```
+
+*Defined in [`rayon-1.11.0/src/collections/vec_deque.rs:94-98`](../../../../.source_1765210505/rayon-1.11.0/src/collections/vec_deque.rs#L94-L98)*
 
 Draining parallel iterator that moves a range out of a double-ended queue,
 but keeps the total capacity.
@@ -230,15 +238,15 @@ but keeps the total capacity.
 
 ##### `impl<T> IntoParallelIterator for Drain<'a, T>`
 
-- <span id="drain-iter"></span>`type Iter = T`
+- <span id="drain-type-iter"></span>`type Iter = T`
 
-- <span id="drain-item"></span>`type Item = <T as ParallelIterator>::Item`
+- <span id="drain-type-item"></span>`type Item = <T as ParallelIterator>::Item`
 
 - <span id="drain-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send> ParallelIterator for Drain<'_, T>`
 
-- <span id="drain-item"></span>`type Item = T`
+- <span id="drain-type-item"></span>`type Item = T`
 
 - <span id="drain-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
@@ -246,9 +254,9 @@ but keeps the total capacity.
 
 ##### `impl<T> Pointable for Drain<'a, T>`
 
-- <span id="drain-align"></span>`const ALIGN: usize`
+- <span id="drain-const-align"></span>`const ALIGN: usize`
 
-- <span id="drain-init"></span>`type Init = T`
+- <span id="drain-type-init"></span>`type Init = T`
 
 - <span id="drain-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 

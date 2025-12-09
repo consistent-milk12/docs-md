@@ -16,8 +16,8 @@ walkdir = "2"
 
 # From the top
 
-The [`WalkDir`](#walkdir) type builds iterators. The [`DirEntry`](#direntry) type describes values
-yielded by the iterator. Finally, the [`Error`](#error) type is a small wrapper around
+The [`WalkDir`](#walkdir) type builds iterators. The [`DirEntry`](dent/index.md) type describes values
+yielded by the iterator. Finally, the [`Error`](error/index.md) type is a small wrapper around
 `std::io::Error` with additional information, such as if a loop was detected
 while following symbolic links (not enabled by default).
 
@@ -131,7 +131,7 @@ Ok(())
 | [`WalkDir`](#walkdir) | struct | A builder to create an iterator for recursively walking a directory. |
 | [`WalkDirOptions`](#walkdiroptions) | struct |  |
 | [`IntoIter`](#intoiter) | struct | An iterator for recursively descending into a directory. |
-| [`Ancestor`](#ancestor) | struct | An ancestor is an item in the directory tree traversed by walkdir, and is |
+| [`Ancestor`](#ancestor) | struct | An ancestor is an item in the directory tree traversed by walkdir, and is used to check for loops in the tree when traversing symlinks. |
 | [`FilterEntry`](#filterentry) | struct | A recursive directory iterator that skips entries. |
 | [`DirList`](#dirlist) | enum | A sequence of unconsumed directory entries. |
 | [`DirEntryExt`](#direntryext) | trait |  |
@@ -158,12 +158,14 @@ struct DirEntry {
 }
 ```
 
+*Defined in [`walkdir-2.5.0/src/dent.rs:35-59`](../../.source_1765210505/walkdir-2.5.0/src/dent.rs#L35-L59)*
+
 A directory entry.
 
 This is the type of value that is yielded from the iterators defined in
 this crate.
 
-On Unix systems, this type implements the [`DirEntryExt`](#direntryext) trait, which
+On Unix systems, this type implements the [`DirEntryExt`](dent/index.md) trait, which
 provides efficient access to the inode number of the directory entry.
 
 # Differences with `std::fs::DirEntry`
@@ -231,13 +233,13 @@ operations operate on the symbolic link.
 
 - <span id="direntry-from-entry"></span>`fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](#result)
 
-- <span id="direntry-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](#result), [`DirEntry`](#direntry)
+- <span id="direntry-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](#result), [`DirEntry`](dent/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for DirEntry`
 
-- <span id="direntry-clone"></span>`fn clone(&self) -> DirEntry` — [`DirEntry`](#direntry)
+- <span id="direntry-clone"></span>`fn clone(&self) -> DirEntry` — [`DirEntry`](dent/index.md)
 
 ##### `impl Debug for DirEntry`
 
@@ -255,6 +257,8 @@ struct Error {
     inner: ErrorInner,
 }
 ```
+
+*Defined in [`walkdir-2.5.0/src/error.rs:28-31`](../../.source_1765210505/walkdir-2.5.0/src/error.rs#L28-L31)*
 
 An error produced by recursively walking a directory.
 
@@ -289,7 +293,7 @@ accessing the underlying error data in a structured form.
 
 - <span id="error-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
 
-- <span id="error-from-entry"></span>`fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](#direntry)
+- <span id="error-from-entry"></span>`fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](dent/index.md)
 
 - <span id="error-from-io"></span>`fn from_io(depth: usize, err: io::Error) -> Self`
 
@@ -313,7 +317,7 @@ accessing the underlying error data in a structured form.
 
 - <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
 
-##### `impl<T> ToString for Error`
+##### `impl ToString for Error`
 
 - <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
@@ -325,6 +329,8 @@ struct WalkDir {
     root: std::path::PathBuf,
 }
 ```
+
+*Defined in [`walkdir-2.5.0/src/lib.rs:234-237`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L234-L237)*
 
 A builder to create an iterator for recursively walking a directory.
 
@@ -427,9 +433,9 @@ error is reported.
 
 ##### `impl IntoIterator for WalkDir`
 
-- <span id="walkdir-item"></span>`type Item = Result<DirEntry, Error>`
+- <span id="walkdir-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="walkdir-intoiter"></span>`type IntoIter = IntoIter`
+- <span id="walkdir-type-intoiter"></span>`type IntoIter = IntoIter`
 
 - <span id="walkdir-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](#intoiter)
 
@@ -447,6 +453,8 @@ struct WalkDirOptions {
     same_file_system: bool,
 }
 ```
+
+*Defined in [`walkdir-2.5.0/src/lib.rs:239-255`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L239-L255)*
 
 #### Trait Implementations
 
@@ -468,6 +476,8 @@ struct IntoIter {
     root_device: Option<u64>,
 }
 ```
+
+*Defined in [`walkdir-2.5.0/src/lib.rs:566-606`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L566-L606)*
 
 An iterator for recursively descending into a directory.
 
@@ -541,19 +551,19 @@ The order of elements yielded by this iterator is unspecified.
 
 - <span id="intoiter-filter-entry"></span>`fn filter_entry<P>(self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
 
-- <span id="intoiter-handle-entry"></span>`fn handle_entry(&mut self, dent: DirEntry) -> Option<Result<DirEntry>>` — [`DirEntry`](#direntry), [`Result`](#result)
+- <span id="intoiter-handle-entry"></span>`fn handle_entry(&mut self, dent: DirEntry) -> Option<Result<DirEntry>>` — [`DirEntry`](dent/index.md), [`Result`](#result)
 
-- <span id="intoiter-get-deferred-dir"></span>`fn get_deferred_dir(&mut self) -> Option<DirEntry>` — [`DirEntry`](#direntry)
+- <span id="intoiter-get-deferred-dir"></span>`fn get_deferred_dir(&mut self) -> Option<DirEntry>` — [`DirEntry`](dent/index.md)
 
-- <span id="intoiter-push"></span>`fn push(&mut self, dent: &DirEntry) -> Result<()>` — [`DirEntry`](#direntry), [`Result`](#result)
+- <span id="intoiter-push"></span>`fn push(&mut self, dent: &DirEntry) -> Result<()>` — [`DirEntry`](dent/index.md), [`Result`](#result)
 
 - <span id="intoiter-pop"></span>`fn pop(&mut self)`
 
-- <span id="intoiter-follow"></span>`fn follow(&self, dent: DirEntry) -> Result<DirEntry>` — [`DirEntry`](#direntry), [`Result`](#result)
+- <span id="intoiter-follow"></span>`fn follow(&self, dent: DirEntry) -> Result<DirEntry>` — [`DirEntry`](dent/index.md), [`Result`](#result)
 
 - <span id="intoiter-check-loop"></span>`fn check_loop<P: AsRef<Path>>(&self, child: P) -> Result<()>` — [`Result`](#result)
 
-- <span id="intoiter-is-same-file-system"></span>`fn is_same_file_system(&mut self, dent: &DirEntry) -> Result<bool>` — [`DirEntry`](#direntry), [`Result`](#result)
+- <span id="intoiter-is-same-file-system"></span>`fn is_same_file_system(&mut self, dent: &DirEntry) -> Result<bool>` — [`DirEntry`](dent/index.md), [`Result`](#result)
 
 - <span id="intoiter-skippable"></span>`fn skippable(&self) -> bool`
 
@@ -565,19 +575,19 @@ The order of elements yielded by this iterator is unspecified.
 
 ##### `impl FusedIterator for IntoIter`
 
-##### `impl<I> IntoIterator for IntoIter`
+##### `impl IntoIterator for IntoIter`
 
-- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="intoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="intoiter-intoiter"></span>`type IntoIter = I`
+- <span id="intoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- <span id="intoiter-item"></span>`type Item = Result<DirEntry, Error>`
+- <span id="intoiter-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](#direntry)
+- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
 
 ### `Ancestor`
 
@@ -586,6 +596,8 @@ struct Ancestor {
     path: std::path::PathBuf,
 }
 ```
+
+*Defined in [`walkdir-2.5.0/src/lib.rs:611-620`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L611-L620)*
 
 An ancestor is an item in the directory tree traversed by walkdir, and is
 used to check for loops in the tree when traversing symlinks.
@@ -598,7 +610,7 @@ used to check for loops in the tree when traversing symlinks.
 
 #### Implementations
 
-- <span id="ancestor-new"></span>`fn new(dent: &DirEntry) -> io::Result<Ancestor>` — [`DirEntry`](#direntry), [`Ancestor`](#ancestor)
+- <span id="ancestor-new"></span>`fn new(dent: &DirEntry) -> io::Result<Ancestor>` — [`DirEntry`](dent/index.md), [`Ancestor`](#ancestor)
 
 - <span id="ancestor-is-same"></span>`fn is_same(&self, child: &Handle) -> io::Result<bool>`
 
@@ -616,6 +628,8 @@ struct FilterEntry<I, P> {
     predicate: P,
 }
 ```
+
+*Defined in [`walkdir-2.5.0/src/lib.rs:1055-1058`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L1055-L1058)*
 
 A recursive directory iterator that skips entries.
 
@@ -654,17 +668,17 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 ##### `impl<I> IntoIterator for FilterEntry<I, P>`
 
-- <span id="filterentry-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="filterentry-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="filterentry-intoiter"></span>`type IntoIter = I`
+- <span id="filterentry-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="filterentry-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<P> Iterator for FilterEntry<IntoIter, P>`
 
-- <span id="filterentry-item"></span>`type Item = Result<DirEntry, Error>`
+- <span id="filterentry-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="filterentry-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](#direntry)
+- <span id="filterentry-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
 
 ## Enums
 
@@ -679,6 +693,8 @@ enum DirList {
     Closed(vec::IntoIter<Result<DirEntry>>),
 }
 ```
+
+*Defined in [`walkdir-2.5.0/src/lib.rs:661-677`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L661-L677)*
 
 A sequence of unconsumed directory entries.
 
@@ -719,19 +735,19 @@ proceeds over a `Vec<fs::DirEntry>`.
 
 - <span id="dirlist-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<I> IntoIterator for DirList`
+##### `impl IntoIterator for DirList`
 
-- <span id="dirlist-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="dirlist-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="dirlist-intoiter"></span>`type IntoIter = I`
+- <span id="dirlist-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="dirlist-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for DirList`
 
-- <span id="dirlist-item"></span>`type Item = Result<DirEntry, Error>`
+- <span id="dirlist-type-item"></span>`type Item = Result<DirEntry, Error>`
 
-- <span id="dirlist-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](#direntry)
+- <span id="dirlist-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
 
 ## Traits
 
@@ -740,6 +756,8 @@ proceeds over a `Vec<fs::DirEntry>`.
 ```rust
 trait DirEntryExt { ... }
 ```
+
+*Defined in [`walkdir-2.5.0/src/dent.rs:339-343`](../../.source_1765210505/walkdir-2.5.0/src/dent.rs#L339-L343)*
 
 Unix-specific extension methods for `walkdir::DirEntry`
 
@@ -751,7 +769,7 @@ Unix-specific extension methods for `walkdir::DirEntry`
 
 #### Implementors
 
-- [`DirEntry`](#direntry)
+- [`DirEntry`](dent/index.md)
 
 ## Type Aliases
 
@@ -760,6 +778,8 @@ Unix-specific extension methods for `walkdir::DirEntry`
 ```rust
 type Result<T> = ::std::result::Result<T, Error>;
 ```
+
+*Defined in [`walkdir-2.5.0/src/lib.rs:157`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L157)*
 
 A result type for walkdir operations.
 
@@ -775,6 +795,8 @@ automatically convert to an `io::Result` when using the `try!` macro.
 ## Macros
 
 ### `itry!`
+
+*Defined in [`walkdir-2.5.0/src/lib.rs:137-144`](../../.source_1765210505/walkdir-2.5.0/src/lib.rs#L137-L144)*
 
 Like try, but for iterators that return `Option<Result<_, _>>`.
 

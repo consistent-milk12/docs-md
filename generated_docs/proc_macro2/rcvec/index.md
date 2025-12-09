@@ -23,6 +23,8 @@ struct RcVec<T> {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:7-9`](../../../.source_1765210505/proc-macro2-1.0.103/src/rcvec.rs#L7-L9)*
+
 #### Implementations
 
 - <span id="rcvec-is-empty"></span>`fn is_empty(&self) -> bool`
@@ -53,6 +55,8 @@ struct RcVecBuilder<T> {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:11-13`](../../../.source_1765210505/proc-macro2-1.0.103/src/rcvec.rs#L11-L13)*
+
 #### Implementations
 
 - <span id="rcvecbuilder-new"></span>`fn new() -> Self`
@@ -71,9 +75,9 @@ struct RcVecBuilder<T> {
 
 ##### `impl<T> IntoIterator for RcVecBuilder<T>`
 
-- <span id="rcvecbuilder-item"></span>`type Item = T`
+- <span id="rcvecbuilder-type-item"></span>`type Item = T`
 
-- <span id="rcvecbuilder-intoiter"></span>`type IntoIter = RcVecIntoIter<T>`
+- <span id="rcvecbuilder-type-intoiter"></span>`type IntoIter = RcVecIntoIter<T>`
 
 - <span id="rcvecbuilder-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
@@ -84,6 +88,8 @@ struct RcVecMut<'a, T> {
     inner: &'a mut Vec<T>,
 }
 ```
+
+*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:15-17`](../../../.source_1765210505/proc-macro2-1.0.103/src/rcvec.rs#L15-L17)*
 
 #### Implementations
 
@@ -103,6 +109,8 @@ struct RcVecIntoIter<T> {
 }
 ```
 
+*Defined in [`proc-macro2-1.0.103/src/rcvec.rs:20-22`](../../../.source_1765210505/proc-macro2-1.0.103/src/rcvec.rs#L20-L22)*
+
 #### Trait Implementations
 
 ##### `impl<T: clone::Clone> Clone for RcVecIntoIter<T>`
@@ -111,15 +119,15 @@ struct RcVecIntoIter<T> {
 
 ##### `impl<I> IntoIterator for RcVecIntoIter<T>`
 
-- <span id="rcvecintoiter-item"></span>`type Item = <I as Iterator>::Item`
+- <span id="rcvecintoiter-type-item"></span>`type Item = <I as Iterator>::Item`
 
-- <span id="rcvecintoiter-intoiter"></span>`type IntoIter = I`
+- <span id="rcvecintoiter-type-intoiter"></span>`type IntoIter = I`
 
 - <span id="rcvecintoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RcVecIntoIter<T>`
 
-- <span id="rcvecintoiter-item"></span>`type Item = T`
+- <span id="rcvecintoiter-type-item"></span>`type Item = T`
 
 - <span id="rcvecintoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

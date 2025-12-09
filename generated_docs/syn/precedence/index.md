@@ -35,13 +35,15 @@ enum Precedence {
 }
 ```
 
+*Defined in [`syn-2.0.111/src/precedence.rs:18-54`](../../../.source_1765210505/syn-2.0.111/src/precedence.rs#L18-L54)*
+
 #### Implementations
 
-- <span id="precedence-min"></span>`const MIN: Self`
+- <span id="precedence-const-min"></span>`const MIN: Self`
 
-- <span id="precedence-of-binop"></span>`fn of_binop(op: &BinOp) -> Self` — [`BinOp`](../index.md)
+- <span id="precedence-of-binop"></span>`fn of_binop(op: &BinOp) -> Self` — [`BinOp`](../op/index.md)
 
-- <span id="precedence-of"></span>`fn of(e: &Expr) -> Self` — [`Expr`](../index.md)
+- <span id="precedence-of"></span>`fn of(e: &Expr) -> Self` — [`Expr`](../expr/index.md)
 
 #### Trait Implementations
 

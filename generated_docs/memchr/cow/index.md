@@ -19,6 +19,8 @@
 struct CowBytes<'a>(Imp<'a>);
 ```
 
+*Defined in [`memchr-2.7.6/src/cow.rs:11`](../../../.source_1765210505/memchr-2.7.6/src/cow.rs#L11)*
+
 A specialized copy-on-write byte string.
 
 The purpose of this type is to permit usage of a "borrowed or owned
@@ -39,23 +41,23 @@ core.
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for CowBytes<'a>`
+##### `impl Clone for CowBytes<'a>`
 
 - <span id="cowbytes-clone"></span>`fn clone(&self) -> CowBytes<'a>` — [`CowBytes`](#cowbytes)
 
-##### `impl<'a> Debug for CowBytes<'a>`
+##### `impl Debug for CowBytes<'a>`
 
 - <span id="cowbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a> Deref for CowBytes<'a>`
+##### `impl Deref for CowBytes<'a>`
 
-- <span id="cowbytes-target"></span>`type Target = [u8]`
+- <span id="cowbytes-type-target"></span>`type Target = [u8]`
 
 - <span id="cowbytes-deref"></span>`fn deref(&self) -> &[u8]`
 
-##### `impl<P, T> Receiver for CowBytes<'a>`
+##### `impl Receiver for CowBytes<'a>`
 
-- <span id="cowbytes-target"></span>`type Target = T`
+- <span id="cowbytes-type-target"></span>`type Target = T`
 
 ## Enums
 
@@ -68,6 +70,8 @@ enum Imp<'a> {
 }
 ```
 
+*Defined in [`memchr-2.7.6/src/cow.rs:18-21`](../../../.source_1765210505/memchr-2.7.6/src/cow.rs#L18-L21)*
+
 #### Implementations
 
 - <span id="imp-new"></span>`fn new(bytes: &'a [u8]) -> Imp<'a>` — [`Imp`](#imp)
@@ -76,11 +80,11 @@ enum Imp<'a> {
 
 #### Trait Implementations
 
-##### `impl<'a> Clone for Imp<'a>`
+##### `impl Clone for Imp<'a>`
 
 - <span id="imp-clone"></span>`fn clone(&self) -> Imp<'a>` — [`Imp`](#imp)
 
-##### `impl<'a> Debug for Imp<'a>`
+##### `impl Debug for Imp<'a>`
 
 - <span id="imp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

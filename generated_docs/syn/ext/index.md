@@ -27,6 +27,8 @@ Extension traits to provide parsing methods on foreign types.
 trait IdentExt: Sized + private::Sealed { ... }
 ```
 
+*Defined in [`syn-2.0.111/src/ext.rs:22-95`](../../../.source_1765210505/syn-2.0.111/src/ext.rs#L22-L95)*
+
 Additional methods for `Ident` not provided by proc-macro2 or libproc_macro.
 
 This trait is sealed and cannot be implemented for types outside of Syn. It
@@ -48,13 +50,15 @@ is implemented only for `proc_macro2::Ident`.
 
 #### Implementors
 
-- [`Ident`](../index.md)
+- [`Ident`](../ident/index.md)
 
 ### `TokenStreamExt`
 
 ```rust
 trait TokenStreamExt { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/ext.rs:135-137`](../../../.source_1765210505/syn-2.0.111/src/ext.rs#L135-L137)*
 
 #### Required Methods
 
@@ -69,6 +73,8 @@ trait TokenStreamExt { ... }
 ```rust
 trait PunctExt { ... }
 ```
+
+*Defined in [`syn-2.0.111/src/ext.rs:145-147`](../../../.source_1765210505/syn-2.0.111/src/ext.rs#L145-L147)*
 
 #### Required Methods
 

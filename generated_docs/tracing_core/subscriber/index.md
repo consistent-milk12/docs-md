@@ -23,7 +23,9 @@ Collectors collect and record trace data.
 struct Interest(InterestKind);
 ```
 
-Indicates a [`Subscriber`](../index.md)'s interest in a particular callsite.
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:589`](../../../.source_1765210505/tracing-core-0.1.35/src/subscriber.rs#L589)*
+
+Indicates a [`Subscriber`](#subscriber)'s interest in a particular callsite.
 
 `Subscriber`s return an `Interest` from their `register_callsite` methods
 in order to determine whether that span should be enabled or disabled.
@@ -44,13 +46,13 @@ in order to determine whether that span should be enabled or disabled.
 
 - <span id="interest-is-always"></span>`fn is_always(&self) -> bool`
 
-- <span id="interest-and"></span>`fn and(self, rhs: Interest) -> Self` — [`Interest`](../index.md)
+- <span id="interest-and"></span>`fn and(self, rhs: Interest) -> Self` — [`Interest`](#interest)
 
 #### Trait Implementations
 
 ##### `impl Clone for Interest`
 
-- <span id="interest-clone"></span>`fn clone(&self) -> Interest` — [`Interest`](../index.md)
+- <span id="interest-clone"></span>`fn clone(&self) -> Interest` — [`Interest`](#interest)
 
 ##### `impl Debug for Interest`
 
@@ -62,9 +64,11 @@ in order to determine whether that span should be enabled or disabled.
 struct NoSubscriber(());
 ```
 
-A no-op [`Subscriber`](../index.md).
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:672`](../../../.source_1765210505/tracing-core-0.1.35/src/subscriber.rs#L672)*
 
-[`NoSubscriber`](#nosubscriber) implements the [`Subscriber`](../index.md) trait by never being enabled,
+A no-op [`Subscriber`](#subscriber).
+
+[`NoSubscriber`](#nosubscriber) implements the [`Subscriber`](#subscriber) trait by never being enabled,
 never being interested in any callsite, and dropping all spans and events.
 
 #### Implementations
@@ -89,17 +93,17 @@ never being interested in any callsite, and dropping all spans and events.
 
 ##### `impl Subscriber for NoSubscriber`
 
-- <span id="nosubscriber-register-callsite"></span>`fn register_callsite(&self, _: &'static Metadata<'static>) -> Interest` — [`Metadata`](../index.md), [`Interest`](../index.md)
+- <span id="nosubscriber-register-callsite"></span>`fn register_callsite(&self, _: &'static Metadata<'static>) -> Interest` — [`Metadata`](../metadata/index.md), [`Interest`](#interest)
 
 - <span id="nosubscriber-new-span"></span>`fn new_span(&self, _: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md), [`Id`](../span/index.md)
 
-- <span id="nosubscriber-event"></span>`fn event(&self, _event: &Event<'_>)` — [`Event`](../index.md)
+- <span id="nosubscriber-event"></span>`fn event(&self, _event: &Event<'_>)` — [`Event`](../event/index.md)
 
 - <span id="nosubscriber-record"></span>`fn record(&self, _span: &span::Id, _values: &span::Record<'_>)` — [`Id`](../span/index.md), [`Record`](../span/index.md)
 
 - <span id="nosubscriber-record-follows-from"></span>`fn record_follows_from(&self, _span: &span::Id, _follows: &span::Id)` — [`Id`](../span/index.md)
 
-- <span id="nosubscriber-enabled"></span>`fn enabled(&self, _metadata: &Metadata<'_>) -> bool` — [`Metadata`](../index.md)
+- <span id="nosubscriber-enabled"></span>`fn enabled(&self, _metadata: &Metadata<'_>) -> bool` — [`Metadata`](../metadata/index.md)
 
 - <span id="nosubscriber-enter"></span>`fn enter(&self, _span: &span::Id)` — [`Id`](../span/index.md)
 
@@ -116,6 +120,8 @@ enum InterestKind {
     Always,
 }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:592-596`](../../../.source_1765210505/tracing-core-0.1.35/src/subscriber.rs#L592-L596)*
 
 #### Trait Implementations
 
@@ -152,6 +158,8 @@ enum InterestKind {
 ```rust
 trait Subscriber: 'static { ... }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/subscriber.rs:80-499`](../../../.source_1765210505/tracing-core-0.1.35/src/subscriber.rs#L80-L499)*
 
 Trait representing the functions required to collect trace data.
 
@@ -193,7 +201,7 @@ to override these default implementations.
 The following methods are likely of interest:
 
 - `register_callsite` is called once for each callsite from which a span
-  event may originate, and returns an [`Interest`](../index.md) value describing whether or
+  event may originate, and returns an [`Interest`](#interest) value describing whether or
   not the subscriber wishes to see events or spans from that callsite. By
   default, it calls `enabled`, and returns `Interest::always()` if
   `enabled` returns true, or `Interest::never()` if enabled returns false.
@@ -246,7 +254,7 @@ The following methods are likely of interest:
 
 - `fn event(&self, event: &Event<'_>)`
 
-  Records that an [`Event`](../index.md) has occurred.
+  Records that an [`Event`](../event/index.md) has occurred.
 
 - `fn enter(&self, span: &span::Id)`
 
@@ -260,7 +268,7 @@ The following methods are likely of interest:
 
 - `fn on_register_dispatch(&self, subscriber: &Dispatch)`
 
-  Invoked when this subscriber becomes a [`Dispatch`](../index.md).
+  Invoked when this subscriber becomes a [`Dispatch`](../dispatcher/index.md).
 
 - `fn register_callsite(&self, metadata: &'static Metadata<'static>) -> Interest`
 
@@ -272,7 +280,7 @@ The following methods are likely of interest:
 
 - `fn event_enabled(&self, event: &Event<'_>) -> bool`
 
-  Determine if an [`Event`](../index.md) should be recorded.
+  Determine if an [`Event`](../event/index.md) should be recorded.
 
 - `fn clone_span(&self, id: &span::Id) -> span::Id`
 

@@ -10,7 +10,7 @@ Events represent single points in time during the execution of a program.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`Event`](#event) | struct | `Event`s represent single points in time where something occurred during the |
+| [`Event`](#event) | struct | `Event`s represent single points in time where something occurred during the execution of a program. |
 
 ## Structs
 
@@ -23,6 +23,8 @@ struct Event<'a> {
     parent: crate::parent::Parent,
 }
 ```
+
+*Defined in [`tracing-core-0.1.35/src/event.rs:23-27`](../../../.source_1765210505/tracing-core-0.1.35/src/event.rs#L23-L27)*
 
 `Event`s represent single points in time where something occurred during the
 execution of a program.
@@ -42,19 +44,19 @@ two key differences:
 
 #### Implementations
 
-- <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
 
-- <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
 
-- <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](../span/index.md), [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](../span/index.md), [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
 
-- <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](../span/index.md), [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](../span/index.md), [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
 
 - <span id="event-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
 
 - <span id="event-fields"></span>`fn fields(&self) -> field::Iter` — [`Iter`](../field/index.md)
 
-- <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](../index.md)
+- <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](../metadata/index.md)
 
 - <span id="event-is-root"></span>`fn is_root(&self) -> bool`
 
@@ -64,7 +66,7 @@ two key differences:
 
 #### Trait Implementations
 
-##### `impl<'a> Debug for Event<'a>`
+##### `impl Debug for Event<'a>`
 
 - <span id="event-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

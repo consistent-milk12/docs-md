@@ -26,6 +26,8 @@ struct Parker {
 }
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:53-56`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L53-L56)*
+
 A thread parking primitive.
 
 Conceptually, each `Parker` has an associated token which is initially not present:
@@ -74,7 +76,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](../index.md)
+- <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](#parker)
 
 - <span id="parker-park"></span>`fn park(&self)`
 
@@ -82,11 +84,11 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 - <span id="parker-park-deadline"></span>`fn park_deadline(&self, deadline: Instant)`
 
-- <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](../index.md)
+- <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](#unparker)
 
-- <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](../index.md)
+- <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](#parker)
 
-- <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](../index.md)
+- <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](#parker)
 
 #### Trait Implementations
 
@@ -108,21 +110,23 @@ struct Unparker {
 }
 ```
 
-Unparks a thread parked by the associated [`Parker`](../index.md).
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:217-219`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L217-L219)*
+
+Unparks a thread parked by the associated [`Parker`](#parker).
 
 #### Implementations
 
 - <span id="unparker-unpark"></span>`fn unpark(&self)`
 
-- <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](../index.md)
+- <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](#unparker)
 
-- <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](../index.md)
+- <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](#unparker)
 
 #### Trait Implementations
 
 ##### `impl Clone for Unparker`
 
-- <span id="unparker-clone"></span>`fn clone(&self) -> Unparker` — [`Unparker`](../index.md)
+- <span id="unparker-clone"></span>`fn clone(&self) -> Unparker` — [`Unparker`](#unparker)
 
 ##### `impl Debug for Unparker`
 
@@ -142,6 +146,8 @@ struct Inner {
 }
 ```
 
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:314-318`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L314-L318)*
+
 #### Implementations
 
 - <span id="inner-park"></span>`fn park(&self, deadline: Option<Instant>)`
@@ -151,20 +157,23 @@ struct Inner {
 ## Constants
 
 ### `EMPTY`
-
 ```rust
 const EMPTY: usize = 0usize;
 ```
 
-### `PARKED`
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:310`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L310)*
 
+### `PARKED`
 ```rust
 const PARKED: usize = 1usize;
 ```
 
-### `NOTIFIED`
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:311`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L311)*
 
+### `NOTIFIED`
 ```rust
 const NOTIFIED: usize = 2usize;
 ```
+
+*Defined in [`crossbeam-utils-0.8.21/src/sync/parker.rs:312`](../../../../.source_1765210505/crossbeam-utils-0.8.21/src/sync/parker.rs#L312)*
 

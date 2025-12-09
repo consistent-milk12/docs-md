@@ -4,7 +4,7 @@
 
 *A portmanteau of "ansi stream"*
 
-[`AutoStream`](#autostream) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
+[`AutoStream`](auto/index.md) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
 [adapting to the user's terminal's capabilities][AutoStream].
 
 Benefits
@@ -99,6 +99,8 @@ struct AutoStream<S: RawStream> {
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/auto.rs:19-21`](../../.source_1765210505/anstream-0.6.21/src/auto.rs#L19-L21)*
+
 [`std::io::Write`](../fs_err/index.md) that adapts ANSI escape codes to the underlying `Write`s capabilities
 
 This includes
@@ -112,7 +114,29 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 #### Implementations
 
-- <span id="autostream-lock"></span>`fn lock(self) -> AutoStream<std::io::StderrLock<'static>>` — [`AutoStream`](#autostream)
+- <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](#colorchoice)
+
+- <span id="autostream-auto"></span>`fn auto(raw: S) -> Self`
+
+- <span id="autostream-choice"></span>`fn choice(raw: &S) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+
+- <span id="autostream-always-ansi"></span>`fn always_ansi(raw: S) -> Self`
+
+- <span id="autostream-always-ansi"></span>`fn always_ansi_(raw: S) -> Self`
+
+- <span id="autostream-always"></span>`fn always(raw: S) -> Self`
+
+- <span id="autostream-never"></span>`fn never(raw: S) -> Self`
+
+- <span id="autostream-wincon"></span>`fn wincon(raw: S) -> Result<Self, S>`
+
+- <span id="autostream-into-inner"></span>`fn into_inner(self) -> S`
+
+- <span id="autostream-as-inner"></span>`fn as_inner(&self) -> &S`
+
+- <span id="autostream-is-terminal"></span>`fn is_terminal(&self) -> bool`
+
+- <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 #### Trait Implementations
 
@@ -143,11 +167,17 @@ where
 }
 ```
 
+*Defined in [`anstream-0.6.21/src/strip.rs:7-13`](../../.source_1765210505/anstream-0.6.21/src/strip.rs#L7-L13)*
+
 Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- <span id="stripstream-lock"></span>`fn lock(self) -> StripStream<std::io::StdoutLock<'static>>` — [`StripStream`](#stripstream)
+- <span id="stripstream-new"></span>`fn new(raw: S) -> Self`
+
+- <span id="stripstream-into-inner"></span>`fn into_inner(self) -> S`
+
+- <span id="stripstream-as-inner"></span>`fn as_inner(&self) -> &S`
 
 #### Trait Implementations
 
@@ -175,6 +205,8 @@ Only pass printable data to the inner `Write`
 fn stdout() -> Stdout
 ```
 
+*Defined in [`anstream-0.6.21/src/lib.rs:70-73`](../../.source_1765210505/anstream-0.6.21/src/lib.rs#L70-L73)*
+
 Create an ANSI escape code compatible stdout
 
 **Note:** Call `AutoStream::lock` in loops to avoid the performance hit of acquiring/releasing
@@ -185,6 +217,8 @@ from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
 ```rust
 fn stderr() -> Stderr
 ```
+
+*Defined in [`anstream-0.6.21/src/lib.rs:80-83`](../../.source_1765210505/anstream-0.6.21/src/lib.rs#L80-L83)*
 
 Create an ANSI escape code compatible stderr
 
@@ -199,6 +233,8 @@ from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
 type Stdout = AutoStream<std::io::Stdout>;
 ```
 
+*Defined in [`anstream-0.6.21/src/lib.rs:61`](../../.source_1765210505/anstream-0.6.21/src/lib.rs#L61)*
+
 An adaptive wrapper around the global standard output stream of the current process
 
 ### `Stderr`
@@ -207,11 +243,15 @@ An adaptive wrapper around the global standard output stream of the current proc
 type Stderr = AutoStream<std::io::Stderr>;
 ```
 
+*Defined in [`anstream-0.6.21/src/lib.rs:63`](../../.source_1765210505/anstream-0.6.21/src/lib.rs#L63)*
+
 An adaptive wrapper around the global standard error stream of the current process
 
 ## Macros
 
 ### `print!`
+
+*Defined in [`anstream-0.6.21/src/_macros.rs:61-79`](../../.source_1765210505/anstream-0.6.21/src/_macros.rs#L61-L79)*
 
 Prints to `stdout`.
 
@@ -274,6 +314,8 @@ stdout().flush().unwrap();
 
 ### `println!`
 
+*Defined in [`anstream-0.6.21/src/_macros.rs:130-151`](../../.source_1765210505/anstream-0.6.21/src/_macros.rs#L130-L151)*
+
 Prints to `stdout`, with a newline.
 
 On all platforms, the newline is the LINE FEED character (`\n`/`U+000A`) alone
@@ -324,6 +366,8 @@ println!("format {local_variable} arguments");
 
 ### `eprint!`
 
+*Defined in [`anstream-0.6.21/src/_macros.rs:184-202`](../../.source_1765210505/anstream-0.6.21/src/_macros.rs#L184-L202)*
+
 Prints to `stderr`.
 
 Equivalent to the [`print!`](#print) macro, except that output goes to
@@ -356,6 +400,8 @@ eprint!("Error: Could not complete task");
 
 ### `eprintln!`
 
+*Defined in [`anstream-0.6.21/src/_macros.rs:235-256`](../../.source_1765210505/anstream-0.6.21/src/_macros.rs#L235-L256)*
+
 Prints to `stderr`, with a newline.
 
 Equivalent to the [`println!`](#println) macro, except that output goes to
@@ -387,6 +433,8 @@ eprintln!("Error: Could not complete task");
 ```
 
 ### `panic!`
+
+*Defined in [`anstream-0.6.21/src/_macros.rs:334-343`](../../.source_1765210505/anstream-0.6.21/src/_macros.rs#L334-L343)*
 
 Panics the current thread.
 

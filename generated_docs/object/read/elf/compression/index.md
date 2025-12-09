@@ -18,6 +18,8 @@
 trait CompressionHeader: Debug + Pod { ... }
 ```
 
+*Defined in [`object-0.37.3/src/read/elf/compression.rs:9-16`](../../../../../.source_1765210505/object-0.37.3/src/read/elf/compression.rs#L9-L16)*
+
 A trait for generic access to [`elf::CompressionHeader32`](../../../elf/index.md) and [`elf::CompressionHeader64`](../../../elf/index.md).
 
 #### Associated Types

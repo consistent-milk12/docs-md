@@ -55,6 +55,8 @@ struct OnceCell<T> {
 }
 ```
 
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:14-25`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L14-L25)*
+
 #### Implementations
 
 - <span id="oncecell-new"></span>`const fn new() -> OnceCell<T>` — [`OnceCell`](#oncecell)
@@ -97,6 +99,8 @@ struct Waiter {
 }
 ```
 
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:138-142`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L138-L142)*
+
 Representation of a node in the linked list of waiters in the RUNNING state.
 A waiters is stored on the stack of the waiting threads.
 
@@ -108,6 +112,8 @@ struct Guard<'a> {
     new_queue: *mut Waiter,
 }
 ```
+
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:145-148`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L145-L148)*
 
 Drains and notifies the queue of waiters on drop.
 
@@ -125,47 +131,57 @@ Drains and notifies the queue of waiters on drop.
 fn initialize_or_wait(queue: &std::sync::atomic::AtomicPtr<Waiter>, init: Option<&mut dyn FnMut() -> bool>)
 ```
 
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:177-208`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L177-L208)*
+
 ### `wait`
 
 ```rust
 fn wait(queue: &std::sync::atomic::AtomicPtr<Waiter>, curr_queue: *mut Waiter)
 ```
 
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:210-239`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L210-L239)*
+
 ## Constants
 
 ### `INCOMPLETE`
-
 ```rust
 const INCOMPLETE: usize = 0usize;
 ```
 
-### `RUNNING`
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:125`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L125)*
 
+### `RUNNING`
 ```rust
 const RUNNING: usize = 1usize;
 ```
 
-### `COMPLETE`
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:126`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L126)*
 
+### `COMPLETE`
 ```rust
 const COMPLETE: usize = 2usize;
 ```
 
-### `INCOMPLETE_PTR`
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:127`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L127)*
 
+### `INCOMPLETE_PTR`
 ```rust
 const INCOMPLETE_PTR: *mut Waiter = {0x0 as *mut imp::Waiter};
 ```
 
-### `COMPLETE_PTR`
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:128`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L128)*
 
+### `COMPLETE_PTR`
 ```rust
 const COMPLETE_PTR: *mut Waiter = {0x2 as *mut imp::Waiter};
 ```
 
-### `STATE_MASK`
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:129`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L129)*
 
+### `STATE_MASK`
 ```rust
 const STATE_MASK: usize = 3usize;
 ```
+
+*Defined in [`once_cell-1.21.3/src/imp_std.rs:133`](../../../.source_1765210505/once_cell-1.21.3/src/imp_std.rs#L133)*
 
