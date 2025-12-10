@@ -1125,7 +1125,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             render_struct_definition(md, name, s, render_krate, &type_renderer);
 
             // Source location (if enabled)
-            md.push_str(&self.maybe_render_source_location(actual_item));
+            _ = write!(md, "{}", self.maybe_render_source_location(actual_item));
 
             // Add re-export annotation for external re-exports
             if let Some(src_crate) = source_crate_name {
@@ -1214,7 +1214,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             render_enum_definition(md, name, e, render_krate, &type_renderer);
 
             // Source location (if enabled)
-            md.push_str(&self.maybe_render_source_location(actual_item));
+            _ = write!(md, "{}", self.maybe_render_source_location(actual_item));
 
             // Add re-export annotation for external re-exports
             if let Some(src_crate) = source_crate_name {
@@ -1272,7 +1272,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             TraitRenderer::render_trait_definition(md, name, t, &self.type_renderer);
 
             // Source location (if enabled)
-            md.push_str(&self.maybe_render_source_location(actual_item));
+            _ = write!(md, "{}", self.maybe_render_source_location(actual_item));
 
             // Documentation
             append_docs(md, self.view.process_docs(actual_item, self.file_path));
@@ -1368,7 +1368,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
 
         if !implementors.is_empty() {
-            md.push_str("#### Implementors\n\n");
+            _ = write!(md, "#### Implementors\n\n");
             for implementor in implementors {
                 _ = writeln!(md, "- {implementor}");
             }
@@ -1385,7 +1385,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
 
         // Source location (if enabled)
-        md.push_str(&self.maybe_render_source_location(item));
+        _ = write!(md, "{}", self.maybe_render_source_location(item));
 
         append_docs(md, self.view.process_docs(item, self.file_path));
     }
@@ -1399,7 +1399,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
 
         // Source location (if enabled)
-        md.push_str(&self.maybe_render_source_location(item));
+        _ = write!(md, "{}", self.maybe_render_source_location(item));
 
         append_docs(md, self.view.process_docs(item, self.file_path));
     }
@@ -1413,7 +1413,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
 
         // Source location (if enabled)
-        md.push_str(&self.maybe_render_source_location(item));
+        _ = write!(md, "{}", self.maybe_render_source_location(item));
 
         append_docs(md, self.view.process_docs(item, self.file_path));
     }
@@ -1424,7 +1424,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         render_macro_heading(md, name);
 
         // Source location (if enabled)
-        md.push_str(&self.maybe_render_source_location(item));
+        _ = write!(md, "{}", self.maybe_render_source_location(item));
 
         append_docs(md, self.view.process_docs(item, self.file_path));
     }

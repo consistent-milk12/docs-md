@@ -94,9 +94,12 @@ impl QuickRefGenerator {
         }
 
         let mut md = String::new();
-        md.push_str("## Quick Reference\n\n");
-        md.push_str("| Item | Kind | Description |\n");
-        md.push_str("|------|------|-------------|\n");
+        _ = write!(
+            md,
+            "## Quick Reference\n\n\
+             | Item | Kind | Description |\n\
+             |------|------|-------------|\n"
+        );
 
         for entry in entries {
             // Escape pipe characters in summary to prevent table breakage

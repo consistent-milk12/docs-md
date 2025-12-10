@@ -310,7 +310,7 @@ pub fn render_struct_definition(
 
     _ = write!(md, "### `{name}{generics}`\n\n");
 
-    md.push_str("```rust\n");
+    _ = writeln!(md, "```rust");
     match &s.kind {
         StructKind::Unit => {
             _ = writeln!(md, "struct {name}{generics}{where_clause};");
@@ -663,7 +663,7 @@ impl TraitRenderer {
                     _ = write!(md, "\n\n  {first_line}");
                 }
 
-                md.push_str("\n\n");
+                _ = write!(md, "\n\n");
             },
 
             ItemEnum::AssocType { bounds, type_, .. } => {
@@ -1195,7 +1195,7 @@ pub fn render_union_fields<F>(
         return;
     }
 
-    md.push_str("#### Fields\n\n");
+    _ = write!(md, "#### Fields\n\n");
 
     for field_id in fields {
         let Some(field) = krate.index.get(field_id) else {
@@ -1250,14 +1250,14 @@ pub fn render_static_definition(
 
     // Check for unsafe (extern block statics)
     if s.is_unsafe {
-        decl.push_str("unsafe ");
+        _ = write!(decl, "unsafe ");
     }
 
-    decl.push_str("static ");
+    _ = write!(decl, "static ");
 
     // Check for mutable
     if s.is_mutable {
-        decl.push_str("mut ");
+        _ = write!(decl, "mut ");
     }
 
     // Add name and type
@@ -1268,10 +1268,10 @@ pub fn render_static_definition(
         _ = write!(decl, " = {}", s.expr);
     }
 
-    decl.push(';');
+    _ = write!(decl, ";");
 
     _ = writeln!(md, "{decl}");
-    md.push_str("```\n\n");
+    _ = write!(md, "```\n\n");
 }
 
 #[cfg(test)]

@@ -33,6 +33,7 @@
 //! return owned strings.
 
 use std::borrow::Cow;
+use std::fmt::Write;
 
 use rustdoc_types::{
     AssocItemConstraint, AssocItemConstraintKind, Crate, GenericArg, GenericArgs, GenericBound,
@@ -486,8 +487,7 @@ impl<'a> TypeRenderer<'a> {
 
                 // Add outlives bounds if present
                 if !outlives.is_empty() {
-                    result.push_str(": ");
-                    result.push_str(&outlives.join(" + "));
+                    _ = write!(result, ": {}", outlives.join(" + "));
                 }
 
                 Some(result)
@@ -513,8 +513,7 @@ impl<'a> TypeRenderer<'a> {
                         .map(|b| self.render_generic_bound(b))
                         .collect();
 
-                    result.push_str(": ");
-                    result.push_str(&bound_strs.join(" + "));
+                    _ = write!(result, ": {}", bound_strs.join(" + "));
                 }
 
                 Some(result)

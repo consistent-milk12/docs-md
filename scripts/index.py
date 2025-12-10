@@ -20,14 +20,18 @@ from pathlib import Path
 # Registry of scripts with descriptions
 # Format: "script_name": "brief description"
 SCRIPTS = {
-    "inspect_impl": "Inspect impl blocks for a specific type in rustdoc JSON",
-    "find_blanket_impls": "Find blanket impls (impl<T> Trait for T) in rustdoc JSON",
-    "dump_type_info": "Dump detailed type information from rustdoc JSON",
+    "analyze_write_calls": "Analyze write!/writeln! calls for memory overhead",
     "check_generated_docs": "Check generated markdown docs for common issues",
+    "dump_type_info": "Dump detailed type information from rustdoc JSON",
+    "find_blanket_impls": "Find blanket impls (impl<T> Trait for T) in rustdoc JSON",
+    "inspect_impl": "Inspect impl blocks for a specific type in rustdoc JSON",
 }
 
 # Example usages for each script
 EXAMPLES = {
+    "analyze_write_calls": [
+        "python3 scripts/analyze_write_calls.py",
+    ],
     "inspect_impl": [
         "python3 scripts/inspect_impl.py target/doc/cargo_docs_md.json TocEntry",
         "python3 scripts/inspect_impl.py target/doc/cargo_docs_md.json TocEntry --trait Pointable",

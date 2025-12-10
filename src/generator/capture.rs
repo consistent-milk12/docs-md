@@ -74,10 +74,12 @@ impl MarkdownCapture {
 
         for path in paths {
             _ = writeln!(result, "=== {path} ===");
-            result.push_str(&self.files[path]);
+            _ = write!(result, "{}", &self.files[path]);
+
             if !self.files[path].ends_with('\n') {
                 result.push('\n');
             }
+
             result.push('\n');
         }
 

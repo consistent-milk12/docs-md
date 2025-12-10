@@ -316,7 +316,7 @@ impl<'a> ImplRenderer<'a> {
 
         // === Inherent Implementations ===
         if !inherent_impls.is_empty() {
-            md.push_str("#### Implementations\n\n");
+            _ = write!(md, "#### Implementations\n\n");
             for impl_block in inherent_impls {
                 self.render_impl_methods(md, impl_block);
             }
@@ -337,7 +337,7 @@ impl<'a> ImplRenderer<'a> {
             return;
         }
 
-        md.push_str("#### Trait Implementations\n\n");
+        _ = write!(md, "#### Trait Implementations\n\n");
 
         // Check if we should collapse trivial derives
         let hide_trivial = self.ctx.render_config().hide_trivial_derives;
@@ -373,11 +373,14 @@ impl<'a> ImplRenderer<'a> {
         let count = impls.len();
         let summary = format!("Derived Traits ({count} implementations)");
 
-        md.push_str(&render_collapsible_start(&summary));
+        _ = write!(md, "{}", render_collapsible_start(&summary));
 
         // Render as a summary table
-        md.push_str("| Trait | Description |\n");
-        md.push_str("| ----- | ----------- |\n");
+        _ = write!(
+            md,
+            "| Trait | Description |\n\
+             | ----- | ----------- |\n"
+        );
 
         for impl_block in impls {
             if let Some(trait_ref) = &impl_block.trait_ {
@@ -392,7 +395,7 @@ impl<'a> ImplRenderer<'a> {
             }
         }
 
-        md.push_str(render_collapsible_end());
+        _ = write!(md, "{}", render_collapsible_end());
     }
 
     /// Render a single trait implementation block.

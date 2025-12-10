@@ -18,6 +18,7 @@
 //! Links inside code blocks are protected from transformation.
 
 use std::collections::HashMap;
+use std::fmt::Write;
 use std::sync::LazyLock;
 
 use regex::Regex;
@@ -307,7 +308,7 @@ pub fn unhide_code_lines(docs: &str) -> String {
                 // Closing fence
                 in_code_block = false;
                 fence = None;
-                result.push_str(line);
+                _ = write!(result, "{line}");
             } else if !in_code_block {
                 // Opening fence - check if it needs a language identifier
                 in_code_block = true;
@@ -316,17 +317,18 @@ pub fn unhide_code_lines(docs: &str) -> String {
                 // Add `rust` to bare fences (``` or ~~~)
                 let leading_ws = &line[..line.len() - trimmed.len()];
                 if trimmed == "```" || trimmed == "~~~" {
-                    result.push_str(leading_ws);
-                    result.push_str(trimmed);
-                    result.push_str("rust");
+                    _ = write!(result, "{leading_ws}");
+                    _ = write!(result, "{trimmed}");
+                    _ = write!(result, "rust");
                 } else {
-                    result.push_str(line);
+                    _ = write!(result, "{line}");
                 }
             } else {
                 // Nested fence (different style) - just pass through
-                result.push_str(line);
+                _ = write!(result, "{line}");
             }
-            result.push('\n');
+
+            _ = writeln!(result);
             continue;
         }
 
@@ -337,13 +339,12 @@ pub fn unhide_code_lines(docs: &str) -> String {
                 // Just "#" becomes empty line (newline added below)
             } else if let Some(rest) = trimmed.strip_prefix("# ") {
                 // "# code" becomes "code"
-                result.push_str(leading_ws);
-                result.push_str(rest);
+                _ = write!(result, "{leading_ws}{rest}");
             } else {
-                result.push_str(line);
+                _ = write!(result, "{line}");
             }
         } else {
-            result.push_str(line);
+            _ = write!(result, "{line}");
         }
         result.push('\n');
     }
@@ -378,6 +379,7 @@ fn detect_fence(trimmed: &str) -> Option<&'static str> {
 pub fn convert_path_reference_links(docs: &str) -> String {
     replace_with_regex(docs, &PATH_REF_LINK_RE, |caps| {
         let display_text = &caps[1];
+
         // Don't double-wrap in backticks
         if display_text.starts_with('`') && display_text.ends_with('`') {
             display_text.to_string()
@@ -528,14 +530,14 @@ impl<'a> DocLinkProcessor<'a> {
                     fence = Some(f);
                 }
 
-                result.push_str(line);
+                _ = write!(result, "{line}");
             } else if in_code_block {
                 // Inside code block - don't process
-                result.push_str(line);
+                _ = write!(result, "{line}");
             } else {
                 // Outside code block - process links
                 let processed = self.process_line(line, item_links);
-                result.push_str(&processed);
+                _ = write!(result, "{processed}");
             }
 
             // Add newline if not at end
@@ -674,16 +676,20 @@ impl<'a> DocLinkProcessor<'a> {
             // If there's a method/variant anchor part, create a method anchor
             if let Some(method_match) = caps.get(4) {
                 let method_name = method_match.as_str();
+
                 // Try to resolve the type first
                 if let Some(url) = self.resolve_html_link_to_url(item_name, item_kind, item_links) {
                     let anchor = method_anchor(item_name, method_name);
+
                     if url.is_empty() {
                         // Item on current page - just use anchor
                         return format!("(#{anchor})");
                     }
+
                     // Item on another page - append anchor to URL
                     return format!("({url}#{anchor})");
                 }
+
                 // Can't resolve type - use simple method anchor (assume same page)
                 let anchor = method_anchor(item_name, method_name);
                 return format!("(#{anchor})");
@@ -721,11 +727,14 @@ impl<'a> DocLinkProcessor<'a> {
                     {
                         return Some(format!("#{}", item_name.to_lowercase()));
                     }
+
                     // Item on page but no anchor - link to page without anchor
                     return Some(String::new());
                 }
+
                 // Item is in another file
                 let relative = LinkRegistry::compute_relative_path(self.current_file, path);
+
                 return Some(relative);
             }
 
@@ -748,10 +757,13 @@ impl<'a> DocLinkProcessor<'a> {
                         {
                             return Some(format!("#{}", item_name.to_lowercase()));
                         }
+
                         // Item on page but no anchor - link to page without anchor
                         return Some(String::new());
                     }
+
                     let relative = LinkRegistry::compute_relative_path(self.current_file, path);
+
                     return Some(relative);
                 }
 
@@ -790,13 +802,21 @@ impl<'a> DocLinkProcessor<'a> {
     fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool {
         match html_kind {
             "struct" => item_kind == ItemKind::Struct,
+
             "enum" => item_kind == ItemKind::Enum,
+
             "trait" => item_kind == ItemKind::Trait,
+
             "fn" => item_kind == ItemKind::Function,
+
             "type" => item_kind == ItemKind::TypeAlias,
+
             "macro" => item_kind == ItemKind::Macro,
+
             "constant" => item_kind == ItemKind::Constant,
+
             "mod" => item_kind == ItemKind::Module,
+
             _ => false,
         }
     }
@@ -811,10 +831,12 @@ impl<'a> DocLinkProcessor<'a> {
             if is_blank && prev_blank {
                 continue;
             }
+
             if !result.is_empty() {
                 result.push('\n');
             }
-            result.push_str(line);
+
+            _ = write!(result, "{line}");
             prev_blank = is_blank;
         }
 
@@ -922,12 +944,19 @@ impl<'a> DocLinkProcessor<'a> {
         let item_path = path[1..].join("/");
         let type_prefix = match path_info.kind {
             ItemKind::Struct => "struct",
+
             ItemKind::Enum => "enum",
+
             ItemKind::Trait => "trait",
+
             ItemKind::Function => "fn",
+
             ItemKind::Constant => "constant",
+
             ItemKind::TypeAlias => "type",
+
             ItemKind::Macro => "macro",
+
             _ => "index",
         };
 
@@ -1087,12 +1116,14 @@ where
 
     for caps in re.captures_iter(text) {
         let m = caps.get(0).unwrap();
-        result.push_str(&text[last_end..m.start()]);
-        result.push_str(&replacer(&caps));
+        _ = write!(result, "{}", &text[last_end..m.start()]);
+        _ = write!(result, "{}", &replacer(&caps));
+
         last_end = m.end();
     }
 
-    result.push_str(&text[last_end..]);
+    _ = write!(result, "{}", &text[last_end..]);
+
     result
 }
 
@@ -1106,13 +1137,16 @@ where
 
     for caps in re.captures_iter(text) {
         let m = caps.get(0).unwrap();
-        result.push_str(&text[last_end..m.start()]);
+        _ = write!(result, "{}", &text[last_end..m.start()]);
+
         let rest = &text[m.end()..];
-        result.push_str(&replacer(&caps, rest));
+        _ = write!(result, "{}", &replacer(&caps, rest));
+
         last_end = m.end();
     }
 
-    result.push_str(&text[last_end..]);
+    _ = write!(result, "{}", &text[last_end..]);
+
     result
 }
 
